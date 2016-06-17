@@ -383,7 +383,7 @@ fs.readFile(path.resolve(__dirname, schemaFileName), function(err, data) {
 			'});'
 		];
 
-		var outputPath = path.resolve(__dirname, './src/data/browsers.js');
+		var outputPath = path.resolve(__dirname, '../src/data/browsers.js');
 		console.log('Writing to: ' + outputPath);
 		var content = output.join(os.EOL);
 		fs.writeFileSync(outputPath, content);

@@ -10,11 +10,11 @@ var rimraf = require('rimraf');
 var merge = require('merge-stream');
 
 var compilation = tsb.create(assign({ verbose: true }, require('./src/tsconfig.json').compilerOptions));
-var tsSources = 'src/**/*.ts'
+var tsSources = 'src/**/*.ts';
 
 function compileTask() {
 	return merge(
-		gulp.src('src/data/**', { base: '.' }),
+		gulp.src('src/data/**', { base: 'src' }),
 		gulp.src(tsSources).pipe(compilation())
 	)
 	.pipe(gulp.dest('lib'));
@@ -25,4 +25,7 @@ gulp.task('compile', ['clean-out'], compileTask);
 gulp.task('compile-without-clean', compileTask);
 gulp.task('watch', ['compile'], function() {
 	gulp.watch(tsSources, ['compile-without-clean']);
+});
+gulp.task('update-browserjs', function() {
+	require('./build/generate_browserjs')();
 });

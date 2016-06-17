@@ -16,7 +16,12 @@
 	"devDependencies": {
 		"mocha": "^2.4.5",
 		"typescript": "^1.8.9",
-    "xml2js": "^0.4.16"
+    "xml2js": "^0.4.16",
+    "gulp": "^3.9.1",
+    "gulp-tsb": "^1.10.4",
+    "merge-stream": "^1.0.0",
+    "object-assign": "^4.1.0",
+    "rimraf": "^2.5.2"
 	},
 	"dependencies": {
     "vscode-languageserver-types": "^1.0.0",
