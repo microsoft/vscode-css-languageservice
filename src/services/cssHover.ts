@@ -14,7 +14,7 @@ export class CSSHover {
 	constructor() {
 	}
 
-	public doHover(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Thenable<Hover> {
+	public doHover(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Hover {
 
 		function getRange(node: nodes.Node) {
 			return Range.create(document.positionAt(node.offset), document.positionAt(node.end));
@@ -26,25 +26,25 @@ export class CSSHover {
 		for (let i = 0; i < nodepath.length; i++) {
 			let node = nodepath[i];
 			if (node instanceof nodes.Selector) {
-				return Promise.resolve({
+				return {
 					contents: selectorToMarkedString(<nodes.Selector>node),
 					range: getRange(node)
-				});
+				};
 			}
 			if (node instanceof nodes.SimpleSelector) {
-				return Promise.resolve({
+				return {
 					contents: simpleSelectorToMarkedString(<nodes.SimpleSelector>node),
 					range: getRange(node)
-				});
+				};
 			}
 			if (node instanceof nodes.Declaration) {
 				let propertyName = node.getFullPropertyName();
 				let entry = languageFacts.getProperties()[propertyName];
 				if (entry && entry.description) {
-					return Promise.resolve({
+					return {
 						contents: entry.description,
 						range: getRange(node)
-					});
+					};
 				}
 			}
 		}

@@ -5,27 +5,31 @@
 'use strict';
 
 import * as assert from 'assert';
-import {Parser} from '../../parser/cssParser';
-import {CSSCompletion} from '../../services/cssCompletion';
-import {CSSCodeActions} from '../../services/cssCodeActions';
-import {CSSValidation} from '../../services/cssValidation';
+import * as cssLanguageService from '../../cssLanguageService';
 
 import {CompletionList, TextDocument, TextEdit, Position, Range, Command} from 'vscode-languageserver-types';
 import {applyEdits} from '../textEditSupport';
 
+function asPromise<T>(result:T) : Promise<T> {
+	return Promise.resolve(result);
+}
+
 suite('CSS - Code Actions', () => {
+	
 	let testCodeActions = function (value: string, tokenBefore: string): Thenable<{ commands: Command[]; document: TextDocument; }> {
+		let ls = cssLanguageService.getCSSLanguageService();
+
 		let document = TextDocument.create('test://test/test.css', 'css', 0, value);
-		let styleSheet = new Parser().parseStylesheet(document);
+		let styleSheet = ls.parseStylesheet(document);
 		let offset = value.indexOf(tokenBefore);
 		let startPosition = document.positionAt(offset);
 		let endPosition = document.positionAt(offset + tokenBefore.length);
 		let range = Range.create(startPosition, endPosition);
-		let validation = new CSSValidation();
-		validation.configure({ validate: true });
 
-		return validation.doValidation(document, styleSheet).then(diagnostics => {
-			return new CSSCodeActions().doCodeActions(document, range, { diagnostics }, styleSheet).then(commands => {
+		ls.configure({ validate: true });
+
+		return asPromise(ls.doValidation(document, styleSheet)).then(diagnostics => {
+			return asPromise(ls.doCodeActions(document, range, { diagnostics }, styleSheet)).then(commands => {
 				return { commands, document };
 			});
 		});

@@ -18,14 +18,14 @@ export class CSSCodeActions {
 	constructor() {
 	}
 
-	public doCodeActions(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: nodes.Stylesheet): Thenable<Command[]> {
+	public doCodeActions(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: nodes.Stylesheet): Command[] {
 		let result: Command[] = [];
 		if (context.diagnostics) {
 			for (let diagnostic of context.diagnostics) {
 				this.appendFixesForMarker(document, stylesheet, diagnostic, result);
 			}
 		}
-		return Promise.resolve(result);
+		return result;
 	}
 
 	private getFixesForUnknownProperty(document: TextDocument, property: nodes.Property, marker: Diagnostic, result: Command[]): void {

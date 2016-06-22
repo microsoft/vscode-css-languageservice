@@ -15,7 +15,7 @@ const localize = nls.loadMessageBundle();
 
 export class CSSNavigation {
 
-	public findDefinition(document: TextDocument, position: Position, stylesheet: nodes.Node): Thenable<Location> {
+	public findDefinition(document: TextDocument, position: Position, stylesheet: nodes.Node): Location {
 
 		let symbols = new Symbols(stylesheet);
 		let offset = document.offsetAt(position);
@@ -23,43 +23,44 @@ export class CSSNavigation {
 
 		if (!node) {
 			//workaround for https://github.com/Microsoft/vscode-languageserver-node/issues/45
-			return Promise.resolve({
+			return {
 				uri: document.uri,
 				range: Range.create(position, position)
-			});
+			};
 		}
 
 		let symbol = symbols.findSymbolFromNode(node);
 		if (!symbol) {
 			//workaround for https://github.com/Microsoft/vscode-languageserver-node/issues/45
-			return Promise.resolve({
+			return {
 				uri: document.uri,
 				range: Range.create(position, position)
-			});
+			};
 		}
 
-		return Promise.resolve({
+		return {
 			uri: document.uri,
 			range: getRange(symbol.node, document)
-		});
+		};
 	}
 
-	public findReferences(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Thenable<Location[]> {
-		return this.findDocumentHighlights(document, position, stylesheet).then(highlights => highlights.map(h => {
+	public findReferences(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Location[] {
+		let highlights = this.findDocumentHighlights(document, position, stylesheet);
+		return highlights.map(h => {
 			return {
 				uri: document.uri,
 				range: h.range
 			};
-		}));
+		});
 	}
 
-	public findDocumentHighlights(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Thenable<DocumentHighlight[]> {
+	public findDocumentHighlights(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): DocumentHighlight[] {
 		let result: DocumentHighlight[] = [];
 
 		let offset = document.offsetAt(position);
 		let node = nodes.getNodeAtOffset(stylesheet, offset);
 		if (!node || node.type === nodes.NodeType.Stylesheet || node.type === nodes.NodeType.Declarations) {
-			return Promise.resolve(result);
+			return result;
 		}
 
 		let symbols = new Symbols(stylesheet);
@@ -85,10 +86,10 @@ export class CSSNavigation {
 			return true;
 		});
 
-		return Promise.resolve(result);
+		return result;
 	}
 
-	public findDocumentSymbols(document: TextDocument, stylesheet: nodes.Stylesheet): Thenable<SymbolInformation[]> {
+	public findDocumentSymbols(document: TextDocument, stylesheet: nodes.Stylesheet): SymbolInformation[] {
 
 		let result: SymbolInformation[] = [];
 
@@ -125,10 +126,10 @@ export class CSSNavigation {
 			return true;
 		});
 
-		return Promise.resolve(result);
+		return result;
 	}
 
-	public findColorSymbols(document: TextDocument, stylesheet: nodes.Stylesheet): Thenable<Range[]> {
+	public findColorSymbols(document: TextDocument, stylesheet: nodes.Stylesheet): Range[] {
 		let result: Range[] = [];
 		stylesheet.accept((node) => {
 			if (isColorValue(node)) {
@@ -136,18 +137,17 @@ export class CSSNavigation {
 			}
 			return true;
 		});
-		return Promise.resolve(result);
+		return result;
 	}
 
-	public doRename(document: TextDocument, position: Position, newName: string, stylesheet: nodes.Stylesheet): Thenable<WorkspaceEdit> {
-		return this.findDocumentHighlights(document, position, stylesheet).then(highlights => {
-			let edits = highlights.map(h => TextEdit.replace(h.range, newName));
-			return {
-				changes: {
-					[document.uri]: edits
-				}
-			};
-		});
+	public doRename(document: TextDocument, position: Position, newName: string, stylesheet: nodes.Stylesheet): WorkspaceEdit {
+		let highlights = this.findDocumentHighlights(document, position, stylesheet);
+		let edits = highlights.map(h => TextEdit.replace(h.range, newName));
+		return {
+			changes: {
+				[document.uri]: edits
+			}
+		};
 	}
 
 }

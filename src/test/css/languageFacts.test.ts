@@ -20,6 +20,7 @@ export function assertColor(parser: Parser, text: string, selection: string, isC
 	assert.equal(isColor, languageFacts.isColorValue(node));
 }
 
+
 suite('CSS - Language Facts', () => {
 
 	test('properties', function () {

@@ -12,6 +12,10 @@ import {CSSNavigation} from '../../services/cssNavigation';
 
 import {TextDocument, DocumentHighlightKind} from 'vscode-languageserver-types';
 
+function asPromise<T>(result:T) : Promise<T> {
+	return Promise.resolve(result);
+}
+
 export function assertScopesAndSymbols(p: Parser, input: string, expected: string): void {
 	let global = createScope(p, input);
 	assert.equal(scopeToString(global), expected);
@@ -26,7 +30,7 @@ export function assertHighlights(p: Parser, input: string, marker: string, expec
 	let index = input.indexOf(marker) + marker.length;
 	let position = document.positionAt(index);
 
-	return new CSSNavigation().findDocumentHighlights(document, position, stylesheet).then(highlights => {
+	return asPromise(new CSSNavigation().findDocumentHighlights(document, position, stylesheet)).then(highlights => {
 		assert.equal(highlights.length, expectedMatches, input);
 
 		let nWrites = 0;

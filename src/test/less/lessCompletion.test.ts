@@ -6,23 +6,28 @@
 
 import * as assert from 'assert';
 
-import {LESSParser} from '../../parser/lessParser';
+import * as cssLanguageService from '../../cssLanguageService';
 import {LESSCompletion} from '../../services/lessCompletion';
 import * as nodes from '../../parser/cssNodes';
 import {TextDocument, Position} from 'vscode-languageserver-types';
 import {assertCompletion, ItemDescription} from '../css/completion.test';
+
+function asPromise<T>(result:T) : Promise<T> {
+	return Promise.resolve(result);
+}
 
 suite('LESS - Completions', () => {
 
 	let testCompletionFor = function (value: string, stringBefore: string, expected: { count?: number, items?: ItemDescription[] }): Thenable<void> {
 		let idx = stringBefore ? value.indexOf(stringBefore) + stringBefore.length : 0;
 
-		let completionProvider = new LESSCompletion();
+		let ls = cssLanguageService.getLESSLanguageService();
+		let ls2 = new LESSCompletion();
 
 		let document = TextDocument.create('test://test/test.less', 'less', 0, value);
 		let position = Position.create(0, idx);
-		let jsonDoc = new LESSParser().parseStylesheet(document);
-		return completionProvider.doComplete(document, position, jsonDoc).then(list => {
+		let jsonDoc = ls.parseStylesheet(document);
+		return asPromise(ls.doComplete(document, position, jsonDoc)).then(list => {
 			if (expected.count) {
 				assert.equal(list.items, expected.count);
 			}

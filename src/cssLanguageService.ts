@@ -22,17 +22,17 @@ import {LESSCompletion} from './services/lessCompletion';
 
 export interface LanguageService {
 	configure(raw: LanguageSettings): void;
-	doValidation(document: TextDocument, stylesheet: Stylesheet): Thenable<Diagnostic[]>;
+	doValidation(document: TextDocument, stylesheet: Stylesheet): Diagnostic[];
 	parseStylesheet(document: TextDocument): Stylesheet;
-	doComplete(document: TextDocument, position: Position, stylesheet: Stylesheet): Thenable<CompletionList>;
-	doHover(document: TextDocument, position: Position, stylesheet: Stylesheet): Thenable<Hover>;
-	findDefinition(document: TextDocument, position: Position, stylesheet: Stylesheet): Thenable<Location>;
-	findReferences(document: TextDocument, position: Position, stylesheet: Stylesheet): Thenable<Location[]>;
-	findDocumentHighlights(document: TextDocument, position: Position, stylesheet: Stylesheet): Thenable<DocumentHighlight[]>;
-	findDocumentSymbols(document: TextDocument, stylesheet: Stylesheet): Thenable<SymbolInformation[]>;
-	doCodeActions(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: Stylesheet): Thenable<Command[]>;
-	findColorSymbols(document: TextDocument, stylesheet: Stylesheet): Thenable<Range[]>;
-	doRename(document: TextDocument, position: Position, newName: string, stylesheet: Stylesheet): Thenable<WorkspaceEdit>;
+	doComplete(document: TextDocument, position: Position, stylesheet: Stylesheet): CompletionList;
+	doHover(document: TextDocument, position: Position, stylesheet: Stylesheet): Hover;
+	findDefinition(document: TextDocument, position: Position, stylesheet: Stylesheet): Location;
+	findReferences(document: TextDocument, position: Position, stylesheet: Stylesheet): Location[];
+	findDocumentHighlights(document: TextDocument, position: Position, stylesheet: Stylesheet): DocumentHighlight[];
+	findDocumentSymbols(document: TextDocument, stylesheet: Stylesheet): SymbolInformation[];
+	doCodeActions(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: Stylesheet): Command[];
+	findColorSymbols(document: TextDocument, stylesheet: Stylesheet): Range[];
+	doRename(document: TextDocument, position: Position, newName: string, stylesheet: Stylesheet): WorkspaceEdit;
 }
 
 export interface LanguageSettings {
@@ -40,46 +40,35 @@ export interface LanguageSettings {
 	lint?: any;
 }
 
-let cssParser = new Parser();
-let cssCompletion = new CSSCompletion();
-let cssHover = new CSSHover();
-let cssValidation = new CSSValidation();
-let cssNavigation = new CSSNavigation();
-let cssCodeActions = new CSSCodeActions();
 
-export function getCSSLanguageService() : LanguageService {
+function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover, navigation: CSSNavigation, codeActions: CSSCodeActions, validation: CSSValidation) {
 	return {
-		configure: cssValidation.configure.bind(cssValidation),
-		doValidation: cssValidation.doValidation.bind(cssValidation),
-		parseStylesheet: cssParser.parseStylesheet.bind(cssParser),
-		doComplete: cssCompletion.doComplete.bind(cssCompletion),
-		doHover: cssHover.doHover.bind(cssHover),
-		findDefinition: cssNavigation.findDefinition.bind(cssNavigation),
-		findReferences: cssNavigation.findReferences.bind(cssNavigation),
-		findDocumentHighlights: cssNavigation.findDocumentHighlights.bind(cssNavigation),
-		findDocumentSymbols: cssNavigation.findDocumentSymbols.bind(cssNavigation),
-		doCodeActions: cssCodeActions.doCodeActions.bind(cssCodeActions),
-		findColorSymbols: cssNavigation.findColorSymbols.bind(cssNavigation),
-		doRename: cssNavigation.doRename.bind(cssNavigation),
+		configure: validation.configure.bind(validation),
+		doValidation: validation.doValidation.bind(validation),
+		parseStylesheet: parser.parseStylesheet.bind(parser),
+		doComplete: completion.doComplete.bind(completion),
+		doHover: hover.doHover.bind(hover),
+		findDefinition: navigation.findDefinition.bind(navigation),
+		findReferences: navigation.findReferences.bind(navigation),
+		findDocumentHighlights: navigation.findDocumentHighlights.bind(navigation),
+		findDocumentSymbols: navigation.findDocumentSymbols.bind(navigation),
+		doCodeActions: codeActions.doCodeActions.bind(codeActions),
+		findColorSymbols: navigation.findColorSymbols.bind(navigation),
+		doRename: navigation.doRename.bind(navigation),
 	};
 }
 
-let scssParser = new SCSSParser();
-let scssCompletion = new SCSSCompletion();
 
-export function getSCSSLanguageService() : LanguageService {
-	let languageService = getCSSLanguageService();
-	languageService.parseStylesheet = scssParser.parseStylesheet.bind(scssParser);
-	languageService.doComplete = scssCompletion.doComplete.bind(scssCompletion);
-	return languageService;
+export function getCSSLanguageService() : LanguageService {
+	return createFacade(new Parser(), new CSSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation);
 }
 
-let lessParser = new LESSParser();
-let lessCompletion = new LESSCompletion();
+
+export function getSCSSLanguageService() : LanguageService {
+	return createFacade(new SCSSParser(), new SCSSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation);
+}
+
 
 export function getLESSLanguageService() : LanguageService {
-	let languageService = getCSSLanguageService();
-	languageService.parseStylesheet = lessParser.parseStylesheet.bind(lessParser);
-	languageService.doComplete = lessCompletion.doComplete.bind(lessCompletion);
-	return languageService;
+	return createFacade(new LESSParser(), new LESSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation);
 }

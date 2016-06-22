@@ -5,23 +5,26 @@
 'use strict';
 
 import * as assert from 'assert';
+import * as cssLanguageService from '../../cssLanguageService';
 
-import {SCSSParser} from '../../parser/scssParser';
-import {SCSSCompletion} from '../../services/scssCompletion';
 import {TextDocument, Position} from 'vscode-languageserver-types';
 import {assertCompletion, ItemDescription} from '../css/completion.test';
+
+function asPromise<T>(result:T) : Promise<T> {
+	return Promise.resolve(result);
+}
 
 suite('SCSS - Completions', () => {
 
 	let testCompletionFor = function (value: string, stringBefore: string, expected: { count?: number, items?: ItemDescription[] }): Thenable<void> {
 		let idx = stringBefore ? value.indexOf(stringBefore) + stringBefore.length : 0;
 
-		let completionProvider = new SCSSCompletion();
+		let ls = cssLanguageService.getSCSSLanguageService();
 
 		let document = TextDocument.create('test://test/test.scss', 'scss', 0, value);
 		let position = Position.create(0, idx);
-		let jsonDoc = new SCSSParser().parseStylesheet(document);
-		return completionProvider.doComplete(document, position, jsonDoc).then(list => {
+		let jsonDoc = ls.parseStylesheet(document);
+		return asPromise(ls.doComplete(document, position, jsonDoc)).then(list => {
 			if (expected.count) {
 				assert.equal(list.items, expected.count);
 			}

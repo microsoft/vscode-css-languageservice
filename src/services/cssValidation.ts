@@ -29,9 +29,9 @@ export class CSSValidation {
 		}
 	}
 
-	public doValidation(document: TextDocument, stylesheet: nodes.Stylesheet): Thenable<Diagnostic[]> {
+	public doValidation(document: TextDocument, stylesheet: nodes.Stylesheet): Diagnostic[] {
 		if (!this.validationEnabled) {
-			return Promise.resolve([]);
+			return [];
 		}
 
 		let entries: nodes.IMarker[] = [];
@@ -49,6 +49,6 @@ export class CSSValidation {
 			};
 		}
 
-		return Promise.resolve(entries.filter(entry => entry.getLevel() !== nodes.Level.Ignore).map(toDiagnostic));
+		return entries.filter(entry => entry.getLevel() !== nodes.Level.Ignore).map(toDiagnostic);
 	}
 }

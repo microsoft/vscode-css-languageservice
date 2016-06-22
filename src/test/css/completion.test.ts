@@ -5,8 +5,7 @@
 'use strict';
 
 import * as assert from 'assert';
-import {Parser} from '../../parser/cssParser';
-import {CSSCompletion} from '../../services/cssCompletion';
+import * as cssLanguageService from '../../cssLanguageService';
 
 import {CompletionList, TextDocument, TextEdit, Position, CompletionItemKind} from 'vscode-languageserver-types';
 import {applyEdits} from '../textEditSupport';
@@ -16,6 +15,10 @@ export interface ItemDescription {
 	documentation?: string;
 	kind?: CompletionItemKind;
 	resultText?: string;
+}
+
+function asPromise<T>(result:T) : Promise<T> {
+	return Promise.resolve(result);
 }
 
 export let assertCompletion = function (completions: CompletionList, expected: ItemDescription, document?: TextDocument) {
@@ -39,12 +42,12 @@ suite('CSS - Completion', () => {
 	let testCompletionFor = function (value: string, stringBefore: string, expected: { count?: number, items?: ItemDescription[] }): Thenable<void> {
 		let idx = stringBefore ? value.indexOf(stringBefore) + stringBefore.length : 0;
 
-		let completionProvider = new CSSCompletion();
+		let ls = cssLanguageService.getCSSLanguageService();
 
 		let document = TextDocument.create('test://test/test.css', 'css', 0, value);
 		let position = Position.create(0, idx);
-		let jsonDoc = new Parser().parseStylesheet(document);
-		return completionProvider.doComplete(document, position, jsonDoc).then(list => {
+		let jsonDoc = ls.parseStylesheet(document);
+		return asPromise(ls.doComplete(document, position, jsonDoc)).then(list => {
 			if (expected.count) {
 				assert.equal(list.items, expected.count);
 			}
