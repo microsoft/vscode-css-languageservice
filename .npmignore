@@ -1,7 +1,7 @@
 .vscode/
 lib/test/
 lib/**/*.js.map
-lib/**/*.d.ts
+lib/*/*.d.ts
 src/
 test/
 build/

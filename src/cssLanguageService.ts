@@ -7,7 +7,6 @@
 import {TextDocument, Position, CompletionList, Hover, Range, SymbolInformation, Diagnostic,
 	Location, DocumentHighlight, CodeActionContext, Command, WorkspaceEdit} from 'vscode-languageserver-types';
 
-import {Stylesheet} from './parser/cssNodes';
 import {Parser} from './parser/cssParser';
 import {CSSCompletion} from './services/cssCompletion';
 import {CSSHover} from './services/cssHover';
@@ -19,6 +18,8 @@ import {SCSSParser} from './parser/scssParser';
 import {SCSSCompletion} from './services/scssCompletion';
 import {LESSParser} from './parser/lessParser';
 import {LESSCompletion} from './services/lessCompletion';
+
+export type Stylesheet = {};
 
 export interface LanguageService {
 	configure(raw: LanguageSettings): void;
