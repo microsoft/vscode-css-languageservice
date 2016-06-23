@@ -1,6 +1,6 @@
 {
   "name": "vscode-css-languageservice",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Language service for CSS, LESS and SCSS",
   "main": "./lib/cssLanguageService.js",
   "typings": "./lib/cssLanguageService",
@@ -24,13 +24,13 @@
     "rimraf": "^2.5.2"
 	},
 	"dependencies": {
-    "vscode-languageserver-types": "^1.0.0",
+    "vscode-languageserver-types": "^1.0.1",
 		"vscode-nls": "^1.0.4"
 	},
 	"scripts": {
-		"prepublish": "node_modules/.bin/gulp compile",
-		"compile": "node_modules/.bin/gulp compile",
-		"watch": "node_modules/.bin/gulp watch",
-    "test": "node_modules/.bin/gulp compile && mocha"
+		"prepublish": "gulp compile",
+		"compile": "gulp compile",
+		"watch": "gulp watch",
+    "test": "gulp compile && mocha"
 	}
 }
