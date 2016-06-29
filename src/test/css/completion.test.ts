@@ -14,6 +14,7 @@ export interface ItemDescription {
 	label: string;
 	documentation?: string;
 	kind?: CompletionItemKind;
+	insertText?: string;
 	resultText?: string;
 }
 
@@ -31,6 +32,9 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 	}
 	if (expected.kind) {
 		assert.equal(matches[0].kind, expected.kind);
+	}
+	if (expected.insertText) {
+		assert.equal(matches[0].insertText, expected.insertText);
 	}
 	if (document && expected.resultText) {
 		assert.equal(applyEdits(document, [matches[0].textEdit]), expected.resultText);
@@ -227,6 +231,25 @@ suite('CSS - Completion', () => {
 					{ label: 'red', kind: CompletionItemKind.Color }
 				]
 			})
+		]).then(() => testDone(), (error) => testDone(error));
+	});
+	test('variables', function (testDone): any {
+		Promise.all([
+			testCompletionFor(':root { --myvar: red; } body { color: ', 'color: ', {
+				items: [
+					{ label: '--myvar', insertText: 'var(--myvar)'},
+				]
+			}),
+			testCompletionFor('body { --myvar: 0px; border-right: var ', 'border-right: var', {
+				items: [
+					{ label: '--myvar', insertText: 'var(--myvar)'},
+				]
+			}),
+			testCompletionFor('body { --myvar: 0px; border-right: var( ', 'border-right: var(', {
+				items: [
+					{ label: '--myvar', insertText: '--myvar'},
+				]
+			}),
 		]).then(() => testDone(), (error) => testDone(error));
 	});
 });
