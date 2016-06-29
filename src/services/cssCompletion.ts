@@ -181,7 +181,7 @@ export class CSSCompletion {
 		symbols.forEach((symbol) => {
 			result.items.push({
 				label: symbol.name,
-				insertText: strings.startsWith(symbol.name, '--') ? `let(${symbol.name})` : symbol.name,
+				insertText: strings.startsWith(symbol.name, '--') ? `var(${symbol.name})` : symbol.name,
 				kind: CompletionItemKind.Variable
 			});
 		});
@@ -552,7 +552,7 @@ export class CSSCompletion {
 	}
 
 	public getCompletionsForFunctionArgument(arg: nodes.FunctionArgument, func: nodes.Function, result: CompletionList): CompletionList {
-		if (func.getIdentifier().getText() === 'let') {
+		if (func.getIdentifier().getText() === 'var') {
 			if (!func.getArguments().hasChildren() || func.getArguments().getChild(0) === arg) {
 				this.getVariableProposalsForCSSVarFunction(result);
 			}
