@@ -30,6 +30,8 @@ suite('LESS - Parser', () => {
 	test('Media', function() {
 		let parser = new LESSParser();
 		assertNode('@media @phone {}', parser, parser._parseMedia.bind(parser));
+		assertNode('@media(max-width: 767px) { .mixinRef() }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media(max-width: 767px) { .mixinDec() {} }', parser, parser._parseMedia.bind(parser));
 	});
 
 	test('VariableDeclaration', function() {
@@ -66,6 +68,7 @@ suite('LESS - Parser', () => {
 		assertNode('.box-shadow(0 0 5px, 30%)', parser, parser._parseMixinReference.bind(parser));
 		assertNode('.box-shadow', parser, parser._parseMixinReference.bind(parser));
 		assertNode('.mixin(10) !important', parser, parser._parseMixinReference.bind(parser));
+		assertNode('.mixin(@a: 2, @b: 1)', parser, parser._parseMixinReference.bind(parser));
 	});
 
 	test('MixinParameter', function() {
@@ -128,6 +131,9 @@ suite('LESS - Parser', () => {
 	test('Extend', function() {
 		let parser = new LESSParser();
 		assertNode('nav { &:extend(.inline); }', parser, parser._parseRuleset.bind(parser));
+		assertNode('nav { &:extend(.test all); }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.big-bucket:extend(.bucket all) { }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.some-class:extend(tr .bucket) {}', parser, parser._parseRuleset.bind(parser));
 	});
 
 	test('Declaration', function() {

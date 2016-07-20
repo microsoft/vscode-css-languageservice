@@ -511,7 +511,9 @@ export class Parser {
 	}
 
 	public _parseMediaDeclaration(): nodes.Node {
-		return this._tryParseRuleset(false) || this._tryToParseDeclaration() || this._parseStylesheetStatement();
+		return this._tryParseRuleset(false) 
+			|| this._tryToParseDeclaration() 
+			|| this._parseStylesheetStatement();
 	}
 
 	public _parseMedia(): nodes.Node {

@@ -21,7 +21,9 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseStylesheetStatement(): nodes.Node {
-		return this._tryParseMixinDeclaration() || super._parseStylesheetStatement() || this._parseVariableDeclaration();
+		return this._tryParseMixinDeclaration() 
+			|| super._parseStylesheetStatement()
+			|| this._parseVariableDeclaration();
 	}
 
 	public _parseImport(): nodes.Node {
@@ -60,6 +62,14 @@ export class LESSParser extends cssParser.Parser {
 		}
 		return node;
 	}
+
+	public _parseMediaDeclaration(): nodes.Node {
+		return this._tryParseRuleset(false) 
+			|| this._tryToParseDeclaration() 
+			|| this._tryParseMixinDeclaration()
+			|| this._parseMixinReference()
+			|| this._parseStylesheetStatement();
+	}	
 
 	public _parseVariableDeclaration(panic: TokenType[] = []): nodes.VariableDeclaration {
 		let node = <nodes.VariableDeclaration>this.create(nodes.VariableDeclaration);
@@ -253,22 +263,41 @@ export class LESSParser extends cssParser.Parser {
 		return this.finish(identifier);
 	}
 
+	public _parsePseudo(): nodes.Node {
+		if (!this.peek(TokenType.Colon)) {
+			return null;
+		}
+		let mark = this.mark();
+		let node = <nodes.ExtendsReference>this.create(nodes.ExtendsReference);
+		this.consumeToken(); // :
+		if (this.accept(TokenType.Ident, 'extend')) {
+			return this._completeExtends(node);
+		}
+		this.restoreAtMark(mark);
+		return super._parsePseudo();
+	}
+
 	public _parseExtend(): nodes.Node {
 		if (!this.peek(TokenType.Delim, '&')) {
 			return null;
 		}
-		let mark = this.mark();
 
+		let mark = this.mark();
 		let node = <nodes.ExtendsReference>this.create(nodes.ExtendsReference);
 		this.consumeToken(); // &
+
 		if (this.hasWhitespace() || !this.accept(TokenType.Colon) || !this.accept(TokenType.Ident, 'extend')) {
 			this.restoreAtMark(mark);
 			return null;
 		}
+		return this._completeExtends(node);
+	}
+
+	private _completeExtends(node: nodes.ExtendsReference): nodes.Node {
 		if (!this.accept(TokenType.ParenthesisL)) {
 			return this.finish(node, ParseError.LeftParenthesisExpected);
 		}
-		if (!node.setSelector(this._parseSimpleSelector())) {
+		if (!node.setSelector(this._parseSelector(true))) {
 			return this.finish(node, ParseError.SelectorExpected);
 		}
 		if (!this.accept(TokenType.ParenthesisR)) {
@@ -292,9 +321,9 @@ export class LESSParser extends cssParser.Parser {
 		node.setIdentifier(this.finish(identifier));
 
 		if (!this.hasWhitespace() && this.accept(TokenType.ParenthesisL)) {
-			if (node.getArguments().addChild(this._parseFunctionArgument())) {
+			if (node.getArguments().addChild(this._parseMixinArgument())) {
 				while (this.accept(TokenType.Comma) || this.accept(TokenType.SemiColon)) {
-					if (!node.getArguments().addChild(this._parseExpr())) {
+					if (!node.getArguments().addChild(this._parseMixinArgument())) {
 						return this.finish(node, ParseError.ExpressionExpected);
 					}
 				}
@@ -311,6 +340,27 @@ export class LESSParser extends cssParser.Parser {
 
 		return this.finish(node);
 	}
+
+	public _parseMixinArgument(): nodes.Node {
+		// [variableName ':'] expression | variableName '...'
+		let node = <nodes.FunctionArgument>this.create(nodes.FunctionArgument);
+
+		let pos = this.mark();
+		let argument = this._parseVariable();
+		if (argument) {
+			if (!this.accept(TokenType.Colon)) {
+				this.restoreAtMark(pos);
+			} else {
+				node.setIdentifier(argument);
+			}
+		}
+
+		if (node.setValue(this._parseExpr(true))) {
+			return this.finish(node);
+		}
+
+		return null;
+	}	
 
 	public _parseMixinParameter(): nodes.Node {
 
