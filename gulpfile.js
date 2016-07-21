@@ -27,5 +27,5 @@ gulp.task('watch', ['compile'], function() {
 	gulp.watch(tsSources, ['compile-without-clean']);
 });
 gulp.task('update-browserjs', function() {
-	require('./build/generate_browserjs')();
+	require('./build/generate_browserjs');
 });

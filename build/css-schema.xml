@@ -8339,7 +8339,7 @@
 				</value>
 			</values>
 		</entry>
-		<entry name="user-select" restriction="enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-ui-4/#propdef-user-select" syntax="div { $(name): text; }">
+		<entry name="user-select" restriction="enum" version="3.0" browsers="all" ref="http://www.w3.org/TR/css-ui-4/#propdef-user-select" syntax="div { $(name): text; }">
 			<desc>Controls the appearance of selection.</desc>
 			<values>
 				<value name="all" version="3.0" browsers="all">
