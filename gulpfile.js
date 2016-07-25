@@ -11,16 +11,17 @@ var merge = require('merge-stream');
 
 var compilation = tsb.create(assign({ verbose: true }, require('./src/tsconfig.json').compilerOptions));
 var tsSources = 'src/**/*.ts';
+var outFolder = 'lib';
 
 function compileTask() {
 	return merge(
 		gulp.src('src/data/**', { base: 'src' }),
 		gulp.src(tsSources).pipe(compilation())
 	)
-	.pipe(gulp.dest('lib'));
+	.pipe(gulp.dest(outFolder));
 }
 
-gulp.task('clean-out', function(cb) { rimraf('lib', { maxBusyTries: 1 }, cb); });
+gulp.task('clean-out', function() { rimraf.sync(outFolder, { maxBusyTries: 1 }); });
 gulp.task('compile', ['clean-out'], compileTask);
 gulp.task('compile-without-clean', compileTask);
 gulp.task('watch', ['compile'], function() {
@@ -28,4 +29,15 @@ gulp.task('watch', ['compile'], function() {
 });
 gulp.task('update-browserjs', function() {
 	require('./build/generate_browserjs');
+});
+
+var vscodeCSSLibFolder = '../vscode/extensions/css/server/node_modules/vscode-css-languageservice/lib';
+
+gulp.task('clean-vscode-css', function() { rimraf.sync(vscodeCSSLibFolder, { maxBusyTries: 1 }); });
+gulp.task('compile-vscode-css', ['clean-out', 'clean-vscode-css', 'compile-vscode-css-without-clean']);
+gulp.task('compile-vscode-css-without-clean', function() {
+	return compileTask().pipe(gulp.dest(vscodeCSSLibFolder));
+});
+gulp.task('watch-vscode-css', ['compile-vscode-css'], function() {
+	gulp.watch(tsSources, ['compile-vscode-css-without-clean']);
 });
