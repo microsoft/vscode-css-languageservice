@@ -31,59 +31,67 @@ export class CSSCompletion {
 		return this.symbolContext;
 	}
 
-
 	public doComplete(document: TextDocument, position: Position, styleSheet: nodes.Stylesheet): CompletionList {
 		this.offset = document.offsetAt(position);
 		this.position = position;
 		this.currentWord = getCurrentWord(document, this.offset);
 		this.textDocument = document;
 		this.styleSheet = styleSheet;
+		try {
+			let result: CompletionList = { isIncomplete: false, items: [] };
+			let nodepath = nodes.getNodePath(this.styleSheet, this.offset);
 
-		let result: CompletionList = { isIncomplete: false, items: [] };
-		let nodepath = nodes.getNodePath(this.styleSheet, this.offset);
-
-		for (let i = nodepath.length - 1; i >= 0; i--) {
-			let node = nodepath[i];
-			if (node instanceof nodes.Property) {
-				this.getCompletionsForDeclarationProperty(result);
-			} else if (node instanceof nodes.Expression) {
-				this.getCompletionsForExpression(<nodes.Expression>node, result);
-			} else if (node instanceof nodes.SimpleSelector) {
-				let parentRuleSet = <nodes.RuleSet>node.findParent(nodes.NodeType.Ruleset);
-				this.getCompletionsForSelector(parentRuleSet, result);
-			} else if (node instanceof nodes.Declarations) {
-				this.getCompletionsForDeclarations(<nodes.Declarations>node, result);
-			} else if (node instanceof nodes.VariableDeclaration) {
-				this.getCompletionsForVariableDeclaration(<nodes.VariableDeclaration>node, result);
-			} else if (node instanceof nodes.RuleSet) {
-				this.getCompletionsForRuleSet(<nodes.RuleSet>node, result);
-			} else if (node instanceof nodes.Interpolation) {
-				this.getCompletionsForInterpolation(<nodes.Interpolation>node, result);
-			} else if (node instanceof nodes.FunctionArgument) {
-				this.getCompletionsForFunctionArgument(<nodes.FunctionArgument>node, <nodes.Function>node.getParent(), result);
-			} else if (node instanceof nodes.FunctionDeclaration) {
-				this.getCompletionsForFunctionDeclaration(<nodes.FunctionDeclaration>node, result);
-			} else if (node instanceof nodes.Function) {
-				this.getCompletionsForFunctionArgument(null, <nodes.Function>node, result);
+			for (let i = nodepath.length - 1; i >= 0; i--) {
+				let node = nodepath[i];
+				if (node instanceof nodes.Property) {
+					this.getCompletionsForDeclarationProperty(result);
+				} else if (node instanceof nodes.Expression) {
+					this.getCompletionsForExpression(<nodes.Expression>node, result);
+				} else if (node instanceof nodes.SimpleSelector) {
+					let parentRuleSet = <nodes.RuleSet>node.findParent(nodes.NodeType.Ruleset);
+					this.getCompletionsForSelector(parentRuleSet, result);
+				} else if (node instanceof nodes.Declarations) {
+					this.getCompletionsForDeclarations(<nodes.Declarations>node, result);
+				} else if (node instanceof nodes.VariableDeclaration) {
+					this.getCompletionsForVariableDeclaration(<nodes.VariableDeclaration>node, result);
+				} else if (node instanceof nodes.RuleSet) {
+					this.getCompletionsForRuleSet(<nodes.RuleSet>node, result);
+				} else if (node instanceof nodes.Interpolation) {
+					this.getCompletionsForInterpolation(<nodes.Interpolation>node, result);
+				} else if (node instanceof nodes.FunctionArgument) {
+					this.getCompletionsForFunctionArgument(<nodes.FunctionArgument>node, <nodes.Function>node.getParent(), result);
+				} else if (node instanceof nodes.FunctionDeclaration) {
+					this.getCompletionsForFunctionDeclaration(<nodes.FunctionDeclaration>node, result);
+				} else if (node instanceof nodes.Function) {
+					this.getCompletionsForFunctionArgument(null, <nodes.Function>node, result);
+				}
+				if (result.items.length > 0) {
+					return result;
+				}
 			}
+			this.getCompletionsForStylesheet(result);
 			if (result.items.length > 0) {
 				return result;
 			}
-		}
-		this.getCompletionsForStylesheet(result);
-		if (result.items.length > 0) {
+
+			if (this.variablePrefix && this.currentWord.indexOf(this.variablePrefix) === 0) {
+				this.getVariableProposals(result);
+				if (result.items.length > 0) {
+					return result;
+				}
+			}
+
+			// no match, don't show text matches
 			return result;
-		}
 
-		if (this.variablePrefix && this.currentWord.indexOf(this.variablePrefix) === 0) {
-			this.getVariableProposals(result);
-			if (result.items.length > 0) {
-				return result;
-			}
+		} finally {
+			// don't hold on any state, clear symbolContext
+			this.position = null;
+			this.currentWord = null;
+			this.textDocument = null;
+			this.styleSheet = null;	
+			this.symbolContext = null;
 		}
-
-		// no match, don't show text matches
-		return result;
 	}
 
 	public getCompletionsForDeclarationProperty(result: CompletionList): CompletionList {
