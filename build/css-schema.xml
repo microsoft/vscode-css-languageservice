@@ -3904,7 +3904,7 @@
 			</values>
 		</entry>
 		<entry name="margin" restriction="length, percentage" version="1.0" browsers="all" ref="http://www.w3.org/TR/css3-box/#margin1" syntax="div { $(name): 4px 7px 2px 4px; }">
-			<desc>Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.</desc>
+			<desc>Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top.</desc>
 			<values>
 				<value name="auto" version="1.0" browsers="all" />
 				<value name="logical" version="3.0" browsers="none">
@@ -3925,7 +3925,7 @@
 			</values>
 		</entry>
 		<entry name="margin-bottom" restriction="length, percentage" version="1.0" browsers="all" ref="http://www.w3.org/TR/css3-box/#margin1" syntax="div { $(name): 4px; }">
-			<desc>Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.</desc>
+			<desc>Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top.</desc>
 			<values>
 				<value name="auto" version="1.0" browsers="all" />
 			</values>
@@ -3943,19 +3943,19 @@
 			</values>
 		</entry>
 		<entry name="margin-left" restriction="length, percentage" version="1.0" browsers="all" ref="http://www.w3.org/TR/css3-box/#margin1" syntax="div { $(name): 4px; }">
-			<desc>Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.</desc>
+			<desc>Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top.</desc>
 			<values>
 				<value name="auto" version="1.0" browsers="all" />
 			</values>
 		</entry>
 		<entry name="margin-right" restriction="length, percentage" version="1.0" browsers="all" ref="http://www.w3.org/TR/css3-box/#margin1" syntax="div { $(name): 4px; }">
-			<desc>Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.</desc>
+			<desc>Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top.</desc>
 			<values>
 				<value name="auto" version="1.0" browsers="all" />
 			</values>
 		</entry>
 		<entry name="margin-top" restriction="length, percentage" version="1.0" browsers="all" ref="http://www.w3.org/TR/css3-box/#margin1" syntax="div { $(name): 4px; }">
-			<desc>Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.</desc>
+			<desc>Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top.</desc>
 			<values>
 				<value name="auto" version="1.0" browsers="all" />
 			</values>
