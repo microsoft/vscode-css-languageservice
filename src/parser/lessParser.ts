@@ -168,6 +168,7 @@ export class LESSParser extends cssParser.Parser {
 		if (this.peek(TokenType.AtKeyword)) {
 			return this._parseKeyframe()
 				|| this._parseMedia()
+				|| this._parseImport()
 				|| this._parseVariableDeclaration(); // Variable declarations
 		}
 		return this._tryParseMixinDeclaration()

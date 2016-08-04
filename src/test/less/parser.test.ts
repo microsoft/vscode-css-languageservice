@@ -190,6 +190,7 @@ suite('LESS - Parser', () => {
 		assertNode('selector { nested, a, b {}}', parser, parser._parseRuleset.bind(parser));
 		assertNode('selector { property: value; property: value; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('selector { property: value; @keyframes foo {} @-moz-keyframes foo {}}', parser, parser._parseRuleset.bind(parser));
+		assertNode('selector {  @import "bar"; }', parser, parser._parseRuleset.bind(parser));
 	});
 
 	test('term', function() {
