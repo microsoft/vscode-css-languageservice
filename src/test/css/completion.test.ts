@@ -43,8 +43,9 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 
 suite('CSS - Completion', () => {
 
-	let testCompletionFor = function (value: string, stringBefore: string, expected: { count?: number, items?: ItemDescription[] }): Thenable<void> {
-		let idx = stringBefore ? value.indexOf(stringBefore) + stringBefore.length : 0;
+	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[] }): Thenable<void> {
+		let idx = value.indexOf('|');
+		value = value.substr(0, idx) + value.substr(idx + 1);
 
 		let ls = cssLanguageService.getCSSLanguageService();
 
@@ -65,54 +66,54 @@ suite('CSS - Completion', () => {
 
 	test('sylesheet', function (testDone): any {
 		Promise.all([
-			testCompletionFor(' ', null, {
+			testCompletionFor('| ', {
 				items: [
 					{ label: '@import' },
 					{ label: '@keyframes' },
 					{ label: 'div' }
 				]
 			}),
-			testCompletionFor(' body {', null, {
+			testCompletionFor('| body {', {
 				items: [
 					{ label: '@import' },
 					{ label: '@keyframes' },
 					{ label: 'html' }
 				]
 			}),
-			testCompletionFor('@import url("something.css");', '@', {
+			testCompletionFor('@|import url("something.css");', {
 				count: 0
 			})
 		]).then(() => testDone(), (error) => testDone(error));
 	});
 	test('properties', function (testDone): any {
 		Promise.all([
-			testCompletionFor('body {', '{', {
+			testCompletionFor('body {|', {
 				items: [
 					{ label: 'display' },
 					{ label: 'background' }
 				]
 			}),
-			testCompletionFor('body { ver', 'ver', {
+			testCompletionFor('body { ver|', {
 				items: [
 					{ label: 'vertical-align' }
 				]
 			}),
-			testCompletionFor('body { vertical-align', 'vertical-ali', {
+			testCompletionFor('body { vertical-ali|gn', {
 				items: [
 					{ label: 'vertical-align' }
 				]
 			}),
-			testCompletionFor('body { vertical-align', 'vertical-align', {
+			testCompletionFor('body { vertical-align|', {
 				items: [
 					{ label: 'vertical-align' }
 				]
 			}),
-			testCompletionFor('body { vertical-align: bottom;}', 'vertical-align', {
+			testCompletionFor('body { vertical-align|: bottom;}',{
 				items: [
 					{ label: 'vertical-align' }
 				]
 			}),
-			testCompletionFor('body { trans ', 'trans', {
+			testCompletionFor('body { trans| ', {
 				items: [
 					{ label: 'transition' }
 				]
@@ -121,42 +122,42 @@ suite('CSS - Completion', () => {
 	});
 	test('values', function (testDone): any {
 		Promise.all([
-			testCompletionFor('body { vertical-align: bottom;}', 'vertical-align:', {
+			testCompletionFor('body { vertical-align:| bottom;}', {
 				items: [
 					{ label: 'bottom' },
 					{ label: '0cm' }
 				]
 			}),
-			testCompletionFor('body { vertical-align: bottom;}', 'vertical-align: ', {
+			testCompletionFor('body { vertical-align: |bottom;}', {
 				items: [
 					{ label: 'bottom' },
 					{ label: '0cm' }
 				]
 			}),
-			testCompletionFor('body { vertical-align: bott', 'bott', {
+			testCompletionFor('body { vertical-align: bott|', {
 				items: [
 					{ label: 'bottom' }
 				]
 			}),
-			testCompletionFor('body { vertical-align: bottom }', 'bott', {
+			testCompletionFor('body { vertical-align: bott|om }', {
 				items: [
 					{ label: 'bottom' }
 				]
 			}),
-			testCompletionFor('body { vertical-align: bottom }', 'bottom', {
+			testCompletionFor('body { vertical-align: bottom| }', {
 				items: [
 					{ label: 'bottom' }
 				]
 			}),
-			testCompletionFor('body { vertical-align: bottom; }', 'bottom', {
+			testCompletionFor('body { vertical-align: bottom|; }', {
 				items: [
 					{ label: 'bottom' }
 				]
 			}),
-			testCompletionFor('body { vertical-align: bottom; }', 'bottom;', {
+			testCompletionFor('body { vertical-align: bottom;| }', {
 				count: 0
 			}),
-			testCompletionFor('body { vertical-align: bottom; }', 'bottom; ', {
+			testCompletionFor('body { vertical-align: bottom; |}', {
 				items: [
 					{ label: 'display' }
 				]
@@ -165,22 +166,22 @@ suite('CSS - Completion', () => {
 	});
 	test('units', function (testDone): any {
 		Promise.all([
-			testCompletionFor('body { vertical-align: 9 }', '9', {
+			testCompletionFor('body { vertical-align: 9| }', {
 				items: [
 					{ label: '9cm' }
 				]
 			}),
-			testCompletionFor('body { vertical-align: 1.2 }', '1.2', {
+			testCompletionFor('body { vertical-align: 1.2| }', {
 				items: [
 					{ label: '1.2em' }
 				]
 			}),
-			testCompletionFor('body { vertical-align: 10 }', '1', {
+			testCompletionFor('body { vertical-align: 1|0 }', {
 				items: [
 					{ label: '1cm' }
 				]
 			}),
-			testCompletionFor('body { vertical-align: 10c }', '10c', {
+			testCompletionFor('body { vertical-align: 10c| }', {
 				items: [
 					{ label: '10cm' }
 				]
@@ -189,10 +190,10 @@ suite('CSS - Completion', () => {
 	});
 	test('unknown', function (testDone): any {
 		Promise.all([
-			testCompletionFor('body { notexisting: ;}', 'notexisting: ', {
+			testCompletionFor('body { notexisting: |;}', {
 				count: 0
 			}),
-			testCompletionFor('.foo { unknown: foo; } .bar { unknown: }', '.bar { unknown:', {
+			testCompletionFor('.foo { unknown: foo; } .bar { unknown:| }', {
 				items: [
 					{ label: 'foo', kind: CompletionItemKind.Value }
 				]
@@ -201,30 +202,30 @@ suite('CSS - Completion', () => {
 	});
 	test('colors', function (testDone): any {
 		Promise.all([
-			testCompletionFor('body { border-right: ', 'right: ', {
+			testCompletionFor('body { border-right: |', {
 				items: [
 					{ label: 'cyan' },
 					{ label: 'dotted' },
 					{ label: '0em' }
 				]
 			}),
-			testCompletionFor('body { border-right: cyan dotted 2em ', 'cyan', {
+			testCompletionFor('body { border-right: cyan| dotted 2em ', {
 				items: [
 					{ label: 'cyan' },
 					{ label: 'darkcyan' }
 				]
 			}),
-			testCompletionFor('body { border-right: dotted 2em ', '2em ', {
+			testCompletionFor('body { border-right: dotted 2em |', {
 				items: [
 					{ label: 'cyan' }
 				]
 			}),
-			testCompletionFor('.foo { background-color: #123456; } .bar { background-color: }', '.bar { background-color:', {
+			testCompletionFor('.foo { background-color: #123456; } .bar { background-color:| }', {
 				items: [
 					{ label: '#123456', kind: CompletionItemKind.Color }
 				]
 			}),
-			testCompletionFor('.foo { background-color: r', 'background-color: r', {
+			testCompletionFor('.foo { background-color: r|', {
 				items: [
 					{ label: 'rgb', kind: CompletionItemKind.Function },
 					{ label: 'rgba', kind: CompletionItemKind.Function },
@@ -235,21 +236,21 @@ suite('CSS - Completion', () => {
 	});
 	test('variables', function (testDone): any {
 		Promise.all([
-			testCompletionFor(':root { --myvar: red; } body { color: ', 'color: ', {
+			testCompletionFor(':root { --myvar: red; } body { color: |', {
 				items: [
 					{ label: '--myvar', insertText: 'var(--myvar)'},
 				]
 			}),
-			testCompletionFor('body { --myvar: 0px; border-right: var ', 'border-right: var', {
+			testCompletionFor('body { --myvar: 0px; border-right: var| ', {
 				items: [
 					{ label: '--myvar', insertText: 'var(--myvar)'},
 				]
 			}),
-			testCompletionFor('body { --myvar: 0px; border-right: var( ', 'border-right: var(', {
+			testCompletionFor('body { --myvar: 0px; border-right: var(| ', {
 				items: [
 					{ label: '--myvar', insertText: '--myvar'},
 				]
-			}),
+			})
 		]).then(() => testDone(), (error) => testDone(error));
 	});
 });

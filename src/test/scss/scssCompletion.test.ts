@@ -16,8 +16,9 @@ function asPromise<T>(result:T) : Promise<T> {
 
 suite('SCSS - Completions', () => {
 
-	let testCompletionFor = function (value: string, stringBefore: string, expected: { count?: number, items?: ItemDescription[] }): Thenable<void> {
-		let idx = stringBefore ? value.indexOf(stringBefore) + stringBefore.length : 0;
+	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[] }): Thenable<void> {
+		let idx = value.indexOf('|');
+		value = value.substr(0, idx) + value.substr(idx + 1);
 
 		let ls = cssLanguageService.getSCSSLanguageService();
 
@@ -38,40 +39,40 @@ suite('SCSS - Completions', () => {
 
 	test('sylesheet', function (testDone): any {
 		Promise.all([
-			testCompletionFor('$i: 0; body { width: ', 'width: ', {
+			testCompletionFor('$i: 0; body { width: |', {
 				items: [
 					{ label: '$i' }
 				]
 			}),
-			testCompletionFor('@for $i from 1 through 3 { .item-#{$i} { width: 2em * $i; } }', '.item-#{', {
+			testCompletionFor('@for $i from 1 through 3 { .item-#{|$i} { width: 2em * $i; } }', {
 				items: [
 					{ label: '$i' }
 				]
 			}),
-			testCompletionFor('.foo { background-color: d', 'background-color: d', {
+			testCompletionFor('.foo { background-color: d|', {
 				items: [
 					{ label: 'darken' },
 					{ label: 'desaturate' }
 				]
 			}),
-			testCompletionFor('@function foo($x, $y) { @return $x + $y; } .foo { background-color: f', 'background-color: f', {
+			testCompletionFor('@function foo($x, $y) { @return $x + $y; } .foo { background-color: f|', {
 				items: [
 					{ label: 'foo' }
 				]
 			}),
-			testCompletionFor('.foo { di span { } ', 'di', {
+			testCompletionFor('.foo { di| span { } ', {
 				items: [
 					{ label: 'display' },
 					{ label: 'div' }
 				]
 			}),
-			testCompletionFor('.foo { .', '{ .', {
+			testCompletionFor('.foo { .|', {
 				items: [
 					{ label: '.foo' }
 				]
 			}),
 			// issue #250
-			testCompletionFor('.foo { display: block;', 'block;', {
+			testCompletionFor('.foo { display: block;|', {
 				count: 0
 			}),
 		]).then(() => testDone(), (error) => testDone(error));

@@ -18,8 +18,9 @@ function asPromise<T>(result:T) : Promise<T> {
 
 suite('LESS - Completions', () => {
 
-	let testCompletionFor = function (value: string, stringBefore: string, expected: { count?: number, items?: ItemDescription[] }): Thenable<void> {
-		let idx = stringBefore ? value.indexOf(stringBefore) + stringBefore.length : 0;
+	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[] }): Thenable<void> {
+		let idx = value.indexOf('|');
+		value = value.substr(0, idx) + value.substr(idx + 1);
 
 		let ls = cssLanguageService.getLESSLanguageService();
 		let ls2 = new LESSCompletion();
@@ -41,33 +42,33 @@ suite('LESS - Completions', () => {
 
 	test('sylesheet', function (testDone): any {
 		Promise.all([
-			testCompletionFor('body { ', '{ ', {
+			testCompletionFor('body { |', {
 				items: [
 					{ label: 'display' },
 					{ label: 'background' }
 				]
 			}),
-			testCompletionFor('body { ver', 'ver', {
+			testCompletionFor('body { ver|', {
 				items: [
 					{ label: 'vertical-align' }
 				]
 			}),
-			testCompletionFor('body { word-break: ', ': ', {
+			testCompletionFor('body { word-break: |', {
 				items: [
 					{ label: 'keep-all' }
 				]
 			}),
-			testCompletionFor('body { inner { vertical-align: }', ': ', {
+			testCompletionFor('body { inner { vertical-align: |}', {
 				items: [
 					{ label: 'bottom' }
 				]
 			}),
-			testCompletionFor('@var1: 3; body { inner { vertical-align: }', 'align: ', {
+			testCompletionFor('@var1: 3; body { inner { vertical-align: |}', {
 				items: [
 					{ label: '@var1' }
 				]
 			}),
-			testCompletionFor('.foo { background-color: d', 'background-color: d', {
+			testCompletionFor('.foo { background-color: d|', {
 				items: [
 					{ label: 'darken' },
 					{ label: 'desaturate' }
