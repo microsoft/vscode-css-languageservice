@@ -527,6 +527,7 @@ export class SCSSParser extends cssParser.Parser {
 		}
 
 		if (node.setValue(this._parseExpr(true))) {
+			node.addChild(this._parsePrio()); // #9859
 			return this.finish(node);
 		}
 
