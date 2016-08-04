@@ -250,6 +250,11 @@ suite('CSS - Completion', () => {
 				items: [
 					{ label: '--myvar', insertText: '--myvar'},
 				]
+			}),
+			testCompletionFor('a { color: | } :root { --bg-color: red; } ', {
+				items: [
+					{ label: '--bg-color', insertText: 'var(--bg-color)'},
+				]
 			})
 		]).then(() => testDone(), (error) => testDone(error));
 	});

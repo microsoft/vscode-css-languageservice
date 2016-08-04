@@ -233,7 +233,7 @@ export class Symbols {
 			let symbols = scope.getSymbols();
 			for (let i = 0; i < symbols.length; i++) {
 				let symbol = symbols[i];
-				if (symbol.node.offset <= offset && symbol.type === referenceType && !names[symbol.name]) {
+				if (symbol.type === referenceType && !names[symbol.name]) {
 					result.push(symbol);
 					names[symbol.name] = true;
 				}
