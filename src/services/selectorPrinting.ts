@@ -208,6 +208,10 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element): 
 				}
 				break;
 			case nodes.NodeType.SelectorPlaceholder:
+				if (child.getText() === '@at-root') {
+					return result;
+				}
+				// fall through
 			case nodes.NodeType.ElementNameSelector:
 				let text = child.getText();
 				result.name = text === '*' ? 'element' : text;
@@ -342,6 +346,9 @@ function isNewSelectorContext(node: nodes.Node): boolean {
 }
 
 export function selectorToElement(node: nodes.Selector): Element {
+	if (node.matches('@at-root')) {
+		return null;
+	}
 	let root: Element = new RootElement();
 	let parentRuleSets: nodes.RuleSet[] = [];
 
@@ -349,6 +356,9 @@ export function selectorToElement(node: nodes.Selector): Element {
 		let parent = node.getParent().getParent(); // parent of the selector's ruleset
 		while (parent && !isNewSelectorContext(parent)) {
 			if (parent instanceof nodes.RuleSet) {
+				if (parent.getSelectors().matches('@at-root')) {
+					break;
+				}
 				parentRuleSets.push(<nodes.RuleSet>parent);
 			}
 			parent = parent.getParent();

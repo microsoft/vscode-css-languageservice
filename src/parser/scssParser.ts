@@ -175,7 +175,8 @@ export class SCSSParser extends cssParser.Parser {
 				|| this._parseExtends() // @extends
 				|| this._parseMixinReference() // @include
 				|| this._parseMixinContent() // @content
-				|| this._parseMixinDeclaration(); // nested @mixin
+				|| this._parseMixinDeclaration() // nested @mixin
+				|| this._parseRuleset(true); // @at-rule
 		}
 		return this._parseVariableDeclaration() // variable declaration
 			|| this._tryParseRuleset(true) // nested ruleset
@@ -251,6 +252,8 @@ export class SCSSParser extends cssParser.Parser {
 		let node = this.createNode(nodes.NodeType.SelectorPlaceholder);
 		if (this.accept(TokenType.Delim, '%')) {
 			this._parseIdent();
+			return this.finish(node);
+		} else if (this.accept(TokenType.AtKeyword, '@at-root')) {
 			return this.finish(node);
 		}
 		return null;
