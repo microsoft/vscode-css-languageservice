@@ -15,6 +15,7 @@ export interface ItemDescription {
 	documentation?: string;
 	kind?: CompletionItemKind;
 	insertText?: string;
+	overwriteBefore?:number;
 	resultText?: string;
 }
 
@@ -22,7 +23,7 @@ function asPromise<T>(result:T) : Promise<T> {
 	return Promise.resolve(result);
 }
 
-export let assertCompletion = function (completions: CompletionList, expected: ItemDescription, document?: TextDocument) {
+export let assertCompletion = function (completions: CompletionList, expected: ItemDescription, document: TextDocument, offset: number) {
 	let matches = completions.items.filter(completion => {
 		return completion.label === expected.label;
 	});
@@ -34,23 +35,28 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 		assert.equal(matches[0].kind, expected.kind);
 	}
 	if (expected.insertText) {
-		assert.equal(matches[0].insertText, expected.insertText);
+		assert.equal(matches[0].insertText || matches[0].textEdit.newText, expected.insertText);
 	}
-	if (document && expected.resultText) {
+	if (expected.resultText) {
 		assert.equal(applyEdits(document, [matches[0].textEdit]), expected.resultText);
+	}
+	if (expected.insertText && typeof expected.overwriteBefore === 'number' && matches[0].textEdit) {
+		let text = document.getText();
+		let expectedText = text.substr(0, offset - expected.overwriteBefore) + expected.insertText + text.substr(offset);
+		assert.equal(applyEdits(document, [matches[0].textEdit]), expectedText);
 	}
 };
 
 suite('CSS - Completion', () => {
 
 	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[] }): Thenable<void> {
-		let idx = value.indexOf('|');
-		value = value.substr(0, idx) + value.substr(idx + 1);
+		let offset = value.indexOf('|');
+		value = value.substr(0, offset) + value.substr(offset + 1);
 
 		let ls = cssLanguageService.getCSSLanguageService();
 
 		let document = TextDocument.create('test://test/test.css', 'css', 0, value);
-		let position = Position.create(0, idx);
+		let position = Position.create(0, offset);
 		let jsonDoc = ls.parseStylesheet(document);
 		return asPromise(ls.doComplete(document, position, jsonDoc)).then(list => {
 			if (expected.count) {
@@ -58,7 +64,7 @@ suite('CSS - Completion', () => {
 			}
 			if (expected.items) {
 				for (let item of expected.items) {
-					assertCompletion(list, item, document);
+					assertCompletion(list, item, document, offset);
 				}
 			}
 		});
@@ -68,16 +74,21 @@ suite('CSS - Completion', () => {
 		Promise.all([
 			testCompletionFor('| ', {
 				items: [
-					{ label: '@import' },
-					{ label: '@keyframes' },
-					{ label: 'div' }
+					{ label: '@import', resultText: '@import ' },
+					{ label: '@keyframes', resultText: '@keyframes ' },
+					{ label: 'div', resultText: 'div ' }
 				]
 			}),
 			testCompletionFor('| body {', {
 				items: [
-					{ label: '@import' },
-					{ label: '@keyframes' },
-					{ label: 'html' }
+					{ label: '@import', resultText: '@import body {' },
+					{ label: '@keyframes', resultText: '@keyframes body {' },
+					{ label: 'html', resultText: 'html body {' }
+				]
+			}),
+			testCompletionFor('h| {', {
+				items: [
+					{ label: 'html', resultText: 'html {' }
 				]
 			}),
 			testCompletionFor('@|import url("something.css");', {
@@ -89,33 +100,33 @@ suite('CSS - Completion', () => {
 		Promise.all([
 			testCompletionFor('body {|', {
 				items: [
-					{ label: 'display' },
-					{ label: 'background' }
+					{ label: 'display', resultText: 'body {display: ' },
+					{ label: 'background', resultText: 'body {background: ' }
 				]
 			}),
 			testCompletionFor('body { ver|', {
 				items: [
-					{ label: 'vertical-align' }
+					{ label: 'vertical-align', resultText: 'body { vertical-align: ' }
 				]
 			}),
 			testCompletionFor('body { vertical-ali|gn', {
 				items: [
-					{ label: 'vertical-align' }
+					{ label: 'vertical-align', resultText: 'body { vertical-align: ' }
 				]
 			}),
 			testCompletionFor('body { vertical-align|', {
 				items: [
-					{ label: 'vertical-align' }
+					{ label: 'vertical-align', resultText: 'body { vertical-align: ' }
 				]
 			}),
 			testCompletionFor('body { vertical-align|: bottom;}',{
 				items: [
-					{ label: 'vertical-align' }
+					{ label: 'vertical-align', resultText: 'body { vertical-align: bottom;}' }
 				]
 			}),
 			testCompletionFor('body { trans| ', {
 				items: [
-					{ label: 'transition' }
+					{ label: 'transition', resultText: 'body { transition:  ' }
 				]
 			})
 		]).then(() => testDone(), (error) => testDone(error));
@@ -124,34 +135,39 @@ suite('CSS - Completion', () => {
 		Promise.all([
 			testCompletionFor('body { vertical-align:| bottom;}', {
 				items: [
-					{ label: 'bottom' },
-					{ label: '0cm' }
+					{ label: 'bottom', resultText: 'body { vertical-align:bottom bottom;}' },
+					{ label: '0cm', resultText: 'body { vertical-align:0cm bottom;}' }
 				]
 			}),
 			testCompletionFor('body { vertical-align: |bottom;}', {
 				items: [
-					{ label: 'bottom' },
-					{ label: '0cm' }
+					{ label: 'bottom', resultText: 'body { vertical-align: bottom;}' },
+					{ label: '0cm', resultText: 'body { vertical-align: 0cm;}' }
 				]
 			}),
 			testCompletionFor('body { vertical-align: bott|', {
 				items: [
-					{ label: 'bottom' }
+					{ label: 'bottom', resultText: 'body { vertical-align: bottom' }
 				]
 			}),
 			testCompletionFor('body { vertical-align: bott|om }', {
 				items: [
-					{ label: 'bottom' }
+					{ label: 'bottom', resultText: 'body { vertical-align: bottom }' }
 				]
 			}),
 			testCompletionFor('body { vertical-align: bottom| }', {
 				items: [
-					{ label: 'bottom' }
+					{ label: 'bottom', resultText: 'body { vertical-align: bottom }' }
+				]
+			}),
+			testCompletionFor('body { vertical-align:bott|', {
+				items: [
+					{ label: 'bottom', resultText: 'body { vertical-align:bottom' }
 				]
 			}),
 			testCompletionFor('body { vertical-align: bottom|; }', {
 				items: [
-					{ label: 'bottom' }
+					{ label: 'bottom', resultText: 'body { vertical-align: bottom; }' }
 				]
 			}),
 			testCompletionFor('body { vertical-align: bottom;| }', {
@@ -159,7 +175,7 @@ suite('CSS - Completion', () => {
 			}),
 			testCompletionFor('body { vertical-align: bottom; |}', {
 				items: [
-					{ label: 'display' }
+					{ label: 'display', resultText: 'body { vertical-align: bottom; display: }' }
 				]
 			})
 		]).then(() => testDone(), (error) => testDone(error));
@@ -168,22 +184,22 @@ suite('CSS - Completion', () => {
 		Promise.all([
 			testCompletionFor('body { vertical-align: 9| }', {
 				items: [
-					{ label: '9cm' }
+					{ label: '9cm', resultText: 'body { vertical-align: 9cm }' }
 				]
 			}),
 			testCompletionFor('body { vertical-align: 1.2| }', {
 				items: [
-					{ label: '1.2em' }
+					{ label: '1.2em', resultText: 'body { vertical-align: 1.2em }' } 
 				]
 			}),
 			testCompletionFor('body { vertical-align: 1|0 }', {
 				items: [
-					{ label: '1cm' }
+					{ label: '1cm', resultText: 'body { vertical-align: 1cm }' }
 				]
 			}),
 			testCompletionFor('body { vertical-align: 10c| }', {
 				items: [
-					{ label: '10cm' }
+					{ label: '10cm', resultText: 'body { vertical-align: 10cm }' }
 				]
 			})
 		]).then(() => testDone(), (error) => testDone(error));
@@ -195,7 +211,7 @@ suite('CSS - Completion', () => {
 			}),
 			testCompletionFor('.foo { unknown: foo; } .bar { unknown:| }', {
 				items: [
-					{ label: 'foo', kind: CompletionItemKind.Value }
+					{ label: 'foo', kind: CompletionItemKind.Value, resultText: '.foo { unknown: foo; } .bar { unknown:foo }' }
 				]
 			})
 		]).then(() => testDone(), (error) => testDone(error));
@@ -204,32 +220,32 @@ suite('CSS - Completion', () => {
 		Promise.all([
 			testCompletionFor('body { border-right: |', {
 				items: [
-					{ label: 'cyan' },
-					{ label: 'dotted' },
-					{ label: '0em' }
+					{ label: 'cyan', resultText: 'body { border-right: cyan' },
+					{ label: 'dotted', resultText: 'body { border-right: dotted' },
+					{ label: '0em', resultText: 'body { border-right: 0em' }
 				]
 			}),
 			testCompletionFor('body { border-right: cyan| dotted 2em ', {
 				items: [
-					{ label: 'cyan' },
-					{ label: 'darkcyan' }
+					{ label: 'cyan', resultText: 'body { border-right: cyan dotted 2em ' },
+					{ label: 'darkcyan', resultText: 'body { border-right: darkcyan dotted 2em ' }
 				]
 			}),
 			testCompletionFor('body { border-right: dotted 2em |', {
 				items: [
-					{ label: 'cyan' }
+					{ label: 'cyan', resultText: 'body { border-right: dotted 2em cyan'  }
 				]
 			}),
 			testCompletionFor('.foo { background-color: #123456; } .bar { background-color:| }', {
 				items: [
-					{ label: '#123456', kind: CompletionItemKind.Color }
+					{ label: '#123456', kind: CompletionItemKind.Color, resultText: '.foo { background-color: #123456; } .bar { background-color:#123456 }' }
 				]
 			}),
 			testCompletionFor('.foo { background-color: r|', {
 				items: [
-					{ label: 'rgb', kind: CompletionItemKind.Function },
-					{ label: 'rgba', kind: CompletionItemKind.Function },
-					{ label: 'red', kind: CompletionItemKind.Color }
+					{ label: 'rgb', kind: CompletionItemKind.Function, resultText: '.foo { background-color: rgb({{red}}, {{green}}, {{blue}})' },
+					{ label: 'rgba', kind: CompletionItemKind.Function, resultText: '.foo { background-color: rgba({{red}}, {{green}}, {{blue}}, {{alpha}})' },
+					{ label: 'red', kind: CompletionItemKind.Color, resultText: '.foo { background-color: red' }
 				]
 			})
 		]).then(() => testDone(), (error) => testDone(error));
@@ -238,22 +254,22 @@ suite('CSS - Completion', () => {
 		Promise.all([
 			testCompletionFor(':root { --myvar: red; } body { color: |', {
 				items: [
-					{ label: '--myvar', insertText: 'var(--myvar)'},
+					{ label: '--myvar', resultText: ':root { --myvar: red; } body { color: var(--myvar)' },
 				]
 			}),
 			testCompletionFor('body { --myvar: 0px; border-right: var| ', {
 				items: [
-					{ label: '--myvar', insertText: 'var(--myvar)'},
+					{ label: '--myvar', resultText: 'body { --myvar: 0px; border-right: var(--myvar) ' },
 				]
 			}),
 			testCompletionFor('body { --myvar: 0px; border-right: var(| ', {
 				items: [
-					{ label: '--myvar', insertText: '--myvar'},
+					{ label: '--myvar', resultText: 'body { --myvar: 0px; border-right: var(--myvar ' },
 				]
 			}),
 			testCompletionFor('a { color: | } :root { --bg-color: red; } ', {
 				items: [
-					{ label: '--bg-color', insertText: 'var(--bg-color)'},
+					{ label: '--bg-color', resultText: 'a { color: var(--bg-color) } :root { --bg-color: red; } ' },
 				]
 			})
 		]).then(() => testDone(), (error) => testDone(error));

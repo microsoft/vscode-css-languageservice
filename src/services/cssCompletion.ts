@@ -8,7 +8,8 @@ import * as nodes from '../parser/cssNodes';
 import {Symbols} from '../parser/cssSymbolScope';
 import * as languageFacts from './languageFacts';
 import * as strings from '../utils/strings';
-import {TextDocument, Position, CompletionList, CompletionItemKind} from 'vscode-languageserver-types';
+import {findFirst} from '../utils/arrays';
+import {TextDocument, Position, CompletionList, CompletionItemKind, TextEdit, Range} from 'vscode-languageserver-types';
 
 export class CSSCompletion {
 
@@ -19,6 +20,7 @@ export class CSSCompletion {
 	textDocument: TextDocument;
 	styleSheet: nodes.Stylesheet;
 	symbolContext: Symbols;
+	defaultReplaceRange: Range;
 
 	constructor(variablePrefix: string = null) {
 		this.variablePrefix = variablePrefix;
@@ -35,16 +37,17 @@ export class CSSCompletion {
 		this.offset = document.offsetAt(position);
 		this.position = position;
 		this.currentWord = getCurrentWord(document, this.offset);
+		this.defaultReplaceRange = Range.create(Position.create(this.position.line, this.position.character - this.currentWord.length), this.position);
 		this.textDocument = document;
 		this.styleSheet = styleSheet;
 		try {
 			let result: CompletionList = { isIncomplete: false, items: [] };
-			let nodepath = nodes.getNodePath(this.styleSheet, this.offset);
+			let nodePath = nodes.getNodePath(this.styleSheet, this.offset);
 
-			for (let i = nodepath.length - 1; i >= 0; i--) {
-				let node = nodepath[i];
+			for (let i = nodePath.length - 1; i >= 0; i--) {
+				let node = nodePath[i];
 				if (node instanceof nodes.Property) {
-					this.getCompletionsForDeclarationProperty(result);
+					this.getCompletionsForDeclarationProperty(node.getParent() as nodes.Declaration, result);
 				} else if (node instanceof nodes.Expression) {
 					this.getCompletionsForExpression(<nodes.Expression>node, result);
 				} else if (node instanceof nodes.SimpleSelector) {
@@ -75,7 +78,7 @@ export class CSSCompletion {
 			}
 
 			if (this.variablePrefix && this.currentWord.indexOf(this.variablePrefix) === 0) {
-				this.getVariableProposals(result);
+				this.getVariableProposals(null, result);
 				if (result.items.length > 0) {
 					return result;
 				}
@@ -91,24 +94,31 @@ export class CSSCompletion {
 			this.textDocument = null;
 			this.styleSheet = null;	
 			this.symbolContext = null;
+			this.defaultReplaceRange = null;
 		}
 	}
 
-	public getCompletionsForDeclarationProperty(result: CompletionList): CompletionList {
-		return this.getPropertyProposals(result);
+	public getCompletionsForDeclarationProperty(declaration: nodes.Declaration, result: CompletionList): CompletionList {
+		return this.getPropertyProposals(declaration, result);
 	}
 
-	private getPropertyProposals(result: CompletionList): CompletionList {
+	private getPropertyProposals(declaration: nodes.Declaration, result: CompletionList): CompletionList {
 		let properties = languageFacts.getProperties();
 
 		for (let key in properties) {
 			if (properties.hasOwnProperty(key)) {
 				let entry = properties[key];
 				if (entry.browsers.onCodeComplete) {
+					let textEdit: TextEdit;
+					if (declaration) {
+						textEdit = this.getTextEdit(declaration.getProperty(), entry.name + (!isDefined(declaration.colonPosition) ? ': ' : ''));
+					} else {
+						textEdit = this.getTextEdit(null, entry.name + ': ');
+					}
 					result.items.push({
 						label: entry.name,
 						documentation: languageFacts.getEntryDescription(entry),
-						insertText: entry.name + ': ',
+						textEdit: textEdit,
 						kind: CompletionItemKind.Property
 					});
 				}
@@ -117,46 +127,56 @@ export class CSSCompletion {
 		return result;
 	}
 
+	private valueTypes = [
+		nodes.NodeType.Identifier, nodes.NodeType.Value, nodes.NodeType.StringLiteral, nodes.NodeType.URILiteral, nodes.NodeType.NumericValue,
+		nodes.NodeType.HexColorValue, nodes.NodeType.VariableName, nodes.NodeType.Prio
+	];
+
 	public getCompletionsForDeclarationValue(node: nodes.Declaration, result: CompletionList): CompletionList {
 		let propertyName = node.getFullPropertyName();
 		let entry = languageFacts.getProperties()[propertyName];
+		let existingNode = node.getValue();
+
+		while (existingNode && existingNode.hasChildren()) {
+			existingNode = existingNode.findChildAtOffset(this.offset, false);
+		}
 
 		if (entry) {
-			this.getColorProposals(entry, result);
-			this.getPositionProposals(entry, result);
-			this.getRepeatStyleProposals(entry, result);
-			this.getLineProposals(entry, result);
-			this.getBoxProposals(entry, result);
-			this.getImageProposals(entry, result);
-			this.getTimingFunctionProposals(entry, result);
-			this.getBasicShapeProposals(entry, result);
-			this.getValueEnumProposals(entry, result);
-			this.getCSSWideKeywordProposals(entry, result);
-			this.getUnitProposals(entry, result);
+			this.getColorProposals(entry, existingNode, result);
+			this.getPositionProposals(entry, existingNode, result);
+			this.getRepeatStyleProposals(entry, existingNode, result);
+			this.getLineProposals(entry, existingNode, result);
+			this.getBoxProposals(entry, existingNode, result);
+			this.getImageProposals(entry, existingNode, result);
+			this.getTimingFunctionProposals(entry, existingNode, result);
+			this.getBasicShapeProposals(entry, existingNode, result);
+			this.getValueEnumProposals(entry, existingNode, result);
+			this.getCSSWideKeywordProposals(entry, existingNode, result);
+			this.getUnitProposals(entry, existingNode, result);
 		} else {
 			let existingValues = new Set();
 			this.styleSheet.accept(new ValuesCollector(propertyName, existingValues));
 			existingValues.getEntries().forEach((existingValue) => {
 				result.items.push({
 					label: existingValue,
-					insertText: existingValue,
+					textEdit: this.getTextEdit(existingNode, existingValue),
 					kind: CompletionItemKind.Value
 				});
 			});
 		}
-		this.getVariableProposals(result);
-		this.getTermProposals(result);
+		this.getVariableProposals(existingNode, result);
+		this.getTermProposals(existingNode, result);
 		return result;
 	}
 
-	public getValueEnumProposals(entry: languageFacts.IEntry, result: CompletionList): CompletionList {
+	public getValueEnumProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		if (entry.values) {
 			entry.values.forEach((value) => {
 				if (languageFacts.isCommonValue(value)) { // only show if supported by more than one browser
 					result.items.push({
 						label: value.name,
 						documentation: languageFacts.getEntryDescription(value),
-						insertText: value.name,
+						textEdit: this.getTextEdit(existingNode, value.name),
 						kind: CompletionItemKind.Value
 					});
 				}
@@ -165,12 +185,12 @@ export class CSSCompletion {
 		return result;
 	}
 
-	public getCSSWideKeywordProposals(entry: languageFacts.IEntry, result: CompletionList): CompletionList {
+	public getCSSWideKeywordProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		for (let keywords in languageFacts.cssWideKeywords) {
 			result.items.push({
 				label: keywords,
 				documentation: languageFacts.cssWideKeywords[keywords],
-				insertText: keywords,
+				textEdit: this.getTextEdit(existingNode, keywords),
 				kind: CompletionItemKind.Value
 			});
 		}
@@ -179,17 +199,17 @@ export class CSSCompletion {
 
 	public getCompletionsForInterpolation(node: nodes.Interpolation, result: CompletionList): CompletionList {
 		if (this.offset >= node.offset + 2) {
-			this.getVariableProposals(result);
+			this.getVariableProposals(null, result);
 		}
 		return result;
 	}
 
-	public getVariableProposals(result: CompletionList): CompletionList {
+	public getVariableProposals(existingNode: nodes.Node, result: CompletionList): CompletionList {
 		let symbols = this.getSymbolContext().findSymbolsAtOffset(this.offset, nodes.ReferenceType.Variable);
 		symbols.forEach((symbol) => {
 			result.items.push({
 				label: symbol.name,
-				insertText: strings.startsWith(symbol.name, '--') ? `var(${symbol.name})` : symbol.name,
+				textEdit: this.getTextEdit(existingNode, strings.startsWith(symbol.name, '--') ? `var(${symbol.name})` : symbol.name),
 				kind: CompletionItemKind.Variable
 			});
 		});
@@ -204,14 +224,14 @@ export class CSSCompletion {
 		symbols.forEach((symbol) => {
 			result.items.push({
 				label: symbol.name,
-				insertText: symbol.name,
+				textEdit: this.getTextEdit(null, symbol.name),
 				kind: CompletionItemKind.Variable
 			});
 		});
 		return result;
 	}
 
-	public getUnitProposals(entry: languageFacts.IEntry, result: CompletionList): CompletionList {
+	public getUnitProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		let currentWord = '0';
 		if (this.currentWord.length > 0) {
 			let numMatch = this.currentWord.match(/^-?\d[\.\d+]*/);
@@ -225,10 +245,10 @@ export class CSSCompletion {
 		entry.restrictions.forEach((restriction) => {
 			let units = languageFacts.units[restriction];
 			if (units) {
-				units.forEach(function (unit: string) {
+				units.forEach((unit: string) => {
 					result.items.push({
 						label: currentWord + unit,
-						insertText: currentWord + unit,
+						textEdit: this.getTextEdit(existingNode, currentWord + unit),
 						kind: CompletionItemKind.Unit
 					});
 				});
@@ -237,13 +257,21 @@ export class CSSCompletion {
 		return result;
 	}
 
-	protected getColorProposals(entry: languageFacts.IEntry, result: CompletionList): CompletionList {
+	protected getTextEdit(existingNode: nodes.Node, insertText: string) {
+		if (existingNode && existingNode.offset <= this.offset) {
+			let end = existingNode.end !== -1 ? this.textDocument.positionAt(existingNode.end) : this.position;
+			return TextEdit.replace(Range.create(this.textDocument.positionAt(existingNode.offset), end), insertText);
+		}
+		return TextEdit.replace(this.defaultReplaceRange, insertText);
+	}
+
+	protected getColorProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		if (entry.restrictions.indexOf('color') !== -1) {
 			for (let color in languageFacts.colors) {
 				result.items.push({
 					label: color,
 					documentation: languageFacts.colors[color],
-					insertText: color,
+					textEdit: this.getTextEdit(existingNode, color),
 					kind: CompletionItemKind.Color
 				});
 			}
@@ -251,7 +279,7 @@ export class CSSCompletion {
 				result.items.push({
 					label: color,
 					documentation: languageFacts.colorKeywords[color],
-					insertText: color,
+					textEdit: this.getTextEdit(existingNode, color),
 					kind: CompletionItemKind.Value
 				});
 			}
@@ -260,7 +288,7 @@ export class CSSCompletion {
 			colorValues.getEntries().forEach((color) => {
 				result.items.push({
 					label: color,
-					insertText: color,
+					textEdit: this.getTextEdit(existingNode, color),
 					kind: CompletionItemKind.Color
 				});
 			});
@@ -269,7 +297,7 @@ export class CSSCompletion {
 					label: p.func.substr(0, p.func.indexOf('(')),
 					detail: p.func,
 					documentation: p.desc,
-					insertText: p.func.replace(/\[?\$(\w+)\]?/g, '{{$1}}'),
+					textEdit: this.getTextEdit(existingNode, p.func.replace(/\[?\$(\w+)\]?/g, '{{$1}}')),
 					kind: CompletionItemKind.Function
 				});
 			});
@@ -277,13 +305,13 @@ export class CSSCompletion {
 		return result;
 	}
 
-	protected getPositionProposals(entry: languageFacts.IEntry, result: CompletionList): CompletionList {
+	protected getPositionProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		if (entry.restrictions.indexOf('position') !== -1) {
 			for (let position in languageFacts.positionKeywords) {
 				result.items.push({
 					label: position,
 					documentation: languageFacts.positionKeywords[position],
-					insertText: position,
+					textEdit: this.getTextEdit(existingNode, position),
 					kind: CompletionItemKind.Value
 				});
 			}
@@ -291,13 +319,13 @@ export class CSSCompletion {
 		return result;
 	}
 
-	protected getRepeatStyleProposals(entry: languageFacts.IEntry, result: CompletionList): CompletionList {
+	protected getRepeatStyleProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		if (entry.restrictions.indexOf('repeat') !== -1) {
 			for (let repeat in languageFacts.repeatStyleKeywords) {
 				result.items.push({
 					label: repeat,
 					documentation: languageFacts.repeatStyleKeywords[repeat],
-					insertText: repeat,
+					textEdit: this.getTextEdit(existingNode, repeat),
 					kind: CompletionItemKind.Value
 				});
 			}
@@ -305,13 +333,13 @@ export class CSSCompletion {
 		return result;
 	}
 
-	protected getLineProposals(entry: languageFacts.IEntry, result: CompletionList): CompletionList {
+	protected getLineProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		if (entry.restrictions.indexOf('line-style') !== -1) {
 			for (let lineStyle in languageFacts.lineStyleKeywords) {
 				result.items.push({
 					label: lineStyle,
 					documentation: languageFacts.lineStyleKeywords[lineStyle],
-					insertText: lineStyle,
+					textEdit: this.getTextEdit(existingNode, lineStyle),
 					kind: CompletionItemKind.Value
 				});
 			}
@@ -320,7 +348,7 @@ export class CSSCompletion {
 			languageFacts.lineWidthKeywords.forEach((lineWidth) => {
 				result.items.push({
 					label: lineWidth,
-					insertText: lineWidth,
+					textEdit: this.getTextEdit(existingNode, lineWidth),
 					kind: CompletionItemKind.Value
 				});
 			});
@@ -328,14 +356,14 @@ export class CSSCompletion {
 		return result;
 	}
 
-	protected getBoxProposals(entry: languageFacts.IEntry, result: CompletionList): CompletionList {
+	protected getBoxProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		let geometryBox = entry.restrictions.indexOf('geometry-box');
 		if (geometryBox !== -1) {
 			for (let box in languageFacts.geometryBoxKeywords) {
 				result.items.push({
 					label: box,
 					documentation: languageFacts.geometryBoxKeywords[box],
-					insertText: box,
+					textEdit: this.getTextEdit(existingNode, box),
 					kind: CompletionItemKind.Value
 				});
 			}
@@ -345,7 +373,7 @@ export class CSSCompletion {
 				result.items.push({
 					label: box,
 					documentation: languageFacts.boxKeywords[box],
-					insertText: box,
+					textEdit: this.getTextEdit(existingNode, box),
 					kind: CompletionItemKind.Value
 				});
 			}
@@ -353,13 +381,13 @@ export class CSSCompletion {
 		return result;
 	}
 
-	protected getImageProposals(entry: languageFacts.IEntry, result: CompletionList): CompletionList {
+	protected getImageProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		if (entry.restrictions.indexOf('image') !== -1) {
 			for (let image in languageFacts.imageFunctions) {
 				result.items.push({
 					label: image,
 					documentation: languageFacts.imageFunctions[image],
-					insertText: image,
+					textEdit: this.getTextEdit(existingNode, image),
 					kind: CompletionItemKind.Function
 				});
 			}
@@ -367,13 +395,13 @@ export class CSSCompletion {
 		return result;
 	}
 
-	protected getTimingFunctionProposals(entry: languageFacts.IEntry, result: CompletionList): CompletionList {
+	protected getTimingFunctionProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		if (entry.restrictions.indexOf('timing-function') !== -1) {
 			for (let timing in languageFacts.transitionTimingFunctions) {
 				result.items.push({
 					label: timing,
 					documentation: languageFacts.transitionTimingFunctions[timing],
-					insertText: timing,
+					textEdit: this.getTextEdit(existingNode, timing),
 					kind: CompletionItemKind.Function
 				});
 			}
@@ -381,13 +409,13 @@ export class CSSCompletion {
 		return result;
 	}
 
-	protected getBasicShapeProposals(entry: languageFacts.IEntry, result: CompletionList): CompletionList {
+	protected getBasicShapeProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		if (entry.restrictions.indexOf('shape') !== -1) {
 			for (let shape in languageFacts.basicShapeFunctions) {
 				result.items.push({
 					label: shape,
 					documentation: languageFacts.basicShapeFunctions[shape],
-					insertText: shape,
+					textEdit: this.getTextEdit(existingNode, shape),
 					kind: CompletionItemKind.Function
 				});
 			}
@@ -407,11 +435,11 @@ export class CSSCompletion {
 	}
 
 	public getCompletionForTopLevel(result: CompletionList): CompletionList {
-		languageFacts.getAtDirectives().forEach(function (entry) {
+		languageFacts.getAtDirectives().forEach((entry) => {
 			if (entry.browsers.count > 0) {
 				result.items.push({
 					label: entry.name,
-					insertText: entry.name,
+					textEdit: this.getTextEdit(null, entry.name),
 					documentation: languageFacts.getEntryDescription(entry),
 					kind: CompletionItemKind.Keyword
 				});
@@ -438,11 +466,12 @@ export class CSSCompletion {
 	}
 
 	public getCompletionsForSelector(ruleSet: nodes.RuleSet, result: CompletionList): CompletionList {
+		let existingNode = null;
 		languageFacts.getPseudoClasses().forEach((entry) => {
 			if (entry.browsers.onCodeComplete) {
 				result.items.push({
 					label: entry.name,
-					insertText: entry.name,
+					textEdit: this.getTextEdit(existingNode, entry.name),
 					documentation: languageFacts.getEntryDescription(entry),
 					kind: CompletionItemKind.Function
 				});
@@ -452,7 +481,7 @@ export class CSSCompletion {
 			if (entry.browsers.onCodeComplete) {
 				result.items.push({
 					label: entry.name,
-					insertText: entry.name,
+					textEdit: this.getTextEdit(existingNode, entry.name),
 					documentation: languageFacts.getEntryDescription(entry),
 					kind: CompletionItemKind.Function
 				});
@@ -461,14 +490,14 @@ export class CSSCompletion {
 		languageFacts.html5Tags.forEach((entry) => {
 			result.items.push({
 				label: entry,
-				insertText: entry,
+				textEdit: this.getTextEdit(existingNode, entry),
 				kind: CompletionItemKind.Keyword
 			});
 		});
 		languageFacts.svgElements.forEach((entry) => {
 			result.items.push({
 				label: entry,
-				insertText: entry,
+				textEdit: this.getTextEdit(existingNode, entry),
 				kind: CompletionItemKind.Keyword
 			});
 		});
@@ -483,7 +512,7 @@ export class CSSCompletion {
 					visited[selector] = true;
 					result.items.push({
 						label: selector,
-						insertText: selector,
+						textEdit: this.getTextEdit(existingNode, selector),
 						kind: CompletionItemKind.Keyword
 					});
 				}
@@ -495,7 +524,7 @@ export class CSSCompletion {
 		if (ruleSet && ruleSet.isNested()) {
 			let selector = ruleSet.getSelectors().findFirstChildBeforeOffset(this.offset);
 			if (selector && ruleSet.getSelectors().getChildren().indexOf(selector) === 0) {
-				this.getPropertyProposals(result);
+				this.getPropertyProposals(null, result);
 			}
 		}
 		return result;
@@ -508,18 +537,22 @@ export class CSSCompletion {
 
 		let node = declarations.findFirstChildBeforeOffset(this.offset);
 		if (!node) {
-			return this.getCompletionsForDeclarationProperty(result);
+			return this.getCompletionsForDeclarationProperty(null, result);
 		}
 
 		if (node instanceof nodes.AbstractDeclaration) {
 			let declaration = <nodes.AbstractDeclaration>node;
-			if ((!isDefined(declaration.colonPosition) || this.offset <= declaration.colonPosition) || (isDefined(declaration.semicolonPosition) && declaration.semicolonPosition < this.offset)) {
+			if (!isDefined(declaration.colonPosition || this.offset <= declaration.colonPosition)) {
+
+				// complete property
+				return this.getCompletionsForDeclarationProperty(declaration as nodes.Declaration, result);
+			} else if ((isDefined(declaration.semicolonPosition) && declaration.semicolonPosition < this.offset)) {
 				if (this.offset === declaration.semicolonPosition + 1) {
 					return result; // don't show new properties right after semicolon (see Bug 15421:[intellisense] [css] Be less aggressive when manually typing CSS)
 				}
 
-				// complete property
-				return this.getCompletionsForDeclarationProperty(result);
+				// complete next property
+				return this.getCompletionsForDeclarationProperty(null, result);
 			}
 
 			if (declaration instanceof nodes.Declaration) {
@@ -532,7 +565,7 @@ export class CSSCompletion {
 
 	public getCompletionsForVariableDeclaration(declaration: nodes.VariableDeclaration, result: CompletionList): CompletionList {
 		if (this.offset > declaration.colonPosition) {
-			this.getVariableProposals(result);
+			this.getVariableProposals(declaration.getValue(), result);
 		}
 		return result;
 	}
@@ -545,7 +578,7 @@ export class CSSCompletion {
 
 		let declaration = <nodes.Declaration>expression.findParent(nodes.NodeType.Declaration);
 		if (!declaration) {
-			this.getTermProposals(result);
+			this.getTermProposals(null, result);
 			return result;
 		}
 
@@ -571,12 +604,12 @@ export class CSSCompletion {
 	public getCompletionsForFunctionDeclaration(decl: nodes.FunctionDeclaration, result: CompletionList): CompletionList {
 		let declarations = decl.getDeclarations();
 		if (declarations && this.offset > declarations.offset && this.offset < declarations.end) {
-			this.getTermProposals(result);
+			this.getTermProposals(null, result);
 		}
 		return result;
 	}
 
-	public getTermProposals(result: CompletionList): CompletionList {
+	public getTermProposals(existingNode: nodes.Node, result: CompletionList): CompletionList {
 		let allFunctions = this.getSymbolContext().findSymbolsAtOffset(this.offset, nodes.ReferenceType.Function);
 		allFunctions.forEach((functionSymbol) => {
 			if (functionSymbol.node instanceof nodes.FunctionDeclaration) {
@@ -587,7 +620,7 @@ export class CSSCompletion {
 				result.items.push({
 					label: functionSymbol.name,
 					detail: functionSymbol.name + '(' + params.join(', ') + ')',
-					insertText: functionSymbol.name + '(' + params.map((p) => '{{' + p + '}}').join(', ') + ')',
+					textEdit: this.getTextEdit(existingNode, functionSymbol.name + '(' + params.map((p) => '{{' + p + '}}').join(', ') + ')'),
 					kind: CompletionItemKind.Function
 				});
 			}
@@ -668,7 +701,7 @@ function isDefined(obj: any): boolean {
 function getCurrentWord(document: TextDocument, offset: number) {
 	let i = offset - 1;
 	let text = document.getText();
-	while (i >= 0 && ' \t\n\r":{[,'.indexOf(text.charAt(i)) === -1) {
+	while (i >= 0 && ' \t\n\r":{[()]},'.indexOf(text.charAt(i)) === -1) {
 		i--;
 	}
 	return text.substring(i + 1, offset);

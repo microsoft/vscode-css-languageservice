@@ -5,6 +5,7 @@
 'use strict';
 
 import * as languageFacts from './languageFacts';
+import * as nodes from '../parser/cssNodes';
 import {CSSCompletion} from './cssCompletion';
 import {CompletionList, CompletionItemKind} from 'vscode-languageserver-types';
 
@@ -325,13 +326,13 @@ export class LESSCompletion extends CSSCompletion {
 		super('@');
 	}
 
-	private createFunctionProposals(proposals: { name: string; example: string; description?: string; }[], result: CompletionList): CompletionList {
+	private createFunctionProposals(proposals: { name: string; example: string; description?: string; }[], existingNode: nodes.Node, result: CompletionList): CompletionList {
 		proposals.forEach(p => {
 			result.items.push({
 				label: p.name,
 				detail: p.example,
 				documentation: p.description,
-				insertText: p.name + '({{}})',
+				textEdit: this.getTextEdit(existingNode, p.name + '({{}})'),
 				kind: CompletionItemKind.Function
 			});
 		});
@@ -339,14 +340,14 @@ export class LESSCompletion extends CSSCompletion {
 	}
 
 
-	public getTermProposals(result: CompletionList): CompletionList {
-		this.createFunctionProposals(LESSCompletion.builtInProposals, result);
-		return super.getTermProposals(result);
+	public getTermProposals(existingNode: nodes.Node, result: CompletionList): CompletionList {
+		this.createFunctionProposals(LESSCompletion.builtInProposals, existingNode, result);
+		return super.getTermProposals(existingNode, result);
 	}
 
-	protected getColorProposals(entry: languageFacts.IEntry, result: CompletionList): CompletionList {
-		this.createFunctionProposals(LESSCompletion.colorProposals, result);
-		return super.getColorProposals(entry, result);
+	protected getColorProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
+		this.createFunctionProposals(LESSCompletion.colorProposals, existingNode, result);
+		return super.getColorProposals(entry, existingNode, result);
 	}
 
 }

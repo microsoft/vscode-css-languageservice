@@ -120,14 +120,14 @@ export class SCSSCompletion extends CSSCompletion {
 		super('$');
 	}
 
-	private createFunctionProposals(proposals: {func: string; desc: string; }[], result: CompletionList): CompletionList {
+	private createFunctionProposals(proposals: {func: string; desc: string; }[], existingNode: nodes.Node, result: CompletionList): CompletionList {
 		let replaceFunction = (match: string, p1: string) => p1 + ': {{' + (SCSSCompletion.variableDefaults[p1] || '') + '}}';
 		proposals.forEach((p) => {
 			result.items.push({
 				label: p.func.substr(0, p.func.indexOf('(')),
 				detail: p.func,
 				documentation: p.desc,
-				insertText: p.func.replace(/\[?(\$\w+)\]?/g, replaceFunction),
+				textEdit: this.getTextEdit(existingNode, p.func.replace(/\[?(\$\w+)\]?/g, replaceFunction)),
 				kind: CompletionItemKind.Function
 			});
 		});
@@ -135,23 +135,23 @@ export class SCSSCompletion extends CSSCompletion {
 	}
 
 	public getCompletionsForSelector(ruleSet: nodes.RuleSet, result: CompletionList): CompletionList {
-		this.createFunctionProposals(SCSSCompletion.selectorFuncs, result);
+		this.createFunctionProposals(SCSSCompletion.selectorFuncs, void 0, result);
 		return super.getCompletionsForSelector(ruleSet, result);
 	}
 
-	public getTermProposals(result: CompletionList): CompletionList {
-		this.createFunctionProposals(SCSSCompletion.builtInFuncs, result);
-		return super.getTermProposals(result);
+	public getTermProposals(existingNode: nodes.Node, result: CompletionList): CompletionList {
+		this.createFunctionProposals(SCSSCompletion.builtInFuncs, existingNode, result);
+		return super.getTermProposals(existingNode, result);
 	}
 
-	protected getColorProposals(entry: languageFacts.IEntry, result: CompletionList): CompletionList {
-		this.createFunctionProposals(SCSSCompletion.colorProposals, result);
-		return super.getColorProposals(entry, result);
+	protected getColorProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
+		this.createFunctionProposals(SCSSCompletion.colorProposals, existingNode, result);
+		return super.getColorProposals(entry, existingNode, result);
 	}
 
-	public getCompletionsForDeclarationProperty(result: CompletionList): CompletionList {
+	public getCompletionsForDeclarationProperty(declaration: nodes.Declaration, result: CompletionList): CompletionList {
 		this.getCompletionsForSelector(null, result);
-		return super.getCompletionsForDeclarationProperty(result);
+		return super.getCompletionsForDeclarationProperty(declaration, result);
 	}
 
 }

@@ -19,14 +19,14 @@ function asPromise<T>(result:T) : Promise<T> {
 suite('LESS - Completions', () => {
 
 	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[] }): Thenable<void> {
-		let idx = value.indexOf('|');
-		value = value.substr(0, idx) + value.substr(idx + 1);
+		let offset = value.indexOf('|');
+		value = value.substr(0, offset) + value.substr(offset + 1);
 
 		let ls = cssLanguageService.getLESSLanguageService();
 		let ls2 = new LESSCompletion();
 
 		let document = TextDocument.create('test://test/test.less', 'less', 0, value);
-		let position = Position.create(0, idx);
+		let position = Position.create(0, offset);
 		let jsonDoc = ls.parseStylesheet(document);
 		return asPromise(ls.doComplete(document, position, jsonDoc)).then(list => {
 			if (expected.count) {
@@ -34,7 +34,7 @@ suite('LESS - Completions', () => {
 			}
 			if (expected.items) {
 				for (let item of expected.items) {
-					assertCompletion(list, item, document);
+					assertCompletion(list, item, document, offset);
 				}
 			}
 		});

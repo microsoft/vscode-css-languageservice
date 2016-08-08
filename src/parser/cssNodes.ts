@@ -1162,6 +1162,9 @@ export class VariableDeclaration extends AbstractDeclaration {
 		return false;
 	}
 
+	public getValue(): Node {
+		return this.value;
+	}
 }
 
 export class Interpolation extends Node {
