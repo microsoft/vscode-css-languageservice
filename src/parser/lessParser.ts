@@ -81,7 +81,12 @@ export class LESSParser extends cssParser.Parser {
 
 		if (this.accept(TokenType.Colon, ':')) {
 			node.colonPosition = this.prevToken.offset;
-			if (!node.setValue(this._parseExpr())) {
+			if (this.peek(TokenType.CurlyL)) {
+				//detached ruleset 
+				let content = <nodes.BodyDeclaration>this.create(nodes.BodyDeclaration);
+				this._parseBody(content, this._parseRuleSetDeclaration.bind(this));
+				node.setValue(content);
+			} else if (!node.setValue(this._parseExpr())) {
 				return <nodes.VariableDeclaration>this.finish(node, ParseError.VariableValueExpected, [], panic);
 			}
 		} else {
@@ -169,6 +174,7 @@ export class LESSParser extends cssParser.Parser {
 			return this._parseKeyframe()
 				|| this._parseMedia()
 				|| this._parseImport()
+				|| this._parseDetachedRuleSetMixin() // less detached ruleset mixin
 				|| this._parseVariableDeclaration(); // Variable declarations
 		}
 		return this._tryParseMixinDeclaration()
@@ -304,6 +310,22 @@ export class LESSParser extends cssParser.Parser {
 		if (!this.accept(TokenType.ParenthesisR)) {
 			return this.finish(node, ParseError.RightParenthesisExpected);
 		}
+		return this.finish(node);
+	}
+
+	public _parseDetachedRuleSetMixin(): nodes.Node {
+		if (!this.peek(TokenType.AtKeyword)) {
+			return null;
+		}
+		let mark = this.mark();
+		let node = <nodes.MixinReference>this.create(nodes.MixinReference);
+		if (!node.addChild(this._parseVariable()) || !this.accept(TokenType.ParenthesisL)) {
+			this.restoreAtMark(mark);
+			return null;
+		}
+		if (!this.accept(TokenType.ParenthesisR) {
+			return this.finish(node, ParseError.RightParenthesisExpected);
+		} 
 		return this.finish(node);
 	}
 

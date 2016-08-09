@@ -44,6 +44,8 @@ suite('LESS - Parser', () => {
 		assertNode('@color: 25.5px', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('@primary-font: "wf_SegoeUI","Segoe UI","Segoe","Segoe WP"', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('@greeting: `"hello".toUpperCase() + "!";`', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('@greeting: { display: none; }', parser, parser._parseVariableDeclaration.bind(parser));
+
 	});
 
 	test('MixinDeclaration', function() {
@@ -71,7 +73,12 @@ suite('LESS - Parser', () => {
 		assertNode('.mixin(@a: 2, @b: 1)', parser, parser._parseMixinReference.bind(parser));
 	});
 
-	test('MixinParameter', function() {
+	test('DetachedRuleSet', function() {
+		let parser = new LESSParser();
+		assertNode('.foo {  @greeting(); }', parser, parser._parseStylesheet.bind(parser));
+	});
+
+	test('MixiParameter', function() {
 		let parser = new LESSParser();
 		assertNode('@_', parser, parser._parseMixinParameter.bind(parser));
 		assertNode('@let: value', parser, parser._parseMixinParameter.bind(parser));
