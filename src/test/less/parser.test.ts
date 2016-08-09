@@ -242,5 +242,11 @@ suite('LESS - Parser', () => {
 		let parser = new LESSParser();
 		assertNode('button when (@my-option = true) { color: white; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('& when (@my-option = true) { button { color: white; } }', parser, parser._parseStylesheet.bind(parser));
-	});	
+	});
+
+	test('Merge', function() {
+		let parser = new LESSParser();
+		assertNode('.mixin() { transform+_: scale(2); }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('.myclass { box-shadow+: inset 0 0 10px #555; }', parser, parser._parseStylesheet.bind(parser));
+	});		
 });

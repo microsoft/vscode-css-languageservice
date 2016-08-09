@@ -486,4 +486,18 @@ export class LESSParser extends cssParser.Parser {
 
 		return super._parseFunctionIdentifier();
 	}
+
+	public _parsePropertyIdentifier(): nodes.Identifier {
+		let identifier = this._parseIdent();
+		if (!identifier) {
+			return null;
+		}
+		if (!this.hasWhitespace()) {
+			this.accept(TokenType.Delim, '+');
+			if (!this.hasWhitespace()) {
+				this.accept(TokenType.Ident, '_');
+			}
+		}
+		return this.finish(identifier);
+	}
 }

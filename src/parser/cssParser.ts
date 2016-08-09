@@ -387,10 +387,14 @@ export class Parser {
 				return null;
 			}
 		}
-		if (node.setIdentifier(this._parseIdent())) {
+		if (node.setIdentifier(this._parsePropertyIdentifier())) {
 			return <nodes.Property>this.finish(node);
 		}
 		return null;
+	}
+
+	public _parsePropertyIdentifier(): nodes.Identifier {
+		return this._parseIdent();
 	}
 
 	public _parseCharset(): nodes.Node {
