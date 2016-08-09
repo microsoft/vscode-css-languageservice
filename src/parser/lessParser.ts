@@ -21,7 +21,8 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseStylesheetStatement(): nodes.Node {
-		return this._tryParseMixinDeclaration() 
+		return this._tryParseMixinDeclaration()
+			|| this._tryParseMixinReference(true)
 			|| super._parseStylesheetStatement()
 			|| this._parseVariableDeclaration();
 	}
@@ -67,7 +68,7 @@ export class LESSParser extends cssParser.Parser {
 		return this._tryParseRuleset(false) 
 			|| this._tryToParseDeclaration() 
 			|| this._tryParseMixinDeclaration()
-			|| this._parseMixinReference()
+			|| this._tryParseMixinReference()
 			|| this._parseStylesheetStatement();
 	}	
 
@@ -180,7 +181,7 @@ export class LESSParser extends cssParser.Parser {
 		}
 		return this._tryParseMixinDeclaration()
 			|| this._tryParseRuleset(true)  // nested ruleset
-			|| this._parseMixinReference() // less mixin reference
+			|| this._tryParseMixinReference() // less mixin reference
 			|| this._parseExtend() // less extend declaration
 			|| super._parseRuleSetDeclaration(); // try css ruleset declaration as the last option
 	}
@@ -344,8 +345,9 @@ export class LESSParser extends cssParser.Parser {
 		} 
 		return this.finish(node);
 	}
+	
 
-	public _parseMixinReference(): nodes.Node {
+	public _tryParseMixinReference(atRoot = false): nodes.Node {
 		let mark = this.mark();
 		let node = <nodes.MixinReference>this.create(nodes.MixinReference);
 
@@ -382,7 +384,10 @@ export class LESSParser extends cssParser.Parser {
 		}
 
 		node.addChild(this._parsePrio());
-
+		if (atRoot && !this.peek(TokenType.SemiColon)) {
+			this.restoreAtMark(mark);
+			return null;
+		}
 		return this.finish(node);
 	}
 
