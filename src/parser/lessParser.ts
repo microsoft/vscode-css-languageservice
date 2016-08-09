@@ -323,7 +323,7 @@ export class LESSParser extends cssParser.Parser {
 			this.restoreAtMark(mark);
 			return null;
 		}
-		if (!this.accept(TokenType.ParenthesisR) {
+		if (!this.accept(TokenType.ParenthesisR)) {
 			return this.finish(node, ParseError.RightParenthesisExpected);
 		} 
 		return this.finish(node);
