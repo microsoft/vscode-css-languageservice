@@ -1220,6 +1220,7 @@ export class ExtendsReference extends Node {
 
 
 export class MixinReference extends Node {
+	private namespaces: Nodelist;
 	private identifier: Identifier;
 	private arguments: Nodelist;
 	private content: BodyDeclaration;
@@ -1231,6 +1232,13 @@ export class MixinReference extends Node {
 	public get type(): NodeType {
 		return NodeType.MixinReference;
 	}
+
+	public getNamespaces(): Nodelist {
+		if (!this.namespaces) {
+			this.namespaces = new Nodelist(this);
+		}
+		return this.namespaces;
+	}	
 
 	public setIdentifier(node: Identifier): boolean {
 		return this.setNode('identifier', node, 0);

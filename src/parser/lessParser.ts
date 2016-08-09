@@ -189,6 +189,17 @@ export class LESSParser extends cssParser.Parser {
 		return this._parseSelectorCombinator() || super._parseSimpleSelectorBody();
 	}
 
+	public _parseSelector(isNested: boolean): nodes.Selector {
+		// CSS Guards
+		let mark = this.mark();
+		let node = <nodes.Selector>this.create(nodes.Selector);
+		if (node.addChild(this._parseSimpleSelector()) && node.addChild(this._parseGuard())) {
+			return this.finish(node);
+		}
+		this.restoreAtMark(mark);
+		return super._parseSelector(isNested);
+	}
+
 	public _parseSelectorCombinator(): nodes.Node {
 		let node = this.createNode(nodes.NodeType.SelectorCombinator);
 		if (this.accept(TokenType.Delim, '&')) {
@@ -228,10 +239,6 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _tryParseMixinDeclaration(): nodes.Node {
-		if (!this.peek(TokenType.Delim, '.')) {
-			return null;
-		}
-
 		let mark = this.mark();
 		let node = <nodes.MixinDeclaration>this.create(nodes.MixinDeclaration);
 
@@ -261,10 +268,18 @@ export class LESSParser extends cssParser.Parser {
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
 	}
 
-	public _parseMixinDeclarationIdentifier(): nodes.Identifier {
-		let identifier = <nodes.Identifier>this.create(nodes.Identifier); // identifier should contain dot
-		this.consumeToken(); // .
-		if (this.hasWhitespace() || !this.accept(TokenType.Ident)) {
+	private _parseMixinDeclarationIdentifier(): nodes.Identifier {
+		let identifier : nodes.Identifier;
+		if (this.peek(TokenType.Delim, '#') || this.peek(TokenType.Delim, '.')) {
+			identifier = <nodes.Identifier> this.create(nodes.Identifier);
+			this.consumeToken(); // # or .
+			if (this.hasWhitespace() || !identifier.addChild(this._parseIdent())) {
+				return null;
+			}
+		} else if (this.peek(TokenType.Hash)) {
+			identifier = <nodes.Identifier> this.create(nodes.Identifier);
+			this.consumeToken(); // TokenType.Hash
+		} else {
 			return null;
 		}
 		identifier.referenceTypes = [nodes.ReferenceType.Mixin];
@@ -331,18 +346,24 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseMixinReference(): nodes.Node {
-		if (!this.peek(TokenType.Delim, '.')) {
-			return null;
-		}
-
+		let mark = this.mark();
 		let node = <nodes.MixinReference>this.create(nodes.MixinReference);
 
-		let identifier = <nodes.Identifier>this.create(nodes.Identifier);
-		this.consumeToken(); // dot, part of the identifier
-		if (this.hasWhitespace() || !this.accept(TokenType.Ident)) {
-			return this.finish(node, ParseError.IdentifierExpected);
+		let identifier = this._parseMixinDeclarationIdentifier();
+		while (identifier) {
+			this.accept(TokenType.Delim, '>');
+			let nextId = this._parseMixinDeclarationIdentifier();
+			if (nextId) {
+				node.getNamespaces().addChild(identifier);
+				identifier = nextId;
+			} else {
+				break;
+			}
 		}
-		node.setIdentifier(this.finish(identifier));
+		if (!node.setIdentifier(identifier)) {
+			this.restoreAtMark(mark);
+			return null;
+		}
 
 		if (!this.hasWhitespace() && this.accept(TokenType.ParenthesisL)) {
 			if (node.getArguments().addChild(this._parseMixinArgument())) {
@@ -419,12 +440,11 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseGuard(): nodes.LessGuard {
-
-		let node = <nodes.LessGuard>this.create(nodes.LessGuard);
-		if (!this.accept(TokenType.Ident, 'when')) {
+		if (!this.peek(TokenType.Ident, 'when')) {
 			return null;
 		}
-
+		let node = <nodes.LessGuard>this.create(nodes.LessGuard);
+		this.consumeToken(); // when
 		node.isNegated = this.accept(TokenType.Ident, 'not');
 
 		if (!node.getConditions().addChild(this._parseGuardCondition())) {

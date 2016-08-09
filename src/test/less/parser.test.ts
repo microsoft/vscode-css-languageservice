@@ -63,6 +63,9 @@ suite('LESS - Parser', () => {
 		assertNode('.mixin (@a, @rest...) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.mixin (@a) when (lightness(@a) >= 50%) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.class(@color-list, @i: 1) when (@i <= @list-length) and (@list-length > 1) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
+		assertNode('#color() { }', parser, parser._tryParseMixinDeclaration.bind(parser));
+		assertNode('#truth (@a) when (@a = true) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
+		
 	});
 
 	test('MixinReference', function() {
@@ -71,6 +74,10 @@ suite('LESS - Parser', () => {
 		assertNode('.box-shadow', parser, parser._parseMixinReference.bind(parser));
 		assertNode('.mixin(10) !important', parser, parser._parseMixinReference.bind(parser));
 		assertNode('.mixin(@a: 2, @b: 1)', parser, parser._parseMixinReference.bind(parser));
+		assertNode('#mixin(@a: 2, @b: 1)', parser, parser._parseMixinReference.bind(parser));
+		assertNode('#bundle > .button', parser, parser._parseMixinReference.bind(parser));
+		assertNode('#bundle #inner #button(1)', parser, parser._parseMixinReference.bind(parser));
+		
 	});
 
 	test('DetachedRuleSet', function() {
@@ -78,7 +85,7 @@ suite('LESS - Parser', () => {
 		assertNode('.foo {  @greeting(); }', parser, parser._parseStylesheet.bind(parser));
 	});
 
-	test('MixiParameter', function() {
+	test('MixinParameter', function() {
 		let parser = new LESSParser();
 		assertNode('@_', parser, parser._parseMixinParameter.bind(parser));
 		assertNode('@let: value', parser, parser._parseMixinParameter.bind(parser));
@@ -90,7 +97,7 @@ suite('LESS - Parser', () => {
 		assertNode('50%', parser, parser._parseMixinParameter.bind(parser));
 	});
 
-	test('Parser - function', function() {
+	test('Function', function() {
 		let parser = new LESSParser();
 		assertNode('%()', parser, parser._parseFunction.bind(parser));
 		assertNoNode('% ()', parser, parser._parseFunction.bind(parser));
@@ -172,6 +179,7 @@ suite('LESS - Parser', () => {
 		assertNode('.mixin (@a, @rest...) {}', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.mixin (@a) when (lightness(@a) >= 50%) {  background-color: black;}', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.some-mixin { font-weight:bold; } h1 { .some-mixin; font-size:40px; }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('#namespace when (@mode=huge) { .mixin() { } }', parser, parser._parseStylesheet.bind(parser));
 
 		assertNode('@color: #F5F5F5;', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@color: #F5F5F5; @color: #F5F5F5;', parser, parser._parseStylesheet.bind(parser));
@@ -229,4 +237,10 @@ suite('LESS - Parser', () => {
 		assertNode('&-foo', parser, parser._parseSimpleSelector.bind(parser));
 		assertNode('&--&', parser, parser._parseSimpleSelector.bind(parser));
 	});
+
+	test('CSS Guards', function() {
+		let parser = new LESSParser();
+		assertNode('button when (@my-option = true) { color: white; }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('& when (@my-option = true) { button { color: white; } }', parser, parser._parseStylesheet.bind(parser));
+	});	
 });
