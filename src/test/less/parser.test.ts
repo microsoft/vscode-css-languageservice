@@ -62,7 +62,7 @@ suite('LESS - Parser', () => {
 		assertNode('.mixin (@b) when not (@b > 0) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.mixin (@a, @rest...) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.mixin (@a) when (lightness(@a) >= 50%) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
-
+		assertNode('.class(@color-list, @i: 1) when (@i <= @list-length) and (@list-length > 1) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 	});
 
 	test('MixinReference', function() {

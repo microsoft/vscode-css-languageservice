@@ -164,6 +164,7 @@ export class LESSParser extends cssParser.Parser {
 			this.accept(TokenType.Delim, '<');
 			return node;
 		} else if (this.accept(TokenType.Delim, '<')) {
+			this.accept(TokenType.Delim, '=');
 			return node;
 		}
 		return null;
