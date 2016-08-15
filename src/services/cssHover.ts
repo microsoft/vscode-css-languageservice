@@ -6,7 +6,7 @@
 
 import * as nodes from '../parser/cssNodes';
 import * as languageFacts from './languageFacts';
-import {TextDocument, Range, Position, Hover} from 'vscode-languageserver-types';
+import {TextDocument, Range, Position, Hover, MarkedString} from 'vscode-languageserver-types';
 import {selectorToMarkedString, simpleSelectorToMarkedString} from './selectorPrinting';
 
 export class CSSHover {
@@ -40,11 +40,21 @@ export class CSSHover {
 			if (node instanceof nodes.Declaration) {
 				let propertyName = node.getFullPropertyName();
 				let entry = languageFacts.getProperties()[propertyName];
-				if (entry && entry.description) {
-					return {
-						contents: entry.description,
-						range: getRange(node)
-					};
+				if (entry) {
+					let contents : MarkedString[] = [];
+					if (entry.description) {
+						contents.push({ value: entry.description, language: 'string' })
+					}
+					let browserLabel = languageFacts.getBrowserLabel(entry.browsers);
+					if (browserLabel) {
+						contents.push({ value: browserLabel, language: 'string' });
+					}
+					if (contents.length) {
+						return {
+							contents: contents,
+							range: getRange(node)
+						};
+					}
 				}
 			}
 		}
