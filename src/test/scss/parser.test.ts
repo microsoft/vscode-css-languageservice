@@ -319,6 +319,7 @@ suite('SCSS - Parser', () => {
 		assertNode('p.#{$name} { #{$attr}-color: blue; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('sans-#{serif} { a-#{1 + 2}-color-#{$attr}: blue; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('##{f} .#{f} #{f}:#{f} { }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo-#{&} .foo-#{&-sub} { }', parser, parser._parseRuleset.bind(parser));
 	});
 
 	test('Parent Selector', function () {

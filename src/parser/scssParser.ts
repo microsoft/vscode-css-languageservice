@@ -129,7 +129,7 @@ export class SCSSParser extends cssParser.Parser {
 	public _parseInterpolation(): nodes.Node {
 		let node = this.create(nodes.Interpolation);
 		if (this.accept(scssScanner.InterpolationFunction)) {
-			if (!node.addChild(this._parseBinaryExpr())) {
+			if (!node.addChild(this._parseBinaryExpr()) && !this._parseSelectorCombinator()) {
 				return this.finish(node, ParseError.ExpressionExpected);
 			}
 			if (!this.accept(TokenType.CurlyR)) {
