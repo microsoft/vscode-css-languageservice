@@ -43,11 +43,11 @@ export class CSSHover {
 				if (entry) {
 					let contents : MarkedString[] = [];
 					if (entry.description) {
-						contents.push({ value: entry.description, language: 'string' })
+						contents.push(MarkedString.fromPlainText(entry.description));
 					}
 					let browserLabel = languageFacts.getBrowserLabel(entry.browsers);
 					if (browserLabel) {
-						contents.push({ value: browserLabel, language: 'string' });
+						contents.push(MarkedString.fromPlainText(browserLabel));
 					}
 					if (contents.length) {
 						return {

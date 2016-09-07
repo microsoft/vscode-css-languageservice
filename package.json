@@ -1,6 +1,6 @@
 {
   "name": "vscode-css-languageservice",
-  "version": "1.0.8",
+  "version": "1.0.9-next.1",
   "description": "Language service for CSS, LESS and SCSS",
   "main": "./lib/cssLanguageService.js",
   "typings": "./lib/cssLanguageService",
@@ -24,7 +24,7 @@
     "rimraf": "^2.5.2"
 	},
 	"dependencies": {
-    "vscode-languageserver-types": "^1.0.2",
+    "vscode-languageserver-types": "^1.0.3",
 		"vscode-nls": "^1.0.4"
 	},
 	"scripts": {
