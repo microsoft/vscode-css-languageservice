@@ -96,7 +96,7 @@ export class LabelElement extends Element {
 
 class MarkedStringPrinter {
 
-	private result: MarkedString[];
+	private result: string[];
 
 	constructor(public quote: string) {
 		// empty
@@ -109,7 +109,9 @@ class MarkedStringPrinter {
 		} else {
 			this.doPrint([element], 0);
 		}
-		return this.result;
+
+		const value = this.result.join('\n');
+		return [{ language: 'html', value }];
 	}
 
 	private doPrint(elements: Element[], indent: number) {
@@ -123,7 +125,7 @@ class MarkedStringPrinter {
 
 	private writeLine(level: number, content: string) {
 		let indent = new Array(level).join('  ');
-		this.result.push({ language: 'html', value: indent + content });
+		this.result.push(indent + content);
 	}
 
 	private doPrintElement(element: Element, indent: number) {
