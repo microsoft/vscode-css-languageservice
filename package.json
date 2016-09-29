@@ -1,6 +1,6 @@
 {
   "name": "vscode-css-languageservice",
-  "version": "1.0.9-next.1",
+  "version": "1.1.0",
   "description": "Language service for CSS, LESS and SCSS",
   "main": "./lib/cssLanguageService.js",
   "typings": "./lib/cssLanguageService",
@@ -13,24 +13,24 @@
   "bugs": {
     "url": "https://github.com/Microsoft/vscode-css-languageservice"
   },
-	"devDependencies": {
-		"mocha": "^2.4.5",
-		"typescript": "^1.8.9",
+  "devDependencies": {
+    "mocha": "^2.4.5",
+    "typescript": "^1.8.9",
     "xml2js": "^0.4.16",
     "gulp": "^3.9.1",
     "gulp-tsb": "^1.10.4",
     "merge-stream": "^1.0.0",
     "object-assign": "^4.1.0",
     "rimraf": "^2.5.2"
-	},
-	"dependencies": {
+  },
+  "dependencies": {
     "vscode-languageserver-types": "^1.0.3",
-		"vscode-nls": "^1.0.4"
-	},
-	"scripts": {
-		"prepublish": "gulp compile",
-		"compile": "gulp compile",
-		"watch": "gulp watch",
+    "vscode-nls": "^1.0.4"
+  },
+  "scripts": {
+    "prepublish": "gulp compile",
+    "compile": "gulp compile",
+    "watch": "gulp watch",
     "test": "gulp compile && mocha"
-	}
+  }
 }
