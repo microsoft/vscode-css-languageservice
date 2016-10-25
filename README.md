@@ -7,7 +7,7 @@ Language services for CSS, LESS and SCSS
 Why?
 ----
 The _vscode-css-languageservice_ contains the language smarts behind the CSS, LESS and SCSS editing experience of Visual Studio Code
-and the Moanco editor.
+and the Monaco editor.
  - *doValidation* analyses an input string and returns syntax and lint errros.
  - *doComplete* provides completion proposals for a given location.
  - *doHover* provides a hover text for a given location.
