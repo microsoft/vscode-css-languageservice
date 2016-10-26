@@ -561,8 +561,17 @@ export class Scanner {
 				tokenType = TokenType.BadUri;
 
 			} else if (stringType === null) {
+				let nestedBrackets = 0;
 				this.stream.advanceWhileChar((ch) => {
-					return ch !== _RPA;
+					if (ch === _LPA) {
+						nestedBrackets++;
+					} else if (ch === _RPA) {
+						if (nestedBrackets === 0) {
+							return false;
+						}
+						nestedBrackets--;
+					}
+					return true;
 				});
 				tokenType = TokenType.URI;
 			}

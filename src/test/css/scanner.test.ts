@@ -68,6 +68,7 @@ suite('CSS - Scanner', () => {
 		assertSingleToken(scanner, 'url(\'http://msft.com\n)', 22, 0, 'url(\'http://msft.com\n)', TokenType.BadUri);
 		assertSingleToken(scanner, 'url("http://msft.com"', 21, 0, 'url("http://msft.com"', TokenType.BadUri);
 		assertSingleToken(scanner, 'url(http://msft.com\')', 21, 0, 'url(http://msft.com\')', TokenType.URI);
+		assertSingleToken(scanner, 'url(foo())', 10, 0, 'url(foo())', TokenType.URI);
 	});
 
 	test('Token AtKeyword', function () {
