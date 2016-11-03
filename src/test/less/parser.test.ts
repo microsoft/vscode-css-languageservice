@@ -65,7 +65,9 @@ suite('LESS - Parser', () => {
 		assertNode('.class(@color-list, @i: 1) when (@i <= @list-length) and (@list-length > 1) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('#color() { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('#truth (@a) when (@a = true) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
-		
+		assertNode('.color (@color; @padding: 2;) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
+		assertError('.color (@color; @padding: 2;;) { }', parser, parser._tryParseMixinDeclaration.bind(parser), ParseError.IdentifierExpected);
+
 	});
 
 	test('MixinReference', function() {
@@ -77,7 +79,8 @@ suite('LESS - Parser', () => {
 		assertNode('#mixin(@a: 2, @b: 1)', parser, parser._tryParseMixinReference.bind(parser));
 		assertNode('#bundle > .button', parser, parser._tryParseMixinReference.bind(parser));
 		assertNode('#bundle #inner #button(1)', parser, parser._tryParseMixinReference.bind(parser));
-		
+		assertNode('.mixin(#008000;)', parser, parser._tryParseMixinReference.bind(parser));
+		assertError('.mixin(#008000;;)', parser, parser._tryParseMixinReference.bind(parser), ParseError.ExpressionExpected);
 	});
 
 	test('DetachedRuleSet', function() {

@@ -250,7 +250,10 @@ export class LESSParser extends cssParser.Parser {
 
 		if (node.getParameters().addChild(this._parseMixinParameter())) {
 			while (this.accept(TokenType.Comma) || this.accept(TokenType.SemiColon)) {
-				if (!node.getParameters().addChild(this._parseMixinParameter())) {
+				if (this.peek(TokenType.ParenthesisR)) {
+					break;
+				}
+				if (!node.getParameters().addChild(this._parseMixinParameter())) {				
 					return this.finish(node, ParseError.IdentifierExpected);
 				}
 			}
@@ -370,6 +373,9 @@ export class LESSParser extends cssParser.Parser {
 		if (!this.hasWhitespace() && this.accept(TokenType.ParenthesisL)) {
 			if (node.getArguments().addChild(this._parseMixinArgument())) {
 				while (this.accept(TokenType.Comma) || this.accept(TokenType.SemiColon)) {
+					if (this.peek(TokenType.ParenthesisR)) {
+						break;
+					}
 					if (!node.getArguments().addChild(this._parseMixinArgument())) {
 						return this.finish(node, ParseError.ExpressionExpected);
 					}
@@ -435,12 +441,15 @@ export class LESSParser extends cssParser.Parser {
 			return this.finish(node);
 		}
 
+		let hasContent = false;
 		// default variable declaration: @param: 12 or @name
 		if (node.setIdentifier(this._parseVariable())) {
 			this.accept(TokenType.Colon);
+			hasContent = true;
 		}
-		node.setDefaultValue(this._parseExpr(true));
-
+		if (!node.setDefaultValue(this._parseExpr(true)) && !hasContent) {
+			return null;
+		}
 		return this.finish(node);
 	}
 
