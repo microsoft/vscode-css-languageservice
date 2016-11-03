@@ -21,7 +21,8 @@
     "gulp-tsb": "^1.10.4",
     "merge-stream": "^1.0.0",
     "object-assign": "^4.1.0",
-    "rimraf": "^2.5.2"
+    "rimraf": "^2.5.2",
+    "vscode-uri": "^1.0.0"
   },
   "dependencies": {
     "vscode-languageserver-types": "^1.0.3",

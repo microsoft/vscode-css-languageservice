@@ -8,8 +8,13 @@ var tsb = require('gulp-tsb');
 var assign = require('object-assign');
 var rimraf = require('rimraf');
 var merge = require('merge-stream');
+var path = require('path');
+var uri = require('vscode-uri').default;
 
-var compilation = tsb.create(assign({ verbose: true }, require('./src/tsconfig.json').compilerOptions));
+// set sourceRoot to an absolute location to workaround https://github.com/jrieken/gulp-tsb/issues/48
+var sourceRoot = uri.file(path.join(__dirname, 'src')).toString(); 
+
+var compilation = tsb.create(assign({ verbose: true, sourceRoot: sourceRoot }, require('./src/tsconfig.json').compilerOptions));
 var tsSources = 'src/**/*.ts';
 var outFolder = 'lib';
 
