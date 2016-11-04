@@ -193,6 +193,10 @@ suite('LESS - Parser', () => {
 		assertNode('@import-once (css) "hello";', parser, parser._parseStylesheet.bind(parser));
 		assertError('@import-once () "hello";', parser, parser._parseStylesheet.bind(parser), ParseError.IdentifierExpected);
 		assertError('@import-once (less);', parser, parser._parseStylesheet.bind(parser), ParseError.URIOrStringExpected);
+		assertNode('@import (css) "lib";', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@import (optional, reference) "foo.less";', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@import (optional, reference,) "foo.less";', parser, parser._parseStylesheet.bind(parser));
+		assertError('@import (optional, reference,,) "foo.less";', parser, parser._parseStylesheet.bind(parser), ParseError.RightParenthesisExpected);
 	});
 
 	test('Ruleset', function() {

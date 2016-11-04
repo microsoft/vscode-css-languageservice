@@ -38,6 +38,12 @@ export class LESSParser extends cssParser.Parser {
 			if (!this.accept(TokenType.Ident)) {
 				return this.finish(node, ParseError.IdentifierExpected, [TokenType.SemiColon]);
 			}
+			do {
+				if (!this.accept(TokenType.Comma)) {
+					break;
+				}
+			} while (this.accept(TokenType.Ident));
+
 			if (!this.accept(TokenType.ParenthesisR)) {
 				return this.finish(node, ParseError.RightParenthesisExpected, [TokenType.SemiColon]);
 			}
