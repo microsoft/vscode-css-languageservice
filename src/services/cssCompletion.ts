@@ -21,6 +21,7 @@ export class CSSCompletion {
 	styleSheet: nodes.Stylesheet;
 	symbolContext: Symbols;
 	defaultReplaceRange: Range;
+	nodePath: nodes.Node[];
 
 	constructor(variablePrefix: string = null) {
 		this.variablePrefix = variablePrefix;
@@ -42,10 +43,10 @@ export class CSSCompletion {
 		this.styleSheet = styleSheet;
 		try {
 			let result: CompletionList = { isIncomplete: false, items: [] };
-			let nodePath = nodes.getNodePath(this.styleSheet, this.offset);
+			this.nodePath = nodes.getNodePath(this.styleSheet, this.offset);
 
-			for (let i = nodePath.length - 1; i >= 0; i--) {
-				let node = nodePath[i];
+			for (let i = this.nodePath.length - 1; i >= 0; i--) {
+				let node = this.nodePath[i];
 				if (node instanceof nodes.Property) {
 					this.getCompletionsForDeclarationProperty(node.getParent() as nodes.Declaration, result);
 				} else if (node instanceof nodes.Expression) {
@@ -95,7 +96,18 @@ export class CSSCompletion {
 			this.styleSheet = null;	
 			this.symbolContext = null;
 			this.defaultReplaceRange = null;
+			this.nodePath = null;
 		}
+	}
+
+	private findInNodePath(...types: nodes.NodeType[]) {
+		for (let i = this.nodePath.length - 1; i >= 0; i--) {
+			let node = this.nodePath[i];
+			if (types.indexOf(node.type) !== -1) {
+				return node;
+			}
+		}
+		return null;
 	}
 
 	public getCompletionsForDeclarationProperty(declaration: nodes.Declaration, result: CompletionList): CompletionList {
@@ -458,6 +470,10 @@ export class CSSCompletion {
 		}
 		let isInSelectors = !declarations || this.offset <= declarations.offset;
 		if (isInSelectors) {
+			let currentWordStart = this.textDocument.offsetAt(this.defaultReplaceRange.start);
+			while (currentWordStart > 0 && this.textDocument.getText().charAt(currentWordStart - 1) === ':') {
+				currentWordStart--;
+			}
 			return this.getCompletionsForSelector(ruleSet, result);
 		}
 		ruleSet.findParent(nodes.NodeType.Ruleset);
@@ -466,7 +482,13 @@ export class CSSCompletion {
 	}
 
 	public getCompletionsForSelector(ruleSet: nodes.RuleSet, result: CompletionList): CompletionList {
-		let existingNode = null;
+		let existingNode = this.findInNodePath(nodes.NodeType.PseudoSelector, nodes.NodeType.IdentifierSelector, nodes.NodeType.ClassSelector, nodes.NodeType.ElementNameSelector);
+		if (!existingNode && this.currentWord.length === 0 && this.offset > 0 && this.textDocument.getText()[this.offset - 1] === ':') {
+			// after the ':' of a pseudo selector, no node generated for just ':'
+			this.currentWord = ':';
+			this.defaultReplaceRange = Range.create(Position.create(this.position.line, this.position.character - 1), this.position);
+		}
+		
 		languageFacts.getPseudoClasses().forEach((entry) => {
 			if (entry.browsers.onCodeComplete) {
 				result.items.push({

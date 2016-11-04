@@ -805,10 +805,11 @@ export class Parser {
 		let pos = this.mark();
 		let node = this.createNode(nodes.NodeType.PseudoSelector);
 		this.consumeToken(); // Colon
-		if (!this.hasWhitespace() && this.accept(TokenType.Colon)) {
-			// optional, support ::
-		}
 		if (!this.hasWhitespace()) {
+			// optional, support ::
+			if (this.accept(TokenType.Colon) && this.hasWhitespace()) {
+				return this.finish(node, ParseError.IdentifierExpected);
+			}
 			if (!node.addChild(this._parseIdent())) {
 				return this.finish(node, ParseError.IdentifierExpected);
 			}

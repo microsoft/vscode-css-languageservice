@@ -96,6 +96,52 @@ suite('CSS - Completion', () => {
 			})
 		]).then(() => testDone(), (error) => testDone(error));
 	});
+	test('selectors', function (testDone): any {
+		Promise.all([
+			testCompletionFor('a:h| ', {
+				items: [
+					{ label: ':hover', resultText: 'a:hover ' },
+					{ label: '::after', resultText: 'a::after ' }
+				]
+			}),
+			testCompletionFor('a::h| ', {
+				items: [
+					{ label: ':hover', resultText: 'a:hover ' },
+					{ label: '::after', resultText: 'a::after ' }
+				]
+			}),
+			testCompletionFor('a::| ', {
+				items: [
+					{ label: ':hover', resultText: 'a:hover ' },
+					{ label: '::after', resultText: 'a::after ' }
+				]
+			}),
+			testCompletionFor('a:| ', {
+				items: [
+					{ label: ':hover', resultText: 'a:hover ' },
+					{ label: '::after', resultText: 'a::after ' }
+				]
+			}),
+			testCompletionFor('a:|hover ', {
+				items: [
+					{ label: ':hover', resultText: 'a:hover ' },
+					{ label: '::after', resultText: 'a::after ' }
+				]
+			}),
+			testCompletionFor('a#| ', {
+				items: [
+					{ label: ':hover', resultText: 'a:hover ' },
+					{ label: '::after', resultText: 'a::after ' }
+				]
+			}),
+			testCompletionFor('a.| ', {
+				items: [
+					{ label: ':hover', resultText: 'a:hover ' },
+					{ label: '::after', resultText: 'a::after ' }
+				]
+			})
+		]).then(() => testDone(), (error) => testDone(error));
+	});
 	test('properties', function (testDone): any {
 		Promise.all([
 			testCompletionFor('body {|', {

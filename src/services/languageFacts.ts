@@ -559,7 +559,7 @@ export function getPseudoElements(): IEntry[] {
 			pseudoElementList = [];
 			for (let i = 0, len = pseudoElements.length; i < len; i++) {
 				let rawEntry = pseudoElements[i];
-				pseudoClassesList.push(new EntryImpl(rawEntry));
+				pseudoElementList.push(new EntryImpl(rawEntry));
 			}
 		}
 		return pseudoElementList;
