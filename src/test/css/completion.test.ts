@@ -49,7 +49,7 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 
 suite('CSS - Completion', () => {
 
-	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[] }): Thenable<void> {
+	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[] }): PromiseLike<void> {
 		let offset = value.indexOf('|');
 		value = value.substr(0, offset) + value.substr(offset + 1);
 

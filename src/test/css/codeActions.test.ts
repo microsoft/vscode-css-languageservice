@@ -16,7 +16,7 @@ function asPromise<T>(result:T) : Promise<T> {
 
 suite('CSS - Code Actions', () => {
 	
-	let testCodeActions = function (value: string, tokenBefore: string): Thenable<{ commands: Command[]; document: TextDocument; }> {
+	let testCodeActions = function (value: string, tokenBefore: string): PromiseLike<{ commands: Command[]; document: TextDocument; }> {
 		let ls = cssLanguageService.getCSSLanguageService();
 
 		let document = TextDocument.create('test://test/test.css', 'css', 0, value);

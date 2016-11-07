@@ -132,7 +132,8 @@ export class Parser {
 			if (this.prevToken !== null) {
 				// length with more elements belonging together
 				let prevEnd = this.prevToken.offset + this.prevToken.len;
-				node.length = prevEnd > node.offset ? prevEnd - node.offset : 0; // offset is taken from current token, end from previous: Use 0 for empty nodes
+				let node2 = <nodes.Node> node; // workaround for https://github.com/Microsoft/TypeScript/issues/12083
+				node2.length = prevEnd > node2.offset ? prevEnd - node2.offset : 0; // offset is taken from current token, end from previous: Use 0 for empty nodes
 			}
 
 		}

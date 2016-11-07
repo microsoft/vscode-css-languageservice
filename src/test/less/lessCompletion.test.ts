@@ -18,7 +18,7 @@ function asPromise<T>(result:T) : Promise<T> {
 
 suite('LESS - Completions', () => {
 
-	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[] }): Thenable<void> {
+	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[] }): PromiseLike<void> {
 		let offset = value.indexOf('|');
 		value = value.substr(0, offset) + value.substr(offset + 1);
 

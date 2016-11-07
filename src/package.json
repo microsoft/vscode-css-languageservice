@@ -1,0 +1,7 @@
+{
+  "name": "vscode-css-languageservice-src",
+  "devDependencies": {
+    "@types/node": "^6.0.46",
+    "@types/mocha": "^2.2.32"
+  }
+}

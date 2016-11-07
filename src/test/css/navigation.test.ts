@@ -21,7 +21,7 @@ export function assertScopesAndSymbols(p: Parser, input: string, expected: strin
 	assert.equal(scopeToString(global), expected);
 }
 
-export function assertHighlights(p: Parser, input: string, marker: string, expectedMatches: number, expectedWrites: number, elementName?: string): Thenable<void> {
+export function assertHighlights(p: Parser, input: string, marker: string, expectedMatches: number, expectedWrites: number, elementName?: string): PromiseLike<void> {
 	let document = TextDocument.create('test://test/test.css', 'css', 0, input);
 
 	let stylesheet = p.parseStylesheet(document);
