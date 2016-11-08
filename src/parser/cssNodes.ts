@@ -371,6 +371,7 @@ export class Node {
 }
 
 export class Nodelist extends Node {
+	private _nodeList: void; // workaround for https://github.com/Microsoft/TypeScript/issues/12083
 
 	constructor(parent: Node, index: number = -1) {
 		super(-1, -1);
@@ -470,6 +471,8 @@ export class RuleSet extends BodyDeclaration {
 
 export class Selector extends Node {
 
+	private _selector: void; // workaround for https://github.com/Microsoft/TypeScript/issues/12083
+
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -481,6 +484,8 @@ export class Selector extends Node {
 }
 
 export class SimpleSelector extends Node {
+
+	private _simpleSelector: void; // workaround for https://github.com/Microsoft/TypeScript/issues/12083
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -989,6 +994,8 @@ export class PageBoxMarginBox extends BodyDeclaration {
 }
 
 export class Expression extends Node {
+
+	private _expression: void; // workaround for https://github.com/Microsoft/TypeScript/issues/12083
 
 	constructor(offset: number, length: number) {
 		super(offset, length);

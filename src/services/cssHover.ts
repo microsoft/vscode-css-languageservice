@@ -38,7 +38,7 @@ export class CSSHover {
 				};
 			}
 			if (node instanceof nodes.Declaration) {
-				let propertyName = (<nodes.Declaration> node).getFullPropertyName(); // workaround for https://github.com/Microsoft/TypeScript/issues/12083
+				let propertyName = node.getFullPropertyName();
 				let entry = languageFacts.getProperties()[propertyName];
 				if (entry) {
 					let contents : MarkedString[] = [];

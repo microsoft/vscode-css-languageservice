@@ -308,8 +308,7 @@ class SelectorElementBuilder {
 		selector.getChildren().forEach(selectorChild => {
 			
 			if (selectorChild instanceof nodes.SimpleSelector) {
-				let prev2 = this.prev; // workaround for https://github.com/Microsoft/TypeScript/issues/12083
-				if (prev2 instanceof nodes.SimpleSelector) {
+				if (this.prev instanceof nodes.SimpleSelector) {
 					let labelElement = new LabelElement('\u2026');
 					this.element.addChild(labelElement);
 					this.element = labelElement;
@@ -328,8 +327,7 @@ class SelectorElementBuilder {
 				this.element.addChild(root);
 				this.element = thisElement;
 			}
-			var selectorChild2 = selectorChild; // workaround for https://github.com/Microsoft/TypeScript/issues/12083
-			if (selectorChild2 instanceof nodes.SimpleSelector ||
+			if (selectorChild instanceof nodes.SimpleSelector ||
 				selectorChild.type === nodes.NodeType.SelectorCombinatorParent ||
 				selectorChild.type === nodes.NodeType.SelectorCombinatorSibling ||
 				selectorChild.type === nodes.NodeType.SelectorCombinatorAllSiblings) {
@@ -372,7 +370,7 @@ export function selectorToElement(node: nodes.Selector): Element {
 	let builder = new SelectorElementBuilder(root);
 
 	for (let i = parentRuleSets.length - 1; i >= 0; i--) {
-		let selector = parentRuleSets[i].getSelectors().getChild(0);
+		let selector = <nodes.Selector> parentRuleSets[i].getSelectors().getChild(0);
 		if (selector) {
 			builder.processSelector(selector);
 		}

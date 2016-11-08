@@ -47,14 +47,15 @@ export class CSSCompletion {
 
 			for (let i = this.nodePath.length - 1; i >= 0; i--) {
 				let node = this.nodePath[i];
-				let node2 = node; // workaround for https://github.com/Microsoft/TypeScript/issues/12083
 				if (node instanceof nodes.Property) {
 					this.getCompletionsForDeclarationProperty(node.getParent() as nodes.Declaration, result);
 				} else if (node instanceof nodes.Expression) {
 					this.getCompletionsForExpression(<nodes.Expression>node, result);
 				} else if (node instanceof nodes.SimpleSelector) {
-					let parentRuleSet = <nodes.RuleSet>node2.findParent(nodes.NodeType.Ruleset);
+					let parentRuleSet = <nodes.RuleSet>node.findParent(nodes.NodeType.Ruleset);
 					this.getCompletionsForSelector(parentRuleSet, result);
+				} else if (node instanceof nodes.FunctionArgument) {
+					this.getCompletionsForFunctionArgument(<nodes.FunctionArgument>node, <nodes.Function>node.getParent(), result);
 				} else if (node instanceof nodes.Declarations) {
 					this.getCompletionsForDeclarations(<nodes.Declarations>node, result);
 				} else if (node instanceof nodes.VariableDeclaration) {
@@ -63,8 +64,6 @@ export class CSSCompletion {
 					this.getCompletionsForRuleSet(<nodes.RuleSet>node, result);
 				} else if (node instanceof nodes.Interpolation) {
 					this.getCompletionsForInterpolation(<nodes.Interpolation>node, result);
-				} else if (node instanceof nodes.FunctionArgument) {
-					this.getCompletionsForFunctionArgument(<nodes.FunctionArgument>node, <nodes.Function>node2.getParent(), result);
 				} else if (node instanceof nodes.FunctionDeclaration) {
 					this.getCompletionsForFunctionDeclaration(<nodes.FunctionDeclaration>node, result);
 				} else if (node instanceof nodes.Function) {
@@ -148,7 +147,7 @@ export class CSSCompletion {
 	public getCompletionsForDeclarationValue(node: nodes.Declaration, result: CompletionList): CompletionList {
 		let propertyName = node.getFullPropertyName();
 		let entry = languageFacts.getProperties()[propertyName];
-		let existingNode = node.getValue();
+		let existingNode: nodes.Node = node.getValue();
 
 		while (existingNode && existingNode.hasChildren()) {
 			existingNode = existingNode.findChildAtOffset(this.offset, false);
