@@ -1,6 +1,6 @@
 {
   "name": "vscode-css-languageservice",
-  "version": "1.1.0",
+  "version": "2.0.0-next.1",
   "description": "Language service for CSS, LESS and SCSS",
   "main": "./lib/cssLanguageService.js",
   "typings": "./lib/cssLanguageService",
@@ -17,22 +17,18 @@
     "mocha": "^2.4.5",
     "typescript": "^2.0.7",
     "xml2js": "^0.4.16",
-    "gulp": "^3.9.1",
-    "gulp-tsb": "^2.0.2",
-    "merge-stream": "^1.0.0",
-    "object-assign": "^4.1.0",
-    "rimraf": "^2.5.2",
-    "vscode-uri": "^1.0.0"
+    "@types/node": "^6.0.46",
+    "@types/mocha": "^2.2.32"
   },
   "dependencies": {
     "vscode-languageserver-types": "^1.0.3",
     "vscode-nls": "^1.0.4"
   },
   "scripts": {
-    "prepublish": "gulp compile",
-    "compile": "gulp compile",
-    "watch": "gulp watch",
-    "test": "gulp compile && mocha",
-    "postinstall": "npm install -prefix ./src"
+    "prepublish": "npm run compile",
+    "compile": "tsc -p ./src && mkdir -p ./lib/data && cp ./src/data/* ./lib/data/",
+		"watch": "cp ./src/data/* ./lib/data && tsc -w -p ./src",
+    "test": "npm run compile && mocha",
+    "update-data": "node ./build/generate_browserjs.js"
   }
 }

@@ -44,7 +44,7 @@ export function parseSelector(p: Parser, input: string, selectorName: string, ex
 	let styleSheet = p.parseStylesheet(document);
 
 	let node = nodes.getNodeAtOffset(styleSheet, input.indexOf(selectorName));
-	let selector = node.findParent(nodes.NodeType.Selector);
+	let selector = <nodes.Selector> node.findParent(nodes.NodeType.Selector);
 
 	let element = selectorPrinter.selectorToElement(selector);
 	assert.equal(elementToString(element), expected);

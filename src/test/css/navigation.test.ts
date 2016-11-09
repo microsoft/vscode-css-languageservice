@@ -42,7 +42,7 @@ export function assertHighlights(p: Parser, input: string, marker: string, expec
 			let start = document.offsetAt(range.start), end = document.offsetAt(range.end);
 			assert.equal(document.getText().substring(start, end), elementName || marker);
 		}
-		assert.equal(nWrites, expectedWrites);
+		assert.equal(nWrites, expectedWrites, input);
 	});
 }
 

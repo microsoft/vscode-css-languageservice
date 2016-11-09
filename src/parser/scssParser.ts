@@ -287,7 +287,7 @@ export class SCSSParser extends cssParser.Parser {
 	private _internalParseIfStatement(parseStatement: () => nodes.Node): nodes.IfStatement {
 		let node = <nodes.IfStatement>this.create(nodes.IfStatement);
 		this.consumeToken(); // @if or if
-		if (!node.setExpression(this._parseBinaryExpr())) {
+		if (!node.setExpression(this._parseExpr(true))) {
 			return this.finish(node, ParseError.ExpressionExpected);
 		}
 		this._parseBody(node, parseStatement);

@@ -6,8 +6,7 @@
 		"sourceMap": true,
 		"declaration": true,
 		"stripInternal": true,
-		"outDir": "./lib",
-		"rootDir": "./src",
+		"outDir": "../lib",
 		"lib": [
 			"es5", "es2015.promise"
 		]

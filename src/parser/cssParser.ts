@@ -721,7 +721,7 @@ export class Parser {
 		}
 	}
 
-	public _parseSimpleSelector(): nodes.Node {
+	public _parseSimpleSelector(): nodes.SimpleSelector {
 		// simple_selector
 		//  : element_name [ HASH | class | attrib | pseudo ]* | [ HASH | class | attrib | pseudo ]+ ;
 

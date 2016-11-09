@@ -1202,7 +1202,7 @@ export class Variable extends Node {
 }
 
 export class ExtendsReference extends Node {
-	private selector: Selector;
+	private selector: Node;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1212,11 +1212,11 @@ export class ExtendsReference extends Node {
 		return NodeType.ExtendsReference;
 	}
 
-	public setSelector(node: Selector): boolean {
+	public setSelector(node: Node): boolean {
 		return this.setNode('selector', node, 0);
 	}
 
-	public getSelector(): Selector {
+	public getSelector(): Node {
 		return this.selector;
 	}
 
