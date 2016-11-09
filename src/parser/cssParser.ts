@@ -260,7 +260,39 @@ export class Parser {
 	}
 
 	public _parseRuleSetDeclaration(): nodes.Node {
-		return this._parseDeclaration();
+		return this._tryToParseAtApply() || this._parseDeclaration();
+	}
+
+	/**
+	 * Parses declarations like:
+	 *   @apply --my-theme;
+	 *
+	 * Follows https://tabatkins.github.io/specs/css-apply-rule/#using
+	 */
+	public _tryToParseAtApply(): nodes.Node {
+		if (!this.peek(TokenType.AtKeyword, '@apply')) {
+			return null;
+		}
+		const node = this.create(nodes.AtApplyRule) as nodes.AtApplyRule;
+		node.endOfAtApply = this.token.offset + this.token.len;
+		this.consumeToken();
+
+		if (!this.peek(TokenType.Ident)) {
+			return this.finish(node, ParseError.IdentifierExpected);
+		}
+		/**
+		 * A css custom property name is any identifier that starts with two
+		 * dashes:
+		 * https://www.w3.org/TR/css-variables/#typedef-custom-property-name
+		 */
+		if (!this.peekRegExp(TokenType.Ident, /^--/)) {
+			return this.finish(node, ParseError.CustomPropertyNameExpected);
+		}
+		this.accept(TokenType.Ident);
+		if (this.peek(TokenType.SemiColon)) {
+			node.semicolonPosition = this.token.offset;
+		}
+		return this.finish(node);
 	}
 
 	public _needsSemicolonAfter(node: nodes.Node): boolean {
@@ -284,6 +316,7 @@ export class Parser {
 			case nodes.NodeType.MediaQuery:
 			case nodes.NodeType.Debug:
 			case nodes.NodeType.Import:
+			case nodes.NodeType.AtApplyRule:
 				return true;
 			case nodes.NodeType.MixinReference:
 				return !(<nodes.MixinReference>node).getContent();
@@ -515,8 +548,8 @@ export class Parser {
 	}
 
 	public _parseMediaDeclaration(): nodes.Node {
-		return this._tryParseRuleset(false) 
-			|| this._tryToParseDeclaration() 
+		return this._tryParseRuleset(false)
+			|| this._tryToParseDeclaration()
 			|| this._parseStylesheetStatement();
 	}
 

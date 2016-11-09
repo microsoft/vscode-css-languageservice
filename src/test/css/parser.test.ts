@@ -235,6 +235,9 @@ suite('CSS - Parser', () => {
 		assertNode('boo { prop: value; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('boo { prop: value; prop: value }', parser, parser._parseRuleset.bind(parser));
 		assertNode('boo { prop: value; prop: value; }', parser, parser._parseRuleset.bind(parser));
+		assertNode('boo { @apply --custom-prop; }', parser, parser._parseRuleset.bind(parser));
+		assertNode('boo { @apply --custom-prop }', parser, parser._parseRuleset.bind(parser));
+		assertNode('boo { @apply --custom-prop; background-color: red }', parser, parser._parseRuleset.bind(parser));
 	});
 
 	test('Ruleset /Panic/', function () {
@@ -244,6 +247,9 @@ suite('CSS - Parser', () => {
 		assertError('boo { prop }', parser, parser._parseRuleset.bind(parser), ParseError.ColonExpected);
 		assertError('boo { prop: ; far: 12em; }', parser, parser._parseRuleset.bind(parser), ParseError.PropertyValueExpected);
 		//	assertNode('boo { prop: ; 1ar: 12em; }', parser, parser._parseRuleset.bind(parser));
+		assertError('boo { @apply }', parser, parser._parseRuleset.bind(parser), ParseError.IdentifierExpected);
+		assertError('boo { @apply not-custom-prop}', parser, parser._parseRuleset.bind(parser), ParseError.CustomPropertyNameExpected);
+		assertError('boo { @apply --custom-prop background: red}', parser, parser._parseRuleset.bind(parser), ParseError.SemiColonExpected);
 	});
 
 	test('selector', function () {

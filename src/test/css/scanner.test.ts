@@ -82,6 +82,7 @@ suite('CSS - Scanner', () => {
 		assertSingleToken(scanner, '@charset', 8, 0, '@charset', TokenType.Charset);
 		assertSingleToken(scanner, '@-mport', 7, 0, '@-mport', TokenType.AtKeyword);
 		assertSingleToken(scanner, '@\u00f0mport', 7, 0, '@\u00f0mport', TokenType.AtKeyword);
+		assertSingleToken(scanner, '@apply', 6, 0, '@apply', TokenType.AtKeyword);
 		assertSingleToken(scanner, '@', 1, 0, '@', TokenType.Delim);
 	});
 

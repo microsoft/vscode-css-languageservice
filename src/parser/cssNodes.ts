@@ -71,7 +71,8 @@ export enum NodeType {
 	FunctionArgument,
 	KeyframeSelector,
 	ViewPort,
-	Document
+	Document,
+	AtApplyRule
 }
 
 export enum ReferenceType {
@@ -493,6 +494,19 @@ export class SimpleSelector extends Node {
 
 	public get type(): NodeType {
 		return NodeType.SimpleSelector;
+	}
+}
+
+export class AtApplyRule extends Node {
+	public endOfAtApply: number;
+	public semicolonPosition: number;
+
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.AtApplyRule;
 	}
 }
 
@@ -1245,7 +1259,7 @@ export class MixinReference extends Node {
 			this.namespaces = new Nodelist(this);
 		}
 		return this.namespaces;
-	}	
+	}
 
 	public setIdentifier(node: Identifier): boolean {
 		return this.setNode('identifier', node, 0);
