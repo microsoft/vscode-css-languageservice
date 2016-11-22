@@ -100,9 +100,10 @@ export class CSSNavigation {
 				kind: SymbolKind.Class, // TODO@Martin: find a good SymbolKind
 				location: null
 			};
-
+			let locationNode = node;
 			if (node instanceof nodes.Selector) {
 				entry.name = node.getText();
+				locationNode = node.findParent(nodes.NodeType.Ruleset)
 			} else if (node instanceof nodes.VariableDeclaration) {
 				entry.name = (<nodes.VariableDeclaration>node).getName();
 				entry.kind = SymbolKind.Variable;
@@ -119,7 +120,7 @@ export class CSSNavigation {
 			}
 
 			if (entry.name) {
-				entry.location = Location.create(document.uri, getRange(node, document));
+				entry.location = Location.create(document.uri, getRange(locationNode, document));
 				result.push(entry);
 			}
 
