@@ -9,10 +9,20 @@ import {MarkedString} from 'vscode-languageserver-types';
 
 export class Element {
 
-	public name: string;
 	public parent: Element;
 	public children: Element[];
-	public attributes: { [name: string]: string; };
+	public attributes: { name: string, value: string; }[];
+
+	public findAttribute(name: string): string {
+		if (this.attributes) {
+			for (let attribute of this.attributes) {
+				if (attribute.name === name) {
+					return attribute.value;
+				}
+			}
+		}
+		return null;
+	}
 
 	public addChild(child: Element): void {
 		if (child instanceof Element) {
@@ -22,6 +32,20 @@ export class Element {
 			this.children = [];
 		}
 		this.children.push(child);
+	}
+
+	public append(text: string) {
+		if (this.attributes) {
+			let last = this.attributes[this.attributes.length - 1];
+			last.value = last.value + text;
+		}
+	}
+
+	public prepend(text: string) {
+		if (this.attributes) {
+			let first = this.attributes[0];
+			first.value = text + first.value;
+		}
 	}
 
 	public findRoot(): Element {
@@ -45,22 +69,23 @@ export class Element {
 
 	public addAttr(name: string, value: string): void {
 		if (!this.attributes) {
-			this.attributes = {};
+			this.attributes = [];
 		}
-		if (this.attributes.hasOwnProperty(name)) {
-			this.attributes[name] += ' ' + value;
-		} else {
-			this.attributes[name] = value;
+		for (let attribute of this.attributes) {
+			if (attribute.name === name) {
+				attribute.value += ' ' + value
+				return;
+			}
 		}
+		this.attributes.push({ name, value });
 	}
 
 	public clone(cloneChildren: boolean = true): Element {
 		let elem = new Element();
-		elem.name = this.name;
 		if (this.attributes) {
-			elem.attributes = {};
-			for (let key in this.attributes) {
-				elem.addAttr(key, this.attributes[key]);
+			elem.attributes = [];
+			for (let attribute of this.attributes) {
+				elem.addAttr(attribute.name, attribute.value);
 			}
 		}
 		if (cloneChildren && this.children) {
@@ -90,7 +115,7 @@ export class LabelElement extends Element {
 
 	constructor(label: string) {
 		super();
-		this.name = label;
+		this.addAttr('name', label);
 	}
 }
 
@@ -129,33 +154,35 @@ class MarkedStringPrinter {
 	}
 
 	private doPrintElement(element: Element, indent: number) {
+		let name = element.findAttribute('name');
 
 		// special case: a simple label
 		if (element instanceof LabelElement) {
-			this.writeLine(indent, element.name);
+			this.writeLine(indent, name);
 			return;
 		}
 
 		// the real deal
 		let content = ['<'];
-
+		
 		// element name
-		if (element.name) {
-			content.push(element.name);
+		if (name) {
+			content.push(name);
 		} else {
 			content.push('element');
 		}
 
 		// attributes
 		if (element.attributes) {
-			Object.keys(element.attributes).forEach((attr) => {
-
-				content.push(' ');
-				content.push(attr);
-				let value = element.attributes[attr];
-				if (value) {
-					content.push('=');
-					content.push(quotes.ensure(value, this.quote));
+			element.attributes.forEach(attr => {
+				if (attr.name !== 'name') {
+					content.push(' ');
+					content.push(attr.name);
+					let value = attr.value;
+					if (value) {
+						content.push('=');
+						content.push(quotes.ensure(value, this.quote));
+					}
 				}
 			});
 		}
@@ -191,13 +218,13 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element): 
 					let segments = child.getText().split('&');
 					if (segments.length === 1) {
 						// should not happen
-						result.name = segments[0];
+						result.addAttr('name', segments[0]);
 						break;
 					}
 					result = parentElement.cloneWithParent();
 					if (segments[0]) {
 						let root = result.findRoot();
-						root.name = segments[0] + root.name;
+						root.prepend(segments[0]);
 					}
 					for (let i = 1; i < segments.length; i++) {
 						if (i > 1) {
@@ -205,7 +232,7 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element): 
 							result.addChild(clone.findRoot());
 							result = clone;
 						}
-						result.name += segments[i];
+						result.append(segments[i]);
 					}
 				}
 				break;
@@ -216,7 +243,7 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element): 
 				// fall through
 			case nodes.NodeType.ElementNameSelector:
 				let text = child.getText();
-				result.name = text === '*' ? 'element' : text;
+				result.addAttr('name', text === '*' ? 'element' : text);
 				break;
 			case nodes.NodeType.ClassSelector:
 				result.addAttr('class', child.getText().substring(1));

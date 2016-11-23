@@ -25,6 +25,9 @@ suite('SCSS - Selector Printing', () => {
 		let p = new SCSSParser();
 		parseSelector(p, 'o1 { &:hover { }}', '&', '{o1[:hover=]}');
 		parseSelector(p, 'o1 { &:hover & { }}', '&', '{o1[:hover=]{…{o1}}}');
+		parseSelector(p, 'o1 { &__bar {}}', '&', '{o1__bar}');
+		parseSelector(p, '.c1 { &__bar {}}', '&', '{[class=c1__bar]}');
+		parseSelector(p, 'o.c1 { &__bar {}}', '&', '{o[class=c1__bar]}');
 	});
 
 	test('placeholders', function () {

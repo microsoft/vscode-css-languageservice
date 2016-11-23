@@ -11,16 +11,19 @@ import * as selectorPrinter from '../../services/selectorPrinting';
 import {TextDocument} from 'vscode-languageserver-types';
 
 function elementToString(element: selectorPrinter.Element): string {
-	let label = element.name || '';
-	if (element.attributes) {
+	let label = element.findAttribute('name') || '';
+	let attributes = element.attributes && element.attributes.filter(a => a.name !== 'name');
+	if (attributes && attributes.length > 0) {
 		label = label + '[';
 		let needsSeparator = false;
-		for (let key in element.attributes) {
-			if (needsSeparator) {
-				label = label + '|';
+		for (let attribute of attributes) {
+			if (attribute.name !== 'name') {
+				if (needsSeparator) {
+					label = label + '|';
+				}
+				needsSeparator = true;
+				label = label + attribute.name + '=' + attribute.value;
 			}
-			needsSeparator = true;
-			label = label + key + '=' + element.attributes[key];
 		}
 		label = label + ']';
 	}
@@ -50,18 +53,12 @@ export function parseSelector(p: Parser, input: string, selectorName: string, ex
 	assert.equal(elementToString(element), expected);
 }
 
-export interface ExpectedElement {
-	name?: string;
-	attributes?: { [name: string]: string; };
-}
-
-export function assertElement(p: Parser, input: string, element: ExpectedElement): void {
+export function assertElement(p: Parser, input: string, expected: { name: string; value: string }[]): void {
 	let node = p.internalParse(input, p._parseSimpleSelector);
 
 	let actual = selectorPrinter.toElement(node);
 
-	assert.equal(actual.name, element.name);
-	assert.deepEqual(actual.attributes, element.attributes);
+	assert.deepEqual(actual.attributes, expected);
 }
 
 
@@ -69,15 +66,15 @@ suite('CSS - Selector Printing', () => {
 
 	test('class/hash/elementname/attr', function () {
 		let p = new Parser();
-		assertElement(p, 'element', { name: 'element' });
-		assertElement(p, '.div', { attributes: { class: 'div' } });
-		assertElement(p, '#first', { attributes: { id: 'first' } });
-		assertElement(p, 'element.on', { name: 'element', attributes: { class: 'on' } });
-		assertElement(p, 'element.on#first', { name: 'element', attributes: { class: 'on', id: 'first' } });
-		assertElement(p, '.on#first', { attributes: { class: 'on', id: 'first' } });
+		assertElement(p, 'element', [{ name: 'name', value: 'element' }]);
+		assertElement(p, '.div', [{ name: 'class', value: 'div' }]);
+		assertElement(p, '#first', [{ name: 'id', value: 'first' }]);
+		assertElement(p, 'element.on', [{ name: 'name', value: 'element' }, { name: 'class', value: 'on' }]);
+		assertElement(p, 'element.on#first', [{ name: 'name', value: 'element' }, { name: 'class', value: 'on' }, { name: 'id', value: 'first' }]);
+		assertElement(p, '.on#first', [{ name: 'class', value: 'on' }, { name: 'id', value: 'first' }]);
 
-		assertElement(p, '[lang=\'de\']', { attributes: { lang: 'de' } });
-		assertElement(p, '[enabled]', { attributes: { enabled: undefined } });
+		assertElement(p, '[lang=\'de\']', [{ name: 'lang', value: 'de' }]);
+		assertElement(p, '[enabled]', [{ name: 'enabled', value: void 0 }]);
 
 	});
 
