@@ -45,8 +45,8 @@ suite('LESS - Parser', () => {
 		assertNode('@primary-font: "wf_SegoeUI","Segoe UI","Segoe","Segoe WP"', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('@greeting: `"hello".toUpperCase() + "!";`', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('@greeting: { display: none; }', parser, parser._parseVariableDeclaration.bind(parser));
-
-	});
+		assertNode('@b: @a !important', parser, parser._parseVariableDeclaration.bind(parser));
+	}); 
 
 	test('MixinDeclaration', function() {
 		let parser = new LESSParser();

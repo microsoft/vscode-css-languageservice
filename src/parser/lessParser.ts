@@ -96,6 +96,8 @@ export class LESSParser extends cssParser.Parser {
 			} else if (!node.setValue(this._parseExpr())) {
 				return <nodes.VariableDeclaration>this.finish(node, ParseError.VariableValueExpected, [], panic);
 			}
+
+			node.addChild(this._parsePrio());
 		} else {
 			this.restoreAtMark(mark);
 			return null; // at keyword, but no ':', not a variable declaration but some at keyword
