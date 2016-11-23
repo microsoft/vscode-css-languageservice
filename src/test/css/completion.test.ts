@@ -139,6 +139,12 @@ suite('CSS - Completion', () => {
 					{ label: ':hover', resultText: 'a:hover ' },
 					{ label: '::after', resultText: 'a::after ' }
 				]
+			}),
+			testCompletionFor('.a:| ', {
+				items: [
+					{ label: ':hover', resultText: '.a:hover ' },
+					{ label: '::after', resultText: '.a::after ' }
+				]
 			})
 		]).then(() => testDone(), (error) => testDone(error));
 	});
