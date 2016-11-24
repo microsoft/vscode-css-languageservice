@@ -119,7 +119,8 @@ export class SCSSParser extends cssParser.Parser {
 		if (term) { return term; }
 
 		term = <nodes.Term>this.create(nodes.Term);
-		if (term.setExpression(this._parseVariable())) {
+		if (term.setExpression(this._parseVariable())
+			|| term.setExpression(this._parseSelectorCombinator())) {
 			return <nodes.Term>this.finish(term);
 		}
 

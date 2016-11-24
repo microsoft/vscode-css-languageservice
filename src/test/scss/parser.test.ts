@@ -131,6 +131,7 @@ suite('SCSS - Parser', () => {
 		assertNode('color: hsl(0, 100%, 50%)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('color: hsl($hue: 0, $saturation: 100%, $lightness: 50%)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('foo: if($value == \'default\', flex-gutter(), $value)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('color: selector-replace(&, 1)', parser, parser._parseDeclaration.bind(parser));
 
 		assertError('fo = 8', parser, parser._parseDeclaration.bind(parser), ParseError.ColonExpected);
 		assertError('fo:', parser, parser._parseDeclaration.bind(parser), ParseError.PropertyValueExpected);
@@ -311,6 +312,7 @@ suite('SCSS - Parser', () => {
 		assertNode('.class1 { $let: 1; .class { $let: 2; three: $let; let: 3; } one: $let; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.class1 { > .class2 { & > .class4 { rule1: v1; } } }', parser, parser._parseRuleset.bind(parser));
 		assertNode('foo { @at-root { display: none; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('th, tr { @at-root #{selector-replace(&, "tr")} { border-bottom: 0; } }', parser, parser._parseRuleset.bind(parser));
 	});
 
 	test('Selector Interpolation', function () {
