@@ -1,6 +1,6 @@
 {
   "name": "vscode-css-languageservice",
-  "version": "2.0.0-next.4",
+  "version": "2.0.0-next.5",
   "description": "Language service for CSS, LESS and SCSS",
   "main": "./lib/cssLanguageService.js",
   "typings": "./lib/cssLanguageService",
@@ -21,13 +21,13 @@
     "@types/mocha": "^2.2.32"
   },
   "dependencies": {
-    "vscode-languageserver-types": "^1.0.5-next.1",
+    "vscode-languageserver-types": "^3.0.1-alpha.2",
     "vscode-nls": "^1.0.4"
   },
   "scripts": {
     "prepublish": "npm run compile",
     "compile": "tsc -p ./src && mkdir -p ./lib/data && cp ./src/data/* ./lib/data/",
-		"watch": "cp ./src/data/* ./lib/data && tsc -w -p ./src",
+    "watch": "cp ./src/data/* ./lib/data && tsc -w -p ./src",
     "test": "npm run compile && mocha",
     "update-data": "node ./build/generate_browserjs.js"
   }

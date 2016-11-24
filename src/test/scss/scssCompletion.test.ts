@@ -57,7 +57,7 @@ suite('SCSS - Completions', () => {
 			}),
 			testCompletionFor('@function foo($x, $y) { @return $x + $y; } .foo { background-color: f|', {
 				items: [
-					{ label: 'foo' }
+					{ label: 'foo', resultText: '@function foo($x, $y) { @return $x + $y; } .foo { background-color: foo(${1:$x}, ${2:$y})' }
 				]
 			}),
 			testCompletionFor('.foo { di| span { } ', {

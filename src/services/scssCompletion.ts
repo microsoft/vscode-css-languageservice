@@ -7,7 +7,7 @@
 import * as languageFacts from './languageFacts';
 import {CSSCompletion} from './cssCompletion';
 import * as nodes from '../parser/cssNodes';
-import {CompletionList, CompletionItemKind} from 'vscode-languageserver-types';
+import {CompletionList, CompletionItemKind, SnippetString} from 'vscode-languageserver-types';
 
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();
@@ -120,14 +120,21 @@ export class SCSSCompletion extends CSSCompletion {
 		super('$');
 	}
 
+	private createReplaceFunction() {
+		let tabStopCounter = 1;
+		return (match: string, p1: string) => {
+			return p1 + ': ${' + tabStopCounter++ + ':' + (SCSSCompletion.variableDefaults[p1] || '') + '}'
+		}
+	}
+
 	private createFunctionProposals(proposals: {func: string; desc: string; }[], existingNode: nodes.Node, result: CompletionList): CompletionList {
-		let replaceFunction = (match: string, p1: string) => p1 + ': {{' + (SCSSCompletion.variableDefaults[p1] || '') + '}}';
 		proposals.forEach((p) => {
 			result.items.push({
 				label: p.func.substr(0, p.func.indexOf('(')),
 				detail: p.func,
 				documentation: p.desc,
-				textEdit: this.getTextEdit(existingNode, p.func.replace(/\[?(\$\w+)\]?/g, replaceFunction)),
+				insertText: SnippetString.create(p.func.replace(/\[?(\$\w+)\]?/g, this.createReplaceFunction())),
+				range: this.getCompletionRange(existingNode),
 				kind: CompletionItemKind.Function
 			});
 		});

@@ -7,15 +7,13 @@
 import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
-import {CompletionList, TextDocument, TextEdit, Position, CompletionItemKind} from 'vscode-languageserver-types';
+import {CompletionList, TextDocument, TextEdit, Position, CompletionItemKind, SnippetString} from 'vscode-languageserver-types';
 import {applyEdits} from '../textEditSupport';
 
 export interface ItemDescription {
 	label: string;
 	documentation?: string;
 	kind?: CompletionItemKind;
-	insertText?: string;
-	overwriteBefore?:number;
 	resultText?: string;
 }
 
@@ -28,22 +26,21 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 		return completion.label === expected.label;
 	});
 	assert.equal(matches.length, 1, expected.label + " should only existing once: Actual: " + completions.items.map(c => c.label).join(', '));
+	let match = matches[0];
 	if (expected.documentation) {
-		assert.equal(matches[0].documentation, expected.documentation);
+		assert.equal(match.documentation, expected.documentation);
 	}
 	if (expected.kind) {
-		assert.equal(matches[0].kind, expected.kind);
-	}
-	if (expected.insertText) {
-		assert.equal(matches[0].insertText || matches[0].textEdit.newText, expected.insertText);
+		assert.equal(match.kind, expected.kind);
 	}
 	if (expected.resultText) {
-		assert.equal(applyEdits(document, [matches[0].textEdit]), expected.resultText);
-	}
-	if (expected.insertText && typeof expected.overwriteBefore === 'number' && matches[0].textEdit) {
-		let text = document.getText();
-		let expectedText = text.substr(0, offset - expected.overwriteBefore) + expected.insertText + text.substr(offset);
-		assert.equal(applyEdits(document, [matches[0].textEdit]), expectedText);
+		let insertText = match.label;
+		if (SnippetString.is(match.insertText)) {
+			insertText = match.insertText.value;
+		} else if (match.insertText) {
+			insertText = match.insertText;
+		}
+		assert.equal(applyEdits(document, [ TextEdit.replace(match.range, insertText) ]), expected.resultText);
 	}
 };
 
@@ -295,8 +292,8 @@ suite('CSS - Completion', () => {
 			}),
 			testCompletionFor('.foo { background-color: r|', {
 				items: [
-					{ label: 'rgb', kind: CompletionItemKind.Function, resultText: '.foo { background-color: rgb({{red}}, {{green}}, {{blue}})' },
-					{ label: 'rgba', kind: CompletionItemKind.Function, resultText: '.foo { background-color: rgba({{red}}, {{green}}, {{blue}}, {{alpha}})' },
+					{ label: 'rgb', kind: CompletionItemKind.Function, resultText: '.foo { background-color: rgb(${1:red}, ${2:green}, ${3:blue})' },
+					{ label: 'rgba', kind: CompletionItemKind.Function, resultText: '.foo { background-color: rgba(${1:red}, ${2:green}, ${3:blue}, ${4:alpha})' },
 					{ label: 'red', kind: CompletionItemKind.Color, resultText: '.foo { background-color: red' }
 				]
 			})
