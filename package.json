@@ -28,8 +28,9 @@
   },
   "scripts": {
     "prepublish": "npm run compile",
-    "compile": "tsc -p ./src && mkdirp ./lib/data && cpy ./src/data/* ./lib/data/",
-    "watch": "cpy ./src/data/* ./lib/data && tsc -w -p ./src",
+    "copy-data": "cpy ./src/data/* ./lib/data",
+    "compile": "tsc -p ./src && mkdirp ./lib/data && npm run copy-data",
+    "watch": "npm run copy-data && tsc -w -p ./src",
     "test": "npm run compile && mocha",
     "update-data": "node ./build/generate_browserjs.js"
   }
