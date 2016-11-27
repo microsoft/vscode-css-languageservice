@@ -69,3 +69,16 @@ export function difference(first: string, second: string, maxLenDelta: number = 
 	}
 	return LCS[first.length][second.length] - Math.sqrt(lengthDifference);
 }
+
+/**
+ * Limit of string length.
+ */
+export function getLimitedString(str: string, ellipsis = true): string {
+	if (!str) {
+		return '';
+	}
+	if (str.length < 140) {
+		return str;
+	}
+	return str.slice(0, 140) + (ellipsis ? '\u2026' : '');
+}

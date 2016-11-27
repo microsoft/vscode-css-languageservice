@@ -12,6 +12,7 @@ import {applyEdits} from '../textEditSupport';
 
 export interface ItemDescription {
 	label: string;
+	detail?: string;
 	documentation?: string;
 	kind?: CompletionItemKind;
 	resultText?: string;
@@ -27,6 +28,9 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 	});
 	assert.equal(matches.length, 1, expected.label + " should only existing once: Actual: " + completions.items.map(c => c.label).join(', '));
 	let match = matches[0];
+	if (expected.detail) {
+		assert.equal(match.detail, expected.detail);
+	}
 	if (expected.documentation) {
 		assert.equal(match.documentation, expected.documentation);
 	}
@@ -303,22 +307,22 @@ suite('CSS - Completion', () => {
 		Promise.all([
 			testCompletionFor(':root { --myvar: red; } body { color: |', {
 				items: [
-					{ label: '--myvar', resultText: ':root { --myvar: red; } body { color: var(--myvar)' },
+					{ label: '--myvar', documentation: 'red', resultText: ':root { --myvar: red; } body { color: var(--myvar)' },
 				]
 			}),
 			testCompletionFor('body { --myvar: 0px; border-right: var| ', {
 				items: [
-					{ label: '--myvar', resultText: 'body { --myvar: 0px; border-right: var(--myvar) ' },
+					{ label: '--myvar', documentation: '0px', resultText: 'body { --myvar: 0px; border-right: var(--myvar) ' },
 				]
 			}),
 			testCompletionFor('body { --myvar: 0px; border-right: var(| ', {
 				items: [
-					{ label: '--myvar', resultText: 'body { --myvar: 0px; border-right: var(--myvar ' },
+					{ label: '--myvar', documentation: '0px', resultText: 'body { --myvar: 0px; border-right: var(--myvar ' },
 				]
 			}),
 			testCompletionFor('a { color: | } :root { --bg-color: red; } ', {
 				items: [
-					{ label: '--bg-color', resultText: 'a { color: var(--bg-color) } :root { --bg-color: red; } ' },
+					{ label: '--bg-color', documentation: 'red', resultText: 'a { color: var(--bg-color) } :root { --bg-color: red; } ' },
 				]
 			})
 		]).then(() => testDone(), (error) => testDone(error));
