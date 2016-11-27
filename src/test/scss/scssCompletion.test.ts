@@ -60,6 +60,11 @@ suite('SCSS - Completions', () => {
 					{ label: 'foo', resultText: '@function foo($x, $y) { @return $x + $y; } .foo { background-color: foo(${1:$x}, ${2:$y})' }
 				]
 			}),
+			testCompletionFor('@mixin mixin($a: 1, $b) { content: $a + $b; } @include m|', {
+				items: [
+					{ label: 'mixin', resultText: '@mixin mixin($a: 1, $b) { content: $a + $b; } @include mixin(${1:$a}, ${2:$b})' }
+				]
+			}),
 			testCompletionFor('.foo { di| span { } ', {
 				items: [
 					{ label: 'display' },
