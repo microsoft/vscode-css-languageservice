@@ -5,11 +5,11 @@
 'use strict';
 
 import * as nodes from '../parser/cssNodes';
-import {Symbols} from '../parser/cssSymbolScope';
+import {Symbols, Symbol} from '../parser/cssSymbolScope';
 import * as languageFacts from './languageFacts';
 import * as strings from '../utils/strings';
 import {findFirst} from '../utils/arrays';
-import {TextDocument, Position, CompletionList, CompletionItemKind, Range, SnippetString} from 'vscode-languageserver-types';
+import {TextDocument, Position, CompletionList, CompletionItem, CompletionItemKind, Range, SnippetString} from 'vscode-languageserver-types';
 
 export class CSSCompletion {
 
@@ -66,7 +66,9 @@ export class CSSCompletion {
 					this.getCompletionsForInterpolation(<nodes.Interpolation>node, result);
 				} else if (node instanceof nodes.FunctionDeclaration) {
 					this.getCompletionsForFunctionDeclaration(<nodes.FunctionDeclaration>node, result);
-				} else if (node instanceof nodes.Function) {
+				} else if (node instanceof nodes.MixinReference) {
+					this.getCompletionsForMixinReference(<nodes.MixinReference>node, result);
+				}else if (node instanceof nodes.Function) {
 					this.getCompletionsForFunctionArgument(null, <nodes.Function>node, result);
 				}
 				if (result.items.length > 0) {
@@ -639,24 +641,39 @@ export class CSSCompletion {
 		return result;
 	}
 
+	public getCompletionsForMixinReference(ref: nodes.MixinReference, result: CompletionList): CompletionList {
+		let allMixins = this.getSymbolContext().findSymbolsAtOffset(this.offset, nodes.ReferenceType.Mixin);
+		allMixins.forEach((mixinSymbol) => {
+			if (mixinSymbol.node instanceof nodes.MixinDeclaration) {
+				result.items.push(this.makeTermProposal(null, mixinSymbol));
+			}
+		});
+		return result;
+	}
+
 	public getTermProposals(existingNode: nodes.Node, result: CompletionList): CompletionList {
 		let allFunctions = this.getSymbolContext().findSymbolsAtOffset(this.offset, nodes.ReferenceType.Function);
 		allFunctions.forEach((functionSymbol) => {
 			if (functionSymbol.node instanceof nodes.FunctionDeclaration) {
-				let functionDecl = <nodes.FunctionDeclaration>functionSymbol.node;
-				let params = functionDecl.getParameters().getChildren().map((c) => {
-					return (c instanceof nodes.FunctionParameter) ? (<nodes.FunctionParameter>c).getName() : c.getText();
-				});
-				result.items.push({
-					label: functionSymbol.name,
-					detail: functionSymbol.name + '(' + params.join(', ') + ')',
-					insertText: SnippetString.create(functionSymbol.name + '(' + params.map((p, index) => '${' + (index+1) + ':' + p + '}').join(', ') + ')'),
-					range: this.getCompletionRange(existingNode),
-					kind: CompletionItemKind.Function
-				});
+				result.items.push(this.makeTermProposal(existingNode, functionSymbol));
 			}
 		});
 		return result;
+	}
+
+	public makeTermProposal(existingNode: nodes.Node, symbol: Symbol): CompletionItem {
+		const decl = <nodes.FunctionDeclaration>symbol.node;
+		const params = decl.getParameters().getChildren().map((c) => {
+			return (c instanceof nodes.FunctionParameter) ? (<nodes.FunctionParameter>c).getName() : c.getText();
+		});
+		
+		return {
+			label: symbol.name,
+			detail: symbol.name + '(' + params.join(', ') + ')',
+			insertText: SnippetString.create(symbol.name + '(' + params.map((p, index) => '${' + (index + 1) + ':' + p + '}').join(', ') + ')'),
+			range: this.getCompletionRange(existingNode),
+			kind: CompletionItemKind.Function
+		};
 	}
 
 }
