@@ -9,7 +9,7 @@ import {Symbols, Symbol} from '../parser/cssSymbolScope';
 import * as languageFacts from './languageFacts';
 import * as strings from '../utils/strings';
 import {findFirst} from '../utils/arrays';
-import {TextDocument, Position, CompletionList, CompletionItemKind, Range, SnippetString} from 'vscode-languageserver-types';
+import {TextDocument, Position, CompletionList, CompletionItem, CompletionItemKind, Range, SnippetString} from 'vscode-languageserver-types';
 
 export class CSSCompletion {
 
