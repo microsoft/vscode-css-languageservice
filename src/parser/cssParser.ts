@@ -352,15 +352,100 @@ export class Parser {
 		}
 		node.colonPosition = this.prevToken.offset;
 
-		if (!node.setValue(this._parseExpr())) {
+		const isCustomProperty = node.getProperty().isCustomProperty();
+		const expr = isCustomProperty ? this._parseCustomPropertyValue() : this._parseExpr();
+		if (!node.setValue(expr)) {
 			return this.finish(node, ParseError.PropertyValueExpected);
 		}
 		node.addChild(this._parsePrio());
-
 		if (this.peek(TokenType.SemiColon)) {
 			node.semicolonPosition = this.token.offset; // not part of the declaration, but useful information for code assist
 		}
+		if (this.token.offset === node.colonPosition + 1) {
+			return this.finish(node, ParseError.PropertyValueExpected);
+		}
+		return this.finish(node);
+	}
 
+	/**
+	 * Parse custom property values.
+	 *
+	 * Based on https://www.w3.org/TR/css-variables/#syntax
+	 *
+	 * This code is somewhat unusual, as the allowed syntax is incredibly broad,
+	 * parsing almost any sequence of tokens, save for a small set of exceptions.
+	 * Unbalanced delimitors, invalid tokens, and declaration
+	 * terminators like semicolons and !important directives (when not inside
+	 * of delimitors).
+	 */
+	public _parseCustomPropertyValue(): nodes.Expression {
+		const node = this.create(nodes.Expression) as nodes.Expression;
+		const isTopLevel = () => curlyDepth === 0 && parensDepth === 0 && bracketsDepth === 0;
+		let curlyDepth = 0;
+		let parensDepth = 0;
+		let bracketsDepth = 0;
+		done: while (true) {
+			switch (this.token.type) {
+				case TokenType.SemiColon:
+					// A semicolon only ends things if we're not inside a delimitor.
+					if (isTopLevel()) {
+						break done;
+					}
+					break;
+				case TokenType.Exclamation:
+					// An exclamation ends the value if we're not inside delims.
+					if (isTopLevel()) {
+						break done;
+					}
+					break;
+				case TokenType.CurlyL:
+					curlyDepth++;
+					break;
+				case TokenType.CurlyR:
+					curlyDepth--;
+					if (curlyDepth < 0) {
+						// The property value has been terminated without a semicolon, and
+						// this is the last declaration in the ruleset.
+						if (parensDepth === 0 && bracketsDepth === 0) {
+							break done;
+						}
+						return this.finish(node, ParseError.LeftCurlyExpected);
+					}
+					break;
+				case TokenType.ParenthesisL:
+					parensDepth++;
+					break;
+				case TokenType.ParenthesisR:
+					parensDepth--;
+					if (parensDepth < 0) {
+						return this.finish(node, ParseError.LeftParenthesisExpected);
+					}
+					break;
+				case TokenType.BracketL:
+					bracketsDepth++;
+					break;
+				case TokenType.BracketR:
+					bracketsDepth--;
+					if (bracketsDepth < 0) {
+						return this.finish(node, ParseError.LeftSquareBracketExpected);
+					}
+					break;
+				case TokenType.BadString: // fall through
+				case TokenType.BadUri:
+					break done;
+				case TokenType.EOF:
+					// We shouldn't have reached the end of input, something is
+					// unterminated.
+					let error = ParseError.RightCurlyExpected;
+					if (bracketsDepth > 0) {
+						error = ParseError.RightSquareBracketExpected;
+					} else if (parensDepth > 0) {
+						error = ParseError.RightParenthesisExpected;
+					}
+					return this.finish(node, error);
+			}
+			this.consumeToken();
+		}
 		return this.finish(node);
 	}
 
@@ -954,6 +1039,7 @@ export class Parser {
 		if (referenceTypes) {
 			node.referenceTypes = referenceTypes;
 		}
+		node.isCustomProperty = this.peekRegExp(TokenType.Ident, /^--/);
 		if (this.accept(TokenType.Ident)) {
 			return this.finish(node);
 		}
