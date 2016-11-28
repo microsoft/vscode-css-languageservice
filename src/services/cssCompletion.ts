@@ -9,7 +9,10 @@ import {Symbols} from '../parser/cssSymbolScope';
 import * as languageFacts from './languageFacts';
 import * as strings from '../utils/strings';
 import {findFirst} from '../utils/arrays';
-import {TextDocument, Position, CompletionList, CompletionItemKind, Range, SnippetString} from 'vscode-languageserver-types';
+import {TextDocument, Position, CompletionList, CompletionItem, CompletionItemKind, Range, SnippetString} from 'vscode-languageserver-types';
+
+import * as nls from 'vscode-nls';
+const localize = nls.loadMessageBundle();
 
 export class CSSCompletion {
 
@@ -93,7 +96,7 @@ export class CSSCompletion {
 			this.position = null;
 			this.currentWord = null;
 			this.textDocument = null;
-			this.styleSheet = null;	
+			this.styleSheet = null;
 			this.symbolContext = null;
 			this.defaultReplaceRange = null;
 			this.nodePath = null;
@@ -223,12 +226,22 @@ export class CSSCompletion {
 	public getVariableProposals(existingNode: nodes.Node, result: CompletionList): CompletionList {
 		let symbols = this.getSymbolContext().findSymbolsAtOffset(this.offset, nodes.ReferenceType.Variable);
 		symbols.forEach((symbol) => {
-			result.items.push({
+			const suggest: CompletionItem = {
 				label: symbol.name,
+				documentation: symbol.value ? strings.getLimitedString(symbol.value) : symbol.value,
 				insertText: strings.startsWith(symbol.name, '--') ? `var(${symbol.name})` : symbol.name,
 				range: this.getCompletionRange(existingNode),
 				kind: CompletionItemKind.Variable
-			});
+			};
+
+			if (symbol.node.type === nodes.NodeType.FunctionParameter) {
+				const mixinNode = <nodes.MixinDeclaration>(symbol.node.getParent());
+				if (mixinNode.type === nodes.NodeType.MixinDeclaration) {
+					suggest.detail = localize('completion.argument', "argument from")  + ` "${mixinNode.getName()}"`;
+				}
+			}
+
+			result.items.push(suggest);
 		});
 		return result;
 	}
@@ -241,6 +254,7 @@ export class CSSCompletion {
 		symbols.forEach((symbol) => {
 			result.items.push({
 				label: symbol.name,
+				documentation: symbol.value ? strings.getLimitedString(symbol.value) : symbol.value,
 				range: this.getCompletionRange(null),
 				kind: CompletionItemKind.Variable
 			});
@@ -496,7 +510,7 @@ export class CSSCompletion {
 			this.currentWord = ':';
 			this.defaultReplaceRange = Range.create(Position.create(this.position.line, this.position.character - 1), this.position);
 		}
-		
+
 		languageFacts.getPseudoClasses().forEach((entry) => {
 			if (entry.browsers.onCodeComplete) {
 				result.items.push({
@@ -650,7 +664,7 @@ export class CSSCompletion {
 				result.items.push({
 					label: functionSymbol.name,
 					detail: functionSymbol.name + '(' + params.join(', ') + ')',
-					insertText: SnippetString.create(functionSymbol.name + '(' + params.map((p, index) => '${' + (index+1) + ':' + p + '}').join(', ') + ')'),
+					insertText: SnippetString.create(functionSymbol.name + '(' + params.map((p, index) => '${' + (index + 1) + ':' + p + '}').join(', ') + ')'),
 					range: this.getCompletionRange(existingNode),
 					kind: CompletionItemKind.Function
 				});

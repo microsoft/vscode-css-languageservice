@@ -65,7 +65,18 @@ suite('LESS - Completions', () => {
 			}),
 			testCompletionFor('@var1: 3; body { inner { vertical-align: |}', {
 				items: [
-					{ label: '@var1' }
+					{ label: '@var1', documentation: '3' }
+				]
+			}),
+			testCompletionFor('@var1: { content: 1; }; body { inner { vertical-align: |}', {
+				items: [
+					{ label: '@var1', documentation: '{ content: 1; }' }
+				]
+			}),
+			testCompletionFor('.mixin(@a: 1, @b) { content: @|}', {
+				items: [
+					{ label: '@a', documentation: '1', detail: 'argument from ".mixin"' },
+					{ label: '@b', documentation: null, detail: 'argument from ".mixin"' }
 				]
 			}),
 			testCompletionFor('.foo { background-color: d|', {

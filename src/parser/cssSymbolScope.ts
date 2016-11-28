@@ -89,11 +89,13 @@ export class GlobalScope extends Scope {
 export class Symbol {
 
 	public name: string;
+	public value: string;
 	public type: nodes.ReferenceType;
 	public node: nodes.Node;
 
-	constructor(name: string, node: nodes.Node, type: nodes.ReferenceType) {
+	constructor(name: string, value: string, node: nodes.Node, type: nodes.ReferenceType) {
 		this.name = name;
+		this.value = value;
 		this.node = node;
 		this.type = type;
 	}
@@ -107,10 +109,10 @@ export class ScopeBuilder implements nodes.IVisitor {
 		this.scope = scope;
 	}
 
-	private addSymbol(node: nodes.Node, name: string, type: nodes.ReferenceType): void {
+	private addSymbol(node: nodes.Node, name: string, value: string, type: nodes.ReferenceType): void {
 		if (node.offset !== -1) {
 			let current = this.scope.findScope(node.offset, node.length);
-			current.addSymbol(new Symbol(name, node, type));
+			current.addSymbol(new Symbol(name, value, node, type));
 		}
 	}
 
@@ -127,17 +129,17 @@ export class ScopeBuilder implements nodes.IVisitor {
 		return null;
 	}
 
-	private addSymbolToChildScope(scopeNode: nodes.Node, node: nodes.Node, name: string, type: nodes.ReferenceType): void {
+	private addSymbolToChildScope(scopeNode: nodes.Node, node: nodes.Node, name: string, value: string, type: nodes.ReferenceType): void {
 		if (scopeNode && scopeNode.offset !== -1) {
 			let current = this.addScope(scopeNode); // create the scope or gets the existing one
-			current.addSymbol(new Symbol(name, node, type));
+			current.addSymbol(new Symbol(name, value, node, type));
 		}
 	}
 
 	public visitNode(node: nodes.Node): boolean {
 		switch (node.type) {
 			case nodes.NodeType.Keyframe:
-				this.addSymbol(node, (<nodes.Keyframe>node).getName(), nodes.ReferenceType.Keyframe);
+				this.addSymbol(node, (<nodes.Keyframe>node).getName(), null, nodes.ReferenceType.Keyframe);
 				return true;
 			case nodes.NodeType.Declaration:
 				return this.visitDeclarationNode(<nodes.Declaration>node);
@@ -146,18 +148,13 @@ export class ScopeBuilder implements nodes.IVisitor {
 			case nodes.NodeType.Ruleset:
 				return this.visitRuleSet(<nodes.RuleSet>node);
 			case nodes.NodeType.MixinDeclaration:
-				this.addSymbol(node, (<nodes.MixinDeclaration>node).getName(), nodes.ReferenceType.Mixin);
+				this.addSymbol(node, (<nodes.MixinDeclaration>node).getName(), null, nodes.ReferenceType.Mixin);
 				return true;
 			case nodes.NodeType.FunctionDeclaration:
-				this.addSymbol(node, (<nodes.FunctionDeclaration>node).getName(), nodes.ReferenceType.Function);
+				this.addSymbol(node, (<nodes.FunctionDeclaration>node).getName(), null, nodes.ReferenceType.Function);
 				return true;
 			case nodes.NodeType.FunctionParameter: {
-				// parameters are part of the body scope
-				let scopeNode = (<nodes.BodyDeclaration>node.getParent()).getDeclarations();
-				if (scopeNode) {
-					this.addSymbolToChildScope(scopeNode, node, (<nodes.FunctionParameter>node).getName(), nodes.ReferenceType.Variable);
-				}
-				return true;
+				return this.visitFunctionParameterNode(<nodes.FunctionParameter>node);
 			}
 			case nodes.NodeType.Declarations:
 				this.addScope(node);
@@ -167,7 +164,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 				let forOrEachNode = <nodes.ForStatement | nodes.EachStatement>node;
 				let scopeNode = forOrEachNode.getDeclarations();
 				if (scopeNode) {
-					this.addSymbolToChildScope(scopeNode, forOrEachNode.variable, forOrEachNode.variable.getName(), nodes.ReferenceType.Variable);
+					this.addSymbolToChildScope(scopeNode, forOrEachNode.variable, forOrEachNode.variable.getName(), null, nodes.ReferenceType.Variable);
 				}
 				return true;
 			}
@@ -180,7 +177,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 		node.getSelectors().getChildren().forEach((child) => {
 			if (child instanceof nodes.Selector) {
 				if (child.getChildren().length === 1) { // only selectors with a single element can be extended
-					current.addSymbol(new Symbol(child.getChild(0).getText(), child, nodes.ReferenceType.Rule));
+					current.addSymbol(new Symbol(child.getChild(0).getText(), null, child, nodes.ReferenceType.Rule));
 				}
 			}
 		});
@@ -189,21 +186,33 @@ export class ScopeBuilder implements nodes.IVisitor {
 	}
 
 	public visitVariableDeclarationNode(node: nodes.VariableDeclaration): boolean {
-		this.addSymbol(node, (<nodes.VariableDeclaration>node).getName(), nodes.ReferenceType.Variable);
+		const value = node.getValue() ? node.getValue().getText() : null;
+		this.addSymbol(node, node.getName(), value, nodes.ReferenceType.Variable);
+		return true;
+	}
+
+	public visitFunctionParameterNode(node: nodes.FunctionParameter): boolean {
+		// parameters are part of the body scope
+		let scopeNode = (<nodes.BodyDeclaration>node.getParent()).getDeclarations();
+		if (scopeNode) {
+			const valueNode = (<nodes.FunctionParameter>node).getDefaultValue();
+			const value = valueNode ? valueNode.getText() : null;
+			this.addSymbolToChildScope(scopeNode, node, node.getName(), value, nodes.ReferenceType.Variable);
+		}
 		return true;
 	}
 
 	public visitDeclarationNode(node: nodes.Declaration): boolean {
 		if (Symbols.isCssVariable(node.getProperty().getIdentifier())) {
-			this.addCSSVariable(node.getProperty(), node.getProperty().getName(), nodes.ReferenceType.Variable);
+			this.addCSSVariable(node.getProperty(), node.getProperty().getName(), node.getValue().getText(), nodes.ReferenceType.Variable);
 		}
 		return true;
 	}
 
-	private addCSSVariable(node: nodes.Node, name: string, type: nodes.ReferenceType): void {
+	private addCSSVariable(node: nodes.Node, name: string, value: string, type: nodes.ReferenceType): void {
 		if (node.offset !== -1) {
 			let globalScope = this.getGlobalScope(node, name, type);
-			globalScope.addSymbol(new Symbol(name, node, type));
+			globalScope.addSymbol(new Symbol(name, value, node, type));
 		}
 	}
 

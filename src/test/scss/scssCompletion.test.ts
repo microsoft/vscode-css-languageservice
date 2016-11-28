@@ -41,7 +41,7 @@ suite('SCSS - Completions', () => {
 		Promise.all([
 			testCompletionFor('$i: 0; body { width: |', {
 				items: [
-					{ label: '$i' }
+					{ label: '$i', documentation: '0' }
 				]
 			}),
 			testCompletionFor('@for $i from 1 through 3 { .item-#{|$i} { width: 2em * $i; } }', {
@@ -58,6 +58,12 @@ suite('SCSS - Completions', () => {
 			testCompletionFor('@function foo($x, $y) { @return $x + $y; } .foo { background-color: f|', {
 				items: [
 					{ label: 'foo', resultText: '@function foo($x, $y) { @return $x + $y; } .foo { background-color: foo(${1:$x}, ${2:$y})' }
+				]
+			}),
+			testCompletionFor('@mixin mixin($a: 1, $b) { content: $|}', {
+				items: [
+					{ label: '$a', documentation: '1', detail: 'argument from "mixin"' },
+					{ label: '$b', documentation: null, detail: 'argument from "mixin"' }
 				]
 			}),
 			testCompletionFor('.foo { di| span { } ', {
