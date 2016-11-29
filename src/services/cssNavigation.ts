@@ -6,7 +6,7 @@
 
 import * as nodes from '../parser/cssNodes';
 import {TextDocument, Range, Position, Location, DocumentHighlightKind, DocumentHighlight,
-	SymbolInformation, SymbolKind, WorkspaceEdit, TextEdit} from 'vscode-languageserver-types';
+	SymbolInformation, SymbolKind, WorkspaceEdit, TextEdit, VersionedTextDocumentIdentifier} from 'vscode-languageserver-types';
 import {Symbols} from '../parser/cssSymbolScope';
 import {isColorValue} from '../services/languageFacts';
 
@@ -145,9 +145,12 @@ export class CSSNavigation {
 		let highlights = this.findDocumentHighlights(document, position, stylesheet);
 		let edits = highlights.map(h => TextEdit.replace(h.range, newName));
 		return {
-			changes: {
-				[document.uri]: edits
-			}
+			changes: [
+				{
+					textDocument: {uri: document.uri, version: document.version} as VersionedTextDocumentIdentifier,
+					edits
+				}
+			]
 		};
 	}
 
