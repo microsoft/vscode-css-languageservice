@@ -48,4 +48,5 @@ export let ParseError = {
 	UnknownKeyword: new CSSIssueType('css-unknownkeyword', localize('unknown.keyword', "unknown keyword")),
 	SelectorExpected: new CSSIssueType('css-selectorexpected', localize('expected.selector', "selector expected")),
 	StringLiteralExpected: new CSSIssueType('css-stringliteralexpected', localize('expected.stringliteral', "string literal expected")),
+	CustomPropertyNameExpected: new CSSIssueType('css-custompropertynameexpected', localize('expected.custompropertyname', "custom property name expected")),
 };
