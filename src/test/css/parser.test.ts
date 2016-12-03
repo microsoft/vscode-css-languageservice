@@ -15,7 +15,7 @@ export function assertNode(text: string, parser: Parser, f: () => nodes.Node): n
 	assert.ok(node !== null, 'no node returned');
 	let markers = nodes.ParseErrorCollector.entries(node);
 	if (markers.length > 0) {
-		assert.ok(false, 'node has errors: ' + markers[0].getMessage() + ', offset: ' + markers[0].getNode().offset);
+		assert.ok(false, 'node has errors: ' + markers[0].getMessage() + ', offset: ' + markers[0].getNode().offset + ' when parsing ' + text);
 	}
 	assert.ok(parser.accept(TokenType.EOF), 'Expect scanner at EOF');
 	return node;
@@ -38,7 +38,7 @@ export function assertError(text: string, parser: Parser, f: () => nodes.Node, e
 		assert.ok(false, 'no errors but error expected: ' + error.message);
 	} else {
 		markers = markers.sort((a, b) => { return a.getOffset() - b.getOffset(); });
-		assert.equal(markers[0].getRule().id, error.id);
+		assert.equal(markers[0].getRule().id, error.id, 'incorrect error returned from parsing: ' + text);
 	}
 
 }
@@ -235,6 +235,16 @@ suite('CSS - Parser', () => {
 		assertNode('boo { prop: value; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('boo { prop: value; prop: value }', parser, parser._parseRuleset.bind(parser));
 		assertNode('boo { prop: value; prop: value; }', parser, parser._parseRuleset.bind(parser));
+		assertNode('boo {--minimal: }', parser, parser._parseRuleset.bind(parser));
+		assertNode('boo {--minimal: ;}', parser, parser._parseRuleset.bind(parser));
+		assertNode('boo {--normal-text: red yellow green}', parser, parser._parseRuleset.bind(parser));
+		assertNode('boo {--normal-text: red yellow green;}', parser, parser._parseRuleset.bind(parser));
+		assertNode('boo {--important: red !important;}', parser, parser._parseRuleset.bind(parser));
+		assertNode('boo {--nested: {color: green;}}', parser, parser._parseRuleset.bind(parser));
+		assertNode('boo {--parens: this()is()ok()}', parser, parser._parseRuleset.bind(parser));
+		assertNode('boo {--squares: this[]is[]ok[]too[]}', parser, parser._parseRuleset.bind(parser));
+		assertNode('boo {--combined: ([{{[]()()}[]{}}])()}', parser, parser._parseRuleset.bind(parser));
+		assertNode('boo {--weird-inside-delims: {color: green;;;;;;!important;;}}', parser, parser._parseRuleset.bind(parser));
 		assertNode('boo { @apply --custom-prop; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('boo { @apply --custom-prop }', parser, parser._parseRuleset.bind(parser));
 		assertNode('boo { @apply --custom-prop; background-color: red }', parser, parser._parseRuleset.bind(parser));
@@ -247,6 +257,15 @@ suite('CSS - Parser', () => {
 		assertError('boo { prop }', parser, parser._parseRuleset.bind(parser), ParseError.ColonExpected);
 		assertError('boo { prop: ; far: 12em; }', parser, parser._parseRuleset.bind(parser), ParseError.PropertyValueExpected);
 		//	assertNode('boo { prop: ; 1ar: 12em; }', parser, parser._parseRuleset.bind(parser));
+
+		assertError('boo { --too-minimal:}', parser, parser._parseRuleset.bind(parser), ParseError.PropertyValueExpected);
+		assertError('boo { --unterminated: ', parser, parser._parseRuleset.bind(parser), ParseError.RightCurlyExpected);
+		assertError('boo { --double-important: red !important !important;}', parser, parser._parseRuleset.bind(parser), ParseError.SemiColonExpected);
+		assertError('boo {--unbalanced-curlys: {{color: green;}}', parser, parser._parseRuleset.bind(parser), ParseError.RightCurlyExpected);
+		assertError('boo {--unbalanced-parens: not(()cool;}', parser, parser._parseRuleset.bind(parser), ParseError.LeftCurlyExpected);
+		assertError('boo {--unbalanced-parens: not)()(cool;}', parser, parser._parseRuleset.bind(parser), ParseError.LeftParenthesisExpected);
+		assertError('boo {--unbalanced-brackets: not[[]valid;}', parser, parser._parseRuleset.bind(parser), ParseError.LeftCurlyExpected);
+		assertError('boo {--unbalanced-brackets: not][][valid;}', parser, parser._parseRuleset.bind(parser), ParseError.LeftSquareBracketExpected);
 		assertError('boo { @apply }', parser, parser._parseRuleset.bind(parser), ParseError.IdentifierExpected);
 		assertError('boo { @apply --custom-prop background: red}', parser, parser._parseRuleset.bind(parser), ParseError.SemiColonExpected);
 	});
@@ -314,18 +333,7 @@ suite('CSS - Parser', () => {
 		assertNode('*background: #f00 /* IE 7 and below */', parser, parser._parseDeclaration.bind(parser));
 		assertNode('_background: #f60 /* IE 6 and below */', parser, parser._parseDeclaration.bind(parser));
 		assertNode('background-image: linear-gradient(to right, silver, white 50px, white calc(100% - 50px), silver)', parser, parser._parseDeclaration.bind(parser));
-
-		assertNode('--color: #F5F5F5', parser, parser._parseDeclaration.bind(parser));
-		assertNode('--color: 0', parser, parser._parseDeclaration.bind(parser));
-		assertNode('--color: 255', parser, parser._parseDeclaration.bind(parser));
-		assertNode('--color: 25.5', parser, parser._parseDeclaration.bind(parser));
-		assertNode('--color: 25px', parser, parser._parseDeclaration.bind(parser));
-		assertNode('--color: 25.5px', parser, parser._parseDeclaration.bind(parser));
-		assertNode('--primary-font: "wf_SegoeUI","Segoe UI","Segoe","Segoe WP"', parser, parser._parseDeclaration.bind(parser));
-		assertError('--color : ', parser, parser._parseDeclaration.bind(parser), ParseError.PropertyValueExpected);
-		assertError('--color value', parser, parser._parseDeclaration.bind(parser), ParseError.ColonExpected);
 	});
-
 
 	test('term', function () {
 		let parser = new Parser();

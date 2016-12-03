@@ -386,6 +386,7 @@ export class Nodelist extends Node {
 export class Identifier extends Node {
 
 	public referenceTypes: ReferenceType[];
+	public isCustomProperty = false;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -616,6 +617,10 @@ export class Property extends Node {
 
 	public getName(): string {
 		return this.getText();
+	}
+
+	public isCustomProperty(): boolean {
+		return this.identifier.isCustomProperty;
 	}
 }
 
