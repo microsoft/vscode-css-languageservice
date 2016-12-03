@@ -3,6 +3,7 @@ Language services for CSS, LESS and SCSS
 
 [![npm Package](https://img.shields.io/npm/v/vscode-css-languageservice.svg?style=flat-square)](https://www.npmjs.org/package/vscode-css-languageservice)
 [![NPM Downloads](https://img.shields.io/npm/dm/vscode-css-languageservice.svg)](https://npmjs.org/package/vscode-css-languageservice)
+[![Build Status](https://travis-ci.org/Microsoft/vscode-css-languageservice.svg?branch=master)](https://travis-ci.org/Microsoft/vscode-css-languageservice)
 
 Why?
 ----
