@@ -23,7 +23,7 @@
     "@types/mocha": "^2.2.32"
   },
   "dependencies": {
-    "vscode-languageserver-types": "^3.0.1-alpha.2",
+    "vscode-languageserver-types": "3.0.1-alpha.2",
     "vscode-nls": "^1.0.4"
   },
   "scripts": {
