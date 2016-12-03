@@ -498,8 +498,8 @@ export class SimpleSelector extends Node {
 }
 
 export class AtApplyRule extends Node {
-	public endOfAtApply: number;
-	public semicolonPosition: number;
+
+	private identifier: Identifier;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -507,6 +507,18 @@ export class AtApplyRule extends Node {
 
 	public get type(): NodeType {
 		return NodeType.AtApplyRule;
+	}
+
+	public setIdentifier(node: Identifier): boolean {
+		return this.setNode('identifier', node, 0);
+	}
+
+	public getIdentifier(): Identifier {
+		return this.identifier;
+	}
+
+	public getName(): string {
+		return this.identifier ? this.identifier.getText() : '';
 	}
 }
 

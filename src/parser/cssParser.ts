@@ -273,25 +273,13 @@ export class Parser {
 		if (!this.peek(TokenType.AtKeyword, '@apply')) {
 			return null;
 		}
-		const node = this.create(nodes.AtApplyRule) as nodes.AtApplyRule;
-		node.endOfAtApply = this.token.offset + this.token.len;
+		const node = <nodes.AtApplyRule> this.create(nodes.AtApplyRule);
 		this.consumeToken();
 
-		if (!this.peek(TokenType.Ident)) {
+		if (!node.setIdentifier(this._parseIdent([nodes.ReferenceType.Variable]))) {
 			return this.finish(node, ParseError.IdentifierExpected);
 		}
-		/**
-		 * A css custom property name is any identifier that starts with two
-		 * dashes:
-		 * https://www.w3.org/TR/css-variables/#typedef-custom-property-name
-		 */
-		if (!this.peekRegExp(TokenType.Ident, /^--/)) {
-			return this.finish(node, ParseError.CustomPropertyNameExpected);
-		}
-		this.accept(TokenType.Ident);
-		if (this.peek(TokenType.SemiColon)) {
-			node.semicolonPosition = this.token.offset;
-		}
+
 		return this.finish(node);
 	}
 
