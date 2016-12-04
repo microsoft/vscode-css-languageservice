@@ -72,7 +72,9 @@ export enum NodeType {
 	KeyframeSelector,
 	ViewPort,
 	Document,
-	AtApplyRule
+	AtApplyRule,
+	CustomPropertyDeclaration,
+	CustomPropertySet
 }
 
 export enum ReferenceType {
@@ -257,8 +259,11 @@ export class Node {
 		return this.issues && this.issues.some(i => i.getRule() === rule);
 	}
 
-	public isErroneous(): boolean {
-		return this.issues && this.issues.length > 0;
+	public isErroneous(recursive: boolean = false): boolean {
+		if (this.issues && this.issues.length > 0) {
+			return true;
+		}
+		return recursive && this.children && this.children.some(c => c.isErroneous(true));
 	}
 
 	public setNode(field: string, node: Node, index: number = -1): boolean {
@@ -531,6 +536,54 @@ export abstract class AbstractDeclaration extends Node {
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
+	}
+}
+
+export class CustomPropertyDeclaration extends AbstractDeclaration {
+	private property: Property;
+	private value: Expression;
+	private propertySet: CustomPropertySet;
+
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.CustomPropertyDeclaration;
+	}
+
+	public setProperty(node: Property): boolean {
+		return this.setNode('property', node);
+	}
+
+	public getProperty(): Property {
+		return this.property;
+	}
+
+	public setValue(value: Expression): boolean {
+		return this.setNode('value', value);
+	}
+
+	public getValue(): Expression {
+		return this.value;
+	}
+
+	public setPropertySet(value: CustomPropertySet): boolean {
+		return this.setNode('propertySet', value);
+	}
+
+	public getPropertySet(): CustomPropertySet {
+		return this.propertySet;
+	}		
+}
+
+export class CustomPropertySet extends BodyDeclaration {
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.CustomPropertySet;
 	}
 }
 

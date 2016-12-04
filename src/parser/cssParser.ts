@@ -260,7 +260,7 @@ export class Parser {
 	}
 
 	public _parseRuleSetDeclaration(): nodes.Node {
-		return this._tryToParseAtApply() || this._parseDeclaration();
+		return this._parseAtApply() || this._tryParseCustomPropertyDeclaration() || this._parseDeclaration();
 	}
 
 	/**
@@ -269,7 +269,7 @@ export class Parser {
 	 *
 	 * Follows https://tabatkins.github.io/specs/css-apply-rule/#using
 	 */
-	public _tryToParseAtApply(): nodes.Node {
+	public _parseAtApply(): nodes.Node {
 		if (!this.peek(TokenType.AtKeyword, '@apply')) {
 			return null;
 		}
@@ -305,6 +305,7 @@ export class Parser {
 			case nodes.NodeType.Debug:
 			case nodes.NodeType.Import:
 			case nodes.NodeType.AtApplyRule:
+			case nodes.NodeType.CustomPropertyDeclaration:
 				return true;
 			case nodes.NodeType.MixinReference:
 				return !(<nodes.MixinReference>node).getContent();
@@ -373,15 +374,59 @@ export class Parser {
 		}
 		node.colonPosition = this.prevToken.offset;
 
-		const isCustomProperty = node.getProperty().isCustomProperty();
-		const expr = isCustomProperty ? this._parseCustomPropertyValue() : this._parseExpr();
-		if (!node.setValue(expr)) {
+		if (!node.setValue(this._parseExpr())) {
 			return this.finish(node, ParseError.PropertyValueExpected);
 		}
 		node.addChild(this._parsePrio());
 		if (this.peek(TokenType.SemiColon)) {
 			node.semicolonPosition = this.token.offset; // not part of the declaration, but useful information for code assist
 		}
+		return this.finish(node);
+	}
+
+	public _tryParseCustomPropertyDeclaration(): nodes.Node {
+		if (!this.peekRegExp(TokenType.Ident, /^--/)) {
+			return null;
+		}
+		let node = <nodes.CustomPropertyDeclaration> this.create(nodes.CustomPropertyDeclaration);
+		if (!node.setProperty(this._parseProperty())) {
+			return null;
+		}
+		
+		if (!this.accept(TokenType.Colon)) {
+			return this.finish(node, ParseError.ColonExpected, [TokenType.Colon]);
+		}
+		node.colonPosition = this.prevToken.offset;
+
+		let mark = this.mark();
+		if (this.peek(TokenType.CurlyL)) {
+			// try to parse it as nested declaration
+			let propertySet = <nodes.CustomPropertySet> this.create(nodes.CustomPropertySet);
+			let declarations = this._parseDeclarations(this._parseRuleSetDeclaration.bind(this));
+			if (propertySet.setDeclarations(declarations) && !declarations.isErroneous(true)) {
+				propertySet.addChild(this._parsePrio());
+				if (this.peek(TokenType.SemiColon)) {
+					this.finish(propertySet);
+					node.setPropertySet(propertySet);
+					node.semicolonPosition = this.token.offset; // not part of the declaration, but useful information for code assist
+					return this.finish(node);
+				}
+			}
+			this.restoreAtMark(mark);
+		}
+		// try tp parse as expression
+		let expression = this._parseExpr();
+		if (expression && !expression.isErroneous(true)) {
+			this._parsePrio();
+			if (this.peek(TokenType.SemiColon)) {
+				node.setValue(expression);
+				node.semicolonPosition = this.token.offset; // not part of the declaration, but useful information for code assist
+				return this.finish(node);
+			}
+		}
+		this.restoreAtMark(mark);
+		node.addChild(this._parseCustomPropertyValue());
+		node.addChild(this._parsePrio());
 		if (this.token.offset === node.colonPosition + 1) {
 			return this.finish(node, ParseError.PropertyValueExpected);
 		}
@@ -399,8 +444,8 @@ export class Parser {
 	 * terminators like semicolons and !important directives (when not inside
 	 * of delimitors).
 	 */
-	public _parseCustomPropertyValue(): nodes.Expression {
-		const node = this.create(nodes.Expression) as nodes.Expression;
+	public _parseCustomPropertyValue(): nodes.Node {
+		const node = this.create(nodes.Node);
 		const isTopLevel = () => curlyDepth === 0 && parensDepth === 0 && bracketsDepth === 0;
 		let curlyDepth = 0;
 		let parensDepth = 0;

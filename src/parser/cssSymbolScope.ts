@@ -141,8 +141,8 @@ export class ScopeBuilder implements nodes.IVisitor {
 			case nodes.NodeType.Keyframe:
 				this.addSymbol(node, (<nodes.Keyframe>node).getName(), null, nodes.ReferenceType.Keyframe);
 				return true;
-			case nodes.NodeType.Declaration:
-				return this.visitDeclarationNode(<nodes.Declaration>node);
+			case nodes.NodeType.CustomPropertyDeclaration:
+				return this.visitCustomPropertyDeclarationNode(<nodes.CustomPropertyDeclaration>node);
 			case nodes.NodeType.VariableDeclaration:
 				return this.visitVariableDeclarationNode(<nodes.VariableDeclaration>node);
 			case nodes.NodeType.Ruleset:
@@ -202,10 +202,9 @@ export class ScopeBuilder implements nodes.IVisitor {
 		return true;
 	}
 
-	public visitDeclarationNode(node: nodes.Declaration): boolean {
-		if (Symbols.isCssVariable(node.getProperty().getIdentifier())) {
-			this.addCSSVariable(node.getProperty(), node.getProperty().getName(), node.getValue().getText(), nodes.ReferenceType.Variable);
-		}
+	public visitCustomPropertyDeclarationNode(node: nodes.CustomPropertyDeclaration): boolean {
+		let value = node.getValue() ? node.getValue().getText() : '';
+		this.addCSSVariable(node.getProperty(), node.getProperty().getName(), value, nodes.ReferenceType.Variable);
 		return true;
 	}
 
@@ -290,7 +289,7 @@ export class Symbols {
 			if (referenceTypes) {
 				return referenceTypes;
 			} else {
-				if (Symbols.isCssVariable(node)) {
+				if (node.isCustomProperty) {
 					return [nodes.ReferenceType.Variable];
 				}
 				// are a reference to a keyframe?
@@ -363,9 +362,5 @@ export class Symbols {
 			scope = scope.parent;
 		}
 		return null;
-	}
-
-	public static isCssVariable(identifier: nodes.Identifier): boolean {
-		return /^--/.test(identifier.getText());
 	}
 }
