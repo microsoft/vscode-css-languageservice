@@ -25,7 +25,7 @@ export let Rules = {
 	DuplicateDeclarations: new Rule('duplicateProperties', localize('rule.duplicateDeclarations', "Do not use duplicate style definitions"), Ignore),
 	EmptyRuleSet: new Rule('emptyRules', localize('rule.emptyRuleSets', "Do not use empty rulesets"), Warning),
 	ImportStatemement: new Rule('importStatement', localize('rule.importDirective', "Import statements do not load in parallel"), Ignore),
-	NoWidthOrHeightWhenPaddingOrBorder: new Rule('boxModel', localize('rule.withHeightAndBorderPadding', "Do not use width or height when using padding or border"), Ignore),
+	BewareOfBoxModelSize: new Rule('boxModel', localize('rule.bewareOfBoxModelSize', "Do not use width or height when using padding or border"), Ignore),
 	UniversalSelector: new Rule('universalSelector', localize('rule.universalSelector', "The universal selector (*) is known to be slow"), Ignore),
 	ZeroWithUnit: new Rule('zeroUnits', localize('rule.zeroWidthUnit', "No unit for zero needed"), Ignore),
 	RequiredPropertiesForFontFace: new Rule('fontFaceProperties', localize('rule.fontFaceProperties', "@font-face rule must define 'src' and 'font-family' properties"), Warning),

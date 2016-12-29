@@ -260,25 +260,52 @@ export class LintVisitor implements nodes.IVisitor {
 		}, this);
 
 		/////////////////////////////////////////////////////////////
-		//	Don't use width or height when using padding or border.
+		// the rule warns when it finds:
+		// width being used with border, border-left, border-right, padding, padding-left, or padding-right
+		// height being used with border, border-top, border-bottom, padding, padding-top, or padding-bottom
+		// No error when box-sizing property is specified, as it assumes the user knows what he's doing.
+		// see https://github.com/CSSLint/csslint/wiki/Beware-of-box-model-size
 		/////////////////////////////////////////////////////////////
-		if ((this.fetch(propertyTable, 'width').length > 0 || this.fetch(propertyTable, 'height').length > 0) && (this.fetchWithin(propertyTable, 'padding').length > 0 || this.fetchWithin(propertyTable, 'border').length > 0)) {
-			let elements: Element[] = this.fetch(propertyTable, 'width');
-			for (let index = 0; index < elements.length; index++) {
-				this.addEntry(elements[index].node, Rules.NoWidthOrHeightWhenPaddingOrBorder);
+		if (this.fetchWithin(propertyTable, 'box-sizing').length === 0) {
+			let widthEntries = this.fetch(propertyTable, 'width');
+			if (widthEntries.length > 0) {
+				let problemDetected = false;
+				['border', 'border-left', 'border-right', 'padding', 'padding-left', 'padding-right'].forEach(p => {
+					let elements = this.fetch(propertyTable, p);
+					for (let element of elements) {
+						let value = element.node.getValue();
+						if (value && !value.matches('none')) {
+							this.addEntry(element.node, Rules.BewareOfBoxModelSize);
+							problemDetected = true;
+						}
+					}					
+				});
+				if (problemDetected) {
+					for (let widthEntry of widthEntries) {
+						this.addEntry(widthEntry.node, Rules.BewareOfBoxModelSize);
+					}	
+				}
 			}
-			elements = this.fetch(propertyTable, 'height');
-			for (let index = 0; index < elements.length; index++) {
-				this.addEntry(elements[index].node, Rules.NoWidthOrHeightWhenPaddingOrBorder);
+			let heightEntries = this.fetch(propertyTable, 'height');
+			if (heightEntries.length > 0) {
+				let problemDetected = false;
+				['border', 'border-top', 'border-bottom', 'padding', 'padding-top', 'padding-bottom'].forEach(p => {
+					let elements = this.fetch(propertyTable, p);
+					for (let element of elements) {
+						let value = element.node.getValue();
+						if (value && !value.matches('none')) {						
+							this.addEntry(element.node, Rules.BewareOfBoxModelSize);
+							problemDetected = true;
+						}
+					}					
+				});
+				if (problemDetected) {
+					for (let heightEntry of heightEntries) {
+						this.addEntry(heightEntry.node, Rules.BewareOfBoxModelSize);
+					}	
+				}
 			}
-			elements = this.fetchWithin(propertyTable, 'padding');
-			for (let index = 0; index < elements.length; index++) {
-				this.addEntry(elements[index].node, Rules.NoWidthOrHeightWhenPaddingOrBorder);
-			}
-			elements = this.fetchWithin(propertyTable, 'border');
-			for (let index = 0; index < elements.length; index++) {
-				this.addEntry(elements[index].node, Rules.NoWidthOrHeightWhenPaddingOrBorder);
-			}
+
 		}
 
 		/////////////////////////////////////////////////////////////

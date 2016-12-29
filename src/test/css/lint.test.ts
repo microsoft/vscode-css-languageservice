@@ -17,7 +17,7 @@ export function assertEntries(node: nodes.Node, rules: nodes.IRule[]): void {
 	node.accept(visitor);
 
 	let entries = visitor.getEntries(nodes.Level.Error | nodes.Level.Warning | nodes.Level.Ignore);
-	assert.equal(entries.length, rules.length);
+	assert.equal(entries.length, rules.length, entries.map(e => e.getRule().id).join(', '));
 
 	for (let entry of entries) {
 		let idx = rules.indexOf(entry.getRule());
@@ -100,6 +100,14 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { box-property: "rest is missing" }', Rules.UnknownProperty);
 
 	});
+
+	test('box model', function () {
+		assertRuleSet('.mybox { border: 1px solid black; width: 100px; }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
+		assertRuleSet('.mybox { height: 100px; padding: 10px; }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
+		assertRuleSet('.mybox { box-sizing: border-box; border: 1px solid black; width: 100px; }'); // no error
+		assertRuleSet('.mybox { border-top: 1px solid black; width: 100px; }'); // no error
+		assertRuleSet('.mybox { border-top: none; height: 100px; }'); // no error		
+	});	
 
 	test('IE hacks', function () {
 		assertRuleSet('selector { display: inline-block; *display: inline; }', Rules.IEStarHack);
