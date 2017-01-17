@@ -38,10 +38,6 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 		assert.equal(match.kind, expected.kind);
 	}
 	if (expected.resultText) {
-		let insertText = match.label;
-		if (match.insertText) {
-			insertText = match.insertText;
-		}
 		assert.equal(applyEdits(document, [ match.textEdit ]), expected.resultText);
 	}
 };
