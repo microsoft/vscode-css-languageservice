@@ -7,7 +7,7 @@
 import * as languageFacts from './languageFacts';
 import * as nodes from '../parser/cssNodes';
 import {CSSCompletion} from './cssCompletion';
-import {CompletionList, CompletionItemKind, SnippetString} from 'vscode-languageserver-types';
+import {CompletionList, CompletionItemKind, InsertTextFormat, TextEdit} from 'vscode-languageserver-types';
 
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();
@@ -332,8 +332,8 @@ export class LESSCompletion extends CSSCompletion {
 				label: p.name,
 				detail: p.example,
 				documentation: p.description,
-				insertText: SnippetString.create(p.name + '($0)'),
-				range: this.getCompletionRange(existingNode),
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), p.name + '($0)'),
+				insertTextFormat: InsertTextFormat.Snippet,
 				kind: CompletionItemKind.Function
 			});
 		});

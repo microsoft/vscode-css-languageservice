@@ -7,7 +7,7 @@
 import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
-import {CompletionList, TextDocument, TextEdit, Position, CompletionItemKind, SnippetString} from 'vscode-languageserver-types';
+import {CompletionList, TextDocument, TextEdit, Position, CompletionItemKind} from 'vscode-languageserver-types';
 import {applyEdits} from '../textEditSupport';
 
 export interface ItemDescription {
@@ -39,12 +39,10 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 	}
 	if (expected.resultText) {
 		let insertText = match.label;
-		if (SnippetString.is(match.insertText)) {
-			insertText = match.insertText.value;
-		} else if (match.insertText) {
+		if (match.insertText) {
 			insertText = match.insertText;
 		}
-		assert.equal(applyEdits(document, [ TextEdit.replace(match.range, insertText) ]), expected.resultText);
+		assert.equal(applyEdits(document, [ match.textEdit ]), expected.resultText);
 	}
 };
 

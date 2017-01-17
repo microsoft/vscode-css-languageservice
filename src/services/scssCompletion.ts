@@ -7,7 +7,7 @@
 import * as languageFacts from './languageFacts';
 import {CSSCompletion} from './cssCompletion';
 import * as nodes from '../parser/cssNodes';
-import {CompletionList, CompletionItemKind, SnippetString} from 'vscode-languageserver-types';
+import {CompletionList, CompletionItemKind, TextEdit, InsertTextFormat} from 'vscode-languageserver-types';
 
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();
@@ -129,12 +129,13 @@ export class SCSSCompletion extends CSSCompletion {
 
 	private createFunctionProposals(proposals: {func: string; desc: string; }[], existingNode: nodes.Node, result: CompletionList): CompletionList {
 		proposals.forEach((p) => {
+			let insertText = p.func.replace(/\[?(\$\w+)\]?/g, this.createReplaceFunction());
 			result.items.push({
 				label: p.func.substr(0, p.func.indexOf('(')),
 				detail: p.func,
 				documentation: p.desc,
-				insertText: SnippetString.create(p.func.replace(/\[?(\$\w+)\]?/g, this.createReplaceFunction())),
-				range: this.getCompletionRange(existingNode),
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
+				insertTextFormat: InsertTextFormat.Snippet,
 				kind: CompletionItemKind.Function
 			});
 		});

@@ -9,10 +9,12 @@ import {Symbols, Symbol} from '../parser/cssSymbolScope';
 import * as languageFacts from './languageFacts';
 import * as strings from '../utils/strings';
 import {findFirst} from '../utils/arrays';
-import {TextDocument, Position, CompletionList, CompletionItem, CompletionItemKind, Range, SnippetString} from 'vscode-languageserver-types';
+import {TextDocument, Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat} from 'vscode-languageserver-types';
 
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();
+
+const SnippetFormat = InsertTextFormat.Snippet;
 
 export class CSSCompletion {
 
@@ -138,8 +140,7 @@ export class CSSCompletion {
 					result.items.push({
 						label: entry.name,
 						documentation: languageFacts.getEntryDescription(entry),
-						insertText,
-						range,
+						textEdit: TextEdit.replace(range, insertText),
 						kind: CompletionItemKind.Property
 					});
 				}
@@ -180,7 +181,7 @@ export class CSSCompletion {
 			existingValues.getEntries().forEach((existingValue) => {
 				result.items.push({
 					label: existingValue,
-					range: this.getCompletionRange(existingNode),
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), existingValue),
 					kind: CompletionItemKind.Value
 				});
 			});
@@ -197,7 +198,7 @@ export class CSSCompletion {
 					result.items.push({
 						label: value.name,
 						documentation: languageFacts.getEntryDescription(value),
-						range: this.getCompletionRange(existingNode),
+						textEdit: TextEdit.replace(this.getCompletionRange(existingNode), value.name),
 						kind: CompletionItemKind.Value
 					});
 				}
@@ -211,7 +212,7 @@ export class CSSCompletion {
 			result.items.push({
 				label: keywords,
 				documentation: languageFacts.cssWideKeywords[keywords],
-				range: this.getCompletionRange(existingNode),
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), keywords),
 				kind: CompletionItemKind.Value
 			});
 		}
@@ -228,11 +229,11 @@ export class CSSCompletion {
 	public getVariableProposals(existingNode: nodes.Node, result: CompletionList): CompletionList {
 		let symbols = this.getSymbolContext().findSymbolsAtOffset(this.offset, nodes.ReferenceType.Variable);
 		symbols.forEach((symbol) => {
+			let insertText =  strings.startsWith(symbol.name, '--') ? `var(${symbol.name})` : symbol.name;
 			const suggest: CompletionItem = {
 				label: symbol.name,
 				documentation: symbol.value ? strings.getLimitedString(symbol.value) : symbol.value,
-				insertText: strings.startsWith(symbol.name, '--') ? `var(${symbol.name})` : symbol.name,
-				range: this.getCompletionRange(existingNode),
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
 				kind: CompletionItemKind.Variable
 			};
 
@@ -257,7 +258,7 @@ export class CSSCompletion {
 			result.items.push({
 				label: symbol.name,
 				documentation: symbol.value ? strings.getLimitedString(symbol.value) : symbol.value,
-				range: this.getCompletionRange(null),
+				textEdit: TextEdit.replace(this.getCompletionRange(null), symbol.name),
 				kind: CompletionItemKind.Variable
 			});
 		});
@@ -279,9 +280,10 @@ export class CSSCompletion {
 			let units = languageFacts.units[restriction];
 			if (units) {
 				units.forEach((unit: string) => {
+					let insertText = currentWord + unit;
 					result.items.push({
-						label: currentWord + unit,
-						range: this.getCompletionRange(existingNode),
+						label: insertText,
+						textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
 						kind: CompletionItemKind.Unit
 					});
 				});
@@ -304,7 +306,7 @@ export class CSSCompletion {
 				result.items.push({
 					label: color,
 					documentation: languageFacts.colors[color],
-					range: this.getCompletionRange(existingNode),
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), color),
 					kind: CompletionItemKind.Color
 				});
 			}
@@ -312,7 +314,7 @@ export class CSSCompletion {
 				result.items.push({
 					label: color,
 					documentation: languageFacts.colorKeywords[color],
-					range: this.getCompletionRange(existingNode),
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), color),
 					kind: CompletionItemKind.Value
 				});
 			}
@@ -321,19 +323,20 @@ export class CSSCompletion {
 			colorValues.getEntries().forEach((color) => {
 				result.items.push({
 					label: color,
-					range: this.getCompletionRange(existingNode),
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), color),
 					kind: CompletionItemKind.Color
 				});
 			});
 			languageFacts.colorFunctions.forEach((p) => {
 				let tabStop = 1;
 				let replaceFunction = (match, p1) => '${' + tabStop++ + ':' + p1 + '}';
+				let insertText = p.func.replace(/\[?\$(\w+)\]?/g, replaceFunction);
 				result.items.push({
 					label: p.func.substr(0, p.func.indexOf('(')),
 					detail: p.func,
 					documentation: p.desc,
-					insertText: SnippetString.create(p.func.replace(/\[?\$(\w+)\]?/g, replaceFunction)),
-					range: this.getCompletionRange(existingNode),
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
+					insertTextFormat: SnippetFormat,
 					kind: CompletionItemKind.Function
 				});
 			});
@@ -347,7 +350,7 @@ export class CSSCompletion {
 				result.items.push({
 					label: position,
 					documentation: languageFacts.positionKeywords[position],
-					range: this.getCompletionRange(existingNode),
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), position),
 					kind: CompletionItemKind.Value
 				});
 			}
@@ -361,7 +364,7 @@ export class CSSCompletion {
 				result.items.push({
 					label: repeat,
 					documentation: languageFacts.repeatStyleKeywords[repeat],
-					range: this.getCompletionRange(existingNode),
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), repeat),
 					kind: CompletionItemKind.Value
 				});
 			}
@@ -375,7 +378,7 @@ export class CSSCompletion {
 				result.items.push({
 					label: lineStyle,
 					documentation: languageFacts.lineStyleKeywords[lineStyle],
-					range: this.getCompletionRange(existingNode),
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), lineStyle),
 					kind: CompletionItemKind.Value
 				});
 			}
@@ -384,7 +387,7 @@ export class CSSCompletion {
 			languageFacts.lineWidthKeywords.forEach((lineWidth) => {
 				result.items.push({
 					label: lineWidth,
-					range: this.getCompletionRange(existingNode),
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), lineWidth),
 					kind: CompletionItemKind.Value
 				});
 			});
@@ -399,7 +402,7 @@ export class CSSCompletion {
 				result.items.push({
 					label: box,
 					documentation: languageFacts.geometryBoxKeywords[box],
-					range: this.getCompletionRange(existingNode),
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), box),
 					kind: CompletionItemKind.Value
 				});
 			}
@@ -409,7 +412,7 @@ export class CSSCompletion {
 				result.items.push({
 					label: box,
 					documentation: languageFacts.boxKeywords[box],
-					range: this.getCompletionRange(existingNode),
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), box),
 					kind: CompletionItemKind.Value
 				});
 			}
@@ -423,7 +426,7 @@ export class CSSCompletion {
 				result.items.push({
 					label: image,
 					documentation: languageFacts.imageFunctions[image],
-					range: this.getCompletionRange(existingNode),
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), image),
 					kind: CompletionItemKind.Function
 				});
 			}
@@ -437,7 +440,7 @@ export class CSSCompletion {
 				result.items.push({
 					label: timing,
 					documentation: languageFacts.transitionTimingFunctions[timing],
-					range: this.getCompletionRange(existingNode),
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), timing),
 					kind: CompletionItemKind.Function
 				});
 			}
@@ -451,7 +454,7 @@ export class CSSCompletion {
 				result.items.push({
 					label: shape,
 					documentation: languageFacts.basicShapeFunctions[shape],
-					range: this.getCompletionRange(existingNode),
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), shape),
 					kind: CompletionItemKind.Function
 				});
 			}
@@ -475,7 +478,7 @@ export class CSSCompletion {
 			if (entry.browsers.count > 0) {
 				result.items.push({
 					label: entry.name,
-					range: this.getCompletionRange(null),
+					textEdit: TextEdit.replace(this.getCompletionRange(null), entry.name),
 					documentation: languageFacts.getEntryDescription(entry),
 					kind: CompletionItemKind.Keyword
 				});
@@ -517,7 +520,7 @@ export class CSSCompletion {
 			if (entry.browsers.onCodeComplete) {
 				result.items.push({
 					label: entry.name,
-					range: this.getCompletionRange(existingNode),
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), entry.name),
 					documentation: languageFacts.getEntryDescription(entry),
 					kind: CompletionItemKind.Function
 				});
@@ -527,7 +530,7 @@ export class CSSCompletion {
 			if (entry.browsers.onCodeComplete) {
 				result.items.push({
 					label: entry.name,
-					range: this.getCompletionRange(existingNode),
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), entry.name),
 					documentation: languageFacts.getEntryDescription(entry),
 					kind: CompletionItemKind.Function
 				});
@@ -536,14 +539,14 @@ export class CSSCompletion {
 		languageFacts.html5Tags.forEach((entry) => {
 			result.items.push({
 				label: entry,
-				range: this.getCompletionRange(existingNode),
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), entry),
 				kind: CompletionItemKind.Keyword
 			});
 		});
 		languageFacts.svgElements.forEach((entry) => {
 			result.items.push({
 				label: entry,
-				range: this.getCompletionRange(existingNode),
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), entry),
 				kind: CompletionItemKind.Keyword
 			});
 		});
@@ -558,7 +561,7 @@ export class CSSCompletion {
 					visited[selector] = true;
 					result.items.push({
 						label: selector,
-						range: this.getCompletionRange(existingNode),
+						textEdit: TextEdit.replace(this.getCompletionRange(existingNode), selector),
 						kind: CompletionItemKind.Keyword
 					});
 				}
@@ -680,12 +683,12 @@ export class CSSCompletion {
 		const params = parameters.getChildren().map((c) => {
 			return (c instanceof nodes.FunctionParameter) ? (<nodes.FunctionParameter>c).getName() : c.getText();
 		});
-		
+		const insertText = symbol.name + '(' + params.map((p, index) => '${' + (index + 1) + ':' + p + '}').join(', ') + ')';
 		return {
 			label: symbol.name,
 			detail: symbol.name + '(' + params.join(', ') + ')',
-			insertText: SnippetString.create(symbol.name + '(' + params.map((p, index) => '${' + (index + 1) + ':' + p + '}').join(', ') + ')'),
-			range: this.getCompletionRange(existingNode),
+			textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
+			insertTextFormat: SnippetFormat,
 			kind: CompletionItemKind.Function
 		};
 	}
