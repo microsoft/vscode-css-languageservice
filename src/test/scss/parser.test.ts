@@ -337,4 +337,10 @@ suite('SCSS - Parser', () => {
 		assertNode('%hover', parser, parser._parseSimpleSelector.bind(parser));
 		assertNode('a%float', parser, parser._parseSimpleSelector.bind(parser));
 	});
+
+	test('Map', function () {
+		let parser = new SCSSParser();
+		assertNode('(key1: 1px, key2: solid + px, key3: (2+3))', parser, parser._parseExpr.bind(parser));
+		assertNode('($key1 + 3: 1px)', parser, parser._parseExpr.bind(parser));
+	});
 });

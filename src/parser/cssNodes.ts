@@ -74,7 +74,8 @@ export enum NodeType {
 	Document,
 	AtApplyRule,
 	CustomPropertyDeclaration,
-	CustomPropertySet
+	CustomPropertySet,
+	ListEntry
 }
 
 export enum ReferenceType {
