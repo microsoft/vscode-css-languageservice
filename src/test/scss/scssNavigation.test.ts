@@ -34,6 +34,7 @@ suite('SCSS - Symbols', () => {
 		assertScopesAndSymbols(p, '$var1: 3; @while $var1 < 2 { #rule { a: b; } }', '$var1,[#rule,[]]');
 		assertScopesAndSymbols(p, '$i:0; @each $name in f1, f2, f3  { $i:$i+1; }', '$i,[$name,$i]');
 		assertScopesAndSymbols(p, '$i:0; @for $x from $i to 5  { }', '$i,[$x]');
+		assertScopesAndSymbols(p, '@each $i, $j, $k in f1, f2, f3  { }', '[$i,$j,$k]');
 	});
 
 	test('mark highlights', function(testDone) {

@@ -5,7 +5,7 @@
 'use strict';
 
 import * as nodes from './cssNodes';
-import {findFirst} from '../utils/arrays';
+import { findFirst } from '../utils/arrays';
 
 export class Scope {
 
@@ -160,11 +160,20 @@ export class ScopeBuilder implements nodes.IVisitor {
 				this.addScope(node);
 				return true;
 			case nodes.NodeType.For:
-			case nodes.NodeType.Each: {
-				let forOrEachNode = <nodes.ForStatement | nodes.EachStatement>node;
-				let scopeNode = forOrEachNode.getDeclarations();
+				let forNode = <nodes.ForStatement>node;
+				let scopeNode = forNode.getDeclarations();
 				if (scopeNode) {
-					this.addSymbolToChildScope(scopeNode, forOrEachNode.variable, forOrEachNode.variable.getName(), null, nodes.ReferenceType.Variable);
+					this.addSymbolToChildScope(scopeNode, forNode.variable, forNode.variable.getName(), null, nodes.ReferenceType.Variable);
+				}
+				return true;
+			case nodes.NodeType.Each: {
+				let eachNode = <nodes.EachStatement>node;
+				let scopeNode = eachNode.getDeclarations();
+				if (scopeNode) {
+					let variables = <nodes.Variable[]>eachNode.getVariables().getChildren();
+					for (let variable of variables) {
+						this.addSymbolToChildScope(scopeNode, variable, variable.getName(), null, nodes.ReferenceType.Variable);
+					}
 				}
 				return true;
 			}

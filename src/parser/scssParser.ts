@@ -337,14 +337,16 @@ export class SCSSParser extends cssParser.Parser {
 
 		let node = <nodes.EachStatement>this.create(nodes.EachStatement);
 		this.consumeToken(); // @each
-		if (!node.setVariable(this._parseVariable())) {
+		let variables = node.getVariables();
+		if (!variables.addChild(this._parseVariable())) {
 			return this.finish(node, ParseError.VariableNameExpected, [TokenType.CurlyR]);
 		}
 		while (this.accept(TokenType.Comma)) {
-			if (!node.setVariable(this._parseVariable())) {
+			if (!variables.addChild(this._parseVariable())) {
 				return this.finish(node, ParseError.VariableNameExpected, [TokenType.CurlyR]);
 			}
 		}
+		this.finish(variables);
 		if (!this.accept(TokenType.Ident, 'in')) {
 			return this.finish(node, SCSSParseError.InExpected, [TokenType.CurlyR]);
 		}

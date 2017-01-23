@@ -830,7 +830,7 @@ export class ForStatement extends BodyDeclaration {
 }
 
 export class EachStatement extends BodyDeclaration {
-	public variable: Variable;
+	public variables: Nodelist;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -840,8 +840,11 @@ export class EachStatement extends BodyDeclaration {
 		return NodeType.Each;
 	}
 
-	public setVariable(node: Variable): boolean {
-		return this.setNode('variable', node, 0);
+	public getVariables(): Nodelist {
+		if (!this.variables) {
+			this.variables = new Nodelist(this);
+		}
+		return this.variables;
 	}
 }
 
