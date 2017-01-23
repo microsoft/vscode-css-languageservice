@@ -5,10 +5,8 @@
 'use strict';
 
 import * as assert from 'assert';
-
 import * as cssLanguageService from '../../cssLanguageService';
-import {LESSCompletion} from '../../services/lessCompletion';
-import * as nodes from '../../parser/cssNodes';
+
 import {TextDocument, Position} from 'vscode-languageserver-types';
 import {assertCompletion, ItemDescription} from '../css/completion.test';
 
@@ -16,16 +14,15 @@ function asPromise<T>(result:T) : Promise<T> {
 	return Promise.resolve(result);
 }
 
-suite('LESS - Completions', () => {
+suite('SCSS - Completions', () => {
 
 	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[] }): PromiseLike<void> {
 		let offset = value.indexOf('|');
 		value = value.substr(0, offset) + value.substr(offset + 1);
 
-		let ls = cssLanguageService.getLESSLanguageService();
-		let ls2 = new LESSCompletion();
+		let ls = cssLanguageService.getSCSSLanguageService();
 
-		let document = TextDocument.create('test://test/test.less', 'less', 0, value);
+		let document = TextDocument.create('test://test/test.scss', 'scss', 0, value);
 		let position = Position.create(0, offset);
 		let jsonDoc = ls.parseStylesheet(document);
 		return asPromise(ls.doComplete(document, position, jsonDoc)).then(list => {
@@ -42,41 +39,14 @@ suite('LESS - Completions', () => {
 
 	test('sylesheet', function (testDone): any {
 		Promise.all([
-			testCompletionFor('body { |', {
+			testCompletionFor('$i: 0; body { width: |', {
 				items: [
-					{ label: 'display' },
-					{ label: 'background' }
+					{ label: '$i', documentation: '0' }
 				]
 			}),
-			testCompletionFor('body { ver|', {
+			testCompletionFor('@for $i from 1 through 3 { .item-#{|$i} { width: 2em * $i; } }', {
 				items: [
-					{ label: 'vertical-align' }
-				]
-			}),
-			testCompletionFor('body { word-break: |', {
-				items: [
-					{ label: 'keep-all' }
-				]
-			}),
-			testCompletionFor('body { inner { vertical-align: |}', {
-				items: [
-					{ label: 'bottom' }
-				]
-			}),
-			testCompletionFor('@var1: 3; body { inner { vertical-align: |}', {
-				items: [
-					{ label: '@var1', documentation: '3' }
-				]
-			}),
-			testCompletionFor('@var1: { content: 1; }; body { inner { vertical-align: |}', {
-				items: [
-					{ label: '@var1', documentation: '{ content: 1; }' }
-				]
-			}),
-			testCompletionFor('.mixin(@a: 1, @b) { content: @|}', {
-				items: [
-					{ label: '@a', documentation: '1', detail: 'argument from \'.mixin\'' },
-					{ label: '@b', documentation: null, detail: 'argument from \'.mixin\'' }
+					{ label: '$i' }
 				]
 			}),
 			testCompletionFor('.foo { background-color: d|', {
@@ -84,7 +54,39 @@ suite('LESS - Completions', () => {
 					{ label: 'darken' },
 					{ label: 'desaturate' }
 				]
-			})
+			}),
+			testCompletionFor('@function foo($x, $y) { @return $x + $y; } .foo { background-color: f|', {
+				items: [
+					{ label: 'foo', resultText: '@function foo($x, $y) { @return $x + $y; } .foo { background-color: foo(${1:$x}, ${2:$y})' }
+				]
+			}),
+			testCompletionFor('@mixin mixin($a: 1, $b) { content: $|}', {
+				items: [
+					{ label: '$a', documentation: '1', detail: 'argument from \'mixin\'' },
+					{ label: '$b', documentation: null, detail: 'argument from \'mixin\'' }
+				]
+			}),
+			testCompletionFor('@mixin mixin($a: 1, $b) { content: $a + $b; } @include m|', {
+				items: [
+					{ label: 'mixin', resultText: '@mixin mixin($a: 1, $b) { content: $a + $b; } @include mixin(${1:$a}, ${2:$b})' }
+				]
+			}),
+			testCompletionFor('.foo { di| span { } ', {
+				items: [
+					{ label: 'display' },
+					{ label: 'div' }
+				]
+			}),
+			testCompletionFor('.foo { .|', {
+				items: [
+					{ label: '.foo' }
+				]
+			}),
+			// issue #250
+			testCompletionFor('.foo { display: block;|', {
+				count: 0
+			}),
 		]).then(() => testDone(), (error) => testDone(error));
+
 	});
 });
