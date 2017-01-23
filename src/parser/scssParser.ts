@@ -340,6 +340,11 @@ export class SCSSParser extends cssParser.Parser {
 		if (!node.setVariable(this._parseVariable())) {
 			return this.finish(node, ParseError.VariableNameExpected, [TokenType.CurlyR]);
 		}
+		while (this.accept(TokenType.Comma)) {
+			if (!node.setVariable(this._parseVariable())) {
+				return this.finish(node, ParseError.VariableNameExpected, [TokenType.CurlyR]);
+			}
+		}
 		if (!this.accept(TokenType.Ident, 'in')) {
 			return this.finish(node, SCSSParseError.InExpected, [TokenType.CurlyR]);
 		}

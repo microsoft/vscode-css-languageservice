@@ -231,9 +231,11 @@ suite('SCSS - Parser', () => {
 		let parser = new SCSSParser();
 		assertNode('@each $i in 1, 2, 3 { }', parser, parser._parseRuleSetDeclaration.bind(parser));
 		assertNode('@each $i in 1 2 3 { }', parser, parser._parseRuleSetDeclaration.bind(parser));
+		assertNode('@each $animal, $color, $cursor in (puma, black, default), (egret, white, move) {}', parser, parser._parseRuleSetDeclaration.bind(parser));
 		assertError('@each i in 4 {}', parser, parser._parseRuleSetDeclaration.bind(parser), ParseError.VariableNameExpected);
 		assertError('@each $i from 4 {}', parser, parser._parseRuleSetDeclaration.bind(parser), SCSSParseError.InExpected);
 		assertError('@each $i in {}', parser, parser._parseRuleSetDeclaration.bind(parser), ParseError.ExpressionExpected);
+		assertError('@each $animal,  in (1, 1, 1), (2, 2, 2) {}', parser, parser._parseRuleSetDeclaration.bind(parser), ParseError.VariableNameExpected);
 	});
 
 	test('@while', function () {
