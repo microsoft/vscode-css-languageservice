@@ -75,6 +75,7 @@ export class LESSParser extends cssParser.Parser {
 			|| this._tryToParseDeclaration() 
 			|| this._tryParseMixinDeclaration()
 			|| this._tryParseMixinReference()
+			|| this._parseDetachedRuleSetMixin()
 			|| this._parseStylesheetStatement();
 	}	
 
@@ -88,12 +89,7 @@ export class LESSParser extends cssParser.Parser {
 
 		if (this.accept(TokenType.Colon, ':')) {
 			node.colonPosition = this.prevToken.offset;
-			if (this.peek(TokenType.CurlyL)) {
-				//detached ruleset 
-				let content = <nodes.BodyDeclaration>this.create(nodes.BodyDeclaration);
-				this._parseBody(content, this._parseRuleSetDeclaration.bind(this));
-				node.setValue(content);
-			} else if (!node.setValue(this._parseExpr())) {
+			if (!node.setValue(this._parseDetachedRuleSet() || this._parseExpr())) {
 				return <nodes.VariableDeclaration>this.finish(node, ParseError.VariableValueExpected, [], panic);
 			}
 
@@ -108,6 +104,15 @@ export class LESSParser extends cssParser.Parser {
 		}
 
 		return <nodes.VariableDeclaration>this.finish(node);
+	}
+
+	public _parseDetachedRuleSet() : nodes.Node {
+		if (!this.peek(TokenType.CurlyL)) {
+			return null;
+		}
+		let content = <nodes.BodyDeclaration>this.create(nodes.BodyDeclaration);
+		this._parseBody(content, this._parseRuleSetDeclaration.bind(this));
+		return this.finish(content);
 	}
 
 	public _parseVariable(): nodes.Variable {
@@ -268,7 +273,8 @@ export class LESSParser extends cssParser.Parser {
 		}
 
 		if (!this.accept(TokenType.ParenthesisR)) {
-			return this.finish(node, ParseError.RightParenthesisExpected);
+			this.restoreAtMark(mark);
+			return null;
 		}
 		node.setGuard(this._parseGuard());
 
@@ -419,10 +425,10 @@ export class LESSParser extends cssParser.Parser {
 			}
 		}
 
-		if (node.setValue(this._parseExpr(true))) {
+		if (node.setValue(this._parseDetachedRuleSet() || this._parseExpr(true))) {
 			return this.finish(node);
 		}
-
+		this.restoreAtMark(pos);
 		return null;
 	}	
 

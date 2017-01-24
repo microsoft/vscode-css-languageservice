@@ -85,7 +85,9 @@ suite('LESS - Parser', () => {
 
 	test('DetachedRuleSet', function() {
 		let parser = new LESSParser();
-		assertNode('.foo {  @greeting(); }', parser, parser._parseStylesheet.bind(parser));
+	//	assertNode('.foo {  @greeting(); }', parser, parser._parseStylesheet.bind(parser));
+	//	assertNode('.media-switch(@styles) { @media(orientation:landscape){ @styles(); @foo: 9; } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('.media-switch({ flex-direction: row; });', parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('MixinParameter', function() {
