@@ -1,6 +1,6 @@
 {
   "name": "vscode-css-languageservice",
-  "version": "2.0.0-next.8",
+  "version": "2.0.0-next.9",
   "description": "Language service for CSS, LESS and SCSS",
   "main": "./lib/cssLanguageService.js",
   "typings": "./lib/cssLanguageService",
