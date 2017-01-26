@@ -372,7 +372,7 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseFunctionBodyDeclaration(): nodes.Node {
-		return this._parseVariableDeclaration() || this._parseReturnStatement()
+		return this._parseVariableDeclaration() || this._parseReturnStatement() || this._parseWarnAndDebug()
 			|| this._parseControlStatement(this._parseFunctionBodyDeclaration.bind(this));
 	}
 

@@ -201,6 +201,7 @@ suite('SCSS - Parser', () => {
 		assertNode('@debug test;', parser, parser._parseStylesheet.bind(parser));
 		assertNode('foo { @debug 1 + 4; nested { @warn 1 4; } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@if $foo == 1 { @debug 1 + 4 }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@function setStyle($map, $object, $style) { @warn "The key ´#{$object} is not available in the map."; @return null; }', parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('@if', function () {
