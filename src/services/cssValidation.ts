@@ -19,14 +19,8 @@ export class CSSValidation {
 	}
 
 	public configure(raw: LanguageSettings) {
-		if (raw) {
-			this.validationEnabled = raw.validate;
-			if (raw.lint) {
-				this.lintSettings = sanitize(raw.lint);
-			} else {
-				this.lintSettings = {};
-			}
-		}
+		this.validationEnabled = !raw || raw.validate !== false;
+		this.lintSettings = sanitize(raw && raw.lint || {});
 	}
 
 	public doValidation(document: TextDocument, stylesheet: nodes.Stylesheet): Diagnostic[] {
