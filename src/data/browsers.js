@@ -3650,6 +3650,25 @@
 				]
 			},
 			{
+				"name": "hyphens",
+				"desc": "Controls whether hyphenation is allowed to create more break opportunities within a line of text.",
+				"browsers": "C55,FF43,O44",
+				"restriction": "enum",
+				"values": [
+					{
+						"name": "auto",
+						"desc": "Conditional hyphenation characters inside a word, if present, take priority over automatic resources when determining hyphenation points within the word."
+					},
+					{
+						"name": "manual"
+					},
+					{
+						"name": "none",
+						"desc": "Words are not broken at line breaks, even if characters inside the word suggest line break points."
+					}
+				]
+			},
+			{
 				"name": "image-orientation",
 				"desc": "Specifies an orthogonal rotation to be applied to an image before it is laid out.",
 				"browsers": "FF26",
