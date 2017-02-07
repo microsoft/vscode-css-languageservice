@@ -3464,7 +3464,7 @@
 		<entry name="hyphenate-limit-zone" restriction="percentage, length" version="4.0" browsers="none" ref="https://drafts.csswg.org/css-text-4/#propdef-hyphenate-limit-zone" syntax="div { $(name): 25%; }">
 			<desc>Specifies the maximum amount of unfilled space (before justification) that may be left in the line box before hyphenation is triggered to pull part of a word from the next line back up into the current line.</desc>
 		</entry>
-		<entry name="hyphens" restriction="enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-text-3/#hyphens-property" syntax="div { $(name): manual; }">
+		<entry name="hyphens" restriction="enum" version="3.0" browsers="C55,FF43,O44" ref="http://www.w3.org/TR/css-text-3/#hyphens-property" syntax="div { $(name): manual; }">
 			<desc>Controls whether hyphenation is allowed to create more break opportunities within a line of text.</desc>
 			<values>
 				<value name="auto" version="3.0" browsers="all">
