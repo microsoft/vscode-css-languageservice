@@ -263,7 +263,7 @@ export class SCSSParser extends cssParser.Parser {
 	public _parseWarnAndDebug(): nodes.Node {
 		if (!this.peek(TokenType.AtKeyword, '@debug') 
 		    && !this.peek(TokenType.AtKeyword, '@warn')
-		    && !this.peek(TokenType.AtKeyword, '@error') {
+		    && !this.peek(TokenType.AtKeyword, '@error')) {
 			return null;
 		}
 		let node = this.createNode(nodes.NodeType.Debug);
