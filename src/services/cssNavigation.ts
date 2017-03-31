@@ -145,7 +145,7 @@ export class CSSNavigation {
 		let highlights = this.findDocumentHighlights(document, position, stylesheet);
 		let edits = highlights.map(h => TextEdit.replace(h.range, newName));
 		return {
-			changes: [ { textDocument: { version: document.version, uri: document.uri }, edits: edits } ]
+			changes: { [document.uri]: edits }
 		};
 	}
 
