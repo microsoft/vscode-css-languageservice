@@ -170,7 +170,7 @@ export class SCSSParser extends cssParser.Parser {
 				|| this._parseImport() // nested @import
 				|| this._parseMedia() // nested @media
 				|| this._parseFontFace() // nested @font-face
-				|| this._parseWarnAndDebug() // @warn and @debug statements
+				|| this._parseWarnAndDebug() // @warn, @debug and @error statements
 				|| this._parseControlStatement() // @if, @while, @for, @each
 				|| this._parseFunctionDeclaration() // @function
 				|| this._parseExtends() // @extends
@@ -261,11 +261,13 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseWarnAndDebug(): nodes.Node {
-		if (!this.peek(TokenType.AtKeyword, '@debug') && !this.peek(TokenType.AtKeyword, '@warn')) {
+		if (!this.peek(TokenType.AtKeyword, '@debug') 
+		    && !this.peek(TokenType.AtKeyword, '@warn')
+		    && !this.peek(TokenType.AtKeyword, '@error')) {
 			return null;
 		}
 		let node = this.createNode(nodes.NodeType.Debug);
-		this.consumeToken(); // @debug or @warn
+		this.consumeToken(); // @debug, @warn or @error
 		node.addChild(this._parseExpr()); // optional
 		return this.finish(node);
 	}
