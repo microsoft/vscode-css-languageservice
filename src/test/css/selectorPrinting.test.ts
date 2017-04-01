@@ -9,6 +9,7 @@ import {Parser} from '../../parser/cssParser';
 import * as nodes from '../../parser/cssNodes';
 import * as selectorPrinter from '../../services/selectorPrinting';
 import {TextDocument} from 'vscode-languageserver-types';
+import {MarkedString} from 'vscode-languageserver-types';
 
 function elementToString(element: selectorPrinter.Element): string {
 	let label = element.findAttribute('name') || '';
@@ -42,25 +43,34 @@ function elementToString(element: selectorPrinter.Element): string {
 	return label;
 }
 
-export function parseSelector(p: Parser, input: string, selectorName: string, expected: string): void {
+function doParse(p: Parser, input: string, selectorName: string): nodes.Selector {
 	let document = TextDocument.create('test://test/test.css', 'css', 0, input);
 	let styleSheet = p.parseStylesheet(document);
 
 	let node = nodes.getNodeAtOffset(styleSheet, input.indexOf(selectorName));
-	let selector = <nodes.Selector> node.findParent(nodes.NodeType.Selector);
+	return <nodes.Selector> node.findParent(nodes.NodeType.Selector);
+}
 
+export function parseSelector(p: Parser, input: string, selectorName: string, expected: string): void {
+	let selector = doParse(p, input, selectorName);
 	let element = selectorPrinter.selectorToElement(selector);
+
 	assert.equal(elementToString(element), expected);
 }
 
 export function assertElement(p: Parser, input: string, expected: { name: string; value: string }[]): void {
 	let node = p.internalParse(input, p._parseSimpleSelector);
-
 	let actual = selectorPrinter.toElement(node);
 
 	assert.deepEqual(actual.attributes, expected);
 }
 
+export function parseSelectorToMarkedString(p: Parser, input: string, selectorName: string, expected: MarkedString[]): void {
+	let selector = doParse(p, input, selectorName);
+	let printedElement = selectorPrinter.selectorToMarkedString(selector);
+
+	assert.deepEqual(printedElement, expected);
+}
 
 suite('CSS - Selector Printing', () => {
 
@@ -100,4 +110,29 @@ suite('CSS - Selector Printing', () => {
 		parseSelector(p, 'e1 + e2 { }', 'e2', '{e1|e2}');
 		parseSelector(p, 'e1 ~ e2 { }', 'e2', '{e1|e2|⋮|e2}');
 	});
+
+});
+
+suite('CSS - MarkedStringPrinter selectors', () => {
+
+	test('descendant selector', function () {
+		let p = new Parser();
+		parseSelectorToMarkedString(p, 'e1 e2 { }', 'e1', [{ language: 'html', value: '<e1>\n  …\n    <e2>' }]);
+		parseSelectorToMarkedString(p, 'e1 .div { }', 'e1', [{ language: 'html', value: '<e1>\n  …\n    <element class="div">' }]);
+	});
+	test('child selector', function () {
+		let p = new Parser();
+		parseSelectorToMarkedString(p, 'e1 > e2 { }', 'e2', [{ language: 'html', value: '<e1>\n  <e2>' }]);
+	});
+	test('group selector', function () {
+		let p = new Parser();
+		parseSelectorToMarkedString(p, 'e1, e2 { }', 'e1', [{ language: 'html', value: '<e1>' }]);
+		parseSelectorToMarkedString(p, 'e1, e2 { }', 'e2', [{ language: 'html', value: '<e2>' }]);
+	});
+	test('sibling selector', function () {
+		let p = new Parser();
+		parseSelectorToMarkedString(p, 'e1 + e2 { }', 'e2', [ { language: 'html', value: '<e1>\n<e2>' } ]);
+		parseSelectorToMarkedString(p, 'e1 ~ e2 { }', 'e2', [ { language: 'html', value: '<e1>\n<e2>\n⋮\n<e2>' } ]);
+	});
+
 });

@@ -149,7 +149,7 @@ class MarkedStringPrinter {
 	}
 
 	private writeLine(level: number, content: string) {
-		let indent = new Array(level).join('  ');
+		let indent = new Array(level + 1).join('  ');
 		this.result.push(indent + content);
 	}
 
