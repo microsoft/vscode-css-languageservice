@@ -168,7 +168,7 @@ export class SCSSParser extends cssParser.Parser {
 		if (this.peek(TokenType.AtKeyword)) {
 			return this._parseKeyframe() // nested @keyframe
 				|| this._parseImport() // nested @import
-				|| this._parseMedia() // nested @media
+				|| this._parseMedia(true) // nested @media
 				|| this._parseFontFace() // nested @font-face
 				|| this._parseWarnAndDebug() // @warn, @debug and @error statements
 				|| this._parseControlStatement() // @if, @while, @for, @each

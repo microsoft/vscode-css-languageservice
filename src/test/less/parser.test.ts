@@ -32,6 +32,8 @@ suite('LESS - Parser', () => {
 		assertNode('@media @phone {}', parser, parser._parseMedia.bind(parser));
 		assertNode('@media(max-width: 767px) { .mixinRef() }', parser, parser._parseMedia.bind(parser));
 		assertNode('@media(max-width: 767px) { .mixinDec() {} }', parser, parser._parseMedia.bind(parser));
+		assertNode('.something { @media (max-width: 760px) { > div { display: block; } } }', parser, parser._parseStylesheet.bind(parser));
+		assertError('@media (max-width: 760px) { + div { display: block; } }', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
 	});
 
 	test('VariableDeclaration', function() {

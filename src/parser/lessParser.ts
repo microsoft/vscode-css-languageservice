@@ -70,8 +70,8 @@ export class LESSParser extends cssParser.Parser {
 		return node;
 	}
 
-	public _parseMediaDeclaration(): nodes.Node {
-		return this._tryParseRuleset(false) 
+	public _parseMediaDeclaration(isNested = false): nodes.Node {
+		return this._tryParseRuleset(isNested) 
 			|| this._tryToParseDeclaration() 
 			|| this._tryParseMixinDeclaration()
 			|| this._tryParseMixinReference()
@@ -187,7 +187,7 @@ export class LESSParser extends cssParser.Parser {
 	public _parseRuleSetDeclaration(): nodes.Node {
 		if (this.peek(TokenType.AtKeyword)) {
 			return this._parseKeyframe()
-				|| this._parseMedia()
+				|| this._parseMedia(true)
 				|| this._parseImport()
 				|| this._parseDetachedRuleSetMixin() // less detached ruleset mixin
 				|| this._parseVariableDeclaration(); // Variable declarations

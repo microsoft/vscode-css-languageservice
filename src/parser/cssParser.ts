@@ -665,13 +665,13 @@ export class Parser {
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
 	}
 
-	public _parseMediaDeclaration(): nodes.Node {
-		return this._tryParseRuleset(false)
+	public _parseMediaDeclaration(isNested = false): nodes.Node {
+		return this._tryParseRuleset(isNested)
 			|| this._tryToParseDeclaration()
 			|| this._parseStylesheetStatement();
 	}
 
-	public _parseMedia(): nodes.Node {
+	public _parseMedia(isNested = false): nodes.Node {
 		// MEDIA_SYM S* media_query_list '{' S* ruleset* '}' S*
 		// media_query_list : S* [media_query [ ',' S* media_query ]* ]?
 		let node = <nodes.Media>this.create(nodes.Media);
@@ -687,7 +687,7 @@ export class Parser {
 			}
 		}
 
-		return this._parseBody(node, this._parseMediaDeclaration.bind(this));
+		return this._parseBody(node, this._parseMediaDeclaration.bind(this, isNested));
 	}
 
 	public _parseMediaQuery(resyncStopToken: TokenType[]): nodes.Node {

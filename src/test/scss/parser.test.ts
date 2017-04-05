@@ -175,6 +175,10 @@ suite('SCSS - Parser', () => {
 		assertNode('@media #{$media} and ($feature: $value)  {}', parser, parser._parseStylesheet.bind(parser));
 		assertNode('foo { bar { @media screen and (orientation: landscape) {}} }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media screen and (nth($query, 1): nth($query, 2)) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('.something { @media (max-width: 760px) { > .test { color: blue; } } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('.something { @media (max-width: 760px) { ~ div { display: block; } } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('.something { @media (max-width: 760px) { + div { display: block; } } }', parser, parser._parseStylesheet.bind(parser));
+		assertError('@media (max-width: 760px) { + div { display: block; } }', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
 	});
 
 	test('@keyframe', function () {
