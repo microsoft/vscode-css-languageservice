@@ -9,13 +9,17 @@ import {Scanner, TokenType} from '../../parser/cssScanner';
 
 suite('CSS - Scanner', () => {
 
-	function assertSingleToken(scan: Scanner, source: string, len: number, offset: number, text: string, type: TokenType): void {
+	function assertSingleToken(scan: Scanner, source: string, len: number, offset: number, text: string, ...tokenTypes: TokenType[]): void {
 		scan.setSource(source);
 		let token = scan.scan();
 		assert.equal(token.len, len);
 		assert.equal(token.offset, offset);
 		assert.equal(token.text, text);
-		assert.equal(token.type, type);
+		assert.equal(token.type, tokenTypes[0]);
+		for (let i = 1; i < tokenTypes.length; i++) {
+			assert.equal(scan.scan().type, tokenTypes[i], source);
+		}
+		assert.equal(scan.scan().type, TokenType.EOF, source);
 	}
 
 	test('Whitespace', function () {
@@ -25,13 +29,13 @@ suite('CSS - Scanner', () => {
 
 		scanner = new Scanner();
 		scanner.ignoreWhitespace = false;
-		assertSingleToken(scanner, ' @', 1, 0, ' ', TokenType.Whitespace);
-		assertSingleToken(scanner, '/*comment*/ @', 1, 11, ' ', TokenType.Whitespace);
+		assertSingleToken(scanner, ' @', 1, 0, ' ', TokenType.Whitespace, TokenType.Delim);
+		assertSingleToken(scanner, '/*comment*/ @', 1, 11, ' ', TokenType.Whitespace, TokenType.Delim);
 
 		scanner = new Scanner();
 		scanner.ignoreComment = false;
-		assertSingleToken(scanner, ' /*comment*/@', 11, 1, '/*comment*/', TokenType.Comment);
-		assertSingleToken(scanner, '/*comment*/ @', 11, 0, '/*comment*/', TokenType.Comment);
+		assertSingleToken(scanner, ' /*comment*/@', 11, 1, '/*comment*/', TokenType.Comment, TokenType.Delim);
+		assertSingleToken(scanner, '/*comment*/ @', 11, 0, '/*comment*/', TokenType.Comment, TokenType.Delim);
 	});
 
 	test('Token Ident', function () {
@@ -43,8 +47,10 @@ suite('CSS - Scanner', () => {
 		assertSingleToken(scanner, 'boo', 3, 0, 'boo', TokenType.Ident);
 		assertSingleToken(scanner, 'Boo', 3, 0, 'Boo', TokenType.Ident);
 		assertSingleToken(scanner, 'red--', 5, 0, 'red--', TokenType.Ident);
-		assertSingleToken(scanner, 'red-->', 5, 0, 'red--', TokenType.Ident);
+		assertSingleToken(scanner, 'red-->', 5, 0, 'red--', TokenType.Ident, TokenType.Delim);
 		assertSingleToken(scanner, '--red', 5, 0, '--red', TokenType.Ident);
+		assertSingleToken(scanner, '---red', 1, 0, '-', TokenType.Delim, TokenType.Ident);
+		assertSingleToken(scanner, '---', 1, 0, '-', TokenType.Delim, TokenType.Delim, TokenType.Delim);
 		assertSingleToken(scanner, 'a\\.b', 4, 0, 'a\.b', TokenType.Ident);
 		assertSingleToken(scanner, '\\E9motion', 9, 0, 'émotion', TokenType.Ident);
 		assertSingleToken(scanner, '\\E9 dition', 10, 0, 'édition', TokenType.Ident);
@@ -91,8 +97,8 @@ suite('CSS - Scanner', () => {
 		assertSingleToken(scanner, '1234', 4, 0, '1234', TokenType.Num);
 		assertSingleToken(scanner, '1.34', 4, 0, '1.34', TokenType.Num);
 		assertSingleToken(scanner, '.234', 4, 0, '.234', TokenType.Num);
-		assertSingleToken(scanner, '.234.', 4, 0, '.234', TokenType.Num);
-		assertSingleToken(scanner, '..234', 1, 0, '.', TokenType.Delim);
+		assertSingleToken(scanner, '.234.', 4, 0, '.234', TokenType.Num, TokenType.Delim);
+		assertSingleToken(scanner, '..234', 1, 0, '.', TokenType.Delim, TokenType.Num);
 	});
 
 	test('Token Delim', function () {
@@ -154,14 +160,14 @@ suite('CSS - Scanner', () => {
 	test('Token CDO', function () {
 		let scanner = new Scanner();
 		assertSingleToken(scanner, '<!--', 4, 0, '<!--', TokenType.CDO);
-		assertSingleToken(scanner, '<!-\n-', 1, 0, '<', TokenType.Delim);
+		assertSingleToken(scanner, '<!-\n-', 1, 0, '<', TokenType.Delim, TokenType.Exclamation, TokenType.Delim, TokenType.Delim);
 	});
 
 	test('Token CDC', function () {
 		let scanner = new Scanner();
 		assertSingleToken(scanner, '-->', 3, 0, '-->', TokenType.CDC);
-		assertSingleToken(scanner, '--y>', 3, 0, '--y', TokenType.Ident);
-		assertSingleToken(scanner, '--<', 1, 0, '-', TokenType.Delim);
+		assertSingleToken(scanner, '--y>', 3, 0, '--y', TokenType.Ident, TokenType.Delim);
+		assertSingleToken(scanner, '--<', 1, 0, '-', TokenType.Delim, TokenType.Delim, TokenType.Delim);
 	});
 
 	test('Token singletokens ;:{}[]()', function () {

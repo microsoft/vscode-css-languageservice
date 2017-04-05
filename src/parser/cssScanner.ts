@@ -605,11 +605,10 @@ export class Scanner {
 		let pos = this.stream.pos();
 		let hasMinus = this._minus(result);
 		if (hasMinus && this._minus(result) /* -- */) {
-			let hasContent = false;
-			while (this._identChar(result) || this._escape(result)) {
-				hasContent = true;
-			}
-			if (hasContent) {
+			if (this._identFirstChar(result) || this._escape(result)) {
+				while (this._identChar(result) || this._escape(result)) {
+					// loop
+				}
 				return true;
 			}
 		} else if (this._identFirstChar(result) || this._escape(result)) {

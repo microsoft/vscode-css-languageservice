@@ -82,6 +82,7 @@ suite('CSS - Parser', () => {
 		let parser = new Parser();
 		assertError('#boo, far } \n.far boo {}', parser, parser._parseStylesheet.bind(parser), ParseError.LeftCurlyExpected);
 		assertError('#boo, far { far: 43px; \n.far boo {}', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
+		assertError('--- @import "foo";', parser, parser._parseStylesheet.bind(parser), ParseError.RuleOrSelectorExpected);
 	});
 
 	test('@font-face', function () {
