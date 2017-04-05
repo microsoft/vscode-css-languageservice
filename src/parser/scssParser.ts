@@ -69,8 +69,8 @@ export class SCSSParser extends cssParser.Parser {
 			return this.finish(node, ParseError.VariableValueExpected, [], panic);
 		}
 
-		if (this.accept(TokenType.Exclamation)) {
-			if (!this.accept(TokenType.Ident, 'default', true)) {
+		while (this.accept(TokenType.Exclamation)) {
+			if (!this.acceptOne(TokenType.Ident, ['default', 'global'], false)) {
 				return this.finish(node, ParseError.UnknownKeyword);
 			}
 		}

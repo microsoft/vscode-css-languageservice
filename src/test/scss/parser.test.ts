@@ -37,6 +37,9 @@ suite('SCSS - Parser', () => {
 		assertNode('$color: 25.5', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('$color: 25px', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('$color: 25.5px !default', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('$text-color: green !global', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('$_RESOURCES: append($_RESOURCES, "clean") !global', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('$footer-height: 40px !default !global', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('$primary-font: "wf_SegoeUI","Segoe UI","Segoe","Segoe WP"', parser, parser._parseVariableDeclaration.bind(parser));
 		assertError('$color: red !def', parser, parser._parseVariableDeclaration.bind(parser), ParseError.UnknownKeyword);
 		assertError('$color : !default', parser, parser._parseVariableDeclaration.bind(parser), ParseError.VariableValueExpected);
@@ -216,6 +219,7 @@ suite('SCSS - Parser', () => {
 		assertNode('@if 1 <= $let { border: 3px; } @else { border: 4px; }', parser, parser._parseRuleSetDeclaration.bind(parser));
 		assertNode('@if 1 >= (1 + $foo) { border: 3px; } @else if 1 + 1 == 2 { border: 4px; }', parser, parser._parseRuleSetDeclaration.bind(parser));
 		assertNode('p { @if $i == 1 { x: 3px; } @else if $i == 1 { x: 4px; } @else { x: 4px; } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@if (index($_RESOURCES, "clean") != null) { @error "sdssd"; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@if $i == 1 { p { x: 3px; } }', parser, parser._parseStylesheet.bind(parser));
 		assertError('@if { border: 1px solid;  }', parser, parser._parseRuleSetDeclaration.bind(parser), ParseError.ExpressionExpected);
 		assertError('@if 1 }', parser, parser._parseRuleSetDeclaration.bind(parser), ParseError.LeftCurlyExpected);
