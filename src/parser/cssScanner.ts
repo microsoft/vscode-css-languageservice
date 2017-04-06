@@ -9,12 +9,11 @@ export enum TokenType {
 	AtKeyword,
 	String,
 	BadString,
-	BadUri,
+	UnquotedString,
 	Hash,
 	Num,
 	Percentage,
 	Dimension,
-	URI,
 	UnicodeRange,
 	CDO,
 	CDC,
@@ -138,24 +137,10 @@ export class MultiLineStream {
 }
 
 const _a = 'a'.charCodeAt(0);
-const _e = 'e'.charCodeAt(0);
-const _f = 'f'.charCodeAt(0);
-const _i = 'i'.charCodeAt(0);
-const _l = 'l'.charCodeAt(0);
-const _p = 'p'.charCodeAt(0);
-const _r = 'r'.charCodeAt(0);
-const _u = 'u'.charCodeAt(0);
-const _x = 'x'.charCodeAt(0);
+const _f = 'f'.charCodeAt(0);;
 const _z = 'z'.charCodeAt(0);
 const _A = 'A'.charCodeAt(0);
-const _E = 'E'.charCodeAt(0);
 const _F = 'F'.charCodeAt(0);
-const _I = 'I'.charCodeAt(0);
-const _L = 'L'.charCodeAt(0);
-const _P = 'P'.charCodeAt(0);
-const _R = 'R'.charCodeAt(0);
-const _U = 'U'.charCodeAt(0);
-const _X = 'X'.charCodeAt(0);
 const _Z = 'Z'.charCodeAt(0);
 const _0 = '0'.charCodeAt(0);
 const _9 = '9'.charCodeAt(0);
@@ -192,9 +177,6 @@ const _BRR = ']'.charCodeAt(0);
 const _CMA = ','.charCodeAt(0);
 const _DOT = '.'.charCodeAt(0);
 const _BNG = '!'.charCodeAt(0);
-
-const _url = [_u, _U, _r, _R, _l, _L, _LPA, _LPA];
-const _url_prefix = [_u, _U, _r, _R, _l, _L, _MIN, _MIN, _p, _P, _r, _R, _e, _E, _f, _F, _i, _I, _x, _X, _LPA, _LPA];
 
 const staticTokenTable: { [code: number]: TokenType; } = {};
 staticTokenTable[_SEM] = TokenType.SemiColon;
@@ -258,6 +240,15 @@ export class Scanner {
 		this.stream.goBackTo(pos);
 	}
 
+	public scanUnquotedString(): IToken {
+		let offset = this.stream.pos();
+		let content: string[] = [];
+		if (this._unquotedString(content)) {
+			return this.finishToken(offset, TokenType.UnquotedString, content.join(''));
+		}
+		return null;
+	}
+
 	public scan(): IToken {
 		// processes all whitespaces and comments
 		let triviaToken = this.trivia();
@@ -271,6 +262,10 @@ export class Scanner {
 		if (this.stream.eos()) {
 			return this.finishToken(offset, TokenType.EOF);
 		}
+		return this.scanNext(offset);
+	}
+
+	protected scanNext(offset: number): IToken {
 
 		// CDO <!--
 		if (this.stream.advanceIfChars([_LAN, _BNG, _MIN, _MIN])) {
@@ -280,12 +275,6 @@ export class Scanner {
 		// CDC -->
 		if (this.stream.advanceIfChars([_MIN, _MIN, _RAN])) {
 			return this.finishToken(offset, TokenType.CDC);
-		}
-
-		// URL
-		let tokenType = this._url();
-		if (tokenType !== null) {
-			return this.finishToken(offset, tokenType);
 		}
 
 		let content: string[] = [];
@@ -332,7 +321,7 @@ export class Scanner {
 				return this.finishToken(offset, TokenType.Percentage);
 			} else if (this.ident(content)) {
 				let dim = this.stream.substring(pos).toLowerCase();
-				tokenType = <TokenType>staticUnitTable[dim];
+				let tokenType = <TokenType>staticUnitTable[dim];
 				if (typeof tokenType !== 'undefined') {
 					// Known dimension 43px
 					return this.finishToken(offset, tokenType, content.join(''));
@@ -347,7 +336,7 @@ export class Scanner {
 
 		// String, BadString
 		content = [];
-		tokenType = this._string(content);
+		let tokenType = this._string(content);
 		if (tokenType !== null) {
 			return this.finishToken(offset, tokenType, content.join(''));
 		}
@@ -553,37 +542,24 @@ export class Scanner {
 		return null;
 	}
 
-	private _url(): TokenType {
-		if (this._matchWordAnyCase(_url) || this._matchWordAnyCase(_url_prefix)) {
-			this._whitespace();
-			let tokenType = TokenType.URI, stringType = this._string([]);
-			if (stringType === TokenType.BadString) {
-				tokenType = TokenType.BadUri;
-
-			} else if (stringType === null) {
-				let nestedBrackets = 0;
-				this.stream.advanceWhileChar((ch) => {
-					if (ch === _LPA) {
-						nestedBrackets++;
-					} else if (ch === _RPA) {
-						if (nestedBrackets === 0) {
-							return false;
-						}
-						nestedBrackets--;
-					}
-					return true;
-				});
-				tokenType = TokenType.URI;
-			}
-			this._whitespace();
-			if (this.stream.advanceIfChar(_RPA)) {
-				return tokenType;
-			} else {
-				return TokenType.BadUri;
-			}
+	private _unquotedChar(result: string[]): boolean {
+		// not closeQuote, not backslash, not newline
+		let ch = this.stream.peekChar();
+		if (ch !== 0 && ch !== _SQO && ch !== _DQO && ch != _LPA && ch != _RPA && ch != _WSP && ch != _TAB && ch != _NWL && ch != _LFD && ch != _CAR) {
+			this.stream.advance(1);
+			result.push(String.fromCharCode(ch));
+			return true;
 		}
+		return false;
+	};
 
-		return null;
+
+	protected _unquotedString(result: string[]): boolean {
+		let hasContent = false;
+		while (this._unquotedChar(result) || this._escape(result)) {
+			hasContent = true;
+		}
+		return hasContent;
 	}
 
 	private _whitespace(): boolean {

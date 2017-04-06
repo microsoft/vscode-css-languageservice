@@ -18,14 +18,7 @@ export const Ellipsis: scanner.TokenType = customTokenValue++;
 
 export class LESSScanner extends scanner.Scanner {
 
-	public scan(): scanner.IToken {
-
-		let triviaToken = this.trivia();
-		if (triviaToken !== null) {
-			return triviaToken;
-		}
-
-		let offset = this.stream.pos();
+	protected scanNext(offset: number) : scanner.IToken {
 
 		// LESS: escaped JavaScript code `let a = "dddd"`
 		let tokenType = this.escapedJavaScript();
@@ -37,7 +30,7 @@ export class LESSScanner extends scanner.Scanner {
 			return this.finishToken(offset, Ellipsis);
 		}
 
-		return super.scan();
+		return super.scanNext(offset);
 	}
 
 	protected comment(): boolean {

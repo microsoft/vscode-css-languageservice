@@ -17,7 +17,10 @@
 			"runtimeArgs": [],
 			"env": {},
 			"sourceMaps": true,
-			"outDir": "${workspaceRoot}/lib"
+			"outFiles": [
+				"${workspaceRoot}/lib/**"
+			],
+			"preLaunchTask": "compile"
 		}
 	]
 }

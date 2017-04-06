@@ -3,11 +3,11 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 'use strict';
-import {TokenType, Scanner, IToken} from './cssScanner';
+import { TokenType, Scanner, IToken } from './cssScanner';
 import * as nodes from './cssNodes';
-import {ParseError, CSSIssueType} from './cssErrors';
+import { ParseError, CSSIssueType } from './cssErrors';
 import * as languageFacts from '../services/languageFacts';
-import {TextDocument} from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-types';
 
 export interface IMark {
 	prev: IToken;
@@ -92,6 +92,19 @@ export class Parser {
 			this.consumeToken();
 			return true;
 		}
+		return false;
+	}
+
+	protected acceptUnquotedString(): boolean {
+		let pos = this.scanner.pos();
+		this.scanner.goBackTo(this.token.offset);
+		let unquoted = this.scanner.scanUnquotedString();
+		if (unquoted) {
+			this.token = unquoted;
+			this.consumeToken();
+			return true;
+		}
+		this.scanner.goBackTo(pos);
 		return false;
 	}
 
@@ -273,7 +286,7 @@ export class Parser {
 		if (!this.peek(TokenType.AtKeyword, '@apply')) {
 			return null;
 		}
-		const node = <nodes.AtApplyRule> this.create(nodes.AtApplyRule);
+		const node = <nodes.AtApplyRule>this.create(nodes.AtApplyRule);
 		this.consumeToken();
 
 		if (!node.setIdentifier(this._parseIdent([nodes.ReferenceType.Variable]))) {
@@ -388,11 +401,11 @@ export class Parser {
 		if (!this.peekRegExp(TokenType.Ident, /^--/)) {
 			return null;
 		}
-		let node = <nodes.CustomPropertyDeclaration> this.create(nodes.CustomPropertyDeclaration);
+		let node = <nodes.CustomPropertyDeclaration>this.create(nodes.CustomPropertyDeclaration);
 		if (!node.setProperty(this._parseProperty())) {
 			return null;
 		}
-		
+
 		if (!this.accept(TokenType.Colon)) {
 			return this.finish(node, ParseError.ColonExpected, [TokenType.Colon]);
 		}
@@ -401,7 +414,7 @@ export class Parser {
 		let mark = this.mark();
 		if (this.peek(TokenType.CurlyL)) {
 			// try to parse it as nested declaration
-			let propertySet = <nodes.CustomPropertySet> this.create(nodes.CustomPropertySet);
+			let propertySet = <nodes.CustomPropertySet>this.create(nodes.CustomPropertySet);
 			let declarations = this._parseDeclarations(this._parseRuleSetDeclaration.bind(this));
 			if (propertySet.setDeclarations(declarations) && !declarations.isErroneous(true)) {
 				propertySet.addChild(this._parsePrio());
@@ -497,7 +510,6 @@ export class Parser {
 					}
 					break;
 				case TokenType.BadString: // fall through
-				case TokenType.BadUri:
 					break done;
 				case TokenType.EOF:
 					// We shouldn't have reached the end of input, something is
@@ -570,7 +582,7 @@ export class Parser {
 			return null;
 		}
 
-		if (!this.accept(TokenType.URI) && !this.accept(TokenType.String)) {
+		if (!node.addChild(this._parseURILiteral()) && !node.addChild(this._parseStringLiteral())) {
 			return this.finish(node, ParseError.URIOrStringExpected);
 		}
 
@@ -588,10 +600,12 @@ export class Parser {
 			return null;
 		}
 
-		node.addChild(this._parseIdent()); // optional prefix
+		if (!node.addChild(this._parseURILiteral())) { // url literal also starts with ident
+			node.addChild(this._parseIdent()); // optional prefix
 
-		if (!this.accept(TokenType.URI) && !this.accept(TokenType.String)) {
-			return this.finish(node, ParseError.URIExpected, [TokenType.SemiColon]);
+			if (!node.addChild(this._parseURILiteral()) && !node.addChild(this._parseStringLiteral())) {
+				return this.finish(node, ParseError.URIExpected, [TokenType.SemiColon]);
+			}
 		}
 
 		if (!this.accept(TokenType.SemiColon)) {
@@ -1054,9 +1068,9 @@ export class Parser {
 		let node = <nodes.Term>this.create(nodes.Term);
 		node.setOperator(this._parseUnaryOperator()); // optional
 
-		if (node.setExpression(this._parseFunction()) || // first function then ident
+		if (node.setExpression(this._parseURILiteral()) || // url before function
+			node.setExpression(this._parseFunction()) || // function before ident
 			node.setExpression(this._parseIdent()) ||
-			node.setExpression(this._parseURILiteral()) ||
 			node.setExpression(this._parseStringLiteral()) ||
 			node.setExpression(this._parseNumeric()) ||
 			node.setExpression(this._parseHexColor()) ||
@@ -1108,11 +1122,32 @@ export class Parser {
 	}
 
 	public _parseURILiteral(): nodes.Node {
-		let node = this.createNode(nodes.NodeType.URILiteral);
-		if (this.accept(TokenType.URI) || this.accept(TokenType.BadUri)) {
-			return this.finish(node);
+		if (!this.peekRegExp(TokenType.Ident, /url(-prefix)?/i)) {
+			return null;
 		}
-		return null;
+		let pos = this.mark();
+		let node = this.createNode(nodes.NodeType.URILiteral);
+		this.accept(TokenType.Ident);
+
+		if (this.hasWhitespace() || !this.accept(TokenType.ParenthesisL)) {
+			this.restoreAtMark(pos);
+			return null;
+		}
+
+		node.addChild(this._parseURLArgument());  // argument is optional
+
+		if (!this.accept(TokenType.ParenthesisR)) {
+			return this.finish(node, ParseError.RightParenthesisExpected);
+		}
+		return this.finish(node);
+	}
+
+	public _parseURLArgument(): nodes.Node {
+		let node = this.create(nodes.Node);
+		if (!this.accept(TokenType.String) && !this.accept(TokenType.BadString) && !this.acceptUnquotedString()) {
+			return null;
+		};
+		return this.finish(node);
 	}
 
 	public _parseIdent(referenceTypes?: nodes.ReferenceType[]): nodes.Identifier {

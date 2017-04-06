@@ -354,4 +354,10 @@ suite('SCSS - Parser', () => {
 		assertNode('(key1: 1px, key2: solid + px, key3: (2+3))', parser, parser._parseExpr.bind(parser));
 		assertNode('($key1 + 3: 1px)', parser, parser._parseExpr.bind(parser));
 	});
+
+	test('Url', function () {
+		let parser = new SCSSParser();
+		assertNode('url(foo())', parser, parser._parseURILiteral.bind(parser));
+		assertNode('url(\'data:image/svg+xml;utf8,%3Csvg%20fill%3D%22%23\' + $color + \'foo\')', parser, parser._parseURILiteral.bind(parser));
+	});
 });

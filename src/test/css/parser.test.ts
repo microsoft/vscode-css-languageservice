@@ -418,5 +418,23 @@ suite('CSS - Parser', () => {
 		assertNode('36mm, -webkit-calc(100%-10px)', parser, parser._parseExpr.bind(parser));
 	});
 
+	test('Url', function () {
+		let parser = new Parser();
+		assertNode('url(\'http://msft.com\')', parser, parser._parseURILiteral.bind(parser));
+		assertNode('url("http://msft.com")', parser, parser._parseURILiteral.bind(parser));
+		assertNode('url( "http://msft.com")', parser, parser._parseURILiteral.bind(parser));
+		assertNode('url(\t"http://msft.com")', parser, parser._parseURILiteral.bind(parser));
+		assertNode('url(\n"http://msft.com")', parser, parser._parseURILiteral.bind(parser));
+		assertNode('url("http://msft.com"\n)', parser, parser._parseURILiteral.bind(parser));
+		assertNode('url("")', parser, parser._parseURILiteral.bind(parser));
+		assertNode('uRL("")', parser, parser._parseURILiteral.bind(parser));
+		assertNode('URL("")', parser, parser._parseURILiteral.bind(parser));
+		assertNode('url(http://msft.com)', parser, parser._parseURILiteral.bind(parser));
+		assertNode('url()', parser, parser._parseURILiteral.bind(parser));
+		assertNode('url(\'http://msft.com\n)', parser, parser._parseURILiteral.bind(parser));
+		assertError('url("http://msft.com"', parser, parser._parseURILiteral.bind(parser), ParseError.RightParenthesisExpected);
+		assertError('url(http://msft.com\')', parser, parser._parseURILiteral.bind(parser), ParseError.RightParenthesisExpected);
+	});
+
 });
 

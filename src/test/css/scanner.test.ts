@@ -60,21 +60,17 @@ suite('CSS - Scanner', () => {
 
 	test('Token Url', function () {
 		let scanner = new Scanner();
-		assertSingleToken(scanner, 'url(\'http://msft.com\')', 22, 0, 'url(\'http://msft.com\')', TokenType.URI);
-		assertSingleToken(scanner, 'url("http://msft.com")', 22, 0, 'url("http://msft.com")', TokenType.URI);
-		assertSingleToken(scanner, 'url( "http://msft.com")', 23, 0, 'url( "http://msft.com")', TokenType.URI);
-		assertSingleToken(scanner, 'url(\t"http://msft.com")', 23, 0, 'url(\t"http://msft.com")', TokenType.URI);
-		assertSingleToken(scanner, 'url(\n"http://msft.com")', 23, 0, 'url(\n"http://msft.com")', TokenType.URI);
-		assertSingleToken(scanner, 'url("http://msft.com"\n)', 23, 0, 'url("http://msft.com"\n)', TokenType.URI);
-		assertSingleToken(scanner, 'url("")', 7, 0, 'url("")', TokenType.URI);
-		assertSingleToken(scanner, 'uRL("")', 7, 0, 'uRL("")', TokenType.URI);
-		assertSingleToken(scanner, 'URL("")', 7, 0, 'URL("")', TokenType.URI);
-		assertSingleToken(scanner, 'url(http://msft.com)', 20, 0, 'url(http://msft.com)', TokenType.URI);
-		assertSingleToken(scanner, 'url()', 5, 0, 'url()', TokenType.URI);
-		assertSingleToken(scanner, 'url(\'http://msft.com\n)', 22, 0, 'url(\'http://msft.com\n)', TokenType.BadUri);
-		assertSingleToken(scanner, 'url("http://msft.com"', 21, 0, 'url("http://msft.com"', TokenType.BadUri);
-		assertSingleToken(scanner, 'url(http://msft.com\')', 21, 0, 'url(http://msft.com\')', TokenType.URI);
-		assertSingleToken(scanner, 'url(foo())', 10, 0, 'url(foo())', TokenType.URI);
+		function assertURLArgument(source: string, text: string, tokenType: TokenType): void {
+			scanner.setSource(source);
+			let token = scanner.scanUnquotedString();
+			assert.equal(token.len, text.length);
+			assert.equal(token.offset, 0);
+			assert.equal(token.text, text);
+			assert.equal(token.type, tokenType);
+		}
+		
+		assertURLArgument('http://msft.com', 'http://msft.com', TokenType.UnquotedString);
+		assertURLArgument('http://msft.com\'', 'http://msft.com', TokenType.UnquotedString);
 	});
 
 	test('Token AtKeyword', function () {

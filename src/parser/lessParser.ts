@@ -49,7 +49,7 @@ export class LESSParser extends cssParser.Parser {
 			}
 		}
 
-		if (!this.accept(TokenType.URI) && !this.accept(TokenType.String)) {
+		if (!node.addChild(this._parseURILiteral()) && !node.addChild(this._parseStringLiteral())) {
 			return this.finish(node, ParseError.URIOrStringExpected, [TokenType.SemiColon]);
 		}
 
@@ -528,4 +528,17 @@ export class LESSParser extends cssParser.Parser {
 		}
 		return this.finish(identifier);
 	}
+
+	public _parseURLArgument(): nodes.Node {
+		let pos = this.mark();
+		let node = super._parseURLArgument();
+		if (!node || !this.peek(TokenType.ParenthesisR)) {
+			this.restoreAtMark(pos);
+
+			let node = this.create(nodes.Node);
+			node.addChild(this._parseBinaryExpr());
+			return this.finish(node);
+		}
+		return node;
+	}	
 }

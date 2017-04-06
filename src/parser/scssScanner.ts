@@ -33,15 +33,7 @@ export const Ellipsis: TokenType = customTokenValue++;
 
 export class SCSSScanner extends Scanner {
 
-	public scan(): IToken {
-
-		// processes all whitespaces and comments
-		const triviaToken = this.trivia();
-		if (triviaToken !== null) {
-			return triviaToken;
-		}
-
-		const offset = this.stream.pos();
+	protected scanNext(offset: number) : IToken {
 
 		// scss variable
 		if (this.stream.advanceIfChar(_DLR)) {
@@ -89,7 +81,7 @@ export class SCSSScanner extends Scanner {
 			return this.finishToken(offset, Ellipsis);
 		}
 
-		return super.scan();
+		return super.scanNext(offset);
 	}
 
 	protected comment(): boolean {
