@@ -201,6 +201,10 @@ suite('CSS - Parser', () => {
 		assertNode('+  ', parser, parser._parseCombinator.bind(parser));
 		assertNode('>  ', parser, parser._parseCombinator.bind(parser));
 		assertNode('>', parser, parser._parseCombinator.bind(parser));
+		assertNode('>>>', parser, parser._parseCombinator.bind(parser));
+		assertNode('/deep/', parser, parser._parseCombinator.bind(parser));
+		assertNode(':host >>> .data-table { width: 100%; }', parser, parser._parseStylesheet.bind(parser));
+		assertError(':host >> .data-table { width: 100%; }', parser, parser._parseStylesheet.bind(parser), ParseError.LeftCurlyExpected);
 	});
 
 	test('unary_operator', function () {

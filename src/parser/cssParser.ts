@@ -859,6 +859,14 @@ export class Parser {
 	public _parseCombinator(): nodes.Node {
 		let node = this.create(nodes.Node);
 		if (this.accept(TokenType.Delim, '>')) {
+			let mark = this.mark();
+			if (!this.hasWhitespace() && this.accept(TokenType.Delim, '>')) {
+				if (!this.hasWhitespace() && this.accept(TokenType.Delim, '>')) {
+					node.type = nodes.NodeType.SelectorCombinatorShadowPiercingDescendant;
+					return this.finish(node);
+				}
+				this.restoreAtMark(mark);
+			}
 			node.type = nodes.NodeType.SelectorCombinatorParent;
 			return this.finish(node);
 		} else if (this.accept(TokenType.Delim, '+')) {
@@ -867,6 +875,13 @@ export class Parser {
 		} else if (this.accept(TokenType.Delim, '~')) {
 			node.type = nodes.NodeType.SelectorCombinatorAllSiblings;
 			return this.finish(node);
+		} else if (this.accept(TokenType.Delim, '/')) {
+			let mark = this.mark();
+			if (!this.hasWhitespace() && this.accept(TokenType.Ident, 'deep') && !this.hasWhitespace() && this.accept(TokenType.Delim, '/')) {
+				node.type = nodes.NodeType.SelectorCombinatorShadowPiercingDescendant;
+				return this.finish(node);
+			}
+			this.restoreAtMark(mark);
 		} else {
 			return null;
 		}

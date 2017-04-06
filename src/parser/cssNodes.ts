@@ -21,6 +21,7 @@ export enum NodeType {
 	SelectorCombinatorParent,
 	SelectorCombinatorSibling,
 	SelectorCombinatorAllSiblings,
+	SelectorCombinatorShadowPiercingDescendant,
 	Page,
 	PageBoxMarginBox,
 	ClassSelector,
