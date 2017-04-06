@@ -356,6 +356,7 @@ class SelectorElementBuilder {
 			}
 			if (selectorChild instanceof nodes.SimpleSelector ||
 				selectorChild.type === nodes.NodeType.SelectorCombinatorParent ||
+				selectorChild.type === nodes.NodeType.SelectorCombinatorShadowPiercingDescendant ||
 				selectorChild.type === nodes.NodeType.SelectorCombinatorSibling ||
 				selectorChild.type === nodes.NodeType.SelectorCombinatorAllSiblings) {
 
