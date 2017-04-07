@@ -137,8 +137,10 @@ export class CSSCompletion {
 						range = this.getCompletionRange(null);
 						insertText = entry.name + ': ';
 					}
+					let splittedByHyphenCount = entry.name.split("-").length
 					result.items.push({
 						label: entry.name,
+						sortText: `${splittedByHyphenCount}${entry.name}`,
 						documentation: languageFacts.getEntryDescription(entry),
 						textEdit: TextEdit.replace(range, insertText),
 						kind: CompletionItemKind.Property
