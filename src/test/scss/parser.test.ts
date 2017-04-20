@@ -340,6 +340,9 @@ suite('SCSS - Parser', () => {
 		assertNode('&:hover', parser, parser._parseSimpleSelector.bind(parser));
 		assertNode('&.float', parser, parser._parseSimpleSelector.bind(parser));
 		assertNode('&-bar', parser, parser._parseSimpleSelector.bind(parser));
+		assertNode('&-1', parser, parser._parseSimpleSelector.bind(parser));
+		assertNode('&1', parser, parser._parseSimpleSelector.bind(parser));
+		assertNode('&-foo-1', parser, parser._parseSimpleSelector.bind(parser));
 		assertNode('&&', parser, parser._parseSimpleSelector.bind(parser));
 	});
 

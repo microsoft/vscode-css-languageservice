@@ -241,8 +241,8 @@ export class SCSSParser extends cssParser.Parser {
 	public _parseSelectorCombinator(): nodes.Node {
 		let node = this.createNode(nodes.NodeType.SelectorCombinator);
 		if (this.accept(TokenType.Delim, '&')) {
-			while (!this.hasWhitespace() && (this.accept(TokenType.Delim, '-') || node.addChild(this._parseIdent()) || this.accept(TokenType.Delim, '&'))) {
-				//  support &-foo
+			while (!this.hasWhitespace() && (this.accept(TokenType.Delim, '-') || this.accept(TokenType.Num) || node.addChild(this._parseIdent()) || this.accept(TokenType.Delim, '&'))) {
+				//  support &-foo-1
 			}
 			return this.finish(node);
 		}
