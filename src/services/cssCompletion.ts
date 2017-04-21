@@ -616,7 +616,7 @@ export class CSSCompletion {
 	}
 
 	public getCompletionsForDeclarations(declarations: nodes.Declarations, result: CompletionList): CompletionList {
-		if (!declarations) { // incomplete nodes
+		if (!declarations || this.offset === declarations.offset) { // incomplete nodes
 			return result;
 		}
 

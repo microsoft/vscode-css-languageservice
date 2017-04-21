@@ -96,6 +96,12 @@ suite('CSS - Completion', () => {
 					{ label: 'html', resultText: 'html {' }
 				]
 			}),
+			testCompletionFor('.foo |{ ', {
+				items: [
+					{ label: 'html', resultText: '.foo html{ ' },
+					{ notAvailable: true, label: 'display' }
+				]
+			}),
 			testCompletionFor('@|import url("something.css");', {
 				count: 0
 			})
