@@ -462,7 +462,7 @@ export class LintVisitor implements nodes.IVisitor {
 		//	0 has no following unit
 		/////////////////////////////////////////////////////////////
 		let value = node.getValue();
-		if (value.unit === '%') {
+		if (!value.unit || languageFacts.units.length.indexOf(value.unit.toLowerCase()) === -1) {
 			return true;
 		}
 
