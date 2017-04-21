@@ -140,12 +140,16 @@ export class CSSCompletion {
 						range = this.getCompletionRange(null);
 						insertText = entry.name + ': ';
 					}
-					result.items.push({
+					let item: CompletionItem = {
 						label: entry.name,
 						documentation: languageFacts.getEntryDescription(entry),
 						textEdit: TextEdit.replace(range, insertText),
 						kind: CompletionItemKind.Property
-					});
+					}
+					if (strings.startsWith(entry.name, '-')) {
+						item.sortText = 'x';
+					}
+					result.items.push(item);
 				}
 			}
 		}
@@ -233,7 +237,7 @@ export class CSSCompletion {
 							insertTextFormat = SnippetFormat;
 						}
 					}
-					let item = {
+					let item: CompletionItem = {
 						label: value.name,
 						documentation: languageFacts.getEntryDescription(value),
 						textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertString),
@@ -552,22 +556,30 @@ export class CSSCompletion {
 
 		languageFacts.getPseudoClasses().forEach((entry) => {
 			if (entry.browsers.onCodeComplete) {
-				result.items.push({
+				let item: CompletionItem = {
 					label: entry.name,
 					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), entry.name),
 					documentation: languageFacts.getEntryDescription(entry),
 					kind: CompletionItemKind.Function
-				});
+				};
+				if (strings.startsWith(entry.name, ':-')) {
+					item.sortText = 'x';
+				}
+				result.items.push(item);
 			}
 		});
 		languageFacts.getPseudoElements().forEach((entry) => {
 			if (entry.browsers.onCodeComplete) {
-				result.items.push({
+				let item: CompletionItem = {
 					label: entry.name,
 					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), entry.name),
 					documentation: languageFacts.getEntryDescription(entry),
 					kind: CompletionItemKind.Function
-				});
+				};
+				if (strings.startsWith(entry.name, '::-')) {
+					item.sortText = 'x';
+				}
+				result.items.push(item);
 			}
 		});
 		if (!isNested) { // show html tags only for top level
