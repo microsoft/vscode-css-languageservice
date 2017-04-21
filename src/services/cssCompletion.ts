@@ -276,6 +276,9 @@ export class CSSCompletion {
 		} else if (this.currentWord.length === 0) {
 			result.isIncomplete = true;
 		}
+		if (existingNode && existingNode.parent && existingNode.parent.type === nodes.NodeType.Term) {
+			existingNode = existingNode.getParent(); // include the unary operator
+		}
 		entry.restrictions.forEach((restriction) => {
 			let units = languageFacts.units[restriction];
 			if (units) {

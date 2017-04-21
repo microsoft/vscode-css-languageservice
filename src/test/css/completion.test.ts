@@ -254,6 +254,11 @@ suite('CSS - Completion', () => {
 				items: [
 					{ label: '10cm', resultText: 'body { vertical-align: 10cm }' }
 				]
+			}),
+			testCompletionFor('body { top: -2px| }', {
+				items: [
+					{ label: '-2px', resultText: 'body { top: -2px }' }
+				]
 			})
 		]).then(() => testDone(), (error) => testDone(error));
 	});
