@@ -318,7 +318,12 @@ export class LintVisitor implements nodes.IVisitor {
 			['width', 'height', 'margin-top', 'margin-bottom', 'float'].forEach(function (prop) {
 				let elem = self.fetch(propertyTable, prop);
 				for (let index = 0; index < elem.length; index++) {
-					self.addEntry(elem[index].node, Rules.PropertyIgnoredDueToDisplay, localize('rule.propertyIgnoredDueToDisplayInline', "Property is ignored due to the display. With 'display: inline', the width, height, margin-top, margin-bottom, and float properties have no effect."));
+					let node = elem[index].node;
+					let value = node.getValue();
+					if (prop === 'float' && (!value || value.matches('none'))) {
+						continue;
+					}
+					self.addEntry(node, Rules.PropertyIgnoredDueToDisplay, localize('rule.propertyIgnoredDueToDisplayInline', "Property is ignored due to the display. With 'display: inline', the width, height, margin-top, margin-bottom, and float properties have no effect."));
 				}
 			});
 		}
@@ -328,7 +333,11 @@ export class LintVisitor implements nodes.IVisitor {
 		if (displayElems.length > 0) {
 			let elem = this.fetch(propertyTable, 'float');
 			for (let index = 0; index < elem.length; index++) {
-				this.addEntry(elem[index].node, Rules.PropertyIgnoredDueToDisplay, localize('rule.propertyIgnoredDueToDisplayInlineBlock', "Property is ignored due to the display. With 'display: inline-block', float properties have no effect."));
+				let node = elem[index].node;
+				let value = node.getValue();
+				if (value && !value.matches('none')) {
+					this.addEntry(node, Rules.PropertyIgnoredDueToDisplay, localize('rule.propertyIgnoredDueToDisplayInlineBlock', "Property is ignored due to the display. With 'display: inline-block', float properties have no effect."));
+				}
 			}
 		}
 
