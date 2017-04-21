@@ -6,15 +6,22 @@
 
 import * as languageFacts from './languageFacts';
 import * as nodes from '../parser/cssNodes';
-import {CSSCompletion} from './cssCompletion';
-import {CompletionList, CompletionItemKind, InsertTextFormat, TextEdit} from 'vscode-languageserver-types';
+import { CSSCompletion } from './cssCompletion';
+import { CompletionList, CompletionItemKind, InsertTextFormat, TextEdit, CompletionItem } from 'vscode-languageserver-types';
 
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();
 
+interface IFunctionInfo {
+	name: string;
+	example: string;
+	description?: string;
+	type?: string;
+}
+
 export class LESSCompletion extends CSSCompletion {
 
-	private static builtInProposals = [
+	private static builtInProposals: IFunctionInfo[] = [
 		{
 			'name': 'escape',
 			'example': 'escape(@string);',
@@ -38,7 +45,8 @@ export class LESSCompletion extends CSSCompletion {
 		{
 			'name': 'color',
 			'example': 'color(@string);',
-			'description': localize('less.builtin.color', 'parses a string to a color')
+			'description': localize('less.builtin.color', 'parses a string to a color'),
+			'type': 'color'
 		},
 		{
 			'name': 'convert',
@@ -48,7 +56,8 @@ export class LESSCompletion extends CSSCompletion {
 		{
 			'name': 'data-uri',
 			'example': 'data-uri([mimetype,] url);',
-			'description': localize('less.builtin.data-uri', 'inlines a resource and falls back to `url()`')
+			'description': localize('less.builtin.data-uri', 'inlines a resource and falls back to `url()`'),
+			'type': 'url'
 		},
 		{
 			'name': 'length',
@@ -93,7 +102,8 @@ export class LESSCompletion extends CSSCompletion {
 		{
 			'name': 'percentage',
 			'description': localize('less.builtin.percentage', 'converts to a %, e.g. 0.5 > 50%'),
-			'example': 'percentage(@number);'
+			'example': 'percentage(@number);',
+			'type': 'percentage'
 		},
 		{
 			'name': 'round',
@@ -147,7 +157,7 @@ export class LESSCompletion extends CSSCompletion {
 		}
 	];
 
-	private static colorProposals = [
+	private static colorProposals: IFunctionInfo[] = [
 		{
 			'name': 'argb',
 			'example': 'argb(@color);',
@@ -276,7 +286,7 @@ export class LESSCompletion extends CSSCompletion {
 		{
 			'name': 'greyscale',
 			'example': 'greyscale(@color);',
-			'description': localize('less.builtin.greyscale', 'returns a grey, 100% desaturated color')
+			'description': localize('less.builtin.greyscale', 'returns a grey, 100% desaturated color'),
 		},
 		{
 			'name': 'contrast',
@@ -326,28 +336,36 @@ export class LESSCompletion extends CSSCompletion {
 		super('@');
 	}
 
-	private createFunctionProposals(proposals: { name: string; example: string; description?: string; }[], existingNode: nodes.Node, result: CompletionList): CompletionList {
+	private createFunctionProposals(proposals: IFunctionInfo[], existingNode: nodes.Node, sortToEnd: boolean, result: CompletionList): CompletionList {
 		proposals.forEach(p => {
-			result.items.push({
+			let item: CompletionItem = {
 				label: p.name,
 				detail: p.example,
 				documentation: p.description,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), p.name + '($0)'),
 				insertTextFormat: InsertTextFormat.Snippet,
 				kind: CompletionItemKind.Function
-			});
+			};
+			if (sortToEnd) {
+				item.sortText = 'z';
+			}
+			result.items.push(item);
 		});
 		return result;
 	}
 
 
-	public getTermProposals(existingNode: nodes.Node, result: CompletionList): CompletionList {
-		this.createFunctionProposals(LESSCompletion.builtInProposals, existingNode, result);
-		return super.getTermProposals(existingNode, result);
+	public getTermProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
+		let functions = LESSCompletion.builtInProposals;
+		if (entry) {
+			functions = functions.filter(f => !f.type || entry.restrictions.indexOf(f.type) !== -1);
+		}
+		this.createFunctionProposals(functions, existingNode, true, result);
+		return super.getTermProposals(entry, existingNode, result);
 	}
 
 	protected getColorProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
-		this.createFunctionProposals(LESSCompletion.colorProposals, existingNode, result);
+		this.createFunctionProposals(LESSCompletion.colorProposals, existingNode, false, result);
 		return super.getColorProposals(entry, existingNode, result);
 	}
 

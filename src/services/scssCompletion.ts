@@ -5,12 +5,18 @@
 'use strict';
 
 import * as languageFacts from './languageFacts';
-import {CSSCompletion} from './cssCompletion';
+import { CSSCompletion } from './cssCompletion';
 import * as nodes from '../parser/cssNodes';
-import {CompletionList, CompletionItemKind, TextEdit, InsertTextFormat} from 'vscode-languageserver-types';
+import { CompletionList, CompletionItemKind, TextEdit, InsertTextFormat, CompletionItem } from 'vscode-languageserver-types';
 
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();
+
+interface IFunctionInfo {
+	func: string;
+	desc?: string;
+	type?: string;
+}
 
 export class SCSSCompletion extends CSSCompletion {
 
@@ -32,7 +38,7 @@ export class SCSSCompletion extends CSSCompletion {
 		'$limit': '1'
 	};
 
-	private static colorProposals = [
+	private static colorProposals: IFunctionInfo[] = [
 		{ func: 'red($color)', desc: localize('scss.builtin.red', 'Gets the red component of a color.') },
 		{ func: 'green($color)', desc: localize('scss.builtin.green', 'Gets the green component of a color.') },
 		{ func: 'blue($color)', desc: localize('scss.builtin.blue', 'Gets the blue component of a color.') },
@@ -60,7 +66,7 @@ export class SCSSCompletion extends CSSCompletion {
 		{ func: 'ie-hex-str($color)', desc: localize('scss.builtin.ie-hex-str', 'Converts a color into the format understood by IE filters.') }
 	];
 
-	private static selectorFuncs = [
+	private static selectorFuncs: IFunctionInfo[] = [
 		{ func: 'selector-nest($selectors…)', desc: localize('scss.builtin.selector-nest', 'Nests selector beneath one another like they would be nested in the stylesheet.') },
 		{ func: 'selector-append($selectors…)', desc: localize('scss.builtin.selector-append', 'Appends selectors to one another without spaces in between.') },
 		{ func: 'selector-extend($selector, $extendee, $extender)', desc: localize('scss.builtin.selector-extend', 'Extends $extendee with $extender within $selector.') },
@@ -71,7 +77,7 @@ export class SCSSCompletion extends CSSCompletion {
 		{ func: 'selector-parse($selector)', desc: localize('scss.builtin.selector-parse', 'Parses a selector into the format returned by &.') }
 	];
 
-	private static builtInFuncs = [
+	private static builtInFuncs: IFunctionInfo[] = [
 		{ func: 'unquote($string)', desc: localize('scss.builtin.unquote', 'Removes quotes from a string.') },
 		{ func: 'quote($string)', desc: localize('scss.builtin.quote', 'Adds quotes to a string.') },
 		{ func: 'str-length($string)', desc: localize('scss.builtin.str-length', 'Returns the number of characters in a string.') },
@@ -80,7 +86,7 @@ export class SCSSCompletion extends CSSCompletion {
 		{ func: 'str-slice($string, $start-at, [$end-at])', desc: localize('scss.builtin.str-slice', 'Extracts a substring from $string.') },
 		{ func: 'to-upper-case($string)', desc: localize('scss.builtin.to-upper-case', 'Converts a string to upper case.') },
 		{ func: 'to-lower-case($string)', desc: localize('scss.builtin.to-lower-case', 'Converts a string to lower case.') },
-		{ func: 'percentage($number)', desc: localize('scss.builtin.percentage', 'Converts a unitless number to a percentage.') },
+		{ func: 'percentage($number)', desc: localize('scss.builtin.percentage', 'Converts a unitless number to a percentage.'), type: 'percentage' },
 		{ func: 'round($number)', desc: localize('scss.builtin.round', 'Rounds a number to the nearest whole number.') },
 		{ func: 'ceil($number)', desc: localize('scss.builtin.ceil', 'Rounds a number up to the next whole number.') },
 		{ func: 'floor($number)', desc: localize('scss.builtin.floor', 'Rounds a number down to the previous whole number.') },
@@ -127,33 +133,42 @@ export class SCSSCompletion extends CSSCompletion {
 		}
 	}
 
-	private createFunctionProposals(proposals: {func: string; desc: string; }[], existingNode: nodes.Node, result: CompletionList): CompletionList {
+	private createFunctionProposals(proposals: IFunctionInfo[], existingNode: nodes.Node, sortToEnd: boolean, result: CompletionList): CompletionList {
 		proposals.forEach((p) => {
 			let insertText = p.func.replace(/\[?(\$\w+)\]?/g, this.createReplaceFunction());
-			result.items.push({
-				label: p.func.substr(0, p.func.indexOf('(')),
+			let label = p.func.substr(0, p.func.indexOf('('));
+			let item: CompletionItem = {
+				label: label,
 				detail: p.func,
 				documentation: p.desc,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
 				insertTextFormat: InsertTextFormat.Snippet,
 				kind: CompletionItemKind.Function
-			});
+			};
+			if (sortToEnd) {
+				item.sortText = 'z';
+			}
+			result.items.push(item);
 		});
 		return result;
 	}
 
 	public getCompletionsForSelector(ruleSet: nodes.RuleSet, isNested: boolean, result: CompletionList): CompletionList {
-		this.createFunctionProposals(SCSSCompletion.selectorFuncs, void 0, result);
+		this.createFunctionProposals(SCSSCompletion.selectorFuncs, void 0, true, result);
 		return super.getCompletionsForSelector(ruleSet, isNested, result);
 	}
 
-	public getTermProposals(existingNode: nodes.Node, result: CompletionList): CompletionList {
-		this.createFunctionProposals(SCSSCompletion.builtInFuncs, existingNode, result);
-		return super.getTermProposals(existingNode, result);
+	public getTermProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
+		let functions = SCSSCompletion.builtInFuncs;
+		if (entry) {
+			functions = functions.filter(f => !f.type || entry.restrictions.indexOf(f.type) !== -1);
+		}
+		this.createFunctionProposals(functions, existingNode, true, result);
+		return super.getTermProposals(entry, existingNode, result);
 	}
 
 	protected getColorProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
-		this.createFunctionProposals(SCSSCompletion.colorProposals, existingNode, result);
+		this.createFunctionProposals(SCSSCompletion.colorProposals, existingNode, false, result);
 		return super.getColorProposals(entry, existingNode, result);
 	}
 

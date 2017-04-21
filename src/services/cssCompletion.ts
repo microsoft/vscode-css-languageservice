@@ -5,11 +5,11 @@
 'use strict';
 
 import * as nodes from '../parser/cssNodes';
-import {Symbols, Symbol} from '../parser/cssSymbolScope';
+import { Symbols, Symbol } from '../parser/cssSymbolScope';
 import * as languageFacts from './languageFacts';
 import * as strings from '../utils/strings';
-import {findFirst} from '../utils/arrays';
-import {TextDocument, Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat} from 'vscode-languageserver-types';
+import { findFirst } from '../utils/arrays';
+import { TextDocument, Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat } from 'vscode-languageserver-types';
 
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();
@@ -73,27 +73,20 @@ export class CSSCompletion {
 					this.getCompletionsForFunctionDeclaration(<nodes.FunctionDeclaration>node, result);
 				} else if (node instanceof nodes.MixinReference) {
 					this.getCompletionsForMixinReference(<nodes.MixinReference>node, result);
-				}else if (node instanceof nodes.Function) {
+				} else if (node instanceof nodes.Function) {
 					this.getCompletionsForFunctionArgument(null, <nodes.Function>node, result);
 				}
 				if (result.items.length > 0) {
-					return result;
+					return this.finalize(result);
 				}
 			}
 			this.getCompletionsForStylesheet(result);
-			if (result.items.length > 0) {
-				return result;
-			}
-
-			if (this.variablePrefix && this.currentWord.indexOf(this.variablePrefix) === 0) {
-				this.getVariableProposals(null, result);
-				if (result.items.length > 0) {
-					return result;
+			if (result.items.length === 0) {
+				if (this.variablePrefix && this.currentWord.indexOf(this.variablePrefix) === 0) {
+					this.getVariableProposals(null, result);
 				}
 			}
-
-			// no match, don't show text matches
-			return result;
+			return this.finalize(result);
 
 		} finally {
 			// don't hold on any state, clear symbolContext
@@ -105,6 +98,16 @@ export class CSSCompletion {
 			this.defaultReplaceRange = null;
 			this.nodePath = null;
 		}
+	}
+
+	private finalize(result: CompletionList): CompletionList {
+		let needsSortText = result.items.some(i => !!i.sortText);
+		if (needsSortText) {
+			result.items.forEach(i => {
+				if (!i.sortText) { i.sortText = 'd'; }
+			});
+		}
+		return result;
 	}
 
 	private findInNodePath(...types: nodes.NodeType[]) {
@@ -164,14 +167,40 @@ export class CSSCompletion {
 		}
 
 		if (entry) {
-			this.getColorProposals(entry, existingNode, result);
-			this.getPositionProposals(entry, existingNode, result);
-			this.getRepeatStyleProposals(entry, existingNode, result);
-			this.getLineProposals(entry, existingNode, result);
-			this.getBoxProposals(entry, existingNode, result);
-			this.getImageProposals(entry, existingNode, result);
-			this.getTimingFunctionProposals(entry, existingNode, result);
-			this.getBasicShapeProposals(entry, existingNode, result);
+			for (let restriction of entry.restrictions) {
+				switch (restriction) {
+					case 'color':
+						this.getColorProposals(entry, existingNode, result);
+						break;
+					case 'position':
+						this.getColorProposals(entry, existingNode, result);
+						break;
+					case 'repeat':
+						this.getRepeatStyleProposals(entry, existingNode, result);
+						break;
+					case 'line-style':
+						this.getLineStyleProposals(entry, existingNode, result);
+						break;
+					case 'line-width':
+						this.getLineWidthProposals(entry, existingNode, result);
+						break;
+					case 'geometry-box':
+						this.getGeometryBoxProposals(entry, existingNode, result);
+						break;
+					case 'box':
+						this.getBoxProposals(entry, existingNode, result);
+						break;
+					case 'image':
+						this.getImageProposals(entry, existingNode, result);
+						break;
+					case 'timing-function':
+						this.getTimingFunctionProposals(entry, existingNode, result);
+						break;
+					case 'shape':
+						this.getBasicShapeProposals(entry, existingNode, result);
+						break;
+				}
+			}
 			this.getValueEnumProposals(entry, existingNode, result);
 			this.getCSSWideKeywordProposals(entry, existingNode, result);
 			this.getUnitProposals(entry, existingNode, result);
@@ -187,7 +216,7 @@ export class CSSCompletion {
 			});
 		}
 		this.getVariableProposals(existingNode, result);
-		this.getTermProposals(existingNode, result);
+		this.getTermProposals(entry, existingNode, result);
 		return result;
 	}
 
@@ -243,12 +272,13 @@ export class CSSCompletion {
 	public getVariableProposals(existingNode: nodes.Node, result: CompletionList): CompletionList {
 		let symbols = this.getSymbolContext().findSymbolsAtOffset(this.offset, nodes.ReferenceType.Variable);
 		symbols.forEach((symbol) => {
-			let insertText =  strings.startsWith(symbol.name, '--') ? `var(${symbol.name})` : symbol.name;
+			let insertText = strings.startsWith(symbol.name, '--') ? `var(${symbol.name})` : symbol.name;
 			const suggest: CompletionItem = {
 				label: symbol.name,
 				documentation: symbol.value ? strings.getLimitedString(symbol.value) : symbol.value,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
-				kind: CompletionItemKind.Variable
+				kind: CompletionItemKind.Variable,
+				sortText: 'z'
 			};
 
 			if (symbol.node.type === nodes.NodeType.FunctionParameter) {
@@ -318,163 +348,150 @@ export class CSSCompletion {
 	}
 
 	protected getColorProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
-		if (entry.restrictions.indexOf('color') !== -1) {
-			for (let color in languageFacts.colors) {
-				result.items.push({
-					label: color,
-					documentation: languageFacts.colors[color],
-					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), color),
-					kind: CompletionItemKind.Color
-				});
-			}
-			for (let color in languageFacts.colorKeywords) {
-				result.items.push({
-					label: color,
-					documentation: languageFacts.colorKeywords[color],
-					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), color),
-					kind: CompletionItemKind.Value
-				});
-			}
-			let colorValues = new Set();
-			this.styleSheet.accept(new ColorValueCollector(colorValues));
-			colorValues.getEntries().forEach((color) => {
-				result.items.push({
-					label: color,
-					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), color),
-					kind: CompletionItemKind.Color
-				});
-			});
-			languageFacts.colorFunctions.forEach((p) => {
-				let tabStop = 1;
-				let replaceFunction = (match, p1) => '${' + tabStop++ + ':' + p1 + '}';
-				let insertText = p.func.replace(/\[?\$(\w+)\]?/g, replaceFunction);
-				result.items.push({
-					label: p.func.substr(0, p.func.indexOf('(')),
-					detail: p.func,
-					documentation: p.desc,
-					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
-					insertTextFormat: SnippetFormat,
-					kind: CompletionItemKind.Function
-				});
+		for (let color in languageFacts.colors) {
+			result.items.push({
+				label: color,
+				documentation: languageFacts.colors[color],
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), color),
+				kind: CompletionItemKind.Color
 			});
 		}
+		for (let color in languageFacts.colorKeywords) {
+			result.items.push({
+				label: color,
+				documentation: languageFacts.colorKeywords[color],
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), color),
+				kind: CompletionItemKind.Value
+			});
+		}
+		let colorValues = new Set();
+		this.styleSheet.accept(new ColorValueCollector(colorValues));
+		colorValues.getEntries().forEach((color) => {
+			result.items.push({
+				label: color,
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), color),
+				kind: CompletionItemKind.Color
+			});
+		});
+		languageFacts.colorFunctions.forEach((p) => {
+			let tabStop = 1;
+			let replaceFunction = (match, p1) => '${' + tabStop++ + ':' + p1 + '}';
+			let insertText = p.func.replace(/\[?\$(\w+)\]?/g, replaceFunction);
+			result.items.push({
+				label: p.func.substr(0, p.func.indexOf('(')),
+				detail: p.func,
+				documentation: p.desc,
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
+				insertTextFormat: SnippetFormat,
+				kind: CompletionItemKind.Function
+			});
+		});
 		return result;
 	}
 
 	protected getPositionProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
-		if (entry.restrictions.indexOf('position') !== -1) {
-			for (let position in languageFacts.positionKeywords) {
-				result.items.push({
-					label: position,
-					documentation: languageFacts.positionKeywords[position],
-					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), position),
-					kind: CompletionItemKind.Value
-				});
-			}
+		for (let position in languageFacts.positionKeywords) {
+			result.items.push({
+				label: position,
+				documentation: languageFacts.positionKeywords[position],
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), position),
+				kind: CompletionItemKind.Value
+			});
 		}
 		return result;
 	}
 
 	protected getRepeatStyleProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
-		if (entry.restrictions.indexOf('repeat') !== -1) {
-			for (let repeat in languageFacts.repeatStyleKeywords) {
-				result.items.push({
-					label: repeat,
-					documentation: languageFacts.repeatStyleKeywords[repeat],
-					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), repeat),
-					kind: CompletionItemKind.Value
-				});
-			}
+		for (let repeat in languageFacts.repeatStyleKeywords) {
+			result.items.push({
+				label: repeat,
+				documentation: languageFacts.repeatStyleKeywords[repeat],
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), repeat),
+				kind: CompletionItemKind.Value
+			});
 		}
 		return result;
 	}
 
-	protected getLineProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
-		if (entry.restrictions.indexOf('line-style') !== -1) {
-			for (let lineStyle in languageFacts.lineStyleKeywords) {
-				result.items.push({
-					label: lineStyle,
-					documentation: languageFacts.lineStyleKeywords[lineStyle],
-					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), lineStyle),
-					kind: CompletionItemKind.Value
-				});
-			}
+	protected getLineStyleProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
+		for (let lineStyle in languageFacts.lineStyleKeywords) {
+			result.items.push({
+				label: lineStyle,
+				documentation: languageFacts.lineStyleKeywords[lineStyle],
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), lineStyle),
+				kind: CompletionItemKind.Value
+			});
 		}
-		if (entry.restrictions.indexOf('line-width') !== -1) {
-			languageFacts.lineWidthKeywords.forEach((lineWidth) => {
-				result.items.push({
-					label: lineWidth,
-					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), lineWidth),
-					kind: CompletionItemKind.Value
-				});
+		return result;
+	}
+
+	protected getLineWidthProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
+		languageFacts.lineWidthKeywords.forEach((lineWidth) => {
+			result.items.push({
+				label: lineWidth,
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), lineWidth),
+				kind: CompletionItemKind.Value
+			});
+		});
+		return result;
+	}
+
+	protected getGeometryBoxProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
+		for (let box in languageFacts.geometryBoxKeywords) {
+			result.items.push({
+				label: box,
+				documentation: languageFacts.geometryBoxKeywords[box],
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), box),
+				kind: CompletionItemKind.Value
 			});
 		}
 		return result;
 	}
 
 	protected getBoxProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
-		let geometryBox = entry.restrictions.indexOf('geometry-box');
-		if (geometryBox !== -1) {
-			for (let box in languageFacts.geometryBoxKeywords) {
-				result.items.push({
-					label: box,
-					documentation: languageFacts.geometryBoxKeywords[box],
-					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), box),
-					kind: CompletionItemKind.Value
-				});
-			}
-		}
-		if (entry.restrictions.indexOf('box') !== -1 || geometryBox !== -1) {
-			for (let box in languageFacts.boxKeywords) {
-				result.items.push({
-					label: box,
-					documentation: languageFacts.boxKeywords[box],
-					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), box),
-					kind: CompletionItemKind.Value
-				});
-			}
+		for (let box in languageFacts.boxKeywords) {
+			result.items.push({
+				label: box,
+				documentation: languageFacts.boxKeywords[box],
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), box),
+				kind: CompletionItemKind.Value
+			});
 		}
 		return result;
 	}
 
 	protected getImageProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
-		if (entry.restrictions.indexOf('image') !== -1) {
-			for (let image in languageFacts.imageFunctions) {
-				result.items.push({
-					label: image,
-					documentation: languageFacts.imageFunctions[image],
-					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), image),
-					kind: CompletionItemKind.Function
-				});
-			}
+		for (let image in languageFacts.imageFunctions) {
+			result.items.push({
+				label: image,
+				documentation: languageFacts.imageFunctions[image],
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), image),
+				kind: CompletionItemKind.Function
+			});
 		}
 		return result;
 	}
 
 	protected getTimingFunctionProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
-		if (entry.restrictions.indexOf('timing-function') !== -1) {
-			for (let timing in languageFacts.transitionTimingFunctions) {
-				result.items.push({
-					label: timing,
-					documentation: languageFacts.transitionTimingFunctions[timing],
-					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), timing),
-					kind: CompletionItemKind.Function
-				});
-			}
+		for (let timing in languageFacts.transitionTimingFunctions) {
+			result.items.push({
+				label: timing,
+				documentation: languageFacts.transitionTimingFunctions[timing],
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), timing),
+				kind: CompletionItemKind.Function
+			});
 		}
 		return result;
 	}
 
 	protected getBasicShapeProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
-		if (entry.restrictions.indexOf('shape') !== -1) {
-			for (let shape in languageFacts.basicShapeFunctions) {
-				result.items.push({
-					label: shape,
-					documentation: languageFacts.basicShapeFunctions[shape],
-					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), shape),
-					kind: CompletionItemKind.Function
-				});
-			}
+		for (let shape in languageFacts.basicShapeFunctions) {
+			result.items.push({
+				label: shape,
+				documentation: languageFacts.basicShapeFunctions[shape],
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), shape),
+				kind: CompletionItemKind.Function
+			});
 		}
 		return result;
 	}
@@ -646,7 +663,7 @@ export class CSSCompletion {
 
 		let declaration = <nodes.Declaration>expression.findParent(nodes.NodeType.Declaration);
 		if (!declaration) {
-			this.getTermProposals(null, result);
+			this.getTermProposals(null, null, result);
 			return result;
 		}
 
@@ -672,7 +689,7 @@ export class CSSCompletion {
 	public getCompletionsForFunctionDeclaration(decl: nodes.FunctionDeclaration, result: CompletionList): CompletionList {
 		let declarations = decl.getDeclarations();
 		if (declarations && this.offset > declarations.offset && this.offset < declarations.end) {
-			this.getTermProposals(null, result);
+			this.getTermProposals(null, null, result);
 		}
 		return result;
 	}
@@ -687,7 +704,7 @@ export class CSSCompletion {
 		return result;
 	}
 
-	public getTermProposals(existingNode: nodes.Node, result: CompletionList): CompletionList {
+	public getTermProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		let allFunctions = this.getSymbolContext().findSymbolsAtOffset(this.offset, nodes.ReferenceType.Function);
 		allFunctions.forEach((functionSymbol) => {
 			if (functionSymbol.node instanceof nodes.FunctionDeclaration) {
@@ -708,7 +725,8 @@ export class CSSCompletion {
 			detail: symbol.name + '(' + params.join(', ') + ')',
 			textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
 			insertTextFormat: SnippetFormat,
-			kind: CompletionItemKind.Function
+			kind: CompletionItemKind.Function,
+			sortText: 'z'
 		};
 	}
 
