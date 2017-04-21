@@ -71,10 +71,15 @@ suite('SCSS - Completions', () => {
 					{ label: 'mixin', resultText: '@mixin mixin($a: 1, $b) { content: $a + $b; } @include mixin(${1:$a}, ${2:$b})' }
 				]
 			}),
-			testCompletionFor('.foo { di| span { } ', {
+			testCompletionFor('di| span { } ', {
 				items: [
-					{ label: 'display' },
 					{ label: 'div' }
+				]
+			}),
+			testCompletionFor('span { di|} ', {
+				items: [
+					{ notAvailable: true, label: 'div' },
+					{ label: 'display' }
 				]
 			}),
 			testCompletionFor('.foo { .|', {

@@ -16,6 +16,7 @@ export interface ItemDescription {
 	documentation?: string;
 	kind?: CompletionItemKind;
 	resultText?: string;
+	notAvailable?: boolean
 }
 
 function asPromise<T>(result:T) : Promise<T> {
@@ -26,7 +27,12 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 	let matches = completions.items.filter(completion => {
 		return completion.label === expected.label;
 	});
-	assert.equal(matches.length, 1, expected.label + " should only existing once: Actual: " + completions.items.map(c => c.label).join(', '));
+	if (expected.notAvailable) {
+		assert.equal(matches.length, 0, expected.label + " should not be present");
+	} else {
+		assert.equal(matches.length, 1, expected.label + " should only existing once: Actual: " + completions.items.map(c => c.label).join(', '));
+	}
+
 	let match = matches[0];
 	if (expected.detail) {
 		assert.equal(match.detail, expected.detail);

@@ -142,9 +142,9 @@ export class SCSSCompletion extends CSSCompletion {
 		return result;
 	}
 
-	public getCompletionsForSelector(ruleSet: nodes.RuleSet, result: CompletionList): CompletionList {
+	public getCompletionsForSelector(ruleSet: nodes.RuleSet, isNested: boolean, result: CompletionList): CompletionList {
 		this.createFunctionProposals(SCSSCompletion.selectorFuncs, void 0, result);
-		return super.getCompletionsForSelector(ruleSet, result);
+		return super.getCompletionsForSelector(ruleSet, isNested, result);
 	}
 
 	public getTermProposals(existingNode: nodes.Node, result: CompletionList): CompletionList {
@@ -158,7 +158,7 @@ export class SCSSCompletion extends CSSCompletion {
 	}
 
 	public getCompletionsForDeclarationProperty(declaration: nodes.Declaration, result: CompletionList): CompletionList {
-		this.getCompletionsForSelector(null, result);
+		this.getCompletionsForSelector(null, true, result);
 		return super.getCompletionsForDeclarationProperty(declaration, result);
 	}
 

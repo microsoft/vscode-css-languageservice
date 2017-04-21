@@ -58,7 +58,7 @@ export class CSSCompletion {
 					this.getCompletionsForExpression(<nodes.Expression>node, result);
 				} else if (node instanceof nodes.SimpleSelector) {
 					let parentRuleSet = <nodes.RuleSet>node.findParent(nodes.NodeType.Ruleset);
-					this.getCompletionsForSelector(parentRuleSet, result);
+					this.getCompletionsForSelector(parentRuleSet, parentRuleSet.isNested(), result);
 				} else if (node instanceof nodes.FunctionArgument) {
 					this.getCompletionsForFunctionArgument(<nodes.FunctionArgument>node, <nodes.Function>node.getParent(), result);
 				} else if (node instanceof nodes.Declarations) {
@@ -484,7 +484,7 @@ export class CSSCompletion {
 				});
 			}
 		});
-		this.getCompletionsForSelector(null, result);
+		this.getCompletionsForSelector(null, false, result);
 		return result;
 	}
 
@@ -501,14 +501,14 @@ export class CSSCompletion {
 			while (currentWordStart > 0 && this.textDocument.getText().charAt(currentWordStart - 1) === ':') {
 				currentWordStart--;
 			}
-			return this.getCompletionsForSelector(ruleSet, result);
+			return this.getCompletionsForSelector(ruleSet, ruleSet.isNested(), result);
 		}
 		ruleSet.findParent(nodes.NodeType.Ruleset);
 
 		return this.getCompletionsForDeclarations(ruleSet.getDeclarations(), result);
 	}
 
-	public getCompletionsForSelector(ruleSet: nodes.RuleSet, result: CompletionList): CompletionList {
+	public getCompletionsForSelector(ruleSet: nodes.RuleSet, isNested: boolean, result: CompletionList): CompletionList {
 		let existingNode = this.findInNodePath(nodes.NodeType.PseudoSelector, nodes.NodeType.IdentifierSelector, nodes.NodeType.ClassSelector, nodes.NodeType.ElementNameSelector);
 		if (!existingNode && this.currentWord.length === 0 && this.offset > 0 && this.textDocument.getText()[this.offset - 1] === ':') {
 			// after the ':' of a pseudo selector, no node generated for just ':'
@@ -536,20 +536,22 @@ export class CSSCompletion {
 				});
 			}
 		});
-		languageFacts.html5Tags.forEach((entry) => {
-			result.items.push({
-				label: entry,
-				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), entry),
-				kind: CompletionItemKind.Keyword
+		if (!isNested) { // show html tags only for top level
+			languageFacts.html5Tags.forEach((entry) => {
+				result.items.push({
+					label: entry,
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), entry),
+					kind: CompletionItemKind.Keyword
+				});
 			});
-		});
-		languageFacts.svgElements.forEach((entry) => {
-			result.items.push({
-				label: entry,
-				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), entry),
-				kind: CompletionItemKind.Keyword
+			languageFacts.svgElements.forEach((entry) => {
+				result.items.push({
+					label: entry,
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), entry),
+					kind: CompletionItemKind.Keyword
+				});
 			});
-		});
+		}
 
 		let visited: { [name: string]: boolean } = {};
 		visited[this.currentWord] = true;
