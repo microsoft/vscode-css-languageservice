@@ -7,7 +7,7 @@
 import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
-import {CompletionList, TextDocument, TextEdit, Position, CompletionItemKind} from 'vscode-languageserver-types';
+import {CompletionList, TextDocument, TextEdit, Position, CompletionItemKind, InsertTextFormat} from 'vscode-languageserver-types';
 import {applyEdits} from '../textEditSupport';
 
 export interface ItemDescription {
@@ -15,6 +15,7 @@ export interface ItemDescription {
 	detail?: string;
 	documentation?: string;
 	kind?: CompletionItemKind;
+	insertTextFormat?: InsertTextFormat, 
 	resultText?: string;
 	notAvailable?: boolean
 }
@@ -45,6 +46,9 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 	}
 	if (expected.resultText) {
 		assert.equal(applyEdits(document, [ match.textEdit ]), expected.resultText);
+	}
+	if (expected.insertTextFormat) {
+		assert.equal(match.insertTextFormat, expected.insertTextFormat);
 	}
 };
 
@@ -229,6 +233,15 @@ suite('CSS - Completion', () => {
 			testCompletionFor('body { vertical-align: bottom; |}', {
 				items: [
 					{ label: 'display', resultText: 'body { vertical-align: bottom; display: }' }
+				]
+			})
+		]).then(() => testDone(), (error) => testDone(error));
+	});
+	test('functions', function (testDone): any {
+		Promise.all([
+			testCompletionFor('@keyframes fadeIn { 0% { transform: s|', {
+				items: [
+					{ label: 'scaleX()', resultText: '@keyframes fadeIn { 0% { transform: scaleX($1)', insertTextFormat: InsertTextFormat.Snippet  }
 				]
 			})
 		]).then(() => testDone(), (error) => testDone(error));

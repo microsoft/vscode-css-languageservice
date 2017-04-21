@@ -195,12 +195,26 @@ export class CSSCompletion {
 		if (entry.values) {
 			entry.values.forEach((value) => {
 				if (languageFacts.isCommonValue(value)) { // only show if supported by more than one browser
-					result.items.push({
+					let insertString = value.name;
+					let insertTextFormat;
+					if (strings.endsWith(insertString, ')')) {
+						let from = insertString.lastIndexOf('(');
+						if (from !== -1) {
+							insertString = insertString.substr(0, from) + '($1)';
+							insertTextFormat = SnippetFormat;
+						}
+					}
+					let item = {
 						label: value.name,
 						documentation: languageFacts.getEntryDescription(value),
-						textEdit: TextEdit.replace(this.getCompletionRange(existingNode), value.name),
-						kind: CompletionItemKind.Value
-					});
+						textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertString),
+						kind: CompletionItemKind.Value,
+						insertTextFormat
+					};
+					if (insertTextFormat) {
+						item.insertTextFormat = insertTextFormat;
+					}
+					result.items.push(item);
 				}
 			});
 		}
