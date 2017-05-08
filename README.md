@@ -18,7 +18,7 @@ and the Monaco editor.
  - *findDocumentSymbols* provides all symbols in the given document
  - *doCodeActions* evaluats code actions for the given location, typically to fix a problem.
  - *findColorSymbols* evaluates all color symbols in the given document
- - *doRename* renames all symbols connected connected to the given location.
+ - *doRename* renames all symbols connected to the given location.
 
 Installation
 ------------
