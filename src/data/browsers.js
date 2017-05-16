@@ -2221,6 +2221,10 @@
 						"browsers": "O12.1"
 					},
 					{
+						"name": "flow-root",
+						"browsers": "C58,FF53"
+					},
+					{
 						"name": "inline",
 						"desc": "The element generates an inline-level box."
 					},
@@ -10931,6 +10935,7 @@
 	"block": "The element generates a block-level box",
 	"flex": "The element generates a principal flex container box and establishes a flex formatting context.",
 	"flexbox": "The element lays out its contents using flow layout (block-and-inline layout). Standardized as 'flex'.",
+	"flow-root": "The element generates a block element box that establishes a new block formatting context.",
 	"inline-block": "A block box, which itself is flowed as a single inline box, similar to a replaced element. The inside of an inline-block is formatted as a block box, and the box itself is formatted as an inline box.",
 	"inline-flex": "Inline-level flex container.",
 	"inline-flexbox": "Inline-level flex container. Standardized as 'inline-flex'",
