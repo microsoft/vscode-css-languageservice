@@ -8458,6 +8458,12 @@
 				]
 			},
 			{
+				"name": "text-decoration-color",
+				"desc": "Specifies the color of text decoration (underlines overlines, and line-throughs) set on the element with text-decoration-line.",
+				"browsers": "FF36,C57,O44",
+				"restriction": "color"
+			},
+			{
 				"name": "text-decoration-line",
 				"desc": "Specifies what line decorations, if any, are added to the element.",
 				"browsers": "FF36",
