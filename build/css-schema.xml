@@ -2003,7 +2003,7 @@
 				<value name="flow-root" version="3.0" browsers="none">
 					<desc>The element generates a block container box, and lays out its contents using flow layout.</desc>
 				</value>
-				<value name="grid" version="3.0" browsers="none">
+				<value name="grid" version="3.0" browsers="FF52,C57,S10.1,O44">
 					<desc>The element generates a principal grid container box, and establishes a grid formatting context.</desc>
 				</value>
 				<value name="inline" version="2.0" browsers="all">
@@ -3157,7 +3157,7 @@
 				</value>
 			</values>
 		</entry>
-		<entry name="grid-area" restriction="identifier, integer" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-area" syntax="div { $(name): span 3; }">
+		<entry name="grid-area" restriction="identifier, integer" version="3.0" browsers="FF52,C57,S10.1,O44" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-area" syntax="div { $(name): span 3; }">
 			<desc>Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement. Shorthand for 'grid-row-start', 'grid-column-start', 'grid-row-end', and 'grid-column-end'.</desc>
 			<values>
 				<value name="auto" version="3.0" browsers="all">
@@ -3168,7 +3168,7 @@
 				</value>
 			</values>
 		</entry>
-		<entry name="grid-auto-columns" restriction="length, percentage" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-auto-columns" syntax="div { $(name): 100px; }">
+		<entry name="grid-auto-columns" restriction="length, percentage" version="3.0" browsers="FF52,C57,S10.1,O44" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-auto-columns" syntax="div { $(name): 100px; }">
 			<desc>Specifies the size of implicitly created columns.</desc>
 			<values>
 				<value name="min-content" version="3.0" browsers="all">
@@ -3185,7 +3185,7 @@
 				</value>
 			</values>
 		</entry>
-		<entry name="grid-auto-flow" restriction="enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-auto-flow" syntax="div { $(name): column; }">
+		<entry name="grid-auto-flow" restriction="enum" version="3.0" browsers="FF52,C57,S10.1,O44" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-auto-flow" syntax="div { $(name): column; }">
 			<desc>Controls how the auto-placement algorithm works, specifying exactly how auto-placed items get flowed into the grid.</desc>
 			<values>
 				<value name="row" version="3.0" browsers="all">
@@ -3199,7 +3199,7 @@
 				</value>
 			</values>
 		</entry>
-		<entry name="grid-auto-rows" restriction="length, percentage" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-auto-rows" syntax="div { $(name): 100px; }">
+		<entry name="grid-auto-rows" restriction="length, percentage" version="3.0" browsers="FF52,C57,S10.1,O44" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-auto-rows" syntax="div { $(name): 100px; }">
 			<desc>Specifies the size of implicitly created rows.</desc>
 			<values>
 				<value name="min-content" version="3.0" browsers="all">
@@ -3216,7 +3216,7 @@
 				</value>
 			</values>
 		</entry>
-		<entry name="grid-column" restriction="identifier, integer, enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-column" syntax="#item1 { $(name): span 2 / auto; }">
+		<entry name="grid-column" restriction="identifier, integer, enum" version="3.0" browsers="FF52,C57,S10.1,O44" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-column" syntax="#item1 { $(name): span 2 / auto; }">
 			<desc>Shorthand for 'grid-column-start' and 'grid-column-end'.</desc>
 			<values>
 				<value name="auto" version="3.0" browsers="all">
@@ -3227,7 +3227,7 @@
 				</value>
 			</values>
 		</entry>
-		<entry name="grid-column-end" restriction="identifier, integer, enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-column-end" syntax="#item1 { $(name): span 2; }">
+		<entry name="grid-column-end" restriction="identifier, integer, enum" version="3.0" browsers="FF52,C57,S10.1,O44" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-column-end" syntax="#item1 { $(name): span 2; }">
 			<desc>Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.</desc>
 			<values>
 				<value name="auto" version="3.0" browsers="all">
@@ -3238,10 +3238,10 @@
 				</value>
 			</values>
 		</entry>
-		<entry name="grid-column-gap" restriction="length" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-column-gap" syntax="#item1 { $(name): 2em; }">
+		<entry name="grid-column-gap" restriction="length" version="3.0" browsers="FF52,C57,S10.1,O44" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-column-gap" syntax="#item1 { $(name): 2em; }">
 			<desc>Specifies the gutters between grid columns.</desc>
 		</entry>
-		<entry name="grid-column-start" restriction="identifier, integer, enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-column-start" syntax="#item1 { $(name): span 2; }">
+		<entry name="grid-column-start" restriction="identifier, integer, enum" version="3.0" browsers="FF52,C57,S10.1,O44" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-column-start" syntax="#item1 { $(name): span 2; }">
 			<desc>Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.</desc>
 			<values>
 				<value name="auto" version="3.0" browsers="all">
@@ -3252,10 +3252,10 @@
 				</value>
 			</values>
 		</entry>
-		<entry name="grid-gap" restriction="length" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-gap" syntax="#item1 { $(name): 2em 1em; }">
+		<entry name="grid-gap" restriction="length" version="3.0" browsers="FF52,C57,S10.1,O44" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-gap" syntax="#item1 { $(name): 2em 1em; }">
 			<desc>Shorthand that specifies the gutters between grid columns and grid rows in one declaration.</desc>
 		</entry>
-		<entry name="grid-row" restriction="identifier, integer, enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-row" syntax="#item1 { $(name): span 2 / auto; }">
+		<entry name="grid-row" restriction="identifier, integer, enum" version="3.0" browsers="FF52,C57,S10.1,O44" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-row" syntax="#item1 { $(name): span 2 / auto; }">
 			<desc>Shorthand for 'grid-row-start' and 'grid-row-end'.</desc>
 			<values>
 				<value name="auto" version="3.0" browsers="all">
@@ -3266,7 +3266,7 @@
 				</value>
 			</values>
 		</entry>
-		<entry name="grid-row-end" restriction="identifier, integer, enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-row-end" syntax="#item1 { $(name): span 2; }">
+		<entry name="grid-row-end" restriction="identifier, integer, enum" version="3.0" browsers="FF52,C57,S10.1,O44" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-row-end" syntax="#item1 { $(name): span 2; }">
 			<desc>Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.</desc>
 			<values>
 				<value name="auto" version="3.0" browsers="all">
@@ -3277,7 +3277,7 @@
 				</value>
 			</values>
 		</entry>
-		<entry name="grid-row-gap" restriction="length" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-row-gap" syntax="#item1 { $(name): 2em; }">
+		<entry name="grid-row-gap" restriction="length" version="3.0" browsers="FF52,C57,S10.1,O44" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-row-gap" syntax="#item1 { $(name): 2em; }">
 			<desc>Specifies the gutters between grid rows.</desc>
 		</entry>
 		<entry name="grid-row-start" restriction="identifier, integer, enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-row-start" syntax="#item1 { $(name): span 2; }">
@@ -3291,7 +3291,7 @@
 				</value>
 			</values>
 		</entry>
-		<entry name="grid-template" restriction="identifier, length, percentage, string, enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-template" syntax="#item1 { $(name): auto 1fr auto / auto 1fr; }">
+		<entry name="grid-template" restriction="identifier, length, percentage, string, enum" version="3.0" browsers="FF52,C57,S10.1,O44" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-template" syntax="#item1 { $(name): auto 1fr auto / auto 1fr; }">
 			<desc>Shorthand for setting grid-template-columns, grid-template-rows, and grid-template-areas in a single declaration.</desc>
 			<values>
 				<value name="none" version="3.0" browsers="all">
@@ -3317,7 +3317,7 @@
 				</value>
 			</values>
 		</entry>
-		<entry name="grid-template-areas" restriction="string" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-template-areas" syntax="#item1 { $(name): 'head head' 'nav main' 'foot foot'; }">
+		<entry name="grid-template-areas" restriction="string" version="3.0" browsers="FF52,C57,S10.1,O44" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-template-areas" syntax="#item1 { $(name): 'head head' 'nav main' 'foot foot'; }">
 			<desc>Specifies named grid areas, which are not associated with any particular grid item, but can be referenced from the grid-placement properties.</desc>
 			<values>
 				<value name="none" version="3.0" browsers="all">
@@ -3325,7 +3325,7 @@
 				</value>
 			</values>
 		</entry>
-		<entry name="grid-template-columns" restriction="identifier, length, percentage, enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-template-columns" syntax="#item1 { $(name): 100px 1fr max-content minmax(min-content, 1fr); }">
+		<entry name="grid-template-columns" restriction="identifier, length, percentage, enum" version="3.0" browsers="FF52,C57,S10.1,O44" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-template-columns" syntax="#item1 { $(name): 100px 1fr max-content minmax(min-content, 1fr); }">
 			<desc>specifies, as a space-separated track list, the line names and track sizing functions of the grid.</desc>
 			<values>
 				<value name="none" version="3.0" browsers="all">
@@ -3351,7 +3351,7 @@
 				</value>
 			</values>
 		</entry>
-		<entry name="grid-template-rows" restriction="identifier, length, percentage, string, enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-template-rows" syntax="#item1 { $(name): 100px 1fr max-content minmax(min-content, 1fr); }">
+		<entry name="grid-template-rows" restriction="identifier, length, percentage, string, enum" version="3.0" browsers="FF52,C57,S10.1,O44" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-template-rows" syntax="#item1 { $(name): 100px 1fr max-content minmax(min-content, 1fr); }">
 			<desc>specifies, as a space-separated track list, the line names and track sizing functions of the grid.</desc>
 			<values>
 				<value name="none" version="3.0" browsers="all">

@@ -2221,6 +2221,10 @@
 						"browsers": "O12.1"
 					},
 					{
+						"name": "grid",
+						"browsers": "FF52,C57,S10.1,O44"
+					},
+					{
 						"name": "inline",
 						"desc": "The element generates an inline-level box."
 					},
@@ -2537,7 +2541,8 @@
 						"name": "column-reverse"
 					},
 					{
-						"name": "row"
+						"name": "row",
+						"desc": "The flex container’s main axis has the same orientation as the inline axis of the current writing mode."
 					},
 					{
 						"name": "row-reverse"
@@ -2562,7 +2567,8 @@
 						"desc": "The flex container is single-line."
 					},
 					{
-						"name": "row"
+						"name": "row",
+						"desc": "The flex container’s main axis has the same orientation as the inline axis of the current writing mode."
 					},
 					{
 						"name": "row-reverse"
@@ -3627,6 +3633,296 @@
 				]
 			},
 			{
+				"name": "grid-area",
+				"desc": "Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement. Shorthand for 'grid-row-start', 'grid-column-start', 'grid-row-end', and 'grid-column-end'.",
+				"browsers": "FF52,C57,S10.1,O44",
+				"restriction": "identifier, integer",
+				"values": [
+					{
+						"name": "auto",
+						"desc": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
+					},
+					{
+						"name": "span"
+					}
+				]
+			},
+			{
+				"name": "grid-auto-columns",
+				"desc": "Specifies the size of implicitly created columns.",
+				"browsers": "FF52,C57,S10.1,O44",
+				"restriction": "length, percentage",
+				"values": [
+					{
+						"name": "min-content",
+						"desc": "Represents the largest min-content contribution of the grid items occupying the grid track."
+					},
+					{
+						"name": "max-content",
+						"desc": "Represents the largest max-content contribution of the grid items occupying the grid track."
+					},
+					{
+						"name": "auto",
+						"desc": "As a maximum, identical to 'max-content'. As a minimum, represents the largest minimum size (as specified by min-width/min-height) of the grid items occupying the grid track."
+					},
+					{
+						"name": "minmax()"
+					}
+				]
+			},
+			{
+				"name": "grid-auto-flow",
+				"desc": "Controls how the auto-placement algorithm works, specifying exactly how auto-placed items get flowed into the grid.",
+				"browsers": "FF52,C57,S10.1,O44",
+				"restriction": "enum",
+				"values": [
+					{
+						"name": "row",
+						"desc": "The auto-placement algorithm places items by filling each row in turn, adding new rows as necessary."
+					},
+					{
+						"name": "column",
+						"desc": "The auto-placement algorithm places items by filling each column in turn, adding new columns as necessary."
+					},
+					{
+						"name": "dense"
+					}
+				]
+			},
+			{
+				"name": "grid-auto-rows",
+				"desc": "Specifies the size of implicitly created rows.",
+				"browsers": "FF52,C57,S10.1,O44",
+				"restriction": "length, percentage",
+				"values": [
+					{
+						"name": "min-content",
+						"desc": "Represents the largest min-content contribution of the grid items occupying the grid track."
+					},
+					{
+						"name": "max-content",
+						"desc": "Represents the largest max-content contribution of the grid items occupying the grid track."
+					},
+					{
+						"name": "auto",
+						"desc": "As a maximum, identical to 'max-content'. As a minimum, represents the largest minimum size (as specified by min-width/min-height) of the grid items occupying the grid track."
+					},
+					{
+						"name": "minmax()"
+					}
+				]
+			},
+			{
+				"name": "grid-column",
+				"desc": "Shorthand for 'grid-column-start' and 'grid-column-end'.",
+				"browsers": "FF52,C57,S10.1,O44",
+				"restriction": "identifier, integer, enum",
+				"values": [
+					{
+						"name": "auto",
+						"desc": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
+					},
+					{
+						"name": "span"
+					}
+				]
+			},
+			{
+				"name": "grid-column-end",
+				"desc": "Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.",
+				"browsers": "FF52,C57,S10.1,O44",
+				"restriction": "identifier, integer, enum",
+				"values": [
+					{
+						"name": "auto",
+						"desc": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
+					},
+					{
+						"name": "span"
+					}
+				]
+			},
+			{
+				"name": "grid-column-gap",
+				"desc": "Specifies the gutters between grid columns.",
+				"browsers": "FF52,C57,S10.1,O44",
+				"restriction": "length"
+			},
+			{
+				"name": "grid-column-start",
+				"desc": "Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.",
+				"browsers": "FF52,C57,S10.1,O44",
+				"restriction": "identifier, integer, enum",
+				"values": [
+					{
+						"name": "auto",
+						"desc": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
+					},
+					{
+						"name": "span"
+					}
+				]
+			},
+			{
+				"name": "grid-gap",
+				"desc": "Shorthand that specifies the gutters between grid columns and grid rows in one declaration.",
+				"browsers": "FF52,C57,S10.1,O44",
+				"restriction": "length"
+			},
+			{
+				"name": "grid-row",
+				"desc": "Shorthand for 'grid-row-start' and 'grid-row-end'.",
+				"browsers": "FF52,C57,S10.1,O44",
+				"restriction": "identifier, integer, enum",
+				"values": [
+					{
+						"name": "auto",
+						"desc": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
+					},
+					{
+						"name": "span"
+					}
+				]
+			},
+			{
+				"name": "grid-row-end",
+				"desc": "Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.",
+				"browsers": "FF52,C57,S10.1,O44",
+				"restriction": "identifier, integer, enum",
+				"values": [
+					{
+						"name": "auto",
+						"desc": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
+					},
+					{
+						"name": "span"
+					}
+				]
+			},
+			{
+				"name": "grid-row-gap",
+				"desc": "Specifies the gutters between grid rows.",
+				"browsers": "FF52,C57,S10.1,O44",
+				"restriction": "length"
+			},
+			{
+				"name": "grid-template",
+				"desc": "Shorthand for setting grid-template-columns, grid-template-rows, and grid-template-areas in a single declaration.",
+				"browsers": "FF52,C57,S10.1,O44",
+				"restriction": "identifier, length, percentage, string, enum",
+				"values": [
+					{
+						"name": "none",
+						"desc": "Sets all three properties to their initial values."
+					},
+					{
+						"name": "min-content",
+						"desc": "Represents the largest min-content contribution of the grid items occupying the grid track."
+					},
+					{
+						"name": "max-content",
+						"desc": "Represents the largest max-content contribution of the grid items occupying the grid track."
+					},
+					{
+						"name": "auto",
+						"desc": "As a maximum, identical to 'max-content'. As a minimum, represents the largest minimum size (as specified by min-width/min-height) of the grid items occupying the grid track."
+					},
+					{
+						"name": "subgrid",
+						"desc": "Sets 'grid-template-rows' and 'grid-template-columns' to 'subgrid', and 'grid-template-areas' to its initial value."
+					},
+					{
+						"name": "minmax()"
+					},
+					{
+						"name": "repeat()",
+						"desc": "Represents a repeated fragment of the track list, allowing a large number of columns or rows that exhibit a recurring pattern to be written in a more compact form."
+					}
+				]
+			},
+			{
+				"name": "grid-template-areas",
+				"desc": "Specifies named grid areas, which are not associated with any particular grid item, but can be referenced from the grid-placement properties.",
+				"browsers": "FF52,C57,S10.1,O44",
+				"restriction": "string",
+				"values": [
+					{
+						"name": "none",
+						"desc": "The grid container doesn’t define any named grid areas."
+					}
+				]
+			},
+			{
+				"name": "grid-template-columns",
+				"desc": "specifies, as a space-separated track list, the line names and track sizing functions of the grid.",
+				"browsers": "FF52,C57,S10.1,O44",
+				"restriction": "identifier, length, percentage, enum",
+				"values": [
+					{
+						"name": "none",
+						"desc": "There is no explicit grid; any rows/columns will be implicitly generated."
+					},
+					{
+						"name": "min-content",
+						"desc": "Represents the largest min-content contribution of the grid items occupying the grid track."
+					},
+					{
+						"name": "max-content",
+						"desc": "Represents the largest max-content contribution of the grid items occupying the grid track."
+					},
+					{
+						"name": "auto",
+						"desc": "As a maximum, identical to 'max-content'. As a minimum, represents the largest minimum size (as specified by min-width/min-height) of the grid items occupying the grid track."
+					},
+					{
+						"name": "subgrid",
+						"desc": "Indicates that the grid will align to its parent grid in that axis."
+					},
+					{
+						"name": "minmax()"
+					},
+					{
+						"name": "repeat()",
+						"desc": "Represents a repeated fragment of the track list, allowing a large number of columns or rows that exhibit a recurring pattern to be written in a more compact form."
+					}
+				]
+			},
+			{
+				"name": "grid-template-rows",
+				"desc": "specifies, as a space-separated track list, the line names and track sizing functions of the grid.",
+				"browsers": "FF52,C57,S10.1,O44",
+				"restriction": "identifier, length, percentage, string, enum",
+				"values": [
+					{
+						"name": "none",
+						"desc": "There is no explicit grid; any rows/columns will be implicitly generated."
+					},
+					{
+						"name": "min-content",
+						"desc": "Represents the largest min-content contribution of the grid items occupying the grid track."
+					},
+					{
+						"name": "max-content",
+						"desc": "Represents the largest max-content contribution of the grid items occupying the grid track."
+					},
+					{
+						"name": "auto",
+						"desc": "As a maximum, identical to 'max-content'. As a minimum, represents the largest minimum size (as specified by min-width/min-height) of the grid items occupying the grid track."
+					},
+					{
+						"name": "subgrid",
+						"desc": "Indicates that the grid will align to its parent grid in that axis."
+					},
+					{
+						"name": "minmax()"
+					},
+					{
+						"name": "repeat()",
+						"desc": "Represents a repeated fragment of the track list, allowing a large number of columns or rows that exhibit a recurring pattern to be written in a more compact form."
+					}
+				]
+			},
+			{
 				"name": "height",
 				"desc": "Specifies the height of the content area, padding area or border area (depending on 'box-sizing') of certain boxes.",
 				"restriction": "length, percentage",
@@ -3641,10 +3937,12 @@
 					},
 					{
 						"name": "max-content",
+						"desc": "Use the max-content inline size or max-content block size, as appropriate to the writing mode.",
 						"browsers": "C46,O33"
 					},
 					{
 						"name": "min-content",
+						"desc": "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
 						"browsers": "C46,O33"
 					}
 				]
@@ -4197,10 +4495,12 @@
 					},
 					{
 						"name": "max-content",
+						"desc": "Use the max-content inline size or max-content block size, as appropriate to the writing mode.",
 						"browsers": "C46,O33"
 					},
 					{
 						"name": "min-content",
+						"desc": "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
 						"browsers": "C46,O33"
 					}
 				]
@@ -4233,10 +4533,12 @@
 					},
 					{
 						"name": "max-content",
+						"desc": "Use the max-content inline size or max-content block size, as appropriate to the writing mode.",
 						"browsers": "C46,O33"
 					},
 					{
 						"name": "min-content",
+						"desc": "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
 						"browsers": "C46,O33"
 					}
 				]
@@ -4263,10 +4565,12 @@
 					},
 					{
 						"name": "max-content",
+						"desc": "Use the max-content inline size or max-content block size, as appropriate to the writing mode.",
 						"browsers": "C46,O33"
 					},
 					{
 						"name": "min-content",
+						"desc": "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
 						"browsers": "C46,O33"
 					}
 				]
@@ -4293,10 +4597,12 @@
 					},
 					{
 						"name": "max-content",
+						"desc": "Use the max-content inline size or max-content block size, as appropriate to the writing mode.",
 						"browsers": "C46,O33"
 					},
 					{
 						"name": "min-content",
+						"desc": "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
 						"browsers": "C46,O33"
 					}
 				]
@@ -5628,7 +5934,8 @@
 						"name": "column-reverse"
 					},
 					{
-						"name": "row"
+						"name": "row",
+						"desc": "The flex container’s main axis has the same orientation as the inline axis of the current writing mode."
 					},
 					{
 						"name": "row-reverse"
@@ -5653,7 +5960,8 @@
 						"desc": "The flex container is single-line."
 					},
 					{
-						"name": "row"
+						"name": "row",
+						"desc": "The flex container’s main axis has the same orientation as the inline axis of the current writing mode."
 					},
 					{
 						"name": "wrap",
@@ -8107,7 +8415,8 @@
 						"desc": "No snap points are defined by this scroll container."
 					},
 					{
-						"name": "repeat()"
+						"name": "repeat()",
+						"desc": "Defines an interval at which snap points are defined, starting from the container’s relevant start edge."
 					}
 				]
 			},
@@ -8122,7 +8431,8 @@
 						"desc": "No snap points are defined by this scroll container."
 					},
 					{
-						"name": "repeat()"
+						"name": "repeat()",
+						"desc": "Defines an interval at which snap points are defined, starting from the container’s relevant start edge."
 					}
 				]
 			},
@@ -10720,10 +11030,12 @@
 					},
 					{
 						"name": "max-content",
+						"desc": "Use the max-content inline size or max-content block size, as appropriate to the writing mode.",
 						"browsers": "C46,O33"
 					},
 					{
 						"name": "min-content",
+						"desc": "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
 						"browsers": "C46,O33"
 					}
 				]
@@ -10931,6 +11243,7 @@
 	"block": "The element generates a block-level box",
 	"flex": "The element generates a principal flex container box and establishes a flex formatting context.",
 	"flexbox": "The element lays out its contents using flow layout (block-and-inline layout). Standardized as 'flex'.",
+	"grid": "The element generates a principal grid container box, and establishes a grid formatting context.",
 	"inline-block": "A block box, which itself is flowed as a single inline box, similar to a replaced element. The inside of an inline-block is formatted as a block box, and the box itself is formatted as an inline box.",
 	"inline-flex": "Inline-level flex container.",
 	"inline-flexbox": "Inline-level flex container. Standardized as 'inline-flex'",
@@ -10964,7 +11277,6 @@
 	"sepia()": "Converts the input image to sepia.",
 	"content": "Indicates automatic sizing, based on the flex item’s content.",
 	"column-reverse": "Same as 'column', except the main-start and main-end directions are swapped.",
-	"row": "The flex container’s main axis has the same orientation as the inline axis of the current writing mode.",
 	"row-reverse": "Same as 'row', except the main-start and main-end directions are swapped.",
 	"wrap-reverse": "Same as 'wrap', except the cross-start and cross-end directions are swapped.",
 	"bold": "Same as 700",
@@ -11125,9 +11437,10 @@
 	"slashed-zero": "Enables display of slashed zeros.",
 	"stacked-fractions": "Enables display of lining stacked fractions.",
 	"tabular-nums": "Enables display of tabular numerals.",
+	"span": "Contributes a grid span to the grid item’s placement such that the corresponding edge of the grid item’s grid area is N lines from its opposite edge.",
+	"minmax()": "Defines a size range greater than or equal to min and less than or equal to max.",
+	"dense": "If specified, the auto-placement algorithm uses a “dense” packing algorithm, which attempts to fill in holes earlier in the grid if smaller items come up later.",
 	"fit-content": "Use the fit-content inline size or fit-content block size, as appropriate to the writing mode.",
-	"max-content": "Use the max-content inline size or max-content block size, as appropriate to the writing mode.",
-	"min-content": "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
 	"manual": "Words are only broken at line breaks where there are characters inside the word that suggest line break opportunities",
 	"flip": "After rotating by the precededing angle, the image is flipped horizontally. Defaults to 0deg if the angle is ommitted.",
 	"from-image": "If the image has an orientation specified in its metadata, such as EXIF, this value computes to the angle that the metadata specifies is necessary to correctly orient the image.",
@@ -11231,7 +11544,6 @@
 	"before": "The ruby text appears before the base. This is the most common setting used in ideographic East Asian writing systems.",
 	"attr(x)": "The value of attribute 'x' is a string value. The string value is evaluated as a <number> to determine the number of ruby base elements to be spanned by the annotation element.",
 	"smooth": "Scrolls in a smooth fashion using a user-agent-defined timing function and time period.",
-	"repeat()": "Defines an interval at which snap points are defined, starting from the container’s relevant start edge.",
 	"margin-box": "The background is painted within (clipped to) the margin box.",
 	"format()": "Optional hint describing the format of the font resource.",
 	"local()": "Format-specific string that identifies a locally available copy of a given font.",
