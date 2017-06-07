@@ -35,7 +35,12 @@ export class LESSParser extends cssParser.Parser {
 
 		// less 1.4.1: @import (css) "lib"
 		if (this.accept(TokenType.ParenthesisL)) {
-			if (!this.accept(TokenType.Ident)) {
+			let c = 0;
+			// Skip content between parenthesis
+			while (this.accept(TokenType.Ident) || this.accept(TokenType.Comma)) {
+				c++;
+			}
+			if (c === 0) {
 				return this.finish(node, ParseError.IdentifierExpected, [TokenType.SemiColon]);
 			}
 			do {

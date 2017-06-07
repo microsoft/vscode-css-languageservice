@@ -195,6 +195,7 @@ suite('LESS - Parser', () => {
 		assertNode('@color: #F5F5F5; .color (@radius: 5px)  { -border-radius: #F5F5F5 } @color: #F5F5F5;', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@import-once "lib";', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@import-once (css) "hello";', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@import (optional, reference) "hello";', parser, parser._parseStylesheet.bind(parser));
 		assertError('@import-once () "hello";', parser, parser._parseStylesheet.bind(parser), ParseError.IdentifierExpected);
 		assertError('@import-once (less);', parser, parser._parseStylesheet.bind(parser), ParseError.URIOrStringExpected);
 		assertNode('@import (css) "lib";', parser, parser._parseStylesheet.bind(parser));
