@@ -336,7 +336,7 @@ export class LintVisitor implements nodes.IVisitor {
 				let node = elem[index].node;
 				let value = node.getValue();
 				if (value && !value.matches('none')) {
-					this.addEntry(node, Rules.PropertyIgnoredDueToDisplay, localize('rule.propertyIgnoredDueToDisplayInlineBlock', "Property is ignored due to the display. With 'display: inline-block', float properties have no effect."));
+					this.addEntry(node, Rules.PropertyIgnoredDueToDisplay, localize('rule.propertyIgnoredDueToDisplayInlineBlock', "inline-block is ignored due to the float. If 'float' has a value other than 'none', the box is floated and 'display' is treated as 'block'"));
 				}
 			}
 		}
