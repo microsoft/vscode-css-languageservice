@@ -7527,7 +7527,7 @@
 				</value>
 			</values>
 		</entry>
-		<entry name="text-decoration-color" restriction="color" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-text-decor-3/#text-decoration-color" syntax="div { $(name): #ff0; }">
+		<entry name="text-decoration-color" restriction="color" version="3.0" browsers="FF36,C57,O44" ref="http://www.w3.org/TR/css-text-decor-3/#text-decoration-color" syntax="div { $(name): #ff0; }">
 			<desc>Specifies the color of text decoration (underlines overlines, and line-throughs) set on the element with text-decoration-line.</desc>
 		</entry>
 		<entry name="text-decoration-line" restriction="enum" version="3.0" browsers="FF36" ref="http://www.w3.org/TR/css-text-decor-3/#text-decoration-line" syntax="div { $(name): underline; }">
