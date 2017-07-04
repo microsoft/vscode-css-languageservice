@@ -2000,7 +2000,7 @@
 				<value name="flow" version="3.0" browsers="none">
 					<desc>The element lays out its contents using flow layout (block-and-inline layout).</desc>
 				</value>
-				<value name="flow-root" version="3.0" browsers="none">
+				<value name="flow-root" version="3.0" browsers="C58,FF53">
 					<desc>The element generates a block container box, and lays out its contents using flow layout.</desc>
 				</value>
 				<value name="grid" version="3.0" browsers="FF52,C57,S10.1,O44">
