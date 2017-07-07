@@ -3810,6 +3810,21 @@
 				"restriction": "length"
 			},
 			{
+				"name": "grid-row-start",
+				"desc": "Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.",
+				"browsers": "FF52,C57,S10.1,O44",
+				"restriction": "identifier, integer, enum",
+				"values": [
+					{
+						"name": "auto",
+						"desc": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
+					},
+					{
+						"name": "span"
+					}
+				]
+			},
+			{
 				"name": "grid-template",
 				"desc": "Shorthand for setting grid-template-columns, grid-template-rows, and grid-template-areas in a single declaration.",
 				"browsers": "FF52,C57,S10.1,O44",
