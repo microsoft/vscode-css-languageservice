@@ -3280,7 +3280,7 @@
 		<entry name="grid-row-gap" restriction="length" version="3.0" browsers="FF52,C57,S10.1,O44" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-row-gap" syntax="#item1 { $(name): 2em; }">
 			<desc>Specifies the gutters between grid rows.</desc>
 		</entry>
-		<entry name="grid-row-start" restriction="identifier, integer, enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-row-start" syntax="#item1 { $(name): span 2; }">
+		<entry name="grid-row-start" restriction="identifier, integer, enum" version="3.0" browsers="FF52,C57,S10.1,O44" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-row-start" syntax="#item1 { $(name): span 2; }">
 			<desc>Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.</desc>
 			<values>
 				<value name="auto" version="3.0" browsers="all">
