@@ -2759,6 +2759,9 @@
 				"restriction": "font",
 				"values": [
 					{
+						"name": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"
+					},
+					{
 						"name": "Arial, Helvetica, sans-serif"
 					},
 					{

@@ -2438,6 +2438,7 @@
 		<entry name="font-family" restriction="font" version="1.0" browsers="all" ref="http://www.w3.org/TR/css3-fonts/#font-family0" syntax="body { $(name): arial, verdana; }">
 			<desc>Specifies a prioritized list of font family names or generic family names. A user agent iterates through the list of family names until it matches an available font that contains a glyph for the character to be rendered.</desc>
 			<values>
+				<value name="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif" version="1.0" browsers="all" />
 				<value name="Arial, Helvetica, sans-serif" version="1.0" browsers="all" />
 				<value name="Cambria, Cochin, Georgia, Times, Times New Roman, serif" version="1.0" browsers="all" />
 				<value name="Courier New, Courier, monospace" version="1.0" browsers="all" />
