@@ -1217,7 +1217,7 @@ export class Parser {
 	}
 
 	public _parseHexColor(): nodes.Node {
-		if (this.peekRegExp(TokenType.Hash, /^#[0-9A-Fa-f]{3}([0-9A-Fa-f]{3})?$/g)) {
+		if (this.peekRegExp(TokenType.Hash, /^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{4}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$/g)) {
 			let node = this.create(nodes.HexColorValue);
 			this.consumeToken();
 			return this.finish(node);

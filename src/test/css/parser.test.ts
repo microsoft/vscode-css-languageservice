@@ -393,7 +393,9 @@ suite('CSS - Parser', () => {
 	test('hexcolor', function () {
 		let parser = new Parser();
 		assertNode('#FFF', parser, parser._parseHexColor.bind(parser));
+		assertNode('#FFFF', parser, parser._parseHexColor.bind(parser));
 		assertNode('#FFFFFF', parser, parser._parseHexColor.bind(parser));
+		assertNode('#FFFFFFFF', parser, parser._parseHexColor.bind(parser));
 	});
 
 	test('Test class', function () {

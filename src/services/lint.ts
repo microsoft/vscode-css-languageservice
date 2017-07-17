@@ -524,10 +524,10 @@ export class LintVisitor implements nodes.IVisitor {
 
 	private visitUnknownNode(node: nodes.Node): boolean {
 
-		// Rule: #eeff00 or #ef0
+		// Rule: #eeff0011 or #eeff00 or #ef01 or #ef0 
 		if (node.type === nodes.NodeType.HexColorValue) {
 			let text = node.getText();
-			if (text.length !== 7 && text.length !== 4) {
+			if (text.length !== 9 && text.length !== 7 && text.length !== 5 && text.length !== 4) {
 				this.addEntry(node, Rules.HexColorLength);
 			}
 		}
