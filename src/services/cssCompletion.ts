@@ -177,7 +177,7 @@ export class CSSCompletion {
 						this.getColorProposals(entry, existingNode, result);
 						break;
 					case 'position':
-						this.getColorProposals(entry, existingNode, result);
+						this.getPositionProposals(entry, existingNode, result);
 						break;
 					case 'repeat':
 						this.getRepeatStyleProposals(entry, existingNode, result);

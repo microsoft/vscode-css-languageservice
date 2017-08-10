@@ -252,6 +252,16 @@ suite('CSS - Completion', () => {
 			})
 		]).then(() => testDone(), (error) => testDone(error));
 	});
+	test('positions', function (testDone): any {
+		Promise.all([
+			testCompletionFor('html { background-position: t|', {
+				items: [
+					{ label: 'top', resultText: 'html { background-position: top' },
+					{ label: 'right', resultText: 'html { background-position: right' }
+				]
+			})
+		]).then(() => testDone(), (error) => testDone(error));
+	});
 	test('units', function (testDone): any {
 		Promise.all([
 			testCompletionFor('body { vertical-align: 9| }', {
