@@ -157,7 +157,7 @@ class MarkedStringPrinter {
 		let name = element.findAttribute('name');
 
 		// special case: a simple label
-		if (element instanceof LabelElement) {
+		if (element instanceof LabelElement || name === '\u2026') {
 			this.writeLine(indent, name);
 			return;
 		}
