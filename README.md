@@ -33,7 +33,7 @@ API
 
 export interface LanguageService {
 	configure(raw: LanguageSettings): void;
-	doValidation(document: TextDocument, stylesheet: Stylesheet): Diagnostic[];
+	doValidation(document: TextDocument, stylesheet: Stylesheet, documentSettings?: LanguageSettings): Diagnostic[];
 	parseStylesheet(document: TextDocument): Stylesheet;
 	doComplete(document: TextDocument, position: Position, stylesheet: Stylesheet): CompletionList;
 	doHover(document: TextDocument, position: Position, stylesheet: Stylesheet): Hover;

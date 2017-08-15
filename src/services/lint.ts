@@ -5,7 +5,7 @@
 'use strict';
 
 import * as languageFacts from './languageFacts';
-import {Rules, ILintConfigurationSettings, toLevel, Rule} from './lintRules';
+import { Rules, LintConfigurationSettings, Rule } from './lintRules';
 import * as nodes from '../parser/cssNodes';
 
 import * as nls from 'vscode-nls';
@@ -40,7 +40,7 @@ class NodesByRootMap {
 
 export class LintVisitor implements nodes.IVisitor {
 
-	static entries(node: nodes.Node, settings: ILintConfigurationSettings): nodes.IMarker[] {
+	static entries(node: nodes.Node, settings: LintConfigurationSettings): nodes.IMarker[] {
 		let visitor = new LintVisitor(settings);
 		node.accept(visitor);
 		return visitor.getEntries();
@@ -52,15 +52,10 @@ export class LintVisitor implements nodes.IVisitor {
 	];
 
 	private warnings: nodes.IMarker[] = [];
-	private configuration: { [id: string]: nodes.Level };
+	private settings: LintConfigurationSettings;
 
-	constructor(settings: ILintConfigurationSettings = {}) {
-		this.configuration = {};
-		for (let ruleKey in Rules) {
-			let rule = Rules[ruleKey];
-			let level = settings[rule.id] || toLevel(rule.defaultValue);
-			this.configuration[rule.id] = level;
-		}
+	constructor(settings: LintConfigurationSettings) {
+		this.settings = settings;
 	}
 
 	private fetch(input: Element[], s: string): Element[] {
@@ -119,7 +114,7 @@ export class LintVisitor implements nodes.IVisitor {
 	}
 
 	private addEntry(node: nodes.Node, rule: Rule, details?: string): void {
-		let entry = new nodes.Marker(node, rule, this.configuration[rule.id], details);
+		let entry = new nodes.Marker(node, rule, this.settings.get(rule), details);
 		this.warnings.push(entry);
 	}
 
@@ -278,12 +273,12 @@ export class LintVisitor implements nodes.IVisitor {
 							this.addEntry(element.node, Rules.BewareOfBoxModelSize);
 							problemDetected = true;
 						}
-					}					
+					}
 				});
 				if (problemDetected) {
 					for (let widthEntry of widthEntries) {
 						this.addEntry(widthEntry.node, Rules.BewareOfBoxModelSize);
-					}	
+					}
 				}
 			}
 			let heightEntries = this.fetch(propertyTable, 'height');
@@ -293,16 +288,16 @@ export class LintVisitor implements nodes.IVisitor {
 					let elements = this.fetch(propertyTable, p);
 					for (let element of elements) {
 						let value = element.node.getValue();
-						if (value && !value.matches('none')) {						
+						if (value && !value.matches('none')) {
 							this.addEntry(element.node, Rules.BewareOfBoxModelSize);
 							problemDetected = true;
 						}
-					}					
+					}
 				});
 				if (problemDetected) {
 					for (let heightEntry of heightEntries) {
 						this.addEntry(heightEntry.node, Rules.BewareOfBoxModelSize);
-					}	
+					}
 				}
 			}
 

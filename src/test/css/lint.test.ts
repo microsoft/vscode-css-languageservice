@@ -6,14 +6,14 @@
 
 import * as assert from 'assert';
 import * as nodes from '../../parser/cssNodes';
-import {Parser} from '../../parser/cssParser';
-import {LintVisitor} from '../../services/lint';
-import {Rule, Rules} from '../../services/lintRules';
-import {TextDocument} from 'vscode-languageserver-types';
+import { Parser } from '../../parser/cssParser';
+import { LintVisitor } from '../../services/lint';
+import { Rule, Rules, LintConfigurationSettings } from '../../services/lintRules';
+import { TextDocument } from 'vscode-languageserver-types';
 
 export function assertEntries(node: nodes.Node, rules: nodes.IRule[]): void {
 
-	let visitor = new LintVisitor();
+	let visitor = new LintVisitor(new LintConfigurationSettings());
 	node.accept(visitor);
 
 	let entries = visitor.getEntries(nodes.Level.Error | nodes.Level.Warning | nodes.Level.Ignore);
@@ -113,7 +113,7 @@ suite('CSS - Lint', () => {
 		assertRuleSet('.mybox { box-sizing: border-box; border: 1px solid black; width: 100px; }'); // no error
 		assertRuleSet('.mybox { border-top: 1px solid black; width: 100px; }'); // no error
 		assertRuleSet('.mybox { border-top: none; height: 100px; }'); // no error		
-	});	
+	});
 
 	test('IE hacks', function () {
 		assertRuleSet('selector { display: inline-block; *display: inline; }', Rules.IEStarHack);

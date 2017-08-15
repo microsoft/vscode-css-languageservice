@@ -4,26 +4,28 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import {TextDocument, Position, CompletionList, Hover, Range, SymbolInformation, Diagnostic,
-	Location, DocumentHighlight, CodeActionContext, Command, WorkspaceEdit} from 'vscode-languageserver-types';
+import {
+	TextDocument, Position, CompletionList, Hover, Range, SymbolInformation, Diagnostic,
+	Location, DocumentHighlight, CodeActionContext, Command, WorkspaceEdit
+} from 'vscode-languageserver-types';
 
-import {Parser} from './parser/cssParser';
-import {CSSCompletion} from './services/cssCompletion';
-import {CSSHover} from './services/cssHover';
-import {CSSNavigation} from './services/cssNavigation';
-import {CSSCodeActions} from './services/cssCodeActions';
-import {CSSValidation} from './services/cssValidation';
+import { Parser } from './parser/cssParser';
+import { CSSCompletion } from './services/cssCompletion';
+import { CSSHover } from './services/cssHover';
+import { CSSNavigation } from './services/cssNavigation';
+import { CSSCodeActions } from './services/cssCodeActions';
+import { CSSValidation } from './services/cssValidation';
 
-import {SCSSParser} from './parser/scssParser';
-import {SCSSCompletion} from './services/scssCompletion';
-import {LESSParser} from './parser/lessParser';
-import {LESSCompletion} from './services/lessCompletion';
+import { SCSSParser } from './parser/scssParser';
+import { SCSSCompletion } from './services/scssCompletion';
+import { LESSParser } from './parser/lessParser';
+import { LESSCompletion } from './services/lessCompletion';
 
 export type Stylesheet = {};
 
 export interface LanguageService {
 	configure(raw: LanguageSettings): void;
-	doValidation(document: TextDocument, stylesheet: Stylesheet): Diagnostic[];
+	doValidation(document: TextDocument, stylesheet: Stylesheet, documentSettings?: LanguageSettings): Diagnostic[];
 	parseStylesheet(document: TextDocument): Stylesheet;
 	doComplete(document: TextDocument, position: Position, stylesheet: Stylesheet): CompletionList;
 	doHover(document: TextDocument, position: Position, stylesheet: Stylesheet): Hover;
@@ -36,9 +38,11 @@ export interface LanguageService {
 	doRename(document: TextDocument, position: Position, newName: string, stylesheet: Stylesheet): WorkspaceEdit;
 }
 
+export type LintSettings = { [key: string]: string };
+
 export interface LanguageSettings {
 	validate?: boolean;
-	lint?: any;
+	lint?: LintSettings;
 }
 
 
@@ -60,16 +64,16 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 }
 
 
-export function getCSSLanguageService() : LanguageService {
+export function getCSSLanguageService(): LanguageService {
 	return createFacade(new Parser(), new CSSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation);
 }
 
 
-export function getSCSSLanguageService() : LanguageService {
+export function getSCSSLanguageService(): LanguageService {
 	return createFacade(new SCSSParser(), new SCSSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation);
 }
 
 
-export function getLESSLanguageService() : LanguageService {
+export function getLESSLanguageService(): LanguageService {
 	return createFacade(new LESSParser(), new LESSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation);
 }

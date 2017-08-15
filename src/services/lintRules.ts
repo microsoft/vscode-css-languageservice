@@ -5,17 +5,20 @@
 'use strict';
 
 import * as nodes from '../parser/cssNodes';
+import { LintSettings } from '../cssLanguageService';
 
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();
 
-let Warning = 'warning';
-let Error = 'error';
-let Ignore = 'ignore';
+const Warning = nodes.Level.Warning;
+const Error = nodes.Level.Error;
+const Ignore = nodes.Level.Ignore;
+
+
 
 export class Rule implements nodes.IRule {
 
-	public constructor(public id: string, public message: string, public defaultValue: string) {
+	public constructor(public id: string, public message: string, public defaultValue: nodes.Level) {
 		// nothing to do
 	}
 }
@@ -40,23 +43,22 @@ export let Rules = {
 	AvoidIdSelector: new Rule('idSelector', localize('rule.avoidIdSelector', "Selectors should not contain IDs because these rules are too tightly coupled with the HTML."), Ignore),
 };
 
-export interface ILintConfigurationSettings {
-	[ruleId:string] : nodes.Level;
-}
-
-export function sanitize(conf:any): ILintConfigurationSettings {
-	let settings: ILintConfigurationSettings = {};
-	for (let ruleName in Rules) {
-		let rule = Rules[ruleName];
-		let level = toLevel(conf[rule.id]);
-		if (level) {
-			settings[rule.id] = level;
-		}
+export class LintConfigurationSettings {
+	constructor(private conf: LintSettings = {}) {
 	}
-	return settings;
+
+	get(rule: Rule): nodes.Level {
+		if (this.conf.hasOwnProperty(rule.id)) {
+			let level = toLevel(this.conf[rule.id]);
+			if (level) {
+				return level;
+			}
+		}
+		return rule.defaultValue;
+	}
 }
 
-export function toLevel(level: string):nodes.Level {
+function toLevel(level: string): nodes.Level {
 	switch (level) {
 		case 'ignore': return nodes.Level.Ignore;
 		case 'warning': return nodes.Level.Warning;
