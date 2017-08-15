@@ -1791,6 +1791,18 @@
 				]
 			},
 			{
+				"name": "caret-color",
+				"desc": "Controls the color of the text insertion indicator.",
+				"browsers": "C60,FF55,O46",
+				"restriction": "color, enum",
+				"values": [
+					{
+						"name": "auto",
+						"desc": "The user agent selects an appropriate color for the caret. This is generally currentcolor, but the user agent may choose a different color to ensure good visibility and contrast with the surrounding content, taking into account the value of currentcolor, the background, shadows, and other factors."
+					}
+				]
+			},
+			{
 				"name": "clear",
 				"desc": "Indicates which sides of an element's box(es) may not be adjacent to an earlier floating box. The 'clear' property does not consider floats inside the element itself or in other block formatting contexts.",
 				"restriction": "enum",
@@ -2213,6 +2225,11 @@
 						"name": "block"
 					},
 					{
+						"name": "contents",
+						"desc": "The element itself does not generate any boxes, but its children and pseudo-elements still generate boxes as normal.",
+						"browsers": "FF37"
+					},
+					{
 						"name": "flex",
 						"browsers": "E,C29,FF22,IE11,O12.1,S9"
 					},
@@ -2222,7 +2239,7 @@
 					},
 					{
 						"name": "flow-root",
-						"browsers": "C58,FF53"
+						"browsers": "C58,FF53,O45"
 					},
 					{
 						"name": "grid",
@@ -2622,6 +2639,14 @@
 				"desc": "Specifies how a box should be floated. It may be set for any element, but only applies to elements that generate boxes that are not absolutely positioned.",
 				"restriction": "enum",
 				"values": [
+					{
+						"name": "inline-end",
+						"browsers": "FF55"
+					},
+					{
+						"name": "inline-start",
+						"browsers": "FF55"
+					},
 					{
 						"name": "left",
 						"desc": "The element generates a block box that is floated to the left. Content flows on the right side of the box, starting at the top (subject to the 'clear' property)."
@@ -8155,7 +8180,7 @@
 					},
 					{
 						"name": "sticky",
-						"browsers": "FF32"
+						"browsers": "C56,FF32"
 					},
 					{
 						"name": "-webkit-sticky",
@@ -11079,7 +11104,8 @@
 						"desc": "Expresses no particular intent."
 					},
 					{
-						"name": "contents"
+						"name": "contents",
+						"desc": "Indicates that the author expects to animate or change something about the element’s contents in the near future."
 					},
 					{
 						"name": "scroll-position"
@@ -11308,6 +11334,8 @@
 	"column-reverse": "Same as 'column', except the main-start and main-end directions are swapped.",
 	"row-reverse": "Same as 'row', except the main-start and main-end directions are swapped.",
 	"wrap-reverse": "Same as 'wrap', except the cross-start and cross-end directions are swapped.",
+	"inline-end": "A keyword indicating that the element must float on the end side of its containing block. That is the right side with ltr scripts, and the left side with rtl scripts.",
+	"inline-start": "A keyword indicating that the element must float on the start side of its containing block. That is the left side with ltr scripts, and the right side with rtl scripts.",
 	"bold": "Same as 700",
 	"bolder": "Specifies the weight of the face bolder than the inherited value.",
 	"caption": "The font used for captioned controls (e.g., buttons, drop-downs, etc.).",
@@ -11682,7 +11710,6 @@
 	"pre": "Sets 'white-space-collapsing' to 'preserve' and 'text-wrap' to 'none'.",
 	"pre-line": "Sets 'white-space-collapsing' to 'preserve-breaks' and 'text-wrap' to 'normal'.",
 	"pre-wrap": "Sets 'white-space-collapsing' to 'preserve' and 'text-wrap' to 'normal'.",
-	"contents": "Indicates that the author expects to animate or change something about the element’s contents in the near future.",
 	"scroll-position": "Indicates that the author expects to animate or change the scroll position of the element in the near future.",
 	"horizontal-tb": "Top-to-bottom block flow direction. The writing mode is horizontal.",
 	"sideways-lr": "Left-to-right block flow direction. The writing mode is vertical, while the typographic mode is horizontal.",
