@@ -4,21 +4,22 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import {SCSSParser} from '../../parser/scssParser';
-import {assertColor} from '../css/languageFacts.test';
+import { SCSSParser } from '../../parser/scssParser';
+import { assertColor } from '../css/languageFacts.test';
+import { colorFrom256RGB as newColor } from '../../services/languageFacts';
 
 suite('SCSS - Language facts', () => {
 
 	test('is color', function () {
 		let parser = new SCSSParser();
-		assertColor(parser, '#main { color: foo(red) }', 'red', true);
-		assertColor(parser, '#main { color: red() }', 'red', false);
-		assertColor(parser, '#main { red { nested: 1px } }', 'red', false);
-		assertColor(parser, '#main { @include red; }', 'red', false);
-		assertColor(parser, '#main { @include foo($f: red); }', 'red', true);
-		assertColor(parser, '@function red($p) { @return 1px; }', 'red', false);
-		assertColor(parser, '@function foo($p) { @return red; }', 'red', true);
-		assertColor(parser, '@function foo($r: red) { @return $r; }', 'red', true);
+		assertColor(parser, '#main { color: foo(red) }', 'red', newColor(0xff, 0, 0));
+		assertColor(parser, '#main { color: red() }', 'red', null);
+		assertColor(parser, '#main { red { nested: 1px } }', 'red', null);
+		assertColor(parser, '#main { @include red; }', 'red', null);
+		assertColor(parser, '#main { @include foo($f: red); }', 'red', newColor(0xff, 0, 0));
+		assertColor(parser, '@function red($p) { @return 1px; }', 'red', null);
+		assertColor(parser, '@function foo($p) { @return red; }', 'red', newColor(0xff, 0, 0));
+		assertColor(parser, '@function foo($r: red) { @return $r; }', 'red', newColor(0xff, 0, 0));
 	});
 });
 

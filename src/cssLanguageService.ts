@@ -23,6 +23,15 @@ import { LESSCompletion } from './services/lessCompletion';
 
 export type Stylesheet = {};
 
+export interface Color {
+	red: number; blue: number; green: number; alpha: number;
+}
+
+export interface ColorInformation {
+	range: Range;
+	color: Color;
+}
+
 export interface LanguageService {
 	configure(raw: LanguageSettings): void;
 	doValidation(document: TextDocument, stylesheet: Stylesheet, documentSettings?: LanguageSettings): Diagnostic[];
@@ -34,7 +43,9 @@ export interface LanguageService {
 	findDocumentHighlights(document: TextDocument, position: Position, stylesheet: Stylesheet): DocumentHighlight[];
 	findDocumentSymbols(document: TextDocument, stylesheet: Stylesheet): SymbolInformation[];
 	doCodeActions(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: Stylesheet): Command[];
+	/** deprecated, use findDocumentColors instead */
 	findColorSymbols(document: TextDocument, stylesheet: Stylesheet): Range[];
+	findDocumentColors(document: TextDocument, stylesheet: Stylesheet): ColorInformation[];
 	doRename(document: TextDocument, position: Position, newName: string, stylesheet: Stylesheet): WorkspaceEdit;
 }
 
@@ -58,7 +69,8 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 		findDocumentHighlights: navigation.findDocumentHighlights.bind(navigation),
 		findDocumentSymbols: navigation.findDocumentSymbols.bind(navigation),
 		doCodeActions: codeActions.doCodeActions.bind(codeActions),
-		findColorSymbols: navigation.findColorSymbols.bind(navigation),
+		findColorSymbols: (d, s) => navigation.findDocumentColors(d, s).map(s => s.range),
+		findDocumentColors: navigation.findDocumentColors.bind(navigation),
 		doRename: navigation.doRename.bind(navigation),
 	};
 }

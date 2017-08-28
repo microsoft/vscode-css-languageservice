@@ -5,12 +5,15 @@
 'use strict';
 
 import * as nodes from '../parser/cssNodes';
-import {TextDocument, Range, Position, Location, DocumentHighlightKind, DocumentHighlight,
-	SymbolInformation, SymbolKind, WorkspaceEdit, TextEdit, TextDocumentEdit} from 'vscode-languageserver-types';
-import {Symbols} from '../parser/cssSymbolScope';
-import {isColorValue} from '../services/languageFacts';
+import {
+	TextDocument, Range, Position, Location, DocumentHighlightKind, DocumentHighlight,
+	SymbolInformation, SymbolKind, WorkspaceEdit, TextEdit, TextDocumentEdit
+} from 'vscode-languageserver-types';
+import { Symbols } from '../parser/cssSymbolScope';
+import { getColorValue } from '../services/languageFacts';
 
 import * as nls from 'vscode-nls';
+import { ColorInformation } from '../cssLanguageService';
 const localize = nls.loadMessageBundle();
 
 export class CSSNavigation {
@@ -130,11 +133,12 @@ export class CSSNavigation {
 		return result;
 	}
 
-	public findColorSymbols(document: TextDocument, stylesheet: nodes.Stylesheet): Range[] {
-		let result: Range[] = [];
+	public findDocumentColors(document: TextDocument, stylesheet: nodes.Stylesheet): ColorInformation[] {
+		let result: ColorInformation[] = [];
 		stylesheet.accept((node) => {
-			if (isColorValue(node)) {
-				result.push(getRange(node, document));
+			let colorInfo = getColorInformation(node, document);
+			if (colorInfo) {
+				result.push(colorInfo);
 			}
 			return true;
 		});
@@ -151,7 +155,16 @@ export class CSSNavigation {
 
 }
 
-function getRange(node: nodes.Node, document: TextDocument) : Range {
+function getColorInformation(node: nodes.Node, document: TextDocument): ColorInformation {
+	let color = getColorValue(node);
+	if (color) {
+		let range = getRange(node, document);
+		return { color, range };
+	}
+	return null;
+}
+
+function getRange(node: nodes.Node, document: TextDocument): Range {
 	return Range.create(document.positionAt(node.offset), document.positionAt(node.end));
 }
 

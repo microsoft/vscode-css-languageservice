@@ -8,9 +8,11 @@ import * as nodes from '../parser/cssNodes';
 import * as browsers from '../data/browsers';
 
 import * as nls from 'vscode-nls';
+import { Color } from '../cssLanguageService';
+import { endsWith } from '../utils/strings';
 const localize = nls.loadMessageBundle();
 
-export let colors : { [name:string]:string } = {
+export let colors: { [name: string]: string } = {
 	aliceblue: '#f0f8ff',
 	antiquewhite: '#faebd7',
 	aqua: '#00ffff',
@@ -161,12 +163,12 @@ export let colors : { [name:string]:string } = {
 	yellowgreen: '#9acd32'
 };
 
-export let colorKeywords : { [name:string]:string } = {
+export let colorKeywords: { [name: string]: string } = {
 	'currentColor': 'The value of the \'color\' property. The computed value of the \'currentColor\' keyword is the computed value of the \'color\' property. If the \'currentColor\' keyword is set on the \'color\' property itself, it is treated as \'color:inherit\' at parse time.',
 	'transparent': 'Fully transparent. This keyword can be considered a shorthand for rgba(0,0,0,0) which is its computed value.',
 };
 
-export let positionKeywords : { [name:string]:string } = {
+export let positionKeywords: { [name: string]: string } = {
 	'bottom': 'Computes to ‘100%’ for the vertical position if one or two values are given, otherwise specifies the bottom edge as the origin for the next offset.',
 	'center': 'Computes to ‘50%’ (‘left 50%’) for the horizontal position if the horizontal position is not otherwise specified, or ‘50%’ (‘top 50%’) for the vertical position if it is.',
 	'left': 'Computes to ‘0%’ for the horizontal position if one or two values are given, otherwise specifies the left edge as the origin for the next offset.',
@@ -174,7 +176,7 @@ export let positionKeywords : { [name:string]:string } = {
 	'top': 'Computes to ‘0%’ for the vertical position if one or two values are given, otherwise specifies the top edge as the origin for the next offset.'
 };
 
-export let repeatStyleKeywords : { [name:string]:string } = {
+export let repeatStyleKeywords: { [name: string]: string } = {
 	'no-repeat': 'Placed once and not repeated in this direction.',
 	'repeat': 'Repeated in this direction as often as needed to cover the background painting area.',
 	'repeat-x': 'Computes to ‘repeat no-repeat’.',
@@ -183,7 +185,7 @@ export let repeatStyleKeywords : { [name:string]:string } = {
 	'space': 'Repeated as often as will fit within the background positioning area without being clipped and then the images are spaced out to fill the area.'
 };
 
-export let lineStyleKeywords : { [name:string]:string } = {
+export let lineStyleKeywords: { [name: string]: string } = {
 	'dashed': 'A series of square-ended dashes.',
 	'dotted': 'A series of round dots.',
 	'double': 'Two parallel solid lines with some space between them.',
@@ -196,22 +198,22 @@ export let lineStyleKeywords : { [name:string]:string } = {
 	'solid': 'A single line segment.'
 };
 
-export let lineWidthKeywords  = ['medium', 'thick', 'thin'];
+export let lineWidthKeywords = ['medium', 'thick', 'thin'];
 
-export let boxKeywords : { [name:string]:string } = {
+export let boxKeywords: { [name: string]: string } = {
 	'border-box': 'The background is painted within (clipped to) the border box.',
 	'content-box': 'The background is painted within (clipped to) the content box.',
 	'padding-box': 'The background is painted within (clipped to) the padding box.'
 };
 
-export let geometryBoxKeywords : { [name:string]:string } = {
+export let geometryBoxKeywords: { [name: string]: string } = {
 	'margin-box': 'Uses the margin box as reference box.',
 	'fill-box': 'Uses the object bounding box as reference box.',
 	'stroke-box': 'Uses the stroke bounding box as reference box.',
 	'view-box': 'Uses the nearest SVG viewport as reference box.'
 };
 
-export let cssWideKeywords : { [name:string]:string } = {
+export let cssWideKeywords: { [name: string]: string } = {
 	'initial': 'Represents the value specified as the property’s initial value.',
 	'inherit': 'Represents the computed value of the property on the element’s parent.',
 	'unset': 'Acts as either `inherit` or `initial`, depending on whether the property is inherited or not.'
@@ -224,7 +226,7 @@ export let colorFunctions = [
 	{ func: 'hsla($hue, $saturation, $lightness, $alpha)', desc: localize('css.builtin.hsla', 'Creates a Color from hue, saturation, lightness, and alpha values.') }
 ];
 
-export let imageFunctions : { [name:string]:string } = {
+export let imageFunctions: { [name: string]: string } = {
 	'url()': 'Reference an image file by URL',
 	'image()': 'Provide image fallbacks and annotations.',
 	'-webkit-image-set()': 'Provide multiple resolutions. Remember to use unprefixed image-set() in addition.',
@@ -249,7 +251,7 @@ export let imageFunctions : { [name:string]:string } = {
 	'repeating-radial-gradient()': 'Same as radial-gradient, except the color-stops are repeated infinitely in both directions, with their positions shifted by multiples of the difference between the last specified color-stop’s position and the first specified color-stop’s position.'
 };
 
-export let transitionTimingFunctions : { [name:string]:string } = {
+export let transitionTimingFunctions: { [name: string]: string } = {
 	'ease': 'Equivalent to cubic-bezier(0.25, 0.1, 0.25, 1.0).',
 	'ease-in': 'Equivalent to cubic-bezier(0.42, 0, 1.0, 1.0).',
 	'ease-in-out': 'Equivalent to cubic-bezier(0.42, 0, 0.58, 1.0).',
@@ -285,14 +287,14 @@ export let transitionTimingFunctions : { [name:string]:string } = {
 	'cubic-bezier(0.23, 1, 0.320, 1)': 'Ease-out Quintic. Based on power of five.'
 };
 
-export let basicShapeFunctions : { [name:string]:string } = {
+export let basicShapeFunctions: { [name: string]: string } = {
 	'circle()': 'Defines a circle.',
 	'ellipse()': 'Defines an ellipse.',
 	'inset()': 'Defines an inset rectangle.',
 	'polygon()': 'Defines a polygon.'
 };
 
-export let units : { [unitName:string]:string[] } = {
+export let units: { [unitName: string]: string[] } = {
 	'length': ['em', 'rem', 'ex', 'px', 'cm', 'mm', 'in', 'pt', 'pc', 'ch', 'vw', 'vh', 'vmin', 'vmax'],
 	'angle': ['deg', 'rad', 'grad', 'turn'],
 	'time': ['ms', 's'],
@@ -306,7 +308,7 @@ export let html5Tags = ['a', 'abbr', 'address', 'area', 'article', 'aside', 'aud
 	'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'keygen', 'label', 'legend', 'li', 'link',
 	'main', 'map', 'mark', 'menu', 'menuitem', 'meta', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'picture', 'pre', 'progress', 'q',
 	'rb', 'rp', 'rt', 'rtc', 'ruby', 's', 'samp', 'script', 'section', 'select', 'small', 'source', 'span', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td',
-	'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'let', 'video', 'wbr' ];
+	'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'let', 'video', 'wbr'];
 
 export let svgElements = ['circle', 'clipPath', 'cursor', 'defs', 'desc', 'ellipse', 'feBlend', 'feColorMatrix', 'feComponentTransfer', 'feComposite', 'feConvolveMatrix', 'feDiffuseLighting',
 	'feDisplacementMap', 'feDistantLight', 'feDropShadow', 'feFlood', 'feFuncA', 'feFuncB', 'feFuncG', 'feFuncR', 'feGaussianBlur', 'feImage', 'feMerge', 'feMergeNode', 'feMorphology',
@@ -314,7 +316,7 @@ export let svgElements = ['circle', 'clipPath', 'cursor', 'defs', 'desc', 'ellip
 	'marker', 'mask', 'mesh', 'meshpatch', 'meshrow', 'metadata', 'mpath', 'path', 'pattern', 'polygon', 'polyline', 'radialGradient', 'rect', 'set', 'solidcolor', 'stop', 'svg', 'switch',
 	'symbol', 'text', 'textPath', 'tspan', 'use', 'view'];
 
-export function isColorConstructor(node:nodes.Function): boolean {
+export function isColorConstructor(node: nodes.Function): boolean {
 	let name = node.getName();
 	if (!name) {
 		return false;
@@ -327,17 +329,17 @@ export function isColorConstructor(node:nodes.Function): boolean {
  * defined a hex number, as rgb or rgba function, or
  * as color name.
  */
-export function isColorValue(node:nodes.Node):boolean {
-	if(node.type === nodes.NodeType.HexColorValue) {
+export function isColorValue(node: nodes.Node): boolean {
+	if (node.type === nodes.NodeType.HexColorValue) {
 		return true;
-	} else if(node.type === nodes.NodeType.Function) {
-		return this.isColorConstructor(<nodes.Function> node);
+	} else if (node.type === nodes.NodeType.Function) {
+		return this.isColorConstructor(<nodes.Function>node);
 	} else if (node.type === nodes.NodeType.Identifier) {
 		if (node.parent && node.parent.type !== nodes.NodeType.Term) {
 			return false;
 		}
 		let candidateColor = node.getText().toLowerCase();
-		if(candidateColor === 'none') {
+		if (candidateColor === 'none') {
 			return false;
 		}
 		if (colors[candidateColor]) {
@@ -347,11 +349,170 @@ export function isColorValue(node:nodes.Node):boolean {
 	return false;
 }
 
+const Digit0 = 48;
+const Digit9 = 57;
+const A = 65;
+const F = 70;
+const a = 97;
+const f = 102;
+
+export function hexDigit(charCode: number) {
+	if (charCode < Digit0) {
+		return 0;
+	}
+	if (charCode <= Digit9) {
+		return charCode - Digit0;
+	}
+	if (charCode < a) {
+		charCode += (a - A);
+	}
+	if (charCode >= a && charCode <= f) {
+		return charCode - a + 10;
+	}
+	return 0;
+}
+
+export function colorFromHex(text: string): Color {
+	if (text[0] !== '#') {
+		return null;
+	}
+	switch (text.length) {
+		case 4:
+			return {
+				red: (hexDigit(text.charCodeAt(1)) * 0x11) / 255.0,
+				green: (hexDigit(text.charCodeAt(2)) * 0x11) / 255.0,
+				blue: (hexDigit(text.charCodeAt(3)) * 0x11) / 255.0,
+				alpha: 1
+			};
+		case 5:
+			return {
+				red: (hexDigit(text.charCodeAt(1)) * 0x11) / 255.0,
+				green: (hexDigit(text.charCodeAt(2)) * 0x11) / 255.0,
+				blue: (hexDigit(text.charCodeAt(3)) * 0x11) / 255.0,
+				alpha: (hexDigit(text.charCodeAt(4)) * 0x11) / 255.0,
+			};
+		case 7:
+			return {
+				red: (hexDigit(text.charCodeAt(1)) * 0x10 + hexDigit(text.charCodeAt(2))) / 255.0,
+				green: (hexDigit(text.charCodeAt(3)) * 0x10 + hexDigit(text.charCodeAt(4))) / 255.0,
+				blue: (hexDigit(text.charCodeAt(5)) * 0x10 + hexDigit(text.charCodeAt(6))) / 255.0,
+				alpha: 1
+			};
+		case 9:
+			return {
+				red: (hexDigit(text.charCodeAt(1)) * 0x10 + hexDigit(text.charCodeAt(2))) / 255.0,
+				green: (hexDigit(text.charCodeAt(3)) * 0x10 + hexDigit(text.charCodeAt(4))) / 255.0,
+				blue: (hexDigit(text.charCodeAt(5)) * 0x10 + hexDigit(text.charCodeAt(6))) / 255.0,
+				alpha: (hexDigit(text.charCodeAt(7)) * 0x10 + hexDigit(text.charCodeAt(8))) / 255.0
+			};
+	}
+	return null;
+}
+
+export function colorFrom256RGB(red: number, green: number, blue: number, alpha: number = 1.0) {
+	return {
+		red: red / 255.0,
+		green: green / 255.0,
+		blue: blue / 255.0,
+		alpha
+	}
+}
+
+export function colorFromHSL(hue: number, sat: number, light: number, alpha: number = 1.0) {
+	hue = hue / 60.0;
+	if (sat === 0) {
+		return { red: 0, green: 0, blue: 0, alpha }
+	} else {
+		let hueToRgb = (t1, t2, hue) => {
+			while (hue < 0) hue += 6;
+			while (hue >= 6) hue -= 6;
+
+			if (hue < 1) return (t2 - t1) * hue + t1;
+			if (hue < 3) return t2;
+			if (hue < 4) return (t2 - t1) * (4 - hue) + t1;
+			return t1;
+		}
+		let t2 = light <= 0.5 ? (light * (sat + 1)) : (light + sat - (light * sat));
+		var t1 = light * 2 - t2;
+		return { red: hueToRgb(t1, t2, hue + 2), green: hueToRgb(t1, t2, hue), blue: hueToRgb(t1, t2, hue - 2), alpha }
+	}
+}
+
+export function getColorValue(node: nodes.Node): Color {
+	if (node.type === nodes.NodeType.HexColorValue) {
+		let text = node.getText();
+		return colorFromHex(text);
+	} else if (node.type === nodes.NodeType.Function) {
+		let functionNode = <nodes.Function>node;
+		let name = functionNode.getName();
+		let colorValues = functionNode.getArguments().getChildren();
+		if (!name && colorValues.length < 3 && colorValues.length > 4) {
+			return null;
+		}
+		let alpha = colorValues.length == 4 ? getNumericValue(colorValues[3], 1) : 1
+		if (name === 'rgb' || name == 'rgba') {
+			return {
+				red: getNumericValue(colorValues[0], 255.0),
+				green: getNumericValue(colorValues[1], 255.0),
+				blue: getNumericValue(colorValues[2], 255.0),
+				alpha
+			}
+		} else if (name === 'hsl' || name == 'hsla') {
+			let h = getAngle(colorValues[0]);
+			let s = getNumericValue(colorValues[1], 100.0);
+			let l = getNumericValue(colorValues[2], 100.0);
+			return colorFromHSL(h, s, l, alpha);
+		}
+	} else if (node.type === nodes.NodeType.Identifier) {
+		if (node.parent && node.parent.type !== nodes.NodeType.Term) {
+			return null;
+		}
+		let candidateColor = node.getText().toLowerCase();
+		if (candidateColor === 'none') {
+			return null;
+		}
+		let colorHex = colors[candidateColor];
+		if (colorHex) {
+			return colorFromHex(colorHex);
+		}
+	}
+	return null;
+}
+
+function getNumericValue(node: nodes.Node, factor: number) {
+	try {
+		let val = node.getText();
+		let result;
+		if (val[val.length - 1] === '%') {
+			result = parseInt(val.substr(0, val.length - 1)) / 100.0;
+		} else {
+			result = parseFloat(val) / factor;
+		}
+		if (result >= 0 && result <=1) {
+			return result;
+		}
+	} catch (e) {
+	}
+	return 0;  // error case
+}
+
+function getAngle(node: nodes.Node) {
+	try {
+		let val = node.getText();
+		if (endsWith(val, 'deg')) {
+			val = val.substr(0, val.length - 3);
+		}
+		return parseFloat(val) % 360;
+	} catch (e) {
+	}
+	return 0;  // error case
+}
+
 /**
  * Returns true if the given name is a known property.
  */
-export function isKnownProperty(name: string):boolean {
-	if(!name) {
+export function isKnownProperty(name: string): boolean {
+	if (!name) {
 		return false;
 	} else {
 		name = name.toLowerCase();
@@ -359,11 +520,11 @@ export function isKnownProperty(name: string):boolean {
 	}
 }
 
-export function isCommonValue(entry:Value):boolean {
+export function isCommonValue(entry: Value): boolean {
 	return entry.browsers.count > 1;
 }
 
-export function getPageBoxDirectives():string[] {
+export function getPageBoxDirectives(): string[] {
 	return [
 		'@bottom-center', '@bottom-left', '@bottom-left-corner', '@bottom-right', '@bottom-right-corner',
 		'@left-bottom', '@left-middle', '@left-top', '@right-bottom', '@right-middle', '@right-top',
@@ -371,14 +532,14 @@ export function getPageBoxDirectives():string[] {
 	];
 }
 
-export function getEntryDescription(entry:{description: string; browsers: Browsers}): string {
+export function getEntryDescription(entry: { description: string; browsers: Browsers }): string {
 	let desc = entry.description || '';
 	let browserLabel = this.getBrowserLabel(entry.browsers);
 	if (browserLabel) {
 		if (desc) {
 			desc = desc + '\n';
 		}
-		desc= desc + '(' + browserLabel + ')';
+		desc = desc + '(' + browserLabel + ')';
 	}
 	return desc;
 }
@@ -389,12 +550,12 @@ export function getBrowserLabel(b: Browsers): string {
 		return null;
 	}
 	for (let curr in browserNames) {
-		if (typeof (<any> b)[curr] === 'string') {
+		if (typeof (<any>b)[curr] === 'string') {
 			if (result.length > 0) {
 				result = result + ', ';
 			}
-			result = result + (<any> browserNames)[curr];
-			let version = (<any> b)[curr];
+			result = result + (<any>browserNames)[curr];
+			let version = (<any>b)[curr];
 			if (version.length > 0) {
 				result = result + ' ' + version;
 			}
@@ -404,45 +565,45 @@ export function getBrowserLabel(b: Browsers): string {
 }
 
 export interface Browsers {
-	E?:string;
-	FF?:string;
-	IE?:string;
-	O?:string;
-	C?:string;
-	S?:string;
-	count:number;
-	all:boolean;
-	onCodeComplete:boolean;
+	E?: string;
+	FF?: string;
+	IE?: string;
+	O?: string;
+	C?: string;
+	S?: string;
+	count: number;
+	all: boolean;
+	onCodeComplete: boolean;
 }
 
 export interface Value {
-	name:string;
-	description:string;
-	browsers:Browsers;
+	name: string;
+	description: string;
+	browsers: Browsers;
 }
 
 export interface IEntry {
-	name:string;
-	restrictions:string[];
-	browsers:Browsers;
-	description:string;
-	values:Value[];
+	name: string;
+	restrictions: string[];
+	browsers: Browsers;
+	description: string;
+	values: Value[];
 }
 
 function evalBrowserEntry(browsers: string) {
-	let browserEntry : Browsers = { all: false, count: 0, onCodeComplete: false};
+	let browserEntry: Browsers = { all: false, count: 0, onCodeComplete: false };
 	let count = 0;
 	if (browsers) {
 		browsers.split(',').forEach(
 			(s: string) => {
 				s = s.trim();
 				if (s === 'all') {
-					browserEntry.all= true;
+					browserEntry.all = true;
 					count = Number.MAX_VALUE;
 				} else if (s !== 'none') {
 					for (let key in browserNames) {
 						if (s.indexOf(key) === 0) {
-							(<any> browserEntry)[key] = s.substring(key.length).trim();
+							(<any>browserEntry)[key] = s.substring(key.length).trim();
 							count++;
 						}
 					}
@@ -466,15 +627,15 @@ class ValueImpl implements Value {
 	constructor(public data: any) {
 	}
 
-	get name() : string {
+	get name(): string {
 		return this.data.name;
 	}
 
-	get description() : string {
+	get description(): string {
 		return this.data.desc || browsers.descriptions[this.data.name];
 	}
 
-	get browsers() : Browsers {
+	get browsers(): Browsers {
 		if (!this.browserEntry) {
 			this.browserEntry = evalBrowserEntry(this.data.browsers);
 		}
@@ -505,17 +666,17 @@ class EntryImpl implements IEntry {
 
 	get restrictions(): string[] {
 		if (this.data.restriction) {
-			return this.data.restriction.split(',').map(function(s: string) { return s.trim(); });
+			return this.data.restriction.split(',').map(function (s: string) { return s.trim(); });
 		} else {
 			return [];
 		}
 	}
 
 	get values(): Value[] {
-		if(!this.data.values) {
+		if (!this.data.values) {
 			return [];
 		}
-		if(!Array.isArray(this.data.values)) {
+		if (!Array.isArray(this.data.values)) {
 			return [new ValueImpl(this.data.values.value)];
 		}
 		return this.data.values.map(function (v: string) {
@@ -527,10 +688,10 @@ class EntryImpl implements IEntry {
 let propertySet: { [key: string]: IEntry };
 let properties = browsers.data.css.properties;
 export function getProperties(): { [name: string]: IEntry; } {
-	if(!propertySet) {
+	if (!propertySet) {
 		propertySet = {
 		};
-		for(let i = 0, len = properties.length; i < len; i++) {
+		for (let i = 0, len = properties.length; i < len; i++) {
 			let rawEntry = properties[i];
 			propertySet[rawEntry.name] = new EntryImpl(rawEntry);
 		}
@@ -555,19 +716,19 @@ export function getAtDirectives(): IEntry[] {
 let pseudoElements = browsers.data.css.pseudoelements;
 let pseudoElementList: IEntry[];
 export function getPseudoElements(): IEntry[] {
-		if (!pseudoElementList) {
-			pseudoElementList = [];
-			for (let i = 0, len = pseudoElements.length; i < len; i++) {
-				let rawEntry = pseudoElements[i];
-				pseudoElementList.push(new EntryImpl(rawEntry));
-			}
+	if (!pseudoElementList) {
+		pseudoElementList = [];
+		for (let i = 0, len = pseudoElements.length; i < len; i++) {
+			let rawEntry = pseudoElements[i];
+			pseudoElementList.push(new EntryImpl(rawEntry));
 		}
-		return pseudoElementList;
+	}
+	return pseudoElementList;
 }
 
 let pseudoClasses = browsers.data.css.pseudoclasses;
 let pseudoClassesList: IEntry[];
-export function getPseudoClasses(): IEntry[]{
+export function getPseudoClasses(): IEntry[] {
 	if (!pseudoClassesList) {
 		pseudoClassesList = [];
 		for (let i = 0, len = pseudoClasses.length; i < len; i++) {
@@ -579,10 +740,10 @@ export function getPseudoClasses(): IEntry[]{
 }
 
 export let browserNames = {
-	E : 'Edge',
-	FF : 'Firefox',
-	S : 'Safari',
-	C : 'Chrome',
-	IE : 'IE',
-	O : 'Opera'
+	E: 'Edge',
+	FF: 'Firefox',
+	S: 'Safari',
+	C: 'Chrome',
+	IE: 'IE',
+	O: 'Opera'
 };

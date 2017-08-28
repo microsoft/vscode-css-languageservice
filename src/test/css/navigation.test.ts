@@ -5,14 +5,16 @@
 'use strict';
 
 import * as assert from 'assert';
-import {Scope, GlobalScope, ScopeBuilder} from '../../parser/cssSymbolScope';
+import { Scope, GlobalScope, ScopeBuilder } from '../../parser/cssSymbolScope';
 import * as nodes from '../../parser/cssNodes';
-import {Parser} from '../../parser/cssParser';
-import {CSSNavigation} from '../../services/cssNavigation';
+import { Parser } from '../../parser/cssParser';
+import { CSSNavigation } from '../../services/cssNavigation';
+import { colorFrom256RGB, colorFromHSL } from '../../services/languageFacts';
 
-import {TextDocument, DocumentHighlightKind} from 'vscode-languageserver-types';
+import { TextDocument, DocumentHighlightKind, Range, Position } from 'vscode-languageserver-types';
+import { ColorInformation, getCSSLanguageService, LanguageService } from '../../cssLanguageService';
 
-function asPromise<T>(result:T) : Promise<T> {
+function asPromise<T>(result: T): Promise<T> {
 	return Promise.resolve(result);
 }
 
@@ -46,6 +48,13 @@ export function assertHighlights(p: Parser, input: string, marker: string, expec
 	});
 }
 
+export function assertColorSymbols(ls: LanguageService, input: string, ...expected: ColorInformation[]) {
+	let document = TextDocument.create('test://test/test.css', 'css', 0, input);
+
+	let stylesheet = ls.parseStylesheet(document);
+	let result = ls.findDocumentColors(document, stylesheet);
+	assert.deepEqual(result, expected);
+}
 
 export function assertSymbolsInScope(p: Parser, input: string, offset: number, ...selections: { name: string; type: nodes.ReferenceType }[]): void {
 
@@ -243,4 +252,19 @@ suite('CSS - Symbols', () => {
 			assertHighlights(p, '/* comment */body { display: inline } ', 'comment', 0, 0)
 		]).then(() => testDone(), (error) => testDone(error));
 	});
+
+	test('color symbols', function () {
+		let ls = getCSSLanguageService();
+		assertColorSymbols(ls, 'body { backgroundColor: #ff9977; }',
+			{ color: colorFrom256RGB(0xff, 0x99, 0x77), range: newRange(24, 31) }
+		);
+		assertColorSymbols(ls, '.oo { color: rgb(1,40,1); borderColor: hsl(120, 75%, 85%) }',
+			{ color: colorFrom256RGB(1, 40, 1), range: newRange(13, 24) },
+			{ color: colorFromHSL(120, 0.75, 0.85), range: newRange(39, 57) }
+		);
+	})
 });
+
+function newRange(start: number, end: number) {
+	return Range.create(Position.create(0, start), Position.create(0, end));
+}
