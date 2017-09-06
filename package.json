@@ -20,11 +20,11 @@
     "istanbul": "^0.4.5",
     "mkdirp": "^0.5.1",
     "mocha": "^2.4.5",
-    "typescript": "^2.1.5",
+    "typescript": "^2.5.2",
     "xml2js": "^0.4.16"
   },
   "dependencies": {
-    "vscode-languageserver-types": "^3.3.0-alpha.1",
+    "vscode-languageserver-types": "^3.3.0",
     "vscode-nls": "^2.0.1"
   },
   "scripts": {

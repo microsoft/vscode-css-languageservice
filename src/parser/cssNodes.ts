@@ -429,6 +429,8 @@ export class Stylesheet extends Node {
 }
 
 export class Declarations extends Node {
+	private _declarations: void; // workaround for https://github.com/Microsoft/TypeScript/issues/18276
+
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -1203,6 +1205,8 @@ export class Operator extends Node {
 }
 
 export class HexColorValue extends Node {
+	private _hexColorValue: void; // workaround for https://github.com/Microsoft/TypeScript/issues/18276
+
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -1290,6 +1294,8 @@ export class VariableDeclaration extends AbstractDeclaration {
 }
 
 export class Interpolation extends Node {
+	
+	private _interpolations: void ; // workaround for https://github.com/Microsoft/TypeScript/issues/18276
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
