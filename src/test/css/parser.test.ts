@@ -5,10 +5,10 @@
 'use strict';
 
 import * as assert from 'assert';
-import {Parser} from '../../parser/cssParser';
-import {TokenType} from '../../parser/cssScanner';
+import { Parser } from '../../parser/cssParser';
+import { TokenType } from '../../parser/cssScanner';
 import * as nodes from '../../parser/cssNodes';
-import {ParseError} from '../../parser/cssErrors';
+import { ParseError } from '../../parser/cssErrors';
 
 export function assertNode(text: string, parser: Parser, f: () => nodes.Node): nodes.Node {
 	let node = parser.internalParse(text, f);
@@ -45,7 +45,7 @@ export function assertError(text: string, parser: Parser, f: () => nodes.Node, e
 
 suite('CSS - Parser', () => {
 
-	test('Test stylesheet', function () {
+	test('stylesheet', function () {
 		let parser = new Parser();
 		assertNode('@charset "demo" ;', parser, parser._parseStylesheet.bind(parser));
 		assertNode('body { margin: 0px; padding: 3em, 6em; }', parser, parser._parseStylesheet.bind(parser));
@@ -78,7 +78,7 @@ suite('CSS - Parser', () => {
 		assertError('@charset \'utf8\'', parser, parser._parseStylesheet.bind(parser), ParseError.SemiColonExpected);
 	});
 
-	test('Stylesheet /Panic/', function () {
+	test('stylesheet /panic/', function () {
 		let parser = new Parser();
 		assertError('#boo, far } \n.far boo {}', parser, parser._parseStylesheet.bind(parser), ParseError.LeftCurlyExpected);
 		assertError('#boo, far { far: 43px; \n.far boo {}', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
@@ -121,7 +121,7 @@ suite('CSS - Parser', () => {
 		assertError('@keyframes name { from, #123', parser, parser._parseKeyframe.bind(parser), ParseError.PercentageExpected);
 	});
 
-	test('Test import', function () {
+	test('@import', function () {
 		let parser = new Parser();
 		assertNode('@import "asdasdsa"', parser, parser._parseImport.bind(parser));
 		assertNode('@ImPort "asdsadsa"', parser, parser._parseImport.bind(parser));
@@ -129,7 +129,22 @@ suite('CSS - Parser', () => {
 		assertError('@import', parser, parser._parseImport.bind(parser), ParseError.URIOrStringExpected);
 	});
 
-	test('Test media', function () {
+	test('@supports', function () {
+		let parser = new Parser();
+		assertNode('@supports ( display: flexbox ) { body { display: flexbox } }', parser, parser._parseSupports.bind(parser));
+		assertNode('@supports not (display: flexbox) { .outline { box-shadow: 2px 2px 2px black; /* unprefixed last */ } }', parser, parser._parseSupports.bind(parser));
+		assertNode('@supports ( box-shadow: 2px 2px 2px black ) or ( -moz-box-shadow: 2px 2px 2px black ) or ( -webkit-box-shadow: 2px 2px 2px black ) { }', parser, parser._parseSupports.bind(parser));
+		assertNode('@supports ((transition-property: color) or (animation-name: foo)) and (transform: rotate(10deg)) { }', parser, parser._parseSupports.bind(parser));
+		assertNode('@supports ((display: flexbox)) { }', parser, parser._parseSupports.bind(parser));
+		assertNode('@supports (display: flexbox !important) { }', parser, parser._parseSupports.bind(parser));
+		assertNode('@supports (grid-area: auto) { @media screen and (min-width: 768px) { .me { } } }', parser, parser._parseSupports.bind(parser));
+		assertError('@supports (transition-property: color) or (animation-name: foo) and (transform: rotate(10deg)) { }', parser, parser._parseSupports.bind(parser), ParseError.LeftCurlyExpected);
+		assertError('@supports display: flexbox { }', parser, parser._parseSupports.bind(parser), ParseError.LeftParenthesisExpected);
+		assertError('@supports (transition-property: color)or (animation-name: foo) { }', parser, parser._parseSupports.bind(parser), ParseError.WhitespaceExpected);
+		assertError('@supports (transition-property: color) or(animation-name: foo) { }', parser, parser._parseSupports.bind(parser), ParseError.WhitespaceExpected);
+	});
+
+	test('@media', function () {
 		let parser = new Parser();
 		assertNode('@media asdsa { }', parser, parser._parseMedia.bind(parser));
 		assertNode('@meDia sadd{}  ', parser, parser._parseMedia.bind(parser));
@@ -151,7 +166,7 @@ suite('CSS - Parser', () => {
 		assertError('@media not screen and (color:#234567 { }', parser, parser._parseMedia.bind(parser), ParseError.RightParenthesisExpected);
 	});
 
-	test('Test media_list', function () {
+	test('media_list', function () {
 		let parser = new Parser();
 		assertNode('somename', parser, parser._parseMediaList.bind(parser));
 		assertNode('somename, othername', parser, parser._parseMediaList.bind(parser));
@@ -164,7 +179,7 @@ suite('CSS - Parser', () => {
 		assertNode('-asda34s', parser, parser._parseMedium.bind(parser));
 	});
 
-	test('page', function () {
+	test('@page', function () {
 		let parser = new Parser();
 		assertNode('@page : name{ }', parser, parser._parsePage.bind(parser));
 		assertNode('@page :left, :right { }', parser, parser._parsePage.bind(parser));
@@ -213,7 +228,7 @@ suite('CSS - Parser', () => {
 		assertNode('+', parser, parser._parseUnaryOperator.bind(parser));
 	});
 
-	test('Property', function () {
+	test('property', function () {
 		let parser = new Parser();
 		assertNode('asdsa', parser, parser._parseProperty.bind(parser));
 		assertNode('asdsa334', parser, parser._parseProperty.bind(parser));
@@ -226,7 +241,7 @@ suite('CSS - Parser', () => {
 		assertNode('somevar--', parser, parser._parseProperty.bind(parser));
 	});
 
-	test('Ruleset', function () {
+	test('ruleset', function () {
 		let parser = new Parser();
 		assertNode('name{ }', parser, parser._parseRuleset.bind(parser));
 		assertNode('	name\n{ some : "asdas" }', parser, parser._parseRuleset.bind(parser));
@@ -255,7 +270,7 @@ suite('CSS - Parser', () => {
 		assertNode('boo { @apply --custom-prop; background-color: red }', parser, parser._parseRuleset.bind(parser));
 	});
 
-	test('Ruleset /Panic/', function () {
+	test('ruleset /Panic/', function () {
 		let parser = new Parser();
 		//	assertNode('boo { : value }', parser, parser._parseRuleset.bind(parser));
 		assertError('boo { prop: ; }', parser, parser._parseRuleset.bind(parser), ParseError.PropertyValueExpected);
@@ -382,7 +397,7 @@ suite('CSS - Parser', () => {
 		assertFunction('fun(value1, value2)', parser, parser._parseFunction.bind(parser));
 	});
 
-	test('Test Token prio', function () {
+	test('test token prio', function () {
 		let parser = new Parser();
 		assertNode('!important', parser, parser._parsePrio.bind(parser));
 		assertNode('!/*demo*/important', parser, parser._parsePrio.bind(parser));
@@ -398,7 +413,7 @@ suite('CSS - Parser', () => {
 		assertNode('#FFFFFFFF', parser, parser._parseHexColor.bind(parser));
 	});
 
-	test('Test class', function () {
+	test('test class', function () {
 		let parser = new Parser();
 		assertNode('.faa', parser, parser._parseClass.bind(parser));
 		assertNode('faa', parser, parser._parseElementName.bind(parser));
@@ -407,12 +422,12 @@ suite('CSS - Parser', () => {
 	});
 
 
-	test('Prio', function () {
+	test('prio', function () {
 		let parser = new Parser();
 		assertNode('!important', parser, parser._parsePrio.bind(parser));
 	});
 
-	test('Expr', function () {
+	test('expr', function () {
 		let parser = new Parser();
 		assertNode('45,5px', parser, parser._parseExpr.bind(parser));
 		assertNode(' 45 , 5px ', parser, parser._parseExpr.bind(parser));
@@ -420,7 +435,7 @@ suite('CSS - Parser', () => {
 		assertNode('36mm, -webkit-calc(100%-10px)', parser, parser._parseExpr.bind(parser));
 	});
 
-	test('Url', function () {
+	test('url', function () {
 		let parser = new Parser();
 		assertNode('url(\'http://msft.com\')', parser, parser._parseURILiteral.bind(parser));
 		assertNode('url("http://msft.com")', parser, parser._parseURILiteral.bind(parser));

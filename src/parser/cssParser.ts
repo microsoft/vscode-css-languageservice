@@ -238,6 +238,7 @@ export class Parser {
 			|| this._parsePage()
 			|| this._parseFontFace()
 			|| this._parseKeyframe()
+			|| this._parseSupports()
 			|| this._parseViewPort()
 			|| this._parseNamespace()
 			|| this._parseDocument();
@@ -677,6 +678,89 @@ export class Parser {
 		}
 
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
+	}
+
+	public _parseSupports(isNested = false): nodes.Node {
+		// SUPPORTS_SYM S* supports_condition '{' S* ruleset* '}' S*
+		if (!this.peek(TokenType.AtKeyword, '@supports')) {
+			return null;
+		}
+
+		let node = <nodes.Supports>this.create(nodes.Supports);
+		this.consumeToken(); // @supports
+		node.addChild(this._parseSupportsCondition());
+
+		return this._parseBody(node, this._parseSupportsDeclaration.bind(this, isNested));
+	}
+
+	public _parseSupportsDeclaration(isNested = false): nodes.Node {
+		return this._parseStylesheetStatement();
+	}
+
+	private _parseSupportsCondition(): nodes.Node {
+		// supports_condition : supports_negation | supports_conjunction | supports_disjunction | supports_condition_in_parens ;
+		// supports_condition_in_parens: ( '(' S* supports_condition S* ')' ) | supports_declaration_condition | general_enclosed ;
+		// supports_negation: NOT S+ supports_condition_in_parens ;
+		// supports_conjunction: supports_condition_in_parens ( S+ AND S+ supports_condition_in_parens )+;
+		// supports_disjunction: supports_condition_in_parens ( S+ OR S+ supports_condition_in_parens )+;
+		// supports_declaration_condition: '(' S* declaration ')';
+		// general_enclosed: ( FUNCTION | '(' ) ( any | unused )* ')' ;
+		let node = <nodes.SupportsCondition>this.create(nodes.SupportsCondition);
+
+		if (this.accept(TokenType.Ident, 'not', true)) {
+			if (!this.hasWhitespace()) {
+				return this.finish(node, ParseError.WhitespaceExpected);
+			}
+			node.addChild(this._parseSupportsConditionInParens());
+		} else {
+			node.addChild(this._parseSupportsConditionInParens());
+			if (this.peekRegExp(TokenType.Ident, /^(and|or)$/i)) {
+				let text = this.token.text;
+				if (!this.hasWhitespace()) {
+					return this.finish(node, ParseError.WhitespaceExpected);
+				}
+				while (this.accept(TokenType.Ident, text, true)) {
+					if (!this.hasWhitespace()) {
+						return this.finish(node, ParseError.WhitespaceExpected);
+					}
+					node.addChild(this._parseSupportsConditionInParens());
+				}
+			}
+		}
+		return this.finish(node);
+	}
+
+	private _parseSupportsConditionInParens(): nodes.Node {
+		let node = <nodes.SupportsCondition>this.create(nodes.SupportsCondition);
+		if (this.accept(TokenType.ParenthesisL)) {
+			if (!node.addChild(this._tryToParseDeclaration())) {
+				if (!this._parseSupportsCondition()) {
+					return this.finish(node, ParseError.ConditionExpected);
+				}
+			}
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected, [TokenType.ParenthesisR], []);
+			}
+			return this.finish(node);
+		} else if (this.peek(TokenType.Ident)) {
+			let pos = this.mark();
+			this.consumeToken();
+			if (!this.hasWhitespace() && this.accept(TokenType.ParenthesisL)) {
+				let openParentCount = 1;
+				while (this.token.type !== TokenType.EOF && openParentCount !== 0) {
+					if (this.token.type === TokenType.ParenthesisL) {
+						openParentCount++;
+					} else if (this.token.type === TokenType.ParenthesisR) {
+						openParentCount--;
+					}
+					this.consumeToken();
+				}
+				return this.finish(node);
+			} else {
+				this.restoreAtMark(pos);
+			}
+		}
+		return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.ParenthesisL]);
 	}
 
 	public _parseMediaDeclaration(isNested = false): nodes.Node {

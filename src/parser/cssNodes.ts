@@ -76,7 +76,9 @@ export enum NodeType {
 	AtApplyRule,
 	CustomPropertyDeclaration,
 	CustomPropertySet,
-	ListEntry
+	ListEntry,
+	Supports,
+	SupportsCondition
 }
 
 export enum ReferenceType {
@@ -576,7 +578,7 @@ export class CustomPropertyDeclaration extends AbstractDeclaration {
 
 	public getPropertySet(): CustomPropertySet {
 		return this.propertySet;
-	}		
+	}
 }
 
 export class CustomPropertySet extends BodyDeclaration {
@@ -1021,6 +1023,18 @@ export class Media extends BodyDeclaration {
 	}
 }
 
+export class Supports extends BodyDeclaration {
+
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.Supports;
+	}
+}
+
+
 export class Document extends BodyDeclaration {
 
 	constructor(offset: number, length: number) {
@@ -1057,6 +1071,18 @@ export class MediaQuery extends Node {
 		return NodeType.MediaQuery;
 	}
 }
+
+export class SupportsCondition extends Node {
+
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.SupportsCondition;
+	}
+}
+
 
 export class Page extends BodyDeclaration {
 
