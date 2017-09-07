@@ -230,7 +230,7 @@ export class SCSSParser extends cssParser.Parser {
 	public _parseExtends(): nodes.Node {
 		let node = <nodes.ExtendsReference>this.create(nodes.ExtendsReference);
 		if (this.accept(TokenType.AtKeyword, '@extend')) {
-			if (!node.setSelector(this._parseSimpleSelector())) {
+			if (!node.getSelectors().addChild(this._parseSimpleSelector())) {
 				return this.finish(node, ParseError.SelectorExpected);
 			}
 			if (this.accept(TokenType.Exclamation)) {

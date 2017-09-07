@@ -155,6 +155,8 @@ suite('LESS - Parser', () => {
 		assertNode('nav { &:extend(.test all); }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.big-bucket:extend(.bucket all) { }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.some-class:extend(tr .bucket) {}', parser, parser._parseRuleset.bind(parser));
+		assertNode('.c:extend(.a, .b) {}', parser, parser._parseRuleset.bind(parser));
+		assertNode('.d { &:extend(.a, .b); }', parser, parser._parseRuleset.bind(parser));
 	});
 
 	test('Declaration', function() {

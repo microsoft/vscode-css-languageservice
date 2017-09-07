@@ -5,10 +5,10 @@
 'use strict';
 
 import * as lessScanner from './lessScanner';
-import {TokenType} from './cssScanner';
+import { TokenType } from './cssScanner';
 import * as cssParser from './cssParser';
 import * as nodes from './cssNodes';
-import {ParseError} from './cssErrors';
+import { ParseError } from './cssErrors';
 
 /// <summary>
 /// A parser for LESS
@@ -71,13 +71,13 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseMediaDeclaration(isNested = false): nodes.Node {
-		return this._tryParseRuleset(isNested) 
-			|| this._tryToParseDeclaration() 
+		return this._tryParseRuleset(isNested)
+			|| this._tryToParseDeclaration()
 			|| this._tryParseMixinDeclaration()
 			|| this._tryParseMixinReference()
 			|| this._parseDetachedRuleSetMixin()
 			|| this._parseStylesheetStatement();
-	}	
+	}
 
 	public _parseVariableDeclaration(panic: TokenType[] = []): nodes.VariableDeclaration {
 		let node = <nodes.VariableDeclaration>this.create(nodes.VariableDeclaration);
@@ -106,7 +106,7 @@ export class LESSParser extends cssParser.Parser {
 		return <nodes.VariableDeclaration>this.finish(node);
 	}
 
-	public _parseDetachedRuleSet() : nodes.Node {
+	public _parseDetachedRuleSet(): nodes.Node {
 		if (!this.peek(TokenType.CurlyL)) {
 			return null;
 		}
@@ -266,7 +266,7 @@ export class LESSParser extends cssParser.Parser {
 				if (this.peek(TokenType.ParenthesisR)) {
 					break;
 				}
-				if (!node.getParameters().addChild(this._parseMixinParameter())) {				
+				if (!node.getParameters().addChild(this._parseMixinParameter())) {
 					return this.finish(node, ParseError.IdentifierExpected);
 				}
 			}
@@ -287,15 +287,15 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	private _parseMixinDeclarationIdentifier(): nodes.Identifier {
-		let identifier : nodes.Identifier;
+		let identifier: nodes.Identifier;
 		if (this.peek(TokenType.Delim, '#') || this.peek(TokenType.Delim, '.')) {
-			identifier = <nodes.Identifier> this.create(nodes.Identifier);
+			identifier = <nodes.Identifier>this.create(nodes.Identifier);
 			this.consumeToken(); // # or .
 			if (this.hasWhitespace() || !identifier.addChild(this._parseIdent())) {
 				return null;
 			}
 		} else if (this.peek(TokenType.Hash)) {
-			identifier = <nodes.Identifier> this.create(nodes.Identifier);
+			identifier = <nodes.Identifier>this.create(nodes.Identifier);
 			this.consumeToken(); // TokenType.Hash
 		} else {
 			return null;
@@ -338,8 +338,14 @@ export class LESSParser extends cssParser.Parser {
 		if (!this.accept(TokenType.ParenthesisL)) {
 			return this.finish(node, ParseError.LeftParenthesisExpected);
 		}
-		if (!node.setSelector(this._parseSelector(true))) {
+		let selectors = node.getSelectors();
+		if (!selectors.addChild(this._parseSelector(true))) {
 			return this.finish(node, ParseError.SelectorExpected);
+		}
+		while (this.accept(TokenType.Comma)) {
+			if (!selectors.addChild(this._parseSelector(true))) {
+				return this.finish(node, ParseError.SelectorExpected);
+			}
 		}
 		if (!this.accept(TokenType.ParenthesisR)) {
 			return this.finish(node, ParseError.RightParenthesisExpected);
@@ -359,10 +365,10 @@ export class LESSParser extends cssParser.Parser {
 		}
 		if (!this.accept(TokenType.ParenthesisR)) {
 			return this.finish(node, ParseError.RightParenthesisExpected);
-		} 
+		}
 		return this.finish(node);
 	}
-	
+
 
 	public _tryParseMixinReference(atRoot = false): nodes.Node {
 		let mark = this.mark();
@@ -430,7 +436,7 @@ export class LESSParser extends cssParser.Parser {
 		}
 		this.restoreAtMark(pos);
 		return null;
-	}	
+	}
 
 	public _parseMixinParameter(): nodes.Node {
 
@@ -540,5 +546,5 @@ export class LESSParser extends cssParser.Parser {
 			return this.finish(node);
 		}
 		return node;
-	}	
+	}
 }

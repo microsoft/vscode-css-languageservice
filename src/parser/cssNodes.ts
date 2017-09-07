@@ -1294,8 +1294,8 @@ export class VariableDeclaration extends AbstractDeclaration {
 }
 
 export class Interpolation extends Node {
-	
-	private _interpolations: void ; // workaround for https://github.com/Microsoft/TypeScript/issues/18276
+
+	private _interpolations: void; // workaround for https://github.com/Microsoft/TypeScript/issues/18276
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1323,7 +1323,7 @@ export class Variable extends Node {
 }
 
 export class ExtendsReference extends Node {
-	private selector: Node;
+	private selectors: Nodelist;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1333,16 +1333,11 @@ export class ExtendsReference extends Node {
 		return NodeType.ExtendsReference;
 	}
 
-	public setSelector(node: Node): boolean {
-		return this.setNode('selector', node, 0);
-	}
-
-	public getSelector(): Node {
-		return this.selector;
-	}
-
-	public getName(): string {
-		return this.selector ? this.selector.getText() : '';
+	public getSelectors(): Nodelist {
+		if (!this.selectors) {
+			this.selectors = new Nodelist(this);
+		}
+		return this.selectors;
 	}
 }
 
