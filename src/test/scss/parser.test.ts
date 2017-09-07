@@ -6,12 +6,12 @@
 'use strict';
 
 import * as assert from 'assert';
-import {SCSSParser} from '../../parser/scssParser';
+import { SCSSParser } from '../../parser/scssParser';
 import * as nodes from '../../parser/cssNodes';
-import {ParseError} from '../../parser/cssErrors';
-import {SCSSParseError} from '../../parser/scssErrors';
+import { ParseError } from '../../parser/cssErrors';
+import { SCSSParseError } from '../../parser/scssErrors';
 
-import {assertNode, assertError} from '../css/parser.test';
+import { assertNode, assertError } from '../css/parser.test';
 
 suite('SCSS - Parser', () => {
 
@@ -44,7 +44,6 @@ suite('SCSS - Parser', () => {
 		assertError('$color: red !def', parser, parser._parseVariableDeclaration.bind(parser), ParseError.UnknownKeyword);
 		assertError('$color : !default', parser, parser._parseVariableDeclaration.bind(parser), ParseError.VariableValueExpected);
 		assertError('$color !default', parser, parser._parseVariableDeclaration.bind(parser), ParseError.ColonExpected);
-		
 	});
 
 	test('Expr', function () {
@@ -109,6 +108,8 @@ suite('SCSS - Parser', () => {
 		assertNode('foo-#{$d}-bar: 1', parser, parser._parseDeclaration.bind(parser));
 		assertNode('#{$d}-#{$d}: 2', parser, parser._parseDeclaration.bind(parser));
 		assertNode('&:nth-child(#{$query}+1) { clear: $opposite-direction; }', parser, parser._parseRuleset.bind(parser));
+		assertNode('--#{$propname}: some-value', parser, parser._parseDeclaration.bind(parser));
+		assertNode('some-property: var(--#{$propname})', parser, parser._parseDeclaration.bind(parser));
 		assertError('#{}', parser, parser._parseIdent.bind(parser), ParseError.ExpressionExpected);
 		assertError('#{1 + 2', parser, parser._parseIdent.bind(parser), ParseError.RightCurlyExpected);
 	});
@@ -285,7 +286,7 @@ suite('SCSS - Parser', () => {
 		assertError('p { @include }', parser, parser._parseStylesheet.bind(parser), ParseError.IdentifierExpected);
 		assertError('p { @include foo($values }', parser, parser._parseStylesheet.bind(parser), ParseError.RightParenthesisExpected);
 		assertError('p { @include foo($values, }', parser, parser._parseStylesheet.bind(parser), ParseError.ExpressionExpected);
-	
+
 	});
 
 	test('@function', function () {

@@ -102,7 +102,16 @@ export class SCSSParser extends cssParser.Parser {
 		let node = <nodes.Identifier>this.create(nodes.Identifier);
 		node.referenceTypes = referenceTypes;
 		let hasContent = false;
-		while (this.accept(TokenType.Ident) || node.addChild(this._parseInterpolation()) || this.try(() => this.accept(TokenType.Delim, '-') && !this.hasWhitespace() && node.addChild(this._parseInterpolation())))  {
+		let delimWithInterpolation = () => {
+			if (!this.accept(TokenType.Delim, '-')) {
+				return false;
+			}
+			if (!this.hasWhitespace() && this.accept(TokenType.Delim, '-')) {
+				node.isCustomProperty = true;
+			}
+			return !this.hasWhitespace() && node.addChild(this._parseInterpolation());
+		};		
+		while (this.accept(TokenType.Ident) || node.addChild(this._parseInterpolation()) || this.try(delimWithInterpolation))  {
 			hasContent = true;
 			if (!this.hasWhitespace() && this.accept(TokenType.Delim, '-')) {
 				// '-' is a valid char inside a ident (special treatment here to support #{foo}-#{bar})
