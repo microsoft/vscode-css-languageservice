@@ -8531,6 +8531,28 @@
 				]
 			},
 			{
+				"name": "shape-rendering",
+				"desc": "Provides hints about what tradeoffs to make as it renders vector graphics elements such as <path> elements and basic shapes such as circles and rectangles.",
+				"restriction": "enum",
+				"values": [
+					{
+						"name": "auto",
+						"desc": "Suppresses aural rendering."
+					},
+					{
+						"name": "crispEdges"
+					},
+					{
+						"name": "geometricPrecision",
+						"desc": "Emphasize geometric precision over speed and crisp edges."
+					},
+					{
+						"name": "optimizeSpeed",
+						"desc": "Emphasize rendering speed over geometric precision and crisp edges."
+					}
+				]
+			},
+			{
 				"name": "size",
 				"browsers": "C,O8",
 				"restriction": "length"
@@ -8951,7 +8973,8 @@
 						"name": "auto"
 					},
 					{
-						"name": "geometricPrecision"
+						"name": "geometricPrecision",
+						"desc": "Indicates that the user agent shall emphasize geometric precision over legibility and rendering speed."
 					},
 					{
 						"name": "optimizeLegibility"
@@ -11602,6 +11625,7 @@
 	"attr(x)": "The value of attribute 'x' is a string value. The string value is evaluated as a <number> to determine the number of ruby base elements to be spanned by the annotation element.",
 	"smooth": "Scrolls in a smooth fashion using a user-agent-defined timing function and time period.",
 	"margin-box": "The background is painted within (clipped to) the margin box.",
+	"crispEdges": "Emphasize the contrast between clean edges of artwork over rendering speed and geometric precision.",
 	"format()": "Optional hint describing the format of the font resource.",
 	"local()": "Format-specific string that identifies a locally available copy of a given font.",
 	"butt": "Indicates that the stroke for each subpath does not extend beyond its two endpoints.",
@@ -11615,7 +11639,6 @@
 	"sideways": "This value is equivalent to 'sideways-right' in 'vertical-rl' writing mode and equivalent to 'sideways-left' in 'vertical-lr' writing mode.",
 	"sideways-right": "In vertical writing modes, this causes text to be set as if in a horizontal layout, but rotated 90° clockwise.",
 	"upright": "In vertical writing modes, characters from horizontal-only scripts are rendered upright, i.e. in their standard horizontal orientation.",
-	"geometricPrecision": "Indicates that the user agent shall emphasize geometric precision over legibility and rendering speed.",
 	"optimizeLegibility": "Indicates that the user agent shall emphasize legibility over rendering speed and geometric precision.",
 	"capitalize": "Puts the first typographic letter unit of each word in titlecase.",
 	"lowercase": "Puts all letters in lowercase.",

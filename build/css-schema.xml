@@ -7221,7 +7221,7 @@
 		<entry name="shape-padding" restriction="length" version="4.0" browsers="none" ref="https://drafts.csswg.org/css-shapes-2/#propdef-shape-padding" syntax="div { $(name): 10px; }">
 			<desc>Adds padding to a 'shape-inside'.</desc>
 		</entry>
-		<entry name="shape-rendering" restriction="enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/SVG2/painting.html#ShapeRenderingProperty">
+		<entry name="shape-rendering" restriction="enum" version="3.0" ref="http://www.w3.org/TR/SVG2/painting.html#ShapeRenderingProperty">
 			<desc>Provides hints about what tradeoffs to make as it renders vector graphics elements such as &lt;path> elements and basic shapes such as circles and rectangles.</desc>
 			<values>
 				<value name="auto" version="3.0" browsers="all">
