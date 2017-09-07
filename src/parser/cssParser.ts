@@ -76,6 +76,15 @@ export class Parser {
 		this.token = mark.curr;
 		this.scanner.goBackTo(mark.pos);
 	}
+	
+	public try(func: () => boolean) : boolean {
+		let pos = this.mark();
+		if (!func()) {
+			this.restoreAtMark(pos);
+			return false;
+		}
+		return true;
+	}
 
 	public acceptOne(type: TokenType, text?: string[], ignoreCase: boolean = true): boolean {
 		for (let i = 0; i < text.length; i++) {

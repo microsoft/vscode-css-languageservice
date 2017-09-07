@@ -44,6 +44,7 @@ suite('SCSS - Parser', () => {
 		assertError('$color: red !def', parser, parser._parseVariableDeclaration.bind(parser), ParseError.UnknownKeyword);
 		assertError('$color : !default', parser, parser._parseVariableDeclaration.bind(parser), ParseError.VariableValueExpected);
 		assertError('$color !default', parser, parser._parseVariableDeclaration.bind(parser), ParseError.ColonExpected);
+		
 	});
 
 	test('Expr', function () {
@@ -333,6 +334,7 @@ suite('SCSS - Parser', () => {
 		assertNode('sans-#{serif} { a-#{1 + 2}-color-#{$attr}: blue; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('##{f} .#{f} #{f}:#{f} { }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.foo-#{&} .foo-#{&-sub} { }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.-#{$variable} { }', parser, parser._parseRuleset.bind(parser));
 	});
 
 	test('Parent Selector', function () {
