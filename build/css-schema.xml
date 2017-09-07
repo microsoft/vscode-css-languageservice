@@ -8168,7 +8168,7 @@
 					<desc>Arabic Supplement. Additional letters for African languages, Khowar, Torwali, Burushaski, and early Persian.</desc>
 				</value>
 				<value name="U+8A0–8FF" version="3.0" browsers="all">
-					<desc>Arabic Extended-A. Additional letters for African languages, European and Central Asian languages, Rohingya, Berber, Arwi, and Koranic annotation signs.</desc>
+					<desc>Arabic Extended-A. Additional letters for African languages, European and Central Asian languages, Rohingya, Tamazight, Arwi, and Koranic annotation signs.</desc>
 				</value>
 				<value name="U+700–74F" version="3.0" browsers="all">
 					<desc>Syriac.</desc>

@@ -11647,7 +11647,7 @@
 	"U+590–5FF": "Hebrew.",
 	"U+600–6FF": "Arabic.",
 	"U+750–77F": "Arabic Supplement. Additional letters for African languages, Khowar, Torwali, Burushaski, and early Persian.",
-	"U+8A0–8FF": "Arabic Extended-A. Additional letters for African languages, European and Central Asian languages, Rohingya, Berber, Arwi, and Koranic annotation signs.",
+	"U+8A0–8FF": "Arabic Extended-A. Additional letters for African languages, European and Central Asian languages, Rohingya, Tamazight, Arwi, and Koranic annotation signs.",
 	"U+700–74F": "Syriac.",
 	"U+900–97F": "Devanagari.",
 	"U+980–9FF": "Bengali.",
