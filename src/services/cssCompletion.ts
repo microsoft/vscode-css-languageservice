@@ -535,10 +535,6 @@ export class CSSCompletion {
 		}
 		let isInSelectors = !declarations || this.offset <= declarations.offset;
 		if (isInSelectors) {
-			let currentWordStart = this.textDocument.offsetAt(this.defaultReplaceRange.start);
-			while (currentWordStart > 0 && this.textDocument.getText().charAt(currentWordStart - 1) === ':') {
-				currentWordStart--;
-			}
 			return this.getCompletionsForSelector(ruleSet, ruleSet.isNested(), result);
 		}
 		ruleSet.findParent(nodes.NodeType.Ruleset);
@@ -548,10 +544,10 @@ export class CSSCompletion {
 
 	public getCompletionsForSelector(ruleSet: nodes.RuleSet, isNested: boolean, result: CompletionList): CompletionList {
 		let existingNode = this.findInNodePath(nodes.NodeType.PseudoSelector, nodes.NodeType.IdentifierSelector, nodes.NodeType.ClassSelector, nodes.NodeType.ElementNameSelector);
-		if (!existingNode && this.currentWord.length === 0 && this.offset > 0 && this.textDocument.getText()[this.offset - 1] === ':') {
+		if (!existingNode && this.offset - this.currentWord.length > 0 && this.textDocument.getText()[this.offset - this.currentWord.length - 1] === ':') {
 			// after the ':' of a pseudo selector, no node generated for just ':'
-			this.currentWord = ':';
-			this.defaultReplaceRange = Range.create(Position.create(this.position.line, this.position.character - 1), this.position);
+			this.currentWord = ':' + this.currentWord;
+			this.defaultReplaceRange = Range.create(Position.create(this.position.line, this.position.character - this.currentWord.length), this.position);
 		}
 
 		languageFacts.getPseudoClasses().forEach((entry) => {
@@ -815,7 +811,7 @@ function isDefined(obj: any): boolean {
 function getCurrentWord(document: TextDocument, offset: number) {
 	let i = offset - 1;
 	let text = document.getText();
-	while (i >= 0 && ' \t\n\r":{[()]},'.indexOf(text.charAt(i)) === -1) {
+	while (i >= 0 && ' \t\n\r":{[()]},*>+'.indexOf(text.charAt(i)) === -1) {
 		i--;
 	}
 	return text.substring(i + 1, offset);
