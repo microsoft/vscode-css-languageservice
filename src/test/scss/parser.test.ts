@@ -200,7 +200,9 @@ suite('SCSS - Parser', () => {
 		assertNode('#context a%extreme { color: blue; }  .notice { @extend %extreme }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media print { .error {  } .seriousError { @extend .error; } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@mixin error($a: false) { @extend .#{$a}; @extend ##{$a}; }', parser, parser._parseStylesheet.bind(parser));
-
+		assertNode('.foo { @extend .text-center, .uppercase; }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('.foo { @extend .text-center, .uppercase, ; }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('.foo { @extend .text-center, .uppercase !optional ; }', parser, parser._parseStylesheet.bind(parser));
 		assertError('.hoverlink { @extend }', parser, parser._parseStylesheet.bind(parser), ParseError.SelectorExpected);
 		assertError('.hoverlink { @extend %extreme !default }', parser, parser._parseStylesheet.bind(parser), ParseError.UnknownKeyword);
 	});

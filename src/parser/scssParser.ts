@@ -233,6 +233,9 @@ export class SCSSParser extends cssParser.Parser {
 			if (!node.getSelectors().addChild(this._parseSimpleSelector())) {
 				return this.finish(node, ParseError.SelectorExpected);
 			}
+			while (this.accept(TokenType.Comma)) {
+				node.getSelectors().addChild(this._parseSimpleSelector());
+			}
 			if (this.accept(TokenType.Exclamation)) {
 				if (!this.accept(TokenType.Ident, 'optional', true)) {
 					return this.finish(node, ParseError.UnknownKeyword);
