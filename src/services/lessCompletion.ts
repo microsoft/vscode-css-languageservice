@@ -368,6 +368,11 @@ export class LESSCompletion extends CSSCompletion {
 		this.createFunctionProposals(LESSCompletion.colorProposals, existingNode, false, result);
 		return super.getColorProposals(entry, existingNode, result);
 	}
+	
+	public getCompletionsForDeclarationProperty(declaration: nodes.Declaration, result: CompletionList): CompletionList {
+		this.getCompletionsForSelector(null, true, result);
+		return super.getCompletionsForDeclarationProperty(declaration, result);
+	}	
 
 }
 

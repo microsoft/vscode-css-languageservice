@@ -404,8 +404,10 @@ export class LESSParser extends cssParser.Parser {
 			this.restoreAtMark(mark);
 			return null;
 		}
+		let hasArguments = false;
 
 		if (!this.hasWhitespace() && this.accept(TokenType.ParenthesisL)) {
+			hasArguments = true;
 			if (node.getArguments().addChild(this._parseMixinArgument())) {
 				while (this.accept(TokenType.Comma) || this.accept(TokenType.SemiColon)) {
 					if (this.peek(TokenType.ParenthesisR)) {
@@ -425,7 +427,7 @@ export class LESSParser extends cssParser.Parser {
 		}
 
 		node.addChild(this._parsePrio());
-		if (atRoot && !this.peek(TokenType.SemiColon)) {
+		if (!hasArguments && !this.peek(TokenType.SemiColon) && !this.peek(TokenType.CurlyR) && !this.peek(TokenType.EOF)) {
 			this.restoreAtMark(mark);
 			return null;
 		}
