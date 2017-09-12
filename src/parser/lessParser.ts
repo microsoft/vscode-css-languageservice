@@ -241,12 +241,23 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseSelectorIdent(): nodes.Node {
-		return this._parseIdent() || this._parseSelectorInterpolation();
+		let node = this.createNode(nodes.NodeType.SelectorInterpolation);
+		let hasContent = false;
+		while (this.accept(TokenType.Ident) || node.addChild(this._parseSelectorInterpolation()))  {
+			hasContent = true;
+			if (!this.hasWhitespace() && this.accept(TokenType.Delim, '-')) {
+				// '-' is a valid char inside a ident (special treatment here to support @{foo}-@{bar})
+			}
+			if (this.hasWhitespace()) {
+				break;
+			}
+		}		
+		return hasContent ? this.finish(node) : null;
 	}
 
 	public _parseSelectorInterpolation(): nodes.Node {
 		// Selector interpolation;  old: ~"@{name}", new: @{name}
-		let node = this.createNode(nodes.NodeType.SelectorInterpolation);
+		let node = this.createNode(nodes.NodeType.Interpolation);
 		if (this.accept(TokenType.Delim, '~')) {
 			if (!this.hasWhitespace() && (this.accept(TokenType.String) || this.accept(TokenType.BadString))) {
 				return this.finish(node);
