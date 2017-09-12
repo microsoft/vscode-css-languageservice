@@ -47,7 +47,9 @@ export class SCSSParser extends cssParser.Parser {
 			}
 		}
 
-		node.setMedialist(this._parseMediaList());
+		if (!this.peek(TokenType.SemiColon) && !this.peek(TokenType.EOF)) {
+			node.setMedialist(this._parseMediaQueryList());
+		}
 
 		return this.finish(node);
 	}

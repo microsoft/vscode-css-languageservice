@@ -58,8 +58,6 @@ suite('CSS - Parser', () => {
 		assertNode('@-ms-viewport { width: 320px; height: 768px; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('#boo, far {} \n.far boo {}', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@-moz-keyframes darkWordHighlight { from { background-color: inherit; } to { background-color: rgba(83, 83, 83, 0.7); } }', parser, parser._parseStylesheet.bind(parser));
-		assertNode('@import "foo";', parser, parser._parseStylesheet.bind(parser));
-		assertNode('@import url(/css/screen.css) screen, projection;', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@page { margin: 2.5cm; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@font-face { font-family: "Example Font"; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@namespace "http://www.w3.org/1999/xhtml";', parser, parser._parseStylesheet.bind(parser));
@@ -126,6 +124,12 @@ suite('CSS - Parser', () => {
 		assertNode('@import "asdasdsa"', parser, parser._parseImport.bind(parser));
 		assertNode('@ImPort "asdsadsa"', parser, parser._parseImport.bind(parser));
 		assertNode('@import "asdasd" dsfsdf', parser, parser._parseImport.bind(parser));
+		assertNode('@import "foo";', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@import url(/css/screen.css) screen, projection;', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@import url(\'landscape.css\') screen and (orientation:landscape);', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@import url("/inc/Styles/full.css") (min-width: 940px);', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@import url(style.css) screen and (min-width:600px);', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@import url("./700.css") only screen and (max-width: 700px);', parser, parser._parseStylesheet.bind(parser));
 		assertError('@import', parser, parser._parseImport.bind(parser), ParseError.URIOrStringExpected);
 	});
 
@@ -159,7 +163,7 @@ suite('CSS - Parser', () => {
 		assertNode('@media print { @page { margin: 10% } blockquote, pre { page-break-inside: avoid } }', parser, parser._parseMedia.bind(parser));
 		assertNode('@media print { body:before { } }', parser, parser._parseMedia.bind(parser));
 		assertError('@media somename othername2 { }', parser, parser._parseMedia.bind(parser), ParseError.LeftCurlyExpected);
-		assertError('@media not, screen { }', parser, parser._parseMedia.bind(parser), ParseError.IdentifierExpected);
+		assertError('@media not, screen { }', parser, parser._parseMedia.bind(parser), ParseError.MediaQueryExpected);
 		assertError('@media not screen and foo { }', parser, parser._parseMedia.bind(parser), ParseError.LeftParenthesisExpected);
 		assertError('@media not screen and () { }', parser, parser._parseMedia.bind(parser), ParseError.IdentifierExpected);
 		assertError('@media not screen and (color:) { }', parser, parser._parseMedia.bind(parser), ParseError.TermExpected);
@@ -168,8 +172,9 @@ suite('CSS - Parser', () => {
 
 	test('media_list', function () {
 		let parser = new Parser();
-		assertNode('somename', parser, parser._parseMediaList.bind(parser));
-		assertNode('somename, othername', parser, parser._parseMediaList.bind(parser));
+		assertNode('somename', parser, parser._parseMediaQueryList.bind(parser));
+		assertNode('somename, othername', parser, parser._parseMediaQueryList.bind(parser));
+		assertNode('not all and (monochrome)', parser, parser._parseMediaQueryList.bind(parser));
 	});
 
 	test('medium', function () {

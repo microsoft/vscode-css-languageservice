@@ -596,7 +596,9 @@ export class Parser {
 			return this.finish(node, ParseError.URIOrStringExpected);
 		}
 
-		node.setMedialist(this._parseMediaList());
+		if (!this.peek(TokenType.SemiColon) && !this.peek(TokenType.EOF)) {
+			node.setMedialist(this._parseMediaQueryList());
+		}
 
 		return this.finish(node);
 	}
@@ -812,17 +814,24 @@ export class Parser {
 		if (!this.accept(TokenType.AtKeyword, '@media')) {
 			return null;
 		}
+		if (!node.addChild(this._parseMediaQueryList())) {
+			return this.finish(node, ParseError.MediaQueryExpected);
+		}
+		return this._parseBody(node, this._parseMediaDeclaration.bind(this, isNested));
+	}
+	
+	public _parseMediaQueryList(): nodes.Medialist {
+		let node = <nodes.Medialist>this.create(nodes.Medialist);
 		if (!node.addChild(this._parseMediaQuery([TokenType.CurlyL]))) {
-			return this.finish(node, ParseError.IdentifierExpected);
+			return this.finish(node, ParseError.MediaQueryExpected);
 		}
 		while (this.accept(TokenType.Comma)) {
 			if (!node.addChild(this._parseMediaQuery([TokenType.CurlyL]))) {
-				return this.finish(node, ParseError.IdentifierExpected);
+				return this.finish(node, ParseError.MediaQueryExpected);
 			}
 		}
-
-		return this._parseBody(node, this._parseMediaDeclaration.bind(this, isNested));
-	}
+		return this.finish(node);
+	}	
 
 	public _parseMediaQuery(resyncStopToken: TokenType[]): nodes.Node {
 		// http://www.w3.org/TR/css3-mediaqueries/
@@ -863,25 +872,12 @@ export class Parser {
 			}
 			parseExpression = this.accept(TokenType.Ident, 'and', true);
 		}
-		return node;
+		return this.finish(node);
 	}
-
+	
 	public _parseMediaFeatureName(): nodes.Node {
 		return this._parseIdent();
-	}
-
-	public _parseMediaList(): nodes.Medialist {
-		let node = <nodes.Medialist>this.create(nodes.Medialist);
-		if (node.getMediums().addChild(this._parseMedium())) {
-			while (this.accept(TokenType.Comma)) {
-				if (!node.getMediums().addChild(this._parseMedium())) {
-					return this.finish(node, ParseError.IdentifierExpected);
-				}
-			}
-			return <nodes.Medialist>this.finish(node);
-		}
-		return null;
-	}
+	}	
 
 	public _parseMedium(): nodes.Node {
 		let node = this.create(nodes.Node);

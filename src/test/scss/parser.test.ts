@@ -169,7 +169,7 @@ suite('SCSS - Parser', () => {
 		assertNode('@import "test.css", "bar.css" screen, projection', parser, parser._parseImport.bind(parser));
 		assertNode('foo { @import "test.css"; }', parser, parser._parseStylesheet.bind(parser));
 
-		assertError('@import "test.css" "bar.css"', parser, parser._parseStylesheet.bind(parser), ParseError.SemiColonExpected);
+		assertError('@import "test.css" "bar.css"', parser, parser._parseStylesheet.bind(parser), ParseError.MediaQueryExpected);
 		assertError('@import "test.css", screen', parser, parser._parseImport.bind(parser), ParseError.URIOrStringExpected);
 		assertError('@import', parser, parser._parseImport.bind(parser), ParseError.URIOrStringExpected);
 	});
