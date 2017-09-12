@@ -577,6 +577,101 @@
 		</value>
 			</values>
 		</entry>
+		<entry name="justify-items" restriction="enum" version="3.0" browsers="FF45" ref="https://www.w3.org/TR/css-grid-1/#row-align">
+			<desc>Defines the default justify-self for all items of the box, given them the default way of justifying each box along the appropriate axi</desc>
+			<values>
+				<value name="auto" version="3.0" browsers="all">
+				</value>
+				<value name="normal" version="3.0" browsers="all">
+				</value>
+				<value name="end" version="3.0" browsers="all">
+				</value>
+				<value name="start" version="3.0" browsers="all">
+				</value>
+				<value name="flex-end" version="3.0" browsers="all">
+					<desc>"Flex items are packed toward the end of the line."</desc>
+				</value>
+				<value name="flex-start" version="3.0" browsers="all">
+					<desc>"Flex items are packed toward the start of the line."</desc>
+				</value>
+				<value name="self-end" version="3.0" browsers="all">
+					<desc>The item is packed flush to the edge of the alignment container of the end side of the item, in the appropriate axis.</desc>
+				</value>
+				<value name="self-start" version="3.0" browsers="all">
+					<desc>The item is packed flush to the edge of the alignment container of the start side of the item, in the appropriate axis..</desc>
+				</value>
+				<value name="center" version="3.0" browsers="all">
+					<desc>The items are packed flush to each other toward the center of the of the alignment container.</desc>
+				</value>
+				<value name="left" version="3.0" browsers="all">
+				</value>
+				<value name="right" version="3.0" browsers="all">
+				</value>
+				<value name="baseline" version="3.0" browsers="all">
+				</value>
+				<value name="first baseline" version="3.0" browsers="all">
+				</value>
+				<value name="last baseline" version="3.0" browsers="all">
+				</value>								
+				<value name="stretch" version="3.0" browsers="all">
+					<desc>If the cross size property of the flex item computes to auto, and neither of the cross-axis margins are auto, the flex item is stretched.</desc>
+				</value>
+				<value name="save" version="3.0" browsers="all">
+				</value>
+				<value name="unsave" version="3.0" browsers="all">
+				</value>
+				<value name="legacy" version="3.0" browsers="all">
+				</value>						
+			</values>
+		</entry>
+		<entry name="justify-self" restriction="enum" version="3.0" browsers="FF45" ref="https://www.w3.org/TR/css-grid-1/#row-align">
+			<desc>Defines the way of justifying a box inside its container along the appropriate axis.</desc>
+			<values>
+				<value name="auto" version="3.0" browsers="all">
+				</value>
+				<value name="normal" version="3.0" browsers="all">
+				</value>
+				<value name="end" version="3.0" browsers="all">
+				</value>
+				<value name="start" version="3.0" browsers="all">
+				</value>
+				<value name="flex-end" version="3.0" browsers="all">
+					<desc>"Flex items are packed toward the end of the line."</desc>
+					</value>
+				<value name="flex-start" version="3.0" browsers="all">
+					<desc>"Flex items are packed toward the start of the line."</desc>
+				</value>
+				<value name="self-end" version="3.0" browsers="all">
+					<desc>The item is packed flush to the edge of the alignment container of the end side of the item, in the appropriate axis.</desc>
+				</value>
+				<value name="self-start" version="3.0" browsers="all">
+					<desc>The item is packed flush to the edge of the alignment container of the start side of the item, in the appropriate axis..</desc>
+				</value>
+				<value name="center" version="3.0" browsers="all">
+					<desc>The items are packed flush to each other toward the center of the of the alignment container.</desc>
+				</value>
+				<value name="left" version="3.0" browsers="all">
+				</value>
+				<value name="right" version="3.0" browsers="all">
+				</value>
+				<value name="baseline" version="3.0" browsers="all">
+				</value>
+				<value name="first baseline" version="3.0" browsers="all">
+				</value>
+				<value name="last baseline" version="3.0" browsers="all">
+				</value>								
+				<value name="stretch" version="3.0" browsers="all">
+					<desc>If the cross size property of the flex item computes to auto, and neither of the cross-axis margins are auto, the flex item is stretched.</desc>
+				</value>
+				<value name="save" version="3.0" browsers="all">
+				</value>
+				<value name="unsave" version="3.0" browsers="all">
+				</value>					
+			</values>
+		</entry>		
+		<entry name="justify-items" restriction="enum" version="3.0" browsers="FF45" ref="https://www.w3.org/TR/css-grid-1/#row-align">
+			<desc>Defines the default justify-self for all items of the box, given them the default way of justifying each box along the appropriate axi</desc>		
+		</entry>			
 		<entry name="alignment-baseline" restriction="enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-inline/#propdef-alignment-baseline" syntax="img { $(name): middle; }">
 			<desc>Specifies what point of an inline-level box is aligned to what point in the parent.</desc>
 			<values>

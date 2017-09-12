@@ -841,6 +841,141 @@
 				]
 			},
 			{
+				"name": "justify-items",
+				"desc": "Defines the default justify-self for all items of the box, given them the default way of justifying each box along the appropriate axi",
+				"browsers": "FF45",
+				"restriction": "enum",
+				"values": [
+					{
+						"name": "auto"
+					},
+					{
+						"name": "normal"
+					},
+					{
+						"name": "end"
+					},
+					{
+						"name": "start"
+					},
+					{
+						"name": "flex-end",
+						"desc": "\"Flex items are packed toward the end of the line.\""
+					},
+					{
+						"name": "flex-start",
+						"desc": "\"Flex items are packed toward the start of the line.\""
+					},
+					{
+						"name": "self-end"
+					},
+					{
+						"name": "self-start"
+					},
+					{
+						"name": "center",
+						"desc": "The items are packed flush to each other toward the center of the of the alignment container."
+					},
+					{
+						"name": "left"
+					},
+					{
+						"name": "right"
+					},
+					{
+						"name": "baseline"
+					},
+					{
+						"name": "first baseline"
+					},
+					{
+						"name": "last baseline"
+					},
+					{
+						"name": "stretch",
+						"desc": "If the cross size property of the flex item computes to auto, and neither of the cross-axis margins are auto, the flex item is stretched."
+					},
+					{
+						"name": "save"
+					},
+					{
+						"name": "unsave"
+					},
+					{
+						"name": "legacy"
+					}
+				]
+			},
+			{
+				"name": "justify-self",
+				"desc": "Defines the way of justifying a box inside its container along the appropriate axis.",
+				"browsers": "FF45",
+				"restriction": "enum",
+				"values": [
+					{
+						"name": "auto"
+					},
+					{
+						"name": "normal"
+					},
+					{
+						"name": "end"
+					},
+					{
+						"name": "start"
+					},
+					{
+						"name": "flex-end",
+						"desc": "\"Flex items are packed toward the end of the line.\""
+					},
+					{
+						"name": "flex-start",
+						"desc": "\"Flex items are packed toward the start of the line.\""
+					},
+					{
+						"name": "self-end"
+					},
+					{
+						"name": "self-start"
+					},
+					{
+						"name": "center",
+						"desc": "The items are packed flush to each other toward the center of the of the alignment container."
+					},
+					{
+						"name": "left"
+					},
+					{
+						"name": "right"
+					},
+					{
+						"name": "baseline"
+					},
+					{
+						"name": "first baseline"
+					},
+					{
+						"name": "last baseline"
+					},
+					{
+						"name": "stretch",
+						"desc": "If the cross size property of the flex item computes to auto, and neither of the cross-axis margins are auto, the flex item is stretched."
+					},
+					{
+						"name": "save"
+					},
+					{
+						"name": "unsave"
+					}
+				]
+			},
+			{
+				"name": "justify-items",
+				"desc": "Defines the default justify-self for all items of the box, given them the default way of justifying each box along the appropriate axi",
+				"browsers": "FF45",
+				"restriction": "enum"
+			},
+			{
 				"name": "align-self",
 				"desc": "Allows the default alignment along the cross axis to be overridden for individual flex items.",
 				"browsers": "E,C29,FF22,IE11,O12.1,S9",
@@ -11240,6 +11375,8 @@
 	"700": "Bold",
 	"800": "Extra Bold (Ultra Bold)",
 	"900": "Black (Heavy)",
+	"self-end": "The item is packed flush to the edge of the alignment container of the end side of the item, in the appropriate axis.",
+	"self-start": "The item is packed flush to the edge of the alignment container of the start side of the item, in the appropriate axis..",
 	"alternate": "The animation cycle iterations that are odd counts are played in the normal direction, and the animation cycle iterations that are even counts are played in a reverse direction.",
 	"alternate-reverse": "The animation cycle iterations that are odd counts are played in the reverse direction, and the animation cycle iterations that are even counts are played in a normal direction.",
 	"backwards": "The beginning property value (as defined in the first @keyframes at-rule) is applied before the animation is displayed, during the period defined by 'animation-delay'.",
