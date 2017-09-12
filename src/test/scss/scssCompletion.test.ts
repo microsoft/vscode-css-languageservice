@@ -51,7 +51,7 @@ suite('SCSS - Completions', () => {
 			}),
 			testCompletionFor('.foo { background-color: d|', {
 				items: [
-					{ label: 'darken' },
+					{ label: 'darken', resultText: '.foo { background-color: darken(\\$color: ${1:#000000}, \\$amount: ${2:0})' },
 					{ label: 'desaturate' }
 				]
 			}),

@@ -25,7 +25,7 @@ export class SCSSCompletion extends CSSCompletion {
 		'$green': '2',
 		'$blue': '3',
 		'$alpha': '1.0',
-		'$color': '$color',
+		'$color': '#000000',
 		'$weight': '0.5',
 		'$hue': '0',
 		'$saturation': '0%',
@@ -130,7 +130,7 @@ export class SCSSCompletion extends CSSCompletion {
 	private createReplaceFunction() {
 		let tabStopCounter = 1;
 		return (match: string, p1: string) => {
-			return p1 + ': ${' + tabStopCounter++ + ':' + (SCSSCompletion.variableDefaults[p1] || '') + '}'
+			return '\\' + p1 + ': ${' + tabStopCounter++ + ':' + (SCSSCompletion.variableDefaults[p1] || '') + '}'
 		}
 	}
 
