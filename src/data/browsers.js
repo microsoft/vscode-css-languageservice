@@ -2131,6 +2131,39 @@
 				]
 			},
 			{
+				"name": "contain",
+				"desc": "Indicates that an element and its contents are, as much as possible, independent of the rest of the document tree.",
+				"browsers": "C52,O40",
+				"restriction": "enum",
+				"values": [
+					{
+						"name": "none",
+						"desc": "Indicates that the property has no effect."
+					},
+					{
+						"name": "strict",
+						"desc": "Turns on all forms of containment for the element."
+					},
+					{
+						"name": "content",
+						"desc": "All containment rules except size are applied to the element."
+					},
+					{
+						"name": "size"
+					},
+					{
+						"name": "layout"
+					},
+					{
+						"name": "style",
+						"desc": "Turns on style containment for the element."
+					},
+					{
+						"name": "paint"
+					}
+				]
+			},
+			{
 				"name": "content",
 				"desc": "Determines which page-based occurrence of a given element is applied to a counter or string value.",
 				"browsers": "E,C,FF1,IE8,O4,S1",
@@ -2659,6 +2692,7 @@
 					},
 					{
 						"name": "content",
+						"desc": "Indicates automatic sizing, based on the flex item’s content.",
 						"browsers": "E,IE11"
 					},
 					{
@@ -2679,6 +2713,7 @@
 					},
 					{
 						"name": "content",
+						"desc": "Indicates automatic sizing, based on the flex item’s content.",
 						"browsers": "E,IE11"
 					}
 				]
@@ -3505,7 +3540,8 @@
 						"desc": "Disallow all synthetic faces."
 					},
 					{
-						"name": "style"
+						"name": "style",
+						"desc": "Allow synthetic italic faces."
 					},
 					{
 						"name": "weight"
@@ -11410,6 +11446,9 @@
 	"linearRGB": "Color operations should occur in the linearized RGB color space.",
 	"sRGB": "Color operations should occur in the sRGB color space.",
 	"balance": "Balance content equally between columns, if possible.",
+	"size": "For properties that can have effects on more than just an element and its descendants, those effects don't escape the containing element.",
+	"layout": "Turns on layout containment for the element.",
+	"paint": "Turns on paint containment for the element.",
 	"attr()": "The attr(n) function returns as a string the value of attribute n for the subject of the selector.",
 	"counter(name)": "Counters are denoted by identifiers (see the 'counter-increment' and 'counter-reset' properties).",
 	"alias": "Indicates an alias of/shortcut to something is to be created. Often rendered as an arrow with a small curved arrow next to it.",
@@ -11490,7 +11529,6 @@
 	"opacity()": "Applies transparency to the samples in the input image.",
 	"saturate()": "Saturates the input image.",
 	"sepia()": "Converts the input image to sepia.",
-	"content": "Indicates automatic sizing, based on the flex item’s content.",
 	"column-reverse": "Same as 'column', except the main-start and main-end directions are swapped.",
 	"row-reverse": "Same as 'row', except the main-start and main-end directions are swapped.",
 	"wrap-reverse": "Same as 'wrap', except the cross-start and cross-end directions are swapped.",
@@ -11614,7 +11652,6 @@
 	"\"zero\"": "Slashed Zero.",
 	"narrower": "Indicates a narrower value relative to the width of the parent element.",
 	"wider": "Indicates a wider value relative to the width of the parent element.",
-	"style": "Allow synthetic italic faces.",
 	"weight": "Allow synthetic bold faces.",
 	"annotation()": "Enables display of alternate annotation forms.",
 	"character-variant()": "Enables display of specific character variants.",

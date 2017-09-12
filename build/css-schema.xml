@@ -1750,7 +1750,7 @@
 				</value>
 			</values>
 		</entry>
-		<entry name="contain" restriction="enum" version="3.0" browsers="none" ref="https://drafts.csswg.org/css-containment-3/#propdef-contain" syntax="div { $(name): strict; }">
+		<entry name="contain" restriction="enum" version="3.0" browsers="C52,O40" ref="https://drafts.csswg.org/css-containment-3/#propdef-contain" syntax="div { $(name): strict; }">
 			<desc>Indicates that an element and its contents are, as much as possible, independent of the rest of the document tree.</desc>
 			<values>
 				<value name="none" version="3.0" browsers="all">
@@ -1759,6 +1759,12 @@
 				<value name="strict" version="3.0" browsers="all">
 					<desc>Turns on all forms of containment for the element.</desc>
 				</value>
+				<value name="content" version="3.0" browsers="all">
+					<desc>All containment rules except size are applied to the element.</desc>
+				</value>
+				<value name="size" version="3.0" browsers="all">
+					<desc>For properties that can have effects on more than just an element and its descendants, those effects don't escape the containing element.</desc>
+				</value>		
 				<value name="layout" version="3.0" browsers="all">
 					<desc>Turns on layout containment for the element.</desc>
 				</value>
