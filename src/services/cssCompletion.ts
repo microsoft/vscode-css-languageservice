@@ -244,9 +244,6 @@ export class CSSCompletion {
 						kind: CompletionItemKind.Value,
 						insertTextFormat
 					};
-					if (insertTextFormat) {
-						item.insertTextFormat = insertTextFormat;
-					}
 					result.items.push(item);
 				}
 			});
@@ -466,11 +463,13 @@ export class CSSCompletion {
 
 	protected getImageProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		for (let image in languageFacts.imageFunctions) {
+			let insertText = image.replace(/\(\)$/, "($1)");
 			result.items.push({
 				label: image,
 				documentation: languageFacts.imageFunctions[image],
-				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), image),
-				kind: CompletionItemKind.Function
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
+				kind: CompletionItemKind.Function,
+				insertTextFormat: image !== insertText ? SnippetFormat : void 0
 			});
 		}
 		return result;
@@ -478,11 +477,13 @@ export class CSSCompletion {
 
 	protected getTimingFunctionProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		for (let timing in languageFacts.transitionTimingFunctions) {
+			let insertText = timing.replace(/\(\)$/, "($1)");
 			result.items.push({
 				label: timing,
 				documentation: languageFacts.transitionTimingFunctions[timing],
-				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), timing),
-				kind: CompletionItemKind.Function
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
+				kind: CompletionItemKind.Function,
+				insertTextFormat: timing !== insertText ? SnippetFormat : void 0
 			});
 		}
 		return result;
@@ -490,11 +491,13 @@ export class CSSCompletion {
 
 	protected getBasicShapeProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		for (let shape in languageFacts.basicShapeFunctions) {
+			let insertText = shape.replace(/\(\)$/, "($1)");
 			result.items.push({
 				label: shape,
 				documentation: languageFacts.basicShapeFunctions[shape],
-				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), shape),
-				kind: CompletionItemKind.Function
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
+				kind: CompletionItemKind.Function,
+				insertTextFormat: shape !== insertText ? SnippetFormat : void 0
 			});
 		}
 		return result;
