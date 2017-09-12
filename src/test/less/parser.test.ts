@@ -240,6 +240,7 @@ suite('LESS - Parser', () => {
 		assertNode('.@{name} { }', parser, parser._parseRuleset.bind(parser));
 		assertNode('~"@{name}" { }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.my-element:not(.prefix-@{sub-element}) { }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('.-@{color} { }', parser, parser._parseStylesheet.bind(parser));		
 		assertError('~{ }', parser, parser._parseStylesheet.bind(parser), ParseError.StringLiteralExpected);
 		assertError('@', parser, parser._parseSelectorInterpolation.bind(parser), ParseError.LeftCurlyExpected);
 		assertError('@{', parser, parser._parseSelectorInterpolation.bind(parser), ParseError.IdentifierExpected);
