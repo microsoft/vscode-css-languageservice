@@ -69,7 +69,6 @@ suite('LESS - Parser', () => {
 		assertNode('#truth (@a) when (@a = true) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.color (@color; @padding: 2;) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertError('.color (@color; @padding: 2;;) { }', parser, parser._tryParseMixinDeclaration.bind(parser), ParseError.IdentifierExpected);
-
 	});
 
 	test('MixinReference', function() {
@@ -90,6 +89,8 @@ suite('LESS - Parser', () => {
 		assertNode('.foo {  @greeting(); }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.media-switch(@styles) { @media(orientation:landscape){ @styles(); @foo: 9; } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.media-switch({ flex-direction: row; });', parser, parser._parseStylesheet.bind(parser));
+		assertNode('.keyframes(@name; @arguments) { @-moz-keyframes @name { @arguments(); } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('.keyframes(fade-in;{ 0%, 100% { opacity: 1; }});', parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('MixinParameter', function() {

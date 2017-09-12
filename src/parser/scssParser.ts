@@ -87,7 +87,7 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseKeyframeSelector(): nodes.Node {
-		return super._parseKeyframeSelector() || this._parseMixinContent();
+		return this._tryParseKeyframeSelector() || this._parseMixinContent();
 	}
 
 	public _parseVariable(): nodes.Variable {
@@ -526,7 +526,7 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseMixinReferenceBodyStatement(): nodes.Node {
-		return this._parseRuleSetDeclaration() || this._parseKeyframeSelector();
+		return this._tryParseKeyframeSelector() || this._parseRuleSetDeclaration();
 	}
 
 	public _parseFunctionArgument(): nodes.Node {

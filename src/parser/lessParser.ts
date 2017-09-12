@@ -111,9 +111,15 @@ export class LESSParser extends cssParser.Parser {
 			return null;
 		}
 		let content = <nodes.BodyDeclaration>this.create(nodes.BodyDeclaration);
-		this._parseBody(content, this._parseRuleSetDeclaration.bind(this));
+		
+		
+		this._parseBody(content, this._parseDetachedRuleSetBody.bind(this));
 		return this.finish(content);
 	}
+	
+	public _parseDetachedRuleSetBody(): nodes.Node {		
+		return this._tryParseKeyframeSelector() || super._parseRuleSetDeclaration();
+	}	
 
 	public _parseVariable(): nodes.Variable {
 		let node = <nodes.Variable>this.create(nodes.Variable);
@@ -197,6 +203,15 @@ export class LESSParser extends cssParser.Parser {
 			|| this._tryParseMixinReference() // less mixin reference
 			|| this._parseExtend() // less extend declaration
 			|| super._parseRuleSetDeclaration(); // try css ruleset declaration as the last option
+		}
+		
+	public _parseKeyframeIdent(): nodes.Node {
+		return this._parseIdent([nodes.ReferenceType.Keyframe]) || this._parseVariable();
+	}
+	
+	public _parseKeyframeSelector(): nodes.Node {
+		return this._parseDetachedRuleSetMixin()  // less detached ruleset mixin
+			|| super._parseKeyframeSelector();
 	}
 
 	public _parseSimpleSelectorBody(): nodes.Node {
@@ -267,7 +282,7 @@ export class LESSParser extends cssParser.Parser {
 					break;
 				}
 				if (!node.getParameters().addChild(this._parseMixinParameter())) {
-					return this.finish(node, ParseError.IdentifierExpected);
+					this.markError(node, ParseError.IdentifierExpected, [], [TokenType.ParenthesisR]);
 				}
 			}
 		}

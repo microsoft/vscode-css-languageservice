@@ -76,7 +76,7 @@ export class Parser {
 		this.token = mark.curr;
 		this.scanner.goBackTo(mark.pos);
 	}
-	
+
 	public try(func: () => boolean) : boolean {
 		let pos = this.mark();
 		if (!func()) {
@@ -666,11 +666,15 @@ export class Parser {
 			this.markError(atNode, ParseError.UnknownKeyword);
 		}
 
-		if (!node.setIdentifier(this._parseIdent([nodes.ReferenceType.Keyframe]))) {
+		if (!node.setIdentifier(this._parseKeyframeIdent())) {
 			return this.finish(node, ParseError.IdentifierExpected, [TokenType.CurlyR]);
 		}
 
 		return this._parseBody(node, this._parseKeyframeSelector.bind(this));
+	}
+
+	public _parseKeyframeIdent(): nodes.Node {
+		return this._parseIdent([nodes.ReferenceType.Keyframe]);
 	}
 
 	public _parseKeyframeSelector(): nodes.Node {
@@ -688,6 +692,29 @@ export class Parser {
 
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
 	}
+	
+	public _tryParseKeyframeSelector(): nodes.Node {
+		let node = <nodes.KeyframeSelector>this.create(nodes.KeyframeSelector);
+		let pos = this.mark();
+
+		if (!node.addChild(this._parseIdent()) && !this.accept(TokenType.Percentage)) {
+			return null;
+		}
+
+		while (this.accept(TokenType.Comma)) {
+			if (!node.addChild(this._parseIdent()) && !this.accept(TokenType.Percentage)) {
+				this.restoreAtMark(pos);
+				return null;
+			}
+		}
+		
+		if (!this.peek(TokenType.CurlyL)) {
+			this.restoreAtMark(pos);
+			return null;
+		}
+
+		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
+	}	
 
 	public _parseSupports(isNested = false): nodes.Node {
 		// SUPPORTS_SYM S* supports_condition '{' S* ruleset* '}' S*

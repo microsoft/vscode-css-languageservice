@@ -957,11 +957,11 @@ export class Keyframe extends BodyDeclaration {
 		return this.keyword;
 	}
 
-	public setIdentifier(node: Identifier): boolean {
+	public setIdentifier(node: Node): boolean {
 		return this.setNode('identifier', node, 0);
 	}
 
-	public getIdentifier(): Identifier {
+	public getIdentifier(): Node {
 		return this.identifier;
 	}
 
