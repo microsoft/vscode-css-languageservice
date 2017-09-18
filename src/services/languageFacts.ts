@@ -446,22 +446,27 @@ export function getColorValue(node: nodes.Node): Color {
 		let functionNode = <nodes.Function>node;
 		let name = functionNode.getName();
 		let colorValues = functionNode.getArguments().getChildren();
-		if (!name && colorValues.length < 3 && colorValues.length > 4) {
+		if (!name || colorValues.length < 3 || colorValues.length > 4) {
 			return null;
 		}
-		let alpha = colorValues.length == 4 ? getNumericValue(colorValues[3], 1) : 1
-		if (name === 'rgb' || name == 'rgba') {
-			return {
-				red: getNumericValue(colorValues[0], 255.0),
-				green: getNumericValue(colorValues[1], 255.0),
-				blue: getNumericValue(colorValues[2], 255.0),
-				alpha
+		try {
+			let alpha = colorValues.length == 4 ? getNumericValue(colorValues[3], 1) : 1
+			if (name === 'rgb' || name == 'rgba') {
+				return {
+					red: getNumericValue(colorValues[0], 255.0),
+					green: getNumericValue(colorValues[1], 255.0),
+					blue: getNumericValue(colorValues[2], 255.0),
+					alpha
+				}
+			} else if (name === 'hsl' || name == 'hsla') {
+				let h = getAngle(colorValues[0]);
+				let s = getNumericValue(colorValues[1], 100.0);
+				let l = getNumericValue(colorValues[2], 100.0);
+				return colorFromHSL(h, s, l, alpha);
 			}
-		} else if (name === 'hsl' || name == 'hsla') {
-			let h = getAngle(colorValues[0]);
-			let s = getNumericValue(colorValues[1], 100.0);
-			let l = getNumericValue(colorValues[2], 100.0);
-			return colorFromHSL(h, s, l, alpha);
+		} catch (e) {
+			// parse error on numeric value
+			return null;
 		}
 	} else if (node.type === nodes.NodeType.Identifier) {
 		if (node.parent && node.parent.type !== nodes.NodeType.Term) {
@@ -480,32 +485,27 @@ export function getColorValue(node: nodes.Node): Color {
 }
 
 function getNumericValue(node: nodes.Node, factor: number) {
-	try {
-		let val = node.getText();
-		let result;
-		if (val[val.length - 1] === '%') {
-			result = parseInt(val.substr(0, val.length - 1)) / 100.0;
-		} else {
-			result = parseFloat(val) / factor;
+	let val = node.getText();
+	let m = val.match(/^([-+]?[0-9]*\.?[0-9]+)(%?)$/);
+	if (m) {
+		if (m[2]) {
+			factor = 100.0;
 		}
-		if (result >= 0 && result <=1) {
+		let result = parseFloat(m[1]) / factor;
+		if (result >= 0 && result <= 1) {
 			return result;
 		}
-	} catch (e) {
 	}
-	return 0;  // error case
+	throw new Error();
 }
 
 function getAngle(node: nodes.Node) {
-	try {
-		let val = node.getText();
-		if (endsWith(val, 'deg')) {
-			val = val.substr(0, val.length - 3);
-		}
-		return parseFloat(val) % 360;
-	} catch (e) {
+	let val = node.getText();
+	let m = val.match(/^([-+]?[0-9]*\.?[0-9]+)(deg)?$/);
+	if (m) {
+		return parseFloat(val) % 360
 	}
-	return 0;  // error case
+	throw new Error();
 }
 
 /**

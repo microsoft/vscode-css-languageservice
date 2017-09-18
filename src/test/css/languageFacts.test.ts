@@ -11,7 +11,7 @@ import * as nodes from '../../parser/cssNodes';
 import { TextDocument } from 'vscode-languageserver-types';
 import { Color } from '../../cssLanguageService';
 
-export function assertColor(parser: Parser, text: string, selection: string, expected: Color): void {
+export function assertColor(parser: Parser, text: string, selection: string, expected: Color, isColor = expected !== null): void {
 	let document = TextDocument.create('test://test/test.css', 'css', 0, text);
 	let stylesheet = parser.parseStylesheet(document);
 	assert.equal(nodes.ParseErrorCollector.entries(stylesheet).length, 0, 'compile errors');
@@ -22,7 +22,7 @@ export function assertColor(parser: Parser, text: string, selection: string, exp
 		node = node.parent;
 	}
 
-	assert.equal(isColorValue(node), expected !== null);
+	assert.equal(isColorValue(node), isColor);
 	assertColorValue(getColorValue(node), expected, text);
 }
 
@@ -88,6 +88,7 @@ suite('CSS - Language Facts', () => {
 		assertColor(parser, '#main { color: hsl(180,100%,25%, 0.33) }', 'hsl', colorFrom256RGB(0, 0.5 * 255, 0.5 * 255, 0.33));
 		assertColor(parser, '#main { color: hsl(30,20%,30%, 0) }', 'hsl', colorFrom256RGB(92, 77, 61, 0));
 		assertColor(parser, '#main { color: hsla(38deg,89%,89%, 0) }', 'hsl', colorFrom256RGB(252, 334, 202, 0));
+		assertColor(parser, '#main { color: rgba(0.7) }', 'rgba', null, true);
 	});
 
 	test('hexDigit', function () {

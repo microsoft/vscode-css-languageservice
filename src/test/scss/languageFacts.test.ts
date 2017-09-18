@@ -20,6 +20,9 @@ suite('SCSS - Language facts', () => {
 		assertColor(parser, '@function red($p) { @return 1px; }', 'red', null);
 		assertColor(parser, '@function foo($p) { @return red; }', 'red', newColor(0xff, 0, 0));
 		assertColor(parser, '@function foo($r: red) { @return $r; }', 'red', newColor(0xff, 0, 0));
+		assertColor(parser, '#main { color: rgba($input-border, 0.7) }', 'rgba', null, true);
+		assertColor(parser, '#main { color: rgba($input-border, 1, 1, 0.7) }', 'rgba', null, true);
 	});
+
 });
 
