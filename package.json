@@ -24,11 +24,12 @@
     "xml2js": "^0.4.16"
   },
   "dependencies": {
-    "vscode-languageserver-types": "^3.3.0",
+    "vscode-languageserver-types": "^3.4.0",
     "vscode-nls": "^2.0.1"
   },
   "scripts": {
-    "prepublish": "npm run compile",
+    "prepublish": "npm run test",
+    "postpublish": "node ./build/post-publish.js",
     "copy-data": "cpy ./src/data/* ./lib/data",
     "compile": "tsc -p ./src && mkdirp ./lib/data && npm run copy-data",
     "watch": "npm run copy-data && tsc -w -p ./src",
