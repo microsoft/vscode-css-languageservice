@@ -6,7 +6,7 @@
 
 import {
 	TextDocument, Position, CompletionList, Hover, Range, SymbolInformation, Diagnostic,
-	Location, DocumentHighlight, CodeActionContext, Command, WorkspaceEdit
+	Location, DocumentHighlight, CodeActionContext, Command, WorkspaceEdit, TextEdit
 } from 'vscode-languageserver-types';
 
 import { Parser } from './parser/cssParser';
@@ -22,6 +22,7 @@ import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
 
 export type Stylesheet = {};
+export { TextEdit, Range };
 
 export interface Color {
 	red: number; blue: number; green: number; alpha: number;
@@ -30,6 +31,26 @@ export interface Color {
 export interface ColorInformation {
 	range: Range;
 	color: Color;
+}
+
+export interface ColorPresentation {
+	/**
+	 * The label of this color presentation. It will be shown on the color
+	 * picker header. By default this is also the text that is inserted when selecting
+	 * this color presentation.
+	 */
+	label: string;
+	/**
+	 * An [edit](#TextEdit) which is applied to a document when selecting
+	 * this presentation for the color.  When `falsy` the [label](#ColorPresentation.label)
+	 * is used.
+	 */
+	textEdit?: TextEdit;
+	/**
+	 * An optional array of additional [text edits](#TextEdit) that are applied when
+	 * selecting this color presentation. Edits must not overlap with the main [edit](#ColorPresentation.textEdit) nor with themselves.
+	 */
+	additionalTextEdits?: TextEdit[];
 }
 
 export interface LanguageService {
@@ -46,6 +67,7 @@ export interface LanguageService {
 	/** deprecated, use findDocumentColors instead */
 	findColorSymbols(document: TextDocument, stylesheet: Stylesheet): Range[];
 	findDocumentColors(document: TextDocument, stylesheet: Stylesheet): ColorInformation[];
+	getColorPresentations(document: TextDocument, stylesheet: Stylesheet, colorInfo: ColorInformation): ColorPresentation[];
 	doRename(document: TextDocument, position: Position, newName: string, stylesheet: Stylesheet): WorkspaceEdit;
 }
 
@@ -71,6 +93,7 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 		doCodeActions: codeActions.doCodeActions.bind(codeActions),
 		findColorSymbols: (d, s) => navigation.findDocumentColors(d, s).map(s => s.range),
 		findDocumentColors: navigation.findDocumentColors.bind(navigation),
+		getColorPresentations: navigation.getColorPresentations.bind(navigation),
 		doRename: navigation.doRename.bind(navigation),
 	};
 }

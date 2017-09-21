@@ -11,8 +11,8 @@ import { Parser } from '../../parser/cssParser';
 import { CSSNavigation } from '../../services/cssNavigation';
 import { colorFrom256RGB, colorFromHSL } from '../../services/languageFacts';
 
-import { TextDocument, DocumentHighlightKind, Range, Position } from 'vscode-languageserver-types';
-import { ColorInformation, getCSSLanguageService, LanguageService } from '../../cssLanguageService';
+import { TextDocument, DocumentHighlightKind, Range, Position, TextEdit } from 'vscode-languageserver-types';
+import { ColorInformation, getCSSLanguageService, LanguageService, ColorPresentation, Color } from '../../cssLanguageService';
 
 function asPromise<T>(result: T): Promise<T> {
 	return Promise.resolve(result);
@@ -55,6 +55,17 @@ export function assertColorSymbols(ls: LanguageService, input: string, ...expect
 	let result = ls.findDocumentColors(document, stylesheet);
 	assert.deepEqual(result, expected);
 }
+
+export function assertColorPresentations(ls: LanguageService, color: Color, ...expected: string[]) {
+	let document = TextDocument.create('test://test/test.css', 'css', 0, '');
+
+	let stylesheet = ls.parseStylesheet(document);
+	let range = newRange(1, 2);
+	let result = ls.getColorPresentations(document, stylesheet, { color, range });
+	assert.deepEqual(result.map(r => r.label), expected);
+	assert.deepEqual(result.map(r => r.textEdit), expected.map(l => TextEdit.replace(range, l)));
+}
+
 
 export function assertSymbolsInScope(p: Parser, input: string, offset: number, ...selections: { name: string; type: nodes.ReferenceType }[]): void {
 
@@ -262,7 +273,14 @@ suite('CSS - Symbols', () => {
 			{ color: colorFrom256RGB(1, 40, 1), range: newRange(13, 24) },
 			{ color: colorFromHSL(120, 0.75, 0.85), range: newRange(39, 57) }
 		);
-	})
+	});
+	
+	test('color presentations', function () {
+		let ls = getCSSLanguageService();
+		assertColorPresentations(ls, colorFrom256RGB(255, 0, 0), 'rgb(255, 0, 0)', '#ff0000', 'hsl(0, 100%, 50%)');
+		assertColorPresentations(ls, colorFrom256RGB(77, 33, 111, 0.5), 'rgba(77, 33, 111, 0.5)', '#4d216f80', 'hsla(274, 54%, 28%, 0.5)');
+	});
+	
 });
 
 function newRange(start: number, end: number) {

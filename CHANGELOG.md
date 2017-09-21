@@ -1,3 +1,8 @@
+2.1.7 / 2017-09-21
+==================
+  * New API `LanguageService.getColorPresentations` returning presentations for a given color. 
+  * New API type `ColorPresentation` added.
+
 2.1.4 / 2017-08-28
 ==================
   * New API `LanguageService.findDocumentColors` returning the location and value of all colors in a document. 

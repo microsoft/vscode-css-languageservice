@@ -5,7 +5,7 @@
 'use strict';
 
 import * as assert from 'assert';
-import { isColorValue, getColorValue, getBrowserLabel, getProperties, colorFrom256RGB, colorFromHex, hexDigit } from '../../services/languageFacts';
+import { isColorValue, getColorValue, getBrowserLabel, getProperties, colorFrom256RGB, colorFromHex, hexDigit, hslFromColor, HSLA } from '../../services/languageFacts';
 import { Parser } from '../../parser/cssParser';
 import * as nodes from '../../parser/cssNodes';
 import { TextDocument } from 'vscode-languageserver-types';
@@ -35,11 +35,25 @@ function assertColorValue(actual: Color, expected: Color, message: string) {
 		let rDiff = Math.abs((actual.red - expected.red) * 255);
 		let gDiff = Math.abs((actual.green - expected.green) * 255);
 		let bDiff = Math.abs((actual.blue - expected.blue) * 255);
-		if (rDiff < 1 || gDiff < 1 || bDiff < 1) {
+		let aDiff = Math.abs((actual.alpha - expected.alpha) * 100);
+		if (rDiff < 1 && gDiff < 1 && bDiff < 1 && aDiff < 1) {
 			return;
 		}
 	}
 	assert.deepEqual(actual, expected, message);
+}
+
+function assertHSLValue(actual: HSLA, expected: HSLA) {
+	if (actual && expected) {
+		let hDiff = actual.h - expected.h;
+		let sDiff = Math.abs((actual.s - expected.s) * 100);
+		let lDiff = Math.abs((actual.l - expected.l) * 100);
+		let aDiff = Math.abs((actual.a - expected.a) * 100);
+		if (hDiff < 1 && sDiff < 1 && lDiff < 1 && aDiff < 1) {
+			return;
+		}
+	}
+	assert.deepEqual(actual, expected);
 }
 
 
@@ -87,7 +101,7 @@ suite('CSS - Language Facts', () => {
 		assertColor(parser, '#main { color: hsl(120deg, 100%, 50%) }', 'hsl', colorFrom256RGB(0, 255, 0));
 		assertColor(parser, '#main { color: hsl(180,100%,25%, 0.33) }', 'hsl', colorFrom256RGB(0, 0.5 * 255, 0.5 * 255, 0.33));
 		assertColor(parser, '#main { color: hsl(30,20%,30%, 0) }', 'hsl', colorFrom256RGB(92, 77, 61, 0));
-		assertColor(parser, '#main { color: hsla(38deg,89%,89%, 0) }', 'hsl', colorFrom256RGB(252, 334, 202, 0));
+		assertColor(parser, '#main { color: hsla(38deg,89%,89%, 0) }', 'hsl', colorFrom256RGB(252, 234, 202, 0));
 		assertColor(parser, '#main { color: rgba(0.7) }', 'rgba', null, true);
 	});
 
@@ -113,6 +127,30 @@ suite('CSS - Language Facts', () => {
 		assertColorFromHex('#cafebabe', colorFrom256RGB(0xca, 0xfe, 0xba, 0xbe / 255));
 		assertColorFromHex('123', null);
 		assertColorFromHex('#12Y', colorFrom256RGB(0x11, 0x22, 0x00));
+	});
+
+	test('hslFromColor', function () {
+		assertHSLValue(hslFromColor(colorFrom256RGB(0, 0, 0, 0)), { h: 0, s: 0, l: 0, a: 0 });
+		assertHSLValue(hslFromColor(colorFrom256RGB(0, 0, 0, 1)), { h: 0, s: 0, l: 0, a: 1 });
+		assertHSLValue(hslFromColor(colorFrom256RGB(255, 255, 255, 1)), { h: 0, s: 0, l: 1, a: 1 });
+
+		assertHSLValue(hslFromColor(colorFrom256RGB(255, 0, 0, 1)), { h: 0, s: 1, l: 0.5, a: 1 });
+		assertHSLValue(hslFromColor(colorFrom256RGB(0, 255, 0, 1)), { h: 120, s: 1, l: 0.5, a: 1 });
+		assertHSLValue(hslFromColor(colorFrom256RGB(0, 0, 255, 1)), { h: 240, s: 1, l: 0.5, a: 1 });
+
+		assertHSLValue(hslFromColor(colorFrom256RGB(255, 255, 0, 1)), { h: 60, s: 1, l: 0.5, a: 1 });
+		assertHSLValue(hslFromColor(colorFrom256RGB(0, 255, 255, 1)), { h: 180, s: 1, l: 0.5, a: 1 });
+		assertHSLValue(hslFromColor(colorFrom256RGB(255, 0, 255, 1)), { h: 300, s: 1, l: 0.5, a: 1 });
+
+		assertHSLValue(hslFromColor(colorFrom256RGB(192, 192, 192, 1)), { h: 0, s: 0, l: 0.753, a: 1 });
+
+		assertHSLValue(hslFromColor(colorFrom256RGB(128, 128, 128, 1)), { h: 0, s: 0, l: 0.502, a: 1 });
+		assertHSLValue(hslFromColor(colorFrom256RGB(128, 0, 0, 1)), { h: 0, s: 1, l: 0.251, a: 1 });
+		assertHSLValue(hslFromColor(colorFrom256RGB(128, 128, 0, 1)), { h: 60, s: 1, l: 0.251, a: 1 });
+		assertHSLValue(hslFromColor(colorFrom256RGB(0, 128, 0, 1)), { h: 120, s: 1, l: 0.251, a: 1 });
+		assertHSLValue(hslFromColor(colorFrom256RGB(128, 0, 128, 1)), { h: 300, s: 1, l: 0.251, a: 1 });
+		assertHSLValue(hslFromColor(colorFrom256RGB(0, 128, 128, 1)), { h: 180, s: 1, l: 0.251, a: 1 });
+		assertHSLValue(hslFromColor(colorFrom256RGB(0, 0, 128, 1)), { h: 240, s: 1, l: 0.251, a: 1 });
 	});
 });
 

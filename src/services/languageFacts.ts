@@ -409,7 +409,7 @@ export function colorFromHex(text: string): Color {
 	return null;
 }
 
-export function colorFrom256RGB(red: number, green: number, blue: number, alpha: number = 1.0) {
+export function colorFrom256RGB(red: number, green: number, blue: number, alpha: number = 1.0): Color {
 	return {
 		red: red / 255.0,
 		green: green / 255.0,
@@ -418,7 +418,7 @@ export function colorFrom256RGB(red: number, green: number, blue: number, alpha:
 	}
 }
 
-export function colorFromHSL(hue: number, sat: number, light: number, alpha: number = 1.0) {
+export function colorFromHSL(hue: number, sat: number, light: number, alpha: number = 1.0): Color {
 	hue = hue / 60.0;
 	if (sat === 0) {
 		return { red: 0, green: 0, blue: 0, alpha }
@@ -436,6 +436,36 @@ export function colorFromHSL(hue: number, sat: number, light: number, alpha: num
 		var t1 = light * 2 - t2;
 		return { red: hueToRgb(t1, t2, hue + 2), green: hueToRgb(t1, t2, hue), blue: hueToRgb(t1, t2, hue - 2), alpha }
 	}
+}
+
+export interface HSLA { h: number, s: number, l: number, a: number };
+
+export function hslFromColor(rgba: Color): HSLA {
+	const r = rgba.red;
+	const g = rgba.green;
+	const b = rgba.blue;
+	const a = rgba.alpha;
+
+	const max = Math.max(r, g, b);
+	const min = Math.min(r, g, b);
+	let h = 0;
+	let s = 0;
+	const l = (min + max) / 2;
+	const chroma = max - min;
+
+	if (chroma > 0) {
+		s = Math.min((l <= 0.5 ? chroma / (2 * l) : chroma / (2 - (2 * l))), 1);
+
+		switch (max) {
+			case r: h = (g - b) / chroma + (g < b ? 6 : 0); break;
+			case g: h = (b - r) / chroma + 2; break;
+			case b: h = (r - g) / chroma + 4; break;
+		}
+
+		h *= 60;
+		h = Math.round(h);
+	}
+	return { h, s, l, a };
 }
 
 export function getColorValue(node: nodes.Node): Color {
