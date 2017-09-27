@@ -345,5 +345,14 @@ suite('CSS - Completion', () => {
 			]
 		});
 	});
+	test('support', function (): any {
+		testCompletionFor('@supports (display: flexbox) { |', {
+			items: [
+				{ label: 'html', resultText: '@supports (display: flexbox) { html' },
+				{ label: 'display', notAvailable: true }
+			]
+		});
+	});
+
 });
 

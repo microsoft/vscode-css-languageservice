@@ -75,6 +75,8 @@ export class CSSCompletion {
 					this.getCompletionsForMixinReference(<nodes.MixinReference>node, result);
 				} else if (node instanceof nodes.Function) {
 					this.getCompletionsForFunctionArgument(null, <nodes.Function>node, result);
+				} else if (node instanceof nodes.Supports) {
+					this.getCompletionsForSupports(<nodes.Supports>node, result);
 				}
 				if (result.items.length > 0) {
 					return this.finalize(result);
@@ -511,6 +513,9 @@ export class CSSCompletion {
 		if (node instanceof nodes.RuleSet) {
 			return this.getCompletionsForRuleSet(<nodes.RuleSet>node, result);
 		}
+		if (node instanceof nodes.Supports) {
+			return this.getCompletionsForSupports(<nodes.Supports>node, result);
+		}
 		return result;
 	}
 
@@ -740,6 +745,18 @@ export class CSSCompletion {
 			sortText: 'z'
 		};
 	}
+
+	public getCompletionsForSupports(supports: nodes.Supports, result: CompletionList): CompletionList {
+		let declarations = supports.getDeclarations();
+
+		let inInCondition = !declarations || this.offset <= declarations.offset;
+		if (inInCondition) {
+			return result;
+		}
+
+		return this.getCompletionForTopLevel(result);
+	}
+
 
 }
 
