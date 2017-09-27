@@ -746,21 +746,12 @@ export class Parser {
 		let node = <nodes.SupportsCondition>this.create(nodes.SupportsCondition);
 
 		if (this.accept(TokenType.Ident, 'not', true)) {
-			if (!this.hasWhitespace()) {
-				return this.finish(node, ParseError.WhitespaceExpected);
-			}
 			node.addChild(this._parseSupportsConditionInParens());
 		} else {
 			node.addChild(this._parseSupportsConditionInParens());
 			if (this.peekRegExp(TokenType.Ident, /^(and|or)$/i)) {
 				let text = this.token.text;
-				if (!this.hasWhitespace()) {
-					return this.finish(node, ParseError.WhitespaceExpected);
-				}
 				while (this.accept(TokenType.Ident, text, true)) {
-					if (!this.hasWhitespace()) {
-						return this.finish(node, ParseError.WhitespaceExpected);
-					}
 					node.addChild(this._parseSupportsConditionInParens());
 				}
 			}

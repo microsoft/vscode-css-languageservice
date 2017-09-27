@@ -144,8 +144,6 @@ suite('CSS - Parser', () => {
 		assertNode('@supports (grid-area: auto) { @media screen and (min-width: 768px) { .me { } } }', parser, parser._parseSupports.bind(parser));
 		assertError('@supports (transition-property: color) or (animation-name: foo) and (transform: rotate(10deg)) { }', parser, parser._parseSupports.bind(parser), ParseError.LeftCurlyExpected);
 		assertError('@supports display: flexbox { }', parser, parser._parseSupports.bind(parser), ParseError.LeftParenthesisExpected);
-		assertError('@supports (transition-property: color)or (animation-name: foo) { }', parser, parser._parseSupports.bind(parser), ParseError.WhitespaceExpected);
-		assertError('@supports (transition-property: color) or(animation-name: foo) { }', parser, parser._parseSupports.bind(parser), ParseError.WhitespaceExpected);
 	});
 
 	test('@media', function () {
