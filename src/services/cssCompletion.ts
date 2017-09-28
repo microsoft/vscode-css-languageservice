@@ -214,7 +214,7 @@ export class CSSCompletion {
 			this.getUnitProposals(entry, existingNode, result);
 		} else {
 			let existingValues = new Set();
-			this.styleSheet.accept(new ValuesCollector(propertyName, existingValues));
+			this.styleSheet.accept(new ValuesCollector(node, existingValues));
 			existingValues.getEntries().forEach((existingValue) => {
 				result.items.push({
 					label: existingValue,
@@ -811,9 +811,10 @@ class InternalValueCollector implements nodes.IVisitor {
 
 class ValuesCollector implements nodes.IVisitor {
 
+	private propertyName: string;
 
-	constructor(public propertyName: string, public entries: Set) {
-		// nothing to do
+	constructor(public declaration: nodes.Declaration, public entries: Set) {
+		this.propertyName = declaration.getFullPropertyName();
 	}
 
 	private matchesProperty(decl: nodes.Declaration): boolean {
@@ -822,7 +823,7 @@ class ValuesCollector implements nodes.IVisitor {
 	}
 
 	public visitNode(node: nodes.Node): boolean {
-		if (node instanceof nodes.Declaration) {
+		if (node instanceof nodes.Declaration && node !== this.declaration) {
 			if (this.matchesProperty(<nodes.Declaration>node)) {
 				let value = (<nodes.Declaration>node).getValue();
 				if (value) {

@@ -238,6 +238,11 @@ suite('CSS - Completion', () => {
 				{ label: 'url()', resultText: '.head { background-image: url($1)}' }
 			]
 		});
+		testCompletionFor('.foo { te:n| }', {
+			items: [
+				{ label: 'n', notAvailable: true }
+			]
+		});
 	});
 	test('functions', function (): any {
 		testCompletionFor('@keyframes fadeIn { 0% { transform: s|', {
