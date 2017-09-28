@@ -346,10 +346,35 @@ suite('CSS - Completion', () => {
 		});
 	});
 	test('support', function (): any {
-		testCompletionFor('@supports (display: flexbox) { |', {
+		testCompletionFor('@supports (display: flex) { |', {
 			items: [
-				{ label: 'html', resultText: '@supports (display: flexbox) { html' },
+				{ label: 'html', resultText: '@supports (display: flex) { html' },
 				{ label: 'display', notAvailable: true }
+			]
+		});
+		testCompletionFor('@supports (| ) { }', {
+			items: [
+				{ label: 'display', resultText: '@supports (display:  ) { }' },
+			]
+		});
+		testCompletionFor('@supports (di| ) { }', {
+			items: [
+				{ label: 'display', resultText: '@supports (display:  ) { }' },
+			]
+		});
+		testCompletionFor('@supports (display: | ) { }', {
+			items: [
+				{ label: 'flex', resultText: '@supports (display: flex ) { }' },
+			]
+		});
+		testCompletionFor('@supports (display: flex ) | { }', {
+			items: [
+				{ label: 'display', notAvailable: true },
+			]
+		});
+		testCompletionFor('@supports |(display: flex ) { }', {
+			items: [
+				{ label: 'display', notAvailable: true },
 			]
 		});
 	});

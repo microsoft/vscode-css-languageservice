@@ -1076,6 +1076,9 @@ export class MediaQuery extends Node {
 
 export class SupportsCondition extends Node {
 
+	public lParent: number;
+	public rParent: number;
+
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}

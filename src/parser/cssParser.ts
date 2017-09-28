@@ -77,7 +77,7 @@ export class Parser {
 		this.scanner.goBackTo(mark.pos);
 	}
 
-	public try(func: () => boolean) : boolean {
+	public try(func: () => boolean): boolean {
 		let pos = this.mark();
 		if (!func()) {
 			this.restoreAtMark(pos);
@@ -694,7 +694,7 @@ export class Parser {
 
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
 	}
-	
+
 	public _tryParseKeyframeSelector(): nodes.Node {
 		let node = <nodes.KeyframeSelector>this.create(nodes.KeyframeSelector);
 		let pos = this.mark();
@@ -709,14 +709,14 @@ export class Parser {
 				return null;
 			}
 		}
-		
+
 		if (!this.peek(TokenType.CurlyL)) {
 			this.restoreAtMark(pos);
 			return null;
 		}
 
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
-	}	
+	}
 
 	public _parseSupports(isNested = false): nodes.Node {
 		// SUPPORTS_SYM S* supports_condition '{' S* ruleset* '}' S*
@@ -762,6 +762,7 @@ export class Parser {
 	private _parseSupportsConditionInParens(): nodes.Node {
 		let node = <nodes.SupportsCondition>this.create(nodes.SupportsCondition);
 		if (this.accept(TokenType.ParenthesisL)) {
+			node.lParent = this.prevToken.offset;
 			if (!node.addChild(this._tryToParseDeclaration())) {
 				if (!this._parseSupportsCondition()) {
 					return this.finish(node, ParseError.ConditionExpected);
@@ -770,6 +771,7 @@ export class Parser {
 			if (!this.accept(TokenType.ParenthesisR)) {
 				return this.finish(node, ParseError.RightParenthesisExpected, [TokenType.ParenthesisR], []);
 			}
+			node.rParent = this.prevToken.offset;
 			return this.finish(node);
 		} else if (this.peek(TokenType.Ident)) {
 			let pos = this.mark();
@@ -810,7 +812,7 @@ export class Parser {
 		}
 		return this._parseBody(node, this._parseMediaDeclaration.bind(this, isNested));
 	}
-	
+
 	public _parseMediaQueryList(): nodes.Medialist {
 		let node = <nodes.Medialist>this.create(nodes.Medialist);
 		if (!node.addChild(this._parseMediaQuery([TokenType.CurlyL]))) {
@@ -822,7 +824,7 @@ export class Parser {
 			}
 		}
 		return this.finish(node);
-	}	
+	}
 
 	public _parseMediaQuery(resyncStopToken: TokenType[]): nodes.Node {
 		// http://www.w3.org/TR/css3-mediaqueries/
@@ -865,10 +867,10 @@ export class Parser {
 		}
 		return this.finish(node);
 	}
-	
+
 	public _parseMediaFeatureName(): nodes.Node {
 		return this._parseIdent();
-	}	
+	}
 
 	public _parseMedium(): nodes.Node {
 		let node = this.create(nodes.Node);

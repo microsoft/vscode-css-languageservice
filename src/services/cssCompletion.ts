@@ -77,6 +77,8 @@ export class CSSCompletion {
 					this.getCompletionsForFunctionArgument(null, <nodes.Function>node, result);
 				} else if (node instanceof nodes.Supports) {
 					this.getCompletionsForSupports(<nodes.Supports>node, result);
+				} else if (node instanceof nodes.SupportsCondition) {
+					this.getCompletionsForSupportsCondition(<nodes.SupportsCondition>node, result);
 				}
 				if (result.items.length > 0) {
 					return this.finalize(result);
@@ -746,14 +748,36 @@ export class CSSCompletion {
 		};
 	}
 
+	public getCompletionsForSupportsCondition(supportsCondition: nodes.SupportsCondition, result: CompletionList): CompletionList {
+		let child = supportsCondition.findFirstChildBeforeOffset(this.offset);
+		if (child) {
+			if (child instanceof nodes.Declaration) {
+				if (!isDefined(child.colonPosition || this.offset <= child.colonPosition)) {
+					return this.getCompletionsForDeclarationProperty(child, result);
+				} else {
+					return this.getCompletionsForDeclarationValue(child, result);
+				}
+			} else if (child instanceof nodes.SupportsCondition) {
+				return this.getCompletionsForSupportsCondition(child, result);
+			}
+		}
+		if (isDefined(supportsCondition.lParent) && this.offset > supportsCondition.lParent && (!isDefined(supportsCondition.rParent) || this.offset <= supportsCondition.rParent)) {
+			return this.getCompletionsForDeclarationProperty(null, result);
+		}
+		return result;
+	}
+
 	public getCompletionsForSupports(supports: nodes.Supports, result: CompletionList): CompletionList {
 		let declarations = supports.getDeclarations();
 
 		let inInCondition = !declarations || this.offset <= declarations.offset;
 		if (inInCondition) {
+			let child = supports.findFirstChildBeforeOffset(this.offset);
+			if (child instanceof nodes.SupportsCondition) {
+				return this.getCompletionsForSupportsCondition(child, result);
+			}
 			return result;
 		}
-
 		return this.getCompletionForTopLevel(result);
 	}
 
