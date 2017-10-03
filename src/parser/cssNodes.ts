@@ -478,7 +478,7 @@ export class RuleSet extends BodyDeclaration {
 	}
 
 	public isNested(): boolean {
-		return this.parent && this.parent.findParent(NodeType.Ruleset) !== null;
+		return this.parent && this.parent.findParent(NodeType.Declarations) !== null;
 	}
 }
 

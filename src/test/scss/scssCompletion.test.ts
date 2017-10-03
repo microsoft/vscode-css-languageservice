@@ -68,7 +68,8 @@ suite('SCSS - Completions', () => {
 		});
 		testCompletionFor('di| span { } ', {
 			items: [
-				{ label: 'div' }
+				{ label: 'div' },
+				{ label: 'display', notAvailable: true }
 			]
 		});
 		testCompletionFor('span { di|} ', {
@@ -97,5 +98,11 @@ suite('SCSS - Completions', () => {
 				{ label: ':last-of-type', resultText: '.foo { &:last-of-type' }
 			]
 		});
+		// issue 33911
+		testCompletionFor('@include media(\'ddd\') { dis| &:not(:first-child) {', {
+			items: [
+				{ label: 'display' }
+			]
+		});		
 	});
 });
