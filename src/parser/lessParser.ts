@@ -222,13 +222,23 @@ export class LESSParser extends cssParser.Parser {
 
 	public _parseSelector(isNested: boolean): nodes.Selector {
 		// CSS Guards
-		let mark = this.mark();
 		let node = <nodes.Selector>this.create(nodes.Selector);
-		if (node.addChild(this._parseSimpleSelector()) && node.addChild(this._parseGuard())) {
-			return this.finish(node);
+
+		let hasContent = false;
+		if (isNested) {
+			// nested selectors can start with a combinator
+			hasContent = node.addChild(this._parseCombinator());
 		}
-		this.restoreAtMark(mark);
-		return super._parseSelector(isNested);
+		while (node.addChild(this._parseSimpleSelector())) {
+			hasContent = true;
+			let mark = this.mark();
+			if (node.addChild(this._parseGuard()) && this.peek(TokenType.CurlyL)) {
+				break;
+			}
+			this.restoreAtMark(mark);
+			node.addChild(this._parseCombinator()); // optional
+		}
+		return hasContent ? this.finish(node) : null;
 	}
 
 	public _parseSelectorCombinator(): nodes.Node {

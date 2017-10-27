@@ -261,6 +261,7 @@ suite('LESS - Parser', () => {
 	test('CSS Guards', function() {
 		let parser = new LESSParser();
 		assertNode('button when (@my-option = true) { color: white; }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('.something .other when (@my-option = true) { color: white; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('& when (@my-option = true) { button { color: white; } }', parser, parser._parseStylesheet.bind(parser));
 	});
 
