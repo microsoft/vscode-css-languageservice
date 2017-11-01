@@ -67,7 +67,7 @@ export interface LanguageService {
 	/** deprecated, use findDocumentColors instead */
 	findColorSymbols(document: TextDocument, stylesheet: Stylesheet): Range[];
 	findDocumentColors(document: TextDocument, stylesheet: Stylesheet): ColorInformation[];
-	getColorPresentations(document: TextDocument, stylesheet: Stylesheet, colorInfo: ColorInformation): ColorPresentation[];
+	getColorPresentations(document: TextDocument, stylesheet: Stylesheet, color: Color, range: Range): ColorPresentation[];
 	doRename(document: TextDocument, position: Position, newName: string, stylesheet: Stylesheet): WorkspaceEdit;
 }
 

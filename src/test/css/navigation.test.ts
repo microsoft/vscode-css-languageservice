@@ -61,7 +61,7 @@ export function assertColorPresentations(ls: LanguageService, color: Color, ...e
 
 	let stylesheet = ls.parseStylesheet(document);
 	let range = newRange(1, 2);
-	let result = ls.getColorPresentations(document, stylesheet, { color, range });
+	let result = ls.getColorPresentations(document, stylesheet, color, range);
 	assert.deepEqual(result.map(r => r.label), expected);
 	assert.deepEqual(result.map(r => r.textEdit), expected.map(l => TextEdit.replace(range, l)));
 }
