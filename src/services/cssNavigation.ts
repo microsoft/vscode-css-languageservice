@@ -35,9 +35,13 @@ export class CSSNavigation {
 			return [];
 		}
 
+		let range = getRange(symbol.node, document);
+		if (inRange(position,range)) {
+			return [];
+		}
 		return [{
 			uri: document.uri,
-			range: getRange(symbol.node, document)
+			range: range
 		}];
 	}
 
@@ -190,6 +194,11 @@ function getColorInformation(node: nodes.Node, document: TextDocument): ColorInf
 
 function getRange(node: nodes.Node, document: TextDocument): Range {
 	return Range.create(document.positionAt(node.offset), document.positionAt(node.end));
+}
+
+function inRange(position: Position, range: Range) {
+	return (position.line > range.start.line || (position.line === range.start.line && position.character >= range.start.character))
+	&& (position.line <range.end.line || (position.line === range.end.line && position.character <= range.end.character))
 }
 
 function getHighlightKind(node: nodes.Node): DocumentHighlightKind {
