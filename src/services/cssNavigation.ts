@@ -18,7 +18,7 @@ const localize = nls.loadMessageBundle();
 
 export class CSSNavigation {
 
-	public findDefinition(document: TextDocument, position: Position, stylesheet: nodes.Node): Location {
+	public findDefinition(document: TextDocument, position: Position, stylesheet: nodes.Node): Location[] {
 
 		let symbols = new Symbols(stylesheet);
 		let offset = document.offsetAt(position);
@@ -26,25 +26,19 @@ export class CSSNavigation {
 
 		if (!node) {
 			//workaround for https://github.com/Microsoft/vscode-languageserver-node/issues/45
-			return {
-				uri: document.uri,
-				range: Range.create(position, position)
-			};
+			return [];
 		}
 
 		let symbol = symbols.findSymbolFromNode(node);
 		if (!symbol) {
 			//workaround for https://github.com/Microsoft/vscode-languageserver-node/issues/45
-			return {
-				uri: document.uri,
-				range: Range.create(position, position)
-			};
+			return [];
 		}
 
-		return {
+		return [{
 			uri: document.uri,
 			range: getRange(symbol.node, document)
-		};
+		}];
 	}
 
 	public findReferences(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Location[] {
