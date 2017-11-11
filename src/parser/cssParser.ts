@@ -1077,6 +1077,13 @@ export class Parser {
 		}
 		let node = this.createNode(nodes.NodeType.AttributeSelector);
 		this.consumeToken(); // BracketL
+
+		// Optional attrib namespace
+		let pos = this.mark();
+		if (!this.accept(TokenType.Ident) || !this.accept(TokenType.Delim, '|')) {
+			this.restoreAtMark(pos);
+		}
+
 		if (!node.addChild(this._parseBinaryExpr())) {
 			// is this bad?
 		}
