@@ -18,27 +18,19 @@ const localize = nls.loadMessageBundle();
 
 export class CSSNavigation {
 
-	public findDefinition(document: TextDocument, position: Position, stylesheet: nodes.Node): Location {
+	public findDefinition(document: TextDocument, position: Position, stylesheet: nodes.Node): Location | null {
 
 		let symbols = new Symbols(stylesheet);
 		let offset = document.offsetAt(position);
 		let node = nodes.getNodeAtOffset(stylesheet, offset);
 
 		if (!node) {
-			//workaround for https://github.com/Microsoft/vscode-languageserver-node/issues/45
-			return {
-				uri: document.uri,
-				range: Range.create(position, position)
-			};
+			return null;
 		}
 
 		let symbol = symbols.findSymbolFromNode(node);
 		if (!symbol) {
-			//workaround for https://github.com/Microsoft/vscode-languageserver-node/issues/45
-			return {
-				uri: document.uri,
-				range: Range.create(position, position)
-			};
+			return null;
 		}
 
 		return {
@@ -185,7 +177,7 @@ export class CSSNavigation {
 
 }
 
-function getColorInformation(node: nodes.Node, document: TextDocument): ColorInformation {
+function getColorInformation(node: nodes.Node, document: TextDocument): ColorInformation | null {
 	let color = getColorValue(node);
 	if (color) {
 		let range = getRange(node, document);

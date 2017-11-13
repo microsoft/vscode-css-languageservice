@@ -148,7 +148,11 @@ export class CSSCompletion {
 						label: entry.name,
 						documentation: languageFacts.getEntryDescription(entry),
 						textEdit: TextEdit.replace(range, insertText),
-						kind: CompletionItemKind.Property
+						kind: CompletionItemKind.Property,
+						command: {
+							title: 'Suggest',
+							command: 'editor.action.triggerSuggest'
+						}
 					}
 					if (strings.startsWith(entry.name, '-')) {
 						item.sortText = 'x';

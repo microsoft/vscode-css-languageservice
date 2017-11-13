@@ -57,9 +57,9 @@ export interface LanguageService {
 	configure(raw: LanguageSettings): void;
 	doValidation(document: TextDocument, stylesheet: Stylesheet, documentSettings?: LanguageSettings): Diagnostic[];
 	parseStylesheet(document: TextDocument): Stylesheet;
-	doComplete(document: TextDocument, position: Position, stylesheet: Stylesheet): CompletionList;
-	doHover(document: TextDocument, position: Position, stylesheet: Stylesheet): Hover;
-	findDefinition(document: TextDocument, position: Position, stylesheet: Stylesheet): Location;
+	doComplete(document: TextDocument, position: Position, stylesheet: Stylesheet): CompletionList | null;
+	doHover(document: TextDocument, position: Position, stylesheet: Stylesheet): Hover | null;
+	findDefinition(document: TextDocument, position: Position, stylesheet: Stylesheet): Location | null;
 	findReferences(document: TextDocument, position: Position, stylesheet: Stylesheet): Location[];
 	findDocumentHighlights(document: TextDocument, position: Position, stylesheet: Stylesheet): DocumentHighlight[];
 	findDocumentSymbols(document: TextDocument, stylesheet: Stylesheet): SymbolInformation[];
