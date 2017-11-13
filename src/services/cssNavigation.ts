@@ -98,7 +98,7 @@ export class CSSNavigation {
 			let locationNode = node;
 			if (node instanceof nodes.Selector) {
 				entry.name = node.getText();
-				locationNode = node.findParent(nodes.NodeType.Ruleset)
+				locationNode = node.findParent(nodes.NodeType.Ruleset);
 			} else if (node instanceof nodes.VariableDeclaration) {
 				entry.name = (<nodes.VariableDeclaration>node).getName();
 				entry.kind = SymbolKind.Variable;
@@ -221,4 +221,4 @@ function getHighlightKind(node: nodes.Node): DocumentHighlightKind {
 function toTwoDigitHex(n: number): string {
 	const r = n.toString(16);
 	return r.length !== 2 ? '0' + r : r;
-};
+}

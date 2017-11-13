@@ -73,7 +73,7 @@ export class Element {
 		}
 		for (let attribute of this.attributes) {
 			if (attribute.name === name) {
-				attribute.value += ' ' + value
+				attribute.value += ' ' + value;
 				return;
 			}
 		}

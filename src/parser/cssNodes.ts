@@ -149,7 +149,7 @@ export class Node {
 
 	public offset: number;
 	public length: number;
-	public get end() { return this.offset + this.length; };
+	public get end() { return this.offset + this.length; }
 
 	public options: { [name: string]: any; };
 

@@ -415,30 +415,30 @@ export function colorFrom256RGB(red: number, green: number, blue: number, alpha:
 		green: green / 255.0,
 		blue: blue / 255.0,
 		alpha
-	}
+	};
 }
 
 export function colorFromHSL(hue: number, sat: number, light: number, alpha: number = 1.0): Color {
 	hue = hue / 60.0;
 	if (sat === 0) {
-		return { red: 0, green: 0, blue: 0, alpha }
+		return { red: 0, green: 0, blue: 0, alpha };
 	} else {
 		let hueToRgb = (t1, t2, hue) => {
-			while (hue < 0) hue += 6;
-			while (hue >= 6) hue -= 6;
+			while (hue < 0) { hue += 6; }
+			while (hue >= 6) { hue -= 6; }
 
-			if (hue < 1) return (t2 - t1) * hue + t1;
-			if (hue < 3) return t2;
-			if (hue < 4) return (t2 - t1) * (4 - hue) + t1;
+			if (hue < 1) { return (t2 - t1) * hue + t1; }
+			if (hue < 3) { return t2; }
+			if (hue < 4) { return (t2 - t1) * (4 - hue) + t1; }
 			return t1;
-		}
+		};
 		let t2 = light <= 0.5 ? (light * (sat + 1)) : (light + sat - (light * sat));
 		var t1 = light * 2 - t2;
-		return { red: hueToRgb(t1, t2, hue + 2), green: hueToRgb(t1, t2, hue), blue: hueToRgb(t1, t2, hue - 2), alpha }
+		return { red: hueToRgb(t1, t2, hue + 2), green: hueToRgb(t1, t2, hue), blue: hueToRgb(t1, t2, hue - 2), alpha };
 	}
 }
 
-export interface HSLA { h: number, s: number, l: number, a: number };
+export interface HSLA { h: number; s: number; l: number; a: number; }
 
 export function hslFromColor(rgba: Color): HSLA {
 	const r = rgba.red;
@@ -480,15 +480,15 @@ export function getColorValue(node: nodes.Node): Color {
 			return null;
 		}
 		try {
-			let alpha = colorValues.length == 4 ? getNumericValue(colorValues[3], 1) : 1
-			if (name === 'rgb' || name == 'rgba') {
+			let alpha = colorValues.length === 4 ? getNumericValue(colorValues[3], 1) : 1;
+			if (name === 'rgb' || name === 'rgba') {
 				return {
 					red: getNumericValue(colorValues[0], 255.0),
 					green: getNumericValue(colorValues[1], 255.0),
 					blue: getNumericValue(colorValues[2], 255.0),
 					alpha
-				}
-			} else if (name === 'hsl' || name == 'hsla') {
+				};
+			} else if (name === 'hsl' || name === 'hsla') {
 				let h = getAngle(colorValues[0]);
 				let s = getNumericValue(colorValues[1], 100.0);
 				let l = getNumericValue(colorValues[2], 100.0);
@@ -533,7 +533,7 @@ function getAngle(node: nodes.Node) {
 	let val = node.getText();
 	let m = val.match(/^([-+]?[0-9]*\.?[0-9]+)(deg)?$/);
 	if (m) {
-		return parseFloat(val) % 360
+		return parseFloat(val) % 360;
 	}
 	throw new Error();
 }

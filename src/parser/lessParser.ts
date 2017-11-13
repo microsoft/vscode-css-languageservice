@@ -55,7 +55,7 @@ export class LESSParser extends cssParser.Parser {
 
 		if (!this.peek(TokenType.SemiColon) && !this.peek(TokenType.EOF)) {
 			node.setMedialist(this._parseMediaQueryList());
-		};
+		}
 
 		return this.finish(node);
 	}

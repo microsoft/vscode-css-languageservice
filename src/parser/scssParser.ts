@@ -580,7 +580,7 @@ export class SCSSParser extends cssParser.Parser {
 			return null;
 		}
 		while (node.addChild(this._parseListElement())) {
-			this.accept(TokenType.Comma) // optional
+			this.accept(TokenType.Comma); // optional
 		}
 		if (!this.accept(TokenType.ParenthesisR)) {
 			return this.finish(node, ParseError.RightParenthesisExpected);

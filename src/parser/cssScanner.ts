@@ -137,7 +137,7 @@ export class MultiLineStream {
 }
 
 const _a = 'a'.charCodeAt(0);
-const _f = 'f'.charCodeAt(0);;
+const _f = 'f'.charCodeAt(0);
 const _z = 'z'.charCodeAt(0);
 const _A = 'A'.charCodeAt(0);
 const _F = 'F'.charCodeAt(0);
@@ -520,7 +520,7 @@ export class Scanner {
 			return true;
 		}
 		return false;
-	};
+	}
 
 	private _string(result: string[]): TokenType {
 		if (this.stream.peekChar() === _SQO || this.stream.peekChar() === _DQO) {
@@ -545,13 +545,13 @@ export class Scanner {
 	private _unquotedChar(result: string[]): boolean {
 		// not closeQuote, not backslash, not newline
 		let ch = this.stream.peekChar();
-		if (ch !== 0 && ch !== _SQO && ch !== _DQO && ch != _LPA && ch != _RPA && ch != _WSP && ch != _TAB && ch != _NWL && ch != _LFD && ch != _CAR) {
+		if (ch !== 0 && ch !== _SQO && ch !== _DQO && ch !== _LPA && ch !== _RPA && ch !== _WSP && ch !== _TAB && ch !== _NWL && ch !== _LFD && ch !== _CAR) {
 			this.stream.advance(1);
 			result.push(String.fromCharCode(ch));
 			return true;
 		}
 		return false;
-	};
+	}
 
 
 	protected _unquotedString(result: string[]): boolean {

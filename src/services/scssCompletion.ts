@@ -130,8 +130,8 @@ export class SCSSCompletion extends CSSCompletion {
 	private createReplaceFunction() {
 		let tabStopCounter = 1;
 		return (match: string, p1: string) => {
-			return '\\' + p1 + ': ${' + tabStopCounter++ + ':' + (SCSSCompletion.variableDefaults[p1] || '') + '}'
-		}
+			return '\\' + p1 + ': ${' + tabStopCounter++ + ':' + (SCSSCompletion.variableDefaults[p1] || '') + '}';
+		};
 	}
 
 	private createFunctionProposals(proposals: IFunctionInfo[], existingNode: nodes.Node, sortToEnd: boolean, result: CompletionList): CompletionList {

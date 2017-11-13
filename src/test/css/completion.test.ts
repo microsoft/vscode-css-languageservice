@@ -15,9 +15,9 @@ export interface ItemDescription {
 	detail?: string;
 	documentation?: string;
 	kind?: CompletionItemKind;
-	insertTextFormat?: InsertTextFormat,
+	insertTextFormat?: InsertTextFormat;
 	resultText?: string;
-	notAvailable?: boolean
+	notAvailable?: boolean;
 }
 
 function asPromise<T>(result: T): Promise<T> {

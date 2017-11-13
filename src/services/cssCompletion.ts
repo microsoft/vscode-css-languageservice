@@ -153,7 +153,7 @@ export class CSSCompletion {
 							title: 'Suggest',
 							command: 'editor.action.triggerSuggest'
 						}
-					}
+					};
 					if (strings.startsWith(entry.name, '-')) {
 						item.sortText = 'x';
 					}

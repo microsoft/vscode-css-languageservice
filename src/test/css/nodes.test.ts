@@ -112,7 +112,7 @@ suite('CSS - Nodes', () => {
 			let parser = new Parser();
 			let node = parser.internalParse(input, parser._parseKeyframe);
 			return node;
-		};
+		}
 		assertNodes(fn, '@keyframes name { from { top: 0px} to { top: 100px } }', 'keyframe,identifier,keyframeselector,declaration,keyframeselector,declaration');
 	});
 });

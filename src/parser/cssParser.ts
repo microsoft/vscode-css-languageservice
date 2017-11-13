@@ -1262,7 +1262,7 @@ export class Parser {
 		let node = this.create(nodes.Node);
 		if (!this.accept(TokenType.String) && !this.accept(TokenType.BadString) && !this.acceptUnquotedString()) {
 			return null;
-		};
+		}
 		return this.finish(node);
 	}
 

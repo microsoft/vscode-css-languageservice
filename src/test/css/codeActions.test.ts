@@ -53,7 +53,7 @@ suite('CSS - Code Actions', () => {
 			testCodeActions('body { /*here*/displai: inline }', '/*here*/').then((result) => {
 				assertCodeAction(result.commands, result.document, [
 					{ title: 'Rename to \'display\'', content: 'body { /*here*/display: inline }' }
-				])
+				]);
 			}),
 
 			testCodeActions('body { /*here*/background-colar: red }', '/*here*/').then((result) => {
@@ -61,8 +61,8 @@ suite('CSS - Code Actions', () => {
 					{ title: 'Rename to \'background-color\'', content: 'body { /*here*/background-color: red }' },
 					{ title: 'Rename to \'background-clip\'', content: 'body { /*here*/background-clip: red }' },
 					{ title: 'Rename to \'background-image\'', content: 'body { /*here*/background-image: red }' }
-				])
+				]);
 			})
 		]).then(() => testDone(), (error) => testDone(error));
 	});
-})
+});
