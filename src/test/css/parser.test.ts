@@ -329,6 +329,16 @@ suite('CSS - Parser', () => {
 		assertNode('[name~=name3]', parser, parser._parseAttrib.bind(parser));
 		assertNode('[name |= name3]', parser, parser._parseAttrib.bind(parser));
 		assertNode('[name |= "this is a striiiing"]', parser, parser._parseAttrib.bind(parser));
+
+		// Single namespace
+		assertNode('[namespace|name]', parser, parser._parseAttrib.bind(parser));
+		assertNode('[name-space|name = name2]', parser, parser._parseAttrib.bind(parser));
+		assertNode('[name_space|name ~= name3]', parser, parser._parseAttrib.bind(parser));
+		assertNode('[name0spae|name~=name3]', parser, parser._parseAttrib.bind(parser));
+		assertNode('[NameSpace|name |= "this is a striiiing"]', parser, parser._parseAttrib.bind(parser));
+
+		// TODO: Escaped characters should be allowed in idents.
+		// assertNode('[name\*space|name |= name3]', parser, parser._parseAttrib.bind(parser));
 	});
 
 	test('pseudo', function () {
@@ -457,4 +467,3 @@ suite('CSS - Parser', () => {
 	});
 
 });
-
