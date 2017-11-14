@@ -4348,6 +4348,30 @@
 				"restriction": "color"
 			},
 			{
+				"name": "line-break",
+				"desc": "Specifies what set of line breaking restrictions are in effect within the element.",
+				"browsers": "E,IE5.5,C58,O45,S",
+				"restriction": "enum",
+				"values": [
+					{
+						"name": "auto",
+						"desc": "The UA determines the set of line-breaking restrictions to use for CJK scripts, and it may vary the restrictions based on the length of the line; e.g., use a less restrictive set of line-break rules for short lines."
+					},
+					{
+						"name": "loose",
+						"desc": "Breaks text using the least restrictive set of line-breaking rules. Typically used for short lines, such as in newspapers."
+					},
+					{
+						"name": "normal",
+						"desc": "Breaks text using the most common set of line-breaking rules."
+					},
+					{
+						"name": "strict",
+						"desc": "Breaks CJK scripts using a more restrictive set of line-breaking rules than 'normal'."
+					}
+				]
+			},
+			{
 				"name": "line-height",
 				"desc": "Determines the block-progression dimension of the text content area of an inline box.",
 				"restriction": "number, length, percentage",
@@ -6632,7 +6656,8 @@
 						"desc": "Grid used for monospaced layout. All noncursive characters are treated as equal; every character is centered within a single grid space by default."
 					},
 					{
-						"name": "loose"
+						"name": "loose",
+						"desc": "Default. Grid used for Japanese and Korean characters."
 					},
 					{
 						"name": "strict",
@@ -11754,7 +11779,6 @@
 	"no-limit": "There is no limit.",
 	"mode": "Any of the range of mode values available to the -ms-layout-grid-mode property.",
 	"type": "Any of the range of type values available to the -ms-layout-grid-type property.",
-	"loose": "Default. Grid used for Japanese and Korean characters.",
 	"-ms-autohiding-scrollbar": "Indicates the element displays auto-hiding scrollbars during mouse interactions and panning indicators during touch and keyboard interactions.",
 	"scrollbar": "Scrollbars are typically narrow strips inserted on one or two edges of an element and which often have arrows to click on and a \"thumb\" to drag up and down (or left and right) to move the contents of the element.",
 	"ideograph-alpha": "Creates 1/4em extra spacing between runs of ideographic letters and non-ideographic letters, such as Latin-based, Cyrillic, Greek, Arabic or Hebrew.",

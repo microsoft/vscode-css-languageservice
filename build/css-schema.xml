@@ -3754,7 +3754,7 @@
 		<entry name="lighting-color" restriction="color" version="3.0" browsers="E,C5,FF3,IE10,O9,S6" ref="http://www.w3.org/TR/filter-effects/#LightingColorProperty">
 			<desc>Defines the color of the light source for filter primitives 'feDiffuseLighting' and 'feSpecularLighting'.</desc>
 		</entry>
-		<entry name="line-break" restriction="enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css3-text/#line-break0" syntax="p { $(name): normal; }">
+		<entry name="line-break" restriction="enum" version="3.0" browsers="E,IE5.5,C58,O45,S" ref="http://www.w3.org/TR/css3-text/#line-break0" syntax="p { $(name): normal; }">
 			<desc>Specifies what set of line breaking restrictions are in effect within the element.</desc>
 			<values>
 				<value name="auto" version="3.0" browsers="all">
