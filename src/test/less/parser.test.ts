@@ -256,6 +256,7 @@ suite('LESS - Parser', () => {
 		assertNode('&1', parser, parser._parseSimpleSelector.bind(parser));
 		assertNode('&-foo-1', parser, parser._parseSimpleSelector.bind(parser));
 		assertNode('&--&', parser, parser._parseSimpleSelector.bind(parser));
+		assertNode('&-10-thing', parser, parser._parseSimpleSelector.bind(parser));
 	});
 
 	test('CSS Guards', function() {

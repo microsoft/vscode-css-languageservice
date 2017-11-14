@@ -244,7 +244,7 @@ export class LESSParser extends cssParser.Parser {
 	public _parseSelectorCombinator(): nodes.Node {
 		let node = this.createNode(nodes.NodeType.SelectorCombinator);
 		if (this.accept(TokenType.Delim, '&')) {
-			while (!this.hasWhitespace() && (this.accept(TokenType.Delim, '-') || this.accept(TokenType.Num) || node.addChild(this._parseIdent()) || this.accept(TokenType.Delim, '&'))) {
+			while (!this.hasWhitespace() && (this.accept(TokenType.Delim, '-') || this.accept(TokenType.Num) || this.accept(TokenType.Dimension) || node.addChild(this._parseIdent()) || this.accept(TokenType.Delim, '&'))) {
 				//  support &-foo
 			}
 			return this.finish(node);
