@@ -111,6 +111,11 @@ suite('CSS - Selector Printing', () => {
 		parseSelector(p, 'e1 ~ e2 { }', 'e2', '{e1|e2|⋮|e2}');
 	});
 
+	test('escaping', function () {
+		let p = new Parser();
+		parseSelector(p, '#\\34 04-error { }', '#\\34 04-error', '{[id=404-error]}');
+		
+	});
 });
 
 suite('CSS - MarkedStringPrinter selectors', () => {

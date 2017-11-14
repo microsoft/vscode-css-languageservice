@@ -545,7 +545,7 @@ export class Scanner {
 	private _unquotedChar(result: string[]): boolean {
 		// not closeQuote, not backslash, not newline
 		let ch = this.stream.peekChar();
-		if (ch !== 0 && ch !== _SQO && ch !== _DQO && ch !== _LPA && ch !== _RPA && ch !== _WSP && ch !== _TAB && ch !== _NWL && ch !== _LFD && ch !== _CAR) {
+		if (ch !== 0 && ch !== _BSL && ch !== _SQO && ch !== _DQO && ch !== _LPA && ch !== _RPA && ch !== _WSP && ch !== _TAB && ch !== _NWL && ch !== _LFD && ch !== _CAR) {
 			this.stream.advance(1);
 			result.push(String.fromCharCode(ch));
 			return true;

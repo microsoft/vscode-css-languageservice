@@ -5,7 +5,8 @@
 'use strict';
 
 import * as nodes from '../parser/cssNodes';
-import {MarkedString} from 'vscode-languageserver-types';
+import { MarkedString } from 'vscode-languageserver-types';
+import { Scanner } from '../parser/cssScanner';
 
 export class Element {
 
@@ -164,7 +165,7 @@ class MarkedStringPrinter {
 
 		// the real deal
 		let content = ['<'];
-		
+
 		// element name
 		if (name) {
 			content.push(name);
@@ -240,60 +241,70 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element): 
 				if (child.getText() === '@at-root') {
 					return result;
 				}
-				// fall through
+			// fall through
 			case nodes.NodeType.ElementNameSelector:
 				let text = child.getText();
-				result.addAttr('name', text === '*' ? 'element' : text);
+				result.addAttr('name', text === '*' ? 'element' : unescape(text));
 				break;
 			case nodes.NodeType.ClassSelector:
-				result.addAttr('class', child.getText().substring(1));
+				result.addAttr('class', unescape(child.getText().substring(1)));
 				break;
 			case nodes.NodeType.IdentifierSelector:
-				result.addAttr('id', child.getText().substring(1));
+				result.addAttr('id', unescape(child.getText().substring(1)));
 				break;
 			case nodes.NodeType.MixinDeclaration:
 				result.addAttr('class', (<nodes.MixinDeclaration>child).getName());
 				break;
 			case nodes.NodeType.PseudoSelector:
-				result.addAttr(child.getText(), '');
+				result.addAttr(unescape(child.getText()), '');
 				break;
 			case nodes.NodeType.AttributeSelector:
 				let expr = <nodes.BinaryExpression>child.getChildren()[0];
 				if (expr) {
 					let value: string;
 					if (expr.getRight()) {
-						switch (expr.getOperator().getText()) {
+						switch (unescape(expr.getOperator().getText())) {
 							case '|=':
 								// excatly or followed by -words
-								value = `${quotes.remove(expr.getRight().getText())}-\u2026`;
+								value = `${quotes.remove(unescape(expr.getRight().getText()))}-\u2026`;
 								break;
 							case '^=':
 								// prefix
-								value = `${quotes.remove(expr.getRight().getText())}\u2026`;
+								value = `${quotes.remove(unescape(expr.getRight().getText()))}\u2026`;
 								break;
 							case '$=':
 								// suffix
-								value = `\u2026${quotes.remove(expr.getRight().getText())}`;
+								value = `\u2026${quotes.remove(unescape(expr.getRight().getText()))}`;
 								break;
 							case '~=':
 								// one of a list of words
-								value = ` \u2026 ${quotes.remove(expr.getRight().getText())} \u2026 `;
+								value = ` \u2026 ${quotes.remove(unescape(expr.getRight().getText()))} \u2026 `;
 								break;
 							case '*=':
 								// substring
-								value = `\u2026${quotes.remove(expr.getRight().getText())}\u2026`;
+								value = `\u2026${quotes.remove(unescape(expr.getRight().getText()))}\u2026`;
 								break;
 							default:
-								value = quotes.remove(expr.getRight().getText());
+								value = quotes.remove(unescape(expr.getRight().getText()));
 								break;
 						}
 					}
-					result.addAttr(expr.getLeft().getText(), value);
+					result.addAttr(unescape(expr.getLeft().getText()), value);
 				}
 				break;
 		}
 	});
 	return result;
+}
+
+function unescape(content: string) {
+	let scanner = new Scanner();
+	scanner.setSource(content);
+	let token = scanner.scanUnquotedString();
+	if (token) {
+		return token.text;
+	}
+	return content;
 }
 
 export function selectorToMarkedString(node: nodes.Selector): MarkedString[] {
@@ -333,7 +344,7 @@ class SelectorElementBuilder {
 		}
 
 		selector.getChildren().forEach(selectorChild => {
-			
+
 			if (selectorChild instanceof nodes.SimpleSelector) {
 				if (this.prev instanceof nodes.SimpleSelector) {
 					let labelElement = new LabelElement('\u2026');
@@ -398,7 +409,7 @@ export function selectorToElement(node: nodes.Selector): Element {
 	let builder = new SelectorElementBuilder(root);
 
 	for (let i = parentRuleSets.length - 1; i >= 0; i--) {
-		let selector = <nodes.Selector> parentRuleSets[i].getSelectors().getChild(0);
+		let selector = <nodes.Selector>parentRuleSets[i].getSelectors().getChild(0);
 		if (selector) {
 			builder.processSelector(selector);
 		}
