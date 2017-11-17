@@ -20,7 +20,7 @@
 			"outFiles": [
 				"${workspaceRoot}/lib/**"
 			],
-			"preLaunchTask": "npm: watch"
+			"preLaunchTask": "npm: compile"
 		}
 	]
 }

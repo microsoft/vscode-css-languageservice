@@ -105,17 +105,17 @@ export class SCSSParser extends cssParser.Parser {
 		node.referenceTypes = referenceTypes;
 		let hasContent = false;
 		let delimWithInterpolation = () => {
-			if (!this.accept(TokenType.Delim, '-')) {
+			if (!this.acceptDelim('-')) {
 				return false;
 			}
-			if (!this.hasWhitespace() && this.accept(TokenType.Delim, '-')) {
+			if (!this.hasWhitespace() && this.acceptDelim('-')) {
 				node.isCustomProperty = true;
 			}
 			return !this.hasWhitespace() && node.addChild(this._parseInterpolation());
 		};		
 		while (this.accept(TokenType.Ident) || node.addChild(this._parseInterpolation()) || this.try(delimWithInterpolation))  {
 			hasContent = true;
-			if (!this.hasWhitespace() && this.accept(TokenType.Delim, '-')) {
+			if (!this.hasWhitespace() && this.acceptDelim('-')) {
 				// '-' is a valid char inside a ident (special treatment here to support #{foo}-#{bar})
 			}
 			if (this.hasWhitespace()) {
@@ -254,8 +254,8 @@ export class SCSSParser extends cssParser.Parser {
 
 	public _parseSelectorCombinator(): nodes.Node {
 		let node = this.createNode(nodes.NodeType.SelectorCombinator);
-		if (this.accept(TokenType.Delim, '&')) {
-			while (!this.hasWhitespace() && (this.accept(TokenType.Delim, '-') || this.accept(TokenType.Num) || this.accept(TokenType.Dimension) || node.addChild(this._parseIdent()) || this.accept(TokenType.Delim, '&'))) {
+		if (this.acceptDelim('&')) {
+			while (!this.hasWhitespace() && (this.acceptDelim('-') || this.accept(TokenType.Num) || this.accept(TokenType.Dimension) || node.addChild(this._parseIdent()) || this.acceptDelim('&'))) {
 				//  support &-foo-1
 			}
 			return this.finish(node);
@@ -265,7 +265,7 @@ export class SCSSParser extends cssParser.Parser {
 
 	public _parseSelectorPlaceholder(): nodes.Node {
 		let node = this.createNode(nodes.NodeType.SelectorPlaceholder);
-		if (this.accept(TokenType.Delim, '%')) {
+		if (this.acceptDelim('%')) {
 			this._parseIdent();
 			return this.finish(node);
 		} else if (this.accept(TokenType.AtKeyword, '@at-root')) {

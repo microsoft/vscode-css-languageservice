@@ -78,7 +78,8 @@ export enum NodeType {
 	CustomPropertySet,
 	ListEntry,
 	Supports,
-	SupportsCondition
+	SupportsCondition,
+	NamespacePrefix
 }
 
 export enum ReferenceType {

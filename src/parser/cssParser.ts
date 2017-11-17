@@ -104,6 +104,14 @@ export class Parser {
 		return false;
 	}
 
+	public acceptDelim(text: string) {
+		if (TokenType.Delim === this.token.type && text === this.token.text) {
+			this.consumeToken();
+			return true;
+		}
+		return false;
+	}
+
 	protected acceptUnquotedString(): boolean {
 		let pos = this.scanner.pos();
 		this.scanner.goBackTo(this.token.offset);
@@ -553,7 +561,7 @@ export class Parser {
 		let node = <nodes.Property>this.create(nodes.Property);
 
 		let mark = this.mark();
-		if (this.accept(TokenType.Delim, '*') || this.accept(TokenType.Delim, '_')) {
+		if (this.acceptDelim('*') || this.acceptDelim('_')) {
 			// support for  IE 5.x, 6 and 7 star hack: see http://en.wikipedia.org/wiki/CSS_filter#Star_hack
 			if (this.hasWhitespace()) {
 				this.restoreAtMark(mark);
@@ -952,16 +960,16 @@ export class Parser {
 	public _parseOperator(): nodes.Node {
 		// these are operators for binary expressions
 		let node = this.createNode(nodes.NodeType.Operator);
-		if (this.accept(TokenType.Delim, '/') ||
-			this.accept(TokenType.Delim, '*') ||
-			this.accept(TokenType.Delim, '+') ||
-			this.accept(TokenType.Delim, '-') ||
+		if (this.acceptDelim('/') ||
+			this.acceptDelim('*') ||
+			this.acceptDelim('+') ||
+			this.acceptDelim('-') ||
 			this.accept(TokenType.Dashmatch) ||
 			this.accept(TokenType.Includes) ||
 			this.accept(TokenType.SubstringOperator) ||
 			this.accept(TokenType.PrefixOperator) ||
 			this.accept(TokenType.SuffixOperator) ||
-			this.accept(TokenType.Delim, '=')) { // doesn't stick to the standard here
+			this.acceptDelim('=')) { // doesn't stick to the standard here
 
 			return this.finish(node);
 
@@ -972,7 +980,7 @@ export class Parser {
 
 	public _parseUnaryOperator(): nodes.Node {
 		let node = this.create(nodes.Node);
-		if (this.accept(TokenType.Delim, '+') || this.accept(TokenType.Delim, '-')) {
+		if (this.acceptDelim('+') || this.acceptDelim('-')) {
 			return this.finish(node);
 		} else {
 			return null;
@@ -981,10 +989,10 @@ export class Parser {
 
 	public _parseCombinator(): nodes.Node {
 		let node = this.create(nodes.Node);
-		if (this.accept(TokenType.Delim, '>')) {
+		if (this.acceptDelim('>')) {
 			let mark = this.mark();
-			if (!this.hasWhitespace() && this.accept(TokenType.Delim, '>')) {
-				if (!this.hasWhitespace() && this.accept(TokenType.Delim, '>')) {
+			if (!this.hasWhitespace() && this.acceptDelim('>')) {
+				if (!this.hasWhitespace() && this.acceptDelim('>')) {
 					node.type = nodes.NodeType.SelectorCombinatorShadowPiercingDescendant;
 					return this.finish(node);
 				}
@@ -992,15 +1000,15 @@ export class Parser {
 			}
 			node.type = nodes.NodeType.SelectorCombinatorParent;
 			return this.finish(node);
-		} else if (this.accept(TokenType.Delim, '+')) {
+		} else if (this.acceptDelim('+')) {
 			node.type = nodes.NodeType.SelectorCombinatorSibling;
 			return this.finish(node);
-		} else if (this.accept(TokenType.Delim, '~')) {
+		} else if (this.acceptDelim('~')) {
 			node.type = nodes.NodeType.SelectorCombinatorAllSiblings;
 			return this.finish(node);
-		} else if (this.accept(TokenType.Delim, '/')) {
+		} else if (this.acceptDelim('/')) {
 			let mark = this.mark();
-			if (!this.hasWhitespace() && this.accept(TokenType.Ident, 'deep') && !this.hasWhitespace() && this.accept(TokenType.Delim, '/')) {
+			if (!this.hasWhitespace() && this.accept(TokenType.Ident, 'deep') && !this.hasWhitespace() && this.acceptDelim('/')) {
 				node.type = nodes.NodeType.SelectorCombinatorShadowPiercingDescendant;
 				return this.finish(node);
 			}
@@ -1038,7 +1046,7 @@ export class Parser {
 			return null;
 		}
 		let node = this.createNode(nodes.NodeType.IdentifierSelector);
-		if (this.accept(TokenType.Delim, '#')) {
+		if (this.acceptDelim('#')) {
 			if (this.hasWhitespace() || !node.addChild(this._parseSelectorIdent())) {
 				return this.finish(node, ParseError.IdentifierExpected);
 			}
@@ -1061,13 +1069,29 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseElementName(): nodes.Node {
-		// element_name: IDENT | '*';
+	public _parseElementName(): nodes.Node | null {
+		// element_name: (ns? '|')? IDENT | '*';
+		let pos = this.mark();
 		let node = this.createNode(nodes.NodeType.ElementNameSelector);
-		if (node.addChild(this._parseSelectorIdent()) || this.accept(TokenType.Delim, '*')) {
-			return this.finish(node);
+		node.addChild(this._parseNamespacePrefix());
+		if (!node.addChild(this._parseSelectorIdent()) && !this.acceptDelim('*')) {
+			this.restoreAtMark(pos);
+			return null;
 		}
-		return null;
+		return this.finish(node);
+	}
+
+	public _parseNamespacePrefix(): nodes.Node | null {
+		let pos = this.mark();
+		let node = this.createNode(nodes.NodeType.NamespacePrefix);
+		if (!node.addChild(this._parseIdent()) && !this.acceptDelim('*')) {
+			// ns is optional
+		}
+		if (!this.acceptDelim('|')) {
+			this.restoreAtMark(pos);
+			return null;
+		}
+		return this.finish(node);
 	}
 
 	public _parseAttrib(): nodes.Node {
@@ -1079,10 +1103,7 @@ export class Parser {
 		this.consumeToken(); // BracketL
 
 		// Optional attrib namespace
-		let pos = this.mark();
-		if (!this.accept(TokenType.Ident) || !this.accept(TokenType.Delim, '|')) {
-			this.restoreAtMark(pos);
-		}
+		node.addChild(this._parseNamespacePrefix());
 
 		if (!node.addChild(this._parseBinaryExpr())) {
 			// is this bad?
@@ -1313,7 +1334,7 @@ export class Parser {
 		if (this.accept(TokenType.Ident, 'progid')) {
 			// support for IE7 specific filters: 'progid:DXImageTransform.Microsoft.MotionBlur(strength=13, direction=310)'
 			if (this.accept(TokenType.Colon)) {
-				while (this.accept(TokenType.Ident) && this.accept(TokenType.Delim, '.')) {
+				while (this.accept(TokenType.Ident) && this.acceptDelim('.')) {
 					// loop
 				}
 			}

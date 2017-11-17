@@ -319,6 +319,10 @@ suite('CSS - Parser', () => {
 		let parser = new Parser();
 		assertNode('name', parser, parser._parseElementName.bind(parser));
 		assertNode('*', parser, parser._parseElementName.bind(parser));
+		assertNode('foo|h1', parser, parser._parseElementName.bind(parser));
+		assertNode('foo|*', parser, parser._parseElementName.bind(parser));
+		assertNode('|h1', parser, parser._parseElementName.bind(parser));
+		assertNode('*|h1', parser, parser._parseElementName.bind(parser));
 	});
 
 	test('attrib', function () {
@@ -336,9 +340,8 @@ suite('CSS - Parser', () => {
 		assertNode('[name_space|name ~= name3]', parser, parser._parseAttrib.bind(parser));
 		assertNode('[name0spae|name~=name3]', parser, parser._parseAttrib.bind(parser));
 		assertNode('[NameSpace|name |= "this is a striiiing"]', parser, parser._parseAttrib.bind(parser));
-
-		// TODO: Escaped characters should be allowed in idents.
-		// assertNode('[name\*space|name |= name3]', parser, parser._parseAttrib.bind(parser));
+		assertNode('[name\\*space|name |= name3]', parser, parser._parseAttrib.bind(parser));
+		assertNode('[*|name]', parser, parser._parseAttrib.bind(parser));
 	});
 
 	test('pseudo', function () {
