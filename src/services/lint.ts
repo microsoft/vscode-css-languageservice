@@ -412,7 +412,7 @@ export class LintVisitor implements nodes.IVisitor {
 						name = name.substr(1);
 					}
 					if (!languageFacts.isKnownProperty(name)) {
-						this.addEntry(decl.getProperty(), Rules.UnknownProperty);
+						this.addEntry(decl.getProperty(), Rules.UnknownProperty, localize('property.unknownproperty.detailed', "Unknown property: '{0}'", name));
 					}
 					propertiesBySuffix.add(name, name, null); // don't pass the node as we don't show errors on the standard
 				}
