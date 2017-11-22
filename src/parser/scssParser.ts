@@ -188,7 +188,8 @@ export class SCSSParser extends cssParser.Parser {
 				|| this._parseMixinReference() // @include
 				|| this._parseMixinContent() // @content
 				|| this._parseMixinDeclaration() // nested @mixin
-				|| this._parseRuleset(true); // @at-rule
+				|| this._parseRuleset(true) // @at-rule
+				|| this._parseSupports(true); // @supports
 		}
 		return this._parseVariableDeclaration() // variable declaration
 			|| this._tryParseRuleset(true) // nested ruleset

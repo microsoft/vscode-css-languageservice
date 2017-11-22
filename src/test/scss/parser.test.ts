@@ -329,6 +329,8 @@ suite('SCSS - Parser', () => {
 		assertNode('.class1 { > .class2 { & > .class4 { rule1: v1; } } }', parser, parser._parseRuleset.bind(parser));
 		assertNode('foo { @at-root { display: none; } }', parser, parser._parseRuleset.bind(parser));
 		assertNode('th, tr { @at-root #{selector-replace(&, "tr")} { border-bottom: 0; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { @supports(display: grid) { .bar { display: none; }}}', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { @supports(display: grid) { display: none; }}', parser, parser._parseRuleset.bind(parser));
 	});
 
 	test('Selector Interpolation', function () {

@@ -740,6 +740,12 @@ export class Parser {
 	}
 
 	public _parseSupportsDeclaration(isNested = false): nodes.Node {
+		if (isNested) {
+			// if nested, the body can contain rulesets, but also declarations
+			return this._tryParseRuleset(isNested)
+			|| this._tryToParseDeclaration()
+			|| this._parseStylesheetStatement();
+		}
 		return this._parseStylesheetStatement();
 	}
 

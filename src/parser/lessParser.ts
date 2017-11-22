@@ -197,8 +197,10 @@ export class LESSParser extends cssParser.Parser {
 			return this._parseKeyframe()
 				|| this._parseMedia(true)
 				|| this._parseImport()
+				|| this._parseSupports(true) // @supports
 				|| this._parseDetachedRuleSetMixin() // less detached ruleset mixin
 				|| this._parseVariableDeclaration(); // Variable declarations
+				
 		}
 		return this._tryParseMixinDeclaration()
 			|| this._tryParseRuleset(true)  // nested ruleset
