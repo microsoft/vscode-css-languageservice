@@ -4,12 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 import * as scssScanner from './scssScanner';
-import {TokenType} from './cssScanner';
+import { TokenType } from './cssScanner';
 import * as cssParser from './cssParser';
 import * as nodes from './cssNodes';
 
-import {SCSSParseError} from './scssErrors';
-import {ParseError} from './cssErrors';
+import { SCSSParseError } from './scssErrors';
+import { ParseError } from './cssErrors';
 
 /// <summary>
 /// A parser for scss
@@ -112,8 +112,8 @@ export class SCSSParser extends cssParser.Parser {
 				node.isCustomProperty = true;
 			}
 			return !this.hasWhitespace() && node.addChild(this._parseInterpolation());
-		};		
-		while (this.accept(TokenType.Ident) || node.addChild(this._parseInterpolation()) || this.try(delimWithInterpolation))  {
+		};
+		while (this.accept(TokenType.Ident) || node.addChild(this._parseInterpolation()) || this.try(delimWithInterpolation)) {
 			hasContent = true;
 			if (!this.hasWhitespace() && this.acceptDelim('-')) {
 				// '-' is a valid char inside a ident (special treatment here to support #{foo}-#{bar})
@@ -276,9 +276,9 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseWarnAndDebug(): nodes.Node {
-		if (!this.peek(TokenType.AtKeyword, '@debug') 
-		    && !this.peek(TokenType.AtKeyword, '@warn')
-		    && !this.peek(TokenType.AtKeyword, '@error')) {
+		if (!this.peek(TokenType.AtKeyword, '@debug')
+			&& !this.peek(TokenType.AtKeyword, '@warn')
+			&& !this.peek(TokenType.AtKeyword, '@error')) {
 			return null;
 		}
 		let node = this.createNode(nodes.NodeType.Debug);

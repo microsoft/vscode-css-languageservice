@@ -5,17 +5,17 @@
 'use strict';
 
 import * as assert from 'assert';
-import {Parser} from '../../parser/cssParser';
-import {TokenType} from '../../parser/cssScanner';
+import { Parser } from '../../parser/cssParser';
+import { TokenType } from '../../parser/cssScanner';
 import * as nodes from '../../parser/cssNodes';
-import {ParseError} from '../../parser/cssErrors';
-import {LESSParser} from '../../parser/lessParser';
+import { ParseError } from '../../parser/cssErrors';
+import { LESSParser } from '../../parser/lessParser';
 
-import {assertNode, assertNoNode, assertError} from '../css/parser.test';
+import { assertNode, assertNoNode, assertError } from '../css/parser.test';
 
 suite('LESS - Parser', () => {
 
-	test('Variable', function() {
+	test('Variable', function () {
 		let parser = new LESSParser();
 		assertNode('@color', parser, parser._parseVariable.bind(parser));
 		assertNode('@co42lor', parser, parser._parseVariable.bind(parser));
@@ -27,7 +27,7 @@ suite('LESS - Parser', () => {
 		assertNoNode('@-@foo', parser, parser._parseFunction.bind(parser));
 	});
 
-	test('Media', function() {
+	test('Media', function () {
 		let parser = new LESSParser();
 		assertNode('@media @phone {}', parser, parser._parseMedia.bind(parser));
 		assertNode('@media(max-width: 767px) { .mixinRef() }', parser, parser._parseMedia.bind(parser));
@@ -36,7 +36,7 @@ suite('LESS - Parser', () => {
 		assertError('@media (max-width: 760px) { + div { display: block; } }', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
 	});
 
-	test('VariableDeclaration', function() {
+	test('VariableDeclaration', function () {
 		let parser = new LESSParser();
 		assertNode('@color: #F5F5F5', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('@color: 0', parser, parser._parseVariableDeclaration.bind(parser));
@@ -48,9 +48,9 @@ suite('LESS - Parser', () => {
 		assertNode('@greeting: `"hello".toUpperCase() + "!";`', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('@greeting: { display: none; }', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('@b: @a !important', parser, parser._parseVariableDeclaration.bind(parser));
-	}); 
+	});
 
-	test('MixinDeclaration', function() {
+	test('MixinDeclaration', function () {
 		let parser = new LESSParser();
 		assertNode('.color (@color: 25.5px) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.color(@color: 25.5px) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
@@ -71,7 +71,7 @@ suite('LESS - Parser', () => {
 		assertError('.color (@color; @padding: 2;;) { }', parser, parser._tryParseMixinDeclaration.bind(parser), ParseError.IdentifierExpected);
 	});
 
-	test('MixinReference', function() {
+	test('MixinReference', function () {
 		let parser = new LESSParser();
 		assertNode('.box-shadow(0 0 5px, 30%)', parser, parser._tryParseMixinReference.bind(parser));
 		assertNode('.box-shadow', parser, parser._tryParseMixinReference.bind(parser));
@@ -84,7 +84,7 @@ suite('LESS - Parser', () => {
 		assertError('.mixin(#008000;;)', parser, parser._tryParseMixinReference.bind(parser), ParseError.ExpressionExpected);
 	});
 
-	test('DetachedRuleSet', function() {
+	test('DetachedRuleSet', function () {
 		let parser = new LESSParser();
 		assertNode('.foo {  @greeting(); }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.media-switch(@styles) { @media(orientation:landscape){ @styles(); @foo: 9; } }', parser, parser._parseStylesheet.bind(parser));
@@ -93,7 +93,7 @@ suite('LESS - Parser', () => {
 		assertNode('.keyframes(fade-in;{ 0%, 100% { opacity: 1; }});', parser, parser._parseStylesheet.bind(parser));
 	});
 
-	test('MixinParameter', function() {
+	test('MixinParameter', function () {
 		let parser = new LESSParser();
 		assertNode('@_', parser, parser._parseMixinParameter.bind(parser));
 		assertNode('@let: value', parser, parser._parseMixinParameter.bind(parser));
@@ -105,14 +105,14 @@ suite('LESS - Parser', () => {
 		assertNode('50%', parser, parser._parseMixinParameter.bind(parser));
 	});
 
-	test('Function', function() {
+	test('Function', function () {
 		let parser = new LESSParser();
 		assertNode('%()', parser, parser._parseFunction.bind(parser));
 		assertNoNode('% ()', parser, parser._parseFunction.bind(parser));
 
 	});
 
-	test('Expr', function() {
+	test('Expr', function () {
 		let parser = new LESSParser();
 		assertNode('(@let + 20)', parser, parser._parseExpr.bind(parser));
 		assertNode('(@let - 20)', parser, parser._parseExpr.bind(parser));
@@ -142,7 +142,7 @@ suite('LESS - Parser', () => {
 		assertNode('100% / 2 + @filler', parser, parser._parseExpr.bind(parser));
 	});
 
-	test('LessOperator', function() {
+	test('LessOperator', function () {
 		let parser = new LESSParser();
 		assertNode('>=', parser, parser._parseOperator.bind(parser));
 		assertNode('>', parser, parser._parseOperator.bind(parser));
@@ -150,7 +150,7 @@ suite('LESS - Parser', () => {
 		assertNode('=<', parser, parser._parseOperator.bind(parser));
 	});
 
-	test('Extend', function() {
+	test('Extend', function () {
 		let parser = new LESSParser();
 		assertNode('nav { &:extend(.inline); }', parser, parser._parseRuleset.bind(parser));
 		assertNode('nav { &:extend(.test all); }', parser, parser._parseRuleset.bind(parser));
@@ -160,7 +160,7 @@ suite('LESS - Parser', () => {
 		assertNode('.d { &:extend(.a, .b); }', parser, parser._parseRuleset.bind(parser));
 	});
 
-	test('Declaration', function() {
+	test('Declaration', function () {
 		let parser = new LESSParser();
 		assertNode('border: thin solid 1px', parser, parser._parseDeclaration.bind(parser));
 		assertNode('dummy: @color', parser, parser._parseDeclaration.bind(parser));
@@ -178,7 +178,7 @@ suite('LESS - Parser', () => {
 		assertNode('prop-erty: fnc(@t, 10%)', parser, parser._parseDeclaration.bind(parser));
 	});
 
-	test('Stylesheet', function() {
+	test('Stylesheet', function () {
 		let parser = new LESSParser();
 		assertNode('.color (@radius: 5px){ -border-radius: #F5F5F5 }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.color (@radius: 5px){ -border-radius: @radius }', parser, parser._parseStylesheet.bind(parser));
@@ -206,7 +206,7 @@ suite('LESS - Parser', () => {
 		assertError('@import (optional, reference,,) "foo.less";', parser, parser._parseStylesheet.bind(parser), ParseError.RightParenthesisExpected);
 	});
 
-	test('Ruleset', function() {
+	test('Ruleset', function () {
 		let parser = new LESSParser();
 		assertNode('.selector { prop: erty @let 1px; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('selector { .mixin; }', parser, parser._parseRuleset.bind(parser));
@@ -223,13 +223,13 @@ suite('LESS - Parser', () => {
 		assertNode('selector {  @import "bar"; }', parser, parser._parseRuleset.bind(parser));
 	});
 
-	test('term', function() {
+	test('term', function () {
 		let parser = new LESSParser();
 		assertNode('%(\'repetitions: %S file: %S\', 1 + 2, "directory/file.less")', parser, parser._parseTerm.bind(parser));
 		assertNode('~"ms:alwaysHasItsOwnSyntax.For.Stuff()"', parser, parser._parseTerm.bind(parser)); // less syntax
 	});
 
-	test('Nested Ruleset', function() {
+	test('Nested Ruleset', function () {
 		let parser = new LESSParser();
 		assertNode('.class1 { @let: 1; .class { @let: 2; three: @let; let: 3; } one: @let; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.class1 { @let: 1; > .class2 { display: none; } }', parser, parser._parseRuleset.bind(parser));
@@ -237,19 +237,19 @@ suite('LESS - Parser', () => {
 		assertNode('.foo { @supports(display: grid) { display: none; }}', parser, parser._parseRuleset.bind(parser));
 	});
 
-	test('Selector Interpolation', function() {
+	test('Selector Interpolation', function () {
 		let parser = new LESSParser();
 		assertNode('.@{name} { }', parser, parser._parseRuleset.bind(parser));
 		assertNode('~"@{name}" { }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.my-element:not(.prefix-@{sub-element}) { }', parser, parser._parseStylesheet.bind(parser));
-		assertNode('.-@{color} { }', parser, parser._parseStylesheet.bind(parser));		
+		assertNode('.-@{color} { }', parser, parser._parseStylesheet.bind(parser));
 		assertError('~{ }', parser, parser._parseStylesheet.bind(parser), ParseError.StringLiteralExpected);
 		assertError('@', parser, parser._parseSelectorInterpolation.bind(parser), ParseError.LeftCurlyExpected);
 		assertError('@{', parser, parser._parseSelectorInterpolation.bind(parser), ParseError.IdentifierExpected);
 		assertError('@{dd', parser, parser._parseSelectorInterpolation.bind(parser), ParseError.RightCurlyExpected);
 	});
 
-	test('Selector Combinator', function() {
+	test('Selector Combinator', function () {
 		let parser = new LESSParser();
 		assertNode('&:hover', parser, parser._parseSimpleSelector.bind(parser));
 		assertNode('&.float', parser, parser._parseSimpleSelector.bind(parser));
@@ -261,16 +261,16 @@ suite('LESS - Parser', () => {
 		assertNode('&-10-thing', parser, parser._parseSimpleSelector.bind(parser));
 	});
 
-	test('CSS Guards', function() {
+	test('CSS Guards', function () {
 		let parser = new LESSParser();
 		assertNode('button when (@my-option = true) { color: white; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.something .other when (@my-option = true) { color: white; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('& when (@my-option = true) { button { color: white; } }', parser, parser._parseStylesheet.bind(parser));
 	});
 
-	test('Merge', function() {
+	test('Merge', function () {
 		let parser = new LESSParser();
 		assertNode('.mixin() { transform+_: scale(2); }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.myclass { box-shadow+: inset 0 0 10px #555; }', parser, parser._parseStylesheet.bind(parser));
-	});		
+	});
 });

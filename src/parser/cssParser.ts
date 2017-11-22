@@ -743,8 +743,8 @@ export class Parser {
 		if (isNested) {
 			// if nested, the body can contain rulesets, but also declarations
 			return this._tryParseRuleset(isNested)
-			|| this._tryToParseDeclaration()
-			|| this._parseStylesheetStatement();
+				|| this._tryToParseDeclaration()
+				|| this._parseStylesheetStatement();
 		}
 		return this._parseStylesheetStatement();
 	}
