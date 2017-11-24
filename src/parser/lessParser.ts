@@ -347,7 +347,11 @@ export class LESSParser extends cssParser.Parser {
 			return null;
 		}
 
-		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
+		return this._parseBody(node, this._parseMixInBodyDeclaration.bind(this));
+	}
+
+	private _parseMixInBodyDeclaration(): nodes.Node {
+		return this._parseFontFace() ||  this._parseRuleSetDeclaration();
 	}
 
 	private _parseMixinDeclarationIdentifier(): nodes.Identifier {
