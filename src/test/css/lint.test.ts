@@ -10,6 +10,8 @@ import { Parser } from '../../parser/cssParser';
 import { LintVisitor } from '../../services/lint';
 import { Rule, Rules, LintConfigurationSettings } from '../../services/lintRules';
 import { TextDocument } from 'vscode-languageserver-types';
+import { SCSSParser } from '../../parser/scssParser';
+import { LESSParser } from '../../parser/lessParser';
 
 export function assertEntries(node: nodes.Node, rules: nodes.IRule[]): void {
 
@@ -20,31 +22,33 @@ export function assertEntries(node: nodes.Node, rules: nodes.IRule[]): void {
 	assert.equal(entries.length, rules.length, entries.map(e => e.getRule().id).join(', '));
 
 	for (let entry of entries) {
-		let idx = rules.indexOf(entry.getRule());
-		rules.splice(idx, 1);
+		assert.ok(rules.indexOf(entry.getRule()) !== -1, `${entry.getRule().id} found but not expected (${rules.map(r => r.id).join(', ')})`);
 	}
-	assert.equal(rules.length, 0);
 }
+let parsers = [new Parser(), new LESSParser(), new SCSSParser()];
 
 function assertStyleSheet(input: string, ...rules: Rule[]): void {
-	let p = new Parser();
-	let document = TextDocument.create('test://test/test.css', 'css', 0, input);
-	let node = p.parseStylesheet(document);
+	for (let p of parsers) {
+		let document = TextDocument.create('test://test/test.css', 'css', 0, input);
+		let node = p.parseStylesheet(document);
 
-	assertEntries(node, rules);
+		assertEntries(node, rules);
+	}
 }
 
 function assertRuleSet(input: string, ...rules: Rule[]): void {
-	let p = new Parser();
-	let node = p.internalParse(input, p._parseRuleset);
-	assertEntries(node, rules);
+	for (let p of parsers) {
+		let node = p.internalParse(input, p._parseRuleset);
+		assertEntries(node, rules);
+	}
 }
 
 
 function assertFontFace(input: string, ...rules: Rule[]): void {
-	let p = new Parser();
-	let node = p.internalParse(input, p._parseFontFace);
-	assertEntries(node, rules);
+	for (let p of parsers) {
+		let node = p.internalParse(input, p._parseFontFace);
+		assertEntries(node, rules);
+	}
 }
 
 suite('CSS - Lint', () => {

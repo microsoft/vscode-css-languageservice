@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import {Rule, Rules} from '../../services/lintRules';
-import {assertEntries} from '../css/lint.test';
-import {SCSSParser} from '../../parser/scssParser';
+import { Rule, Rules } from '../../services/lintRules';
+import { assertEntries } from '../css/lint.test';
+import { SCSSParser } from '../../parser/scssParser';
 
 function assertFontFace(input: string, ...rules: Rule[]): void {
 	let p = new SCSSParser();
@@ -37,8 +37,8 @@ suite('SCSS - Lint', () => {
 	});
 
 	test('unknown properties', function () {
-		assertRuleSet('selector { -ms-property: "rest is missing" }', Rules.UnknownProperty);
-		assertRuleSet('selector { -moz-box-shadow: "rest is missing" }', Rules.UnknownProperty, Rules.IncludeStandardPropertyWhenUsingVendorPrefix);
+		assertRuleSet('selector { -ms-property: "rest is missing" }', Rules.UnknownVendorSpecificProperty);
+		assertRuleSet('selector { -moz-box-shadow: "rest is missing" }', Rules.UnknownVendorSpecificProperty, Rules.IncludeStandardPropertyWhenUsingVendorPrefix);
 		assertRuleSet('selector { box-shadow: none }'); // no error
 		assertRuleSet('selector { -moz-#{box}-shadow: none }'); // no error if theres an interpolation
 		assertRuleSet('selector { outer: { nested : blue }'); // no error for nested

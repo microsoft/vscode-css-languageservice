@@ -237,16 +237,15 @@ suite('LESS - Parser', () => {
 		assertNode('.foo { @supports(display: grid) { display: none; }}', parser, parser._parseRuleset.bind(parser));
 	});
 
-	test('Selector Interpolation', function () {
+	test('Interpolation', function () {
 		let parser = new LESSParser();
 		assertNode('.@{name} { }', parser, parser._parseRuleset.bind(parser));
-		assertNode('~"@{name}" { }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.my-element:not(.prefix-@{sub-element}) { }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.-@{color} { }', parser, parser._parseStylesheet.bind(parser));
-		assertError('~{ }', parser, parser._parseStylesheet.bind(parser), ParseError.StringLiteralExpected);
-		assertError('@', parser, parser._parseSelectorInterpolation.bind(parser), ParseError.LeftCurlyExpected);
-		assertError('@{', parser, parser._parseSelectorInterpolation.bind(parser), ParseError.IdentifierExpected);
-		assertError('@{dd', parser, parser._parseSelectorInterpolation.bind(parser), ParseError.RightCurlyExpected);
+		assertNoNode('@', parser, parser._parseInterpolation.bind(parser));
+		assertNode('.px2rem(@name, @px) { @{name}: @px / @basesize; }', parser, parser._parseStylesheet.bind(parser));
+		assertError('@{', parser, parser._parseInterpolation.bind(parser), ParseError.IdentifierExpected);
+		assertError('@{dd', parser, parser._parseInterpolation.bind(parser), ParseError.RightCurlyExpected);
 	});
 
 	test('Selector Combinator', function () {

@@ -256,6 +256,25 @@ export class LESSParser extends cssParser.Parser {
 
 	public _parseSelectorIdent(): nodes.Node {
 		let node = this.createNode(nodes.NodeType.SelectorInterpolation);
+		let hasContent = this._acceptInterpolatedIdent(node);
+		return hasContent ? this.finish(node) : null;
+	}
+
+	public _parsePropertyIdentifier(): nodes.Identifier {
+		let node = <nodes.Identifier>this.create(nodes.Identifier);
+		node.isCustomProperty = this.peekRegExp(TokenType.Ident, /^--/);
+		let hasContent = this._acceptInterpolatedIdent(node);
+
+		if (hasContent && !this.hasWhitespace()) {
+			this.acceptDelim('+');
+			if (!this.hasWhitespace()) {
+				this.accept(TokenType.Ident, '_');
+			}
+		}
+		return hasContent ? this.finish(node) : null;
+	}
+
+	public _acceptInterpolatedIdent(node: nodes.Node): boolean {
 		let hasContent = false;
 		let delimWithInterpolation = () => {
 			if (!this.acceptDelim('-')) {
@@ -263,9 +282,9 @@ export class LESSParser extends cssParser.Parser {
 			}
 			if (!this.hasWhitespace() && this.acceptDelim('-')) {
 			}
-			return !this.hasWhitespace() && node.addChild(this._parseSelectorInterpolation());
+			return !this.hasWhitespace() && node.addChild(this._parseInterpolation());
 		};
-		while (this.accept(TokenType.Ident) || node.addChild(this._parseSelectorInterpolation()) || this.try(delimWithInterpolation)) {
+		while (this.accept(TokenType.Ident) || node.addChild(this._parseInterpolation()) || this.try(delimWithInterpolation)) {
 			hasContent = true;
 			if (!this.hasWhitespace() && this.acceptDelim('-')) {
 				// '-' is a valid char inside a ident (special treatment here to support @{foo}-@{bar})
@@ -274,20 +293,17 @@ export class LESSParser extends cssParser.Parser {
 				break;
 			}
 		}
-		return hasContent ? this.finish(node) : null;
+		return hasContent;
 	}
 
-	public _parseSelectorInterpolation(): nodes.Node {
-		// Selector interpolation;  old: ~"@{name}", new: @{name}
+	public _parseInterpolation(): nodes.Node {
+		//  @{name}
+		let mark = this.mark();
 		let node = this.createNode(nodes.NodeType.Interpolation);
-		if (this.acceptDelim('~')) {
-			if (!this.hasWhitespace() && (this.accept(TokenType.String) || this.accept(TokenType.BadString))) {
-				return this.finish(node);
-			}
-			return this.finish(node, ParseError.StringLiteralExpected);
-		} else if (this.acceptDelim('@')) {
+		if (this.acceptDelim('@')) {
 			if (this.hasWhitespace() || !this.accept(TokenType.CurlyL)) {
-				return this.finish(node, ParseError.LeftCurlyExpected);
+				this.restoreAtMark(mark);
+				return null;
 			}
 			if (!node.addChild(this._parseIdent())) {
 				return this.finish(node, ParseError.IdentifierExpected);
@@ -569,20 +585,6 @@ export class LESSParser extends cssParser.Parser {
 		}
 
 		return super._parseFunctionIdentifier();
-	}
-
-	public _parsePropertyIdentifier(): nodes.Identifier {
-		let identifier = this._parseIdent();
-		if (!identifier) {
-			return null;
-		}
-		if (!this.hasWhitespace()) {
-			this.acceptDelim('+');
-			if (!this.hasWhitespace()) {
-				this.accept(TokenType.Ident, '_');
-			}
-		}
-		return this.finish(identifier);
 	}
 
 	public _parseURLArgument(): nodes.Node {
