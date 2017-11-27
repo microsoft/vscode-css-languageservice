@@ -421,7 +421,7 @@ export function colorFrom256RGB(red: number, green: number, blue: number, alpha:
 export function colorFromHSL(hue: number, sat: number, light: number, alpha: number = 1.0): Color {
 	hue = hue / 60.0;
 	if (sat === 0) {
-		return { red: 0, green: 0, blue: 0, alpha };
+		return { red: light, green: light, blue: light, alpha };
 	} else {
 		let hueToRgb = (t1, t2, hue) => {
 			while (hue < 0) { hue += 6; }
