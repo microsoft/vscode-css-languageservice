@@ -269,6 +269,12 @@ suite('CSS - Symbols', () => {
 		assertColorSymbols(ls, 'body { backgroundColor: #ff9977; }',
 			{ color: colorFrom256RGB(0xff, 0x99, 0x77), range: newRange(24, 31) }
 		);
+		assertColorSymbols(ls, 'body { backgroundColor: hsl(0, 0%, 100%); }',
+			{ color: colorFrom256RGB(255, 255, 255), range: newRange(24, 40) }
+		);
+		assertColorSymbols(ls, 'body { backgroundColor: hsl(0, 1%, 100%); }',
+			{ color: colorFrom256RGB(255, 255, 255), range: newRange(24, 40) }
+		);
 		assertColorSymbols(ls, '.oo { color: rgb(1,40,1); borderColor: hsl(120, 75%, 85%) }',
 			{ color: colorFrom256RGB(1, 40, 1), range: newRange(13, 24) },
 			{ color: colorFromHSL(120, 0.75, 0.85), range: newRange(39, 57) }
