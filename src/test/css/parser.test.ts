@@ -305,6 +305,7 @@ suite('CSS - Parser', () => {
 		assertNode('*', parser, parser._parseSelector.bind(parser));
 		assertNode('#id', parser, parser._parseSelector.bind(parser));
 		assertNode('far.boo', parser, parser._parseSelector.bind(parser));
+		assertNode('::slotted(div)::after', parser, parser._parseSelector.bind(parser)); // 35076
 	});
 
 	test('simple selector', function () {
@@ -353,6 +354,8 @@ suite('CSS - Parser', () => {
 		assertNode(':not(.class)', parser, parser._parsePseudo.bind(parser));
 		assertNode(':not(:disabled)', parser, parser._parsePseudo.bind(parser));
 		assertNode(':not(#foo)', parser, parser._parsePseudo.bind(parser));
+		assertNode('::slotted(*)', parser, parser._parsePseudo.bind(parser)); // #35076
+		assertNode('::slotted(div:hover)', parser, parser._parsePseudo.bind(parser)); // #35076
 	});
 
 	test('declaration', function () {

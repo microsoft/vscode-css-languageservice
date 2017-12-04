@@ -77,13 +77,14 @@ export class Parser {
 		this.scanner.goBackTo(mark.pos);
 	}
 
-	public try(func: () => boolean): boolean {
+	public try(func: () => nodes.Node): nodes.Node {
 		let pos = this.mark();
-		if (!func()) {
+		let node = func();
+		if (!node) {
 			this.restoreAtMark(pos);
-			return false;
+			return null;
 		}
-		return true;
+		return node;
 	}
 
 	public acceptOne(type: TokenType, text?: string[], ignoreCase: boolean = true): boolean {
@@ -1137,7 +1138,14 @@ export class Parser {
 				return this.finish(node, ParseError.IdentifierExpected);
 			}
 			if (!this.hasWhitespace() && this.accept(TokenType.ParenthesisL)) {
-				node.addChild(this._parseBinaryExpr() || this._parseSimpleSelector());
+				let tryAsSelector = () => {
+					let selector = this._parseSimpleSelector();
+					if (selector && this.peek(TokenType.ParenthesisR)) {
+						return selector;
+					}
+					return null;
+				};
+				node.addChild(this.try(tryAsSelector) || this._parseBinaryExpr());
 				if (!this.accept(TokenType.ParenthesisR)) {
 					return this.finish(node, ParseError.RightParenthesisExpected);
 				}

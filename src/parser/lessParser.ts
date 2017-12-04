@@ -276,15 +276,18 @@ export class LESSParser extends cssParser.Parser {
 
 	public _acceptInterpolatedIdent(node: nodes.Node): boolean {
 		let hasContent = false;
-		let delimWithInterpolation = () => {
+		let delimWithInterpolation = (): nodes.Node => {
 			if (!this.acceptDelim('-')) {
-				return false;
+				return null;
 			}
 			if (!this.hasWhitespace() && this.acceptDelim('-')) {
 			}
-			return !this.hasWhitespace() && node.addChild(this._parseInterpolation());
+			if (!this.hasWhitespace()) {
+				return this._parseInterpolation();
+			}
+			return null;
 		};
-		while (this.accept(TokenType.Ident) || node.addChild(this._parseInterpolation()) || this.try(delimWithInterpolation)) {
+		while (this.accept(TokenType.Ident) || node.addChild(this._parseInterpolation() || this.try(delimWithInterpolation))) {
 			hasContent = true;
 			if (!this.hasWhitespace() && this.acceptDelim('-')) {
 				// '-' is a valid char inside a ident (special treatment here to support @{foo}-@{bar})
@@ -351,7 +354,7 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	private _parseMixInBodyDeclaration(): nodes.Node {
-		return this._parseFontFace() ||  this._parseRuleSetDeclaration();
+		return this._parseFontFace() || this._parseRuleSetDeclaration();
 	}
 
 	private _parseMixinDeclarationIdentifier(): nodes.Identifier {
