@@ -1279,13 +1279,14 @@ export class Parser {
 		let pos = this.mark();
 		let node = this.createNode(nodes.NodeType.URILiteral);
 		this.accept(TokenType.Ident);
-
-		if (this.hasWhitespace() || !this.accept(TokenType.ParenthesisL)) {
+		if (this.hasWhitespace() || !this.peek(TokenType.ParenthesisL)) {
 			this.restoreAtMark(pos);
 			return null;
 		}
-
+		this.scanner.inURL = true;
+		this.consumeToken(); // consume ()
 		node.addChild(this._parseURLArgument());  // argument is optional
+		this.scanner.inURL = false;
 
 		if (!this.accept(TokenType.ParenthesisR)) {
 			return this.finish(node, ParseError.RightParenthesisExpected);

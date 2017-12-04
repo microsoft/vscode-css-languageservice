@@ -456,6 +456,7 @@ suite('CSS - Parser', () => {
 
 	test('url', function () {
 		let parser = new Parser();
+		assertNode('url(//yourdomain/yourpath.png)', parser, parser._parseURILiteral.bind(parser));
 		assertNode('url(\'http://msft.com\')', parser, parser._parseURILiteral.bind(parser));
 		assertNode('url("http://msft.com")', parser, parser._parseURILiteral.bind(parser));
 		assertNode('url( "http://msft.com")', parser, parser._parseURILiteral.bind(parser));

@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import {TokenType, Scanner, IToken} from './cssScanner';
+import { TokenType, Scanner, IToken } from './cssScanner';
 
 const _FSL = '/'.charCodeAt(0);
 const _NWL = '\n'.charCodeAt(0);
@@ -33,7 +33,7 @@ export const Ellipsis: TokenType = customTokenValue++;
 
 export class SCSSScanner extends Scanner {
 
-	protected scanNext(offset: number) : IToken {
+	protected scanNext(offset: number): IToken {
 
 		// scss variable
 		if (this.stream.advanceIfChar(_DLR)) {
@@ -88,7 +88,7 @@ export class SCSSScanner extends Scanner {
 		if (super.comment()) {
 			return true;
 		}
-		if (this.stream.advanceIfChars([_FSL, _FSL])) {
+		if (!this.inURL && this.stream.advanceIfChars([_FSL, _FSL])) {
 			this.stream.advanceWhileChar((ch: number) => {
 				switch (ch) {
 					case _NWL:

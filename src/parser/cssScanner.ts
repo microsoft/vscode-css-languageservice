@@ -214,6 +214,7 @@ export class Scanner {
 	public stream: MultiLineStream;
 	public ignoreComment = true;
 	public ignoreWhitespace = true;
+	public inURL = false;
 
 	public setSource(input: string): void {
 		this.stream = new MultiLineStream(input);

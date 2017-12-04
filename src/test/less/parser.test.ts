@@ -177,6 +177,8 @@ suite('LESS - Parser', () => {
 		assertNode('border: (@width * 2) solid black', parser, parser._parseDeclaration.bind(parser));
 		assertNode('property: @class', parser, parser._parseDeclaration.bind(parser));
 		assertNode('prop-erty: fnc(@t, 10%)', parser, parser._parseDeclaration.bind(parser));
+
+		assertNode('background: url(//yourdomain/yourpath.png)', parser, parser._parseDeclaration.bind(parser));
 	});
 
 	test('Stylesheet', function () {
@@ -272,5 +274,24 @@ suite('LESS - Parser', () => {
 		let parser = new LESSParser();
 		assertNode('.mixin() { transform+_: scale(2); }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.myclass { box-shadow+: inset 0 0 10px #555; }', parser, parser._parseStylesheet.bind(parser));
+	});
+
+	test('url', function () {
+		let parser = new LESSParser();
+		assertNode('url(//yourdomain/yourpath.png)', parser, parser._parseURILiteral.bind(parser));
+		assertNode('url(\'http://msft.com\')', parser, parser._parseURILiteral.bind(parser));
+		assertNode('url("http://msft.com")', parser, parser._parseURILiteral.bind(parser));
+		assertNode('url( "http://msft.com")', parser, parser._parseURILiteral.bind(parser));
+		assertNode('url(\t"http://msft.com")', parser, parser._parseURILiteral.bind(parser));
+		assertNode('url(\n"http://msft.com")', parser, parser._parseURILiteral.bind(parser));
+		assertNode('url("http://msft.com"\n)', parser, parser._parseURILiteral.bind(parser));
+		assertNode('url("")', parser, parser._parseURILiteral.bind(parser));
+		assertNode('uRL("")', parser, parser._parseURILiteral.bind(parser));
+		assertNode('URL("")', parser, parser._parseURILiteral.bind(parser));
+		assertNode('url(http://msft.com)', parser, parser._parseURILiteral.bind(parser));
+		assertNode('url()', parser, parser._parseURILiteral.bind(parser));
+		assertNode('url(\'http://msft.com\n)', parser, parser._parseURILiteral.bind(parser));
+		assertError('url("http://msft.com"', parser, parser._parseURILiteral.bind(parser), ParseError.RightParenthesisExpected);
+		assertError('url(http://msft.com\')', parser, parser._parseURILiteral.bind(parser), ParseError.RightParenthesisExpected);
 	});
 });

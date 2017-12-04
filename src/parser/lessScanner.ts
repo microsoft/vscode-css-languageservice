@@ -18,7 +18,7 @@ export const Ellipsis: scanner.TokenType = customTokenValue++;
 
 export class LESSScanner extends scanner.Scanner {
 
-	protected scanNext(offset: number) : scanner.IToken {
+	protected scanNext(offset: number): scanner.IToken {
 
 		// LESS: escaped JavaScript code `let a = "dddd"`
 		let tokenType = this.escapedJavaScript();
@@ -37,7 +37,7 @@ export class LESSScanner extends scanner.Scanner {
 		if (super.comment()) {
 			return true;
 		}
-		if (this.stream.advanceIfChars([_FSL, _FSL])) {
+		if (!this.inURL && this.stream.advanceIfChars([_FSL, _FSL])) {
 			this.stream.advanceWhileChar((ch: number) => {
 				switch (ch) {
 					case _NWL:
