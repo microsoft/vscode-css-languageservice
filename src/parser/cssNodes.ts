@@ -79,7 +79,8 @@ export enum NodeType {
 	ListEntry,
 	Supports,
 	SupportsCondition,
-	NamespacePrefix
+	NamespacePrefix,
+	GridLine
 }
 
 export enum ReferenceType {

@@ -372,6 +372,10 @@ suite('CSS - Parser', () => {
 		assertNode('*background: #f00 /* IE 7 and below */', parser, parser._parseDeclaration.bind(parser));
 		assertNode('_background: #f60 /* IE 6 and below */', parser, parser._parseDeclaration.bind(parser));
 		assertNode('background-image: linear-gradient(to right, silver, white 50px, white calc(100% - 50px), silver)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('grid-template-columns: [first nav-start] 150px [main-start] 1fr [last]', parser, parser._parseDeclaration.bind(parser));
+		assertNode('grid-template-columns: repeat(4, 10px [col-start] 250px [col-end]) 10px', parser, parser._parseDeclaration.bind(parser));
+		assertNode('grid-template-columns: [a] auto [b] minmax(min-content, 1fr) [b c d] repeat(2, [e] 40px)', parser, parser._parseDeclaration.bind(parser));
+
 	});
 
 	test('term', function () {

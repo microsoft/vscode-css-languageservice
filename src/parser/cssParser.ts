@@ -1170,7 +1170,7 @@ export class Parser {
 
 	public _parseExpr(stopOnComma: boolean = false): nodes.Expression {
 		let node = <nodes.Expression>this.create(nodes.Expression);
-		if (!node.addChild(this._parseBinaryExpr())) {
+		if (!node.addChild(this._parseNamedLine() || this._parseBinaryExpr())) {
 			return null;
 		}
 
@@ -1181,11 +1181,27 @@ export class Parser {
 				}
 				this.consumeToken();
 			}
-			if (!node.addChild(this._parseBinaryExpr())) {
+			if (!node.addChild(this._parseNamedLine() || this._parseBinaryExpr())) {
 				break;
 			}
 		}
 
+		return this.finish(node);
+	}
+
+	public _parseNamedLine(): nodes.Node {
+		// https://www.w3.org/TR/css-grid-1/#named-lines
+		if (!this.peek(TokenType.BracketL)) {
+			return null;
+		}
+		let node = this.createNode(nodes.NodeType.GridLine);
+		this.consumeToken();
+		while (node.addChild(this._parseIdent())) {
+			// repeat
+		}
+		if (!this.accept(TokenType.BracketR)) {
+			return this.finish(node, ParseError.RightSquareBracketExpected);
+		}
 		return this.finish(node);
 	}
 
