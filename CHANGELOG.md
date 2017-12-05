@@ -1,3 +1,7 @@
+3.0.0 / 2017-01-11
+==================
+  * Changed API `LanguageService.getColorPresentations`: separate parameters `range` and `color` (to match LS API)
+
 2.1.7 / 2017-09-21
 ==================
   * New API `LanguageService.getColorPresentations` returning presentations for a given color. 
