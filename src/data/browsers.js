@@ -2960,10 +2960,10 @@
 						"name": "Arial, Helvetica, sans-serif"
 					},
 					{
-						"name": "Cambria, Cochin, Georgia, Times, Times New Roman, serif"
+						"name": "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
 					},
 					{
-						"name": "Courier New, Courier, monospace"
+						"name": "'Courier New', Courier, monospace"
 					},
 					{
 						"name": "cursive"
