@@ -143,7 +143,7 @@ function createScope(p: Parser, input: string): Scope {
 		builder = new ScopeBuilder(global);
 
 	assertNoErrors(styleSheet);
-	styleSheet.accept(builder);
+	styleSheet.acceptVisitor(builder);
 	return global;
 }
 

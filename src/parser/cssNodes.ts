@@ -206,19 +206,16 @@ export class Node {
 		return this.length >= str.length && this.getTextProvider()(this.end - str.length, str.length) === str;
 	}
 
-	public accept(visitor: IVisitorFunction): void;
-	public accept(visitor: IVisitor): void;
-	public accept(visitor: any): void {
-
-		if (typeof visitor !== 'function') {
-			visitor = visitor.visitNode.bind(visitor);
-		}
-
+	public accept(visitor: IVisitorFunction): void {
 		if (visitor(this) && this.children) {
-			this.children.forEach((child) => {
+			for (let child of this.children) {
 				child.accept(visitor);
-			});
+			}
 		}
+	}
+
+	public acceptVisitor(visitor: IVisitor): void {
+		this.accept(visitor.visitNode.bind(visitor));
 	}
 
 	public adoptChild(node: Node, index: number = -1): Node {
@@ -319,7 +316,9 @@ export class Node {
 	}
 
 	public addChildren(nodes: Node[]): void {
-		nodes.forEach((node) => this.addChild(node));
+		for (let node of nodes) {
+			this.addChild(node);
+		}
 	}
 
 	public findFirstChildBeforeOffset(offset: number): Node {
@@ -1700,7 +1699,7 @@ export class ParseErrorCollector implements IVisitor {
 
 	static entries(node: Node): IMarker[] {
 		let visitor = new ParseErrorCollector();
-		node.accept(visitor);
+		node.acceptVisitor(visitor);
 		return visitor.entries;
 	}
 

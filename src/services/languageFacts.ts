@@ -624,22 +624,20 @@ function evalBrowserEntry(browsers: string) {
 	let browserEntry: Browsers = { all: false, count: 0, onCodeComplete: false };
 	let count = 0;
 	if (browsers) {
-		browsers.split(',').forEach(
-			(s: string) => {
-				s = s.trim();
-				if (s === 'all') {
-					browserEntry.all = true;
-					count = Number.MAX_VALUE;
-				} else if (s !== 'none') {
-					for (let key in browserNames) {
-						if (s.indexOf(key) === 0) {
-							(<any>browserEntry)[key] = s.substring(key.length).trim();
-							count++;
-						}
+		for (let s of browsers.split(',')) {
+			s = s.trim();
+			if (s === 'all') {
+				browserEntry.all = true;
+				count = Number.MAX_VALUE;
+			} else if (s !== 'none') {
+				for (let key in browserNames) {
+					if (s.indexOf(key) === 0) {
+						(<any>browserEntry)[key] = s.substring(key.length).trim();
+						count++;
 					}
 				}
 			}
-		);
+		}
 	} else {
 		browserEntry.all = true;
 		count = Number.MAX_VALUE;

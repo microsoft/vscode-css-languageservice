@@ -183,14 +183,13 @@ export class ScopeBuilder implements nodes.IVisitor {
 
 	public visitRuleSet(node: nodes.RuleSet): boolean {
 		let current = this.scope.findScope(node.offset, node.length);
-		node.getSelectors().getChildren().forEach((child) => {
+		for (let child of node.getSelectors().getChildren()) {
 			if (child instanceof nodes.Selector) {
 				if (child.getChildren().length === 1) { // only selectors with a single element can be extended
 					current.addSymbol(new Symbol(child.getChild(0).getText(), null, child, nodes.ReferenceType.Rule));
 				}
 			}
-		});
-
+		}
 		return true;
 	}
 
@@ -239,7 +238,7 @@ export class Symbols {
 
 	constructor(node: nodes.Node) {
 		this.global = new GlobalScope();
-		node.accept(new ScopeBuilder(this.global));
+		node.acceptVisitor(new ScopeBuilder(this.global));
 	}
 
 	public findSymbolsAtOffset(offset: number, referenceType: nodes.ReferenceType): Symbol[] {

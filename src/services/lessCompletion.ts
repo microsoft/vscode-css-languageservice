@@ -337,7 +337,7 @@ export class LESSCompletion extends CSSCompletion {
 	}
 
 	private createFunctionProposals(proposals: IFunctionInfo[], existingNode: nodes.Node, sortToEnd: boolean, result: CompletionList): CompletionList {
-		proposals.forEach(p => {
+		for (let p of proposals) {
 			let item: CompletionItem = {
 				label: p.name,
 				detail: p.example,
@@ -350,7 +350,7 @@ export class LESSCompletion extends CSSCompletion {
 				item.sortText = 'z';
 			}
 			result.items.push(item);
-		});
+		}
 		return result;
 	}
 

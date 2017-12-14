@@ -34,7 +34,7 @@ export class SCSSParser extends cssParser.Parser {
 
 	public _parseImport(): nodes.Node {
 		let node = <nodes.Import>this.create(nodes.Import);
-		if (!this.accept(TokenType.AtKeyword, '@import')) {
+		if (!this.acceptKeyword('@import')) {
 			return null;
 		}
 
@@ -62,7 +62,7 @@ export class SCSSParser extends cssParser.Parser {
 			return null;
 		}
 
-		if (!this.accept(TokenType.Colon, ':')) {
+		if (!this.accept(TokenType.Colon)) {
 			return this.finish(node, ParseError.ColonExpected);
 		}
 		node.colonPosition = this.prevToken.offset;
@@ -72,9 +72,10 @@ export class SCSSParser extends cssParser.Parser {
 		}
 
 		while (this.accept(TokenType.Exclamation)) {
-			if (!this.acceptOne(TokenType.Ident, ['default', 'global'], false)) {
+			if (!this.peekRegExp(TokenType.Ident, /^(default|global)$/)) {
 				return this.finish(node, ParseError.UnknownKeyword);
 			}
+			this.consumeToken();
 		}
 
 		if (this.peek(TokenType.SemiColon)) {
@@ -158,9 +159,9 @@ export class SCSSParser extends cssParser.Parser {
 	public _parseOperator(): nodes.Node {
 		if (this.peek(scssScanner.EqualsOperator) || this.peek(scssScanner.NotEqualsOperator)
 			|| this.peek(scssScanner.GreaterEqualsOperator) || this.peek(scssScanner.SmallerEqualsOperator)
-			|| this.peek(TokenType.Delim, '>') || this.peek(TokenType.Delim, '<')
-			|| this.peek(TokenType.Ident, 'and') || this.peek(TokenType.Ident, 'or')
-			|| this.peek(TokenType.Delim, '%')
+			|| this.peekDelim('>') || this.peekDelim('<')
+			|| this.peekIdent('and') || this.peekIdent('or')
+			|| this.peekDelim('%')
 		) {
 			let node = this.createNode(nodes.NodeType.Operator);
 			this.consumeToken();
@@ -170,7 +171,7 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseUnaryOperator(): nodes.Node {
-		if (this.peek(TokenType.Ident, 'not')) {
+		if (this.peekIdent('not')) {
 			let node = this.create(nodes.Node);
 			this.consumeToken();
 			return this.finish(node);
@@ -205,7 +206,7 @@ export class SCSSParser extends cssParser.Parser {
 			return null;
 		}
 
-		if (!this.accept(TokenType.Colon, ':')) {
+		if (!this.accept(TokenType.Colon)) {
 			return this.finish(node, ParseError.ColonExpected, [TokenType.Colon], resyncStopTokens);
 		}
 		node.colonPosition = this.prevToken.offset;
@@ -235,7 +236,7 @@ export class SCSSParser extends cssParser.Parser {
 
 	public _parseExtends(): nodes.Node {
 		let node = <nodes.ExtendsReference>this.create(nodes.ExtendsReference);
-		if (this.accept(TokenType.AtKeyword, '@extend')) {
+		if (this.acceptKeyword('@extend')) {
 			if (!node.getSelectors().addChild(this._parseSimpleSelector())) {
 				return this.finish(node, ParseError.SelectorExpected);
 			}
@@ -243,7 +244,7 @@ export class SCSSParser extends cssParser.Parser {
 				node.getSelectors().addChild(this._parseSimpleSelector());
 			}
 			if (this.accept(TokenType.Exclamation)) {
-				if (!this.accept(TokenType.Ident, 'optional', true)) {
+				if (!this.acceptIdent('optional')) {
 					return this.finish(node, ParseError.UnknownKeyword);
 				}
 			}
@@ -272,16 +273,16 @@ export class SCSSParser extends cssParser.Parser {
 		if (this.acceptDelim('%')) {
 			this._parseIdent();
 			return this.finish(node);
-		} else if (this.accept(TokenType.AtKeyword, '@at-root')) {
+		} else if (this.acceptKeyword('@at-root')) {
 			return this.finish(node);
 		}
 		return null;
 	}
 
 	public _parseWarnAndDebug(): nodes.Node {
-		if (!this.peek(TokenType.AtKeyword, '@debug')
-			&& !this.peek(TokenType.AtKeyword, '@warn')
-			&& !this.peek(TokenType.AtKeyword, '@error')) {
+		if (!this.peekKeyword('@debug')
+			&& !this.peekKeyword('@warn')
+			&& !this.peekKeyword('@error')) {
 			return null;
 		}
 		let node = this.createNode(nodes.NodeType.Debug);
@@ -299,7 +300,7 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseIfStatement(parseStatement: () => nodes.Node): nodes.Node {
-		if (!this.peek(TokenType.AtKeyword, '@if')) {
+		if (!this.peekKeyword('@if')) {
 			return null;
 		}
 		return this._internalParseIfStatement(parseStatement);
@@ -312,8 +313,8 @@ export class SCSSParser extends cssParser.Parser {
 			return this.finish(node, ParseError.ExpressionExpected);
 		}
 		this._parseBody(node, parseStatement);
-		if (this.accept(TokenType.AtKeyword, '@else')) {
-			if (this.peek(TokenType.Ident, 'if')) {
+		if (this.acceptKeyword('@else')) {
+			if (this.peekIdent('if')) {
 				node.setElseClause(this._internalParseIfStatement(parseStatement));
 			} else if (this.peek(TokenType.CurlyL)) {
 				let elseNode = <nodes.BodyDeclaration>this.create(nodes.ElseStatement);
@@ -325,7 +326,7 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseForStatement(parseStatement: () => nodes.Node): nodes.Node {
-		if (!this.peek(TokenType.AtKeyword, '@for')) {
+		if (!this.peekKeyword('@for')) {
 			return null;
 		}
 
@@ -334,13 +335,13 @@ export class SCSSParser extends cssParser.Parser {
 		if (!node.setVariable(this._parseVariable())) {
 			return this.finish(node, ParseError.VariableNameExpected, [TokenType.CurlyR]);
 		}
-		if (!this.accept(TokenType.Ident, 'from')) {
+		if (!this.acceptIdent('from')) {
 			return this.finish(node, SCSSParseError.FromExpected, [TokenType.CurlyR]);
 		}
 		if (!node.addChild(this._parseBinaryExpr())) {
 			return this.finish(node, ParseError.ExpressionExpected, [TokenType.CurlyR]);
 		}
-		if (!this.accept(TokenType.Ident, 'to') && !this.accept(TokenType.Ident, 'through')) {
+		if (!this.acceptIdent('to') && !this.acceptIdent('through')) {
 			return this.finish(node, SCSSParseError.ThroughOrToExpected, [TokenType.CurlyR]);
 		}
 		if (!node.addChild(this._parseBinaryExpr())) {
@@ -351,7 +352,7 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseEachStatement(parseStatement: () => nodes.Node): nodes.Node {
-		if (!this.peek(TokenType.AtKeyword, '@each')) {
+		if (!this.peekKeyword('@each')) {
 			return null;
 		}
 
@@ -367,7 +368,7 @@ export class SCSSParser extends cssParser.Parser {
 			}
 		}
 		this.finish(variables);
-		if (!this.accept(TokenType.Ident, 'in')) {
+		if (!this.acceptIdent('in')) {
 			return this.finish(node, SCSSParseError.InExpected, [TokenType.CurlyR]);
 		}
 		if (!node.addChild(this._parseExpr())) {
@@ -378,7 +379,7 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseWhileStatement(parseStatement: () => nodes.Node): nodes.Node {
-		if (!this.peek(TokenType.AtKeyword, '@while')) {
+		if (!this.peekKeyword('@while')) {
 			return null;
 		}
 
@@ -397,7 +398,7 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseFunctionDeclaration(): nodes.Node {
-		if (!this.peek(TokenType.AtKeyword, '@function')) {
+		if (!this.peekKeyword('@function')) {
 			return null;
 		}
 
@@ -428,7 +429,7 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseReturnStatement(): nodes.Node {
-		if (!this.peek(TokenType.AtKeyword, '@return')) {
+		if (!this.peekKeyword('@return')) {
 			return null;
 		}
 
@@ -442,7 +443,7 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseMixinDeclaration(): nodes.Node {
-		if (!this.peek(TokenType.AtKeyword, '@mixin')) {
+		if (!this.peekKeyword('@mixin')) {
 			return null;
 		}
 
@@ -491,7 +492,7 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseMixinContent(): nodes.Node {
-		if (!this.peek(TokenType.AtKeyword, '@content')) {
+		if (!this.peekKeyword('@content')) {
 			return null;
 		}
 		let node = this.createNode(nodes.NodeType.MixinContent);
@@ -501,7 +502,7 @@ export class SCSSParser extends cssParser.Parser {
 
 
 	public _parseMixinReference(): nodes.Node {
-		if (!this.peek(TokenType.AtKeyword, '@include')) {
+		if (!this.peekKeyword('@include')) {
 			return null;
 		}
 

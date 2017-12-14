@@ -22,7 +22,7 @@ export function assertNodes(fn: (input: string) => nodes.Node, input: string, ex
 	let node = fn(input);
 	let visitor = new PrintingVisitor();
 
-	node.accept(visitor);
+	node.acceptVisitor(visitor);
 
 	let actual = visitor.tree.join(',') + ',';
 	let segments = expected.split(',');

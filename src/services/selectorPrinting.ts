@@ -175,7 +175,7 @@ class MarkedStringPrinter {
 
 		// attributes
 		if (element.attributes) {
-			element.attributes.forEach(attr => {
+			for (let attr of element.attributes) {
 				if (attr.name !== 'name') {
 					content.push(' ');
 					content.push(attr.name);
@@ -185,7 +185,7 @@ class MarkedStringPrinter {
 						content.push(quotes.ensure(value, this.quote));
 					}
 				}
-			});
+			}
 		}
 		content.push('>');
 
@@ -212,7 +212,7 @@ namespace quotes {
 export function toElement(node: nodes.SimpleSelector, parentElement?: Element): Element {
 
 	let result = new Element();
-	node.getChildren().forEach((child) => {
+	for (let child of node.getChildren()) {
 		switch (child.type) {
 			case nodes.NodeType.SelectorCombinator:
 				if (parentElement) {
@@ -293,7 +293,7 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element): 
 				}
 				break;
 		}
-	});
+	}
 	return result;
 }
 
@@ -343,7 +343,7 @@ class SelectorElementBuilder {
 			}
 		}
 
-		selector.getChildren().forEach(selectorChild => {
+		for (let selectorChild of selector.getChildren()) {
 
 			if (selectorChild instanceof nodes.SimpleSelector) {
 				if (this.prev instanceof nodes.SimpleSelector) {
@@ -373,7 +373,7 @@ class SelectorElementBuilder {
 
 				this.prev = selectorChild;
 			}
-		});
+		}
 	}
 }
 

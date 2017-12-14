@@ -135,7 +135,7 @@ export class SCSSCompletion extends CSSCompletion {
 	}
 
 	private createFunctionProposals(proposals: IFunctionInfo[], existingNode: nodes.Node, sortToEnd: boolean, result: CompletionList): CompletionList {
-		proposals.forEach((p) => {
+		for (let p of proposals) {
 			let insertText = p.func.replace(/\[?(\$\w+)\]?/g, this.createReplaceFunction());
 			let label = p.func.substr(0, p.func.indexOf('('));
 			let item: CompletionItem = {
@@ -150,7 +150,7 @@ export class SCSSCompletion extends CSSCompletion {
 				item.sortText = 'z';
 			}
 			result.items.push(item);
-		});
+		}
 		return result;
 	}
 

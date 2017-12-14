@@ -107,9 +107,9 @@ export class CSSCompletion {
 	private finalize(result: CompletionList): CompletionList {
 		let needsSortText = result.items.some(i => !!i.sortText);
 		if (needsSortText) {
-			result.items.forEach(i => {
+			for (let i of result.items) {
 				if (!i.sortText) { i.sortText = 'd'; }
-			});
+			}
 		}
 		return result;
 	}
@@ -217,15 +217,14 @@ export class CSSCompletion {
 			this.getCSSWideKeywordProposals(entry, existingNode, result);
 			this.getUnitProposals(entry, existingNode, result);
 		} else {
-			let existingValues = new Set();
-			this.styleSheet.accept(new ValuesCollector(node, existingValues));
-			existingValues.getEntries().forEach((existingValue) => {
+			let existingValues = collectValues(this.styleSheet, node);
+			for (let existingValue of existingValues.getEntries()) {
 				result.items.push({
 					label: existingValue,
 					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), existingValue),
 					kind: CompletionItemKind.Value
 				});
-			});
+			}
 		}
 		this.getVariableProposals(existingNode, result);
 		this.getTermProposals(entry, existingNode, result);
@@ -234,7 +233,7 @@ export class CSSCompletion {
 
 	public getValueEnumProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		if (entry.values) {
-			entry.values.forEach((value) => {
+			for (let value of entry.values) {
 				if (languageFacts.isCommonValue(value)) { // only show if supported by more than one browser
 					let insertString = value.name;
 					let insertTextFormat;
@@ -254,7 +253,7 @@ export class CSSCompletion {
 					};
 					result.items.push(item);
 				}
-			});
+			}
 		}
 		return result;
 	}
@@ -280,7 +279,7 @@ export class CSSCompletion {
 
 	public getVariableProposals(existingNode: nodes.Node, result: CompletionList): CompletionList {
 		let symbols = this.getSymbolContext().findSymbolsAtOffset(this.offset, nodes.ReferenceType.Variable);
-		symbols.forEach((symbol) => {
+		for (let symbol of symbols) {
 			let insertText = strings.startsWith(symbol.name, '--') ? `var(${symbol.name})` : symbol.name;
 			const suggest: CompletionItem = {
 				label: symbol.name,
@@ -298,7 +297,7 @@ export class CSSCompletion {
 			}
 
 			result.items.push(suggest);
-		});
+		}
 		return result;
 	}
 
@@ -307,14 +306,14 @@ export class CSSCompletion {
 		symbols = symbols.filter((symbol): boolean => {
 			return strings.startsWith(symbol.name, '--');
 		});
-		symbols.forEach((symbol) => {
+		for (let symbol of symbols) {
 			result.items.push({
 				label: symbol.name,
 				documentation: symbol.value ? strings.getLimitedString(symbol.value) : symbol.value,
 				textEdit: TextEdit.replace(this.getCompletionRange(null), symbol.name),
 				kind: CompletionItemKind.Variable
 			});
-		});
+		}
 		return result;
 	}
 
@@ -332,19 +331,19 @@ export class CSSCompletion {
 		if (existingNode && existingNode.parent && existingNode.parent.type === nodes.NodeType.Term) {
 			existingNode = existingNode.getParent(); // include the unary operator
 		}
-		entry.restrictions.forEach((restriction) => {
+		for (let restriction of entry.restrictions) {
 			let units = languageFacts.units[restriction];
 			if (units) {
-				units.forEach((unit: string) => {
+				for (let unit of units) {
 					let insertText = currentWord + unit;
 					result.items.push({
 						label: insertText,
 						textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
 						kind: CompletionItemKind.Unit
 					});
-				});
+				}
 			}
-		});
+		}
 		return result;
 	}
 
@@ -374,15 +373,15 @@ export class CSSCompletion {
 			});
 		}
 		let colorValues = new Set();
-		this.styleSheet.accept(new ColorValueCollector(colorValues));
-		colorValues.getEntries().forEach((color) => {
+		this.styleSheet.acceptVisitor(new ColorValueCollector(colorValues));
+		for (let color of colorValues.getEntries()) {
 			result.items.push({
 				label: color,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), color),
 				kind: CompletionItemKind.Color
 			});
-		});
-		languageFacts.colorFunctions.forEach((p) => {
+		}
+		for (let p of languageFacts.colorFunctions) {
 			let tabStop = 1;
 			let replaceFunction = (match, p1) => '${' + tabStop++ + ':' + p1 + '}';
 			let insertText = p.func.replace(/\[?\$(\w+)\]?/g, replaceFunction);
@@ -394,7 +393,7 @@ export class CSSCompletion {
 				insertTextFormat: SnippetFormat,
 				kind: CompletionItemKind.Function
 			});
-		});
+		}
 		return result;
 	}
 
@@ -435,13 +434,13 @@ export class CSSCompletion {
 	}
 
 	protected getLineWidthProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
-		languageFacts.lineWidthKeywords.forEach((lineWidth) => {
+		for (let lineWidth of languageFacts.lineWidthKeywords) {
 			result.items.push({
 				label: lineWidth,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), lineWidth),
 				kind: CompletionItemKind.Value
 			});
-		});
+		}
 		return result;
 	}
 
@@ -526,7 +525,7 @@ export class CSSCompletion {
 	}
 
 	public getCompletionForTopLevel(result: CompletionList): CompletionList {
-		languageFacts.getAtDirectives().forEach((entry) => {
+		for (let entry of languageFacts.getAtDirectives()) {
 			if (entry.browsers.count > 0) {
 				result.items.push({
 					label: entry.name,
@@ -535,7 +534,7 @@ export class CSSCompletion {
 					kind: CompletionItemKind.Keyword
 				});
 			}
-		});
+		}
 		this.getCompletionsForSelector(null, false, result);
 		return result;
 	}
@@ -564,7 +563,7 @@ export class CSSCompletion {
 			this.defaultReplaceRange = Range.create(Position.create(this.position.line, this.position.character - this.currentWord.length), this.position);
 		}
 
-		languageFacts.getPseudoClasses().forEach((entry) => {
+		for (let entry of languageFacts.getPseudoClasses()) {
 			if (entry.browsers.onCodeComplete) {
 				let item: CompletionItem = {
 					label: entry.name,
@@ -577,8 +576,8 @@ export class CSSCompletion {
 				}
 				result.items.push(item);
 			}
-		});
-		languageFacts.getPseudoElements().forEach((entry) => {
+		}
+		for (let entry of languageFacts.getPseudoElements()) {
 			if (entry.browsers.onCodeComplete) {
 				let item: CompletionItem = {
 					label: entry.name,
@@ -591,22 +590,22 @@ export class CSSCompletion {
 				}
 				result.items.push(item);
 			}
-		});
+		}
 		if (!isNested) { // show html tags only for top level
-			languageFacts.html5Tags.forEach((entry) => {
+			for (let entry of languageFacts.html5Tags) {
 				result.items.push({
 					label: entry,
 					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), entry),
 					kind: CompletionItemKind.Keyword
 				});
-			});
-			languageFacts.svgElements.forEach((entry) => {
+			}
+			for (let entry of languageFacts.svgElements) {
 				result.items.push({
 					label: entry,
 					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), entry),
 					kind: CompletionItemKind.Keyword
 				});
-			});
+			}
 		}
 
 		let visited: { [name: string]: boolean } = {};
@@ -718,21 +717,21 @@ export class CSSCompletion {
 
 	public getCompletionsForMixinReference(ref: nodes.MixinReference, result: CompletionList): CompletionList {
 		let allMixins = this.getSymbolContext().findSymbolsAtOffset(this.offset, nodes.ReferenceType.Mixin);
-		allMixins.forEach((mixinSymbol) => {
+		for (let mixinSymbol of allMixins) {
 			if (mixinSymbol.node instanceof nodes.MixinDeclaration) {
 				result.items.push(this.makeTermProposal(mixinSymbol, mixinSymbol.node.getParameters(), null));
 			}
-		});
+		}
 		return result;
 	}
 
 	public getTermProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		let allFunctions = this.getSymbolContext().findSymbolsAtOffset(this.offset, nodes.ReferenceType.Function);
-		allFunctions.forEach((functionSymbol) => {
+		for (let functionSymbol of allFunctions) {
 			if (functionSymbol.node instanceof nodes.FunctionDeclaration) {
 				result.items.push(this.makeTermProposal(functionSymbol, functionSymbol.node.getParameters(), existingNode));
 			}
-		});
+		}
 		return result;
 	}
 
@@ -798,46 +797,37 @@ class Set {
 	}
 }
 
+function collectValues(styleSheet: nodes.Stylesheet, declaration: nodes.Declaration) : Set {
+	const fullPropertyName = declaration.getFullPropertyName();
+	const entries: Set = new Set();
 
-class InternalValueCollector implements nodes.IVisitor {
-
-	constructor(public entries: Set) {
-		// nothing to do
-	}
-
-	public visitNode(node: nodes.Node): boolean {
+	function visitValue(node: nodes.Node) {
 		if (node instanceof nodes.Identifier || node instanceof nodes.NumericValue || node instanceof nodes.HexColorValue) {
-			this.entries.add(node.getText());
+			entries.add(node.getText());
 		}
-		return true;
-	}
-}
-
-class ValuesCollector implements nodes.IVisitor {
-
-	private propertyName: string;
-
-	constructor(public declaration: nodes.Declaration, public entries: Set) {
-		this.propertyName = declaration.getFullPropertyName();
+		return true;	
 	}
 
-	private matchesProperty(decl: nodes.Declaration): boolean {
+	function matchesProperty(decl: nodes.Declaration): boolean {
 		let propertyName = decl.getFullPropertyName();
-		return this.propertyName === propertyName;
-	}
+		return fullPropertyName === propertyName;
+	}	
 
-	public visitNode(node: nodes.Node): boolean {
-		if (node instanceof nodes.Declaration && node !== this.declaration) {
-			if (this.matchesProperty(<nodes.Declaration>node)) {
+	function vistNode(node: nodes.Node) {
+		if (node instanceof nodes.Declaration && node !== declaration) {
+			if (matchesProperty(<nodes.Declaration>node)) {
 				let value = (<nodes.Declaration>node).getValue();
 				if (value) {
-					value.accept(new InternalValueCollector(this.entries));
+					value.accept(visitValue);
 				}
 			}
 		}
 		return true;
 	}
+	styleSheet.accept(vistNode);
+	return entries;
 }
+
 
 class ColorValueCollector implements nodes.IVisitor {
 

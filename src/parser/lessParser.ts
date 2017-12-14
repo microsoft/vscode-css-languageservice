@@ -29,7 +29,7 @@ export class LESSParser extends cssParser.Parser {
 
 	public _parseImport(): nodes.Node {
 		let node = <nodes.Import>this.create(nodes.Import);
-		if (!this.accept(TokenType.AtKeyword, '@import') && !this.accept(TokenType.AtKeyword, '@import-once') /* deprecated in less 1.4.1 */) {
+		if (!this.acceptKeyword('@import') && !this.acceptKeyword('@import-once') /* deprecated in less 1.4.1 */) {
 			return null;
 		}
 
@@ -89,7 +89,7 @@ export class LESSParser extends cssParser.Parser {
 			return null;
 		}
 
-		if (this.accept(TokenType.Colon, ':')) {
+		if (this.accept(TokenType.Colon)) {
 			node.colonPosition = this.prevToken.offset;
 			if (!node.setValue(this._parseDetachedRuleSet() || this._parseExpr())) {
 				return <nodes.VariableDeclaration>this.finish(node, ParseError.VariableValueExpected, [], panic);
@@ -268,7 +268,7 @@ export class LESSParser extends cssParser.Parser {
 		if (hasContent && !this.hasWhitespace()) {
 			this.acceptDelim('+');
 			if (!this.hasWhitespace()) {
-				this.accept(TokenType.Ident, '_');
+				this.acceptIdent('_');
 			}
 		}
 		return hasContent ? this.finish(node) : null;
@@ -359,7 +359,7 @@ export class LESSParser extends cssParser.Parser {
 
 	private _parseMixinDeclarationIdentifier(): nodes.Identifier {
 		let identifier: nodes.Identifier;
-		if (this.peek(TokenType.Delim, '#') || this.peek(TokenType.Delim, '.')) {
+		if (this.peekDelim('#') || this.peekDelim('.')) {
 			identifier = <nodes.Identifier>this.create(nodes.Identifier);
 			this.consumeToken(); // # or .
 			if (this.hasWhitespace() || !identifier.addChild(this._parseIdent())) {
@@ -382,7 +382,7 @@ export class LESSParser extends cssParser.Parser {
 		let mark = this.mark();
 		let node = <nodes.ExtendsReference>this.create(nodes.ExtendsReference);
 		this.consumeToken(); // :
-		if (this.accept(TokenType.Ident, 'extend')) {
+		if (this.acceptIdent('extend')) {
 			return this._completeExtends(node);
 		}
 		this.restoreAtMark(mark);
@@ -390,7 +390,7 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseExtend(): nodes.Node {
-		if (!this.peek(TokenType.Delim, '&')) {
+		if (!this.peekDelim('&')) {
 			return null;
 		}
 
@@ -398,7 +398,7 @@ export class LESSParser extends cssParser.Parser {
 		let node = <nodes.ExtendsReference>this.create(nodes.ExtendsReference);
 		this.consumeToken(); // &
 
-		if (this.hasWhitespace() || !this.accept(TokenType.Colon) || !this.accept(TokenType.Ident, 'extend')) {
+		if (this.hasWhitespace() || !this.accept(TokenType.Colon) || !this.acceptIdent('extend')) {
 			this.restoreAtMark(mark);
 			return null;
 		}
@@ -516,7 +516,7 @@ export class LESSParser extends cssParser.Parser {
 		let node = <nodes.FunctionParameter>this.create(nodes.FunctionParameter);
 
 		// special rest variable: @rest...
-		if (this.peek(TokenType.AtKeyword, '@rest')) {
+		if (this.peekKeyword('@rest')) {
 			let restNode = this.create(nodes.Node);
 			this.consumeToken();
 			if (!this.accept(lessScanner.Ellipsis)) {
@@ -547,17 +547,17 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseGuard(): nodes.LessGuard {
-		if (!this.peek(TokenType.Ident, 'when')) {
+		if (!this.peekIdent('when')) {
 			return null;
 		}
 		let node = <nodes.LessGuard>this.create(nodes.LessGuard);
 		this.consumeToken(); // when
-		node.isNegated = this.accept(TokenType.Ident, 'not');
+		node.isNegated = this.acceptIdent('not');
 
 		if (!node.getConditions().addChild(this._parseGuardCondition())) {
 			return <nodes.LessGuard>this.finish(node, ParseError.ConditionExpected);
 		}
-		while (this.accept(TokenType.Ident, 'and') || this.accept(TokenType.Comma, ',')) {
+		while (this.acceptIdent('and') || this.accept(TokenType.Comma)) {
 			if (!node.getConditions().addChild(this._parseGuardCondition())) {
 				return <nodes.LessGuard>this.finish(node, ParseError.ConditionExpected);
 			}
@@ -584,7 +584,7 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseFunctionIdentifier(): nodes.Identifier {
-		if (this.peek(TokenType.Delim, '%')) {
+		if (this.peekDelim('%')) {
 			let node = <nodes.Identifier>this.create(nodes.Identifier);
 			node.referenceTypes = [nodes.ReferenceType.Function];
 			this.consumeToken();

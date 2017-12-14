@@ -33,18 +33,20 @@ export class Parser {
 		this.prevToken = null;
 	}
 
-	public peek(type: TokenType, text?: string, ignoreCase: boolean = true): boolean {
-		if (type !== this.token.type) {
-			return false;
-		}
-		if (typeof text !== 'undefined') {
-			if (ignoreCase) {
-				return text.toLowerCase() === this.token.text.toLowerCase();
-			} else {
-				return text === this.token.text;
-			}
-		}
-		return true;
+	public peekIdent(text: string): boolean {
+		return TokenType.Ident === this.token.type && text.length === this.token.text.length && text === this.token.text.toLowerCase();
+	}
+
+	public peekKeyword(text: string): boolean {
+		return TokenType.AtKeyword === this.token.type && text.length === this.token.text.length && text === this.token.text.toLowerCase();
+	}
+
+	public peekDelim(text: string): boolean {
+		return TokenType.Delim === this.token.type && text === this.token.text;
+	}
+
+	public peek(type: TokenType): boolean {
+		return type === this.token.type;
 	}
 
 	public peekRegExp(type: TokenType, regEx: RegExp): boolean {
@@ -87,18 +89,36 @@ export class Parser {
 		return node;
 	}
 
-	public acceptOne(type: TokenType, text?: string[], ignoreCase: boolean = true): boolean {
-		for (let i = 0; i < text.length; i++) {
-			if (this.peek(type, text[i], ignoreCase)) {
-				this.consumeToken();
-				return true;
+	public acceptOnetKeyword(keywords: string[]): boolean {
+		if (TokenType.AtKeyword === this.token.type) {
+			for (let keyword of keywords) {
+				if (keyword.length === this.token.text.length && keyword === this.token.text.toLowerCase()) {
+					this.consumeToken();
+					return true;
+				}
 			}
 		}
 		return false;
 	}
 
-	public accept(type: TokenType, text?: string, ignoreCase: boolean = true): boolean {
-		if (this.peek(type, text, ignoreCase)) {
+	public accept(type: TokenType) {
+		if (type === this.token.type) {
+			this.consumeToken();
+			return true;
+		}
+		return false;
+	}
+
+	public acceptIdent(text: string): boolean {
+		if (this.peekIdent(text)) {
+			this.consumeToken();
+			return true;
+		}
+		return false;
+	}
+
+	public acceptKeyword(text: string) {
+		if (this.peekKeyword(text)) {
 			this.consumeToken();
 			return true;
 		}
@@ -106,12 +126,12 @@ export class Parser {
 	}
 
 	public acceptDelim(text: string) {
-		if (TokenType.Delim === this.token.type && text === this.token.text) {
+		if (this.peekDelim(text)) {
 			this.consumeToken();
 			return true;
 		}
 		return false;
-	}
+	}	
 
 	protected acceptUnquotedString(): boolean {
 		let pos = this.scanner.pos();
@@ -302,7 +322,7 @@ export class Parser {
 	 * Follows https://tabatkins.github.io/specs/css-apply-rule/#using
 	 */
 	public _parseAtApply(): nodes.Node {
-		if (!this.peek(TokenType.AtKeyword, '@apply')) {
+		if (!this.peekKeyword('@apply')) {
 			return null;
 		}
 		const node = <nodes.AtApplyRule>this.create(nodes.AtApplyRule);
@@ -597,7 +617,7 @@ export class Parser {
 
 	public _parseImport(): nodes.Node {
 		let node = <nodes.Import>this.create(nodes.Import);
-		if (!this.accept(TokenType.AtKeyword, '@import')) {
+		if (!this.acceptKeyword('@import')) {
 			return null;
 		}
 
@@ -617,7 +637,7 @@ export class Parser {
 		// namespace  : NAMESPACE_SYM S* [IDENT S*]? [STRING|URI] S* ';' S*
 
 		let node = <nodes.Namespace>this.create(nodes.Namespace);
-		if (!this.accept(TokenType.AtKeyword, '@namespace')) {
+		if (!this.acceptKeyword('@namespace')) {
 			return null;
 		}
 
@@ -637,7 +657,7 @@ export class Parser {
 	}
 
 	public _parseFontFace(): nodes.Node {
-		if (!this.peek(TokenType.AtKeyword, '@font-face')) {
+		if (!this.peekKeyword('@font-face')) {
 			return null;
 		}
 		let node = <nodes.FontFace>this.create(nodes.FontFace);
@@ -647,9 +667,9 @@ export class Parser {
 	}
 
 	public _parseViewPort(): nodes.Node {
-		if (!this.peek(TokenType.AtKeyword, '@-ms-viewport') &&
-			!this.peek(TokenType.AtKeyword, '@-o-viewport') &&
-			!this.peek(TokenType.AtKeyword, '@viewport')
+		if (!this.peekKeyword('@-ms-viewport') &&
+			!this.peekKeyword('@-o-viewport') &&
+			!this.peekKeyword('@viewport')
 		) {
 			return null;
 		}
@@ -659,19 +679,16 @@ export class Parser {
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
 	}
 
+	private keyframeRegex = /^@(\-(webkit|ms|moz|o)\-)?keyframes$/i;
+
 	public _parseKeyframe(): nodes.Node {
+		if (!this.peekRegExp(TokenType.AtKeyword, this.keyframeRegex)) {
+			return null;
+		}
 		let node = <nodes.Keyframe>this.create(nodes.Keyframe);
 
 		let atNode = this.create(nodes.Node);
-
-		if (!this.accept(TokenType.AtKeyword, '@keyframes') &&
-			!this.accept(TokenType.AtKeyword, '@-webkit-keyframes') &&
-			!this.accept(TokenType.AtKeyword, '@-ms-keyframes') &&
-			!this.accept(TokenType.AtKeyword, '@-moz-keyframes') &&
-			!this.accept(TokenType.AtKeyword, '@-o-keyframes')) {
-
-			return null;
-		}
+		this.consumeToken(); // atkeyword
 		node.setKeyword(this.finish(atNode));
 		if (atNode.getText() === '@-ms-keyframes') { // -ms-keyframes never existed
 			this.markError(atNode, ParseError.UnknownKeyword);
@@ -729,7 +746,7 @@ export class Parser {
 
 	public _parseSupports(isNested = false): nodes.Node {
 		// SUPPORTS_SYM S* supports_condition '{' S* ruleset* '}' S*
-		if (!this.peek(TokenType.AtKeyword, '@supports')) {
+		if (!this.peekKeyword('@supports')) {
 			return null;
 		}
 
@@ -760,13 +777,13 @@ export class Parser {
 		// general_enclosed: ( FUNCTION | '(' ) ( any | unused )* ')' ;
 		let node = <nodes.SupportsCondition>this.create(nodes.SupportsCondition);
 
-		if (this.accept(TokenType.Ident, 'not', true)) {
+		if (this.acceptIdent('not')) {
 			node.addChild(this._parseSupportsConditionInParens());
 		} else {
 			node.addChild(this._parseSupportsConditionInParens());
 			if (this.peekRegExp(TokenType.Ident, /^(and|or)$/i)) {
 				let text = this.token.text;
-				while (this.accept(TokenType.Ident, text, true)) {
+				while (this.acceptIdent(text)) {
 					node.addChild(this._parseSupportsConditionInParens());
 				}
 			}
@@ -819,7 +836,7 @@ export class Parser {
 		// MEDIA_SYM S* media_query_list '{' S* ruleset* '}' S*
 		// media_query_list : S* [media_query [ ',' S* media_query ]* ]?
 		let node = <nodes.Media>this.create(nodes.Media);
-		if (!this.accept(TokenType.AtKeyword, '@media')) {
+		if (!this.acceptKeyword('@media')) {
 			return null;
 		}
 		if (!node.addChild(this._parseMediaQueryList())) {
@@ -851,14 +868,14 @@ export class Parser {
 		let parseExpression = true;
 		let hasContent = false;
 		if (!this.peek(TokenType.ParenthesisL)) {
-			if (this.accept(TokenType.Ident, 'only', true) || this.accept(TokenType.Ident, 'not', true)) {
+			if (this.acceptIdent('only') || this.acceptIdent('not')) {
 				// optional
 			}
 			if (!node.addChild(this._parseIdent())) {
 				return null;
 			}
 			hasContent = true;
-			parseExpression = this.accept(TokenType.Ident, 'and', true);
+			parseExpression = this.acceptIdent('and');
 		}
 		while (parseExpression) {
 			if (!this.accept(TokenType.ParenthesisL)) {
@@ -878,7 +895,7 @@ export class Parser {
 			if (!this.accept(TokenType.ParenthesisR)) {
 				return this.finish(node, ParseError.RightParenthesisExpected, [], resyncStopToken);
 			}
-			parseExpression = this.accept(TokenType.Ident, 'and', true);
+			parseExpression = this.acceptIdent('and');
 		}
 		return this.finish(node);
 	}
@@ -906,7 +923,7 @@ export class Parser {
 		// page_body :  /* Can be empty */ declaration? [ ';' S* page_body ]? | page_margin_box page_body
 
 		let node = <nodes.Page>this.create(nodes.Page);
-		if (!this.accept(TokenType.AtKeyword, '@Page')) {
+		if (!this.acceptKeyword('@page')) {
 			return null;
 		}
 		if (node.addChild(this._parsePageSelector())) {
@@ -927,7 +944,7 @@ export class Parser {
 			return null;
 		}
 
-		if (!this.acceptOne(TokenType.AtKeyword, languageFacts.getPageBoxDirectives())) {
+		if (!this.acceptOnetKeyword(languageFacts.getPageBoxDirectives())) {
 			this.markError(node, ParseError.UnknownAtRule, [], [TokenType.CurlyL]);
 		}
 
@@ -957,7 +974,7 @@ export class Parser {
 		// -moz-document is experimental but has been pushed to css4
 
 		let node = <nodes.Document>this.create(nodes.Document);
-		if (!this.accept(TokenType.AtKeyword, '@-moz-document')) {
+		if (!this.acceptKeyword('@-moz-document')) {
 			return null;
 		}
 		this.resync([], [TokenType.CurlyL]); // ignore all the rules
@@ -1015,7 +1032,7 @@ export class Parser {
 			return this.finish(node);
 		} else if (this.acceptDelim('/')) {
 			let mark = this.mark();
-			if (!this.hasWhitespace() && this.accept(TokenType.Ident, 'deep') && !this.hasWhitespace() && this.acceptDelim('/')) {
+			if (!this.hasWhitespace() && this.acceptIdent('deep') && !this.hasWhitespace() && this.acceptDelim('/')) {
 				node.type = nodes.NodeType.SelectorCombinatorShadowPiercingDescendant;
 				return this.finish(node);
 			}
@@ -1049,7 +1066,7 @@ export class Parser {
 	}
 
 	public _parseHash(): nodes.Node {
-		if (!this.peek(TokenType.Hash) && !this.peek(TokenType.Delim, '#')) {
+		if (!this.peek(TokenType.Hash) && !this.peekDelim('#')) {
 			return null;
 		}
 		let node = this.createNode(nodes.NodeType.IdentifierSelector);
@@ -1065,7 +1082,7 @@ export class Parser {
 
 	public _parseClass(): nodes.Node {
 		// class: '.' IDENT ;
-		if (!this.peek(TokenType.Delim, '.')) {
+		if (!this.peekDelim('.')) {
 			return null;
 		}
 		let node = this.createNode(nodes.NodeType.ClassSelector);
@@ -1162,7 +1179,7 @@ export class Parser {
 		}
 
 		let node = this.createNode(nodes.NodeType.Prio);
-		if (this.accept(TokenType.Exclamation) && this.accept(TokenType.Ident, 'important', true)) {
+		if (this.accept(TokenType.Exclamation) && this.acceptIdent('important')) {
 			return this.finish(node);
 		}
 		return null;
@@ -1289,7 +1306,7 @@ export class Parser {
 	}
 
 	public _parseURILiteral(): nodes.Node {
-		if (!this.peekRegExp(TokenType.Ident, /url(-prefix)?/i)) {
+		if (!this.peekRegExp(TokenType.Ident, /^url(-prefix)?$/i)) {
 			return null;
 		}
 		let pos = this.mark();
@@ -1362,7 +1379,7 @@ export class Parser {
 		let node = <nodes.Identifier>this.create(nodes.Identifier);
 		node.referenceTypes = [nodes.ReferenceType.Function];
 
-		if (this.accept(TokenType.Ident, 'progid')) {
+		if (this.acceptIdent('progid')) {
 			// support for IE7 specific filters: 'progid:DXImageTransform.Microsoft.MotionBlur(strength=13, direction=310)'
 			if (this.accept(TokenType.Colon)) {
 				while (this.accept(TokenType.Ident) && this.acceptDelim('.')) {

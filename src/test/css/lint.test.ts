@@ -16,7 +16,7 @@ import { LESSParser } from '../../parser/lessParser';
 export function assertEntries(node: nodes.Node, rules: nodes.IRule[]): void {
 
 	let visitor = new LintVisitor(new LintConfigurationSettings());
-	node.accept(visitor);
+	node.acceptVisitor(visitor);
 
 	let entries = visitor.getEntries(nodes.Level.Error | nodes.Level.Warning | nodes.Level.Ignore);
 	assert.equal(entries.length, rules.length, entries.map(e => e.getRule().id).join(', '));
