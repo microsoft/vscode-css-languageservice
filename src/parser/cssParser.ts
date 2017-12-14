@@ -89,7 +89,7 @@ export class Parser {
 		return node;
 	}
 
-	public acceptOnetKeyword(keywords: string[]): boolean {
+	public acceptOneKeyword(keywords: string[]): boolean {
 		if (TokenType.AtKeyword === this.token.type) {
 			for (let keyword of keywords) {
 				if (keyword.length === this.token.text.length && keyword === this.token.text.toLowerCase()) {
@@ -131,7 +131,7 @@ export class Parser {
 			return true;
 		}
 		return false;
-	}	
+	}
 
 	protected acceptUnquotedString(): boolean {
 		let pos = this.scanner.pos();
@@ -600,10 +600,12 @@ export class Parser {
 	}
 
 	public _parseCharset(): nodes.Node {
-		let node = this.create(nodes.Node);
-		if (!this.accept(TokenType.Charset)) {
+		if (!this.peek(TokenType.Charset)) {
 			return null;
 		}
+
+		let node = this.create(nodes.Node);
+		this.consumeToken(); // charset
 		if (!this.accept(TokenType.String)) {
 			return this.finish(node, ParseError.IdentifierExpected);
 		}
@@ -616,10 +618,12 @@ export class Parser {
 
 
 	public _parseImport(): nodes.Node {
-		let node = <nodes.Import>this.create(nodes.Import);
-		if (!this.acceptKeyword('@import')) {
+		if (!this.peekKeyword('@import')) {
 			return null;
 		}
+
+		let node = <nodes.Import>this.create(nodes.Import);
+		this.consumeToken(); // @import
 
 		if (!node.addChild(this._parseURILiteral()) && !node.addChild(this._parseStringLiteral())) {
 			return this.finish(node, ParseError.URIOrStringExpected);
@@ -635,11 +639,11 @@ export class Parser {
 	public _parseNamespace(): nodes.Node {
 		// http://www.w3.org/TR/css3-namespace/
 		// namespace  : NAMESPACE_SYM S* [IDENT S*]? [STRING|URI] S* ';' S*
-
-		let node = <nodes.Namespace>this.create(nodes.Namespace);
-		if (!this.acceptKeyword('@namespace')) {
+		if (!this.peekKeyword('@namespace')) {
 			return null;
 		}
+		let node = <nodes.Namespace>this.create(nodes.Namespace);
+		this.consumeToken(); // @namespace
 
 		if (!node.addChild(this._parseURILiteral())) { // url literal also starts with ident
 			node.addChild(this._parseIdent()); // optional prefix
@@ -835,10 +839,12 @@ export class Parser {
 	public _parseMedia(isNested = false): nodes.Node {
 		// MEDIA_SYM S* media_query_list '{' S* ruleset* '}' S*
 		// media_query_list : S* [media_query [ ',' S* media_query ]* ]?
-		let node = <nodes.Media>this.create(nodes.Media);
-		if (!this.acceptKeyword('@media')) {
+		if (!this.peekKeyword('@media')) {
 			return null;
 		}
+		let node = <nodes.Media>this.create(nodes.Media);
+		this.consumeToken(); // @media
+
 		if (!node.addChild(this._parseMediaQueryList())) {
 			return this.finish(node, ParseError.MediaQueryExpected);
 		}
@@ -921,11 +927,12 @@ export class Parser {
 		// http://www.w3.org/TR/css3-page/
 		// page_rule : PAGE_SYM S* page_selector_list '{' S* page_body '}' S*
 		// page_body :  /* Can be empty */ declaration? [ ';' S* page_body ]? | page_margin_box page_body
-
-		let node = <nodes.Page>this.create(nodes.Page);
-		if (!this.acceptKeyword('@page')) {
+		if (!this.peekKeyword('@page')) {
 			return null;
 		}
+		let node = <nodes.Page>this.create(nodes.Page);
+		this.consumeToken();
+
 		if (node.addChild(this._parsePageSelector())) {
 			while (this.accept(TokenType.Comma)) {
 				if (!node.addChild(this._parsePageSelector())) {
@@ -939,12 +946,12 @@ export class Parser {
 
 	public _parsePageMarginBox(): nodes.Node {
 		// page_margin_box :  margin_sym S* '{' S* declaration? [ ';' S* declaration? ]* '}' S*
-		let node = <nodes.PageBoxMarginBox>this.create(nodes.PageBoxMarginBox);
 		if (!this.peek(TokenType.AtKeyword)) {
 			return null;
 		}
+		let node = <nodes.PageBoxMarginBox>this.create(nodes.PageBoxMarginBox);
 
-		if (!this.acceptOnetKeyword(languageFacts.getPageBoxDirectives())) {
+		if (!this.acceptOneKeyword(languageFacts.getPageBoxDirectives())) {
 			this.markError(node, ParseError.UnknownAtRule, [], [TokenType.CurlyL]);
 		}
 
@@ -955,11 +962,10 @@ export class Parser {
 	public _parsePageSelector(): nodes.Node {
 		// page_selector : pseudo_page+ | IDENT pseudo_page*
 		// pseudo_page :  ':' [ "left" | "right" | "first" | "blank" ];
-
-		let node = this.create(nodes.Node);
 		if (!this.peek(TokenType.Ident) && !this.peek(TokenType.Colon)) {
 			return null;
 		}
+		let node = this.create(nodes.Node);
 		node.addChild(this._parseIdent()); // optional ident
 
 		if (this.accept(TokenType.Colon)) {
@@ -972,29 +978,30 @@ export class Parser {
 
 	public _parseDocument(): nodes.Node {
 		// -moz-document is experimental but has been pushed to css4
-
-		let node = <nodes.Document>this.create(nodes.Document);
-		if (!this.acceptKeyword('@-moz-document')) {
+		if (!this.peekKeyword('@-moz-document')) {
 			return null;
 		}
+		let node = <nodes.Document>this.create(nodes.Document);
+		this.consumeToken(); // @-moz-document
+
 		this.resync([], [TokenType.CurlyL]); // ignore all the rules
 		return this._parseBody(node, this._parseStylesheetStatement.bind(this));
 	}
 
 	public _parseOperator(): nodes.Node {
 		// these are operators for binary expressions
-		let node = this.createNode(nodes.NodeType.Operator);
-		if (this.acceptDelim('/') ||
-			this.acceptDelim('*') ||
-			this.acceptDelim('+') ||
-			this.acceptDelim('-') ||
-			this.accept(TokenType.Dashmatch) ||
-			this.accept(TokenType.Includes) ||
-			this.accept(TokenType.SubstringOperator) ||
-			this.accept(TokenType.PrefixOperator) ||
-			this.accept(TokenType.SuffixOperator) ||
-			this.acceptDelim('=')) { // doesn't stick to the standard here
-
+		if (this.peekDelim('/') ||
+			this.peekDelim('*') ||
+			this.peekDelim('+') ||
+			this.peekDelim('-') ||
+			this.peek(TokenType.Dashmatch) ||
+			this.peek(TokenType.Includes) ||
+			this.peek(TokenType.SubstringOperator) ||
+			this.peek(TokenType.PrefixOperator) ||
+			this.peek(TokenType.SuffixOperator) ||
+			this.peekDelim('=')) { // doesn't stick to the standard here
+			let node = this.createNode(nodes.NodeType.Operator);
+			this.consumeToken();
 			return this.finish(node);
 
 		} else {
@@ -1003,17 +1010,19 @@ export class Parser {
 	}
 
 	public _parseUnaryOperator(): nodes.Node {
-		let node = this.create(nodes.Node);
-		if (this.acceptDelim('+') || this.acceptDelim('-')) {
-			return this.finish(node);
-		} else {
+		if (!this.peekDelim('+') && !this.peekDelim('-')) {
 			return null;
 		}
+		let node = this.create(nodes.Node);
+		this.consumeToken();
+		return this.finish(node);
 	}
 
 	public _parseCombinator(): nodes.Node {
-		let node = this.create(nodes.Node);
-		if (this.acceptDelim('>')) {
+
+		if (this.peekDelim('>')) {
+			let node = this.create(nodes.Node);
+			this.consumeToken();
 			let mark = this.mark();
 			if (!this.hasWhitespace() && this.acceptDelim('>')) {
 				if (!this.hasWhitespace() && this.acceptDelim('>')) {
@@ -1024,13 +1033,19 @@ export class Parser {
 			}
 			node.type = nodes.NodeType.SelectorCombinatorParent;
 			return this.finish(node);
-		} else if (this.acceptDelim('+')) {
+		} else if (this.peekDelim('+')) {
+			let node = this.create(nodes.Node);
+			this.consumeToken();
 			node.type = nodes.NodeType.SelectorCombinatorSibling;
 			return this.finish(node);
-		} else if (this.acceptDelim('~')) {
+		} else if (this.peekDelim('~')) {
+			let node = this.create(nodes.Node);
+			this.consumeToken();
 			node.type = nodes.NodeType.SelectorCombinatorAllSiblings;
 			return this.finish(node);
-		} else if (this.acceptDelim('/')) {
+		} else if (this.peekDelim('/')) {
+			let node = this.create(nodes.Node);
+			this.consumeToken();
 			let mark = this.mark();
 			if (!this.hasWhitespace() && this.acceptIdent('deep') && !this.hasWhitespace() && this.acceptDelim('/')) {
 				node.type = nodes.NodeType.SelectorCombinatorShadowPiercingDescendant;
@@ -1267,10 +1282,11 @@ export class Parser {
 	}
 
 	public _parseOperation(): nodes.Node {
-		let node = this.create(nodes.Node);
-		if (!this.accept(TokenType.ParenthesisL)) {
+		if (!this.peek(TokenType.ParenthesisL)) {
 			return null;
 		}
+		let node = this.create(nodes.Node);
+		this.consumeToken(); // ParenthesisL
 		node.addChild(this._parseExpr());
 		if (!this.accept(TokenType.ParenthesisR)) {
 			return this.finish(node, ParseError.RightParenthesisExpected);
@@ -1279,18 +1295,19 @@ export class Parser {
 	}
 
 	public _parseNumeric(): nodes.NumericValue {
-		let node = <nodes.NumericValue>this.create(nodes.NumericValue);
-		if (this.accept(TokenType.Num) ||
-			this.accept(TokenType.Percentage) ||
-			this.accept(TokenType.Resolution) ||
-			this.accept(TokenType.Length) ||
-			this.accept(TokenType.EMS) ||
-			this.accept(TokenType.EXS) ||
-			this.accept(TokenType.Angle) ||
-			this.accept(TokenType.Time) ||
-			this.accept(TokenType.Dimension) ||
-			this.accept(TokenType.Freq)) {
 
+		if (this.peek(TokenType.Num) ||
+			this.peek(TokenType.Percentage) ||
+			this.peek(TokenType.Resolution) ||
+			this.peek(TokenType.Length) ||
+			this.peek(TokenType.EMS) ||
+			this.peek(TokenType.EXS) ||
+			this.peek(TokenType.Angle) ||
+			this.peek(TokenType.Time) ||
+			this.peek(TokenType.Dimension) ||
+			this.peek(TokenType.Freq)) {
+			let node = <nodes.NumericValue>this.create(nodes.NumericValue);
+			this.consumeToken();
 			return <nodes.NumericValue>this.finish(node);
 		}
 
@@ -1298,11 +1315,12 @@ export class Parser {
 	}
 
 	public _parseStringLiteral(): nodes.Node {
-		let node = this.createNode(nodes.NodeType.StringLiteral);
-		if (this.accept(TokenType.String) || this.accept(TokenType.BadString)) {
-			return this.finish(node);
+		if (!this.peek(TokenType.String) && !this.peek(TokenType.BadString)) {
+			return null;
 		}
-		return null;
+		let node = this.createNode(nodes.NodeType.StringLiteral);
+		this.consumeToken();
+		return this.finish(node);
 	}
 
 	public _parseURILiteral(): nodes.Node {
@@ -1336,15 +1354,16 @@ export class Parser {
 	}
 
 	public _parseIdent(referenceTypes?: nodes.ReferenceType[]): nodes.Identifier {
+		if (!this.peek(TokenType.Ident)) {
+			return null;
+		}
 		let node = <nodes.Identifier>this.create(nodes.Identifier);
 		if (referenceTypes) {
 			node.referenceTypes = referenceTypes;
 		}
 		node.isCustomProperty = this.peekRegExp(TokenType.Ident, /^--/);
-		if (this.accept(TokenType.Ident)) {
-			return this.finish(node);
-		}
-		return null;
+		this.consumeToken();
+		return this.finish(node);
 	}
 
 	public _parseFunction(): nodes.Function {
@@ -1376,6 +1395,10 @@ export class Parser {
 	}
 
 	public _parseFunctionIdentifier(): nodes.Identifier {
+		if (!this.peek(TokenType.Ident)) {
+			return null;
+		}
+
 		let node = <nodes.Identifier>this.create(nodes.Identifier);
 		node.referenceTypes = [nodes.ReferenceType.Function];
 
@@ -1387,10 +1410,9 @@ export class Parser {
 				}
 			}
 			return this.finish(node);
-		} else if (this.accept(TokenType.Ident)) {
-			return this.finish(node);
 		}
-		return null;
+		this.consumeToken();
+		return this.finish(node);
 	}
 
 	public _parseFunctionArgument(): nodes.Node {

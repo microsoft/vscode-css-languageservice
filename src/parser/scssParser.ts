@@ -33,10 +33,13 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseImport(): nodes.Node {
-		let node = <nodes.Import>this.create(nodes.Import);
-		if (!this.acceptKeyword('@import')) {
+
+		if (!this.peekKeyword('@import')) {
 			return null;
 		}
+		let node = <nodes.Import>this.create(nodes.Import);
+		this.consumeToken();
+
 
 		if (!node.addChild(this._parseURILiteral()) && !node.addChild(this._parseStringLiteral())) {
 			return this.finish(node, ParseError.URIOrStringExpected);
@@ -94,14 +97,19 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseVariable(): nodes.Variable {
-		let node = <nodes.Variable>this.create(nodes.Variable);
-		if (!this.accept(scssScanner.VariableName)) {
+		if (!this.peek(scssScanner.VariableName)) {
 			return null;
 		}
+		let node = <nodes.Variable>this.create(nodes.Variable);
+		this.consumeToken();
 		return <nodes.Variable>node;
 	}
 
 	public _parseIdent(referenceTypes?: nodes.ReferenceType[]): nodes.Identifier {
+		if (!this.peek(TokenType.Ident) && !this.peek(scssScanner.InterpolationFunction) && !this.peekDelim('-')) {
+			return null;
+		}
+
 		let node = <nodes.Identifier>this.create(nodes.Identifier);
 		node.referenceTypes = referenceTypes;
 		let hasContent = false;
@@ -143,8 +151,9 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseInterpolation(): nodes.Node {
-		let node = this.create(nodes.Interpolation);
-		if (this.accept(scssScanner.InterpolationFunction)) {
+		if (this.peek(scssScanner.InterpolationFunction)) {
+			let node = this.create(nodes.Interpolation);
+			this.consumeToken();
 			if (!node.addChild(this._parseBinaryExpr()) && !this._parseSelectorCombinator()) {
 				return this.finish(node, ParseError.ExpressionExpected);
 			}
@@ -235,8 +244,9 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseExtends(): nodes.Node {
-		let node = <nodes.ExtendsReference>this.create(nodes.ExtendsReference);
-		if (this.acceptKeyword('@extend')) {
+		if (this.peekKeyword('@extend')) {
+			let node = <nodes.ExtendsReference>this.create(nodes.ExtendsReference);
+			this.consumeToken();
 			if (!node.getSelectors().addChild(this._parseSimpleSelector())) {
 				return this.finish(node, ParseError.SelectorExpected);
 			}
@@ -258,8 +268,9 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseSelectorCombinator(): nodes.Node {
-		let node = this.createNode(nodes.NodeType.SelectorCombinator);
-		if (this.acceptDelim('&')) {
+		if (this.peekDelim('&')) {
+			let node = this.createNode(nodes.NodeType.SelectorCombinator);
+			this.consumeToken();
 			while (!this.hasWhitespace() && (this.acceptDelim('-') || this.accept(TokenType.Num) || this.accept(TokenType.Dimension) || node.addChild(this._parseIdent()) || this.acceptDelim('&'))) {
 				//  support &-foo-1
 			}
@@ -269,11 +280,14 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseSelectorPlaceholder(): nodes.Node {
-		let node = this.createNode(nodes.NodeType.SelectorPlaceholder);
-		if (this.acceptDelim('%')) {
+		if (this.peekDelim('%')) {
+			let node = this.createNode(nodes.NodeType.SelectorPlaceholder);
+			this.consumeToken();
 			this._parseIdent();
 			return this.finish(node);
-		} else if (this.acceptKeyword('@at-root')) {
+		} else if (this.peekKeyword('@at-root')) {
+			let node = this.createNode(nodes.NodeType.SelectorPlaceholder);
+			this.consumeToken();
 			return this.finish(node);
 		}
 		return null;
@@ -580,10 +594,12 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseOperation(): nodes.Node {
-		let node = this.create(nodes.Node);
-		if (!this.accept(TokenType.ParenthesisL)) {
+		if (!this.peek(TokenType.ParenthesisL)) {
 			return null;
 		}
+		let node = this.create(nodes.Node);
+		this.consumeToken();
+
 		while (node.addChild(this._parseListElement())) {
 			this.accept(TokenType.Comma); // optional
 		}

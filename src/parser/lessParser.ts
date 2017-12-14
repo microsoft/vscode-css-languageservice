@@ -28,10 +28,12 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseImport(): nodes.Node {
-		let node = <nodes.Import>this.create(nodes.Import);
-		if (!this.acceptKeyword('@import') && !this.acceptKeyword('@import-once') /* deprecated in less 1.4.1 */) {
+
+		if (!this.peekKeyword('@import') && !this.peekKeyword('@import-once') /* deprecated in less 1.4.1 */) {
 			return null;
 		}
+		let node = <nodes.Import>this.create(nodes.Import);
+		this.consumeToken();
 
 		// less 1.4.1: @import (css) "lib"
 		if (this.accept(TokenType.ParenthesisL)) {
@@ -124,6 +126,10 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseVariable(): nodes.Variable {
+		if (!this.peekDelim('@') && !this.peek(TokenType.AtKeyword)) {
+			return null;
+		}
+
 		let node = <nodes.Variable>this.create(nodes.Variable);
 		let mark = this.mark();
 		while (this.acceptDelim('@')) {
@@ -154,14 +160,18 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseEscaped(): nodes.Node {
-		let node = this.createNode(nodes.NodeType.EscapedValue);
-		if (this.accept(TokenType.EscapedJavaScript) ||
-			this.accept(TokenType.BadEscapedJavaScript)) {
 
+		if (this.peek(TokenType.EscapedJavaScript) ||
+			this.peek(TokenType.BadEscapedJavaScript)) {
+
+			let node = this.createNode(nodes.NodeType.EscapedValue);
+			this.consumeToken();
 			return this.finish(node);
 		}
 
-		if (this.acceptDelim('~')) {
+		if (this.peekDelim('~')) {
+			let node = this.createNode(nodes.NodeType.EscapedValue);
+			this.consumeToken();
 			return this.finish(node, this.accept(TokenType.String) ? null : ParseError.TermExpected);
 		}
 
@@ -178,14 +188,20 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseGuardOperator(): nodes.Node {
-		let node = this.createNode(nodes.NodeType.Operator);
-		if (this.acceptDelim('>')) {
+
+		if (this.peekDelim('>')) {
+			let node = this.createNode(nodes.NodeType.Operator);
+			this.consumeToken();
 			this.acceptDelim('=');
 			return node;
-		} else if (this.acceptDelim('=')) {
+		} else if (this.peekDelim('=')) {
+			let node = this.createNode(nodes.NodeType.Operator);
+			this.consumeToken();
 			this.acceptDelim('<');
 			return node;
-		} else if (this.acceptDelim('<')) {
+		} else if (this.peekDelim('<')) {
+			let node = this.createNode(nodes.NodeType.Operator);
+			this.consumeToken();
 			this.acceptDelim('=');
 			return node;
 		}
@@ -244,8 +260,10 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseSelectorCombinator(): nodes.Node {
-		let node = this.createNode(nodes.NodeType.SelectorCombinator);
-		if (this.acceptDelim('&')) {
+
+		if (this.peekDelim('&')) {
+			let node = this.createNode(nodes.NodeType.SelectorCombinator);
+			this.consumeToken();
 			while (!this.hasWhitespace() && (this.acceptDelim('-') || this.accept(TokenType.Num) || this.accept(TokenType.Dimension) || node.addChild(this._parseIdent()) || this.acceptDelim('&'))) {
 				//  support &-foo
 			}
@@ -302,8 +320,9 @@ export class LESSParser extends cssParser.Parser {
 	public _parseInterpolation(): nodes.Node {
 		//  @{name}
 		let mark = this.mark();
-		let node = this.createNode(nodes.NodeType.Interpolation);
-		if (this.acceptDelim('@')) {
+		if (this.peekDelim('@')) {
+			let node = this.createNode(nodes.NodeType.Interpolation);
+			this.consumeToken();
 			if (this.hasWhitespace() || !this.accept(TokenType.CurlyL)) {
 				this.restoreAtMark(mark);
 				return null;
@@ -567,10 +586,12 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseGuardCondition(): nodes.Node {
-		let node = this.create(nodes.GuardCondition);
-		if (!this.accept(TokenType.ParenthesisL)) {
+
+		if (!this.peek(TokenType.ParenthesisL)) {
 			return null;
 		}
+		let node = this.create(nodes.GuardCondition);
+		this.consumeToken(); // ParenthesisL
 
 		if (!node.addChild(this._parseExpr())) {
 			// empty (?)
