@@ -28,7 +28,7 @@ export class CSSValidation {
 
 		let entries: nodes.IMarker[] = [];
 		entries.push.apply(entries, nodes.ParseErrorCollector.entries(stylesheet));
-		entries.push.apply(entries, LintVisitor.entries(stylesheet, new LintConfigurationSettings(settings && settings.lint)));
+		entries.push.apply(entries, LintVisitor.entries(stylesheet, document, new LintConfigurationSettings(settings && settings.lint)));
 
 		function toDiagnostic(marker: nodes.IMarker): Diagnostic {
 			let range = Range.create(document.positionAt(marker.getOffset()), document.positionAt(marker.getOffset() + marker.getLength()));

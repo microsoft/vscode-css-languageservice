@@ -270,16 +270,18 @@ export class Parser {
 	}
 
 	public _parseStylesheetStatement(): nodes.Node {
-		return this._parseRuleset(false)
-			|| this._parseImport()
-			|| this._parseMedia()
-			|| this._parsePage()
-			|| this._parseFontFace()
-			|| this._parseKeyframe()
-			|| this._parseSupports()
-			|| this._parseViewPort()
-			|| this._parseNamespace()
-			|| this._parseDocument();
+		if (this.peek(TokenType.AtKeyword)) {
+			return this._parseImport()
+				|| this._parseMedia()
+				|| this._parsePage()
+				|| this._parseFontFace()
+				|| this._parseKeyframe()
+				|| this._parseSupports()
+				|| this._parseViewPort()
+				|| this._parseNamespace()
+				|| this._parseDocument();
+		}
+		return this._parseRuleset(false);
 	}
 
 	public _tryParseRuleset(isNested: boolean): nodes.RuleSet {

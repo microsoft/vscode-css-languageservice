@@ -273,12 +273,19 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseSelectorIdent(): nodes.Node {
+		if (!this.peekInterpolatedIdent()) {
+			return null;
+		}
 		let node = this.createNode(nodes.NodeType.SelectorInterpolation);
 		let hasContent = this._acceptInterpolatedIdent(node);
 		return hasContent ? this.finish(node) : null;
 	}
 
 	public _parsePropertyIdentifier(): nodes.Identifier {
+		if (!this.peekInterpolatedIdent()) {
+			return null;
+		}
+
 		let node = <nodes.Identifier>this.create(nodes.Identifier);
 		node.isCustomProperty = this.peekRegExp(TokenType.Ident, /^--/);
 		let hasContent = this._acceptInterpolatedIdent(node);
@@ -290,6 +297,10 @@ export class LESSParser extends cssParser.Parser {
 			}
 		}
 		return hasContent ? this.finish(node) : null;
+	}
+
+	private peekInterpolatedIdent() {
+		return this.peek(TokenType.Ident) || this.peekDelim('@') || this.peekDelim('-');
 	}
 
 	public _acceptInterpolatedIdent(node: nodes.Node): boolean {

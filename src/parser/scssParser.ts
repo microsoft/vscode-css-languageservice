@@ -22,14 +22,19 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseStylesheetStatement(): nodes.Node {
-		return super._parseStylesheetStatement()
-			|| this._parseVariableDeclaration()
-			|| this._parseWarnAndDebug()
-			|| this._parseControlStatement()
-			|| this._parseMixinDeclaration()
-			|| this._parseMixinContent()
-			|| this._parseMixinReference() // @include
-			|| this._parseFunctionDeclaration();
+		let node = super._parseStylesheetStatement();
+		if (node) {
+			return node;
+		}
+		if (this.peek(TokenType.AtKeyword)) {
+			return this._parseWarnAndDebug()
+				|| this._parseControlStatement()
+				|| this._parseMixinDeclaration()
+				|| this._parseMixinContent()
+				|| this._parseMixinReference() // @include
+				|| this._parseFunctionDeclaration();
+		}
+		return this._parseVariableDeclaration();
 	}
 
 	public _parseImport(): nodes.Node {
@@ -59,6 +64,10 @@ export class SCSSParser extends cssParser.Parser {
 
 	// scss variables: $font-size: 12px;
 	public _parseVariableDeclaration(panic: TokenType[] = []): nodes.VariableDeclaration {
+		if (!this.peek(scssScanner.VariableName)) {
+			return null;
+		}
+
 		let node = <nodes.VariableDeclaration>this.create(nodes.VariableDeclaration);
 
 		if (!node.setVariable(this._parseVariable())) {

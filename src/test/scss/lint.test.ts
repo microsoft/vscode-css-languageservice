@@ -7,18 +7,21 @@
 import { Rule, Rules } from '../../services/lintRules';
 import { assertEntries } from '../css/lint.test';
 import { SCSSParser } from '../../parser/scssParser';
+import { TextDocument } from 'vscode-languageserver-types/lib/main';
 
 function assertFontFace(input: string, ...rules: Rule[]): void {
 	let p = new SCSSParser();
+	let document = TextDocument.create('test://test/test.scss', 'scss', 0, input);
 	let node = p.internalParse(input, p._parseFontFace);
 
-	assertEntries(node, rules);
+	assertEntries(node, document, rules);
 }
 
 function assertRuleSet(input: string, ...rules: Rule[]): void {
 	let p = new SCSSParser();
+	let document = TextDocument.create('test://test/test.scss', 'scss', 0, input);
 	let node = p.internalParse(input, p._parseRuleset);
-	assertEntries(node, rules);
+	assertEntries(node, document, rules);
 }
 
 suite('SCSS - Lint', () => {

@@ -9,6 +9,8 @@ import { Rules, LintConfigurationSettings, Rule } from './lintRules';
 import * as nodes from '../parser/cssNodes';
 
 import * as nls from 'vscode-nls';
+import { ITextProvider } from '../parser/cssNodes';
+import { TextDocument } from 'vscode-languageserver-types/lib/main';
 const localize = nls.loadMessageBundle();
 
 class Element {
@@ -40,10 +42,11 @@ class NodesByRootMap {
 
 export class LintVisitor implements nodes.IVisitor {
 
-	static entries(node: nodes.Node, settings: LintConfigurationSettings): nodes.IMarker[] {
-		let visitor = new LintVisitor(settings);
+	static entries(node: nodes.Node, document: TextDocument, settings: LintConfigurationSettings, entryFilter?: number): nodes.IMarker[] {
+		let visitor = new LintVisitor(document, settings);
 		node.acceptVisitor(visitor);
-		return visitor.getEntries();
+		visitor.completeValidations();
+		return visitor.getEntries(entryFilter);
 	}
 
 	static prefixes = [
@@ -53,17 +56,21 @@ export class LintVisitor implements nodes.IVisitor {
 
 	private warnings: nodes.IMarker[] = [];
 	private settings: LintConfigurationSettings;
+	private keyframes: NodesByRootMap;
+	private documentText: string;
 
-	constructor(settings: LintConfigurationSettings) {
+	private constructor(document: TextDocument, settings: LintConfigurationSettings) {
 		this.settings = settings;
+		this.documentText = document.getText();
+		this.keyframes = new NodesByRootMap();
 	}
 
 	private fetch(input: Element[], s: string): Element[] {
 		let elements: Element[] = [];
 
-		for (let i = 0; i < input.length; i++) {
-			if (input[i].name.toLowerCase() === s) {
-				elements.push(input[i]);
+		for (let curr of input) {
+			if (curr.name === s) {
+				elements.push(curr);
 			}
 		}
 
@@ -73,7 +80,7 @@ export class LintVisitor implements nodes.IVisitor {
 	private fetchWithValue(input: Element[], s: string, v: string): Element[] {
 		let elements: Element[] = [];
 		for (let inputElement of input) {
-			if (inputElement.name.toLowerCase() === s) {
+			if (inputElement.name === s) {
 				let expression = inputElement.node.getValue();
 				if (expression && this.findValueInExpression(expression, v)) {
 					elements.push(inputElement);
@@ -94,18 +101,6 @@ export class LintVisitor implements nodes.IVisitor {
 		return found;
 	}
 
-
-	private fetchWithin(input: Element[], s: string): Element[] {
-		let elements: Element[] = [];
-
-		for (let inputElement of input) {
-			if (inputElement.name.toLowerCase().indexOf(s) >= 0) {
-				elements.push(inputElement);
-			}
-		}
-
-		return elements;
-	}
 
 	public getEntries(filter: number = (nodes.Level.Warning | nodes.Level.Error)): nodes.IMarker[] {
 		return this.warnings.filter(entry => {
@@ -142,8 +137,8 @@ export class LintVisitor implements nodes.IVisitor {
 
 	public visitNode(node: nodes.Node): boolean {
 		switch (node.type) {
-			case nodes.NodeType.Stylesheet:
-				return this.visitStylesheet(<nodes.Stylesheet>node);
+			case nodes.NodeType.Keyframe:
+				return this.visitKeyframe(<nodes.Keyframe>node);
 			case nodes.NodeType.FontFace:
 				return this.visitFontFace(<nodes.FontFace>node);
 			case nodes.NodeType.Ruleset:
@@ -156,28 +151,32 @@ export class LintVisitor implements nodes.IVisitor {
 				return this.visitNumericValue(<nodes.NumericValue>node);
 			case nodes.NodeType.Import:
 				return this.visitImport(<nodes.Import>node);
+			case nodes.NodeType.HexColorValue:
+				return this.visitHexColorValue(<nodes.HexColorValue>node);
+			case nodes.NodeType.Prio:
+				return this.visitPrio(node);
 		}
-		return this.visitUnknownNode(node);
+		return true;
 	}
 
-	private visitStylesheet(node: nodes.Stylesheet): boolean {
+	private completeValidations() {
+		this.validateKeyframes();
+	}
+
+	private visitKeyframe(node: nodes.Keyframe): boolean {
+		let keyword = node.getKeyword();
+		let text = keyword.getText();
+		this.keyframes.add(node.getName(), text, (text !== '@keyframes') ? keyword : null);
+		return true;
+	}
+
+	private validateKeyframes(): boolean {
 		// @keyframe and it's vendor specific alternatives
 		// @keyframe should be included
-
-		let keyframes = new NodesByRootMap();
-		node.accept(node => {
-			if (node instanceof nodes.Keyframe) {
-				let keyword = (<nodes.Keyframe>node).getKeyword();
-				let text = keyword.getText();
-				keyframes.add((<nodes.Keyframe>node).getName(), text, (text !== '@keyframes') ? keyword : null);
-			}
-			return true;
-		});
-
 		let expected = ['@-webkit-keyframes', '@-moz-keyframes', '@-o-keyframes'];
 
-		for (let name in keyframes.data) {
-			let actual = keyframes.data[name].names;
+		for (let name in this.keyframes.data) {
+			let actual = this.keyframes.data[name].names;
 			let needsStandard = (actual.indexOf('@keyframes') === -1);
 			if (!needsStandard && actual.length === 1) {
 				continue; // only the non-vendor specific keyword is used, that's fine, no warning
@@ -185,7 +184,7 @@ export class LintVisitor implements nodes.IVisitor {
 
 			let missingVendorSpecific = this.getMissingNames(expected, actual);
 			if (missingVendorSpecific || needsStandard) {
-				for (let node of keyframes.data[name].nodes) {
+				for (let node of this.keyframes.data[name].nodes) {
 					if (needsStandard) {
 						let message = localize('keyframes.standardrule.missing', "Always define standard rule '@keyframes' when defining keyframes.");
 						this.addEntry(node, Rules.IncludeStandardPropertyWhenUsingVendorPrefix, message);
@@ -203,19 +202,19 @@ export class LintVisitor implements nodes.IVisitor {
 
 	private visitSimpleSelector(node: nodes.SimpleSelector): boolean {
 
-		let text = node.getText();
+		let firstChar = this.documentText.charAt(node.offset);
 
 		/////////////////////////////////////////////////////////////
 		//	Lint - The universal selector (*) is known to be slow.
 		/////////////////////////////////////////////////////////////
-		if (text === '*') {
+		if (node.length === 1 && firstChar === '*') {
 			this.addEntry(node, Rules.UniversalSelector);
 		}
 
 		/////////////////////////////////////////////////////////////
 		//	Lint - Avoid id selectors
 		/////////////////////////////////////////////////////////////
-		if (text.indexOf('#') === 0) {
+		if (firstChar === '#') {
 			this.addEntry(node, Rules.AvoidIdSelector);
 		}
 		return true;
@@ -249,7 +248,7 @@ export class LintVisitor implements nodes.IVisitor {
 		for (let element of declarations.getChildren()) {
 			if (element instanceof nodes.Declaration) {
 				let decl = <nodes.Declaration>element;
-				propertyTable.push(new Element(decl.getFullPropertyName(), decl));
+				propertyTable.push(new Element(decl.getFullPropertyName().toLowerCase(), decl));
 			}
 		}
 
@@ -260,7 +259,7 @@ export class LintVisitor implements nodes.IVisitor {
 		// No error when box-sizing property is specified, as it assumes the user knows what he's doing.
 		// see https://github.com/CSSLint/csslint/wiki/Beware-of-box-model-size
 		/////////////////////////////////////////////////////////////
-		if (this.fetchWithin(propertyTable, 'box-sizing').length === 0) {
+		if (this.fetch(propertyTable, 'box-sizing').length === 0) {
 			let widthEntries = this.fetch(propertyTable, 'width');
 			if (widthEntries.length > 0) {
 				let problemDetected = false;
@@ -345,16 +344,6 @@ export class LintVisitor implements nodes.IVisitor {
 		}
 
 		/////////////////////////////////////////////////////////////
-		//	Don't use !important
-		/////////////////////////////////////////////////////////////
-		node.accept(n => {
-			if (n.type === nodes.NodeType.Prio) {
-				self.addEntry(n, Rules.AvoidImportant);
-			}
-			return true;
-		});
-
-		/////////////////////////////////////////////////////////////
 		//	Avoid 'float'
 		/////////////////////////////////////////////////////////////
 
@@ -368,14 +357,14 @@ export class LintVisitor implements nodes.IVisitor {
 		/////////////////////////////////////////////////////////////
 		for (let i = 0; i < propertyTable.length; i++) {
 			let element = propertyTable[i];
-			if (element.name.toLowerCase() !== 'background') {
+			if (element.name !== 'background') {
 				let value = element.node.getValue();
-				if (value && value.getText()[0] !== '-') {
+				if (value && this.documentText.charAt(value.offset) !== '-') {
 					let elements = this.fetch(propertyTable, element.name);
 					if (elements.length > 1) {
 						for (let k = 0; k < elements.length; k++) {
 							let value = elements[k].node.getValue();
-							if (value && value.getText()[0] !== '-' && elements[k] !== element) {
+							if (value && this.documentText.charAt(value.offset) !== '-' && elements[k] !== element) {
 								this.addEntry(element.node, Rules.DuplicateDeclarations);
 							}
 						}
@@ -458,6 +447,14 @@ export class LintVisitor implements nodes.IVisitor {
 		return true;
 	}
 
+	private visitPrio(node: nodes.Node) {
+		/////////////////////////////////////////////////////////////
+		//	Don't use !important
+		/////////////////////////////////////////////////////////////
+		this.addEntry(node, Rules.AvoidImportant);
+		return true;
+	}
+
 	private visitNumericValue(node: nodes.NumericValue): boolean {
 		/////////////////////////////////////////////////////////////
 		//	0 has no following unit
@@ -485,7 +482,7 @@ export class LintVisitor implements nodes.IVisitor {
 		let containsUnknowns = false;
 		for (let node of declarations.getChildren()) {
 			if (this.isCSSDeclaration(node)) {
-				let name = ((<nodes.Declaration>node).getProperty().getName().toLocaleLowerCase());
+				let name = ((<nodes.Declaration>node).getProperty().getName().toLowerCase());
 				if (name === 'src') { definesSrc = true; }
 				if (name === 'font-family') { definesFontFamily = true; }
 			} else {
@@ -514,16 +511,13 @@ export class LintVisitor implements nodes.IVisitor {
 		return false;
 	}
 
-	private visitUnknownNode(node: nodes.Node): boolean {
-
+	private visitHexColorValue(node: nodes.HexColorValue): boolean {
 		// Rule: #eeff0011 or #eeff00 or #ef01 or #ef0 
-		if (node.type === nodes.NodeType.HexColorValue) {
-			let text = node.getText();
-			if (text.length !== 9 && text.length !== 7 && text.length !== 5 && text.length !== 4) {
-				this.addEntry(node, Rules.HexColorLength);
-			}
+		let length = node.length;
+		if (length !== 9 && length !== 7 && length !== 5 && length !== 4) {
+			this.addEntry(node, Rules.HexColorLength);
 		}
-		return true;
+		return false;
 	}
 
 	private visitFunction(node: nodes.Function): boolean {

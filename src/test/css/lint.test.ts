@@ -13,12 +13,9 @@ import { TextDocument } from 'vscode-languageserver-types';
 import { SCSSParser } from '../../parser/scssParser';
 import { LESSParser } from '../../parser/lessParser';
 
-export function assertEntries(node: nodes.Node, rules: nodes.IRule[]): void {
+export function assertEntries(node: nodes.Node, document: TextDocument, rules: nodes.IRule[]): void {
 
-	let visitor = new LintVisitor(new LintConfigurationSettings());
-	node.acceptVisitor(visitor);
-
-	let entries = visitor.getEntries(nodes.Level.Error | nodes.Level.Warning | nodes.Level.Ignore);
+	let entries = LintVisitor.entries(node, document, new LintConfigurationSettings(), nodes.Level.Error | nodes.Level.Warning | nodes.Level.Ignore);
 	assert.equal(entries.length, rules.length, entries.map(e => e.getRule().id).join(', '));
 
 	for (let entry of entries) {
@@ -32,22 +29,24 @@ function assertStyleSheet(input: string, ...rules: Rule[]): void {
 		let document = TextDocument.create('test://test/test.css', 'css', 0, input);
 		let node = p.parseStylesheet(document);
 
-		assertEntries(node, rules);
+		assertEntries(node, document, rules);
 	}
 }
 
 function assertRuleSet(input: string, ...rules: Rule[]): void {
 	for (let p of parsers) {
+		let document = TextDocument.create('test://test/test.css', 'css', 0, input);
 		let node = p.internalParse(input, p._parseRuleset);
-		assertEntries(node, rules);
+		assertEntries(node, document, rules);
 	}
 }
 
 
 function assertFontFace(input: string, ...rules: Rule[]): void {
 	for (let p of parsers) {
+		let document = TextDocument.create('test://test/test.css', 'css', 0, input);
 		let node = p.internalParse(input, p._parseFontFace);
-		assertEntries(node, rules);
+		assertEntries(node, document, rules);
 	}
 }
 
