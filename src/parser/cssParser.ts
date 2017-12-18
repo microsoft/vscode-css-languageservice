@@ -1140,13 +1140,13 @@ export class Parser {
 		if (!this.peek(TokenType.BracketL)) {
 			return null;
 		}
-		let node = this.createNode(nodes.NodeType.AttributeSelector);
+		let node = <nodes.AttributeSelector>this.create(nodes.AttributeSelector);
 		this.consumeToken(); // BracketL
 
 		// Optional attrib namespace
-		node.addChild(this._parseNamespacePrefix());
+		node.setNamespacePrefix(this._parseNamespacePrefix());
 
-		if (!node.addChild(this._parseBinaryExpr())) {
+		if (!node.setExpression(this._parseBinaryExpr())) {
 			// is this bad?
 		}
 		if (!this.accept(TokenType.BracketR)) {
@@ -1239,7 +1239,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseBinaryExpr(preparsedLeft?: nodes.BinaryExpression, preparsedOper?: nodes.Node): nodes.Node {
+	public _parseBinaryExpr(preparsedLeft?: nodes.BinaryExpression, preparsedOper?: nodes.Node): nodes.BinaryExpression {
 		let node = <nodes.BinaryExpression>this.create(nodes.BinaryExpression);
 
 		if (!node.setLeft((<nodes.Node>preparsedLeft || this._parseTerm()))) {

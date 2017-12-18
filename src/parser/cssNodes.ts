@@ -1196,6 +1196,36 @@ export class Term extends Node {
 	}
 }
 
+export class AttributeSelector extends Node {
+
+	private namespacePrefix: Node;
+	private expression: BinaryExpression;
+
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.AttributeSelector;
+	}
+
+	public setExpression(value: BinaryExpression): boolean {
+		return this.setNode('expression', value);
+	}
+
+	public getExpression(): BinaryExpression {
+		return this.expression;
+	}
+
+	public setNamespacePrefix(value: Node): boolean {
+		return this.setNode('namespacePrefix', value);
+	}
+
+	public getNamespacePrefix(): Node {
+		return this.namespacePrefix;
+	}
+}
+
 export class Operator extends Node {
 
 	constructor(offset: number, length: number) {

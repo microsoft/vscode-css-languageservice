@@ -259,7 +259,7 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element): 
 				result.addAttr(unescape(child.getText()), '');
 				break;
 			case nodes.NodeType.AttributeSelector:
-				let expr = <nodes.BinaryExpression>child.getChildren()[0];
+				let expr = (<nodes.AttributeSelector>child).getExpression();
 				if (expr) {
 					let value: string;
 					if (expr.getRight()) {
