@@ -402,7 +402,7 @@ export class CSSCompletion {
 				kind: CompletionItemKind.Function
 			});
 		}
-		if (hexColorRegex.test(this.currentWord)){
+		if (hexColorRegex.test(this.currentWord) && this.emmetCallback){
 			this.emmetCallback();
 		}
 		return result;
