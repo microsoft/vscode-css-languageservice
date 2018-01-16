@@ -13,7 +13,7 @@ import { TextDocument, Position, CompletionList, CompletionItem, CompletionItemK
 
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();
-
+const hexColorRegex = /^#[\d,a-f,A-F]+$/;
 const SnippetFormat = InsertTextFormat.Snippet;
 
 export class CSSCompletion {
@@ -27,7 +27,8 @@ export class CSSCompletion {
 	symbolContext: Symbols;
 	defaultReplaceRange: Range;
 	nodePath: nodes.Node[];
-
+	emmetCallback: () => void;
+	
 	constructor(variablePrefix: string = null) {
 		this.variablePrefix = variablePrefix;
 	}
@@ -37,6 +38,10 @@ export class CSSCompletion {
 			this.symbolContext = new Symbols(this.styleSheet);
 		}
 		return this.symbolContext;
+	}
+
+	public setEmmetCallback(callback: () => void) {
+		this.emmetCallback = callback;
 	}
 
 	public doComplete(document: TextDocument, position: Position, styleSheet: nodes.Stylesheet): CompletionList {
@@ -54,6 +59,9 @@ export class CSSCompletion {
 				let node = this.nodePath[i];
 				if (node instanceof nodes.Property) {
 					this.getCompletionsForDeclarationProperty(node.getParent() as nodes.Declaration, result);
+					if (this.emmetCallback) {
+						this.emmetCallback();
+					}
 				} else if (node instanceof nodes.Expression) {
 					this.getCompletionsForExpression(<nodes.Expression>node, result);
 				} else if (node instanceof nodes.SimpleSelector) {
@@ -393,6 +401,9 @@ export class CSSCompletion {
 				insertTextFormat: SnippetFormat,
 				kind: CompletionItemKind.Function
 			});
+		}
+		if (hexColorRegex.test(this.currentWord)){
+			this.emmetCallback();
 		}
 		return result;
 	}
