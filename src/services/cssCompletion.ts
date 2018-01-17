@@ -13,8 +13,12 @@ import { TextDocument, Position, CompletionList, CompletionItem, CompletionItemK
 
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();
-const hexColorRegex = /^#[\d,a-f,A-F]+$/;
 const SnippetFormat = InsertTextFormat.Snippet;
+
+export interface ICompletionParticipant {
+	onProperty: (propertyName: string, propertyValue?: string) => void;
+	onPropertyValue: (propertyName: string, propertyValue?: string) => void;
+}
 
 export class CSSCompletion {
 
@@ -27,7 +31,7 @@ export class CSSCompletion {
 	symbolContext: Symbols;
 	defaultReplaceRange: Range;
 	nodePath: nodes.Node[];
-	emmetCallback: () => void;
+	completionParticipants: ICompletionParticipant[] = [];
 	
 	constructor(variablePrefix: string = null) {
 		this.variablePrefix = variablePrefix;
@@ -40,8 +44,8 @@ export class CSSCompletion {
 		return this.symbolContext;
 	}
 
-	public setEmmetCallback(callback: () => void) {
-		this.emmetCallback = callback;
+	public setCompletionParticipants(registeredCompletionParticipants: ICompletionParticipant[]) {
+		this.completionParticipants = registeredCompletionParticipants || [];
 	}
 
 	public doComplete(document: TextDocument, position: Position, styleSheet: nodes.Stylesheet): CompletionList {
@@ -59,9 +63,9 @@ export class CSSCompletion {
 				let node = this.nodePath[i];
 				if (node instanceof nodes.Property) {
 					this.getCompletionsForDeclarationProperty(node.getParent() as nodes.Declaration, result);
-					if (this.emmetCallback) {
-						this.emmetCallback();
-					}
+					this.completionParticipants.forEach(participant => {
+						participant.onProperty((<nodes.Property>node).getName());
+					});
 				} else if (node instanceof nodes.Expression) {
 					this.getCompletionsForExpression(<nodes.Expression>node, result);
 				} else if (node instanceof nodes.SimpleSelector) {
@@ -185,6 +189,10 @@ export class CSSCompletion {
 		while (existingNode && existingNode.hasChildren()) {
 			existingNode = existingNode.findChildAtOffset(this.offset, false);
 		}
+
+		this.completionParticipants.forEach(participant => {
+			participant.onPropertyValue(propertyName, this.currentWord);
+		});
 
 		if (entry) {
 			for (let restriction of entry.restrictions) {
@@ -401,9 +409,6 @@ export class CSSCompletion {
 				insertTextFormat: SnippetFormat,
 				kind: CompletionItemKind.Function
 			});
-		}
-		if (hexColorRegex.test(this.currentWord) && this.emmetCallback){
-			this.emmetCallback();
 		}
 		return result;
 	}
