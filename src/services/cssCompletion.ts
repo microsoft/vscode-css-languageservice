@@ -10,15 +10,11 @@ import * as languageFacts from './languageFacts';
 import * as strings from '../utils/strings';
 import { findFirst } from '../utils/arrays';
 import { TextDocument, Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat } from 'vscode-languageserver-types';
+import { ICompletionParticipant } from '../cssLanguageService';
 
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();
 const SnippetFormat = InsertTextFormat.Snippet;
-
-export interface ICompletionParticipant {
-	onProperty: (propertyName: string, propertyValue?: string) => void;
-	onPropertyValue: (propertyName: string, propertyValue?: string) => void;
-}
 
 export class CSSCompletion {
 
@@ -64,7 +60,7 @@ export class CSSCompletion {
 				if (node instanceof nodes.Property) {
 					this.getCompletionsForDeclarationProperty(node.getParent() as nodes.Declaration, result);
 					this.completionParticipants.forEach(participant => {
-						participant.onProperty((<nodes.Property>node).getName());
+						participant.onCssProperty(this.currentWord);
 					});
 				} else if (node instanceof nodes.Expression) {
 					this.getCompletionsForExpression(<nodes.Expression>node, result);
@@ -191,7 +187,7 @@ export class CSSCompletion {
 		}
 
 		this.completionParticipants.forEach(participant => {
-			participant.onPropertyValue(propertyName, this.currentWord);
+			participant.onCssPropertyValue(propertyName, this.currentWord);
 		});
 
 		if (entry) {

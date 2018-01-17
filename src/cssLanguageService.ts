@@ -10,7 +10,7 @@ import {
 } from 'vscode-languageserver-types';
 
 import { Parser } from './parser/cssParser';
-import { CSSCompletion, ICompletionParticipant } from './services/cssCompletion';
+import { CSSCompletion } from './services/cssCompletion';
 import { CSSHover } from './services/cssHover';
 import { CSSNavigation } from './services/cssNavigation';
 import { CSSCodeActions } from './services/cssCodeActions';
@@ -51,6 +51,11 @@ export interface ColorPresentation {
 	 * selecting this color presentation. Edits must not overlap with the main [edit](#ColorPresentation.textEdit) nor with themselves.
 	 */
 	additionalTextEdits?: TextEdit[];
+}
+
+export interface ICompletionParticipant {
+	onCssProperty: (propertyName: string, propertyValue?: string) => void;
+	onCssPropertyValue: (propertyName: string, propertyValue?: string) => void;
 }
 
 export interface LanguageService {
