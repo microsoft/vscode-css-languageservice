@@ -1172,14 +1172,33 @@ export class Parser {
 				return this.finish(node, ParseError.IdentifierExpected);
 			}
 			if (!this.hasWhitespace() && this.accept(TokenType.ParenthesisL)) {
-				let tryAsSelector = () => {
-					let selector = this._parseSimpleSelector();
-					if (selector && this.peek(TokenType.ParenthesisR)) {
-						return selector;
+				let tryAsSelectors = () => {
+					const firstSelector = this._parseSimpleSelector();
+					if (!firstSelector) {
+						return null;
+					} else {
+						const selectors = [firstSelector];
+						while (!this.peek(TokenType.ParenthesisR)) {
+							if (this.accept(TokenType.Comma)) {
+								selectors.push(this._parseSimpleSelector());
+							} else {
+								return null;
+							}
+						}
+						return selectors;
 					}
-					return null;
 				};
-				node.addChild(this.try(tryAsSelector) || this._parseBinaryExpr());
+
+				let pseudoArgumentsStartPos = this.mark();
+
+				const selectors = tryAsSelectors();
+				if (selectors) {
+					node.addChildren(selectors);
+				} else {
+					this.restoreAtMark(pseudoArgumentsStartPos);
+					node.addChild(this._parseBinaryExpr());
+				}
+
 				if (!this.accept(TokenType.ParenthesisR)) {
 					return this.finish(node, ParseError.RightParenthesisExpected);
 				}
