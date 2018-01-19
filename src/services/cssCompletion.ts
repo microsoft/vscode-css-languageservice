@@ -28,7 +28,7 @@ export class CSSCompletion {
 	defaultReplaceRange: Range;
 	nodePath: nodes.Node[];
 	completionParticipants: ICompletionParticipant[] = [];
-	
+
 	constructor(variablePrefix: string = null) {
 		this.variablePrefix = variablePrefix;
 	}
@@ -59,12 +59,6 @@ export class CSSCompletion {
 				let node = this.nodePath[i];
 				if (node instanceof nodes.Property) {
 					this.getCompletionsForDeclarationProperty(node.getParent() as nodes.Declaration, result);
-					this.completionParticipants.forEach(participant => {
-						participant.onCssProperty({
-							propertyName: this.currentWord,
-							range: this.defaultReplaceRange
-						});
-					});
 				} else if (node instanceof nodes.Expression) {
 					this.getCompletionsForExpression(<nodes.Expression>node, result);
 				} else if (node instanceof nodes.SimpleSelector) {
@@ -172,6 +166,12 @@ export class CSSCompletion {
 				}
 			}
 		}
+		this.completionParticipants.forEach(participant => {
+			participant.onCssProperty({
+				propertyName: this.currentWord,
+				range: this.defaultReplaceRange
+			});
+		});
 		return result;
 	}
 
@@ -191,8 +191,8 @@ export class CSSCompletion {
 
 		this.completionParticipants.forEach(participant => {
 			participant.onCssPropertyValue({
-				propertyName, 
-				propertyValue: this.currentWord, 
+				propertyName,
+				propertyValue: this.currentWord,
 				range: this.getCompletionRange(existingNode)
 			});
 		});
@@ -816,7 +816,7 @@ class Set {
 	}
 }
 
-function collectValues(styleSheet: nodes.Stylesheet, declaration: nodes.Declaration) : Set {
+function collectValues(styleSheet: nodes.Stylesheet, declaration: nodes.Declaration): Set {
 	const fullPropertyName = declaration.getFullPropertyName();
 	const entries: Set = new Set();
 
@@ -824,13 +824,13 @@ function collectValues(styleSheet: nodes.Stylesheet, declaration: nodes.Declarat
 		if (node instanceof nodes.Identifier || node instanceof nodes.NumericValue || node instanceof nodes.HexColorValue) {
 			entries.add(node.getText());
 		}
-		return true;	
+		return true;
 	}
 
 	function matchesProperty(decl: nodes.Declaration): boolean {
 		let propertyName = decl.getFullPropertyName();
 		return fullPropertyName === propertyName;
-	}	
+	}
 
 	function vistNode(node: nodes.Node) {
 		if (node instanceof nodes.Declaration && node !== declaration) {

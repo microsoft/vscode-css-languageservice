@@ -53,15 +53,9 @@ export interface ColorPresentation {
 	additionalTextEdits?: TextEdit[];
 }
 
-export interface IPropertyContext {
-	propertyName: string;
-	propertyValue?: string;
-	range: Range;
-}
-
 export interface ICompletionParticipant {
-	onCssProperty: (context: IPropertyContext) => void;
-	onCssPropertyValue: (context: IPropertyContext) => void;
+	onCssProperty: (context: { propertyName: string; range: Range; }) => void;
+	onCssPropertyValue: (context: { propertyName: string; propertyValue?: string; range: Range; }) => void;
 }
 
 export interface LanguageService {

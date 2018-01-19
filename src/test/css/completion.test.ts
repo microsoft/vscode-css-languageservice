@@ -7,7 +7,7 @@
 import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
-import { CompletionList, TextDocument, TextEdit, Position, CompletionItemKind, InsertTextFormat } from 'vscode-languageserver-types';
+import { CompletionList, TextDocument, TextEdit, Position, CompletionItemKind, InsertTextFormat, Range } from 'vscode-languageserver-types';
 import { applyEdits } from '../textEditSupport';
 
 export interface ItemDescription {
@@ -54,11 +54,20 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 
 suite('CSS - Completion', () => {
 
-	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[] }) {
+	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[], participant?: { onProperty, onPropertValue } }) {
 		let offset = value.indexOf('|');
 		value = value.substr(0, offset) + value.substr(offset + 1);
 
+		let actualPropertyContexts: { propertyName: string; propertyValue?: string; range: Range; }[] = [];
+		let actualPropertyValueContexts: { propertyName: string; propertyValue?: string; range: Range; }[] = [];
+
 		let ls = cssLanguageService.getCSSLanguageService();
+		if (expected.participant) {
+			ls.setCompletionParticipants([{
+				onCssProperty: context => actualPropertyContexts.push(context),
+				onCssPropertyValue: context => actualPropertyValueContexts.push(context)
+			}]);
+		}
 
 		let document = TextDocument.create('test://test/test.css', 'css', 0, value);
 		let position = Position.create(0, offset);
@@ -71,6 +80,10 @@ suite('CSS - Completion', () => {
 			for (let item of expected.items) {
 				assertCompletion(list, item, document, offset);
 			}
+		}
+		if (expected.participant) {
+			assert.deepEqual(actualPropertyContexts, expected.participant.onProperty);
+			assert.deepEqual(actualPropertyValueContexts, expected.participant.onPropertValue);
 		}
 	};
 
@@ -384,5 +397,29 @@ suite('CSS - Completion', () => {
 		});
 	});
 
+	test('suggestParticipants', function (): any {
+		testCompletionFor('html { bac|', {
+			participant: {
+				onProperty: [{ propertyName: 'bac', range: newRange(7, 10) }],
+				onPropertValue: []
+			}
+		});
+		testCompletionFor('html { disp|lay: none', {
+			participant: {
+				onProperty: [{ propertyName: 'disp', range: newRange(7, 11) }],
+				onPropertValue: []
+			}
+		});
+		testCompletionFor('html { background-position: t|', {
+			participant: {
+				onProperty: [],
+				onPropertValue: [{ propertyName: 'background-position', propertyValue: 't', range: newRange(28, 29) }]
+			}
+		});
+	});
 });
+
+function newRange(start: number, end: number) {
+	return Range.create(Position.create(0, start), Position.create(0, end));
+}
 
