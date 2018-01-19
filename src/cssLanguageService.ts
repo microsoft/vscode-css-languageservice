@@ -53,11 +53,23 @@ export interface ColorPresentation {
 	additionalTextEdits?: TextEdit[];
 }
 
+export interface IPropertyContext {
+	propertyName: string;
+	propertyValue?: string;
+	range: Range;
+}
+
+export interface ICompletionParticipant {
+	onCssProperty: (context: IPropertyContext) => void;
+	onCssPropertyValue: (context: IPropertyContext) => void;
+}
+
 export interface LanguageService {
 	configure(raw: LanguageSettings): void;
 	doValidation(document: TextDocument, stylesheet: Stylesheet, documentSettings?: LanguageSettings): Diagnostic[];
 	parseStylesheet(document: TextDocument): Stylesheet;
 	doComplete(document: TextDocument, position: Position, stylesheet: Stylesheet): CompletionList | null;
+	setCompletionParticipants(registeredCompletionParticipants: ICompletionParticipant[]): void;
 	doHover(document: TextDocument, position: Position, stylesheet: Stylesheet): Hover | null;
 	findDefinition(document: TextDocument, position: Position, stylesheet: Stylesheet): Location | null;
 	findReferences(document: TextDocument, position: Position, stylesheet: Stylesheet): Location[];
@@ -85,6 +97,7 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 		doValidation: validation.doValidation.bind(validation),
 		parseStylesheet: parser.parseStylesheet.bind(parser),
 		doComplete: completion.doComplete.bind(completion),
+		setCompletionParticipants: completion.setCompletionParticipants.bind(completion),
 		doHover: hover.doHover.bind(hover),
 		findDefinition: navigation.findDefinition.bind(navigation),
 		findReferences: navigation.findReferences.bind(navigation),

@@ -10,10 +10,10 @@ import * as languageFacts from './languageFacts';
 import * as strings from '../utils/strings';
 import { findFirst } from '../utils/arrays';
 import { TextDocument, Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat } from 'vscode-languageserver-types';
+import { ICompletionParticipant } from '../cssLanguageService';
 
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();
-
 const SnippetFormat = InsertTextFormat.Snippet;
 
 export class CSSCompletion {
@@ -27,7 +27,8 @@ export class CSSCompletion {
 	symbolContext: Symbols;
 	defaultReplaceRange: Range;
 	nodePath: nodes.Node[];
-
+	completionParticipants: ICompletionParticipant[] = [];
+	
 	constructor(variablePrefix: string = null) {
 		this.variablePrefix = variablePrefix;
 	}
@@ -37,6 +38,10 @@ export class CSSCompletion {
 			this.symbolContext = new Symbols(this.styleSheet);
 		}
 		return this.symbolContext;
+	}
+
+	public setCompletionParticipants(registeredCompletionParticipants: ICompletionParticipant[]) {
+		this.completionParticipants = registeredCompletionParticipants || [];
 	}
 
 	public doComplete(document: TextDocument, position: Position, styleSheet: nodes.Stylesheet): CompletionList {
@@ -54,6 +59,12 @@ export class CSSCompletion {
 				let node = this.nodePath[i];
 				if (node instanceof nodes.Property) {
 					this.getCompletionsForDeclarationProperty(node.getParent() as nodes.Declaration, result);
+					this.completionParticipants.forEach(participant => {
+						participant.onCssProperty({
+							propertyName: this.currentWord,
+							range: this.defaultReplaceRange
+						});
+					});
 				} else if (node instanceof nodes.Expression) {
 					this.getCompletionsForExpression(<nodes.Expression>node, result);
 				} else if (node instanceof nodes.SimpleSelector) {
@@ -177,6 +188,14 @@ export class CSSCompletion {
 		while (existingNode && existingNode.hasChildren()) {
 			existingNode = existingNode.findChildAtOffset(this.offset, false);
 		}
+
+		this.completionParticipants.forEach(participant => {
+			participant.onCssPropertyValue({
+				propertyName, 
+				propertyValue: this.currentWord, 
+				range: this.getCompletionRange(existingNode)
+			});
+		});
 
 		if (entry) {
 			for (let restriction of entry.restrictions) {
