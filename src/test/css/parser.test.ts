@@ -358,6 +358,8 @@ suite('CSS - Parser', () => {
 		assertNode(':not(#foo)', parser, parser._parsePseudo.bind(parser));
 		assertNode('::slotted(*)', parser, parser._parsePseudo.bind(parser)); // #35076
 		assertNode('::slotted(div:hover)', parser, parser._parsePseudo.bind(parser)); // #35076
+
+		assertError(':matches(a:hover,)', parser, parser._parsePseudo.bind(parser), ParseError.SelectorExpected);
 	});
 
 	test('declaration', function () {
