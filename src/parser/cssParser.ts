@@ -402,6 +402,40 @@ export class Parser {
 		return this.finish(node);
 	}
 
+	// parsing a list of selectors as pseudo selector arguments
+	// e.g. :matches(div, span)
+	public _tryParseSelectorList(): nodes.Node {
+		let mark = this.mark();
+
+		if (this._parseSelector(false)) {
+			while (this.accept(TokenType.Comma) && this._parseSelector(false)) {
+				// loop
+			}
+			if (this.accept(TokenType.ParenthesisR)) {
+				this.restoreAtMark(mark);
+				return this._parseSelectorList();
+			}
+		}
+		this.restoreAtMark(mark);
+		return null;
+	}
+
+	public _parseSelectorList(): nodes.Node {
+		let selector = this._parseSelector(false);
+
+		if (!selector) {
+			return null;
+		} else {
+			let node = this.create(nodes.Node);
+			while (this.accept(TokenType.Comma)) {
+				if (!node.addChild(this._parseSelector(false))) {
+					return this.finish(node, ParseError.SelectorExpected);
+				}
+			}
+			return this.finish(node);
+		}
+	}
+
 	public _parseSelector(isNested: boolean): nodes.Selector {
 		let node = <nodes.Selector>this.create(nodes.Selector);
 
@@ -1172,30 +1206,11 @@ export class Parser {
 				return this.finish(node, ParseError.IdentifierExpected);
 			}
 			if (!this.hasWhitespace() && this.accept(TokenType.ParenthesisL)) {
-				let tryAsSelectors = () => {
-					const firstSelector = this._parseSimpleSelector();
-					if (!firstSelector) {
-						return null;
-					} else {
-						const selectors = [firstSelector];
-						while (!this.peek(TokenType.ParenthesisR)) {
-							if (this.accept(TokenType.Comma)) {
-								selectors.push(this._parseSimpleSelector());
-							} else {
-								return null;
-							}
-						}
-						return selectors;
-					}
-				};
+				let selectorList = this._tryParseSelectorList();
 
-				let pseudoArgumentsStartPos = this.mark();
-
-				const selectors = tryAsSelectors();
-				if (selectors) {
-					node.addChildren(selectors);
+				if (selectorList) {
+					node.addChild(selectorList);
 				} else {
-					this.restoreAtMark(pseudoArgumentsStartPos);
 					node.addChild(this._parseBinaryExpr());
 				}
 
