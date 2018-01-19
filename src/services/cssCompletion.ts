@@ -60,7 +60,10 @@ export class CSSCompletion {
 				if (node instanceof nodes.Property) {
 					this.getCompletionsForDeclarationProperty(node.getParent() as nodes.Declaration, result);
 					this.completionParticipants.forEach(participant => {
-						participant.onCssProperty(this.currentWord);
+						participant.onCssProperty({
+							propertyName: this.currentWord,
+							range: this.defaultReplaceRange
+						});
 					});
 				} else if (node instanceof nodes.Expression) {
 					this.getCompletionsForExpression(<nodes.Expression>node, result);
@@ -187,7 +190,11 @@ export class CSSCompletion {
 		}
 
 		this.completionParticipants.forEach(participant => {
-			participant.onCssPropertyValue(propertyName, this.currentWord);
+			participant.onCssPropertyValue({
+				propertyName, 
+				propertyValue: this.currentWord, 
+				range: this.getCompletionRange(existingNode)
+			});
 		});
 
 		if (entry) {
