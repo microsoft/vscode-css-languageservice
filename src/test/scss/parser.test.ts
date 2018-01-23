@@ -41,6 +41,8 @@ suite('SCSS - Parser', () => {
 		assertNode('$_RESOURCES: append($_RESOURCES, "clean") !global', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('$footer-height: 40px !default !global', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('$primary-font: "wf_SegoeUI","Segoe UI","Segoe","Segoe WP"', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('$color: red !important', parser, parser._parseVariableDeclaration.bind(parser));
+
 		assertError('$color: red !def', parser, parser._parseVariableDeclaration.bind(parser), ParseError.UnknownKeyword);
 		assertError('$color : !default', parser, parser._parseVariableDeclaration.bind(parser), ParseError.VariableValueExpected);
 		assertError('$color !default', parser, parser._parseVariableDeclaration.bind(parser), ParseError.ColonExpected);
@@ -122,6 +124,7 @@ suite('SCSS - Parser', () => {
 		assertNode('dummy: (20 / $let)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('dummy: (20 / 20 + $let)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('dummy: func($red)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('dummy: func($red) !important', parser, parser._parseDeclaration.bind(parser));
 		assertNode('dummy: desaturate($red, 10%)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('dummy: desaturate(16, 10%)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('color: $base-color + #111', parser, parser._parseDeclaration.bind(parser));
@@ -136,6 +139,7 @@ suite('SCSS - Parser', () => {
 		assertNode('color: hsl(0, 100%, 50%)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('color: hsl($hue: 0, $saturation: 100%, $lightness: 50%)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('foo: if($value == \'default\', flex-gutter(), $value)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('foo: if(true, !important, null)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('color: selector-replace(&, 1)', parser, parser._parseDeclaration.bind(parser));
 
 		assertError('fo = 8', parser, parser._parseDeclaration.bind(parser), ParseError.ColonExpected);
@@ -149,6 +153,7 @@ suite('SCSS - Parser', () => {
 		assertNode('$color: #F5F5F5;', parser, parser._parseStylesheet.bind(parser));
 		assertNode('$color: #F5F5F5; $color: #F5F5F5;', parser, parser._parseStylesheet.bind(parser));
 		assertNode('$color: #F5F5F5; $color: #F5F5F5; $color: #F5F5F5;', parser, parser._parseStylesheet.bind(parser));
+		assertNode('$color: #F5F5F5 !important;', parser, parser._parseStylesheet.bind(parser));
 		assertNode('#main { width: 97%; p, div { a { font-weight: bold; } } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('a { &:hover { color: red; } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('fo { font: 2px/3px { family: fantasy; } }', parser, parser._parseStylesheet.bind(parser));
