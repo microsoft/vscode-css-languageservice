@@ -83,6 +83,10 @@ export class LESSParser extends cssParser.Parser {
 			|| this._parseStylesheetStatement();
 	}
 
+	public _parseMediaFeatureName(): nodes.Node {
+		return this._parseIdent() || this._parseVariable();
+	}
+
 	public _parseVariableDeclaration(panic: TokenType[] = []): nodes.VariableDeclaration {
 		let node = <nodes.VariableDeclaration>this.create(nodes.VariableDeclaration);
 
