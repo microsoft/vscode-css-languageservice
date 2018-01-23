@@ -350,12 +350,16 @@ suite('CSS - Parser', () => {
 		assertNode(':some', parser, parser._parsePseudo.bind(parser));
 		assertNode(':some(thing)', parser, parser._parsePseudo.bind(parser));
 		assertNode(':nth-child(12)', parser, parser._parsePseudo.bind(parser));
+		assertNode(':matches(a:hover, a:link)', parser, parser._parsePseudo.bind(parser));
+		assertNode(':matches(div > a, div h1)', parser, parser._parsePseudo.bind(parser));
 		assertNode(':lang(it)', parser, parser._parsePseudo.bind(parser));
 		assertNode(':not(.class)', parser, parser._parsePseudo.bind(parser));
 		assertNode(':not(:disabled)', parser, parser._parsePseudo.bind(parser));
 		assertNode(':not(#foo)', parser, parser._parsePseudo.bind(parser));
 		assertNode('::slotted(*)', parser, parser._parsePseudo.bind(parser)); // #35076
 		assertNode('::slotted(div:hover)', parser, parser._parsePseudo.bind(parser)); // #35076
+
+		assertError(':matches(a:hover,)', parser, parser._parsePseudo.bind(parser), ParseError.SelectorExpected);
 	});
 
 	test('declaration', function () {
