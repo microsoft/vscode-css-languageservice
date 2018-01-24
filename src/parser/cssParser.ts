@@ -1190,6 +1190,17 @@ export class Parser {
 		return null;
 	}
 
+	public _tryParsePrio(): nodes.Node {
+		let mark = this.mark();
+		
+		let prio = this._parsePrio();
+		if (prio) {
+			return prio;
+		}
+		this.restoreAtMark(mark);
+		return null;
+	}
+
 	public _parsePrio(): nodes.Node {
 		if (!this.peek(TokenType.Exclamation)) {
 			return null;
