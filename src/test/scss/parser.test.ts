@@ -194,6 +194,7 @@ suite('SCSS - Parser', () => {
 	test('@keyframe', function () {
 		let parser = new SCSSParser();
 		assertNode('@keyframes name { @content; }', parser, parser._parseKeyframe.bind(parser));
+		assertNode('@keyframes name { @for $i from 0 through $steps { #{$i * (100%/$steps)} { transform: $rotate $translate; } } }', parser, parser._parseKeyframe.bind(parser)); // issue 42086
 	});
 
 	test('@extend', function () {

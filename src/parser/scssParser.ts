@@ -102,7 +102,7 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseKeyframeSelector(): nodes.Node {
-		return this._tryParseKeyframeSelector() || this._parseMixinContent();
+		return this._tryParseKeyframeSelector() || this._parseControlStatement(this._parseKeyframeSelector.bind(this)) || this._parseMixinContent();
 	}
 
 	public _parseVariable(): nodes.Variable {
