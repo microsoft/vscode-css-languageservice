@@ -3270,6 +3270,9 @@
 				</value>
 			</values>
 		</entry>
+		<entry name="grid" restriction="identifier, length, percentage, string, enum" version="3.0" browsers="FF52,C57,E16,S10.1,O44" ref="https://drafts.csswg.org/css-grid/#propdef-grid" syntax="div { $(name): span 3; }">
+			<desc>The grid CSS property is a shorthand property that sets all of the explicit grid properties ('grid-template-rows', 'grid-template-columns', and 'grid-template-areas'), and all the implicit grid properties ('grid-auto-rows', 'grid-auto-columns', and 'grid-auto-flow'), in a single declaration.</desc>
+		</entry>		
 		<entry name="grid-auto-columns" restriction="length, percentage" version="3.0" browsers="FF52,C57,S10.1,O44" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-auto-columns" syntax="div { $(name): 100px; }">
 			<desc>Specifies the size of implicitly created columns.</desc>
 			<values>

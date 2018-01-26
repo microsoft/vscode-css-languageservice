@@ -3851,6 +3851,12 @@
 				]
 			},
 			{
+				"name": "grid",
+				"desc": "The grid CSS property is a shorthand property that sets all of the explicit grid properties ('grid-template-rows', 'grid-template-columns', and 'grid-template-areas'), and all the implicit grid properties ('grid-auto-rows', 'grid-auto-columns', and 'grid-auto-flow'), in a single declaration.",
+				"browsers": "FF52,C57,E16,S10.1,O44",
+				"restriction": "identifier, length, percentage, string, enum"
+			},
+			{
 				"name": "grid-auto-columns",
 				"desc": "Specifies the size of implicitly created columns.",
 				"browsers": "FF52,C57,S10.1,O44",
