@@ -489,7 +489,7 @@ export class CSSCompletion {
 
 	protected getImageProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		for (let image in languageFacts.imageFunctions) {
-			let insertText = image.replace(/\(\)$/, "($1)");
+			let insertText = moveCursorInsideParenthesis(image);
 			result.items.push({
 				label: image,
 				documentation: languageFacts.imageFunctions[image],
@@ -503,7 +503,7 @@ export class CSSCompletion {
 
 	protected getTimingFunctionProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		for (let timing in languageFacts.transitionTimingFunctions) {
-			let insertText = timing.replace(/\(\)$/, "($1)");
+			let insertText = moveCursorInsideParenthesis(timing);
 			result.items.push({
 				label: timing,
 				documentation: languageFacts.transitionTimingFunctions[timing],
@@ -517,7 +517,7 @@ export class CSSCompletion {
 
 	protected getBasicShapeProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		for (let shape in languageFacts.basicShapeFunctions) {
-			let insertText = shape.replace(/\(\)$/, "($1)");
+			let insertText = moveCursorInsideParenthesis(shape);
 			result.items.push({
 				label: shape,
 				documentation: languageFacts.basicShapeFunctions[shape],
@@ -584,11 +584,13 @@ export class CSSCompletion {
 
 		for (let entry of languageFacts.getPseudoClasses()) {
 			if (entry.browsers.onCodeComplete) {
+				let insertText = moveCursorInsideParenthesis(entry.name);
 				let item: CompletionItem = {
 					label: entry.name,
-					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), entry.name),
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
 					documentation: languageFacts.getEntryDescription(entry),
-					kind: CompletionItemKind.Function
+					kind: CompletionItemKind.Function,
+					insertTextFormat: entry.name !== insertText ? SnippetFormat : void 0
 				};
 				if (strings.startsWith(entry.name, ':-')) {
 					item.sortText = 'x';
@@ -598,11 +600,13 @@ export class CSSCompletion {
 		}
 		for (let entry of languageFacts.getPseudoElements()) {
 			if (entry.browsers.onCodeComplete) {
+				let insertText = moveCursorInsideParenthesis(entry.name);
 				let item: CompletionItem = {
 					label: entry.name,
-					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), entry.name),
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
 					documentation: languageFacts.getEntryDescription(entry),
-					kind: CompletionItemKind.Function
+					kind: CompletionItemKind.Function,
+					insertTextFormat: entry.name !== insertText ? SnippetFormat : void 0
 				};
 				if (strings.startsWith(entry.name, '::-')) {
 					item.sortText = 'x';
@@ -814,6 +818,10 @@ class Set {
 	public getEntries(): string[] {
 		return Object.keys(this.entries);
 	}
+}
+
+function moveCursorInsideParenthesis(text: string): string {
+	return text.replace(/\(\)$/, "($1)");
 }
 
 function collectValues(styleSheet: nodes.Stylesheet, declaration: nodes.Declaration): Set {
