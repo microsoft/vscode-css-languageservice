@@ -4702,16 +4702,92 @@
 				]
 			},
 			{
+				"name": "mask-image",
+				"desc": "Sets the mask layer image of an element.",
+				"browsers": "E,FF53",
+				"restriction": "url, image, enum",
+				"values": [
+					{
+						"name": "none",
+						"desc": "Counts as a transparent black image layer."
+					},
+					{
+						"name": "url()",
+						"desc": "Reference to a <mask element or to a CSS image."
+					}
+				]
+			},
+			{
+				"name": "mask-mode",
+				"desc": "Indicates whether the mask layer image is treated as luminance mask or alpha mask.",
+				"browsers": "FF53",
+				"restriction": "url, image, enum",
+				"values": [
+					{
+						"name": "alpha",
+						"desc": "Alpha values of the mask layer image should be used as the mask values."
+					},
+					{
+						"name": "auto",
+						"desc": "Use alpha values if 'mask-image' is an image, luminance if a <mask> element or a CSS image."
+					},
+					{
+						"name": "luminance",
+						"desc": "Luminance values of the mask layer image should be used as the mask values."
+					}
+				]
+			},
+			{
+				"name": "mask-origin",
+				"desc": "Specifies the mask positioning area.",
+				"browsers": "FF53",
+				"restriction": "geometry-box, enum"
+			},
+			{
+				"name": "mask-position",
+				"desc": "Specifies how mask layer images are positioned.",
+				"browsers": "FF53",
+				"restriction": "position, length, percentage"
+			},
+			{
+				"name": "mask-repeat",
+				"desc": "Specifies how mask layer images are tiled after they have been sized and positioned.",
+				"browsers": "FF53",
+				"restriction": "repeat"
+			},
+			{
+				"name": "mask-size",
+				"desc": "Specifies the size of the mask layer images.",
+				"browsers": "F53",
+				"restriction": "length, percentage, enum",
+				"values": [
+					{
+						"name": "auto",
+						"desc": "Resolved by using the image’s intrinsic ratio and the size of the other dimension, or failing that, using the image’s intrinsic size, or failing that, treating it as 100%."
+					},
+					{
+						"name": "contain",
+						"desc": "Scale the image, while preserving its intrinsic aspect ratio (if any), to the largest size such that both its width and its height can fit inside the background positioning area."
+					},
+					{
+						"name": "cover",
+						"desc": "Scale the image, while preserving its intrinsic aspect ratio (if any), to the smallest size such that both its width and its height can completely cover the background positioning area."
+					}
+				]
+			},
+			{
 				"name": "mask-type",
 				"desc": "Defines whether the content of the <mask> element is treated as as luminance mask or alpha mask.",
 				"browsers": "C24,FF35,O15,S7",
 				"restriction": "enum",
 				"values": [
 					{
-						"name": "alpha"
+						"name": "alpha",
+						"desc": "Indicates that the alpha values of the mask should be used."
 					},
 					{
-						"name": "luminance"
+						"name": "luminance",
+						"desc": "Indicates that the luminance values of the mask should be used."
 					}
 				]
 			},
@@ -11740,8 +11816,6 @@
 	"inside": "The marker box is outside the principal block box, as described in the section on the ::marker pseudo-element below.",
 	"outside": "The ::marker pseudo-element is an inline element placed immediately before all ::before pseudo-elements in the principal block box, after which the element's content flows.",
 	"symbols()": "Allows a counter style to be defined inline.",
-	"alpha": "Indicates that the alpha values of the mask should be used.",
-	"luminance": "Indicates that the luminance values of the mask should be used.",
 	"path()": "Defines an SVG path as a string, with optional 'fill-rule' as the first argument.",
 	"block-axis": "Elements are oriented along the box's axis.",
 	"inline-axis": "Elements are oriented vertically.",

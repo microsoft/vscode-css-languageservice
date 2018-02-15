@@ -4283,7 +4283,7 @@
 				</value>
 			</values>
 		</entry>
-		<entry name="mask-image" restriction="url, image, enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-masking-1/#the-mask-image">
+		<entry name="mask-image" restriction="url, image, enum" version="3.0" browsers="E,FF53" ref="http://www.w3.org/TR/css-masking-1/#the-mask-image">
 			<desc>Sets the mask layer image of an element.</desc>
 			<values>
 				<value name="none" version="3.0" browsers="all">
@@ -4294,7 +4294,7 @@
 				</value>
 			</values>
 		</entry>
-		<entry name="mask-mode" restriction="url, image, enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-masking-1/#the-mask-mode">
+		<entry name="mask-mode" restriction="url, image, enum" version="3.0" browsers="FF53" ref="http://www.w3.org/TR/css-masking-1/#the-mask-mode">
 			<desc>Indicates whether the mask layer image is treated as luminance mask or alpha mask.</desc>
 			<values>
 				<value name="alpha" version="3.0" browsers="all">
@@ -4308,16 +4308,16 @@
 				</value>
 			</values>
 		</entry>
-		<entry name="mask-origin" restriction="geometry-box, enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-masking-1/#the-mask-origin">
+		<entry name="mask-origin" restriction="geometry-box, enum" version="3.0" browsers="FF53" ref="http://www.w3.org/TR/css-masking-1/#the-mask-origin">
 			<desc>Specifies the mask positioning area.</desc>
 		</entry>
-		<entry name="mask-position" restriction="position, length, percentage" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-masking-1/#the-mask-position">
+		<entry name="mask-position" restriction="position, length, percentage" version="3.0" browsers="FF53" ref="http://www.w3.org/TR/css-masking-1/#the-mask-position">
 			<desc>Specifies how mask layer images are positioned.</desc>
 		</entry>
-		<entry name="mask-repeat" restriction="repeat" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-masking-1/#the-mask-repeat">
+		<entry name="mask-repeat" restriction="repeat" version="3.0" browsers="FF53" ref="http://www.w3.org/TR/css-masking-1/#the-mask-repeat">
 			<desc>Specifies how mask layer images are tiled after they have been sized and positioned.</desc>
 		</entry>
-		<entry name="mask-size" restriction="length, percentage, enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-masking-1/#the-mask-size">
+		<entry name="mask-size" restriction="length, percentage, enum" version="3.0" browsers="F53" ref="http://www.w3.org/TR/css-masking-1/#the-mask-size">
 			<desc>Specifies the size of the mask layer images.</desc>
 			<values>
 				<value name="auto" version="3.0" browsers="all">
