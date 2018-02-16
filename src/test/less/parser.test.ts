@@ -297,4 +297,9 @@ suite('LESS - Parser', () => {
 		assertError('url("http://msft.com"', parser, parser._parseURILiteral.bind(parser), ParseError.RightParenthesisExpected);
 		assertError('url(http://msft.com\')', parser, parser._parseURILiteral.bind(parser), ParseError.RightParenthesisExpected);
 	});
+
+	test('@plugin', function () {
+		let parser = new LESSParser();
+		assertNode('@plugin "my-plugin";', parser, parser._parseStylesheet.bind(parser));
+	});
 });

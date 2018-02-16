@@ -80,7 +80,8 @@ export enum NodeType {
 	Supports,
 	SupportsCondition,
 	NamespacePrefix,
-	GridLine
+	GridLine,
+	Plugin
 }
 
 export enum ReferenceType {

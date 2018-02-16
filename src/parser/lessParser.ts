@@ -24,7 +24,8 @@ export class LESSParser extends cssParser.Parser {
 		return this._tryParseMixinDeclaration()
 			|| this._tryParseMixinReference(true)
 			|| super._parseStylesheetStatement()
-			|| this._parseVariableDeclaration();
+			|| this._parseVariableDeclaration()
+			|| this._parsePlugin();
 	}
 
 	public _parseImport(): nodes.Node {
@@ -57,6 +58,25 @@ export class LESSParser extends cssParser.Parser {
 
 		if (!this.peek(TokenType.SemiColon) && !this.peek(TokenType.EOF)) {
 			node.setMedialist(this._parseMediaQueryList());
+		}
+
+		return this.finish(node);
+	}
+
+	public _parsePlugin(): nodes.Node {
+		if (!this.peekKeyword('@plugin')) {
+			return null;
+		}
+
+		let node = this.createNode(nodes.NodeType.Plugin);
+		this.consumeToken(); // @import
+
+		if (!node.addChild(this._parseStringLiteral())) {
+			return this.finish(node, ParseError.StringLiteralExpected);
+		}
+
+		if (!this.accept(TokenType.SemiColon)) {
+			return this.finish(node, ParseError.SemiColonExpected);
 		}
 
 		return this.finish(node);
