@@ -7,8 +7,8 @@
 import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
-import {TextDocument, Position} from 'vscode-languageserver-types';
-import {assertCompletion, ItemDescription} from '../css/completion.test';
+import { TextDocument, Position } from 'vscode-languageserver-types';
+import { assertCompletion, ItemDescription } from '../css/completion.test';
 
 suite('SCSS - Completions', () => {
 
@@ -103,6 +103,17 @@ suite('SCSS - Completions', () => {
 			items: [
 				{ label: 'display' }
 			]
-		});		
+		});
+		// issue 43876
+		testCompletionFor('.foo { } @mixin bar { @extend | }', {
+			items: [
+				{ label: '.foo' }
+			]
+		});
+		testCompletionFor('.foo { } @mixin bar { @extend fo| }', {
+			items: [
+				{ label: '.foo' }
+			]
+		});
 	});
 });

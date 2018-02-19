@@ -178,5 +178,18 @@ export class SCSSCompletion extends CSSCompletion {
 		return super.getCompletionsForDeclarationProperty(declaration, result);
 	}
 
+	public getCompletionsForExtendsReference(extendsRef: nodes.ExtendsReference, existingNode: nodes.Node, result: CompletionList): CompletionList {
+		let symbols = this.getSymbolContext().findSymbolsAtOffset(this.offset, nodes.ReferenceType.Rule);
+		for (let symbol of symbols) {
+			const suggest: CompletionItem = {
+				label: symbol.name,
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), symbol.name),
+				kind: CompletionItemKind.Function,
+			};
+			result.items.push(suggest);
+		}
+		return result;
+	}
+
 }
 

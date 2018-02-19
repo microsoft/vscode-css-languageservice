@@ -33,7 +33,7 @@ export class CSSCompletion {
 		this.variablePrefix = variablePrefix;
 	}
 
-	private getSymbolContext(): Symbols {
+	protected getSymbolContext(): Symbols {
 		if (!this.symbolContext) {
 			this.symbolContext = new Symbols(this.styleSheet);
 		}
@@ -62,8 +62,13 @@ export class CSSCompletion {
 				} else if (node instanceof nodes.Expression) {
 					this.getCompletionsForExpression(<nodes.Expression>node, result);
 				} else if (node instanceof nodes.SimpleSelector) {
-					let parentRuleSet = <nodes.RuleSet>node.findParent(nodes.NodeType.Ruleset);
-					this.getCompletionsForSelector(parentRuleSet, parentRuleSet.isNested(), result);
+					let parentExtRef = <nodes.ExtendsReference>node.findParent(nodes.NodeType.ExtendsReference);
+					if (parentExtRef) {
+						this.getCompletionsForExtendsReference(parentExtRef, node, result);
+					} else {
+						let parentRuleSet = <nodes.RuleSet>node.findParent(nodes.NodeType.Ruleset);
+						this.getCompletionsForSelector(parentRuleSet, parentRuleSet && parentRuleSet.isNested(), result);
+					}
 				} else if (node instanceof nodes.FunctionArgument) {
 					this.getCompletionsForFunctionArgument(<nodes.FunctionArgument>node, <nodes.Function>node.getParent(), result);
 				} else if (node instanceof nodes.Declarations) {
@@ -84,6 +89,8 @@ export class CSSCompletion {
 					this.getCompletionsForSupports(<nodes.Supports>node, result);
 				} else if (node instanceof nodes.SupportsCondition) {
 					this.getCompletionsForSupportsCondition(<nodes.SupportsCondition>node, result);
+				} else if (node instanceof nodes.ExtendsReference) {
+					this.getCompletionsForExtendsReference(<nodes.ExtendsReference>node, null, result);
 				}
 				if (result.items.length > 0) {
 					return this.finalize(result);
@@ -688,6 +695,8 @@ export class CSSCompletion {
 				// complete value
 				return this.getCompletionsForDeclarationValue(declaration, result);
 			}
+		} else if (node instanceof nodes.ExtendsReference) {
+			this.getCompletionsForExtendsReference(node, null, result);
 		}
 		return result;
 	}
@@ -807,6 +816,9 @@ export class CSSCompletion {
 		return this.getCompletionForTopLevel(result);
 	}
 
+	public getCompletionsForExtendsReference(extendsRef: nodes.ExtendsReference, existingNode: nodes.Node, result: CompletionList): CompletionList {
+		return result;
+	}
 
 }
 
