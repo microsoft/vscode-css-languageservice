@@ -3713,8 +3713,23 @@
 		<entry name="justify-content" restriction="enum" version="3.0" browsers="E,C29,FF22,IE11,O12.1,S9" ref="http://www.w3.org/TR/css3-flexbox/#align-content" syntax="p { $(name): flex-start; }">
 			<desc>Aligns flex items along the main axis of the current line of the flex container.</desc>
 			<values>
-				<value name="center" version="3.0" browsers="all">
-					<desc>Flex items are packed toward the center of the line.</desc>
+				<value name="start" version="3.0" browsers="all">
+					<desc>The items are packed flush to each other toward the start edge of the alignment container in the main axis.</desc>
+				</value>
+				<value name="end" version="3.0" browsers="all">
+					<desc>The items are packed flush to each other toward the end edge of the alignment container in the main axis.</desc>
+				</value>
+				<value name="left" version="3.0" browsers="all">
+					<desc>The items are packed flush to each other toward the left edge of the alignment container in the main axis.</desc>
+				</value>
+				<value name="right" version="3.0" browsers="all">
+					<desc>The items are packed flush to each other toward the right edge of the alignment container in the main axis.</desc>
+				</value>
+				<value name="right" version="3.0" browsers="all">
+					<desc>The items are packed flush to each other toward the right edge of the alignment container in the main axis.</desc>
+				</value>
+				<value name="space-evenly" version="3.0" browsers="all">
+					<desc>The items are evenly distributed within the alignment container along the main axis.</desc>
 				</value>
 				<value name="flex-end" version="3.0" browsers="all">
 					<desc>Flex items are packed toward the end of the line.</desc>

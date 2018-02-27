@@ -4293,8 +4293,27 @@
 				"restriction": "enum",
 				"values": [
 					{
-						"name": "center",
-						"desc": "Flex items are packed toward the center of the line."
+						"name": "start",
+						"desc": "The items are packed flush to each other toward the start edge of the alignment container in the main axis."
+					},
+					{
+						"name": "end",
+						"desc": "The items are packed flush to each other toward the end edge of the alignment container in the main axis."
+					},
+					{
+						"name": "left",
+						"desc": "The items are packed flush to each other toward the left edge of the alignment container in the main axis."
+					},
+					{
+						"name": "right",
+						"desc": "The items are packed flush to each other toward the right edge of the alignment container in the main axis."
+					},
+					{
+						"name": "right",
+						"desc": "The items are packed flush to each other toward the right edge of the alignment container in the main axis."
+					},
+					{
+						"name": "space-evenly"
 					},
 					{
 						"name": "flex-end",
@@ -11811,6 +11830,7 @@
 	"active": "The input method editor is initially active; text entry is performed using it unless the user specifically dismisses it.",
 	"disabled": "The input method editor is disabled and may not be activated by the user.",
 	"inactive": "The input method editor is initially inactive, but the user may activate it if they wish.",
+	"space-evenly": "The items are evenly distributed within the alignment container along the main axis.",
 	"circle": "A hollow circle.",
 	"disc": "A filled circle.",
 	"inside": "The marker box is outside the principal block box, as described in the section on the ::marker pseudo-element below.",
