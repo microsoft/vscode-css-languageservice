@@ -3725,9 +3725,15 @@
 				<value name="right" version="3.0" browsers="all">
 					<desc>The items are packed flush to each other toward the right edge of the alignment container in the main axis.</desc>
 				</value>
-				<value name="right" version="3.0" browsers="all">
-					<desc>The items are packed flush to each other toward the right edge of the alignment container in the main axis.</desc>
+				<value name="safe" version="3.0" browsers="all">
+					<desc>If the size of the item overflows the alignment container, the item is instead aligned as if the alignment mode were start.</desc>
 				</value>
+				<value name="unsafe" version="3.0" browsers="all">
+					<desc>Regardless of the relative sizes of the item and alignment container, the given alignment value is honored.</desc>
+				</value>
+				<value name="stretch" version="3.0" browsers="all">
+					<desc>If the combined size of the alignment subjects is less than the size of the alignment container, any auto-sized alignment subjects have their size increased equally (not proportionally), while still respecting the constraints imposed by max-height/max-width (or equivalent functionality), so that the combined size exactly fills the alignment container.</desc>
+				</value>				
 				<value name="space-evenly" version="3.0" browsers="all">
 					<desc>The items are evenly distributed within the alignment container along the main axis.</desc>
 				</value>
@@ -3743,6 +3749,18 @@
 				<value name="space-between" version="3.0" browsers="all">
 					<desc>Flex items are evenly distributed in the line.</desc>
 				</value>
+				<value name="unsafe" version="3.0" browsers="all">
+					<desc>Regardless of the relative sizes of the item and alignment container, the given alignment value is honored.</desc>
+				</value>
+				<value name="baseline" version="3.0" browsers="all">
+					<desc>Specifies participation in first-baseline alignment.</desc>
+				</value>
+				<value name="first baseline" version="3.0" browsers="all">
+					<desc>Specifies participation in first-baseline alignment.</desc>
+				</value>	
+				<value name="last baseline" version="3.0" browsers="all">
+					<desc>Specifies participation in last-baseline alignment.</desc>
+				</value>								
 			</values>
 		</entry>
 		<entry name="kerning" restriction="length, enum" version="3.0" browsers="all" ref="http://www.w3.org/TR/SVG11/text.html#KerningProperty">

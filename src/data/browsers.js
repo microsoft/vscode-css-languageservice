@@ -4309,8 +4309,14 @@
 						"desc": "The items are packed flush to each other toward the right edge of the alignment container in the main axis."
 					},
 					{
-						"name": "right",
-						"desc": "The items are packed flush to each other toward the right edge of the alignment container in the main axis."
+						"name": "safe"
+					},
+					{
+						"name": "unsafe"
+					},
+					{
+						"name": "stretch",
+						"desc": "If the combined size of the alignment subjects is less than the size of the alignment container, any auto-sized alignment subjects have their size increased equally (not proportionally), while still respecting the constraints imposed by max-height/max-width (or equivalent functionality), so that the combined size exactly fills the alignment container."
 					},
 					{
 						"name": "space-evenly"
@@ -4330,6 +4336,21 @@
 					{
 						"name": "space-between",
 						"desc": "Flex items are evenly distributed in the line."
+					},
+					{
+						"name": "unsafe"
+					},
+					{
+						"name": "baseline",
+						"desc": "Specifies participation in first-baseline alignment."
+					},
+					{
+						"name": "first baseline",
+						"desc": "Specifies participation in first-baseline alignment."
+					},
+					{
+						"name": "last baseline",
+						"desc": "Specifies participation in last-baseline alignment."
 					}
 				]
 			},
@@ -11830,6 +11851,8 @@
 	"active": "The input method editor is initially active; text entry is performed using it unless the user specifically dismisses it.",
 	"disabled": "The input method editor is disabled and may not be activated by the user.",
 	"inactive": "The input method editor is initially inactive, but the user may activate it if they wish.",
+	"safe": "If the size of the item overflows the alignment container, the item is instead aligned as if the alignment mode were start.",
+	"unsafe": "Regardless of the relative sizes of the item and alignment container, the given alignment value is honored.",
 	"space-evenly": "The items are evenly distributed within the alignment container along the main axis.",
 	"circle": "A hollow circle.",
 	"disc": "A filled circle.",
