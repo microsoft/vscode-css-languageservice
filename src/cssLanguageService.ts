@@ -21,7 +21,11 @@ import { SCSSCompletion } from './services/scssCompletion';
 import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
 
-export type Stylesheet = {};
+export type Stylesheet = {
+	offset: number;
+	length: number;
+	end: number;
+};
 export { TextEdit, Range };
 
 export interface Color {
