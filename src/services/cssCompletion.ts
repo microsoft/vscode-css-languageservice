@@ -678,7 +678,7 @@ export class CSSCompletion {
 
 		if (node instanceof nodes.AbstractDeclaration) {
 			let declaration = <nodes.AbstractDeclaration>node;
-			if (!isDefined(declaration.colonPosition || this.offset <= declaration.colonPosition)) {
+			if (!isDefined(declaration.colonPosition) || this.offset <= declaration.colonPosition) {
 
 				// complete property
 				return this.getCompletionsForDeclarationProperty(declaration as nodes.Declaration, result);
