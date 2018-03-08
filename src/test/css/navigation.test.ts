@@ -14,16 +14,12 @@ import { colorFrom256RGB, colorFromHSL } from '../../services/languageFacts';
 import { TextDocument, DocumentHighlightKind, Range, Position, TextEdit } from 'vscode-languageserver-types';
 import { ColorInformation, getCSSLanguageService, LanguageService, ColorPresentation, Color } from '../../cssLanguageService';
 
-function asPromise<T>(result: T): Promise<T> {
-	return Promise.resolve(result);
-}
-
 export function assertScopesAndSymbols(p: Parser, input: string, expected: string): void {
 	let global = createScope(p, input);
 	assert.equal(scopeToString(global), expected);
 }
 
-export function assertHighlights(p: Parser, input: string, marker: string, expectedMatches: number, expectedWrites: number, elementName?: string): PromiseLike<void> {
+export function assertHighlights(p: Parser, input: string, marker: string, expectedMatches: number, expectedWrites: number, elementName?: string) {
 	let document = TextDocument.create('test://test/test.css', 'css', 0, input);
 
 	let stylesheet = p.parseStylesheet(document);
@@ -32,20 +28,19 @@ export function assertHighlights(p: Parser, input: string, marker: string, expec
 	let index = input.indexOf(marker) + marker.length;
 	let position = document.positionAt(index);
 
-	return asPromise(new CSSNavigation().findDocumentHighlights(document, position, stylesheet)).then(highlights => {
-		assert.equal(highlights.length, expectedMatches, input);
+	let highlights = new CSSNavigation().findDocumentHighlights(document, position, stylesheet);
+	assert.equal(highlights.length, expectedMatches, input);
 
-		let nWrites = 0;
-		for (let highlight of highlights) {
-			if (highlight.kind === DocumentHighlightKind.Write) {
-				nWrites++;
-			}
-			let range = highlight.range;
-			let start = document.offsetAt(range.start), end = document.offsetAt(range.end);
-			assert.equal(document.getText().substring(start, end), elementName || marker);
+	let nWrites = 0;
+	for (let highlight of highlights) {
+		if (highlight.kind === DocumentHighlightKind.Write) {
+			nWrites++;
 		}
-		assert.equal(nWrites, expectedWrites, input);
-	});
+		let range = highlight.range;
+		let start = document.offsetAt(range.start), end = document.offsetAt(range.end);
+		assert.equal(document.getText().substring(start, end), elementName || marker);
+	}
+	assert.equal(nWrites, expectedWrites, input);
 }
 
 export function assertColorSymbols(ls: LanguageService, input: string, ...expected: ColorInformation[]) {
@@ -194,12 +189,10 @@ suite('CSS - Symbols', () => {
 		assertScopesAndSymbols(p, '@font-face { font-family: "Bitstream Vera Serif Bold"; }', '[]');
 	});
 
-	test('mark highlights', function (testDone) {
+	test('mark highlights', function () {
 		let p = new Parser();
-		Promise.all([
-			assertHighlights(p, '@keyframes id {}; #main { animation: id 4s linear 0s infinite alternate; }', 'id', 2, 1),
-			assertHighlights(p, '@keyframes id {}; #main { animation-name: id; foo: id;}', 'id', 2, 1)
-		]).then(() => testDone(), (error) => testDone(error));
+		assertHighlights(p, '@keyframes id {}; #main { animation: id 4s linear 0s infinite alternate; }', 'id', 2, 1);
+		assertHighlights(p, '@keyframes id {}; #main { animation-name: id; foo: id;}', 'id', 2, 1);
 	});
 
 	test('test variables in root scope', function () {
@@ -222,46 +215,34 @@ suite('CSS - Symbols', () => {
 		assertSymbolsInScope(p, '.a{ --var1: abc; } .b{ --var2: abc; } :root{ --var3: abc;}', 2, { name: '--var1', type: nodes.ReferenceType.Variable }, { name: '--var2', type: nodes.ReferenceType.Variable }, { name: '--var3', type: nodes.ReferenceType.Variable });
 	});
 
-	test('mark occurrences for variable defined in root and used in a rule', function (testDone) {
+	test('mark occurrences for variable defined in root and used in a rule', function () {
 		let p = new Parser();
-		Promise.all([
-			assertHighlights(p, '.a{ background: let(--var1); } :root{ --var1: abc;}', '--var1', 2, 1)
-		]).then(() => testDone(), (error) => testDone(error));
+		assertHighlights(p, '.a{ background: let(--var1); } :root{ --var1: abc;}', '--var1', 2, 1);
 	});
 
-	test('mark occurrences for variable defined in a rule and used in a different rule', function (testDone) {
+	test('mark occurrences for variable defined in a rule and used in a different rule', function () {
 		let p = new Parser();
-		Promise.all([
-			assertHighlights(p, '.a{ background: let(--var1); } :b{ --var1: abc;}', '--var1', 2, 1)
-		]).then(() => testDone(), (error) => testDone(error));
+		assertHighlights(p, '.a{ background: let(--var1); } :b{ --var1: abc;}', '--var1', 2, 1);
 	});
 
-	test('mark occurrences for property', function (testDone) {
+	test('mark occurrences for property', function () {
 		let p = new Parser();
-		Promise.all([
-			assertHighlights(p, 'body { display: inline } #foo { display: inline }', 'display', 2, 0)
-		]).then(() => testDone(), (error) => testDone(error));
+		assertHighlights(p, 'body { display: inline } #foo { display: inline }', 'display', 2, 0);
 	});
 
-	test('mark occurrences for value', function (testDone) {
+	test('mark occurrences for value', function () {
 		let p = new Parser();
-		Promise.all([
-			assertHighlights(p, 'body { display: inline } #foo { display: inline }', 'inline', 2, 0)
-		]).then(() => testDone(), (error) => testDone(error));
+		assertHighlights(p, 'body { display: inline } #foo { display: inline }', 'inline', 2, 0);
 	});
 
-	test('mark occurrences for selector', function (testDone) {
+	test('mark occurrences for selector', function () {
 		let p = new Parser();
-		Promise.all([
-			assertHighlights(p, 'body { display: inline } #foo { display: inline }', 'body', 1, 1)
-		]).then(() => testDone(), (error) => testDone(error));
+		assertHighlights(p, 'body { display: inline } #foo { display: inline }', 'body', 1, 1);
 	});
 
-	test('mark occurrences for comment', function (testDone) {
+	test('mark occurrences for comment', function () {
 		let p = new Parser();
-		Promise.all([
-			assertHighlights(p, '/* comment */body { display: inline } ', 'comment', 0, 0)
-		]).then(() => testDone(), (error) => testDone(error));
+		assertHighlights(p, '/* comment */body { display: inline } ', 'comment', 0, 0);
 	});
 
 	test('color symbols', function () {
@@ -280,13 +261,13 @@ suite('CSS - Symbols', () => {
 			{ color: colorFromHSL(120, 0.75, 0.85), range: newRange(39, 57) }
 		);
 	});
-	
+
 	test('color presentations', function () {
 		let ls = getCSSLanguageService();
 		assertColorPresentations(ls, colorFrom256RGB(255, 0, 0), 'rgb(255, 0, 0)', '#ff0000', 'hsl(0, 100%, 50%)');
 		assertColorPresentations(ls, colorFrom256RGB(77, 33, 111, 0.5), 'rgba(77, 33, 111, 0.5)', '#4d216f80', 'hsla(274, 54%, 28%, 0.5)');
 	});
-	
+
 });
 
 function newRange(start: number, end: number) {

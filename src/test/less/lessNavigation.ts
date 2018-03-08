@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import {LESSParser} from '../../parser/lessParser';
+import { LESSParser } from '../../parser/lessParser';
 import * as nodes from '../../parser/cssNodes';
-import {assertScopeBuilding, assertSymbolsInScope, assertScopesAndSymbols, assertHighlights} from '../css/navigation.test';
+import { assertScopeBuilding, assertSymbolsInScope, assertScopesAndSymbols, assertHighlights } from '../css/navigation.test';
 
 suite('LESS - Symbols', () => {
 
@@ -38,18 +38,16 @@ suite('LESS - Symbols', () => {
 		assertScopesAndSymbols(p, 'a b { @var0: 1; c { d { } } }', '[@var0,c,[d,[]]]');
 	});
 
-	test('mark highlights', function (testDone) {
+	test('mark highlights', function () {
 		let p = new LESSParser();
-		Promise.all([
-			assertHighlights(p, '@var1: 1; @var2: /**/@var1;', '/**/', 2, 1, '@var1'),
-			assertHighlights(p, '@var1: 1; p { @var2: /**/@var1; }', '/**/', 2, 1, '@var1'),
-			assertHighlights(p, 'r1 { @var1: 1; p1: @var1;} r2,r3 { @var1: 1; p1: /**/@var1 + @var1;}', '/**/', 3, 1, '@var1'),
-			assertHighlights(p, '.r1 { r1: 1em; } r2 { r1: 2em; /**/.r1;}', '/**/', 2, 1, '.r1'),
-			assertHighlights(p, '.r1(@p1) { r1: @p1; } r2 { r1: 2em; /**/.r1(2px); }', '/**/', 2, 1, '.r1'),
-			assertHighlights(p, '/**/.r1(@p1) { r1: @p1; } r2 { r1: 2em; .r1(2px); }', '/**/', 2, 1, '.r1'),
-			assertHighlights(p, '@p1 : 1; .r1(@p1) { r1: /**/@p1; }', '/**/', 2, 1, '@p1'),
-			assertHighlights(p, '/**/@p1 : 1; .r1(@p1) { r1: @p1; }', '/**/', 1, 1, '@p1'),
-			assertHighlights(p, '@p1 : 1; .r1(/**/@p1) { r1: @p1; }', '/**/', 2, 1, '@p1'),
-		]).then(() => testDone(), (error) => testDone(error));
+		assertHighlights(p, '@var1: 1; @var2: /**/@var1;', '/**/', 2, 1, '@var1');
+		assertHighlights(p, '@var1: 1; p { @var2: /**/@var1; }', '/**/', 2, 1, '@var1');
+		assertHighlights(p, 'r1 { @var1: 1; p1: @var1;} r2,r3 { @var1: 1; p1: /**/@var1 + @var1;}', '/**/', 3, 1, '@var1');
+		assertHighlights(p, '.r1 { r1: 1em; } r2 { r1: 2em; /**/.r1;}', '/**/', 2, 1, '.r1');
+		assertHighlights(p, '.r1(@p1) { r1: @p1; } r2 { r1: 2em; /**/.r1(2px); }', '/**/', 2, 1, '.r1');
+		assertHighlights(p, '/**/.r1(@p1) { r1: @p1; } r2 { r1: 2em; .r1(2px); }', '/**/', 2, 1, '.r1');
+		assertHighlights(p, '@p1 : 1; .r1(@p1) { r1: /**/@p1; }', '/**/', 2, 1, '@p1');
+		assertHighlights(p, '/**/@p1 : 1; .r1(@p1) { r1: @p1; }', '/**/', 1, 1, '@p1');
+		assertHighlights(p, '@p1 : 1; .r1(/**/@p1) { r1: @p1; }', '/**/', 2, 1, '@p1');
 	});
 });

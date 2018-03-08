@@ -7,16 +7,12 @@
 import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
-import {CompletionList, TextDocument, TextEdit, Position, Range, Command} from 'vscode-languageserver-types';
-import {applyEdits} from '../textEditSupport';
-
-function asPromise<T>(result:T) : Promise<T> {
-	return Promise.resolve(result);
-}
+import { CompletionList, TextDocument, TextEdit, Position, Range, Command } from 'vscode-languageserver-types';
+import { applyEdits } from '../textEditSupport';
 
 suite('CSS - Code Actions', () => {
-	
-	let testCodeActions = function (value: string, tokenBefore: string): PromiseLike<{ commands: Command[]; document: TextDocument; }> {
+
+	let testCodeActions = function (value: string, tokenBefore: string, expected: { title: string; content: string; }[]) {
 		let ls = cssLanguageService.getCSSLanguageService();
 
 		let document = TextDocument.create('test://test/test.css', 'css', 0, value);
@@ -28,11 +24,10 @@ suite('CSS - Code Actions', () => {
 
 		ls.configure({ validate: true });
 
-		return asPromise(ls.doValidation(document, styleSheet)).then(diagnostics => {
-			return asPromise(ls.doCodeActions(document, range, { diagnostics }, styleSheet)).then(commands => {
-				return { commands, document };
-			});
-		});
+		let diagnostics = ls.doValidation(document, styleSheet);
+		let commands = ls.doCodeActions(document, range, { diagnostics }, styleSheet);
+
+		assertCodeAction(commands, document, expected);
 	};
 
 	let assertCodeAction = function (commands: Command[], document: TextDocument, expected: { title: string; content: string; }[]) {
@@ -48,21 +43,14 @@ suite('CSS - Code Actions', () => {
 		}
 	};
 
-	test('Unknown Properties', function (testDone): any {
-		Promise.all([
-			testCodeActions('body { /*here*/displai: inline }', '/*here*/').then((result) => {
-				assertCodeAction(result.commands, result.document, [
-					{ title: 'Rename to \'display\'', content: 'body { /*here*/display: inline }' }
-				]);
-			}),
-
-			testCodeActions('body { /*here*/background-colar: red }', '/*here*/').then((result) => {
-				assertCodeAction(result.commands, result.document, [
-					{ title: 'Rename to \'background-color\'', content: 'body { /*here*/background-color: red }' },
-					{ title: 'Rename to \'background-clip\'', content: 'body { /*here*/background-clip: red }' },
-					{ title: 'Rename to \'background-image\'', content: 'body { /*here*/background-image: red }' }
-				]);
-			})
-		]).then(() => testDone(), (error) => testDone(error));
+	test('Unknown Properties', async function () {
+		testCodeActions('body { /*here*/displai: inline }', '/*here*/', [
+			{ title: 'Rename to \'display\'', content: 'body { /*here*/display: inline }' }
+		]);
+		testCodeActions('body { /*here*/background-colar: red }', '/*here*/', [
+			{ title: 'Rename to \'background-color\'', content: 'body { /*here*/background-color: red }' },
+			{ title: 'Rename to \'background-clip\'', content: 'body { /*here*/background-clip: red }' },
+			{ title: 'Rename to \'background-image\'', content: 'body { /*here*/background-image: red }' }
+		]);
 	});
 });
