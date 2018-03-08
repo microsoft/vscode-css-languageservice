@@ -1,3 +1,7 @@
+3.0.8 2018-03-08
+==================
+  * Provide ems modules in lib/esm
+
 3.0.0 / 2017-01-11
 ==================
   * Changed API `LanguageService.getColorPresentations`: separate parameters `range` and `color` (to match LS API)

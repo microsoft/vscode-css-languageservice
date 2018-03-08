@@ -364,6 +364,13 @@ fs.readFile(path.resolve(__dirname, schemaFileName), function(err, data) {
 			}
 		};
 
+		function toJavaScript(obj) {
+			var str = JSON.stringify(obj, null, '\t');
+			return str.replace(/\"(name|desc|browsers|restriction|values)\"/g, '$1');
+		}
+		
+		var descriptionsStr = JSON.stringify(descriptions, null, '\t');
+
 		var output = [
 			'/*---------------------------------------------------------------------------------------------',
 			' *  Copyright (c) Microsoft Corporation. All rights reserved.',
@@ -371,19 +378,11 @@ fs.readFile(path.resolve(__dirname, schemaFileName), function(err, data) {
 			' *--------------------------------------------------------------------------------------------*/',
 			'// file generated from ' + schemaFileName + ' using css-exclude_generate_browserjs.js',
 			'',
-			'(function (factory) {',
-			'\tif (typeof module === "object" && typeof module.exports === "object") {',
-			'\t\tvar v = factory(require, exports); if (v !== undefined) module.exports = v;',
-			'\t} else if (typeof define === "function" && define.amd) {',
-			'\t\tdefine(["require", "exports"], factory);',
-			'\t}',
-			'})(function (require, exports) {',
-			'\texports.data = ' + JSON.stringify(resultObject, null, '\t') + ';',
-			'\texports.descriptions = ' + JSON.stringify(descriptions, null, '\t') + ';',
-			'});'
+			'export const data : any = ' + toJavaScript(resultObject) + ';',
+			'export const descriptions : any = ' + toJavaScript(descriptions) + ';',
 		];
 
-		var outputPath = path.resolve(__dirname, '../src/data/browsers.js');
+		var outputPath = path.resolve(__dirname, '../src/data/browsers.ts');
 		console.log('Writing to: ' + outputPath);
 		var content = output.join(os.EOL);
 		fs.writeFileSync(outputPath, content);

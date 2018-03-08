@@ -10,7 +10,7 @@ import * as nodes from '../parser/cssNodes';
 
 import * as nls from 'vscode-nls';
 import { ITextProvider } from '../parser/cssNodes';
-import { TextDocument } from 'vscode-languageserver-types/lib/main';
+import { TextDocument } from 'vscode-languageserver-types';
 const localize = nls.loadMessageBundle();
 
 class Element {
