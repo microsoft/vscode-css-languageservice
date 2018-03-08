@@ -8,7 +8,6 @@ import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
 import { CompletionList, TextDocument, TextEdit, Position, CompletionItemKind, InsertTextFormat, Range } from 'vscode-languageserver-types';
-import { applyEdits } from '../textEditSupport';
 
 export interface ItemDescription {
 	label: string;
@@ -45,7 +44,7 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 		assert.equal(match.kind, expected.kind);
 	}
 	if (expected.resultText) {
-		assert.equal(applyEdits(document, [match.textEdit]), expected.resultText);
+		assert.equal(TextDocument.applyEdits(document, [match.textEdit]), expected.resultText);
 	}
 	if (expected.insertTextFormat) {
 		assert.equal(match.insertTextFormat, expected.insertTextFormat);

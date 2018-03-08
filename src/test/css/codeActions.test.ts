@@ -8,7 +8,6 @@ import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
 import { CompletionList, TextDocument, TextEdit, Position, Range, Command } from 'vscode-languageserver-types';
-import { applyEdits } from '../textEditSupport';
 
 suite('CSS - Code Actions', () => {
 
@@ -37,7 +36,7 @@ suite('CSS - Code Actions', () => {
 			let index = labels.indexOf(exp.title);
 			assert.ok(index !== -1, 'Quick fix not found: ' + exp.title + ' , found:' + labels.join(','));
 			let command = commands[index];
-			assert.equal(applyEdits(document, <TextEdit[]>command.arguments[2]), exp.content);
+			assert.equal(TextDocument.applyEdits(document, <TextEdit[]>command.arguments[2]), exp.content);
 			assert.equal(command.arguments[0], document.uri);
 			assert.equal(command.arguments[1], document.version);
 		}
