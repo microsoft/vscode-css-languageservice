@@ -149,23 +149,31 @@ export class CSSCompletion {
 				if (entry.browsers.onCodeComplete) {
 					let range: Range;
 					let insertText: string;
+					let retrigger = false;
 					if (declaration) {
 						range = this.getCompletionRange(declaration.getProperty());
-						insertText = entry.name + (!isDefined(declaration.colonPosition) ? ': ' : '');
+						insertText = entry.name;
+						if (!isDefined(declaration.colonPosition)) {
+							insertText += ': ';
+							retrigger = true;
+						}
 					} else {
 						range = this.getCompletionRange(null);
 						insertText = entry.name + ': ';
+						retrigger = true;
 					}
 					let item: CompletionItem = {
 						label: entry.name,
 						documentation: languageFacts.getEntryDescription(entry),
 						textEdit: TextEdit.replace(range, insertText),
-						kind: CompletionItemKind.Property,
-						command: {
+						kind: CompletionItemKind.Property
+					};
+					if (retrigger) {
+						item.command = {
 							title: 'Suggest',
 							command: 'editor.action.triggerSuggest'
-						}
-					};
+						};
+					}
 					if (strings.startsWith(entry.name, '-')) {
 						item.sortText = 'x';
 					}
