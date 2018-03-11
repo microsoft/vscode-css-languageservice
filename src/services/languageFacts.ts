@@ -333,7 +333,7 @@ export function isColorValue(node: nodes.Node): boolean {
 	if (node.type === nodes.NodeType.HexColorValue) {
 		return true;
 	} else if (node.type === nodes.NodeType.Function) {
-		return this.isColorConstructor(<nodes.Function>node);
+		return isColorConstructor(<nodes.Function>node);
 	} else if (node.type === nodes.NodeType.Identifier) {
 		if (node.parent && node.parent.type !== nodes.NodeType.Term) {
 			return false;
@@ -564,7 +564,7 @@ export function getPageBoxDirectives(): string[] {
 
 export function getEntryDescription(entry: { description: string; browsers: Browsers }): string {
 	let desc = entry.description || '';
-	let browserLabel = this.getBrowserLabel(entry.browsers);
+	let browserLabel = getBrowserLabel(entry.browsers);
 	if (browserLabel) {
 		if (desc) {
 			desc = desc + '\n';
