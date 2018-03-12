@@ -9,6 +9,8 @@
 		"outDir": "../lib/umd",
 		"lib": [
 			"es5", "es2015.promise"
-		]
+		],
+		"strictFunctionTypes": true,
+		"strictPropertyInitialization": true
 	}
 }

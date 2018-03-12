@@ -95,9 +95,9 @@ export enum ReferenceType {
 
 
 
-export function getNodeAtOffset(node: Node, offset: number): Node {
+export function getNodeAtOffset(node: Node, offset: number): Node | null {
 
-	let candidate: Node = null;
+	let candidate: Node | null = null;
 	if (!node || offset < node.offset || offset > node.end) {
 		return null;
 	}
@@ -122,8 +122,8 @@ export function getNodeAtOffset(node: Node, offset: number): Node {
 
 export function getNodePath(node: Node, offset: number): Node[] {
 
-	let candidate: Node = getNodeAtOffset(node, offset),
-		path: Node[] = [];
+	let candidate = getNodeAtOffset(node, offset);
+	let path: Node[] = [];
 
 	while (candidate) {
 		path.unshift(candidate);
@@ -133,7 +133,7 @@ export function getNodePath(node: Node, offset: number): Node[] {
 	return path;
 }
 
-export function getParentDeclaration(node: Node): Declaration {
+export function getParentDeclaration(node: Node): Declaration | null {
 	let decl = <Declaration>node.findParent(NodeType.Declaration);
 	if (decl && decl.getValue() && decl.getValue().encloses(node)) {
 		return decl;
@@ -148,20 +148,20 @@ export interface ITextProvider {
 
 export class Node {
 
-	public parent: Node;
+	public parent: Node | null;
 
 	public offset: number;
 	public length: number;
 	public get end() { return this.offset + this.length; }
 
-	public options: { [name: string]: any; };
+	public options: { [name: string]: any; } | undefined;
 
-	public textProvider: ITextProvider; // only set on the root node
+	public textProvider: ITextProvider | undefined; // only set on the root node
 
-	private children: Node[];
-	private issues: IMarker[];
+	private children: Node[] | undefined;
+	private issues: IMarker[] | undefined;
 
-	private nodeType: NodeType;
+	private nodeType: NodeType | undefined;
 
 	constructor(offset: number = -1, len: number = -1, nodeType?: NodeType) {
 		this.parent = null;
@@ -181,12 +181,12 @@ export class Node {
 	}
 
 	public getTextProvider(): ITextProvider {
-		let node: Node = this;
+		let node: Node | null = this;
 		while (node && !node.textProvider) {
 			node = node.parent;
 		}
 		if (node) {
-			return node.textProvider;
+			return node.textProvider!;
 		}
 		return () => { return 'unknown'; };
 	}
@@ -260,20 +260,20 @@ export class Node {
 	}
 
 	public hasIssue(rule: IRule): boolean {
-		return this.issues && this.issues.some(i => i.getRule() === rule);
+		return Array.isArray(this.issues) && this.issues.some(i => i.getRule() === rule);
 	}
 
 	public isErroneous(recursive: boolean = false): boolean {
 		if (this.issues && this.issues.length > 0) {
 			return true;
 		}
-		return recursive && this.children && this.children.some(c => c.isErroneous(true));
+		return recursive && Array.isArray(this.children) && this.children.some(c => c.isErroneous(true));
 	}
 
-	public setNode(field: string, node: Node, index: number = -1): boolean {
+	public setNode(field: keyof this, node: Node, index: number = -1): boolean {
 		if (node) {
 			node.attachTo(this, index);
-			this[field] = node;
+			(<any>this)[field] = node;
 			return true;
 		}
 		return false;
@@ -444,13 +444,13 @@ export class Declarations extends Node {
 
 export class BodyDeclaration extends Node {
 
-	private declarations: Declarations;
+	public declarations: Declarations | undefined;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
 
-	public getDeclarations(): Declarations {
+	public getDeclarations(): Declarations | undefined {
 		return this.declarations;
 	}
 
@@ -480,7 +480,7 @@ export class RuleSet extends BodyDeclaration {
 	}
 
 	public isNested(): boolean {
-		return this.parent && this.parent.findParent(NodeType.Declarations) !== null;
+		return !!this.parent && this.parent.findParent(NodeType.Declarations) !== null;
 	}
 }
 
@@ -513,7 +513,7 @@ export class SimpleSelector extends Node {
 
 export class AtApplyRule extends Node {
 
-	private identifier: Identifier;
+	public identifier: Identifier | undefined;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -527,7 +527,7 @@ export class AtApplyRule extends Node {
 		return this.setNode('identifier', node, 0);
 	}
 
-	public getIdentifier(): Identifier {
+	public getIdentifier(): Identifier | undefined {
 		return this.identifier;
 	}
 
@@ -539,8 +539,8 @@ export class AtApplyRule extends Node {
 export abstract class AbstractDeclaration extends Node {
 
 	// positions for code assist
-	public colonPosition: number;
-	public semicolonPosition: number; // semicolon following the declaration
+	public colonPosition: number | undefined;
+	public semicolonPosition: number | undefined; // semicolon following the declaration
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -548,9 +548,9 @@ export abstract class AbstractDeclaration extends Node {
 }
 
 export class CustomPropertyDeclaration extends AbstractDeclaration {
-	private property: Property;
-	private value: Expression;
-	private propertySet: CustomPropertySet;
+	public property: Property;
+	public value: Expression;
+	public propertySet: CustomPropertySet;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -597,9 +597,9 @@ export class CustomPropertySet extends BodyDeclaration {
 
 export class Declaration extends AbstractDeclaration {
 
-	private property: Property;
-	private value: Expression;
-	private nestedProprties: NestedProperties;
+	public property: Property;
+	public value: Expression;
+	public nestedProprties: NestedProperties;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -658,7 +658,7 @@ export class Declaration extends AbstractDeclaration {
 
 export class Property extends Node {
 
-	private identifier: Identifier;
+	public identifier: Identifier;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -707,7 +707,7 @@ export class Invocation extends Node {
 
 export class Function extends Invocation {
 
-	private identifier: Identifier;
+	public identifier: Identifier;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -733,8 +733,8 @@ export class Function extends Invocation {
 
 export class FunctionParameter extends Node {
 
-	private identifier: Node;
-	private defaultValue: Node;
+	public identifier: Node;
+	public defaultValue: Node;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -767,8 +767,8 @@ export class FunctionParameter extends Node {
 
 export class FunctionArgument extends Node {
 
-	private identifier: Node;
-	private value: Node;
+	public identifier: Node;
+	public value: Node;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -876,8 +876,8 @@ export class ElseStatement extends BodyDeclaration {
 }
 
 export class FunctionDeclaration extends BodyDeclaration {
-	private identifier: Identifier;
-	private parameters: Nodelist;
+	public identifier: Identifier;
+	public parameters: Nodelist;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -940,8 +940,8 @@ export class NestedProperties extends BodyDeclaration {
 
 export class Keyframe extends BodyDeclaration {
 
-	private keyword: Node;
-	private identifier: Identifier;
+	public keyword: Node;
+	public identifier: Identifier;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1130,9 +1130,9 @@ export class Expression extends Node {
 
 export class BinaryExpression extends Node {
 
-	private left: Node;
-	private right: Node;
-	private operator: Node;
+	public left: Node;
+	public right: Node;
+	public operator: Node;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1169,8 +1169,8 @@ export class BinaryExpression extends Node {
 
 export class Term extends Node {
 
-	private operator: Node;
-	private expression: Node;
+	public operator: Node;
+	public expression: Node;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1199,8 +1199,8 @@ export class Term extends Node {
 
 export class AttributeSelector extends Node {
 
-	private namespacePrefix: Node;
-	private expression: BinaryExpression;
+	public namespacePrefix: Node;
+	public expression: BinaryExpression;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1378,10 +1378,10 @@ export class ExtendsReference extends Node {
 
 
 export class MixinReference extends Node {
-	private namespaces: Nodelist;
-	private identifier: Identifier;
+	public namespaces: Nodelist;
+	public identifier: Identifier;
 	private arguments: Nodelist;
-	private content: BodyDeclaration;
+	public content: BodyDeclaration;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1428,7 +1428,7 @@ export class MixinReference extends Node {
 
 export class MixinDeclaration extends BodyDeclaration {
 
-	private identifier: Identifier;
+	public identifier: Identifier;
 	private parameters: Nodelist;
 	private guard: LessGuard;
 

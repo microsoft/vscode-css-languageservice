@@ -189,7 +189,7 @@ staticTokenTable[_LPA] = TokenType.ParenthesisL;
 staticTokenTable[_RPA] = TokenType.ParenthesisR;
 staticTokenTable[_CMA] = TokenType.Comma;
 
-const staticUnitTable: { [code: number]: TokenType; } = {};
+const staticUnitTable: { [code: string]: TokenType; } = {};
 staticUnitTable['em'] = TokenType.EMS;
 staticUnitTable['ex'] = TokenType.EXS;
 staticUnitTable['px'] = TokenType.Length;
@@ -211,7 +211,7 @@ staticUnitTable['dpcm'] = TokenType.Resolution;
 
 export class Scanner {
 
-	public stream: MultiLineStream;
+	public stream: MultiLineStream = new MultiLineStream('');
 	public ignoreComment = true;
 	public ignoreWhitespace = true;
 	public inURL = false;
@@ -241,7 +241,7 @@ export class Scanner {
 		this.stream.goBackTo(pos);
 	}
 
-	public scanUnquotedString(): IToken {
+	public scanUnquotedString(): IToken | null {
 		let offset = this.stream.pos();
 		let content: string[] = [];
 		if (this._unquotedString(content)) {
@@ -401,7 +401,7 @@ export class Scanner {
 		}
 	}
 
-	protected trivia(): IToken {
+	protected trivia(): IToken | null {
 		while (true) {
 			let offset = this.stream.pos();
 			if (this._whitespace()) {
@@ -523,7 +523,7 @@ export class Scanner {
 		return false;
 	}
 
-	private _string(result: string[]): TokenType {
+	private _string(result: string[]): TokenType | null {
 		if (this.stream.peekChar() === _SQO || this.stream.peekChar() === _DQO) {
 			let closeQuote = this.stream.nextChar();
 			result.push(String.fromCharCode(closeQuote));
