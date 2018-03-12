@@ -3,8 +3,13 @@
 		"no-unused-expression": true,
 		"no-string-throw": true,
 		"no-duplicate-variable": true,
+		"no-duplicate-imports": true,
+		"no-require-imports": true,
+		"new-parens": true,
+		"no-invalid-this": true,
 		"curly": true,
 		"class-name": true,
+		"indent": [true, "tabs", 2],
 		"semicolon": [
 			true,
 			"always"

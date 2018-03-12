@@ -5,7 +5,7 @@
 'use strict';
 
 import * as assert from 'assert';
-import * as nodes from '../../parser/cssNodes';
+import { Node, IRule, Level } from '../../parser/cssNodes';
 import { Parser } from '../../parser/cssParser';
 import { LintVisitor } from '../../services/lint';
 import { Rule, Rules, LintConfigurationSettings } from '../../services/lintRules';
@@ -13,9 +13,9 @@ import { TextDocument } from 'vscode-languageserver-types';
 import { SCSSParser } from '../../parser/scssParser';
 import { LESSParser } from '../../parser/lessParser';
 
-export function assertEntries(node: nodes.Node, document: TextDocument, rules: nodes.IRule[]): void {
+export function assertEntries(node: Node, document: TextDocument, rules: IRule[]): void {
 
-	let entries = LintVisitor.entries(node, document, new LintConfigurationSettings(), nodes.Level.Error | nodes.Level.Warning | nodes.Level.Ignore);
+	let entries = LintVisitor.entries(node, document, new LintConfigurationSettings(), Level.Error | Level.Warning | Level.Ignore);
 	assert.equal(entries.length, rules.length, entries.map(e => e.getRule().id).join(', '));
 
 	for (let entry of entries) {
