@@ -91,6 +91,8 @@ export class CSSCompletion {
 					this.getCompletionsForSupportsCondition(<nodes.SupportsCondition>node, result);
 				} else if (node instanceof nodes.ExtendsReference) {
 					this.getCompletionsForExtendsReference(<nodes.ExtendsReference>node, null, result);
+				} else if (node.parent.type === nodes.NodeType.URILiteral) {
+					this.getCompletionForUriLiteralValue(node, result);
 				}
 				if (result.items.length > 0) {
 					return this.finalize(result);
@@ -182,10 +184,12 @@ export class CSSCompletion {
 			}
 		}
 		this.completionParticipants.forEach(participant => {
-			participant.onCssProperty({
-				propertyName: this.currentWord,
-				range: this.defaultReplaceRange
-			});
+			if (participant.onCssProperty) {
+				participant.onCssProperty({
+					propertyName: this.currentWord,
+					range: this.defaultReplaceRange
+				});
+			}
 		});
 		return result;
 	}
@@ -205,11 +209,13 @@ export class CSSCompletion {
 		}
 
 		this.completionParticipants.forEach(participant => {
-			participant.onCssPropertyValue({
-				propertyName,
-				propertyValue: this.currentWord,
-				range: this.getCompletionRange(existingNode)
-			});
+			if (participant.onCssPropertyValue) {
+				participant.onCssPropertyValue({
+					propertyName,
+					propertyValue: this.currentWord,
+					range: this.getCompletionRange(existingNode)
+				});
+			}
 		});
 
 		if (entry) {
@@ -825,6 +831,20 @@ export class CSSCompletion {
 	}
 
 	public getCompletionsForExtendsReference(extendsRef: nodes.ExtendsReference, existingNode: nodes.Node, result: CompletionList): CompletionList {
+		return result;
+	}
+
+	public getCompletionForUriLiteralValue(uriValueNode: nodes.Node, result: CompletionList): CompletionList {
+		this.completionParticipants.forEach(participant => {
+			if (participant.onCssURILiteralValue) {
+				participant.onCssURILiteralValue({
+					uriValue: uriValueNode.getText(),
+					position: this.position,
+					range: this.defaultReplaceRange
+				});
+			}
+		});
+
 		return result;
 	}
 
