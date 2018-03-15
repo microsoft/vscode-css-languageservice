@@ -63,8 +63,8 @@ suite('CSS - Completion', () => {
 		let ls = cssLanguageService.getCSSLanguageService();
 		if (expected.participant) {
 			ls.setCompletionParticipants([{
-				onCssProperty: context => actualPropertyContexts.push(context),
-				onCssPropertyValue: context => actualPropertyValueContexts.push(context)
+				onProperty: context => actualPropertyContexts.push(context),
+				onPropertyValue: context => actualPropertyValueContexts.push(context)
 			}]);
 		}
 

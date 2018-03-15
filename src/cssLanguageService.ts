@@ -53,10 +53,27 @@ export interface ColorPresentation {
 	additionalTextEdits?: TextEdit[];
 }
 
+export interface PropertyCompletionContext {
+	propertyName: string;
+	range: Range;
+}
+
+export interface PropertyValueCompletionContext {
+	propertyName: string;
+	propertyValue?: string;
+	range: Range;
+}
+
+export interface URILiteralCompletionContext {
+	uriValue: string;
+	position: Position;
+	range: Range;
+}
+
 export interface ICompletionParticipant {
-	onCssProperty?: (context: { propertyName: string; range: Range; }) => void;
-	onCssPropertyValue?: (context: { propertyName: string; propertyValue?: string; range: Range; }) => void;
-	onCssURILiteralValue?: (context: { uriValue: string, position: Position, range: Range; }) => void;
+	onProperty?: (context: PropertyCompletionContext) => void;
+	onPropertyValue?: (context: PropertyValueCompletionContext) => void;
+	onURILiteralValue?: (context: URILiteralCompletionContext) => void;
 }
 
 export interface LanguageService {
