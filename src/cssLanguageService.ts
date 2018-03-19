@@ -53,9 +53,27 @@ export interface ColorPresentation {
 	additionalTextEdits?: TextEdit[];
 }
 
+export interface PropertyCompletionContext {
+	propertyName: string;
+	range: Range;
+}
+
+export interface PropertyValueCompletionContext {
+	propertyName: string;
+	propertyValue?: string;
+	range: Range;
+}
+
+export interface URILiteralCompletionContext {
+	uriValue: string;
+	position: Position;
+	range: Range;
+}
+
 export interface ICompletionParticipant {
-	onCssProperty: (context: { propertyName: string; range: Range; }) => void;
-	onCssPropertyValue: (context: { propertyName: string; propertyValue?: string; range: Range; }) => void;
+	onProperty?: (context: PropertyCompletionContext) => void;
+	onPropertyValue?: (context: PropertyValueCompletionContext) => void;
+	onURILiteralValue?: (context: URILiteralCompletionContext) => void;
 }
 
 export interface LanguageService {
@@ -83,7 +101,6 @@ export interface LanguageSettings {
 	validate?: boolean;
 	lint?: LintSettings;
 }
-
 
 function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover, navigation: CSSNavigation, codeActions: CSSCodeActions, validation: CSSValidation) {
 	return {

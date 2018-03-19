@@ -91,6 +91,8 @@ export class CSSCompletion {
 					this.getCompletionsForSupportsCondition(<nodes.SupportsCondition>node, result);
 				} else if (node instanceof nodes.ExtendsReference) {
 					this.getCompletionsForExtendsReference(<nodes.ExtendsReference>node, null, result);
+				} else if (node.type === nodes.NodeType.URILiteral) {
+					this.getCompletionForUriLiteralValue(node, result);
 				}
 				if (result.items.length > 0) {
 					return this.finalize(result);
@@ -182,10 +184,12 @@ export class CSSCompletion {
 			}
 		}
 		this.completionParticipants.forEach(participant => {
-			participant.onCssProperty({
-				propertyName: this.currentWord,
-				range: this.defaultReplaceRange
-			});
+			if (participant.onProperty) {
+				participant.onProperty({
+					propertyName: this.currentWord,
+					range: this.defaultReplaceRange
+				});
+			}
 		});
 		return result;
 	}
@@ -205,11 +209,13 @@ export class CSSCompletion {
 		}
 
 		this.completionParticipants.forEach(participant => {
-			participant.onCssPropertyValue({
-				propertyName,
-				propertyValue: this.currentWord,
-				range: this.getCompletionRange(existingNode)
-			});
+			if (participant.onPropertyValue) {
+				participant.onPropertyValue({
+					propertyName,
+					propertyValue: this.currentWord,
+					range: this.getCompletionRange(existingNode)
+				});
+			}
 		});
 
 		if (entry) {
@@ -828,6 +834,34 @@ export class CSSCompletion {
 		return result;
 	}
 
+	public getCompletionForUriLiteralValue(uriLiteralNode: nodes.Node, result: CompletionList): CompletionList {
+		let uriValue: string;
+		let position: Position;
+		let range: Range;
+		// No children, empty value
+		if (uriLiteralNode.getChildren().length === 0) {
+			uriValue = '';
+			position = this.position;
+			const emptyURIValuePosition = this.textDocument.positionAt(uriLiteralNode.offset + 'url('.length);
+			range = Range.create(emptyURIValuePosition, emptyURIValuePosition);
+		} else {
+			const uriValueNode = uriLiteralNode.getChild(0);
+			uriValue = uriValueNode.getText();
+			position = this.position;
+			range = this.getCompletionRange(uriValueNode);
+		}
+		this.completionParticipants.forEach(participant => {
+			if (participant.onURILiteralValue) {
+				participant.onURILiteralValue({
+					uriValue,
+					position,
+					range
+				});
+			}
+		});
+
+		return result;
+	}
 }
 
 class Set {
