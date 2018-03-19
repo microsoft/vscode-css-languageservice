@@ -178,15 +178,25 @@ export class CSSNavigation {
 
 	public findFoldingRegions(document: TextDocument, stylesheet: nodes.Stylesheet): FoldingRangeList {
 		const regions: FoldingRangeList = { ranges: [] };
-		stylesheet.getChildren().forEach(c => {
-			if (c.type === nodes.NodeType.Ruleset) {
-				regions.ranges.push({
-					startLine: document.positionAt(c.offset).line,
-					endLine: document.positionAt(c.end).line,
-					type: 'region'
+
+		function collectRegions(node: nodes.Node) {
+			const children = node.getChildren();
+			if (children.length !== 0) {
+
+				children.forEach(c => {
+					if (c.type === nodes.NodeType.Ruleset) {
+						regions.ranges.push({
+							startLine: document.positionAt(c.offset).line,
+							endLine: document.positionAt(c.end).line,
+							type: 'region'
+						});
+					}
+					collectRegions(c);
 				});
 			}
-		});
+		}
+
+		collectRegions(stylesheet);
 		return regions;
 	}
 
