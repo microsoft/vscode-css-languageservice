@@ -184,7 +184,7 @@ export class CSSNavigation {
 			if (children.length !== 0) {
 
 				children.forEach(c => {
-					if (c.type === nodes.NodeType.Ruleset) {
+					if (c.type === nodes.NodeType.Ruleset || c.type === nodes.NodeType.Media) {
 						regions.ranges.push({
 							startLine: document.positionAt(c.offset).line,
 							endLine: document.positionAt(c.end).line,
