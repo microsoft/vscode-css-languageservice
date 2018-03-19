@@ -53,18 +53,20 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 
 suite('CSS - Completion', () => {
 
-	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[], participant?: { onProperty, onPropertValue } }) {
+	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[], participant?: { onProperty?, onPropertValue?, onURILiteralValue? } }) {
 		let offset = value.indexOf('|');
 		value = value.substr(0, offset) + value.substr(offset + 1);
 
-		let actualPropertyContexts: { propertyName: string; propertyValue?: string; range: Range; }[] = [];
+		let actualPropertyContexts: { propertyName: string; range: Range; }[] = [];
 		let actualPropertyValueContexts: { propertyName: string; propertyValue?: string; range: Range; }[] = [];
+		let actualURILiteralValueContexts: { uriValue: string; position: Position; range: Range; }[] = [];
 
 		let ls = cssLanguageService.getCSSLanguageService();
 		if (expected.participant) {
 			ls.setCompletionParticipants([{
 				onProperty: context => actualPropertyContexts.push(context),
-				onPropertyValue: context => actualPropertyValueContexts.push(context)
+				onPropertyValue: context => actualPropertyValueContexts.push(context),
+				onURILiteralValue: context => actualURILiteralValueContexts.push(context)
 			}]);
 		}
 
@@ -81,8 +83,15 @@ suite('CSS - Completion', () => {
 			}
 		}
 		if (expected.participant) {
-			assert.deepEqual(actualPropertyContexts, expected.participant.onProperty);
-			assert.deepEqual(actualPropertyValueContexts, expected.participant.onPropertValue);
+			if (expected.participant.onProperty) {
+				assert.deepEqual(actualPropertyContexts, expected.participant.onProperty);
+			}
+			if (expected.participant.onPropertValue) {
+				assert.deepEqual(actualPropertyValueContexts, expected.participant.onPropertValue);
+			}
+			if (expected.participant.onURILiteralValue) {
+				assert.deepEqual(actualURILiteralValueContexts, expected.participant.onURILiteralValue);
+			}
 		}
 	};
 
@@ -413,6 +422,26 @@ suite('CSS - Completion', () => {
 			participant: {
 				onProperty: [],
 				onPropertValue: [{ propertyName: 'background-position', propertyValue: 't', range: newRange(28, 29) }]
+			}
+		});
+		testCompletionFor(`html { background-image: url(|)`, {
+			participant: {
+				onURILiteralValue: [{ uriValue: '', position: Position.create(0, 29), range: newRange(29, 29) }]
+			}
+		});
+		testCompletionFor(`html { background-image: url('|')`, {
+			participant: {
+				onURILiteralValue: [{ uriValue: `''`, position: Position.create(0, 30), range: newRange(29, 31) }]
+			}
+		});
+		testCompletionFor(`html { background-image: url("b|")`, {
+			participant: {
+				onURILiteralValue: [{ uriValue: `"b"`, position: Position.create(0, 31), range: newRange(29, 32) }]
+			}
+		});
+		testCompletionFor(`html { background-image: url("b|"`, {
+			participant: {
+				onURILiteralValue: [{ uriValue: `"b"`, position: Position.create(0, 31), range: newRange(29, 32) }]
 			}
 		});
 	});

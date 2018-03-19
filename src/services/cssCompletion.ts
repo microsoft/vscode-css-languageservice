@@ -91,7 +91,7 @@ export class CSSCompletion {
 					this.getCompletionsForSupportsCondition(<nodes.SupportsCondition>node, result);
 				} else if (node instanceof nodes.ExtendsReference) {
 					this.getCompletionsForExtendsReference(<nodes.ExtendsReference>node, null, result);
-				} else if (node.parent.type === nodes.NodeType.URILiteral) {
+				} else if (node.type === nodes.NodeType.URILiteral) {
 					this.getCompletionForUriLiteralValue(node, result);
 				}
 				if (result.items.length > 0) {
@@ -834,20 +834,34 @@ export class CSSCompletion {
 		return result;
 	}
 
-	public getCompletionForUriLiteralValue(uriValueNode: nodes.Node, result: CompletionList): CompletionList {
+	public getCompletionForUriLiteralValue(uriLiteralNode: nodes.Node, result: CompletionList): CompletionList {
+		let uriValue: string;
+		let position: Position;
+		let range: Range;
+		// No children, empty value
+		if (uriLiteralNode.getChildren().length === 0) {
+			uriValue = '';
+			position = this.position;
+			const emptyURIValuePosition = this.textDocument.positionAt(uriLiteralNode.offset + 'url('.length);
+			range = Range.create(emptyURIValuePosition, emptyURIValuePosition);
+		} else {
+			const uriValueNode = uriLiteralNode.getChild(0);
+			uriValue = uriValueNode.getText();
+			position = this.position;
+			range = this.getCompletionRange(uriValueNode);
+		}
 		this.completionParticipants.forEach(participant => {
 			if (participant.onURILiteralValue) {
 				participant.onURILiteralValue({
-					uriValue: uriValueNode.getText(),
-					position: this.position,
-					range: this.defaultReplaceRange
+					uriValue,
+					position,
+					range
 				});
 			}
 		});
 
 		return result;
 	}
-
 }
 
 class Set {
