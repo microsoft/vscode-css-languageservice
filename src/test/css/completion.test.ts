@@ -261,7 +261,12 @@ suite('CSS - Completion', () => {
 		});
 		testCompletionFor('#id { justify-content: |', {
 			items: [
-				{ label: 'center', resultText: '#id { justify-content: center' }
+				{ label: 'center', resultText: '#id { justify-content: center' },
+				{ label: 'start', resultText: '#id { justify-content: start' },
+				{ label: 'end', resultText: '#id { justify-content: end' },
+				{ label: 'left', resultText: '#id { justify-content: left' },
+				{ label: 'right', resultText: '#id { justify-content: right' },
+				{ label: 'space-evenly', resultText: '#id { justify-content: space-evenly' }
 			]
 		});
 		testCompletionFor('.foo { te:n| }', {
