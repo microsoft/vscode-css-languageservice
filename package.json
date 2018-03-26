@@ -26,6 +26,7 @@
     "rimraf": "^2.6.2"
   },
   "dependencies": {
+    "vscode-languageserver-protocol-foldingprovider": "^1.0.1",
     "vscode-languageserver-types": "^3.6.1",
     "vscode-nls": "^3.2.1"
   },
@@ -40,7 +41,7 @@
     "coverage": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --ui tdd -R spec -t 5000",
     "lint": "tslint src/**/*.ts",
     "update-data": "node ./build/generate_browserjs.js",
-    "install-types-next": "npm install vscode-languageserver-types@next -f -S",
+    "install-types-next": "yarn add vscode-languageserver-types@next",
     "preversion": "npm test",
     "postversion": "git push && git push --tags"
   }

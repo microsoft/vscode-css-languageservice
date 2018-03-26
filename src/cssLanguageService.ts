@@ -20,7 +20,7 @@ import { SCSSParser } from './parser/scssParser';
 import { SCSSCompletion } from './services/scssCompletion';
 import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
-import { FoldingRangeList } from './protocol/foldingProvider.proposed';
+import { FoldingRangeList } from 'vscode-languageserver-protocol-foldingprovider';
 
 export type Stylesheet = {};
 export { TextEdit, Range };
@@ -130,11 +130,9 @@ export function getCSSLanguageService(): LanguageService {
 	return createFacade(new Parser(), new CSSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation());
 }
 
-
 export function getSCSSLanguageService(): LanguageService {
 	return createFacade(new SCSSParser(), new SCSSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation());
 }
-
 
 export function getLESSLanguageService(): LanguageService {
 	return createFacade(new LESSParser(), new LESSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation());

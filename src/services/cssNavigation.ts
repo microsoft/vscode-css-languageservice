@@ -14,7 +14,8 @@ import { getColorValue, hslFromColor } from '../services/languageFacts';
 
 import * as nls from 'vscode-nls';
 import { ColorInformation, ColorPresentation, Color } from '../cssLanguageService';
-import { FoldingRangeList } from '../protocol/foldingProvider.proposed';
+import { FoldingRangeList } from 'vscode-languageserver-protocol-foldingprovider';
+import { getFoldingRegions } from './cssFolding';
 const localize = nls.loadMessageBundle();
 
 export class CSSNavigation {
@@ -176,28 +177,8 @@ export class CSSNavigation {
 		};
 	}
 
-	public findFoldingRegions(document: TextDocument, stylesheet: nodes.Stylesheet): FoldingRangeList {
-		const regions: FoldingRangeList = { ranges: [] };
-
-		function collectRegions(node: nodes.Node) {
-			const children = node.getChildren();
-			if (children.length !== 0) {
-
-				children.forEach(c => {
-					if (c.type === nodes.NodeType.Ruleset || c.type === nodes.NodeType.Media) {
-						regions.ranges.push({
-							startLine: document.positionAt(c.offset).line,
-							endLine: document.positionAt(c.end).line,
-							type: 'region'
-						});
-					}
-					collectRegions(c);
-				});
-			}
-		}
-
-		collectRegions(stylesheet);
-		return regions;
+	public findFoldingRegions(document: TextDocument): FoldingRangeList {
+		return getFoldingRegions(document);
 	}
 
 }
