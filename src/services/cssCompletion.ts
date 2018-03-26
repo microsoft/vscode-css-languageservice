@@ -413,7 +413,7 @@ export class CSSCompletion {
 			});
 		}
 		let colorValues = new Set();
-		this.styleSheet.acceptVisitor(new ColorValueCollector(colorValues));
+		this.styleSheet.acceptVisitor(new ColorValueCollector(colorValues, this.offset));
 		for (let color of colorValues.getEntries()) {
 			result.items.push({
 				label: color,
@@ -912,13 +912,15 @@ function collectValues(styleSheet: nodes.Stylesheet, declaration: nodes.Declarat
 
 class ColorValueCollector implements nodes.IVisitor {
 
-	constructor(public entries: Set) {
+	constructor(public entries: Set, private currentOffset: number) {
 		// nothing to do
 	}
 
 	public visitNode(node: nodes.Node): boolean {
 		if (node instanceof nodes.HexColorValue || (node instanceof nodes.Function && languageFacts.isColorConstructor(<nodes.Function>node))) {
-			this.entries.add(node.getText());
+			if (this.currentOffset < node.offset || node.end < this.currentOffset) {
+				this.entries.add(node.getText());
+			}
 		}
 		return true;
 	}

@@ -53,7 +53,7 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 
 suite('CSS - Completion', () => {
 
-	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[], participant?: { onProperty?, onPropertValue?, onURILiteralValue? } }) {
+	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[], participant?: { onProperty?, onPropertValue?, onURILiteralValue?} }) {
 		let offset = value.indexOf('|');
 		value = value.substr(0, offset) + value.substr(offset + 1);
 
@@ -339,6 +339,11 @@ suite('CSS - Completion', () => {
 		testCompletionFor('.foo { background-color: #123456; } .bar { background-color:| }', {
 			items: [
 				{ label: '#123456', kind: CompletionItemKind.Color, resultText: '.foo { background-color: #123456; } .bar { background-color:#123456 }' }
+			]
+		});
+		testCompletionFor('.bar { background-color: #123| }', {
+			items: [
+				{ label: '#123', notAvailable: true }
 			]
 		});
 		testCompletionFor('.foo { background-color: r|', {
