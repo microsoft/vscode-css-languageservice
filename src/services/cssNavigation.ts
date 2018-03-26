@@ -16,6 +16,7 @@ import * as nls from 'vscode-nls';
 import { ColorInformation, ColorPresentation, Color } from '../cssLanguageService';
 import { FoldingRangeList } from 'vscode-languageserver-protocol-foldingprovider';
 import { getFoldingRegions } from './cssFolding';
+
 const localize = nls.loadMessageBundle();
 
 export class CSSNavigation {
