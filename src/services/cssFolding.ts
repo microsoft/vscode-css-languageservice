@@ -9,7 +9,7 @@ import { TokenType, Scanner, IToken } from '../parser/cssScanner';
 import * as nodes from '../parser/cssNodes';
 import { ParseError, CSSIssueType } from '../parser/cssErrors';
 import * as languageFacts from './languageFacts';
-import { FoldingRangeList, FoldingRange, FoldingRangeType } from 'vscode-languageserver-protocol-foldingprovider';
+import { FoldingRangeList, FoldingRange, FoldingRangeType } from '../protocol/foldingProvider.proposed';
 
 export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 	function getStartLine(t: IToken) {
@@ -18,7 +18,7 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 	function getEndLine(t: IToken) {
 		return document.positionAt(t.offset + t.len).line;
 	}
-	function tokenToRange(t: IToken, type: FoldingRangeType = FoldingRangeType.Region): FoldingRange | null {
+	function tokenToRange(t: IToken, type?: FoldingRangeType | string): FoldingRange | null {
 		const startLine = getStartLine(t);
 		const endLine = getEndLine(t);
 
@@ -42,7 +42,6 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 
 	let token = scanner.scan();
 	while (token.type !== TokenType.EOF) {
-		const tt = TokenType[token.type];
 		switch(token.type) {
 			case TokenType.CurlyL: {
 				stack.push(getStartLine(token));
@@ -56,7 +55,7 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 						ranges.push({
 							startLine,
 							endLine,
-							type: FoldingRangeType.Region
+							type: undefined
 						});
 					}
 					break;
@@ -67,7 +66,7 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 			 * All comments are marked as `Comment`
 			 */
 			case TokenType.Comment: {
-				const range = tokenToRange(token, FoldingRangeType.Comment);
+				const range = tokenToRange(token, 'comment');
 				if (range) {
 					ranges.push(range);
 				}

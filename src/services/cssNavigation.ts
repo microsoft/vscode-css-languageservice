@@ -14,7 +14,7 @@ import { getColorValue, hslFromColor } from '../services/languageFacts';
 
 import * as nls from 'vscode-nls';
 import { ColorInformation, ColorPresentation, Color } from '../cssLanguageService';
-import { FoldingRangeList } from 'vscode-languageserver-protocol-foldingprovider';
+import { FoldingRangeList } from '../protocol/foldingProvider.proposed';
 import { getFoldingRegions } from './cssFolding';
 
 const localize = nls.loadMessageBundle();

@@ -8,7 +8,7 @@
 import * as assert from 'assert';
 import { TextDocument } from 'vscode-languageserver-types';
 import { getFoldingRegions } from '../../services/cssFolding';
-import { FoldingRange, FoldingRangeType } from 'vscode-languageserver-protocol-foldingprovider';
+import { FoldingRange, FoldingRangeType } from '../../protocol/foldingProvider.proposed';
 
 function assertRanges(lines: string[], expected: FoldingRange[]): void {
 	const document = TextDocument.create('test://foo/bar.css', 'css', 1, lines.join('\n'));
@@ -18,7 +18,7 @@ function assertRanges(lines: string[], expected: FoldingRange[]): void {
 	assert.deepEqual(actualRanges, expected);
 }
 
-function r(startLine: number, endLine: number, type: FoldingRangeType = FoldingRangeType.Region): FoldingRange {
+function r(startLine: number, endLine: number, type?: FoldingRangeType | string): FoldingRange {
 	return { startLine, endLine, type };
 }
 
@@ -124,7 +124,7 @@ suite('CSS Folding - Comments', () => {
 			/*3*/'}',
 			/*4*/'*/'
 		];
-		assertRanges(input, [r(0, 4, FoldingRangeType.Comment)]);
+		assertRanges(input, [r(0, 4, 'comment')]);
 	});
 
 	test('Comment - double star', () => {
@@ -135,7 +135,7 @@ suite('CSS Folding - Comments', () => {
 			/*3*/'}',
 			/*4*/'*/'
 		];
-		assertRanges(input, [r(0, 4, FoldingRangeType.Comment)]);
+		assertRanges(input, [r(0, 4, 'comment')]);
 	});
 
 	test('Comment - wrong indentation and no newline', () => {
@@ -145,7 +145,7 @@ suite('CSS Folding - Comments', () => {
 			/*2*/'color: red;',
 			/*3*/'} */'
 		];
-		assertRanges(input, [r(0, 3, FoldingRangeType.Comment)]);
+		assertRanges(input, [r(0, 3, 'comment')]);
 	});
 
 	test('Comment - Single line ', () => {

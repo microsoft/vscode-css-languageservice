@@ -20,7 +20,7 @@ import { SCSSParser } from './parser/scssParser';
 import { SCSSCompletion } from './services/scssCompletion';
 import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
-import { FoldingRangeList } from 'vscode-languageserver-protocol-foldingprovider';
+import { FoldingRangeList } from './protocol/foldingProvider.proposed';
 
 export type Stylesheet = {};
 export { TextEdit, Range };
