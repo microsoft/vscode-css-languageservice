@@ -4286,6 +4286,10 @@ export const data : any = {
 				restriction: "enum",
 				values: [
 					{
+						name: "center",
+						desc: "Flex items are packed toward the center of the line."
+					},
+					{
 						name: "start",
 						desc: "The items are packed flush to each other toward the start edge of the alignment container in the main axis."
 					},

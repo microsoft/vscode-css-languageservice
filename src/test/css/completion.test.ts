@@ -259,6 +259,11 @@ suite('CSS - Completion', () => {
 				{ label: 'url()', resultText: '.head { background-image: url($1)}' }
 			]
 		});
+		testCompletionFor('#id { justify-content: |', {
+			items: [
+				{ label: 'center', resultText: '#id { justify-content: center' }
+			]
+		});
 		testCompletionFor('.foo { te:n| }', {
 			items: [
 				{ label: 'n', notAvailable: true }
