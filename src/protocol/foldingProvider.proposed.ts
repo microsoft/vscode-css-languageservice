@@ -9,36 +9,42 @@ export interface FoldingRangeList {
 	 */
 	ranges: FoldingRange[];
 }
-
-export enum FoldingRangeType {
+export declare enum FoldingRangeType {
 	/**
 	 * Folding range for a comment
 	 */
-	Comment = 'comment',
+	Comment = "comment",
 	/**
 	 * Folding range for a imports or includes
 	 */
-	Imports = 'imports',
+	Imports = "imports",
 	/**
 	 * Folding range for a region (e.g. `#region`)
 	 */
-	Region = 'region'
+	Region = "region",
 }
-
+/**
+* Represents a folding range.
+*/
 export interface FoldingRange {
-
 	/**
-	 * The start line number
+	 * The start line number of the folding range.
 	 */
 	startLine: number;
-
 	/**
-	 * The end line number
+	 * The start column of the folding range. If not set, this defaults to the length of the start line.
+	 */
+	startColumn?: number;
+	/**
+	 * The end line number. The last line will be hidden.
 	 */
 	endLine: number;
-
 	/**
-	 * The actual color value for this folding range.
+	 * The start column of the folding range. If not set, this defaults to the length of the end line.
+	 */
+	endColumn?: number;
+	/**
+	 * The type of folding range.
 	 */
 	type?: FoldingRangeType | string;
 }
