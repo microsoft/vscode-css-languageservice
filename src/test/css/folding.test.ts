@@ -29,7 +29,7 @@ suite('CSS Folding - Basic', () => {
 			/*1*/'  color: red;',
 			/*2*/'}'
 		];
-		assertRanges(input, [r(0, 2)]);
+		assertRanges(input, [r(0, 1)]);
 	});
 
 	test('No fold for single line', () => {
@@ -46,7 +46,7 @@ suite('CSS Folding - Basic', () => {
 			/*2*/'  opacity: 1;',
 			/*3*/'}'
 		];
-		assertRanges(input, [r(0, 3)]);
+		assertRanges(input, [r(0, 2)]);
 	});
 
 
@@ -56,7 +56,7 @@ suite('CSS Folding - Basic', () => {
 			/*1*/'color: red;',
 			/*2*/'}'
 		];
-		assertRanges(input, [r(0, 2)]);
+		assertRanges(input, [r(0, 1)]);
 	});
 
 	test('Fold with opening curly brace on new line', () => {
@@ -66,7 +66,7 @@ suite('CSS Folding - Basic', () => {
 			/*2*/'color: red;',
 			/*3*/'}'
 		];
-		assertRanges(input, [r(1, 3)]);
+		assertRanges(input, [r(1, 2)]);
 	});
 
 	test('Fold with closing curly brace on same line', () => {
@@ -96,7 +96,7 @@ suite('CSS Folding - Partial', () => {
 			/*3*/'color: blue;',
 			/*4*/'}',
 		];
-		assertRanges(input, [r(2, 4)]);
+		assertRanges(input, [r(2, 3)]);
 	});
 
 	/**
@@ -111,7 +111,7 @@ suite('CSS Folding - Partial', () => {
 			/*4*/'  }',
 			/*5*/'}'
 		];
-		assertRanges(input, [r(1, 5), r(2, 4)]);
+		assertRanges(input, [r(1, 4), r(2, 3)]);
 	});
 });
 
@@ -165,7 +165,7 @@ suite('CSS Folding - Nested', () => {
 			/*3*/'}',
 			/*4*/'}'
 		];
-		assertRanges(input, [r(0, 4), r(1, 3)]);
+		assertRanges(input, [r(0, 3), r(1, 2)]);
 	});
 
 	test('Media query', () => {
@@ -176,6 +176,22 @@ suite('CSS Folding - Nested', () => {
 			/*3*/'}',
 			/*4*/'}'
 		];
-		assertRanges(input, [r(0, 4), r(1, 3)]);
+		assertRanges(input, [r(0, 3), r(1, 2)]);
+	});
+});
+
+suite('CSS Folding - Complex Cases', () => {
+	test('SCSS Mixin', () => {
+		const input = [
+			/*0*/'@mixin clearfix($width) {',
+			/*1*/'  @if !$width {',
+			/*2*/'    // if width is not passed, or empty do this',
+			/*3*/'  } @else {',
+			/*4*/'    display: inline-block;',
+			/*5*/'    width: $width;',
+			/*6*/'  }',
+			/*7*/'}'
+		];
+		assertRanges(input, [r(0, 6), r(1, 2), r(3, 5)]);
 	});
 });

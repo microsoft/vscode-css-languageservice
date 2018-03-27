@@ -41,6 +41,7 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 	scanner.setSource(document.getText());
 
 	let token = scanner.scan();
+	let prevToken;
 	while (token.type !== TokenType.EOF) {
 		switch(token.type) {
 			case TokenType.CurlyL: {
@@ -50,7 +51,18 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 			case TokenType.CurlyR: {
 				if (stack.length !== 0) {
 					const startLine = stack.pop();
-					const endLine = getEndLine(token);
+					let endLine = getEndLine(token);
+
+					/**
+					 * Other than the case when curly brace is not on a new line by itself, for example
+					 * .foo {
+					 *   color: red; }
+					 * Use endLine minus one to show ending curly brace
+					 */
+					if (getEndLine(prevToken) !== endLine) {
+						endLine--;
+					}
+
 					if (startLine !== endLine) {
 						ranges.push({
 							startLine,
@@ -73,6 +85,7 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 				break;
 			}
 		}
+		prevToken = token;
 		token = scanner.scan();
 	}
 
