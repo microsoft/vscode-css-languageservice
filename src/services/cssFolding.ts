@@ -10,6 +10,8 @@ import * as nodes from '../parser/cssNodes';
 import { ParseError, CSSIssueType } from '../parser/cssErrors';
 import * as languageFacts from './languageFacts';
 import { FoldingRangeList, FoldingRange, FoldingRangeType } from '../protocol/foldingProvider.proposed';
+import { SCSSScanner } from '../parser/scssScanner';
+import { LESSScanner } from '../parser/lessScanner';
 
 export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 	function getStartLine(t: IToken) {
@@ -17,6 +19,16 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 	}
 	function getEndLine(t: IToken) {
 		return document.positionAt(t.offset + t.len).line;
+	}
+	function getScanner() {
+		switch (document.languageId) {
+			case 'scss': 
+				return new SCSSScanner();
+			case 'less': 
+				return new LESSScanner();
+			default:
+				return new Scanner();
+		}
 	}
 	function tokenToRange(t: IToken, type?: FoldingRangeType | string): FoldingRange | null {
 		const startLine = getStartLine(t);
@@ -36,7 +48,7 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 	const ranges: FoldingRange[] = [];
 	const stack: number[] = [];
 
-	const scanner = new Scanner();
+	const scanner = getScanner();
 	scanner.ignoreComment = false;
 	scanner.setSource(document.getText());
 
