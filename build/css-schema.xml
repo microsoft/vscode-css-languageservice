@@ -3749,9 +3749,6 @@
 				<value name="space-between" version="3.0" browsers="all">
 					<desc>Flex items are evenly distributed in the line.</desc>
 				</value>
-				<value name="unsafe" version="3.0" browsers="all">
-					<desc>Regardless of the relative sizes of the item and alignment container, the given alignment value is honored.</desc>
-				</value>
 				<value name="baseline" version="3.0" browsers="all">
 					<desc>Specifies participation in first-baseline alignment.</desc>
 				</value>

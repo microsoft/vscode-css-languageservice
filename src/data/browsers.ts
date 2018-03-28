@@ -963,12 +963,6 @@ export const data : any = {
 				]
 			},
 			{
-				name: "justify-items",
-				desc: "Defines the default justify-self for all items of the box, given them the default way of justifying each box along the appropriate axi",
-				browsers: "FF45",
-				restriction: "enum"
-			},
-			{
 				name: "align-self",
 				desc: "Allows the default alignment along the cross axis to be overridden for individual flex items.",
 				browsers: "E,C29,FF22,IE11,O12.1,S9",
@@ -4333,9 +4327,6 @@ export const data : any = {
 					{
 						name: "space-between",
 						desc: "Flex items are evenly distributed in the line."
-					},
-					{
-						name: "unsafe"
 					},
 					{
 						name: "baseline",
