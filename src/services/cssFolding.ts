@@ -10,7 +10,7 @@ import * as nodes from '../parser/cssNodes';
 import { ParseError, CSSIssueType } from '../parser/cssErrors';
 import * as languageFacts from './languageFacts';
 import { FoldingRangeList, FoldingRange, FoldingRangeType } from '../protocol/foldingProvider.proposed';
-import { SCSSScanner } from '../parser/scssScanner';
+import { SCSSScanner, InterpolationFunction } from '../parser/scssScanner';
 import { LESSScanner } from '../parser/lessScanner';
 
 export function getFoldingRegions(document: TextDocument): FoldingRangeList {
@@ -22,9 +22,9 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 	}
 	function getScanner() {
 		switch (document.languageId) {
-			case 'scss': 
+			case 'scss':
 				return new SCSSScanner();
-			case 'less': 
+			case 'less':
 				return new LESSScanner();
 			default:
 				return new Scanner();
@@ -55,11 +55,13 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 	let token = scanner.scan();
 	let prevToken;
 	while (token.type !== TokenType.EOF) {
-		switch(token.type) {
-			case TokenType.CurlyL: {
-				stack.push(getStartLine(token));
-				break;
-			}
+		switch (token.type) {
+			case TokenType.CurlyL:
+			case InterpolationFunction:
+				{
+					stack.push(getStartLine(token));
+					break;
+				}
 			case TokenType.CurlyR: {
 				if (stack.length !== 0) {
 					const startLine = stack.pop();
@@ -96,6 +98,7 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 				}
 				break;
 			}
+
 		}
 		prevToken = token;
 		token = scanner.scan();

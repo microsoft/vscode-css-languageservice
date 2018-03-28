@@ -10,8 +10,8 @@ import { TextDocument } from 'vscode-languageserver-types';
 import { getFoldingRegions } from '../../services/cssFolding';
 import { FoldingRange, FoldingRangeType } from '../../protocol/foldingProvider.proposed';
 
-function assertRanges(lines: string[], expected: FoldingRange[]): void {
-	const document = TextDocument.create('test://foo/bar.css', 'css', 1, lines.join('\n'));
+function assertRanges(lines: string[], expected: FoldingRange[], languageId = 'css'): void {
+	const document = TextDocument.create('test://foo/bar.css', languageId, 1, lines.join('\n'));
 	let actualRanges = getFoldingRegions(document).ranges;
 
 	actualRanges = actualRanges.sort((r1, r2) => r1.startLine - r2.startLine);
@@ -180,7 +180,7 @@ suite('CSS Folding - Nested', () => {
 	});
 });
 
-suite('CSS Folding - Complex Cases', () => {
+suite('SCSS Folding', () => {
 	test('SCSS Mixin', () => {
 		const input = [
 			/*0*/'@mixin clearfix($width) {',
@@ -192,6 +192,35 @@ suite('CSS Folding - Complex Cases', () => {
 			/*6*/'  }',
 			/*7*/'}'
 		];
-		assertRanges(input, [r(0, 6), r(1, 2), r(3, 5)]);
+		assertRanges(input, [r(0, 6), r(1, 2), r(3, 5)], 'scss');
+	});
+	test('SCSS Interolation', () => {
+		const input = [
+			/*0*/'.orbit-#{$d}-prev {',
+			/*1*/'  foo-#{$d}-bar: 1;',
+			/*2*/'  #{$d}-bar-#{$d}: 2;',
+			/*3*/'}'
+		];
+		assertRanges(input, [r(0, 2)], 'scss');
+	});
+	test('SCSS While', () => {
+		const input = [
+			/*0*/'@while $i > 0 {',
+			/*1*/'  .item-#{$i} { width: 2em * $i; }',
+			/*2*/'  $i: $i - 2;',
+			/*3*/'}'
+		];
+		assertRanges(input, [r(0, 2)], 'scss');
+	});
+	test('SCSS Nested media query', () => {
+		const input = [
+			/*0*/'@mixin desktop {',
+			/*1*/'  $desktop-width: 1024px;',
+			/*2*/'  @media(min-width: #{$desktop-width}) {',
+			/*3*/'    width: 500px;',
+			/*4*/'  }',
+			/*5*/'}'
+		];
+		assertRanges(input, [r(0, 4), r(2, 3)], 'scss');
 	});
 });
