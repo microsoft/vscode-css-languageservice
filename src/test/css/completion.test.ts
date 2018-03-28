@@ -74,7 +74,7 @@ suite('CSS - Completion', () => {
 		let position = Position.create(0, offset);
 		let jsonDoc = ls.parseStylesheet(document);
 		let list = ls.doComplete(document, position, jsonDoc);
-		if (expected.count) {
+		if (typeof expected.count === 'number') {
 			assert.equal(list.items, expected.count);
 		}
 		if (expected.items) {
@@ -434,29 +434,36 @@ suite('CSS - Completion', () => {
 			}
 		});
 		testCompletionFor('html { background-position: t|', {
+			items: [
+				{ label: 'center' },
+			],
 			participant: {
 				onProperty: [],
 				onPropertValue: [{ propertyName: 'background-position', propertyValue: 't', range: newRange(28, 29) }]
 			}
 		});
 		testCompletionFor(`html { background-image: url(|)`, {
+			count: 0,
 			participant: {
 				onURILiteralValue: [{ uriValue: '', position: Position.create(0, 29), range: newRange(29, 29) }]
 			}
 		});
 		testCompletionFor(`html { background-image: url('|')`, {
+			count: 0,
 			participant: {
 				onURILiteralValue: [{ uriValue: `''`, position: Position.create(0, 30), range: newRange(29, 31) }]
 			}
 		});
 		testCompletionFor(`html { background-image: url("b|")`, {
+			count: 0,
 			participant: {
 				onURILiteralValue: [{ uriValue: `"b"`, position: Position.create(0, 31), range: newRange(29, 32) }]
 			}
 		});
-		testCompletionFor(`html { background-image: url("b|"`, {
+		testCompletionFor(`html { background: url("b|"`, {
+			count: 0,
 			participant: {
-				onURILiteralValue: [{ uriValue: `"b"`, position: Position.create(0, 31), range: newRange(29, 32) }]
+				onURILiteralValue: [{ uriValue: `"b"`, position: Position.create(0, 25), range: newRange(23, 26) }]
 			}
 		});
 	});

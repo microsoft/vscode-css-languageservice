@@ -54,7 +54,7 @@ export class CSSCompletion {
 		try {
 			let result: CompletionList = { isIncomplete: false, items: [] };
 			this.nodePath = nodes.getNodePath(this.styleSheet, this.offset);
-
+			
 			for (let i = this.nodePath.length - 1; i >= 0; i--) {
 				let node = this.nodePath[i];
 				if (node instanceof nodes.Property) {
@@ -93,8 +93,10 @@ export class CSSCompletion {
 					this.getCompletionsForExtendsReference(<nodes.ExtendsReference>node, null, result);
 				} else if (node.type === nodes.NodeType.URILiteral) {
 					this.getCompletionForUriLiteralValue(node, result);
+				} else {
+					continue;
 				}
-				if (result.items.length > 0) {
+				if (result.items.length > 0 || this.offset > node.offset) {
 					return this.finalize(result);
 				}
 			}
