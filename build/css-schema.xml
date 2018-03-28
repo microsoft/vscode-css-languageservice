@@ -669,9 +669,6 @@
 				</value>					
 			</values>
 		</entry>		
-		<entry name="justify-items" restriction="enum" version="3.0" browsers="FF45" ref="https://www.w3.org/TR/css-grid-1/#row-align">
-			<desc>Defines the default justify-self for all items of the box, given them the default way of justifying each box along the appropriate axi</desc>		
-		</entry>			
 		<entry name="alignment-baseline" restriction="enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-inline/#propdef-alignment-baseline" syntax="img { $(name): middle; }">
 			<desc>Specifies what point of an inline-level box is aligned to what point in the parent.</desc>
 			<values>
