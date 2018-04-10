@@ -6,6 +6,7 @@
 
 import * as nodes from '../parser/cssNodes';
 import * as browsers from '../data/browsers';
+import * as mdn from '../data/mdn';
 
 import * as nls from 'vscode-nls';
 import { Color } from '../cssLanguageTypes';
@@ -570,7 +571,7 @@ export function getPageBoxDirectives(): string[] {
 	];
 }
 
-export function getEntryDescription(entry: { description: string; browsers: Browsers }): string {
+export function getEntryDescription(entry: { description: string; browsers: Browsers, data?: any }): string {
 	let desc = entry.description || '';
 	let browserLabel = getBrowserLabel(entry.browsers);
 	if (browserLabel) {
@@ -578,6 +579,11 @@ export function getEntryDescription(entry: { description: string; browsers: Brow
 			desc = desc + '\n';
 		}
 		desc = desc + '(' + browserLabel + ')';
+	}
+	if (entry.data && entry.data.status) {
+		desc += '\n';
+		desc += `\nStatus: ${entry.data.status}`;
+		desc += `\nSyntax: ${entry.data.syntax}`;
 	}
 	return desc;
 }
@@ -723,14 +729,36 @@ class EntryImpl implements IEntry {
 
 let propertySet: { [key: string]: IEntry };
 let properties = browsers.data.css.properties;
+// const mdnProperties = Object.keys(mdn.data).map(k => {
+// 	return {
+// 		name: k,
+// 		...mdn.data[k],
+// 	};
+// });
+
+// properties = properties.concat(mdnProperties);
+
 export function getProperties(): { [name: string]: IEntry; } {
 	if (!propertySet) {
 		propertySet = {
 		};
-		for (let i = 0, len = properties.length; i < len; i++) {
+		for (let i = 0; i < properties.length; i++) {
 			let rawEntry = properties[i];
+			if (mdn.data[rawEntry.name]) {
+				rawEntry.status = mdn.data[rawEntry.name].status;
+				rawEntry.syntax = mdn.data[rawEntry.name].syntax;
+			}
 			propertySet[rawEntry.name] = new EntryImpl(rawEntry);
 		}
+
+		Object.keys(mdn.data).forEach(k => {
+			if (!propertySet[k]) {
+				propertySet[k] = new EntryImpl({
+					name: k,
+					...mdn.data[k]
+				});
+			}
+		});
 	}
 	return propertySet;
 }
@@ -747,7 +775,6 @@ export function getAtDirectives(): IEntry[] {
 	}
 	return atDirectiveList;
 }
-
 
 let pseudoElements = browsers.data.css.pseudoelements;
 let pseudoElementList: IEntry[];
