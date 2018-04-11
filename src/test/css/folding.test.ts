@@ -180,6 +180,19 @@ suite('CSS Folding - Nested', () => {
 	});
 });
 
+suite('CSS Folding - Regions', () => {
+	test('Simple region with comment', () => {
+		const input = [
+			/*0*/'/* #region */',
+			/*1*/'& .bar {',
+			/*2*/'  color: red;',
+			/*3*/'}',
+			/*4*/'/* #endregion */'
+		];
+		assertRanges(input, [r(0, 4, 'region'), r(1, 2)]);
+	});
+});
+
 suite('SCSS Folding', () => {
 	test('SCSS Mixin', () => {
 		const input = [
@@ -222,5 +235,81 @@ suite('SCSS Folding', () => {
 			/*5*/'}'
 		];
 		assertRanges(input, [r(0, 4), r(2, 3)], 'scss');
+	});
+});
+
+suite('SCSS Folding - Regions', () => {
+	test('Simple region with comment', () => {
+		const input = [
+			/*0*/'/* #region */',
+			/*1*/'& .bar {',
+			/*2*/'  color: red;',
+			/*3*/'}',
+			/*4*/'/* #endregion */'
+		];
+		assertRanges(input, [r(0, 4, 'region'), r(1, 2)], 'scss');
+	});
+
+	test('Region with SCSS single line comment', () => {
+		const input = [
+			/*0*/'// #region',
+			/*1*/'& .bar {',
+			/*2*/'  color: red;',
+			/*3*/'}',
+			/*4*/'// #endregion'
+		];
+		assertRanges(input, [r(0, 4, 'region'), r(1, 2)], 'scss');
+	});
+
+	test('Region with both simple comments and region comments', () => {
+		const input = [
+			/*0*/'// #region',
+			/*1*/'/*',
+			/*2*/'comments',
+			/*3*/'*/',
+			/*4*/'& .bar {',
+			/*5*/'  color: red;',
+			/*6*/'}',
+			/*7*/'// #endregion'
+		];
+		assertRanges(input, [r(0, 7, 'region'), r(1, 3, 'comment'), r(4, 5)], 'scss');
+	});
+});
+
+suite('LESS Folding - Regions', () => {
+	test('Simple region with comment', () => {
+		const input = [
+			/*0*/'/* #region */',
+			/*1*/'& .bar {',
+			/*2*/'  color: red;',
+			/*3*/'}',
+			/*4*/'/* #endregion */'
+		];
+		assertRanges(input, [r(0, 4, 'region'), r(1, 2)], 'less');
+	});
+
+	test('Region with LESS single line comment', () => {
+		const input = [
+			/*0*/'// #region',
+			/*1*/'& .bar {',
+			/*2*/'  color: red;',
+			/*3*/'}',
+			/*4*/'// #endregion'
+		];
+		assertRanges(input, [r(0, 4, 'region'), r(1, 2)], 'less');
+	});
+
+	test('Region with both simple comments and region comments', () => {
+		const input = [
+			/*0*/'// #region',
+			/*1*/'/*',
+			/*2*/'comments',
+			/*3*/'*/',
+			/*4*/'& .bar {',
+			/*5*/'  color: red;',
+			/*6*/'}',
+			/*7*/'// #endregion'
+		];
+		assertRanges(input, [r(0, 7, 'region'), r(1, 3, 'comment'), r(4, 5)], 'less');
 	});
 });

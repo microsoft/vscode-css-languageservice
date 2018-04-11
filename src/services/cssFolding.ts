@@ -46,7 +46,8 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 	}
 
 	const ranges: FoldingRange[] = [];
-	const stack: number[] = [];
+	const braceStack: number[] = [];
+	const regionCommentStack: number[] = [];
 
 	const scanner = getScanner();
 	scanner.ignoreComment = false;
@@ -59,12 +60,12 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 			case TokenType.CurlyL:
 			case InterpolationFunction:
 				{
-					stack.push(getStartLine(token));
+					braceStack.push(getStartLine(token));
 					break;
 				}
 			case TokenType.CurlyR: {
-				if (stack.length !== 0) {
-					const startLine = stack.pop();
+				if (braceStack.length !== 0) {
+					const startLine = braceStack.pop();
 					let endLine = getEndLine(token);
 
 					/**
@@ -92,6 +93,44 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 			 * All comments are marked as `Comment`
 			 */
 			case TokenType.Comment: {
+				// CSS region folding
+				if (token.text === '/* #region */') {
+					regionCommentStack.push(getStartLine(token));
+				}
+				if (token.text === '/* #endregion */') {
+					if (regionCommentStack.length !== 0) {
+						const startLine = regionCommentStack.pop();
+						const endLine = getEndLine(token);
+						if (startLine !== endLine) {
+							ranges.push({
+								startLine,
+								endLine,
+								type: "region"
+							});
+						}
+					}
+				}
+
+				// Scss / Less region folding
+				if (document.languageId === 'scss' || document.languageId === 'less') {
+					if (token.text === '// #region') {
+						regionCommentStack.push(getStartLine(token));
+					}
+					if (token.text === '// #endregion') {
+						if (regionCommentStack.length !== 0) {
+							const startLine = regionCommentStack.pop();
+							const endLine = getEndLine(token);
+							if (startLine !== endLine) {
+								ranges.push({
+									startLine,
+									endLine,
+									type: "region"
+								});
+							}
+						}
+					}
+				}
+
 				const range = tokenToRange(token, 'comment');
 				if (range) {
 					ranges.push(range);
