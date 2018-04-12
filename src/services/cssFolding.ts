@@ -13,7 +13,7 @@ import { FoldingRangeList, FoldingRange, FoldingRangeType } from '../protocol/fo
 import { SCSSScanner, InterpolationFunction } from '../parser/scssScanner';
 import { LESSScanner } from '../parser/lessScanner';
 
-export function getFoldingRegions(document: TextDocument): FoldingRangeList {
+export function getFoldingRegions(document: TextDocument, maxRanges?: number | undefined): FoldingRangeList {
 	function getStartLine(t: IToken) {
 		return document.positionAt(t.offset).line;
 	}
@@ -79,11 +79,13 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 					}
 
 					if (startLine !== endLine) {
-						ranges.push({
-							startLine,
-							endLine,
-							type: undefined
-						});
+						if (!maxRanges || (maxRanges && ranges.length < maxRanges)) {
+							ranges.push({
+								startLine,
+								endLine,
+								type: undefined
+							});
+						}
 					}
 					break;
 				}
@@ -103,11 +105,13 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 							const startLine = regionCommentStack.pop();
 							const endLine = getEndLine(token);
 							if (startLine !== endLine) {
-								ranges.push({
-									startLine,
-									endLine,
-									type: "region"
-								});
+								if (!maxRanges || (maxRanges && ranges.length < maxRanges)) {
+									ranges.push({
+										startLine,
+										endLine,
+										type: "region"
+									});
+								}
 							}
 						}
 					}
@@ -124,11 +128,13 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 								const startLine = regionCommentStack.pop();
 								const endLine = getEndLine(token);
 								if (startLine !== endLine) {
-									ranges.push({
-										startLine,
-										endLine,
-										type: "region"
-									});
+									if (!maxRanges || (maxRanges && ranges.length < maxRanges)) {
+										ranges.push({
+											startLine,
+											endLine,
+											type: "region"
+										});
+									}
 								}
 							}
 						}
