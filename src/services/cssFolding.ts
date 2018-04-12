@@ -79,7 +79,18 @@ export function getFoldingRegions(document: TextDocument, maxRanges?: number | u
 					}
 
 					if (startLine !== endLine) {
-						if (!maxRanges || (maxRanges && ranges.length < maxRanges)) {
+						if (maxRanges) {
+							if (ranges.length < maxRanges) {
+								ranges.push({
+									startLine,
+									endLine,
+									type: undefined
+								});
+								if (ranges.length === maxRanges) {
+									return { ranges };
+								}
+							}
+						} else {
 							ranges.push({
 								startLine,
 								endLine,
@@ -105,11 +116,22 @@ export function getFoldingRegions(document: TextDocument, maxRanges?: number | u
 							const startLine = regionCommentStack.pop();
 							const endLine = getEndLine(token);
 							if (startLine !== endLine) {
-								if (!maxRanges || (maxRanges && ranges.length < maxRanges)) {
+								if (maxRanges) {
+									if (ranges.length < maxRanges) {
+										ranges.push({
+											startLine,
+											endLine,
+											type: 'region'
+										});
+										if (ranges.length === maxRanges) {
+											return { ranges };
+										}
+									}
+								} else {
 									ranges.push({
 										startLine,
 										endLine,
-										type: "region"
+										type: 'region'
 									});
 								}
 							}
@@ -128,11 +150,22 @@ export function getFoldingRegions(document: TextDocument, maxRanges?: number | u
 								const startLine = regionCommentStack.pop();
 								const endLine = getEndLine(token);
 								if (startLine !== endLine) {
-									if (!maxRanges || (maxRanges && ranges.length < maxRanges)) {
+									if (maxRanges) {
+										if (ranges.length < maxRanges) {
+											ranges.push({
+												startLine,
+												endLine,
+												type: 'region'
+											});
+											if (ranges.length === maxRanges) {
+												return { ranges };
+											}
+										}
+									} else {
 										ranges.push({
 											startLine,
 											endLine,
-											type: "region"
+											type: 'region'
 										});
 									}
 								}
