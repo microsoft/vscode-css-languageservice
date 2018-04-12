@@ -93,30 +93,12 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 			 * All comments are marked as `Comment`
 			 */
 			case TokenType.Comment: {
-				// CSS region folding
-				if (token.text.match(/^\/\*\s+#region\s+\*\/$/)) {
-					regionCommentStack.push(getStartLine(token));
-				}
-				if (token.text.match(/^\/\*\s+#endregion\s+\*\/$/)) {
-					if (regionCommentStack.length !== 0) {
-						const startLine = regionCommentStack.pop();
-						const endLine = getEndLine(token);
-						if (startLine !== endLine) {
-							ranges.push({
-								startLine,
-								endLine,
-								type: "region"
-							});
-						}
-					}
-				}
-
-				// Scss / Less region folding
-				if (document.languageId === 'scss' || document.languageId === 'less') {
-					if (token.text.match(/^\/\/\s+#region\s*$/)) {
+				// /* */ comment region folding
+				const matches = token.text.match(/^\s*\/\*\s*(#region|#endregion)\b\s*(.*?)\s*\*\//);
+				if (matches) {
+					if (matches[1] === '#region') {
 						regionCommentStack.push(getStartLine(token));
-					}
-					if (token.text.match(/^\/\/\s+#endregion\s*$/)) {
+					} else {
 						if (regionCommentStack.length !== 0) {
 							const startLine = regionCommentStack.pop();
 							const endLine = getEndLine(token);
@@ -126,6 +108,28 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 									endLine,
 									type: "region"
 								});
+							}
+						}
+					}
+				}
+
+				// Scss / Less region folding
+				if (document.languageId === 'scss' || document.languageId === 'less') {
+					const matches = token.text.match(/^\s*\/\/\s*(#region|#endregion)\b\s*(.*?)\s*/);
+					if (matches) {
+						if (matches[1] === '#region') {
+							regionCommentStack.push(getStartLine(token));
+						} else {
+							if (regionCommentStack.length !== 0) {
+								const startLine = regionCommentStack.pop();
+								const endLine = getEndLine(token);
+								if (startLine !== endLine) {
+									ranges.push({
+										startLine,
+										endLine,
+										type: "region"
+									});
+								}
 							}
 						}
 					}

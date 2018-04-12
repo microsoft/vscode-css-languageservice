@@ -207,6 +207,28 @@ suite('CSS Folding - Regions', () => {
 		];
 		assertRanges(input, [r(0, 4, 'region'), r(1, 2)]);
 	});
+
+	test('Simple region without spaces', () => {
+		const input = [
+			/*0*/'/*#region*/',
+			/*1*/'& .bar {',
+			/*2*/'  color: red;',
+			/*3*/'}',
+			/*4*/'/*#endregion*/'
+		];
+		assertRanges(input, [r(0, 4, 'region'), r(1, 2)]);
+	});
+
+	test('Simple region with description', () => {
+		const input = [
+			/*0*/'/* #region Header page */',
+			/*1*/'.bar {',
+			/*2*/'  color: red;',
+			/*3*/'}',
+			/*4*/'/* #endregion */'
+		];
+		assertRanges(input, [r(0, 4, 'region'), r(1, 2)]);
+	});
 });
 
 suite('SCSS Folding', () => {
