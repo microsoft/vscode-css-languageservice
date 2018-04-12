@@ -94,10 +94,10 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 			 */
 			case TokenType.Comment: {
 				// CSS region folding
-				if (token.text === '/* #region */') {
+				if (token.text.match(/^\/\*\s+#region\s+\*\/$/)) {
 					regionCommentStack.push(getStartLine(token));
 				}
-				if (token.text === '/* #endregion */') {
+				if (token.text.match(/^\/\*\s+#endregion\s+\*\/$/)) {
 					if (regionCommentStack.length !== 0) {
 						const startLine = regionCommentStack.pop();
 						const endLine = getEndLine(token);
@@ -113,10 +113,10 @@ export function getFoldingRegions(document: TextDocument): FoldingRangeList {
 
 				// Scss / Less region folding
 				if (document.languageId === 'scss' || document.languageId === 'less') {
-					if (token.text === '// #region') {
+					if (token.text.match(/^\/\/\s+#region\s*$/)) {
 						regionCommentStack.push(getStartLine(token));
 					}
-					if (token.text === '// #endregion') {
+					if (token.text.match(/^\/\/\s+#endregion\s*$/)) {
 						if (regionCommentStack.length !== 0) {
 							const startLine = regionCommentStack.pop();
 							const endLine = getEndLine(token);
