@@ -94,7 +94,7 @@ export interface LanguageService {
 	findDocumentColors(document: TextDocument, stylesheet: Stylesheet): ColorInformation[];
 	getColorPresentations(document: TextDocument, stylesheet: Stylesheet, color: Color, range: Range): ColorPresentation[];
 	doRename(document: TextDocument, position: Position, newName: string, stylesheet: Stylesheet): WorkspaceEdit;
-	findFoldingRegions(document: TextDocument, stylesheet: Stylesheet): FoldingRangeList;
+	findFoldingRegions(document: TextDocument, maxRanges?: number | undefined): FoldingRangeList;
 }
 
 export type LintSettings = { [key: string]: string };

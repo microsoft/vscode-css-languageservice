@@ -10,9 +10,9 @@ import { TextDocument } from 'vscode-languageserver-types';
 import { getFoldingRegions } from '../../services/cssFolding';
 import { FoldingRange, FoldingRangeType } from '../../protocol/foldingProvider.proposed';
 
-function assertRanges(lines: string[], expected: FoldingRange[], languageId = 'css'): void {
+function assertRanges(lines: string[], expected: FoldingRange[], languageId = 'css', maxRanges = null): void {
 	const document = TextDocument.create(`test://foo/bar.${languageId}`, languageId, 1, lines.join('\n'));
-	let actualRanges = getFoldingRegions(document).ranges;
+	let actualRanges = getFoldingRegions(document, maxRanges).ranges;
 
 	actualRanges = actualRanges.sort((r1, r2) => r1.startLine - r2.startLine);
 	assert.deepEqual(actualRanges, expected);
@@ -228,6 +228,19 @@ suite('CSS Folding - Regions', () => {
 			/*4*/'/* #endregion */'
 		];
 		assertRanges(input, [r(0, 4, 'region'), r(1, 2)]);
+	});
+});
+
+suite('CSS Folding - maxRanges', () => {
+	test('Max ranges', () => {
+		const input = [
+			/*0*/'/* #region Header page */',
+			/*1*/'.bar {',
+			/*2*/'  color: red;',
+			/*3*/'}',
+			/*4*/'/* #endregion */'
+		];
+		assertRanges(input, [r(1, 2)], 'css', 1);
 	});
 });
 

@@ -178,8 +178,8 @@ export class CSSNavigation {
 		};
 	}
 
-	public findFoldingRegions(document: TextDocument): FoldingRangeList {
-		return getFoldingRegions(document);
+	public findFoldingRegions(document: TextDocument, maxRanges?: number | undefined): FoldingRangeList {
+		return getFoldingRegions(document, maxRanges);
 	}
 
 }
