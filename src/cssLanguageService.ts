@@ -20,12 +20,14 @@ import { SCSSParser } from './parser/scssParser';
 import { SCSSCompletion } from './services/scssCompletion';
 import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
+import { getFoldingRanges } from './services/cssFolding';
 import {
 	LintSettings, LanguageSettings,
 	ICompletionParticipant, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext,
 	ColorInformation, Color, ColorPresentation,
 	FoldingRangeList, FoldingRange, FoldingRangeType
 } from './cssLanguageTypes';
+
 
 export type Stylesheet = {};
 export { TextEdit, Range };
@@ -48,7 +50,7 @@ export interface LanguageService {
 	findDocumentColors(document: TextDocument, stylesheet: Stylesheet): ColorInformation[];
 	getColorPresentations(document: TextDocument, stylesheet: Stylesheet, color: Color, range: Range): ColorPresentation[];
 	doRename(document: TextDocument, position: Position, newName: string, stylesheet: Stylesheet): WorkspaceEdit;
-	findFoldingRegions(document: TextDocument, maxRanges?: number | undefined): FoldingRangeList;
+	getFoldingRanges(document: TextDocument, context: { maxRanges?: number; }): FoldingRangeList;
 }
 
 function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover, navigation: CSSNavigation, codeActions: CSSCodeActions, validation: CSSValidation) {
@@ -68,7 +70,7 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 		findDocumentColors: navigation.findDocumentColors.bind(navigation),
 		getColorPresentations: navigation.getColorPresentations.bind(navigation),
 		doRename: navigation.doRename.bind(navigation),
-		findFoldingRegions: navigation.findFoldingRegions.bind(navigation)
+		getFoldingRanges: getFoldingRanges
 	};
 }
 

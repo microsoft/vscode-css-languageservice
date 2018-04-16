@@ -1,3 +1,7 @@
+3.0.9 / 2018-03-08
+==================
+  * New API `LanguageService.getFoldingRanges` returning folding ranges in the given document.
+
 3.0.8 / 2018-03-08
 ==================
   * Provide ems modules in lib/esm

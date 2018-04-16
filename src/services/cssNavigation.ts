@@ -14,7 +14,6 @@ import { getColorValue, hslFromColor } from '../services/languageFacts';
 
 import * as nls from 'vscode-nls';
 import { ColorInformation, ColorPresentation, Color, FoldingRangeList } from '../cssLanguageTypes';
-import { getFoldingRegions } from './cssFolding';
 
 const localize = nls.loadMessageBundle();
 
@@ -175,10 +174,6 @@ export class CSSNavigation {
 		return {
 			changes: { [document.uri]: edits }
 		};
-	}
-
-	public findFoldingRegions(document: TextDocument, maxRanges?: number | undefined): FoldingRangeList {
-		return getFoldingRegions(document, maxRanges);
 	}
 
 }

@@ -13,7 +13,7 @@ import { FoldingRangeList, FoldingRange, FoldingRangeType } from '../cssLanguage
 import { SCSSScanner, InterpolationFunction } from '../parser/scssScanner';
 import { LESSScanner } from '../parser/lessScanner';
 
-export function getFoldingRegions(document: TextDocument, maxRanges?: number | undefined): FoldingRangeList {
+export function getFoldingRanges(document: TextDocument, context: { maxRanges?: number; }): FoldingRangeList {
 	function getStartLine(t: IToken) {
 		return document.positionAt(t.offset).line;
 	}
@@ -53,9 +53,11 @@ export function getFoldingRegions(document: TextDocument, maxRanges?: number | u
 	scanner.ignoreComment = false;
 	scanner.setSource(document.getText());
 
+	const maxRanges = context && context.maxRanges || Number.MAX_VALUE;
+
 	let token = scanner.scan();
 	let prevToken;
-	while (token.type !== TokenType.EOF) {
+	while (token.type !== TokenType.EOF && ranges.length < maxRanges) {
 		switch (token.type) {
 			case TokenType.CurlyL:
 			case InterpolationFunction:
@@ -79,24 +81,11 @@ export function getFoldingRegions(document: TextDocument, maxRanges?: number | u
 					}
 
 					if (startLine !== endLine) {
-						if (maxRanges) {
-							if (ranges.length < maxRanges) {
-								ranges.push({
-									startLine,
-									endLine,
-									type: undefined
-								});
-								if (ranges.length === maxRanges) {
-									return { ranges };
-								}
-							}
-						} else {
-							ranges.push({
-								startLine,
-								endLine,
-								type: undefined
-							});
-						}
+						ranges.push({
+							startLine,
+							endLine,
+							type: undefined
+						});
 					}
 					break;
 				}
@@ -116,24 +105,11 @@ export function getFoldingRegions(document: TextDocument, maxRanges?: number | u
 							const startLine = regionCommentStack.pop();
 							const endLine = getEndLine(token);
 							if (startLine !== endLine) {
-								if (maxRanges) {
-									if (ranges.length < maxRanges) {
-										ranges.push({
-											startLine,
-											endLine,
-											type: 'region'
-										});
-										if (ranges.length === maxRanges) {
-											return { ranges };
-										}
-									}
-								} else {
-									ranges.push({
-										startLine,
-										endLine,
-										type: 'region'
-									});
-								}
+								ranges.push({
+									startLine,
+									endLine,
+									type: 'region'
+								});
 							}
 						}
 					}
@@ -150,24 +126,11 @@ export function getFoldingRegions(document: TextDocument, maxRanges?: number | u
 								const startLine = regionCommentStack.pop();
 								const endLine = getEndLine(token);
 								if (startLine !== endLine) {
-									if (maxRanges) {
-										if (ranges.length < maxRanges) {
-											ranges.push({
-												startLine,
-												endLine,
-												type: 'region'
-											});
-											if (ranges.length === maxRanges) {
-												return { ranges };
-											}
-										}
-									} else {
-										ranges.push({
-											startLine,
-											endLine,
-											type: 'region'
-										});
-									}
+									ranges.push({
+										startLine,
+										endLine,
+										type: 'region'
+									});
 								}
 							}
 						}
