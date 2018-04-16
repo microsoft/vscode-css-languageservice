@@ -186,8 +186,8 @@ export class CSSCompletion {
 			}
 		}
 		this.completionParticipants.forEach(participant => {
-			if (participant.onProperty) {
-				participant.onProperty({
+			if (participant.onCssProperty) {
+				participant.onCssProperty({
 					propertyName: this.currentWord,
 					range: this.defaultReplaceRange
 				});
@@ -211,8 +211,8 @@ export class CSSCompletion {
 		}
 
 		this.completionParticipants.forEach(participant => {
-			if (participant.onPropertyValue) {
-				participant.onPropertyValue({
+			if (participant.onCssPropertyValue) {
+				participant.onCssPropertyValue({
 					propertyName,
 					propertyValue: this.currentWord,
 					range: this.getCompletionRange(existingNode)
@@ -853,8 +853,8 @@ export class CSSCompletion {
 			range = this.getCompletionRange(uriValueNode);
 		}
 		this.completionParticipants.forEach(participant => {
-			if (participant.onURILiteralValue) {
-				participant.onURILiteralValue({
+			if (participant.onCssURILiteralValue) {
+				participant.onCssURILiteralValue({
 					uriValue,
 					position,
 					range

@@ -62,9 +62,9 @@ export interface URILiteralCompletionContext {
 }
 
 export interface ICompletionParticipant {
-	onProperty?: (context: PropertyCompletionContext) => void;
-	onPropertyValue?: (context: PropertyValueCompletionContext) => void;
-	onURILiteralValue?: (context: URILiteralCompletionContext) => void;
+	onCssProperty?: (context: PropertyCompletionContext) => void;
+	onCssPropertyValue?: (context: PropertyValueCompletionContext) => void;
+	onCssURILiteralValue?: (context: URILiteralCompletionContext) => void;
 }
 
 export interface FoldingRangeList {

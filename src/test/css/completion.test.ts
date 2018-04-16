@@ -64,9 +64,9 @@ suite('CSS - Completion', () => {
 		let ls = cssLanguageService.getCSSLanguageService();
 		if (expected.participant) {
 			ls.setCompletionParticipants([{
-				onProperty: context => actualPropertyContexts.push(context),
-				onPropertyValue: context => actualPropertyValueContexts.push(context),
-				onURILiteralValue: context => actualURILiteralValueContexts.push(context)
+				onCssProperty: context => actualPropertyContexts.push(context),
+				onCssPropertyValue: context => actualPropertyValueContexts.push(context),
+				onCssURILiteralValue: context => actualURILiteralValueContexts.push(context)
 			}]);
 		}
 
