@@ -744,14 +744,6 @@ class EntryImpl implements IEntry {
 
 let propertySet: { [key: string]: IEntry };
 let properties = browsers.data.css.properties;
-// const mdnProperties = Object.keys(mdn.data).map(k => {
-// 	return {
-// 		name: k,
-// 		...mdn.data[k],
-// 	};
-// });
-
-// properties = properties.concat(mdnProperties);
 
 export function getProperties(): { [name: string]: IEntry; } {
 	if (!propertySet) {
