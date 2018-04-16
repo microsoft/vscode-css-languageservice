@@ -1,4 +1,5 @@
 .vscode/
+.github/
 lib/*/test/
 lib/**/*.js.map
 lib/*/*/*.d.ts
@@ -10,3 +11,5 @@ coverage/
 .gitignore
 .travis.yml
 gulpfile.js
+tslint.json
+yarn.lock
