@@ -8,7 +8,7 @@
 import * as assert from 'assert';
 import { TextDocument } from 'vscode-languageserver-types';
 import { getFoldingRegions } from '../../services/cssFolding';
-import { FoldingRange, FoldingRangeType } from '../../protocol/foldingProvider.proposed';
+import { FoldingRange, FoldingRangeType } from '../../cssLanguageTypes';
 
 function assertRanges(lines: string[], expected: FoldingRange[], languageId = 'css', maxRanges = null): void {
 	const document = TextDocument.create(`test://foo/bar.${languageId}`, languageId, 1, lines.join('\n'));

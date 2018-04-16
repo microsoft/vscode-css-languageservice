@@ -9,7 +9,7 @@ import { TokenType, Scanner, IToken } from '../parser/cssScanner';
 import * as nodes from '../parser/cssNodes';
 import { ParseError, CSSIssueType } from '../parser/cssErrors';
 import * as languageFacts from './languageFacts';
-import { FoldingRangeList, FoldingRange, FoldingRangeType } from '../protocol/foldingProvider.proposed';
+import { FoldingRangeList, FoldingRange, FoldingRangeType } from '../cssLanguageTypes';
 import { SCSSScanner, InterpolationFunction } from '../parser/scssScanner';
 import { LESSScanner } from '../parser/lessScanner';
 

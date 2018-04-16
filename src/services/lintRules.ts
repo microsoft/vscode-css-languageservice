@@ -5,7 +5,7 @@
 'use strict';
 
 import * as nodes from '../parser/cssNodes';
-import { LintSettings } from '../cssLanguageService';
+import { LintSettings } from '../cssLanguageTypes';
 
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();

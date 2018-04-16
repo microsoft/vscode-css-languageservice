@@ -20,62 +20,16 @@ import { SCSSParser } from './parser/scssParser';
 import { SCSSCompletion } from './services/scssCompletion';
 import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
-import { FoldingRangeList } from './protocol/foldingProvider.proposed';
+import {
+	LintSettings, LanguageSettings,
+	ICompletionParticipant, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext,
+	ColorInformation, Color, ColorPresentation,
+	FoldingRangeList, FoldingRange, FoldingRangeType
+} from './cssLanguageTypes';
 
 export type Stylesheet = {};
 export { TextEdit, Range };
-
-export interface Color {
-	red: number; blue: number; green: number; alpha: number;
-}
-
-export interface ColorInformation {
-	range: Range;
-	color: Color;
-}
-
-export interface ColorPresentation {
-	/**
-	 * The label of this color presentation. It will be shown on the color
-	 * picker header. By default this is also the text that is inserted when selecting
-	 * this color presentation.
-	 */
-	label: string;
-	/**
-	 * An [edit](#TextEdit) which is applied to a document when selecting
-	 * this presentation for the color.  When `falsy` the [label](#ColorPresentation.label)
-	 * is used.
-	 */
-	textEdit?: TextEdit;
-	/**
-	 * An optional array of additional [text edits](#TextEdit) that are applied when
-	 * selecting this color presentation. Edits must not overlap with the main [edit](#ColorPresentation.textEdit) nor with themselves.
-	 */
-	additionalTextEdits?: TextEdit[];
-}
-
-export interface PropertyCompletionContext {
-	propertyName: string;
-	range: Range;
-}
-
-export interface PropertyValueCompletionContext {
-	propertyName: string;
-	propertyValue?: string;
-	range: Range;
-}
-
-export interface URILiteralCompletionContext {
-	uriValue: string;
-	position: Position;
-	range: Range;
-}
-
-export interface ICompletionParticipant {
-	onProperty?: (context: PropertyCompletionContext) => void;
-	onPropertyValue?: (context: PropertyValueCompletionContext) => void;
-	onURILiteralValue?: (context: URILiteralCompletionContext) => void;
-}
+export * from './cssLanguageTypes';
 
 export interface LanguageService {
 	configure(raw: LanguageSettings): void;
@@ -95,13 +49,6 @@ export interface LanguageService {
 	getColorPresentations(document: TextDocument, stylesheet: Stylesheet, color: Color, range: Range): ColorPresentation[];
 	doRename(document: TextDocument, position: Position, newName: string, stylesheet: Stylesheet): WorkspaceEdit;
 	findFoldingRegions(document: TextDocument, maxRanges?: number | undefined): FoldingRangeList;
-}
-
-export type LintSettings = { [key: string]: string };
-
-export interface LanguageSettings {
-	validate?: boolean;
-	lint?: LintSettings;
 }
 
 function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover, navigation: CSSNavigation, codeActions: CSSCodeActions, validation: CSSValidation) {

@@ -10,7 +10,7 @@ import * as languageFacts from './languageFacts';
 import * as strings from '../utils/strings';
 import { findFirst } from '../utils/arrays';
 import { TextDocument, Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat } from 'vscode-languageserver-types';
-import { ICompletionParticipant } from '../cssLanguageService';
+import { ICompletionParticipant } from '../cssLanguageTypes';
 
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();
@@ -54,7 +54,7 @@ export class CSSCompletion {
 		try {
 			let result: CompletionList = { isIncomplete: false, items: [] };
 			this.nodePath = nodes.getNodePath(this.styleSheet, this.offset);
-			
+
 			for (let i = this.nodePath.length - 1; i >= 0; i--) {
 				let node = this.nodePath[i];
 				if (node instanceof nodes.Property) {

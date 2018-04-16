@@ -8,7 +8,7 @@ import * as nodes from '../parser/cssNodes';
 import * as browsers from '../data/browsers';
 
 import * as nls from 'vscode-nls';
-import { Color } from '../cssLanguageService';
+import { Color } from '../cssLanguageTypes';
 import { endsWith } from '../utils/strings';
 const localize = nls.loadMessageBundle();
 

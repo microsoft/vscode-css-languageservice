@@ -8,7 +8,7 @@ import * as nodes from '../parser/cssNodes';
 import { TextDocument, Range, Diagnostic, DiagnosticSeverity } from 'vscode-languageserver-types';
 import { LintConfigurationSettings } from './lintRules';
 import { LintVisitor } from './lint';
-import { LanguageSettings } from '../cssLanguageService';
+import { LanguageSettings } from '../cssLanguageTypes';
 
 export class CSSValidation {
 
