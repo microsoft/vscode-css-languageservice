@@ -28,9 +28,7 @@ import {
 	FoldingRangeList, FoldingRange, FoldingRangeType
 } from './cssLanguageTypes';
 
-
 export type Stylesheet = {};
-export { TextEdit, Range };
 export * from './cssLanguageTypes';
 
 export interface LanguageService {
