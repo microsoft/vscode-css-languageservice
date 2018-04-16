@@ -6,7 +6,6 @@
 
 import * as nodes from '../parser/cssNodes';
 import * as browsers from '../data/browsers';
-import * as mdn from '../data/mdn';
 
 import * as nls from 'vscode-nls';
 import { Color } from '../cssLanguageTypes';
@@ -580,12 +579,28 @@ export function getEntryDescription(entry: { description: string; browsers: Brow
 		}
 		desc = desc + '(' + browserLabel + ')';
 	}
-	if (entry.data && entry.data.status) {
-		desc += '\n';
-		desc += `\nStatus: ${entry.data.status}`;
-		desc += `\nSyntax: ${entry.data.syntax}`;
+	if (entry.data) {
+		if (entry.data.syntax) {
+			desc += `\nSyntax: ${entry.data.syntax}`;
+		}
+		if (entry.data.status) {
+			desc += `\n${getEntryStatus(entry.data.status)}`;
+		}
 	}
 	return desc;
+}
+
+function getEntryStatus(status: string) {
+	switch (status) {
+		case 'experimental':
+			return '\n⚠️ Property is experimental. Be cautious to use it. ⚠️';
+		case 'nonstandard':
+			return '\n⚠️ Property is nonstandard. Avoid using it. ⚠️';
+		case 'obsolete':
+			return '\n⚠️ Property is obsolete. Avoid using it. ⚠️';
+		default:
+			return '';
+	}
 }
 
 export function getBrowserLabel(b: Browsers): string {
@@ -744,21 +759,9 @@ export function getProperties(): { [name: string]: IEntry; } {
 		};
 		for (let i = 0; i < properties.length; i++) {
 			let rawEntry = properties[i];
-			if (mdn.data[rawEntry.name]) {
-				rawEntry.status = mdn.data[rawEntry.name].status;
-				rawEntry.syntax = mdn.data[rawEntry.name].syntax;
-			}
 			propertySet[rawEntry.name] = new EntryImpl(rawEntry);
 		}
 
-		Object.keys(mdn.data).forEach(k => {
-			if (!propertySet[k]) {
-				propertySet[k] = new EntryImpl({
-					name: k,
-					...mdn.data[k]
-				});
-			}
-		});
 	}
 	return propertySet;
 }

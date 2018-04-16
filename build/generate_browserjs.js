@@ -343,6 +343,9 @@ function toSource(object, keyName) {
 
 var parser = new xml2js.Parser({explicitArray : false});
 var schemaFileName= 'css-schema.xml';
+
+var { buildPropertiesWithMDNData } = require('./mdn-data-importer')
+
 fs.readFile(path.resolve(__dirname, schemaFileName), function(err, data) {
 	parser.parseString(data, function (err, result) {
 
@@ -360,7 +363,7 @@ fs.readFile(path.resolve(__dirname, schemaFileName), function(err, data) {
 				atdirectives: atdirectives,
 				pseudoclasses: pseudoclasses,
 				pseudoelements: pseudoelements,
-				properties: properties
+				properties: buildPropertiesWithMDNData(properties)
 			}
 		};
 

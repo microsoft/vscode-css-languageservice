@@ -771,7 +771,14 @@ export const data : any = {
 				name: "additive-symbols",
 				desc: "@counter-style descriptor. Specifies the symbols used by the marker-construction algorithm specified by the system descriptor. Needs to be specified if the counter system is 'additive'.",
 				browsers: "FF33",
-				restriction: "integer, string, image, identifier"
+				restriction: "integer, string, image, identifier",
+				"syntax": "[ <integer> && <symbol> ]#",
+				"media": "all",
+				"initial": "N/A",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "standard"
 			},
 			{
 				name: "align-content",
@@ -803,7 +810,20 @@ export const data : any = {
 						name: "stretch",
 						desc: "Lines stretch to take up the remaining space."
 					}
-				]
+				],
+				"syntax": "normal | <baseline-position> | <content-distribution> | <overflow-position>? <content-position>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Flexible Box Layout"
+				],
+				"initial": "normal",
+				"appliesto": "multilineFlexContainers",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "align-items",
@@ -831,7 +851,20 @@ export const data : any = {
 						name: "stretch",
 						desc: "If the cross size property of the flex item computes to auto, and neither of the cross-axis margins are auto, the flex item is stretched."
 					}
-				]
+				],
+				"syntax": "normal | stretch | <baseline-position> | [ <overflow-position>? <self-position> ]",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Flexible Box Layout"
+				],
+				"initial": "normal",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "justify-items",
@@ -897,7 +930,20 @@ export const data : any = {
 					{
 						name: "legacy"
 					}
-				]
+				],
+				"syntax": "normal | stretch | <baseline-position> | <overflow-position>? [ <self-position> | left | right ] | legacy | legacy && [ left | right | center ]",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Box Alignment"
+				],
+				"initial": "legacy",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "justify-self",
@@ -960,7 +1006,20 @@ export const data : any = {
 					{
 						name: "unsave"
 					}
-				]
+				],
+				"syntax": "auto | normal | stretch | <baseline-position> | <overflow-position>? [ <self-position> | left | right ]",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Box Alignment"
+				],
+				"initial": "auto",
+				"appliesto": "blockLevelBoxesAndAbsolutelyPositionedBoxesAndGridItems",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "align-self",
@@ -992,14 +1051,40 @@ export const data : any = {
 						name: "stretch",
 						desc: "If the cross size property of the flex item computes to auto, and neither of the cross-axis margins are auto, the flex item is stretched."
 					}
-				]
+				],
+				"syntax": "auto | normal | stretch | <baseline-position> | <overflow-position>? <self-position>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Flexible Box Layout"
+				],
+				"initial": "auto",
+				"appliesto": "flexItemsGridItemsAndAbsolutelyPositionedBoxes",
+				"computed": "autoOnAbsolutelyPositionedElementsValueOfAlignItemsOnParent",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "all",
 				desc: "Shorthand that resets all properties except 'direction' and 'unicode-bidi'.",
 				browsers: "C37,FF27,O24",
 				restriction: "enum",
-				values: []
+				values: [],
+				"syntax": "initial | inherit | unset | revert",
+				"media": "noPracticalMedia",
+				"inherited": false,
+				"animationType": "eachOfShorthandPropertiesExceptUnicodeBiDiAndDirection",
+				"percentages": "no",
+				"groups": [
+					"CSS Miscellaneous"
+				],
+				"initial": "noPracticalInitialValue",
+				"appliesto": "allElements",
+				"computed": "asSpecifiedAppliesToEachProperty",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "alt",
@@ -1046,13 +1131,57 @@ export const data : any = {
 						name: "reverse",
 						desc: "All iterations of the animation are played in the reverse direction from the way they were specified."
 					}
-				]
+				],
+				"syntax": "<single-animation>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Animations"
+				],
+				"initial": [
+					"animation-name",
+					"animation-duration",
+					"animation-timing-function",
+					"animation-delay",
+					"animation-iteration-count",
+					"animation-direction",
+					"animation-fill-mode",
+					"animation-play-state"
+				],
+				"appliesto": "allElementsAndPseudos",
+				"computed": [
+					"animation-name",
+					"animation-duration",
+					"animation-timing-function",
+					"animation-delay",
+					"animation-direction",
+					"animation-iteration-count",
+					"animation-fill-mode",
+					"animation-play-state"
+				],
+				"order": "orderOfAppearance",
+				"status": "standard"
 			},
 			{
 				name: "animation-delay",
 				desc: "Defines when the animation will start.",
 				browsers: "E,C43,FF16,IE10,O12.1,S9",
-				restriction: "time"
+				restriction: "time",
+				"syntax": "<time>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Animations"
+				],
+				"initial": "0s",
+				"appliesto": "allElementsAndPseudos",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "animation-direction",
@@ -1074,13 +1203,39 @@ export const data : any = {
 						name: "reverse",
 						desc: "All iterations of the animation are played in the reverse direction from the way they were specified."
 					}
-				]
+				],
+				"syntax": "<single-animation-direction>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Animations"
+				],
+				"initial": "normal",
+				"appliesto": "allElementsAndPseudos",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "animation-duration",
 				desc: "Defines the length of time that an animation takes to complete one cycle.",
 				browsers: "E,C43,FF16,IE10,O12.1,S9",
-				restriction: "time"
+				restriction: "time",
+				"syntax": "<time>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Animations"
+				],
+				"initial": "0s",
+				"appliesto": "allElementsAndPseudos",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "animation-fill-mode",
@@ -1102,7 +1257,20 @@ export const data : any = {
 						name: "none",
 						desc: "There is no change to the property value between the time the animation is applied and the time the animation begins playing or after the animation completes."
 					}
-				]
+				],
+				"syntax": "<single-animation-fill-mode>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Animations"
+				],
+				"initial": "none",
+				"appliesto": "allElementsAndPseudos",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "animation-iteration-count",
@@ -1114,7 +1282,20 @@ export const data : any = {
 						name: "infinite",
 						desc: "Causes the animation to repeat forever."
 					}
-				]
+				],
+				"syntax": "<single-animation-iteration-count>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Animations"
+				],
+				"initial": "1",
+				"appliesto": "allElementsAndPseudos",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "animation-name",
@@ -1126,7 +1307,20 @@ export const data : any = {
 						name: "none",
 						desc: "No animation is performed"
 					}
-				]
+				],
+				"syntax": "[ none | <keyframes-name> ]#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Animations"
+				],
+				"initial": "none",
+				"appliesto": "allElementsAndPseudos",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "animation-play-state",
@@ -1140,13 +1334,39 @@ export const data : any = {
 					{
 						name: "running"
 					}
-				]
+				],
+				"syntax": "<single-animation-play-state>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Animations"
+				],
+				"initial": "running",
+				"appliesto": "allElementsAndPseudos",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "animation-timing-function",
 				desc: "Describes how the animation will progress over one cycle of its duration.",
 				browsers: "E,C43,FF16,IE10,O12.1,S9",
-				restriction: "timing-function"
+				restriction: "timing-function",
+				"syntax": "<single-timing-function>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Animations"
+				],
+				"initial": "ease",
+				"appliesto": "allElementsAndPseudos",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "backface-visibility",
@@ -1162,7 +1382,20 @@ export const data : any = {
 						name: "visible",
 						desc: "Back side is visible."
 					}
-				]
+				],
+				"syntax": "visible | hidden",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Transforms"
+				],
+				"initial": "visible",
+				"appliesto": "transformableElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "background",
@@ -1181,7 +1414,54 @@ export const data : any = {
 						name: "scroll",
 						desc: "The background is fixed with regard to the element itself and does not scroll with its contents. (It is effectively attached to the element's border.)"
 					}
-				]
+				],
+				"syntax": "[ <bg-layer> , ]* <final-bg-layer>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": [
+					"background-color",
+					"background-image",
+					"background-clip",
+					"background-position",
+					"background-size",
+					"background-repeat",
+					"background-attachment"
+				],
+				"percentages": [
+					"background-position",
+					"background-size"
+				],
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": [
+					"background-image",
+					"background-position",
+					"background-size",
+					"background-repeat",
+					"background-origin",
+					"background-clip",
+					"background-attachment",
+					"background-color"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"background-image",
+					"background-position",
+					"background-size",
+					"background-repeat",
+					"background-origin",
+					"background-clip",
+					"background-attachment",
+					"background-color"
+				],
+				"order": "orderOfAppearance",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "background-attachment",
@@ -1201,7 +1481,25 @@ export const data : any = {
 						name: "scroll",
 						desc: "The background is fixed with regard to the element itself and does not scroll with its contents. (It is effectively attached to the element’s border.)"
 					}
-				]
+				],
+				"syntax": "<attachment>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "scroll",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "background-blend-mode",
@@ -1262,18 +1560,72 @@ export const data : any = {
 						name: "luminosity",
 						browsers: "C35,FF30,O22"
 					}
-				]
+				],
+				"syntax": "<blend-mode>#",
+				"media": "none",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Compositing and Blending"
+				],
+				"initial": "normal",
+				"appliesto": "allElementsSVGContainerGraphicsAndGraphicsReferencingElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "background-clip",
 				desc: "Determines the background painting area.",
 				browsers: "E,C,FF4,IE9,O10.5,S3",
-				restriction: "box"
+				restriction: "box",
+				"syntax": "<box>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "border-box",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "background-color",
 				desc: "Sets the background color of an element.",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<color>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "color",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "transparent",
+				"appliesto": "allElements",
+				"computed": "computedColor",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "background-image",
@@ -1284,18 +1636,72 @@ export const data : any = {
 						name: "none",
 						desc: "Counts as an image layer but draws nothing."
 					}
-				]
+				],
+				"syntax": "<bg-image>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecifiedURLsAbsolute",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "background-origin",
 				desc: "For elements rendered as a single box, specifies the background positioning area. For elements rendered as multiple boxes (e.g., inline boxes on several lines, boxes on several pages) specifies which boxes 'box-decoration-break' operates on to determine the background positioning area(s).",
 				browsers: "E,C,FF4,IE9,O10.5,S3",
-				restriction: "box"
+				restriction: "box",
+				"syntax": "<box>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "padding-box",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "background-position",
 				desc: "Specifies the initial position of the background image(s) (after any resizing) within their corresponding background positioning area.",
-				restriction: "position, length, percentage"
+				restriction: "position, length, percentage",
+				"syntax": "<bg-position>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "repeatableListOfSimpleListOfLpc",
+				"percentages": "referToSizeOfBackgroundPositioningAreaMinusBackgroundImageSize",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "0% 0%",
+				"appliesto": "allElements",
+				"computed": "listEachItemTwoKeywordsOriginOffsets",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "background-position-x",
@@ -1315,7 +1721,20 @@ export const data : any = {
 						name: "right",
 						desc: "Equivalent to '100%' for the horizontal position if one or two values are given, otherwise specifies the right edge as the origin for the next offset."
 					}
-				]
+				],
+				"syntax": "[ center | [ left | right | x-start | x-end ]? <length-percentage>? ]#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "referToWidthOfBackgroundPositioningAreaMinusBackgroundImageHeight",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "left",
+				"appliesto": "allElements",
+				"computed": "listEachItemConsistingOfAbsoluteLengthPercentageAndOrigin",
+				"order": "uniqueOrder",
+				"status": "experimental"
 			},
 			{
 				name: "background-position-y",
@@ -1335,13 +1754,44 @@ export const data : any = {
 						name: "top",
 						desc: "Equivalent to '0%' for the vertical position if one or two values are given, otherwise specifies the top edge as the origin for the next offset."
 					}
-				]
+				],
+				"syntax": "[ center | [ top | bottom | y-start | y-end ]? <length-percentage>? ]#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "referToHeightOfBackgroundPositioningAreaMinusBackgroundImageHeight",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "top",
+				"appliesto": "allElements",
+				"computed": "listEachItemConsistingOfAbsoluteLengthPercentageAndOrigin",
+				"order": "uniqueOrder",
+				"status": "experimental"
 			},
 			{
 				name: "background-repeat",
 				desc: "Specifies how background images are tiled after they have been sized and positioned.",
 				restriction: "repeat",
-				values: []
+				values: [],
+				"syntax": "<repeat-style>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "repeat",
+				"appliesto": "allElements",
+				"computed": "listEachItemHasTwoKeywordsOnePerDimension",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "background-size",
@@ -1361,7 +1811,25 @@ export const data : any = {
 						name: "cover",
 						desc: "Scale the image, while preserving its intrinsic aspect ratio (if any), to the smallest size such that both its width and its height can completely cover the background positioning area."
 					}
-				]
+				],
+				"syntax": "<bg-size>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "repeatableListOfSimpleListOfLpc",
+				"percentages": "relativeToBackgroundPositioningArea",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "auto auto",
+				"appliesto": "allElements",
+				"computed": "asSpecifiedRelativeToAbsoluteLengths",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "behavior",
@@ -1379,92 +1847,361 @@ export const data : any = {
 						name: "auto",
 						desc: "Depends on the values of other properties."
 					}
-				]
+				],
+				"syntax": "<'width'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "blockSizeOfContainingBlock",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "auto",
+				"appliesto": "sameAsWidthAndHeight",
+				"computed": "sameAsWidthAndHeight",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "border",
 				desc: "Shorthand property for setting border width, style, and color.",
-				restriction: "length, line-width, line-style, color"
+				restriction: "length, line-width, line-style, color",
+				"syntax": "<br-width> || <br-style> || <color>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": [
+					"border-color",
+					"border-style",
+					"border-width"
+				],
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": [
+					"border-width",
+					"border-style",
+					"border-color"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"border-width",
+					"border-style",
+					"border-color"
+				],
+				"order": "orderOfAppearance",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-block-end",
 				desc: "Logical 'border-bottom'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, line-width, line-style, color"
+				restriction: "length, line-width, line-style, color",
+				"syntax": "<'border-width'> || <'border-style'> || <'color'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": [
+					"border-width",
+					"border-style",
+					"color"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"border-width",
+					"border-style",
+					"border-block-end-color"
+				],
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "border-block-start",
 				desc: "Logical 'border-top'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, line-width, line-style, color"
+				restriction: "length, line-width, line-style, color",
+				"syntax": "<'border-width'> || <'border-style'> || <'color'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": [
+					"border-width",
+					"border-style",
+					"color"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"border-width",
+					"border-style",
+					"border-block-start-color"
+				],
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "border-block-end-color",
 				desc: "Logical 'border-bottom-color'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<'color'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "currentcolor",
+				"appliesto": "allElements",
+				"computed": "computedColor",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "border-block-start-color",
 				desc: "Logical 'border-top-color'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<'color'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "currentcolor",
+				"appliesto": "allElements",
+				"computed": "computedColor",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "border-block-end-style",
 				desc: "Logical 'border-bottom-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "line-style"
+				restriction: "line-style",
+				"syntax": "<'border-style'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "border-block-start-style",
 				desc: "Logical 'border-top-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "lline-style"
+				restriction: "lline-style",
+				"syntax": "<'border-style'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "border-block-end-width",
 				desc: "Logical 'border-bottom-width'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, line-width"
+				restriction: "length, line-width",
+				"syntax": "<'border-width'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "logicalWidthOfContainingBlock",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "medium",
+				"appliesto": "allElements",
+				"computed": "absoluteLengthZeroIfBorderStyleNoneOrHidden",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "border-block-start-width",
 				desc: "Logical 'border-top-width'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, line-width"
+				restriction: "length, line-width",
+				"syntax": "<'border-width'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "logicalWidthOfContainingBlock",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "medium",
+				"appliesto": "allElements",
+				"computed": "absoluteLengthZeroIfBorderStyleNoneOrHidden",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "border-bottom",
 				desc: "Shorthand property for setting border width, style and color.",
-				restriction: "length, line-width, line-style, color"
+				restriction: "length, line-width, line-style, color",
+				"syntax": "<br-width> || <br-style> || <color>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": [
+					"border-bottom-color",
+					"border-bottom-style",
+					"border-bottom-width"
+				],
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": [
+					"border-bottom-width",
+					"border-bottom-style",
+					"border-bottom-color"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"border-bottom-width",
+					"border-bottom-style",
+					"border-bottom-color"
+				],
+				"order": "orderOfAppearance",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-bottom-color",
 				desc: "Sets the color of the bottom border.",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<color>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "color",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "currentcolor",
+				"appliesto": "allElements",
+				"computed": "computedColor",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-bottom-left-radius",
 				desc: "Defines the radii of the bottom left outer border edge.",
 				browsers: "E,C,FF4,IE9,O10.5,S5",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"syntax": "<length-percentage>{1,2}",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "lpc",
+				"percentages": "referToDimensionOfBorderBox",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "0",
+				"appliesto": "allElementsUAsNotRequiredWhenCollapse",
+				"computed": "twoAbsoluteLengthOrPercentages",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-bottom-right-radius",
 				desc: "Defines the radii of the bottom right outer border edge.",
 				browsers: "E,C,FF4,IE9,O10.5,S5",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"syntax": "<length-percentage>{1,2}",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "lpc",
+				"percentages": "referToDimensionOfBorderBox",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "0",
+				"appliesto": "allElementsUAsNotRequiredWhenCollapse",
+				"computed": "twoAbsoluteLengthOrPercentages",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-bottom-style",
 				desc: "Sets the style of the bottom border.",
-				restriction: "line-style"
+				restriction: "line-style",
+				"syntax": "<br-style>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-bottom-width",
 				desc: "Sets the thickness of the bottom border.",
-				restriction: "length, line-width"
+				restriction: "length, line-width",
+				"syntax": "<br-width>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "medium",
+				"appliesto": "allElements",
+				"computed": "absoluteLengthOr0IfBorderBottomStyleNoneOrHidden",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-collapse",
@@ -1479,13 +2216,57 @@ export const data : any = {
 						name: "separate",
 						desc: "Selects the separated borders border model."
 					}
-				]
+				],
+				"syntax": "collapse | separate",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Table"
+				],
+				"initial": "separate",
+				"appliesto": "tableElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "border-color",
 				desc: "The color of the border around all four edges of an element.",
 				restriction: "color",
-				values: []
+				values: [],
+				"syntax": "<color>{1,4}",
+				"media": "visual",
+				"inherited": false,
+				"animationType": [
+					"border-bottom-color",
+					"border-left-color",
+					"border-right-color",
+					"border-top-color"
+				],
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": [
+					"border-top-color",
+					"border-right-color",
+					"border-bottom-color",
+					"border-left-color"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"border-bottom-color",
+					"border-left-color",
+					"border-right-color",
+					"border-top-color"
+				],
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-image",
@@ -1523,13 +2304,60 @@ export const data : any = {
 					{
 						name: "url()"
 					}
-				]
+				],
+				"syntax": "<'border-image-source'> || <'border-image-slice'> [ / <'border-image-width'> | / <'border-image-width'>? / <'border-image-outset'> ]? || <'border-image-repeat'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": [
+					"border-image-slice",
+					"border-image-width"
+				],
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": [
+					"border-image-source",
+					"border-image-slice",
+					"border-image-width",
+					"border-image-outset",
+					"border-image-repeat"
+				],
+				"appliesto": "allElementsExceptTableElementsWhenCollapse",
+				"computed": [
+					"border-image-outset",
+					"border-image-repeat",
+					"border-image-slice",
+					"border-image-source",
+					"border-image-width"
+				],
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-image-outset",
 				desc: "The values specify the amount by which the border image area extends beyond the border box on the top, right, bottom, and left sides respectively. If the fourth value is absent, it is the same as the second. If the third one is also absent, it is the same as the first. If the second one is also absent, it is the same as the first. Numbers represent multiples of the corresponding border-width.",
 				browsers: "E,C16,FF15,IE11,O15,S6",
-				restriction: "length, number"
+				restriction: "length, number",
+				"syntax": "[ <length> | <number> ]{1,4}",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "0",
+				"appliesto": "allElementsExceptTableElementsWhenCollapse",
+				"computed": "asSpecifiedRelativeToAbsoluteLengths",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-image-repeat",
@@ -1552,7 +2380,23 @@ export const data : any = {
 						name: "stretch",
 						desc: "The image is stretched to fill the area."
 					}
-				]
+				],
+				"syntax": "[ stretch | repeat | round | space ]{1,2}",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "stretch",
+				"appliesto": "allElementsExceptTableElementsWhenCollapse",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-image-slice",
@@ -1564,7 +2408,23 @@ export const data : any = {
 						name: "fill",
 						desc: "Causes the middle part of the border-image to be preserved."
 					}
-				]
+				],
+				"syntax": "<number-percentage>{1,4} && fill?",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "referToSizeOfBorderImage",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "100%",
+				"appliesto": "allElementsExceptTableElementsWhenCollapse",
+				"computed": "oneToFourPercentagesOrAbsoluteLengthsPlusFill",
+				"order": "percentagesOrLengthsFollowedByFill",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-image-source",
@@ -1576,7 +2436,23 @@ export const data : any = {
 						name: "none",
 						desc: "Use the border styles."
 					}
-				]
+				],
+				"syntax": "none | <image>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "none",
+				"appliesto": "allElementsExceptTableElementsWhenCollapse",
+				"computed": "noneOrImageWithAbsoluteURI",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-image-width",
@@ -1588,151 +2464,648 @@ export const data : any = {
 						name: "auto",
 						desc: "The border image width is the intrinsic width or height (whichever is applicable) of the corresponding image slice. If the image does not have the required intrinsic dimension then the corresponding border-width is used instead."
 					}
-				]
+				],
+				"syntax": "[ <length-percentage> | <number> | auto ]{1,4}",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "referToWidthOrHeightOfBorderImageArea",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "1",
+				"appliesto": "allElementsExceptTableElementsWhenCollapse",
+				"computed": "asSpecifiedRelativeToAbsoluteLengths",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-inline-end",
 				desc: "Logical 'border-right'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, line-width, line-style, color"
+				restriction: "length, line-width, line-style, color",
+				"syntax": "<'border-width'> || <'border-style'> || <'color'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": [
+					"border-width",
+					"border-style",
+					"color"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"border-width",
+					"border-style",
+					"border-inline-end-color"
+				],
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "border-inline-start",
 				desc: "Logical 'border-left'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, line-width, line-style, color"
+				restriction: "length, line-width, line-style, color",
+				"syntax": "<'border-width'> || <'border-style'> || <'color'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": [
+					"border-width",
+					"border-style",
+					"color"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"border-width",
+					"border-style",
+					"border-inline-start-color"
+				],
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "border-inline-end-color",
 				desc: "Logical 'border-right-color'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<'color'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "currentcolor",
+				"appliesto": "allElements",
+				"computed": "computedColor",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "border-inline-start-color",
 				desc: "Logical 'border-left-color'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<'color'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "currentcolor",
+				"appliesto": "allElements",
+				"computed": "computedColor",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "border-inline-end-style",
 				desc: "Logical 'border-right-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "line-style"
+				restriction: "line-style",
+				"syntax": "<'border-style'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "border-inline-start-style",
 				desc: "Logical 'border-left-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "lline-style"
+				restriction: "lline-style",
+				"syntax": "<'border-style'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "border-inline-end-width",
 				desc: "Logical 'border-right-width'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, line-width"
+				restriction: "length, line-width",
+				"syntax": "<'border-width'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "logicalWidthOfContainingBlock",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "medium",
+				"appliesto": "allElements",
+				"computed": "absoluteLengthZeroIfBorderStyleNoneOrHidden",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "border-inline-start-width",
 				desc: "Logical 'border-left-width'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, line-width"
+				restriction: "length, line-width",
+				"syntax": "<'border-width'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "logicalWidthOfContainingBlock",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "medium",
+				"appliesto": "allElements",
+				"computed": "absoluteLengthZeroIfBorderStyleNoneOrHidden",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "border-left",
 				desc: "Shorthand property for setting border width, style and color",
-				restriction: "length, line-width, line-style, color"
+				restriction: "length, line-width, line-style, color",
+				"syntax": "<br-width> || <br-style> || <color>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": [
+					"border-left-color",
+					"border-left-style",
+					"border-left-width"
+				],
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": [
+					"border-left-width",
+					"border-left-style",
+					"border-left-color"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"border-left-width",
+					"border-left-style",
+					"border-left-color"
+				],
+				"order": "orderOfAppearance",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-left-color",
 				desc: "Sets the color of the left border.",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<color>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "color",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "currentcolor",
+				"appliesto": "allElements",
+				"computed": "computedColor",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-left-style",
 				desc: "Sets the style of the left border.",
-				restriction: "line-style"
+				restriction: "line-style",
+				"syntax": "<br-style>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-left-width",
 				desc: "Sets the thickness of the left border.",
-				restriction: "length, line-width"
+				restriction: "length, line-width",
+				"syntax": "<br-width>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "medium",
+				"appliesto": "allElements",
+				"computed": "absoluteLengthOr0IfBorderLeftStyleNoneOrHidden",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-radius",
 				desc: "Defines the radii of the outer border edge.",
 				browsers: "E,C,FF4,IE9,O10.5,S5",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"syntax": "<length-percentage>{1,4} [ / <length-percentage>{1,4} ]?",
+				"media": "visual",
+				"inherited": false,
+				"animationType": [
+					"border-top-left-radius",
+					"border-top-right-radius",
+					"border-bottom-right-radius",
+					"border-bottom-left-radius"
+				],
+				"percentages": "referToDimensionOfBorderBox",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": [
+					"border-top-left-radius",
+					"border-top-right-radius",
+					"border-bottom-right-radius",
+					"border-bottom-left-radius"
+				],
+				"appliesto": "allElementsUAsNotRequiredWhenCollapse",
+				"computed": [
+					"border-bottom-left-radius",
+					"border-bottom-right-radius",
+					"border-top-left-radius",
+					"border-top-right-radius"
+				],
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-right",
 				desc: "Shorthand property for setting border width, style and color",
-				restriction: "length, line-width, line-style, color"
+				restriction: "length, line-width, line-style, color",
+				"syntax": "<br-width> || <br-style> || <color>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": [
+					"border-right-color",
+					"border-right-style",
+					"border-right-width"
+				],
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": [
+					"border-right-width",
+					"border-right-style",
+					"border-right-color"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"border-right-width",
+					"border-right-style",
+					"border-right-color"
+				],
+				"order": "orderOfAppearance",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-right-color",
 				desc: "Sets the color of the right border.",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<color>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "color",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "currentcolor",
+				"appliesto": "allElements",
+				"computed": "computedColor",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-right-style",
 				desc: "Sets the style of the right border.",
-				restriction: "line-style"
+				restriction: "line-style",
+				"syntax": "<br-style>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-right-width",
 				desc: "Sets the thickness of the right border.",
-				restriction: "length, line-width"
+				restriction: "length, line-width",
+				"syntax": "<br-width>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "medium",
+				"appliesto": "allElements",
+				"computed": "absoluteLengthOr0IfBorderRightStyleNoneOrHidden",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-spacing",
 				desc: "The lengths specify the distance that separates adjoining cell borders. If one length is specified, it gives both the horizontal and vertical spacing. If two are specified, the first gives the horizontal spacing and the second the vertical spacing. Lengths may not be negative.",
 				browsers: "E,C,FF1,IE8,O7,S1.2",
-				restriction: "length"
+				restriction: "length",
+				"syntax": "<length> <length>?",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Table"
+				],
+				"initial": "0",
+				"appliesto": "tableElements",
+				"computed": "twoAbsoluteLengths",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "border-style",
 				desc: "The style of the border around edges of an element.",
 				restriction: "line-style",
-				values: []
+				values: [],
+				"syntax": "<br-style>{1,4}",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": [
+					"border-top-style",
+					"border-right-style",
+					"border-bottom-style",
+					"border-left-style"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"border-bottom-style",
+					"border-left-style",
+					"border-right-style",
+					"border-top-style"
+				],
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-top",
 				desc: "Shorthand property for setting border width, style and color",
-				restriction: "length, line-width, line-style, color"
+				restriction: "length, line-width, line-style, color",
+				"syntax": "<br-width> || <br-style> || <color>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": [
+					"border-top-color",
+					"border-top-style",
+					"border-top-width"
+				],
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": [
+					"border-top-width",
+					"border-top-style",
+					"border-top-color"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"border-top-width",
+					"border-top-style",
+					"border-top-color"
+				],
+				"order": "orderOfAppearance",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-top-color",
 				desc: "Sets the color of the top border.",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<color>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "color",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "currentcolor",
+				"appliesto": "allElements",
+				"computed": "computedColor",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-top-left-radius",
 				desc: "Defines the radii of the top left outer border edge.",
 				browsers: "E,C,FF4,IE9,O10.5,S5",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"syntax": "<length-percentage>{1,2}",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "lpc",
+				"percentages": "referToDimensionOfBorderBox",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "0",
+				"appliesto": "allElementsUAsNotRequiredWhenCollapse",
+				"computed": "twoAbsoluteLengthOrPercentages",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-top-right-radius",
 				desc: "Defines the radii of the top right outer border edge.",
 				browsers: "E,C,FF4,IE9,O10.5,S5",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"syntax": "<length-percentage>{1,2}",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "lpc",
+				"percentages": "referToDimensionOfBorderBox",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "0",
+				"appliesto": "allElementsUAsNotRequiredWhenCollapse",
+				"computed": "twoAbsoluteLengthOrPercentages",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-top-style",
 				desc: "Sets the style of the top border.",
-				restriction: "line-style"
+				restriction: "line-style",
+				"syntax": "<br-style>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-top-width",
 				desc: "Sets the thickness of the top border.",
-				restriction: "length, line-width"
+				restriction: "length, line-width",
+				"syntax": "<br-width>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "medium",
+				"appliesto": "allElements",
+				"computed": "absoluteLengthOr0IfBorderTopStyleNoneOrHidden",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "border-width",
 				desc: "Shorthand that sets the four 'border-*-width' properties. If it has four values, they set top, right, bottom and left in that order. If left is missing, it is the same as right; if bottom is missing, it is the same as top; if right is missing, it is the same as top.",
 				restriction: "length, line-width",
-				values: []
+				values: [],
+				"syntax": "<br-width>{1,4}",
+				"media": "visual",
+				"inherited": false,
+				"animationType": [
+					"border-bottom-width",
+					"border-left-width",
+					"border-right-width",
+					"border-top-width"
+				],
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": [
+					"border-top-width",
+					"border-right-width",
+					"border-bottom-width",
+					"border-left-width"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"border-bottom-width",
+					"border-left-width",
+					"border-right-width",
+					"border-top-width"
+				],
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "bottom",
@@ -1743,7 +3116,20 @@ export const data : any = {
 						name: "auto",
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well"
 					}
-				]
+				],
+				"syntax": "<length> | <percentage> | auto",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "lpc",
+				"percentages": "referToContainingBlockHeight",
+				"groups": [
+					"CSS Positioning"
+				],
+				"initial": "auto",
+				"appliesto": "positionedElements",
+				"computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "box-decoration-break",
@@ -1757,7 +3143,20 @@ export const data : any = {
 					{
 						name: "slice"
 					}
-				]
+				],
+				"syntax": "slice | clone",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Fragmentation"
+				],
+				"initial": "slice",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "box-shadow",
@@ -1768,7 +3167,23 @@ export const data : any = {
 					{
 						name: "inset"
 					}
-				]
+				],
+				"syntax": "none | <shadow>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "shadowList",
+				"percentages": "no",
+				"groups": [
+					"CSS Backgrounds and Borders"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "absoluteLengthsSpecifiedColorAsSpecified",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "box-sizing",
@@ -1782,7 +3197,20 @@ export const data : any = {
 					{
 						name: "content-box"
 					}
-				]
+				],
+				"syntax": "content-box | border-box",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Basic User Interface"
+				],
+				"initial": "content-box",
+				"appliesto": "allElementsAcceptingWidthOrHeight",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "break-after",
@@ -1826,7 +3254,22 @@ export const data : any = {
 						name: "right",
 						desc: "Force one or two page breaks before/after the generated box so that the next page is formatted as a right page."
 					}
-				]
+				],
+				"syntax": "auto | avoid | avoid-page | page | left | right | recto | verso | avoid-column | column | avoid-region | region",
+				"media": "paged",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Columns",
+					"CSS Fragmentation",
+					"CSS Regions"
+				],
+				"initial": "auto",
+				"appliesto": "blockLevelElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "break-before",
@@ -1870,7 +3313,22 @@ export const data : any = {
 						name: "right",
 						desc: "Force one or two page breaks before/after the generated box so that the next page is formatted as a right page."
 					}
-				]
+				],
+				"syntax": "auto | avoid | avoid-page | page | left | right | recto | verso | avoid-column | column | avoid-region | region",
+				"media": "paged",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Columns",
+					"CSS Fragmentation",
+					"CSS Regions"
+				],
+				"initial": "auto",
+				"appliesto": "blockLevelElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "break-inside",
@@ -1894,7 +3352,22 @@ export const data : any = {
 						name: "avoid-page",
 						desc: "Avoid a page break within the box."
 					}
-				]
+				],
+				"syntax": "auto | avoid | avoid-page | avoid-column | avoid-region",
+				"media": "paged",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Columns",
+					"CSS Fragmentation",
+					"CSS Regions"
+				],
+				"initial": "auto",
+				"appliesto": "blockLevelElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "caption-side",
@@ -1910,7 +3383,20 @@ export const data : any = {
 						name: "top",
 						desc: "Positions the caption box above the table box."
 					}
-				]
+				],
+				"syntax": "top | bottom | block-start | block-end | inline-start | inline-end",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Table"
+				],
+				"initial": "top",
+				"appliesto": "tableCaptionElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "caret-color",
@@ -1922,7 +3408,20 @@ export const data : any = {
 						name: "auto",
 						desc: "The user agent selects an appropriate color for the caret. This is generally currentcolor, but the user agent may choose a different color to ensure good visibility and contrast with the surrounding content, taking into account the value of currentcolor, the background, shadows, and other factors."
 					}
-				]
+				],
+				"syntax": "auto | <color>",
+				"media": "interactive",
+				"inherited": true,
+				"animationType": "color",
+				"percentages": "no",
+				"groups": [
+					"CSS Basic User Interface"
+				],
+				"initial": "auto",
+				"appliesto": "allElements",
+				"computed": "asAutoOrColor",
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "clear",
@@ -1945,7 +3444,20 @@ export const data : any = {
 						name: "right",
 						desc: "The clearance of the generated box is set to the amount necessary to place the top border edge below the bottom outer edge of any right-floating boxes that resulted from elements earlier in the source document."
 					}
-				]
+				],
+				"syntax": "none | left | right | both | inline-start | inline-end",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Positioning"
+				],
+				"initial": "none",
+				"appliesto": "blockLevelElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "clip",
@@ -1959,7 +3471,20 @@ export const data : any = {
 					{
 						name: "rect()"
 					}
-				]
+				],
+				"syntax": "<shape> | auto",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "rectangle",
+				"percentages": "no",
+				"groups": [
+					"CSS Masking"
+				],
+				"initial": "auto",
+				"appliesto": "absolutelyPositionedElements",
+				"computed": "autoOrRectangle",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "clip-path",
@@ -1975,7 +3500,20 @@ export const data : any = {
 						name: "url()",
 						desc: "References a <clipPath> element to create a clipping path."
 					}
-				]
+				],
+				"syntax": "<clip-source> | [ <basic-shape> || <geometry-box> ] | none",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "basicShapeOtherwiseNo",
+				"percentages": "referToReferenceBoxWhenSpecifiedOtherwiseBorderBox",
+				"groups": [
+					"CSS Masking"
+				],
+				"initial": "none",
+				"appliesto": "allElementsSVGContainerElements",
+				"computed": "asSpecifiedURLsAbsolute",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "clip-rule",
@@ -1994,7 +3532,25 @@ export const data : any = {
 			{
 				name: "color",
 				desc: "Color of an element's text",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<color>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "color",
+				"percentages": "no",
+				"groups": [
+					"CSS Color"
+				],
+				"initial": "variesFromBrowserToBrowser",
+				"appliesto": "allElements",
+				"computed": "translucentValuesRGBAOtherwiseRGB",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "color-interpolation-filters",
@@ -2024,7 +3580,20 @@ export const data : any = {
 						name: "auto",
 						desc: "Determines the number of columns by the 'column-width' property and the element width."
 					}
-				]
+				],
+				"syntax": "<integer> | auto",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "integer",
+				"percentages": "no",
+				"groups": [
+					"CSS Columns"
+				],
+				"initial": "auto",
+				"appliesto": "blockContainersExceptTableWrappers",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "column-fill",
@@ -2039,7 +3608,20 @@ export const data : any = {
 					{
 						name: "balance"
 					}
-				]
+				],
+				"syntax": "auto | balance | balance-all",
+				"media": "visualInContinuousMediaNoEffectInOverflowColumns",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Columns"
+				],
+				"initial": "balance",
+				"appliesto": "multicolElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "column-gap",
@@ -2051,31 +3633,109 @@ export const data : any = {
 						name: "normal",
 						desc: "User agent specific and typically equivalent to 1em."
 					}
-				]
+				],
+				"syntax": "normal | <length-percentage>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "lpc",
+				"percentages": "referToDimensionOfContentArea",
+				"groups": [
+					"CSS Columns",
+					"CSS Box Alignment"
+				],
+				"initial": "normal",
+				"appliesto": "multiColumnElementsFlexContainersGridContainers",
+				"computed": "asSpecifiedWithLengthsAbsoluteAndNormalComputingToZeroExceptMultiColumn",
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "column-rule",
 				desc: "Shorthand for setting 'column-rule-width', 'column-rule-style', and 'column-rule-color' at the same place in the style sheet. Omitted values are set to their initial values.",
 				browsers: "E,IE10,O11.5,S9",
-				restriction: "length, line-width, line-style, color"
+				restriction: "length, line-width, line-style, color",
+				"syntax": "<'column-rule-width'> || <'column-rule-style'> || <'column-rule-color'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": [
+					"column-rule-color",
+					"column-rule-style",
+					"column-rule-width"
+				],
+				"percentages": "no",
+				"groups": [
+					"CSS Columns"
+				],
+				"initial": [
+					"column-rule-width",
+					"column-rule-style",
+					"column-rule-color"
+				],
+				"appliesto": "multicolElements",
+				"computed": [
+					"column-rule-color",
+					"column-rule-style",
+					"column-rule-width"
+				],
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "column-rule-color",
 				desc: "Sets the color of the column rule",
 				browsers: "E,IE10,O11.6",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<color>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "color",
+				"percentages": "no",
+				"groups": [
+					"CSS Columns"
+				],
+				"initial": "currentcolor",
+				"appliesto": "multicolElements",
+				"computed": "computedColor",
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "column-rule-style",
 				desc: "Sets the style of the rule between columns of an element.",
 				browsers: "E,IE10,O11.5,S6",
-				restriction: "line-style"
+				restriction: "line-style",
+				"syntax": "<'border-style'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Columns"
+				],
+				"initial": "none",
+				"appliesto": "multicolElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "column-rule-width",
 				desc: "Sets the width of the rule between columns. Negative values are not allowed.",
 				browsers: "E,IE10,O11.5,S9",
-				restriction: "length, line-width"
+				restriction: "length, line-width",
+				"syntax": "<'border-width'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "no",
+				"groups": [
+					"CSS Columns"
+				],
+				"initial": "medium",
+				"appliesto": "multicolElements",
+				"computed": "absoluteLength0IfColumnRuleStyleNoneOrHidden",
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "columns",
@@ -2087,7 +3747,29 @@ export const data : any = {
 						name: "auto",
 						desc: "The width depends on the values of other properties."
 					}
-				]
+				],
+				"syntax": "<'column-width'> || <'column-count'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": [
+					"column-width",
+					"column-count"
+				],
+				"percentages": "no",
+				"groups": [
+					"CSS Columns"
+				],
+				"initial": [
+					"column-width",
+					"column-count"
+				],
+				"appliesto": "blockContainersExceptTableWrappers",
+				"computed": [
+					"column-width",
+					"column-count"
+				],
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "column-span",
@@ -2103,7 +3785,20 @@ export const data : any = {
 						name: "none",
 						desc: "The element does not span multiple columns."
 					}
-				]
+				],
+				"syntax": "none | all",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Columns"
+				],
+				"initial": "none",
+				"appliesto": "inFlowBlockLevelElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "column-width",
@@ -2115,7 +3810,20 @@ export const data : any = {
 						name: "auto",
 						desc: "The width depends on the values of other properties."
 					}
-				]
+				],
+				"syntax": "<length> | auto",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "no",
+				"groups": [
+					"CSS Columns"
+				],
+				"initial": "auto",
+				"appliesto": "blockContainersExceptTableWrappers",
+				"computed": "absoluteLengthZeroOrLarger",
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "contain",
@@ -2148,7 +3856,20 @@ export const data : any = {
 					{
 						name: "paint"
 					}
-				]
+				],
+				"syntax": "none | strict | content | [ size || layout || style || paint ]",
+				"media": "all",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Containment"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"status": "experimental"
 			},
 			{
 				name: "content",
@@ -2177,7 +3898,20 @@ export const data : any = {
 					{
 						name: "url()"
 					}
-				]
+				],
+				"syntax": "normal | none | [ <content-replacement> | <content-list> ] [/ <string> ]?",
+				"media": "all",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Generated Content"
+				],
+				"initial": "normal",
+				"appliesto": "beforeAndAfterPseudos",
+				"computed": "normalOnElementsForPseudosNoneAbsoluteURIStringOrAsSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "counter-increment",
@@ -2189,7 +3923,20 @@ export const data : any = {
 						name: "none",
 						desc: "This element does not alter the value of any counters."
 					}
-				]
+				],
+				"syntax": "[ <custom-ident> <integer>? ]+ | none",
+				"media": "all",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Counter Styles"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "counter-reset",
@@ -2201,7 +3948,20 @@ export const data : any = {
 						name: "none",
 						desc: "The counter is not modified."
 					}
-				]
+				],
+				"syntax": "[ <custom-ident> <integer>? ]+ | none",
+				"media": "all",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Counter Styles"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "cursor",
@@ -2356,7 +4116,23 @@ export const data : any = {
 						name: "zoom-out",
 						browsers: "E,C37,FF24,O12.1,S9"
 					}
-				]
+				],
+				"syntax": "[ [ <url> [ <x> <y> ]? , ]* [ auto | default | none | context-menu | help | pointer | progress | wait | cell | crosshair | text | vertical-text | alias | copy | move | no-drop | not-allowed | e-resize | n-resize | ne-resize | nw-resize | s-resize | se-resize | sw-resize | w-resize | ew-resize | ns-resize | nesw-resize | nwse-resize | col-resize | row-resize | all-scroll | zoom-in | zoom-out | grab | grabbing ] ]",
+				"media": [
+					"visual",
+					"interactive"
+				],
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Basic User Interface"
+				],
+				"initial": "auto",
+				"appliesto": "allElements",
+				"computed": "asSpecifiedURLsAbsolute",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "direction",
@@ -2369,7 +4145,20 @@ export const data : any = {
 					{
 						name: "rtl"
 					}
-				]
+				],
+				"syntax": "ltr | rtl",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Writing Modes"
+				],
+				"initial": "ltr",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "display",
@@ -2552,7 +4341,20 @@ export const data : any = {
 						name: "-webkit-inline-flex",
 						browsers: "C21,O15,S6.1"
 					}
-				]
+				],
+				"syntax": "[ <display-outside> || <display-inside> ] | <display-listitem> | <display-internal> | <display-box> | <display-legacy>",
+				"media": "all",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Display"
+				],
+				"initial": "inline",
+				"appliesto": "allElements",
+				"computed": "asSpecifiedExceptPositionedFloatingAndRootElementsKeywordMaybeDifferent",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "empty-cells",
@@ -2570,7 +4372,20 @@ export const data : any = {
 					{
 						name: "show"
 					}
-				]
+				],
+				"syntax": "show | hide",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Table"
+				],
+				"initial": "show",
+				"appliesto": "tableCellElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "enable-background",
@@ -2589,7 +4404,14 @@ export const data : any = {
 				name: "fallback",
 				desc: "@counter-style descriptor. Specifies a fallback counter style to be used when the current counter style can’t create a representation for a given counter value.",
 				browsers: "FF33",
-				restriction: "identifier"
+				restriction: "identifier",
+				"syntax": "<counter-style-name>",
+				"media": "all",
+				"initial": "decimal",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "fill",
@@ -2665,7 +4487,20 @@ export const data : any = {
 						desc: "A filter reference to a <filter> element.",
 						browsers: "FF3.6"
 					}
-				]
+				],
+				"syntax": "none | <filter-function-list>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "filterList",
+				"percentages": "no",
+				"groups": [
+					"Filter Effects"
+				],
+				"initial": "none",
+				"appliesto": "allElementsSVGContainerElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "flex",
@@ -2686,7 +4521,32 @@ export const data : any = {
 						name: "none",
 						desc: "Expands to '0 0 auto'."
 					}
-				]
+				],
+				"syntax": "none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]",
+				"media": "visual",
+				"inherited": false,
+				"animationType": [
+					"flex-grow",
+					"flex-shrink",
+					"flex-basis"
+				],
+				"percentages": "no",
+				"groups": [
+					"CSS Flexible Box Layout"
+				],
+				"initial": [
+					"flex-grow",
+					"flex-shrink",
+					"flex-basis"
+				],
+				"appliesto": "flexItemsAndInFlowPseudos",
+				"computed": [
+					"flex-grow",
+					"flex-shrink",
+					"flex-basis"
+				],
+				"order": "orderOfAppearance",
+				"status": "standard"
 			},
 			{
 				name: "flex-basis",
@@ -2703,7 +4563,20 @@ export const data : any = {
 						desc: "Indicates automatic sizing, based on the flex item’s content.",
 						browsers: "E,IE11"
 					}
-				]
+				],
+				"syntax": "content | <'width'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "lpc",
+				"percentages": "referToFlexContainersInnerMainSize",
+				"groups": [
+					"CSS Flexible Box Layout"
+				],
+				"initial": "auto",
+				"appliesto": "flexItemsAndInFlowPseudos",
+				"computed": "asSpecifiedRelativeToAbsoluteLengths",
+				"order": "lengthOrPercentageBeforeKeywordIfBothPresent",
+				"status": "standard"
 			},
 			{
 				name: "flex-direction",
@@ -2725,7 +4598,20 @@ export const data : any = {
 					{
 						name: "row-reverse"
 					}
-				]
+				],
+				"syntax": "row | row-reverse | column | column-reverse",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Flexible Box Layout"
+				],
+				"initial": "row",
+				"appliesto": "flexContainers",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "flex-flow",
@@ -2758,19 +4644,64 @@ export const data : any = {
 					{
 						name: "wrap-reverse"
 					}
-				]
+				],
+				"syntax": "<'flex-direction'> || <'flex-wrap'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Flexible Box Layout"
+				],
+				"initial": [
+					"flex-direction",
+					"flex-wrap"
+				],
+				"appliesto": "flexContainers",
+				"computed": [
+					"flex-direction",
+					"flex-wrap"
+				],
+				"order": "orderOfAppearance",
+				"status": "standard"
 			},
 			{
 				name: "flex-grow",
 				desc: "Sets the flex grow factor. Negative numbers are invalid.",
 				browsers: "E,C29,FF22,IE11,O12.1,S9",
-				restriction: "number"
+				restriction: "number",
+				"syntax": "<number>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "number",
+				"percentages": "no",
+				"groups": [
+					"CSS Flexible Box Layout"
+				],
+				"initial": "0",
+				"appliesto": "flexItemsAndInFlowPseudos",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "flex-shrink",
 				desc: "Sets the flex shrink factor. Negative numbers are invalid.",
 				browsers: "E,C29,FF22,IE11,O12.1,S9",
-				restriction: "number"
+				restriction: "number",
+				"syntax": "<number>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "number",
+				"percentages": "no",
+				"groups": [
+					"CSS Flexible Box Layout"
+				],
+				"initial": "1",
+				"appliesto": "flexItemsAndInFlowPseudos",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "flex-wrap",
@@ -2789,7 +4720,20 @@ export const data : any = {
 					{
 						name: "wrap-reverse"
 					}
-				]
+				],
+				"syntax": "nowrap | wrap | wrap-reverse",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Flexible Box Layout"
+				],
+				"initial": "nowrap",
+				"appliesto": "flexContainers",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "float",
@@ -2816,7 +4760,20 @@ export const data : any = {
 						name: "right",
 						desc: "Similar to 'left', except the box is floated to the right, and content flows on the left side of the box, starting at the top."
 					}
-				]
+				],
+				"syntax": "left | right | none | inline-start | inline-end",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Positioning"
+				],
+				"initial": "none",
+				"appliesto": "allElementsNoEffectIfDisplayNone",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "flood-color",
@@ -2933,7 +4890,52 @@ export const data : any = {
 					{
 						name: "xx-small"
 					}
-				]
+				],
+				"syntax": "[ [ <'font-style'> || <font-variant-css21> || <'font-weight'> || <'font-stretch'> ]? <'font-size'> [ / <'line-height'> ]? <'font-family'> ] | caption | icon | menu | message-box | small-caption | status-bar",
+				"media": "visual",
+				"inherited": true,
+				"animationType": [
+					"font-style",
+					"font-variant",
+					"font-weight",
+					"font-stretch",
+					"font-size",
+					"line-height",
+					"font-family"
+				],
+				"percentages": [
+					"font-size",
+					"line-height"
+				],
+				"groups": [
+					"CSS Fonts"
+				],
+				"initial": [
+					"font-style",
+					"font-variant",
+					"font-weight",
+					"font-stretch",
+					"font-size",
+					"line-height",
+					"font-family"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"font-style",
+					"font-variant",
+					"font-weight",
+					"font-stretch",
+					"font-size",
+					"line-height",
+					"font-family"
+				],
+				"order": "orderOfAppearance",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "font-family",
@@ -2994,7 +4996,14 @@ export const data : any = {
 					{
 						name: "Verdana, Geneva, Tahoma, sans-serif"
 					}
-				]
+				],
+				"syntax": "<family-name>",
+				"media": "all",
+				"initial": "n/a (required)",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "font-feature-settings",
@@ -3374,7 +5383,14 @@ export const data : any = {
 						name: "on",
 						desc: "Enable feature."
 					}
-				]
+				],
+				"syntax": "normal | <feature-tag-value>#",
+				"media": "all",
+				"initial": "normal",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "standard"
 			},
 			{
 				name: "font-kerning",
@@ -3394,7 +5410,25 @@ export const data : any = {
 						name: "normal",
 						desc: "Specifies that kerning is applied."
 					}
-				]
+				],
+				"syntax": "auto | normal | none",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Fonts"
+				],
+				"initial": "auto",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "font-language-override",
@@ -3406,7 +5440,25 @@ export const data : any = {
 						name: "normal",
 						desc: "Implies that when rendering with OpenType fonts the language of the document is used to infer the OpenType language system, used to select language specific features when rendering."
 					}
-				]
+				],
+				"syntax": "normal | <string>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Fonts"
+				],
+				"initial": "normal",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "font-size",
@@ -3440,7 +5492,25 @@ export const data : any = {
 					{
 						name: "xx-small"
 					}
-				]
+				],
+				"syntax": "<absolute-size> | <relative-size> | <length-percentage>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "length",
+				"percentages": "referToParentElementsFontSize",
+				"groups": [
+					"CSS Fonts"
+				],
+				"initial": "medium",
+				"appliesto": "allElements",
+				"computed": "asSpecifiedRelativeToAbsoluteLengths",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "font-size-adjust",
@@ -3452,7 +5522,25 @@ export const data : any = {
 						name: "none",
 						desc: "Do not preserve the font’s x-height."
 					}
-				]
+				],
+				"syntax": "none | <number>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "number",
+				"percentages": "no",
+				"groups": [
+					"CSS Fonts"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "font-stretch",
@@ -3495,7 +5583,14 @@ export const data : any = {
 						name: "wider",
 						browsers: "E,IE10"
 					}
-				]
+				],
+				"syntax": "normal | ultra-condensed | extra-condensed | condensed | semi-condensed | semi-expanded | expanded | extra-expanded | ultra-expanded",
+				"media": "all",
+				"initial": "normal",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "font-style",
@@ -3514,7 +5609,14 @@ export const data : any = {
 						name: "oblique",
 						desc: "Selects a font that is labeled as an 'oblique' face, or an 'italic' face if one is not."
 					}
-				]
+				],
+				"syntax": "normal | italic | oblique",
+				"media": "all",
+				"initial": "normal",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "font-synthesis",
@@ -3533,7 +5635,25 @@ export const data : any = {
 					{
 						name: "weight"
 					}
-				]
+				],
+				"syntax": "none | [ weight || style ]",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Fonts"
+				],
+				"initial": "weight style",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "font-variant",
@@ -3548,7 +5668,14 @@ export const data : any = {
 						name: "small-caps",
 						desc: "Specifies a font that is labeled as a small-caps font. If a genuine small-caps font is not available, user agents should simulate a small-caps font."
 					}
-				]
+				],
+				"syntax": "normal | none | [ <common-lig-values> || <discretionary-lig-values> || <historical-lig-values> || <contextual-alt-values> || stylistic(<feature-value-name>) || historical-forms || styleset(<feature-value-name>#) || character-variant(<feature-value-name>#) || swash(<feature-value-name>) || ornaments(<feature-value-name>) || annotation(<feature-value-name>) || [ small-caps | all-small-caps | petite-caps | all-petite-caps | unicase | titling-caps ] || <numeric-figure-values> || <numeric-spacing-values> || <numeric-fraction-values> || ordinal || slashed-zero || <east-asian-variant-values> || <east-asian-width-values> || ruby ]",
+				"media": "all",
+				"initial": "normal",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "standard"
 			},
 			{
 				name: "font-variant-alternates",
@@ -3581,7 +5708,25 @@ export const data : any = {
 					{
 						name: "swash()"
 					}
-				]
+				],
+				"syntax": "normal | [ stylistic( <feature-value-name> ) || historical-forms || styleset( <feature-value-name># ) || character-variant( <feature-value-name># ) || swash( <feature-value-name> ) || ornaments( <feature-value-name> ) || annotation( <feature-value-name> ) ]",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Fonts"
+				],
+				"initial": "normal",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "font-variant-caps",
@@ -3612,7 +5757,25 @@ export const data : any = {
 					{
 						name: "unicase"
 					}
-				]
+				],
+				"syntax": "normal | small-caps | all-small-caps | petite-caps | all-petite-caps | unicase | titling-caps",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Fonts"
+				],
+				"initial": "normal",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "font-variant-east-asian",
@@ -3652,7 +5815,25 @@ export const data : any = {
 					{
 						name: "traditional"
 					}
-				]
+				],
+				"syntax": "normal | [ <east-asian-variant-values> || <east-asian-width-values> || ruby ]",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Fonts"
+				],
+				"initial": "normal",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "font-variant-ligatures",
@@ -3701,7 +5882,25 @@ export const data : any = {
 						name: "normal",
 						desc: "Implies that the defaults set by the font are used."
 					}
-				]
+				],
+				"syntax": "normal | none | [ <common-lig-values> || <discretionary-lig-values> || <historical-lig-values> || <contextual-alt-values> ]",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Fonts"
+				],
+				"initial": "normal",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "font-variant-numeric",
@@ -3737,7 +5936,25 @@ export const data : any = {
 					{
 						name: "tabular-nums"
 					}
-				]
+				],
+				"syntax": "normal | [ <numeric-figure-values> || <numeric-spacing-values> || <numeric-fraction-values> || ordinal || slashed-zero ]",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Fonts"
+				],
+				"initial": "normal",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "font-variant-position",
@@ -3757,7 +5974,25 @@ export const data : any = {
 						name: "super",
 						desc: "Enables display of superscript variants (OpenType feature: sups)."
 					}
-				]
+				],
+				"syntax": "normal | sub | super",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Fonts"
+				],
+				"initial": "normal",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "font-weight",
@@ -3804,7 +6039,14 @@ export const data : any = {
 						name: "normal",
 						desc: "Same as 400"
 					}
-				]
+				],
+				"syntax": "normal | bold | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900",
+				"media": "all",
+				"initial": "normal",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "glyph-orientation-horizontal",
@@ -3835,13 +6077,76 @@ export const data : any = {
 					{
 						name: "span"
 					}
-				]
+				],
+				"syntax": "<grid-line> [ / <grid-line> ]{0,3}",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Grid Layout"
+				],
+				"initial": [
+					"grid-row-start",
+					"grid-column-start",
+					"grid-row-end",
+					"grid-column-end"
+				],
+				"appliesto": "gridItemsAndBoxesWithinGridContainer",
+				"computed": [
+					"grid-row-start",
+					"grid-column-start",
+					"grid-row-end",
+					"grid-column-end"
+				],
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "grid",
 				desc: "The grid CSS property is a shorthand property that sets all of the explicit grid properties ('grid-template-rows', 'grid-template-columns', and 'grid-template-areas'), and all the implicit grid properties ('grid-auto-rows', 'grid-auto-columns', and 'grid-auto-flow'), in a single declaration.",
 				browsers: "FF52,C57,E16,S10.1,O44",
-				restriction: "identifier, length, percentage, string, enum"
+				restriction: "identifier, length, percentage, string, enum",
+				"syntax": "<'grid-template'> | <'grid-template-rows'> / [ auto-flow && dense? ] <'grid-auto-columns'>? | [ auto-flow && dense? ] <'grid-auto-rows'>? / <'grid-template-columns'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": [
+					"grid-template-rows",
+					"grid-template-columns",
+					"grid-auto-rows",
+					"grid-auto-columns"
+				],
+				"groups": [
+					"CSS Grid Layout"
+				],
+				"initial": [
+					"grid-template-rows",
+					"grid-template-columns",
+					"grid-template-areas",
+					"grid-auto-rows",
+					"grid-auto-columns",
+					"grid-auto-flow",
+					"grid-column-gap",
+					"grid-row-gap",
+					"column-gap",
+					"row-gap"
+				],
+				"appliesto": "gridContainers",
+				"computed": [
+					"grid-template-rows",
+					"grid-template-columns",
+					"grid-template-areas",
+					"grid-auto-rows",
+					"grid-auto-columns",
+					"grid-auto-flow",
+					"grid-column-gap",
+					"grid-row-gap",
+					"column-gap",
+					"row-gap"
+				],
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "grid-auto-columns",
@@ -3864,7 +6169,20 @@ export const data : any = {
 					{
 						name: "minmax()"
 					}
-				]
+				],
+				"syntax": "<track-size>+",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "referToDimensionOfContentArea",
+				"groups": [
+					"CSS Grid Layout"
+				],
+				"initial": "auto",
+				"appliesto": "gridContainers",
+				"computed": "percentageAsSpecifiedOrAbsoluteLength",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "grid-auto-flow",
@@ -3883,7 +6201,20 @@ export const data : any = {
 					{
 						name: "dense"
 					}
-				]
+				],
+				"syntax": "[ row | column ] || dense",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Grid Layout"
+				],
+				"initial": "row",
+				"appliesto": "gridContainers",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "grid-auto-rows",
@@ -3906,7 +6237,20 @@ export const data : any = {
 					{
 						name: "minmax()"
 					}
-				]
+				],
+				"syntax": "<track-size>+",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "referToDimensionOfContentArea",
+				"groups": [
+					"CSS Grid Layout"
+				],
+				"initial": "auto",
+				"appliesto": "gridContainers",
+				"computed": "percentageAsSpecifiedOrAbsoluteLength",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "grid-column",
@@ -3921,7 +6265,26 @@ export const data : any = {
 					{
 						name: "span"
 					}
-				]
+				],
+				"syntax": "<grid-line> [ / <grid-line> ]?",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Grid Layout"
+				],
+				"initial": [
+					"grid-column-start",
+					"grid-column-end"
+				],
+				"appliesto": "gridItemsAndBoxesWithinGridContainer",
+				"computed": [
+					"grid-column-start",
+					"grid-column-end"
+				],
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "grid-column-end",
@@ -3936,13 +6299,39 @@ export const data : any = {
 					{
 						name: "span"
 					}
-				]
+				],
+				"syntax": "<grid-line>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Grid Layout"
+				],
+				"initial": "auto",
+				"appliesto": "gridItemsAndBoxesWithinGridContainer",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "grid-column-gap",
 				desc: "Specifies the gutters between grid columns.",
 				browsers: "FF52,C57,S10.1,O44",
-				restriction: "length"
+				restriction: "length",
+				"syntax": "<length-percentage>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "referToDimensionOfContentArea",
+				"groups": [
+					"CSS Grid Layout"
+				],
+				"initial": "0",
+				"appliesto": "gridContainers",
+				"computed": "percentageAsSpecifiedOrAbsoluteLength",
+				"order": "uniqueOrder",
+				"status": "obsolete"
 			},
 			{
 				name: "grid-column-start",
@@ -3957,13 +6346,48 @@ export const data : any = {
 					{
 						name: "span"
 					}
-				]
+				],
+				"syntax": "<grid-line>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Grid Layout"
+				],
+				"initial": "auto",
+				"appliesto": "gridItemsAndBoxesWithinGridContainer",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "grid-gap",
 				desc: "Shorthand that specifies the gutters between grid columns and grid rows in one declaration.",
 				browsers: "FF52,C57,S10.1,O44",
-				restriction: "length"
+				restriction: "length",
+				"syntax": "<'grid-row-gap'> <'grid-column-gap'>?",
+				"media": "visual",
+				"inherited": false,
+				"animationType": [
+					"grid-row-gap",
+					"grid-column-gap"
+				],
+				"percentages": "no",
+				"groups": [
+					"CSS Grid Layout"
+				],
+				"initial": [
+					"grid-row-gap",
+					"grid-column-gap"
+				],
+				"appliesto": "gridContainers",
+				"computed": [
+					"grid-row-gap",
+					"grid-column-gap"
+				],
+				"order": "uniqueOrder",
+				"status": "obsolete"
 			},
 			{
 				name: "grid-row",
@@ -3978,7 +6402,26 @@ export const data : any = {
 					{
 						name: "span"
 					}
-				]
+				],
+				"syntax": "<grid-line> [ / <grid-line> ]?",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Grid Layout"
+				],
+				"initial": [
+					"grid-row-start",
+					"grid-row-end"
+				],
+				"appliesto": "gridItemsAndBoxesWithinGridContainer",
+				"computed": [
+					"grid-row-start",
+					"grid-row-end"
+				],
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "grid-row-end",
@@ -3993,13 +6436,39 @@ export const data : any = {
 					{
 						name: "span"
 					}
-				]
+				],
+				"syntax": "<grid-line>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Grid Layout"
+				],
+				"initial": "auto",
+				"appliesto": "gridItemsAndBoxesWithinGridContainer",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "grid-row-gap",
 				desc: "Specifies the gutters between grid rows.",
 				browsers: "FF52,C57,S10.1,O44",
-				restriction: "length"
+				restriction: "length",
+				"syntax": "<length-percentage>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "referToDimensionOfContentArea",
+				"groups": [
+					"CSS Grid Layout"
+				],
+				"initial": "0",
+				"appliesto": "gridContainers",
+				"computed": "percentageAsSpecifiedOrAbsoluteLength",
+				"order": "uniqueOrder",
+				"status": "obsolete"
 			},
 			{
 				name: "grid-row-start",
@@ -4014,7 +6483,20 @@ export const data : any = {
 					{
 						name: "span"
 					}
-				]
+				],
+				"syntax": "<grid-line>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Grid Layout"
+				],
+				"initial": "auto",
+				"appliesto": "gridItemsAndBoxesWithinGridContainer",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "grid-template",
@@ -4049,7 +6531,31 @@ export const data : any = {
 						name: "repeat()",
 						desc: "Represents a repeated fragment of the track list, allowing a large number of columns or rows that exhibit a recurring pattern to be written in a more compact form."
 					}
-				]
+				],
+				"syntax": "none | [ <'grid-template-rows'> / <'grid-template-columns'> ] | [ <line-names>? <string> <track-size>? <line-names>? ]+ [ / <explicit-track-list> ]?",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": [
+					"grid-template-columns",
+					"grid-template-rows"
+				],
+				"groups": [
+					"CSS Grid Layout"
+				],
+				"initial": [
+					"grid-template-columns",
+					"grid-template-rows",
+					"grid-template-areas"
+				],
+				"appliesto": "gridContainers",
+				"computed": [
+					"grid-template-columns",
+					"grid-template-rows",
+					"grid-template-areas"
+				],
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "grid-template-areas",
@@ -4061,7 +6567,20 @@ export const data : any = {
 						name: "none",
 						desc: "The grid container doesn’t define any named grid areas."
 					}
-				]
+				],
+				"syntax": "none | <string>+",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Grid Layout"
+				],
+				"initial": "none",
+				"appliesto": "gridContainers",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "grid-template-columns",
@@ -4096,7 +6615,20 @@ export const data : any = {
 						name: "repeat()",
 						desc: "Represents a repeated fragment of the track list, allowing a large number of columns or rows that exhibit a recurring pattern to be written in a more compact form."
 					}
-				]
+				],
+				"syntax": "none | <track-list> | <auto-track-list>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "referToDimensionOfContentArea",
+				"groups": [
+					"CSS Grid Layout"
+				],
+				"initial": "none",
+				"appliesto": "gridContainers",
+				"computed": "asSpecifiedRelativeToAbsoluteLengths",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "grid-template-rows",
@@ -4131,7 +6663,20 @@ export const data : any = {
 						name: "repeat()",
 						desc: "Represents a repeated fragment of the track list, allowing a large number of columns or rows that exhibit a recurring pattern to be written in a more compact form."
 					}
-				]
+				],
+				"syntax": "none | <track-list> | <auto-track-list>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "referToDimensionOfContentArea",
+				"groups": [
+					"CSS Grid Layout"
+				],
+				"initial": "none",
+				"appliesto": "gridContainers",
+				"computed": "asSpecifiedRelativeToAbsoluteLengths",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "height",
@@ -4156,7 +6701,26 @@ export const data : any = {
 						desc: "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
 						browsers: "C46,O33"
 					}
-				]
+				],
+				"syntax": "<viewport-length>{1,2}",
+				"media": [
+					"visual",
+					"continuous"
+				],
+				"initial": [
+					"min-height",
+					"max-height"
+				],
+				"percentages": [
+					"min-height",
+					"max-height"
+				],
+				"computed": [
+					"min-height",
+					"max-height"
+				],
+				"order": "orderOfAppearance",
+				"status": "standard"
 			},
 			{
 				name: "hyphens",
@@ -4175,7 +6739,20 @@ export const data : any = {
 						name: "none",
 						desc: "Words are not broken at line breaks, even if characters inside the word suggest line break points."
 					}
-				]
+				],
+				"syntax": "none | manual | auto",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Text"
+				],
+				"initial": "manual",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "image-orientation",
@@ -4189,7 +6766,20 @@ export const data : any = {
 					{
 						name: "from-image"
 					}
-				]
+				],
+				"syntax": "from-image | <angle> | [ <angle>? flip ]",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Images"
+				],
+				"initial": "0deg",
+				"appliesto": "allElements",
+				"computed": "angleRoundedToNextQuarter",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "image-rendering",
@@ -4218,7 +6808,20 @@ export const data : any = {
 					{
 						name: "pixelated"
 					}
-				]
+				],
+				"syntax": "auto | crisp-edges | pixelated",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Images"
+				],
+				"initial": "auto",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "ime-mode",
@@ -4243,7 +6846,20 @@ export const data : any = {
 						name: "normal",
 						desc: "The IME state should be normal; this value can be used in a user style sheet to override the page setting."
 					}
-				]
+				],
+				"syntax": "auto | normal | active | inactive | disabled",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Basic User Interface"
+				],
+				"initial": "auto",
+				"appliesto": "textFields",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "obsolete"
 			},
 			{
 				name: "inline-size",
@@ -4255,7 +6871,20 @@ export const data : any = {
 						name: "auto",
 						desc: "Depends on the values of other properties."
 					}
-				]
+				],
+				"syntax": "<'width'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "inlineSizeOfContainingBlock",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "auto",
+				"appliesto": "sameAsWidthAndHeight",
+				"computed": "sameAsWidthAndHeight",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "isolation",
@@ -4271,7 +6900,20 @@ export const data : any = {
 						name: "isolate",
 						desc: "In CSS will turn the element into a stacking context."
 					}
-				]
+				],
+				"syntax": "auto | isolate",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Compositing and Blending"
+				],
+				"initial": "auto",
+				"appliesto": "allElementsSVGContainerGraphicsAndGraphicsReferencingElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "justify-content",
@@ -4340,7 +6982,20 @@ export const data : any = {
 						name: "last baseline",
 						desc: "Specifies participation in last-baseline alignment."
 					}
-				]
+				],
+				"syntax": "normal | <content-distribution> | <overflow-position>? [ <content-position> | left | right ]",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Flexible Box Layout"
+				],
+				"initial": "normal",
+				"appliesto": "flexContainers",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "kerning",
@@ -4362,7 +7017,20 @@ export const data : any = {
 						name: "auto",
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well"
 					}
-				]
+				],
+				"syntax": "<length> | <percentage> | auto",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "lpc",
+				"percentages": "referToWidthOfContainingBlock",
+				"groups": [
+					"CSS Positioning"
+				],
+				"initial": "auto",
+				"appliesto": "positionedElements",
+				"computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "letter-spacing",
@@ -4373,7 +7041,24 @@ export const data : any = {
 						name: "normal",
 						desc: "The spacing is the normal spacing for the current font. It is typically zero-length."
 					}
-				]
+				],
+				"syntax": "normal | <length>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "length",
+				"percentages": "no",
+				"groups": [
+					"CSS Text"
+				],
+				"initial": "normal",
+				"appliesto": "allElements",
+				"computed": "optimumValueOfAbsoluteLengthOrNormal",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line"
+				],
+				"status": "standard"
 			},
 			{
 				name: "lighting-color",
@@ -4403,7 +7088,20 @@ export const data : any = {
 						name: "strict",
 						desc: "Breaks CJK scripts using a more restrictive set of line-breaking rules than 'normal'."
 					}
-				]
+				],
+				"syntax": "auto | loose | normal | strict",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Text"
+				],
+				"initial": "auto",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "line-height",
@@ -4414,7 +7112,25 @@ export const data : any = {
 						name: "normal",
 						desc: "Tells user agents to set the computed value to a 'reasonable' value based on the font size of the element."
 					}
-				]
+				],
+				"syntax": "normal | <number> | <length> | <percentage>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "numberOrLength",
+				"percentages": "referToElementFontSize",
+				"groups": [
+					"CSS Fonts"
+				],
+				"initial": "normal",
+				"appliesto": "allElements",
+				"computed": "absoluteLengthOrAsSpecified",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "list-style",
@@ -4480,7 +7196,28 @@ export const data : any = {
 					{
 						name: "url()"
 					}
-				]
+				],
+				"syntax": "<'list-style-type'> || <'list-style-position'> || <'list-style-image'>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Lists and Counters"
+				],
+				"initial": [
+					"list-style-type",
+					"list-style-position",
+					"list-style-image"
+				],
+				"appliesto": "listItems",
+				"computed": [
+					"list-style-image",
+					"list-style-position",
+					"list-style-type"
+				],
+				"order": "orderOfAppearance",
+				"status": "standard"
 			},
 			{
 				name: "list-style-image",
@@ -4491,7 +7228,20 @@ export const data : any = {
 						name: "none",
 						desc: "The default contents of the of the list item’s marker are given by 'list-style-type' instead."
 					}
-				]
+				],
+				"syntax": "<url> | none",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Lists and Counters"
+				],
+				"initial": "none",
+				"appliesto": "listItems",
+				"computed": "noneOrImageWithAbsoluteURI",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "list-style-position",
@@ -4504,7 +7254,20 @@ export const data : any = {
 					{
 						name: "outside"
 					}
-				]
+				],
+				"syntax": "inside | outside",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Lists and Counters"
+				],
+				"initial": "outside",
+				"appliesto": "listItems",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "list-style-type",
@@ -4573,7 +7336,20 @@ export const data : any = {
 						name: "upper-roman",
 						desc: "Uppercase ASCII Roman numerals."
 					}
-				]
+				],
+				"syntax": "<counter-style> | <string> | none",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Lists and Counters"
+				],
+				"initial": "disc",
+				"appliesto": "listItems",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "margin",
@@ -4583,7 +7359,33 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"syntax": "[ <length> | <percentage> | auto ]{1,4}",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "referToWidthOfContainingBlock",
+				"groups": [
+					"CSS Box Model"
+				],
+				"initial": [
+					"margin-bottom",
+					"margin-left",
+					"margin-right",
+					"margin-top"
+				],
+				"appliesto": "allElementsExceptTableDisplayTypes",
+				"computed": [
+					"margin-bottom",
+					"margin-left",
+					"margin-right",
+					"margin-top"
+				],
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "margin-block-end",
@@ -4594,7 +7396,20 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"syntax": "<'margin-left'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "dependsOnLayoutModel",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "0",
+				"appliesto": "sameAsMargin",
+				"computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "margin-block-start",
@@ -4605,7 +7420,20 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"syntax": "<'margin-left'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "dependsOnLayoutModel",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "0",
+				"appliesto": "sameAsMargin",
+				"computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "margin-bottom",
@@ -4615,7 +7443,23 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"syntax": "<length> | <percentage> | auto",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "referToWidthOfContainingBlock",
+				"groups": [
+					"CSS Box Model"
+				],
+				"initial": "0",
+				"appliesto": "allElementsExceptTableDisplayTypes",
+				"computed": "percentageAsSpecifiedOrAbsoluteLength",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "margin-inline-end",
@@ -4626,7 +7470,20 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"syntax": "<'margin-left'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "dependsOnLayoutModel",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "0",
+				"appliesto": "sameAsMargin",
+				"computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "margin-inline-start",
@@ -4637,7 +7494,20 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"syntax": "<'margin-left'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "dependsOnLayoutModel",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "0",
+				"appliesto": "sameAsMargin",
+				"computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "margin-left",
@@ -4647,7 +7517,23 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"syntax": "<length> | <percentage> | auto",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "referToWidthOfContainingBlock",
+				"groups": [
+					"CSS Box Model"
+				],
+				"initial": "0",
+				"appliesto": "allElementsExceptTableDisplayTypes",
+				"computed": "percentageAsSpecifiedOrAbsoluteLength",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "margin-right",
@@ -4657,7 +7543,23 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"syntax": "<length> | <percentage> | auto",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "referToWidthOfContainingBlock",
+				"groups": [
+					"CSS Box Model"
+				],
+				"initial": "0",
+				"appliesto": "allElementsExceptTableDisplayTypes",
+				"computed": "percentageAsSpecifiedOrAbsoluteLength",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "margin-top",
@@ -4667,7 +7569,23 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"syntax": "<length> | <percentage> | auto",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "referToWidthOfContainingBlock",
+				"groups": [
+					"CSS Box Model"
+				],
+				"initial": "0",
+				"appliesto": "allElementsExceptTableDisplayTypes",
+				"computed": "percentageAsSpecifiedOrAbsoluteLength",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "marker",
@@ -4743,7 +7661,20 @@ export const data : any = {
 						name: "url()",
 						desc: "Reference to a <mask element or to a CSS image."
 					}
-				]
+				],
+				"syntax": "<mask-reference>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Masking"
+				],
+				"initial": "none",
+				"appliesto": "allElementsSVGContainerElements",
+				"computed": "asSpecifiedURLsAbsolute",
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "mask-mode",
@@ -4763,25 +7694,77 @@ export const data : any = {
 						name: "luminance",
 						desc: "Luminance values of the mask layer image should be used as the mask values."
 					}
-				]
+				],
+				"syntax": "<masking-mode>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Masking"
+				],
+				"initial": "match-source",
+				"appliesto": "allElementsSVGContainerElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "mask-origin",
 				desc: "Specifies the mask positioning area.",
 				browsers: "FF53",
-				restriction: "geometry-box, enum"
+				restriction: "geometry-box, enum",
+				"syntax": "<geometry-box>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Masking"
+				],
+				"initial": "border-box",
+				"appliesto": "allElementsSVGContainerElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "mask-position",
 				desc: "Specifies how mask layer images are positioned.",
 				browsers: "FF53",
-				restriction: "position, length, percentage"
+				restriction: "position, length, percentage",
+				"syntax": "<position>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "repeatableListOfSimpleListOfLpc",
+				"percentages": "referToSizeOfMaskPaintingArea",
+				"groups": [
+					"CSS Masking"
+				],
+				"initial": "center",
+				"appliesto": "allElementsSVGContainerElements",
+				"computed": "consistsOfTwoKeywordsForOriginAndOffsets",
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "mask-repeat",
 				desc: "Specifies how mask layer images are tiled after they have been sized and positioned.",
 				browsers: "FF53",
-				restriction: "repeat"
+				restriction: "repeat",
+				"syntax": "<repeat-style>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Masking"
+				],
+				"initial": "no-repeat",
+				"appliesto": "allElementsSVGContainerElements",
+				"computed": "consistsOfTwoDimensionKeywords",
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "mask-size",
@@ -4801,7 +7784,20 @@ export const data : any = {
 						name: "cover",
 						desc: "Scale the image, while preserving its intrinsic aspect ratio (if any), to the smallest size such that both its width and its height can completely cover the background positioning area."
 					}
-				]
+				],
+				"syntax": "<bg-size>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "repeatableListOfSimpleListOfLpc",
+				"percentages": "no",
+				"groups": [
+					"CSS Masking"
+				],
+				"initial": "auto",
+				"appliesto": "allElementsSVGContainerElements",
+				"computed": "asSpecifiedRelativeToAbsoluteLengths",
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "mask-type",
@@ -4817,7 +7813,20 @@ export const data : any = {
 						name: "luminance",
 						desc: "Indicates that the luminance values of the mask should be used."
 					}
-				]
+				],
+				"syntax": "luminance | alpha",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Masking"
+				],
+				"initial": "luminance",
+				"appliesto": "maskElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "max-block-size",
@@ -4829,7 +7838,20 @@ export const data : any = {
 						name: "none",
 						desc: "No limit on the width of the box."
 					}
-				]
+				],
+				"syntax": "<'max-width'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "blockSizeOfContainingBlock",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "0",
+				"appliesto": "sameAsWidthAndHeight",
+				"computed": "sameAsMaxWidthAndMaxHeight",
+				"order": "uniqueOrder",
+				"status": "experimental"
 			},
 			{
 				name: "max-height",
@@ -4855,7 +7877,17 @@ export const data : any = {
 						desc: "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
 						browsers: "C46,O33"
 					}
-				]
+				],
+				"syntax": "<viewport-length>",
+				"media": [
+					"visual",
+					"continuous"
+				],
+				"initial": "auto",
+				"percentages": "referToHeightOfInitialViewport",
+				"computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "max-inline-size",
@@ -4867,7 +7899,20 @@ export const data : any = {
 						name: "none",
 						desc: "No limit on the height of the box."
 					}
-				]
+				],
+				"syntax": "<'max-width'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "inlineSizeOfContainingBlock",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "0",
+				"appliesto": "sameAsWidthAndHeight",
+				"computed": "sameAsMaxWidthAndMaxHeight",
+				"order": "uniqueOrder",
+				"status": "experimental"
 			},
 			{
 				name: "max-width",
@@ -4893,13 +7938,36 @@ export const data : any = {
 						desc: "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
 						browsers: "C46,O33"
 					}
-				]
+				],
+				"syntax": "<viewport-length>",
+				"media": [
+					"visual",
+					"continuous"
+				],
+				"initial": "auto",
+				"percentages": "referToWidthOfInitialViewport",
+				"computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "min-block-size",
 				desc: "Logical 'min-width'. Mapping depends on the element’s 'writing-mode'.",
 				browsers: "FF41",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"syntax": "<'min-width'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "blockSizeOfContainingBlock",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "0",
+				"appliesto": "sameAsWidthAndHeight",
+				"computed": "sameAsMinWidthAndMinHeight",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "min-height",
@@ -4925,13 +7993,36 @@ export const data : any = {
 						desc: "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
 						browsers: "C46,O33"
 					}
-				]
+				],
+				"syntax": "<viewport-length>",
+				"media": [
+					"visual",
+					"continuous"
+				],
+				"initial": "auto",
+				"percentages": "referToHeightOfInitialViewport",
+				"computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "min-inline-size",
 				desc: "Logical 'min-height'. Mapping depends on the element’s 'writing-mode'.",
 				browsers: "FF41",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"syntax": "<'min-width'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "inlineSizeOfContainingBlock",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "0",
+				"appliesto": "sameAsWidthAndHeight",
+				"computed": "sameAsMinWidthAndMinHeight",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "min-width",
@@ -4957,7 +8048,17 @@ export const data : any = {
 						desc: "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
 						browsers: "C46,O33"
 					}
-				]
+				],
+				"syntax": "<viewport-length>",
+				"media": [
+					"visual",
+					"continuous"
+				],
+				"initial": "auto",
+				"percentages": "referToWidthOfInitialViewport",
+				"computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "mix-blend-mode",
@@ -5018,7 +8119,21 @@ export const data : any = {
 						name: "luminosity",
 						browsers: "C41,FF32,O29"
 					}
-				]
+				],
+				"syntax": "<blend-mode>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Compositing and Blending"
+				],
+				"initial": "normal",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"stacking": true,
+				"status": "standard"
 			},
 			{
 				name: "motion",
@@ -5408,7 +8523,21 @@ export const data : any = {
 					{
 						name: "window"
 					}
-				]
+				],
+				"syntax": "none | button | button-arrow-down | button-arrow-next | button-arrow-previous | button-arrow-up | button-bevel | button-focus | caret | checkbox | checkbox-container | checkbox-label | checkmenuitem | dualbutton | groupbox | listbox | listitem | menuarrow | menubar | menucheckbox | menuimage | menuitem | menuitemtext | menulist | menulist-button | menulist-text | menulist-textfield | menupopup | menuradio | menuseparator | meterbar | meterchunk | progressbar | progressbar-vertical | progresschunk | progresschunk-vertical | radio | radio-container | radio-label | radiomenuitem | range | range-thumb | resizer | resizerpanel | scale-horizontal | scalethumbend | scalethumb-horizontal | scalethumbstart | scalethumbtick | scalethumb-vertical | scale-vertical | scrollbarbutton-down | scrollbarbutton-left | scrollbarbutton-right | scrollbarbutton-up | scrollbarthumb-horizontal | scrollbarthumb-vertical | scrollbartrack-horizontal | scrollbartrack-vertical | searchfield | separator | sheet | spinner | spinner-downbutton | spinner-textfield | spinner-upbutton | splitter | statusbar | statusbarpanel | tab | tabpanel | tabpanels | tab-scroll-arrow-back | tab-scroll-arrow-forward | textfield | textfield-multiline | toolbar | toolbarbutton | toolbarbutton-dropdown | toolbargripper | toolbox | tooltip | treeheader | treeheadercell | treeheadersortarrow | treeitem | treeline | treetwisty | treetwistyopen | treeview | -moz-mac-unified-toolbar | -moz-win-borderless-glass | -moz-win-browsertabbar-toolbox | -moz-win-communicationstext | -moz-win-communications-toolbox | -moz-win-exclude-glass | -moz-win-glass | -moz-win-mediatext | -moz-win-media-toolbox | -moz-window-button-box | -moz-window-button-box-maximized | -moz-window-button-close | -moz-window-button-maximize | -moz-window-button-minimize | -moz-window-button-restore | -moz-window-frame-bottom | -moz-window-frame-left | -moz-window-frame-right | -moz-window-titlebar | -moz-window-titlebar-maximized",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions",
+					"WebKit Extensions"
+				],
+				"initial": "noneButOverriddenInUserAgentCSS",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-moz-backface-visibility",
@@ -5462,7 +8591,20 @@ export const data : any = {
 				name: "-moz-border-bottom-colors",
 				desc: "Sets a list of colors for the bottom border.",
 				browsers: "FF1",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "[ <color> ]* <color> | none",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-moz-border-image",
@@ -5505,19 +8647,58 @@ export const data : any = {
 				name: "-moz-border-left-colors",
 				desc: "Sets a list of colors for the bottom border.",
 				browsers: "FF1",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "[ <color> ]* <color> | none",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-moz-border-right-colors",
 				desc: "Sets a list of colors for the bottom border.",
 				browsers: "FF1",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "[ <color> ]* <color> | none",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-moz-border-top-colors",
 				desc: "Ske Firefox, -moz-border-bottom-colors sets a list of colors for the bottom border.",
 				browsers: "FF1",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "[ <color> ]* <color> | none",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-moz-box-align",
@@ -6038,7 +9219,20 @@ export const data : any = {
 					{
 						name: "normal"
 					}
-				]
+				],
+				"syntax": "ignore | normal | select-after | select-before | select-menu | select-same | select-all | none",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-moz-user-select",
@@ -6084,7 +9278,20 @@ export const data : any = {
 					{
 						name: "true"
 					}
-				]
+				],
+				"syntax": "false | true",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "false",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-behavior",
@@ -6110,7 +9317,20 @@ export const data : any = {
 					{
 						name: "tb"
 					}
-				]
+				],
+				"syntax": "tb | rl | bt | lr",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "tb",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-content-zoom-chaining",
@@ -6125,7 +9345,20 @@ export const data : any = {
 						name: "none",
 						desc: "A bounce effect is shown when the user hits a zoom limit during a manipulation."
 					}
-				]
+				],
+				"syntax": "none | chained",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "none",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-content-zooming",
@@ -6140,25 +9373,86 @@ export const data : any = {
 					{
 						name: "zoom"
 					}
-				]
+				],
+				"syntax": "none | zoom",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "zoomForTheTopLevelNoneForTheRest",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-content-zoom-limit",
 				desc: "Shorthand property for the -ms-content-zoom-limit-min and -ms-content-zoom-limit-max properties.",
 				browsers: "E,IE10",
-				restriction: "percentage"
+				restriction: "percentage",
+				"syntax": "<'-ms-content-zoom-limit-min'> <'-ms-content-zoom-limit-max'>",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": [
+					"-ms-content-zoom-limit-max",
+					"-ms-content-zoom-limit-min"
+				],
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": [
+					"-ms-content-zoom-limit-max",
+					"-ms-content-zoom-limit-min"
+				],
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": [
+					"-ms-content-zoom-limit-max",
+					"-ms-content-zoom-limit-min"
+				],
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-content-zoom-limit-max",
 				desc: "Specifies the maximum zoom factor.",
 				browsers: "E,IE10",
-				restriction: "percentage"
+				restriction: "percentage",
+				"syntax": "<percentage>",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "maxZoomFactor",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "400%",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-content-zoom-limit-min",
 				desc: "Specifies the minimum zoom factor.",
 				browsers: "E,IE10",
-				restriction: "percentage"
+				restriction: "percentage",
+				"syntax": "<percentage>",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "minZoomFactor",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "100%",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-content-zoom-snap",
@@ -6185,7 +9479,26 @@ export const data : any = {
 						name: "snapList()",
 						desc: "Specifies the position of individual snap-points as a comma-separated list of zoom factors."
 					}
-				]
+				],
+				"syntax": "<'-ms-content-zoom-snap-type'> || <'-ms-content-zoom-snap-points'>",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": [
+					"-ms-content-zoom-snap-type",
+					"-ms-content-zoom-snap-points"
+				],
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": [
+					"-ms-content-zoom-snap-type",
+					"-ms-content-zoom-snap-points"
+				],
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-content-zoom-snap-points",
@@ -6200,7 +9513,20 @@ export const data : any = {
 						name: "snapList()",
 						desc: "Specifies the position of individual snap-points as a comma-separated list of zoom factors."
 					}
-				]
+				],
+				"syntax": "snapInterval( <percentage>, <percentage> ) | snapList( <percentage># )",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "snapInterval(0%, 100%)",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-content-zoom-snap-type",
@@ -6220,13 +9546,39 @@ export const data : any = {
 						name: "proximity",
 						desc: "Indicates that the motion of the content after the contact is picked up may be adjusted if the content would normally stop \"close enough\" to a snap-point."
 					}
-				]
+				],
+				"syntax": "none | proximity | mandatory",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "none",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-filter",
 				desc: "IE only. Used to produce visual effects.",
 				browsers: "IE8-9",
-				restriction: "string"
+				restriction: "string",
+				"syntax": "<string>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "\"\"",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-flex",
@@ -6451,7 +9803,20 @@ export const data : any = {
 						name: "none",
 						desc: "The block container is not a CSS Region."
 					}
-				]
+				],
+				"syntax": "[ none | <custom-ident> ]#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "none",
+				"appliesto": "nonReplacedElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-flow-into",
@@ -6463,7 +9828,20 @@ export const data : any = {
 						name: "none",
 						desc: "The element is not moved to a named flow and normal CSS processing takes place."
 					}
-				]
+				],
+				"syntax": "[ none | <custom-ident> ]#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "none",
+				"appliesto": "iframeElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-grid-column",
@@ -6589,7 +9967,20 @@ export const data : any = {
 						name: "none",
 						desc: "No adjustments will be applied."
 					}
-				]
+				],
+				"syntax": "auto | none",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "auto",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-hyphenate-limit-chars",
@@ -6601,7 +9992,20 @@ export const data : any = {
 						name: "auto",
 						desc: "The user agent chooses a value that adapts to the current layout."
 					}
-				]
+				],
+				"syntax": "auto | <integer>{1,3}",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "auto",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-hyphenate-limit-lines",
@@ -6612,13 +10016,39 @@ export const data : any = {
 					{
 						name: "no-limit"
 					}
-				]
+				],
+				"syntax": "no-limit | <integer>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "no-limit",
+				"appliesto": "blockContainerElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-hyphenate-limit-zone",
 				desc: "Specifies the maximum amount of unfilled space (before justification) that may be left in the line box before hyphenation is triggered to pull part of a word from the next line back up into the current line.",
 				browsers: "E,IE10",
-				restriction: "percentage, length"
+				restriction: "percentage, length",
+				"syntax": "<percentage> | <length>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "referToLineBoxWidth",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "0",
+				"appliesto": "blockContainerElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-hyphens",
@@ -6823,7 +10253,20 @@ export const data : any = {
 					{
 						name: "scrollbar"
 					}
-				]
+				],
+				"syntax": "auto | none | scrollbar | -ms-autohiding-scrollbar",
+				"media": "interactive",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "auto",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-perspective",
@@ -6873,49 +10316,153 @@ export const data : any = {
 				name: "-ms-scrollbar-3dlight-color",
 				desc: "Determines the color of the top and left edges of the scroll box and scroll arrows of a scroll bar.",
 				browsers: "IE8",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<color>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "dependsOnUserAgent",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-scrollbar-arrow-color",
 				desc: "Determines the color of the arrow elements of a scroll arrow.",
 				browsers: "IE8",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<color>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "dependsOnUserAgent",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-scrollbar-base-color",
 				desc: "Determines the color of the main elements of a scroll bar, which include the scroll box, track, and scroll arrows.",
 				browsers: "IE8",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<color>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "dependsOnUserAgent",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-scrollbar-darkshadow-color",
 				desc: "Determines the color of the gutter of a scroll bar.",
 				browsers: "IE8",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<color>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "dependsOnUserAgent",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-scrollbar-face-color",
 				desc: "Determines the color of the scroll box and scroll arrows of a scroll bar.",
 				browsers: "IE8",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<color>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "dependsOnUserAgent",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-scrollbar-highlight-color",
 				desc: "Determines the color of the top and left edges of the scroll box and scroll arrows of a scroll bar.",
 				browsers: "IE8",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<color>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "dependsOnUserAgent",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-scrollbar-shadow-color",
 				desc: "Determines the color of the bottom and right edges of the scroll box and scroll arrows of a scroll bar.",
 				browsers: "IE8",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<color>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "dependsOnUserAgent",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-scrollbar-track-color",
 				desc: "Determines the color of the track element of a scroll bar.",
 				browsers: "IE8",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<color>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "dependsOnUserAgent",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-scroll-chaining",
@@ -6929,7 +10476,20 @@ export const data : any = {
 					{
 						name: "none"
 					}
-				]
+				],
+				"syntax": "chained | none",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "chained",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-scroll-limit",
@@ -6940,7 +10500,30 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"syntax": "<'-ms-scroll-limit-x-min'> <'-ms-scroll-limit-y-min'> <'-ms-scroll-limit-x-max'> <'-ms-scroll-limit-y-max'>",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": [
+					"-ms-scroll-limit-x-min",
+					"-ms-scroll-limit-y-min",
+					"-ms-scroll-limit-x-max",
+					"-ms-scroll-limit-y-max"
+				],
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": [
+					"-ms-scroll-limit-x-min",
+					"-ms-scroll-limit-y-min",
+					"-ms-scroll-limit-x-max",
+					"-ms-scroll-limit-y-max"
+				],
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-scroll-limit-x-max",
@@ -6951,13 +10534,39 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"syntax": "auto | <length>",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "auto",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-scroll-limit-x-min",
 				desc: "Gets or sets a value that specifies the minimum value for the scrollLeft property.",
 				browsers: "E,IE10",
-				restriction: "length"
+				restriction: "length",
+				"syntax": "<length>",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "0",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-scroll-limit-y-max",
@@ -6968,13 +10577,39 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"syntax": "auto | <length>",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "auto",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-scroll-limit-y-min",
 				desc: "Gets or sets a value that specifies the minimum value for the scrollTop property.",
 				browsers: "E,IE10",
-				restriction: "length"
+				restriction: "length",
+				"syntax": "<length>",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "0",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-scroll-rails",
@@ -6988,7 +10623,20 @@ export const data : any = {
 					{
 						name: "railed"
 					}
-				]
+				],
+				"syntax": "none | railed",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "railed",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-scroll-snap-points-x",
@@ -7002,7 +10650,20 @@ export const data : any = {
 					{
 						name: "snapList()"
 					}
-				]
+				],
+				"syntax": "snapInterval( <length-percentage>, <length-percentage> ) | snapList( <length-percentage># )",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "snapInterval(0px, 100%)",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-scroll-snap-points-y",
@@ -7016,7 +10677,20 @@ export const data : any = {
 					{
 						name: "snapList()"
 					}
-				]
+				],
+				"syntax": "snapInterval( <length-percentage>, <length-percentage> ) | snapList( <length-percentage># )",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "snapInterval(0px, 100%)",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-scroll-snap-type",
@@ -7036,7 +10710,20 @@ export const data : any = {
 						name: "proximity",
 						desc: "The visual viewport of this scroll container may come to rest on a snap point at the termination of a scroll at the discretion of the UA given the parameters of the scroll."
 					}
-				]
+				],
+				"syntax": "none | proximity | mandatory",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "none",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-scroll-snap-x",
@@ -7059,7 +10746,26 @@ export const data : any = {
 					{
 						name: "snapList()"
 					}
-				]
+				],
+				"syntax": "<'-ms-scroll-snap-type'> <'-ms-scroll-snap-points-x'>",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": [
+					"-ms-scroll-snap-type",
+					"-ms-scroll-snap-points-x"
+				],
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": [
+					"-ms-scroll-snap-type",
+					"-ms-scroll-snap-points-x"
+				],
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-scroll-snap-y",
@@ -7082,7 +10788,26 @@ export const data : any = {
 					{
 						name: "snapList()"
 					}
-				]
+				],
+				"syntax": "<'-ms-scroll-snap-type'> <'-ms-scroll-snap-points-y'>",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": [
+					"-ms-scroll-snap-type",
+					"-ms-scroll-snap-points-y"
+				],
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": [
+					"-ms-scroll-snap-type",
+					"-ms-scroll-snap-points-y"
+				],
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-scroll-translation",
@@ -7096,7 +10821,20 @@ export const data : any = {
 					{
 						name: "vertical-to-horizontal"
 					}
-				]
+				],
+				"syntax": "none | vertical-to-horizontal",
+				"media": "interactive",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-text-align-last",
@@ -7150,7 +10888,20 @@ export const data : any = {
 					{
 						name: "punctuation"
 					}
-				]
+				],
+				"syntax": "none | ideograph-alpha | ideograph-numeric | ideograph-parenthesis | ideograph-space",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-text-combine-horizontal",
@@ -7306,7 +11057,20 @@ export const data : any = {
 						name: "none",
 						desc: "Grippers are always off."
 					}
-				]
+				],
+				"syntax": "grippers | none",
+				"media": "interactive",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "grippers",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-transform",
@@ -7418,7 +11182,20 @@ export const data : any = {
 					{
 						name: "text"
 					}
-				]
+				],
+				"syntax": "none | element | text",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "text",
+				"appliesto": "nonReplacedElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-word-break",
@@ -7486,13 +11263,39 @@ export const data : any = {
 						name: "start",
 						desc: "Inline flow content can wrap on the start edge of the exclusion area but must leave the area to end edge of the exclusion area empty."
 					}
-				]
+				],
+				"syntax": "auto | both | start | end | maximum | clear",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "auto",
+				"appliesto": "blockLevelElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-wrap-margin",
 				desc: "Gets or sets a value that is used to offset the inner wrap shape from other shapes.",
 				browsers: "E,IE10",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"syntax": "<length>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "0",
+				"appliesto": "exclusionElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-wrap-through",
@@ -7508,7 +11311,20 @@ export const data : any = {
 						name: "wrap",
 						desc: "The exclusion element inherits its parent node's wrapping context. Its descendant inline content wraps around exclusions defined outside the element."
 					}
-				]
+				],
+				"syntax": "wrap | none",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "wrap",
+				"appliesto": "blockLevelElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-ms-writing-mode",
@@ -7655,7 +11471,14 @@ export const data : any = {
 				name: "negative",
 				desc: "@counter-style descriptor. Defines how to alter the representation when the counter value is negative.",
 				browsers: "FF33",
-				restriction: "image, identifier, string"
+				restriction: "image, identifier, string",
+				"syntax": "<symbol> <symbol>?",
+				"media": "all",
+				"initial": "\"-\" hyphen-minus",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "standard"
 			},
 			{
 				name: "-o-animation",
@@ -7822,13 +11645,39 @@ export const data : any = {
 					{
 						name: "scale-down"
 					}
-				]
+				],
+				"syntax": "fill | contain | cover | none | scale-down",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Images"
+				],
+				"initial": "fill",
+				"appliesto": "replacedElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "object-position",
 				desc: "Determines the alignment of the replaced element inside its box.",
 				browsers: "C32,FF36,O19",
-				restriction: "position, length, percentage"
+				restriction: "position, length, percentage",
+				"syntax": "<position>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "repeatableListOfSimpleListOfLpc",
+				"percentages": "referToWidthAndHeightOfElement",
+				"groups": [
+					"CSS Images"
+				],
+				"initial": "50% 50%",
+				"appliesto": "replacedElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "-o-border-image",
@@ -7901,19 +11750,62 @@ export const data : any = {
 				name: "opacity",
 				desc: "Opacity of an element's text, where 1 is opaque and 0 is entirely transparent.",
 				browsers: "C,FF3.6,IE9,O9,S1.2",
-				restriction: "number(0-1)"
+				restriction: "number(0-1)",
+				"syntax": "<number>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "number",
+				"percentages": "no",
+				"groups": [
+					"CSS Color"
+				],
+				"initial": "1.0",
+				"appliesto": "allElements",
+				"computed": "specifiedValueClipped0To1",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "order",
 				desc: "Controls the order in which children of a flex container appear within the flex container, by assigning them to ordinal groups.",
 				browsers: "E,C29,FF22,IE11,O12.1,S9",
-				restriction: "integer"
+				restriction: "integer",
+				"syntax": "<integer>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "integer",
+				"percentages": "no",
+				"groups": [
+					"CSS Flexible Box Layout"
+				],
+				"initial": "0",
+				"appliesto": "flexItemsAndAbsolutelyPositionedFlexContainerChildren",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "orphans",
 				desc: "Specifies the minimum number of line boxes in a block container that must be left in a fragment before a fragmentation break.",
 				browsers: "C,IE8,O7,S1.3",
-				restriction: "integer"
+				restriction: "integer",
+				"syntax": "<integer>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Columns",
+					"CSS Fragmentation"
+				],
+				"initial": "2",
+				"appliesto": "blockContainerElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "-o-table-baseline",
@@ -8078,7 +11970,20 @@ export const data : any = {
 						name: "auto",
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well."
 					}
-				]
+				],
+				"syntax": "<'left'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "logicalHeightOfContainingBlock",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "auto",
+				"appliesto": "positionedElements",
+				"computed": "sameAsBoxOffsets",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "offset-block-start",
@@ -8090,7 +11995,20 @@ export const data : any = {
 						name: "auto",
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well."
 					}
-				]
+				],
+				"syntax": "<'left'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "logicalHeightOfContainingBlock",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "auto",
+				"appliesto": "positionedElements",
+				"computed": "sameAsBoxOffsets",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "offset-inline-end",
@@ -8102,7 +12020,20 @@ export const data : any = {
 						name: "auto",
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well."
 					}
-				]
+				],
+				"syntax": "<'left'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "logicalWidthOfContainingBlock",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "auto",
+				"appliesto": "positionedElements",
+				"computed": "sameAsBoxOffsets",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "offset-inline-start",
@@ -8114,7 +12045,20 @@ export const data : any = {
 						name: "auto",
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well."
 					}
-				]
+				],
+				"syntax": "<'left'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "logicalWidthOfContainingBlock",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "auto",
+				"appliesto": "positionedElements",
+				"computed": "sameAsBoxOffsets",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "outline",
@@ -8130,7 +12074,35 @@ export const data : any = {
 						name: "invert",
 						browsers: "E,IE8,O"
 					}
-				]
+				],
+				"syntax": "[ <'outline-color'> || <'outline-style'> || <'outline-width'> ]",
+				"media": [
+					"visual",
+					"interactive"
+				],
+				"inherited": false,
+				"animationType": [
+					"outline-color",
+					"outline-width",
+					"outline-style"
+				],
+				"percentages": "no",
+				"groups": [
+					"CSS Basic User Interface"
+				],
+				"initial": [
+					"outline-color",
+					"outline-style",
+					"outline-width"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"outline-color",
+					"outline-width",
+					"outline-style"
+				],
+				"order": "orderOfAppearance",
+				"status": "standard"
 			},
 			{
 				name: "outline-color",
@@ -8142,13 +12114,45 @@ export const data : any = {
 						name: "invert",
 						browsers: "E,IE8,O"
 					}
-				]
+				],
+				"syntax": "<color> | invert",
+				"media": [
+					"visual",
+					"interactive"
+				],
+				"inherited": false,
+				"animationType": "color",
+				"percentages": "no",
+				"groups": [
+					"CSS Basic User Interface"
+				],
+				"initial": "invertOrCurrentColor",
+				"appliesto": "allElements",
+				"computed": "invertForTranslucentColorRGBAOtherwiseRGB",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "outline-offset",
 				desc: "Offset the outline and draw it beyond the border edge.",
 				browsers: "C,FF1.5,O9.5,S1.2",
-				restriction: "length"
+				restriction: "length",
+				"syntax": "<length>",
+				"media": [
+					"visual",
+					"interactive"
+				],
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "no",
+				"groups": [
+					"CSS Basic User Interface"
+				],
+				"initial": "0",
+				"appliesto": "allElements",
+				"computed": "asSpecifiedRelativeToAbsoluteLengths",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "outline-style",
@@ -8160,13 +12164,45 @@ export const data : any = {
 						name: "auto",
 						desc: "Permits the user agent to render a custom outline style, typically the default platform style."
 					}
-				]
+				],
+				"syntax": "auto | <br-style>",
+				"media": [
+					"visual",
+					"interactive"
+				],
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Basic User Interface"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "outline-width",
 				desc: "Width of the outline.",
 				browsers: "E,C,FF1.5,IE8,O8,S1.2",
-				restriction: "length, line-width"
+				restriction: "length, line-width",
+				"syntax": "<br-width>",
+				"media": [
+					"visual",
+					"interactive"
+				],
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "no",
+				"groups": [
+					"CSS Basic User Interface"
+				],
+				"initial": "medium",
+				"appliesto": "allElements",
+				"computed": "absoluteLength0ForNone",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "overflow",
@@ -8193,7 +12229,20 @@ export const data : any = {
 						name: "visible",
 						desc: "Content is not clipped, i.e., it may be rendered outside the content box."
 					}
-				]
+				],
+				"syntax": "visible | hidden | scroll | auto",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Box Model"
+				],
+				"initial": "visible",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "overflow-wrap",
@@ -8209,7 +12258,20 @@ export const data : any = {
 						name: "normal",
 						desc: "Lines may break only at allowed break points."
 					}
-				]
+				],
+				"syntax": "normal | break-word",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Text"
+				],
+				"initial": "normal",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "overflow-x",
@@ -8233,7 +12295,20 @@ export const data : any = {
 						name: "visible",
 						desc: "Content is not clipped, i.e., it may be rendered outside the content box."
 					}
-				]
+				],
+				"syntax": "visible | hidden | scroll | auto",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Box Model"
+				],
+				"initial": "visible",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "overflow-y",
@@ -8257,63 +12332,225 @@ export const data : any = {
 						name: "visible",
 						desc: "Content is not clipped, i.e., it may be rendered outside the content box."
 					}
-				]
+				],
+				"syntax": "visible | hidden | scroll | auto",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Box Model"
+				],
+				"initial": "visible",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "pad",
 				desc: "@counter-style descriptor. Specifies a “fixed-width” counter style, where representations shorter than the pad value are padded with a particular <symbol>",
 				browsers: "FF33",
-				restriction: "integer, image, string, identifier"
+				restriction: "integer, image, string, identifier",
+				"syntax": "<integer> && <symbol>",
+				"media": "all",
+				"initial": "0 \"\"",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "padding",
 				desc: "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 				restriction: "length, percentage",
-				values: []
+				values: [],
+				"syntax": "[ <length> | <percentage> ]{1,4}",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "referToWidthOfContainingBlock",
+				"groups": [
+					"CSS Box Model"
+				],
+				"initial": [
+					"padding-bottom",
+					"padding-left",
+					"padding-right",
+					"padding-top"
+				],
+				"appliesto": "allElementsExceptInternalTableDisplayTypes",
+				"computed": [
+					"padding-bottom",
+					"padding-left",
+					"padding-right",
+					"padding-top"
+				],
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "padding-bottom",
 				desc: "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"syntax": "<length> | <percentage>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "referToWidthOfContainingBlock",
+				"groups": [
+					"CSS Box Model"
+				],
+				"initial": "0",
+				"appliesto": "allElementsExceptInternalTableDisplayTypes",
+				"computed": "percentageAsSpecifiedOrAbsoluteLength",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "padding-block-end",
 				desc: "Logical 'padding-bottom'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"syntax": "<'padding-left'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "logicalWidthOfContainingBlock",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "0",
+				"appliesto": "allElements",
+				"computed": "asLength",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "padding-block-start",
 				desc: "Logical 'padding-top'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"syntax": "<'padding-left'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "logicalWidthOfContainingBlock",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "0",
+				"appliesto": "allElements",
+				"computed": "asLength",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "padding-inline-end",
 				desc: "Logical 'padding-right'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"syntax": "<'padding-left'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "logicalWidthOfContainingBlock",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "0",
+				"appliesto": "allElements",
+				"computed": "asLength",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "padding-inline-start",
 				desc: "Logical 'padding-left'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"syntax": "<'padding-left'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "logicalWidthOfContainingBlock",
+				"groups": [
+					"CSS Logical Properties"
+				],
+				"initial": "0",
+				"appliesto": "allElements",
+				"computed": "asLength",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "padding-left",
 				desc: "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"syntax": "<length> | <percentage>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "referToWidthOfContainingBlock",
+				"groups": [
+					"CSS Box Model"
+				],
+				"initial": "0",
+				"appliesto": "allElementsExceptInternalTableDisplayTypes",
+				"computed": "percentageAsSpecifiedOrAbsoluteLength",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "padding-right",
 				desc: "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"syntax": "<length> | <percentage>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "referToWidthOfContainingBlock",
+				"groups": [
+					"CSS Box Model"
+				],
+				"initial": "0",
+				"appliesto": "allElementsExceptInternalTableDisplayTypes",
+				"computed": "percentageAsSpecifiedOrAbsoluteLength",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "padding-top",
 				desc: "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"syntax": "<length> | <percentage>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "referToWidthOfContainingBlock",
+				"groups": [
+					"CSS Box Model"
+				],
+				"initial": "0",
+				"appliesto": "allElementsExceptInternalTableDisplayTypes",
+				"computed": "percentageAsSpecifiedOrAbsoluteLength",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter"
+				],
+				"status": "standard"
 			},
 			{
 				name: "page-break-after",
@@ -8340,7 +12577,23 @@ export const data : any = {
 						name: "right",
 						desc: "Force one or two page breaks after the generated box so that the next page is formatted as a right page."
 					}
-				]
+				],
+				"syntax": "auto | always | avoid | left | right",
+				"media": [
+					"visual",
+					"paged"
+				],
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Pages"
+				],
+				"initial": "auto",
+				"appliesto": "blockElementsInNormalFlow",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "page-break-before",
@@ -8367,7 +12620,23 @@ export const data : any = {
 						name: "right",
 						desc: "Force one or two page breaks before the generated box so that the next page is formatted as a right page."
 					}
-				]
+				],
+				"syntax": "auto | always | avoid | left | right",
+				"media": [
+					"visual",
+					"paged"
+				],
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Pages"
+				],
+				"initial": "auto",
+				"appliesto": "blockElementsInNormalFlow",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "page-break-inside",
@@ -8383,7 +12652,23 @@ export const data : any = {
 						name: "avoid",
 						desc: "Avoid a page break inside the generated box."
 					}
-				]
+				],
+				"syntax": "auto | avoid",
+				"media": [
+					"visual",
+					"paged"
+				],
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Pages"
+				],
+				"initial": "auto",
+				"appliesto": "blockElementsInNormalFlow",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "paint-order",
@@ -8404,7 +12689,20 @@ export const data : any = {
 					{
 						name: "stroke"
 					}
-				]
+				],
+				"syntax": "normal | [ fill || stroke || markers ]",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Text"
+				],
+				"initial": "normal",
+				"appliesto": "textElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "experimental"
 			},
 			{
 				name: "perspective",
@@ -8416,13 +12714,40 @@ export const data : any = {
 						name: "none",
 						desc: "No perspective transform is applied."
 					}
-				]
+				],
+				"syntax": "none | <length>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "no",
+				"groups": [
+					"CSS Transforms"
+				],
+				"initial": "none",
+				"appliesto": "transformableElements",
+				"computed": "absoluteLengthOrNone",
+				"order": "uniqueOrder",
+				"stacking": true,
+				"status": "standard"
 			},
 			{
 				name: "perspective-origin",
 				desc: "Establishes the origin for the perspective property. It effectively sets the X and Y position at which the viewer appears to be looking at the children of the element.",
 				browsers: "E,C36,FF16,IE10,O23,S9",
-				restriction: "position, percentage, length"
+				restriction: "position, percentage, length",
+				"syntax": "<position>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "simpleListOfLpc",
+				"percentages": "referToSizeOfBoundingBox",
+				"groups": [
+					"CSS Transforms"
+				],
+				"initial": "50% 50%",
+				"appliesto": "transformableElements",
+				"computed": "forLengthAbsoluteValueOtherwisePercentage",
+				"order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
+				"status": "standard"
 			},
 			{
 				name: "pointer-events",
@@ -8461,7 +12786,20 @@ export const data : any = {
 					{
 						name: "visibleStroke"
 					}
-				]
+				],
+				"syntax": "auto | none | visiblePainted | visibleFill | visibleStroke | visible | painted | fill | stroke | all | inherit",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Pointer Events"
+				],
+				"initial": "auto",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "position",
@@ -8492,13 +12830,34 @@ export const data : any = {
 						name: "-webkit-sticky",
 						browsers: "S6.1"
 					}
-				]
+				],
+				"syntax": "static | relative | absolute | sticky | fixed",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Positioning"
+				],
+				"initial": "static",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"stacking": true,
+				"status": "standard"
 			},
 			{
 				name: "prefix",
 				desc: "@counter-style descriptor. Specifies a <symbol> that is prepended to the marker representation.",
 				browsers: "FF33",
-				restriction: "image, string, identifier"
+				restriction: "image, string, identifier",
+				"syntax": "<symbol>",
+				"media": "all",
+				"initial": "\"\"",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "quotes",
@@ -8510,7 +12869,20 @@ export const data : any = {
 						name: "none",
 						desc: "The 'open-quote' and 'close-quote' values of the 'content' property produce no quotations marks, as if they were 'no-open-quote' and 'no-close-quote' respectively."
 					}
-				]
+				],
+				"syntax": "none | [ <string> <string> ]+",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Generated Content"
+				],
+				"initial": "dependsOnUserAgent",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "range",
@@ -8526,7 +12898,14 @@ export const data : any = {
 						name: "infinite",
 						desc: "If used as the first value in a range, it represents negative infinity; if used as the second value, it represents positive infinity."
 					}
-				]
+				],
+				"syntax": "[ [ <integer> | infinite ]{2} ]# | auto",
+				"media": "all",
+				"initial": "auto",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "standard"
 			},
 			{
 				name: "resize",
@@ -8550,7 +12929,20 @@ export const data : any = {
 						name: "vertical",
 						desc: "The UA presents a unidirectional vertical resizing mechanism to allow the user to adjust only the height of the element."
 					}
-				]
+				],
+				"syntax": "none | both | horizontal | vertical",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Basic User Interface"
+				],
+				"initial": "none",
+				"appliesto": "elementsWithOverflowNotVisibleAndReplacedElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "right",
@@ -8561,7 +12953,20 @@ export const data : any = {
 						name: "auto",
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well"
 					}
-				]
+				],
+				"syntax": "<length> | <percentage> | auto",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "lpc",
+				"percentages": "referToWidthOfContainingBlock",
+				"groups": [
+					"CSS Positioning"
+				],
+				"initial": "auto",
+				"appliesto": "positionedElements",
+				"computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "ruby-align",
@@ -8614,7 +13019,20 @@ export const data : any = {
 						desc: "As for 'space-between' except that there exists an extra justification opportunities whose space is distributed half before and half after the ruby content.",
 						browsers: "FF10"
 					}
-				]
+				],
+				"syntax": "start | center | space-between | space-around",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Ruby"
+				],
+				"initial": "space-around",
+				"appliesto": "rubyBasesAnnotationsBaseAnnotationContainers",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "ruby-overhang",
@@ -8659,7 +13077,20 @@ export const data : any = {
 						name: "right",
 						desc: "The ruby text appears on the right of the base. Unlike 'before' and 'after', this value is not relative to the text flow direction."
 					}
-				]
+				],
+				"syntax": "over | under | inter-character",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Ruby"
+				],
+				"initial": "over",
+				"appliesto": "rubyAnnotationsContainers",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "ruby-span",
@@ -8737,7 +13168,20 @@ export const data : any = {
 					{
 						name: "smooth"
 					}
-				]
+				],
+				"syntax": "auto | smooth",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSSOM View"
+				],
+				"initial": "auto",
+				"appliesto": "scrollingBoxes",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "scroll-snap-coordinate",
@@ -8749,13 +13193,39 @@ export const data : any = {
 						name: "none",
 						desc: "Specifies that this element does not contribute a snap point."
 					}
-				]
+				],
+				"syntax": "none | <position>#",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "position",
+				"percentages": "referToBorderBox",
+				"groups": [
+					"CSS Scroll Snap"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecifiedRelativeToAbsoluteLengths",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "scroll-snap-destination",
 				desc: "Define the x and y coordinate within the scroll container’s visual viewport which element snap points will align with.",
 				browsers: "FF39",
-				restriction: "position, length, percentage"
+				restriction: "position, length, percentage",
+				"syntax": "<position>",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "position",
+				"percentages": "relativeToScrollContainerPaddingBoxAxis",
+				"groups": [
+					"CSS Scroll Snap"
+				],
+				"initial": "0px 0px",
+				"appliesto": "scrollContainers",
+				"computed": "asSpecifiedRelativeToAbsoluteLengths",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "scroll-snap-points-x",
@@ -8771,7 +13241,20 @@ export const data : any = {
 						name: "repeat()",
 						desc: "Defines an interval at which snap points are defined, starting from the container’s relevant start edge."
 					}
-				]
+				],
+				"syntax": "none | repeat( <length-percentage> )",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "relativeToScrollContainerPaddingBoxAxis",
+				"groups": [
+					"CSS Scroll Snap"
+				],
+				"initial": "none",
+				"appliesto": "scrollContainers",
+				"computed": "asSpecifiedRelativeToAbsoluteLengths",
+				"order": "uniqueOrder",
+				"status": "obsolete"
 			},
 			{
 				name: "scroll-snap-points-y",
@@ -8787,7 +13270,20 @@ export const data : any = {
 						name: "repeat()",
 						desc: "Defines an interval at which snap points are defined, starting from the container’s relevant start edge."
 					}
-				]
+				],
+				"syntax": "none | repeat( <length-percentage> )",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "relativeToScrollContainerPaddingBoxAxis",
+				"groups": [
+					"CSS Scroll Snap"
+				],
+				"initial": "none",
+				"appliesto": "scrollContainers",
+				"computed": "asSpecifiedRelativeToAbsoluteLengths",
+				"order": "uniqueOrder",
+				"status": "obsolete"
 			},
 			{
 				name: "scroll-snap-type",
@@ -8807,19 +13303,58 @@ export const data : any = {
 						name: "proximity",
 						desc: "The visual viewport of this scroll container may come to rest on a snap point at the termination of a scroll at the discretion of the UA given the parameters of the scroll."
 					}
-				]
+				],
+				"syntax": "none | mandatory | proximity",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Scroll Snap"
+				],
+				"initial": "none",
+				"appliesto": "scrollContainers",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "shape-image-threshold",
 				desc: "Defines the alpha channel threshold used to extract the shape using an image. A value of 0.5 means that the shape will enclose all the pixels that are more than 50% opaque.",
 				browsers: "C37,O24",
-				restriction: "number"
+				restriction: "number",
+				"syntax": "<number>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "number",
+				"percentages": "no",
+				"groups": [
+					"CSS Shapes"
+				],
+				"initial": "0.0",
+				"appliesto": "floats",
+				"computed": "specifiedValueNumberClipped0To1",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "shape-margin",
 				desc: "Adds a margin to a 'shape-outside'. This defines a new shape that is the smallest contour that includes all the points that are the 'shape-margin' distance outward in the perpendicular direction from a point on the underlying shape.",
 				browsers: "C37,O24",
-				restriction: "url, length, percentage"
+				restriction: "url, length, percentage",
+				"syntax": "<length-percentage>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "lpc",
+				"percentages": "referToWidthOfContainingBlock",
+				"groups": [
+					"CSS Shapes"
+				],
+				"initial": "0",
+				"appliesto": "floats",
+				"computed": "asSpecifiedRelativeToAbsoluteLengths",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "shape-outside",
@@ -8834,7 +13369,20 @@ export const data : any = {
 						name: "none",
 						desc: "The float area is unaffected."
 					}
-				]
+				],
+				"syntax": "none | <shape-box> || <basic-shape> | <image>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "basicShapeOtherwiseNo",
+				"percentages": "no",
+				"groups": [
+					"CSS Shapes"
+				],
+				"initial": "none",
+				"appliesto": "floats",
+				"computed": "asDefinedForBasicShapeWithAbsoluteURIOtherwiseAsSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "shape-rendering",
@@ -8878,7 +13426,14 @@ export const data : any = {
 					{
 						name: "local()"
 					}
-				]
+				],
+				"syntax": "[ <url> format(<string>#)? | local(<family-name>) ]#",
+				"media": "all",
+				"initial": "n/a (required)",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "standard"
 			},
 			{
 				name: "stop-color",
@@ -8971,7 +13526,14 @@ export const data : any = {
 				name: "suffix",
 				desc: "@counter-style descriptor. Specifies a <symbol> that is appended to the marker representation.",
 				browsers: "FF33",
-				restriction: "image, string, identifier"
+				restriction: "image, string, identifier",
+				"syntax": "<symbol>",
+				"media": "all",
+				"initial": "\". \"",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "system",
@@ -9002,13 +13564,27 @@ export const data : any = {
 					{
 						name: "symbolic"
 					}
-				]
+				],
+				"syntax": "cyclic | numeric | alphabetic | symbolic | additive | [ fixed <integer>? ] | [ extends <counter-style-name> ]",
+				"media": "all",
+				"initial": "symbolic",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "symbols",
 				desc: "@counter-style descriptor. Specifies the symbols used by the marker-construction algorithm specified by the system descriptor.",
 				browsers: "FF33",
-				restriction: "image, string, identifier"
+				restriction: "image, string, identifier",
+				"syntax": "<symbol>+",
+				"media": "all",
+				"initial": "N/A",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "standard"
 			},
 			{
 				name: "table-layout",
@@ -9023,13 +13599,39 @@ export const data : any = {
 						name: "fixed",
 						desc: "Use the fixed table layout algorithm."
 					}
-				]
+				],
+				"syntax": "auto | fixed",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Table"
+				],
+				"initial": "auto",
+				"appliesto": "tableElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "tab-size",
 				desc: "Determines the width of the tab character (U+0009), in space characters (U+0020), when rendered.",
 				browsers: "C21,O15,S6.1",
-				restriction: "integer, length"
+				restriction: "integer, length",
+				"syntax": "<integer> | <length>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "length",
+				"percentages": "no",
+				"groups": [
+					"CSS Text"
+				],
+				"initial": "8",
+				"appliesto": "blockContainers",
+				"computed": "specifiedIntegerOrAbsoluteLength",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "text-align",
@@ -9062,7 +13664,23 @@ export const data : any = {
 						desc: "The inline contents are aligned to the start edge of the line box.",
 						browsers: "C,FF1,O15,S3.1"
 					}
-				]
+				],
+				"syntax": "start | end | left | right | center | justify | match-parent",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Text"
+				],
+				"initial": "startOrNamelessValueIfLTRRightIfRTL",
+				"appliesto": "blockContainers",
+				"computed": "asSpecifiedExceptMatchParent",
+				"order": "orderOfAppearance",
+				"alsoAppliesTo": [
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "text-align-last",
@@ -9090,7 +13708,20 @@ export const data : any = {
 						name: "right",
 						desc: "The inline contents are aligned to the right edge of the line box. In vertical text, 'right' aligns to the edge of the line box that would be the end edge for left-to-right text."
 					}
-				]
+				],
+				"syntax": "auto | start | end | left | right | center | justify",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Text"
+				],
+				"initial": "auto",
+				"appliesto": "blockContainers",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "text-anchor",
@@ -9140,13 +13771,61 @@ export const data : any = {
 					{
 						name: "wavy"
 					}
-				]
+				],
+				"syntax": "<'text-decoration-line'> || <'text-decoration-style'> || <'text-decoration-color'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": [
+					"text-decoration-color",
+					"text-decoration-style",
+					"text-decoration-line"
+				],
+				"percentages": "no",
+				"groups": [
+					"CSS Text Decoration"
+				],
+				"initial": [
+					"text-decoration-color",
+					"text-decoration-style",
+					"text-decoration-line"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"text-decoration-line",
+					"text-decoration-style",
+					"text-decoration-color"
+				],
+				"order": "orderOfAppearance",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "text-decoration-color",
 				desc: "Specifies the color of text decoration (underlines overlines, and line-throughs) set on the element with text-decoration-line.",
 				browsers: "FF36,C57,O44",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<color>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "color",
+				"percentages": "no",
+				"groups": [
+					"CSS Text Decoration"
+				],
+				"initial": "currentcolor",
+				"appliesto": "allElements",
+				"computed": "computedColor",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "text-decoration-line",
@@ -9167,7 +13846,25 @@ export const data : any = {
 					{
 						name: "underline"
 					}
-				]
+				],
+				"syntax": "none | [ underline || overline || line-through || blink ]",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Text Decoration"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "text-decoration-style",
@@ -9194,13 +13891,44 @@ export const data : any = {
 					{
 						name: "wavy"
 					}
-				]
+				],
+				"syntax": "solid | double | dotted | dashed | wavy",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Text Decoration"
+				],
+				"initial": "solid",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "text-indent",
 				desc: "Specifies the indentation applied to lines of inline content in a block. The indentation only affects the first line of inline content in the block unless the 'hanging' keyword is specified, in which case it affects all lines except the first.",
 				restriction: "percentage, length",
-				values: []
+				values: [],
+				"syntax": "<length-percentage> && hanging? && each-line?",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "lpc",
+				"percentages": "referToWidthOfContainingBlock",
+				"groups": [
+					"CSS Text"
+				],
+				"initial": "0",
+				"appliesto": "blockContainers",
+				"computed": "percentageOrAbsoluteLengthPlusKeywords",
+				"order": "lengthOrPercentageBeforeKeywords",
+				"status": "standard"
 			},
 			{
 				name: "text-justify",
@@ -9234,7 +13962,20 @@ export const data : any = {
 					{
 						name: "newspaper"
 					}
-				]
+				],
+				"syntax": "auto | inter-character | inter-word | none",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Text"
+				],
+				"initial": "auto",
+				"appliesto": "inlineLevelAndTableCellElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "text-orientation",
@@ -9253,7 +13994,20 @@ export const data : any = {
 					{
 						name: "upright"
 					}
-				]
+				],
+				"syntax": "mixed | upright | sideways",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Writing Modes"
+				],
+				"initial": "mixed",
+				"appliesto": "allElementsExceptTableRowGroupsRowsColumnGroupsAndColumns",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "text-overflow",
@@ -9267,7 +14021,23 @@ export const data : any = {
 					{
 						name: "ellipsis"
 					}
-				]
+				],
+				"syntax": "[ clip | ellipsis | <string> ]{1,2}",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Basic User Interface"
+				],
+				"initial": "clip",
+				"appliesto": "blockContainerElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "text-rendering",
@@ -9289,14 +14059,45 @@ export const data : any = {
 						name: "optimizeSpeed",
 						desc: "Indicates that the user agent shall emphasize rendering speed over legibility and geometric precision."
 					}
-				]
+				],
+				"syntax": "auto | optimizeSpeed | optimizeLegibility | geometricPrecision",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Miscellaneous"
+				],
+				"initial": "auto",
+				"appliesto": "textElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "text-shadow",
 				desc: "Enables shadow effects to be applied to the text of the element.",
 				browsers: "E,C,FF3.6,IE10,O9.5,S1.1",
 				restriction: "length, color",
-				values: []
+				values: [],
+				"syntax": "none | <shadow-t>#",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "shadowList",
+				"percentages": "no",
+				"groups": [
+					"CSS Text Decoration"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "colorPlusThreeAbsoluteLengths",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "text-transform",
@@ -9316,7 +14117,25 @@ export const data : any = {
 					{
 						name: "uppercase"
 					}
-				]
+				],
+				"syntax": "none | capitalize | uppercase | lowercase | full-width",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Text"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "text-underline-position",
@@ -9335,7 +14154,20 @@ export const data : any = {
 						name: "below",
 						desc: "The underline is aligned with the under edge of the element’s content box."
 					}
-				]
+				],
+				"syntax": "auto | [ under || [ left | right ] ]",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Text Decoration"
+				],
+				"initial": "auto",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "standard"
 			},
 			{
 				name: "top",
@@ -9346,7 +14178,20 @@ export const data : any = {
 						name: "auto",
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well"
 					}
-				]
+				],
+				"syntax": "<length> | <percentage> | auto",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "lpc",
+				"percentages": "referToContainingBlockHeight",
+				"groups": [
+					"CSS Positioning"
+				],
+				"initial": "auto",
+				"appliesto": "positionedElements",
+				"computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "touch-action",
@@ -9390,7 +14235,20 @@ export const data : any = {
 						name: "pinch-zoom",
 						browsers: "E,IE11"
 					}
-				]
+				],
+				"syntax": "auto | none | [ [ pan-x | pan-left | pan-right ] || [ pan-y | pan-up | pan-down ] || pinch-zoom ] | manipulation",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Pointer Events"
+				],
+				"initial": "auto",
+				"appliesto": "allElementsExceptNonReplacedInlineElementsTableRowsColumnsRowColumnGroups",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "transform",
@@ -9464,13 +14322,40 @@ export const data : any = {
 					{
 						name: "translateZ()"
 					}
-				]
+				],
+				"syntax": "none | <transform-list>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "transform",
+				"percentages": "referToSizeOfBoundingBox",
+				"groups": [
+					"CSS Transforms"
+				],
+				"initial": "none",
+				"appliesto": "transformableElements",
+				"computed": "asSpecifiedRelativeToAbsoluteLengths",
+				"order": "uniqueOrder",
+				"stacking": true,
+				"status": "standard"
 			},
 			{
 				name: "transform-origin",
 				desc: "Establishes the origin of transformation for an element.",
 				browsers: "E,C36,FF16,IE10,O12.1,S9",
-				restriction: "position, length, percentage"
+				restriction: "position, length, percentage",
+				"syntax": "[ <length-percentage> | left | center | right | top | bottom ] | [ [ <length-percentage> | left | center | right ] && [ <length-percentage> | top | center | bottom ] ] <length>?",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "simpleListOfLpc",
+				"percentages": "referToSizeOfBoundingBox",
+				"groups": [
+					"CSS Transforms"
+				],
+				"initial": "50% 50% 0",
+				"appliesto": "transformableElements",
+				"computed": "forLengthAbsoluteValueOtherwisePercentage",
+				"order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
+				"status": "standard"
 			},
 			{
 				name: "transform-style",
@@ -9485,7 +14370,21 @@ export const data : any = {
 						name: "preserve-3d",
 						browsers: "E,C36,FF16,O23,S9"
 					}
-				]
+				],
+				"syntax": "flat | preserve-3d",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Transforms"
+				],
+				"initial": "flat",
+				"appliesto": "transformableElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"stacking": true,
+				"status": "standard"
 			},
 			{
 				name: "transition",
@@ -9501,19 +14400,68 @@ export const data : any = {
 						name: "none",
 						desc: "No property will transition."
 					}
-				]
+				],
+				"syntax": "<single-transition>#",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Transitions"
+				],
+				"initial": [
+					"transition-delay",
+					"transition-duration",
+					"transition-property",
+					"transition-timing-function"
+				],
+				"appliesto": "allElementsAndPseudos",
+				"computed": [
+					"transition-delay",
+					"transition-duration",
+					"transition-property",
+					"transition-timing-function"
+				],
+				"order": "orderOfAppearance",
+				"status": "standard"
 			},
 			{
 				name: "transition-delay",
 				desc: "Defines when the transition will start. It allows a transition to begin execution some period of time from when it is applied.",
 				browsers: "E,FF16,IE10,O12.5",
-				restriction: "time"
+				restriction: "time",
+				"syntax": "<time>#",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Transitions"
+				],
+				"initial": "0s",
+				"appliesto": "allElementsAndPseudos",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "transition-duration",
 				desc: "Specifies how long the transition from the old value to the new value should take.",
 				browsers: "E,FF16,IE10,O12.5",
-				restriction: "time"
+				restriction: "time",
+				"syntax": "<time>#",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Transitions"
+				],
+				"initial": "0s",
+				"appliesto": "allElementsAndPseudos",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "transition-property",
@@ -9529,13 +14477,39 @@ export const data : any = {
 						name: "none",
 						desc: "No property will transition."
 					}
-				]
+				],
+				"syntax": "none | <single-transition-property>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Transitions"
+				],
+				"initial": "all",
+				"appliesto": "allElementsAndPseudos",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "transition-timing-function",
 				desc: "Describes how the intermediate values used during a transition will be calculated.",
 				browsers: "E,FF16,IE10,O12.5",
-				restriction: "timing-function"
+				restriction: "timing-function",
+				"syntax": "<single-transition-timing-function>#",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Transitions"
+				],
+				"initial": "ease",
+				"appliesto": "allElementsAndPseudos",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "unicode-bidi",
@@ -9565,7 +14539,20 @@ export const data : any = {
 						name: "plaintext",
 						browsers: "C,FF10,O15,S6"
 					}
-				]
+				],
+				"syntax": "normal | embed | isolate | bidi-override | isolate-override | plaintext",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Writing Modes"
+				],
+				"initial": "normal",
+				"appliesto": "allElementsSomeValuesNoEffectOnNonInlineElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "unicode-range",
@@ -9803,7 +14790,14 @@ export const data : any = {
 					{
 						name: "U+1F680–1F6FF"
 					}
-				]
+				],
+				"syntax": "<unicode-range>#",
+				"media": "all",
+				"initial": "U+0-10FFFF",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "standard"
 			},
 			{
 				name: "user-select",
@@ -9829,7 +14823,20 @@ export const data : any = {
 						name: "text",
 						desc: "The element imposes no constraint on the selection."
 					}
-				]
+				],
+				"syntax": "auto | text | none | contain | all",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Basic User Interface"
+				],
+				"initial": "auto",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "vertical-align",
@@ -9874,7 +14881,25 @@ export const data : any = {
 						name: "-webkit-baseline-middle",
 						browsers: "C,S1"
 					}
-				]
+				],
+				"syntax": "baseline | sub | super | text-top | text-bottom | middle | top | bottom | <percentage> | <length>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "length",
+				"percentages": "referToLineHeight",
+				"groups": [
+					"CSS Table"
+				],
+				"initial": "baseline",
+				"appliesto": "inlineLevelAndTableCellElements",
+				"computed": "absoluteLengthOrKeyword",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "visibility",
@@ -9893,7 +14918,20 @@ export const data : any = {
 						name: "visible",
 						desc: "The generated box is visible."
 					}
-				]
+				],
+				"syntax": "visible | hidden | collapse",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "visibility",
+				"percentages": "no",
+				"groups": [
+					"CSS Box Model"
+				],
+				"initial": "visible",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "-webkit-animation",
@@ -10426,7 +15464,20 @@ export const data : any = {
 						name: "right",
 						desc: "The reflection appears to the right of the border box."
 					}
-				]
+				],
+				"syntax": "[ above | below | right | left ]? <length>? <image>?",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-webkit-box-sizing",
@@ -10993,7 +16044,20 @@ export const data : any = {
 				name: "-webkit-mask-clip",
 				desc: "Determines the mask painting area, which determines the area that is affected by the mask.",
 				browsers: "C,O15,S4",
-				restriction: "box"
+				restriction: "box",
+				"syntax": "[ border | border-box | padding | padding-box | content | content-box | text ]#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "border",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "nonstandard"
 			},
 			{
 				name: "-webkit-mask-image",
@@ -11009,19 +16073,58 @@ export const data : any = {
 						name: "url()",
 						desc: "Reference to a <mask element or to a CSS image."
 					}
-				]
+				],
+				"syntax": "<mask-image> [, <mask-image> ]*",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "absoluteURIOrNone",
+				"order": "orderOfAppearance",
+				"status": "nonstandard"
 			},
 			{
 				name: "-webkit-mask-origin",
 				desc: "Specifies the mask positioning area.",
 				browsers: "C,O15,S4",
-				restriction: "box"
+				restriction: "box",
+				"syntax": "[ padding | border | content ] [, [ border | padding | content ] ]*",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "padding",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "nonstandard"
 			},
 			{
 				name: "-webkit-mask-repeat",
 				desc: "Specifies how mask layer images are tiled after they have been sized and positioned.",
 				browsers: "C,O15,S4",
-				restriction: "repeat"
+				restriction: "repeat",
+				"syntax": "<repeat-style> [, <repeat-style> ]*",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "repeat",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "nonstandard"
 			},
 			{
 				name: "-webkit-mask-size",
@@ -11067,7 +16170,20 @@ export const data : any = {
 					{
 						name: "touch"
 					}
-				]
+				],
+				"syntax": "auto | touch",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "auto",
+				"appliesto": "scrollingBoxes",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "nonstandard"
 			},
 			{
 				name: "-webkit-padding-start",
@@ -11110,12 +16226,38 @@ export const data : any = {
 			{
 				name: "-webkit-tap-highlight-color",
 				browsers: "E,C,S3.1",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<color>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "black",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-webkit-text-fill-color",
 				browsers: "E,C,S3",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<color>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "color",
+				"percentages": "no",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "currentcolor",
+				"appliesto": "allElements",
+				"computed": "computedColor",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-webkit-text-size-adjust",
@@ -11136,17 +16278,65 @@ export const data : any = {
 			{
 				name: "-webkit-text-stroke",
 				browsers: "S3",
-				restriction: "length, line-width, color, percentage"
+				restriction: "length, line-width, color, percentage",
+				"syntax": "<length> || <color>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": [
+					"-webkit-text-stroke-width",
+					"-webkit-text-stroke-color"
+				],
+				"percentages": "no",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": [
+					"-webkit-text-stroke-width",
+					"-webkit-text-stroke-color"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"-webkit-text-stroke-width",
+					"-webkit-text-stroke-color"
+				],
+				"order": "canonicalOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-webkit-text-stroke-color",
 				browsers: "S3",
-				restriction: "color"
+				restriction: "color",
+				"syntax": "<color>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "color",
+				"percentages": "no",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "currentcolor",
+				"appliesto": "allElements",
+				"computed": "computedColor",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-webkit-text-stroke-width",
 				browsers: "S3",
-				restriction: "length, line-width, percentage"
+				restriction: "length, line-width, percentage",
+				"syntax": "<length>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "0",
+				"appliesto": "allElements",
+				"computed": "absoluteLength",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-webkit-touch-callout",
@@ -11156,7 +16346,20 @@ export const data : any = {
 					{
 						name: "none"
 					}
-				]
+				],
+				"syntax": "default | none",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "default",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
 			},
 			{
 				name: "-webkit-transform",
@@ -11389,13 +16592,40 @@ export const data : any = {
 					{
 						name: "pre-wrap"
 					}
-				]
+				],
+				"syntax": "normal | pre | nowrap | pre-wrap | pre-line",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Text"
+				],
+				"initial": "normal",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "widows",
 				desc: "Specifies the minimum number of line boxes of a block container that must be left in a fragment after a break.",
 				browsers: "C,IE8,O9.5,S1",
-				restriction: "integer"
+				restriction: "integer",
+				"syntax": "<integer>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Columns",
+					"CSS Fragmentation"
+				],
+				"initial": "2",
+				"appliesto": "blockContainerElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"status": "standard"
 			},
 			{
 				name: "width",
@@ -11420,7 +16650,26 @@ export const data : any = {
 						desc: "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
 						browsers: "C46,O33"
 					}
-				]
+				],
+				"syntax": "<viewport-length>{1,2}",
+				"media": [
+					"visual",
+					"continuous"
+				],
+				"initial": [
+					"min-width",
+					"max-width"
+				],
+				"percentages": [
+					"min-width",
+					"max-width"
+				],
+				"computed": [
+					"min-width",
+					"max-width"
+				],
+				"order": "orderOfAppearance",
+				"status": "standard"
 			},
 			{
 				name: "will-change",
@@ -11439,7 +16688,20 @@ export const data : any = {
 					{
 						name: "scroll-position"
 					}
-				]
+				],
+				"syntax": "auto | <animateable-feature>#",
+				"media": "all",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Will Change"
+				],
+				"initial": "auto",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "word-break",
@@ -11458,7 +16720,20 @@ export const data : any = {
 						name: "normal",
 						desc: "Breaks non-CJK scripts according to their own rules."
 					}
-				]
+				],
+				"syntax": "normal | break-all | keep-all | break-word",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Text"
+				],
+				"initial": "normal",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "word-spacing",
@@ -11469,7 +16744,25 @@ export const data : any = {
 						name: "normal",
 						desc: "No additional spacing is applied. Computes to zero."
 					}
-				]
+				],
+				"syntax": "normal | <length-percentage>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "length",
+				"percentages": "referToWidthOfAffectedGlyph",
+				"groups": [
+					"CSS Text"
+				],
+				"initial": "normal",
+				"appliesto": "allElements",
+				"computed": "optimumMinAndMaxValueOfAbsoluteLengthPercentageOrNormal",
+				"order": "uniqueOrder",
+				"alsoAppliesTo": [
+					"::first-letter",
+					"::first-line",
+					"::placeholder"
+				],
+				"status": "standard"
 			},
 			{
 				name: "word-wrap",
@@ -11484,7 +16777,20 @@ export const data : any = {
 						name: "normal",
 						desc: "Lines may break only at allowed break points."
 					}
-				]
+				],
+				"syntax": "normal | break-word",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Text"
+				],
+				"initial": "normal",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "writing-mode",
@@ -11509,7 +16815,20 @@ export const data : any = {
 					{
 						name: "vertical-rl"
 					}
-				]
+				],
+				"syntax": "horizontal-tb | vertical-rl | vertical-lr | sideways-rl | sideways-lr",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Writing Modes"
+				],
+				"initial": "horizontal-tb",
+				"appliesto": "allElementsExceptTableRowColumnGroupsTableRowsColumns",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			},
 			{
 				name: "z-index",
@@ -11520,7 +16839,21 @@ export const data : any = {
 						name: "auto",
 						desc: "The stack level of the generated box in the current stacking context is 0. The box does not establish a new stacking context unless it is the root element."
 					}
-				]
+				],
+				"syntax": "auto | <integer>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "integer",
+				"percentages": "no",
+				"groups": [
+					"CSS Positioning"
+				],
+				"initial": "auto",
+				"appliesto": "positionedElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"stacking": true,
+				"status": "standard"
 			},
 			{
 				name: "zoom",
@@ -11531,7 +16864,1748 @@ export const data : any = {
 					{
 						name: "normal"
 					}
-				]
+				],
+				"syntax": "auto | <number> | <percentage>",
+				"media": [
+					"visual",
+					"continuous"
+				],
+				"initial": "auto",
+				"percentages": "the zoom factor itself",
+				"computed": "autoNonNegativeOrPercentage",
+				"order": "uniqueOrder",
+				"status": "standard"
+			},
+			{
+				name: "--*",
+				"description": "",
+				"syntax": "<declaration-value>",
+				"media": "all",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Variables"
+				],
+				"initial": "seeProse",
+				"appliesto": "allElements",
+				"computed": "asSpecifiedWithVarsSubstituted",
+				"order": "perGrammar",
+				"status": "experimental"
+			},
+			{
+				name: "-ms-ime-align",
+				"description": "",
+				"syntax": "auto | after",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Microsoft Extensions"
+				],
+				"initial": "auto",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-moz-binding",
+				"description": "",
+				"syntax": "<url> | none",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "none",
+				"appliesto": "allElementsExceptGeneratedContentOrPseudoElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-moz-context-properties",
+				"description": "",
+				"syntax": "none | [ fill | fill-opacity | stroke | stroke-opacity ]#",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "none",
+				"appliesto": "allElementsThatCanReferenceImages",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-moz-float-edge",
+				"description": "",
+				"syntax": "border-box | content-box | margin-box | padding-box",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "content-box",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-moz-force-broken-image-icon",
+				"description": "",
+				"syntax": "<integer>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "0",
+				"appliesto": "images",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-moz-image-region",
+				"description": "",
+				"syntax": "<shape> | auto",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "auto",
+				"appliesto": "xulImageElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-moz-orient",
+				"description": "",
+				"syntax": "inline | block | horizontal | vertical",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "inline",
+				"appliesto": "anyElementEffectOnProgressAndMeter",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-moz-outline-radius",
+				"description": "",
+				"syntax": "<outline-radius>{1,4} [ / <outline-radius>{1,4} ]?",
+				"media": "visual",
+				"inherited": false,
+				"animationType": [
+					"-moz-outline-radius-topleft",
+					"-moz-outline-radius-topright",
+					"-moz-outline-radius-bottomright",
+					"-moz-outline-radius-bottomleft"
+				],
+				"percentages": [
+					"-moz-outline-radius-topleft",
+					"-moz-outline-radius-topright",
+					"-moz-outline-radius-bottomright",
+					"-moz-outline-radius-bottomleft"
+				],
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": [
+					"-moz-outline-radius-topleft",
+					"-moz-outline-radius-topright",
+					"-moz-outline-radius-bottomright",
+					"-moz-outline-radius-bottomleft"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"-moz-outline-radius-topleft",
+					"-moz-outline-radius-topright",
+					"-moz-outline-radius-bottomright",
+					"-moz-outline-radius-bottomleft"
+				],
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-moz-outline-radius-bottomleft",
+				"description": "",
+				"syntax": "<outline-radius>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "lpc",
+				"percentages": "referToDimensionOfBorderBox",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "0",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-moz-outline-radius-bottomright",
+				"description": "",
+				"syntax": "<outline-radius>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "lpc",
+				"percentages": "referToDimensionOfBorderBox",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "0",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-moz-outline-radius-topleft",
+				"description": "",
+				"syntax": "<outline-radius>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "lpc",
+				"percentages": "referToDimensionOfBorderBox",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "0",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-moz-outline-radius-topright",
+				"description": "",
+				"syntax": "<outline-radius>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "lpc",
+				"percentages": "referToDimensionOfBorderBox",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "0",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-moz-stack-sizing",
+				"description": "",
+				"syntax": "ignore | stretch-to-fit",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "stretch-to-fit",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-moz-text-blink",
+				"description": "",
+				"syntax": "none | blink",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-moz-user-input",
+				"description": "",
+				"syntax": "auto | none | enabled | disabled",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "auto",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-moz-user-modify",
+				"description": "",
+				"syntax": "read-only | read-write | write-only",
+				"media": "interactive",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "read-only",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-moz-window-dragging",
+				"description": "",
+				"syntax": "drag | no-drag",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "drag",
+				"appliesto": "allElementsCreatingNativeWindows",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-moz-window-shadow",
+				"description": "",
+				"syntax": "default | menu | tooltip | sheet | none",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "default",
+				"appliesto": "allElementsCreatingNativeWindows",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-webkit-border-before",
+				"description": "",
+				"syntax": "<'border-width'> || <'border-style'> || <'color'>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": [
+					"-webkit-border-before-width"
+				],
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": [
+					"border-width",
+					"border-style",
+					"color"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"border-width",
+					"border-style",
+					"color"
+				],
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-webkit-border-before-color",
+				"description": "",
+				"syntax": "<'color'>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "currentcolor",
+				"appliesto": "allElements",
+				"computed": "computedColor",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-webkit-border-before-style",
+				"description": "",
+				"syntax": "<'border-style'>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-webkit-border-before-width",
+				"description": "",
+				"syntax": "<'border-width'>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "logicalWidthOfContainingBlock",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "medium",
+				"appliesto": "allElements",
+				"computed": "absoluteLengthZeroIfBorderStyleNoneOrHidden",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-webkit-mask",
+				"description": "",
+				"syntax": "<mask-image> [ <'-webkit-mask-repeat'> || <'-webkit-mask-attachment'> || <'-webkit-mask-position'> || <'-webkit-mask-origin'> || <'-webkit-mask-clip'> ]*",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": [
+					"-webkit-mask-image",
+					"-webkit-mask-repeat",
+					"-webkit-mask-attachment",
+					"-webkit-mask-position",
+					"-webkit-mask-origin",
+					"-webkit-mask-clip"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"-webkit-mask-image",
+					"-webkit-mask-repeat",
+					"-webkit-mask-attachment",
+					"-webkit-mask-position",
+					"-webkit-mask-origin",
+					"-webkit-mask-clip"
+				],
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "-webkit-mask-attachment",
+				"description": "",
+				"syntax": "<attachment> [, <attachment> ]*",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "scroll",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "nonstandard"
+			},
+			{
+				name: "-webkit-mask-composite",
+				"description": "",
+				"syntax": "<composite-style> [, <composite-style> ]*",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "source-over",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "nonstandard"
+			},
+			{
+				name: "-webkit-mask-position",
+				"description": "",
+				"syntax": "<mask-position>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "referToSizeOfElement",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "0% 0%",
+				"appliesto": "allElements",
+				"computed": "absoluteLengthOrPercentage",
+				"order": "orderOfAppearance",
+				"status": "nonstandard"
+			},
+			{
+				name: "-webkit-mask-position-x",
+				"description": "",
+				"syntax": "[ <length-percentage> | left | center | right ]#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "referToSizeOfElement",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "0%",
+				"appliesto": "allElements",
+				"computed": "absoluteLengthOrPercentage",
+				"order": "orderOfAppearance",
+				"status": "nonstandard"
+			},
+			{
+				name: "-webkit-mask-position-y",
+				"description": "",
+				"syntax": "[ <length-percentage> | top | center | bottom ]#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "referToSizeOfElement",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "0%",
+				"appliesto": "allElements",
+				"computed": "absoluteLengthOrPercentage",
+				"order": "orderOfAppearance",
+				"status": "nonstandard"
+			},
+			{
+				name: "-webkit-mask-repeat-x",
+				"description": "",
+				"syntax": "repeat | no-repeat | space | round",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "repeat",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "nonstandard"
+			},
+			{
+				name: "-webkit-mask-repeat-y",
+				"description": "",
+				"syntax": "repeat | no-repeat | space | round",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"WebKit Extensions"
+				],
+				"initial": "repeat",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "nonstandard"
+			},
+			{
+				name: "appearance",
+				"description": "",
+				"syntax": "auto | none",
+				"media": "all",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Basic User Interface"
+				],
+				"initial": "auto",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"status": "experimental"
+			},
+			{
+				name: "azimuth",
+				"description": "",
+				"syntax": "<angle> | [ [ left-side | far-left | left | center-left | center | center-right | right | far-right | right-side ] || behind ] | leftwards | rightwards",
+				"media": "aural",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Speech"
+				],
+				"initial": "center",
+				"appliesto": "allElements",
+				"computed": "normalizedAngle",
+				"order": "orderOfAppearance",
+				"status": "obsolete"
+			},
+			{
+				name: "backdrop-filter",
+				"description": "",
+				"syntax": "none | <filter-function-list>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "filterList",
+				"percentages": "no",
+				"groups": [
+					"Filter Effects"
+				],
+				"initial": "none",
+				"appliesto": "allElementsSVGContainerElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "experimental"
+			},
+			{
+				name: "box-align",
+				"description": "",
+				"syntax": "start | center | end | baseline | stretch",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions",
+					"WebKit Extensions"
+				],
+				"initial": "stretch",
+				"appliesto": "elementsWithDisplayBoxOrInlineBox",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "box-direction",
+				"description": "",
+				"syntax": "normal | reverse | inherit",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions",
+					"WebKit Extensions"
+				],
+				"initial": "normal",
+				"appliesto": "elementsWithDisplayBoxOrInlineBox",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "box-flex",
+				"description": "",
+				"syntax": "<number>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions",
+					"WebKit Extensions"
+				],
+				"initial": "0",
+				"appliesto": "directChildrenOfElementsWithDisplayMozBoxMozInlineBox",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "box-flex-group",
+				"description": "",
+				"syntax": "<integer>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions",
+					"WebKit Extensions"
+				],
+				"initial": "1",
+				"appliesto": "inFlowChildrenOfBoxElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "box-lines",
+				"description": "",
+				"syntax": "single | multiple",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions",
+					"WebKit Extensions"
+				],
+				"initial": "single",
+				"appliesto": "boxElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "box-ordinal-group",
+				"description": "",
+				"syntax": "<integer>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions",
+					"WebKit Extensions"
+				],
+				"initial": "1",
+				"appliesto": "childrenOfBoxElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "box-orient",
+				"description": "",
+				"syntax": "horizontal | vertical | inline-axis | block-axis | inherit",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions",
+					"WebKit Extensions"
+				],
+				"initial": "inlineAxisHorizontalInXUL",
+				"appliesto": "elementsWithDisplayBoxOrInlineBox",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "box-pack",
+				"description": "",
+				"syntax": "start | center | end | justify",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions",
+					"WebKit Extensions"
+				],
+				"initial": "start",
+				"appliesto": "elementsWithDisplayMozBoxMozInlineBox",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "color-adjust",
+				"description": "",
+				"syntax": "economy | exact",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Color"
+				],
+				"initial": "economy",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"status": "standard"
+			},
+			{
+				name: "font-variation-settings",
+				"description": "",
+				"syntax": "normal | [ <string> <number>] #",
+				"media": "all",
+				"initial": "normal",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "standard"
+			},
+			{
+				name: "gap",
+				"description": "",
+				"syntax": "<'row-gap'> <'column-gap'>?",
+				"media": "visual",
+				"inherited": false,
+				"animationType": [
+					"row-gap",
+					"column-gap"
+				],
+				"percentages": "no",
+				"groups": [
+					"CSS Box Alignment"
+				],
+				"initial": [
+					"row-gap",
+					"column-gap"
+				],
+				"appliesto": "gridContainers",
+				"computed": [
+					"row-gap",
+					"column-gap"
+				],
+				"order": "uniqueOrder",
+				"status": "standard"
+			},
+			{
+				name: "hanging-punctuation",
+				"description": "",
+				"syntax": "none | [ first || [ force-end | allow-end ] || last ]",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Text"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
+			},
+			{
+				name: "image-resolution",
+				"description": "",
+				"syntax": "[ from-image || <resolution> ] && snap?",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Images"
+				],
+				"initial": "1dppx",
+				"appliesto": "allElements",
+				"computed": "asSpecifiedWithExceptionOfResolution",
+				"order": "uniqueOrder",
+				"status": "standard"
+			},
+			{
+				name: "initial-letter",
+				"description": "",
+				"syntax": "normal | [ <number> <integer>? ]",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Inline"
+				],
+				"initial": "normal",
+				"appliesto": "firstLetterPseudoElementsAndInlineLevelFirstChildren",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "experimental"
+			},
+			{
+				name: "initial-letter-align",
+				"description": "",
+				"syntax": "[ auto | alphabetic | hanging | ideographic ]",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Inline"
+				],
+				"initial": "auto",
+				"appliesto": "firstLetterPseudoElementsAndInlineLevelFirstChildren",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "experimental"
+			},
+			{
+				name: "line-height-step",
+				"description": "",
+				"syntax": "none | <length>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Fonts"
+				],
+				"initial": "none",
+				"appliesto": "blockContainerElements",
+				"computed": "absoluteLength0ForNone",
+				"order": "perGrammar",
+				"status": "experimental"
+			},
+			{
+				name: "mask",
+				"description": "",
+				"syntax": "<mask-layer>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": [
+					"mask-image",
+					"mask-mode",
+					"mask-repeat",
+					"mask-position",
+					"mask-clip",
+					"mask-origin",
+					"mask-size",
+					"mask-composite"
+				],
+				"percentages": [
+					"mask-position"
+				],
+				"groups": [
+					"CSS Masking"
+				],
+				"initial": [
+					"mask-image",
+					"mask-mode",
+					"mask-repeat",
+					"mask-position",
+					"mask-clip",
+					"mask-origin",
+					"mask-size",
+					"mask-composite"
+				],
+				"appliesto": "allElementsSVGContainerElements",
+				"computed": [
+					"mask-image",
+					"mask-mode",
+					"mask-repeat",
+					"mask-position",
+					"mask-clip",
+					"mask-origin",
+					"mask-size",
+					"mask-composite"
+				],
+				"order": "perGrammar",
+				"stacking": true,
+				"status": "standard"
+			},
+			{
+				name: "mask-border",
+				"description": "",
+				"syntax": "<'mask-border-source'> || <'mask-border-slice'> [ / <'mask-border-width'>? [ / <'mask-border-outset'> ]? ]? || <'mask-border-repeat'> || <'mask-border-mode'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": [
+					"mask-border-mode",
+					"mask-border-outset",
+					"mask-border-repeat",
+					"mask-border-slice",
+					"mask-border-source",
+					"mask-border-width"
+				],
+				"percentages": [
+					"mask-border-slice",
+					"mask-border-width"
+				],
+				"groups": [
+					"CSS Masking"
+				],
+				"initial": [
+					"mask-border-mode",
+					"mask-border-outset",
+					"mask-border-repeat",
+					"mask-border-slice",
+					"mask-border-source",
+					"mask-border-width"
+				],
+				"appliesto": "allElementsSVGContainerElements",
+				"computed": [
+					"mask-border-mode",
+					"mask-border-outset",
+					"mask-border-repeat",
+					"mask-border-slice",
+					"mask-border-source",
+					"mask-border-width"
+				],
+				"order": "perGrammar",
+				"stacking": true,
+				"status": "experimental"
+			},
+			{
+				name: "mask-border-mode",
+				"description": "",
+				"syntax": "luminance | alpha",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Masking"
+				],
+				"initial": "alpha",
+				"appliesto": "allElementsSVGContainerElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"status": "experimental"
+			},
+			{
+				name: "mask-border-outset",
+				"description": "",
+				"syntax": "[ <length> | <number> ]{1,4}",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Masking"
+				],
+				"initial": "0",
+				"appliesto": "allElementsSVGContainerElements",
+				"computed": "asSpecifiedRelativeToAbsoluteLengths",
+				"order": "perGrammar",
+				"status": "experimental"
+			},
+			{
+				name: "mask-border-repeat",
+				"description": "",
+				"syntax": "[ stretch | repeat | round | space ]{1,2}",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Masking"
+				],
+				"initial": "stretch",
+				"appliesto": "allElementsSVGContainerElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"status": "experimental"
+			},
+			{
+				name: "mask-border-slice",
+				"description": "",
+				"syntax": "<number-percentage>{1,4} fill?",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "referToSizeOfMaskBorderImage",
+				"groups": [
+					"CSS Masking"
+				],
+				"initial": "0",
+				"appliesto": "allElementsSVGContainerElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"status": "experimental"
+			},
+			{
+				name: "mask-border-source",
+				"description": "",
+				"syntax": "none | <image>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Masking"
+				],
+				"initial": "none",
+				"appliesto": "allElementsSVGContainerElements",
+				"computed": "asSpecifiedURLsAbsolute",
+				"order": "perGrammar",
+				"status": "experimental"
+			},
+			{
+				name: "mask-border-width",
+				"description": "",
+				"syntax": "[ <length-percentage> | <number> | auto ]{1,4}",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "relativeToMaskBorderImageArea",
+				"groups": [
+					"CSS Masking"
+				],
+				"initial": "auto",
+				"appliesto": "allElementsSVGContainerElements",
+				"computed": "asSpecifiedRelativeToAbsoluteLengths",
+				"order": "perGrammar",
+				"status": "experimental"
+			},
+			{
+				name: "mask-clip",
+				"description": "",
+				"syntax": "[ <geometry-box> | no-clip ]#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Masking"
+				],
+				"initial": "border-box",
+				"appliesto": "allElementsSVGContainerElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"status": "standard"
+			},
+			{
+				name: "mask-composite",
+				"description": "",
+				"syntax": "<compositing-operator>#",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Masking"
+				],
+				"initial": "add",
+				"appliesto": "allElementsSVGContainerElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"status": "standard"
+			},
+			{
+				name: "offset",
+				"description": "",
+				"syntax": "[ <'offset-position'>? [ <'offset-path'> [ <'offset-distance'> || <'offset-rotate'> ]? ]? ]! [ / <'offset-anchor'> ]?",
+				"media": "visual",
+				"inherited": false,
+				"animationType": [
+					"offset-position",
+					"offset-path",
+					"offset-distance",
+					"offset-anchor",
+					"offset-rotate"
+				],
+				"percentages": [
+					"offset-position",
+					"offset-distance",
+					"offset-anchor"
+				],
+				"groups": [
+					"CSS Motion"
+				],
+				"initial": [
+					"offset-position",
+					"offset-path",
+					"offset-distance",
+					"offset-anchor",
+					"offset-rotate"
+				],
+				"appliesto": "transformableElements",
+				"computed": [
+					"offset-position",
+					"offset-path",
+					"offset-distance",
+					"offset-anchor",
+					"offset-rotate"
+				],
+				"order": "perGrammar",
+				"stacking": true,
+				"status": "experimental"
+			},
+			{
+				name: "offset-anchor",
+				"description": "",
+				"syntax": "auto | <position>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "position",
+				"percentages": "relativeToWidthAndHeight",
+				"groups": [
+					"CSS Motion"
+				],
+				"initial": "auto",
+				"appliesto": "transformableElements",
+				"computed": "forLengthAbsoluteValueOtherwisePercentage",
+				"order": "perGrammar",
+				"status": "experimental"
+			},
+			{
+				name: "offset-distance",
+				"description": "",
+				"syntax": "<length-percentage>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "lpc",
+				"percentages": "referToTotalPathLength",
+				"groups": [
+					"CSS Motion"
+				],
+				"initial": "0",
+				"appliesto": "transformableElements",
+				"computed": "forLengthAbsoluteValueOtherwisePercentage",
+				"order": "perGrammar",
+				"status": "experimental"
+			},
+			{
+				name: "offset-path",
+				"description": "",
+				"syntax": "none | ray( [ <angle> && <size>? && contain? ] ) | <path()> | <url> | [ <basic-shape> || <geometry-box> ]",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "angleOrBasicShapeOrPath",
+				"percentages": "no",
+				"groups": [
+					"CSS Motion"
+				],
+				"initial": "none",
+				"appliesto": "transformableElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"stacking": true,
+				"status": "experimental"
+			},
+			{
+				name: "offset-position",
+				"description": "",
+				"syntax": "auto | <position>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "position",
+				"percentages": "referToSizeOfContainingBlock",
+				"groups": [
+					"CSS Motion"
+				],
+				"initial": "auto",
+				"appliesto": "transformableElements",
+				"computed": "forLengthAbsoluteValueOtherwisePercentage",
+				"order": "perGrammar",
+				"status": "experimental"
+			},
+			{
+				name: "offset-rotate",
+				"description": "",
+				"syntax": "[ auto | reverse ] || <angle>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "angle",
+				"percentages": "no",
+				"groups": [
+					"CSS Motion"
+				],
+				"initial": "auto",
+				"appliesto": "transformableElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"status": "experimental"
+			},
+			{
+				name: "overflow-clip-box",
+				"description": "",
+				"syntax": "padding-box | content-box",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"Mozilla Extensions"
+				],
+				"initial": "padding-box",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "overscroll-behavior",
+				"description": "",
+				"syntax": "[ contain | none | auto ]{1,2}",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Box Model"
+				],
+				"initial": "auto",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "overscroll-behavior-x",
+				"description": "",
+				"syntax": "contain | none | auto",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Box Model"
+				],
+				"initial": "auto",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "overscroll-behavior-y",
+				"description": "",
+				"syntax": "contain | none | auto",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Box Model"
+				],
+				"initial": "auto",
+				"appliesto": "nonReplacedBlockAndInlineBlockElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "place-content",
+				"description": "",
+				"syntax": "<'align-content'> <'justify-content'>?",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Flexible Box Layout"
+				],
+				"initial": "normal",
+				"appliesto": "multilineFlexContainers",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
+			},
+			{
+				name: "rotate",
+				"description": "",
+				"syntax": "none | [ x | y | z | <number>{3} ]? && <angle>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "transform",
+				"percentages": "no",
+				"groups": [
+					"CSS Transforms"
+				],
+				"initial": "none",
+				"appliesto": "transformableElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"stacking": true,
+				"status": "standard"
+			},
+			{
+				name: "row-gap",
+				"description": "",
+				"syntax": "normal | <length-percentage>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "lpc",
+				"percentages": "referToDimensionOfContentArea",
+				"groups": [
+					"CSS Box Alignment"
+				],
+				"initial": "normal",
+				"appliesto": "multiColumnElementsFlexContainersGridContainers",
+				"computed": "asSpecifiedWithLengthsAbsoluteAndNormalComputingToZeroExceptMultiColumn",
+				"order": "perGrammar",
+				"status": "standard"
+			},
+			{
+				name: "ruby-merge",
+				"description": "",
+				"syntax": "separate | collapse | auto",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Ruby"
+				],
+				"initial": "separate",
+				"appliesto": "rubyAnnotationsContainers",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
+			},
+			{
+				name: "scale",
+				"description": "",
+				"syntax": "none | <number>{1,3}",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "transform",
+				"percentages": "no",
+				"groups": [
+					"CSS Transforms"
+				],
+				"initial": "none",
+				"appliesto": "transformableElements",
+				"computed": "asSpecified",
+				"order": "perGrammar",
+				"stacking": true,
+				"status": "standard"
+			},
+			{
+				name: "scroll-snap-type-x",
+				"description": "",
+				"syntax": "none | mandatory | proximity",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Scroll Snap"
+				],
+				"initial": "none",
+				"appliesto": "scrollContainers",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "scroll-snap-type-y",
+				"description": "",
+				"syntax": "none | mandatory | proximity",
+				"media": "interactive",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Scroll Snap"
+				],
+				"initial": "none",
+				"appliesto": "scrollContainers",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "nonstandard"
+			},
+			{
+				name: "text-combine-upright",
+				"description": "",
+				"syntax": "none | all | [ digits <integer>? ]",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Writing Modes"
+				],
+				"initial": "none",
+				"appliesto": "nonReplacedInlineElements",
+				"computed": "keywordPlusIntegerIfDigits",
+				"order": "uniqueOrder",
+				"status": "standard"
+			},
+			{
+				name: "text-decoration-skip",
+				"description": "",
+				"syntax": "none | [ objects || [ spaces | [ leading-spaces || trailing-spaces ] ] || edges || box-decoration ]",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Text Decoration"
+				],
+				"initial": "objects",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "experimental"
+			},
+			{
+				name: "text-decoration-skip-ink",
+				"description": "",
+				"syntax": "auto | none",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Text Decoration"
+				],
+				"initial": "auto",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "experimental"
+			},
+			{
+				name: "text-emphasis",
+				"description": "",
+				"syntax": "<'text-emphasis-style'> || <'text-emphasis-color'>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": [
+					"text-emphasis-color",
+					"text-emphasis-style"
+				],
+				"percentages": "no",
+				"groups": [
+					"CSS Text Decoration"
+				],
+				"initial": [
+					"text-emphasis-style",
+					"text-emphasis-color"
+				],
+				"appliesto": "allElements",
+				"computed": [
+					"text-emphasis-style",
+					"text-emphasis-color"
+				],
+				"order": "orderOfAppearance",
+				"status": "standard"
+			},
+			{
+				name: "text-emphasis-color",
+				"description": "",
+				"syntax": "<color>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "color",
+				"percentages": "no",
+				"groups": [
+					"CSS Text Decoration"
+				],
+				"initial": "currentcolor",
+				"appliesto": "allElements",
+				"computed": "computedColor",
+				"order": "uniqueOrder",
+				"status": "standard"
+			},
+			{
+				name: "text-emphasis-position",
+				"description": "",
+				"syntax": "[ over | under ] && [ right | left ]",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Text Decoration"
+				],
+				"initial": "over right",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
+			},
+			{
+				name: "text-emphasis-style",
+				"description": "",
+				"syntax": "none | [ [ filled | open ] || [ dot | circle | double-circle | triangle | sesame ] ] | <string>",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Text Decoration"
+				],
+				"initial": "none",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
+			},
+			{
+				name: "text-size-adjust",
+				"description": "",
+				"syntax": "none | auto | <percentage>",
+				"media": "visual",
+				"inherited": true,
+				"animationType": "discrete",
+				"percentages": "referToSizeOfFont",
+				"groups": [
+					"CSS Text"
+				],
+				"initial": "autoForSmartphoneBrowsersSupportingInflation",
+				"appliesto": "allElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "experimental"
+			},
+			{
+				name: "transform-box",
+				"description": "",
+				"syntax": "border-box | fill-box | view-box",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "discrete",
+				"percentages": "no",
+				"groups": [
+					"CSS Transforms"
+				],
+				"initial": "border-box ",
+				"appliesto": "transformableElements",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
+			},
+			{
+				name: "translate",
+				"description": "",
+				"syntax": "none | <length-percentage> [ <length-percentage> <length>? ]?",
+				"media": "visual",
+				"inherited": false,
+				"animationType": "transform",
+				"percentages": "referToSizeOfBoundingBox",
+				"groups": [
+					"CSS Transforms"
+				],
+				"initial": "none",
+				"appliesto": "transformableElements",
+				"computed": "asSpecifiedRelativeToAbsoluteLengths",
+				"order": "perGrammar",
+				"stacking": true,
+				"status": "standard"
+			},
+			{
+				name: "speak-as",
+				"description": "",
+				"syntax": "auto | bullets | numbers | words | spell-out | <counter-style-name>",
+				"media": "all",
+				"initial": "auto",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
+			},
+			{
+				name: "font-display",
+				"description": "",
+				"syntax": "[ auto | block | swap | fallback | optional ]",
+				"media": "visual",
+				"percentages": "no",
+				"initial": "auto",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "experimental"
+			},
+			{
+				name: "bleed",
+				"description": "",
+				"syntax": "auto | <length>",
+				"media": [
+					"visual",
+					"paged"
+				],
+				"initial": "auto",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "experimental"
+			},
+			{
+				name: "marks",
+				"description": "",
+				"syntax": "none | [ crop || cross ]",
+				"media": [
+					"visual",
+					"paged"
+				],
+				"initial": "none",
+				"percentages": "no",
+				"computed": "asSpecified",
+				"order": "orderOfAppearance",
+				"status": "experimental"
+			},
+			{
+				name: "max-zoom",
+				"description": "",
+				"syntax": "auto | <number> | <percentage>",
+				"media": [
+					"visual",
+					"continuous"
+				],
+				"initial": "auto",
+				"percentages": "the zoom factor itself",
+				"computed": "autoNonNegativeOrPercentage",
+				"order": "uniqueOrder",
+				"status": "standard"
+			},
+			{
+				name: "min-zoom",
+				"description": "",
+				"syntax": "auto | <number> | <percentage>",
+				"media": [
+					"visual",
+					"continuous"
+				],
+				"initial": "auto",
+				"percentages": "the zoom factor itself",
+				"computed": "autoNonNegativeOrPercentage",
+				"order": "uniqueOrder",
+				"status": "standard"
+			},
+			{
+				name: "orientation",
+				"description": "",
+				"syntax": "auto | portrait | landscape",
+				"media": [
+					"visual",
+					"continuous"
+				],
+				"initial": "auto",
+				"percentages": "referToSizeOfBoundingBox",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
+			},
+			{
+				name: "user-zoom",
+				"description": "",
+				"syntax": "zoom | fixed",
+				"media": [
+					"visual",
+					"continuous"
+				],
+				"initial": "zoom",
+				"percentages": "referToSizeOfBoundingBox",
+				"computed": "asSpecified",
+				"order": "uniqueOrder",
+				"status": "standard"
 			}
 		]
 	}
