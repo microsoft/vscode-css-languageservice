@@ -46,6 +46,7 @@ function buildPropertiesWithMDNData(vscProperties) {
       propertyMap[pn] = {
         name: pn,
         description: '',
+        restriction: 'none',
         ...allMDNProperties[pn]
       }
     }

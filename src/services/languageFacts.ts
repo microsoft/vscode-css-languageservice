@@ -570,7 +570,11 @@ export function getPageBoxDirectives(): string[] {
 	];
 }
 
-export function getEntryDescription(entry: { description: string; browsers: Browsers, data?: any }): string {
+export function getEntryDescription(entry: { description: string; browsers: Browsers, data?: any }): string | null {
+	if (!entry.description) {
+		return null;
+	}
+
 	let desc = entry.description || '';
 	let browserLabel = getBrowserLabel(entry.browsers);
 	if (browserLabel) {

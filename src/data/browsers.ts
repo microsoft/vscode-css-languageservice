@@ -16879,6 +16879,7 @@ export const data : any = {
 			{
 				name: "--*",
 				"description": "",
+				restriction: "none",
 				"syntax": "<declaration-value>",
 				"media": "all",
 				"inherited": true,
@@ -16896,6 +16897,7 @@ export const data : any = {
 			{
 				name: "-ms-ime-align",
 				"description": "",
+				restriction: "none",
 				"syntax": "auto | after",
 				"media": "visual",
 				"inherited": false,
@@ -16913,6 +16915,7 @@ export const data : any = {
 			{
 				name: "-moz-binding",
 				"description": "",
+				restriction: "none",
 				"syntax": "<url> | none",
 				"media": "visual",
 				"inherited": false,
@@ -16930,6 +16933,7 @@ export const data : any = {
 			{
 				name: "-moz-context-properties",
 				"description": "",
+				restriction: "none",
 				"syntax": "none | [ fill | fill-opacity | stroke | stroke-opacity ]#",
 				"media": "visual",
 				"inherited": true,
@@ -16947,6 +16951,7 @@ export const data : any = {
 			{
 				name: "-moz-float-edge",
 				"description": "",
+				restriction: "none",
 				"syntax": "border-box | content-box | margin-box | padding-box",
 				"media": "visual",
 				"inherited": false,
@@ -16964,6 +16969,7 @@ export const data : any = {
 			{
 				name: "-moz-force-broken-image-icon",
 				"description": "",
+				restriction: "none",
 				"syntax": "<integer>",
 				"media": "visual",
 				"inherited": false,
@@ -16981,6 +16987,7 @@ export const data : any = {
 			{
 				name: "-moz-image-region",
 				"description": "",
+				restriction: "none",
 				"syntax": "<shape> | auto",
 				"media": "visual",
 				"inherited": true,
@@ -16998,6 +17005,7 @@ export const data : any = {
 			{
 				name: "-moz-orient",
 				"description": "",
+				restriction: "none",
 				"syntax": "inline | block | horizontal | vertical",
 				"media": "visual",
 				"inherited": false,
@@ -17015,6 +17023,7 @@ export const data : any = {
 			{
 				name: "-moz-outline-radius",
 				"description": "",
+				restriction: "none",
 				"syntax": "<outline-radius>{1,4} [ / <outline-radius>{1,4} ]?",
 				"media": "visual",
 				"inherited": false,
@@ -17052,6 +17061,7 @@ export const data : any = {
 			{
 				name: "-moz-outline-radius-bottomleft",
 				"description": "",
+				restriction: "none",
 				"syntax": "<outline-radius>",
 				"media": "visual",
 				"inherited": false,
@@ -17069,6 +17079,7 @@ export const data : any = {
 			{
 				name: "-moz-outline-radius-bottomright",
 				"description": "",
+				restriction: "none",
 				"syntax": "<outline-radius>",
 				"media": "visual",
 				"inherited": false,
@@ -17086,6 +17097,7 @@ export const data : any = {
 			{
 				name: "-moz-outline-radius-topleft",
 				"description": "",
+				restriction: "none",
 				"syntax": "<outline-radius>",
 				"media": "visual",
 				"inherited": false,
@@ -17103,6 +17115,7 @@ export const data : any = {
 			{
 				name: "-moz-outline-radius-topright",
 				"description": "",
+				restriction: "none",
 				"syntax": "<outline-radius>",
 				"media": "visual",
 				"inherited": false,
@@ -17120,6 +17133,7 @@ export const data : any = {
 			{
 				name: "-moz-stack-sizing",
 				"description": "",
+				restriction: "none",
 				"syntax": "ignore | stretch-to-fit",
 				"media": "visual",
 				"inherited": true,
@@ -17137,6 +17151,7 @@ export const data : any = {
 			{
 				name: "-moz-text-blink",
 				"description": "",
+				restriction: "none",
 				"syntax": "none | blink",
 				"media": "visual",
 				"inherited": false,
@@ -17154,6 +17169,7 @@ export const data : any = {
 			{
 				name: "-moz-user-input",
 				"description": "",
+				restriction: "none",
 				"syntax": "auto | none | enabled | disabled",
 				"media": "visual",
 				"inherited": true,
@@ -17171,6 +17187,7 @@ export const data : any = {
 			{
 				name: "-moz-user-modify",
 				"description": "",
+				restriction: "none",
 				"syntax": "read-only | read-write | write-only",
 				"media": "interactive",
 				"inherited": true,
@@ -17188,6 +17205,7 @@ export const data : any = {
 			{
 				name: "-moz-window-dragging",
 				"description": "",
+				restriction: "none",
 				"syntax": "drag | no-drag",
 				"media": "visual",
 				"inherited": false,
@@ -17205,6 +17223,7 @@ export const data : any = {
 			{
 				name: "-moz-window-shadow",
 				"description": "",
+				restriction: "none",
 				"syntax": "default | menu | tooltip | sheet | none",
 				"media": "visual",
 				"inherited": false,
@@ -17222,6 +17241,7 @@ export const data : any = {
 			{
 				name: "-webkit-border-before",
 				"description": "",
+				restriction: "none",
 				"syntax": "<'border-width'> || <'border-style'> || <'color'>",
 				"media": "visual",
 				"inherited": true,
@@ -17249,6 +17269,7 @@ export const data : any = {
 			{
 				name: "-webkit-border-before-color",
 				"description": "",
+				restriction: "none",
 				"syntax": "<'color'>",
 				"media": "visual",
 				"inherited": true,
@@ -17266,6 +17287,7 @@ export const data : any = {
 			{
 				name: "-webkit-border-before-style",
 				"description": "",
+				restriction: "none",
 				"syntax": "<'border-style'>",
 				"media": "visual",
 				"inherited": true,
@@ -17283,6 +17305,7 @@ export const data : any = {
 			{
 				name: "-webkit-border-before-width",
 				"description": "",
+				restriction: "none",
 				"syntax": "<'border-width'>",
 				"media": "visual",
 				"inherited": true,
@@ -17300,6 +17323,7 @@ export const data : any = {
 			{
 				name: "-webkit-mask",
 				"description": "",
+				restriction: "none",
 				"syntax": "<mask-image> [ <'-webkit-mask-repeat'> || <'-webkit-mask-attachment'> || <'-webkit-mask-position'> || <'-webkit-mask-origin'> || <'-webkit-mask-clip'> ]*",
 				"media": "visual",
 				"inherited": false,
@@ -17331,6 +17355,7 @@ export const data : any = {
 			{
 				name: "-webkit-mask-attachment",
 				"description": "",
+				restriction: "none",
 				"syntax": "<attachment> [, <attachment> ]*",
 				"media": "visual",
 				"inherited": false,
@@ -17348,6 +17373,7 @@ export const data : any = {
 			{
 				name: "-webkit-mask-composite",
 				"description": "",
+				restriction: "none",
 				"syntax": "<composite-style> [, <composite-style> ]*",
 				"media": "visual",
 				"inherited": false,
@@ -17365,6 +17391,7 @@ export const data : any = {
 			{
 				name: "-webkit-mask-position",
 				"description": "",
+				restriction: "none",
 				"syntax": "<mask-position>#",
 				"media": "visual",
 				"inherited": false,
@@ -17382,6 +17409,7 @@ export const data : any = {
 			{
 				name: "-webkit-mask-position-x",
 				"description": "",
+				restriction: "none",
 				"syntax": "[ <length-percentage> | left | center | right ]#",
 				"media": "visual",
 				"inherited": false,
@@ -17399,6 +17427,7 @@ export const data : any = {
 			{
 				name: "-webkit-mask-position-y",
 				"description": "",
+				restriction: "none",
 				"syntax": "[ <length-percentage> | top | center | bottom ]#",
 				"media": "visual",
 				"inherited": false,
@@ -17416,6 +17445,7 @@ export const data : any = {
 			{
 				name: "-webkit-mask-repeat-x",
 				"description": "",
+				restriction: "none",
 				"syntax": "repeat | no-repeat | space | round",
 				"media": "visual",
 				"inherited": false,
@@ -17433,6 +17463,7 @@ export const data : any = {
 			{
 				name: "-webkit-mask-repeat-y",
 				"description": "",
+				restriction: "none",
 				"syntax": "repeat | no-repeat | space | round",
 				"media": "visual",
 				"inherited": false,
@@ -17450,6 +17481,7 @@ export const data : any = {
 			{
 				name: "appearance",
 				"description": "",
+				restriction: "none",
 				"syntax": "auto | none",
 				"media": "all",
 				"inherited": false,
@@ -17467,6 +17499,7 @@ export const data : any = {
 			{
 				name: "azimuth",
 				"description": "",
+				restriction: "none",
 				"syntax": "<angle> | [ [ left-side | far-left | left | center-left | center | center-right | right | far-right | right-side ] || behind ] | leftwards | rightwards",
 				"media": "aural",
 				"inherited": true,
@@ -17484,6 +17517,7 @@ export const data : any = {
 			{
 				name: "backdrop-filter",
 				"description": "",
+				restriction: "none",
 				"syntax": "none | <filter-function-list>",
 				"media": "visual",
 				"inherited": false,
@@ -17501,6 +17535,7 @@ export const data : any = {
 			{
 				name: "box-align",
 				"description": "",
+				restriction: "none",
 				"syntax": "start | center | end | baseline | stretch",
 				"media": "visual",
 				"inherited": false,
@@ -17519,6 +17554,7 @@ export const data : any = {
 			{
 				name: "box-direction",
 				"description": "",
+				restriction: "none",
 				"syntax": "normal | reverse | inherit",
 				"media": "visual",
 				"inherited": false,
@@ -17537,6 +17573,7 @@ export const data : any = {
 			{
 				name: "box-flex",
 				"description": "",
+				restriction: "none",
 				"syntax": "<number>",
 				"media": "visual",
 				"inherited": false,
@@ -17555,6 +17592,7 @@ export const data : any = {
 			{
 				name: "box-flex-group",
 				"description": "",
+				restriction: "none",
 				"syntax": "<integer>",
 				"media": "visual",
 				"inherited": false,
@@ -17573,6 +17611,7 @@ export const data : any = {
 			{
 				name: "box-lines",
 				"description": "",
+				restriction: "none",
 				"syntax": "single | multiple",
 				"media": "visual",
 				"inherited": false,
@@ -17591,6 +17630,7 @@ export const data : any = {
 			{
 				name: "box-ordinal-group",
 				"description": "",
+				restriction: "none",
 				"syntax": "<integer>",
 				"media": "visual",
 				"inherited": false,
@@ -17609,6 +17649,7 @@ export const data : any = {
 			{
 				name: "box-orient",
 				"description": "",
+				restriction: "none",
 				"syntax": "horizontal | vertical | inline-axis | block-axis | inherit",
 				"media": "visual",
 				"inherited": false,
@@ -17627,6 +17668,7 @@ export const data : any = {
 			{
 				name: "box-pack",
 				"description": "",
+				restriction: "none",
 				"syntax": "start | center | end | justify",
 				"media": "visual",
 				"inherited": false,
@@ -17645,6 +17687,7 @@ export const data : any = {
 			{
 				name: "color-adjust",
 				"description": "",
+				restriction: "none",
 				"syntax": "economy | exact",
 				"media": "visual",
 				"inherited": true,
@@ -17662,6 +17705,7 @@ export const data : any = {
 			{
 				name: "font-variation-settings",
 				"description": "",
+				restriction: "none",
 				"syntax": "normal | [ <string> <number>] #",
 				"media": "all",
 				"initial": "normal",
@@ -17673,6 +17717,7 @@ export const data : any = {
 			{
 				name: "gap",
 				"description": "",
+				restriction: "none",
 				"syntax": "<'row-gap'> <'column-gap'>?",
 				"media": "visual",
 				"inherited": false,
@@ -17699,6 +17744,7 @@ export const data : any = {
 			{
 				name: "hanging-punctuation",
 				"description": "",
+				restriction: "none",
 				"syntax": "none | [ first || [ force-end | allow-end ] || last ]",
 				"media": "visual",
 				"inherited": true,
@@ -17716,6 +17762,7 @@ export const data : any = {
 			{
 				name: "image-resolution",
 				"description": "",
+				restriction: "none",
 				"syntax": "[ from-image || <resolution> ] && snap?",
 				"media": "visual",
 				"inherited": true,
@@ -17733,6 +17780,7 @@ export const data : any = {
 			{
 				name: "initial-letter",
 				"description": "",
+				restriction: "none",
 				"syntax": "normal | [ <number> <integer>? ]",
 				"media": "visual",
 				"inherited": false,
@@ -17750,6 +17798,7 @@ export const data : any = {
 			{
 				name: "initial-letter-align",
 				"description": "",
+				restriction: "none",
 				"syntax": "[ auto | alphabetic | hanging | ideographic ]",
 				"media": "visual",
 				"inherited": false,
@@ -17767,6 +17816,7 @@ export const data : any = {
 			{
 				name: "line-height-step",
 				"description": "",
+				restriction: "none",
 				"syntax": "none | <length>",
 				"media": "visual",
 				"inherited": true,
@@ -17784,6 +17834,7 @@ export const data : any = {
 			{
 				name: "mask",
 				"description": "",
+				restriction: "none",
 				"syntax": "<mask-layer>#",
 				"media": "visual",
 				"inherited": false,
@@ -17831,6 +17882,7 @@ export const data : any = {
 			{
 				name: "mask-border",
 				"description": "",
+				restriction: "none",
 				"syntax": "<'mask-border-source'> || <'mask-border-slice'> [ / <'mask-border-width'>? [ / <'mask-border-outset'> ]? ]? || <'mask-border-repeat'> || <'mask-border-mode'>",
 				"media": "visual",
 				"inherited": false,
@@ -17873,6 +17925,7 @@ export const data : any = {
 			{
 				name: "mask-border-mode",
 				"description": "",
+				restriction: "none",
 				"syntax": "luminance | alpha",
 				"media": "visual",
 				"inherited": false,
@@ -17890,6 +17943,7 @@ export const data : any = {
 			{
 				name: "mask-border-outset",
 				"description": "",
+				restriction: "none",
 				"syntax": "[ <length> | <number> ]{1,4}",
 				"media": "visual",
 				"inherited": false,
@@ -17907,6 +17961,7 @@ export const data : any = {
 			{
 				name: "mask-border-repeat",
 				"description": "",
+				restriction: "none",
 				"syntax": "[ stretch | repeat | round | space ]{1,2}",
 				"media": "visual",
 				"inherited": false,
@@ -17924,6 +17979,7 @@ export const data : any = {
 			{
 				name: "mask-border-slice",
 				"description": "",
+				restriction: "none",
 				"syntax": "<number-percentage>{1,4} fill?",
 				"media": "visual",
 				"inherited": false,
@@ -17941,6 +17997,7 @@ export const data : any = {
 			{
 				name: "mask-border-source",
 				"description": "",
+				restriction: "none",
 				"syntax": "none | <image>",
 				"media": "visual",
 				"inherited": false,
@@ -17958,6 +18015,7 @@ export const data : any = {
 			{
 				name: "mask-border-width",
 				"description": "",
+				restriction: "none",
 				"syntax": "[ <length-percentage> | <number> | auto ]{1,4}",
 				"media": "visual",
 				"inherited": false,
@@ -17975,6 +18033,7 @@ export const data : any = {
 			{
 				name: "mask-clip",
 				"description": "",
+				restriction: "none",
 				"syntax": "[ <geometry-box> | no-clip ]#",
 				"media": "visual",
 				"inherited": false,
@@ -17992,6 +18051,7 @@ export const data : any = {
 			{
 				name: "mask-composite",
 				"description": "",
+				restriction: "none",
 				"syntax": "<compositing-operator>#",
 				"media": "visual",
 				"inherited": false,
@@ -18009,6 +18069,7 @@ export const data : any = {
 			{
 				name: "offset",
 				"description": "",
+				restriction: "none",
 				"syntax": "[ <'offset-position'>? [ <'offset-path'> [ <'offset-distance'> || <'offset-rotate'> ]? ]? ]! [ / <'offset-anchor'> ]?",
 				"media": "visual",
 				"inherited": false,
@@ -18049,6 +18110,7 @@ export const data : any = {
 			{
 				name: "offset-anchor",
 				"description": "",
+				restriction: "none",
 				"syntax": "auto | <position>",
 				"media": "visual",
 				"inherited": false,
@@ -18066,6 +18128,7 @@ export const data : any = {
 			{
 				name: "offset-distance",
 				"description": "",
+				restriction: "none",
 				"syntax": "<length-percentage>",
 				"media": "visual",
 				"inherited": false,
@@ -18083,6 +18146,7 @@ export const data : any = {
 			{
 				name: "offset-path",
 				"description": "",
+				restriction: "none",
 				"syntax": "none | ray( [ <angle> && <size>? && contain? ] ) | <path()> | <url> | [ <basic-shape> || <geometry-box> ]",
 				"media": "visual",
 				"inherited": false,
@@ -18101,6 +18165,7 @@ export const data : any = {
 			{
 				name: "offset-position",
 				"description": "",
+				restriction: "none",
 				"syntax": "auto | <position>",
 				"media": "visual",
 				"inherited": false,
@@ -18118,6 +18183,7 @@ export const data : any = {
 			{
 				name: "offset-rotate",
 				"description": "",
+				restriction: "none",
 				"syntax": "[ auto | reverse ] || <angle>",
 				"media": "visual",
 				"inherited": false,
@@ -18135,6 +18201,7 @@ export const data : any = {
 			{
 				name: "overflow-clip-box",
 				"description": "",
+				restriction: "none",
 				"syntax": "padding-box | content-box",
 				"media": "visual",
 				"inherited": false,
@@ -18152,6 +18219,7 @@ export const data : any = {
 			{
 				name: "overscroll-behavior",
 				"description": "",
+				restriction: "none",
 				"syntax": "[ contain | none | auto ]{1,2}",
 				"media": "visual",
 				"inherited": false,
@@ -18169,6 +18237,7 @@ export const data : any = {
 			{
 				name: "overscroll-behavior-x",
 				"description": "",
+				restriction: "none",
 				"syntax": "contain | none | auto",
 				"media": "visual",
 				"inherited": false,
@@ -18186,6 +18255,7 @@ export const data : any = {
 			{
 				name: "overscroll-behavior-y",
 				"description": "",
+				restriction: "none",
 				"syntax": "contain | none | auto",
 				"media": "visual",
 				"inherited": false,
@@ -18203,6 +18273,7 @@ export const data : any = {
 			{
 				name: "place-content",
 				"description": "",
+				restriction: "none",
 				"syntax": "<'align-content'> <'justify-content'>?",
 				"media": "visual",
 				"inherited": false,
@@ -18220,6 +18291,7 @@ export const data : any = {
 			{
 				name: "rotate",
 				"description": "",
+				restriction: "none",
 				"syntax": "none | [ x | y | z | <number>{3} ]? && <angle>",
 				"media": "visual",
 				"inherited": false,
@@ -18238,6 +18310,7 @@ export const data : any = {
 			{
 				name: "row-gap",
 				"description": "",
+				restriction: "none",
 				"syntax": "normal | <length-percentage>",
 				"media": "visual",
 				"inherited": false,
@@ -18255,6 +18328,7 @@ export const data : any = {
 			{
 				name: "ruby-merge",
 				"description": "",
+				restriction: "none",
 				"syntax": "separate | collapse | auto",
 				"media": "visual",
 				"inherited": true,
@@ -18272,6 +18346,7 @@ export const data : any = {
 			{
 				name: "scale",
 				"description": "",
+				restriction: "none",
 				"syntax": "none | <number>{1,3}",
 				"media": "visual",
 				"inherited": false,
@@ -18290,6 +18365,7 @@ export const data : any = {
 			{
 				name: "scroll-snap-type-x",
 				"description": "",
+				restriction: "none",
 				"syntax": "none | mandatory | proximity",
 				"media": "interactive",
 				"inherited": false,
@@ -18307,6 +18383,7 @@ export const data : any = {
 			{
 				name: "scroll-snap-type-y",
 				"description": "",
+				restriction: "none",
 				"syntax": "none | mandatory | proximity",
 				"media": "interactive",
 				"inherited": false,
@@ -18324,6 +18401,7 @@ export const data : any = {
 			{
 				name: "text-combine-upright",
 				"description": "",
+				restriction: "none",
 				"syntax": "none | all | [ digits <integer>? ]",
 				"media": "visual",
 				"inherited": true,
@@ -18341,6 +18419,7 @@ export const data : any = {
 			{
 				name: "text-decoration-skip",
 				"description": "",
+				restriction: "none",
 				"syntax": "none | [ objects || [ spaces | [ leading-spaces || trailing-spaces ] ] || edges || box-decoration ]",
 				"media": "visual",
 				"inherited": true,
@@ -18358,6 +18437,7 @@ export const data : any = {
 			{
 				name: "text-decoration-skip-ink",
 				"description": "",
+				restriction: "none",
 				"syntax": "auto | none",
 				"media": "visual",
 				"inherited": true,
@@ -18375,6 +18455,7 @@ export const data : any = {
 			{
 				name: "text-emphasis",
 				"description": "",
+				restriction: "none",
 				"syntax": "<'text-emphasis-style'> || <'text-emphasis-color'>",
 				"media": "visual",
 				"inherited": false,
@@ -18401,6 +18482,7 @@ export const data : any = {
 			{
 				name: "text-emphasis-color",
 				"description": "",
+				restriction: "none",
 				"syntax": "<color>",
 				"media": "visual",
 				"inherited": false,
@@ -18418,6 +18500,7 @@ export const data : any = {
 			{
 				name: "text-emphasis-position",
 				"description": "",
+				restriction: "none",
 				"syntax": "[ over | under ] && [ right | left ]",
 				"media": "visual",
 				"inherited": false,
@@ -18435,6 +18518,7 @@ export const data : any = {
 			{
 				name: "text-emphasis-style",
 				"description": "",
+				restriction: "none",
 				"syntax": "none | [ [ filled | open ] || [ dot | circle | double-circle | triangle | sesame ] ] | <string>",
 				"media": "visual",
 				"inherited": false,
@@ -18452,6 +18536,7 @@ export const data : any = {
 			{
 				name: "text-size-adjust",
 				"description": "",
+				restriction: "none",
 				"syntax": "none | auto | <percentage>",
 				"media": "visual",
 				"inherited": true,
@@ -18469,6 +18554,7 @@ export const data : any = {
 			{
 				name: "transform-box",
 				"description": "",
+				restriction: "none",
 				"syntax": "border-box | fill-box | view-box",
 				"media": "visual",
 				"inherited": false,
@@ -18486,6 +18572,7 @@ export const data : any = {
 			{
 				name: "translate",
 				"description": "",
+				restriction: "none",
 				"syntax": "none | <length-percentage> [ <length-percentage> <length>? ]?",
 				"media": "visual",
 				"inherited": false,
@@ -18504,6 +18591,7 @@ export const data : any = {
 			{
 				name: "speak-as",
 				"description": "",
+				restriction: "none",
 				"syntax": "auto | bullets | numbers | words | spell-out | <counter-style-name>",
 				"media": "all",
 				"initial": "auto",
@@ -18515,6 +18603,7 @@ export const data : any = {
 			{
 				name: "font-display",
 				"description": "",
+				restriction: "none",
 				"syntax": "[ auto | block | swap | fallback | optional ]",
 				"media": "visual",
 				"percentages": "no",
@@ -18526,6 +18615,7 @@ export const data : any = {
 			{
 				name: "bleed",
 				"description": "",
+				restriction: "none",
 				"syntax": "auto | <length>",
 				"media": [
 					"visual",
@@ -18540,6 +18630,7 @@ export const data : any = {
 			{
 				name: "marks",
 				"description": "",
+				restriction: "none",
 				"syntax": "none | [ crop || cross ]",
 				"media": [
 					"visual",
@@ -18554,6 +18645,7 @@ export const data : any = {
 			{
 				name: "max-zoom",
 				"description": "",
+				restriction: "none",
 				"syntax": "auto | <number> | <percentage>",
 				"media": [
 					"visual",
@@ -18568,6 +18660,7 @@ export const data : any = {
 			{
 				name: "min-zoom",
 				"description": "",
+				restriction: "none",
 				"syntax": "auto | <number> | <percentage>",
 				"media": [
 					"visual",
@@ -18582,6 +18675,7 @@ export const data : any = {
 			{
 				name: "orientation",
 				"description": "",
+				restriction: "none",
 				"syntax": "auto | portrait | landscape",
 				"media": [
 					"visual",
@@ -18596,6 +18690,7 @@ export const data : any = {
 			{
 				name: "user-zoom",
 				"description": "",
+				restriction: "none",
 				"syntax": "zoom | fixed",
 				"media": [
 					"visual",
