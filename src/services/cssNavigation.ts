@@ -13,7 +13,7 @@ import { Symbols } from '../parser/cssSymbolScope';
 import { getColorValue, hslFromColor } from '../services/languageFacts';
 
 import * as nls from 'vscode-nls';
-import { ColorInformation, ColorPresentation, Color, FoldingRangeList } from '../cssLanguageTypes';
+import { ColorInformation, ColorPresentation, Color } from '../cssLanguageTypes';
 
 const localize = nls.loadMessageBundle();
 

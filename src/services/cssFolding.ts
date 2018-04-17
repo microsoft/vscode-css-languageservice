@@ -9,11 +9,11 @@ import { TokenType, Scanner, IToken } from '../parser/cssScanner';
 import * as nodes from '../parser/cssNodes';
 import { ParseError, CSSIssueType } from '../parser/cssErrors';
 import * as languageFacts from './languageFacts';
-import { FoldingRangeList, FoldingRange, FoldingRangeType } from '../cssLanguageTypes';
+import { FoldingRange, FoldingRangeKind } from '../cssLanguageTypes';
 import { SCSSScanner, InterpolationFunction } from '../parser/scssScanner';
 import { LESSScanner } from '../parser/lessScanner';
 
-export function getFoldingRanges(document: TextDocument, context: { maxRanges?: number; }): FoldingRangeList {
+export function getFoldingRanges(document: TextDocument, context: { rangeLimit?: number; }): FoldingRange[] {
 	function getStartLine(t: IToken) {
 		return document.positionAt(t.offset).line;
 	}
@@ -30,7 +30,7 @@ export function getFoldingRanges(document: TextDocument, context: { maxRanges?: 
 				return new Scanner();
 		}
 	}
-	function tokenToRange(t: IToken, type?: FoldingRangeType | string): FoldingRange | null {
+	function tokenToRange(t: IToken, kind?: FoldingRangeKind | string): FoldingRange | null {
 		const startLine = getStartLine(t);
 		const endLine = getEndLine(t);
 
@@ -38,7 +38,7 @@ export function getFoldingRanges(document: TextDocument, context: { maxRanges?: 
 			return {
 				startLine,
 				endLine,
-				type
+				kind
 			};
 		} else {
 			return null;
@@ -53,7 +53,7 @@ export function getFoldingRanges(document: TextDocument, context: { maxRanges?: 
 	scanner.ignoreComment = false;
 	scanner.setSource(document.getText());
 
-	const maxRanges = context && context.maxRanges || Number.MAX_VALUE;
+	const maxRanges = context && context.rangeLimit || Number.MAX_VALUE;
 
 	let token = scanner.scan();
 	let prevToken;
@@ -84,7 +84,7 @@ export function getFoldingRanges(document: TextDocument, context: { maxRanges?: 
 						ranges.push({
 							startLine,
 							endLine,
-							type: undefined
+							kind: undefined
 						});
 					}
 					break;
@@ -108,7 +108,7 @@ export function getFoldingRanges(document: TextDocument, context: { maxRanges?: 
 								ranges.push({
 									startLine,
 									endLine,
-									type: 'region'
+									kind: 'region'
 								});
 							}
 						}
@@ -129,7 +129,7 @@ export function getFoldingRanges(document: TextDocument, context: { maxRanges?: 
 									ranges.push({
 										startLine,
 										endLine,
-										type: 'region'
+										kind: 'region'
 									});
 								}
 							}
@@ -149,7 +149,5 @@ export function getFoldingRanges(document: TextDocument, context: { maxRanges?: 
 		token = scanner.scan();
 	}
 
-	return {
-		ranges
-	};
+	return ranges;
 }

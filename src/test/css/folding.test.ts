@@ -8,12 +8,12 @@
 import * as assert from 'assert';
 import { TextDocument } from 'vscode-languageserver-types';
 import { getFoldingRanges } from '../../services/cssFolding';
-import { FoldingRange, FoldingRangeType } from '../../cssLanguageTypes';
+import { FoldingRange, FoldingRangeKind } from '../../cssLanguageTypes';
 
-function assertRanges(lines: string[], expected: FoldingRange[], languageId = 'css', maxRanges = null): void {
+function assertRanges(lines: string[], expected: FoldingRange[], languageId = 'css', rangeLimit = null): void {
 	const document = TextDocument.create(`test://foo/bar.${languageId}`, languageId, 1, lines.join('\n'));
-	const context = maxRanges ? { maxRanges } : void 0;
-	let actualRanges = getFoldingRanges(document, context).ranges;
+	const context = rangeLimit ? { rangeLimit } : void 0;
+	let actualRanges = getFoldingRanges(document, context);
 
 	actualRanges = actualRanges.sort((r1, r2) => r1.startLine - r2.startLine);
 	assert.deepEqual(actualRanges, expected);
@@ -24,8 +24,8 @@ function assertRangesForLanguages(lines: string[], expected: FoldingRange[], lan
 	});
 }
 
-function r(startLine: number, endLine: number, type?: FoldingRangeType | string): FoldingRange {
-	return { startLine, endLine, type };
+function r(startLine: number, endLine: number, kind?: FoldingRangeKind | string): FoldingRange {
+	return { startLine, endLine, kind };
 }
 
 suite('CSS Folding - Basic', () => {

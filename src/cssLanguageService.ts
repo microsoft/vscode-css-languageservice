@@ -25,7 +25,7 @@ import {
 	LintSettings, LanguageSettings,
 	ICompletionParticipant, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext,
 	ColorInformation, Color, ColorPresentation,
-	FoldingRangeList, FoldingRange, FoldingRangeType
+	FoldingRange
 } from './cssLanguageTypes';
 
 export type Stylesheet = {};
@@ -48,7 +48,7 @@ export interface LanguageService {
 	findDocumentColors(document: TextDocument, stylesheet: Stylesheet): ColorInformation[];
 	getColorPresentations(document: TextDocument, stylesheet: Stylesheet, color: Color, range: Range): ColorPresentation[];
 	doRename(document: TextDocument, position: Position, newName: string, stylesheet: Stylesheet): WorkspaceEdit;
-	getFoldingRanges(document: TextDocument, context?: { maxRanges?: number; }): FoldingRangeList;
+	getFoldingRanges(document: TextDocument, context?: { rangeLimit?: number; }): FoldingRange[];
 }
 
 function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover, navigation: CSSNavigation, codeActions: CSSCodeActions, validation: CSSValidation) {
