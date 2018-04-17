@@ -35,7 +35,7 @@ export interface LanguageService {
 	configure(raw: LanguageSettings): void;
 	doValidation(document: TextDocument, stylesheet: Stylesheet, documentSettings?: LanguageSettings): Diagnostic[];
 	parseStylesheet(document: TextDocument): Stylesheet;
-	doComplete(document: TextDocument, position: Position, stylesheet: Stylesheet): CompletionList | null;
+	doComplete(document: TextDocument, position: Position, stylesheet: Stylesheet): CompletionList;
 	setCompletionParticipants(registeredCompletionParticipants: ICompletionParticipant[]): void;
 	doHover(document: TextDocument, position: Position, stylesheet: Stylesheet): Hover | null;
 	findDefinition(document: TextDocument, position: Position, stylesheet: Stylesheet): Location | null;
@@ -48,7 +48,7 @@ export interface LanguageService {
 	findDocumentColors(document: TextDocument, stylesheet: Stylesheet): ColorInformation[];
 	getColorPresentations(document: TextDocument, stylesheet: Stylesheet, color: Color, range: Range): ColorPresentation[];
 	doRename(document: TextDocument, position: Position, newName: string, stylesheet: Stylesheet): WorkspaceEdit;
-	getFoldingRanges(document: TextDocument, context: { maxRanges?: number; }): FoldingRangeList;
+	getFoldingRanges(document: TextDocument, context?: { maxRanges?: number; }): FoldingRangeList;
 }
 
 function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover, navigation: CSSNavigation, codeActions: CSSCodeActions, validation: CSSValidation) {
