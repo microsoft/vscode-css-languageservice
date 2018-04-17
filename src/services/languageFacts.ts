@@ -593,11 +593,11 @@ export function getEntryDescription(entry: { description: string; browsers: Brow
 function getEntryStatus(status: string) {
 	switch (status) {
 		case 'experimental':
-			return '\n⚠️ Property is experimental. Be cautious to use it. ⚠️';
+			return '\n⚠️ Property is experimental. Be cautious to use it.️';
 		case 'nonstandard':
-			return '\n⚠️ Property is nonstandard. Avoid using it. ⚠️';
+			return '\n🚨️ Property is nonstandard. Avoid using it.';
 		case 'obsolete':
-			return '\n⚠️ Property is obsolete. Avoid using it. ⚠️';
+			return '\n⚠️ Property is obsolete. Avoid using it.';
 		default:
 			return '';
 	}
