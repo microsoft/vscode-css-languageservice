@@ -73,9 +73,7 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 				}
 			case TokenType.CurlyR: {
 				if (rangeDelimiterStack.length !== 0) {
-					const startDelimiterIndex = getPreviousStartDelimiterOfType(rangeDelimiterStack, 'brace');
-					const { line: startLine, type } = rangeDelimiterStack[startDelimiterIndex];
-					rangeDelimiterStack.splice(startDelimiterIndex, 1);
+					const { line: startLine, type } = popPreviousStartDelimiterOfType(rangeDelimiterStack, 'brace');
 
 					let endLine = getEndLine(token);
 
@@ -132,9 +130,7 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 					if (rangeDelimiter.isStart) {
 						rangeDelimiterStack.push(rangeDelimiter);
 					} else {
-						const startDelimiterIndex = getPreviousStartDelimiterOfType(rangeDelimiterStack, 'comment');
-						const { line: startLine, type } = rangeDelimiterStack[startDelimiterIndex];
-						rangeDelimiterStack.splice(startDelimiterIndex, 1);
+						const { line: startLine, type } = popPreviousStartDelimiterOfType(rangeDelimiterStack, 'comment');
 
 						const endLine = rangeDelimiter.line;
 						if (type === 'comment') {
@@ -167,14 +163,14 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 	return ranges;
 }
 
-function getPreviousStartDelimiterOfType(stack: Delimiter[], type: DelimiterType): number {
+function popPreviousStartDelimiterOfType(stack: Delimiter[], type: DelimiterType): Delimiter {
 	for (let i = stack.length - 1; i >= 0; i--) {
 		if (stack[i].type === type && stack[i].isStart) {
-			return i;
+			return stack.splice(i, 1)[0];
 		}
 	}
 
-	return -1;
+	return null;
 }
 
 /**
