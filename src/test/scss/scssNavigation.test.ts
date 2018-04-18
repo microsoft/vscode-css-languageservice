@@ -6,7 +6,8 @@
 
 import { SCSSParser } from '../../parser/scssParser';
 import * as nodes from '../../parser/cssNodes';
-import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights } from '../css/navigation.test';
+import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertColorSymbols } from '../css/navigation.test';
+import { getSCSSLanguageService } from '../../cssLanguageService';
 
 suite('SCSS - Symbols', () => {
 
@@ -64,5 +65,10 @@ suite('SCSS - Symbols', () => {
 		assertHighlights(p, '@function /*here*/foo($i) { @return $i*$i; } #foo { width: foo(2); }', '/*here*/', 2, 1, 'foo');
 		assertHighlights(p, '@function foo($i) { @return $i*$i; } #foo { width: /*here*/foo(2); }', '/*here*/', 2, 1, 'foo');
 	});
+
+	test('color symbols', function () {
+		let ls = getSCSSLanguageService();
+		assertColorSymbols(ls, '$colors: (blue: $blue,indigo: $indigo)'); // issue #47209
+	});	
 
 });

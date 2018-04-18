@@ -502,6 +502,14 @@ export function getColorValue(node: nodes.Node): Color {
 		if (node.parent && node.parent.type !== nodes.NodeType.Term) {
 			return null;
 		}
+		let term = node.parent;
+		if (term.parent && term.parent.type === nodes.NodeType.BinaryExpression) {
+			let expression = term.parent;
+			if (expression.parent && expression.parent.type === nodes.NodeType.ListEntry && (<nodes.ListEntry> expression.parent).key === expression) {
+				return null;
+			}
+		}
+
 		let candidateColor = node.getText().toLowerCase();
 		if (candidateColor === 'none') {
 			return null;

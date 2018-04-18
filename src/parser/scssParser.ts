@@ -621,14 +621,18 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseListElement(): nodes.Node {
-		let node = this.createNode(nodes.NodeType.ListEntry);
-		if (!node.addChild(this._parseBinaryExpr())) {
+		let node = <nodes.ListEntry> this.create(nodes.ListEntry);
+		let child = this._parseBinaryExpr();
+		if (!child) {
 			return null;
 		}
 		if (this.accept(TokenType.Colon)) {
-			if (!node.addChild(this._parseBinaryExpr())) {
+			node.setKey(child);
+			if (!node.setValue(this._parseBinaryExpr())) {
 				return this.finish(node, ParseError.ExpressionExpected);
 			}
+		} else {
+			node.setValue(child);
 		}
 		return this.finish(node);
 	}

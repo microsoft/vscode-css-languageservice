@@ -1468,6 +1468,24 @@ export class MixinDeclaration extends BodyDeclaration {
 	}
 }
 
+export class ListEntry extends Node {
+
+	public key?: Node;
+	public value: Node;
+
+	public get type(): NodeType {
+		return NodeType.ListEntry;
+	}	
+
+	public setKey(node: Node): boolean {
+		return this.setNode('key', node, 0);
+	}
+
+	public setValue(node: Node): boolean {
+		return this.setNode('value', node, 1);
+	}	
+}
+
 export class LessGuard extends Node {
 
 	public isNegated: boolean;
