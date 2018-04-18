@@ -13,6 +13,9 @@ import { FoldingRange, FoldingRangeKind } from '../cssLanguageTypes';
 import { SCSSScanner, InterpolationFunction } from '../parser/scssScanner';
 import { LESSScanner } from '../parser/lessScanner';
 
+type DelimiterType = 'brace' | 'comment';
+type Delimiter = { line: number, type: DelimiterType, isStart: boolean };
+
 export function getFoldingRanges(document: TextDocument, context: { rangeLimit?: number; }): FoldingRange[] {
 	const ranges = computeFoldingRanges(document);
 	return limitFoldingRanges(ranges, context);
@@ -52,10 +55,7 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 
 	const ranges: FoldingRange[] = [];
 
-	type DelimiterType = 'brace' | 'comment';
-	type RangeDelimiter = { line: number, type: DelimiterType, isStart?: boolean };
-
-	const rangeDelimiterStack: RangeDelimiter[] = [];
+	const rangeDelimiterStack: Delimiter[] = [];
 
 	const scanner = getScanner();
 	scanner.ignoreComment = false;
@@ -63,18 +63,20 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 
 	let token = scanner.scan();
 	let prevToken: IToken;
-	// let prevEndLine: number = -1;
 	while (token.type !== TokenType.EOF) {
 		switch (token.type) {
 			case TokenType.CurlyL:
 			case InterpolationFunction:
 				{
-					rangeDelimiterStack.push({ line: getStartLine(token), type: 'brace' });
+					rangeDelimiterStack.push({ line: getStartLine(token), type: 'brace', isStart: true });
 					break;
 				}
 			case TokenType.CurlyR: {
 				if (rangeDelimiterStack.length !== 0) {
-					const { line: startLine, type } = rangeDelimiterStack.pop();
+					const startDelimiterIndex = getPreviousStartDelimiterOfType(rangeDelimiterStack, 'brace');
+					const { line: startLine, type } = rangeDelimiterStack[startDelimiterIndex];
+					rangeDelimiterStack.splice(startDelimiterIndex, 1);
+
 					let endLine = getEndLine(token);
 
 					if (type === 'brace') {
@@ -104,7 +106,7 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 			 * All comments are marked as `Comment`
 			 */
 			case TokenType.Comment: {
-				const commentRegionMarkerToRangeDelimiter = (marker): RangeDelimiter => {
+				const commentRegionMarkerToRangeDelimiter = (marker): Delimiter => {
 					if (marker === '#region') {
 						return { line: getStartLine(token), type: 'comment', isStart: true };
 					} else {
@@ -112,7 +114,7 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 					}
 				};
 
-				let rangeDelimiter: RangeDelimiter;
+				let rangeDelimiter: Delimiter;
 
 				// /* */ comment region folding
 				const matches = token.text.match(/^\s*\/\*\s*(#region|#endregion)\b\s*(.*?)\s*\*\//);
@@ -125,12 +127,15 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 					}
 				}
 
-				// All region cases
+				// All #region and #endregion cases
 				if (rangeDelimiter) {
 					if (rangeDelimiter.isStart) {
 						rangeDelimiterStack.push(rangeDelimiter);
 					} else {
-						const { line: startLine, type } = rangeDelimiterStack.pop();
+						const startDelimiterIndex = getPreviousStartDelimiterOfType(rangeDelimiterStack, 'comment');
+						const { line: startLine, type } = rangeDelimiterStack[startDelimiterIndex];
+						rangeDelimiterStack.splice(startDelimiterIndex, 1);
+
 						const endLine = rangeDelimiter.line;
 						if (type === 'comment') {
 							if (startLine !== endLine) {
@@ -160,6 +165,16 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 	}
 
 	return ranges;
+}
+
+function getPreviousStartDelimiterOfType(stack: Delimiter[], type: DelimiterType): number {
+	for (let i = stack.length - 1; i >= 0; i--) {
+		if (stack[i].type === type && stack[i].isStart) {
+			return i;
+		}
+	}
+
+	return -1;
 }
 
 /**

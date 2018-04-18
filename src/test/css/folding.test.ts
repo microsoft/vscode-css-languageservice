@@ -241,7 +241,33 @@ suite('CSS Folding - maxRanges', () => {
 			/*3*/'}',
 			/*4*/'/* #endregion */'
 		];
-		assertRanges(input, [r(0, 4)], 'css', 1);
+		assertRanges(input, [r(0, 4, 'region')], 'css', 1);
+	});
+});
+
+
+suite('CSS Folding - No intersections and always choose first region', () => {
+	test('region intersecting with declaration', () => {
+		const input = [
+			/*0*/'/* #region */',
+			/*1*/'.bar {',
+			/*2*/'  color: red;',
+			/*3*/'/* #endregion */',
+			/*4*/'  display: block;',
+			/*5*/'}',
+		];
+		assertRanges(input, [r(0, 3, 'region')]);
+	});	
+
+	test('declaration intersecting with region', () => {
+		const input = [
+			/*0*/'.bar {',
+			/*1*/'/* #region */',
+			/*2*/'  color: red;',
+			/*3*/'}',			
+			/*4*/'/* #endregion */',
+		];
+		assertRanges(input, [r(0, 2)]);
 	});
 });
 
