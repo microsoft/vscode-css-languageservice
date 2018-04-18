@@ -46,8 +46,11 @@ export function getFoldingRanges(document: TextDocument, context: { rangeLimit?:
 	}
 
 	const ranges: FoldingRange[] = [];
-	const braceStack: number[] = [];
-	const regionCommentStack: number[] = [];
+
+	type DelimiterType = 'brace' | 'comment';
+	type RangeDelimiter = { line: number, type: DelimiterType, isStart?: boolean };
+
+	const rangeDelimiterStack: RangeDelimiter[] = [];
 
 	const scanner = getScanner();
 	scanner.ignoreComment = false;
@@ -56,54 +59,77 @@ export function getFoldingRanges(document: TextDocument, context: { rangeLimit?:
 	const maxRanges = context && context.rangeLimit || Number.MAX_VALUE;
 
 	let token = scanner.scan();
-	let prevToken;
+	let prevToken: IToken;
+	// let prevEndLine: number = -1;
 	while (token.type !== TokenType.EOF && ranges.length < maxRanges) {
 		switch (token.type) {
 			case TokenType.CurlyL:
 			case InterpolationFunction:
 				{
-					braceStack.push(getStartLine(token));
+					rangeDelimiterStack.push({ line: getStartLine(token), type: 'brace' });
 					break;
 				}
 			case TokenType.CurlyR: {
-				if (braceStack.length !== 0) {
-					const startLine = braceStack.pop();
+				if (rangeDelimiterStack.length !== 0) {
+					const { line: startLine, type } = rangeDelimiterStack.pop();
 					let endLine = getEndLine(token);
 
-					/**
-					 * Other than the case when curly brace is not on a new line by itself, for example
-					 * .foo {
-					 *   color: red; }
-					 * Use endLine minus one to show ending curly brace
-					 */
-					if (getEndLine(prevToken) !== endLine) {
-						endLine--;
-					}
+					if (type === 'brace') {
+						/**
+						 * Other than the case when curly brace is not on a new line by itself, for example
+						 * .foo {
+						 *   color: red; }
+						 * Use endLine minus one to show ending curly brace
+						 */
+						if (getEndLine(prevToken) !== endLine) {
+							endLine--;
+						}
 
-					if (startLine !== endLine) {
-						ranges.push({
-							startLine,
-							endLine,
-							kind: undefined
-						});
+						if (startLine !== endLine) {
+							ranges.push({
+								startLine,
+								endLine,
+								kind: undefined
+							});
+						}
 					}
-					break;
 				}
+				break;
 			}
 			/**
 			 * In CSS, there is no single line comment prefixed with //
 			 * All comments are marked as `Comment`
 			 */
 			case TokenType.Comment: {
+				const commentRegionMarkerToRangeDelimiter = (marker): RangeDelimiter => {
+					if (marker === '#region') {
+						return { line: getStartLine(token), type: 'comment', isStart: true };
+					} else {
+						return { line: getEndLine(token), type: 'comment', isStart: false };
+					}
+				};
+
+				let rangeDelimiter: RangeDelimiter;
+
 				// /* */ comment region folding
 				const matches = token.text.match(/^\s*\/\*\s*(#region|#endregion)\b\s*(.*?)\s*\*\//);
 				if (matches) {
-					if (matches[1] === '#region') {
-						regionCommentStack.push(getStartLine(token));
+					rangeDelimiter = commentRegionMarkerToRangeDelimiter(matches[1]);
+				} else if (document.languageId === 'scss' || document.languageId === 'less') {
+					const matches = token.text.match(/^\s*\/\/\s*(#region|#endregion)\b\s*(.*?)\s*/);
+					if (matches) {
+						rangeDelimiter = commentRegionMarkerToRangeDelimiter(matches[1]);
+					}
+				}
+
+				// All region cases
+				if (rangeDelimiter) {
+					if (rangeDelimiter.isStart) {
+						rangeDelimiterStack.push(rangeDelimiter);
 					} else {
-						if (regionCommentStack.length !== 0) {
-							const startLine = regionCommentStack.pop();
-							const endLine = getEndLine(token);
+						const { line: startLine, type } = rangeDelimiterStack.pop();
+						const endLine = rangeDelimiter.line;
+						if (type === 'comment') {
 							if (startLine !== endLine) {
 								ranges.push({
 									startLine,
@@ -114,33 +140,14 @@ export function getFoldingRanges(document: TextDocument, context: { rangeLimit?:
 						}
 					}
 				}
-
-				// Scss / Less region folding
-				if (document.languageId === 'scss' || document.languageId === 'less') {
-					const matches = token.text.match(/^\s*\/\/\s*(#region|#endregion)\b\s*(.*?)\s*/);
-					if (matches) {
-						if (matches[1] === '#region') {
-							regionCommentStack.push(getStartLine(token));
-						} else {
-							if (regionCommentStack.length !== 0) {
-								const startLine = regionCommentStack.pop();
-								const endLine = getEndLine(token);
-								if (startLine !== endLine) {
-									ranges.push({
-										startLine,
-										endLine,
-										kind: 'region'
-									});
-								}
-							}
-						}
+				// Multiline comment case
+				else {
+					const range = tokenToRange(token, 'comment');
+					if (range) {
+						ranges.push(range);
 					}
 				}
 
-				const range = tokenToRange(token, 'comment');
-				if (range) {
-					ranges.push(range);
-				}
 				break;
 			}
 
