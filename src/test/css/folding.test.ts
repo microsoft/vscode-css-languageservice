@@ -241,7 +241,7 @@ suite('CSS Folding - maxRanges', () => {
 			/*3*/'}',
 			/*4*/'/* #endregion */'
 		];
-		assertRanges(input, [r(1, 2)], 'css', 1);
+		assertRanges(input, [r(0, 4)], 'css', 1);
 	});
 });
 

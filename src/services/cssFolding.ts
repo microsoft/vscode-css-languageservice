@@ -14,6 +14,11 @@ import { SCSSScanner, InterpolationFunction } from '../parser/scssScanner';
 import { LESSScanner } from '../parser/lessScanner';
 
 export function getFoldingRanges(document: TextDocument, context: { rangeLimit?: number; }): FoldingRange[] {
+	const ranges = computeFoldingRanges(document);
+	return limitFoldingRanges(ranges, context);
+}
+
+function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 	function getStartLine(t: IToken) {
 		return document.positionAt(t.offset).line;
 	}
@@ -56,12 +61,10 @@ export function getFoldingRanges(document: TextDocument, context: { rangeLimit?:
 	scanner.ignoreComment = false;
 	scanner.setSource(document.getText());
 
-	const maxRanges = context && context.rangeLimit || Number.MAX_VALUE;
-
 	let token = scanner.scan();
 	let prevToken: IToken;
 	// let prevEndLine: number = -1;
-	while (token.type !== TokenType.EOF && ranges.length < maxRanges) {
+	while (token.type !== TokenType.EOF) {
 		switch (token.type) {
 			case TokenType.CurlyL:
 			case InterpolationFunction:
@@ -157,4 +160,36 @@ export function getFoldingRanges(document: TextDocument, context: { rangeLimit?:
 	}
 
 	return ranges;
+}
+
+/**
+ * - Sort regions
+ * - Remove invalid regions (intersections)
+ * - If limit exceeds, only return `rangeLimit` amount of ranges
+ */
+function limitFoldingRanges(ranges: FoldingRange[], context: { rangeLimit?: number; }): FoldingRange[] {
+	const maxRanges = context && context.rangeLimit || Number.MAX_VALUE;
+
+	const sortedRanges = ranges.sort((r1, r2) => {
+		let diff = r1.startLine - r2.startLine;
+		if (diff === 0) {
+			diff = r1.endLine - r2.endLine;
+		}
+		return diff;
+	});
+
+	const validRanges = [];
+	let prevEndLine = -1;
+	sortedRanges.forEach(r => {
+		if (!(r.startLine < prevEndLine && prevEndLine < r.endLine)) {
+			validRanges.push(r);
+			prevEndLine = r.endLine;
+		}
+	});
+
+	if (validRanges.length < maxRanges) {
+		return validRanges;
+	} else {
+		return validRanges.slice(0, maxRanges);
+	}
 }
