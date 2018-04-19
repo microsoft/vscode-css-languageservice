@@ -164,6 +164,10 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 }
 
 function popPreviousStartDelimiterOfType(stack: Delimiter[], type: DelimiterType): Delimiter {
+	if (stack.length === 0) {
+		return null;
+	}
+
 	for (let i = stack.length - 1; i >= 0; i--) {
 		if (stack[i].type === type && stack[i].isStart) {
 			return stack.splice(i, 1)[0];
