@@ -165,6 +165,9 @@ export class SCSSParser extends cssParser.Parser {
 			let node = this.create(nodes.Interpolation);
 			this.consumeToken();
 			if (!node.addChild(this._parseExpr()) && !this._parseSelectorCombinator()) {
+				if (this.accept(TokenType.CurlyR)) {
+					return this.finish(node);
+				}
 				return this.finish(node, ParseError.ExpressionExpected);
 			}
 			if (!this.accept(TokenType.CurlyR)) {
