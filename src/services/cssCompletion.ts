@@ -60,7 +60,11 @@ export class CSSCompletion {
 				if (node instanceof nodes.Property) {
 					this.getCompletionsForDeclarationProperty(node.getParent() as nodes.Declaration, result);
 				} else if (node instanceof nodes.Expression) {
-					this.getCompletionsForExpression(<nodes.Expression>node, result);
+					if (node.parent instanceof nodes.Interpolation) {
+						this.getVariableProposals(null, result);
+					} else {
+						this.getCompletionsForExpression(<nodes.Expression>node, result);
+					}
 				} else if (node instanceof nodes.SimpleSelector) {
 					let parentExtRef = <nodes.ExtendsReference>node.findParent(nodes.NodeType.ExtendsReference);
 					if (parentExtRef) {
@@ -93,6 +97,8 @@ export class CSSCompletion {
 					this.getCompletionsForExtendsReference(<nodes.ExtendsReference>node, null, result);
 				} else if (node.type === nodes.NodeType.URILiteral) {
 					this.getCompletionForUriLiteralValue(node, result);
+				// } else if (node instanceof nodes.Variable) {
+					// this.getCompletionsForVariableDeclaration()
 				} else {
 					continue;
 				}

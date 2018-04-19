@@ -164,7 +164,10 @@ export class SCSSParser extends cssParser.Parser {
 		if (this.peek(scssScanner.InterpolationFunction)) {
 			let node = this.create(nodes.Interpolation);
 			this.consumeToken();
-			if (!node.addChild(this._parseBinaryExpr()) && !this._parseSelectorCombinator()) {
+			if (!node.addChild(this._parseExpr()) && !this._parseSelectorCombinator()) {
+				if (this.accept(TokenType.CurlyR)) {
+					return this.finish(node);
+				}
 				return this.finish(node, ParseError.ExpressionExpected);
 			}
 			if (!this.accept(TokenType.CurlyR)) {
