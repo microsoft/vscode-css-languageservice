@@ -39,6 +39,11 @@ suite('SCSS - Completions', () => {
 				{ label: '$i', documentation: '0' }
 			]
 		});
+		testCompletionFor('@for $i from 1 through 3 { .item-#{|} { width: 2em * $i; } }', {
+			items: [
+				{ label: '$i' }
+			]
+		});
 		testCompletionFor('@for $i from 1 through 3 { .item-#{|$i} { width: 2em * $i; } }', {
 			items: [
 				{ label: '$i' }

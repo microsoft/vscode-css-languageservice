@@ -112,7 +112,7 @@ suite('SCSS - Parser', () => {
 		assertNode('&:nth-child(#{$query}+1) { clear: $opposite-direction; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('--#{$propname}: some-value', parser, parser._parseDeclaration.bind(parser));
 		assertNode('some-property: var(--#{$propname})', parser, parser._parseDeclaration.bind(parser));
-		assertError('#{}', parser, parser._parseIdent.bind(parser), ParseError.ExpressionExpected);
+		assertNode('#{}', parser, parser._parseIdent.bind(parser));
 		assertError('#{1 + 2', parser, parser._parseIdent.bind(parser), ParseError.RightCurlyExpected);
 	});
 
