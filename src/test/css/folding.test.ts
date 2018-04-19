@@ -119,6 +119,25 @@ suite('CSS Folding - Partial', () => {
 		];
 		assertRanges(input, [r(1, 4), r(2, 3)]);
 	});
+
+	test('Without opening curly brace should not throw error', () => {
+		const input = [
+			/*0*/'.foo',
+			/*1*/'  color: blue;',
+			/*2*/'}}'
+		];
+		assertRanges(input, []);
+	});
+
+	// test('Without opening #region should not throw error', () => {
+	// 	const input = [
+	// 		/*0*/'.foo',
+	// 		/*1*/'  color: blue;',
+	// 		/*2*/'}',
+	// 		/*3*/'/* #endregion */'
+	// 	];
+	// 	assertRanges(input, []);
+	// });
 });
 
 suite('CSS Folding - Comments', () => {
