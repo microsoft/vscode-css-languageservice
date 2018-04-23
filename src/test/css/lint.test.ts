@@ -94,7 +94,6 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { line-height: 0EM }', Rules.ZeroWithUnit);
 		assertRuleSet('selector { line-height: 0pc }', Rules.ZeroWithUnit);
 		assertRuleSet('selector { min-height: 0% }');
-		assertRuleSet('selector { azimuth: 30deg }', Rules.UnknownProperty);
 	});
 
 	test('duplicate declarations', function () {
