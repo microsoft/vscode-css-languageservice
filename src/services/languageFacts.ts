@@ -575,22 +575,20 @@ export function getEntryDescription(entry: { description: string; browsers: Brow
 		return null;
 	}
 
-	let desc = entry.description || '';
+	let desc: string = '';
+
+	if (entry.data && entry.data.status) {
+		desc += getEntryStatus(entry.data.status);
+	}
+
+	desc += entry.description;
+
 	let browserLabel = getBrowserLabel(entry.browsers);
 	if (browserLabel) {
-		if (desc) {
-			desc = desc + '\n';
-		}
-		desc = desc + '(' + browserLabel + ')';
+		desc += '\n(' + browserLabel + ')';
 	}
-	if (entry.data) {
-		desc += `\n`;
-		if (entry.data.syntax) {
-			desc += `\nSyntax: ${entry.data.syntax}`;
-		}
-		if (entry.data.status) {
-			desc += `\n${getEntryStatus(entry.data.status)}`;
-		}
+	if (entry.data && entry.data.syntax) {
+		desc += `\n\nSyntax: ${entry.data.syntax}`;
 	}
 	return desc;
 }
@@ -598,11 +596,11 @@ export function getEntryDescription(entry: { description: string; browsers: Brow
 function getEntryStatus(status: string) {
 	switch (status) {
 		case 'experimental':
-			return '\n⚠️ Property is experimental. Be cautious to use it.️';
+			return '⚠️ Property is experimental. Be cautious to use it.️\n\n';
 		case 'nonstandard':
-			return '\n🚨️ Property is nonstandard. Avoid using it.';
+			return '🚨️ Property is nonstandard. Avoid using it.\n\n';
 		case 'obsolete':
-			return '\n🚨️️️ Property is obsolete. Avoid using it.';
+			return '🚨️️️ Property is obsolete. Avoid using it.\n\n';
 		default:
 			return '';
 	}
