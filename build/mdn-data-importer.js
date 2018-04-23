@@ -6,6 +6,15 @@
 const path = require('path')
 const fs = require('fs')
 
+const mdnDocumentations = require('./mdn-documentation')
+
+const mdnExcludedProperties = [
+  '--*', // custom properties
+  'gap', // grid-gap
+  'row-gap', // grid-row-gap
+  'image-resolution', // https://www.w3.org/TR/css-images-4/#propdef-image-resolution
+]
+
 function buildPropertiesWithMDNData(vscProperties) {
   const propertyMap = {}
 
@@ -21,6 +30,10 @@ function buildPropertiesWithMDNData(vscProperties) {
       }
     }
   }
+
+  mdnExcludedProperties.forEach(p => {
+    delete allMDNProperties[p]
+  })
 
   /**
    * 1. Go through VSC properties. For each entry that has a matching entry in MDN, merge both entry.
@@ -45,7 +58,7 @@ function buildPropertiesWithMDNData(vscProperties) {
     if (!propertyMap[pn]) {
       propertyMap[pn] = {
         name: pn,
-        description: '',
+        desc: mdnDocumentations[pn] ? mdnDocumentations[pn] : '',
         restriction: 'none',
         ...extractMDNProperties(allMDNProperties[pn])
       }

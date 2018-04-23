@@ -571,7 +571,7 @@ export function getPageBoxDirectives(): string[] {
 }
 
 export function getEntryDescription(entry: { description: string; browsers: Browsers, data?: any }): string | null {
-	if (!entry.description) {
+	if (!entry.description || entry.description === '') {
 		return null;
 	}
 
@@ -584,6 +584,7 @@ export function getEntryDescription(entry: { description: string; browsers: Brow
 		desc = desc + '(' + browserLabel + ')';
 	}
 	if (entry.data) {
+		desc += `\n`;
 		if (entry.data.syntax) {
 			desc += `\nSyntax: ${entry.data.syntax}`;
 		}
@@ -601,7 +602,7 @@ function getEntryStatus(status: string) {
 		case 'nonstandard':
 			return '\n🚨️ Property is nonstandard. Avoid using it.';
 		case 'obsolete':
-			return '\n⚠️ Property is obsolete. Avoid using it.';
+			return '\n🚨️️️ Property is obsolete. Avoid using it.';
 		default:
 			return '';
 	}
