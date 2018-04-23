@@ -62,7 +62,5 @@ License
 
 Copyright 2016, Microsoft
 
-With the exceptions of,
-
-- `build/mdn-documentation.js`, which is built upon content from [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web)
+With the exceptions of `build/mdn-documentation.js`, which is built upon content from [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web)
 and distributed under CC BY-SA 2.5.
