@@ -208,6 +208,14 @@ suite('CSS - Completion', () => {
 			]
 		});
 	});
+	test('MDN properties', function (): any {
+		testCompletionFor('body { a|', {
+			items: [
+				{ label: 'appearance', resultText: 'body { appearance: ' },
+				{ label: 'azimuth', resultText: 'body { azimuth: ' }
+			]
+		});
+	});
 	test('values', function (): any {
 		testCompletionFor('body { vertical-align:| bottom;}', {
 			items: [

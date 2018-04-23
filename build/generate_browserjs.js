@@ -343,6 +343,9 @@ function toSource(object, keyName) {
 
 var parser = new xml2js.Parser({explicitArray : false});
 var schemaFileName= 'css-schema.xml';
+
+var { buildPropertiesWithMDNData } = require('./mdn-data-importer')
+
 fs.readFile(path.resolve(__dirname, schemaFileName), function(err, data) {
 	parser.parseString(data, function (err, result) {
 
@@ -360,7 +363,7 @@ fs.readFile(path.resolve(__dirname, schemaFileName), function(err, data) {
 				atdirectives: atdirectives,
 				pseudoclasses: pseudoclasses,
 				pseudoelements: pseudoelements,
-				properties: properties
+				properties: buildPropertiesWithMDNData(properties)
 			}
 		};
 
@@ -376,7 +379,7 @@ fs.readFile(path.resolve(__dirname, schemaFileName), function(err, data) {
 			' *  Copyright (c) Microsoft Corporation. All rights reserved.',
 			' *  Licensed under the MIT License. See License.txt in the project root for license information.',
 			' *--------------------------------------------------------------------------------------------*/',
-			'// file generated from ' + schemaFileName + ' using css-exclude_generate_browserjs.js',
+			'// file generated from ' + schemaFileName + ' and https://github.com/mdn/data using css-exclude_generate_browserjs.js',
 			'',
 			'export const data : any = ' + toJavaScript(resultObject) + ';',
 			'export const descriptions : any = ' + toJavaScript(descriptions) + ';',

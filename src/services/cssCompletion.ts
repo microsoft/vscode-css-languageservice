@@ -178,6 +178,9 @@ export class CSSCompletion {
 						textEdit: TextEdit.replace(range, insertText),
 						kind: CompletionItemKind.Property
 					};
+					if (entry.restrictions.length === 1 && entry.restrictions[0] === 'none') {
+						retrigger = false;
+					}
 					if (retrigger) {
 						item.command = {
 							title: 'Suggest',

@@ -2,7 +2,7 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-// file generated from css-schema.xml using css-exclude_generate_browserjs.js
+// file generated from css-schema.xml and https://github.com/mdn/data using css-exclude_generate_browserjs.js
 
 export const data : any = {
 	"css": {
@@ -771,7 +771,9 @@ export const data : any = {
 				name: "additive-symbols",
 				desc: "@counter-style descriptor. Specifies the symbols used by the marker-construction algorithm specified by the system descriptor. Needs to be specified if the counter system is 'additive'.",
 				browsers: "FF33",
-				restriction: "integer, string, image, identifier"
+				restriction: "integer, string, image, identifier",
+				"status": "standard",
+				"syntax": "[ <integer> && <symbol> ]#"
 			},
 			{
 				name: "align-content",
@@ -803,7 +805,9 @@ export const data : any = {
 						name: "stretch",
 						desc: "Lines stretch to take up the remaining space."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | <baseline-position> | <content-distribution> | <overflow-position>? <content-position>"
 			},
 			{
 				name: "align-items",
@@ -831,7 +835,9 @@ export const data : any = {
 						name: "stretch",
 						desc: "If the cross size property of the flex item computes to auto, and neither of the cross-axis margins are auto, the flex item is stretched."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | stretch | <baseline-position> | [ <overflow-position>? <self-position> ]"
 			},
 			{
 				name: "justify-items",
@@ -897,7 +903,9 @@ export const data : any = {
 					{
 						name: "legacy"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | stretch | <baseline-position> | <overflow-position>? [ <self-position> | left | right ] | legacy | legacy && [ left | right | center ]"
 			},
 			{
 				name: "justify-self",
@@ -960,7 +968,9 @@ export const data : any = {
 					{
 						name: "unsave"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | normal | stretch | <baseline-position> | <overflow-position>? [ <self-position> | left | right ]"
 			},
 			{
 				name: "align-self",
@@ -992,14 +1002,18 @@ export const data : any = {
 						name: "stretch",
 						desc: "If the cross size property of the flex item computes to auto, and neither of the cross-axis margins are auto, the flex item is stretched."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | normal | stretch | <baseline-position> | <overflow-position>? <self-position>"
 			},
 			{
 				name: "all",
 				desc: "Shorthand that resets all properties except 'direction' and 'unicode-bidi'.",
 				browsers: "C37,FF27,O24",
 				restriction: "enum",
-				values: []
+				values: [],
+				"status": "standard",
+				"syntax": "initial | inherit | unset | revert"
 			},
 			{
 				name: "alt",
@@ -1046,13 +1060,17 @@ export const data : any = {
 						name: "reverse",
 						desc: "All iterations of the animation are played in the reverse direction from the way they were specified."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<single-animation>#"
 			},
 			{
 				name: "animation-delay",
 				desc: "Defines when the animation will start.",
 				browsers: "E,C43,FF16,IE10,O12.1,S9",
-				restriction: "time"
+				restriction: "time",
+				"status": "standard",
+				"syntax": "<time>#"
 			},
 			{
 				name: "animation-direction",
@@ -1074,13 +1092,17 @@ export const data : any = {
 						name: "reverse",
 						desc: "All iterations of the animation are played in the reverse direction from the way they were specified."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<single-animation-direction>#"
 			},
 			{
 				name: "animation-duration",
 				desc: "Defines the length of time that an animation takes to complete one cycle.",
 				browsers: "E,C43,FF16,IE10,O12.1,S9",
-				restriction: "time"
+				restriction: "time",
+				"status": "standard",
+				"syntax": "<time>#"
 			},
 			{
 				name: "animation-fill-mode",
@@ -1102,7 +1124,9 @@ export const data : any = {
 						name: "none",
 						desc: "There is no change to the property value between the time the animation is applied and the time the animation begins playing or after the animation completes."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<single-animation-fill-mode>#"
 			},
 			{
 				name: "animation-iteration-count",
@@ -1114,7 +1138,9 @@ export const data : any = {
 						name: "infinite",
 						desc: "Causes the animation to repeat forever."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<single-animation-iteration-count>#"
 			},
 			{
 				name: "animation-name",
@@ -1126,7 +1152,9 @@ export const data : any = {
 						name: "none",
 						desc: "No animation is performed"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "[ none | <keyframes-name> ]#"
 			},
 			{
 				name: "animation-play-state",
@@ -1140,13 +1168,17 @@ export const data : any = {
 					{
 						name: "running"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<single-animation-play-state>#"
 			},
 			{
 				name: "animation-timing-function",
 				desc: "Describes how the animation will progress over one cycle of its duration.",
 				browsers: "E,C43,FF16,IE10,O12.1,S9",
-				restriction: "timing-function"
+				restriction: "timing-function",
+				"status": "standard",
+				"syntax": "<single-timing-function>#"
 			},
 			{
 				name: "backface-visibility",
@@ -1162,7 +1194,9 @@ export const data : any = {
 						name: "visible",
 						desc: "Back side is visible."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "visible | hidden"
 			},
 			{
 				name: "background",
@@ -1181,7 +1215,9 @@ export const data : any = {
 						name: "scroll",
 						desc: "The background is fixed with regard to the element itself and does not scroll with its contents. (It is effectively attached to the element's border.)"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "[ <bg-layer> , ]* <final-bg-layer>"
 			},
 			{
 				name: "background-attachment",
@@ -1201,7 +1237,9 @@ export const data : any = {
 						name: "scroll",
 						desc: "The background is fixed with regard to the element itself and does not scroll with its contents. (It is effectively attached to the element’s border.)"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<attachment>#"
 			},
 			{
 				name: "background-blend-mode",
@@ -1262,18 +1300,24 @@ export const data : any = {
 						name: "luminosity",
 						browsers: "C35,FF30,O22"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<blend-mode>#"
 			},
 			{
 				name: "background-clip",
 				desc: "Determines the background painting area.",
 				browsers: "E,C,FF4,IE9,O10.5,S3",
-				restriction: "box"
+				restriction: "box",
+				"status": "standard",
+				"syntax": "<box>#"
 			},
 			{
 				name: "background-color",
 				desc: "Sets the background color of an element.",
-				restriction: "color"
+				restriction: "color",
+				"status": "standard",
+				"syntax": "<color>"
 			},
 			{
 				name: "background-image",
@@ -1284,18 +1328,24 @@ export const data : any = {
 						name: "none",
 						desc: "Counts as an image layer but draws nothing."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<bg-image>#"
 			},
 			{
 				name: "background-origin",
 				desc: "For elements rendered as a single box, specifies the background positioning area. For elements rendered as multiple boxes (e.g., inline boxes on several lines, boxes on several pages) specifies which boxes 'box-decoration-break' operates on to determine the background positioning area(s).",
 				browsers: "E,C,FF4,IE9,O10.5,S3",
-				restriction: "box"
+				restriction: "box",
+				"status": "standard",
+				"syntax": "<box>#"
 			},
 			{
 				name: "background-position",
 				desc: "Specifies the initial position of the background image(s) (after any resizing) within their corresponding background positioning area.",
-				restriction: "position, length, percentage"
+				restriction: "position, length, percentage",
+				"status": "standard",
+				"syntax": "<bg-position>#"
 			},
 			{
 				name: "background-position-x",
@@ -1315,7 +1365,9 @@ export const data : any = {
 						name: "right",
 						desc: "Equivalent to '100%' for the horizontal position if one or two values are given, otherwise specifies the right edge as the origin for the next offset."
 					}
-				]
+				],
+				"status": "experimental",
+				"syntax": "[ center | [ left | right | x-start | x-end ]? <length-percentage>? ]#"
 			},
 			{
 				name: "background-position-y",
@@ -1335,13 +1387,17 @@ export const data : any = {
 						name: "top",
 						desc: "Equivalent to '0%' for the vertical position if one or two values are given, otherwise specifies the top edge as the origin for the next offset."
 					}
-				]
+				],
+				"status": "experimental",
+				"syntax": "[ center | [ top | bottom | y-start | y-end ]? <length-percentage>? ]#"
 			},
 			{
 				name: "background-repeat",
 				desc: "Specifies how background images are tiled after they have been sized and positioned.",
 				restriction: "repeat",
-				values: []
+				values: [],
+				"status": "standard",
+				"syntax": "<repeat-style>#"
 			},
 			{
 				name: "background-size",
@@ -1361,7 +1417,9 @@ export const data : any = {
 						name: "cover",
 						desc: "Scale the image, while preserving its intrinsic aspect ratio (if any), to the smallest size such that both its width and its height can completely cover the background positioning area."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<bg-size>#"
 			},
 			{
 				name: "behavior",
@@ -1379,92 +1437,124 @@ export const data : any = {
 						name: "auto",
 						desc: "Depends on the values of other properties."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<'width'>"
 			},
 			{
 				name: "border",
 				desc: "Shorthand property for setting border width, style, and color.",
-				restriction: "length, line-width, line-style, color"
+				restriction: "length, line-width, line-style, color",
+				"status": "standard",
+				"syntax": "<br-width> || <br-style> || <color>"
 			},
 			{
 				name: "border-block-end",
 				desc: "Logical 'border-bottom'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, line-width, line-style, color"
+				restriction: "length, line-width, line-style, color",
+				"status": "standard",
+				"syntax": "<'border-width'> || <'border-style'> || <'color'>"
 			},
 			{
 				name: "border-block-start",
 				desc: "Logical 'border-top'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, line-width, line-style, color"
+				restriction: "length, line-width, line-style, color",
+				"status": "standard",
+				"syntax": "<'border-width'> || <'border-style'> || <'color'>"
 			},
 			{
 				name: "border-block-end-color",
 				desc: "Logical 'border-bottom-color'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "color"
+				restriction: "color",
+				"status": "standard",
+				"syntax": "<'color'>"
 			},
 			{
 				name: "border-block-start-color",
 				desc: "Logical 'border-top-color'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "color"
+				restriction: "color",
+				"status": "standard",
+				"syntax": "<'color'>"
 			},
 			{
 				name: "border-block-end-style",
 				desc: "Logical 'border-bottom-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "line-style"
+				restriction: "line-style",
+				"status": "standard",
+				"syntax": "<'border-style'>"
 			},
 			{
 				name: "border-block-start-style",
 				desc: "Logical 'border-top-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "lline-style"
+				restriction: "lline-style",
+				"status": "standard",
+				"syntax": "<'border-style'>"
 			},
 			{
 				name: "border-block-end-width",
 				desc: "Logical 'border-bottom-width'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, line-width"
+				restriction: "length, line-width",
+				"status": "standard",
+				"syntax": "<'border-width'>"
 			},
 			{
 				name: "border-block-start-width",
 				desc: "Logical 'border-top-width'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, line-width"
+				restriction: "length, line-width",
+				"status": "standard",
+				"syntax": "<'border-width'>"
 			},
 			{
 				name: "border-bottom",
 				desc: "Shorthand property for setting border width, style and color.",
-				restriction: "length, line-width, line-style, color"
+				restriction: "length, line-width, line-style, color",
+				"status": "standard",
+				"syntax": "<br-width> || <br-style> || <color>"
 			},
 			{
 				name: "border-bottom-color",
 				desc: "Sets the color of the bottom border.",
-				restriction: "color"
+				restriction: "color",
+				"status": "standard",
+				"syntax": "<color>"
 			},
 			{
 				name: "border-bottom-left-radius",
 				desc: "Defines the radii of the bottom left outer border edge.",
 				browsers: "E,C,FF4,IE9,O10.5,S5",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"status": "standard",
+				"syntax": "<length-percentage>{1,2}"
 			},
 			{
 				name: "border-bottom-right-radius",
 				desc: "Defines the radii of the bottom right outer border edge.",
 				browsers: "E,C,FF4,IE9,O10.5,S5",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"status": "standard",
+				"syntax": "<length-percentage>{1,2}"
 			},
 			{
 				name: "border-bottom-style",
 				desc: "Sets the style of the bottom border.",
-				restriction: "line-style"
+				restriction: "line-style",
+				"status": "standard",
+				"syntax": "<br-style>"
 			},
 			{
 				name: "border-bottom-width",
 				desc: "Sets the thickness of the bottom border.",
-				restriction: "length, line-width"
+				restriction: "length, line-width",
+				"status": "standard",
+				"syntax": "<br-width>"
 			},
 			{
 				name: "border-collapse",
@@ -1479,13 +1569,17 @@ export const data : any = {
 						name: "separate",
 						desc: "Selects the separated borders border model."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "collapse | separate"
 			},
 			{
 				name: "border-color",
 				desc: "The color of the border around all four edges of an element.",
 				restriction: "color",
-				values: []
+				values: [],
+				"status": "standard",
+				"syntax": "<color>{1,4}"
 			},
 			{
 				name: "border-image",
@@ -1523,13 +1617,17 @@ export const data : any = {
 					{
 						name: "url()"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<'border-image-source'> || <'border-image-slice'> [ / <'border-image-width'> | / <'border-image-width'>? / <'border-image-outset'> ]? || <'border-image-repeat'>"
 			},
 			{
 				name: "border-image-outset",
 				desc: "The values specify the amount by which the border image area extends beyond the border box on the top, right, bottom, and left sides respectively. If the fourth value is absent, it is the same as the second. If the third one is also absent, it is the same as the first. If the second one is also absent, it is the same as the first. Numbers represent multiples of the corresponding border-width.",
 				browsers: "E,C16,FF15,IE11,O15,S6",
-				restriction: "length, number"
+				restriction: "length, number",
+				"status": "standard",
+				"syntax": "[ <length> | <number> ]{1,4}"
 			},
 			{
 				name: "border-image-repeat",
@@ -1552,7 +1650,9 @@ export const data : any = {
 						name: "stretch",
 						desc: "The image is stretched to fill the area."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "[ stretch | repeat | round | space ]{1,2}"
 			},
 			{
 				name: "border-image-slice",
@@ -1564,7 +1664,9 @@ export const data : any = {
 						name: "fill",
 						desc: "Causes the middle part of the border-image to be preserved."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<number-percentage>{1,4} && fill?"
 			},
 			{
 				name: "border-image-source",
@@ -1576,7 +1678,9 @@ export const data : any = {
 						name: "none",
 						desc: "Use the border styles."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | <image>"
 			},
 			{
 				name: "border-image-width",
@@ -1588,151 +1692,205 @@ export const data : any = {
 						name: "auto",
 						desc: "The border image width is the intrinsic width or height (whichever is applicable) of the corresponding image slice. If the image does not have the required intrinsic dimension then the corresponding border-width is used instead."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "[ <length-percentage> | <number> | auto ]{1,4}"
 			},
 			{
 				name: "border-inline-end",
 				desc: "Logical 'border-right'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, line-width, line-style, color"
+				restriction: "length, line-width, line-style, color",
+				"status": "standard",
+				"syntax": "<'border-width'> || <'border-style'> || <'color'>"
 			},
 			{
 				name: "border-inline-start",
 				desc: "Logical 'border-left'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, line-width, line-style, color"
+				restriction: "length, line-width, line-style, color",
+				"status": "standard",
+				"syntax": "<'border-width'> || <'border-style'> || <'color'>"
 			},
 			{
 				name: "border-inline-end-color",
 				desc: "Logical 'border-right-color'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "color"
+				restriction: "color",
+				"status": "standard",
+				"syntax": "<'color'>"
 			},
 			{
 				name: "border-inline-start-color",
 				desc: "Logical 'border-left-color'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "color"
+				restriction: "color",
+				"status": "standard",
+				"syntax": "<'color'>"
 			},
 			{
 				name: "border-inline-end-style",
 				desc: "Logical 'border-right-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "line-style"
+				restriction: "line-style",
+				"status": "standard",
+				"syntax": "<'border-style'>"
 			},
 			{
 				name: "border-inline-start-style",
 				desc: "Logical 'border-left-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "lline-style"
+				restriction: "lline-style",
+				"status": "standard",
+				"syntax": "<'border-style'>"
 			},
 			{
 				name: "border-inline-end-width",
 				desc: "Logical 'border-right-width'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, line-width"
+				restriction: "length, line-width",
+				"status": "standard",
+				"syntax": "<'border-width'>"
 			},
 			{
 				name: "border-inline-start-width",
 				desc: "Logical 'border-left-width'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, line-width"
+				restriction: "length, line-width",
+				"status": "standard",
+				"syntax": "<'border-width'>"
 			},
 			{
 				name: "border-left",
 				desc: "Shorthand property for setting border width, style and color",
-				restriction: "length, line-width, line-style, color"
+				restriction: "length, line-width, line-style, color",
+				"status": "standard",
+				"syntax": "<br-width> || <br-style> || <color>"
 			},
 			{
 				name: "border-left-color",
 				desc: "Sets the color of the left border.",
-				restriction: "color"
+				restriction: "color",
+				"status": "standard",
+				"syntax": "<color>"
 			},
 			{
 				name: "border-left-style",
 				desc: "Sets the style of the left border.",
-				restriction: "line-style"
+				restriction: "line-style",
+				"status": "standard",
+				"syntax": "<br-style>"
 			},
 			{
 				name: "border-left-width",
 				desc: "Sets the thickness of the left border.",
-				restriction: "length, line-width"
+				restriction: "length, line-width",
+				"status": "standard",
+				"syntax": "<br-width>"
 			},
 			{
 				name: "border-radius",
 				desc: "Defines the radii of the outer border edge.",
 				browsers: "E,C,FF4,IE9,O10.5,S5",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"status": "standard",
+				"syntax": "<length-percentage>{1,4} [ / <length-percentage>{1,4} ]?"
 			},
 			{
 				name: "border-right",
 				desc: "Shorthand property for setting border width, style and color",
-				restriction: "length, line-width, line-style, color"
+				restriction: "length, line-width, line-style, color",
+				"status": "standard",
+				"syntax": "<br-width> || <br-style> || <color>"
 			},
 			{
 				name: "border-right-color",
 				desc: "Sets the color of the right border.",
-				restriction: "color"
+				restriction: "color",
+				"status": "standard",
+				"syntax": "<color>"
 			},
 			{
 				name: "border-right-style",
 				desc: "Sets the style of the right border.",
-				restriction: "line-style"
+				restriction: "line-style",
+				"status": "standard",
+				"syntax": "<br-style>"
 			},
 			{
 				name: "border-right-width",
 				desc: "Sets the thickness of the right border.",
-				restriction: "length, line-width"
+				restriction: "length, line-width",
+				"status": "standard",
+				"syntax": "<br-width>"
 			},
 			{
 				name: "border-spacing",
 				desc: "The lengths specify the distance that separates adjoining cell borders. If one length is specified, it gives both the horizontal and vertical spacing. If two are specified, the first gives the horizontal spacing and the second the vertical spacing. Lengths may not be negative.",
 				browsers: "E,C,FF1,IE8,O7,S1.2",
-				restriction: "length"
+				restriction: "length",
+				"status": "standard",
+				"syntax": "<length> <length>?"
 			},
 			{
 				name: "border-style",
 				desc: "The style of the border around edges of an element.",
 				restriction: "line-style",
-				values: []
+				values: [],
+				"status": "standard",
+				"syntax": "<br-style>{1,4}"
 			},
 			{
 				name: "border-top",
 				desc: "Shorthand property for setting border width, style and color",
-				restriction: "length, line-width, line-style, color"
+				restriction: "length, line-width, line-style, color",
+				"status": "standard",
+				"syntax": "<br-width> || <br-style> || <color>"
 			},
 			{
 				name: "border-top-color",
 				desc: "Sets the color of the top border.",
-				restriction: "color"
+				restriction: "color",
+				"status": "standard",
+				"syntax": "<color>"
 			},
 			{
 				name: "border-top-left-radius",
 				desc: "Defines the radii of the top left outer border edge.",
 				browsers: "E,C,FF4,IE9,O10.5,S5",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"status": "standard",
+				"syntax": "<length-percentage>{1,2}"
 			},
 			{
 				name: "border-top-right-radius",
 				desc: "Defines the radii of the top right outer border edge.",
 				browsers: "E,C,FF4,IE9,O10.5,S5",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"status": "standard",
+				"syntax": "<length-percentage>{1,2}"
 			},
 			{
 				name: "border-top-style",
 				desc: "Sets the style of the top border.",
-				restriction: "line-style"
+				restriction: "line-style",
+				"status": "standard",
+				"syntax": "<br-style>"
 			},
 			{
 				name: "border-top-width",
 				desc: "Sets the thickness of the top border.",
-				restriction: "length, line-width"
+				restriction: "length, line-width",
+				"status": "standard",
+				"syntax": "<br-width>"
 			},
 			{
 				name: "border-width",
 				desc: "Shorthand that sets the four 'border-*-width' properties. If it has four values, they set top, right, bottom and left in that order. If left is missing, it is the same as right; if bottom is missing, it is the same as top; if right is missing, it is the same as top.",
 				restriction: "length, line-width",
-				values: []
+				values: [],
+				"status": "standard",
+				"syntax": "<br-width>{1,4}"
 			},
 			{
 				name: "bottom",
@@ -1743,7 +1901,9 @@ export const data : any = {
 						name: "auto",
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<length> | <percentage> | auto"
 			},
 			{
 				name: "box-decoration-break",
@@ -1757,7 +1917,9 @@ export const data : any = {
 					{
 						name: "slice"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "slice | clone"
 			},
 			{
 				name: "box-shadow",
@@ -1768,7 +1930,9 @@ export const data : any = {
 					{
 						name: "inset"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | <shadow>#"
 			},
 			{
 				name: "box-sizing",
@@ -1782,7 +1946,9 @@ export const data : any = {
 					{
 						name: "content-box"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "content-box | border-box"
 			},
 			{
 				name: "break-after",
@@ -1826,7 +1992,9 @@ export const data : any = {
 						name: "right",
 						desc: "Force one or two page breaks before/after the generated box so that the next page is formatted as a right page."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | avoid | avoid-page | page | left | right | recto | verso | avoid-column | column | avoid-region | region"
 			},
 			{
 				name: "break-before",
@@ -1870,7 +2038,9 @@ export const data : any = {
 						name: "right",
 						desc: "Force one or two page breaks before/after the generated box so that the next page is formatted as a right page."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | avoid | avoid-page | page | left | right | recto | verso | avoid-column | column | avoid-region | region"
 			},
 			{
 				name: "break-inside",
@@ -1894,7 +2064,9 @@ export const data : any = {
 						name: "avoid-page",
 						desc: "Avoid a page break within the box."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | avoid | avoid-page | avoid-column | avoid-region"
 			},
 			{
 				name: "caption-side",
@@ -1910,7 +2082,9 @@ export const data : any = {
 						name: "top",
 						desc: "Positions the caption box above the table box."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "top | bottom | block-start | block-end | inline-start | inline-end"
 			},
 			{
 				name: "caret-color",
@@ -1922,7 +2096,9 @@ export const data : any = {
 						name: "auto",
 						desc: "The user agent selects an appropriate color for the caret. This is generally currentcolor, but the user agent may choose a different color to ensure good visibility and contrast with the surrounding content, taking into account the value of currentcolor, the background, shadows, and other factors."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | <color>"
 			},
 			{
 				name: "clear",
@@ -1945,7 +2121,9 @@ export const data : any = {
 						name: "right",
 						desc: "The clearance of the generated box is set to the amount necessary to place the top border edge below the bottom outer edge of any right-floating boxes that resulted from elements earlier in the source document."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | left | right | both | inline-start | inline-end"
 			},
 			{
 				name: "clip",
@@ -1959,7 +2137,9 @@ export const data : any = {
 					{
 						name: "rect()"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<shape> | auto"
 			},
 			{
 				name: "clip-path",
@@ -1975,7 +2155,9 @@ export const data : any = {
 						name: "url()",
 						desc: "References a <clipPath> element to create a clipping path."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<clip-source> | [ <basic-shape> || <geometry-box> ] | none"
 			},
 			{
 				name: "clip-rule",
@@ -1994,7 +2176,9 @@ export const data : any = {
 			{
 				name: "color",
 				desc: "Color of an element's text",
-				restriction: "color"
+				restriction: "color",
+				"status": "standard",
+				"syntax": "<color>"
 			},
 			{
 				name: "color-interpolation-filters",
@@ -2024,7 +2208,9 @@ export const data : any = {
 						name: "auto",
 						desc: "Determines the number of columns by the 'column-width' property and the element width."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<integer> | auto"
 			},
 			{
 				name: "column-fill",
@@ -2039,7 +2225,9 @@ export const data : any = {
 					{
 						name: "balance"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | balance | balance-all"
 			},
 			{
 				name: "column-gap",
@@ -2051,31 +2239,41 @@ export const data : any = {
 						name: "normal",
 						desc: "User agent specific and typically equivalent to 1em."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | <length-percentage>"
 			},
 			{
 				name: "column-rule",
 				desc: "Shorthand for setting 'column-rule-width', 'column-rule-style', and 'column-rule-color' at the same place in the style sheet. Omitted values are set to their initial values.",
 				browsers: "E,IE10,O11.5,S9",
-				restriction: "length, line-width, line-style, color"
+				restriction: "length, line-width, line-style, color",
+				"status": "standard",
+				"syntax": "<'column-rule-width'> || <'column-rule-style'> || <'column-rule-color'>"
 			},
 			{
 				name: "column-rule-color",
 				desc: "Sets the color of the column rule",
 				browsers: "E,IE10,O11.6",
-				restriction: "color"
+				restriction: "color",
+				"status": "standard",
+				"syntax": "<color>"
 			},
 			{
 				name: "column-rule-style",
 				desc: "Sets the style of the rule between columns of an element.",
 				browsers: "E,IE10,O11.5,S6",
-				restriction: "line-style"
+				restriction: "line-style",
+				"status": "standard",
+				"syntax": "<'border-style'>"
 			},
 			{
 				name: "column-rule-width",
 				desc: "Sets the width of the rule between columns. Negative values are not allowed.",
 				browsers: "E,IE10,O11.5,S9",
-				restriction: "length, line-width"
+				restriction: "length, line-width",
+				"status": "standard",
+				"syntax": "<'border-width'>"
 			},
 			{
 				name: "columns",
@@ -2087,7 +2285,9 @@ export const data : any = {
 						name: "auto",
 						desc: "The width depends on the values of other properties."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<'column-width'> || <'column-count'>"
 			},
 			{
 				name: "column-span",
@@ -2103,7 +2303,9 @@ export const data : any = {
 						name: "none",
 						desc: "The element does not span multiple columns."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | all"
 			},
 			{
 				name: "column-width",
@@ -2115,7 +2317,9 @@ export const data : any = {
 						name: "auto",
 						desc: "The width depends on the values of other properties."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<length> | auto"
 			},
 			{
 				name: "contain",
@@ -2148,7 +2352,9 @@ export const data : any = {
 					{
 						name: "paint"
 					}
-				]
+				],
+				"status": "experimental",
+				"syntax": "none | strict | content | [ size || layout || style || paint ]"
 			},
 			{
 				name: "content",
@@ -2177,7 +2383,9 @@ export const data : any = {
 					{
 						name: "url()"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | none | [ <content-replacement> | <content-list> ] [/ <string> ]?"
 			},
 			{
 				name: "counter-increment",
@@ -2189,7 +2397,9 @@ export const data : any = {
 						name: "none",
 						desc: "This element does not alter the value of any counters."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "[ <custom-ident> <integer>? ]+ | none"
 			},
 			{
 				name: "counter-reset",
@@ -2201,7 +2411,9 @@ export const data : any = {
 						name: "none",
 						desc: "The counter is not modified."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "[ <custom-ident> <integer>? ]+ | none"
 			},
 			{
 				name: "cursor",
@@ -2356,7 +2568,9 @@ export const data : any = {
 						name: "zoom-out",
 						browsers: "E,C37,FF24,O12.1,S9"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "[ [ <url> [ <x> <y> ]? , ]* [ auto | default | none | context-menu | help | pointer | progress | wait | cell | crosshair | text | vertical-text | alias | copy | move | no-drop | not-allowed | e-resize | n-resize | ne-resize | nw-resize | s-resize | se-resize | sw-resize | w-resize | ew-resize | ns-resize | nesw-resize | nwse-resize | col-resize | row-resize | all-scroll | zoom-in | zoom-out | grab | grabbing ] ]"
 			},
 			{
 				name: "direction",
@@ -2369,7 +2583,9 @@ export const data : any = {
 					{
 						name: "rtl"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "ltr | rtl"
 			},
 			{
 				name: "display",
@@ -2552,7 +2768,9 @@ export const data : any = {
 						name: "-webkit-inline-flex",
 						browsers: "C21,O15,S6.1"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "[ <display-outside> || <display-inside> ] | <display-listitem> | <display-internal> | <display-box> | <display-legacy>"
 			},
 			{
 				name: "empty-cells",
@@ -2570,7 +2788,9 @@ export const data : any = {
 					{
 						name: "show"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "show | hide"
 			},
 			{
 				name: "enable-background",
@@ -2589,7 +2809,9 @@ export const data : any = {
 				name: "fallback",
 				desc: "@counter-style descriptor. Specifies a fallback counter style to be used when the current counter style can’t create a representation for a given counter value.",
 				browsers: "FF33",
-				restriction: "identifier"
+				restriction: "identifier",
+				"status": "standard",
+				"syntax": "<counter-style-name>"
 			},
 			{
 				name: "fill",
@@ -2665,7 +2887,9 @@ export const data : any = {
 						desc: "A filter reference to a <filter> element.",
 						browsers: "FF3.6"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | <filter-function-list>"
 			},
 			{
 				name: "flex",
@@ -2686,7 +2910,9 @@ export const data : any = {
 						name: "none",
 						desc: "Expands to '0 0 auto'."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]"
 			},
 			{
 				name: "flex-basis",
@@ -2703,7 +2929,9 @@ export const data : any = {
 						desc: "Indicates automatic sizing, based on the flex item’s content.",
 						browsers: "E,IE11"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "content | <'width'>"
 			},
 			{
 				name: "flex-direction",
@@ -2725,7 +2953,9 @@ export const data : any = {
 					{
 						name: "row-reverse"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "row | row-reverse | column | column-reverse"
 			},
 			{
 				name: "flex-flow",
@@ -2758,19 +2988,25 @@ export const data : any = {
 					{
 						name: "wrap-reverse"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<'flex-direction'> || <'flex-wrap'>"
 			},
 			{
 				name: "flex-grow",
 				desc: "Sets the flex grow factor. Negative numbers are invalid.",
 				browsers: "E,C29,FF22,IE11,O12.1,S9",
-				restriction: "number"
+				restriction: "number",
+				"status": "standard",
+				"syntax": "<number>"
 			},
 			{
 				name: "flex-shrink",
 				desc: "Sets the flex shrink factor. Negative numbers are invalid.",
 				browsers: "E,C29,FF22,IE11,O12.1,S9",
-				restriction: "number"
+				restriction: "number",
+				"status": "standard",
+				"syntax": "<number>"
 			},
 			{
 				name: "flex-wrap",
@@ -2789,7 +3025,9 @@ export const data : any = {
 					{
 						name: "wrap-reverse"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "nowrap | wrap | wrap-reverse"
 			},
 			{
 				name: "float",
@@ -2816,7 +3054,9 @@ export const data : any = {
 						name: "right",
 						desc: "Similar to 'left', except the box is floated to the right, and content flows on the left side of the box, starting at the top."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "left | right | none | inline-start | inline-end"
 			},
 			{
 				name: "flood-color",
@@ -2933,7 +3173,9 @@ export const data : any = {
 					{
 						name: "xx-small"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "[ [ <'font-style'> || <font-variant-css21> || <'font-weight'> || <'font-stretch'> ]? <'font-size'> [ / <'line-height'> ]? <'font-family'> ] | caption | icon | menu | message-box | small-caption | status-bar"
 			},
 			{
 				name: "font-family",
@@ -2994,7 +3236,9 @@ export const data : any = {
 					{
 						name: "Verdana, Geneva, Tahoma, sans-serif"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<family-name>"
 			},
 			{
 				name: "font-feature-settings",
@@ -3374,7 +3618,9 @@ export const data : any = {
 						name: "on",
 						desc: "Enable feature."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | <feature-tag-value>#"
 			},
 			{
 				name: "font-kerning",
@@ -3394,7 +3640,9 @@ export const data : any = {
 						name: "normal",
 						desc: "Specifies that kerning is applied."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | normal | none"
 			},
 			{
 				name: "font-language-override",
@@ -3406,7 +3654,9 @@ export const data : any = {
 						name: "normal",
 						desc: "Implies that when rendering with OpenType fonts the language of the document is used to infer the OpenType language system, used to select language specific features when rendering."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | <string>"
 			},
 			{
 				name: "font-size",
@@ -3440,7 +3690,9 @@ export const data : any = {
 					{
 						name: "xx-small"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<absolute-size> | <relative-size> | <length-percentage>"
 			},
 			{
 				name: "font-size-adjust",
@@ -3452,7 +3704,9 @@ export const data : any = {
 						name: "none",
 						desc: "Do not preserve the font’s x-height."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | <number>"
 			},
 			{
 				name: "font-stretch",
@@ -3495,7 +3749,9 @@ export const data : any = {
 						name: "wider",
 						browsers: "E,IE10"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | ultra-condensed | extra-condensed | condensed | semi-condensed | semi-expanded | expanded | extra-expanded | ultra-expanded"
 			},
 			{
 				name: "font-style",
@@ -3514,7 +3770,9 @@ export const data : any = {
 						name: "oblique",
 						desc: "Selects a font that is labeled as an 'oblique' face, or an 'italic' face if one is not."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | italic | oblique"
 			},
 			{
 				name: "font-synthesis",
@@ -3533,7 +3791,9 @@ export const data : any = {
 					{
 						name: "weight"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | [ weight || style ]"
 			},
 			{
 				name: "font-variant",
@@ -3548,7 +3808,9 @@ export const data : any = {
 						name: "small-caps",
 						desc: "Specifies a font that is labeled as a small-caps font. If a genuine small-caps font is not available, user agents should simulate a small-caps font."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | none | [ <common-lig-values> || <discretionary-lig-values> || <historical-lig-values> || <contextual-alt-values> || stylistic(<feature-value-name>) || historical-forms || styleset(<feature-value-name>#) || character-variant(<feature-value-name>#) || swash(<feature-value-name>) || ornaments(<feature-value-name>) || annotation(<feature-value-name>) || [ small-caps | all-small-caps | petite-caps | all-petite-caps | unicase | titling-caps ] || <numeric-figure-values> || <numeric-spacing-values> || <numeric-fraction-values> || ordinal || slashed-zero || <east-asian-variant-values> || <east-asian-width-values> || ruby ]"
 			},
 			{
 				name: "font-variant-alternates",
@@ -3581,7 +3843,9 @@ export const data : any = {
 					{
 						name: "swash()"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | [ stylistic( <feature-value-name> ) || historical-forms || styleset( <feature-value-name># ) || character-variant( <feature-value-name># ) || swash( <feature-value-name> ) || ornaments( <feature-value-name> ) || annotation( <feature-value-name> ) ]"
 			},
 			{
 				name: "font-variant-caps",
@@ -3612,7 +3876,9 @@ export const data : any = {
 					{
 						name: "unicase"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | small-caps | all-small-caps | petite-caps | all-petite-caps | unicase | titling-caps"
 			},
 			{
 				name: "font-variant-east-asian",
@@ -3652,7 +3918,9 @@ export const data : any = {
 					{
 						name: "traditional"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | [ <east-asian-variant-values> || <east-asian-width-values> || ruby ]"
 			},
 			{
 				name: "font-variant-ligatures",
@@ -3701,7 +3969,9 @@ export const data : any = {
 						name: "normal",
 						desc: "Implies that the defaults set by the font are used."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | none | [ <common-lig-values> || <discretionary-lig-values> || <historical-lig-values> || <contextual-alt-values> ]"
 			},
 			{
 				name: "font-variant-numeric",
@@ -3737,7 +4007,9 @@ export const data : any = {
 					{
 						name: "tabular-nums"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | [ <numeric-figure-values> || <numeric-spacing-values> || <numeric-fraction-values> || ordinal || slashed-zero ]"
 			},
 			{
 				name: "font-variant-position",
@@ -3757,7 +4029,9 @@ export const data : any = {
 						name: "super",
 						desc: "Enables display of superscript variants (OpenType feature: sups)."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | sub | super"
 			},
 			{
 				name: "font-weight",
@@ -3804,7 +4078,9 @@ export const data : any = {
 						name: "normal",
 						desc: "Same as 400"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | bold | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900"
 			},
 			{
 				name: "glyph-orientation-horizontal",
@@ -3835,13 +4111,17 @@ export const data : any = {
 					{
 						name: "span"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<grid-line> [ / <grid-line> ]{0,3}"
 			},
 			{
 				name: "grid",
 				desc: "The grid CSS property is a shorthand property that sets all of the explicit grid properties ('grid-template-rows', 'grid-template-columns', and 'grid-template-areas'), and all the implicit grid properties ('grid-auto-rows', 'grid-auto-columns', and 'grid-auto-flow'), in a single declaration.",
 				browsers: "FF52,C57,E16,S10.1,O44",
-				restriction: "identifier, length, percentage, string, enum"
+				restriction: "identifier, length, percentage, string, enum",
+				"status": "standard",
+				"syntax": "<'grid-template'> | <'grid-template-rows'> / [ auto-flow && dense? ] <'grid-auto-columns'>? | [ auto-flow && dense? ] <'grid-auto-rows'>? / <'grid-template-columns'>"
 			},
 			{
 				name: "grid-auto-columns",
@@ -3864,7 +4144,9 @@ export const data : any = {
 					{
 						name: "minmax()"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<track-size>+"
 			},
 			{
 				name: "grid-auto-flow",
@@ -3883,7 +4165,9 @@ export const data : any = {
 					{
 						name: "dense"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "[ row | column ] || dense"
 			},
 			{
 				name: "grid-auto-rows",
@@ -3906,7 +4190,9 @@ export const data : any = {
 					{
 						name: "minmax()"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<track-size>+"
 			},
 			{
 				name: "grid-column",
@@ -3921,7 +4207,9 @@ export const data : any = {
 					{
 						name: "span"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<grid-line> [ / <grid-line> ]?"
 			},
 			{
 				name: "grid-column-end",
@@ -3936,13 +4224,17 @@ export const data : any = {
 					{
 						name: "span"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<grid-line>"
 			},
 			{
 				name: "grid-column-gap",
 				desc: "Specifies the gutters between grid columns.",
 				browsers: "FF52,C57,S10.1,O44",
-				restriction: "length"
+				restriction: "length",
+				"status": "obsolete",
+				"syntax": "<length-percentage>"
 			},
 			{
 				name: "grid-column-start",
@@ -3957,13 +4249,17 @@ export const data : any = {
 					{
 						name: "span"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<grid-line>"
 			},
 			{
 				name: "grid-gap",
 				desc: "Shorthand that specifies the gutters between grid columns and grid rows in one declaration.",
 				browsers: "FF52,C57,S10.1,O44",
-				restriction: "length"
+				restriction: "length",
+				"status": "obsolete",
+				"syntax": "<'grid-row-gap'> <'grid-column-gap'>?"
 			},
 			{
 				name: "grid-row",
@@ -3978,7 +4274,9 @@ export const data : any = {
 					{
 						name: "span"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<grid-line> [ / <grid-line> ]?"
 			},
 			{
 				name: "grid-row-end",
@@ -3993,13 +4291,17 @@ export const data : any = {
 					{
 						name: "span"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<grid-line>"
 			},
 			{
 				name: "grid-row-gap",
 				desc: "Specifies the gutters between grid rows.",
 				browsers: "FF52,C57,S10.1,O44",
-				restriction: "length"
+				restriction: "length",
+				"status": "obsolete",
+				"syntax": "<length-percentage>"
 			},
 			{
 				name: "grid-row-start",
@@ -4014,7 +4316,9 @@ export const data : any = {
 					{
 						name: "span"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<grid-line>"
 			},
 			{
 				name: "grid-template",
@@ -4049,7 +4353,9 @@ export const data : any = {
 						name: "repeat()",
 						desc: "Represents a repeated fragment of the track list, allowing a large number of columns or rows that exhibit a recurring pattern to be written in a more compact form."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | [ <'grid-template-rows'> / <'grid-template-columns'> ] | [ <line-names>? <string> <track-size>? <line-names>? ]+ [ / <explicit-track-list> ]?"
 			},
 			{
 				name: "grid-template-areas",
@@ -4061,7 +4367,9 @@ export const data : any = {
 						name: "none",
 						desc: "The grid container doesn’t define any named grid areas."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | <string>+"
 			},
 			{
 				name: "grid-template-columns",
@@ -4096,7 +4404,9 @@ export const data : any = {
 						name: "repeat()",
 						desc: "Represents a repeated fragment of the track list, allowing a large number of columns or rows that exhibit a recurring pattern to be written in a more compact form."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | <track-list> | <auto-track-list>"
 			},
 			{
 				name: "grid-template-rows",
@@ -4131,7 +4441,9 @@ export const data : any = {
 						name: "repeat()",
 						desc: "Represents a repeated fragment of the track list, allowing a large number of columns or rows that exhibit a recurring pattern to be written in a more compact form."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | <track-list> | <auto-track-list>"
 			},
 			{
 				name: "height",
@@ -4156,7 +4468,9 @@ export const data : any = {
 						desc: "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
 						browsers: "C46,O33"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<viewport-length>{1,2}"
 			},
 			{
 				name: "hyphens",
@@ -4175,7 +4489,9 @@ export const data : any = {
 						name: "none",
 						desc: "Words are not broken at line breaks, even if characters inside the word suggest line break points."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | manual | auto"
 			},
 			{
 				name: "image-orientation",
@@ -4189,7 +4505,9 @@ export const data : any = {
 					{
 						name: "from-image"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "from-image | <angle> | [ <angle>? flip ]"
 			},
 			{
 				name: "image-rendering",
@@ -4218,7 +4536,9 @@ export const data : any = {
 					{
 						name: "pixelated"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | crisp-edges | pixelated"
 			},
 			{
 				name: "ime-mode",
@@ -4243,7 +4563,9 @@ export const data : any = {
 						name: "normal",
 						desc: "The IME state should be normal; this value can be used in a user style sheet to override the page setting."
 					}
-				]
+				],
+				"status": "obsolete",
+				"syntax": "auto | normal | active | inactive | disabled"
 			},
 			{
 				name: "inline-size",
@@ -4255,7 +4577,9 @@ export const data : any = {
 						name: "auto",
 						desc: "Depends on the values of other properties."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<'width'>"
 			},
 			{
 				name: "isolation",
@@ -4271,7 +4595,9 @@ export const data : any = {
 						name: "isolate",
 						desc: "In CSS will turn the element into a stacking context."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | isolate"
 			},
 			{
 				name: "justify-content",
@@ -4340,7 +4666,9 @@ export const data : any = {
 						name: "last baseline",
 						desc: "Specifies participation in last-baseline alignment."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | <content-distribution> | <overflow-position>? [ <content-position> | left | right ]"
 			},
 			{
 				name: "kerning",
@@ -4362,7 +4690,9 @@ export const data : any = {
 						name: "auto",
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<length> | <percentage> | auto"
 			},
 			{
 				name: "letter-spacing",
@@ -4373,7 +4703,9 @@ export const data : any = {
 						name: "normal",
 						desc: "The spacing is the normal spacing for the current font. It is typically zero-length."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | <length>"
 			},
 			{
 				name: "lighting-color",
@@ -4403,7 +4735,9 @@ export const data : any = {
 						name: "strict",
 						desc: "Breaks CJK scripts using a more restrictive set of line-breaking rules than 'normal'."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | loose | normal | strict"
 			},
 			{
 				name: "line-height",
@@ -4414,7 +4748,9 @@ export const data : any = {
 						name: "normal",
 						desc: "Tells user agents to set the computed value to a 'reasonable' value based on the font size of the element."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | <number> | <length> | <percentage>"
 			},
 			{
 				name: "list-style",
@@ -4480,7 +4816,9 @@ export const data : any = {
 					{
 						name: "url()"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<'list-style-type'> || <'list-style-position'> || <'list-style-image'>"
 			},
 			{
 				name: "list-style-image",
@@ -4491,7 +4829,9 @@ export const data : any = {
 						name: "none",
 						desc: "The default contents of the of the list item’s marker are given by 'list-style-type' instead."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<url> | none"
 			},
 			{
 				name: "list-style-position",
@@ -4504,7 +4844,9 @@ export const data : any = {
 					{
 						name: "outside"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "inside | outside"
 			},
 			{
 				name: "list-style-type",
@@ -4573,7 +4915,9 @@ export const data : any = {
 						name: "upper-roman",
 						desc: "Uppercase ASCII Roman numerals."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<counter-style> | <string> | none"
 			},
 			{
 				name: "margin",
@@ -4583,7 +4927,9 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "[ <length> | <percentage> | auto ]{1,4}"
 			},
 			{
 				name: "margin-block-end",
@@ -4594,7 +4940,9 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<'margin-left'>"
 			},
 			{
 				name: "margin-block-start",
@@ -4605,7 +4953,9 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<'margin-left'>"
 			},
 			{
 				name: "margin-bottom",
@@ -4615,7 +4965,9 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<length> | <percentage> | auto"
 			},
 			{
 				name: "margin-inline-end",
@@ -4626,7 +4978,9 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<'margin-left'>"
 			},
 			{
 				name: "margin-inline-start",
@@ -4637,7 +4991,9 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<'margin-left'>"
 			},
 			{
 				name: "margin-left",
@@ -4647,7 +5003,9 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<length> | <percentage> | auto"
 			},
 			{
 				name: "margin-right",
@@ -4657,7 +5015,9 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<length> | <percentage> | auto"
 			},
 			{
 				name: "margin-top",
@@ -4667,7 +5027,9 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<length> | <percentage> | auto"
 			},
 			{
 				name: "marker",
@@ -4743,7 +5105,9 @@ export const data : any = {
 						name: "url()",
 						desc: "Reference to a <mask element or to a CSS image."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<mask-reference>#"
 			},
 			{
 				name: "mask-mode",
@@ -4763,25 +5127,33 @@ export const data : any = {
 						name: "luminance",
 						desc: "Luminance values of the mask layer image should be used as the mask values."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<masking-mode>#"
 			},
 			{
 				name: "mask-origin",
 				desc: "Specifies the mask positioning area.",
 				browsers: "FF53",
-				restriction: "geometry-box, enum"
+				restriction: "geometry-box, enum",
+				"status": "standard",
+				"syntax": "<geometry-box>#"
 			},
 			{
 				name: "mask-position",
 				desc: "Specifies how mask layer images are positioned.",
 				browsers: "FF53",
-				restriction: "position, length, percentage"
+				restriction: "position, length, percentage",
+				"status": "standard",
+				"syntax": "<position>#"
 			},
 			{
 				name: "mask-repeat",
 				desc: "Specifies how mask layer images are tiled after they have been sized and positioned.",
 				browsers: "FF53",
-				restriction: "repeat"
+				restriction: "repeat",
+				"status": "standard",
+				"syntax": "<repeat-style>#"
 			},
 			{
 				name: "mask-size",
@@ -4801,7 +5173,9 @@ export const data : any = {
 						name: "cover",
 						desc: "Scale the image, while preserving its intrinsic aspect ratio (if any), to the smallest size such that both its width and its height can completely cover the background positioning area."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<bg-size>#"
 			},
 			{
 				name: "mask-type",
@@ -4817,7 +5191,9 @@ export const data : any = {
 						name: "luminance",
 						desc: "Indicates that the luminance values of the mask should be used."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "luminance | alpha"
 			},
 			{
 				name: "max-block-size",
@@ -4829,7 +5205,9 @@ export const data : any = {
 						name: "none",
 						desc: "No limit on the width of the box."
 					}
-				]
+				],
+				"status": "experimental",
+				"syntax": "<'max-width'>"
 			},
 			{
 				name: "max-height",
@@ -4855,7 +5233,9 @@ export const data : any = {
 						desc: "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
 						browsers: "C46,O33"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<viewport-length>"
 			},
 			{
 				name: "max-inline-size",
@@ -4867,7 +5247,9 @@ export const data : any = {
 						name: "none",
 						desc: "No limit on the height of the box."
 					}
-				]
+				],
+				"status": "experimental",
+				"syntax": "<'max-width'>"
 			},
 			{
 				name: "max-width",
@@ -4893,13 +5275,17 @@ export const data : any = {
 						desc: "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
 						browsers: "C46,O33"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<viewport-length>"
 			},
 			{
 				name: "min-block-size",
 				desc: "Logical 'min-width'. Mapping depends on the element’s 'writing-mode'.",
 				browsers: "FF41",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"status": "standard",
+				"syntax": "<'min-width'>"
 			},
 			{
 				name: "min-height",
@@ -4925,13 +5311,17 @@ export const data : any = {
 						desc: "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
 						browsers: "C46,O33"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<viewport-length>"
 			},
 			{
 				name: "min-inline-size",
 				desc: "Logical 'min-height'. Mapping depends on the element’s 'writing-mode'.",
 				browsers: "FF41",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"status": "standard",
+				"syntax": "<'min-width'>"
 			},
 			{
 				name: "min-width",
@@ -4957,7 +5347,9 @@ export const data : any = {
 						desc: "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
 						browsers: "C46,O33"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<viewport-length>"
 			},
 			{
 				name: "mix-blend-mode",
@@ -5018,7 +5410,9 @@ export const data : any = {
 						name: "luminosity",
 						browsers: "C41,FF32,O29"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<blend-mode>"
 			},
 			{
 				name: "motion",
@@ -5408,7 +5802,9 @@ export const data : any = {
 					{
 						name: "window"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "none | button | button-arrow-down | button-arrow-next | button-arrow-previous | button-arrow-up | button-bevel | button-focus | caret | checkbox | checkbox-container | checkbox-label | checkmenuitem | dualbutton | groupbox | listbox | listitem | menuarrow | menubar | menucheckbox | menuimage | menuitem | menuitemtext | menulist | menulist-button | menulist-text | menulist-textfield | menupopup | menuradio | menuseparator | meterbar | meterchunk | progressbar | progressbar-vertical | progresschunk | progresschunk-vertical | radio | radio-container | radio-label | radiomenuitem | range | range-thumb | resizer | resizerpanel | scale-horizontal | scalethumbend | scalethumb-horizontal | scalethumbstart | scalethumbtick | scalethumb-vertical | scale-vertical | scrollbarbutton-down | scrollbarbutton-left | scrollbarbutton-right | scrollbarbutton-up | scrollbarthumb-horizontal | scrollbarthumb-vertical | scrollbartrack-horizontal | scrollbartrack-vertical | searchfield | separator | sheet | spinner | spinner-downbutton | spinner-textfield | spinner-upbutton | splitter | statusbar | statusbarpanel | tab | tabpanel | tabpanels | tab-scroll-arrow-back | tab-scroll-arrow-forward | textfield | textfield-multiline | toolbar | toolbarbutton | toolbarbutton-dropdown | toolbargripper | toolbox | tooltip | treeheader | treeheadercell | treeheadersortarrow | treeitem | treeline | treetwisty | treetwistyopen | treeview | -moz-mac-unified-toolbar | -moz-win-borderless-glass | -moz-win-browsertabbar-toolbox | -moz-win-communicationstext | -moz-win-communications-toolbox | -moz-win-exclude-glass | -moz-win-glass | -moz-win-mediatext | -moz-win-media-toolbox | -moz-window-button-box | -moz-window-button-box-maximized | -moz-window-button-close | -moz-window-button-maximize | -moz-window-button-minimize | -moz-window-button-restore | -moz-window-frame-bottom | -moz-window-frame-left | -moz-window-frame-right | -moz-window-titlebar | -moz-window-titlebar-maximized"
 			},
 			{
 				name: "-moz-backface-visibility",
@@ -5462,7 +5858,9 @@ export const data : any = {
 				name: "-moz-border-bottom-colors",
 				desc: "Sets a list of colors for the bottom border.",
 				browsers: "FF1",
-				restriction: "color"
+				restriction: "color",
+				"status": "nonstandard",
+				"syntax": "[ <color> ]* <color> | none"
 			},
 			{
 				name: "-moz-border-image",
@@ -5505,19 +5903,25 @@ export const data : any = {
 				name: "-moz-border-left-colors",
 				desc: "Sets a list of colors for the bottom border.",
 				browsers: "FF1",
-				restriction: "color"
+				restriction: "color",
+				"status": "nonstandard",
+				"syntax": "[ <color> ]* <color> | none"
 			},
 			{
 				name: "-moz-border-right-colors",
 				desc: "Sets a list of colors for the bottom border.",
 				browsers: "FF1",
-				restriction: "color"
+				restriction: "color",
+				"status": "nonstandard",
+				"syntax": "[ <color> ]* <color> | none"
 			},
 			{
 				name: "-moz-border-top-colors",
 				desc: "Ske Firefox, -moz-border-bottom-colors sets a list of colors for the bottom border.",
 				browsers: "FF1",
-				restriction: "color"
+				restriction: "color",
+				"status": "nonstandard",
+				"syntax": "[ <color> ]* <color> | none"
 			},
 			{
 				name: "-moz-box-align",
@@ -6038,7 +6442,9 @@ export const data : any = {
 					{
 						name: "normal"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "ignore | normal | select-after | select-before | select-menu | select-same | select-all | none"
 			},
 			{
 				name: "-moz-user-select",
@@ -6084,7 +6490,9 @@ export const data : any = {
 					{
 						name: "true"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "false | true"
 			},
 			{
 				name: "-ms-behavior",
@@ -6110,7 +6518,9 @@ export const data : any = {
 					{
 						name: "tb"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "tb | rl | bt | lr"
 			},
 			{
 				name: "-ms-content-zoom-chaining",
@@ -6125,7 +6535,9 @@ export const data : any = {
 						name: "none",
 						desc: "A bounce effect is shown when the user hits a zoom limit during a manipulation."
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "none | chained"
 			},
 			{
 				name: "-ms-content-zooming",
@@ -6140,25 +6552,33 @@ export const data : any = {
 					{
 						name: "zoom"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "none | zoom"
 			},
 			{
 				name: "-ms-content-zoom-limit",
 				desc: "Shorthand property for the -ms-content-zoom-limit-min and -ms-content-zoom-limit-max properties.",
 				browsers: "E,IE10",
-				restriction: "percentage"
+				restriction: "percentage",
+				"status": "nonstandard",
+				"syntax": "<'-ms-content-zoom-limit-min'> <'-ms-content-zoom-limit-max'>"
 			},
 			{
 				name: "-ms-content-zoom-limit-max",
 				desc: "Specifies the maximum zoom factor.",
 				browsers: "E,IE10",
-				restriction: "percentage"
+				restriction: "percentage",
+				"status": "nonstandard",
+				"syntax": "<percentage>"
 			},
 			{
 				name: "-ms-content-zoom-limit-min",
 				desc: "Specifies the minimum zoom factor.",
 				browsers: "E,IE10",
-				restriction: "percentage"
+				restriction: "percentage",
+				"status": "nonstandard",
+				"syntax": "<percentage>"
 			},
 			{
 				name: "-ms-content-zoom-snap",
@@ -6185,7 +6605,9 @@ export const data : any = {
 						name: "snapList()",
 						desc: "Specifies the position of individual snap-points as a comma-separated list of zoom factors."
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "<'-ms-content-zoom-snap-type'> || <'-ms-content-zoom-snap-points'>"
 			},
 			{
 				name: "-ms-content-zoom-snap-points",
@@ -6200,7 +6622,9 @@ export const data : any = {
 						name: "snapList()",
 						desc: "Specifies the position of individual snap-points as a comma-separated list of zoom factors."
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "snapInterval( <percentage>, <percentage> ) | snapList( <percentage># )"
 			},
 			{
 				name: "-ms-content-zoom-snap-type",
@@ -6220,13 +6644,17 @@ export const data : any = {
 						name: "proximity",
 						desc: "Indicates that the motion of the content after the contact is picked up may be adjusted if the content would normally stop \"close enough\" to a snap-point."
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "none | proximity | mandatory"
 			},
 			{
 				name: "-ms-filter",
 				desc: "IE only. Used to produce visual effects.",
 				browsers: "IE8-9",
-				restriction: "string"
+				restriction: "string",
+				"status": "nonstandard",
+				"syntax": "<string>"
 			},
 			{
 				name: "-ms-flex",
@@ -6451,7 +6879,9 @@ export const data : any = {
 						name: "none",
 						desc: "The block container is not a CSS Region."
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "[ none | <custom-ident> ]#"
 			},
 			{
 				name: "-ms-flow-into",
@@ -6463,7 +6893,9 @@ export const data : any = {
 						name: "none",
 						desc: "The element is not moved to a named flow and normal CSS processing takes place."
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "[ none | <custom-ident> ]#"
 			},
 			{
 				name: "-ms-grid-column",
@@ -6589,7 +7021,9 @@ export const data : any = {
 						name: "none",
 						desc: "No adjustments will be applied."
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "auto | none"
 			},
 			{
 				name: "-ms-hyphenate-limit-chars",
@@ -6601,7 +7035,9 @@ export const data : any = {
 						name: "auto",
 						desc: "The user agent chooses a value that adapts to the current layout."
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "auto | <integer>{1,3}"
 			},
 			{
 				name: "-ms-hyphenate-limit-lines",
@@ -6612,13 +7048,17 @@ export const data : any = {
 					{
 						name: "no-limit"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "no-limit | <integer>"
 			},
 			{
 				name: "-ms-hyphenate-limit-zone",
 				desc: "Specifies the maximum amount of unfilled space (before justification) that may be left in the line box before hyphenation is triggered to pull part of a word from the next line back up into the current line.",
 				browsers: "E,IE10",
-				restriction: "percentage, length"
+				restriction: "percentage, length",
+				"status": "nonstandard",
+				"syntax": "<percentage> | <length>"
 			},
 			{
 				name: "-ms-hyphens",
@@ -6823,7 +7263,9 @@ export const data : any = {
 					{
 						name: "scrollbar"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "auto | none | scrollbar | -ms-autohiding-scrollbar"
 			},
 			{
 				name: "-ms-perspective",
@@ -6873,49 +7315,65 @@ export const data : any = {
 				name: "-ms-scrollbar-3dlight-color",
 				desc: "Determines the color of the top and left edges of the scroll box and scroll arrows of a scroll bar.",
 				browsers: "IE8",
-				restriction: "color"
+				restriction: "color",
+				"status": "nonstandard",
+				"syntax": "<color>"
 			},
 			{
 				name: "-ms-scrollbar-arrow-color",
 				desc: "Determines the color of the arrow elements of a scroll arrow.",
 				browsers: "IE8",
-				restriction: "color"
+				restriction: "color",
+				"status": "nonstandard",
+				"syntax": "<color>"
 			},
 			{
 				name: "-ms-scrollbar-base-color",
 				desc: "Determines the color of the main elements of a scroll bar, which include the scroll box, track, and scroll arrows.",
 				browsers: "IE8",
-				restriction: "color"
+				restriction: "color",
+				"status": "nonstandard",
+				"syntax": "<color>"
 			},
 			{
 				name: "-ms-scrollbar-darkshadow-color",
 				desc: "Determines the color of the gutter of a scroll bar.",
 				browsers: "IE8",
-				restriction: "color"
+				restriction: "color",
+				"status": "nonstandard",
+				"syntax": "<color>"
 			},
 			{
 				name: "-ms-scrollbar-face-color",
 				desc: "Determines the color of the scroll box and scroll arrows of a scroll bar.",
 				browsers: "IE8",
-				restriction: "color"
+				restriction: "color",
+				"status": "nonstandard",
+				"syntax": "<color>"
 			},
 			{
 				name: "-ms-scrollbar-highlight-color",
 				desc: "Determines the color of the top and left edges of the scroll box and scroll arrows of a scroll bar.",
 				browsers: "IE8",
-				restriction: "color"
+				restriction: "color",
+				"status": "nonstandard",
+				"syntax": "<color>"
 			},
 			{
 				name: "-ms-scrollbar-shadow-color",
 				desc: "Determines the color of the bottom and right edges of the scroll box and scroll arrows of a scroll bar.",
 				browsers: "IE8",
-				restriction: "color"
+				restriction: "color",
+				"status": "nonstandard",
+				"syntax": "<color>"
 			},
 			{
 				name: "-ms-scrollbar-track-color",
 				desc: "Determines the color of the track element of a scroll bar.",
 				browsers: "IE8",
-				restriction: "color"
+				restriction: "color",
+				"status": "nonstandard",
+				"syntax": "<color>"
 			},
 			{
 				name: "-ms-scroll-chaining",
@@ -6929,7 +7387,9 @@ export const data : any = {
 					{
 						name: "none"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "chained | none"
 			},
 			{
 				name: "-ms-scroll-limit",
@@ -6940,7 +7400,9 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "<'-ms-scroll-limit-x-min'> <'-ms-scroll-limit-y-min'> <'-ms-scroll-limit-x-max'> <'-ms-scroll-limit-y-max'>"
 			},
 			{
 				name: "-ms-scroll-limit-x-max",
@@ -6951,13 +7413,17 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "auto | <length>"
 			},
 			{
 				name: "-ms-scroll-limit-x-min",
 				desc: "Gets or sets a value that specifies the minimum value for the scrollLeft property.",
 				browsers: "E,IE10",
-				restriction: "length"
+				restriction: "length",
+				"status": "nonstandard",
+				"syntax": "<length>"
 			},
 			{
 				name: "-ms-scroll-limit-y-max",
@@ -6968,13 +7434,17 @@ export const data : any = {
 					{
 						name: "auto"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "auto | <length>"
 			},
 			{
 				name: "-ms-scroll-limit-y-min",
 				desc: "Gets or sets a value that specifies the minimum value for the scrollTop property.",
 				browsers: "E,IE10",
-				restriction: "length"
+				restriction: "length",
+				"status": "nonstandard",
+				"syntax": "<length>"
 			},
 			{
 				name: "-ms-scroll-rails",
@@ -6988,7 +7458,9 @@ export const data : any = {
 					{
 						name: "railed"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "none | railed"
 			},
 			{
 				name: "-ms-scroll-snap-points-x",
@@ -7002,7 +7474,9 @@ export const data : any = {
 					{
 						name: "snapList()"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "snapInterval( <length-percentage>, <length-percentage> ) | snapList( <length-percentage># )"
 			},
 			{
 				name: "-ms-scroll-snap-points-y",
@@ -7016,7 +7490,9 @@ export const data : any = {
 					{
 						name: "snapList()"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "snapInterval( <length-percentage>, <length-percentage> ) | snapList( <length-percentage># )"
 			},
 			{
 				name: "-ms-scroll-snap-type",
@@ -7036,7 +7512,9 @@ export const data : any = {
 						name: "proximity",
 						desc: "The visual viewport of this scroll container may come to rest on a snap point at the termination of a scroll at the discretion of the UA given the parameters of the scroll."
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "none | proximity | mandatory"
 			},
 			{
 				name: "-ms-scroll-snap-x",
@@ -7059,7 +7537,9 @@ export const data : any = {
 					{
 						name: "snapList()"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "<'-ms-scroll-snap-type'> <'-ms-scroll-snap-points-x'>"
 			},
 			{
 				name: "-ms-scroll-snap-y",
@@ -7082,7 +7562,9 @@ export const data : any = {
 					{
 						name: "snapList()"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "<'-ms-scroll-snap-type'> <'-ms-scroll-snap-points-y'>"
 			},
 			{
 				name: "-ms-scroll-translation",
@@ -7096,7 +7578,9 @@ export const data : any = {
 					{
 						name: "vertical-to-horizontal"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "none | vertical-to-horizontal"
 			},
 			{
 				name: "-ms-text-align-last",
@@ -7150,7 +7634,9 @@ export const data : any = {
 					{
 						name: "punctuation"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "none | ideograph-alpha | ideograph-numeric | ideograph-parenthesis | ideograph-space"
 			},
 			{
 				name: "-ms-text-combine-horizontal",
@@ -7306,7 +7792,9 @@ export const data : any = {
 						name: "none",
 						desc: "Grippers are always off."
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "grippers | none"
 			},
 			{
 				name: "-ms-transform",
@@ -7418,7 +7906,9 @@ export const data : any = {
 					{
 						name: "text"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "none | element | text"
 			},
 			{
 				name: "-ms-word-break",
@@ -7486,13 +7976,17 @@ export const data : any = {
 						name: "start",
 						desc: "Inline flow content can wrap on the start edge of the exclusion area but must leave the area to end edge of the exclusion area empty."
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "auto | both | start | end | maximum | clear"
 			},
 			{
 				name: "-ms-wrap-margin",
 				desc: "Gets or sets a value that is used to offset the inner wrap shape from other shapes.",
 				browsers: "E,IE10",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"status": "nonstandard",
+				"syntax": "<length>"
 			},
 			{
 				name: "-ms-wrap-through",
@@ -7508,7 +8002,9 @@ export const data : any = {
 						name: "wrap",
 						desc: "The exclusion element inherits its parent node's wrapping context. Its descendant inline content wraps around exclusions defined outside the element."
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "wrap | none"
 			},
 			{
 				name: "-ms-writing-mode",
@@ -7655,7 +8151,9 @@ export const data : any = {
 				name: "negative",
 				desc: "@counter-style descriptor. Defines how to alter the representation when the counter value is negative.",
 				browsers: "FF33",
-				restriction: "image, identifier, string"
+				restriction: "image, identifier, string",
+				"status": "standard",
+				"syntax": "<symbol> <symbol>?"
 			},
 			{
 				name: "-o-animation",
@@ -7822,13 +8320,17 @@ export const data : any = {
 					{
 						name: "scale-down"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "fill | contain | cover | none | scale-down"
 			},
 			{
 				name: "object-position",
 				desc: "Determines the alignment of the replaced element inside its box.",
 				browsers: "C32,FF36,O19",
-				restriction: "position, length, percentage"
+				restriction: "position, length, percentage",
+				"status": "standard",
+				"syntax": "<position>"
 			},
 			{
 				name: "-o-border-image",
@@ -7901,19 +8403,25 @@ export const data : any = {
 				name: "opacity",
 				desc: "Opacity of an element's text, where 1 is opaque and 0 is entirely transparent.",
 				browsers: "C,FF3.6,IE9,O9,S1.2",
-				restriction: "number(0-1)"
+				restriction: "number(0-1)",
+				"status": "standard",
+				"syntax": "<number>"
 			},
 			{
 				name: "order",
 				desc: "Controls the order in which children of a flex container appear within the flex container, by assigning them to ordinal groups.",
 				browsers: "E,C29,FF22,IE11,O12.1,S9",
-				restriction: "integer"
+				restriction: "integer",
+				"status": "standard",
+				"syntax": "<integer>"
 			},
 			{
 				name: "orphans",
 				desc: "Specifies the minimum number of line boxes in a block container that must be left in a fragment before a fragmentation break.",
 				browsers: "C,IE8,O7,S1.3",
-				restriction: "integer"
+				restriction: "integer",
+				"status": "standard",
+				"syntax": "<integer>"
 			},
 			{
 				name: "-o-table-baseline",
@@ -8078,7 +8586,9 @@ export const data : any = {
 						name: "auto",
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<'left'>"
 			},
 			{
 				name: "offset-block-start",
@@ -8090,7 +8600,9 @@ export const data : any = {
 						name: "auto",
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<'left'>"
 			},
 			{
 				name: "offset-inline-end",
@@ -8102,7 +8614,9 @@ export const data : any = {
 						name: "auto",
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<'left'>"
 			},
 			{
 				name: "offset-inline-start",
@@ -8114,7 +8628,9 @@ export const data : any = {
 						name: "auto",
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<'left'>"
 			},
 			{
 				name: "outline",
@@ -8130,7 +8646,9 @@ export const data : any = {
 						name: "invert",
 						browsers: "E,IE8,O"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "[ <'outline-color'> || <'outline-style'> || <'outline-width'> ]"
 			},
 			{
 				name: "outline-color",
@@ -8142,13 +8660,17 @@ export const data : any = {
 						name: "invert",
 						browsers: "E,IE8,O"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<color> | invert"
 			},
 			{
 				name: "outline-offset",
 				desc: "Offset the outline and draw it beyond the border edge.",
 				browsers: "C,FF1.5,O9.5,S1.2",
-				restriction: "length"
+				restriction: "length",
+				"status": "standard",
+				"syntax": "<length>"
 			},
 			{
 				name: "outline-style",
@@ -8160,13 +8682,17 @@ export const data : any = {
 						name: "auto",
 						desc: "Permits the user agent to render a custom outline style, typically the default platform style."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | <br-style>"
 			},
 			{
 				name: "outline-width",
 				desc: "Width of the outline.",
 				browsers: "E,C,FF1.5,IE8,O8,S1.2",
-				restriction: "length, line-width"
+				restriction: "length, line-width",
+				"status": "standard",
+				"syntax": "<br-width>"
 			},
 			{
 				name: "overflow",
@@ -8193,7 +8719,9 @@ export const data : any = {
 						name: "visible",
 						desc: "Content is not clipped, i.e., it may be rendered outside the content box."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "visible | hidden | scroll | auto"
 			},
 			{
 				name: "overflow-wrap",
@@ -8209,7 +8737,9 @@ export const data : any = {
 						name: "normal",
 						desc: "Lines may break only at allowed break points."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | break-word"
 			},
 			{
 				name: "overflow-x",
@@ -8233,7 +8763,9 @@ export const data : any = {
 						name: "visible",
 						desc: "Content is not clipped, i.e., it may be rendered outside the content box."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "visible | hidden | scroll | auto"
 			},
 			{
 				name: "overflow-y",
@@ -8257,63 +8789,85 @@ export const data : any = {
 						name: "visible",
 						desc: "Content is not clipped, i.e., it may be rendered outside the content box."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "visible | hidden | scroll | auto"
 			},
 			{
 				name: "pad",
 				desc: "@counter-style descriptor. Specifies a “fixed-width” counter style, where representations shorter than the pad value are padded with a particular <symbol>",
 				browsers: "FF33",
-				restriction: "integer, image, string, identifier"
+				restriction: "integer, image, string, identifier",
+				"status": "standard",
+				"syntax": "<integer> && <symbol>"
 			},
 			{
 				name: "padding",
 				desc: "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 				restriction: "length, percentage",
-				values: []
+				values: [],
+				"status": "standard",
+				"syntax": "[ <length> | <percentage> ]{1,4}"
 			},
 			{
 				name: "padding-bottom",
 				desc: "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"status": "standard",
+				"syntax": "<length> | <percentage>"
 			},
 			{
 				name: "padding-block-end",
 				desc: "Logical 'padding-bottom'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"status": "standard",
+				"syntax": "<'padding-left'>"
 			},
 			{
 				name: "padding-block-start",
 				desc: "Logical 'padding-top'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"status": "standard",
+				"syntax": "<'padding-left'>"
 			},
 			{
 				name: "padding-inline-end",
 				desc: "Logical 'padding-right'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"status": "standard",
+				"syntax": "<'padding-left'>"
 			},
 			{
 				name: "padding-inline-start",
 				desc: "Logical 'padding-left'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"status": "standard",
+				"syntax": "<'padding-left'>"
 			},
 			{
 				name: "padding-left",
 				desc: "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"status": "standard",
+				"syntax": "<length> | <percentage>"
 			},
 			{
 				name: "padding-right",
 				desc: "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"status": "standard",
+				"syntax": "<length> | <percentage>"
 			},
 			{
 				name: "padding-top",
 				desc: "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
-				restriction: "length, percentage"
+				restriction: "length, percentage",
+				"status": "standard",
+				"syntax": "<length> | <percentage>"
 			},
 			{
 				name: "page-break-after",
@@ -8340,7 +8894,9 @@ export const data : any = {
 						name: "right",
 						desc: "Force one or two page breaks after the generated box so that the next page is formatted as a right page."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | always | avoid | left | right"
 			},
 			{
 				name: "page-break-before",
@@ -8367,7 +8923,9 @@ export const data : any = {
 						name: "right",
 						desc: "Force one or two page breaks before the generated box so that the next page is formatted as a right page."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | always | avoid | left | right"
 			},
 			{
 				name: "page-break-inside",
@@ -8383,7 +8941,9 @@ export const data : any = {
 						name: "avoid",
 						desc: "Avoid a page break inside the generated box."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | avoid"
 			},
 			{
 				name: "paint-order",
@@ -8404,7 +8964,9 @@ export const data : any = {
 					{
 						name: "stroke"
 					}
-				]
+				],
+				"status": "experimental",
+				"syntax": "normal | [ fill || stroke || markers ]"
 			},
 			{
 				name: "perspective",
@@ -8416,13 +8978,17 @@ export const data : any = {
 						name: "none",
 						desc: "No perspective transform is applied."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | <length>"
 			},
 			{
 				name: "perspective-origin",
 				desc: "Establishes the origin for the perspective property. It effectively sets the X and Y position at which the viewer appears to be looking at the children of the element.",
 				browsers: "E,C36,FF16,IE10,O23,S9",
-				restriction: "position, percentage, length"
+				restriction: "position, percentage, length",
+				"status": "standard",
+				"syntax": "<position>"
 			},
 			{
 				name: "pointer-events",
@@ -8461,7 +9027,9 @@ export const data : any = {
 					{
 						name: "visibleStroke"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | none | visiblePainted | visibleFill | visibleStroke | visible | painted | fill | stroke | all | inherit"
 			},
 			{
 				name: "position",
@@ -8492,13 +9060,17 @@ export const data : any = {
 						name: "-webkit-sticky",
 						browsers: "S6.1"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "static | relative | absolute | sticky | fixed"
 			},
 			{
 				name: "prefix",
 				desc: "@counter-style descriptor. Specifies a <symbol> that is prepended to the marker representation.",
 				browsers: "FF33",
-				restriction: "image, string, identifier"
+				restriction: "image, string, identifier",
+				"status": "standard",
+				"syntax": "<symbol>"
 			},
 			{
 				name: "quotes",
@@ -8510,7 +9082,9 @@ export const data : any = {
 						name: "none",
 						desc: "The 'open-quote' and 'close-quote' values of the 'content' property produce no quotations marks, as if they were 'no-open-quote' and 'no-close-quote' respectively."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | [ <string> <string> ]+"
 			},
 			{
 				name: "range",
@@ -8526,7 +9100,9 @@ export const data : any = {
 						name: "infinite",
 						desc: "If used as the first value in a range, it represents negative infinity; if used as the second value, it represents positive infinity."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "[ [ <integer> | infinite ]{2} ]# | auto"
 			},
 			{
 				name: "resize",
@@ -8550,7 +9126,9 @@ export const data : any = {
 						name: "vertical",
 						desc: "The UA presents a unidirectional vertical resizing mechanism to allow the user to adjust only the height of the element."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | both | horizontal | vertical"
 			},
 			{
 				name: "right",
@@ -8561,7 +9139,9 @@ export const data : any = {
 						name: "auto",
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<length> | <percentage> | auto"
 			},
 			{
 				name: "ruby-align",
@@ -8614,7 +9194,9 @@ export const data : any = {
 						desc: "As for 'space-between' except that there exists an extra justification opportunities whose space is distributed half before and half after the ruby content.",
 						browsers: "FF10"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "start | center | space-between | space-around"
 			},
 			{
 				name: "ruby-overhang",
@@ -8659,7 +9241,9 @@ export const data : any = {
 						name: "right",
 						desc: "The ruby text appears on the right of the base. Unlike 'before' and 'after', this value is not relative to the text flow direction."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "over | under | inter-character"
 			},
 			{
 				name: "ruby-span",
@@ -8737,7 +9321,9 @@ export const data : any = {
 					{
 						name: "smooth"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | smooth"
 			},
 			{
 				name: "scroll-snap-coordinate",
@@ -8749,13 +9335,17 @@ export const data : any = {
 						name: "none",
 						desc: "Specifies that this element does not contribute a snap point."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | <position>#"
 			},
 			{
 				name: "scroll-snap-destination",
 				desc: "Define the x and y coordinate within the scroll container’s visual viewport which element snap points will align with.",
 				browsers: "FF39",
-				restriction: "position, length, percentage"
+				restriction: "position, length, percentage",
+				"status": "standard",
+				"syntax": "<position>"
 			},
 			{
 				name: "scroll-snap-points-x",
@@ -8771,7 +9361,9 @@ export const data : any = {
 						name: "repeat()",
 						desc: "Defines an interval at which snap points are defined, starting from the container’s relevant start edge."
 					}
-				]
+				],
+				"status": "obsolete",
+				"syntax": "none | repeat( <length-percentage> )"
 			},
 			{
 				name: "scroll-snap-points-y",
@@ -8787,7 +9379,9 @@ export const data : any = {
 						name: "repeat()",
 						desc: "Defines an interval at which snap points are defined, starting from the container’s relevant start edge."
 					}
-				]
+				],
+				"status": "obsolete",
+				"syntax": "none | repeat( <length-percentage> )"
 			},
 			{
 				name: "scroll-snap-type",
@@ -8807,19 +9401,25 @@ export const data : any = {
 						name: "proximity",
 						desc: "The visual viewport of this scroll container may come to rest on a snap point at the termination of a scroll at the discretion of the UA given the parameters of the scroll."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | mandatory | proximity"
 			},
 			{
 				name: "shape-image-threshold",
 				desc: "Defines the alpha channel threshold used to extract the shape using an image. A value of 0.5 means that the shape will enclose all the pixels that are more than 50% opaque.",
 				browsers: "C37,O24",
-				restriction: "number"
+				restriction: "number",
+				"status": "standard",
+				"syntax": "<number>"
 			},
 			{
 				name: "shape-margin",
 				desc: "Adds a margin to a 'shape-outside'. This defines a new shape that is the smallest contour that includes all the points that are the 'shape-margin' distance outward in the perpendicular direction from a point on the underlying shape.",
 				browsers: "C37,O24",
-				restriction: "url, length, percentage"
+				restriction: "url, length, percentage",
+				"status": "standard",
+				"syntax": "<length-percentage>"
 			},
 			{
 				name: "shape-outside",
@@ -8834,7 +9434,9 @@ export const data : any = {
 						name: "none",
 						desc: "The float area is unaffected."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | <shape-box> || <basic-shape> | <image>"
 			},
 			{
 				name: "shape-rendering",
@@ -8878,7 +9480,9 @@ export const data : any = {
 					{
 						name: "local()"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "[ <url> format(<string>#)? | local(<family-name>) ]#"
 			},
 			{
 				name: "stop-color",
@@ -8971,7 +9575,9 @@ export const data : any = {
 				name: "suffix",
 				desc: "@counter-style descriptor. Specifies a <symbol> that is appended to the marker representation.",
 				browsers: "FF33",
-				restriction: "image, string, identifier"
+				restriction: "image, string, identifier",
+				"status": "standard",
+				"syntax": "<symbol>"
 			},
 			{
 				name: "system",
@@ -9002,13 +9608,17 @@ export const data : any = {
 					{
 						name: "symbolic"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "cyclic | numeric | alphabetic | symbolic | additive | [ fixed <integer>? ] | [ extends <counter-style-name> ]"
 			},
 			{
 				name: "symbols",
 				desc: "@counter-style descriptor. Specifies the symbols used by the marker-construction algorithm specified by the system descriptor.",
 				browsers: "FF33",
-				restriction: "image, string, identifier"
+				restriction: "image, string, identifier",
+				"status": "standard",
+				"syntax": "<symbol>+"
 			},
 			{
 				name: "table-layout",
@@ -9023,13 +9633,17 @@ export const data : any = {
 						name: "fixed",
 						desc: "Use the fixed table layout algorithm."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | fixed"
 			},
 			{
 				name: "tab-size",
 				desc: "Determines the width of the tab character (U+0009), in space characters (U+0020), when rendered.",
 				browsers: "C21,O15,S6.1",
-				restriction: "integer, length"
+				restriction: "integer, length",
+				"status": "standard",
+				"syntax": "<integer> | <length>"
 			},
 			{
 				name: "text-align",
@@ -9062,7 +9676,9 @@ export const data : any = {
 						desc: "The inline contents are aligned to the start edge of the line box.",
 						browsers: "C,FF1,O15,S3.1"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "start | end | left | right | center | justify | match-parent"
 			},
 			{
 				name: "text-align-last",
@@ -9090,7 +9706,9 @@ export const data : any = {
 						name: "right",
 						desc: "The inline contents are aligned to the right edge of the line box. In vertical text, 'right' aligns to the edge of the line box that would be the end edge for left-to-right text."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | start | end | left | right | center | justify"
 			},
 			{
 				name: "text-anchor",
@@ -9140,13 +9758,17 @@ export const data : any = {
 					{
 						name: "wavy"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<'text-decoration-line'> || <'text-decoration-style'> || <'text-decoration-color'>"
 			},
 			{
 				name: "text-decoration-color",
 				desc: "Specifies the color of text decoration (underlines overlines, and line-throughs) set on the element with text-decoration-line.",
 				browsers: "FF36,C57,O44",
-				restriction: "color"
+				restriction: "color",
+				"status": "standard",
+				"syntax": "<color>"
 			},
 			{
 				name: "text-decoration-line",
@@ -9167,7 +9789,9 @@ export const data : any = {
 					{
 						name: "underline"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | [ underline || overline || line-through || blink ]"
 			},
 			{
 				name: "text-decoration-style",
@@ -9194,13 +9818,17 @@ export const data : any = {
 					{
 						name: "wavy"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "solid | double | dotted | dashed | wavy"
 			},
 			{
 				name: "text-indent",
 				desc: "Specifies the indentation applied to lines of inline content in a block. The indentation only affects the first line of inline content in the block unless the 'hanging' keyword is specified, in which case it affects all lines except the first.",
 				restriction: "percentage, length",
-				values: []
+				values: [],
+				"status": "standard",
+				"syntax": "<length-percentage> && hanging? && each-line?"
 			},
 			{
 				name: "text-justify",
@@ -9234,7 +9862,9 @@ export const data : any = {
 					{
 						name: "newspaper"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | inter-character | inter-word | none"
 			},
 			{
 				name: "text-orientation",
@@ -9253,7 +9883,9 @@ export const data : any = {
 					{
 						name: "upright"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "mixed | upright | sideways"
 			},
 			{
 				name: "text-overflow",
@@ -9267,7 +9899,9 @@ export const data : any = {
 					{
 						name: "ellipsis"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "[ clip | ellipsis | <string> ]{1,2}"
 			},
 			{
 				name: "text-rendering",
@@ -9289,14 +9923,18 @@ export const data : any = {
 						name: "optimizeSpeed",
 						desc: "Indicates that the user agent shall emphasize rendering speed over legibility and geometric precision."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | optimizeSpeed | optimizeLegibility | geometricPrecision"
 			},
 			{
 				name: "text-shadow",
 				desc: "Enables shadow effects to be applied to the text of the element.",
 				browsers: "E,C,FF3.6,IE10,O9.5,S1.1",
 				restriction: "length, color",
-				values: []
+				values: [],
+				"status": "standard",
+				"syntax": "none | <shadow-t>#"
 			},
 			{
 				name: "text-transform",
@@ -9316,7 +9954,9 @@ export const data : any = {
 					{
 						name: "uppercase"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | capitalize | uppercase | lowercase | full-width"
 			},
 			{
 				name: "text-underline-position",
@@ -9335,7 +9975,9 @@ export const data : any = {
 						name: "below",
 						desc: "The underline is aligned with the under edge of the element’s content box."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | [ under || [ left | right ] ]"
 			},
 			{
 				name: "top",
@@ -9346,7 +9988,9 @@ export const data : any = {
 						name: "auto",
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<length> | <percentage> | auto"
 			},
 			{
 				name: "touch-action",
@@ -9390,7 +10034,9 @@ export const data : any = {
 						name: "pinch-zoom",
 						browsers: "E,IE11"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | none | [ [ pan-x | pan-left | pan-right ] || [ pan-y | pan-up | pan-down ] || pinch-zoom ] | manipulation"
 			},
 			{
 				name: "transform",
@@ -9464,13 +10110,17 @@ export const data : any = {
 					{
 						name: "translateZ()"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | <transform-list>"
 			},
 			{
 				name: "transform-origin",
 				desc: "Establishes the origin of transformation for an element.",
 				browsers: "E,C36,FF16,IE10,O12.1,S9",
-				restriction: "position, length, percentage"
+				restriction: "position, length, percentage",
+				"status": "standard",
+				"syntax": "[ <length-percentage> | left | center | right | top | bottom ] | [ [ <length-percentage> | left | center | right ] && [ <length-percentage> | top | center | bottom ] ] <length>?"
 			},
 			{
 				name: "transform-style",
@@ -9485,7 +10135,9 @@ export const data : any = {
 						name: "preserve-3d",
 						browsers: "E,C36,FF16,O23,S9"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "flat | preserve-3d"
 			},
 			{
 				name: "transition",
@@ -9501,19 +10153,25 @@ export const data : any = {
 						name: "none",
 						desc: "No property will transition."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<single-transition>#"
 			},
 			{
 				name: "transition-delay",
 				desc: "Defines when the transition will start. It allows a transition to begin execution some period of time from when it is applied.",
 				browsers: "E,FF16,IE10,O12.5",
-				restriction: "time"
+				restriction: "time",
+				"status": "standard",
+				"syntax": "<time>#"
 			},
 			{
 				name: "transition-duration",
 				desc: "Specifies how long the transition from the old value to the new value should take.",
 				browsers: "E,FF16,IE10,O12.5",
-				restriction: "time"
+				restriction: "time",
+				"status": "standard",
+				"syntax": "<time>#"
 			},
 			{
 				name: "transition-property",
@@ -9529,13 +10187,17 @@ export const data : any = {
 						name: "none",
 						desc: "No property will transition."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "none | <single-transition-property>#"
 			},
 			{
 				name: "transition-timing-function",
 				desc: "Describes how the intermediate values used during a transition will be calculated.",
 				browsers: "E,FF16,IE10,O12.5",
-				restriction: "timing-function"
+				restriction: "timing-function",
+				"status": "standard",
+				"syntax": "<single-transition-timing-function>#"
 			},
 			{
 				name: "unicode-bidi",
@@ -9565,7 +10227,9 @@ export const data : any = {
 						name: "plaintext",
 						browsers: "C,FF10,O15,S6"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | embed | isolate | bidi-override | isolate-override | plaintext"
 			},
 			{
 				name: "unicode-range",
@@ -9803,7 +10467,9 @@ export const data : any = {
 					{
 						name: "U+1F680–1F6FF"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<unicode-range>#"
 			},
 			{
 				name: "user-select",
@@ -9829,7 +10495,9 @@ export const data : any = {
 						name: "text",
 						desc: "The element imposes no constraint on the selection."
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "auto | text | none | contain | all"
 			},
 			{
 				name: "vertical-align",
@@ -9874,7 +10542,9 @@ export const data : any = {
 						name: "-webkit-baseline-middle",
 						browsers: "C,S1"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "baseline | sub | super | text-top | text-bottom | middle | top | bottom | <percentage> | <length>"
 			},
 			{
 				name: "visibility",
@@ -9893,7 +10563,9 @@ export const data : any = {
 						name: "visible",
 						desc: "The generated box is visible."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "visible | hidden | collapse"
 			},
 			{
 				name: "-webkit-animation",
@@ -10426,7 +11098,9 @@ export const data : any = {
 						name: "right",
 						desc: "The reflection appears to the right of the border box."
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "[ above | below | right | left ]? <length>? <image>?"
 			},
 			{
 				name: "-webkit-box-sizing",
@@ -10993,7 +11667,9 @@ export const data : any = {
 				name: "-webkit-mask-clip",
 				desc: "Determines the mask painting area, which determines the area that is affected by the mask.",
 				browsers: "C,O15,S4",
-				restriction: "box"
+				restriction: "box",
+				"status": "nonstandard",
+				"syntax": "[ border | border-box | padding | padding-box | content | content-box | text ]#"
 			},
 			{
 				name: "-webkit-mask-image",
@@ -11009,19 +11685,25 @@ export const data : any = {
 						name: "url()",
 						desc: "Reference to a <mask element or to a CSS image."
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "<mask-image> [, <mask-image> ]*"
 			},
 			{
 				name: "-webkit-mask-origin",
 				desc: "Specifies the mask positioning area.",
 				browsers: "C,O15,S4",
-				restriction: "box"
+				restriction: "box",
+				"status": "nonstandard",
+				"syntax": "[ padding | border | content ] [, [ border | padding | content ] ]*"
 			},
 			{
 				name: "-webkit-mask-repeat",
 				desc: "Specifies how mask layer images are tiled after they have been sized and positioned.",
 				browsers: "C,O15,S4",
-				restriction: "repeat"
+				restriction: "repeat",
+				"status": "nonstandard",
+				"syntax": "<repeat-style> [, <repeat-style> ]*"
 			},
 			{
 				name: "-webkit-mask-size",
@@ -11067,7 +11749,9 @@ export const data : any = {
 					{
 						name: "touch"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "auto | touch"
 			},
 			{
 				name: "-webkit-padding-start",
@@ -11110,12 +11794,16 @@ export const data : any = {
 			{
 				name: "-webkit-tap-highlight-color",
 				browsers: "E,C,S3.1",
-				restriction: "color"
+				restriction: "color",
+				"status": "nonstandard",
+				"syntax": "<color>"
 			},
 			{
 				name: "-webkit-text-fill-color",
 				browsers: "E,C,S3",
-				restriction: "color"
+				restriction: "color",
+				"status": "nonstandard",
+				"syntax": "<color>"
 			},
 			{
 				name: "-webkit-text-size-adjust",
@@ -11136,17 +11824,23 @@ export const data : any = {
 			{
 				name: "-webkit-text-stroke",
 				browsers: "S3",
-				restriction: "length, line-width, color, percentage"
+				restriction: "length, line-width, color, percentage",
+				"status": "nonstandard",
+				"syntax": "<length> || <color>"
 			},
 			{
 				name: "-webkit-text-stroke-color",
 				browsers: "S3",
-				restriction: "color"
+				restriction: "color",
+				"status": "nonstandard",
+				"syntax": "<color>"
 			},
 			{
 				name: "-webkit-text-stroke-width",
 				browsers: "S3",
-				restriction: "length, line-width, percentage"
+				restriction: "length, line-width, percentage",
+				"status": "nonstandard",
+				"syntax": "<length>"
 			},
 			{
 				name: "-webkit-touch-callout",
@@ -11156,7 +11850,9 @@ export const data : any = {
 					{
 						name: "none"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "default | none"
 			},
 			{
 				name: "-webkit-transform",
@@ -11389,13 +12085,17 @@ export const data : any = {
 					{
 						name: "pre-wrap"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | pre | nowrap | pre-wrap | pre-line"
 			},
 			{
 				name: "widows",
 				desc: "Specifies the minimum number of line boxes of a block container that must be left in a fragment after a break.",
 				browsers: "C,IE8,O9.5,S1",
-				restriction: "integer"
+				restriction: "integer",
+				"status": "standard",
+				"syntax": "<integer>"
 			},
 			{
 				name: "width",
@@ -11420,7 +12120,9 @@ export const data : any = {
 						desc: "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
 						browsers: "C46,O33"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "<viewport-length>{1,2}"
 			},
 			{
 				name: "will-change",
@@ -11439,7 +12141,9 @@ export const data : any = {
 					{
 						name: "scroll-position"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | <animateable-feature>#"
 			},
 			{
 				name: "word-break",
@@ -11458,7 +12162,9 @@ export const data : any = {
 						name: "normal",
 						desc: "Breaks non-CJK scripts according to their own rules."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | break-all | keep-all | break-word"
 			},
 			{
 				name: "word-spacing",
@@ -11469,7 +12175,9 @@ export const data : any = {
 						name: "normal",
 						desc: "No additional spacing is applied. Computes to zero."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | <length-percentage>"
 			},
 			{
 				name: "word-wrap",
@@ -11484,7 +12192,9 @@ export const data : any = {
 						name: "normal",
 						desc: "Lines may break only at allowed break points."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "normal | break-word"
 			},
 			{
 				name: "writing-mode",
@@ -11509,7 +12219,9 @@ export const data : any = {
 					{
 						name: "vertical-rl"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "horizontal-tb | vertical-rl | vertical-lr | sideways-rl | sideways-lr"
 			},
 			{
 				name: "z-index",
@@ -11520,7 +12232,9 @@ export const data : any = {
 						name: "auto",
 						desc: "The stack level of the generated box in the current stacking context is 0. The box does not establish a new stacking context unless it is the root element."
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | <integer>"
 			},
 			{
 				name: "zoom",
@@ -11531,7 +12245,646 @@ export const data : any = {
 					{
 						name: "normal"
 					}
-				]
+				],
+				"status": "standard",
+				"syntax": "auto | <number> | <percentage>"
+			},
+			{
+				name: "-ms-ime-align",
+				desc: "Aligns the Input Method Editor (IME) candidate window box relative to the element on which the IME composition is active.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "auto | after"
+			},
+			{
+				name: "-moz-binding",
+				desc: "The -moz-binding CSS property is used by Mozilla-based applications to attach an XBL binding to a DOM element.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "<url> | none"
+			},
+			{
+				name: "-moz-context-properties",
+				desc: "If you reference an SVG image in a webpage (such as with the <img> element or as a background image), the SVG image can coordinate with the embedding element (its context) to have the image adopt property values set on the embedding element. To do this the embedding element needs to list the properties that are to be made available to the image by listing them as values of the -moz-context-properties property, and the image needs to opt in to using those properties by using values such as the context-fill value.\n\nThis feature is available since Firefox 55, but is only currently supported with SVG images loaded via chrome:// or resource:// URLs. To experiment with the feature in SVG on the Web it is necessary to set the svg.context-properties.content.enabled pref to true.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "none | [ fill | fill-opacity | stroke | stroke-opacity ]#"
+			},
+			{
+				name: "-moz-float-edge",
+				desc: "The non-standard -moz-float-edge CSS property specifies whether the height and width properties of the element include the margin, border, or padding thickness.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "border-box | content-box | margin-box | padding-box"
+			},
+			{
+				name: "-moz-force-broken-image-icon",
+				desc: "The -moz-force-broken-image-icon extended CSS property can be used to force the broken image icon to be shown even when a broken image has an alt attribute.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "<integer>"
+			},
+			{
+				name: "-moz-image-region",
+				desc: "For certain XUL elements and pseudo-elements that use an image from the list-style-image property, this property specifies a region of the image that is used in place of the whole image. This allows elements to use different pieces of the same image to improve performance.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "<shape> | auto"
+			},
+			{
+				name: "-moz-orient",
+				desc: "The -moz-orient CSS property specifies the orientation of the element to which it's applied.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "inline | block | horizontal | vertical"
+			},
+			{
+				name: "-moz-outline-radius",
+				desc: "In Mozilla applications like Firefox, the -moz-outline-radius CSS property can be used to give an element's outline rounded corners.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "<outline-radius>{1,4} [ / <outline-radius>{1,4} ]?"
+			},
+			{
+				name: "-moz-outline-radius-bottomleft",
+				desc: "In Mozilla applications, the -moz-outline-radius-bottomleft CSS property can be used to round the bottom-left corner of an element's outline.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "<outline-radius>"
+			},
+			{
+				name: "-moz-outline-radius-bottomright",
+				desc: "In Mozilla applications, the -moz-outline-radius-bottomright CSS property can be used to round the bottom-right corner of an element's outline.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "<outline-radius>"
+			},
+			{
+				name: "-moz-outline-radius-topleft",
+				desc: "In Mozilla applications, the -moz-outline-radius-topleft CSS property can be used to round the top-left corner of an element's outline.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "<outline-radius>"
+			},
+			{
+				name: "-moz-outline-radius-topright",
+				desc: "In Mozilla applications, the -moz-outline-radius-topright CSS property can be used to round the top-right corner of an element's outline.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "<outline-radius>"
+			},
+			{
+				name: "-moz-stack-sizing",
+				desc: "-moz-stack-sizing is an extended CSS property. Normally, a stack will change its size so that all of its child elements are completely visible. For example, moving a child of the stack far to the right will widen the stack so the child remains visible.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "ignore | stretch-to-fit"
+			},
+			{
+				name: "-moz-text-blink",
+				desc: "The -moz-text-blink non-standard Mozilla CSS extension specifies the blink mode.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "none | blink"
+			},
+			{
+				name: "-moz-user-input",
+				desc: "In Mozilla applications, -moz-user-input determines if an element will accept user input.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "auto | none | enabled | disabled"
+			},
+			{
+				name: "-moz-user-modify",
+				desc: "The -moz-user-modify property has no effect. It was originally planned to determine whether or not the content of an element can be edited by a user.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "read-only | read-write | write-only"
+			},
+			{
+				name: "-moz-window-dragging",
+				desc: "The -moz-window-dragging CSS property specifies whether a window is draggable or not. It only works in Chrome code, and only on Mac OS X.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "drag | no-drag"
+			},
+			{
+				name: "-moz-window-shadow",
+				desc: "The -moz-window-shadow CSS property specifies whether a window will have a shadow. It only works on Mac OS X.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "default | menu | tooltip | sheet | none"
+			},
+			{
+				name: "-webkit-border-before",
+				desc: "The -webkit-border-before CSS property is a shorthand property for setting the individual logical block start border property values in a single place in the style sheet.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "<'border-width'> || <'border-style'> || <'color'>"
+			},
+			{
+				name: "-webkit-border-before-color",
+				desc: "The -webkit-border-before-color CSS property sets the color of the individual logical block start border in a single place in the style sheet.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "<'color'>"
+			},
+			{
+				name: "-webkit-border-before-style",
+				desc: "The -webkit-border-before-style CSS property sets the style of the individual logical block start border in a single place in the style sheet.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "<'border-style'>"
+			},
+			{
+				name: "-webkit-border-before-width",
+				desc: "The -webkit-border-before-width CSS property sets the width of the individual logical block start border in a single place in the style sheet.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "<'border-width'>"
+			},
+			{
+				name: "-webkit-mask",
+				desc: "The mask CSS property alters the visibility of an element by either partially or fully hiding it. This is accomplished by either masking or clipping the image at specific points.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "<mask-image> [ <'-webkit-mask-repeat'> || <'-webkit-mask-attachment'> || <'-webkit-mask-position'> || <'-webkit-mask-origin'> || <'-webkit-mask-clip'> ]*"
+			},
+			{
+				name: "-webkit-mask-attachment",
+				desc: "If a -webkit-mask-image is specified, -webkit-mask-attachment determines whether the mask image's position is fixed within the viewport, or scrolls along with its containing block.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "<attachment> [, <attachment> ]*"
+			},
+			{
+				name: "-webkit-mask-composite",
+				desc: "The -webkit-mask-composite property specifies the manner in which multiple mask images applied to the same element are composited with one another. Mask images are composited in the opposite order that they are declared with the -webkit-mask-image property.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "<composite-style> [, <composite-style> ]*"
+			},
+			{
+				name: "-webkit-mask-position",
+				desc: "The mask-position CSS property sets the initial position, relative to the mask position layer defined by mask-origin, for each defined mask image.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "<mask-position>#"
+			},
+			{
+				name: "-webkit-mask-position-x",
+				desc: "The -webkit-mask-position-x CSS property sets the initial horizontal position of a mask image.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "[ <length-percentage> | left | center | right ]#"
+			},
+			{
+				name: "-webkit-mask-position-y",
+				desc: "The -webkit-mask-position-y CSS property sets the initial vertical position of a mask image.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "[ <length-percentage> | top | center | bottom ]#"
+			},
+			{
+				name: "-webkit-mask-repeat-x",
+				desc: "The -webkit-mask-repeat-x property specifies whether and how a mask image is repeated (tiled) horizontally.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "repeat | no-repeat | space | round"
+			},
+			{
+				name: "-webkit-mask-repeat-y",
+				desc: "The -webkit-mask-repeat-y property specifies whether and how a mask image is repeated (tiled) vertically.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "repeat | no-repeat | space | round"
+			},
+			{
+				name: "appearance",
+				desc: "Changes the appearance of buttons and other controls to resemble native controls.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "auto | none"
+			},
+			{
+				name: "azimuth",
+				desc: "In combination with elevation, the azimuth CSS property enables different audio sources to be positioned spatially for aural presentation. This is important in that it provides a natural way to tell several voices apart, as each can be positioned to originate at a different location on the sound stage. Stereo output produce a lateral sound stage, while binaural headphones and multi-speaker setups allow for a fully three-dimensional stage.",
+				restriction: "none",
+				"status": "obsolete",
+				"syntax": "<angle> | [ [ left-side | far-left | left | center-left | center | center-right | right | far-right | right-side ] || behind ] | leftwards | rightwards"
+			},
+			{
+				name: "backdrop-filter",
+				desc: "The backdrop-filter CSS property lets you apply graphical effects such as blurring or color shifting to the area behind an element. Because it applies to everything behind the element, to see the effect you must make the element or its background at least partially transparent.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "none | <filter-function-list>"
+			},
+			{
+				name: "box-align",
+				desc: "The box-align CSS property specifies how an element aligns its contents across its layout in a perpendicular direction. The effect of the property is only visible if there is extra space in the box.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "start | center | end | baseline | stretch"
+			},
+			{
+				name: "box-direction",
+				desc: "The box-direction CSS property specifies whether a box lays out its contents normally (from the top or left edge), or in reverse (from the bottom or right edge).",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "normal | reverse | inherit"
+			},
+			{
+				name: "box-flex",
+				desc: "The -moz-box-flex and -webkit-box-flex CSS properties specify how a -moz-box or -webkit-box grows to fill the box that contains it, in the direction of the containing box's layout.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "<number>"
+			},
+			{
+				name: "box-flex-group",
+				desc: "The box-flex-group CSS property assigns the flexbox's child elements to a flex group.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "<integer>"
+			},
+			{
+				name: "box-lines",
+				desc: "The box-lines CSS property determines whether the box may have a single or multiple lines (rows for horizontally oriented boxes, columns for vertically oriented boxes).",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "single | multiple"
+			},
+			{
+				name: "box-ordinal-group",
+				desc: "The box-ordinal-group CSS property assigns the flexbox's child elements to an ordinal group.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "<integer>"
+			},
+			{
+				name: "box-orient",
+				desc: "The box-orient CSS property specifies whether an element lays out its contents horizontally or vertically.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "horizontal | vertical | inline-axis | block-axis | inherit"
+			},
+			{
+				name: "box-pack",
+				desc: "The -moz-box-pack and -webkit-box-pack CSS properties specify how a -moz-box or -webkit-box packs its contents in the direction of its layout. The effect of this is only visible if there is extra space in the box.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "start | center | end | justify"
+			},
+			{
+				name: "color-adjust",
+				desc: "The color-adjust property is a non-standard CSS extension that can be used to force printing of background colors and images in browsers based on the WebKit engine.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "economy | exact"
+			},
+			{
+				name: "font-variation-settings",
+				desc: "The font-variation-settings CSS property provides low-level control over OpenType or TrueType font variations, by specifying the four letter axis names of the features you want to vary, along with their variation values.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "normal | [ <string> <number>] #"
+			},
+			{
+				name: "hanging-punctuation",
+				desc: "The hanging-punctuation CSS property specifies whether a punctuation mark should hang at the start or end of a line of text. Hanging punctuation may be placed outside the line box.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "none | [ first || [ force-end | allow-end ] || last ]"
+			},
+			{
+				name: "initial-letter",
+				desc: "The initial-letter CSS property specifies styling for dropped, raised, and sunken initial letters.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "normal | [ <number> <integer>? ]"
+			},
+			{
+				name: "initial-letter-align",
+				desc: "The initial-letter-align CSS property specifies the alignment of initial letters within a paragraph.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "[ auto | alphabetic | hanging | ideographic ]"
+			},
+			{
+				name: "line-height-step",
+				desc: "The line-height-step CSS property defines the step units for line box heights. When the step unit is positive, line box heights are rounded up to the closest multiple of the unit. Negative values are invalid.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "none | <length>"
+			},
+			{
+				name: "mask",
+				desc: "The mask CSS property alters the visibility of an element by either partially or fully hiding it. This is accomplished by either masking or clipping the image at specific points.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "<mask-layer>#"
+			},
+			{
+				name: "mask-border",
+				desc: "The mask-border CSS property lets you create a mask along the edge of an element's border.\n\nThis property is a shorthand for mask-border-source, mask-border-slice, mask-border-width, mask-border-outset, mask-border-repeat, and mask-border-mode. As with all shorthand properties, any omitted sub-values will be set to their initial value.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "<'mask-border-source'> || <'mask-border-slice'> [ / <'mask-border-width'>? [ / <'mask-border-outset'> ]? ]? || <'mask-border-repeat'> || <'mask-border-mode'>"
+			},
+			{
+				name: "mask-border-mode",
+				desc: "The mask-border-mode CSS property specifies the blending mode used in a mask border.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "luminance | alpha"
+			},
+			{
+				name: "mask-border-outset",
+				desc: "The mask-border-outset CSS property specifies the distance by which an element's mask border is set out from its border box.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "[ <length> | <number> ]{1,4}"
+			},
+			{
+				name: "mask-border-repeat",
+				desc: "The mask-border-repeat CSS property defines how the edge regions of a source image are adjusted to fit the dimensions of an element's mask border.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "[ stretch | repeat | round | space ]{1,2}"
+			},
+			{
+				name: "mask-border-slice",
+				desc: "The mask-border-slice CSS property divides the image specified by mask-border-source into regions. These regions are used to form the components of an element's mask border.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "<number-percentage>{1,4} fill?"
+			},
+			{
+				name: "mask-border-source",
+				desc: "The mask-border-source CSS property specifies the source image used to create an element's mask border.\n\nThe mask-border-slice property is used to divide the source image into regions, which are then dynamically applied to the final mask border.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "none | <image>"
+			},
+			{
+				name: "mask-border-width",
+				desc: "The mask-border-width CSS property specifies the width of an element's mask border.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "[ <length-percentage> | <number> | auto ]{1,4}"
+			},
+			{
+				name: "mask-clip",
+				desc: "The mask-clip CSS property determines the area, which is affected by a mask. The painted content of an element must be restricted to this area.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "[ <geometry-box> | no-clip ]#"
+			},
+			{
+				name: "mask-composite",
+				desc: "The mask-composite CSS property represents a compositing operation used on the current mask layer with the mask layers below it.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "<compositing-operator>#"
+			},
+			{
+				name: "offset",
+				desc: "The offset CSS property is a shorthand property for animating an element along a defined path.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "[ <'offset-position'>? [ <'offset-path'> [ <'offset-distance'> || <'offset-rotate'> ]? ]? ]! [ / <'offset-anchor'> ]?"
+			},
+			{
+				name: "offset-anchor",
+				desc: "Defines an anchor point of the box positioned along the path. The anchor point specifies the point of the box which is to be considered as the point that is moved along the path.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "auto | <position>"
+			},
+			{
+				name: "offset-distance",
+				desc: "The offset-distance CSS property specifies a position along an offset-path.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "<length-percentage>"
+			},
+			{
+				name: "offset-path",
+				desc: "The offset-path CSS property specifies the offset path where the element gets positioned. The exact element’s position on the offset path is determined by the offset-distance property. An offset path is either a specified path with one or multiple sub-paths or the geometry of a not-styled basic shape. Each shape or path must define an initial position for the computed value of \"0\" for offset-distance and an initial direction which specifies the rotation of the object to the initial position.\n\nIn this specification, a direction (or rotation) of 0 degrees is equivalent to the direction of the positive x-axis in the object’s local coordinate system. In other words, a rotation of 0 degree points to the right side of the UA if the object and its ancestors have no transformation applied.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "none | ray( [ <angle> && <size>? && contain? ] ) | <path()> | <url> | [ <basic-shape> || <geometry-box> ]"
+			},
+			{
+				name: "offset-position",
+				desc: "Specifies the initial position of the offset path. If position is specified with static, offset-position would be ignored.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "auto | <position>"
+			},
+			{
+				name: "offset-rotate",
+				desc: "The offset-rotate CSS property defines the direction of the element while positioning along the offset path.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "[ auto | reverse ] || <angle>"
+			},
+			{
+				name: "overflow-clip-box",
+				desc: "The overflow-clip-box CSS property specifies relative to which box the clipping happens when there is an overflow. It is short hand for the overflow-clip-box-inline and overflow-clip-box-block properties.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "padding-box | content-box"
+			},
+			{
+				name: "overscroll-behavior",
+				desc: "The overscroll-behavior CSS property is shorthand for the overscroll-behavior-x and overscroll-behavior-y properties, which allow you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "[ contain | none | auto ]{1,2}"
+			},
+			{
+				name: "overscroll-behavior-x",
+				desc: "The overscroll-behavior-x CSS property is allows you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached — in the x axis direction.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "contain | none | auto"
+			},
+			{
+				name: "overscroll-behavior-y",
+				desc: "The overscroll-behavior-y CSS property is allows you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached — in the y axis direction.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "contain | none | auto"
+			},
+			{
+				name: "place-content",
+				desc: "The place-content CSS shorthand property sets both the align-content and justify-content properties.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "<'align-content'> <'justify-content'>?"
+			},
+			{
+				name: "rotate",
+				desc: "The rotate CSS property allows you to specify rotation transforms individually and independantly of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "none | [ x | y | z | <number>{3} ]? && <angle>"
+			},
+			{
+				name: "ruby-merge",
+				desc: "This property controls how ruby annotation boxes should be rendered when there are more than one in a ruby container box: whether each pair should be kept separate, the annotations should be collapsed and rendered as a group, or the separation should be determined based on the space available.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "separate | collapse | auto"
+			},
+			{
+				name: "scale",
+				desc: "The scale CSS property allows you to specify scale transforms individually and independantly of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "none | <number>{1,3}"
+			},
+			{
+				name: "scroll-snap-type-x",
+				desc: "The scroll-snap-type-x CSS property defines how strictly snap points are enforced on the horizontal axis of the scroll container in case there is one.\n\nSpecifying any precise animations or physics used to enforce those snap points is not covered by this property but instead left up to the user agent.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "none | mandatory | proximity"
+			},
+			{
+				name: "scroll-snap-type-y",
+				desc: "The scroll-snap-type-y CSS property defines how strictly snap points are enforced on the vertical axis of the scroll container in case there is one.\n\nSpecifying any precise animations or physics used to enforce those snap points is not covered by this property but instead left up to the user agent.",
+				restriction: "none",
+				"status": "nonstandard",
+				"syntax": "none | mandatory | proximity"
+			},
+			{
+				name: "text-combine-upright",
+				desc: "The text-combine-upright CSS property specifies the combination of multiple characters into the space of a single character. If the combined text is wider than 1em, the user agent must fit the contents within 1em. The resulting composition is treated as a single upright glyph for layout and decoration. This property only has an effect in vertical writing modes.\n\nThis is used to produce an effect that is known as tate-chū-yoko (縦中横) in Japanese, or as 直書橫向 in Chinese.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "none | all | [ digits <integer>? ]"
+			},
+			{
+				name: "text-decoration-skip",
+				desc: "The text-decoration-skip CSS property specifies what parts of the element’s content any text decoration affecting the element must skip over. It controls all text decoration lines drawn by the element and also any text decoration lines drawn by its ancestors.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "none | [ objects || [ spaces | [ leading-spaces || trailing-spaces ] ] || edges || box-decoration ]"
+			},
+			{
+				name: "text-decoration-skip-ink",
+				desc: "The text-decoration-skip-ink CSS property specifies how overlines and underlines are drawn when they pass over glyph ascenders and descenders.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "auto | none"
+			},
+			{
+				name: "text-emphasis",
+				desc: "The text-emphasis CSS property is a shorthand property for setting text-emphasis-style and text-emphasis-color in one declaration. This property will apply the specified emphasis mark to each character of the element's text, except separator characters, like spaces,  and control characters.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "<'text-emphasis-style'> || <'text-emphasis-color'>"
+			},
+			{
+				name: "text-emphasis-color",
+				desc: "The text-emphasis-color CSS property defines the color used to draw emphasis marks on text being rendered in the HTML document. This value can also be set and reset using the text-emphasis shorthand.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "<color>"
+			},
+			{
+				name: "text-emphasis-position",
+				desc: "The text-emphasis-position CSS property describes where emphasis marks are drawn at. The effect of emphasis marks on the line height is the same as for ruby text: if there isn't enough place, the line height is increased.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "[ over | under ] && [ right | left ]"
+			},
+			{
+				name: "text-emphasis-style",
+				desc: "The text-emphasis-style CSS property defines the type of emphasis used. It can also be set, and reset, using the text-emphasis shorthand.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "none | [ [ filled | open ] || [ dot | circle | double-circle | triangle | sesame ] ] | <string>"
+			},
+			{
+				name: "text-size-adjust",
+				desc: "The text-size-adjust CSS property controls the text inflation algorithm used on some smartphones and tablets. Other browsers will ignore this property.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "none | auto | <percentage>"
+			},
+			{
+				name: "transform-box",
+				desc: "The transform-box CSS property defines the layout box to which the transform and transform-origin properties relate.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "border-box | fill-box | view-box"
+			},
+			{
+				name: "translate",
+				desc: "The translate CSS property allows you to specify translation transforms individually and independantly of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "none | <length-percentage> [ <length-percentage> <length>? ]?"
+			},
+			{
+				name: "speak-as",
+				desc: "The speak-as descriptor specifies how a counter symbol constructed with a given @counter-style will be represented in the spoken form. For example, an author can specify a counter symbol to be either spoken as its numerical value or just represented with an audio cue.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "auto | bullets | numbers | words | spell-out | <counter-style-name>"
+			},
+			{
+				name: "font-display",
+				desc: "The font-display descriptor determines how a font face is displayed based on whether and when it is downloaded and ready to use.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "[ auto | block | swap | fallback | optional ]"
+			},
+			{
+				name: "bleed",
+				desc: "The bleed CSS at-rule descriptor, used with the @page at-rule, specifies the extent of the page bleed area outside the page box. This property only has effect if crop marks are enabled using the marks property.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "auto | <length>"
+			},
+			{
+				name: "marks",
+				desc: "The marks CSS at-rule descriptor, used with the @page at-rule, adds crop and/or cross marks to the presentation of the document. Crop marks indicate where the page should be cut. Cross marks are used to align sheets.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "none | [ crop || cross ]"
+			},
+			{
+				name: "max-zoom",
+				desc: "The max-zoom CSS descriptor sets the maximum zoom factor of a document defined by the @viewport at-rule. The browser will not zoom in any further than this, whether automatically or at the user's request.\n\nA zoom factor of 1.0 or 100% corresponds to no zooming. Larger values are zoomed in. Smaller values are zoomed out.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "auto | <number> | <percentage>"
+			},
+			{
+				name: "min-zoom",
+				desc: "The min-zoom CSS descriptor sets the minimum zoom factor of a document defined by the @viewport at-rule. The browser will not zoom out any further than this, whether automatically or at the user's request.\n\nA zoom factor of 1.0 or 100% corresponds to no zooming. Larger values are zoomed in. Smaller values are zoomed out.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "auto | <number> | <percentage>"
+			},
+			{
+				name: "orientation",
+				desc: "The orientation CSS @media media feature can be used to apply styles based on the orientation of the viewport (or the page box, for paged media).",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "auto | portrait | landscape"
+			},
+			{
+				name: "user-zoom",
+				desc: "The user-zoom CSS descriptor controls whether or not the user can change the zoom factor of a document defined by @viewport.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "zoom | fixed"
 			}
 		]
 	}

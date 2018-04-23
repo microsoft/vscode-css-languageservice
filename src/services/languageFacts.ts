@@ -570,7 +570,11 @@ export function getPageBoxDirectives(): string[] {
 	];
 }
 
-export function getEntryDescription(entry: { description: string; browsers: Browsers }): string {
+export function getEntryDescription(entry: { description: string; browsers: Browsers, data?: any }): string | null {
+	if (!entry.description || entry.description === '') {
+		return null;
+	}
+
 	let desc = entry.description || '';
 	let browserLabel = getBrowserLabel(entry.browsers);
 	if (browserLabel) {
@@ -579,7 +583,29 @@ export function getEntryDescription(entry: { description: string; browsers: Brow
 		}
 		desc = desc + '(' + browserLabel + ')';
 	}
+	if (entry.data) {
+		desc += `\n`;
+		if (entry.data.syntax) {
+			desc += `\nSyntax: ${entry.data.syntax}`;
+		}
+		if (entry.data.status) {
+			desc += `\n${getEntryStatus(entry.data.status)}`;
+		}
+	}
 	return desc;
+}
+
+function getEntryStatus(status: string) {
+	switch (status) {
+		case 'experimental':
+			return '\n⚠️ Property is experimental. Be cautious to use it.️';
+		case 'nonstandard':
+			return '\n🚨️ Property is nonstandard. Avoid using it.';
+		case 'obsolete':
+			return '\n🚨️️️ Property is obsolete. Avoid using it.';
+		default:
+			return '';
+	}
 }
 
 export function getBrowserLabel(b: Browsers): string {
@@ -723,14 +749,16 @@ class EntryImpl implements IEntry {
 
 let propertySet: { [key: string]: IEntry };
 let properties = browsers.data.css.properties;
+
 export function getProperties(): { [name: string]: IEntry; } {
 	if (!propertySet) {
 		propertySet = {
 		};
-		for (let i = 0, len = properties.length; i < len; i++) {
+		for (let i = 0; i < properties.length; i++) {
 			let rawEntry = properties[i];
 			propertySet[rawEntry.name] = new EntryImpl(rawEntry);
 		}
+
 	}
 	return propertySet;
 }
@@ -747,7 +775,6 @@ export function getAtDirectives(): IEntry[] {
 	}
 	return atDirectiveList;
 }
-
 
 let pseudoElements = browsers.data.css.pseudoelements;
 let pseudoElementList: IEntry[];

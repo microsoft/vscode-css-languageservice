@@ -94,7 +94,6 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { line-height: 0EM }', Rules.ZeroWithUnit);
 		assertRuleSet('selector { line-height: 0pc }', Rules.ZeroWithUnit);
 		assertRuleSet('selector { min-height: 0% }');
-		assertRuleSet('selector { azimuth: 30deg }', Rules.UnknownProperty);
 	});
 
 	test('duplicate declarations', function () {
@@ -107,7 +106,6 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { -moz-box-shadow: "rest is missing" }', Rules.UnknownVendorSpecificProperty, Rules.IncludeStandardPropertyWhenUsingVendorPrefix);
 		assertRuleSet('selector { box-shadow: none }'); // no error
 		assertRuleSet('selector { box-property: "rest is missing" }', Rules.UnknownProperty);
-
 	});
 
 	test('box model', function () {
