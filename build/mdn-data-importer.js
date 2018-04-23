@@ -30,7 +30,7 @@ function buildPropertiesWithMDNData(vscProperties) {
       if (allMDNProperties[p.name]) {
         propertyMap[p.name] = {
           ...p,
-          ...allMDNProperties[p.name]
+          ...extractMDNProperties(allMDNProperties[p.name])
         }
       } else {
         propertyMap[p.name] = p
@@ -47,12 +47,22 @@ function buildPropertiesWithMDNData(vscProperties) {
         name: pn,
         description: '',
         restriction: 'none',
-        ...allMDNProperties[pn]
+        ...extractMDNProperties(allMDNProperties[pn])
       }
     }
   }
 
   return Object.values(propertyMap)
+}
+
+/**
+ * Extract only the MDN data that we use
+ */
+function extractMDNProperties(mdnEntry) {
+  return {
+    status: mdnEntry.status,
+    syntax: mdnEntry.syntax
+  }
 }
 
 module.exports = {
