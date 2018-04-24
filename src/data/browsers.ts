@@ -12551,11 +12551,25 @@ export const data : any = {
 				"syntax": "normal | [ <string> <number>] #"
 			},
 			{
+				name: "gap",
+				desc: "The gap CSS property is a shorthand property for row-gap and column-gap specifying the gutters between grid rows and columns.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "<'row-gap'> <'column-gap'>?"
+			},
+			{
 				name: "hanging-punctuation",
 				desc: "The hanging-punctuation CSS property specifies whether a punctuation mark should hang at the start or end of a line of text. Hanging punctuation may be placed outside the line box.",
 				restriction: "none",
 				"status": "standard",
 				"syntax": "none | [ first || [ force-end | allow-end ] || last ]"
+			},
+			{
+				name: "image-resolution",
+				desc: "The image-resolution property specifies the intrinsic resolution of all raster images used in or on the element. It affects both content images (e.g. replaced elements and generated content) and decorative images (such as background-image). The intrinsic resolution of an image is used to determine the image’s intrinsic dimensions.",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "[ from-image || <resolution> ] && snap?"
 			},
 			{
 				name: "initial-letter",
@@ -12731,6 +12745,13 @@ export const data : any = {
 				restriction: "none",
 				"status": "standard",
 				"syntax": "none | [ x | y | z | <number>{3} ]? && <angle>"
+			},
+			{
+				name: "row-gap",
+				desc: "The row-gap CSS property specifies the gutter between grid rows.",
+				restriction: "none",
+				"status": "standard",
+				"syntax": "normal | <length-percentage>"
 			},
 			{
 				name: "ruby-merge",

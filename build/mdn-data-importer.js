@@ -10,9 +10,9 @@ const mdnDocumentations = require('./mdn-documentation')
 
 const mdnExcludedProperties = [
   '--*', // custom properties
-  'gap', // grid-gap
-  'row-gap', // grid-row-gap
-  'image-resolution', // https://www.w3.org/TR/css-images-4/#propdef-image-resolution
+]
+const mdnInaccuracies = [
+  { name: 'image-resolution', status: 'experimental' } // marked as `standard`
 ]
 
 function buildPropertiesWithMDNData(vscProperties) {
@@ -33,6 +33,9 @@ function buildPropertiesWithMDNData(vscProperties) {
 
   mdnExcludedProperties.forEach(p => {
     delete allMDNProperties[p]
+  })
+  mdnInaccuracies.forEach(({ name, status }) => {
+    allMDNProperties[name].status = status;
   })
 
   /**
