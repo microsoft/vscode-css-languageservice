@@ -11,9 +11,6 @@ const mdnDocumentations = require('./mdn-documentation')
 const mdnExcludedProperties = [
   '--*', // custom properties
 ]
-const mdnInaccuracies = [
-  { name: 'image-resolution', status: 'experimental' } // marked as `standard`
-]
 
 function buildPropertiesWithMDNData(vscProperties) {
   const propertyMap = {}
@@ -33,9 +30,6 @@ function buildPropertiesWithMDNData(vscProperties) {
 
   mdnExcludedProperties.forEach(p => {
     delete allMDNProperties[p]
-  })
-  mdnInaccuracies.forEach(({ name, status }) => {
-    allMDNProperties[name].status = status;
   })
 
   /**

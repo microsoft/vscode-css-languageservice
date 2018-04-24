@@ -8721,7 +8721,7 @@ export const data : any = {
 					}
 				],
 				"status": "standard",
-				"syntax": "visible | hidden | scroll | auto"
+				"syntax": "[ visible | hidden | clip | scroll | auto ]{1,2}"
 			},
 			{
 				name: "overflow-wrap",
@@ -8765,7 +8765,7 @@ export const data : any = {
 					}
 				],
 				"status": "standard",
-				"syntax": "visible | hidden | scroll | auto"
+				"syntax": "visible | hidden | clip | scroll | auto"
 			},
 			{
 				name: "overflow-y",
@@ -8791,7 +8791,7 @@ export const data : any = {
 					}
 				],
 				"status": "standard",
-				"syntax": "visible | hidden | scroll | auto"
+				"syntax": "visible | hidden | clip | scroll | auto"
 			},
 			{
 				name: "pad",
@@ -8896,7 +8896,7 @@ export const data : any = {
 					}
 				],
 				"status": "standard",
-				"syntax": "auto | always | avoid | left | right"
+				"syntax": "auto | always | avoid | left | right | recto | verso"
 			},
 			{
 				name: "page-break-before",
@@ -8925,7 +8925,7 @@ export const data : any = {
 					}
 				],
 				"status": "standard",
-				"syntax": "auto | always | avoid | left | right"
+				"syntax": "auto | always | avoid | left | right | recto | verso"
 			},
 			{
 				name: "page-break-inside",
@@ -12044,7 +12044,9 @@ export const data : any = {
 					{
 						name: "read-write-plaintext-only"
 					}
-				]
+				],
+				"status": "nonstandard",
+				"syntax": "read-only | read-write | read-write-plaintext-only"
 			},
 			{
 				name: "-webkit-user-select",
@@ -12481,6 +12483,13 @@ export const data : any = {
 				"syntax": "none | <filter-function-list>"
 			},
 			{
+				name: "block-overflow",
+				desc: "",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "clip | ellipsis | <string>"
+			},
+			{
 				name: "box-align",
 				desc: "The box-align CSS property specifies how an element aligns its contents across its layout in a perpendicular direction. The effect of the property is only visible if there is extra space in the box.",
 				restriction: "none",
@@ -12586,6 +12595,13 @@ export const data : any = {
 				"syntax": "[ auto | alphabetic | hanging | ideographic ]"
 			},
 			{
+				name: "line-clamp",
+				desc: "",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "none | <integer>"
+			},
+			{
 				name: "line-height-step",
 				desc: "The line-height-step CSS property defines the step units for line box heights. When the step unit is positive, line box heights are rounded up to the closest multiple of the unit. Negative values are invalid.",
 				restriction: "none",
@@ -12663,6 +12679,13 @@ export const data : any = {
 				"syntax": "<compositing-operator>#"
 			},
 			{
+				name: "max-lines",
+				desc: "",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "none | <integer>"
+			},
+			{
 				name: "offset",
 				desc: "The offset CSS property is a shorthand property for animating an element along a defined path.",
 				restriction: "none",
@@ -12705,11 +12728,32 @@ export const data : any = {
 				"syntax": "[ auto | reverse ] || <angle>"
 			},
 			{
+				name: "overflow-anchor",
+				desc: "",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "auto | none"
+			},
+			{
+				name: "overflow-block",
+				desc: "",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "<'overflow'>"
+			},
+			{
 				name: "overflow-clip-box",
 				desc: "The overflow-clip-box CSS property specifies relative to which box the clipping happens when there is an overflow. It is short hand for the overflow-clip-box-inline and overflow-clip-box-block properties.",
 				restriction: "none",
 				"status": "nonstandard",
 				"syntax": "padding-box | content-box"
+			},
+			{
+				name: "overflow-inline",
+				desc: "",
+				restriction: "none",
+				"status": "experimental",
+				"syntax": "<'overflow'>"
 			},
 			{
 				name: "overscroll-behavior",
