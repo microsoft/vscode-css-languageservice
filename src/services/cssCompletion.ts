@@ -173,7 +173,7 @@ export class CSSCompletion {
 						retrigger = true;
 					}
 					let item: CompletionItem = {
-						label: languageFacts.getEntryName(entry),
+						label: entry.name,
 						documentation: languageFacts.getEntryDescription(entry),
 						textEdit: TextEdit.replace(range, insertText),
 						kind: CompletionItemKind.Property

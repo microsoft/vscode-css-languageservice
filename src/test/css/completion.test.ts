@@ -212,8 +212,8 @@ suite('CSS - Completion', () => {
 		testCompletionFor('body { m|', {
 			items: [
 				{ label: 'mask', resultText: 'body { mask: ' },
-				{ label: 'mask-border ⚠️', resultText: 'body { mask-border: ' },
-				{ label: '-webkit-mask 🚨️', resultText: 'body { -webkit-mask: ' }
+				{ label: 'mask-border', resultText: 'body { mask-border: ' },
+				{ label: '-webkit-mask', resultText: 'body { -webkit-mask: ' }
 			]
 		});
 	});

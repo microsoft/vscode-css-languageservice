@@ -570,18 +570,6 @@ export function getPageBoxDirectives(): string[] {
 	];
 }
 
-export function getEntryName(entry: { name: string, data?: any }) {
-	if (entry.data.status) {
-		if (entry.data.status === 'experimental') {
-			return `${entry.name} ⚠️`;
-		} else if (entry.data.status === 'nonstandard' || entry.data.status === 'obsolete') {
-			return `${entry.name} 🚨️`;
-		}
-	}
-
-	return entry.name;
-}
-
 export function getEntryDescription(entry: { description: string; browsers: Browsers, data?: any }): string | null {
 	if (!entry.description || entry.description === '') {
 		return null;
