@@ -570,6 +570,18 @@ export function getPageBoxDirectives(): string[] {
 	];
 }
 
+export function getEntryName(entry: { name: string, data?: any }) {
+	if (entry.data.status) {
+		if (entry.data.status === 'experimental') {
+			return `${entry.name} ⚠️`;
+		} else if (entry.data.status === 'nonstandard' || entry.data.status === 'obsolete') {
+			return `${entry.name} 🚨️`;
+		}
+	}
+
+	return entry.name;
+}
+
 export function getEntryDescription(entry: { description: string; browsers: Browsers, data?: any }): string | null {
 	if (!entry.description || entry.description === '') {
 		return null;
@@ -596,7 +608,7 @@ export function getEntryDescription(entry: { description: string; browsers: Brow
 function getEntryStatus(status: string) {
 	switch (status) {
 		case 'experimental':
-			return '⚠️ Property is experimental. Be cautious to use it.️\n\n';
+			return '⚠️ Property is experimental. Be cautious when using it.️\n\n';
 		case 'nonstandard':
 			return '🚨️ Property is nonstandard. Avoid using it.\n\n';
 		case 'obsolete':

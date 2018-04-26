@@ -209,10 +209,11 @@ suite('CSS - Completion', () => {
 		});
 	});
 	test('MDN properties', function (): any {
-		testCompletionFor('body { a|', {
+		testCompletionFor('body { m|', {
 			items: [
-				{ label: 'appearance', resultText: 'body { appearance: ' },
-				{ label: 'azimuth', resultText: 'body { azimuth: ' }
+				{ label: 'mask', resultText: 'body { mask: ' },
+				{ label: 'mask-border ⚠️', resultText: 'body { mask-border: ' },
+				{ label: '-webkit-mask 🚨️', resultText: 'body { -webkit-mask: ' }
 			]
 		});
 	});
