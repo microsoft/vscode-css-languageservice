@@ -290,6 +290,15 @@ suite('CSS Folding - No intersections and always choose first region', () => {
 	});
 });
 
+suite('CSS Folding - Incomplete region markers', () => {
+	test('declaration intersecting with region', () => {
+		const input = [
+			/*0*/'/* #endregion */',
+		];
+		assertRanges(input, []);
+	});
+});
+
 suite('SCSS Folding', () => {
 	test('SCSS Mixin', () => {
 		const input = [

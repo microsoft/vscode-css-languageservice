@@ -138,6 +138,9 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 						delimiterStack.push(currDelimiter);
 					} else {
 						const prevDelimiter = popPrevStartDelimiterOfType(delimiterStack, 'comment');
+						if (!prevDelimiter) {
+							break;
+						}
 
 						if (prevDelimiter.type === 'comment') {
 							if (prevDelimiter.line !== currDelimiter.line) {
