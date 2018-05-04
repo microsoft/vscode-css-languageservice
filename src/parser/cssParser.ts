@@ -1173,11 +1173,16 @@ export class Parser {
 			}
 			if (!this.hasWhitespace() && this.accept(TokenType.ParenthesisL)) {
 				let tryAsSelector = () => {
-					let selector = this._parseSimpleSelector();
-					if (selector && this.peek(TokenType.ParenthesisR)) {
-						return selector;
+					let selectors = this.create(nodes.Node);
+					if (!selectors.addChild(this._parseSelector(false))) {
+						return null;
 					}
-					return null;
+					while (this.accept(TokenType.Comma) && selectors.addChild(this._parseSelector(false))) {
+						// loop
+					}
+					if (this.peek(TokenType.ParenthesisR)) {
+						return this.finish(selectors);
+					}
 				};
 				node.addChild(this.try(tryAsSelector) || this._parseBinaryExpr());
 				if (!this.accept(TokenType.ParenthesisR)) {
