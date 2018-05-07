@@ -788,7 +788,7 @@ export class Parser {
 		} else {
 			node.addChild(this._parseSupportsConditionInParens());
 			if (this.peekRegExp(TokenType.Ident, /^(and|or)$/i)) {
-				let text = this.token.text;
+				let text = this.token.text.toLowerCase();
 				while (this.acceptIdent(text)) {
 					node.addChild(this._parseSupportsConditionInParens());
 				}

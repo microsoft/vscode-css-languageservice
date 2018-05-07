@@ -142,6 +142,7 @@ suite('CSS - Parser', () => {
 		assertNode('@supports ((display: flexbox)) { }', parser, parser._parseSupports.bind(parser));
 		assertNode('@supports (display: flexbox !important) { }', parser, parser._parseSupports.bind(parser));
 		assertNode('@supports (grid-area: auto) { @media screen and (min-width: 768px) { .me { } } }', parser, parser._parseSupports.bind(parser));
+		assertNode('@supports (column-width: 1rem) OR (-moz-column-width: 1rem) OR (-webkit-column-width: 1rem) oR (-x-column-width: 1rem) { }', parser, parser._parseSupports.bind(parser)); // #49288
 		assertError('@supports (transition-property: color) or (animation-name: foo) and (transform: rotate(10deg)) { }', parser, parser._parseSupports.bind(parser), ParseError.LeftCurlyExpected);
 		assertError('@supports display: flexbox { }', parser, parser._parseSupports.bind(parser), ParseError.LeftParenthesisExpected);
 	});
