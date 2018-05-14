@@ -1157,20 +1157,8 @@ export class Parser {
 
 	public _parsePseudo(): nodes.Node {
 		// pseudo: ':' [ IDENT | FUNCTION S* [IDENT S*]? ')' ]
-		if (!this.peek(TokenType.Colon)) {
-			return null;
-		}
-		let pos = this.mark();
-		let node = this.createNode(nodes.NodeType.PseudoSelector);
-		this.consumeToken(); // Colon
-		if (!this.hasWhitespace()) {
-			// optional, support ::
-			if (this.accept(TokenType.Colon) && this.hasWhitespace()) {
-				return this.finish(node, ParseError.IdentifierExpected);
-			}
-			if (!node.addChild(this._parseIdent())) {
-				return this.finish(node, ParseError.IdentifierExpected);
-			}
+		let node = this._tryParsePseudoIdentifier();
+		if (node) {
 			if (!this.hasWhitespace() && this.accept(TokenType.ParenthesisL)) {
 				let tryAsSelector = () => {
 					let selectors = this.create(nodes.Node);
@@ -1191,13 +1179,33 @@ export class Parser {
 			}
 			return this.finish(node);
 		}
-		this.restoreAtMark(pos);
 		return null;
+	}
+
+	public _tryParsePseudoIdentifier(): nodes.Node {
+		if (!this.peek(TokenType.Colon)) {
+			return null;
+		}
+		let pos = this.mark();
+		let node = this.createNode(nodes.NodeType.PseudoSelector);
+		this.consumeToken(); // Colon
+		if (this.hasWhitespace()) {
+			this.restoreAtMark(pos);
+			return null;
+		}
+		// optional, support ::
+		if (this.accept(TokenType.Colon) && this.hasWhitespace()) {
+			this.markError(node, ParseError.IdentifierExpected);
+		}
+		if (!node.addChild(this._parseIdent())) {
+			this.markError(node, ParseError.IdentifierExpected);
+		}
+		return node;
 	}
 
 	public _tryParsePrio(): nodes.Node {
 		let mark = this.mark();
-		
+
 		let prio = this._parsePrio();
 		if (prio) {
 			return prio;

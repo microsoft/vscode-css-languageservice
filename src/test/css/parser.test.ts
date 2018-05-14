@@ -359,6 +359,7 @@ suite('CSS - Parser', () => {
 		assertNode('::slotted(div:hover)', parser, parser._parsePseudo.bind(parser)); // #35076
 		assertNode(':global(.output ::selection)', parser, parser._parsePseudo.bind(parser)); // #49010
 		assertNode(':matches(:hover, :focus)', parser, parser._parsePseudo.bind(parser)); // #49010
+		assertNode(':host([foo=bar][bar=foo])', parser, parser._parsePseudo.bind(parser)); // #49589
 	});
 
 	test('declaration', function () {

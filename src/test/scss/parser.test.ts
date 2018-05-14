@@ -348,6 +348,7 @@ suite('SCSS - Parser', () => {
 		assertNode('##{f} .#{f} #{f}:#{f} { }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.foo-#{&} .foo-#{&-sub} { }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.-#{$variable} { }', parser, parser._parseRuleset.bind(parser));
+		assertNode('#{&}([foo=bar][bar=foo]) { }', parser, parser._parseRuleset.bind(parser)); // #49589
 	});
 
 	test('Parent Selector', function () {

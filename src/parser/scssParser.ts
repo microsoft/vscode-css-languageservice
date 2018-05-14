@@ -306,6 +306,20 @@ export class SCSSParser extends cssParser.Parser {
 		return null;
 	}
 
+	public _parseElementName(): nodes.Node | null {
+		let pos = this.mark();
+		let node = super._parseElementName();
+		if (node && !this.hasWhitespace() && this.peek(TokenType.ParenthesisL)) { // for #49589
+			this.restoreAtMark(pos);
+			return null;
+		}
+		return node;
+	}
+
+	public _tryParsePseudoIdentifier(): nodes.Node {
+		return this._parseInterpolation() || super._tryParsePseudoIdentifier(); // for #49589
+	}
+
 	public _parseWarnAndDebug(): nodes.Node {
 		if (!this.peekKeyword('@debug')
 			&& !this.peekKeyword('@warn')
@@ -624,7 +638,7 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseListElement(): nodes.Node {
-		let node = <nodes.ListEntry> this.create(nodes.ListEntry);
+		let node = <nodes.ListEntry>this.create(nodes.ListEntry);
 		let child = this._parseBinaryExpr();
 		if (!child) {
 			return null;
