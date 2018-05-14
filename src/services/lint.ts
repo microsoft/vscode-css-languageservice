@@ -413,7 +413,7 @@ export class LintVisitor implements nodes.IVisitor {
 				let entry = propertiesBySuffix.data[suffix];
 				let actual = entry.names;
 
-				let needsStandard = languageFacts.isKnownProperty(suffix) && (actual.indexOf(suffix) === -1);
+				let needsStandard = languageFacts.isStandardProperty(suffix) && (actual.indexOf(suffix) === -1);
 				if (!needsStandard && actual.length === 1) {
 					continue; // only the non-vendor specific rule is used, that's fine, no warning
 				}
@@ -421,7 +421,7 @@ export class LintVisitor implements nodes.IVisitor {
 				let expected: string[] = [];
 				for (let i = 0, len = LintVisitor.prefixes.length; i < len; i++) {
 					let prefix = LintVisitor.prefixes[i];
-					if (languageFacts.isKnownProperty(prefix + suffix)) {
+					if (languageFacts.isStandardProperty(prefix + suffix)) {
 						expected.push(prefix + suffix);
 					}
 				}

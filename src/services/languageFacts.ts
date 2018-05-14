@@ -505,7 +505,7 @@ export function getColorValue(node: nodes.Node): Color {
 		let term = node.parent;
 		if (term.parent && term.parent.type === nodes.NodeType.BinaryExpression) {
 			let expression = term.parent;
-			if (expression.parent && expression.parent.type === nodes.NodeType.ListEntry && (<nodes.ListEntry> expression.parent).key === expression) {
+			if (expression.parent && expression.parent.type === nodes.NodeType.ListEntry && (<nodes.ListEntry>expression.parent).key === expression) {
 				return null;
 			}
 		}
@@ -555,6 +555,16 @@ export function isKnownProperty(name: string): boolean {
 	} else {
 		name = name.toLowerCase();
 		return getProperties().hasOwnProperty(name);
+	}
+}
+
+export function isStandardProperty(name: string): boolean {
+	if (!name) {
+		return false;
+	} else {
+		name = name.toLowerCase();
+		let property = getProperties()[name];
+		return property && property.status === 'standard';
 	}
 }
 
@@ -650,7 +660,10 @@ export interface IEntry {
 	browsers: Browsers;
 	description: string;
 	values: Value[];
+	status: EntryStatus;
 }
+
+export type EntryStatus = 'standard' | 'experimental' | 'nonstandard';
 
 function evalBrowserEntry(browsers: string) {
 	let browserEntry: Browsers = { all: false, count: 0, onCodeComplete: false };
@@ -730,6 +743,10 @@ class EntryImpl implements IEntry {
 		} else {
 			return [];
 		}
+	}
+
+	get status(): 'standard' | 'experimental' | 'nonstandard' {
+		return this.data.status || 'standard';
 	}
 
 	get values(): Value[] {

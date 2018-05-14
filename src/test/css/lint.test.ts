@@ -127,6 +127,7 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { transform: none; }');
 		assertRuleSet('selector { -moz-transform: none; transform: none; -o-transform: none; -webkit-transform: none; -ms-transform: none; }');
 		assertRuleSet('selector { --transform: none; }');
+		assertRuleSet('selector { -webkit-appearance: none }');
 	});
 
 	test('font-face required properties', function () {
