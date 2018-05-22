@@ -95,6 +95,8 @@ suite('LESS - Parser', () => {
 		assertNode('.media-switch({ flex-direction: row; });', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.keyframes(@name; @arguments) { @-moz-keyframes @name { @arguments(); } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.keyframes(fade-in;{ 0%, 100% { opacity: 1; }});', parser, parser._parseStylesheet.bind(parser));
+		assertNode('.foo({ .bar { color: red; } })', parser, parser._parseStylesheet.bind(parser));
+		assertNode('.foo(fade-in; .bar { .bar { color: red; } })', parser, parser.parseStylesheet.bind(parser));
 	});
 
 	test('MixinParameter', function () {
