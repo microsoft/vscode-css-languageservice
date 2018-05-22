@@ -88,6 +88,21 @@ suite('SCSS - Completions', () => {
 				{ label: '.foo' }
 			]
 		});
+		testCompletionFor('@', {
+			items: [
+				{ label: '@extend' },
+				{ label: '@at-root' },
+				{ label: '@debug' },
+				{ label: '@warn' },
+				{ label: '@error' },
+				{ label: '@if' },
+				{ label: '@for' },
+				{ label: '@each' },
+				{ label: '@while' },
+				{ label: '@mixin' },
+				{ label: '@include' }
+			]
+		});
 		// issue #250
 		testCompletionFor('.foo { display: block;|', {
 			count: 0
