@@ -8,7 +8,6 @@ import * as languageFacts from './languageFacts';
 import { CSSCompletion } from './cssCompletion';
 import * as nodes from '../parser/cssNodes';
 import { CompletionList, CompletionItemKind, TextEdit, InsertTextFormat, CompletionItem } from 'vscode-languageserver-types';
-
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();
 
@@ -123,6 +122,62 @@ export class SCSSCompletion extends CSSCompletion {
 		{ func: 'call($name, $args…)', desc: localize('scss.builtin.call', 'Dynamically calls a Sass function.') }
 	];
 
+	private static scssAtDirectives = [
+		{
+			label: "@extend",
+			documentation: localize("scss.builtin.@extend", "Inherits the styles of another selector.")
+		},
+		{
+			label: "@at-root",
+			documentation: localize("scss.builtin.@at-root", "Causes one or more rules to be emitted at the root of the document.")
+		},
+		{
+			label: "@debug",
+			documentation: localize("scss.builtin.@debug", "Prints the value of an expression to the standard error output stream. Useful for debugging complicated Sass files.")
+		},
+		{
+			label: "@warn",
+			documentation: localize("scss.builtin.@warn", "Prints the value of an expression to the standard error output stream. Useful for libraries that need to warn users of deprecations or recovering from minor mixin usage mistakes. Warnings can be turned off with the `--quiet` command-line option or the `:quiet` Sass option.")
+		},
+		{
+			label: "@error",
+			documentation: localize("scss.builtin.@error", "Throws the value of an expression as a fatal error with stack trace. Useful for validating arguments to mixins and functions.")
+		},
+		{
+			label: "@if",
+			documentation: localize("scss.builtin.@if", "Includes the body if the expression does not evaluate to `false` or `null`.")
+		},
+		{
+			label: "@for",
+			documentation: localize("scss.builtin.@for", "For loop that repeatedly outputs a set of styles for each `$var` in the `from/through` or `from/to` clause.",),
+			insertText: "@for \\$${1:var} from ${2:start} ${3|to,through|} ${4:end} {\n\t$0\n}",
+			insertTextFormat: InsertTextFormat.Snippet
+		},
+		{
+			label: "@each",
+			documentation: localize("scss.builtin.@each", "Each loop that sets `$var` to each item in the list or map, then outputs the styles it contains using that value of `$var`.",),
+			insertText: "@each \\$${1:var} in ${2:list} {\n\t$0\n}",
+			insertTextFormat: InsertTextFormat.Snippet
+		},
+		{
+			label: "@while",
+			documentation: localize("scss.builtin.@while", "While loop that takes an expression and repeatedly outputs the nested styles until the statement evaluates to `false`.",),
+			insertText: "@while ${1:condition} {\n\t$0\n}",
+			insertTextFormat: InsertTextFormat.Snippet
+		},
+		{
+			label: "@mixin",
+			documentation: localize("scss.builtin.@mixin", "Defines styles that can be re-used throughout the stylesheet with `@include`.",),
+			insertText: "@mixin ${1:name} {\n\t$0\n}",
+			insertTextFormat: InsertTextFormat.Snippet
+		},
+		{
+			label: "@include",
+			documentation: localize("scss.builtin.@include", "Includes the styles defined by another mixin into the current rule.")
+		},
+	];
+	
+
 	constructor() {
 		super('$');
 	}
@@ -192,7 +247,10 @@ export class SCSSCompletion extends CSSCompletion {
 	}
 
 	public getCompletionForTopLevel(result: CompletionList): CompletionList {
-		for (let entry of languageFacts.getScssAtDirectives()) {
+		SCSSCompletion.scssAtDirectives.forEach(d => {
+			result.items.push(d);
+		});
+		for (let entry of languageFacts.getAtDirectives()) {
 			if (entry.browsers.count > 0) {
 				result.items.push({
 					label: entry.name,

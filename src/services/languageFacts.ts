@@ -791,28 +791,6 @@ export function getAtDirectives(): IEntry[] {
 	return atDirectiveList;
 }
 
-import { scssAtDirectives } from '../data/scss';
-let scssAtDirectiveList: IEntry[];
-export function getScssAtDirectives(): IEntry[] {
-	if (!atDirectiveList) {
-		atDirectiveList = [];
-		for (let i = 0; i < atDirectives.length; i++) {
-			let rawEntry = atDirectives[i];
-			atDirectiveList.push(new EntryImpl(rawEntry));
-		}
-	}
-
-	if (!scssAtDirectiveList) {
-		scssAtDirectiveList = [];
-		for (let i = 0; i < scssAtDirectives.length; i++) {
-			let rawEntry = scssAtDirectives[i];
-			scssAtDirectiveList.push(new EntryImpl(rawEntry));
-		}
-	}
-
-	return scssAtDirectiveList.concat(atDirectiveList);
-}
-
 let pseudoElements = browsers.data.css.pseudoelements;
 let pseudoElementList: IEntry[];
 export function getPseudoElements(): IEntry[] {
