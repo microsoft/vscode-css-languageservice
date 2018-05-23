@@ -772,7 +772,6 @@ export const data : any = {
 				desc: "@counter-style descriptor. Specifies the symbols used by the marker-construction algorithm specified by the system descriptor. Needs to be specified if the counter system is 'additive'.",
 				browsers: "FF33",
 				restriction: "integer, string, image, identifier",
-				"status": "s",
 				"syntax": "[ <integer> && <symbol> ]#"
 			},
 			{
@@ -806,7 +805,6 @@ export const data : any = {
 						desc: "Lines stretch to take up the remaining space."
 					}
 				],
-				"status": "s",
 				"syntax": "normal | <baseline-position> | <content-distribution> | <overflow-position>? <content-position>"
 			},
 			{
@@ -836,7 +834,6 @@ export const data : any = {
 						desc: "If the cross size property of the flex item computes to auto, and neither of the cross-axis margins are auto, the flex item is stretched."
 					}
 				],
-				"status": "s",
 				"syntax": "normal | stretch | <baseline-position> | [ <overflow-position>? <self-position> ]"
 			},
 			{
@@ -904,7 +901,6 @@ export const data : any = {
 						name: "legacy"
 					}
 				],
-				"status": "s",
 				"syntax": "normal | stretch | <baseline-position> | <overflow-position>? [ <self-position> | left | right ] | legacy | legacy && [ left | right | center ]"
 			},
 			{
@@ -969,7 +965,6 @@ export const data : any = {
 						name: "unsave"
 					}
 				],
-				"status": "s",
 				"syntax": "auto | normal | stretch | <baseline-position> | <overflow-position>? [ <self-position> | left | right ]"
 			},
 			{
@@ -1003,7 +998,6 @@ export const data : any = {
 						desc: "If the cross size property of the flex item computes to auto, and neither of the cross-axis margins are auto, the flex item is stretched."
 					}
 				],
-				"status": "s",
 				"syntax": "auto | normal | stretch | <baseline-position> | <overflow-position>? <self-position>"
 			},
 			{
@@ -1012,7 +1006,6 @@ export const data : any = {
 				browsers: "C37,FF27,O24",
 				restriction: "enum",
 				values: [],
-				"status": "s",
 				"syntax": "initial | inherit | unset | revert"
 			},
 			{
@@ -1061,7 +1054,6 @@ export const data : any = {
 						desc: "All iterations of the animation are played in the reverse direction from the way they were specified."
 					}
 				],
-				"status": "s",
 				"syntax": "<single-animation>#"
 			},
 			{
@@ -1069,7 +1061,6 @@ export const data : any = {
 				desc: "Defines when the animation will start.",
 				browsers: "E,C43,FF16,IE10,O12.1,S9",
 				restriction: "time",
-				"status": "s",
 				"syntax": "<time>#"
 			},
 			{
@@ -1093,7 +1084,6 @@ export const data : any = {
 						desc: "All iterations of the animation are played in the reverse direction from the way they were specified."
 					}
 				],
-				"status": "s",
 				"syntax": "<single-animation-direction>#"
 			},
 			{
@@ -1101,7 +1091,6 @@ export const data : any = {
 				desc: "Defines the length of time that an animation takes to complete one cycle.",
 				browsers: "E,C43,FF16,IE10,O12.1,S9",
 				restriction: "time",
-				"status": "s",
 				"syntax": "<time>#"
 			},
 			{
@@ -1125,7 +1114,6 @@ export const data : any = {
 						desc: "There is no change to the property value between the time the animation is applied and the time the animation begins playing or after the animation completes."
 					}
 				],
-				"status": "s",
 				"syntax": "<single-animation-fill-mode>#"
 			},
 			{
@@ -1139,7 +1127,6 @@ export const data : any = {
 						desc: "Causes the animation to repeat forever."
 					}
 				],
-				"status": "s",
 				"syntax": "<single-animation-iteration-count>#"
 			},
 			{
@@ -1153,7 +1140,6 @@ export const data : any = {
 						desc: "No animation is performed"
 					}
 				],
-				"status": "s",
 				"syntax": "[ none | <keyframes-name> ]#"
 			},
 			{
@@ -1169,7 +1155,6 @@ export const data : any = {
 						name: "running"
 					}
 				],
-				"status": "s",
 				"syntax": "<single-animation-play-state>#"
 			},
 			{
@@ -1177,7 +1162,6 @@ export const data : any = {
 				desc: "Describes how the animation will progress over one cycle of its duration.",
 				browsers: "E,C43,FF16,IE10,O12.1,S9",
 				restriction: "timing-function",
-				"status": "s",
 				"syntax": "<single-timing-function>#"
 			},
 			{
@@ -1195,7 +1179,6 @@ export const data : any = {
 						desc: "Back side is visible."
 					}
 				],
-				"status": "s",
 				"syntax": "visible | hidden"
 			},
 			{
@@ -1216,7 +1199,6 @@ export const data : any = {
 						desc: "The background is fixed with regard to the element itself and does not scroll with its contents. (It is effectively attached to the element's border.)"
 					}
 				],
-				"status": "s",
 				"syntax": "[ <bg-layer> , ]* <final-bg-layer>"
 			},
 			{
@@ -1238,7 +1220,6 @@ export const data : any = {
 						desc: "The background is fixed with regard to the element itself and does not scroll with its contents. (It is effectively attached to the element’s border.)"
 					}
 				],
-				"status": "s",
 				"syntax": "<attachment>#"
 			},
 			{
@@ -1301,7 +1282,6 @@ export const data : any = {
 						browsers: "C35,FF30,O22"
 					}
 				],
-				"status": "s",
 				"syntax": "<blend-mode>#"
 			},
 			{
@@ -1309,14 +1289,12 @@ export const data : any = {
 				desc: "Determines the background painting area.",
 				browsers: "E,C,FF4,IE9,O10.5,S3",
 				restriction: "box",
-				"status": "s",
 				"syntax": "<box>#"
 			},
 			{
 				name: "background-color",
 				desc: "Sets the background color of an element.",
 				restriction: "color",
-				"status": "s",
 				"syntax": "<color>"
 			},
 			{
@@ -1329,7 +1307,6 @@ export const data : any = {
 						desc: "Counts as an image layer but draws nothing."
 					}
 				],
-				"status": "s",
 				"syntax": "<bg-image>#"
 			},
 			{
@@ -1337,14 +1314,12 @@ export const data : any = {
 				desc: "For elements rendered as a single box, specifies the background positioning area. For elements rendered as multiple boxes (e.g., inline boxes on several lines, boxes on several pages) specifies which boxes 'box-decoration-break' operates on to determine the background positioning area(s).",
 				browsers: "E,C,FF4,IE9,O10.5,S3",
 				restriction: "box",
-				"status": "s",
 				"syntax": "<box>#"
 			},
 			{
 				name: "background-position",
 				desc: "Specifies the initial position of the background image(s) (after any resizing) within their corresponding background positioning area.",
 				restriction: "position, length, percentage",
-				"status": "s",
 				"syntax": "<bg-position>#"
 			},
 			{
@@ -1396,7 +1371,6 @@ export const data : any = {
 				desc: "Specifies how background images are tiled after they have been sized and positioned.",
 				restriction: "repeat",
 				values: [],
-				"status": "s",
 				"syntax": "<repeat-style>#"
 			},
 			{
@@ -1418,7 +1392,6 @@ export const data : any = {
 						desc: "Scale the image, while preserving its intrinsic aspect ratio (if any), to the smallest size such that both its width and its height can completely cover the background positioning area."
 					}
 				],
-				"status": "s",
 				"syntax": "<bg-size>#"
 			},
 			{
@@ -1438,14 +1411,12 @@ export const data : any = {
 						desc: "Depends on the values of other properties."
 					}
 				],
-				"status": "s",
 				"syntax": "<'width'>"
 			},
 			{
 				name: "border",
 				desc: "Shorthand property for setting border width, style, and color.",
 				restriction: "length, line-width, line-style, color",
-				"status": "s",
 				"syntax": "<br-width> || <br-style> || <color>"
 			},
 			{
@@ -1453,7 +1424,6 @@ export const data : any = {
 				desc: "Logical 'border-bottom'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
 				restriction: "length, line-width, line-style, color",
-				"status": "s",
 				"syntax": "<'border-width'> || <'border-style'> || <'color'>"
 			},
 			{
@@ -1461,7 +1431,6 @@ export const data : any = {
 				desc: "Logical 'border-top'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
 				restriction: "length, line-width, line-style, color",
-				"status": "s",
 				"syntax": "<'border-width'> || <'border-style'> || <'color'>"
 			},
 			{
@@ -1469,7 +1438,6 @@ export const data : any = {
 				desc: "Logical 'border-bottom-color'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
 				restriction: "color",
-				"status": "s",
 				"syntax": "<'color'>"
 			},
 			{
@@ -1477,7 +1445,6 @@ export const data : any = {
 				desc: "Logical 'border-top-color'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
 				restriction: "color",
-				"status": "s",
 				"syntax": "<'color'>"
 			},
 			{
@@ -1485,7 +1452,6 @@ export const data : any = {
 				desc: "Logical 'border-bottom-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
 				restriction: "line-style",
-				"status": "s",
 				"syntax": "<'border-style'>"
 			},
 			{
@@ -1493,7 +1459,6 @@ export const data : any = {
 				desc: "Logical 'border-top-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
 				restriction: "lline-style",
-				"status": "s",
 				"syntax": "<'border-style'>"
 			},
 			{
@@ -1501,7 +1466,6 @@ export const data : any = {
 				desc: "Logical 'border-bottom-width'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
 				restriction: "length, line-width",
-				"status": "s",
 				"syntax": "<'border-width'>"
 			},
 			{
@@ -1509,21 +1473,18 @@ export const data : any = {
 				desc: "Logical 'border-top-width'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
 				restriction: "length, line-width",
-				"status": "s",
 				"syntax": "<'border-width'>"
 			},
 			{
 				name: "border-bottom",
 				desc: "Shorthand property for setting border width, style and color.",
 				restriction: "length, line-width, line-style, color",
-				"status": "s",
 				"syntax": "<br-width> || <br-style> || <color>"
 			},
 			{
 				name: "border-bottom-color",
 				desc: "Sets the color of the bottom border.",
 				restriction: "color",
-				"status": "s",
 				"syntax": "<color>"
 			},
 			{
@@ -1531,7 +1492,6 @@ export const data : any = {
 				desc: "Defines the radii of the bottom left outer border edge.",
 				browsers: "E,C,FF4,IE9,O10.5,S5",
 				restriction: "length, percentage",
-				"status": "s",
 				"syntax": "<length-percentage>{1,2}"
 			},
 			{
@@ -1539,21 +1499,18 @@ export const data : any = {
 				desc: "Defines the radii of the bottom right outer border edge.",
 				browsers: "E,C,FF4,IE9,O10.5,S5",
 				restriction: "length, percentage",
-				"status": "s",
 				"syntax": "<length-percentage>{1,2}"
 			},
 			{
 				name: "border-bottom-style",
 				desc: "Sets the style of the bottom border.",
 				restriction: "line-style",
-				"status": "s",
 				"syntax": "<br-style>"
 			},
 			{
 				name: "border-bottom-width",
 				desc: "Sets the thickness of the bottom border.",
 				restriction: "length, line-width",
-				"status": "s",
 				"syntax": "<br-width>"
 			},
 			{
@@ -1570,7 +1527,6 @@ export const data : any = {
 						desc: "Selects the separated borders border model."
 					}
 				],
-				"status": "s",
 				"syntax": "collapse | separate"
 			},
 			{
@@ -1578,7 +1534,6 @@ export const data : any = {
 				desc: "The color of the border around all four edges of an element.",
 				restriction: "color",
 				values: [],
-				"status": "s",
 				"syntax": "<color>{1,4}"
 			},
 			{
@@ -1618,7 +1573,6 @@ export const data : any = {
 						name: "url()"
 					}
 				],
-				"status": "s",
 				"syntax": "<'border-image-source'> || <'border-image-slice'> [ / <'border-image-width'> | / <'border-image-width'>? / <'border-image-outset'> ]? || <'border-image-repeat'>"
 			},
 			{
@@ -1626,7 +1580,6 @@ export const data : any = {
 				desc: "The values specify the amount by which the border image area extends beyond the border box on the top, right, bottom, and left sides respectively. If the fourth value is absent, it is the same as the second. If the third one is also absent, it is the same as the first. If the second one is also absent, it is the same as the first. Numbers represent multiples of the corresponding border-width.",
 				browsers: "E,C16,FF15,IE11,O15,S6",
 				restriction: "length, number",
-				"status": "s",
 				"syntax": "[ <length> | <number> ]{1,4}"
 			},
 			{
@@ -1651,7 +1604,6 @@ export const data : any = {
 						desc: "The image is stretched to fill the area."
 					}
 				],
-				"status": "s",
 				"syntax": "[ stretch | repeat | round | space ]{1,2}"
 			},
 			{
@@ -1665,7 +1617,6 @@ export const data : any = {
 						desc: "Causes the middle part of the border-image to be preserved."
 					}
 				],
-				"status": "s",
 				"syntax": "<number-percentage>{1,4} && fill?"
 			},
 			{
@@ -1679,7 +1630,6 @@ export const data : any = {
 						desc: "Use the border styles."
 					}
 				],
-				"status": "s",
 				"syntax": "none | <image>"
 			},
 			{
@@ -1693,7 +1643,6 @@ export const data : any = {
 						desc: "The border image width is the intrinsic width or height (whichever is applicable) of the corresponding image slice. If the image does not have the required intrinsic dimension then the corresponding border-width is used instead."
 					}
 				],
-				"status": "s",
 				"syntax": "[ <length-percentage> | <number> | auto ]{1,4}"
 			},
 			{
@@ -1701,7 +1650,6 @@ export const data : any = {
 				desc: "Logical 'border-right'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
 				restriction: "length, line-width, line-style, color",
-				"status": "s",
 				"syntax": "<'border-width'> || <'border-style'> || <'color'>"
 			},
 			{
@@ -1709,7 +1657,6 @@ export const data : any = {
 				desc: "Logical 'border-left'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
 				restriction: "length, line-width, line-style, color",
-				"status": "s",
 				"syntax": "<'border-width'> || <'border-style'> || <'color'>"
 			},
 			{
@@ -1717,7 +1664,6 @@ export const data : any = {
 				desc: "Logical 'border-right-color'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
 				restriction: "color",
-				"status": "s",
 				"syntax": "<'color'>"
 			},
 			{
@@ -1725,7 +1671,6 @@ export const data : any = {
 				desc: "Logical 'border-left-color'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
 				restriction: "color",
-				"status": "s",
 				"syntax": "<'color'>"
 			},
 			{
@@ -1733,7 +1678,6 @@ export const data : any = {
 				desc: "Logical 'border-right-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
 				restriction: "line-style",
-				"status": "s",
 				"syntax": "<'border-style'>"
 			},
 			{
@@ -1741,7 +1685,6 @@ export const data : any = {
 				desc: "Logical 'border-left-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
 				restriction: "lline-style",
-				"status": "s",
 				"syntax": "<'border-style'>"
 			},
 			{
@@ -1749,7 +1692,6 @@ export const data : any = {
 				desc: "Logical 'border-right-width'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
 				restriction: "length, line-width",
-				"status": "s",
 				"syntax": "<'border-width'>"
 			},
 			{
@@ -1757,35 +1699,30 @@ export const data : any = {
 				desc: "Logical 'border-left-width'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
 				restriction: "length, line-width",
-				"status": "s",
 				"syntax": "<'border-width'>"
 			},
 			{
 				name: "border-left",
 				desc: "Shorthand property for setting border width, style and color",
 				restriction: "length, line-width, line-style, color",
-				"status": "s",
 				"syntax": "<br-width> || <br-style> || <color>"
 			},
 			{
 				name: "border-left-color",
 				desc: "Sets the color of the left border.",
 				restriction: "color",
-				"status": "s",
 				"syntax": "<color>"
 			},
 			{
 				name: "border-left-style",
 				desc: "Sets the style of the left border.",
 				restriction: "line-style",
-				"status": "s",
 				"syntax": "<br-style>"
 			},
 			{
 				name: "border-left-width",
 				desc: "Sets the thickness of the left border.",
 				restriction: "length, line-width",
-				"status": "s",
 				"syntax": "<br-width>"
 			},
 			{
@@ -1793,35 +1730,30 @@ export const data : any = {
 				desc: "Defines the radii of the outer border edge.",
 				browsers: "E,C,FF4,IE9,O10.5,S5",
 				restriction: "length, percentage",
-				"status": "s",
 				"syntax": "<length-percentage>{1,4} [ / <length-percentage>{1,4} ]?"
 			},
 			{
 				name: "border-right",
 				desc: "Shorthand property for setting border width, style and color",
 				restriction: "length, line-width, line-style, color",
-				"status": "s",
 				"syntax": "<br-width> || <br-style> || <color>"
 			},
 			{
 				name: "border-right-color",
 				desc: "Sets the color of the right border.",
 				restriction: "color",
-				"status": "s",
 				"syntax": "<color>"
 			},
 			{
 				name: "border-right-style",
 				desc: "Sets the style of the right border.",
 				restriction: "line-style",
-				"status": "s",
 				"syntax": "<br-style>"
 			},
 			{
 				name: "border-right-width",
 				desc: "Sets the thickness of the right border.",
 				restriction: "length, line-width",
-				"status": "s",
 				"syntax": "<br-width>"
 			},
 			{
@@ -1829,7 +1761,6 @@ export const data : any = {
 				desc: "The lengths specify the distance that separates adjoining cell borders. If one length is specified, it gives both the horizontal and vertical spacing. If two are specified, the first gives the horizontal spacing and the second the vertical spacing. Lengths may not be negative.",
 				browsers: "E,C,FF1,IE8,O7,S1.2",
 				restriction: "length",
-				"status": "s",
 				"syntax": "<length> <length>?"
 			},
 			{
@@ -1837,21 +1768,18 @@ export const data : any = {
 				desc: "The style of the border around edges of an element.",
 				restriction: "line-style",
 				values: [],
-				"status": "s",
 				"syntax": "<br-style>{1,4}"
 			},
 			{
 				name: "border-top",
 				desc: "Shorthand property for setting border width, style and color",
 				restriction: "length, line-width, line-style, color",
-				"status": "s",
 				"syntax": "<br-width> || <br-style> || <color>"
 			},
 			{
 				name: "border-top-color",
 				desc: "Sets the color of the top border.",
 				restriction: "color",
-				"status": "s",
 				"syntax": "<color>"
 			},
 			{
@@ -1859,7 +1787,6 @@ export const data : any = {
 				desc: "Defines the radii of the top left outer border edge.",
 				browsers: "E,C,FF4,IE9,O10.5,S5",
 				restriction: "length, percentage",
-				"status": "s",
 				"syntax": "<length-percentage>{1,2}"
 			},
 			{
@@ -1867,21 +1794,18 @@ export const data : any = {
 				desc: "Defines the radii of the top right outer border edge.",
 				browsers: "E,C,FF4,IE9,O10.5,S5",
 				restriction: "length, percentage",
-				"status": "s",
 				"syntax": "<length-percentage>{1,2}"
 			},
 			{
 				name: "border-top-style",
 				desc: "Sets the style of the top border.",
 				restriction: "line-style",
-				"status": "s",
 				"syntax": "<br-style>"
 			},
 			{
 				name: "border-top-width",
 				desc: "Sets the thickness of the top border.",
 				restriction: "length, line-width",
-				"status": "s",
 				"syntax": "<br-width>"
 			},
 			{
@@ -1889,7 +1813,6 @@ export const data : any = {
 				desc: "Shorthand that sets the four 'border-*-width' properties. If it has four values, they set top, right, bottom and left in that order. If left is missing, it is the same as right; if bottom is missing, it is the same as top; if right is missing, it is the same as top.",
 				restriction: "length, line-width",
 				values: [],
-				"status": "s",
 				"syntax": "<br-width>{1,4}"
 			},
 			{
@@ -1902,7 +1825,6 @@ export const data : any = {
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well"
 					}
 				],
-				"status": "s",
 				"syntax": "<length> | <percentage> | auto"
 			},
 			{
@@ -1918,7 +1840,6 @@ export const data : any = {
 						name: "slice"
 					}
 				],
-				"status": "s",
 				"syntax": "slice | clone"
 			},
 			{
@@ -1931,7 +1852,6 @@ export const data : any = {
 						name: "inset"
 					}
 				],
-				"status": "s",
 				"syntax": "none | <shadow>#"
 			},
 			{
@@ -1947,7 +1867,6 @@ export const data : any = {
 						name: "content-box"
 					}
 				],
-				"status": "s",
 				"syntax": "content-box | border-box"
 			},
 			{
@@ -1993,7 +1912,6 @@ export const data : any = {
 						desc: "Force one or two page breaks before/after the generated box so that the next page is formatted as a right page."
 					}
 				],
-				"status": "s",
 				"syntax": "auto | avoid | avoid-page | page | left | right | recto | verso | avoid-column | column | avoid-region | region"
 			},
 			{
@@ -2039,7 +1957,6 @@ export const data : any = {
 						desc: "Force one or two page breaks before/after the generated box so that the next page is formatted as a right page."
 					}
 				],
-				"status": "s",
 				"syntax": "auto | avoid | avoid-page | page | left | right | recto | verso | avoid-column | column | avoid-region | region"
 			},
 			{
@@ -2065,7 +1982,6 @@ export const data : any = {
 						desc: "Avoid a page break within the box."
 					}
 				],
-				"status": "s",
 				"syntax": "auto | avoid | avoid-page | avoid-column | avoid-region"
 			},
 			{
@@ -2083,7 +1999,6 @@ export const data : any = {
 						desc: "Positions the caption box above the table box."
 					}
 				],
-				"status": "s",
 				"syntax": "top | bottom | block-start | block-end | inline-start | inline-end"
 			},
 			{
@@ -2097,7 +2012,6 @@ export const data : any = {
 						desc: "The user agent selects an appropriate color for the caret. This is generally currentcolor, but the user agent may choose a different color to ensure good visibility and contrast with the surrounding content, taking into account the value of currentcolor, the background, shadows, and other factors."
 					}
 				],
-				"status": "s",
 				"syntax": "auto | <color>"
 			},
 			{
@@ -2122,7 +2036,6 @@ export const data : any = {
 						desc: "The clearance of the generated box is set to the amount necessary to place the top border edge below the bottom outer edge of any right-floating boxes that resulted from elements earlier in the source document."
 					}
 				],
-				"status": "s",
 				"syntax": "none | left | right | both | inline-start | inline-end"
 			},
 			{
@@ -2138,7 +2051,6 @@ export const data : any = {
 						name: "rect()"
 					}
 				],
-				"status": "s",
 				"syntax": "<shape> | auto"
 			},
 			{
@@ -2156,7 +2068,6 @@ export const data : any = {
 						desc: "References a <clipPath> element to create a clipping path."
 					}
 				],
-				"status": "s",
 				"syntax": "<clip-source> | [ <basic-shape> || <geometry-box> ] | none"
 			},
 			{
@@ -2177,7 +2088,6 @@ export const data : any = {
 				name: "color",
 				desc: "Color of an element's text",
 				restriction: "color",
-				"status": "s",
 				"syntax": "<color>"
 			},
 			{
@@ -2209,7 +2119,6 @@ export const data : any = {
 						desc: "Determines the number of columns by the 'column-width' property and the element width."
 					}
 				],
-				"status": "s",
 				"syntax": "<integer> | auto"
 			},
 			{
@@ -2226,7 +2135,6 @@ export const data : any = {
 						name: "balance"
 					}
 				],
-				"status": "s",
 				"syntax": "auto | balance | balance-all"
 			},
 			{
@@ -2240,7 +2148,6 @@ export const data : any = {
 						desc: "User agent specific and typically equivalent to 1em."
 					}
 				],
-				"status": "s",
 				"syntax": "normal | <length-percentage>"
 			},
 			{
@@ -2248,7 +2155,6 @@ export const data : any = {
 				desc: "Shorthand for setting 'column-rule-width', 'column-rule-style', and 'column-rule-color' at the same place in the style sheet. Omitted values are set to their initial values.",
 				browsers: "E,IE10,O11.5,S9",
 				restriction: "length, line-width, line-style, color",
-				"status": "s",
 				"syntax": "<'column-rule-width'> || <'column-rule-style'> || <'column-rule-color'>"
 			},
 			{
@@ -2256,7 +2162,6 @@ export const data : any = {
 				desc: "Sets the color of the column rule",
 				browsers: "E,IE10,O11.6",
 				restriction: "color",
-				"status": "s",
 				"syntax": "<color>"
 			},
 			{
@@ -2264,7 +2169,6 @@ export const data : any = {
 				desc: "Sets the style of the rule between columns of an element.",
 				browsers: "E,IE10,O11.5,S6",
 				restriction: "line-style",
-				"status": "s",
 				"syntax": "<'border-style'>"
 			},
 			{
@@ -2272,7 +2176,6 @@ export const data : any = {
 				desc: "Sets the width of the rule between columns. Negative values are not allowed.",
 				browsers: "E,IE10,O11.5,S9",
 				restriction: "length, line-width",
-				"status": "s",
 				"syntax": "<'border-width'>"
 			},
 			{
@@ -2286,7 +2189,6 @@ export const data : any = {
 						desc: "The width depends on the values of other properties."
 					}
 				],
-				"status": "s",
 				"syntax": "<'column-width'> || <'column-count'>"
 			},
 			{
@@ -2304,7 +2206,6 @@ export const data : any = {
 						desc: "The element does not span multiple columns."
 					}
 				],
-				"status": "s",
 				"syntax": "none | all"
 			},
 			{
@@ -2318,7 +2219,6 @@ export const data : any = {
 						desc: "The width depends on the values of other properties."
 					}
 				],
-				"status": "s",
 				"syntax": "<length> | auto"
 			},
 			{
@@ -2384,7 +2284,6 @@ export const data : any = {
 						name: "url()"
 					}
 				],
-				"status": "s",
 				"syntax": "normal | none | [ <content-replacement> | <content-list> ] [/ <string> ]?"
 			},
 			{
@@ -2398,7 +2297,6 @@ export const data : any = {
 						desc: "This element does not alter the value of any counters."
 					}
 				],
-				"status": "s",
 				"syntax": "[ <custom-ident> <integer>? ]+ | none"
 			},
 			{
@@ -2412,7 +2310,6 @@ export const data : any = {
 						desc: "The counter is not modified."
 					}
 				],
-				"status": "s",
 				"syntax": "[ <custom-ident> <integer>? ]+ | none"
 			},
 			{
@@ -2569,7 +2466,6 @@ export const data : any = {
 						browsers: "E,C37,FF24,O12.1,S9"
 					}
 				],
-				"status": "s",
 				"syntax": "[ [ <url> [ <x> <y> ]? , ]* [ auto | default | none | context-menu | help | pointer | progress | wait | cell | crosshair | text | vertical-text | alias | copy | move | no-drop | not-allowed | e-resize | n-resize | ne-resize | nw-resize | s-resize | se-resize | sw-resize | w-resize | ew-resize | ns-resize | nesw-resize | nwse-resize | col-resize | row-resize | all-scroll | zoom-in | zoom-out | grab | grabbing ] ]"
 			},
 			{
@@ -2584,7 +2480,6 @@ export const data : any = {
 						name: "rtl"
 					}
 				],
-				"status": "s",
 				"syntax": "ltr | rtl"
 			},
 			{
@@ -2769,7 +2664,6 @@ export const data : any = {
 						browsers: "C21,O15,S6.1"
 					}
 				],
-				"status": "s",
 				"syntax": "[ <display-outside> || <display-inside> ] | <display-listitem> | <display-internal> | <display-box> | <display-legacy>"
 			},
 			{
@@ -2789,7 +2683,6 @@ export const data : any = {
 						name: "show"
 					}
 				],
-				"status": "s",
 				"syntax": "show | hide"
 			},
 			{
@@ -2810,7 +2703,6 @@ export const data : any = {
 				desc: "@counter-style descriptor. Specifies a fallback counter style to be used when the current counter style can’t create a representation for a given counter value.",
 				browsers: "FF33",
 				restriction: "identifier",
-				"status": "s",
 				"syntax": "<counter-style-name>"
 			},
 			{
@@ -2888,7 +2780,6 @@ export const data : any = {
 						browsers: "FF3.6"
 					}
 				],
-				"status": "s",
 				"syntax": "none | <filter-function-list>"
 			},
 			{
@@ -2911,7 +2802,6 @@ export const data : any = {
 						desc: "Expands to '0 0 auto'."
 					}
 				],
-				"status": "s",
 				"syntax": "none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]"
 			},
 			{
@@ -2930,7 +2820,6 @@ export const data : any = {
 						browsers: "E,IE11"
 					}
 				],
-				"status": "s",
 				"syntax": "content | <'width'>"
 			},
 			{
@@ -2954,7 +2843,6 @@ export const data : any = {
 						name: "row-reverse"
 					}
 				],
-				"status": "s",
 				"syntax": "row | row-reverse | column | column-reverse"
 			},
 			{
@@ -2989,7 +2877,6 @@ export const data : any = {
 						name: "wrap-reverse"
 					}
 				],
-				"status": "s",
 				"syntax": "<'flex-direction'> || <'flex-wrap'>"
 			},
 			{
@@ -2997,7 +2884,6 @@ export const data : any = {
 				desc: "Sets the flex grow factor. Negative numbers are invalid.",
 				browsers: "E,C29,FF22,IE11,O12.1,S9",
 				restriction: "number",
-				"status": "s",
 				"syntax": "<number>"
 			},
 			{
@@ -3005,7 +2891,6 @@ export const data : any = {
 				desc: "Sets the flex shrink factor. Negative numbers are invalid.",
 				browsers: "E,C29,FF22,IE11,O12.1,S9",
 				restriction: "number",
-				"status": "s",
 				"syntax": "<number>"
 			},
 			{
@@ -3026,7 +2911,6 @@ export const data : any = {
 						name: "wrap-reverse"
 					}
 				],
-				"status": "s",
 				"syntax": "nowrap | wrap | wrap-reverse"
 			},
 			{
@@ -3055,7 +2939,6 @@ export const data : any = {
 						desc: "Similar to 'left', except the box is floated to the right, and content flows on the left side of the box, starting at the top."
 					}
 				],
-				"status": "s",
 				"syntax": "left | right | none | inline-start | inline-end"
 			},
 			{
@@ -3174,7 +3057,6 @@ export const data : any = {
 						name: "xx-small"
 					}
 				],
-				"status": "s",
 				"syntax": "[ [ <'font-style'> || <font-variant-css21> || <'font-weight'> || <'font-stretch'> ]? <'font-size'> [ / <'line-height'> ]? <'font-family'> ] | caption | icon | menu | message-box | small-caption | status-bar"
 			},
 			{
@@ -3237,7 +3119,6 @@ export const data : any = {
 						name: "Verdana, Geneva, Tahoma, sans-serif"
 					}
 				],
-				"status": "s",
 				"syntax": "<family-name>"
 			},
 			{
@@ -3619,7 +3500,6 @@ export const data : any = {
 						desc: "Enable feature."
 					}
 				],
-				"status": "s",
 				"syntax": "normal | <feature-tag-value>#"
 			},
 			{
@@ -3641,7 +3521,6 @@ export const data : any = {
 						desc: "Specifies that kerning is applied."
 					}
 				],
-				"status": "s",
 				"syntax": "auto | normal | none"
 			},
 			{
@@ -3655,7 +3534,6 @@ export const data : any = {
 						desc: "Implies that when rendering with OpenType fonts the language of the document is used to infer the OpenType language system, used to select language specific features when rendering."
 					}
 				],
-				"status": "s",
 				"syntax": "normal | <string>"
 			},
 			{
@@ -3691,7 +3569,6 @@ export const data : any = {
 						name: "xx-small"
 					}
 				],
-				"status": "s",
 				"syntax": "<absolute-size> | <relative-size> | <length-percentage>"
 			},
 			{
@@ -3705,7 +3582,6 @@ export const data : any = {
 						desc: "Do not preserve the font’s x-height."
 					}
 				],
-				"status": "s",
 				"syntax": "none | <number>"
 			},
 			{
@@ -3750,7 +3626,6 @@ export const data : any = {
 						browsers: "E,IE10"
 					}
 				],
-				"status": "s",
 				"syntax": "normal | ultra-condensed | extra-condensed | condensed | semi-condensed | semi-expanded | expanded | extra-expanded | ultra-expanded"
 			},
 			{
@@ -3771,7 +3646,6 @@ export const data : any = {
 						desc: "Selects a font that is labeled as an 'oblique' face, or an 'italic' face if one is not."
 					}
 				],
-				"status": "s",
 				"syntax": "normal | italic | oblique"
 			},
 			{
@@ -3792,7 +3666,6 @@ export const data : any = {
 						name: "weight"
 					}
 				],
-				"status": "s",
 				"syntax": "none | [ weight || style ]"
 			},
 			{
@@ -3809,7 +3682,6 @@ export const data : any = {
 						desc: "Specifies a font that is labeled as a small-caps font. If a genuine small-caps font is not available, user agents should simulate a small-caps font."
 					}
 				],
-				"status": "s",
 				"syntax": "normal | none | [ <common-lig-values> || <discretionary-lig-values> || <historical-lig-values> || <contextual-alt-values> || stylistic(<feature-value-name>) || historical-forms || styleset(<feature-value-name>#) || character-variant(<feature-value-name>#) || swash(<feature-value-name>) || ornaments(<feature-value-name>) || annotation(<feature-value-name>) || [ small-caps | all-small-caps | petite-caps | all-petite-caps | unicase | titling-caps ] || <numeric-figure-values> || <numeric-spacing-values> || <numeric-fraction-values> || ordinal || slashed-zero || <east-asian-variant-values> || <east-asian-width-values> || ruby ]"
 			},
 			{
@@ -3844,7 +3716,6 @@ export const data : any = {
 						name: "swash()"
 					}
 				],
-				"status": "s",
 				"syntax": "normal | [ stylistic( <feature-value-name> ) || historical-forms || styleset( <feature-value-name># ) || character-variant( <feature-value-name># ) || swash( <feature-value-name> ) || ornaments( <feature-value-name> ) || annotation( <feature-value-name> ) ]"
 			},
 			{
@@ -3877,7 +3748,6 @@ export const data : any = {
 						name: "unicase"
 					}
 				],
-				"status": "s",
 				"syntax": "normal | small-caps | all-small-caps | petite-caps | all-petite-caps | unicase | titling-caps"
 			},
 			{
@@ -3919,7 +3789,6 @@ export const data : any = {
 						name: "traditional"
 					}
 				],
-				"status": "s",
 				"syntax": "normal | [ <east-asian-variant-values> || <east-asian-width-values> || ruby ]"
 			},
 			{
@@ -3970,7 +3839,6 @@ export const data : any = {
 						desc: "Implies that the defaults set by the font are used."
 					}
 				],
-				"status": "s",
 				"syntax": "normal | none | [ <common-lig-values> || <discretionary-lig-values> || <historical-lig-values> || <contextual-alt-values> ]"
 			},
 			{
@@ -4008,7 +3876,6 @@ export const data : any = {
 						name: "tabular-nums"
 					}
 				],
-				"status": "s",
 				"syntax": "normal | [ <numeric-figure-values> || <numeric-spacing-values> || <numeric-fraction-values> || ordinal || slashed-zero ]"
 			},
 			{
@@ -4030,7 +3897,6 @@ export const data : any = {
 						desc: "Enables display of superscript variants (OpenType feature: sups)."
 					}
 				],
-				"status": "s",
 				"syntax": "normal | sub | super"
 			},
 			{
@@ -4079,7 +3945,6 @@ export const data : any = {
 						desc: "Same as 400"
 					}
 				],
-				"status": "s",
 				"syntax": "normal | bold | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900"
 			},
 			{
@@ -4112,7 +3977,6 @@ export const data : any = {
 						name: "span"
 					}
 				],
-				"status": "s",
 				"syntax": "<grid-line> [ / <grid-line> ]{0,3}"
 			},
 			{
@@ -4120,7 +3984,6 @@ export const data : any = {
 				desc: "The grid CSS property is a shorthand property that sets all of the explicit grid properties ('grid-template-rows', 'grid-template-columns', and 'grid-template-areas'), and all the implicit grid properties ('grid-auto-rows', 'grid-auto-columns', and 'grid-auto-flow'), in a single declaration.",
 				browsers: "FF52,C57,E16,S10.1,O44",
 				restriction: "identifier, length, percentage, string, enum",
-				"status": "s",
 				"syntax": "<'grid-template'> | <'grid-template-rows'> / [ auto-flow && dense? ] <'grid-auto-columns'>? | [ auto-flow && dense? ] <'grid-auto-rows'>? / <'grid-template-columns'>"
 			},
 			{
@@ -4145,7 +4008,6 @@ export const data : any = {
 						name: "minmax()"
 					}
 				],
-				"status": "s",
 				"syntax": "<track-size>+"
 			},
 			{
@@ -4166,7 +4028,6 @@ export const data : any = {
 						name: "dense"
 					}
 				],
-				"status": "s",
 				"syntax": "[ row | column ] || dense"
 			},
 			{
@@ -4191,7 +4052,6 @@ export const data : any = {
 						name: "minmax()"
 					}
 				],
-				"status": "s",
 				"syntax": "<track-size>+"
 			},
 			{
@@ -4208,7 +4068,6 @@ export const data : any = {
 						name: "span"
 					}
 				],
-				"status": "s",
 				"syntax": "<grid-line> [ / <grid-line> ]?"
 			},
 			{
@@ -4225,7 +4084,6 @@ export const data : any = {
 						name: "span"
 					}
 				],
-				"status": "s",
 				"syntax": "<grid-line>"
 			},
 			{
@@ -4250,7 +4108,6 @@ export const data : any = {
 						name: "span"
 					}
 				],
-				"status": "s",
 				"syntax": "<grid-line>"
 			},
 			{
@@ -4275,7 +4132,6 @@ export const data : any = {
 						name: "span"
 					}
 				],
-				"status": "s",
 				"syntax": "<grid-line> [ / <grid-line> ]?"
 			},
 			{
@@ -4292,7 +4148,6 @@ export const data : any = {
 						name: "span"
 					}
 				],
-				"status": "s",
 				"syntax": "<grid-line>"
 			},
 			{
@@ -4317,7 +4172,6 @@ export const data : any = {
 						name: "span"
 					}
 				],
-				"status": "s",
 				"syntax": "<grid-line>"
 			},
 			{
@@ -4354,7 +4208,6 @@ export const data : any = {
 						desc: "Represents a repeated fragment of the track list, allowing a large number of columns or rows that exhibit a recurring pattern to be written in a more compact form."
 					}
 				],
-				"status": "s",
 				"syntax": "none | [ <'grid-template-rows'> / <'grid-template-columns'> ] | [ <line-names>? <string> <track-size>? <line-names>? ]+ [ / <explicit-track-list> ]?"
 			},
 			{
@@ -4368,7 +4221,6 @@ export const data : any = {
 						desc: "The grid container doesn’t define any named grid areas."
 					}
 				],
-				"status": "s",
 				"syntax": "none | <string>+"
 			},
 			{
@@ -4405,7 +4257,6 @@ export const data : any = {
 						desc: "Represents a repeated fragment of the track list, allowing a large number of columns or rows that exhibit a recurring pattern to be written in a more compact form."
 					}
 				],
-				"status": "s",
 				"syntax": "none | <track-list> | <auto-track-list>"
 			},
 			{
@@ -4442,7 +4293,6 @@ export const data : any = {
 						desc: "Represents a repeated fragment of the track list, allowing a large number of columns or rows that exhibit a recurring pattern to be written in a more compact form."
 					}
 				],
-				"status": "s",
 				"syntax": "none | <track-list> | <auto-track-list>"
 			},
 			{
@@ -4469,7 +4319,6 @@ export const data : any = {
 						browsers: "C46,O33"
 					}
 				],
-				"status": "s",
 				"syntax": "<viewport-length>{1,2}"
 			},
 			{
@@ -4490,7 +4339,6 @@ export const data : any = {
 						desc: "Words are not broken at line breaks, even if characters inside the word suggest line break points."
 					}
 				],
-				"status": "s",
 				"syntax": "none | manual | auto"
 			},
 			{
@@ -4506,7 +4354,6 @@ export const data : any = {
 						name: "from-image"
 					}
 				],
-				"status": "s",
 				"syntax": "from-image | <angle> | [ <angle>? flip ]"
 			},
 			{
@@ -4537,7 +4384,6 @@ export const data : any = {
 						name: "pixelated"
 					}
 				],
-				"status": "s",
 				"syntax": "auto | crisp-edges | pixelated"
 			},
 			{
@@ -4578,7 +4424,6 @@ export const data : any = {
 						desc: "Depends on the values of other properties."
 					}
 				],
-				"status": "s",
 				"syntax": "<'width'>"
 			},
 			{
@@ -4596,7 +4441,6 @@ export const data : any = {
 						desc: "In CSS will turn the element into a stacking context."
 					}
 				],
-				"status": "s",
 				"syntax": "auto | isolate"
 			},
 			{
@@ -4667,7 +4511,6 @@ export const data : any = {
 						desc: "Specifies participation in last-baseline alignment."
 					}
 				],
-				"status": "s",
 				"syntax": "normal | <content-distribution> | <overflow-position>? [ <content-position> | left | right ]"
 			},
 			{
@@ -4691,7 +4534,6 @@ export const data : any = {
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well"
 					}
 				],
-				"status": "s",
 				"syntax": "<length> | <percentage> | auto"
 			},
 			{
@@ -4704,7 +4546,6 @@ export const data : any = {
 						desc: "The spacing is the normal spacing for the current font. It is typically zero-length."
 					}
 				],
-				"status": "s",
 				"syntax": "normal | <length>"
 			},
 			{
@@ -4736,7 +4577,6 @@ export const data : any = {
 						desc: "Breaks CJK scripts using a more restrictive set of line-breaking rules than 'normal'."
 					}
 				],
-				"status": "s",
 				"syntax": "auto | loose | normal | strict"
 			},
 			{
@@ -4749,7 +4589,6 @@ export const data : any = {
 						desc: "Tells user agents to set the computed value to a 'reasonable' value based on the font size of the element."
 					}
 				],
-				"status": "s",
 				"syntax": "normal | <number> | <length> | <percentage>"
 			},
 			{
@@ -4817,7 +4656,6 @@ export const data : any = {
 						name: "url()"
 					}
 				],
-				"status": "s",
 				"syntax": "<'list-style-type'> || <'list-style-position'> || <'list-style-image'>"
 			},
 			{
@@ -4830,7 +4668,6 @@ export const data : any = {
 						desc: "The default contents of the of the list item’s marker are given by 'list-style-type' instead."
 					}
 				],
-				"status": "s",
 				"syntax": "<url> | none"
 			},
 			{
@@ -4845,7 +4682,6 @@ export const data : any = {
 						name: "outside"
 					}
 				],
-				"status": "s",
 				"syntax": "inside | outside"
 			},
 			{
@@ -4916,7 +4752,6 @@ export const data : any = {
 						desc: "Uppercase ASCII Roman numerals."
 					}
 				],
-				"status": "s",
 				"syntax": "<counter-style> | <string> | none"
 			},
 			{
@@ -4928,7 +4763,6 @@ export const data : any = {
 						name: "auto"
 					}
 				],
-				"status": "s",
 				"syntax": "[ <length> | <percentage> | auto ]{1,4}"
 			},
 			{
@@ -4941,7 +4775,6 @@ export const data : any = {
 						name: "auto"
 					}
 				],
-				"status": "s",
 				"syntax": "<'margin-left'>"
 			},
 			{
@@ -4954,7 +4787,6 @@ export const data : any = {
 						name: "auto"
 					}
 				],
-				"status": "s",
 				"syntax": "<'margin-left'>"
 			},
 			{
@@ -4966,7 +4798,6 @@ export const data : any = {
 						name: "auto"
 					}
 				],
-				"status": "s",
 				"syntax": "<length> | <percentage> | auto"
 			},
 			{
@@ -4979,7 +4810,6 @@ export const data : any = {
 						name: "auto"
 					}
 				],
-				"status": "s",
 				"syntax": "<'margin-left'>"
 			},
 			{
@@ -4992,7 +4822,6 @@ export const data : any = {
 						name: "auto"
 					}
 				],
-				"status": "s",
 				"syntax": "<'margin-left'>"
 			},
 			{
@@ -5004,7 +4833,6 @@ export const data : any = {
 						name: "auto"
 					}
 				],
-				"status": "s",
 				"syntax": "<length> | <percentage> | auto"
 			},
 			{
@@ -5016,7 +4844,6 @@ export const data : any = {
 						name: "auto"
 					}
 				],
-				"status": "s",
 				"syntax": "<length> | <percentage> | auto"
 			},
 			{
@@ -5028,7 +4855,6 @@ export const data : any = {
 						name: "auto"
 					}
 				],
-				"status": "s",
 				"syntax": "<length> | <percentage> | auto"
 			},
 			{
@@ -5106,7 +4932,6 @@ export const data : any = {
 						desc: "Reference to a <mask element or to a CSS image."
 					}
 				],
-				"status": "s",
 				"syntax": "<mask-reference>#"
 			},
 			{
@@ -5128,7 +4953,6 @@ export const data : any = {
 						desc: "Luminance values of the mask layer image should be used as the mask values."
 					}
 				],
-				"status": "s",
 				"syntax": "<masking-mode>#"
 			},
 			{
@@ -5136,7 +4960,6 @@ export const data : any = {
 				desc: "Specifies the mask positioning area.",
 				browsers: "FF53",
 				restriction: "geometry-box, enum",
-				"status": "s",
 				"syntax": "<geometry-box>#"
 			},
 			{
@@ -5144,7 +4967,6 @@ export const data : any = {
 				desc: "Specifies how mask layer images are positioned.",
 				browsers: "FF53",
 				restriction: "position, length, percentage",
-				"status": "s",
 				"syntax": "<position>#"
 			},
 			{
@@ -5152,7 +4974,6 @@ export const data : any = {
 				desc: "Specifies how mask layer images are tiled after they have been sized and positioned.",
 				browsers: "FF53",
 				restriction: "repeat",
-				"status": "s",
 				"syntax": "<repeat-style>#"
 			},
 			{
@@ -5174,7 +4995,6 @@ export const data : any = {
 						desc: "Scale the image, while preserving its intrinsic aspect ratio (if any), to the smallest size such that both its width and its height can completely cover the background positioning area."
 					}
 				],
-				"status": "s",
 				"syntax": "<bg-size>#"
 			},
 			{
@@ -5192,7 +5012,6 @@ export const data : any = {
 						desc: "Indicates that the luminance values of the mask should be used."
 					}
 				],
-				"status": "s",
 				"syntax": "luminance | alpha"
 			},
 			{
@@ -5234,7 +5053,6 @@ export const data : any = {
 						browsers: "C46,O33"
 					}
 				],
-				"status": "s",
 				"syntax": "<viewport-length>"
 			},
 			{
@@ -5276,7 +5094,6 @@ export const data : any = {
 						browsers: "C46,O33"
 					}
 				],
-				"status": "s",
 				"syntax": "<viewport-length>"
 			},
 			{
@@ -5284,7 +5101,6 @@ export const data : any = {
 				desc: "Logical 'min-width'. Mapping depends on the element’s 'writing-mode'.",
 				browsers: "FF41",
 				restriction: "length, percentage",
-				"status": "s",
 				"syntax": "<'min-width'>"
 			},
 			{
@@ -5312,7 +5128,6 @@ export const data : any = {
 						browsers: "C46,O33"
 					}
 				],
-				"status": "s",
 				"syntax": "<viewport-length>"
 			},
 			{
@@ -5320,7 +5135,6 @@ export const data : any = {
 				desc: "Logical 'min-height'. Mapping depends on the element’s 'writing-mode'.",
 				browsers: "FF41",
 				restriction: "length, percentage",
-				"status": "s",
 				"syntax": "<'min-width'>"
 			},
 			{
@@ -5348,7 +5162,6 @@ export const data : any = {
 						browsers: "C46,O33"
 					}
 				],
-				"status": "s",
 				"syntax": "<viewport-length>"
 			},
 			{
@@ -5411,7 +5224,6 @@ export const data : any = {
 						browsers: "C41,FF32,O29"
 					}
 				],
-				"status": "s",
 				"syntax": "<blend-mode>"
 			},
 			{
@@ -8152,7 +7964,6 @@ export const data : any = {
 				desc: "@counter-style descriptor. Defines how to alter the representation when the counter value is negative.",
 				browsers: "FF33",
 				restriction: "image, identifier, string",
-				"status": "s",
 				"syntax": "<symbol> <symbol>?"
 			},
 			{
@@ -8321,7 +8132,6 @@ export const data : any = {
 						name: "scale-down"
 					}
 				],
-				"status": "s",
 				"syntax": "fill | contain | cover | none | scale-down"
 			},
 			{
@@ -8329,7 +8139,6 @@ export const data : any = {
 				desc: "Determines the alignment of the replaced element inside its box.",
 				browsers: "C32,FF36,O19",
 				restriction: "position, length, percentage",
-				"status": "s",
 				"syntax": "<position>"
 			},
 			{
@@ -8404,7 +8213,6 @@ export const data : any = {
 				desc: "Opacity of an element's text, where 1 is opaque and 0 is entirely transparent.",
 				browsers: "C,FF3.6,IE9,O9,S1.2",
 				restriction: "number(0-1)",
-				"status": "s",
 				"syntax": "<number>"
 			},
 			{
@@ -8412,7 +8220,6 @@ export const data : any = {
 				desc: "Controls the order in which children of a flex container appear within the flex container, by assigning them to ordinal groups.",
 				browsers: "E,C29,FF22,IE11,O12.1,S9",
 				restriction: "integer",
-				"status": "s",
 				"syntax": "<integer>"
 			},
 			{
@@ -8420,7 +8227,6 @@ export const data : any = {
 				desc: "Specifies the minimum number of line boxes in a block container that must be left in a fragment before a fragmentation break.",
 				browsers: "C,IE8,O7,S1.3",
 				restriction: "integer",
-				"status": "s",
 				"syntax": "<integer>"
 			},
 			{
@@ -8587,7 +8393,6 @@ export const data : any = {
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well."
 					}
 				],
-				"status": "s",
 				"syntax": "<'left'>"
 			},
 			{
@@ -8601,7 +8406,6 @@ export const data : any = {
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well."
 					}
 				],
-				"status": "s",
 				"syntax": "<'left'>"
 			},
 			{
@@ -8615,7 +8419,6 @@ export const data : any = {
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well."
 					}
 				],
-				"status": "s",
 				"syntax": "<'left'>"
 			},
 			{
@@ -8629,7 +8432,6 @@ export const data : any = {
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well."
 					}
 				],
-				"status": "s",
 				"syntax": "<'left'>"
 			},
 			{
@@ -8647,7 +8449,6 @@ export const data : any = {
 						browsers: "E,IE8,O"
 					}
 				],
-				"status": "s",
 				"syntax": "[ <'outline-color'> || <'outline-style'> || <'outline-width'> ]"
 			},
 			{
@@ -8661,7 +8462,6 @@ export const data : any = {
 						browsers: "E,IE8,O"
 					}
 				],
-				"status": "s",
 				"syntax": "<color> | invert"
 			},
 			{
@@ -8669,7 +8469,6 @@ export const data : any = {
 				desc: "Offset the outline and draw it beyond the border edge.",
 				browsers: "C,FF1.5,O9.5,S1.2",
 				restriction: "length",
-				"status": "s",
 				"syntax": "<length>"
 			},
 			{
@@ -8683,7 +8482,6 @@ export const data : any = {
 						desc: "Permits the user agent to render a custom outline style, typically the default platform style."
 					}
 				],
-				"status": "s",
 				"syntax": "auto | <br-style>"
 			},
 			{
@@ -8691,7 +8489,6 @@ export const data : any = {
 				desc: "Width of the outline.",
 				browsers: "E,C,FF1.5,IE8,O8,S1.2",
 				restriction: "length, line-width",
-				"status": "s",
 				"syntax": "<br-width>"
 			},
 			{
@@ -8720,7 +8517,6 @@ export const data : any = {
 						desc: "Content is not clipped, i.e., it may be rendered outside the content box."
 					}
 				],
-				"status": "s",
 				"syntax": "[ visible | hidden | clip | scroll | auto ]{1,2}"
 			},
 			{
@@ -8738,7 +8534,6 @@ export const data : any = {
 						desc: "Lines may break only at allowed break points."
 					}
 				],
-				"status": "s",
 				"syntax": "normal | break-word"
 			},
 			{
@@ -8764,7 +8559,6 @@ export const data : any = {
 						desc: "Content is not clipped, i.e., it may be rendered outside the content box."
 					}
 				],
-				"status": "s",
 				"syntax": "visible | hidden | clip | scroll | auto"
 			},
 			{
@@ -8790,7 +8584,6 @@ export const data : any = {
 						desc: "Content is not clipped, i.e., it may be rendered outside the content box."
 					}
 				],
-				"status": "s",
 				"syntax": "visible | hidden | clip | scroll | auto"
 			},
 			{
@@ -8798,7 +8591,6 @@ export const data : any = {
 				desc: "@counter-style descriptor. Specifies a “fixed-width” counter style, where representations shorter than the pad value are padded with a particular <symbol>",
 				browsers: "FF33",
 				restriction: "integer, image, string, identifier",
-				"status": "s",
 				"syntax": "<integer> && <symbol>"
 			},
 			{
@@ -8806,14 +8598,12 @@ export const data : any = {
 				desc: "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 				restriction: "length, percentage",
 				values: [],
-				"status": "s",
 				"syntax": "[ <length> | <percentage> ]{1,4}"
 			},
 			{
 				name: "padding-bottom",
 				desc: "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 				restriction: "length, percentage",
-				"status": "s",
 				"syntax": "<length> | <percentage>"
 			},
 			{
@@ -8821,7 +8611,6 @@ export const data : any = {
 				desc: "Logical 'padding-bottom'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
 				restriction: "length, percentage",
-				"status": "s",
 				"syntax": "<'padding-left'>"
 			},
 			{
@@ -8829,7 +8618,6 @@ export const data : any = {
 				desc: "Logical 'padding-top'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
 				restriction: "length, percentage",
-				"status": "s",
 				"syntax": "<'padding-left'>"
 			},
 			{
@@ -8837,7 +8625,6 @@ export const data : any = {
 				desc: "Logical 'padding-right'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
 				restriction: "length, percentage",
-				"status": "s",
 				"syntax": "<'padding-left'>"
 			},
 			{
@@ -8845,28 +8632,24 @@ export const data : any = {
 				desc: "Logical 'padding-left'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 				browsers: "FF41",
 				restriction: "length, percentage",
-				"status": "s",
 				"syntax": "<'padding-left'>"
 			},
 			{
 				name: "padding-left",
 				desc: "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 				restriction: "length, percentage",
-				"status": "s",
 				"syntax": "<length> | <percentage>"
 			},
 			{
 				name: "padding-right",
 				desc: "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 				restriction: "length, percentage",
-				"status": "s",
 				"syntax": "<length> | <percentage>"
 			},
 			{
 				name: "padding-top",
 				desc: "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 				restriction: "length, percentage",
-				"status": "s",
 				"syntax": "<length> | <percentage>"
 			},
 			{
@@ -8895,7 +8678,6 @@ export const data : any = {
 						desc: "Force one or two page breaks after the generated box so that the next page is formatted as a right page."
 					}
 				],
-				"status": "s",
 				"syntax": "auto | always | avoid | left | right | recto | verso"
 			},
 			{
@@ -8924,7 +8706,6 @@ export const data : any = {
 						desc: "Force one or two page breaks before the generated box so that the next page is formatted as a right page."
 					}
 				],
-				"status": "s",
 				"syntax": "auto | always | avoid | left | right | recto | verso"
 			},
 			{
@@ -8942,7 +8723,6 @@ export const data : any = {
 						desc: "Avoid a page break inside the generated box."
 					}
 				],
-				"status": "s",
 				"syntax": "auto | avoid"
 			},
 			{
@@ -8979,7 +8759,6 @@ export const data : any = {
 						desc: "No perspective transform is applied."
 					}
 				],
-				"status": "s",
 				"syntax": "none | <length>"
 			},
 			{
@@ -8987,7 +8766,6 @@ export const data : any = {
 				desc: "Establishes the origin for the perspective property. It effectively sets the X and Y position at which the viewer appears to be looking at the children of the element.",
 				browsers: "E,C36,FF16,IE10,O23,S9",
 				restriction: "position, percentage, length",
-				"status": "s",
 				"syntax": "<position>"
 			},
 			{
@@ -9028,7 +8806,6 @@ export const data : any = {
 						name: "visibleStroke"
 					}
 				],
-				"status": "s",
 				"syntax": "auto | none | visiblePainted | visibleFill | visibleStroke | visible | painted | fill | stroke | all | inherit"
 			},
 			{
@@ -9061,7 +8838,6 @@ export const data : any = {
 						browsers: "S6.1"
 					}
 				],
-				"status": "s",
 				"syntax": "static | relative | absolute | sticky | fixed"
 			},
 			{
@@ -9069,7 +8845,6 @@ export const data : any = {
 				desc: "@counter-style descriptor. Specifies a <symbol> that is prepended to the marker representation.",
 				browsers: "FF33",
 				restriction: "image, string, identifier",
-				"status": "s",
 				"syntax": "<symbol>"
 			},
 			{
@@ -9083,7 +8858,6 @@ export const data : any = {
 						desc: "The 'open-quote' and 'close-quote' values of the 'content' property produce no quotations marks, as if they were 'no-open-quote' and 'no-close-quote' respectively."
 					}
 				],
-				"status": "s",
 				"syntax": "none | [ <string> <string> ]+"
 			},
 			{
@@ -9101,7 +8875,6 @@ export const data : any = {
 						desc: "If used as the first value in a range, it represents negative infinity; if used as the second value, it represents positive infinity."
 					}
 				],
-				"status": "s",
 				"syntax": "[ [ <integer> | infinite ]{2} ]# | auto"
 			},
 			{
@@ -9127,7 +8900,6 @@ export const data : any = {
 						desc: "The UA presents a unidirectional vertical resizing mechanism to allow the user to adjust only the height of the element."
 					}
 				],
-				"status": "s",
 				"syntax": "none | both | horizontal | vertical"
 			},
 			{
@@ -9140,7 +8912,6 @@ export const data : any = {
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well"
 					}
 				],
-				"status": "s",
 				"syntax": "<length> | <percentage> | auto"
 			},
 			{
@@ -9195,7 +8966,6 @@ export const data : any = {
 						browsers: "FF10"
 					}
 				],
-				"status": "s",
 				"syntax": "start | center | space-between | space-around"
 			},
 			{
@@ -9242,7 +9012,6 @@ export const data : any = {
 						desc: "The ruby text appears on the right of the base. Unlike 'before' and 'after', this value is not relative to the text flow direction."
 					}
 				],
-				"status": "s",
 				"syntax": "over | under | inter-character"
 			},
 			{
@@ -9322,7 +9091,6 @@ export const data : any = {
 						name: "smooth"
 					}
 				],
-				"status": "s",
 				"syntax": "auto | smooth"
 			},
 			{
@@ -9336,7 +9104,6 @@ export const data : any = {
 						desc: "Specifies that this element does not contribute a snap point."
 					}
 				],
-				"status": "s",
 				"syntax": "none | <position>#"
 			},
 			{
@@ -9344,7 +9111,6 @@ export const data : any = {
 				desc: "Define the x and y coordinate within the scroll container’s visual viewport which element snap points will align with.",
 				browsers: "FF39",
 				restriction: "position, length, percentage",
-				"status": "s",
 				"syntax": "<position>"
 			},
 			{
@@ -9402,7 +9168,6 @@ export const data : any = {
 						desc: "The visual viewport of this scroll container may come to rest on a snap point at the termination of a scroll at the discretion of the UA given the parameters of the scroll."
 					}
 				],
-				"status": "s",
 				"syntax": "none | mandatory | proximity"
 			},
 			{
@@ -9410,7 +9175,6 @@ export const data : any = {
 				desc: "Defines the alpha channel threshold used to extract the shape using an image. A value of 0.5 means that the shape will enclose all the pixels that are more than 50% opaque.",
 				browsers: "C37,O24",
 				restriction: "number",
-				"status": "s",
 				"syntax": "<number>"
 			},
 			{
@@ -9418,7 +9182,6 @@ export const data : any = {
 				desc: "Adds a margin to a 'shape-outside'. This defines a new shape that is the smallest contour that includes all the points that are the 'shape-margin' distance outward in the perpendicular direction from a point on the underlying shape.",
 				browsers: "C37,O24",
 				restriction: "url, length, percentage",
-				"status": "s",
 				"syntax": "<length-percentage>"
 			},
 			{
@@ -9435,7 +9198,6 @@ export const data : any = {
 						desc: "The float area is unaffected."
 					}
 				],
-				"status": "s",
 				"syntax": "none | <shape-box> || <basic-shape> | <image>"
 			},
 			{
@@ -9481,7 +9243,6 @@ export const data : any = {
 						name: "local()"
 					}
 				],
-				"status": "s",
 				"syntax": "[ <url> format(<string>#)? | local(<family-name>) ]#"
 			},
 			{
@@ -9576,7 +9337,6 @@ export const data : any = {
 				desc: "@counter-style descriptor. Specifies a <symbol> that is appended to the marker representation.",
 				browsers: "FF33",
 				restriction: "image, string, identifier",
-				"status": "s",
 				"syntax": "<symbol>"
 			},
 			{
@@ -9609,7 +9369,6 @@ export const data : any = {
 						name: "symbolic"
 					}
 				],
-				"status": "s",
 				"syntax": "cyclic | numeric | alphabetic | symbolic | additive | [ fixed <integer>? ] | [ extends <counter-style-name> ]"
 			},
 			{
@@ -9617,7 +9376,6 @@ export const data : any = {
 				desc: "@counter-style descriptor. Specifies the symbols used by the marker-construction algorithm specified by the system descriptor.",
 				browsers: "FF33",
 				restriction: "image, string, identifier",
-				"status": "s",
 				"syntax": "<symbol>+"
 			},
 			{
@@ -9634,7 +9392,6 @@ export const data : any = {
 						desc: "Use the fixed table layout algorithm."
 					}
 				],
-				"status": "s",
 				"syntax": "auto | fixed"
 			},
 			{
@@ -9642,7 +9399,6 @@ export const data : any = {
 				desc: "Determines the width of the tab character (U+0009), in space characters (U+0020), when rendered.",
 				browsers: "C21,O15,S6.1",
 				restriction: "integer, length",
-				"status": "s",
 				"syntax": "<integer> | <length>"
 			},
 			{
@@ -9677,7 +9433,6 @@ export const data : any = {
 						browsers: "C,FF1,O15,S3.1"
 					}
 				],
-				"status": "s",
 				"syntax": "start | end | left | right | center | justify | match-parent"
 			},
 			{
@@ -9707,7 +9462,6 @@ export const data : any = {
 						desc: "The inline contents are aligned to the right edge of the line box. In vertical text, 'right' aligns to the edge of the line box that would be the end edge for left-to-right text."
 					}
 				],
-				"status": "s",
 				"syntax": "auto | start | end | left | right | center | justify"
 			},
 			{
@@ -9759,7 +9513,6 @@ export const data : any = {
 						name: "wavy"
 					}
 				],
-				"status": "s",
 				"syntax": "<'text-decoration-line'> || <'text-decoration-style'> || <'text-decoration-color'>"
 			},
 			{
@@ -9767,7 +9520,6 @@ export const data : any = {
 				desc: "Specifies the color of text decoration (underlines overlines, and line-throughs) set on the element with text-decoration-line.",
 				browsers: "FF36,C57,O44",
 				restriction: "color",
-				"status": "s",
 				"syntax": "<color>"
 			},
 			{
@@ -9790,7 +9542,6 @@ export const data : any = {
 						name: "underline"
 					}
 				],
-				"status": "s",
 				"syntax": "none | [ underline || overline || line-through || blink ]"
 			},
 			{
@@ -9819,7 +9570,6 @@ export const data : any = {
 						name: "wavy"
 					}
 				],
-				"status": "s",
 				"syntax": "solid | double | dotted | dashed | wavy"
 			},
 			{
@@ -9827,7 +9577,6 @@ export const data : any = {
 				desc: "Specifies the indentation applied to lines of inline content in a block. The indentation only affects the first line of inline content in the block unless the 'hanging' keyword is specified, in which case it affects all lines except the first.",
 				restriction: "percentage, length",
 				values: [],
-				"status": "s",
 				"syntax": "<length-percentage> && hanging? && each-line?"
 			},
 			{
@@ -9863,7 +9612,6 @@ export const data : any = {
 						name: "newspaper"
 					}
 				],
-				"status": "s",
 				"syntax": "auto | inter-character | inter-word | none"
 			},
 			{
@@ -9884,7 +9632,6 @@ export const data : any = {
 						name: "upright"
 					}
 				],
-				"status": "s",
 				"syntax": "mixed | upright | sideways"
 			},
 			{
@@ -9900,7 +9647,6 @@ export const data : any = {
 						name: "ellipsis"
 					}
 				],
-				"status": "s",
 				"syntax": "[ clip | ellipsis | <string> ]{1,2}"
 			},
 			{
@@ -9924,7 +9670,6 @@ export const data : any = {
 						desc: "Indicates that the user agent shall emphasize rendering speed over legibility and geometric precision."
 					}
 				],
-				"status": "s",
 				"syntax": "auto | optimizeSpeed | optimizeLegibility | geometricPrecision"
 			},
 			{
@@ -9933,7 +9678,6 @@ export const data : any = {
 				browsers: "E,C,FF3.6,IE10,O9.5,S1.1",
 				restriction: "length, color",
 				values: [],
-				"status": "s",
 				"syntax": "none | <shadow-t>#"
 			},
 			{
@@ -9955,7 +9699,6 @@ export const data : any = {
 						name: "uppercase"
 					}
 				],
-				"status": "s",
 				"syntax": "none | capitalize | uppercase | lowercase | full-width"
 			},
 			{
@@ -9976,7 +9719,6 @@ export const data : any = {
 						desc: "The underline is aligned with the under edge of the element’s content box."
 					}
 				],
-				"status": "s",
 				"syntax": "auto | [ under || [ left | right ] ]"
 			},
 			{
@@ -9989,7 +9731,6 @@ export const data : any = {
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well"
 					}
 				],
-				"status": "s",
 				"syntax": "<length> | <percentage> | auto"
 			},
 			{
@@ -10035,7 +9776,6 @@ export const data : any = {
 						browsers: "E,IE11"
 					}
 				],
-				"status": "s",
 				"syntax": "auto | none | [ [ pan-x | pan-left | pan-right ] || [ pan-y | pan-up | pan-down ] || pinch-zoom ] | manipulation"
 			},
 			{
@@ -10111,7 +9851,6 @@ export const data : any = {
 						name: "translateZ()"
 					}
 				],
-				"status": "s",
 				"syntax": "none | <transform-list>"
 			},
 			{
@@ -10119,7 +9858,6 @@ export const data : any = {
 				desc: "Establishes the origin of transformation for an element.",
 				browsers: "E,C36,FF16,IE10,O12.1,S9",
 				restriction: "position, length, percentage",
-				"status": "s",
 				"syntax": "[ <length-percentage> | left | center | right | top | bottom ] | [ [ <length-percentage> | left | center | right ] && [ <length-percentage> | top | center | bottom ] ] <length>?"
 			},
 			{
@@ -10136,7 +9874,6 @@ export const data : any = {
 						browsers: "E,C36,FF16,O23,S9"
 					}
 				],
-				"status": "s",
 				"syntax": "flat | preserve-3d"
 			},
 			{
@@ -10154,7 +9891,6 @@ export const data : any = {
 						desc: "No property will transition."
 					}
 				],
-				"status": "s",
 				"syntax": "<single-transition>#"
 			},
 			{
@@ -10162,7 +9898,6 @@ export const data : any = {
 				desc: "Defines when the transition will start. It allows a transition to begin execution some period of time from when it is applied.",
 				browsers: "E,FF16,IE10,O12.5",
 				restriction: "time",
-				"status": "s",
 				"syntax": "<time>#"
 			},
 			{
@@ -10170,7 +9905,6 @@ export const data : any = {
 				desc: "Specifies how long the transition from the old value to the new value should take.",
 				browsers: "E,FF16,IE10,O12.5",
 				restriction: "time",
-				"status": "s",
 				"syntax": "<time>#"
 			},
 			{
@@ -10188,7 +9922,6 @@ export const data : any = {
 						desc: "No property will transition."
 					}
 				],
-				"status": "s",
 				"syntax": "none | <single-transition-property>#"
 			},
 			{
@@ -10196,7 +9929,6 @@ export const data : any = {
 				desc: "Describes how the intermediate values used during a transition will be calculated.",
 				browsers: "E,FF16,IE10,O12.5",
 				restriction: "timing-function",
-				"status": "s",
 				"syntax": "<single-transition-timing-function>#"
 			},
 			{
@@ -10228,7 +9960,6 @@ export const data : any = {
 						browsers: "C,FF10,O15,S6"
 					}
 				],
-				"status": "s",
 				"syntax": "normal | embed | isolate | bidi-override | isolate-override | plaintext"
 			},
 			{
@@ -10468,7 +10199,6 @@ export const data : any = {
 						name: "U+1F680–1F6FF"
 					}
 				],
-				"status": "s",
 				"syntax": "<unicode-range>#"
 			},
 			{
@@ -10543,7 +10273,6 @@ export const data : any = {
 						browsers: "C,S1"
 					}
 				],
-				"status": "s",
 				"syntax": "baseline | sub | super | text-top | text-bottom | middle | top | bottom | <percentage> | <length>"
 			},
 			{
@@ -10564,7 +10293,6 @@ export const data : any = {
 						desc: "The generated box is visible."
 					}
 				],
-				"status": "s",
 				"syntax": "visible | hidden | collapse"
 			},
 			{
@@ -12088,7 +11816,6 @@ export const data : any = {
 						name: "pre-wrap"
 					}
 				],
-				"status": "s",
 				"syntax": "normal | pre | nowrap | pre-wrap | pre-line"
 			},
 			{
@@ -12096,7 +11823,6 @@ export const data : any = {
 				desc: "Specifies the minimum number of line boxes of a block container that must be left in a fragment after a break.",
 				browsers: "C,IE8,O9.5,S1",
 				restriction: "integer",
-				"status": "s",
 				"syntax": "<integer>"
 			},
 			{
@@ -12123,7 +11849,6 @@ export const data : any = {
 						browsers: "C46,O33"
 					}
 				],
-				"status": "s",
 				"syntax": "<viewport-length>{1,2}"
 			},
 			{
@@ -12144,7 +11869,6 @@ export const data : any = {
 						name: "scroll-position"
 					}
 				],
-				"status": "s",
 				"syntax": "auto | <animateable-feature>#"
 			},
 			{
@@ -12165,7 +11889,6 @@ export const data : any = {
 						desc: "Breaks non-CJK scripts according to their own rules."
 					}
 				],
-				"status": "s",
 				"syntax": "normal | break-all | keep-all | break-word"
 			},
 			{
@@ -12178,7 +11901,6 @@ export const data : any = {
 						desc: "No additional spacing is applied. Computes to zero."
 					}
 				],
-				"status": "s",
 				"syntax": "normal | <length-percentage>"
 			},
 			{
@@ -12195,7 +11917,6 @@ export const data : any = {
 						desc: "Lines may break only at allowed break points."
 					}
 				],
-				"status": "s",
 				"syntax": "normal | break-word"
 			},
 			{
@@ -12222,7 +11943,6 @@ export const data : any = {
 						name: "vertical-rl"
 					}
 				],
-				"status": "s",
 				"syntax": "horizontal-tb | vertical-rl | vertical-lr | sideways-rl | sideways-lr"
 			},
 			{
@@ -12235,7 +11955,6 @@ export const data : any = {
 						desc: "The stack level of the generated box in the current stacking context is 0. The box does not establish a new stacking context unless it is the root element."
 					}
 				],
-				"status": "s",
 				"syntax": "auto | <integer>"
 			},
 			{
@@ -12248,7 +11967,6 @@ export const data : any = {
 						name: "normal"
 					}
 				],
-				"status": "s",
 				"syntax": "auto | <number> | <percentage>"
 			},
 			{
@@ -12549,28 +12267,24 @@ export const data : any = {
 				name: "color-adjust",
 				desc: "The color-adjust property is a non-standard CSS extension that can be used to force printing of background colors and images in browsers based on the WebKit engine.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "economy | exact"
 			},
 			{
 				name: "font-variation-settings",
 				desc: "The font-variation-settings CSS property provides low-level control over OpenType or TrueType font variations, by specifying the four letter axis names of the features you want to vary, along with their variation values.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "normal | [ <string> <number>] #"
 			},
 			{
 				name: "gap",
 				desc: "The gap CSS property is a shorthand property for row-gap and column-gap specifying the gutters between grid rows and columns.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "<'row-gap'> <'column-gap'>?"
 			},
 			{
 				name: "hanging-punctuation",
 				desc: "The hanging-punctuation CSS property specifies whether a punctuation mark should hang at the start or end of a line of text. Hanging punctuation may be placed outside the line box.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "none | [ first || [ force-end | allow-end ] || last ]"
 			},
 			{
@@ -12612,7 +12326,6 @@ export const data : any = {
 				name: "mask",
 				desc: "The mask CSS property alters the visibility of an element by either partially or fully hiding it. This is accomplished by either masking or clipping the image at specific points.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "<mask-layer>#"
 			},
 			{
@@ -12668,14 +12381,12 @@ export const data : any = {
 				name: "mask-clip",
 				desc: "The mask-clip CSS property determines the area, which is affected by a mask. The painted content of an element must be restricted to this area.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "[ <geometry-box> | no-clip ]#"
 			},
 			{
 				name: "mask-composite",
 				desc: "The mask-composite CSS property represents a compositing operation used on the current mask layer with the mask layers below it.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "<compositing-operator>#"
 			},
 			{
@@ -12780,35 +12491,30 @@ export const data : any = {
 				name: "place-content",
 				desc: "The place-content CSS shorthand property sets both the align-content and justify-content properties.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "<'align-content'> <'justify-content'>?"
 			},
 			{
 				name: "rotate",
 				desc: "The rotate CSS property allows you to specify rotation transforms individually and independantly of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "none | [ x | y | z | <number>{3} ]? && <angle>"
 			},
 			{
 				name: "row-gap",
 				desc: "The row-gap CSS property specifies the gutter between grid rows.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "normal | <length-percentage>"
 			},
 			{
 				name: "ruby-merge",
 				desc: "This property controls how ruby annotation boxes should be rendered when there are more than one in a ruby container box: whether each pair should be kept separate, the annotations should be collapsed and rendered as a group, or the separation should be determined based on the space available.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "separate | collapse | auto"
 			},
 			{
 				name: "scale",
 				desc: "The scale CSS property allows you to specify scale transforms individually and independantly of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "none | <number>{1,3}"
 			},
 			{
@@ -12829,7 +12535,6 @@ export const data : any = {
 				name: "text-combine-upright",
 				desc: "The text-combine-upright CSS property specifies the combination of multiple characters into the space of a single character. If the combined text is wider than 1em, the user agent must fit the contents within 1em. The resulting composition is treated as a single upright glyph for layout and decoration. This property only has an effect in vertical writing modes.\n\nThis is used to produce an effect that is known as tate-chū-yoko (縦中横) in Japanese, or as 直書橫向 in Chinese.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "none | all | [ digits <integer>? ]"
 			},
 			{
@@ -12850,28 +12555,24 @@ export const data : any = {
 				name: "text-emphasis",
 				desc: "The text-emphasis CSS property is a shorthand property for setting text-emphasis-style and text-emphasis-color in one declaration. This property will apply the specified emphasis mark to each character of the element's text, except separator characters, like spaces,  and control characters.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "<'text-emphasis-style'> || <'text-emphasis-color'>"
 			},
 			{
 				name: "text-emphasis-color",
 				desc: "The text-emphasis-color CSS property defines the color used to draw emphasis marks on text being rendered in the HTML document. This value can also be set and reset using the text-emphasis shorthand.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "<color>"
 			},
 			{
 				name: "text-emphasis-position",
 				desc: "The text-emphasis-position CSS property describes where emphasis marks are drawn at. The effect of emphasis marks on the line height is the same as for ruby text: if there isn't enough place, the line height is increased.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "[ over | under ] && [ right | left ]"
 			},
 			{
 				name: "text-emphasis-style",
 				desc: "The text-emphasis-style CSS property defines the type of emphasis used. It can also be set, and reset, using the text-emphasis shorthand.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "none | [ [ filled | open ] || [ dot | circle | double-circle | triangle | sesame ] ] | <string>"
 			},
 			{
@@ -12885,21 +12586,18 @@ export const data : any = {
 				name: "transform-box",
 				desc: "The transform-box CSS property defines the layout box to which the transform and transform-origin properties relate.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "border-box | fill-box | view-box"
 			},
 			{
 				name: "translate",
 				desc: "The translate CSS property allows you to specify translation transforms individually and independantly of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "none | <length-percentage> [ <length-percentage> <length>? ]?"
 			},
 			{
 				name: "speak-as",
 				desc: "The speak-as descriptor specifies how a counter symbol constructed with a given @counter-style will be represented in the spoken form. For example, an author can specify a counter symbol to be either spoken as its numerical value or just represented with an audio cue.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "auto | bullets | numbers | words | spell-out | <counter-style-name>"
 			},
 			{
@@ -12927,28 +12625,24 @@ export const data : any = {
 				name: "max-zoom",
 				desc: "The max-zoom CSS descriptor sets the maximum zoom factor of a document defined by the @viewport at-rule. The browser will not zoom in any further than this, whether automatically or at the user's request.\n\nA zoom factor of 1.0 or 100% corresponds to no zooming. Larger values are zoomed in. Smaller values are zoomed out.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "auto | <number> | <percentage>"
 			},
 			{
 				name: "min-zoom",
 				desc: "The min-zoom CSS descriptor sets the minimum zoom factor of a document defined by the @viewport at-rule. The browser will not zoom out any further than this, whether automatically or at the user's request.\n\nA zoom factor of 1.0 or 100% corresponds to no zooming. Larger values are zoomed in. Smaller values are zoomed out.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "auto | <number> | <percentage>"
 			},
 			{
 				name: "orientation",
 				desc: "The orientation CSS @media media feature can be used to apply styles based on the orientation of the viewport (or the page box, for paged media).",
 				restriction: "none",
-				"status": "s",
 				"syntax": "auto | portrait | landscape"
 			},
 			{
 				name: "user-zoom",
 				desc: "The user-zoom CSS descriptor controls whether or not the user can change the zoom factor of a document defined by @viewport.",
 				restriction: "none",
-				"status": "s",
 				"syntax": "zoom | fixed"
 			}
 		]

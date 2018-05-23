@@ -69,6 +69,12 @@ function buildPropertiesWithMDNData(vscProperties) {
  * Extract only the MDN data that we use
  */
 function extractMDNProperties(mdnEntry) {
+  if (mdnEntry.status === 'standard') {
+    return {
+      syntax: mdnEntry.syntax
+    }
+  }
+
   return {
     status: abbreviateStatus(mdnEntry.status),
     syntax: mdnEntry.syntax
@@ -80,7 +86,6 @@ function extractMDNProperties(mdnEntry) {
  */
 function abbreviateStatus(status) {
   return {
-    standard: 's',
     nonstandard: 'n',
     experimental: 'e',
     obsolete: 'o'
