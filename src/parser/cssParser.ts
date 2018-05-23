@@ -422,21 +422,14 @@ export class Parser {
 		if (!node.setProperty(this._parseProperty())) {
 			return null;
 		}
-		const declarationName = this.prevToken.text;
 
 		if (!this.accept(TokenType.Colon)) {
 			return <nodes.Declaration>this.finish(node, ParseError.ColonExpected, [TokenType.Colon], resyncStopTokens);
 		}
 		node.colonPosition = this.prevToken.offset;
 
-		if (declarationName === 'grid-template') {
-			if (!node.setValue(this._parseGridTemplateExpr())) {
-				return this.finish(node, ParseError.PropertyValueExpected);
-			}
-		} else {
-			if (!node.setValue(this._parseExpr())) {
-				return this.finish(node, ParseError.PropertyValueExpected);
-			}
+		if (!node.setValue(this._parseExpr())) {
+			return this.finish(node, ParseError.PropertyValueExpected);
 		}
 
 		node.addChild(this._parsePrio());
@@ -998,16 +991,6 @@ export class Parser {
 		return this._parseBody(node, this._parseStylesheetStatement.bind(this));
 	}
 
-	public _parseDelim(text: string): nodes.Node {
-		if (this.peekDelim(text)) {
-			let node = this.createNode(nodes.NodeType.Operator);
-			this.consumeToken();
-			return this.finish(node);
-		} else {
-			return null;
-		}
-	}
-
 	public _parseOperator(): nodes.Node {
 		// these are operators for binary expressions
 		if (this.peekDelim('/') ||
@@ -1245,7 +1228,7 @@ export class Parser {
 
 	public _parseExpr(stopOnComma: boolean = false): nodes.Expression {
 		let node = <nodes.Expression>this.create(nodes.Expression);
-		if (!node.addChild(this._parseNamedLine() || this._parseBinaryExpr())) {
+		if (!node.addChild(this._parseBinaryExpr())) {
 			return null;
 		}
 
@@ -1256,31 +1239,13 @@ export class Parser {
 				}
 				this.consumeToken();
 			}
-			if (!node.addChild(this._parseNamedLine() || this._parseBinaryExpr())) {
+			if (!node.addChild(this._parseBinaryExpr())) {
 				break;
 			}
 		}
 
 		return this.finish(node);
 	}
-
-	// https://www.w3.org/TR/css-grid-1/#propdef-grid-template
-	// Expresssion can contain '/' which shouldn't be parsed as "divide operator"
-	public _parseGridTemplateExpr(): nodes.Expression {
-		let node = <nodes.Expression>this.create(nodes.Expression);
-		if (!node.addChild(this._parseNamedLine() || this._parseDelim('/') || this._parseTerm())) {
-			return null;
-		}
-
-		while (true) {
-			if (!node.addChild(this._parseNamedLine() || this._parseDelim('/') || this._parseTerm() )) {
-				break;
-			}
-		}
-
-		return this.finish(node);
-	}
-
 
 	public _parseNamedLine(): nodes.Node {
 		// https://www.w3.org/TR/css-grid-1/#named-lines
@@ -1334,7 +1299,8 @@ export class Parser {
 			node.setExpression(this._parseStringLiteral()) ||
 			node.setExpression(this._parseNumeric()) ||
 			node.setExpression(this._parseHexColor()) ||
-			node.setExpression(this._parseOperation())
+			node.setExpression(this._parseOperation()) ||
+			node.setExpression(this._parseNamedLine()) 
 		) {
 			return <nodes.Term>this.finish(node);
 		}
