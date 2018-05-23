@@ -146,7 +146,7 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseDetachedRuleSetBody(): nodes.Node {
-		return this._tryParseKeyframeSelector() || super._parseRuleSetDeclaration();
+		return this._tryParseKeyframeSelector() || this._tryParseRuleset(true) || super._parseRuleSetDeclaration();
 	}
 
 	public _parseVariable(): nodes.Variable {
