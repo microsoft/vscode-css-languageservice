@@ -247,20 +247,8 @@ export class SCSSCompletion extends CSSCompletion {
 	}
 
 	public getCompletionForTopLevel(result: CompletionList): CompletionList {
-		SCSSCompletion.scssAtDirectives.forEach(d => {
-			result.items.push(d);
-		});
-		for (let entry of languageFacts.getAtDirectives()) {
-			if (entry.browsers.count > 0) {
-				result.items.push({
-					label: entry.name,
-					textEdit: TextEdit.replace(this.getCompletionRange(null), entry.name),
-					documentation: languageFacts.getEntryDescription(entry),
-					kind: CompletionItemKind.Keyword
-				});
-			}
-		}
-		this.getCompletionsForSelector(null, false, result);
+		result.items.push(...SCSSCompletion.scssAtDirectives);
+		super.getCompletionForTopLevel(result);
 		return result;
 	}
 }
