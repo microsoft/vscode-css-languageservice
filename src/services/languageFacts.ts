@@ -300,7 +300,7 @@ export let units: { [unitName: string]: string[] } = {
 	'time': ['ms', 's'],
 	'frequency': ['Hz', 'kHz'],
 	'resolution': ['dpi', 'dpcm', 'dppx'],
-	'percentage': ['%']
+	'percentage': ['%', 'fr']
 };
 
 export let html5Tags = ['a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdi', 'bdo', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption',

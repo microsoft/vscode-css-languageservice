@@ -206,6 +206,7 @@ staticUnitTable['s'] = TokenType.Time;
 staticUnitTable['hz'] = TokenType.Freq;
 staticUnitTable['khz'] = TokenType.Freq;
 staticUnitTable['%'] = TokenType.Percentage;
+staticUnitTable['fr'] = TokenType.Percentage;
 staticUnitTable['dpi'] = TokenType.Resolution;
 staticUnitTable['dpcm'] = TokenType.Resolution;
 

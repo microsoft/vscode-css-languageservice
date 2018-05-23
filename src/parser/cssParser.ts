@@ -17,6 +17,7 @@ export interface IMark {
 
 /// <summary>
 /// A parser for the css core specification. See for reference:
+/// https://www.w3.org/TR/CSS21/grammar.html
 /// http://www.w3.org/TR/CSS21/syndata.html#tokenization
 /// </summary>
 export class Parser {
@@ -431,6 +432,7 @@ export class Parser {
 		if (!node.setValue(this._parseExpr())) {
 			return this.finish(node, ParseError.PropertyValueExpected);
 		}
+
 		node.addChild(this._parsePrio());
 		if (this.peek(TokenType.SemiColon)) {
 			node.semicolonPosition = this.token.offset; // not part of the declaration, but useful information for code assist
@@ -1005,7 +1007,6 @@ export class Parser {
 			let node = this.createNode(nodes.NodeType.Operator);
 			this.consumeToken();
 			return this.finish(node);
-
 		} else {
 			return null;
 		}
@@ -1228,7 +1229,7 @@ export class Parser {
 
 	public _parseExpr(stopOnComma: boolean = false): nodes.Expression {
 		let node = <nodes.Expression>this.create(nodes.Expression);
-		if (!node.addChild(this._parseNamedLine() || this._parseBinaryExpr())) {
+		if (!node.addChild(this._parseBinaryExpr())) {
 			return null;
 		}
 
@@ -1239,7 +1240,7 @@ export class Parser {
 				}
 				this.consumeToken();
 			}
-			if (!node.addChild(this._parseNamedLine() || this._parseBinaryExpr())) {
+			if (!node.addChild(this._parseBinaryExpr())) {
 				break;
 			}
 		}
@@ -1299,7 +1300,8 @@ export class Parser {
 			node.setExpression(this._parseStringLiteral()) ||
 			node.setExpression(this._parseNumeric()) ||
 			node.setExpression(this._parseHexColor()) ||
-			node.setExpression(this._parseOperation())
+			node.setExpression(this._parseOperation()) ||
+			node.setExpression(this._parseNamedLine()) 
 		) {
 			return <nodes.Term>this.finish(node);
 		}

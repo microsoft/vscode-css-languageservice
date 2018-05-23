@@ -379,7 +379,8 @@ suite('CSS - Parser', () => {
 		assertNode('grid-template-columns: [first nav-start] 150px [main-start] 1fr [last]', parser, parser._parseDeclaration.bind(parser));
 		assertNode('grid-template-columns: repeat(4, 10px [col-start] 250px [col-end]) 10px', parser, parser._parseDeclaration.bind(parser));
 		assertNode('grid-template-columns: [a] auto [b] minmax(min-content, 1fr) [b c d] repeat(2, [e] 40px)', parser, parser._parseDeclaration.bind(parser));
-
+		assertNode('grid-template: [foo] 10px / [bar] 10px', parser, parser._parseDeclaration.bind(parser));
+		assertNode(`grid-template: 'left1 footer footer' 1fr [end] / [ini] 1fr [info-start] 2fr 1fr [end]`, parser, parser._parseDeclaration.bind(parser));
 	});
 
 	test('term', function () {
