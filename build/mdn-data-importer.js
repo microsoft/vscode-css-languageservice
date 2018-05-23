@@ -70,9 +70,21 @@ function buildPropertiesWithMDNData(vscProperties) {
  */
 function extractMDNProperties(mdnEntry) {
   return {
-    status: mdnEntry.status,
+    status: abbreviateStatus(mdnEntry.status),
     syntax: mdnEntry.syntax
   }
+}
+
+/**
+ * Make syntax as small as possible for browser usage
+ */
+function abbreviateStatus(status) {
+  return {
+    standard: 's',
+    nonstandard: 'n',
+    experimental: 'e',
+    obsolete: 'o'
+  }[status];
 }
 
 module.exports = {
