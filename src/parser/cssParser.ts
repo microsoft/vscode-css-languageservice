@@ -17,6 +17,7 @@ export interface IMark {
 
 /// <summary>
 /// A parser for the css core specification. See for reference:
+/// https://www.w3.org/TR/CSS21/grammar.html
 /// http://www.w3.org/TR/CSS21/syndata.html#tokenization
 /// </summary>
 export class Parser {
