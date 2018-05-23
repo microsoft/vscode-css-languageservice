@@ -33,7 +33,7 @@ suite('SCSS - Completions', () => {
 		}
 	};
 
-	test('sylesheet', function (): any {
+	test('stylesheet', function (): any {
 		testCompletionFor('$i: 0; body { width: |', {
 			items: [
 				{ label: '$i', documentation: '0' }
@@ -150,5 +150,24 @@ suite('SCSS - Completions', () => {
 				{ label: '.foo' }
 			]
 		});
+	});
+
+	test('stylesheet', function (): any {
+		testCompletionFor('.foo { | }', {
+			items: [
+				{ label: '@extend' },
+				{ label: '@at-root' },
+				{ label: '@debug' },
+				{ label: '@warn' },
+				{ label: '@error' },
+				{ label: '@if' },
+				{ label: '@for' },
+				{ label: '@each' },
+				{ label: '@while' },
+				{ label: '@mixin' },
+				{ label: '@include' }
+
+			]
+		})
 	});
 });

@@ -229,6 +229,7 @@ export class SCSSCompletion extends CSSCompletion {
 	}
 
 	public getCompletionsForDeclarationProperty(declaration: nodes.Declaration, result: CompletionList): CompletionList {
+		this.getCompletionForAtDirectives(result);
 		this.getCompletionsForSelector(null, true, result);
 		return super.getCompletionsForDeclarationProperty(declaration, result);
 	}
@@ -246,8 +247,13 @@ export class SCSSCompletion extends CSSCompletion {
 		return result;
 	}
 
-	public getCompletionForTopLevel(result: CompletionList): CompletionList {
+	public getCompletionForAtDirectives(result: CompletionList): CompletionList {
 		result.items.push(...SCSSCompletion.scssAtDirectives);
+		return result;
+	}
+
+	public getCompletionForTopLevel(result: CompletionList): CompletionList {
+		this.getCompletionForAtDirectives(result);
 		super.getCompletionForTopLevel(result);
 		return result;
 	}

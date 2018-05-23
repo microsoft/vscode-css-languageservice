@@ -36,7 +36,7 @@ suite('LESS - Completions', () => {
 		}
 	};
 
-	test('sylesheet', function (): any {
+	test('stylesheet', function (): any {
 		testCompletionFor('body { |', {
 			items: [
 				{ label: 'display' },
