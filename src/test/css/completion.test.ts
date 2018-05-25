@@ -95,7 +95,7 @@ suite('CSS - Completion', () => {
 		}
 	};
 
-	test('sylesheet', function (): any {
+	test('stylesheet', function (): any {
 		testCompletionFor('| ', {
 			items: [
 				{ label: '@import', resultText: '@import ' },
@@ -120,9 +120,6 @@ suite('CSS - Completion', () => {
 				{ label: 'html', resultText: '.foo html{ ' },
 				{ notAvailable: true, label: 'display' }
 			]
-		});
-		testCompletionFor('@|import url("something.css");', {
-			count: 0
 		});
 	});
 	test('selectors', function (): any {

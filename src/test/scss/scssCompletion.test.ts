@@ -7,7 +7,7 @@
 import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
-import { TextDocument, Position } from 'vscode-languageserver-types';
+import { TextDocument, Position, InsertTextFormat } from 'vscode-languageserver-types';
 import { assertCompletion, ItemDescription } from '../css/completion.test';
 
 suite('SCSS - Completions', () => {
@@ -33,7 +33,7 @@ suite('SCSS - Completions', () => {
 		}
 	};
 
-	test('sylesheet', function (): any {
+	test('stylesheet', function (): any {
 		testCompletionFor('$i: 0; body { width: |', {
 			items: [
 				{ label: '$i', documentation: '0' }
@@ -88,6 +88,36 @@ suite('SCSS - Completions', () => {
 				{ label: '.foo' }
 			]
 		});
+		testCompletionFor('@', {
+			items: [
+				{ label: '@extend' },
+				{ label: '@at-root' },
+				{ label: '@debug' },
+				{ label: '@warn' },
+				{ label: '@error' },
+				{ label: '@if' },
+				{ label: '@for', insertTextFormat: InsertTextFormat.Snippet },
+				{ label: '@each', insertTextFormat: InsertTextFormat.Snippet },
+				{ label: '@while', insertTextFormat: InsertTextFormat.Snippet },
+				{ label: '@mixin', insertTextFormat: InsertTextFormat.Snippet },
+				{ label: '@include' }
+			]
+		});
+		testCompletionFor(`@for $i from 1 through 3 { .item-#{$i} { width: 2em * $i; } } @|`, {
+			items: [
+				{ label: '@extend' },
+				{ label: '@at-root' },
+				{ label: '@debug' },
+				{ label: '@warn' },
+				{ label: '@error' },
+				{ label: '@if' },
+				{ label: '@for' },
+				{ label: '@each' },
+				{ label: '@while' },
+				{ label: '@mixin' },
+				{ label: '@include' }
+			]
+		});
 		// issue #250
 		testCompletionFor('.foo { display: block;|', {
 			count: 0
@@ -120,5 +150,24 @@ suite('SCSS - Completions', () => {
 				{ label: '.foo' }
 			]
 		});
+	});
+
+	test('stylesheet', function (): any {
+		testCompletionFor('.foo { | }', {
+			items: [
+				{ label: '@extend' },
+				{ label: '@at-root' },
+				{ label: '@debug' },
+				{ label: '@warn' },
+				{ label: '@error' },
+				{ label: '@if' },
+				{ label: '@for' },
+				{ label: '@each' },
+				{ label: '@while' },
+				{ label: '@mixin' },
+				{ label: '@include' }
+
+			]
+		})
 	});
 });

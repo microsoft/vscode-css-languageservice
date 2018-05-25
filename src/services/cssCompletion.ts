@@ -97,6 +97,8 @@ export class CSSCompletion {
 					this.getCompletionsForExtendsReference(<nodes.ExtendsReference>node, null, result);
 				} else if (node.type === nodes.NodeType.URILiteral) {
 					this.getCompletionForUriLiteralValue(node, result);
+				} else if (node.parent === null) {
+					this.getCompletionForTopLevel(result);
 				// } else if (node instanceof nodes.Variable) {
 					// this.getCompletionsForVariableDeclaration()
 				} else {
