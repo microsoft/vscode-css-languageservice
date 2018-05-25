@@ -603,13 +603,25 @@ export function getEntryDescription(entry: { description: string; browsers: Brow
 	return desc;
 }
 
+export function expandEntryStatus(status: string): EntryStatus {
+	switch (status) {
+		case 'e':
+			return 'experimental';
+		case 'n':
+			return 'nonstandard';
+		case 'o':
+			return 'obsolete';
+		default:
+			return 'standard';
+	}
+}
 function getEntryStatus(status: string) {
 	switch (status) {
-		case 'experimental':
+		case 'e':
 			return '⚠️ Property is experimental. Be cautious when using it.️\n\n';
-		case 'nonstandard':
+		case 'n':
 			return '🚨️ Property is nonstandard. Avoid using it.\n\n';
-		case 'obsolete':
+		case 'o':
 			return '🚨️️️ Property is obsolete. Avoid using it.\n\n';
 		default:
 			return '';
@@ -663,7 +675,7 @@ export interface IEntry {
 	status: EntryStatus;
 }
 
-export type EntryStatus = 'standard' | 'experimental' | 'nonstandard';
+export type EntryStatus = 'standard' | 'experimental' | 'nonstandard' | 'obsolete';
 
 function evalBrowserEntry(browsers: string) {
 	let browserEntry: Browsers = { all: false, count: 0, onCodeComplete: false };
@@ -745,8 +757,8 @@ class EntryImpl implements IEntry {
 		}
 	}
 
-	get status(): 'standard' | 'experimental' | 'nonstandard' {
-		return this.data.status || 'standard';
+	get status(): EntryStatus {
+		return expandEntryStatus(this.data.status);
 	}
 
 	get values(): Value[] {

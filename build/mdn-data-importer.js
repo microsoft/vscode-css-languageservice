@@ -69,10 +69,27 @@ function buildPropertiesWithMDNData(vscProperties) {
  * Extract only the MDN data that we use
  */
 function extractMDNProperties(mdnEntry) {
+  if (mdnEntry.status === 'standard') {
+    return {
+      syntax: mdnEntry.syntax
+    }
+  }
+
   return {
-    status: mdnEntry.status,
+    status: abbreviateStatus(mdnEntry.status),
     syntax: mdnEntry.syntax
   }
+}
+
+/**
+ * Make syntax as small as possible for browser usage
+ */
+function abbreviateStatus(status) {
+  return {
+    nonstandard: 'n',
+    experimental: 'e',
+    obsolete: 'o'
+  }[status];
 }
 
 module.exports = {
