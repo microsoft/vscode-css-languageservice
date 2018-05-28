@@ -458,15 +458,19 @@ export class LintVisitor implements nodes.IVisitor {
 		/////////////////////////////////////////////////////////////
 		//	0 has no following unit
 		/////////////////////////////////////////////////////////////
-		let value = node.getValue();
-		if (!value.unit || languageFacts.units.length.indexOf(value.unit.toLowerCase()) === -1) {
-			return true;
+		let decl = node.findParent(nodes.NodeType.Declaration);
+		if (decl) {
+			let declValue = (<nodes.Declaration>decl).getValue();
+			if (declValue && declValue.offset === node.offset && declValue.length === node.length) {
+				let value = node.getValue();
+				if (!value.unit || languageFacts.units.length.indexOf(value.unit.toLowerCase()) === -1) {
+					return true;
+				}
+				if (parseFloat(value.value) === 0.0 && !!value.unit) {
+					this.addEntry(node, Rules.ZeroWithUnit);
+				}
+			}
 		}
-
-		if (parseFloat(value.value) === 0.0 && !!value.unit) {
-			this.addEntry(node, Rules.ZeroWithUnit);
-		}
-
 		return true;
 	}
 

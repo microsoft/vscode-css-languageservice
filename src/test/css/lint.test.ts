@@ -94,6 +94,7 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { line-height: 0EM }', Rules.ZeroWithUnit);
 		assertRuleSet('selector { line-height: 0pc }', Rules.ZeroWithUnit);
 		assertRuleSet('selector { min-height: 0% }');
+		assertRuleSet('selector { top: calc(0px - 10vw); }'); // issue 46997
 	});
 
 	test('duplicate declarations', function () {
