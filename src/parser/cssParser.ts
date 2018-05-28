@@ -992,7 +992,7 @@ export class Parser {
 		return this._parseBody(node, this._parseStylesheetStatement.bind(this));
 	}
 
-	public _parseOperator(): nodes.Node {
+	public _parseOperator(): nodes.Operator {
 		// these are operators for binary expressions
 		if (this.peekDelim('/') ||
 			this.peekDelim('*') ||
@@ -1147,9 +1147,13 @@ export class Parser {
 		// Optional attrib namespace
 		node.setNamespacePrefix(this._parseNamespacePrefix());
 
-		if (!node.setExpression(this._parseBinaryExpr())) {
-			// is this bad?
+		if (!node.setIdentifier(this._parseIdent())) {
+			return this.finish(node, ParseError.IdentifierExpected);
 		}
+		if (node.setOperator(this._parseOperator())) {
+			node.setValue(this._parseBinaryExpr());
+		}
+
 		if (!this.accept(TokenType.BracketR)) {
 			return this.finish(node, ParseError.RightSquareBracketExpected);
 		}
@@ -1301,7 +1305,7 @@ export class Parser {
 			node.setExpression(this._parseNumeric()) ||
 			node.setExpression(this._parseHexColor()) ||
 			node.setExpression(this._parseOperation()) ||
-			node.setExpression(this._parseNamedLine()) 
+			node.setExpression(this._parseNamedLine())
 		) {
 			return <nodes.Term>this.finish(node);
 		}

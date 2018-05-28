@@ -212,7 +212,7 @@ namespace quotes {
 export function toElement(node: nodes.SimpleSelector, parentElement?: Element): Element {
 
 	let result = new Element();
-	for (let child of node.getChildren()) {
+	for (const child of node.getChildren()) {
 		switch (child.type) {
 			case nodes.NodeType.SelectorCombinator:
 				if (parentElement) {
@@ -259,37 +259,40 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element): 
 				result.addAttr(unescape(child.getText()), '');
 				break;
 			case nodes.NodeType.AttributeSelector:
-				let expr = (<nodes.AttributeSelector>child).getExpression();
-				if (expr) {
+				const selector = <nodes.AttributeSelector>child;
+				let identifuer = selector.getIdentifier();
+				if (identifuer) {
+					let expression = selector.getValue();
+					let operator = selector.getOperator();
 					let value: string;
-					if (expr.getRight()) {
-						switch (unescape(expr.getOperator().getText())) {
+					if (expression) {
+						switch (unescape(operator.getText())) {
 							case '|=':
 								// excatly or followed by -words
-								value = `${quotes.remove(unescape(expr.getRight().getText()))}-\u2026`;
+								value = `${quotes.remove(unescape(expression.getText()))}-\u2026`;
 								break;
 							case '^=':
 								// prefix
-								value = `${quotes.remove(unescape(expr.getRight().getText()))}\u2026`;
+								value = `${quotes.remove(unescape(expression.getText()))}\u2026`;
 								break;
 							case '$=':
 								// suffix
-								value = `\u2026${quotes.remove(unescape(expr.getRight().getText()))}`;
+								value = `\u2026${quotes.remove(unescape(expression.getText()))}`;
 								break;
 							case '~=':
 								// one of a list of words
-								value = ` \u2026 ${quotes.remove(unescape(expr.getRight().getText()))} \u2026 `;
+								value = ` \u2026 ${quotes.remove(unescape(expression.getText()))} \u2026 `;
 								break;
 							case '*=':
 								// substring
-								value = `\u2026${quotes.remove(unescape(expr.getRight().getText()))}\u2026`;
+								value = `\u2026${quotes.remove(unescape(expression.getText()))}\u2026`;
 								break;
 							default:
-								value = quotes.remove(unescape(expr.getRight().getText()));
+								value = quotes.remove(unescape(expression.getText()));
 								break;
 						}
 					}
-					result.addAttr(unescape(expr.getLeft().getText()), value);
+					result.addAttr(unescape(identifuer.getText()), value);
 				}
 				break;
 		}

@@ -1200,7 +1200,9 @@ export class Term extends Node {
 export class AttributeSelector extends Node {
 
 	public namespacePrefix: Node;
-	public expression: BinaryExpression;
+	public identifier: Identifier;
+	public operator: Operator;
+	public value: BinaryExpression;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1210,14 +1212,6 @@ export class AttributeSelector extends Node {
 		return NodeType.AttributeSelector;
 	}
 
-	public setExpression(value: BinaryExpression): boolean {
-		return this.setNode('expression', value);
-	}
-
-	public getExpression(): BinaryExpression {
-		return this.expression;
-	}
-
 	public setNamespacePrefix(value: Node): boolean {
 		return this.setNode('namespacePrefix', value);
 	}
@@ -1225,6 +1219,30 @@ export class AttributeSelector extends Node {
 	public getNamespacePrefix(): Node {
 		return this.namespacePrefix;
 	}
+
+	public setIdentifier(value: Identifier): boolean {
+		return this.setNode('identifier', value);
+	}
+
+	public getIdentifier(): Identifier {
+		return this.identifier;
+	}
+
+	public setOperator(operator: Operator): boolean {
+		return this.setNode('operator', operator);
+	}
+
+	public getOperator(): Operator {
+		return this.operator;
+	}
+
+	public setValue(value: BinaryExpression): boolean {
+		return this.setNode('value', value);
+	}
+
+	public getValue(): BinaryExpression {
+		return this.value;
+	}	
 }
 
 export class Operator extends Node {
@@ -1475,7 +1493,7 @@ export class ListEntry extends Node {
 
 	public get type(): NodeType {
 		return NodeType.ListEntry;
-	}	
+	}
 
 	public setKey(node: Node): boolean {
 		return this.setNode('key', node, 0);
@@ -1483,7 +1501,7 @@ export class ListEntry extends Node {
 
 	public setValue(node: Node): boolean {
 		return this.setNode('value', node, 1);
-	}	
+	}
 }
 
 export class LessGuard extends Node {

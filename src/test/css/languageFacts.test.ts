@@ -103,6 +103,8 @@ suite('CSS - Language Facts', () => {
 		assertColor(parser, '#main { color: hsl(30,20%,30%, 0) }', 'hsl', colorFrom256RGB(92, 77, 61, 0));
 		assertColor(parser, '#main { color: hsla(38deg,89%,89%, 0) }', 'hsl', colorFrom256RGB(252, 234, 202, 0));
 		assertColor(parser, '#main { color: rgba(0.7) }', 'rgba', null, true);
+		assertColor(parser, '[green] {}', 'green', null);
+		assertColor(parser, '[data-color=green] {}', 'green', null);
 	});
 
 	test('hexDigit', function () {
