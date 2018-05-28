@@ -335,6 +335,7 @@ suite('CSS - Parser', () => {
 		assertNode('[name~=name3]', parser, parser._parseAttrib.bind(parser));
 		assertNode('[name |= name3]', parser, parser._parseAttrib.bind(parser));
 		assertNode('[name |= "this is a striiiing"]', parser, parser._parseAttrib.bind(parser));
+		assertNode('[href*="insensitive" i]', parser, parser._parseAttrib.bind(parser));
 
 		// Single namespace
 		assertNode('[namespace|name]', parser, parser._parseAttrib.bind(parser));

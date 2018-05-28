@@ -1152,6 +1152,7 @@ export class Parser {
 		}
 		if (node.setOperator(this._parseOperator())) {
 			node.setValue(this._parseBinaryExpr());
+			this.acceptIdent('i'); // case insensitive matching
 		}
 
 		if (!this.accept(TokenType.BracketR)) {
