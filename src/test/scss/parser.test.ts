@@ -195,6 +195,7 @@ suite('SCSS - Parser', () => {
 		let parser = new SCSSParser();
 		assertNode('@keyframes name { @content; }', parser, parser._parseKeyframe.bind(parser));
 		assertNode('@keyframes name { @for $i from 0 through $steps { #{$i * (100%/$steps)} { transform: $rotate $translate; } } }', parser, parser._parseKeyframe.bind(parser)); // issue 42086
+		assertNode('@keyframes test-keyframe { @for $i from 1 through 60 { $s: ($i * 100) / 60 + "%"; } }', parser, parser._parseKeyframe.bind(parser));
 	});
 
 	test('@extend', function () {
@@ -244,6 +245,7 @@ suite('SCSS - Parser', () => {
 		assertError('@for $i from 0 by 4 {}', parser, parser._parseRuleSetDeclaration.bind(parser), SCSSParseError.ThroughOrToExpected);
 		assertError('@for $i from {}', parser, parser._parseRuleSetDeclaration.bind(parser), ParseError.ExpressionExpected);
 		assertError('@for $i from 0 to {}', parser, parser._parseRuleSetDeclaration.bind(parser), ParseError.ExpressionExpected);
+		assertNode('@for $i from 1 through 60 { $s: $i + "%"; }', parser, parser._parseRuleSetDeclaration.bind(parser));
 	});
 
 	test('@each', function () {
