@@ -211,6 +211,15 @@ export class SCSSCompletion extends CSSCompletion {
 		return result;
 	}
 
+	public getCompletionsForDeclarations(declarations: nodes.Declarations, result: CompletionList): CompletionList {
+		if (this.currentWord === '@') {
+			this.getCompletionsForDeclarationProperty(null, result);
+		}
+
+		return super.getCompletionsForDeclarations(declarations, result);
+	}
+
+
 	public getCompletionsForSelector(ruleSet: nodes.RuleSet, isNested: boolean, result: CompletionList): CompletionList {
 		this.createFunctionProposals(SCSSCompletion.selectorFuncs, void 0, true, result);
 		return super.getCompletionsForSelector(ruleSet, isNested, result);
