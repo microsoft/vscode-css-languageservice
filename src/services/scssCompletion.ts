@@ -145,7 +145,9 @@ export class SCSSCompletion extends CSSCompletion {
 		},
 		{
 			label: "@if",
-			documentation: localize("scss.builtin.@if", "Includes the body if the expression does not evaluate to `false` or `null`.")
+			documentation: localize("scss.builtin.@if", "Includes the body if the expression does not evaluate to `false` or `null`."),
+			insertText: "@if ${1:expr} {\n\t$0\n}",
+			insertTextFormat: InsertTextFormat.Snippet
 		},
 		{
 			label: "@for",

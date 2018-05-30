@@ -95,7 +95,7 @@ suite('SCSS - Completions', () => {
 				{ label: '@debug' },
 				{ label: '@warn' },
 				{ label: '@error' },
-				{ label: '@if' },
+				{ label: '@if', insertTextFormat: InsertTextFormat.Snippet },
 				{ label: '@for', insertTextFormat: InsertTextFormat.Snippet },
 				{ label: '@each', insertTextFormat: InsertTextFormat.Snippet },
 				{ label: '@while', insertTextFormat: InsertTextFormat.Snippet },
@@ -166,8 +166,7 @@ suite('SCSS - Completions', () => {
 				{ label: '@while' },
 				{ label: '@mixin' },
 				{ label: '@include' }
-
 			]
-		})
+		});
 	});
 });
