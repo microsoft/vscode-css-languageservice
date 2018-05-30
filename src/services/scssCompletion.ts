@@ -212,7 +212,12 @@ export class SCSSCompletion extends CSSCompletion {
 	}
 
 	public getCompletionsForDeclarations(declarations: nodes.Declarations, result: CompletionList): CompletionList {
-		if (this.currentWord && this.currentWord[0] === '@') {
+		if (!declarations || this.offset === declarations.offset) { // incomplete nodes
+			return result;
+		}
+
+		let node = declarations.findFirstChildBeforeOffset(this.offset);
+		if (node && this.currentWord && this.currentWord[0] === '@') {
 			this.getCompletionsForDeclarationProperty(null, result);
 		}
 
