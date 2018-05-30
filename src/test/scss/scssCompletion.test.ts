@@ -161,5 +161,10 @@ suite('SCSS - Completions', () => {
 
 		testCompletionFor('.foo { @if $a = 5 { } @| }', allAtProposals);
 		testCompletionFor('.foo { @debug 10em + 22em; @| }', allAtProposals);
+		testCompletionFor('.foo { @if $a = 5 { } @f| }', {
+			items: [
+				{ label: '@for' }
+			]
+		});
 	});
 });
