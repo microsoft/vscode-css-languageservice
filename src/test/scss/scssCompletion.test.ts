@@ -88,36 +88,6 @@ suite('SCSS - Completions', () => {
 				{ label: '.foo' }
 			]
 		});
-		testCompletionFor('@', {
-			items: [
-				{ label: '@extend' },
-				{ label: '@at-root' },
-				{ label: '@debug' },
-				{ label: '@warn' },
-				{ label: '@error' },
-				{ label: '@if', insertTextFormat: InsertTextFormat.Snippet },
-				{ label: '@for', insertTextFormat: InsertTextFormat.Snippet },
-				{ label: '@each', insertTextFormat: InsertTextFormat.Snippet },
-				{ label: '@while', insertTextFormat: InsertTextFormat.Snippet },
-				{ label: '@mixin', insertTextFormat: InsertTextFormat.Snippet },
-				{ label: '@include' }
-			]
-		});
-		testCompletionFor(`@for $i from 1 through 3 { .item-#{$i} { width: 2em * $i; } } @|`, {
-			items: [
-				{ label: '@extend' },
-				{ label: '@at-root' },
-				{ label: '@debug' },
-				{ label: '@warn' },
-				{ label: '@error' },
-				{ label: '@if' },
-				{ label: '@for' },
-				{ label: '@each' },
-				{ label: '@while' },
-				{ label: '@mixin' },
-				{ label: '@include' }
-			]
-		});
 		// issue #250
 		testCompletionFor('.foo { display: block;|', {
 			count: 0
@@ -152,20 +122,48 @@ suite('SCSS - Completions', () => {
 		});
 	});
 
-	test('stylesheet', function (): any {
-		testCompletionFor('.foo { | }', {
+	test('at rules', function (): any {
+		const allAtProposals = {
+				items: [
+					{ label: '@extend' },
+					{ label: '@at-root' },
+					{ label: '@debug' },
+					{ label: '@warn' },
+					{ label: '@error' },
+					{ label: '@if' },
+					{ label: '@for' },
+					{ label: '@each' },
+					{ label: '@while' },
+					{ label: '@mixin' },
+					{ label: '@include' }
+			]
+		};
+
+		testCompletionFor('@', {
 			items: [
 				{ label: '@extend' },
 				{ label: '@at-root' },
 				{ label: '@debug' },
 				{ label: '@warn' },
 				{ label: '@error' },
-				{ label: '@if' },
-				{ label: '@for' },
-				{ label: '@each' },
-				{ label: '@while' },
-				{ label: '@mixin' },
+				{ label: '@if', insertTextFormat: InsertTextFormat.Snippet },
+				{ label: '@for', insertTextFormat: InsertTextFormat.Snippet },
+				{ label: '@each', insertTextFormat: InsertTextFormat.Snippet },
+				{ label: '@while', insertTextFormat: InsertTextFormat.Snippet },
+				{ label: '@mixin', insertTextFormat: InsertTextFormat.Snippet },
 				{ label: '@include' }
+			]
+		});
+
+		testCompletionFor('.foo { | }', allAtProposals);
+
+		testCompletionFor(`@for $i from 1 through 3 { .item-#{$i} { width: 2em * $i; } } @|`, allAtProposals);
+
+		testCompletionFor('.foo { @if $a = 5 { } @| }', allAtProposals);
+		testCompletionFor('.foo { @debug 10em + 22em; @| }', allAtProposals);
+		testCompletionFor('.foo { @if $a = 5 { } @f| }', {
+			items: [
+				{ label: '@for' }
 			]
 		});
 	});
