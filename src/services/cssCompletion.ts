@@ -703,6 +703,7 @@ export class CSSCompletion {
 			return this.getCompletionsForDeclarationProperty(null, result);
 		}
 
+
 		if (node instanceof nodes.AbstractDeclaration) {
 			let declaration = <nodes.AbstractDeclaration>node;
 			if (!isDefined(declaration.colonPosition) || this.offset <= declaration.colonPosition) {
@@ -724,7 +725,10 @@ export class CSSCompletion {
 			}
 		} else if (node instanceof nodes.ExtendsReference) {
 			this.getCompletionsForExtendsReference(node, null, result);
+		} else if (this.currentWord && this.currentWord[0] === '@') {
+			this.getCompletionsForDeclarationProperty(null, result);
 		}
+
 		return result;
 	}
 

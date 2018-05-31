@@ -222,20 +222,6 @@ export class SCSSCompletion extends CSSCompletion {
 		return result;
 	}
 
-	public getCompletionsForDeclarations(declarations: nodes.Declarations, result: CompletionList): CompletionList {
-		if (!declarations || this.offset === declarations.offset) { // incomplete nodes
-			return result;
-		}
-
-		let node = declarations.findFirstChildBeforeOffset(this.offset);
-		if (node && this.currentWord && this.currentWord[0] === '@') {
-			this.getCompletionsForDeclarationProperty(null, result);
-		}
-
-		return super.getCompletionsForDeclarations(declarations, result);
-	}
-
-
 	public getCompletionsForSelector(ruleSet: nodes.RuleSet, isNested: boolean, result: CompletionList): CompletionList {
 		this.createFunctionProposals(SCSSCompletion.selectorFuncs, void 0, true, result);
 		return super.getCompletionsForSelector(ruleSet, isNested, result);
