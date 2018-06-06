@@ -595,7 +595,7 @@ export function getEntryDescription(entry: { description: string; browsers: Brow
 
 	let browserLabel = getBrowserLabel(entry.browsers);
 	if (browserLabel) {
-		desc += '\n(' + browserLabel + ')';
+		desc += '\n\nBrowser Support: ' + browserLabel;
 	}
 	if (entry.data && entry.data.syntax) {
 		desc += `\n\nSyntax: ${entry.data.syntax}`;
