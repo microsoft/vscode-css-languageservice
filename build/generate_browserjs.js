@@ -3,14 +3,13 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 /* global __dirname */
-var fs = require('fs');
-var path = require('path');
-var xml2js = require('xml2js');
-var os = require('os');
-var util = require('util');
+const fs = require('fs')
+const path = require('path')
+const xml2js = require('xml2js')
+const os = require('os')
 
 // keep in sync with data from language facts
-var colors = {
+const colors = {
 	aliceblue: '#f0f8ff',
 	antiquewhite: '#faebd7',
 	aqua: '#00ffff',
@@ -159,9 +158,9 @@ var colors = {
 	whitesmoke: '#f5f5f5',
 	yellow: '#ffff00',
 	yellowgreen: '#9acd32'
-};
+}
 
-var otherColors = {
+const otherColors = {
 	"ActiveBorder": "Active window border.",
 	"ActiveCaption": "Active window caption.",
 	"AppWorkspace": "Background color of multiple document interface.",
@@ -199,196 +198,198 @@ var otherColors = {
 	"-webkit-focus-ring-color": '',
 	"-webkit-link": '',
 	"-webkit-text": ''
-};
+}
 
 
 function clone(obj) {
-	var copy = {};
-	for (var i in obj) {
-		copy[i] = obj[i];
-	}
-	return copy;
+  var copy = {}
+  for (var i in obj) {
+    copy[i] = obj[i]
+  }
+  return copy
 }
 
 function getProperties(obj) {
-	var res = [];
-	for (var i in obj) {
-		res.push(i);
-	}
-	return res;
+  var res = []
+  for (var i in obj) {
+    res.push(i)
+  }
+  return res
 }
 
 function getValues(valArr, restriction, ruleName) {
-	if (!Array.isArray(valArr)) {
-		if (valArr.$) {
-			valArr = [ valArr ];
-		} else {
-			return [];
-		}
-	}
-	var vals = valArr.map(function (v) {
-		return {
-			name: v.$.name,
-			desc: v.desc,
-			browsers: v.$.browsers !== 'all' ? v.$.browsers : void 0
-		};
-	}).filter(function (v) {
-		if (v.browsers === 'none') {
-			return false;
-		}
-		return true;
-	});
-	if (restriction.indexOf('color') !== -1) {
+  if (!Array.isArray(valArr)) {
+    if (valArr.$) {
+      valArr = [valArr]
+    } else {
+      return []
+    }
+  }
+  var vals = valArr
+    .map(function(v) {
+      return {
+        name: v.$.name,
+        desc: v.desc,
+        browsers: v.$.browsers !== 'all' ? v.$.browsers : void 0
+      }
+    })
+    .filter(function(v) {
+      if (v.browsers === 'none') {
+        return false
+      }
+      return true
+    })
+  if (restriction.indexOf('color') !== -1) {
+    var colorsCopy = clone(colors)
+    var otherColorsCopy = clone(otherColors)
 
-		var colorsCopy = clone(colors);
-		var otherColorsCopy = clone(otherColors);
+    var moreColors = {}
 
-		var moreColors = {};
+    vals = vals.filter(function(v) {
+      if (typeof colorsCopy[v.name] === 'string') {
+        delete colorsCopy[v.name]
+        return false
+      }
+      if (typeof otherColorsCopy[v.name] === 'string') {
+        delete otherColorsCopy[v.name]
+        return false
+      }
+      moreColors[v.name] = v.desc
+      return true
+    })
+    var notCovered = []
+    for (var i in colorsCopy) {
+      notCovered.push(i)
+    }
+    for (var i in otherColorsCopy) {
+      notCovered.push(i)
+    }
+    if (notCovered.length > 0) {
+      console.log('***' + ruleName + ' uncovered: ' + notCovered.length) // + ' - ' + JSON.stringify(notCovered));
+    }
 
-		vals = vals.filter(function (v) {
-			if (typeof colorsCopy[v.name] === 'string') {
-				delete colorsCopy[v.name];
-				return false;
-			}
-			if (typeof otherColorsCopy[v.name] === 'string') {
-				delete otherColorsCopy[v.name];
-				return false;
-			}
-			moreColors[v.name] = v.desc;
-			return true;
-		});
-		var notCovered = [];
-		for (var i in colorsCopy) {
-			notCovered.push(i);
-		}
-		for (var i in otherColorsCopy) {
-			notCovered.push(i);
-		}
-		if (notCovered.length > 0) {
-			console.log('***' + ruleName + ' uncovered: ' + notCovered.length); // + ' - ' + JSON.stringify(notCovered));
-		}
+    if (restriction === 'color') {
+      var properties = getProperties(moreColors)
 
-		if (restriction === 'color') {
-			var properties = getProperties(moreColors);
+      console.log('---' + ruleName + ' others : ' + properties.length) // + ' - ' + JSON.stringify(properties));
+    }
+  }
 
-			console.log('---' + ruleName + ' others : ' + properties.length); // + ' - ' + JSON.stringify(properties));
-		}
-	}
-
-	return vals;
+  return vals
 }
 
 function internalizeDescriptions(entries) {
-	var descriptions = {};
-	var conflicts = {};
-	entries.forEach(function (e) {
-		if (e.values) {
-			e.values.forEach(function (d) {
-				if (!d.desc) {
-					conflicts[d.name] = true;
-					return;
-				}
-				var existing = descriptions[d.name];
-				if (existing) {
-					if (existing !== d.desc) {
-						conflicts[d.name] = true;
-					}
-				}
-				descriptions[d.name] = d.desc;
-			});
-		}
-	});
-	entries.forEach(function (e) {
-		if (e.values) {
-			e.values.forEach(function (d) {
-				if (!conflicts[d.name]) {
-					delete d.desc;
-				} else {
-					delete descriptions[d.name];
-				}
-			});
-		}
-	});
-	return descriptions;
+  var descriptions = {}
+  var conflicts = {}
+  entries.forEach(function(e) {
+    if (e.values) {
+      e.values.forEach(function(d) {
+        if (!d.desc) {
+          conflicts[d.name] = true
+          return
+        }
+        var existing = descriptions[d.name]
+        if (existing) {
+          if (existing !== d.desc) {
+            conflicts[d.name] = true
+          }
+        }
+        descriptions[d.name] = d.desc
+      })
+    }
+  })
+  entries.forEach(function(e) {
+    if (e.values) {
+      e.values.forEach(function(d) {
+        if (!conflicts[d.name]) {
+          delete d.desc
+        } else {
+          delete descriptions[d.name]
+        }
+      })
+    }
+  })
+  return descriptions
 }
 
 function toSource(object, keyName) {
-	if (!object.css[keyName]) {
-		return [];
-	}
-	var result = [];
-	var entryArr = object.css[keyName].entry;
-	entryArr.forEach(function (e) {
-		if (e.$.browsers === 'none') {
-			return;
-		}
-		var data = {
-			name: e.$.name,
-			desc: e.desc,
-			browsers: e.$.browsers !== 'all' ? e.$.browsers : void 0
-		};
-		if (e.$.restriction) {
-			data.restriction= e.$.restriction;
-		}
-		if (e.values) {
-			data.values= getValues(e.values.value, data.restriction || '', data.name);
-		}
+  if (!object.css[keyName]) {
+    return []
+  }
+  var result = []
+  var entryArr = object.css[keyName].entry
+  entryArr.forEach(function(e) {
+    if (e.$.browsers === 'none') {
+      return
+    }
+    var data = {
+      name: e.$.name,
+      desc: e.desc,
+      browsers: e.$.browsers !== 'all' ? e.$.browsers : void 0
+    }
+    if (e.$.restriction) {
+      data.restriction = e.$.restriction
+    }
+    if (e.values) {
+      data.values = getValues(e.values.value, data.restriction || '', data.name)
+    }
 
-		result.push(data);
-	});
+    result.push(data)
+  })
 
-	return result;
-
+  return result
 }
 
-var parser = new xml2js.Parser({explicitArray : false});
-var schemaFileName= 'css-schema.xml';
+const parser = new xml2js.Parser({ explicitArray: false })
+const schemaFileName = 'css-schema.xml'
 
-var { buildPropertiesWithMDNData } = require('./mdn-data-importer')
+const { buildPropertiesWithMDNData } = require('./mdn-data-importer')
+const { addBCPDataToProperties } = require('./mdn-browser-compat-data-importer')
 
 fs.readFile(path.resolve(__dirname, schemaFileName), function(err, data) {
-	parser.parseString(data, function (err, result) {
+  parser.parseString(data, function(err, result) {
+    const atdirectives = toSource(result, 'atDirectives')
+    const pseudoclasses = toSource(result, 'pseudoClasses')
+    const pseudoelements = toSource(result, 'pseudoElements')
 
-		//console.log(util.inspect(result, {depth: null})); //Work
+    let properties = toSource(result, 'properties')
+		properties = buildPropertiesWithMDNData(properties)
 
-		var atdirectives = toSource(result, 'atDirectives');
-		var pseudoclasses = toSource(result, 'pseudoClasses');
-		var pseudoelements = toSource(result, 'pseudoElements');
-		var properties = toSource(result, 'properties');
+    addBCPDataToProperties(atdirectives, pseudoclasses, pseudoelements, properties)
 
-		var descriptions = internalizeDescriptions([].concat(atdirectives, pseudoclasses, pseudoelements, properties));
+    const descriptions = internalizeDescriptions([].concat(atdirectives, pseudoclasses, pseudoelements, properties))
 
-		var resultObject = {
-			css: {
-				atdirectives: atdirectives,
-				pseudoclasses: pseudoclasses,
-				pseudoelements: pseudoelements,
-				properties: buildPropertiesWithMDNData(properties)
-			}
-		};
+    const resultObject = {
+      css: {
+        atdirectives,
+        pseudoclasses,
+        pseudoelements,
+        properties,
+      }
+    }
 
-		function toJavaScript(obj) {
-			var str = JSON.stringify(obj, null, '\t');
-			return str.replace(/\"(name|desc|browsers|restriction|values)\"/g, '$1');
-		}
-		
-		var descriptionsStr = JSON.stringify(descriptions, null, '\t');
+    function toJavaScript(obj) {
+      const str = JSON.stringify(obj, null, '\t')
+      return str.replace(/\"(name|desc|browsers|restriction|values)\"/g, '$1')
+    }
 
-		var output = [
-			'/*---------------------------------------------------------------------------------------------',
-			' *  Copyright (c) Microsoft Corporation. All rights reserved.',
-			' *  Licensed under the MIT License. See License.txt in the project root for license information.',
-			' *--------------------------------------------------------------------------------------------*/',
-			'// file generated from ' + schemaFileName + ' and https://github.com/mdn/data using css-exclude_generate_browserjs.js',
-			'',
-			'export const data : any = ' + toJavaScript(resultObject) + ';',
-			'export const descriptions : any = ' + toJavaScript(descriptions) + ';',
-		];
+    const output = [
+      '/*---------------------------------------------------------------------------------------------',
+      ' *  Copyright (c) Microsoft Corporation. All rights reserved.',
+      ' *  Licensed under the MIT License. See License.txt in the project root for license information.',
+      ' *--------------------------------------------------------------------------------------------*/',
+      '// file generated from ' +
+        schemaFileName +
+        ' and https://github.com/mdn/data using css-exclude_generate_browserjs.js',
+      '',
+      'export const data : any = ' + toJavaScript(resultObject) + ';',
+      'export const descriptions : any = ' + toJavaScript(descriptions) + ';'
+    ]
 
-		var outputPath = path.resolve(__dirname, '../src/data/browsers.ts');
-		console.log('Writing to: ' + outputPath);
-		var content = output.join(os.EOL);
-		fs.writeFileSync(outputPath, content);
-		console.log('Done');
-	});
-});
+    var outputPath = path.resolve(__dirname, '../src/data/browsers.ts')
+    console.log('Writing to: ' + outputPath)
+    var content = output.join(os.EOL)
+    fs.writeFileSync(outputPath, content)
+    console.log('Done')
+  })
+})
