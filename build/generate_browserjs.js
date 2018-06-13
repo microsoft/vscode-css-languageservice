@@ -344,7 +344,7 @@ const parser = new xml2js.Parser({ explicitArray: false })
 const schemaFileName = 'css-schema.xml'
 
 const { buildPropertiesWithMDNData } = require('./mdn-data-importer')
-const { addBCPDataToProperties } = require('./mdn-browser-compat-data-importer')
+const { addBrowserCompatDataToProperties } = require('./mdn-browser-compat-data-importer')
 
 fs.readFile(path.resolve(__dirname, schemaFileName), function(err, data) {
   parser.parseString(data, function(err, result) {
@@ -355,7 +355,7 @@ fs.readFile(path.resolve(__dirname, schemaFileName), function(err, data) {
     let properties = toSource(result, 'properties')
 		properties = buildPropertiesWithMDNData(properties)
 
-    addBCPDataToProperties(atdirectives, pseudoclasses, pseudoelements, properties)
+    addBrowserCompatDataToProperties(atdirectives, pseudoclasses, pseudoelements, properties)
 
     const descriptions = internalizeDescriptions([].concat(atdirectives, pseudoclasses, pseudoelements, properties))
 

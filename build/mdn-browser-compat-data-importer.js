@@ -5,7 +5,7 @@
 
 const bcd = require('mdn-browser-compat-data')
 
-function addBCPDataToProperties(atdirectives, pseudoclasses, pseudoelements, properties) {
+function addBrowserCompatDataToProperties(atdirectives, pseudoclasses, pseudoelements, properties) {
   atdirectives.forEach(item => {
     if (bcd.css['at-rules'][item.name.slice(1)]) {
       const matchingBCPItem = bcd.css['at-rules'][item.name.slice(1)] 
@@ -112,4 +112,4 @@ function supportToShortCompatString(support, browserAbbrev) {
   return null
 }
 
-module.exports.addBCPDataToProperties = addBCPDataToProperties
+module.exports.addBrowserCompatDataToProperties = addBrowserCompatDataToProperties
