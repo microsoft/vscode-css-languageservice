@@ -8,29 +8,29 @@ const bcd = require('mdn-browser-compat-data')
 function addBrowserCompatDataToProperties(atdirectives, pseudoclasses, pseudoelements, properties) {
   atdirectives.forEach(item => {
     if (bcd.css['at-rules'][item.name.slice(1)]) {
-      const matchingBCPItem = bcd.css['at-rules'][item.name.slice(1)] 
-      updateItemBrowsersWithBCPItem(item, matchingBCPItem)
+      const matchingBCDItem = bcd.css['at-rules'][item.name.slice(1)] 
+      addBCDBrowsers(item, matchingBCDItem)
     }
   })
 
   pseudoclasses.forEach(item => {
     if (bcd.css.selectors[item.name.slice(1)]) {
-      const matchingBCPItem = bcd.css.selectors[item.name.slice(1)]
-      updateItemBrowsersWithBCPItem(item, matchingBCPItem)
+      const matchingBCDItem = bcd.css.selectors[item.name.slice(1)]
+      addBCDBrowsers(item, matchingBCDItem)
     }
   })
 
   pseudoelements.forEach(item => {
     if (bcd.css.selectors[item.name.slice(2)]) {
-      const matchingBCPItem = bcd.css.selectors[item.name.slice(2)]
-      updateItemBrowsersWithBCPItem(item, matchingBCPItem)
+      const matchingBCDItem = bcd.css.selectors[item.name.slice(2)]
+      addBCDBrowsers(item, matchingBCDItem)
     }
   })
 
   properties.forEach(item => {
     if (bcd.css.properties[item.name]) {
-      const matchingBCPItem = bcd.css.properties[item.name]
-      updateItemBrowsersWithBCPItem(item, matchingBCPItem)
+      const matchingBCDItem = bcd.css.properties[item.name]
+      addBCDBrowsers(item, matchingBCDItem)
     }
   })
 }
@@ -44,14 +44,16 @@ const browserNames = {
 	O: 'Opera'
 }
 
-function updateItemBrowsersWithBCPItem(item, matchingBCPItem) {
-  const compatString = toCompatString(matchingBCPItem)
+function addBCDBrowsers(item, matchingBCDItem) {
+  const compatString = toCompatString(matchingBCDItem)
 
   if (compatString !== '') {
     if (!item.browsers) {
       item.browsers = compatString
-    } else if (item.browsers && item.browsers !== compatString) {
-      item.browsers = compatString
+    } else {
+      if (item.browsers !== compatString) {
+        item.browsers = compatString
+      }
     }
   }
 }
