@@ -188,7 +188,7 @@ suite('SCSS - Parser', () => {
 		assertNode('.something { @media (max-width: 760px) { > .test { color: blue; } } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.something { @media (max-width: 760px) { ~ div { display: block; } } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.something { @media (max-width: 760px) { + div { display: block; } } }', parser, parser._parseStylesheet.bind(parser));
-		assertError('@media (max-width: 760px) { + div { display: block; } }', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
+		assertNode('@media (max-width: 760px) { + div { display: block; } }', parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('@keyframe', function () {

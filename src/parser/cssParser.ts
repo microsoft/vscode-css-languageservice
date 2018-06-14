@@ -272,17 +272,22 @@ export class Parser {
 
 	public _parseStylesheetStatement(): nodes.Node {
 		if (this.peek(TokenType.AtKeyword)) {
-			return this._parseImport()
-				|| this._parseMedia()
-				|| this._parsePage()
-				|| this._parseFontFace()
-				|| this._parseKeyframe()
-				|| this._parseSupports()
-				|| this._parseViewPort()
-				|| this._parseNamespace()
-				|| this._parseDocument();
+			return this._parseStylesheetAtStatement();
 		}
 		return this._parseRuleset(false);
+	}
+
+	public _parseStylesheetAtStatement(): nodes.Node {
+		return this._parseImport()
+			|| this._parseMedia()
+			|| this._parsePage()
+			|| this._parseFontFace()
+			|| this._parseKeyframe()
+			|| this._parseSupports()
+			|| this._parseViewPort()
+			|| this._parseNamespace()
+			|| this._parseDocument()
+			|| this._parseUnknownAtRule();
 	}
 
 	public _tryParseRuleset(isNested: boolean): nodes.RuleSet {
@@ -990,6 +995,28 @@ export class Parser {
 
 		this.resync([], [TokenType.CurlyL]); // ignore all the rules
 		return this._parseBody(node, this._parseStylesheetStatement.bind(this));
+	}
+
+	// https://www.w3.org/TR/css-syntax-3/#consume-an-at-rule
+	public _parseUnknownAtRule(): nodes.Node {
+		if (!this.peek(TokenType.AtKeyword)) {
+			return null;
+		}
+
+		let node = <nodes.UnknownAtRule>this.create(nodes.UnknownAtRule);
+		this.consumeToken();
+
+		this.resync([], [TokenType.SemiColon, TokenType.EOF, TokenType.CurlyL]); // ignore all the rules
+		if (this.peek(TokenType.SemiColon)) {
+			this.consumeToken();
+			return node;
+		} else if (this.peek(TokenType.CurlyL)) {
+			return this._parseBody(node, this._parseStylesheetStatement.bind(this));
+		} else if (this.peek(TokenType.EOF)) {
+			return this.finish(node, ParseError.AtRuleBodyExpected);
+		}
+
+		return node;
 	}
 
 	public _parseOperator(): nodes.Operator {

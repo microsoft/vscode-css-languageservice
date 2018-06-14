@@ -81,7 +81,8 @@ export enum NodeType {
 	SupportsCondition,
 	NamespacePrefix,
 	GridLine,
-	Plugin
+	Plugin,
+	UnknownAtRule,
 }
 
 export enum ReferenceType {
@@ -1483,6 +1484,17 @@ export class MixinDeclaration extends BodyDeclaration {
 			this.guard = node;
 		}
 		return false;
+	}
+}
+
+export class UnknownAtRule extends BodyDeclaration {
+
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.UnknownAtRule;
 	}
 }
 

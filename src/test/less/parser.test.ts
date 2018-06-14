@@ -35,8 +35,7 @@ suite('LESS - Parser', () => {
 		assertNode('.something { @media (max-width: 760px) { > div { display: block; } } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media (@var) {}', parser, parser._parseMedia.bind(parser));
 		assertNode('@media screen and (@var) {}', parser, parser._parseMedia.bind(parser));
-
-		assertError('@media (max-width: 760px) { + div { display: block; } }', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
+		assertNode('@media (max-width: 760px) { + div { display: block; } }', parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('VariableDeclaration', function () {
