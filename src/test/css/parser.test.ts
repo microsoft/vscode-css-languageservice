@@ -84,6 +84,8 @@ suite('CSS - Parser', () => {
 		assertNode('@unknown-rule (foo) { .bar {} }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@mskeyframes darkWordHighlight { from { background-color: inherit; } to { background-color: rgba(83, 83, 83, 0.7); } }', parser, parser._parseStylesheet.bind(parser));
 
+		assertError('@unknown-rule', parser, parser._parseStylesheet.bind(parser), ParseError.AtRuleBodyExpected);
+		assertError('@unknown-rule foo', parser, parser._parseStylesheet.bind(parser), ParseError.AtRuleBodyExpected);
 		assertError('@unknown-rule (foo) { .bar {}', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
 	});
 
