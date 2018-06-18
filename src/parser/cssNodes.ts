@@ -1243,7 +1243,7 @@ export class AttributeSelector extends Node {
 
 	public getValue(): BinaryExpression {
 		return this.value;
-	}	
+	}
 }
 
 export class Operator extends Node {
@@ -1488,6 +1488,7 @@ export class MixinDeclaration extends BodyDeclaration {
 }
 
 export class UnknownAtRule extends BodyDeclaration {
+	public atRuleName: string;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1495,6 +1496,13 @@ export class UnknownAtRule extends BodyDeclaration {
 
 	public get type(): NodeType {
 		return NodeType.UnknownAtRule;
+	}
+
+	public setAtRuleName(atRuleName: string) {
+		this.atRuleName = atRuleName;
+	}
+	public getAtRuleName(atRuleName: string) {
+		return this.atRuleName;
 	}
 }
 

@@ -136,6 +136,8 @@ export class LintVisitor implements nodes.IVisitor {
 
 	public visitNode(node: nodes.Node): boolean {
 		switch (node.type) {
+			case nodes.NodeType.UnknownAtRule:
+				return this.visitUnknownAtRule(<nodes.UnknownAtRule>node);
 			case nodes.NodeType.Keyframe:
 				return this.visitKeyframe(<nodes.Keyframe>node);
 			case nodes.NodeType.FontFace:
@@ -160,6 +162,16 @@ export class LintVisitor implements nodes.IVisitor {
 
 	private completeValidations() {
 		this.validateKeyframes();
+	}
+
+	private visitUnknownAtRule(node: nodes.UnknownAtRule): boolean {
+		const atRuleName = node.getChild(0);
+		if (!atRuleName) {
+			return false;
+		}
+
+		this.addEntry(atRuleName, Rules.UnknownAtRules, `Unknown at rule ${atRuleName.getText()}`);
+		return true;
 	}
 
 	private visitKeyframe(node: nodes.Keyframe): boolean {
