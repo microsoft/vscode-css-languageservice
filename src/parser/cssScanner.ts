@@ -15,8 +15,8 @@ export enum TokenType {
 	Percentage,
 	Dimension,
 	UnicodeRange,
-	CDO,
-	CDC,
+	CDO, // <!--
+	CDC, // -->
 	Colon,
 	SemiColon,
 	CurlyL,
@@ -27,13 +27,13 @@ export enum TokenType {
 	BracketR,
 	Whitespace,
 	Includes,
-	Dashmatch,
-	SubstringOperator,
-	PrefixOperator,
-	SuffixOperator,
+	Dashmatch, // |=
+	SubstringOperator, // *=
+	PrefixOperator, // ^=
+	SuffixOperator, // $=
 	Delim,
-	EMS,
-	EXS,
+	EMS, // 3em
+	EXS, // 3ex
 	Length,
 	Angle,
 	Time,

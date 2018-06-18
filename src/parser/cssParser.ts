@@ -272,17 +272,22 @@ export class Parser {
 
 	public _parseStylesheetStatement(): nodes.Node {
 		if (this.peek(TokenType.AtKeyword)) {
-			return this._parseImport()
-				|| this._parseMedia()
-				|| this._parsePage()
-				|| this._parseFontFace()
-				|| this._parseKeyframe()
-				|| this._parseSupports()
-				|| this._parseViewPort()
-				|| this._parseNamespace()
-				|| this._parseDocument();
+			return this._parseStylesheetAtStatement();
 		}
 		return this._parseRuleset(false);
+	}
+
+	public _parseStylesheetAtStatement(): nodes.Node {
+		return this._parseImport()
+			|| this._parseMedia()
+			|| this._parsePage()
+			|| this._parseFontFace()
+			|| this._parseKeyframe()
+			|| this._parseSupports()
+			|| this._parseViewPort()
+			|| this._parseNamespace()
+			|| this._parseDocument()
+			|| this._parseUnknownAtRule();
 	}
 
 	public _tryParseRuleset(isNested: boolean): nodes.RuleSet {
@@ -990,6 +995,82 @@ export class Parser {
 
 		this.resync([], [TokenType.CurlyL]); // ignore all the rules
 		return this._parseBody(node, this._parseStylesheetStatement.bind(this));
+	}
+
+	// https://www.w3.org/TR/css-syntax-3/#consume-an-at-rule
+	public _parseUnknownAtRule(): nodes.Node {
+		let node = <nodes.UnknownAtRule>this.create(nodes.UnknownAtRule);
+		node.addChild(this._parseUnknownAtRuleName());
+
+		const isTopLevel = () => curlyDepth === 0 && parensDepth === 0 && bracketsDepth === 0;
+		let curlyDepth = 0;
+		let parensDepth = 0;
+		let bracketsDepth = 0;
+		done: while (true) {
+			switch (this.token.type) {
+				case TokenType.SemiColon:
+					if (isTopLevel()) {
+						break done;
+					}
+					break;
+				case TokenType.EOF:
+					if (curlyDepth > 0) {
+						return this.finish(node, ParseError.RightCurlyExpected);
+					} else if (bracketsDepth > 0) {
+						return this.finish(node, ParseError.RightSquareBracketExpected);
+					} else if (parensDepth > 0) {
+						return this.finish(node, ParseError.RightParenthesisExpected);
+					} else {
+						return this.finish(node);
+					}
+				case TokenType.CurlyL:
+					curlyDepth++;
+					break;
+				case TokenType.CurlyR:
+					curlyDepth--;
+					if (curlyDepth < 0) {
+						// The property value has been terminated without a semicolon, and
+						// this is the last declaration in the ruleset.
+						if (parensDepth === 0 && bracketsDepth === 0) {
+							break done;
+						}
+						return this.finish(node, ParseError.LeftCurlyExpected);
+					}
+					break;
+				case TokenType.ParenthesisL:
+					parensDepth++;
+					break;
+				case TokenType.ParenthesisR:
+					parensDepth--;
+					if (parensDepth < 0) {
+						return this.finish(node, ParseError.LeftParenthesisExpected);
+					}
+					break;
+				case TokenType.BracketL:
+					bracketsDepth++;
+					break;
+				case TokenType.BracketR:
+					bracketsDepth--;
+					if (bracketsDepth < 0) {
+						return this.finish(node, ParseError.LeftSquareBracketExpected);
+					}
+					break;
+			}
+
+			this.consumeToken();
+		}
+
+		return node;
+	}
+
+	public _parseUnknownAtRuleName(): nodes.Node {
+		let node = <nodes.Node>this.create(nodes.Node);
+
+		if (this.accept(TokenType.AtKeyword)) {
+			return this.finish(node);
+		}
+
+		return node;
 	}
 
 	public _parseOperator(): nodes.Operator {

@@ -21,11 +21,15 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseStylesheetStatement(): nodes.Node {
+		if (this.peek(TokenType.AtKeyword)) {
+			return this._parseVariableDeclaration()
+				|| this._parsePlugin()
+				|| super._parseStylesheetAtStatement();
+		}
+
 		return this._tryParseMixinDeclaration()
 			|| this._tryParseMixinReference(true)
-			|| super._parseStylesheetStatement()
-			|| this._parseVariableDeclaration()
-			|| this._parsePlugin();
+			|| this._parseRuleset(true);
 	}
 
 	public _parseImport(): nodes.Node {

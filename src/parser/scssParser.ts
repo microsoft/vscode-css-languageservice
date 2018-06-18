@@ -22,19 +22,16 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseStylesheetStatement(): nodes.Node {
-		let node = super._parseStylesheetStatement();
-		if (node) {
-			return node;
-		}
 		if (this.peek(TokenType.AtKeyword)) {
 			return this._parseWarnAndDebug()
 				|| this._parseControlStatement()
 				|| this._parseMixinDeclaration()
 				|| this._parseMixinContent()
 				|| this._parseMixinReference() // @include
-				|| this._parseFunctionDeclaration();
+				|| this._parseFunctionDeclaration()
+				|| super._parseStylesheetAtStatement();
 		}
-		return this._parseVariableDeclaration();
+		return this._parseRuleset(true) || this._parseVariableDeclaration();
 	}
 
 	public _parseImport(): nodes.Node {

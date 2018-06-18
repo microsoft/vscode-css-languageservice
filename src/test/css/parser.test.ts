@@ -71,9 +71,23 @@ suite('CSS - Parser', () => {
 		assertNode('E.warning E#myid E:not(s) {}', parser, parser._parseStylesheet.bind(parser));
 		assertError('@namespace;', parser, parser._parseStylesheet.bind(parser), ParseError.URIExpected);
 		assertError('@namespace url(http://test)', parser, parser._parseStylesheet.bind(parser), ParseError.SemiColonExpected);
-		assertError('@mskeyframes darkWordHighlight { from { background-color: inherit; } to { background-color: rgba(83, 83, 83, 0.7); } }', parser, parser._parseStylesheet.bind(parser), ParseError.UnknownAtRule);
 		assertError('@charset;', parser, parser._parseStylesheet.bind(parser), ParseError.IdentifierExpected);
 		assertError('@charset \'utf8\'', parser, parser._parseStylesheet.bind(parser), ParseError.SemiColonExpected);
+	});
+
+	test('stylesheet - graceful handling of unknown rules', function () {
+		let parser = new Parser();
+		assertNode('@unknown-rule;', parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@unknown-rule 'foo';`, parser, parser._parseStylesheet.bind(parser));
+		assertNode('@unknown-rule (foo) {}', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@unknown-rule (foo) { .bar {} }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@mskeyframes darkWordHighlight { from { background-color: inherit; } to { background-color: rgba(83, 83, 83, 0.7); } }', parser, parser._parseStylesheet.bind(parser));
+
+		assertError('@unknown-rule (;', parser, parser._parseStylesheet.bind(parser), ParseError.RightParenthesisExpected);
+		assertError('@unknown-rule [foo', parser, parser._parseStylesheet.bind(parser), ParseError.RightSquareBracketExpected);
+		assertError('@unknown-rule { [foo }', parser, parser._parseStylesheet.bind(parser), ParseError.RightSquareBracketExpected);
+		assertError('@unknown-rule (foo) {', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
+		assertError('@unknown-rule (foo) { .bar {}', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
 	});
 
 	test('stylesheet /panic/', function () {
@@ -195,7 +209,7 @@ suite('CSS - Parser', () => {
 		assertNode('@page {  @top-right-corner { content: url(foo.png); border: solid green; } }', parser, parser._parsePage.bind(parser));
 		assertNode('@page {  @top-left-corner { content: " "; border: solid green; } @bottom-right-corner { content: counter(page); border: solid green; } }', parser, parser._parsePage.bind(parser));
 		assertError('@page {  @top-left-corner foo { content: " "; border: solid green; } }', parser, parser._parsePage.bind(parser), ParseError.LeftCurlyExpected);
-		assertError('@page {  @XY foo { content: " "; border: solid green; } }', parser, parser._parsePage.bind(parser), ParseError.UnknownAtRule);
+		// assertError('@page {  @XY foo { content: " "; border: solid green; } }', parser, parser._parsePage.bind(parser), ParseError.UnknownAtRule);
 		assertError('@page :left { margin-left: 4cm margin-right: 3cm; }', parser, parser._parsePage.bind(parser), ParseError.SemiColonExpected);
 		assertError('@page : { }', parser, parser._parsePage.bind(parser), ParseError.IdentifierExpected);
 		assertError('@page :left, { }', parser, parser._parsePage.bind(parser), ParseError.IdentifierExpected);
