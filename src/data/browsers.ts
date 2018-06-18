@@ -9,7 +9,8 @@ export const data : any = {
 		"atdirectives": [
 			{
 				name: "@charset",
-				desc: "Defines character set of the document."
+				desc: "Defines character set of the document.",
+				browsers: "FF1.5,S4,C2,IE5.5,O9"
 			},
 			{
 				name: "@counter-style",
@@ -18,25 +19,28 @@ export const data : any = {
 			},
 			{
 				name: "@font-face",
-				desc: "Allows for linking to fonts that are automatically activated when needed. This permits authors to work around the limitation of 'web-safe' fonts, allowing for consistent rendering independent of the fonts available in a given user's environment."
+				desc: "Allows for linking to fonts that are automatically activated when needed. This permits authors to work around the limitation of 'web-safe' fonts, allowing for consistent rendering independent of the fonts available in a given user's environment.",
+				browsers: "all"
 			},
 			{
 				name: "@font-feature-values",
 				desc: "Defines named values for the indices used to select alternate glyphs for a given font family.",
-				browsers: "FF34"
+				browsers: "FF34,S9.1"
 			},
 			{
 				name: "@import",
-				desc: "Includes content of another file."
+				desc: "Includes content of another file.",
+				browsers: "all"
 			},
 			{
 				name: "@keyframes",
 				desc: "Defines set of animation key frames.",
-				browsers: "E,C43,FF16,IE10,O30,S9"
+				browsers: "all"
 			},
 			{
 				name: "@media",
-				desc: "Defines a stylesheet for a particular media type."
+				desc: "Defines a stylesheet for a particular media type.",
+				browsers: "all"
 			},
 			{
 				name: "@-moz-document",
@@ -56,7 +60,7 @@ export const data : any = {
 			{
 				name: "@namespace",
 				desc: "Declares a prefix and associates it with a namespace name.",
-				browsers: "E,C,FF1,IE9,O8,S1"
+				browsers: "all"
 			},
 			{
 				name: "@-o-keyframes",
@@ -70,12 +74,13 @@ export const data : any = {
 			},
 			{
 				name: "@page",
-				desc: "Directive defines various page parameters."
+				desc: "Directive defines various page parameters.",
+				browsers: "E,FF19,C2,IE8,O6"
 			},
 			{
 				name: "@supports",
 				desc: "A conditional group rule whose condition tests whether the user agent supports CSS property:value pairs.",
-				browsers: "E,C28,FF22,O12.1,S9"
+				browsers: "E12,FF22,S9,C28,O12.1"
 			},
 			{
 				name: "@-webkit-keyframes",
@@ -86,17 +91,18 @@ export const data : any = {
 		"pseudoclasses": [
 			{
 				name: ":active",
-				desc: "Applies while an element is being activated by the user. For example, between the times the user presses the mouse button and releases it."
+				desc: "Applies while an element is being activated by the user. For example, between the times the user presses the mouse button and releases it.",
+				browsers: "all"
 			},
 			{
 				name: ":any-link",
 				desc: "Represents an element that acts as the source anchor of a hyperlink. Applies to both visited and unvisited links.",
-				browsers: "S9"
+				browsers: "FF,S,C,O"
 			},
 			{
 				name: ":checked",
 				desc: "Radio and checkbox elements can be toggled by the user. Some menu items are 'checked' when the user selects them. When such elements are toggled 'on' the :checked pseudo-class applies.",
-				browsers: "E,C,FF1,IE9,O9,S3.13"
+				browsers: "all"
 			},
 			{
 				name: ":corner-present",
@@ -111,12 +117,12 @@ export const data : any = {
 			{
 				name: ":default",
 				desc: "Applies to the one or more UI elements that are the default among a set of similar elements. Typically applies to context menu items, buttons, and select lists/menus.",
-				browsers: "C,FF3,O10,S5"
+				browsers: "FF4,S5,C10,O10"
 			},
 			{
 				name: ":disabled",
 				desc: "Represents user interface elements that are in a disabled state; such elements have a corresponding enabled state.",
-				browsers: "E,C,FF1.5,IE9,O9,S3.1"
+				browsers: "all"
 			},
 			{
 				name: ":double-button",
@@ -126,12 +132,12 @@ export const data : any = {
 			{
 				name: ":empty",
 				desc: "Represents an element that has no children at all.",
-				browsers: "E,C,FF1.5,IE9,O9,S3.1"
+				browsers: "all"
 			},
 			{
 				name: ":enabled",
 				desc: "Represents user interface elements that are in an enabled state; such elements have a corresponding disabled state.",
-				browsers: "E,C,FF1.5,IE9,O9,S3.1"
+				browsers: "all"
 			},
 			{
 				name: ":end",
@@ -140,26 +146,28 @@ export const data : any = {
 			},
 			{
 				name: ":first",
-				desc: "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context."
+				desc: "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context.",
+				browsers: "E,IE8,O9.2"
 			},
 			{
 				name: ":first-child",
 				desc: "Same as :nth-child(1). Represents an element that is the first child of some other element.",
-				browsers: "E,C,FF3,IE7,O9.5,S3.1"
+				browsers: "all"
 			},
 			{
 				name: ":first-of-type",
 				desc: "Same as :nth-of-type(1). Represents an element that is the first sibling of its type in the list of children of its parent element.",
-				browsers: "E,C,FF3.5,IE9,O9.5,S3.2"
+				browsers: "all"
 			},
 			{
 				name: ":focus",
-				desc: "Applies while an element has the focus (accepts keyboard or mouse events, or other forms of input)."
+				desc: "Applies while an element has the focus (accepts keyboard or mouse events, or other forms of input).",
+				browsers: "all"
 			},
 			{
 				name: ":fullscreen",
 				desc: "Matches any element that has its fullscreen flag set.",
-				browsers: "E"
+				browsers: "E12,FF9,S6,C15,IE11"
 			},
 			{
 				name: ":future",
@@ -174,7 +182,7 @@ export const data : any = {
 			{
 				name: ":host",
 				desc: "When evaluated in the context of a shadow tree, matches the shadow tree’s host element.",
-				browsers: "C35,O22"
+				browsers: "FF61,S,C,O"
 			},
 			{
 				name: ":host()",
@@ -188,7 +196,8 @@ export const data : any = {
 			},
 			{
 				name: ":hover",
-				desc: "Applies while the user designates an element with a pointing device, but does not necessarily activate it. For example, a visual user agent could apply this pseudo-class when the cursor (mouse pointer) hovers over a box generated by the element."
+				desc: "Applies while the user designates an element with a pointing device, but does not necessarily activate it. For example, a visual user agent could apply this pseudo-class when the cursor (mouse pointer) hovers over a box generated by the element.",
+				browsers: "all"
 			},
 			{
 				name: ":increment",
@@ -198,17 +207,17 @@ export const data : any = {
 			{
 				name: ":indeterminate",
 				desc: "Applies to UI elements whose value is in an indeterminate state.",
-				browsers: "E,C,FF3.6,IE9,O10.6,S3"
+				browsers: "all"
 			},
 			{
 				name: ":in-range",
 				desc: "Used in conjunction with the min and max attributes, whether on a range input, a number field, or any other types that accept those attributes.",
-				browsers: "E13,C,FF10,O9.6,S5.1"
+				browsers: "E,FF29,S,C10,O11"
 			},
 			{
 				name: ":invalid",
 				desc: "An element is :valid or :invalid when it is, respectively, valid or invalid with respect to data validity semantics defined by a different specification.",
-				browsers: "E,C,FF4,IE10,O10,S5"
+				browsers: "all"
 			},
 			{
 				name: ":lang()",
@@ -218,20 +227,22 @@ export const data : any = {
 			{
 				name: ":last-child",
 				desc: "Same as :nth-last-child(1). Represents an element that is the last child of some other element.",
-				browsers: "E,C,FF1,IE9,O9.5,S3.1"
+				browsers: "all"
 			},
 			{
 				name: ":last-of-type",
 				desc: "Same as :nth-last-of-type(1). Represents an element that is the last sibling of its type in the list of children of its parent element.",
-				browsers: "E,C,FF3.5,IE9,O9.5,S3.1"
+				browsers: "all"
 			},
 			{
 				name: ":left",
-				desc: "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context."
+				desc: "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context.",
+				browsers: "E,IE8,O9.2"
 			},
 			{
 				name: ":link",
-				desc: "Applies to links that have not yet been visited."
+				desc: "Applies to links that have not yet been visited.",
+				browsers: "all"
 			},
 			{
 				name: ":matches()",
@@ -376,22 +387,22 @@ export const data : any = {
 			{
 				name: ":only-child",
 				desc: "Represents an element that has a parent element and whose parent element has no other element children. Same as :first-child:last-child or :nth-child(1):nth-last-child(1), but with a lower specificity.",
-				browsers: "E,C,FF1.5,IE9,O9.5,S3.1"
+				browsers: "all"
 			},
 			{
 				name: ":only-of-type",
 				desc: "Matches every element that is the only child of its type, of its parent. Same as :first-of-type:last-of-type or :nth-of-type(1):nth-last-of-type(1), but with a lower specificity.",
-				browsers: "E,C,FF3.5,IE9,O9.5,S3.2"
+				browsers: "all"
 			},
 			{
 				name: ":optional",
 				desc: "A form element is :required or :optional if a value for it is, respectively, required or optional before the form it belongs to is submitted. Elements that are not form elements are neither required nor optional.",
-				browsers: "E,C,FF4,IE10,O10,S5"
+				browsers: "all"
 			},
 			{
 				name: ":out-of-range",
 				desc: "Used in conjunction with the min and max attributes, whether on a range input, a number field, or any other types that accept those attributes.",
-				browsers: "E13,C,FF10,O9.6,S5.1"
+				browsers: "E,FF29,S,C10,O11"
 			},
 			{
 				name: ":past",
@@ -401,31 +412,32 @@ export const data : any = {
 			{
 				name: ":read-only",
 				desc: "An element whose contents are not user-alterable is :read-only. However, elements whose contents are user-alterable (such as text input fields) are considered to be in a :read-write state. In typical documents, most elements are :read-only.",
-				browsers: "E13,C,FF10,O9,S4"
+				browsers: "E,FF,S,C,O"
 			},
 			{
 				name: ":read-write",
 				desc: "An element whose contents are not user-alterable is :read-only. However, elements whose contents are user-alterable (such as text input fields) are considered to be in a :read-write state. In typical documents, most elements are :read-only.",
-				browsers: "E13,C,FF10,O9,S4"
+				browsers: "E,FF,S,C,O"
 			},
 			{
 				name: ":required",
 				desc: "A form element is :required or :optional if a value for it is, respectively, required or optional before the form it belongs to is submitted. Elements that are not form elements are neither required nor optional.",
-				browsers: "E,C,FF4,IE10,O10,S5"
+				browsers: "all"
 			},
 			{
 				name: ":right",
-				desc: "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context."
+				desc: "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context.",
+				browsers: "E,IE8,O9.2"
 			},
 			{
 				name: ":root",
 				desc: "Represents an element that is the root of the document. In HTML 4, this is always the HTML element.",
-				browsers: "E,C,FF1,IE9,O9.5,S1"
+				browsers: "FF1,S1,C1,IE9,O9.5"
 			},
 			{
 				name: ":scope",
 				desc: "Represents any element that is in the contextual reference element set.",
-				browsers: "FF32,S6"
+				browsers: "FF32,S7,O15"
 			},
 			{
 				name: ":single-button",
@@ -440,12 +452,12 @@ export const data : any = {
 			{
 				name: ":target",
 				desc: "Some URIs refer to a location within a resource. This kind of URI ends with a 'number sign' (#) followed by an anchor identifier (called the fragment identifier).",
-				browsers: "E,C,FF1,IE9,O9.5,S1"
+				browsers: "all"
 			},
 			{
 				name: ":valid",
 				desc: "An element is :valid or :invalid when it is, respectively, valid or invalid with respect to data validity semantics defined by a different specification.",
-				browsers: "E,C,FF4,IE10,O10,S5"
+				browsers: "all"
 			},
 			{
 				name: ":vertical",
@@ -454,7 +466,8 @@ export const data : any = {
 			},
 			{
 				name: ":visited",
-				desc: "Applies once the link has been visited by the user."
+				desc: "Applies once the link has been visited by the user.",
+				browsers: "all"
 			},
 			{
 				name: ":-webkit-any()",
@@ -476,17 +489,17 @@ export const data : any = {
 			{
 				name: "::after",
 				desc: "Represents a styleable child pseudo-element immediately after the originating element’s actual content.",
-				browsers: "E,C,FF1.5,IE9,O9,S4"
+				browsers: "all"
 			},
 			{
 				name: "::backdrop",
 				desc: "Used to create a backdrop that hides the underlying document for an element in a top layer (such as an element that is displayed fullscreen).",
-				browsers: "E"
+				browsers: "E,FF47,C37,IE11"
 			},
 			{
 				name: "::before",
 				desc: "Represents a styleable child pseudo-element immediately before the originating element’s actual content.",
-				browsers: "E,C,FF1.5,IE9,O9,S4"
+				browsers: "all"
 			},
 			{
 				name: "::content",
@@ -495,7 +508,7 @@ export const data : any = {
 			},
 			{
 				name: "::cue",
-				browsers: "C,O16,S6"
+				browsers: "FF55,C"
 			},
 			{
 				name: "::cue()",
@@ -512,12 +525,12 @@ export const data : any = {
 			{
 				name: "::first-letter",
 				desc: "Represents the first letter of an element, if it is not preceded by any other content (such as images or inline tables) on its line.",
-				browsers: "E,C,FF1.5,IE9,O7,S1"
+				browsers: "all"
 			},
 			{
 				name: "::first-line",
 				desc: "Describes the contents of the first formatted line of its originating element.",
-				browsers: "E,C,FF1.5,IE9,O7,S1"
+				browsers: "all"
 			},
 			{
 				name: "::-moz-focus-inner",
@@ -630,7 +643,7 @@ export const data : any = {
 			{
 				name: "::selection",
 				desc: "Represents the portion of a document that has been highlighted by the user.",
-				browsers: "E,C,IE9,O9.5,S1.1"
+				browsers: "all"
 			},
 			{
 				name: "::shadow",
@@ -655,15 +668,15 @@ export const data : any = {
 			},
 			{
 				name: "::-webkit-meter-bar",
-				browsers: "E13,C,O15,S6"
+				browsers: "S,C,O"
 			},
 			{
 				name: "::-webkit-meter-even-less-good-value",
-				browsers: "E13,C,O15,S6"
+				browsers: "S,C,O"
 			},
 			{
 				name: "::-webkit-meter-optimum-value",
-				browsers: "E13,C,O15,S6"
+				browsers: "S,C,O"
 			},
 			{
 				name: "::-webkit-meter-suboptimal-value",
@@ -675,15 +688,15 @@ export const data : any = {
 			},
 			{
 				name: "::-webkit-progress-bar",
-				browsers: "C,S3"
+				browsers: "S,C,O"
 			},
 			{
 				name: "::-webkit-progress-inner-element",
-				browsers: "C,S3"
+				browsers: "S,C,O"
 			},
 			{
 				name: "::-webkit-progress-value",
-				browsers: "C,S3"
+				browsers: "S,C,O"
 			},
 			{
 				name: "::-webkit-resizer",
@@ -715,7 +728,7 @@ export const data : any = {
 			},
 			{
 				name: "::-webkit-search-cancel-button",
-				browsers: "C,S4"
+				browsers: "S,C"
 			},
 			{
 				name: "::-webkit-search-decoration",
@@ -723,7 +736,7 @@ export const data : any = {
 			},
 			{
 				name: "::-webkit-search-results-button",
-				browsers: "C,S4"
+				browsers: "S,C"
 			},
 			{
 				name: "::-webkit-search-results-decoration",
@@ -777,7 +790,7 @@ export const data : any = {
 			{
 				name: "align-content",
 				desc: "Aligns a flex container’s lines within the flex container when there is extra space in the cross-axis, similar to how 'justify-content' aligns individual items within the main-axis.",
-				browsers: "E,C29,FF22,IE11,O12.1,S9",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -839,7 +852,7 @@ export const data : any = {
 			{
 				name: "justify-items",
 				desc: "Defines the default justify-self for all items of the box, given them the default way of justifying each box along the appropriate axi",
-				browsers: "FF45",
+				browsers: "E16,FF45",
 				restriction: "enum",
 				values: [
 					{
@@ -906,7 +919,7 @@ export const data : any = {
 			{
 				name: "justify-self",
 				desc: "Defines the way of justifying a box inside its container along the appropriate axis.",
-				browsers: "FF45",
+				browsers: "E16,FF45",
 				restriction: "enum",
 				values: [
 					{
@@ -970,7 +983,7 @@ export const data : any = {
 			{
 				name: "align-self",
 				desc: "Allows the default alignment along the cross axis to be overridden for individual flex items.",
-				browsers: "E,C29,FF22,IE11,O12.1,S9",
+				browsers: "E12,FF20,C36,IE11,O12.1",
 				restriction: "enum",
 				values: [
 					{
@@ -1003,7 +1016,7 @@ export const data : any = {
 			{
 				name: "all",
 				desc: "Shorthand that resets all properties except 'direction' and 'unicode-bidi'.",
-				browsers: "C37,FF27,O24",
+				browsers: "FF27,C37,O24",
 				restriction: "enum",
 				values: [],
 				"syntax": "initial | inherit | unset | revert"
@@ -1018,7 +1031,7 @@ export const data : any = {
 			{
 				name: "animation",
 				desc: "Shorthand property combines six of the animation properties into a single property.",
-				browsers: "E,C43,FF16,IE10,O12.1,S9",
+				browsers: "all",
 				restriction: "time, timing-function, enum, identifier, number",
 				values: [
 					{
@@ -1059,14 +1072,14 @@ export const data : any = {
 			{
 				name: "animation-delay",
 				desc: "Defines when the animation will start.",
-				browsers: "E,C43,FF16,IE10,O12.1,S9",
+				browsers: "all",
 				restriction: "time",
 				"syntax": "<time>#"
 			},
 			{
 				name: "animation-direction",
 				desc: "Defines whether or not the animation should play in reverse on alternate cycles.",
-				browsers: "E,C43,FF16,IE10,O12.1,S9",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -1089,14 +1102,14 @@ export const data : any = {
 			{
 				name: "animation-duration",
 				desc: "Defines the length of time that an animation takes to complete one cycle.",
-				browsers: "E,C43,FF16,IE10,O12.1,S9",
+				browsers: "all",
 				restriction: "time",
 				"syntax": "<time>#"
 			},
 			{
 				name: "animation-fill-mode",
 				desc: "Defines what values are applied by the animation outside the time it is executing.",
-				browsers: "E,C43,FF16,IE10,O12.1,S9",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -1119,7 +1132,7 @@ export const data : any = {
 			{
 				name: "animation-iteration-count",
 				desc: "Defines the number of times an animation cycle is played. The default value is one, meaning the animation will play from beginning to end once.",
-				browsers: "E,C43,FF16,IE10,O12.1,S9",
+				browsers: "all",
 				restriction: "number, enum",
 				values: [
 					{
@@ -1132,7 +1145,7 @@ export const data : any = {
 			{
 				name: "animation-name",
 				desc: "Defines a list of animations that apply. Each name is used to select the keyframe at-rule that provides the property values for the animation.",
-				browsers: "E,C43,FF16,IE10,O12.1,S9",
+				browsers: "all",
 				restriction: "identifier, enum",
 				values: [
 					{
@@ -1145,7 +1158,7 @@ export const data : any = {
 			{
 				name: "animation-play-state",
 				desc: "Defines whether the animation is running or paused.",
-				browsers: "E,C43,FF16,IE10,O12.1,S9",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -1160,14 +1173,14 @@ export const data : any = {
 			{
 				name: "animation-timing-function",
 				desc: "Describes how the animation will progress over one cycle of its duration.",
-				browsers: "E,C43,FF16,IE10,O12.1,S9",
+				browsers: "all",
 				restriction: "timing-function",
 				"syntax": "<single-timing-function>#"
 			},
 			{
 				name: "backface-visibility",
 				desc: "Determines whether or not the 'back' side of a transformed element is visible when facing the viewer. With an identity transform, the front side of an element faces the viewer.",
-				browsers: "E,C36,FF16,IE10,O23",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -1184,6 +1197,7 @@ export const data : any = {
 			{
 				name: "background",
 				desc: "Shorthand property for setting most background properties at the same place in the style sheet.",
+				browsers: "all",
 				restriction: "enum, image, color, position, length, repeat, percentage, box",
 				values: [
 					{
@@ -1204,6 +1218,7 @@ export const data : any = {
 			{
 				name: "background-attachment",
 				desc: "Specifies whether the background images are fixed with regard to the viewport ('fixed') or scroll along with the element ('scroll') or its contents ('local').",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -1225,7 +1240,7 @@ export const data : any = {
 			{
 				name: "background-blend-mode",
 				desc: "Defines the blending mode of each background layer.",
-				browsers: "C35,FF30,O22,S7.1",
+				browsers: "FF30,S,C35,O22",
 				restriction: "enum",
 				values: [
 					{
@@ -1287,19 +1302,21 @@ export const data : any = {
 			{
 				name: "background-clip",
 				desc: "Determines the background painting area.",
-				browsers: "E,C,FF4,IE9,O10.5,S3",
+				browsers: "all",
 				restriction: "box",
 				"syntax": "<box>#"
 			},
 			{
 				name: "background-color",
 				desc: "Sets the background color of an element.",
+				browsers: "all",
 				restriction: "color",
 				"syntax": "<color>"
 			},
 			{
 				name: "background-image",
 				desc: "Sets the background image(s) of an element.",
+				browsers: "all",
 				restriction: "image, enum",
 				values: [
 					{
@@ -1312,20 +1329,21 @@ export const data : any = {
 			{
 				name: "background-origin",
 				desc: "For elements rendered as a single box, specifies the background positioning area. For elements rendered as multiple boxes (e.g., inline boxes on several lines, boxes on several pages) specifies which boxes 'box-decoration-break' operates on to determine the background positioning area(s).",
-				browsers: "E,C,FF4,IE9,O10.5,S3",
+				browsers: "all",
 				restriction: "box",
 				"syntax": "<box>#"
 			},
 			{
 				name: "background-position",
 				desc: "Specifies the initial position of the background image(s) (after any resizing) within their corresponding background positioning area.",
+				browsers: "all",
 				restriction: "position, length, percentage",
 				"syntax": "<bg-position>#"
 			},
 			{
 				name: "background-position-x",
 				desc: "If background images have been specified, this property specifies their initial position (after any resizing) within their corresponding background positioning area.",
-				browsers: "E,IE6",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -1347,7 +1365,7 @@ export const data : any = {
 			{
 				name: "background-position-y",
 				desc: "If background images have been specified, this property specifies their initial position (after any resizing) within their corresponding background positioning area.",
-				browsers: "E,IE6",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -1369,6 +1387,7 @@ export const data : any = {
 			{
 				name: "background-repeat",
 				desc: "Specifies how background images are tiled after they have been sized and positioned.",
+				browsers: "all",
 				restriction: "repeat",
 				values: [],
 				"syntax": "<repeat-style>#"
@@ -1376,7 +1395,7 @@ export const data : any = {
 			{
 				name: "background-size",
 				desc: "Specifies the size of the background images.",
-				browsers: "E,C,FF4,IE9,O10,S4.1",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -1416,6 +1435,7 @@ export const data : any = {
 			{
 				name: "border",
 				desc: "Shorthand property for setting border width, style, and color.",
+				browsers: "all",
 				restriction: "length, line-width, line-style, color",
 				"syntax": "<br-width> || <br-style> || <color>"
 			},
@@ -1478,44 +1498,49 @@ export const data : any = {
 			{
 				name: "border-bottom",
 				desc: "Shorthand property for setting border width, style and color.",
+				browsers: "all",
 				restriction: "length, line-width, line-style, color",
 				"syntax": "<br-width> || <br-style> || <color>"
 			},
 			{
 				name: "border-bottom-color",
 				desc: "Sets the color of the bottom border.",
+				browsers: "all",
 				restriction: "color",
 				"syntax": "<color>"
 			},
 			{
 				name: "border-bottom-left-radius",
 				desc: "Defines the radii of the bottom left outer border edge.",
-				browsers: "E,C,FF4,IE9,O10.5,S5",
+				browsers: "all",
 				restriction: "length, percentage",
 				"syntax": "<length-percentage>{1,2}"
 			},
 			{
 				name: "border-bottom-right-radius",
 				desc: "Defines the radii of the bottom right outer border edge.",
-				browsers: "E,C,FF4,IE9,O10.5,S5",
+				browsers: "all",
 				restriction: "length, percentage",
 				"syntax": "<length-percentage>{1,2}"
 			},
 			{
 				name: "border-bottom-style",
 				desc: "Sets the style of the bottom border.",
+				browsers: "all",
 				restriction: "line-style",
 				"syntax": "<br-style>"
 			},
 			{
 				name: "border-bottom-width",
 				desc: "Sets the thickness of the bottom border.",
+				browsers: "all",
 				restriction: "length, line-width",
 				"syntax": "<br-width>"
 			},
 			{
 				name: "border-collapse",
 				desc: "Selects a table's border model.",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -1532,6 +1557,7 @@ export const data : any = {
 			{
 				name: "border-color",
 				desc: "The color of the border around all four edges of an element.",
+				browsers: "all",
 				restriction: "color",
 				values: [],
 				"syntax": "<color>{1,4}"
@@ -1539,7 +1565,7 @@ export const data : any = {
 			{
 				name: "border-image",
 				desc: "Shorthand property for setting 'border-image-source', 'border-image-slice', 'border-image-width', 'border-image-outset' and 'border-image-repeat'. Omitted values are set to their initial values.",
-				browsers: "E,C16,FF15,IE11,O15,S6",
+				browsers: "all",
 				restriction: "length, percentage, number, url, enum",
 				values: [
 					{
@@ -1578,14 +1604,14 @@ export const data : any = {
 			{
 				name: "border-image-outset",
 				desc: "The values specify the amount by which the border image area extends beyond the border box on the top, right, bottom, and left sides respectively. If the fourth value is absent, it is the same as the second. If the third one is also absent, it is the same as the first. If the second one is also absent, it is the same as the first. Numbers represent multiples of the corresponding border-width.",
-				browsers: "E,C16,FF15,IE11,O15,S6",
+				browsers: "all",
 				restriction: "length, number",
 				"syntax": "[ <length> | <number> ]{1,4}"
 			},
 			{
 				name: "border-image-repeat",
 				desc: "Specifies how the images for the sides and the middle part of the border image are scaled and tiled. If the second keyword is absent, it is assumed to be the same as the first.",
-				browsers: "E,C16,FF15,IE11,O15,S6",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -1609,7 +1635,7 @@ export const data : any = {
 			{
 				name: "border-image-slice",
 				desc: "Specifies inward offsets from the top, right, bottom, and left edges of the image, dividing it into nine regions: four corners, four edges and a middle.",
-				browsers: "E,C16,FF15,IE11,O15,S6",
+				browsers: "all",
 				restriction: "number, percentage",
 				values: [
 					{
@@ -1622,7 +1648,7 @@ export const data : any = {
 			{
 				name: "border-image-source",
 				desc: "Specifies an image to use instead of the border styles given by the 'border-style' properties and as an additional background layer for the element. If the value is 'none' or if the image cannot be displayed, the border styles will be used.",
-				browsers: "E,C16,FF15,IE11,O15,S6",
+				browsers: "all",
 				restriction: "image",
 				values: [
 					{
@@ -1635,7 +1661,7 @@ export const data : any = {
 			{
 				name: "border-image-width",
 				desc: "The four values of 'border-image-width' specify offsets that are used to divide the border image area into nine parts. They represent inward distances from the top, right, bottom, and left sides of the area, respectively.",
-				browsers: "E,C16,FF15,IE11,O15,S6",
+				browsers: "all",
 				restriction: "length, percentage, number",
 				values: [
 					{
@@ -1704,68 +1730,77 @@ export const data : any = {
 			{
 				name: "border-left",
 				desc: "Shorthand property for setting border width, style and color",
+				browsers: "all",
 				restriction: "length, line-width, line-style, color",
 				"syntax": "<br-width> || <br-style> || <color>"
 			},
 			{
 				name: "border-left-color",
 				desc: "Sets the color of the left border.",
+				browsers: "all",
 				restriction: "color",
 				"syntax": "<color>"
 			},
 			{
 				name: "border-left-style",
 				desc: "Sets the style of the left border.",
+				browsers: "all",
 				restriction: "line-style",
 				"syntax": "<br-style>"
 			},
 			{
 				name: "border-left-width",
 				desc: "Sets the thickness of the left border.",
+				browsers: "all",
 				restriction: "length, line-width",
 				"syntax": "<br-width>"
 			},
 			{
 				name: "border-radius",
 				desc: "Defines the radii of the outer border edge.",
-				browsers: "E,C,FF4,IE9,O10.5,S5",
+				browsers: "all",
 				restriction: "length, percentage",
 				"syntax": "<length-percentage>{1,4} [ / <length-percentage>{1,4} ]?"
 			},
 			{
 				name: "border-right",
 				desc: "Shorthand property for setting border width, style and color",
+				browsers: "all",
 				restriction: "length, line-width, line-style, color",
 				"syntax": "<br-width> || <br-style> || <color>"
 			},
 			{
 				name: "border-right-color",
 				desc: "Sets the color of the right border.",
+				browsers: "all",
 				restriction: "color",
 				"syntax": "<color>"
 			},
 			{
 				name: "border-right-style",
 				desc: "Sets the style of the right border.",
+				browsers: "all",
 				restriction: "line-style",
 				"syntax": "<br-style>"
 			},
 			{
 				name: "border-right-width",
 				desc: "Sets the thickness of the right border.",
+				browsers: "all",
 				restriction: "length, line-width",
 				"syntax": "<br-width>"
 			},
 			{
 				name: "border-spacing",
 				desc: "The lengths specify the distance that separates adjoining cell borders. If one length is specified, it gives both the horizontal and vertical spacing. If two are specified, the first gives the horizontal spacing and the second the vertical spacing. Lengths may not be negative.",
-				browsers: "E,C,FF1,IE8,O7,S1.2",
+				browsers: "all",
 				restriction: "length",
 				"syntax": "<length> <length>?"
 			},
 			{
 				name: "border-style",
 				desc: "The style of the border around edges of an element.",
+				browsers: "all",
 				restriction: "line-style",
 				values: [],
 				"syntax": "<br-style>{1,4}"
@@ -1773,44 +1808,49 @@ export const data : any = {
 			{
 				name: "border-top",
 				desc: "Shorthand property for setting border width, style and color",
+				browsers: "all",
 				restriction: "length, line-width, line-style, color",
 				"syntax": "<br-width> || <br-style> || <color>"
 			},
 			{
 				name: "border-top-color",
 				desc: "Sets the color of the top border.",
+				browsers: "all",
 				restriction: "color",
 				"syntax": "<color>"
 			},
 			{
 				name: "border-top-left-radius",
 				desc: "Defines the radii of the top left outer border edge.",
-				browsers: "E,C,FF4,IE9,O10.5,S5",
+				browsers: "all",
 				restriction: "length, percentage",
 				"syntax": "<length-percentage>{1,2}"
 			},
 			{
 				name: "border-top-right-radius",
 				desc: "Defines the radii of the top right outer border edge.",
-				browsers: "E,C,FF4,IE9,O10.5,S5",
+				browsers: "all",
 				restriction: "length, percentage",
 				"syntax": "<length-percentage>{1,2}"
 			},
 			{
 				name: "border-top-style",
 				desc: "Sets the style of the top border.",
+				browsers: "all",
 				restriction: "line-style",
 				"syntax": "<br-style>"
 			},
 			{
 				name: "border-top-width",
 				desc: "Sets the thickness of the top border.",
+				browsers: "all",
 				restriction: "length, line-width",
 				"syntax": "<br-width>"
 			},
 			{
 				name: "border-width",
 				desc: "Shorthand that sets the four 'border-*-width' properties. If it has four values, they set top, right, bottom and left in that order. If left is missing, it is the same as right; if bottom is missing, it is the same as top; if right is missing, it is the same as top.",
+				browsers: "all",
 				restriction: "length, line-width",
 				values: [],
 				"syntax": "<br-width>{1,4}"
@@ -1818,6 +1858,7 @@ export const data : any = {
 			{
 				name: "bottom",
 				desc: "Specifies how far an absolutely positioned box's bottom margin edge is offset above the bottom edge of the box's 'containing block'.",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -1830,7 +1871,7 @@ export const data : any = {
 			{
 				name: "box-decoration-break",
 				desc: "Specifies whether individual boxes are treated as broken pieces of one continuous box, or whether each box is individually wrapped with the border and padding.",
-				browsers: "FF32,O11",
+				browsers: "FF32,S6.1,C22,O15",
 				restriction: "enum",
 				values: [
 					{
@@ -1845,7 +1886,7 @@ export const data : any = {
 			{
 				name: "box-shadow",
 				desc: "Attaches one or more drop-shadows to the box. The property is a comma-separated list of shadows, each specified by 2-4 length values, an optional color, and an optional 'inset' keyword. Omitted lengths are 0; omitted colors are a user agent chosen color.",
-				browsers: "E,C,FF4,IE9,O11.5,S5.1",
+				browsers: "all",
 				restriction: "length, color, enum",
 				values: [
 					{
@@ -1857,7 +1898,7 @@ export const data : any = {
 			{
 				name: "box-sizing",
 				desc: "Specifies the behavior of the 'width' and 'height' properties.",
-				browsers: "E,C10,FF29,IE8,O8,S5.1",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -1872,7 +1913,7 @@ export const data : any = {
 			{
 				name: "break-after",
 				desc: "Describes the page/column/region break behavior after the generated box.",
-				browsers: "E,IE10,O11.5",
+				browsers: "E12,S10,C50,IE10,O37",
 				restriction: "enum",
 				values: [
 					{
@@ -1917,7 +1958,7 @@ export const data : any = {
 			{
 				name: "break-before",
 				desc: "Describes the page/column/region break behavior before the generated box.",
-				browsers: "E,IE10,O11.5",
+				browsers: "E12,S10,C50,IE10,O37",
 				restriction: "enum",
 				values: [
 					{
@@ -1962,7 +2003,7 @@ export const data : any = {
 			{
 				name: "break-inside",
 				desc: "Describes the page/column/region break behavior inside the principal box.",
-				browsers: "E,IE10,O11.5",
+				browsers: "E12,S10,C50,IE10,O37",
 				restriction: "enum",
 				values: [
 					{
@@ -1987,7 +2028,7 @@ export const data : any = {
 			{
 				name: "caption-side",
 				desc: "Specifies the position of the caption box with respect to the table box.",
-				browsers: "E,C,FF,IE8,O,S",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -2004,7 +2045,7 @@ export const data : any = {
 			{
 				name: "caret-color",
 				desc: "Controls the color of the text insertion indicator.",
-				browsers: "C60,FF55,O46",
+				browsers: "FF53,S11.1,C57,O44",
 				restriction: "color, enum",
 				values: [
 					{
@@ -2017,6 +2058,7 @@ export const data : any = {
 			{
 				name: "clear",
 				desc: "Indicates which sides of an element's box(es) may not be adjacent to an earlier floating box. The 'clear' property does not consider floats inside the element itself or in other block formatting contexts.",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -2041,6 +2083,7 @@ export const data : any = {
 			{
 				name: "clip",
 				desc: "Deprecated. Use the 'clip-path' property when support allows. Defines the visible portion of an element’s box.",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -2056,7 +2099,7 @@ export const data : any = {
 			{
 				name: "clip-path",
 				desc: "Specifies a clipping path where everything inside the path is visable and everything outside is clipped out.",
-				browsers: "FF3.5",
+				browsers: "FF3.5,C55,O42",
 				restriction: "url, shape, geometry-box, enum",
 				values: [
 					{
@@ -2087,6 +2130,7 @@ export const data : any = {
 			{
 				name: "color",
 				desc: "Color of an element's text",
+				browsers: "all",
 				restriction: "color",
 				"syntax": "<color>"
 			},
@@ -2111,7 +2155,7 @@ export const data : any = {
 			{
 				name: "column-count",
 				desc: "Describes the optimal number of columns into which the content of the element will be flowed.",
-				browsers: "E,IE10,O11.5,S9",
+				browsers: "all",
 				restriction: "integer, enum",
 				values: [
 					{
@@ -2124,7 +2168,7 @@ export const data : any = {
 			{
 				name: "column-fill",
 				desc: "In continuous media, this property will only be consulted if the length of columns has been constrained. Otherwise, columns will automatically be balanced.",
-				browsers: "E,IE10,O11.5,S9",
+				browsers: "E12,FF52,C",
 				restriction: "enum",
 				values: [
 					{
@@ -2153,35 +2197,35 @@ export const data : any = {
 			{
 				name: "column-rule",
 				desc: "Shorthand for setting 'column-rule-width', 'column-rule-style', and 'column-rule-color' at the same place in the style sheet. Omitted values are set to their initial values.",
-				browsers: "E,IE10,O11.5,S9",
+				browsers: "all",
 				restriction: "length, line-width, line-style, color",
 				"syntax": "<'column-rule-width'> || <'column-rule-style'> || <'column-rule-color'>"
 			},
 			{
 				name: "column-rule-color",
 				desc: "Sets the color of the column rule",
-				browsers: "E,IE10,O11.6",
+				browsers: "all",
 				restriction: "color",
 				"syntax": "<color>"
 			},
 			{
 				name: "column-rule-style",
 				desc: "Sets the style of the rule between columns of an element.",
-				browsers: "E,IE10,O11.5,S6",
+				browsers: "all",
 				restriction: "line-style",
 				"syntax": "<'border-style'>"
 			},
 			{
 				name: "column-rule-width",
 				desc: "Sets the width of the rule between columns. Negative values are not allowed.",
-				browsers: "E,IE10,O11.5,S9",
+				browsers: "all",
 				restriction: "length, line-width",
 				"syntax": "<'border-width'>"
 			},
 			{
 				name: "columns",
 				desc: "A shorthand property which sets both 'column-width' and 'column-count'.",
-				browsers: "E,IE10,O11.5,S9",
+				browsers: "all",
 				restriction: "length, integer, enum",
 				values: [
 					{
@@ -2194,7 +2238,7 @@ export const data : any = {
 			{
 				name: "column-span",
 				desc: "Describes the page/column break behavior after the generated box.",
-				browsers: "E,IE10,O11.5,S9",
+				browsers: "E12,S,C50,IE10,O11.1",
 				restriction: "enum",
 				values: [
 					{
@@ -2211,7 +2255,7 @@ export const data : any = {
 			{
 				name: "column-width",
 				desc: "Describes the width of columns in multicol elements.",
-				browsers: "E,IE10,O11.5,S9",
+				browsers: "all",
 				restriction: "length, enum",
 				values: [
 					{
@@ -2259,7 +2303,7 @@ export const data : any = {
 			{
 				name: "content",
 				desc: "Determines which page-based occurrence of a given element is applied to a counter or string value.",
-				browsers: "E,C,FF1,IE8,O4,S1",
+				browsers: "all",
 				restriction: "string, url",
 				values: [
 					{
@@ -2289,7 +2333,7 @@ export const data : any = {
 			{
 				name: "counter-increment",
 				desc: "Manipulate the value of existing counters.",
-				browsers: "E,C,FF1.5,IE8,O10.5,S3",
+				browsers: "FF1,S3,C2,IE8,O9.2",
 				restriction: "identifier, integer",
 				values: [
 					{
@@ -2302,7 +2346,7 @@ export const data : any = {
 			{
 				name: "counter-reset",
 				desc: "Property accepts one or more names of counters (identifiers), each one optionally followed by an integer. The integer gives the value that the counter is set to on each occurrence of the element.",
-				browsers: "E,C,FF1.5,IE8,O10.5,S3",
+				browsers: "all",
 				restriction: "identifier, integer",
 				values: [
 					{
@@ -2315,6 +2359,7 @@ export const data : any = {
 			{
 				name: "cursor",
 				desc: "Allows control over cursor appearance in an element",
+				browsers: "all",
 				restriction: "url, number, enum",
 				values: [
 					{
@@ -2471,6 +2516,7 @@ export const data : any = {
 			{
 				name: "direction",
 				desc: "Specifies the inline base direction or directionality of any bidi paragraph, embedding, isolate, or override established by the box. Note: for HTML content use the 'dir' attribute and 'bdo' element rather than this property.",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -2485,6 +2531,7 @@ export const data : any = {
 			{
 				name: "display",
 				desc: "In combination with 'float' and 'position', determines the type of box or boxes that are generated for an element.",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -2669,7 +2716,7 @@ export const data : any = {
 			{
 				name: "empty-cells",
 				desc: "In the separated borders model, this property controls the rendering of borders and backgrounds around cells that have no visible content.",
-				browsers: "E,C,FF1,IE7,O4,S1.2",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -2737,7 +2784,7 @@ export const data : any = {
 			{
 				name: "filter",
 				desc: "Processes an element’s rendering before it is displayed in the document, by applying one or more filter effects.",
-				browsers: "E13,FF35",
+				browsers: "E12,FF35,S6,C53,O40",
 				restriction: "enum, url",
 				values: [
 					{
@@ -2785,7 +2832,7 @@ export const data : any = {
 			{
 				name: "flex",
 				desc: "Specifies the components of a flexible length: the flex grow factor and flex shrink factor, and the flex basis.",
-				browsers: "E,C29,FF22,IE11,O12.1,S9",
+				browsers: "all",
 				restriction: "length, number, percentage",
 				values: [
 					{
@@ -2807,7 +2854,7 @@ export const data : any = {
 			{
 				name: "flex-basis",
 				desc: "Sets the flex basis.",
-				browsers: "E,C29,FF22,IE11,O12.1,S9",
+				browsers: "all",
 				restriction: "length, number, percentage",
 				values: [
 					{
@@ -2825,7 +2872,7 @@ export const data : any = {
 			{
 				name: "flex-direction",
 				desc: "Specifies how flex items are placed in the flex container, by setting the direction of the flex container’s main axis.",
-				browsers: "E,C29,FF22,IE11,O12.1,S9",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -2848,7 +2895,7 @@ export const data : any = {
 			{
 				name: "flex-flow",
 				desc: "Specifies how flexbox items are placed in the flexbox.",
-				browsers: "E,C29,FF28,IE11,O12.1,S9",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -2882,21 +2929,21 @@ export const data : any = {
 			{
 				name: "flex-grow",
 				desc: "Sets the flex grow factor. Negative numbers are invalid.",
-				browsers: "E,C29,FF22,IE11,O12.1,S9",
+				browsers: "all",
 				restriction: "number",
 				"syntax": "<number>"
 			},
 			{
 				name: "flex-shrink",
 				desc: "Sets the flex shrink factor. Negative numbers are invalid.",
-				browsers: "E,C29,FF22,IE11,O12.1,S9",
+				browsers: "all",
 				restriction: "number",
 				"syntax": "<number>"
 			},
 			{
 				name: "flex-wrap",
 				desc: "Controls whether the flex container is single-line or multi-line, and the direction of the cross-axis, which determines the direction new lines are stacked in.",
-				browsers: "E,C29,FF28,IE11,O12.1,S9",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -2916,6 +2963,7 @@ export const data : any = {
 			{
 				name: "float",
 				desc: "Specifies how a box should be floated. It may be set for any element, but only applies to elements that generate boxes that are not absolutely positioned.",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -2956,6 +3004,7 @@ export const data : any = {
 			{
 				name: "font",
 				desc: "Shorthand property for setting 'font-style', 'font-variant', 'font-weight', 'font-size', 'line-height', and 'font-family', at the same place in the style sheet. The syntax of this property is based on a traditional typographical shorthand notation to set multiple properties related to fonts.",
+				browsers: "all",
 				restriction: "font",
 				values: [
 					{
@@ -3062,6 +3111,7 @@ export const data : any = {
 			{
 				name: "font-family",
 				desc: "Specifies a prioritized list of font family names or generic family names. A user agent iterates through the list of family names until it matches an available font that contains a glyph for the character to be rendered.",
+				browsers: "all",
 				restriction: "font",
 				values: [
 					{
@@ -3124,7 +3174,7 @@ export const data : any = {
 			{
 				name: "font-feature-settings",
 				desc: "Provides low-level control over OpenType font features. It is intended as a way of providing access to font features that are not widely used but are needed for a particular use case.",
-				browsers: "E,FF34,IE10",
+				browsers: "all",
 				restriction: "string, integer",
 				values: [
 					{
@@ -3505,7 +3555,7 @@ export const data : any = {
 			{
 				name: "font-kerning",
 				desc: "Kerning is the contextual adjustment of inter-glyph spacing. This property controls metric kerning, kerning that utilizes adjustment data contained in the font.",
-				browsers: "C33,FF34,O20",
+				browsers: "FF32,S7,C32",
 				restriction: "enum",
 				values: [
 					{
@@ -3539,6 +3589,7 @@ export const data : any = {
 			{
 				name: "font-size",
 				desc: "Indicates the desired height of glyphs from the font. For scalable fonts, the font-size is a scale factor applied to the EM unit of the font. (Note that certain glyphs may bleed outside their EM box.) For non-scalable fonts, the font-size is converted into absolute units and matched against the declared font-size of the font, using the same absolute coordinate space for both of the matched values.",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -3574,7 +3625,7 @@ export const data : any = {
 			{
 				name: "font-size-adjust",
 				desc: "Preserves the readability of text when font fallback occurs by adjusting the font-size so that the x-height is the same irregardless of the font used.",
-				browsers: "E,FF3,IE10",
+				browsers: "FF40,C43,O30",
 				restriction: "number",
 				values: [
 					{
@@ -3587,7 +3638,7 @@ export const data : any = {
 			{
 				name: "font-stretch",
 				desc: "Selects a normal, condensed, or expanded face from a font family.",
-				browsers: "E,FF9,IE9",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -3631,6 +3682,7 @@ export const data : any = {
 			{
 				name: "font-style",
 				desc: "Allows italic or oblique faces to be selected. Italic forms are generally cursive in nature while oblique faces are typically sloped versions of the regular face.",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -3671,6 +3723,7 @@ export const data : any = {
 			{
 				name: "font-variant",
 				desc: "Specifies variant representations of the font",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -3721,7 +3774,7 @@ export const data : any = {
 			{
 				name: "font-variant-caps",
 				desc: "Specifies control over capitalized forms.",
-				browsers: "FF34",
+				browsers: "FF34,C52,O39",
 				restriction: "enum",
 				values: [
 					{
@@ -3753,7 +3806,7 @@ export const data : any = {
 			{
 				name: "font-variant-east-asian",
 				desc: "Allows control of glyph substitute and positioning in East Asian text.",
-				browsers: "FF34",
+				browsers: "FF34,C63,O50",
 				restriction: "enum",
 				values: [
 					{
@@ -3794,7 +3847,7 @@ export const data : any = {
 			{
 				name: "font-variant-ligatures",
 				desc: "Specifies control over which ligatures are enabled or disabled. A value of ‘normal’ implies that the defaults set by the font are used.",
-				browsers: "C18,FF34,O15,S6",
+				browsers: "FF34,S9.1,C34,O21",
 				restriction: "enum",
 				values: [
 					{
@@ -3844,7 +3897,7 @@ export const data : any = {
 			{
 				name: "font-variant-numeric",
 				desc: "Specifies control over numerical forms.",
-				browsers: "FF34",
+				browsers: "FF34,S9.1,C52,O39",
 				restriction: "enum",
 				values: [
 					{
@@ -3902,6 +3955,7 @@ export const data : any = {
 			{
 				name: "font-weight",
 				desc: "Specifies weight of glyphs in the font, their degree of blackness or stroke thickness.",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -3966,7 +4020,7 @@ export const data : any = {
 			{
 				name: "grid-area",
 				desc: "Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement. Shorthand for 'grid-row-start', 'grid-column-start', 'grid-row-end', and 'grid-column-end'.",
-				browsers: "FF52,C57,S10.1,O44",
+				browsers: "E16,FF52,S10.1,C57,O44",
 				restriction: "identifier, integer",
 				values: [
 					{
@@ -3982,14 +4036,14 @@ export const data : any = {
 			{
 				name: "grid",
 				desc: "The grid CSS property is a shorthand property that sets all of the explicit grid properties ('grid-template-rows', 'grid-template-columns', and 'grid-template-areas'), and all the implicit grid properties ('grid-auto-rows', 'grid-auto-columns', and 'grid-auto-flow'), in a single declaration.",
-				browsers: "FF52,C57,E16,S10.1,O44",
+				browsers: "E16,FF52,S10.1,C57,O44",
 				restriction: "identifier, length, percentage, string, enum",
 				"syntax": "<'grid-template'> | <'grid-template-rows'> / [ auto-flow && dense? ] <'grid-auto-columns'>? | [ auto-flow && dense? ] <'grid-auto-rows'>? / <'grid-template-columns'>"
 			},
 			{
 				name: "grid-auto-columns",
 				desc: "Specifies the size of implicitly created columns.",
-				browsers: "FF52,C57,S10.1,O44",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -4013,7 +4067,7 @@ export const data : any = {
 			{
 				name: "grid-auto-flow",
 				desc: "Controls how the auto-placement algorithm works, specifying exactly how auto-placed items get flowed into the grid.",
-				browsers: "FF52,C57,S10.1,O44",
+				browsers: "E16,FF52,S10.1,C57,O44",
 				restriction: "enum",
 				values: [
 					{
@@ -4033,7 +4087,7 @@ export const data : any = {
 			{
 				name: "grid-auto-rows",
 				desc: "Specifies the size of implicitly created rows.",
-				browsers: "FF52,C57,S10.1,O44",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -4057,7 +4111,7 @@ export const data : any = {
 			{
 				name: "grid-column",
 				desc: "Shorthand for 'grid-column-start' and 'grid-column-end'.",
-				browsers: "FF52,C57,S10.1,O44",
+				browsers: "E16,FF52,S10.1,C57,O44",
 				restriction: "identifier, integer, enum",
 				values: [
 					{
@@ -4073,7 +4127,7 @@ export const data : any = {
 			{
 				name: "grid-column-end",
 				desc: "Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.",
-				browsers: "FF52,C57,S10.1,O44",
+				browsers: "E16,FF52,S10.1,C57,O44",
 				restriction: "identifier, integer, enum",
 				values: [
 					{
@@ -4097,7 +4151,7 @@ export const data : any = {
 			{
 				name: "grid-column-start",
 				desc: "Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.",
-				browsers: "FF52,C57,S10.1,O44",
+				browsers: "E16,FF52,S10.1,C57,O44",
 				restriction: "identifier, integer, enum",
 				values: [
 					{
@@ -4121,7 +4175,7 @@ export const data : any = {
 			{
 				name: "grid-row",
 				desc: "Shorthand for 'grid-row-start' and 'grid-row-end'.",
-				browsers: "FF52,C57,S10.1,O44",
+				browsers: "E16,FF52,S10.1,C57,O44",
 				restriction: "identifier, integer, enum",
 				values: [
 					{
@@ -4137,7 +4191,7 @@ export const data : any = {
 			{
 				name: "grid-row-end",
 				desc: "Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.",
-				browsers: "FF52,C57,S10.1,O44",
+				browsers: "E16,FF52,S10.1,C57,O44",
 				restriction: "identifier, integer, enum",
 				values: [
 					{
@@ -4161,7 +4215,7 @@ export const data : any = {
 			{
 				name: "grid-row-start",
 				desc: "Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.",
-				browsers: "FF52,C57,S10.1,O44",
+				browsers: "E16,FF52,S10.1,C57,O44",
 				restriction: "identifier, integer, enum",
 				values: [
 					{
@@ -4177,7 +4231,7 @@ export const data : any = {
 			{
 				name: "grid-template",
 				desc: "Shorthand for setting grid-template-columns, grid-template-rows, and grid-template-areas in a single declaration.",
-				browsers: "FF52,C57,S10.1,O44",
+				browsers: "E16,FF52,S10.1,C57,O44",
 				restriction: "identifier, length, percentage, string, enum",
 				values: [
 					{
@@ -4213,7 +4267,7 @@ export const data : any = {
 			{
 				name: "grid-template-areas",
 				desc: "Specifies named grid areas, which are not associated with any particular grid item, but can be referenced from the grid-placement properties.",
-				browsers: "FF52,C57,S10.1,O44",
+				browsers: "E16,FF52,S10.1,C57,O44",
 				restriction: "string",
 				values: [
 					{
@@ -4226,7 +4280,7 @@ export const data : any = {
 			{
 				name: "grid-template-columns",
 				desc: "specifies, as a space-separated track list, the line names and track sizing functions of the grid.",
-				browsers: "FF52,C57,S10.1,O44",
+				browsers: "E16,FF52,S10.1,C57,O44",
 				restriction: "identifier, length, percentage, enum",
 				values: [
 					{
@@ -4262,7 +4316,7 @@ export const data : any = {
 			{
 				name: "grid-template-rows",
 				desc: "specifies, as a space-separated track list, the line names and track sizing functions of the grid.",
-				browsers: "FF52,C57,S10.1,O44",
+				browsers: "E16,FF52,S10.1,C57,O44",
 				restriction: "identifier, length, percentage, string, enum",
 				values: [
 					{
@@ -4298,6 +4352,7 @@ export const data : any = {
 			{
 				name: "height",
 				desc: "Specifies the height of the content area, padding area or border area (depending on 'box-sizing') of certain boxes.",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -4324,7 +4379,7 @@ export const data : any = {
 			{
 				name: "hyphens",
 				desc: "Controls whether hyphenation is allowed to create more break opportunities within a line of text.",
-				browsers: "C55,FF43,O44",
+				browsers: "FF43,S5.1,C55,IE10,O44",
 				restriction: "enum",
 				values: [
 					{
@@ -4359,7 +4414,7 @@ export const data : any = {
 			{
 				name: "image-rendering",
 				desc: "Provides a hint to the user-agent about what aspects of an image are most important to preserve when the image is scaled, to aid the user-agent in the choice of an appropriate scaling algorithm.",
-				browsers: "C,FF3.6,O11.6,S",
+				browsers: "FF3.6,S,C,O",
 				restriction: "enum",
 				values: [
 					{
@@ -4389,7 +4444,7 @@ export const data : any = {
 			{
 				name: "ime-mode",
 				desc: "Controls the state of the input method editor for text fields.",
-				browsers: "E,FF3,IE5",
+				browsers: "FF3,IE5",
 				restriction: "enum",
 				values: [
 					{
@@ -4429,7 +4484,7 @@ export const data : any = {
 			{
 				name: "isolation",
 				desc: "In CSS setting to 'isolate' will turn the element into a stacking context. In SVG, it defines whether an element is isolated or not.",
-				browsers: "C,FF,O,S",
+				browsers: "FF36,S,C41,O30",
 				restriction: "enum",
 				values: [
 					{
@@ -4446,7 +4501,7 @@ export const data : any = {
 			{
 				name: "justify-content",
 				desc: "Aligns flex items along the main axis of the current line of the flex container.",
-				browsers: "E,C29,FF22,IE11,O12.1,S9",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -4527,6 +4582,7 @@ export const data : any = {
 			{
 				name: "left",
 				desc: "Specifies how far an absolutely positioned box's left margin edge is offset to the right of the left edge of the box's 'containing block'.",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -4539,6 +4595,7 @@ export const data : any = {
 			{
 				name: "letter-spacing",
 				desc: "Specifies the minimum, maximum, and optimal spacing between grapheme clusters.",
+				browsers: "all",
 				restriction: "length",
 				values: [
 					{
@@ -4557,7 +4614,7 @@ export const data : any = {
 			{
 				name: "line-break",
 				desc: "Specifies what set of line breaking restrictions are in effect within the element.",
-				browsers: "E,IE5.5,C58,O45,S",
+				browsers: "E14,S,C58,IE5.5,O45",
 				restriction: "enum",
 				values: [
 					{
@@ -4582,6 +4639,7 @@ export const data : any = {
 			{
 				name: "line-height",
 				desc: "Determines the block-progression dimension of the text content area of an inline box.",
+				browsers: "all",
 				restriction: "number, length, percentage",
 				values: [
 					{
@@ -4594,6 +4652,7 @@ export const data : any = {
 			{
 				name: "list-style",
 				desc: "Shorthand for setting 'list-style-type', 'list-style-position' and 'list-style-image'",
+				browsers: "all",
 				restriction: "image, enum, url",
 				values: [
 					{
@@ -4661,6 +4720,7 @@ export const data : any = {
 			{
 				name: "list-style-image",
 				desc: "Sets the image that will be used as the list item marker. When the image is available, it will replace the marker set with the 'list-style-type' marker.",
+				browsers: "all",
 				restriction: "image",
 				values: [
 					{
@@ -4673,6 +4733,7 @@ export const data : any = {
 			{
 				name: "list-style-position",
 				desc: "Specifies the position of the '::marker' pseudo-element's box in the list item.",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -4687,6 +4748,7 @@ export const data : any = {
 			{
 				name: "list-style-type",
 				desc: "Used to construct the default contents of a list item’s marker",
+				browsers: "all",
 				restriction: "enum, string",
 				values: [
 					{
@@ -4757,6 +4819,7 @@ export const data : any = {
 			{
 				name: "margin",
 				desc: "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits.",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -4792,6 +4855,7 @@ export const data : any = {
 			{
 				name: "margin-bottom",
 				desc: "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -4803,7 +4867,7 @@ export const data : any = {
 			{
 				name: "margin-inline-end",
 				desc: "Logical 'margin-right'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
-				browsers: "FF41",
+				browsers: "FF41,S3,C2",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -4815,7 +4879,7 @@ export const data : any = {
 			{
 				name: "margin-inline-start",
 				desc: "Logical 'margin-left'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
-				browsers: "FF41",
+				browsers: "FF41,S3,C2",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -4827,6 +4891,7 @@ export const data : any = {
 			{
 				name: "margin-left",
 				desc: "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -4838,6 +4903,7 @@ export const data : any = {
 			{
 				name: "margin-right",
 				desc: "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -4849,6 +4915,7 @@ export const data : any = {
 			{
 				name: "margin-top",
 				desc: "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -4920,7 +4987,7 @@ export const data : any = {
 			{
 				name: "mask-image",
 				desc: "Sets the mask layer image of an element.",
-				browsers: "E,FF53",
+				browsers: "E16,FF53,S4,C1,O",
 				restriction: "url, image, enum",
 				values: [
 					{
@@ -4958,28 +5025,28 @@ export const data : any = {
 			{
 				name: "mask-origin",
 				desc: "Specifies the mask positioning area.",
-				browsers: "FF53",
+				browsers: "FF53,S,C,O",
 				restriction: "geometry-box, enum",
 				"syntax": "<geometry-box>#"
 			},
 			{
 				name: "mask-position",
 				desc: "Specifies how mask layer images are positioned.",
-				browsers: "FF53",
+				browsers: "FF53,S4,C1",
 				restriction: "position, length, percentage",
 				"syntax": "<position>#"
 			},
 			{
 				name: "mask-repeat",
 				desc: "Specifies how mask layer images are tiled after they have been sized and positioned.",
-				browsers: "FF53",
+				browsers: "FF53,S4,C1",
 				restriction: "repeat",
 				"syntax": "<repeat-style>#"
 			},
 			{
 				name: "mask-size",
 				desc: "Specifies the size of the mask layer images.",
-				browsers: "F53",
+				browsers: "FF53",
 				restriction: "length, percentage, enum",
 				values: [
 					{
@@ -5000,7 +5067,7 @@ export const data : any = {
 			{
 				name: "mask-type",
 				desc: "Defines whether the content of the <mask> element is treated as as luminance mask or alpha mask.",
-				browsers: "C24,FF35,O15,S7",
+				browsers: "FF35,C24",
 				restriction: "enum",
 				values: [
 					{
@@ -5031,7 +5098,7 @@ export const data : any = {
 			{
 				name: "max-height",
 				desc: "Allows authors to constrain content height to a certain range.",
-				browsers: "E,C,FF1,IE7,O7,S1",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -5058,7 +5125,7 @@ export const data : any = {
 			{
 				name: "max-inline-size",
 				desc: "Logical 'max-height'. Mapping depends on the element’s 'writing-mode'.",
-				browsers: "FF41",
+				browsers: "FF41,S10.1,C,O",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -5072,7 +5139,7 @@ export const data : any = {
 			{
 				name: "max-width",
 				desc: "Allows authors to constrain content width to a certain range.",
-				browsers: "E,C,FF1,IE7,O7,S1",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -5106,7 +5173,7 @@ export const data : any = {
 			{
 				name: "min-height",
 				desc: "Allows authors to constrain content height to a certain range.",
-				browsers: "E,C,FF1,IE7,O7,S1",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -5140,7 +5207,7 @@ export const data : any = {
 			{
 				name: "min-width",
 				desc: "Allows authors to constrain content width to a certain range.",
-				browsers: "E,C,FF1,IE7,O7,S1",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -5167,7 +5234,7 @@ export const data : any = {
 			{
 				name: "mix-blend-mode",
 				desc: "Defines the formula that must be used to mix the colors with the backdrop.",
-				browsers: "C41,FF32,O29,S7.1",
+				browsers: "FF32,S8,C41,O",
 				restriction: "enum",
 				values: [
 					{
@@ -5407,7 +5474,7 @@ export const data : any = {
 			{
 				name: "-moz-appearance",
 				desc: "Used in Gecko (Firefox) to display an element using a platform-native styling based on the operating system's theme.",
-				browsers: "FF1",
+				browsers: "FF54",
 				restriction: "enum",
 				values: [
 					{
@@ -5672,7 +5739,7 @@ export const data : any = {
 				browsers: "FF1",
 				restriction: "color",
 				"status": "n",
-				"syntax": "[ <color> ]* <color> | none"
+				"syntax": "<color>+ | none"
 			},
 			{
 				name: "-moz-border-image",
@@ -5717,7 +5784,7 @@ export const data : any = {
 				browsers: "FF1",
 				restriction: "color",
 				"status": "n",
-				"syntax": "[ <color> ]* <color> | none"
+				"syntax": "<color>+ | none"
 			},
 			{
 				name: "-moz-border-right-colors",
@@ -5725,7 +5792,7 @@ export const data : any = {
 				browsers: "FF1",
 				restriction: "color",
 				"status": "n",
-				"syntax": "[ <color> ]* <color> | none"
+				"syntax": "<color>+ | none"
 			},
 			{
 				name: "-moz-border-top-colors",
@@ -5733,7 +5800,7 @@ export const data : any = {
 				browsers: "FF1",
 				restriction: "color",
 				"status": "n",
-				"syntax": "[ <color> ]* <color> | none"
+				"syntax": "<color>+ | none"
 			},
 			{
 				name: "-moz-box-align",
@@ -8109,7 +8176,7 @@ export const data : any = {
 			{
 				name: "object-fit",
 				desc: "Specifies how the contents of a replaced element should be scaled relative to the box established by its used height and width.",
-				browsers: "C32,FF36,O19,S7.1",
+				browsers: "E16,FF36,S,C31,O19",
 				restriction: "enum",
 				values: [
 					{
@@ -8137,7 +8204,7 @@ export const data : any = {
 			{
 				name: "object-position",
 				desc: "Determines the alignment of the replaced element inside its box.",
-				browsers: "C32,FF36,O19",
+				browsers: "E16,FF36,S10,C31,O19",
 				restriction: "position, length, percentage",
 				"syntax": "<position>"
 			},
@@ -8211,21 +8278,21 @@ export const data : any = {
 			{
 				name: "opacity",
 				desc: "Opacity of an element's text, where 1 is opaque and 0 is entirely transparent.",
-				browsers: "C,FF3.6,IE9,O9,S1.2",
+				browsers: "all",
 				restriction: "number(0-1)",
 				"syntax": "<number>"
 			},
 			{
 				name: "order",
 				desc: "Controls the order in which children of a flex container appear within the flex container, by assigning them to ordinal groups.",
-				browsers: "E,C29,FF22,IE11,O12.1,S9",
+				browsers: "all",
 				restriction: "integer",
 				"syntax": "<integer>"
 			},
 			{
 				name: "orphans",
 				desc: "Specifies the minimum number of line boxes in a block container that must be left in a fragment before a fragmentation break.",
-				browsers: "C,IE8,O7,S1.3",
+				browsers: "E12,C25,IE8,O9.2",
 				restriction: "integer",
 				"syntax": "<integer>"
 			},
@@ -8437,7 +8504,7 @@ export const data : any = {
 			{
 				name: "outline",
 				desc: "Shorthand property for 'outline-style', 'outline-width', and 'outline-color'.",
-				browsers: "E,C,FF1.5,IE8,O8,S1.2",
+				browsers: "all",
 				restriction: "length, line-width, line-style, color, enum",
 				values: [
 					{
@@ -8454,7 +8521,7 @@ export const data : any = {
 			{
 				name: "outline-color",
 				desc: "The color of the outline.",
-				browsers: "E,C,FF1.5,IE8,O8,S1.2",
+				browsers: "all",
 				restriction: "enum, color",
 				values: [
 					{
@@ -8467,14 +8534,14 @@ export const data : any = {
 			{
 				name: "outline-offset",
 				desc: "Offset the outline and draw it beyond the border edge.",
-				browsers: "C,FF1.5,O9.5,S1.2",
+				browsers: "FF1.5,S1.2,C1,O9.5",
 				restriction: "length",
 				"syntax": "<length>"
 			},
 			{
 				name: "outline-style",
 				desc: "Style of the outline.",
-				browsers: "E,C,FF1.5,IE8,O8,S1.2",
+				browsers: "all",
 				restriction: "line-style, enum",
 				values: [
 					{
@@ -8487,13 +8554,14 @@ export const data : any = {
 			{
 				name: "outline-width",
 				desc: "Width of the outline.",
-				browsers: "E,C,FF1.5,IE8,O8,S1.2",
+				browsers: "all",
 				restriction: "length, line-width",
 				"syntax": "<br-width>"
 			},
 			{
 				name: "overflow",
 				desc: "Shorthand for setting 'overflow-x' and 'overflow-y'.",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -8522,7 +8590,7 @@ export const data : any = {
 			{
 				name: "overflow-wrap",
 				desc: "Specifies whether the UA may break within a word to prevent overflow when an otherwise-unbreakable string is too long to fit within the line box.",
-				browsers: "C23,O12.1,S6.1",
+				browsers: "FF49,S,C,IE5.5,O",
 				restriction: "enum",
 				values: [
 					{
@@ -8539,7 +8607,7 @@ export const data : any = {
 			{
 				name: "overflow-x",
 				desc: "Specifies the handling of overflow in the horizontal direction.",
-				browsers: "E,C,FF1.5,IE5,O9.5,S3",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -8564,7 +8632,7 @@ export const data : any = {
 			{
 				name: "overflow-y",
 				desc: "Specifies the handling of overflow in the vertical direction.",
-				browsers: "E,C,FF1.5,IE5,O9.5,S3",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -8596,6 +8664,7 @@ export const data : any = {
 			{
 				name: "padding",
 				desc: "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [],
 				"syntax": "[ <length> | <percentage> ]{1,4}"
@@ -8603,6 +8672,7 @@ export const data : any = {
 			{
 				name: "padding-bottom",
 				desc: "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
+				browsers: "all",
 				restriction: "length, percentage",
 				"syntax": "<length> | <percentage>"
 			},
@@ -8623,38 +8693,42 @@ export const data : any = {
 			{
 				name: "padding-inline-end",
 				desc: "Logical 'padding-right'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
-				browsers: "FF41",
+				browsers: "FF41,S3,C2,O15",
 				restriction: "length, percentage",
 				"syntax": "<'padding-left'>"
 			},
 			{
 				name: "padding-inline-start",
 				desc: "Logical 'padding-left'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
-				browsers: "FF41",
+				browsers: "FF41,S3,C2,O",
 				restriction: "length, percentage",
 				"syntax": "<'padding-left'>"
 			},
 			{
 				name: "padding-left",
 				desc: "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
+				browsers: "all",
 				restriction: "length, percentage",
 				"syntax": "<length> | <percentage>"
 			},
 			{
 				name: "padding-right",
 				desc: "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
+				browsers: "all",
 				restriction: "length, percentage",
 				"syntax": "<length> | <percentage>"
 			},
 			{
 				name: "padding-top",
 				desc: "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
+				browsers: "all",
 				restriction: "length, percentage",
 				"syntax": "<length> | <percentage>"
 			},
 			{
 				name: "page-break-after",
 				desc: "Defines rules for page breaks after an element.",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -8683,6 +8757,7 @@ export const data : any = {
 			{
 				name: "page-break-before",
 				desc: "Defines rules for page breaks before an element.",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -8711,7 +8786,7 @@ export const data : any = {
 			{
 				name: "page-break-inside",
 				desc: "Defines rules for page breaks inside an element.",
-				browsers: "C,IE8,O7,S1.3",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -8728,7 +8803,7 @@ export const data : any = {
 			{
 				name: "paint-order",
 				desc: "Controls the order that the three paint operations that shapes and text are rendered with: their fill, their stroke and any markers they might have.",
-				browsers: "C35,FF31,O22,S7.1",
+				browsers: "FF60,S",
 				restriction: "enum",
 				values: [
 					{
@@ -8751,7 +8826,7 @@ export const data : any = {
 			{
 				name: "perspective",
 				desc: "Applies the same transform as the perspective(<number>) transform function, except that it applies only to the positioned or transformed children of the element, not to the transform on the element itself.",
-				browsers: "E,C36,FF16,IE10,O23,S9",
+				browsers: "all",
 				restriction: "length, enum",
 				values: [
 					{
@@ -8764,13 +8839,14 @@ export const data : any = {
 			{
 				name: "perspective-origin",
 				desc: "Establishes the origin for the perspective property. It effectively sets the X and Y position at which the viewer appears to be looking at the children of the element.",
-				browsers: "E,C36,FF16,IE10,O23,S9",
+				browsers: "all",
 				restriction: "position, percentage, length",
 				"syntax": "<position>"
 			},
 			{
 				name: "pointer-events",
 				desc: "Specifies under what circumstances a given element can be the target element for a pointer event.",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -8810,6 +8886,7 @@ export const data : any = {
 			},
 			{
 				name: "position",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -8850,7 +8927,7 @@ export const data : any = {
 			{
 				name: "quotes",
 				desc: "Specifies quotation marks for any number of embedded quotations.",
-				browsers: "E,C,FF1.5,IE8,O8,S5.1",
+				browsers: "all",
 				restriction: "string",
 				values: [
 					{
@@ -8880,7 +8957,7 @@ export const data : any = {
 			{
 				name: "resize",
 				desc: "Specifies whether or not an element is resizable by the user, and if so, along which axis/axes.",
-				browsers: "C,FF4,O15,S3",
+				browsers: "FF,S3,C1,O12.1",
 				restriction: "enum",
 				values: [
 					{
@@ -8905,6 +8982,7 @@ export const data : any = {
 			{
 				name: "right",
 				desc: "Specifies how far an absolutely positioned box's right margin edge is offset to the left of the right edge of the box's 'containing block'.",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -8917,7 +8995,7 @@ export const data : any = {
 			{
 				name: "ruby-align",
 				desc: "Specifies how text is distributed within the various ruby boxes when their contents do not exactly fill their respective boxes.",
-				browsers: "FF10,IE5",
+				browsers: "FF38",
 				restriction: "enum",
 				values: [
 					{
@@ -8966,6 +9044,7 @@ export const data : any = {
 						browsers: "FF10"
 					}
 				],
+				"status": "e",
 				"syntax": "start | center | space-between | space-around"
 			},
 			{
@@ -8995,7 +9074,7 @@ export const data : any = {
 			{
 				name: "ruby-position",
 				desc: "Used by the parent of elements with display: ruby-text to control the position of the ruby text with respect to its base.",
-				browsers: "FF10,IE5",
+				browsers: "E12,FF38",
 				restriction: "enum",
 				values: [
 					{
@@ -9012,6 +9091,7 @@ export const data : any = {
 						desc: "The ruby text appears on the right of the base. Unlike 'before' and 'after', this value is not relative to the text flow direction."
 					}
 				],
+				"status": "e",
 				"syntax": "over | under | inter-character"
 			},
 			{
@@ -9080,7 +9160,7 @@ export const data : any = {
 			{
 				name: "scroll-behavior",
 				desc: "Specifies the scrolling behavior for a scrolling box, when scrolling happens due to navigation or CSSOM scrolling APIs.",
-				browsers: "FF36",
+				browsers: "FF36,C61,O",
 				restriction: "enum",
 				values: [
 					{
@@ -9116,7 +9196,7 @@ export const data : any = {
 			{
 				name: "scroll-snap-points-x",
 				desc: "Defines the positioning of snap points along the x axis of the scroll container it is applied to.",
-				browsers: "FF39",
+				browsers: "FF39,S9",
 				restriction: "enum",
 				values: [
 					{
@@ -9134,7 +9214,7 @@ export const data : any = {
 			{
 				name: "scroll-snap-points-y",
 				desc: "Defines the positioning of snap points alobg the y axis of the scroll container it is applied to.",
-				browsers: "FF39",
+				browsers: "FF39,S9",
 				restriction: "enum",
 				values: [
 					{
@@ -9152,7 +9232,7 @@ export const data : any = {
 			{
 				name: "scroll-snap-type",
 				desc: "Defines how strictly snap points are enforced on the scroll container.",
-				browsers: "FF39",
+				browsers: "E12,FF39,S9,IE10",
 				restriction: "enum",
 				values: [
 					{
@@ -9173,21 +9253,21 @@ export const data : any = {
 			{
 				name: "shape-image-threshold",
 				desc: "Defines the alpha channel threshold used to extract the shape using an image. A value of 0.5 means that the shape will enclose all the pixels that are more than 50% opaque.",
-				browsers: "C37,O24",
+				browsers: "FF61,S10.1,C37,O24",
 				restriction: "number",
 				"syntax": "<number>"
 			},
 			{
 				name: "shape-margin",
 				desc: "Adds a margin to a 'shape-outside'. This defines a new shape that is the smallest contour that includes all the points that are the 'shape-margin' distance outward in the perpendicular direction from a point on the underlying shape.",
-				browsers: "C37,O24",
+				browsers: "FF61,S10.1,C37,O24",
 				restriction: "url, length, percentage",
 				"syntax": "<length-percentage>"
 			},
 			{
 				name: "shape-outside",
 				desc: "Specifies an orthogonal rotation to be applied to an image before it is laid out.",
-				browsers: "C37,O24",
+				browsers: "FF61,S10.1,C37,O24",
 				restriction: "image, box, shape, enum",
 				values: [
 					{
@@ -9243,7 +9323,7 @@ export const data : any = {
 						name: "local()"
 					}
 				],
-				"syntax": "[ <url> format(<string>#)? | local(<family-name>) ]#"
+				"syntax": "[ <url> [ format( <string># ) ]? | local( <family-name> ) ]#"
 			},
 			{
 				name: "stop-color",
@@ -9381,6 +9461,7 @@ export const data : any = {
 			{
 				name: "table-layout",
 				desc: "Controls the algorithm used to lay out the table cells, rows, and columns.",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -9397,13 +9478,14 @@ export const data : any = {
 			{
 				name: "tab-size",
 				desc: "Determines the width of the tab character (U+0009), in space characters (U+0020), when rendered.",
-				browsers: "C21,O15,S6.1",
+				browsers: "FF4,S6.1,C21,O15",
 				restriction: "integer, length",
 				"syntax": "<integer> | <length>"
 			},
 			{
 				name: "text-align",
 				desc: "Describes how inline contents of a block are horizontally aligned if the contents do not completely fill the line box.",
+				browsers: "all",
 				restriction: "string",
 				values: [
 					{
@@ -9438,7 +9520,7 @@ export const data : any = {
 			{
 				name: "text-align-last",
 				desc: "Describes how the last line of a block or a line right before a forced line break is aligned when 'text-align' is set to 'justify'.",
-				browsers: "E,FF12,IE5",
+				browsers: "E12,FF49,C47,O",
 				restriction: "enum",
 				values: [
 					{
@@ -9486,6 +9568,7 @@ export const data : any = {
 			{
 				name: "text-decoration",
 				desc: "Decorations applied to font used for an element's text.",
+				browsers: "all",
 				restriction: "enum, color",
 				values: [
 					{
@@ -9518,14 +9601,14 @@ export const data : any = {
 			{
 				name: "text-decoration-color",
 				desc: "Specifies the color of text decoration (underlines overlines, and line-throughs) set on the element with text-decoration-line.",
-				browsers: "FF36,C57,O44",
+				browsers: "FF36,S,C57,O44",
 				restriction: "color",
 				"syntax": "<color>"
 			},
 			{
 				name: "text-decoration-line",
 				desc: "Specifies what line decorations, if any, are added to the element.",
-				browsers: "FF36",
+				browsers: "FF36,S,C,O",
 				restriction: "enum",
 				values: [
 					{
@@ -9547,7 +9630,7 @@ export const data : any = {
 			{
 				name: "text-decoration-style",
 				desc: "Specifies the line style for underline, line-through and overline text decoration.",
-				browsers: "FF36",
+				browsers: "FF36,S,C57,O44",
 				restriction: "enum",
 				values: [
 					{
@@ -9575,6 +9658,7 @@ export const data : any = {
 			{
 				name: "text-indent",
 				desc: "Specifies the indentation applied to lines of inline content in a block. The indentation only affects the first line of inline content in the block unless the 'hanging' keyword is specified, in which case it affects all lines except the first.",
+				browsers: "all",
 				restriction: "percentage, length",
 				values: [],
 				"syntax": "<length-percentage> && hanging? && each-line?"
@@ -9582,7 +9666,7 @@ export const data : any = {
 			{
 				name: "text-justify",
 				desc: "Selects the justification algorithm used when 'text-align' is set to 'justify'. The property applies to block containers, but the UA may (but is not required to) also support it on inline elements.",
-				browsers: "E,IE5.5",
+				browsers: "E14,FF55,C,IE11,O",
 				restriction: "enum",
 				values: [
 					{
@@ -9617,7 +9701,7 @@ export const data : any = {
 			{
 				name: "text-orientation",
 				desc: "Specifies the orientation of text within a line.",
-				browsers: "C,O15,S5.1",
+				browsers: "FF41,C48,O",
 				restriction: "enum",
 				values: [
 					{
@@ -9637,7 +9721,7 @@ export const data : any = {
 			{
 				name: "text-overflow",
 				desc: "Text can overflow for example when it is prevented from wrapping.",
-				browsers: "E,C,FF9,IE5.5,O11.6,S2",
+				browsers: "all",
 				restriction: "enum, string",
 				values: [
 					{
@@ -9652,7 +9736,7 @@ export const data : any = {
 			{
 				name: "text-rendering",
 				desc: "The creator of SVG content might want to provide a hint to the implementation about what tradeoffs to make as it renders text. The ‘text-rendering’ property provides these hints.",
-				browsers: "C,FF3,O9,S5",
+				browsers: "FF3,S5,C4,O15",
 				restriction: "enum",
 				values: [
 					{
@@ -9675,7 +9759,7 @@ export const data : any = {
 			{
 				name: "text-shadow",
 				desc: "Enables shadow effects to be applied to the text of the element.",
-				browsers: "E,C,FF3.6,IE10,O9.5,S1.1",
+				browsers: "all",
 				restriction: "length, color",
 				values: [],
 				"syntax": "none | <shadow-t>#"
@@ -9683,6 +9767,7 @@ export const data : any = {
 			{
 				name: "text-transform",
 				desc: "Controls capitalization effects of an element’s text.",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -9704,7 +9789,7 @@ export const data : any = {
 			{
 				name: "text-underline-position",
 				desc: "Sets the position of an underline specified on the same element: it does not affect underlines specified by ancestor elements. This property is typically used in vertical writing contexts such as in Japanese documents where it often desired to have the underline appear 'over' (to the right of) the affected run of text",
-				browsers: "E,IE10",
+				browsers: "E12,C33,IE6",
 				restriction: "enum",
 				values: [
 					{
@@ -9724,6 +9809,7 @@ export const data : any = {
 			{
 				name: "top",
 				desc: "Specifies how far an absolutely positioned box's top margin edge is offset below the top edge of the box's 'containing block'.",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -9736,7 +9822,7 @@ export const data : any = {
 			{
 				name: "touch-action",
 				desc: "Determines whether touch input may trigger default behavior supplied by user agent.",
-				browsers: "E,C36,IE11,O23",
+				browsers: "E12,FF52,C36,IE11,O23",
 				restriction: "enum",
 				values: [
 					{
@@ -9781,7 +9867,7 @@ export const data : any = {
 			{
 				name: "transform",
 				desc: "A two-dimensional transformation is applied to an element through the 'transform' property. This property contains a list of transform functions similar to those allowed by SVG.",
-				browsers: "E,C36,FF16,IE10,O12.1,S9",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -9856,14 +9942,14 @@ export const data : any = {
 			{
 				name: "transform-origin",
 				desc: "Establishes the origin of transformation for an element.",
-				browsers: "E,C36,FF16,IE10,O12.1,S9",
+				browsers: "all",
 				restriction: "position, length, percentage",
 				"syntax": "[ <length-percentage> | left | center | right | top | bottom ] | [ [ <length-percentage> | left | center | right ] && [ <length-percentage> | top | center | bottom ] ] <length>?"
 			},
 			{
 				name: "transform-style",
 				desc: "Defines how nested elements are rendered in 3D space.",
-				browsers: "E,C36,FF16,IE10,O23,S9",
+				browsers: "E12,FF16,S,C12,O15",
 				restriction: "enum",
 				values: [
 					{
@@ -9879,7 +9965,7 @@ export const data : any = {
 			{
 				name: "transition",
 				desc: "Shorthand property combines four of the transition properties into a single property.",
-				browsers: "E,FF16,IE10,O12.5",
+				browsers: "all",
 				restriction: "time, property, timing-function, enum",
 				values: [
 					{
@@ -9896,21 +9982,21 @@ export const data : any = {
 			{
 				name: "transition-delay",
 				desc: "Defines when the transition will start. It allows a transition to begin execution some period of time from when it is applied.",
-				browsers: "E,FF16,IE10,O12.5",
+				browsers: "all",
 				restriction: "time",
 				"syntax": "<time>#"
 			},
 			{
 				name: "transition-duration",
 				desc: "Specifies how long the transition from the old value to the new value should take.",
-				browsers: "E,FF16,IE10,O12.5",
+				browsers: "all",
 				restriction: "time",
 				"syntax": "<time>#"
 			},
 			{
 				name: "transition-property",
 				desc: "Specifies the name of the CSS property to which the transition is applied.",
-				browsers: "E,FF16,IE10,O12.5",
+				browsers: "all",
 				restriction: "property",
 				values: [
 					{
@@ -9927,13 +10013,14 @@ export const data : any = {
 			{
 				name: "transition-timing-function",
 				desc: "Describes how the intermediate values used during a transition will be calculated.",
-				browsers: "E,FF16,IE10,O12.5",
+				browsers: "all",
 				restriction: "timing-function",
 				"syntax": "<single-transition-timing-function>#"
 			},
 			{
 				name: "unicode-bidi",
 				desc: "The level of embedding with respect to the bidirectional algorithm.",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -10204,6 +10291,7 @@ export const data : any = {
 			{
 				name: "user-select",
 				desc: "Controls the appearance of selection.",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -10232,6 +10320,7 @@ export const data : any = {
 			{
 				name: "vertical-align",
 				desc: "Affects the vertical positioning of the inline boxes generated by an inline-level element inside a line box.",
+				browsers: "all",
 				restriction: "percentage, length",
 				values: [
 					{
@@ -10278,6 +10367,7 @@ export const data : any = {
 			{
 				name: "visibility",
 				desc: "Specifies whether the boxes generated by an element are rendered. Invisible boxes still affect layout (set the ‘display’ property to ‘none’ to suppress box generation altogether).",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -10438,7 +10528,7 @@ export const data : any = {
 			{
 				name: "-webkit-appearance",
 				desc: "Changes the appearance of buttons and other controls to resemble native controls.",
-				browsers: "C,S3",
+				browsers: "E12,S3,C1,O15",
 				restriction: "enum",
 				values: [
 					{
@@ -10573,7 +10663,9 @@ export const data : any = {
 					{
 						name: "textfield"
 					}
-				]
+				],
+				"status": "n",
+				"syntax": "none | button | button-bevel | caret | checkbox | default-button | inner-spin-button | listbox | listitem | media-controls-background | media-controls-fullscreen-background | media-current-time-display | media-enter-fullscreen-button | media-exit-fullscreen-button | media-fullscreen-button | media-mute-button | media-overlay-play-button | media-play-button | media-seek-back-button | media-seek-forward-button | media-slider | media-sliderthumb | media-time-remaining-display | media-toggle-closed-captions-button | media-volume-slider | media-volume-slider-container | media-volume-sliderthumb | menulist | menulist-button | menulist-text | menulist-textfield | meter | progress-bar | progress-bar-value | push-button | radio | searchfield | searchfield-cancel-button | searchfield-decoration | searchfield-results-button | searchfield-results-decoration | slider-horizontal | slider-vertical | sliderthumb-horizontal | sliderthumb-vertical | square-button | textarea | textfield"
 			},
 			{
 				name: "-webkit-backdrop-filter",
@@ -11397,7 +11489,7 @@ export const data : any = {
 				browsers: "C,O15,S4",
 				restriction: "box",
 				"status": "n",
-				"syntax": "[ border | border-box | padding | padding-box | content | content-box | text ]#"
+				"syntax": "[ <box> | border | padding | content | text ]#"
 			},
 			{
 				name: "-webkit-mask-image",
@@ -11415,7 +11507,7 @@ export const data : any = {
 					}
 				],
 				"status": "n",
-				"syntax": "<mask-image> [, <mask-image> ]*"
+				"syntax": "<mask-reference>#"
 			},
 			{
 				name: "-webkit-mask-origin",
@@ -11423,7 +11515,7 @@ export const data : any = {
 				browsers: "C,O15,S4",
 				restriction: "box",
 				"status": "n",
-				"syntax": "[ padding | border | content ] [, [ border | padding | content ] ]*"
+				"syntax": "[ <box> | border | padding | content ]#"
 			},
 			{
 				name: "-webkit-mask-repeat",
@@ -11431,7 +11523,7 @@ export const data : any = {
 				browsers: "C,O15,S4",
 				restriction: "repeat",
 				"status": "n",
-				"syntax": "<repeat-style> [, <repeat-style> ]*"
+				"syntax": "<repeat-style>#"
 			},
 			{
 				name: "-webkit-mask-size",
@@ -11451,7 +11543,9 @@ export const data : any = {
 						name: "cover",
 						desc: "Scale the image, while preserving its intrinsic aspect ratio (if any), to the smallest size such that both its width and its height can completely cover the background positioning area."
 					}
-				]
+				],
+				"status": "n",
+				"syntax": "<bg-size>#"
 			},
 			{
 				name: "-webkit-nbsp-mode",
@@ -11528,7 +11622,7 @@ export const data : any = {
 			},
 			{
 				name: "-webkit-text-fill-color",
-				browsers: "E,C,S3",
+				browsers: "E12,FF49,S,C,O",
 				restriction: "color",
 				"status": "n",
 				"syntax": "<color>"
@@ -11551,28 +11645,28 @@ export const data : any = {
 			},
 			{
 				name: "-webkit-text-stroke",
-				browsers: "S3",
+				browsers: "E15,FF49,S3.1,C4,O15",
 				restriction: "length, line-width, color, percentage",
 				"status": "n",
 				"syntax": "<length> || <color>"
 			},
 			{
 				name: "-webkit-text-stroke-color",
-				browsers: "S3",
+				browsers: "E15,FF49,S,C,O",
 				restriction: "color",
 				"status": "n",
 				"syntax": "<color>"
 			},
 			{
 				name: "-webkit-text-stroke-width",
-				browsers: "S3",
+				browsers: "E15,FF49,S,C,O",
 				restriction: "length, line-width, percentage",
 				"status": "n",
 				"syntax": "<length>"
 			},
 			{
 				name: "-webkit-touch-callout",
-				browsers: "S3",
+				browsers: "S4",
 				restriction: "enum",
 				values: [
 					{
@@ -11796,6 +11890,7 @@ export const data : any = {
 			{
 				name: "white-space",
 				desc: "Shorthand property for the 'white-space-collapsing' and 'text-wrap' properties.",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -11821,13 +11916,14 @@ export const data : any = {
 			{
 				name: "widows",
 				desc: "Specifies the minimum number of line boxes of a block container that must be left in a fragment after a break.",
-				browsers: "C,IE8,O9.5,S1",
+				browsers: "E12,C25,IE8,O9.2",
 				restriction: "integer",
 				"syntax": "<integer>"
 			},
 			{
 				name: "width",
 				desc: "Specifies the width of the content area, padding area or border area (depending on 'box-sizing') of certain boxes.",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -11854,7 +11950,7 @@ export const data : any = {
 			{
 				name: "will-change",
 				desc: "Provides a rendering hint to the user agent, stating what kinds of changes the author expects to perform on the element.",
-				browsers: "C36,FF36,O24",
+				browsers: "FF36,S9.1,C36,O24",
 				restriction: "enum, identifier",
 				values: [
 					{
@@ -11874,7 +11970,7 @@ export const data : any = {
 			{
 				name: "word-break",
 				desc: "Specifies line break opportunities for non-CJK scripts.",
-				browsers: "E,C,FF15,IE5,S3",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -11894,6 +11990,7 @@ export const data : any = {
 			{
 				name: "word-spacing",
 				desc: "Specifies additional spacing between “words”.",
+				browsers: "all",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -11906,6 +12003,7 @@ export const data : any = {
 			{
 				name: "word-wrap",
 				desc: "Specifies whether the UA may break within a word to prevent overflow when an otherwise-unbreakable string is too long to fit.",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -11922,7 +12020,7 @@ export const data : any = {
 			{
 				name: "writing-mode",
 				desc: "This is a shorthand property for both 'direction' and 'block-progression'.",
-				browsers: "E,FF41",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -11948,6 +12046,7 @@ export const data : any = {
 			{
 				name: "z-index",
 				desc: "For a positioned box, the 'z-index' property specifies the stack level of the box in the current stacking context and whether the box establishes a local stacking context.",
+				browsers: "all",
 				restriction: "integer",
 				values: [
 					{
@@ -11988,7 +12087,8 @@ export const data : any = {
 				desc: "If you reference an SVG image in a webpage (such as with the <img> element or as a background image), the SVG image can coordinate with the embedding element (its context) to have the image adopt property values set on the embedding element. To do this the embedding element needs to list the properties that are to be made available to the image by listing them as values of the -moz-context-properties property, and the image needs to opt in to using those properties by using values such as the context-fill value.\n\nThis feature is available since Firefox 55, but is only currently supported with SVG images loaded via chrome:// or resource:// URLs. To experiment with the feature in SVG on the Web it is necessary to set the svg.context-properties.content.enabled pref to true.",
 				restriction: "none",
 				"status": "n",
-				"syntax": "none | [ fill | fill-opacity | stroke | stroke-opacity ]#"
+				"syntax": "none | [ fill | fill-opacity | stroke | stroke-opacity ]#",
+				browsers: "FF55"
 			},
 			{
 				name: "-moz-float-edge",
@@ -12128,28 +12228,29 @@ export const data : any = {
 				desc: "The mask CSS property alters the visibility of an element by either partially or fully hiding it. This is accomplished by either masking or clipping the image at specific points.",
 				restriction: "none",
 				"status": "n",
-				"syntax": "<mask-image> [ <'-webkit-mask-repeat'> || <'-webkit-mask-attachment'> || <'-webkit-mask-position'> || <'-webkit-mask-origin'> || <'-webkit-mask-clip'> ]*"
+				"syntax": "[ <mask-reference> || <position> [ / <bg-size> ]? || <repeat-style> || [ <box> | border | padding | content | text ] || [ <box> | border | padding | content ] ]#"
 			},
 			{
 				name: "-webkit-mask-attachment",
 				desc: "If a -webkit-mask-image is specified, -webkit-mask-attachment determines whether the mask image's position is fixed within the viewport, or scrolls along with its containing block.",
 				restriction: "none",
 				"status": "n",
-				"syntax": "<attachment> [, <attachment> ]*"
+				"syntax": "<attachment>#",
+				browsers: "S4,C"
 			},
 			{
 				name: "-webkit-mask-composite",
 				desc: "The -webkit-mask-composite property specifies the manner in which multiple mask images applied to the same element are composited with one another. Mask images are composited in the opposite order that they are declared with the -webkit-mask-image property.",
 				restriction: "none",
 				"status": "n",
-				"syntax": "<composite-style> [, <composite-style> ]*"
+				"syntax": "<composite-style>#"
 			},
 			{
 				name: "-webkit-mask-position",
 				desc: "The mask-position CSS property sets the initial position, relative to the mask position layer defined by mask-origin, for each defined mask image.",
 				restriction: "none",
 				"status": "n",
-				"syntax": "<mask-position>#"
+				"syntax": "<position>#"
 			},
 			{
 				name: "-webkit-mask-position-x",
@@ -12163,7 +12264,8 @@ export const data : any = {
 				desc: "The -webkit-mask-position-y CSS property sets the initial vertical position of a mask image.",
 				restriction: "none",
 				"status": "n",
-				"syntax": "[ <length-percentage> | top | center | bottom ]#"
+				"syntax": "[ <length-percentage> | top | center | bottom ]#",
+				browsers: "S4,C1"
 			},
 			{
 				name: "-webkit-mask-repeat-x",
@@ -12184,7 +12286,8 @@ export const data : any = {
 				desc: "Changes the appearance of buttons and other controls to resemble native controls.",
 				restriction: "none",
 				"status": "e",
-				"syntax": "auto | none"
+				"syntax": "auto | none",
+				browsers: "E12,FF1,S3,C1,O15"
 			},
 			{
 				name: "azimuth",
@@ -12198,7 +12301,8 @@ export const data : any = {
 				desc: "The backdrop-filter CSS property lets you apply graphical effects such as blurring or color shifting to the area behind an element. Because it applies to everything behind the element, to see the effect you must make the element or its background at least partially transparent.",
 				restriction: "none",
 				"status": "e",
-				"syntax": "none | <filter-function-list>"
+				"syntax": "none | <filter-function-list>",
+				browsers: "E17,S9,C47"
 			},
 			{
 				name: "block-overflow",
@@ -12219,14 +12323,16 @@ export const data : any = {
 				desc: "The box-direction CSS property specifies whether a box lays out its contents normally (from the top or left edge), or in reverse (from the bottom or right edge).",
 				restriction: "none",
 				"status": "n",
-				"syntax": "normal | reverse | inherit"
+				"syntax": "normal | reverse | inherit",
+				browsers: "E12,FF,S3,C,O"
 			},
 			{
 				name: "box-flex",
 				desc: "The -moz-box-flex and -webkit-box-flex CSS properties specify how a -moz-box or -webkit-box grows to fill the box that contains it, in the direction of the containing box's layout.",
 				restriction: "none",
 				"status": "n",
-				"syntax": "<number>"
+				"syntax": "<number>",
+				browsers: "E12,FF,S3,C,O"
 			},
 			{
 				name: "box-flex-group",
@@ -12254,14 +12360,16 @@ export const data : any = {
 				desc: "The box-orient CSS property specifies whether an element lays out its contents horizontally or vertically.",
 				restriction: "none",
 				"status": "n",
-				"syntax": "horizontal | vertical | inline-axis | block-axis | inherit"
+				"syntax": "horizontal | vertical | inline-axis | block-axis | inherit",
+				browsers: "E12,FF,S3,C,O"
 			},
 			{
 				name: "box-pack",
 				desc: "The -moz-box-pack and -webkit-box-pack CSS properties specify how a -moz-box or -webkit-box packs its contents in the direction of its layout. The effect of this is only visible if there is extra space in the box.",
 				restriction: "none",
 				"status": "n",
-				"syntax": "start | center | end | justify"
+				"syntax": "start | center | end | justify",
+				browsers: "E12,FF,S3,C,O"
 			},
 			{
 				name: "color-adjust",
@@ -12270,16 +12378,25 @@ export const data : any = {
 				"syntax": "economy | exact"
 			},
 			{
+				name: "font-optical-sizing",
+				desc: "",
+				restriction: "none",
+				"syntax": "auto | none",
+				browsers: "FF61"
+			},
+			{
 				name: "font-variation-settings",
 				desc: "The font-variation-settings CSS property provides low-level control over OpenType or TrueType font variations, by specifying the four letter axis names of the features you want to vary, along with their variation values.",
 				restriction: "none",
-				"syntax": "normal | [ <string> <number>] #"
+				"syntax": "normal | [ <string> <number> ]#",
+				browsers: "FF61,S11,C62,O49"
 			},
 			{
 				name: "gap",
 				desc: "The gap CSS property is a shorthand property for row-gap and column-gap specifying the gutters between grid rows and columns.",
 				restriction: "none",
-				"syntax": "<'row-gap'> <'column-gap'>?"
+				"syntax": "<'row-gap'> <'column-gap'>?",
+				browsers: "E16,FF61,S10.1,C66,O53"
 			},
 			{
 				name: "hanging-punctuation",
@@ -12299,7 +12416,8 @@ export const data : any = {
 				desc: "The initial-letter CSS property specifies styling for dropped, raised, and sunken initial letters.",
 				restriction: "none",
 				"status": "e",
-				"syntax": "normal | [ <number> <integer>? ]"
+				"syntax": "normal | [ <number> <integer>? ]",
+				browsers: "S9"
 			},
 			{
 				name: "initial-letter-align",
@@ -12320,13 +12438,14 @@ export const data : any = {
 				desc: "The line-height-step CSS property defines the step units for line box heights. When the step unit is positive, line box heights are rounded up to the closest multiple of the unit. Negative values are invalid.",
 				restriction: "none",
 				"status": "e",
-				"syntax": "none | <length>"
+				"syntax": "<length>"
 			},
 			{
 				name: "mask",
 				desc: "The mask CSS property alters the visibility of an element by either partially or fully hiding it. This is accomplished by either masking or clipping the image at specific points.",
 				restriction: "none",
-				"syntax": "<mask-layer>#"
+				"syntax": "<mask-layer>#",
+				browsers: "E12,FF,S4,C1,O"
 			},
 			{
 				name: "mask-border",
@@ -12381,13 +12500,15 @@ export const data : any = {
 				name: "mask-clip",
 				desc: "The mask-clip CSS property determines the area, which is affected by a mask. The painted content of an element must be restricted to this area.",
 				restriction: "none",
-				"syntax": "[ <geometry-box> | no-clip ]#"
+				"syntax": "[ <geometry-box> | no-clip ]#",
+				browsers: "FF53,S,C,O"
 			},
 			{
 				name: "mask-composite",
 				desc: "The mask-composite CSS property represents a compositing operation used on the current mask layer with the mask layers below it.",
 				restriction: "none",
-				"syntax": "<compositing-operator>#"
+				"syntax": "<compositing-operator>#",
+				browsers: "FF53"
 			},
 			{
 				name: "max-lines",
@@ -12401,7 +12522,8 @@ export const data : any = {
 				desc: "The offset CSS property is a shorthand property for animating an element along a defined path.",
 				restriction: "none",
 				"status": "e",
-				"syntax": "[ <'offset-position'>? [ <'offset-path'> [ <'offset-distance'> || <'offset-rotate'> ]? ]? ]! [ / <'offset-anchor'> ]?"
+				"syntax": "[ <'offset-position'>? [ <'offset-path'> [ <'offset-distance'> || <'offset-rotate'> ]? ]? ]! [ / <'offset-anchor'> ]?",
+				browsers: "C55"
 			},
 			{
 				name: "offset-anchor",
@@ -12415,14 +12537,16 @@ export const data : any = {
 				desc: "The offset-distance CSS property specifies a position along an offset-path.",
 				restriction: "none",
 				"status": "e",
-				"syntax": "<length-percentage>"
+				"syntax": "<length-percentage>",
+				browsers: "C55"
 			},
 			{
 				name: "offset-path",
 				desc: "The offset-path CSS property specifies the offset path where the element gets positioned. The exact element’s position on the offset path is determined by the offset-distance property. An offset path is either a specified path with one or multiple sub-paths or the geometry of a not-styled basic shape. Each shape or path must define an initial position for the computed value of \"0\" for offset-distance and an initial direction which specifies the rotation of the object to the initial position.\n\nIn this specification, a direction (or rotation) of 0 degrees is equivalent to the direction of the positive x-axis in the object’s local coordinate system. In other words, a rotation of 0 degree points to the right side of the UA if the object and its ancestors have no transformation applied.",
 				restriction: "none",
 				"status": "e",
-				"syntax": "none | ray( [ <angle> && <size>? && contain? ] ) | <path()> | <url> | [ <basic-shape> || <geometry-box> ]"
+				"syntax": "none | ray( [ <angle> && <size>? && contain? ] ) | <path()> | <url> | [ <basic-shape> || <geometry-box> ]",
+				browsers: "C55"
 			},
 			{
 				name: "offset-position",
@@ -12436,7 +12560,8 @@ export const data : any = {
 				desc: "The offset-rotate CSS property defines the direction of the element while positioning along the offset path.",
 				restriction: "none",
 				"status": "e",
-				"syntax": "[ auto | reverse ] || <angle>"
+				"syntax": "[ auto | reverse ] || <angle>",
+				browsers: "C56"
 			},
 			{
 				name: "overflow-anchor",
@@ -12471,128 +12596,148 @@ export const data : any = {
 				desc: "The overscroll-behavior CSS property is shorthand for the overscroll-behavior-x and overscroll-behavior-y properties, which allow you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached.",
 				restriction: "none",
 				"status": "n",
-				"syntax": "[ contain | none | auto ]{1,2}"
+				"syntax": "[ contain | none | auto ]{1,2}",
+				browsers: "FF59,C63,O50"
 			},
 			{
 				name: "overscroll-behavior-x",
 				desc: "The overscroll-behavior-x CSS property is allows you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached — in the x axis direction.",
 				restriction: "none",
 				"status": "n",
-				"syntax": "contain | none | auto"
+				"syntax": "contain | none | auto",
+				browsers: "FF59,C63,O50"
 			},
 			{
 				name: "overscroll-behavior-y",
 				desc: "The overscroll-behavior-y CSS property is allows you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached — in the y axis direction.",
 				restriction: "none",
 				"status": "n",
-				"syntax": "contain | none | auto"
+				"syntax": "contain | none | auto",
+				browsers: "FF59,C63,O50"
 			},
 			{
 				name: "place-content",
 				desc: "The place-content CSS shorthand property sets both the align-content and justify-content properties.",
 				restriction: "none",
-				"syntax": "<'align-content'> <'justify-content'>?"
+				"syntax": "<'align-content'> <'justify-content'>?",
+				browsers: "FF,C59,O"
 			},
 			{
 				name: "rotate",
 				desc: "The rotate CSS property allows you to specify rotation transforms individually and independantly of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value.",
 				restriction: "none",
-				"syntax": "none | [ x | y | z | <number>{3} ]? && <angle>"
+				"syntax": "none | [ x | y | z | <number>{3} ]? && <angle>",
+				browsers: "FF60,C"
 			},
 			{
 				name: "row-gap",
 				desc: "The row-gap CSS property specifies the gutter between grid rows.",
 				restriction: "none",
-				"syntax": "normal | <length-percentage>"
+				"syntax": "normal | <length-percentage>",
+				browsers: "E16,FF61,S10.1,C66,O53"
 			},
 			{
 				name: "ruby-merge",
 				desc: "This property controls how ruby annotation boxes should be rendered when there are more than one in a ruby container box: whether each pair should be kept separate, the annotations should be collapsed and rendered as a group, or the separation should be determined based on the space available.",
 				restriction: "none",
+				"status": "e",
 				"syntax": "separate | collapse | auto"
 			},
 			{
 				name: "scale",
 				desc: "The scale CSS property allows you to specify scale transforms individually and independantly of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value.",
 				restriction: "none",
-				"syntax": "none | <number>{1,3}"
+				"syntax": "none | <number>{1,3}",
+				browsers: "FF60,C"
 			},
 			{
 				name: "scroll-snap-type-x",
 				desc: "The scroll-snap-type-x CSS property defines how strictly snap points are enforced on the horizontal axis of the scroll container in case there is one.\n\nSpecifying any precise animations or physics used to enforce those snap points is not covered by this property but instead left up to the user agent.",
 				restriction: "none",
 				"status": "n",
-				"syntax": "none | mandatory | proximity"
+				"syntax": "none | mandatory | proximity",
+				browsers: "FF39,S9"
 			},
 			{
 				name: "scroll-snap-type-y",
 				desc: "The scroll-snap-type-y CSS property defines how strictly snap points are enforced on the vertical axis of the scroll container in case there is one.\n\nSpecifying any precise animations or physics used to enforce those snap points is not covered by this property but instead left up to the user agent.",
 				restriction: "none",
 				"status": "n",
-				"syntax": "none | mandatory | proximity"
+				"syntax": "none | mandatory | proximity",
+				browsers: "FF39"
 			},
 			{
 				name: "text-combine-upright",
 				desc: "The text-combine-upright CSS property specifies the combination of multiple characters into the space of a single character. If the combined text is wider than 1em, the user agent must fit the contents within 1em. The resulting composition is treated as a single upright glyph for layout and decoration. This property only has an effect in vertical writing modes.\n\nThis is used to produce an effect that is known as tate-chū-yoko (縦中横) in Japanese, or as 直書橫向 in Chinese.",
 				restriction: "none",
-				"syntax": "none | all | [ digits <integer>? ]"
+				"syntax": "none | all | [ digits <integer>? ]",
+				browsers: "all"
 			},
 			{
 				name: "text-decoration-skip",
 				desc: "The text-decoration-skip CSS property specifies what parts of the element’s content any text decoration affecting the element must skip over. It controls all text decoration lines drawn by the element and also any text decoration lines drawn by its ancestors.",
 				restriction: "none",
 				"status": "e",
-				"syntax": "none | [ objects || [ spaces | [ leading-spaces || trailing-spaces ] ] || edges || box-decoration ]"
+				"syntax": "none | [ objects || [ spaces | [ leading-spaces || trailing-spaces ] ] || edges || box-decoration ]",
+				browsers: "S8,C57,O44"
 			},
 			{
 				name: "text-decoration-skip-ink",
 				desc: "The text-decoration-skip-ink CSS property specifies how overlines and underlines are drawn when they pass over glyph ascenders and descenders.",
 				restriction: "none",
 				"status": "e",
-				"syntax": "auto | none"
+				"syntax": "auto | none",
+				browsers: "C64,O50"
 			},
 			{
 				name: "text-emphasis",
 				desc: "The text-emphasis CSS property is a shorthand property for setting text-emphasis-style and text-emphasis-color in one declaration. This property will apply the specified emphasis mark to each character of the element's text, except separator characters, like spaces,  and control characters.",
 				restriction: "none",
-				"syntax": "<'text-emphasis-style'> || <'text-emphasis-color'>"
+				"syntax": "<'text-emphasis-style'> || <'text-emphasis-color'>",
+				browsers: "FF46,S,C25,O15"
 			},
 			{
 				name: "text-emphasis-color",
 				desc: "The text-emphasis-color CSS property defines the color used to draw emphasis marks on text being rendered in the HTML document. This value can also be set and reset using the text-emphasis shorthand.",
 				restriction: "none",
-				"syntax": "<color>"
+				"syntax": "<color>",
+				browsers: "FF46,S,C25,O15"
 			},
 			{
 				name: "text-emphasis-position",
 				desc: "The text-emphasis-position CSS property describes where emphasis marks are drawn at. The effect of emphasis marks on the line height is the same as for ruby text: if there isn't enough place, the line height is increased.",
 				restriction: "none",
-				"syntax": "[ over | under ] && [ right | left ]"
+				"syntax": "[ over | under ] && [ right | left ]",
+				browsers: "FF46,S,C,O"
 			},
 			{
 				name: "text-emphasis-style",
 				desc: "The text-emphasis-style CSS property defines the type of emphasis used. It can also be set, and reset, using the text-emphasis shorthand.",
 				restriction: "none",
-				"syntax": "none | [ [ filled | open ] || [ dot | circle | double-circle | triangle | sesame ] ] | <string>"
+				"syntax": "none | [ [ filled | open ] || [ dot | circle | double-circle | triangle | sesame ] ] | <string>",
+				browsers: "FF46,S,C25,O15"
 			},
 			{
 				name: "text-size-adjust",
 				desc: "The text-size-adjust CSS property controls the text inflation algorithm used on some smartphones and tablets. Other browsers will ignore this property.",
 				restriction: "none",
 				"status": "e",
-				"syntax": "none | auto | <percentage>"
+				"syntax": "none | auto | <percentage>",
+				browsers: "E12,C54,O42"
 			},
 			{
 				name: "transform-box",
 				desc: "The transform-box CSS property defines the layout box to which the transform and transform-origin properties relate.",
 				restriction: "none",
-				"syntax": "border-box | fill-box | view-box"
+				"syntax": "border-box | fill-box | view-box",
+				browsers: "FF55,C64,O51"
 			},
 			{
 				name: "translate",
 				desc: "The translate CSS property allows you to specify translation transforms individually and independantly of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value.",
 				restriction: "none",
-				"syntax": "none | <length-percentage> [ <length-percentage> <length>? ]?"
+				"syntax": "none | <length-percentage> [ <length-percentage> <length>? ]?",
+				browsers: "FF60,C"
 			},
 			{
 				name: "speak-as",

@@ -66,13 +66,12 @@ suite('CSS - Language Facts', () => {
 		assert.ok(alignLast !== null);
 		assert.equal(alignLast.name, 'text-align-last');
 		let b = alignLast.browsers;
-		assert.equal(b['FF'], '12');
-		assert.equal(b['IE'], '5');
-		assert.equal(b['E'], '');
-		assert.equal(b['C'], void 0);
-		assert.equal(b['count'], 3);
+		assert.equal(b['FF'], '49');
+		assert.equal(b['E'], '12');
+		assert.equal(b['C'], '47');
+		assert.equal(b['count'], 4);
 
-		assert.equal(getBrowserLabel(alignLast.browsers), 'Edge, Firefox 12, IE 5');
+		assert.equal(getBrowserLabel(alignLast.browsers), 'Edge 12, Firefox 49, Chrome 47, Opera');
 
 		let r = alignLast.restrictions;
 

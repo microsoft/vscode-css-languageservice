@@ -3,13 +3,10 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-const path = require('path')
-const fs = require('fs')
-
 const mdnDocumentations = require('./mdn-documentation')
 
 const mdnExcludedProperties = [
-  '--*', // custom properties
+  '--*' // custom properties
 ]
 
 function buildPropertiesWithMDNData(vscProperties) {
@@ -89,7 +86,7 @@ function abbreviateStatus(status) {
     nonstandard: 'n',
     experimental: 'e',
     obsolete: 'o'
-  }[status];
+  }[status]
 }
 
 module.exports = {
