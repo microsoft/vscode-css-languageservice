@@ -1060,16 +1060,6 @@ export class Parser {
 			this.consumeToken();
 		}
 
-		this.resync([], [TokenType.SemiColon, TokenType.EOF, TokenType.CurlyL]); // ignore all the rules
-		if (this.peek(TokenType.SemiColon)) {
-			this.consumeToken();
-			return node;
-		} else if (this.peek(TokenType.CurlyL)) {
-			return this._parseBody(node, this._parseStylesheetStatement.bind(this));
-		} else if (this.peek(TokenType.EOF)) {
-			return this.finish(node, ParseError.AtRuleBodyExpected);
-		}
-
 		return node;
 	}
 

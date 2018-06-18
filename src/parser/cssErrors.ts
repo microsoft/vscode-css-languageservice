@@ -45,7 +45,6 @@ export let ParseError = {
 	CommaExpected: new CSSIssueType('css-commaexpected', localize('expected.comma', "comma expected")),
 	PageDirectiveOrDeclarationExpected: new CSSIssueType('css-pagedirordeclexpected', localize('expected.pagedirordecl', "page directive or declaraton expected")),
 	UnknownAtRule: new CSSIssueType('css-unknownatrule', localize('unknown.atrule', "at-rule unknown")),
-	AtRuleBodyExpected: new CSSIssueType('css-atrulebodyexpected', localize('expected.atrulebody', 'at rule body expected')),
 	UnknownKeyword: new CSSIssueType('css-unknownkeyword', localize('unknown.keyword', "unknown keyword")),
 	SelectorExpected: new CSSIssueType('css-selectorexpected', localize('expected.selector', "selector expected")),
 	StringLiteralExpected: new CSSIssueType('css-stringliteralexpected', localize('expected.stringliteral', "string literal expected")),
