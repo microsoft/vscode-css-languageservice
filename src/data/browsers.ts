@@ -88,6 +88,329 @@ export const data : any = {
 				browsers: "C,S4"
 			}
 		],
+		"pseudoelements": [
+			{
+				name: "::after",
+				desc: "Represents a styleable child pseudo-element immediately after the originating element’s actual content.",
+				browsers: "all"
+			},
+			{
+				name: "::backdrop",
+				desc: "Used to create a backdrop that hides the underlying document for an element in a top layer (such as an element that is displayed fullscreen).",
+				browsers: "E,FF47,C37,IE11"
+			},
+			{
+				name: "::before",
+				desc: "Represents a styleable child pseudo-element immediately before the originating element’s actual content.",
+				browsers: "all"
+			},
+			{
+				name: "::content",
+				desc: "Deprecated. Matches the distribution list itself, on elements that have one. Use ::slotted for forward compatibility.",
+				browsers: "C35,O22"
+			},
+			{
+				name: "::cue",
+				browsers: "FF55,C"
+			},
+			{
+				name: "::cue()",
+				browsers: "C,O16,S6"
+			},
+			{
+				name: "::cue-region",
+				browsers: "C,O16,S6"
+			},
+			{
+				name: "::cue-region()",
+				browsers: "C,O16,S6"
+			},
+			{
+				name: "::first-letter",
+				desc: "Represents the first letter of an element, if it is not preceded by any other content (such as images or inline tables) on its line.",
+				browsers: "all"
+			},
+			{
+				name: "::first-line",
+				desc: "Describes the contents of the first formatted line of its originating element.",
+				browsers: "all"
+			},
+			{
+				name: "::-moz-focus-inner",
+				browsers: "FF4"
+			},
+			{
+				name: "::-moz-focus-outer",
+				browsers: "FF4"
+			},
+			{
+				name: "::-moz-list-bullet",
+				desc: "Used to style the bullet of a list element. Similar to the standardized ::marker.",
+				browsers: "FF1"
+			},
+			{
+				name: "::-moz-list-number",
+				desc: "Used to style the numbers of a list element. Similar to the standardized ::marker.",
+				browsers: "FF1"
+			},
+			{
+				name: "::-moz-placeholder",
+				desc: "Represents placeholder text in an input field",
+				browsers: "FF19"
+			},
+			{
+				name: "::-moz-progress-bar",
+				desc: "Represents the bar portion of a progress bar.",
+				browsers: "FF9"
+			},
+			{
+				name: "::-moz-selection",
+				desc: "Represents the portion of a document that has been highlighted by the user.",
+				browsers: "FF1"
+			},
+			{
+				name: "::-ms-backdrop",
+				desc: "Used to create a backdrop that hides the underlying document for an element in a top layer (such as an element that is displayed fullscreen).",
+				browsers: "IE11"
+			},
+			{
+				name: "::-ms-browse",
+				desc: "Represents the browse button of an input type=file control.",
+				browsers: "E,IE10"
+			},
+			{
+				name: "::-ms-check",
+				desc: "Represents the check of a checkbox or radio button input control.",
+				browsers: "E,IE10"
+			},
+			{
+				name: "::-ms-clear",
+				desc: "Represents the clear button of a text input control",
+				browsers: "E,IE10"
+			},
+			{
+				name: "::-ms-expand",
+				desc: "Represents the drop-down button of a select control.",
+				browsers: "E,IE10"
+			},
+			{
+				name: "::-ms-fill",
+				desc: "Represents the bar portion of a progress bar.",
+				browsers: "E,IE10"
+			},
+			{
+				name: "::-ms-fill-lower",
+				desc: "Represents the portion of the slider track from its smallest value up to the value currently selected by the thumb. In a left-to-right layout, this is the portion of the slider track to the left of the thumb.",
+				browsers: "E,IE10"
+			},
+			{
+				name: "::-ms-fill-upper",
+				desc: "Represents the portion of the slider track from the value currently selected by the thumb up to the slider's largest value. In a left-to-right layout, this is the portion of the slider track to the right of the thumb.",
+				browsers: "E,IE10"
+			},
+			{
+				name: "::-ms-reveal",
+				desc: "Represents the password reveal button of an input type=password control.",
+				browsers: "E,IE10"
+			},
+			{
+				name: "::-ms-thumb",
+				desc: "Represents the portion of range input control (also known as a slider control) that the user drags.",
+				browsers: "E,IE10"
+			},
+			{
+				name: "::-ms-ticks-after",
+				desc: "Represents the tick marks of a slider that begin just after the thumb and continue up to the slider's largest value. In a left-to-right layout, these are the ticks to the right of the thumb.",
+				browsers: "E,IE10"
+			},
+			{
+				name: "::-ms-ticks-before",
+				desc: "Represents the tick marks of a slider that represent its smallest values up to the value currently selected by the thumb. In a left-to-right layout, these are the ticks to the left of the thumb.",
+				browsers: "E,IE10"
+			},
+			{
+				name: "::-ms-tooltip",
+				desc: "Represents the tooltip of a slider (input type=range).",
+				browsers: "E,IE10"
+			},
+			{
+				name: "::-ms-track",
+				desc: "Represents the track of a slider.",
+				browsers: "E,IE10"
+			},
+			{
+				name: "::-ms-value",
+				desc: "Represents the content of a text or password input control, or a select control.",
+				browsers: "E,IE10"
+			},
+			{
+				name: "::selection",
+				desc: "Represents the portion of a document that has been highlighted by the user.",
+				browsers: "all"
+			},
+			{
+				name: "::shadow",
+				desc: "Matches the shadow root if an element has a shadow tree.",
+				browsers: "C35,O22"
+			},
+			{
+				name: "::-webkit-file-upload-button",
+				browsers: "C,O,S6"
+			},
+			{
+				name: "::-webkit-inner-spin-button",
+				browsers: "C,O,S6"
+			},
+			{
+				name: "::-webkit-input-placeholder",
+				browsers: "C,S4"
+			},
+			{
+				name: "::-webkit-keygen-select",
+				browsers: "C,O,S6"
+			},
+			{
+				name: "::-webkit-meter-bar",
+				browsers: "S,C,O"
+			},
+			{
+				name: "::-webkit-meter-even-less-good-value",
+				browsers: "S,C,O"
+			},
+			{
+				name: "::-webkit-meter-optimum-value",
+				browsers: "S,C,O"
+			},
+			{
+				name: "::-webkit-meter-suboptimal-value",
+				browsers: "E13,C,O15,S6"
+			},
+			{
+				name: "::-webkit-outer-spin-button",
+				browsers: "C,O,S6"
+			},
+			{
+				name: "::-webkit-progress-bar",
+				browsers: "S,C,O"
+			},
+			{
+				name: "::-webkit-progress-inner-element",
+				browsers: "S,C,O"
+			},
+			{
+				name: "::-webkit-progress-value",
+				browsers: "S,C,O"
+			},
+			{
+				name: "::-webkit-resizer",
+				browsers: "C,S5"
+			},
+			{
+				name: "::-webkit-scrollbar",
+				browsers: "C,S5"
+			},
+			{
+				name: "::-webkit-scrollbar-button",
+				browsers: "C,S5"
+			},
+			{
+				name: "::-webkit-scrollbar-corner",
+				browsers: "C,S5"
+			},
+			{
+				name: "::-webkit-scrollbar-thumb",
+				browsers: "C,S5"
+			},
+			{
+				name: "::-webkit-scrollbar-track",
+				browsers: "C,S5"
+			},
+			{
+				name: "::-webkit-scrollbar-track-piece",
+				browsers: "C,S5"
+			},
+			{
+				name: "::-webkit-search-cancel-button",
+				browsers: "S,C"
+			},
+			{
+				name: "::-webkit-search-decoration",
+				browsers: "C,S4"
+			},
+			{
+				name: "::-webkit-search-results-button",
+				browsers: "S,C"
+			},
+			{
+				name: "::-webkit-search-results-decoration",
+				browsers: "C,S4"
+			},
+			{
+				name: "::-webkit-slider-runnable-track",
+				browsers: "C,O,S6"
+			},
+			{
+				name: "::-webkit-slider-thumb",
+				browsers: "C,O,S6"
+			},
+			{
+				name: "::-webkit-textfield-decoration-container",
+				browsers: "C,O,S6"
+			},
+			{
+				name: "::-webkit-validation-bubble",
+				browsers: "C,O,S6"
+			},
+			{
+				name: "::-webkit-validation-bubble-arrow",
+				browsers: "C,O,S6"
+			},
+			{
+				name: "::-webkit-validation-bubble-arrow-clipper",
+				browsers: "C,O,S6"
+			},
+			{
+				name: "::-webkit-validation-bubble-heading",
+				browsers: "C,O,S6"
+			},
+			{
+				name: "::-webkit-validation-bubble-message",
+				browsers: "C,O,S6"
+			},
+			{
+				name: "::-webkit-validation-bubble-text-block",
+				browsers: "C,O,S6"
+			},
+			{
+				name: "::-moz-range-progress",
+				desc: "The ::-moz-range-progress CSS pseudo-element is a Mozilla extension that represents the lower portion of the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\". This portion corresponds to values lower than the value currently selected by the thumb (i.e., virtual knob)."
+			},
+			{
+				name: "::-moz-range-thumb",
+				desc: "The ::-moz-range-thumb CSS pseudo-element is a Mozilla extension that represents the thumb (i.e., virtual knob) of an <input> of type=\"range\". The user can move the thumb along the input's track to alter its numerical value."
+			},
+			{
+				name: "::-moz-range-track",
+				desc: "The ::-moz-range-track CSS pseudo-element is a Mozilla extension that represents the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\"."
+			},
+			{
+				name: "::-webkit-progress-inner-value",
+				desc: ""
+			},
+			{
+				name: "::grammar-error",
+				desc: "The ::grammar-error CSS pseudo-element represents a text segment which the user agent has flagged as grammatically incorrect."
+			},
+			{
+				name: "::placeholder",
+				desc: "The ::placeholder CSS pseudo-element represents the placeholder text of a form element.",
+				browsers: "all"
+			},
+			{
+				name: "::spelling-error",
+				desc: "The ::spelling-error CSS pseudo-element represents a text segment which the user agent has flagged as incorrectly spelled."
+			}
+		],
 		"pseudoclasses": [
 			{
 				name: ":active",
@@ -483,300 +806,30 @@ export const data : any = {
 				name: ":window-inactive",
 				desc: "Non-standard. Applies to all scrollbar pieces. Indicates whether or not the window containing the scrollbar is currently active.",
 				browsers: "C,S3"
-			}
-		],
-		"pseudoelements": [
-			{
-				name: "::after",
-				desc: "Represents a styleable child pseudo-element immediately after the originating element’s actual content.",
-				browsers: "all"
 			},
 			{
-				name: "::backdrop",
-				desc: "Used to create a backdrop that hides the underlying document for an element in a top layer (such as an element that is displayed fullscreen).",
-				browsers: "E,FF47,C37,IE11"
-			},
-			{
-				name: "::before",
-				desc: "Represents a styleable child pseudo-element immediately before the originating element’s actual content.",
-				browsers: "all"
-			},
-			{
-				name: "::content",
-				desc: "Deprecated. Matches the distribution list itself, on elements that have one. Use ::slotted for forward compatibility.",
-				browsers: "C35,O22"
-			},
-			{
-				name: "::cue",
-				browsers: "FF55,C"
-			},
-			{
-				name: "::cue()",
-				browsers: "C,O16,S6"
-			},
-			{
-				name: "::cue-region",
-				browsers: "C,O16,S6"
-			},
-			{
-				name: "::cue-region()",
-				browsers: "C,O16,S6"
-			},
-			{
-				name: "::first-letter",
-				desc: "Represents the first letter of an element, if it is not preceded by any other content (such as images or inline tables) on its line.",
-				browsers: "all"
-			},
-			{
-				name: "::first-line",
-				desc: "Describes the contents of the first formatted line of its originating element.",
-				browsers: "all"
-			},
-			{
-				name: "::-moz-focus-inner",
-				browsers: "FF4"
-			},
-			{
-				name: "::-moz-focus-outer",
-				browsers: "FF4"
-			},
-			{
-				name: "::-moz-list-bullet",
-				desc: "Used to style the bullet of a list element. Similar to the standardized ::marker.",
-				browsers: "FF1"
-			},
-			{
-				name: "::-moz-list-number",
-				desc: "Used to style the numbers of a list element. Similar to the standardized ::marker.",
-				browsers: "FF1"
-			},
-			{
-				name: "::-moz-placeholder",
-				desc: "Represents placeholder text in an input field",
-				browsers: "FF19"
-			},
-			{
-				name: "::-moz-progress-bar",
-				desc: "Represents the bar portion of a progress bar.",
-				browsers: "FF9"
-			},
-			{
-				name: "::-moz-selection",
-				desc: "Represents the portion of a document that has been highlighted by the user.",
-				browsers: "FF1"
-			},
-			{
-				name: "::-ms-backdrop",
-				desc: "Used to create a backdrop that hides the underlying document for an element in a top layer (such as an element that is displayed fullscreen).",
-				browsers: "IE11"
-			},
-			{
-				name: "::-ms-browse",
-				desc: "Represents the browse button of an input type=file control.",
-				browsers: "E,IE10"
-			},
-			{
-				name: "::-ms-check",
-				desc: "Represents the check of a checkbox or radio button input control.",
-				browsers: "E,IE10"
-			},
-			{
-				name: "::-ms-clear",
-				desc: "Represents the clear button of a text input control",
-				browsers: "E,IE10"
-			},
-			{
-				name: "::-ms-expand",
-				desc: "Represents the drop-down button of a select control.",
-				browsers: "E,IE10"
-			},
-			{
-				name: "::-ms-fill",
-				desc: "Represents the bar portion of a progress bar.",
-				browsers: "E,IE10"
-			},
-			{
-				name: "::-ms-fill-lower",
-				desc: "Represents the portion of the slider track from its smallest value up to the value currently selected by the thumb. In a left-to-right layout, this is the portion of the slider track to the left of the thumb.",
-				browsers: "E,IE10"
-			},
-			{
-				name: "::-ms-fill-upper",
-				desc: "Represents the portion of the slider track from the value currently selected by the thumb up to the slider's largest value. In a left-to-right layout, this is the portion of the slider track to the right of the thumb.",
-				browsers: "E,IE10"
-			},
-			{
-				name: "::-ms-reveal",
-				desc: "Represents the password reveal button of an input type=password control.",
-				browsers: "E,IE10"
-			},
-			{
-				name: "::-ms-thumb",
-				desc: "Represents the portion of range input control (also known as a slider control) that the user drags.",
-				browsers: "E,IE10"
-			},
-			{
-				name: "::-ms-ticks-after",
-				desc: "Represents the tick marks of a slider that begin just after the thumb and continue up to the slider's largest value. In a left-to-right layout, these are the ticks to the right of the thumb.",
-				browsers: "E,IE10"
-			},
-			{
-				name: "::-ms-ticks-before",
-				desc: "Represents the tick marks of a slider that represent its smallest values up to the value currently selected by the thumb. In a left-to-right layout, these are the ticks to the left of the thumb.",
-				browsers: "E,IE10"
-			},
-			{
-				name: "::-ms-tooltip",
-				desc: "Represents the tooltip of a slider (input type=range).",
-				browsers: "E,IE10"
-			},
-			{
-				name: "::-ms-track",
-				desc: "Represents the track of a slider.",
-				browsers: "E,IE10"
-			},
-			{
-				name: "::-ms-value",
-				desc: "Represents the content of a text or password input control, or a select control.",
-				browsers: "E,IE10"
-			},
-			{
-				name: "::selection",
-				desc: "Represents the portion of a document that has been highlighted by the user.",
-				browsers: "all"
-			},
-			{
-				name: "::shadow",
-				desc: "Matches the shadow root if an element has a shadow tree.",
-				browsers: "C35,O22"
-			},
-			{
-				name: "::-webkit-file-upload-button",
-				browsers: "C,O,S6"
-			},
-			{
-				name: "::-webkit-inner-spin-button",
-				browsers: "C,O,S6"
-			},
-			{
-				name: "::-webkit-input-placeholder",
-				browsers: "C,S4"
-			},
-			{
-				name: "::-webkit-keygen-select",
-				browsers: "C,O,S6"
-			},
-			{
-				name: "::-webkit-meter-bar",
+				name: ":defined",
+				desc: "The :defined CSS pseudo-class represents any element that has been defined. This includes any standard element built in to the browser, and custom elements that have been successfully defined (i.e. with the CustomElementRegistry.define() method).",
 				browsers: "S,C,O"
 			},
 			{
-				name: "::-webkit-meter-even-less-good-value",
-				browsers: "S,C,O"
+				name: ":dir",
+				desc: "The :dir() CSS pseudo-class matches elements based on the directionality of the text contained in them.",
+				browsers: "FF49"
 			},
 			{
-				name: "::-webkit-meter-optimum-value",
-				browsers: "S,C,O"
+				name: ":focus-visible",
+				desc: "The :focus-visible pseudo-class applies while an element matches the :focus pseudo-class and the UA determines via heuristics that the focus should be made evident on the element."
 			},
 			{
-				name: "::-webkit-meter-suboptimal-value",
-				browsers: "E13,C,O15,S6"
+				name: ":focus-within",
+				desc: "The :focus-within pseudo-class applies to any element for which the :focus pseudo class applies as well as to an element whose descendant in the flat tree (including non-element nodes, such as text nodes) matches the conditions for matching :focus.",
+				browsers: "FF52,S10.1,C60,O47"
 			},
 			{
-				name: "::-webkit-outer-spin-button",
-				browsers: "C,O,S6"
-			},
-			{
-				name: "::-webkit-progress-bar",
-				browsers: "S,C,O"
-			},
-			{
-				name: "::-webkit-progress-inner-element",
-				browsers: "S,C,O"
-			},
-			{
-				name: "::-webkit-progress-value",
-				browsers: "S,C,O"
-			},
-			{
-				name: "::-webkit-resizer",
-				browsers: "C,S5"
-			},
-			{
-				name: "::-webkit-scrollbar",
-				browsers: "C,S5"
-			},
-			{
-				name: "::-webkit-scrollbar-button",
-				browsers: "C,S5"
-			},
-			{
-				name: "::-webkit-scrollbar-corner",
-				browsers: "C,S5"
-			},
-			{
-				name: "::-webkit-scrollbar-thumb",
-				browsers: "C,S5"
-			},
-			{
-				name: "::-webkit-scrollbar-track",
-				browsers: "C,S5"
-			},
-			{
-				name: "::-webkit-scrollbar-track-piece",
-				browsers: "C,S5"
-			},
-			{
-				name: "::-webkit-search-cancel-button",
-				browsers: "S,C"
-			},
-			{
-				name: "::-webkit-search-decoration",
-				browsers: "C,S4"
-			},
-			{
-				name: "::-webkit-search-results-button",
-				browsers: "S,C"
-			},
-			{
-				name: "::-webkit-search-results-decoration",
-				browsers: "C,S4"
-			},
-			{
-				name: "::-webkit-slider-runnable-track",
-				browsers: "C,O,S6"
-			},
-			{
-				name: "::-webkit-slider-thumb",
-				browsers: "C,O,S6"
-			},
-			{
-				name: "::-webkit-textfield-decoration-container",
-				browsers: "C,O,S6"
-			},
-			{
-				name: "::-webkit-validation-bubble",
-				browsers: "C,O,S6"
-			},
-			{
-				name: "::-webkit-validation-bubble-arrow",
-				browsers: "C,O,S6"
-			},
-			{
-				name: "::-webkit-validation-bubble-arrow-clipper",
-				browsers: "C,O,S6"
-			},
-			{
-				name: "::-webkit-validation-bubble-heading",
-				browsers: "C,O,S6"
-			},
-			{
-				name: "::-webkit-validation-bubble-message",
-				browsers: "C,O,S6"
-			},
-			{
-				name: "::-webkit-validation-bubble-text-block",
-				browsers: "C,O,S6"
+				name: ":placeholder-shown",
+				desc: "The :placeholder-shown CSS pseudo-class represents any <input> or <textarea> element that is currently displaying placeholder text.",
+				browsers: "FF51,S9,C47,O34"
 			}
 		],
 		"properties": [
