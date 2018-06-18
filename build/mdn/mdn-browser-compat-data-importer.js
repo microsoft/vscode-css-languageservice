@@ -152,4 +152,6 @@ function isSupported(support) {
   return false
 }
 
-module.exports.addBrowserCompatDataToProperties = addBrowserCompatDataToProperties
+module.exports = {
+  addBrowserCompatDataToProperties
+}

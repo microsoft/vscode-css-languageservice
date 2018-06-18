@@ -343,30 +343,32 @@ function toSource(object, keyName) {
 const parser = new xml2js.Parser({ explicitArray: false })
 const schemaFileName = 'css-schema.xml'
 
-const { buildPropertiesWithMDNData } = require('./mdn-data-importer')
-const { addBrowserCompatDataToProperties } = require('./mdn-browser-compat-data-importer')
+const { addMDNProperties } = require('./mdn/mdn-data-property-importer')
+const { addMDNPseudoSelectors } = require('./mdn/mdn-data-selector-importer')
+const { addBrowserCompatDataToProperties } = require('./mdn/mdn-browser-compat-data-importer')
 
 fs.readFile(path.resolve(__dirname, schemaFileName), function(err, data) {
   parser.parseString(data, function(err, result) {
     const atdirectives = toSource(result, 'atDirectives')
-    const pseudoclasses = toSource(result, 'pseudoClasses')
-    const pseudoelements = toSource(result, 'pseudoElements')
+		const pseudoelements = toSource(result, 'pseudoElements')
+
+		let pseudoclasses = toSource(result, 'pseudoClasses')
+		pseudoclasses = addMDNPseudoSelectors(pseudoclasses)
 
     let properties = toSource(result, 'properties')
-		properties = buildPropertiesWithMDNData(properties)
-
+		properties = addMDNProperties(properties)
     addBrowserCompatDataToProperties(atdirectives, pseudoclasses, pseudoelements, properties)
 
     const descriptions = internalizeDescriptions([].concat(atdirectives, pseudoclasses, pseudoelements, properties))
 
-    const resultObject = {
-      css: {
-        atdirectives,
-        pseudoclasses,
-        pseudoelements,
-        properties,
-      }
-    }
+		const resultObject = {
+			css: {
+				atdirectives: atdirectives,
+				pseudoelements: pseudoelements,
+				pseudoclasses: pseudoclasses,
+				properties: properties
+			}
+		};
 
     function toJavaScript(obj) {
       const str = JSON.stringify(obj, null, '\t')
@@ -386,9 +388,9 @@ fs.readFile(path.resolve(__dirname, schemaFileName), function(err, data) {
       'export const descriptions : any = ' + toJavaScript(descriptions) + ';'
     ]
 
-    var outputPath = path.resolve(__dirname, '../src/data/browsers.ts')
+    const outputPath = path.resolve(__dirname, '../src/data/browsers.ts')
     console.log('Writing to: ' + outputPath)
-    var content = output.join(os.EOL)
+    const content = output.join(os.EOL)
     fs.writeFileSync(outputPath, content)
     console.log('Done')
   })
