@@ -113,5 +113,14 @@ module.exports ={
     ':focus-visible': 'The :focus-visible pseudo-class applies while an element matches the :focus pseudo-class and the UA determines via heuristics that the focus should be made evident on the element.',
     ':focus-within': 'The :focus-within pseudo-class applies to any element for which the :focus pseudo class applies as well as to an element whose descendant in the flat tree (including non-element nodes, such as text nodes) matches the conditions for matching :focus.',
     ':placeholder-shown': 'The :placeholder-shown CSS pseudo-class represents any <input> or <textarea> element that is currently displaying placeholder text.'
+  },
+  pseudoElementDescriptions: {
+    '::-moz-range-progress': 'The ::-moz-range-progress CSS pseudo-element is a Mozilla extension that represents the lower portion of the track (i.e., groove) in which the indicator slides in an <input> of type="range". This portion corresponds to values lower than the value currently selected by the thumb (i.e., virtual knob).',
+    '::-moz-range-thumb': `The ::-moz-range-thumb CSS pseudo-element is a Mozilla extension that represents the thumb (i.e., virtual knob) of an <input> of type="range". The user can move the thumb along the input's track to alter its numerical value.`,
+    '::-moz-range-track': 'The ::-moz-range-track CSS pseudo-element is a Mozilla extension that represents the track (i.e., groove) in which the indicator slides in an <input> of type="range".',
+    '::-webkit-progress-inner-element': 'The ::-webkit-progress-inner-element CSS pseudo-element represents the outermost container of the <progress> element. It is the parent of the ::-webkit-progress-bar pseudo-element.',
+    '::grammar-error': 'The ::grammar-error CSS pseudo-element represents a text segment which the user agent has flagged as grammatically incorrect.',
+    '::placeholder': 'The ::placeholder CSS pseudo-element represents the placeholder text of a form element.',
+    '::spelling-error': 'The ::spelling-error CSS pseudo-element represents a text segment which the user agent has flagged as incorrectly spelled.'
   }
 }
