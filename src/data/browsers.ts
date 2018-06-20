@@ -801,6 +801,35 @@ export const data : any = {
 			{
 				name: "::-webkit-validation-bubble-text-block",
 				browsers: "C,O,S6"
+			},
+			{
+				name: "::-moz-range-progress",
+				desc: "The ::-moz-range-progress CSS pseudo-element is a Mozilla extension that represents the lower portion of the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\". This portion corresponds to values lower than the value currently selected by the thumb (i.e., virtual knob)."
+			},
+			{
+				name: "::-moz-range-thumb",
+				desc: "The ::-moz-range-thumb CSS pseudo-element is a Mozilla extension that represents the thumb (i.e., virtual knob) of an <input> of type=\"range\". The user can move the thumb along the input's track to alter its numerical value."
+			},
+			{
+				name: "::-moz-range-track",
+				desc: "The ::-moz-range-track CSS pseudo-element is a Mozilla extension that represents the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\"."
+			},
+			{
+				name: "::-webkit-progress-inner-value",
+				desc: "The ::-webkit-progress-value CSS pseudo-element represents the filled-in portion of the bar of a <progress> element. It is a child of the ::-webkit-progress-bar pseudo-element.\n\nIn order to let ::-webkit-progress-value take effect, -webkit-appearance needs to be set to none on the <progress> element."
+			},
+			{
+				name: "::grammar-error",
+				desc: "The ::grammar-error CSS pseudo-element represents a text segment which the user agent has flagged as grammatically incorrect."
+			},
+			{
+				name: "::placeholder",
+				desc: "The ::placeholder CSS pseudo-element represents the placeholder text of a form element.",
+				browsers: "all"
+			},
+			{
+				name: "::spelling-error",
+				desc: "The ::spelling-error CSS pseudo-element represents a text segment which the user agent has flagged as incorrectly spelled."
 			}
 		],
 		"properties": [

@@ -346,7 +346,7 @@ const parser = new xml2js.Parser({ explicitArray: false })
 const schemaFileName = 'css-schema.xml'
 
 const { addMDNProperties } = require('./mdn/mdn-data-importer')
-const { addMDNPseudoSelectors } = require('./mdn/mdn-data-selector-importer')
+const { addMDNPseudoElements, addMDNPseudoSelectors } = require('./mdn/mdn-data-selector-importer')
 const { addBrowserCompatDataToProperties } = require('./mdn/mdn-browser-compat-data-importer')
 
 fs.readFile(path.resolve(__dirname, schemaFileName), (err, data) => {
@@ -356,7 +356,8 @@ fs.readFile(path.resolve(__dirname, schemaFileName), (err, data) => {
 		let pseudoclasses = toSource(result, 'pseudoClasses')
 		pseudoclasses = addMDNPseudoSelectors(pseudoclasses)
 
-    const pseudoelements = toSource(result, 'pseudoElements')
+		let pseudoelements = toSource(result, 'pseudoElements')
+		pseudoelements = addMDNPseudoElements(pseudoelements)
 
     let properties = toSource(result, 'properties')
 		properties = addMDNProperties(properties)
