@@ -2,7 +2,9 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-/* global __dirname */
+
+//@ts-check
+
 const fs = require('fs')
 const path = require('path')
 const xml2js = require('xml2js')
@@ -343,17 +345,21 @@ function toSource(object, keyName) {
 const parser = new xml2js.Parser({ explicitArray: false })
 const schemaFileName = 'css-schema.xml'
 
-const { buildPropertiesWithMDNData } = require('./mdn-data-importer')
+const { addMDNProperties } = require('./mdn-data-importer')
+const { addMDNPseudoSelectors } = require('./mdn/mdn-data-selector-importer')
 const { addBrowserCompatDataToProperties } = require('./mdn-browser-compat-data-importer')
 
-fs.readFile(path.resolve(__dirname, schemaFileName), function(err, data) {
+fs.readFile(path.resolve(__dirname, schemaFileName), (err, data) => {
   parser.parseString(data, function(err, result) {
-    const atdirectives = toSource(result, 'atDirectives')
-    const pseudoclasses = toSource(result, 'pseudoClasses')
+		const atdirectives = toSource(result, 'atDirectives')
+
+		let pseudoclasses = toSource(result, 'pseudoClasses')
+		pseudoclasses = addMDNPseudoSelectors(pseudoclasses)
+
     const pseudoelements = toSource(result, 'pseudoElements')
 
     let properties = toSource(result, 'properties')
-		properties = buildPropertiesWithMDNData(properties)
+		properties = addMDNProperties(properties)
 
     addBrowserCompatDataToProperties(atdirectives, pseudoclasses, pseudoelements, properties)
 

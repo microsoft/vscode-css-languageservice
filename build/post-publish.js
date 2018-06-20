@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+//@ts-check
+
 const cp = require('child_process')
 const path = require('path')
 const fs = require('fs')
@@ -17,12 +19,9 @@ function updateNextTag() {
     return
   }
 
-  opts = {}
-  opts.stdio = 'inherit'
-
   console.log(name + ": set 'next' tag to latest version")
 
-  const result = cp.spawnSync(npm, ['dist-tags', 'add', name + '@' + version, 'next'], opts)
+  const result = cp.spawnSync(npm, ['dist-tags', 'add', name + '@' + version, 'next'], { stdio: 'inherit' })
 
   if (result.error || result.status !== 0) {
     process.exit(1)
