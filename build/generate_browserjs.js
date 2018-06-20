@@ -345,9 +345,9 @@ function toSource(object, keyName) {
 const parser = new xml2js.Parser({ explicitArray: false })
 const schemaFileName = 'css-schema.xml'
 
-const { addMDNProperties } = require('./mdn-data-importer')
+const { addMDNProperties } = require('./mdn/mdn-data-importer')
 const { addMDNPseudoSelectors } = require('./mdn/mdn-data-selector-importer')
-const { addBrowserCompatDataToProperties } = require('./mdn-browser-compat-data-importer')
+const { addBrowserCompatDataToProperties } = require('./mdn/mdn-browser-compat-data-importer')
 
 fs.readFile(path.resolve(__dirname, schemaFileName), (err, data) => {
   parser.parseString(data, function(err, result) {

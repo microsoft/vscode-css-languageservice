@@ -6,7 +6,7 @@
 //@ts-check
 
 const mdnData = require('mdn-data')
-const { pseudoSelectorDescriptions } = require('../mdn-documentation')
+const { pseudoSelectorDescriptions } = require('./mdn-documentation')
 
 const mdnExcludedPseudoSelectors = [
   /**
