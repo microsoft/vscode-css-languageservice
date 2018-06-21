@@ -5,7 +5,7 @@
 
 //@ts-check
 
-const mdnDocumentations = require('./mdn-documentation')
+const { propertyDescriptions } = require('./mdn-documentation')
 
 const mdnExcludedProperties = [
   '--*' // custom properties
@@ -54,7 +54,7 @@ function addMDNProperties(vscProperties) {
     if (!propertyMap[pn]) {
       propertyMap[pn] = {
         name: pn,
-        desc: mdnDocumentations[pn] ? mdnDocumentations[pn] : '',
+        desc: propertyDescriptions[pn] ? propertyDescriptions[pn] : '',
         restriction: 'none',
         ...extractMDNProperties(allMDNProperties[pn])
       }
