@@ -483,6 +483,30 @@ export const data : any = {
 				name: ":window-inactive",
 				desc: "Non-standard. Applies to all scrollbar pieces. Indicates whether or not the window containing the scrollbar is currently active.",
 				browsers: "C,S3"
+			},
+			{
+				name: ":defined",
+				desc: "The :defined CSS pseudo-class represents any element that has been defined. This includes any standard element built in to the browser, and custom elements that have been successfully defined (i.e. with the CustomElementRegistry.define() method).",
+				browsers: "S,C,O"
+			},
+			{
+				name: ":dir",
+				desc: "The :dir() CSS pseudo-class matches elements based on the directionality of the text contained in them.",
+				browsers: "FF49"
+			},
+			{
+				name: ":focus-visible",
+				desc: "The :focus-visible pseudo-class applies while an element matches the :focus pseudo-class and the UA determines via heuristics that the focus should be made evident on the element."
+			},
+			{
+				name: ":focus-within",
+				desc: "The :focus-within pseudo-class applies to any element for which the :focus pseudo class applies as well as to an element whose descendant in the flat tree (including non-element nodes, such as text nodes) matches the conditions for matching :focus.",
+				browsers: "FF52,S10.1,C60,O47"
+			},
+			{
+				name: ":placeholder-shown",
+				desc: "The :placeholder-shown CSS pseudo-class represents any <input> or <textarea> element that is currently displaying placeholder text.",
+				browsers: "FF51,S9,C47,O34"
 			}
 		],
 		"pseudoelements": [
@@ -777,6 +801,35 @@ export const data : any = {
 			{
 				name: "::-webkit-validation-bubble-text-block",
 				browsers: "C,O,S6"
+			},
+			{
+				name: "::-moz-range-progress",
+				desc: "The ::-moz-range-progress CSS pseudo-element is a Mozilla extension that represents the lower portion of the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\". This portion corresponds to values lower than the value currently selected by the thumb (i.e., virtual knob)."
+			},
+			{
+				name: "::-moz-range-thumb",
+				desc: "The ::-moz-range-thumb CSS pseudo-element is a Mozilla extension that represents the thumb (i.e., virtual knob) of an <input> of type=\"range\". The user can move the thumb along the input's track to alter its numerical value."
+			},
+			{
+				name: "::-moz-range-track",
+				desc: "The ::-moz-range-track CSS pseudo-element is a Mozilla extension that represents the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\"."
+			},
+			{
+				name: "::-webkit-progress-inner-value",
+				desc: "The ::-webkit-progress-value CSS pseudo-element represents the filled-in portion of the bar of a <progress> element. It is a child of the ::-webkit-progress-bar pseudo-element.\n\nIn order to let ::-webkit-progress-value take effect, -webkit-appearance needs to be set to none on the <progress> element."
+			},
+			{
+				name: "::grammar-error",
+				desc: "The ::grammar-error CSS pseudo-element represents a text segment which the user agent has flagged as grammatically incorrect."
+			},
+			{
+				name: "::placeholder",
+				desc: "The ::placeholder CSS pseudo-element represents the placeholder text of a form element.",
+				browsers: "all"
+			},
+			{
+				name: "::spelling-error",
+				desc: "The ::spelling-error CSS pseudo-element represents a text segment which the user agent has flagged as incorrectly spelled."
 			}
 		],
 		"properties": [

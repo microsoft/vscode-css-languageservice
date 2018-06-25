@@ -3,17 +3,19 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-const mdnDocumentations = require('./mdn-documentation')
+//@ts-check
+
+const { propertyDescriptions } = require('./mdn-documentation')
 
 const mdnExcludedProperties = [
   '--*' // custom properties
 ]
 
-function buildPropertiesWithMDNData(vscProperties) {
+function addMDNProperties(vscProperties) {
   const propertyMap = {}
 
-  const mdnProperties = require('mdn-data/css/properties.json')
-  const mdnAtRules = require('mdn-data/css/at-rules.json')
+  const mdnProperties = require('mdn-data').css.properties
+  const mdnAtRules = require('mdn-data').css.atRules
 
   // Flatten at-rule properties and put all properties together
   const allMDNProperties = mdnProperties
@@ -52,7 +54,7 @@ function buildPropertiesWithMDNData(vscProperties) {
     if (!propertyMap[pn]) {
       propertyMap[pn] = {
         name: pn,
-        desc: mdnDocumentations[pn] ? mdnDocumentations[pn] : '',
+        desc: propertyDescriptions[pn] ? propertyDescriptions[pn] : '',
         restriction: 'none',
         ...extractMDNProperties(allMDNProperties[pn])
       }
@@ -90,5 +92,5 @@ function abbreviateStatus(status) {
 }
 
 module.exports = {
-  buildPropertiesWithMDNData
+  addMDNProperties
 }
