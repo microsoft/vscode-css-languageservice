@@ -1003,6 +1003,7 @@ export class Parser {
 		node.addChild(this._parseUnknownAtRuleName());
 
 		const isTopLevel = () => curlyDepth === 0 && parensDepth === 0 && bracketsDepth === 0;
+		let curlyLCount = 0;
 		let curlyDepth = 0;
 		let parensDepth = 0;
 		let bracketsDepth = 0;
@@ -1024,10 +1025,22 @@ export class Parser {
 						return this.finish(node);
 					}
 				case TokenType.CurlyL:
+					curlyLCount++;
 					curlyDepth++;
 					break;
 				case TokenType.CurlyR:
 					curlyDepth--;
+					// End of at-rule, consume CurlyR and return node
+					if (curlyLCount > 0 && curlyDepth === 0) {
+						this.consumeToken();
+
+						if (bracketsDepth > 0) {
+							return this.finish(node, ParseError.RightSquareBracketExpected);
+						} else if (parensDepth > 0) {
+							return this.finish(node, ParseError.RightParenthesisExpected);
+						}
+						break done;
+					}
 					if (curlyDepth < 0) {
 						// The property value has been terminated without a semicolon, and
 						// this is the last declaration in the ruleset.
