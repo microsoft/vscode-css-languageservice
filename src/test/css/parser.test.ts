@@ -90,6 +90,16 @@ suite('CSS - Parser', () => {
 		assertError('@unknown-rule (foo) { .bar {}', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
 	});
 
+	test('stylesheet - unknown rules node ends properly. Microsoft/vscode#53159', function () {
+		let parser = new Parser();
+		const node = assertNode('@unknown-rule (foo) {} .foo {}', parser, parser._parseStylesheet.bind(parser));
+
+		const unknownAtRule = node.getChild(0);
+		assert.equal(unknownAtRule.type, nodes.NodeType.UnknownAtRule);
+		assert.equal(unknownAtRule.offset, 0);
+		assert.equal(node.getChild(0).length, 13);
+	});
+
 	test('stylesheet /panic/', function () {
 		let parser = new Parser();
 		assertError('#boo, far } \n.far boo {}', parser, parser._parseStylesheet.bind(parser), ParseError.LeftCurlyExpected);
