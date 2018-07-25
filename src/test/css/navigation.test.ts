@@ -11,8 +11,8 @@ import { Parser } from '../../parser/cssParser';
 import { CSSNavigation } from '../../services/cssNavigation';
 import { colorFrom256RGB, colorFromHSL } from '../../services/languageFacts';
 
-import { TextDocument, DocumentHighlightKind, Range, Position, TextEdit } from 'vscode-languageserver-types';
-import { ColorInformation, getCSSLanguageService, LanguageService, ColorPresentation, Color } from '../../cssLanguageService';
+import { TextDocument, DocumentHighlightKind, Range, Position, TextEdit, Color, ColorInformation } from 'vscode-languageserver-types';
+import { getCSSLanguageService, LanguageService } from '../../cssLanguageService';
 
 export function assertScopesAndSymbols(p: Parser, input: string, expected: string): void {
 	let global = createScope(p, input);

@@ -1,10 +1,6 @@
-3.0.10 / TBA
+3.0.9 / 2018-07-25
 ==================
   * Use MDN data for to enhance CSS properties definition. See [#91](https://github.com/Microsoft/vscode-css-languageservice/pull/91).
-  * Improved folding range calculation.
-
-3.0.9 / 2018-03-08
-==================
   * New API `LanguageService.getFoldingRanges` returning folding ranges in the given document.
 
 3.0.8 / 2018-03-08

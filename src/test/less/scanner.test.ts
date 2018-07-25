@@ -6,8 +6,8 @@
 'use strict';
 
 import * as assert from 'assert';
-import {Scanner, TokenType} from '../../parser/cssScanner';
-import {LESSScanner} from '../../parser/lessScanner';
+import { TokenType } from '../../parser/cssScanner';
+import { LESSScanner } from '../../parser/lessScanner';
 
 function assertSingleToken(source: string, len: number, offset: number, text: string, type: TokenType): void {
 	let scan = new LESSScanner();

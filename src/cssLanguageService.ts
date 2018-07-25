@@ -5,8 +5,8 @@
 'use strict';
 
 import {
-	TextDocument, Position, CompletionList, Hover, Range, SymbolInformation, Diagnostic,
-	Location, DocumentHighlight, CodeActionContext, Command, WorkspaceEdit, TextEdit
+	TextDocument, Position, CompletionList, Hover, Range, SymbolInformation, Diagnostic, Location, DocumentHighlight,
+	CodeActionContext, Command, WorkspaceEdit, Color, ColorInformation, ColorPresentation, FoldingRange
 } from 'vscode-languageserver-types';
 
 import { Parser } from './parser/cssParser';
@@ -21,15 +21,11 @@ import { SCSSCompletion } from './services/scssCompletion';
 import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
 import { getFoldingRanges } from './services/cssFolding';
-import {
-	LintSettings, LanguageSettings,
-	ICompletionParticipant, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext,
-	ColorInformation, Color, ColorPresentation,
-	FoldingRange
-} from './cssLanguageTypes';
+import { LanguageSettings, ICompletionParticipant } from './cssLanguageTypes';
 
 export type Stylesheet = {};
 export * from './cssLanguageTypes';
+export * from 'vscode-languageserver-types';
 
 export interface LanguageService {
 	configure(raw: LanguageSettings): void;

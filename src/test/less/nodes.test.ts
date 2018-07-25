@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import {assertNodes} from '../css/nodes.test';
+import { assertNodes } from '../css/nodes.test';
 import * as nodes from '../../parser/cssNodes';
-import {LESSParser} from '../../parser/lessParser';
+import { LESSParser } from '../../parser/lessParser';
 
 suite('LESS - Nodes', () => {
 

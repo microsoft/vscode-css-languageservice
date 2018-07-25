@@ -7,7 +7,7 @@
 import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
-import { CompletionList, TextDocument, TextEdit, Position, CompletionItemKind, InsertTextFormat, Range } from 'vscode-languageserver-types';
+import { CompletionList, TextDocument, Position, CompletionItemKind, InsertTextFormat, Range } from 'vscode-languageserver-types';
 
 export interface ItemDescription {
 	label: string;

@@ -5,9 +5,7 @@
 
 'use strict';
 
-import * as assert from 'assert';
 import { SCSSParser } from '../../parser/scssParser';
-import * as nodes from '../../parser/cssNodes';
 import { ParseError } from '../../parser/cssErrors';
 import { SCSSParseError } from '../../parser/scssErrors';
 

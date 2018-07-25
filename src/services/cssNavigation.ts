@@ -7,13 +7,12 @@
 import * as nodes from '../parser/cssNodes';
 import {
 	TextDocument, Range, Position, Location, DocumentHighlightKind, DocumentHighlight,
-	SymbolInformation, SymbolKind, WorkspaceEdit, TextEdit, TextDocumentEdit
+	SymbolInformation, SymbolKind, WorkspaceEdit, TextEdit, ColorInformation, ColorPresentation, Color
 } from 'vscode-languageserver-types';
 import { Symbols } from '../parser/cssSymbolScope';
 import { getColorValue, hslFromColor } from '../services/languageFacts';
 
 import * as nls from 'vscode-nls';
-import { ColorInformation, ColorPresentation, Color } from '../cssLanguageTypes';
 
 const localize = nls.loadMessageBundle();
 
@@ -164,7 +163,7 @@ export class CSSNavigation {
 			label = `hsla(${hsl.h}, ${Math.round(hsl.s * 100)}%, ${Math.round(hsl.l * 100)}%, ${hsl.a})`;
 		}
 		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
-		
+
 		return result;
 	}
 

@@ -5,11 +5,10 @@
 'use strict';
 
 import * as assert from 'assert';
-import {Parser} from '../../parser/cssParser';
+import { Parser } from '../../parser/cssParser';
 import * as nodes from '../../parser/cssNodes';
 import * as selectorPrinter from '../../services/selectorPrinting';
-import {TextDocument} from 'vscode-languageserver-types';
-import {MarkedString} from 'vscode-languageserver-types';
+import { TextDocument, MarkedString } from 'vscode-languageserver-types';
 
 function elementToString(element: selectorPrinter.Element): string {
 	let label = element.findAttribute('name') || '';
@@ -48,7 +47,7 @@ function doParse(p: Parser, input: string, selectorName: string): nodes.Selector
 	let styleSheet = p.parseStylesheet(document);
 
 	let node = nodes.getNodeAtOffset(styleSheet, input.indexOf(selectorName));
-	return <nodes.Selector> node.findParent(nodes.NodeType.Selector);
+	return <nodes.Selector>node.findParent(nodes.NodeType.Selector);
 }
 
 export function parseSelector(p: Parser, input: string, selectorName: string, expected: string): void {
@@ -114,7 +113,7 @@ suite('CSS - Selector Printing', () => {
 	test('escaping', function () {
 		let p = new Parser();
 		parseSelector(p, '#\\34 04-error { }', '#\\34 04-error', '{[id=404-error]}');
-		
+
 	});
 });
 
@@ -136,8 +135,8 @@ suite('CSS - MarkedStringPrinter selectors', () => {
 	});
 	test('sibling selector', function () {
 		let p = new Parser();
-		parseSelectorToMarkedString(p, 'e1 + e2 { }', 'e2', [ { language: 'html', value: '<e1>\n<e2>' } ]);
-		parseSelectorToMarkedString(p, 'e1 ~ e2 { }', 'e2', [ { language: 'html', value: '<e1>\n<e2>\n⋮\n<e2>' } ]);
+		parseSelectorToMarkedString(p, 'e1 + e2 { }', 'e2', [{ language: 'html', value: '<e1>\n<e2>' }]);
+		parseSelectorToMarkedString(p, 'e1 ~ e2 { }', 'e2', [{ language: 'html', value: '<e1>\n<e2>\n⋮\n<e2>' }]);
 	});
 
 });

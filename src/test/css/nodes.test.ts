@@ -6,7 +6,7 @@
 
 import * as assert from 'assert';
 import * as nodes from '../../parser/cssNodes';
-import {Parser} from '../../parser/cssParser';
+import { Parser } from '../../parser/cssParser';
 
 export class PrintingVisitor implements nodes.IVisitor {
 

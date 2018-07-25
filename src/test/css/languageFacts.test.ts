@@ -8,8 +8,7 @@ import * as assert from 'assert';
 import { isColorValue, getColorValue, getBrowserLabel, getProperties, colorFrom256RGB, colorFromHex, hexDigit, hslFromColor, HSLA } from '../../services/languageFacts';
 import { Parser } from '../../parser/cssParser';
 import * as nodes from '../../parser/cssNodes';
-import { TextDocument } from 'vscode-languageserver-types';
-import { Color } from '../../cssLanguageTypes';
+import { TextDocument, Color } from 'vscode-languageserver-types';
 
 export function assertColor(parser: Parser, text: string, selection: string, expected: Color, isColor = expected !== null): void {
 	let document = TextDocument.create('test://test/test.css', 'css', 0, text);

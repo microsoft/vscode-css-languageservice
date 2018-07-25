@@ -6,9 +6,9 @@
 
 import * as nodes from '../parser/cssNodes';
 import * as languageFacts from './languageFacts';
-import {difference} from '../utils/strings';
-import {Rules} from '../services/lintRules';
-import {TextDocument, Range, CodeActionContext, Diagnostic, Command, TextEdit} from 'vscode-languageserver-types';
+import { difference } from '../utils/strings';
+import { Rules } from '../services/lintRules';
+import { TextDocument, Range, CodeActionContext, Diagnostic, Command, TextEdit } from 'vscode-languageserver-types';
 
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();

@@ -6,9 +6,8 @@
 'use strict';
 
 import * as assert from 'assert';
-import { TextDocument } from 'vscode-languageserver-types';
+import { TextDocument, FoldingRange, FoldingRangeKind } from 'vscode-languageserver-types';
 import { getFoldingRanges } from '../../services/cssFolding';
-import { FoldingRange, FoldingRangeKind } from '../../cssLanguageTypes';
 
 function assertRanges(lines: string[], expected: FoldingRange[], languageId = 'css', rangeLimit = null): void {
 	const document = TextDocument.create(`test://foo/bar.${languageId}`, languageId, 1, lines.join('\n'));
@@ -276,14 +275,14 @@ suite('CSS Folding - No intersections and always choose first region', () => {
 			/*5*/'}',
 		];
 		assertRanges(input, [r(0, 3, 'region')]);
-	});	
+	});
 
 	test('declaration intersecting with region', () => {
 		const input = [
 			/*0*/'.bar {',
 			/*1*/'/* #region */',
 			/*2*/'  color: red;',
-			/*3*/'}',			
+			/*3*/'}',
 			/*4*/'/* #endregion */',
 		];
 		assertRanges(input, [r(0, 2)]);

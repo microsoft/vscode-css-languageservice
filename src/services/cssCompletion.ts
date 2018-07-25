@@ -8,7 +8,6 @@ import * as nodes from '../parser/cssNodes';
 import { Symbols, Symbol } from '../parser/cssSymbolScope';
 import * as languageFacts from './languageFacts';
 import * as strings from '../utils/strings';
-import { findFirst } from '../utils/arrays';
 import { TextDocument, Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat } from 'vscode-languageserver-types';
 import { ICompletionParticipant } from '../cssLanguageTypes';
 
@@ -99,7 +98,7 @@ export class CSSCompletion {
 					this.getCompletionForUriLiteralValue(node, result);
 				} else if (node.parent === null) {
 					this.getCompletionForTopLevel(result);
-				// } else if (node instanceof nodes.Variable) {
+					// } else if (node instanceof nodes.Variable) {
 					// this.getCompletionsForVariableDeclaration()
 				} else {
 					continue;

@@ -7,10 +7,9 @@
 import * as assert from 'assert';
 
 import * as cssLanguageService from '../../cssLanguageService';
-import {LESSCompletion} from '../../services/lessCompletion';
-import * as nodes from '../../parser/cssNodes';
-import {TextDocument, Position} from 'vscode-languageserver-types';
-import {assertCompletion, ItemDescription} from '../css/completion.test';
+import { LESSCompletion } from '../../services/lessCompletion';
+import { TextDocument, Position } from 'vscode-languageserver-types';
+import { assertCompletion, ItemDescription } from '../css/completion.test';
 
 
 suite('LESS - Completions', () => {
@@ -79,12 +78,12 @@ suite('LESS - Completions', () => {
 				{ label: 'darken' },
 				{ label: 'desaturate' }
 			]
-		});		
+		});
 		testCompletionFor('.btn-group { .btn:| }', {
 			items: [
 				{ label: '::after', resultText: '.btn-group { .btn::after }' }
 			]
-		});		
+		});
 		testCompletionFor('.foo { &:|', {
 			items: [
 				{ label: ':last-of-type', resultText: '.foo { &:last-of-type' }
@@ -94,6 +93,6 @@ suite('LESS - Completions', () => {
 			items: [
 				{ label: ':last-of-type', resultText: '.foo { &:last-of-type' }
 			]
-		});			
+		});
 	});
 });

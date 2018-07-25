@@ -8,8 +8,7 @@ import * as nodes from '../parser/cssNodes';
 import * as browsers from '../data/browsers';
 
 import * as nls from 'vscode-nls';
-import { Color } from '../cssLanguageTypes';
-import { endsWith } from '../utils/strings';
+import { Color } from 'vscode-languageserver-types';
 const localize = nls.loadMessageBundle();
 
 export let colors: { [name: string]: string } = {

@@ -4,10 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as assert from 'assert';
-import { Parser } from '../../parser/cssParser';
-import { TokenType } from '../../parser/cssScanner';
-import * as nodes from '../../parser/cssNodes';
 import { ParseError } from '../../parser/cssErrors';
 import { LESSParser } from '../../parser/lessParser';
 

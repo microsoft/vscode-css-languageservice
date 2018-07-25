@@ -6,8 +6,8 @@
 
 import * as nodes from '../parser/cssNodes';
 import * as languageFacts from './languageFacts';
-import {TextDocument, Range, Position, Hover, MarkedString} from 'vscode-languageserver-types';
-import {selectorToMarkedString, simpleSelectorToMarkedString} from './selectorPrinting';
+import { TextDocument, Range, Position, Hover, MarkedString } from 'vscode-languageserver-types';
+import { selectorToMarkedString, simpleSelectorToMarkedString } from './selectorPrinting';
 
 export class CSSHover {
 
@@ -41,7 +41,7 @@ export class CSSHover {
 				let propertyName = node.getFullPropertyName();
 				let entry = languageFacts.getProperties()[propertyName];
 				if (entry) {
-					let contents : MarkedString[] = [];
+					let contents: MarkedString[] = [];
 					if (entry.description) {
 						contents.push(MarkedString.fromPlainText(entry.description));
 					}
