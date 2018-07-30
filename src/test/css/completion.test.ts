@@ -473,6 +473,15 @@ suite('CSS - Completion', () => {
 			}
 		});
 	});
+
+	test('Property completeness', function (): any {
+		testCompletionFor('html { text-decoration:|', {
+			items: [
+				{ label: 'none' }
+			]
+		});
+	});
+
 });
 
 function newRange(start: number, end: number) {

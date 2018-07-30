@@ -9647,6 +9647,9 @@ export const data : any = {
 					},
 					{
 						name: "wavy"
+					},
+					{
+						name: "none"
 					}
 				],
 				"syntax": "<'text-decoration-line'> || <'text-decoration-style'> || <'text-decoration-color'>"
