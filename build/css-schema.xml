@@ -637,7 +637,7 @@
 				</value>
 				<value name="flex-end" version="3.0" browsers="all">
 					<desc>"Flex items are packed toward the end of the line."</desc>
-					</value>
+				</value>
 				<value name="flex-start" version="3.0" browsers="all">
 					<desc>"Flex items are packed toward the start of the line."</desc>
 				</value>
