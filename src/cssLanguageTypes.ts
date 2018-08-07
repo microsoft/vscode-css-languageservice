@@ -32,8 +32,15 @@ export interface URILiteralCompletionContext {
 	range: Range;
 }
 
+export interface ImportPathCompletionContext {
+	pathValue: string;
+	position: Position;
+	range: Range;
+}
+
 export interface ICompletionParticipant {
 	onCssProperty?: (context: PropertyCompletionContext) => void;
 	onCssPropertyValue?: (context: PropertyValueCompletionContext) => void;
 	onCssURILiteralValue?: (context: URILiteralCompletionContext) => void;
+	onCssImportPath?: (context: ImportPathCompletionContext) => void;
 }
