@@ -910,7 +910,7 @@ export const data : any = {
 			},
 			{
 				name: "justify-items",
-				desc: "Defines the default justify-self for all items of the box, given them the default way of justifying each box along the appropriate axi",
+				desc: "Defines the default justify-self for all items of the box, giving them the default way of justifying each box along the appropriate axis",
 				browsers: "FF45",
 				restriction: "enum",
 				values: [
