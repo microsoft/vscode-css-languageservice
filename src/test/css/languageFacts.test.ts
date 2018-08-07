@@ -68,9 +68,9 @@ suite('CSS - Language Facts', () => {
 		assert.equal(b['FF'], '49');
 		assert.equal(b['E'], '12');
 		assert.equal(b['C'], '47');
-		assert.equal(b['count'], 4);
+		assert.equal(b['count'], 5);
 
-		assert.equal(getBrowserLabel(alignLast.browsers), 'Edge 12, Firefox 49, Chrome 47, Opera');
+		assert.equal(getBrowserLabel(alignLast.browsers), 'Edge 12, Firefox 49, Chrome 47, IE, Opera');
 
 		let r = alignLast.restrictions;
 
