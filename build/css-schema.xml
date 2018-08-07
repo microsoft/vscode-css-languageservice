@@ -578,7 +578,7 @@
 			</values>
 		</entry>
 		<entry name="justify-items" restriction="enum" version="3.0" browsers="FF45" ref="https://www.w3.org/TR/css-grid-1/#row-align">
-			<desc>Defines the default justify-self for all items of the box, given them the default way of justifying each box along the appropriate axi</desc>
+			<desc>Defines the default justify-self for all items of the box, giving them the default way of justifying each box along the appropriate axis</desc>
 			<values>
 				<value name="auto" version="3.0" browsers="all">
 				</value>
