@@ -487,7 +487,7 @@ export const data : any = {
 			{
 				name: ":defined",
 				desc: "The :defined CSS pseudo-class represents any element that has been defined. This includes any standard element built in to the browser, and custom elements that have been successfully defined (i.e. with the CustomElementRegistry.define() method).",
-				browsers: "S,C,O"
+				browsers: "FF63,S,C,O"
 			},
 			{
 				name: ":dir",
@@ -496,7 +496,8 @@ export const data : any = {
 			},
 			{
 				name: ":focus-visible",
-				desc: "The :focus-visible pseudo-class applies while an element matches the :focus pseudo-class and the UA determines via heuristics that the focus should be made evident on the element."
+				desc: "The :focus-visible pseudo-class applies while an element matches the :focus pseudo-class and the UA determines via heuristics that the focus should be made evident on the element.",
+				browsers: "C67"
 			},
 			{
 				name: ":focus-within",
@@ -506,7 +507,7 @@ export const data : any = {
 			{
 				name: ":placeholder-shown",
 				desc: "The :placeholder-shown CSS pseudo-class represents any <input> or <textarea> element that is currently displaying placeholder text.",
-				browsers: "FF51,S9,C47,O34"
+				browsers: "FF51,S9,C47,IE10,O34"
 			}
 		],
 		"pseudoelements": [
@@ -825,7 +826,12 @@ export const data : any = {
 			{
 				name: "::placeholder",
 				desc: "The ::placeholder CSS pseudo-element represents the placeholder text of a form element.",
-				browsers: "all"
+				browsers: "E,FF51,S10.1,C57,O44"
+			},
+			{
+				name: "::slotted",
+				desc: "The :slotted() CSS pseudo-element represents any element that has been placed into a slot inside an HTML template.",
+				browsers: "FF59,S,C50,O37"
 			},
 			{
 				name: "::spelling-error",
@@ -843,7 +849,7 @@ export const data : any = {
 			{
 				name: "align-content",
 				desc: "Aligns a flex container’s lines within the flex container when there is extra space in the cross-axis, similar to how 'justify-content' aligns individual items within the main-axis.",
-				browsers: "all",
+				browsers: "E,C29,FF22,IE11,O12.1,S9",
 				restriction: "enum",
 				values: [
 					{
@@ -905,7 +911,7 @@ export const data : any = {
 			{
 				name: "justify-items",
 				desc: "Defines the default justify-self for all items of the box, given them the default way of justifying each box along the appropriate axi",
-				browsers: "E16,FF45",
+				browsers: "FF45",
 				restriction: "enum",
 				values: [
 					{
@@ -972,7 +978,7 @@ export const data : any = {
 			{
 				name: "justify-self",
 				desc: "Defines the way of justifying a box inside its container along the appropriate axis.",
-				browsers: "E16,FF45",
+				browsers: "E16,FF45,S10.1,C57,O44",
 				restriction: "enum",
 				values: [
 					{
@@ -1036,7 +1042,7 @@ export const data : any = {
 			{
 				name: "align-self",
 				desc: "Allows the default alignment along the cross axis to be overridden for individual flex items.",
-				browsers: "E12,FF20,C36,IE11,O12.1",
+				browsers: "E,C29,FF22,IE11,O12.1,S9",
 				restriction: "enum",
 				values: [
 					{
@@ -1260,6 +1266,10 @@ export const data : any = {
 					{
 						name: "local",
 						desc: "The background is fixed with regard to the element's contents: if the element has a scrolling mechanism, the background scrolls with the element's contents."
+					},
+					{
+						name: "none",
+						desc: "A value of 'none' counts as an image layer but draws nothing."
 					},
 					{
 						name: "scroll",
@@ -1944,6 +1954,10 @@ export const data : any = {
 				values: [
 					{
 						name: "inset"
+					},
+					{
+						name: "none",
+						desc: "No shadow."
 					}
 				],
 				"syntax": "none | <shadow>#"
@@ -2813,6 +2827,10 @@ export const data : any = {
 					{
 						name: "url()",
 						desc: "A URL reference to a paint server element, which is an element that defines a paint server: ‘hatch’, ‘linearGradient’, ‘mesh’, ‘pattern’, ‘radialGradient’ and ‘solidcolor’."
+					},
+					{
+						name: "none",
+						desc: "No paint is applied in this layer."
 					}
 				]
 			},
@@ -4195,7 +4213,7 @@ export const data : any = {
 			},
 			{
 				name: "grid-column-gap",
-				desc: "Specifies the gutters between grid columns.",
+				desc: "Specifies the gutters between grid columns. Replaced by 'column-gap' property.",
 				browsers: "FF52,C57,S10.1,O44",
 				restriction: "length",
 				"status": "o",
@@ -4219,7 +4237,7 @@ export const data : any = {
 			},
 			{
 				name: "grid-gap",
-				desc: "Shorthand that specifies the gutters between grid columns and grid rows in one declaration.",
+				desc: "Shorthand that specifies the gutters between grid columns and grid rows in one declaration. Replaced by 'gap' property.",
 				browsers: "FF52,C57,S10.1,O44",
 				restriction: "length",
 				"status": "o",
@@ -4259,7 +4277,7 @@ export const data : any = {
 			},
 			{
 				name: "grid-row-gap",
-				desc: "Specifies the gutters between grid rows.",
+				desc: "Specifies the gutters between grid rows. Replaced by 'row-gap' property.",
 				browsers: "FF52,C57,S10.1,O44",
 				restriction: "length",
 				"status": "o",
@@ -4554,7 +4572,7 @@ export const data : any = {
 			{
 				name: "justify-content",
 				desc: "Aligns flex items along the main axis of the current line of the flex container.",
-				browsers: "all",
+				browsers: "E,C29,FF22,IE11,O12.1,S9",
 				restriction: "enum",
 				values: [
 					{
@@ -7246,7 +7264,7 @@ export const data : any = {
 			{
 				name: "-ms-scrollbar-3dlight-color",
 				desc: "Determines the color of the top and left edges of the scroll box and scroll arrows of a scroll bar.",
-				browsers: "IE8",
+				browsers: "IE5",
 				restriction: "color",
 				"status": "n",
 				"syntax": "<color>"
@@ -7254,7 +7272,7 @@ export const data : any = {
 			{
 				name: "-ms-scrollbar-arrow-color",
 				desc: "Determines the color of the arrow elements of a scroll arrow.",
-				browsers: "IE8",
+				browsers: "IE5",
 				restriction: "color",
 				"status": "n",
 				"syntax": "<color>"
@@ -7262,7 +7280,7 @@ export const data : any = {
 			{
 				name: "-ms-scrollbar-base-color",
 				desc: "Determines the color of the main elements of a scroll bar, which include the scroll box, track, and scroll arrows.",
-				browsers: "IE8",
+				browsers: "IE5",
 				restriction: "color",
 				"status": "n",
 				"syntax": "<color>"
@@ -7270,7 +7288,7 @@ export const data : any = {
 			{
 				name: "-ms-scrollbar-darkshadow-color",
 				desc: "Determines the color of the gutter of a scroll bar.",
-				browsers: "IE8",
+				browsers: "IE5",
 				restriction: "color",
 				"status": "n",
 				"syntax": "<color>"
@@ -7278,7 +7296,7 @@ export const data : any = {
 			{
 				name: "-ms-scrollbar-face-color",
 				desc: "Determines the color of the scroll box and scroll arrows of a scroll bar.",
-				browsers: "IE8",
+				browsers: "IE5",
 				restriction: "color",
 				"status": "n",
 				"syntax": "<color>"
@@ -7286,7 +7304,7 @@ export const data : any = {
 			{
 				name: "-ms-scrollbar-highlight-color",
 				desc: "Determines the color of the top and left edges of the scroll box and scroll arrows of a scroll bar.",
-				browsers: "IE8",
+				browsers: "IE5",
 				restriction: "color",
 				"status": "n",
 				"syntax": "<color>"
@@ -7294,7 +7312,7 @@ export const data : any = {
 			{
 				name: "-ms-scrollbar-shadow-color",
 				desc: "Determines the color of the bottom and right edges of the scroll box and scroll arrows of a scroll bar.",
-				browsers: "IE8",
+				browsers: "IE5",
 				restriction: "color",
 				"status": "n",
 				"syntax": "<color>"
@@ -7302,7 +7320,7 @@ export const data : any = {
 			{
 				name: "-ms-scrollbar-track-color",
 				desc: "Determines the color of the track element of a scroll bar.",
-				browsers: "IE8",
+				browsers: "IE5",
 				restriction: "color",
 				"status": "n",
 				"syntax": "<color>"
@@ -8643,7 +8661,7 @@ export const data : any = {
 			{
 				name: "overflow-wrap",
 				desc: "Specifies whether the UA may break within a word to prevent overflow when an otherwise-unbreakable string is too long to fit within the line box.",
-				browsers: "FF49,S,C,IE5.5,O",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -9306,21 +9324,21 @@ export const data : any = {
 			{
 				name: "shape-image-threshold",
 				desc: "Defines the alpha channel threshold used to extract the shape using an image. A value of 0.5 means that the shape will enclose all the pixels that are more than 50% opaque.",
-				browsers: "FF61,S10.1,C37,O24",
+				browsers: "FF62,S10.1,C37,O24",
 				restriction: "number",
 				"syntax": "<number>"
 			},
 			{
 				name: "shape-margin",
 				desc: "Adds a margin to a 'shape-outside'. This defines a new shape that is the smallest contour that includes all the points that are the 'shape-margin' distance outward in the perpendicular direction from a point on the underlying shape.",
-				browsers: "FF61,S10.1,C37,O24",
+				browsers: "FF62,S10.1,C37,O24",
 				restriction: "url, length, percentage",
 				"syntax": "<length-percentage>"
 			},
 			{
 				name: "shape-outside",
 				desc: "Specifies an orthogonal rotation to be applied to an image before it is laid out.",
-				browsers: "FF61,S10.1,C37,O24",
+				browsers: "FF62,S10.1,C37,O24",
 				restriction: "image, box, shape, enum",
 				values: [
 					{
@@ -9396,6 +9414,10 @@ export const data : any = {
 					{
 						name: "url()",
 						desc: "A URL reference to a paint server element, which is an element that defines a paint server: ‘hatch’, ‘linearGradient’, ‘mesh’, ‘pattern’, ‘radialGradient’ and ‘solidcolor’."
+					},
+					{
+						name: "none",
+						desc: "No paint is applied in this layer."
 					}
 				]
 			},
@@ -9573,7 +9595,7 @@ export const data : any = {
 			{
 				name: "text-align-last",
 				desc: "Describes how the last line of a block or a line right before a forced line break is aligned when 'text-align' is set to 'justify'.",
-				browsers: "E12,FF49,C47,O",
+				browsers: "E12,FF49,C47,IE,O",
 				restriction: "enum",
 				values: [
 					{
@@ -9637,6 +9659,10 @@ export const data : any = {
 						name: "line-through"
 					},
 					{
+						name: "none",
+						desc: "Produces no line."
+					},
+					{
 						name: "overline"
 					},
 					{
@@ -9647,9 +9673,6 @@ export const data : any = {
 					},
 					{
 						name: "wavy"
-					},
-					{
-						name: "none"
 					}
 				],
 				"syntax": "<'text-decoration-line'> || <'text-decoration-style'> || <'text-decoration-color'>"
@@ -9817,7 +9840,12 @@ export const data : any = {
 				desc: "Enables shadow effects to be applied to the text of the element.",
 				browsers: "all",
 				restriction: "length, color",
-				values: [],
+				values: [
+					{
+						name: "none",
+						desc: "No shadow."
+					}
+				],
 				"syntax": "none | <shadow-t>#"
 			},
 			{
@@ -12115,7 +12143,7 @@ export const data : any = {
 			{
 				name: "zoom",
 				desc: "Non-standard. Specifies the magnification scale of the object. See 'transform: scale()' for a standards-based alternative.",
-				browsers: "E,C,IE6,O15,S4",
+				browsers: "E12,S4,C,IE5.5,O15",
 				restriction: "enum, integer, number, percentage",
 				values: [
 					{
@@ -12358,7 +12386,7 @@ export const data : any = {
 				restriction: "none",
 				"status": "e",
 				"syntax": "none | <filter-function-list>",
-				browsers: "E17,S9,C47"
+				browsers: "E17,S9,C47,O34"
 			},
 			{
 				name: "block-overflow",
@@ -12431,21 +12459,22 @@ export const data : any = {
 				name: "color-adjust",
 				desc: "The color-adjust property is a non-standard CSS extension that can be used to force printing of background colors and images in browsers based on the WebKit engine.",
 				restriction: "none",
-				"syntax": "economy | exact"
+				"syntax": "economy | exact",
+				browsers: "FF48,S6,C49,O15"
 			},
 			{
 				name: "font-optical-sizing",
 				desc: "",
 				restriction: "none",
 				"syntax": "auto | none",
-				browsers: "FF61"
+				browsers: "FF62"
 			},
 			{
 				name: "font-variation-settings",
 				desc: "The font-variation-settings CSS property provides low-level control over OpenType or TrueType font variations, by specifying the four letter axis names of the features you want to vary, along with their variation values.",
 				restriction: "none",
 				"syntax": "normal | [ <string> <number> ]#",
-				browsers: "FF61,S11,C62,O49"
+				browsers: "FF62,S11,C62,O49"
 			},
 			{
 				name: "gap",
@@ -12675,8 +12704,7 @@ export const data : any = {
 				name: "place-content",
 				desc: "The place-content CSS shorthand property sets both the align-content and justify-content properties.",
 				restriction: "none",
-				"syntax": "<'align-content'> <'justify-content'>?",
-				browsers: "FF,C59,O"
+				"syntax": "<'align-content'> <'justify-content'>?"
 			},
 			{
 				name: "rotate",

@@ -122,6 +122,7 @@ module.exports ={
     '::-webkit-progress-inner-value': 'The ::-webkit-progress-value CSS pseudo-element represents the filled-in portion of the bar of a <progress> element. It is a child of the ::-webkit-progress-bar pseudo-element.\n\nIn order to let ::-webkit-progress-value take effect, -webkit-appearance needs to be set to none on the <progress> element.',
     '::grammar-error': 'The ::grammar-error CSS pseudo-element represents a text segment which the user agent has flagged as grammatically incorrect.',
     '::placeholder': 'The ::placeholder CSS pseudo-element represents the placeholder text of a form element.',
-    '::spelling-error': 'The ::spelling-error CSS pseudo-element represents a text segment which the user agent has flagged as incorrectly spelled.'
+    '::spelling-error': 'The ::spelling-error CSS pseudo-element represents a text segment which the user agent has flagged as incorrectly spelled.',
+    '::slotted': 'The :slotted() CSS pseudo-element represents any element that has been placed into a slot inside an HTML template.'
   }
 }

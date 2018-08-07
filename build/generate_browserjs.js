@@ -253,6 +253,13 @@ function getValues(valArr, restriction, ruleName) {
         return false
       }
       if (typeof otherColorsCopy[v.name] === 'string') {
+        /**
+         * When property value is `none` and the restriction is not limited to color
+         * Relax the restriction and always add `none` to result
+         */
+        if (v.name === 'none' && restriction !== 'color') {
+          return true
+        }
         delete otherColorsCopy[v.name]
         return false
       }
