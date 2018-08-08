@@ -53,20 +53,22 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 
 suite('CSS - Completion', () => {
 
-	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[], participant?: { onProperty?, onPropertValue?, onURILiteralValue?} }) {
+	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[], participant?: { onProperty?, onPropertValue?, onURILiteralValue?, onImportPath? } }) {
 		let offset = value.indexOf('|');
 		value = value.substr(0, offset) + value.substr(offset + 1);
 
 		let actualPropertyContexts: { propertyName: string; range: Range; }[] = [];
 		let actualPropertyValueContexts: { propertyName: string; propertyValue?: string; range: Range; }[] = [];
 		let actualURILiteralValueContexts: { uriValue: string; position: Position; range: Range; }[] = [];
+		let actualImportPathContexts: { pathValue: string; position: Position; range: Range; }[] = [];
 
 		let ls = cssLanguageService.getCSSLanguageService();
 		if (expected.participant) {
 			ls.setCompletionParticipants([{
 				onCssProperty: context => actualPropertyContexts.push(context),
 				onCssPropertyValue: context => actualPropertyValueContexts.push(context),
-				onCssURILiteralValue: context => actualURILiteralValueContexts.push(context)
+				onCssURILiteralValue: context => actualURILiteralValueContexts.push(context),
+				onCssImportPath: context => actualImportPathContexts.push(context)
 			}]);
 		}
 
@@ -91,6 +93,9 @@ suite('CSS - Completion', () => {
 			}
 			if (expected.participant.onURILiteralValue) {
 				assert.deepEqual(actualURILiteralValueContexts, expected.participant.onURILiteralValue);
+			}
+			if (expected.participant.onImportPath) {
+				assert.deepEqual(actualImportPathContexts, expected.participant.onImportPath);
 			}
 		}
 	};
@@ -448,6 +453,7 @@ suite('CSS - Completion', () => {
 				onPropertValue: [{ propertyName: 'background-position', propertyValue: 't', range: newRange(28, 29) }]
 			}
 		});
+
 		testCompletionFor(`html { background-image: url(|)`, {
 			count: 0,
 			participant: {
@@ -470,6 +476,25 @@ suite('CSS - Completion', () => {
 			count: 0,
 			participant: {
 				onURILiteralValue: [{ uriValue: `"b"`, position: Position.create(0, 25), range: newRange(23, 26) }]
+			}
+		});
+
+		testCompletionFor(`@import './|'`, {
+			count: 0,
+			participant: {
+				onImportPath: [{ pathValue: `'./'`, position: Position.create(0, 11), range: newRange(8, 12)}]
+			}
+		});
+		testCompletionFor(`@import "./|";`, {
+			count: 0,
+			participant: {
+				onImportPath: [{ pathValue: `"./"`, position: Position.create(0, 11), range: newRange(8, 12)}]
+			}
+		});
+		testCompletionFor(`@import "./|foo";`, {
+			count: 0,
+			participant: {
+				onImportPath: [{ pathValue: `"./foo"`, position: Position.create(0, 11), range: newRange(8, 15)}]
 			}
 		});
 	});

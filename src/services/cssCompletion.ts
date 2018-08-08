@@ -96,6 +96,8 @@ export class CSSCompletion {
 					this.getCompletionsForExtendsReference(<nodes.ExtendsReference>node, null, result);
 				} else if (node.type === nodes.NodeType.URILiteral) {
 					this.getCompletionForUriLiteralValue(node, result);
+				} else if (node.type === nodes.NodeType.StringLiteral && node.parent.type === nodes.NodeType.Import) {
+					this.getCompletionForImportPath(node, result);
 				} else if (node.parent === null) {
 					this.getCompletionForTopLevel(result);
 					// } else if (node instanceof nodes.Variable) {
@@ -876,6 +878,19 @@ export class CSSCompletion {
 			}
 		});
 
+		return result;
+	}
+
+	public getCompletionForImportPath(importPathNode: nodes.Node, result: CompletionList): CompletionList {
+		this.completionParticipants.forEach(participant => {
+			if (participant.onCssImportPath) {
+				participant.onCssImportPath({
+					pathValue: importPathNode.getText(),
+					position: this.position,
+					range: this.getCompletionRange(importPathNode)
+				});
+			}
+		});
 		return result;
 	}
 }
