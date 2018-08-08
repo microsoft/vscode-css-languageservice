@@ -1,3 +1,7 @@
+next (3.0.10)
+==================
+  * New API `ICompletionParticipant.onCssImportPath` to participate on @import statement.
+
 3.0.9 / 2018-07-25
 ==================
   * Use MDN data for to enhance CSS properties definition. See [#91](https://github.com/Microsoft/vscode-css-languageservice/pull/91).
