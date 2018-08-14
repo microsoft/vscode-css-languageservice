@@ -5,14 +5,16 @@
 'use strict';
 
 import * as nodes from '../parser/cssNodes';
+import { resolve as resolveUrl } from 'url';
 import {
 	TextDocument, Range, Position, Location, DocumentHighlightKind, DocumentHighlight,
-	SymbolInformation, SymbolKind, WorkspaceEdit, TextEdit, ColorInformation, ColorPresentation, Color
+	SymbolInformation, SymbolKind, WorkspaceEdit, TextEdit, ColorInformation, ColorPresentation, Color, DocumentLink
 } from 'vscode-languageserver-types';
 import { Symbols } from '../parser/cssSymbolScope';
 import { getColorValue, hslFromColor } from '../services/languageFacts';
 
 import * as nls from 'vscode-nls';
+import { startsWith } from '../utils/strings';
 
 const localize = nls.loadMessageBundle();
 
@@ -78,6 +80,37 @@ export class CSSNavigation {
 					range: getRange(candidate, document)
 				});
 			}
+			return true;
+		});
+
+		return result;
+	}
+
+	public findDocumentLinks(document: TextDocument, stylesheet: nodes.Stylesheet): DocumentLink[] {
+		const result: DocumentLink[] = [];
+
+		stylesheet.accept(candidate => {
+			if (candidate.type === nodes.NodeType.URILiteral) {
+				const link = uriLiteralNodeToDocumentLink(document, candidate);
+				if (link) {
+					result.push(link);
+				}
+				return false;
+			}
+
+			/**
+			 * In @import, it is possible to include links that do not use `url()`
+			 * For example, `@import 'foo.css';`
+			 */
+			if (candidate.parent && candidate.parent.type === nodes.NodeType.Import) {
+				const rawText = candidate.getText();
+				if (startsWith(rawText, `'`) || startsWith(rawText, `"`)) {
+					result.push(uriStringNodeToDocumentLink(document, candidate));
+				}
+
+				return false;
+			}
+
 			return true;
 		});
 
@@ -184,6 +217,37 @@ function getColorInformation(node: nodes.Node, document: TextDocument): ColorInf
 		return { color, range };
 	}
 	return null;
+}
+
+function uriLiteralNodeToDocumentLink(document: TextDocument, uriLiteralNode: nodes.Node): DocumentLink {
+	if (uriLiteralNode.getChildren().length === 0) {
+		return null;
+	}
+
+	const uriStringNode = uriLiteralNode.getChild(0);
+
+	return uriStringNodeToDocumentLink(document, uriStringNode);
+}
+
+function uriStringNodeToDocumentLink(document: TextDocument, uriStringNode: nodes.Node) {
+	let rawUri = uriStringNode.getText();
+	const range = getRange(uriStringNode, document);
+	if (startsWith(rawUri, `'`) || startsWith(rawUri, `"`)) {
+		rawUri = rawUri.slice(1, -1);
+	}
+	let target: string;
+	if (startsWith(rawUri, 'http') || startsWith(rawUri, 'https')) {
+		target = rawUri;
+	} else if (/^\w+:\/\//g.test(rawUri)) {
+		target = rawUri;
+	}
+	else {
+		target = resolveUrl(document.uri, rawUri);
+	}
+	return {
+		range,
+		target
+	};
 }
 
 function getRange(node: nodes.Node, document: TextDocument): Range {
