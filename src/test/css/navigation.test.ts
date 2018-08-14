@@ -43,8 +43,8 @@ export function assertHighlights(p: Parser, input: string, marker: string, expec
 	assert.equal(nWrites, expectedWrites, input);
 }
 
-export function assertLinks(p: Parser, input: string, expected: DocumentLink[]) {
-	let document = TextDocument.create('test://test/test.css', 'css', 0, input);
+export function assertLinks(p: Parser, input: string, expected: DocumentLink[], lang: string = 'css') {
+	let document = TextDocument.create(`test://test/test.${lang}`, lang, 0, input);
 
 	let stylesheet = p.parseStylesheet(document);
 
@@ -69,7 +69,6 @@ export function assertColorPresentations(ls: LanguageService, color: Color, ...e
 	assert.deepEqual(result.map(r => r.label), expected);
 	assert.deepEqual(result.map(r => r.textEdit), expected.map(l => TextEdit.replace(range, l)));
 }
-
 
 export function assertSymbolsInScope(p: Parser, input: string, offset: number, ...selections: { name: string; type: nodes.ReferenceType }[]): void {
 
@@ -331,6 +330,6 @@ suite('CSS - Navigation', () => {
 	});
 });
 
-function newRange(start: number, end: number) {
+export function newRange(start: number, end: number) {
 	return Range.create(Position.create(0, start), Position.create(0, end));
 }

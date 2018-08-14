@@ -14,7 +14,7 @@ import { Symbols } from '../parser/cssSymbolScope';
 import { getColorValue, hslFromColor } from '../services/languageFacts';
 
 import * as nls from 'vscode-nls';
-import { startsWith } from '../utils/strings';
+import { startsWith, endsWith } from '../utils/strings';
 
 const localize = nls.loadMessageBundle();
 
@@ -236,13 +236,37 @@ function uriStringNodeToDocumentLink(document: TextDocument, uriStringNode: node
 		rawUri = rawUri.slice(1, -1);
 	}
 	let target: string;
-	if (startsWith(rawUri, 'http') || startsWith(rawUri, 'https')) {
+	if (startsWith(rawUri, 'http://') || startsWith(rawUri, 'https://')) {
 		target = rawUri;
 	} else if (/^\w+:\/\//g.test(rawUri)) {
 		target = rawUri;
 	}
 	else {
-		target = resolveUrl(document.uri, rawUri);
+		/**
+		 * In SCSS, @import 'foo' could be referring to `_foo.scss`, if none of the following is true:
+		 * - The file's extension is .css.
+		 * - The filename begins with http://.
+		 * - The filename is a url().
+		 * - The @import has any media queries.
+		 */
+		if (document.languageId === 'scss') {
+			if (
+				!endsWith(rawUri, '.css') &&
+				!startsWith(rawUri, 'http://') && !startsWith(rawUri, 'https://') &&
+				!(uriStringNode.parent && uriStringNode.parent.type === nodes.NodeType.URILiteral) &&
+				uriStringNode.parent.getChildren().length === 1
+			) {
+				if (endsWith(rawUri, '.scss')) {
+					target = resolveUrl(document.uri, `_${rawUri}`);
+				} else {
+					target = resolveUrl(document.uri, `_${rawUri}.scss`);
+				}
+			} else {
+				target = resolveUrl(document.uri, rawUri);
+			}
+		} else {
+			target = resolveUrl(document.uri, rawUri);
+		}
 	}
 	return {
 		range,
