@@ -74,16 +74,32 @@ suite('SCSS - Navigation', () => {
 
 	suite('Links', () => {
 
-		test('SCSS links', () => {
+		test('SCSS partial file links', () => {
 			const p = new SCSSParser();
 
 			assertLinks(p, `@import 'foo'`, [
 				{ range: newRange(8, 13), target: 'test://test/_foo.scss' }
 			], 'scss');
 
+			assertLinks(p, `@import './foo'`, [
+				{ range: newRange(8, 15), target: 'test://test/_foo.scss' }
+			], 'scss');
+
+			assertLinks(p, `@import './bar/foo'`, [
+				{ range: newRange(8, 19), target: 'test://test/bar/_foo.scss' }
+			], 'scss');
+
 			assertLinks(p, `@import 'foo.scss'`, [
 				{ range: newRange(8, 18), target: 'test://test/_foo.scss' }
 			], 'scss');
+
+			assertLinks(p, `@import './bar/foo.scss'`, [
+				{ range: newRange(8, 24), target: 'test://test/bar/_foo.scss' }
+			], 'scss');
+		});
+
+		test('SCSS straight links', () => {
+			const p = new SCSSParser();
 
 			assertLinks(p, `@import 'foo.css'`, [
 				{ range: newRange(8, 17), target: 'test://test/foo.css' }

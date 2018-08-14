@@ -256,11 +256,7 @@ function uriStringNodeToDocumentLink(document: TextDocument, uriStringNode: node
 				!(uriStringNode.parent && uriStringNode.parent.type === nodes.NodeType.URILiteral) &&
 				uriStringNode.parent.getChildren().length === 1
 			) {
-				if (endsWith(rawUri, '.scss')) {
-					target = resolveUrl(document.uri, `_${rawUri}`);
-				} else {
-					target = resolveUrl(document.uri, `_${rawUri}.scss`);
-				}
+				target = toScssPartialUri(resolveUrl(document.uri, rawUri));
 			} else {
 				target = resolveUrl(document.uri, rawUri);
 			}
@@ -272,6 +268,12 @@ function uriStringNodeToDocumentLink(document: TextDocument, uriStringNode: node
 		range,
 		target
 	};
+}
+
+function toScssPartialUri(uri: string): string {
+	return uri.replace(/\/(\w+)(.scss)?$/gm, (match, fileName) => {
+			return '/_' + fileName + '.scss';
+	});
 }
 
 function getRange(node: nodes.Node, document: TextDocument): Range {
