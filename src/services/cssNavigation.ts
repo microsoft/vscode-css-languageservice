@@ -4,17 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
+import { Color, ColorInformation, ColorPresentation, DocumentHighlight, DocumentHighlightKind, DocumentLink, Location, Position, Range, SymbolInformation, SymbolKind, TextDocument, TextEdit, WorkspaceEdit } from 'vscode-languageserver-types';
+import * as nls from 'vscode-nls';
+import { DocumentContext } from '../cssLanguageTypes';
 import * as nodes from '../parser/cssNodes';
-import { resolve as resolveUrl } from 'url';
-import {
-	TextDocument, Range, Position, Location, DocumentHighlightKind, DocumentHighlight,
-	SymbolInformation, SymbolKind, WorkspaceEdit, TextEdit, ColorInformation, ColorPresentation, Color, DocumentLink
-} from 'vscode-languageserver-types';
 import { Symbols } from '../parser/cssSymbolScope';
 import { getColorValue, hslFromColor } from '../services/languageFacts';
-
-import * as nls from 'vscode-nls';
-import { startsWith, endsWith } from '../utils/strings';
+import { endsWith, startsWith } from '../utils/strings';
 
 const localize = nls.loadMessageBundle();
 
@@ -86,12 +82,12 @@ export class CSSNavigation {
 		return result;
 	}
 
-	public findDocumentLinks(document: TextDocument, stylesheet: nodes.Stylesheet): DocumentLink[] {
+	public findDocumentLinks(document: TextDocument, stylesheet: nodes.Stylesheet, documentContext: DocumentContext): DocumentLink[] {
 		const result: DocumentLink[] = [];
 
 		stylesheet.accept(candidate => {
 			if (candidate.type === nodes.NodeType.URILiteral) {
-				const link = uriLiteralNodeToDocumentLink(document, candidate);
+				const link = uriLiteralNodeToDocumentLink(document, candidate, documentContext);
 				if (link) {
 					result.push(link);
 				}
@@ -105,7 +101,7 @@ export class CSSNavigation {
 			if (candidate.parent && candidate.parent.type === nodes.NodeType.Import) {
 				const rawText = candidate.getText();
 				if (startsWith(rawText, `'`) || startsWith(rawText, `"`)) {
-					result.push(uriStringNodeToDocumentLink(document, candidate));
+					result.push(uriStringNodeToDocumentLink(document, candidate, documentContext));
 				}
 
 				return false;
@@ -219,17 +215,17 @@ function getColorInformation(node: nodes.Node, document: TextDocument): ColorInf
 	return null;
 }
 
-function uriLiteralNodeToDocumentLink(document: TextDocument, uriLiteralNode: nodes.Node): DocumentLink {
+function uriLiteralNodeToDocumentLink(document: TextDocument, uriLiteralNode: nodes.Node, documentContext: DocumentContext): DocumentLink {
 	if (uriLiteralNode.getChildren().length === 0) {
 		return null;
 	}
 
 	const uriStringNode = uriLiteralNode.getChild(0);
 
-	return uriStringNodeToDocumentLink(document, uriStringNode);
+	return uriStringNodeToDocumentLink(document, uriStringNode, documentContext);
 }
 
-function uriStringNodeToDocumentLink(document: TextDocument, uriStringNode: nodes.Node) {
+function uriStringNodeToDocumentLink(document: TextDocument, uriStringNode: nodes.Node, documentContext: DocumentContext) {
 	let rawUri = uriStringNode.getText();
 	const range = getRange(uriStringNode, document);
 	if (startsWith(rawUri, `'`) || startsWith(rawUri, `"`)) {
@@ -256,12 +252,12 @@ function uriStringNodeToDocumentLink(document: TextDocument, uriStringNode: node
 				!(uriStringNode.parent && uriStringNode.parent.type === nodes.NodeType.URILiteral) &&
 				uriStringNode.parent.getChildren().length === 1
 			) {
-				target = toScssPartialUri(resolveUrl(document.uri, rawUri));
+				target = toScssPartialUri(documentContext.resolveReference(rawUri, document.uri));
 			} else {
-				target = resolveUrl(document.uri, rawUri);
+				target = documentContext.resolveReference(rawUri, document.uri);
 			}
 		} else {
-			target = resolveUrl(document.uri, rawUri);
+			target = documentContext.resolveReference(rawUri, document.uri);
 		}
 	}
 	return {

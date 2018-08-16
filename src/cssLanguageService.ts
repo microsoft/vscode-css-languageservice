@@ -21,7 +21,7 @@ import { SCSSCompletion } from './services/scssCompletion';
 import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
 import { getFoldingRanges } from './services/cssFolding';
-import { LanguageSettings, ICompletionParticipant } from './cssLanguageTypes';
+import { LanguageSettings, ICompletionParticipant, DocumentContext } from './cssLanguageTypes';
 
 export type Stylesheet = {};
 export * from './cssLanguageTypes';
@@ -37,7 +37,7 @@ export interface LanguageService {
 	findDefinition(document: TextDocument, position: Position, stylesheet: Stylesheet): Location | null;
 	findReferences(document: TextDocument, position: Position, stylesheet: Stylesheet): Location[];
 	findDocumentHighlights(document: TextDocument, position: Position, stylesheet: Stylesheet): DocumentHighlight[];
-	findDocumentLinks(document: TextDocument, stylesheet: Stylesheet): DocumentLink[];
+	findDocumentLinks(document: TextDocument, stylesheet: Stylesheet, documentContext: DocumentContext): DocumentLink[];
 	findDocumentSymbols(document: TextDocument, stylesheet: Stylesheet): SymbolInformation[];
 	doCodeActions(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: Stylesheet): Command[];
 	/** deprecated, use findDocumentColors instead */

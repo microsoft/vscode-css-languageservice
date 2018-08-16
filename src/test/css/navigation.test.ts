@@ -5,6 +5,7 @@
 'use strict';
 
 import * as assert from 'assert';
+import * as url from 'url';
 import { Scope, GlobalScope, ScopeBuilder } from '../../parser/cssSymbolScope';
 import * as nodes from '../../parser/cssNodes';
 import { Parser } from '../../parser/cssParser';
@@ -12,7 +13,7 @@ import { CSSNavigation } from '../../services/cssNavigation';
 import { colorFrom256RGB, colorFromHSL } from '../../services/languageFacts';
 
 import { TextDocument, DocumentHighlightKind, Range, Position, TextEdit, Color, ColorInformation, DocumentLink } from 'vscode-languageserver-types';
-import { getCSSLanguageService, LanguageService } from '../../cssLanguageService';
+import { getCSSLanguageService, LanguageService, DocumentContext } from '../../cssLanguageService';
 
 export function assertScopesAndSymbols(p: Parser, input: string, expected: string): void {
 	let global = createScope(p, input);
@@ -43,12 +44,20 @@ export function assertHighlights(p: Parser, input: string, marker: string, expec
 	assert.equal(nWrites, expectedWrites, input);
 }
 
+function getDocumentContext(documentUrl: string): DocumentContext {
+	return {
+		resolveReference: (ref, base = documentUrl) => {
+			return url.resolve(base, ref);
+		}
+	};
+}
+
 export function assertLinks(p: Parser, input: string, expected: DocumentLink[], lang: string = 'css') {
 	let document = TextDocument.create(`test://test/test.${lang}`, lang, 0, input);
 
 	let stylesheet = p.parseStylesheet(document);
 
-	let links = new CSSNavigation().findDocumentLinks(document, stylesheet);
+	let links = new CSSNavigation().findDocumentLinks(document, stylesheet, getDocumentContext(document.uri));
 	assert.deepEqual(links, expected);
 }
 
