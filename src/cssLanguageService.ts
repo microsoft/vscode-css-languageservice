@@ -6,7 +6,7 @@
 
 import {
 	TextDocument, Position, CompletionList, Hover, Range, SymbolInformation, Diagnostic, Location, DocumentHighlight,
-	CodeActionContext, Command, WorkspaceEdit, Color, ColorInformation, ColorPresentation, FoldingRange
+	CodeActionContext, Command, WorkspaceEdit, Color, ColorInformation, ColorPresentation, FoldingRange, CodeAction
 } from 'vscode-languageserver-types';
 
 import { Parser } from './parser/cssParser';
@@ -39,6 +39,7 @@ export interface LanguageService {
 	findDocumentHighlights(document: TextDocument, position: Position, stylesheet: Stylesheet): DocumentHighlight[];
 	findDocumentSymbols(document: TextDocument, stylesheet: Stylesheet): SymbolInformation[];
 	doCodeActions(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: Stylesheet): Command[];
+	doCodeActions2(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: Stylesheet): CodeAction[];
 	/** deprecated, use findDocumentColors instead */
 	findColorSymbols(document: TextDocument, stylesheet: Stylesheet): Range[];
 	findDocumentColors(document: TextDocument, stylesheet: Stylesheet): ColorInformation[];
@@ -60,6 +61,7 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 		findDocumentHighlights: navigation.findDocumentHighlights.bind(navigation),
 		findDocumentSymbols: navigation.findDocumentSymbols.bind(navigation),
 		doCodeActions: codeActions.doCodeActions.bind(codeActions),
+		doCodeActions2: codeActions.doCodeActions2.bind(codeActions),
 		findColorSymbols: (d, s) => navigation.findDocumentColors(d, s).map(s => s.range),
 		findDocumentColors: navigation.findDocumentColors.bind(navigation),
 		getColorPresentations: navigation.getColorPresentations.bind(navigation),
