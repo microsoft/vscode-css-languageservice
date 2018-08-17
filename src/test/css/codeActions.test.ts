@@ -7,7 +7,7 @@
 import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
-import { TextDocument, TextEdit, Range, Command } from 'vscode-languageserver-types';
+import { TextDocument, TextEdit, Range, Command, CodeAction } from 'vscode-languageserver-types';
 
 suite('CSS - Code Actions', () => {
 
@@ -25,8 +25,10 @@ suite('CSS - Code Actions', () => {
 
 		let diagnostics = ls.doValidation(document, styleSheet);
 		let commands = ls.doCodeActions(document, range, { diagnostics }, styleSheet);
-
 		assertCodeAction(commands, document, expected);
+
+		let codeActions = ls.doCodeActions2(document, range, { diagnostics }, styleSheet);
+		assertCodeAction2(codeActions, document, expected);
 	};
 
 	let assertCodeAction = function (commands: Command[], document: TextDocument, expected: { title: string; content: string; }[]) {
@@ -39,6 +41,20 @@ suite('CSS - Code Actions', () => {
 			assert.equal(TextDocument.applyEdits(document, <TextEdit[]>command.arguments[2]), exp.content);
 			assert.equal(command.arguments[0], document.uri);
 			assert.equal(command.arguments[1], document.version);
+		}
+	};
+
+	let assertCodeAction2 = function (codeActions: CodeAction[], document: TextDocument, expected: { title: string; content: string; }[]) {
+		let labels = codeActions.map(command => command.title);
+
+		for (let exp of expected) {
+			let index = labels.indexOf(exp.title);
+			assert.ok(index !== -1, 'Quick fix not found: ' + exp.title + ' , found:' + labels.join(','));
+			let codeAction = codeActions[index];
+			for (let uri in codeAction.edit.changes) {
+				assert.equal(document.uri, uri);
+				assert.equal(TextDocument.applyEdits(document, codeAction.edit.changes[uri]), exp.content);
+			}
 		}
 	};
 
