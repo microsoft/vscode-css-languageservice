@@ -6,7 +6,7 @@
 
 import {
 	TextDocument, Position, CompletionList, Hover, Range, SymbolInformation, Diagnostic, Location, DocumentHighlight,
-	CodeActionContext, Command, WorkspaceEdit, Color, ColorInformation, ColorPresentation, FoldingRange, CodeAction
+	CodeActionContext, Command, WorkspaceEdit, Color, ColorInformation, ColorPresentation, FoldingRange, CodeAction, DocumentLink
 } from 'vscode-languageserver-types';
 
 import { Parser } from './parser/cssParser';
@@ -21,7 +21,7 @@ import { SCSSCompletion } from './services/scssCompletion';
 import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
 import { getFoldingRanges } from './services/cssFolding';
-import { LanguageSettings, ICompletionParticipant } from './cssLanguageTypes';
+import { LanguageSettings, ICompletionParticipant, DocumentContext } from './cssLanguageTypes';
 
 export type Stylesheet = {};
 export * from './cssLanguageTypes';
@@ -37,6 +37,7 @@ export interface LanguageService {
 	findDefinition(document: TextDocument, position: Position, stylesheet: Stylesheet): Location | null;
 	findReferences(document: TextDocument, position: Position, stylesheet: Stylesheet): Location[];
 	findDocumentHighlights(document: TextDocument, position: Position, stylesheet: Stylesheet): DocumentHighlight[];
+	findDocumentLinks(document: TextDocument, stylesheet: Stylesheet, documentContext: DocumentContext): DocumentLink[];
 	findDocumentSymbols(document: TextDocument, stylesheet: Stylesheet): SymbolInformation[];
 	doCodeActions(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: Stylesheet): Command[];
 	doCodeActions2(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: Stylesheet): CodeAction[];
@@ -59,6 +60,7 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 		findDefinition: navigation.findDefinition.bind(navigation),
 		findReferences: navigation.findReferences.bind(navigation),
 		findDocumentHighlights: navigation.findDocumentHighlights.bind(navigation),
+		findDocumentLinks: navigation.findDocumentLinks.bind(navigation),
 		findDocumentSymbols: navigation.findDocumentSymbols.bind(navigation),
 		doCodeActions: codeActions.doCodeActions.bind(codeActions),
 		doCodeActions2: codeActions.doCodeActions2.bind(codeActions),

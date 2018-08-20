@@ -44,3 +44,7 @@ export interface ICompletionParticipant {
 	onCssURILiteralValue?: (context: URILiteralCompletionContext) => void;
 	onCssImportPath?: (context: ImportPathCompletionContext) => void;
 }
+
+export interface DocumentContext {
+	resolveReference(ref: string, base?: string): string;
+}
