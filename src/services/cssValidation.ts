@@ -35,7 +35,7 @@ export class CSSValidation {
 			return <Diagnostic>{
 				code: marker.getRule().id,
 				source: document.languageId,
-				message: marker.getMessage(),
+				message: `${marker.getMessage()} (${marker.getRule().id})`,
 				severity: marker.getLevel() === nodes.Level.Warning ? DiagnosticSeverity.Warning : DiagnosticSeverity.Error,
 				range: range
 			};
