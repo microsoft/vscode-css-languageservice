@@ -8,7 +8,7 @@ import * as nodes from '../parser/cssNodes';
 import * as languageFacts from './languageFacts';
 import { difference } from '../utils/strings';
 import { Rules } from '../services/lintRules';
-import { TextDocument, Range, CodeActionContext, Diagnostic, Command, TextEdit, CodeAction, WorkspaceEdit, CodeActionKind } from 'vscode-languageserver-types';
+import { TextDocument, Range, CodeActionContext, Diagnostic, Command, TextEdit, CodeAction, WorkspaceEdit, CodeActionKind, TextDocumentEdit } from 'vscode-languageserver-types';
 
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();
@@ -20,7 +20,7 @@ export class CSSCodeActions {
 
 	public doCodeActions(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: nodes.Stylesheet): Command[] {
 		return this.doCodeActions2(document, range, context, stylesheet).map(ca => {
-			return Command.create(ca.title, '_css.applyCodeAction', document.uri, document.version, ca.edit.changes[document.uri]);
+			return Command.create(ca.title, '_css.applyCodeAction', document.uri, document.version, ca.edit.documentChanges[0].edits);
 		});
 	}
 
@@ -60,7 +60,7 @@ export class CSSCodeActions {
 			let propertyName = candidate.property;
 			let title = localize('css.codeaction.rename', "Rename to '{0}'", propertyName);
 			let edit = TextEdit.replace(marker.range, propertyName);
-			let workspaceEdit: WorkspaceEdit = { changes: { [document.uri]: [edit] } };
+			let workspaceEdit: WorkspaceEdit = { documentChanges: [TextDocumentEdit.create(document, [edit])] };
 			let codeAction = CodeAction.create(title, workspaceEdit, CodeActionKind.QuickFix);
 			codeAction.diagnostics = [marker];
 			result.push(codeAction);

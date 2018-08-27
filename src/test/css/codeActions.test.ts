@@ -51,9 +51,9 @@ suite('CSS - Code Actions', () => {
 			let index = labels.indexOf(exp.title);
 			assert.ok(index !== -1, 'Quick fix not found: ' + exp.title + ' , found:' + labels.join(','));
 			let codeAction = codeActions[index];
-			for (let uri in codeAction.edit.changes) {
-				assert.equal(document.uri, uri);
-				assert.equal(TextDocument.applyEdits(document, codeAction.edit.changes[uri]), exp.content);
+			for (let change of codeAction.edit.documentChanges) {
+				assert.equal(document.uri, change.textDocument.uri);
+				assert.equal(TextDocument.applyEdits(document, change.edits), exp.content);
 			}
 		}
 	};
