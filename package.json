@@ -28,8 +28,8 @@
     "xml2js": "^0.4.19"
   },
   "dependencies": {
-    "vscode-languageserver-types": "^3.10.1",
-    "vscode-nls": "^3.2.4"
+    "vscode-languageserver-types": "^3.12.0",
+    "vscode-nls": "^3.2.5"
   },
   "scripts": {
     "prepublishOnly": "npm run clean && npm run compile-esm && npm run test",
