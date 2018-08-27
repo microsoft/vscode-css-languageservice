@@ -1,5 +1,5 @@
-next (3.0.10)
-==================
+3.0.10 / 2018-08-27
+===================
   * New API `ICompletionParticipant.onCssImportPath` to participate on @import statement.
   * New API `LanguageService.doCodeActions2` returning code actions as `CodeAction[]`.
 
