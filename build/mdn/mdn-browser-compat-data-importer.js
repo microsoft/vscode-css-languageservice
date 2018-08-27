@@ -65,32 +65,79 @@ function toCompatString(bcdProperty) {
     return 'all'
   }
 
-  let s = []
-  Object.keys(browserNames).forEach((abbrev) => {
-    if (bcdProperty.__compat && bcdProperty.__compat.support[browserNames[abbrev].toLowerCase()]) {
-      const browserSupport = bcdProperty.__compat.support[browserNames[abbrev].toLowerCase()]
-      if (browserSupport) {
-        const shortCompatString = supportToShortCompatString(browserSupport, abbrev)
-        if (shortCompatString) {
-          s.push(shortCompatString)
-        }
-      }
-    }
-  })
+	let s = []
+
+	if (bcdProperty.__compat) {
+		Object.keys(browserNames).forEach((abbrev) => {
+			const browserName = browserNames[abbrev].toLowerCase()
+			const browserSupport = bcdProperty.__compat.support[browserName]
+			if (browserSupport) {
+				const shortCompatString = supportToShortCompatString(browserSupport, abbrev)
+				if (shortCompatString) {
+					s.push(shortCompatString)
+				}
+			}
+		})
+	} else {
+		Object.keys(browserNames).forEach((abbrev) => {
+			const browserName = browserNames[abbrev].toLowerCase()
+
+			// Select the most recent versions from all contexts as the short compat string
+			let shortCompatStringAggregatedFromContexts;
+
+			Object.keys(bcdProperty).forEach(contextName => {
+				const context = bcdProperty[contextName]
+				if (context.__compat && context.__compat.support[browserName]) {
+					const browserSupport = context.__compat.support[browserName]
+					const shortCompatString = supportToShortCompatString(browserSupport, abbrev)
+					if (!shortCompatStringAggregatedFromContexts || shortCompatString > shortCompatStringAggregatedFromContexts) {
+						shortCompatStringAggregatedFromContexts = shortCompatString
+					}
+				}
+			})
+
+			if (shortCompatStringAggregatedFromContexts) {
+				s.push(shortCompatStringAggregatedFromContexts)
+			}
+		})
+
+	}
   return s.join(',')
 }
 
+/**
+ * Check that a property is supported in all major browsers: Edge, Firefox, Safari, Chrome, IE, Opera
+ */
 function isSupportedInAllBrowsers(bcdProperty) {
-  return Object.keys(browserNames).every((abbrev) => {
-    if (bcdProperty.__compat && bcdProperty.__compat.support[browserNames[abbrev].toLowerCase()]) {
-      const browserSupport = bcdProperty.__compat.support[browserNames[abbrev].toLowerCase()]
-      if (browserSupport) {
-        return isSupported(browserSupport)
-      }
-    }
+	if (bcdProperty.__compat) {
+		return Object.keys(browserNames).every((abbrev) => {
+			const browserName = browserNames[abbrev].toLowerCase()
+			if (bcdProperty.__compat && bcdProperty.__compat.support[browserName]) {
+				const browserSupport = bcdProperty.__compat.support[browserName]
+				if (browserSupport) {
+					return isSupported(browserSupport)
+				}
+			}
 
-    return false
-  })
+			return false
+		})
+	} else {
+		return Object.keys(browserNames).every((abbrev) => {
+			const browserName = browserNames[abbrev].toLowerCase()
+
+			return Object.keys(bcdProperty).some(contextName => {
+				const context = bcdProperty[contextName]
+				if (context.__compat && context.__compat.support[browserName]) {
+					const browserSupport = context.__compat.support[browserName]
+					if (browserSupport) {
+						return isSupported(browserSupport)
+					}
+				}
+
+				return false
+			})
+		})
+	}
 }
 
 /**

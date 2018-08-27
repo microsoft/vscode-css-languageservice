@@ -849,7 +849,7 @@ export const data : any = {
 			{
 				name: "align-content",
 				desc: "Aligns a flex container’s lines within the flex container when there is extra space in the cross-axis, similar to how 'justify-content' aligns individual items within the main-axis.",
-				browsers: "E,C29,FF22,IE11,O12.1,S9",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -882,7 +882,7 @@ export const data : any = {
 			{
 				name: "align-items",
 				desc: "Aligns flex items along the cross axis of the current line of the flex container.",
-				browsers: "E,C29,FF22,IE11,O12.1,S9",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -911,7 +911,7 @@ export const data : any = {
 			{
 				name: "justify-items",
 				desc: "Defines the default justify-self for all items of the box, giving them the default way of justifying each box along the appropriate axis",
-				browsers: "FF45",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -978,7 +978,7 @@ export const data : any = {
 			{
 				name: "justify-self",
 				desc: "Defines the way of justifying a box inside its container along the appropriate axis.",
-				browsers: "FF45",
+				browsers: "E16,FF45,S10.1,C57,O44",
 				restriction: "enum",
 				values: [
 					{
@@ -1042,7 +1042,7 @@ export const data : any = {
 			{
 				name: "align-self",
 				desc: "Allows the default alignment along the cross axis to be overridden for individual flex items.",
-				browsers: "E,C29,FF22,IE11,O12.1,S9",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -2251,7 +2251,7 @@ export const data : any = {
 			{
 				name: "column-gap",
 				desc: "Sets the gap between columns. If there is a column rule between columns, it will appear in the middle of the gap.",
-				browsers: "E,IE10,O11.5,S9",
+				browsers: "all",
 				restriction: "length, enum",
 				values: [
 					{
@@ -4572,7 +4572,7 @@ export const data : any = {
 			{
 				name: "justify-content",
 				desc: "Aligns flex items along the main axis of the current line of the flex container.",
-				browsers: "E,C29,FF22,IE11,O12.1,S9",
+				browsers: "all",
 				restriction: "enum",
 				values: [
 					{
@@ -12482,7 +12482,8 @@ export const data : any = {
 				name: "gap",
 				desc: "The gap CSS property is a shorthand property for row-gap and column-gap specifying the gutters between grid rows and columns.",
 				restriction: "none",
-				"syntax": "<'row-gap'> <'column-gap'>?"
+				"syntax": "<'row-gap'> <'column-gap'>?",
+				browsers: "E16,FF63,S10.1,C66,O53"
 			},
 			{
 				name: "hanging-punctuation",
@@ -12705,7 +12706,8 @@ export const data : any = {
 				name: "place-content",
 				desc: "The place-content CSS shorthand property sets both the align-content and justify-content properties.",
 				restriction: "none",
-				"syntax": "<'align-content'> <'justify-content'>?"
+				"syntax": "<'align-content'> <'justify-content'>?",
+				browsers: "FF60,S,C59,O"
 			},
 			{
 				name: "rotate",
@@ -12718,7 +12720,8 @@ export const data : any = {
 				name: "row-gap",
 				desc: "The row-gap CSS property specifies the gutter between grid rows.",
 				restriction: "none",
-				"syntax": "normal | <length-percentage>"
+				"syntax": "normal | <length-percentage>",
+				browsers: "E16,FF63,S10.1,C66,O53"
 			},
 			{
 				name: "ruby-merge",
