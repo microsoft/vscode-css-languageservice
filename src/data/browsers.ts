@@ -182,7 +182,7 @@ export const data : any = {
 			{
 				name: ":host",
 				desc: "When evaluated in the context of a shadow tree, matches the shadow tree’s host element.",
-				browsers: "FF61,S,C,O"
+				browsers: "FF63,S,C,O"
 			},
 			{
 				name: ":host()",
@@ -831,7 +831,7 @@ export const data : any = {
 			{
 				name: "::slotted",
 				desc: "The :slotted() CSS pseudo-element represents any element that has been placed into a slot inside an HTML template.",
-				browsers: "FF59,S,C50,O37"
+				browsers: "FF63,S,C50,O37"
 			},
 			{
 				name: "::spelling-error",
@@ -978,7 +978,7 @@ export const data : any = {
 			{
 				name: "justify-self",
 				desc: "Defines the way of justifying a box inside its container along the appropriate axis.",
-				browsers: "E16,FF45,S10.1,C57,O44",
+				browsers: "FF45",
 				restriction: "enum",
 				values: [
 					{
@@ -3748,7 +3748,7 @@ export const data : any = {
 						browsers: "E,IE10"
 					}
 				],
-				"syntax": "normal | ultra-condensed | extra-condensed | condensed | semi-condensed | semi-expanded | expanded | extra-expanded | ultra-expanded"
+				"syntax": "<font-stretch-absolute>{1,2}"
 			},
 			{
 				name: "font-style",
@@ -3769,7 +3769,7 @@ export const data : any = {
 						desc: "Selects a font that is labeled as an 'oblique' face, or an 'italic' face if one is not."
 					}
 				],
-				"syntax": "normal | italic | oblique"
+				"syntax": "normal | italic | oblique <angle>{0,2}"
 			},
 			{
 				name: "font-synthesis",
@@ -4070,7 +4070,7 @@ export const data : any = {
 						desc: "Same as 400"
 					}
 				],
-				"syntax": "normal | bold | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900"
+				"syntax": "<font-weight-absolute>{1,2}"
 			},
 			{
 				name: "glyph-orientation-horizontal",
@@ -4902,7 +4902,7 @@ export const data : any = {
 			{
 				name: "margin-block-end",
 				desc: "Logical 'margin-bottom'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
-				browsers: "FF41",
+				browsers: "FF41,C69,O56",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -4914,7 +4914,7 @@ export const data : any = {
 			{
 				name: "margin-block-start",
 				desc: "Logical 'margin-top'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
-				browsers: "FF41",
+				browsers: "FF41,C69,O56",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -4938,7 +4938,7 @@ export const data : any = {
 			{
 				name: "margin-inline-end",
 				desc: "Logical 'margin-right'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
-				browsers: "FF41,S3,C2",
+				browsers: "FF41,S3,C69,O56",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -4950,7 +4950,7 @@ export const data : any = {
 			{
 				name: "margin-inline-start",
 				desc: "Logical 'margin-left'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
-				browsers: "FF41,S3,C2",
+				browsers: "FF41,S3,C69,O56",
 				restriction: "length, percentage",
 				values: [
 					{
@@ -8750,28 +8750,28 @@ export const data : any = {
 			{
 				name: "padding-block-end",
 				desc: "Logical 'padding-bottom'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
-				browsers: "FF41",
+				browsers: "FF41,C69,O56",
 				restriction: "length, percentage",
 				"syntax": "<'padding-left'>"
 			},
 			{
 				name: "padding-block-start",
 				desc: "Logical 'padding-top'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
-				browsers: "FF41",
+				browsers: "FF41,C69,O56",
 				restriction: "length, percentage",
 				"syntax": "<'padding-left'>"
 			},
 			{
 				name: "padding-inline-end",
 				desc: "Logical 'padding-right'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
-				browsers: "FF41,S3,C2,O15",
+				browsers: "FF41,S3,C69,O56",
 				restriction: "length, percentage",
 				"syntax": "<'padding-left'>"
 			},
 			{
 				name: "padding-inline-start",
 				desc: "Logical 'padding-left'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
-				browsers: "FF41,S3,C2,O",
+				browsers: "FF41,S3,C69,O56",
 				restriction: "length, percentage",
 				"syntax": "<'padding-left'>"
 			},
@@ -9255,6 +9255,7 @@ export const data : any = {
 						desc: "Specifies that this element does not contribute a snap point."
 					}
 				],
+				"status": "o",
 				"syntax": "none | <position>#"
 			},
 			{
@@ -9262,6 +9263,7 @@ export const data : any = {
 				desc: "Define the x and y coordinate within the scroll container’s visual viewport which element snap points will align with.",
 				browsers: "FF39",
 				restriction: "position, length, percentage",
+				"status": "o",
 				"syntax": "<position>"
 			},
 			{
@@ -12480,8 +12482,7 @@ export const data : any = {
 				name: "gap",
 				desc: "The gap CSS property is a shorthand property for row-gap and column-gap specifying the gutters between grid rows and columns.",
 				restriction: "none",
-				"syntax": "<'row-gap'> <'column-gap'>?",
-				browsers: "E16,FF61,S10.1,C66,O53"
+				"syntax": "<'row-gap'> <'column-gap'>?"
 			},
 			{
 				name: "hanging-punctuation",
@@ -12717,8 +12718,7 @@ export const data : any = {
 				name: "row-gap",
 				desc: "The row-gap CSS property specifies the gutter between grid rows.",
 				restriction: "none",
-				"syntax": "normal | <length-percentage>",
-				browsers: "E16,FF61,S10.1,C66,O53"
+				"syntax": "normal | <length-percentage>"
 			},
 			{
 				name: "ruby-merge",
