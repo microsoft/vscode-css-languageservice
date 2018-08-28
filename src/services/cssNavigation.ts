@@ -228,6 +228,11 @@ function uriLiteralNodeToDocumentLink(document: TextDocument, uriLiteralNode: no
 function uriStringNodeToDocumentLink(document: TextDocument, uriStringNode: nodes.Node, documentContext: DocumentContext) {
 	let rawUri = uriStringNode.getText();
 	const range = getRange(uriStringNode, document);
+	// Make sure the range is not empty
+	if (range.start.line === range.end.line && range.start.character === range.end.character) {
+		return null;
+	}
+
 	if (startsWith(rawUri, `'`) || startsWith(rawUri, `"`)) {
 		rawUri = rawUri.slice(1, -1);
 	}

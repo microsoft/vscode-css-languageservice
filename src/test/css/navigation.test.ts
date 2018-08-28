@@ -310,6 +310,12 @@ suite('CSS - Navigation', () => {
 			]);
 		});
 
+		test('No links with empty range', () => {
+			let p = new Parser();
+			assertLinks(p, `body { background-image: url()`, []);
+			assertLinks(p, `@import url();`, [])
+		});
+
 	});
 
 	suite('Color', () => {
