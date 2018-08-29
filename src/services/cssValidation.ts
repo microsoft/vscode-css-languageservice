@@ -6,7 +6,7 @@
 
 import * as nodes from '../parser/cssNodes';
 import { TextDocument, Range, Diagnostic, DiagnosticSeverity } from 'vscode-languageserver-types';
-import { LintConfigurationSettings } from './lintRules';
+import { LintConfigurationSettings, Rules } from './lintRules';
 import { LintVisitor } from './lint';
 import { LanguageSettings } from '../cssLanguageTypes';
 
@@ -30,11 +30,20 @@ export class CSSValidation {
 		entries.push.apply(entries, nodes.ParseErrorCollector.entries(stylesheet));
 		entries.push.apply(entries, LintVisitor.entries(stylesheet, document, new LintConfigurationSettings(settings && settings.lint)));
 
+		const ruleIds: string[] = [];
+		for (let r in Rules) {
+			ruleIds.push(Rules[r].id);
+		}
+
 		function toDiagnostic(marker: nodes.IMarker): Diagnostic {
 			let range = Range.create(document.positionAt(marker.getOffset()), document.positionAt(marker.getOffset() + marker.getLength()));
+			let source = ruleIds.indexOf(marker.getRule().id) !== -1
+				? `${document.languageId}.lint.${marker.getRule().id}`
+				: document.languageId;
+
 			return <Diagnostic>{
 				code: marker.getRule().id,
-				source: `${document.languageId}.lint.${marker.getRule().id}`,
+				source: source,
 				message: marker.getMessage(),
 				severity: marker.getLevel() === nodes.Level.Warning ? DiagnosticSeverity.Warning : DiagnosticSeverity.Error,
 				range: range
