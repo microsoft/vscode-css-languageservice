@@ -56,7 +56,7 @@ suite('CSS - Code Actions', () => {
 					assert.equal(document.uri, change.textDocument.uri);
 					assert.equal(TextDocument.applyEdits(document, change.edits), exp.content);
 				} else {
-					assert.fail('not a TextDocumentEdit');
+					assert.ok(false, 'not a TextDocumentEdit');
 				}
 
 			}
