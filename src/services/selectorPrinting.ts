@@ -353,7 +353,7 @@ class SelectorElementBuilder {
 					let labelElement = new LabelElement('\u2026');
 					this.element.addChild(labelElement);
 					this.element = labelElement;
-				} else if (this.prev && (this.prev.matches('+') || this.prev.matches('~'))) {
+				} else if (this.prev && (this.prev.matches('+') || this.prev.matches('~')) && this.element.parent) {
 					this.element = <Element>this.element.parent;
 				}
 
