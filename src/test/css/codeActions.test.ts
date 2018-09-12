@@ -7,7 +7,7 @@
 import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
-import { TextDocument, TextEdit, Range, Command, CodeAction } from 'vscode-languageserver-types';
+import { TextDocument, TextEdit, Range, Command, CodeAction, TextDocumentEdit } from 'vscode-languageserver-types';
 
 suite('CSS - Code Actions', () => {
 
@@ -52,8 +52,13 @@ suite('CSS - Code Actions', () => {
 			assert.ok(index !== -1, 'Quick fix not found: ' + exp.title + ' , found:' + labels.join(','));
 			let codeAction = codeActions[index];
 			for (let change of codeAction.edit.documentChanges) {
-				assert.equal(document.uri, change.textDocument.uri);
-				assert.equal(TextDocument.applyEdits(document, change.edits), exp.content);
+				if (TextDocumentEdit.is(change)) {
+					assert.equal(document.uri, change.textDocument.uri);
+					assert.equal(TextDocument.applyEdits(document, change.edits), exp.content);
+				} else {
+					assert.fail();
+				}
+
 			}
 		}
 	};

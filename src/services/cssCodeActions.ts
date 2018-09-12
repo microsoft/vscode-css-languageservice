@@ -20,7 +20,7 @@ export class CSSCodeActions {
 
 	public doCodeActions(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: nodes.Stylesheet): Command[] {
 		return this.doCodeActions2(document, range, context, stylesheet).map(ca => {
-			return Command.create(ca.title, '_css.applyCodeAction', document.uri, document.version, ca.edit.documentChanges[0].edits);
+			return Command.create(ca.title, '_css.applyCodeAction', document.uri, document.version, (<TextDocumentEdit> ca.edit.documentChanges[0]).edits);
 		});
 	}
 
