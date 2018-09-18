@@ -343,6 +343,8 @@ suite('SCSS - Parser', () => {
 	test('Selector Interpolation', function () {
 		let parser = new SCSSParser();
 		assertNode('.#{$name} { }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.#{$name}-foo { }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.#{$name}-1 { }', parser, parser._parseRuleset.bind(parser));
 		assertNode('p.#{$name} { #{$attr}-color: blue; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('sans-#{serif} { a-#{1 + 2}-color-#{$attr}: blue; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('##{f} .#{f} #{f}:#{f} { }', parser, parser._parseRuleset.bind(parser));
