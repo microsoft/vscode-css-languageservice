@@ -265,6 +265,12 @@ suite('CSS - Navigation', () => {
 			let p = new Parser();
 			assertHighlights(p, '/* comment */body { display: inline } ', 'comment', 0, 0);
 		});
+
+		test('mark occurrences for whole classname instead of only class identifier', () => {
+			let p = new Parser();
+			assertHighlights(p, '.foo { }', '.foo', 1, 1);
+			assertHighlights(p, '.body { } body { }', '.body', 1, 1);
+		});
 	});
 
 	suite('Links', () => {

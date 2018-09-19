@@ -55,6 +55,9 @@ export class CSSNavigation {
 		if (!node || node.type === nodes.NodeType.Stylesheet || node.type === nodes.NodeType.Declarations) {
 			return result;
 		}
+		if (node.type === nodes.NodeType.Identifier && node.parent && node.parent.type === nodes.NodeType.ClassSelector) {
+			node = node.parent;
+		}
 
 		let symbols = new Symbols(stylesheet);
 		let symbol = symbols.findSymbolFromNode(node);
