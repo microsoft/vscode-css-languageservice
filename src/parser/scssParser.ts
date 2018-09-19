@@ -138,6 +138,7 @@ export class SCSSParser extends cssParser.Parser {
 			hasContent = true;
 			if (!this.hasWhitespace() && this.acceptDelim('-')) {
 				// '-' is a valid char inside a ident (special treatment here to support #{foo}-#{bar})
+				this.accept(TokenType.Num);
 			}
 			if (this.hasWhitespace()) {
 				break;
