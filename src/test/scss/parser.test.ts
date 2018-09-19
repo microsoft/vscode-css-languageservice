@@ -273,13 +273,15 @@ suite('SCSS - Parser', () => {
 		assertNode('@mixin apply-to-ie6-only {  * html { @content; } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@mixin #{foo}($color){}', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@mixin foo ($i:4) { size: $i; @include wee ($i - 1); }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@mixin foo ($i,) { }', parser, parser._parseStylesheet.bind(parser));
+
 		assertError('@mixin $1 {}', parser, parser._parseStylesheet.bind(parser), ParseError.IdentifierExpected);
 		assertError('@mixin foo() i {}', parser, parser._parseStylesheet.bind(parser), ParseError.LeftCurlyExpected);
 		assertError('@mixin foo(1) {}', parser, parser._parseStylesheet.bind(parser), ParseError.RightParenthesisExpected);
 		assertError('@mixin foo($color = 9) {}', parser, parser._parseStylesheet.bind(parser), ParseError.RightParenthesisExpected);
 		assertError('@mixin foo($color)', parser, parser._parseStylesheet.bind(parser), ParseError.LeftCurlyExpected);
 		assertError('@mixin foo($color){', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
-		assertError('@mixin foo($color,){', parser, parser._parseStylesheet.bind(parser), ParseError.VariableNameExpected);
+		assertError('@mixin foo($color,){', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
 	});
 
 	test('@include', function () {
@@ -290,6 +292,9 @@ suite('SCSS - Parser', () => {
 		assertNode('@include colors(this("styles")...);', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.test { @include fontsize(16px, 21px !important); }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('p {  @include apply-to-ie6-only { #logo { background-image: url(/logo.gif); } } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('p { @include foo($values,) }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('p { @include foo($values,); }', parser, parser._parseStylesheet.bind(parser));
+
 		assertError('p { @include sexy-border blue', parser, parser._parseStylesheet.bind(parser), ParseError.SemiColonExpected);
 		assertError('p { @include sexy-border($values blue', parser, parser._parseStylesheet.bind(parser), ParseError.RightParenthesisExpected);
 		assertError('p { @include }', parser, parser._parseStylesheet.bind(parser), ParseError.IdentifierExpected);
@@ -306,12 +311,13 @@ suite('SCSS - Parser', () => {
 		assertNode('@function foo() { @if (unit($a) == "%") and ($i == ($total - 1)) { @return 0; } @return 1; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@function is-even($int) { @if $int%2 == 0 { @return true; } @return false }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@function bar ($i) { @if $i > 0 { @return $i * bar($i - 1); } @return 1; }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@function foo($a,) {} ', parser, parser._parseStylesheet.bind(parser));
+
 		assertError('@function foo {} ', parser, parser._parseStylesheet.bind(parser), ParseError.LeftParenthesisExpected);
 		assertError('@function {} ', parser, parser._parseStylesheet.bind(parser), ParseError.IdentifierExpected);
 		assertError('@function foo($a $b) {} ', parser, parser._parseStylesheet.bind(parser), ParseError.RightParenthesisExpected);
 		assertError('@function foo($a {} ', parser, parser._parseStylesheet.bind(parser), ParseError.RightParenthesisExpected);
 		assertError('@function foo($a...) { @return; }', parser, parser._parseStylesheet.bind(parser), ParseError.ExpressionExpected);
-		assertError('@function foo($a,) {} ', parser, parser._parseStylesheet.bind(parser), ParseError.VariableNameExpected);
 		assertError('@function foo($a:) {} ', parser, parser._parseStylesheet.bind(parser), ParseError.VariableValueExpected);
 
 	});

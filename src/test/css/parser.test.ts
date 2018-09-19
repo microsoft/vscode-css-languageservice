@@ -448,6 +448,7 @@ suite('CSS - Parser', () => {
 		assertFunction('let(--variable1, --variable2)', parser, parser._parseFunction.bind(parser));
 		assertFunction('let(--variable1, let(--variable2))', parser, parser._parseFunction.bind(parser));
 		assertFunction('fun(value1, value2)', parser, parser._parseFunction.bind(parser));
+		assertFunction('fun(value1,)', parser, parser._parseFunction.bind(parser));
 	});
 
 	test('test token prio', function () {
