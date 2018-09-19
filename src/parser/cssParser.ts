@@ -1509,10 +1509,10 @@ export class Parser {
 
 		if (node.getArguments().addChild(this._parseFunctionArgument())) {
 			while (this.accept(TokenType.Comma)) {
+				if (this.peek(TokenType.ParenthesisR)) {
+					break;
+				}
 				if (!node.getArguments().addChild(this._parseFunctionArgument())) {
-					if (this.accept(TokenType.ParenthesisR)) {
-						return <nodes.Function>this.finish(node);
-					}
 					this.markError(node, ParseError.ExpressionExpected);
 				}
 			}

@@ -456,10 +456,10 @@ export class SCSSParser extends cssParser.Parser {
 
 		if (node.getParameters().addChild(this._parseParameterDeclaration())) {
 			while (this.accept(TokenType.Comma)) {
+				if (this.peek(TokenType.ParenthesisR)) {
+					break;
+				}
 				if (!node.getParameters().addChild(this._parseParameterDeclaration())) {
-					if (this.accept(TokenType.ParenthesisR)) {
-						return this._parseBody(node, this._parseFunctionBodyDeclaration.bind(this));
-					}
 					return this.finish(node, ParseError.VariableNameExpected);
 				}
 			}
@@ -501,10 +501,10 @@ export class SCSSParser extends cssParser.Parser {
 		if (this.accept(TokenType.ParenthesisL)) {
 			if (node.getParameters().addChild(this._parseParameterDeclaration())) {
 				while (this.accept(TokenType.Comma)) {
+					if (this.peek(TokenType.ParenthesisR)) {
+						break;
+					}
 					if (!node.getParameters().addChild(this._parseParameterDeclaration())) {
-						if (this.accept(TokenType.ParenthesisR)) {
-							return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
-						}
 						return this.finish(node, ParseError.VariableNameExpected);
 					}
 				}
@@ -563,10 +563,10 @@ export class SCSSParser extends cssParser.Parser {
 		if (this.accept(TokenType.ParenthesisL)) {
 			if (node.getArguments().addChild(this._parseFunctionArgument())) {
 				while (this.accept(TokenType.Comma)) {
+					if (this.peek(TokenType.ParenthesisR)) {
+						break;
+					}
 					if (!node.getArguments().addChild(this._parseFunctionArgument())) {
-						if (this.accept(TokenType.ParenthesisR)) {
-							return this.finish(node);
-						}
 						return this.finish(node, ParseError.ExpressionExpected);
 					}
 				}
