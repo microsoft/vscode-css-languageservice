@@ -200,7 +200,11 @@ export class LESSParser extends cssParser.Parser {
 		if (this.peekDelim('~')) {
 			let node = this.createNode(nodes.NodeType.EscapedValue);
 			this.consumeToken();
-			return this.finish(node, this.accept(TokenType.String) ? null : ParseError.TermExpected);
+			if (this.accept(TokenType.String) || this.accept(TokenType.EscapedJavaScript)) {
+				return this.finish(node);
+			} else {
+				return this.finish(node, ParseError.TermExpected);
+			}
 		}
 
 		return null;

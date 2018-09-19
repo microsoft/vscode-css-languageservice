@@ -232,6 +232,7 @@ suite('LESS - Parser', () => {
 		let parser = new LESSParser();
 		assertNode('%(\'repetitions: %S file: %S\', 1 + 2, "directory/file.less")', parser, parser._parseTerm.bind(parser));
 		assertNode('~"ms:alwaysHasItsOwnSyntax.For.Stuff()"', parser, parser._parseTerm.bind(parser)); // less syntax
+		assertNode('~`colorPalette("@{blue}", 1)`', parser, parser._parseTerm.bind(parser)); // less syntax
 	});
 
 	test('Nested Ruleset', function () {
