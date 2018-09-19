@@ -128,6 +128,9 @@ export class CSSNavigation {
 			if (node instanceof nodes.Selector) {
 				entry.name = node.getText();
 				locationNode = node.findParent(nodes.NodeType.Ruleset);
+				entry.location = Location.create(document.uri, getRange(locationNode, document));
+				result.push(entry);
+				return false;
 			} else if (node instanceof nodes.VariableDeclaration) {
 				entry.name = (<nodes.VariableDeclaration>node).getName();
 				entry.kind = SymbolKind.Variable;
