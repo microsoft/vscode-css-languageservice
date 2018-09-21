@@ -12,7 +12,7 @@ import { Parser } from '../../parser/cssParser';
 import { CSSNavigation } from '../../services/cssNavigation';
 import { colorFrom256RGB, colorFromHSL } from '../../services/languageFacts';
 
-import { TextDocument, DocumentHighlightKind, Range, Position, TextEdit, Color, ColorInformation, DocumentLink } from 'vscode-languageserver-types';
+import { TextDocument, DocumentHighlightKind, Range, Position, TextEdit, Color, ColorInformation, DocumentLink, DocumentSymbol, SymbolKind, SymbolInformation, Location } from 'vscode-languageserver-types';
 import { getCSSLanguageService, LanguageService, DocumentContext } from '../../cssLanguageService';
 
 export function assertScopesAndSymbols(p: Parser, input: string, expected: string): void {
@@ -59,6 +59,15 @@ export function assertLinks(p: Parser, input: string, expected: DocumentLink[], 
 
 	let links = new CSSNavigation().findDocumentLinks(document, stylesheet, getDocumentContext(document.uri));
 	assert.deepEqual(links, expected);
+}
+
+export function assertSymbols(p: Parser, input: string, expected: SymbolInformation[], lang: string = 'css') {
+	let document = TextDocument.create(`test://test/test.${lang}`, lang, 0, input);
+
+	let stylesheet = p.parseStylesheet(document);
+
+	let symbols = new CSSNavigation().findDocumentSymbols(document, stylesheet);
+	assert.deepEqual(symbols, expected);
 }
 
 export function assertColorSymbols(ls: LanguageService, input: string, ...expected: ColorInformation[]) {
@@ -225,6 +234,14 @@ suite('CSS - Navigation', () => {
 		test('test variables in local scope get root variables and other local variables too', function () {
 			let p = new Parser();
 			assertSymbolsInScope(p, '.a{ --var1: abc; } .b{ --var2: abc; } :root{ --var3: abc;}', 2, { name: '--var1', type: nodes.ReferenceType.Variable }, { name: '--var2', type: nodes.ReferenceType.Variable }, { name: '--var3', type: nodes.ReferenceType.Variable });
+		});
+	});
+
+	suite('Symbols', () => {
+		test('basic symbols', () => {
+			let p = new Parser();
+			assertSymbols(p, '.foo {}', [{ name: '.foo', kind: SymbolKind.Class, location: Location.create('test://test/test.css' ,newRange(0, 7)) }]);
+			assertSymbols(p, '.foo:not(.selected) {}', [{ name: '.foo:not(.selected)', kind: SymbolKind.Class, location: Location.create('test://test/test.css' ,newRange(0, 22)) }]);
 		});
 	});
 
