@@ -623,12 +623,12 @@ export const data : any = {
 			{
 				name: "::-ms-fill-lower",
 				desc: "Represents the portion of the slider track from its smallest value up to the value currently selected by the thumb. In a left-to-right layout, this is the portion of the slider track to the left of the thumb.",
-				browsers: "E,IE10"
+				browsers: "E,IE"
 			},
 			{
 				name: "::-ms-fill-upper",
 				desc: "Represents the portion of the slider track from the value currently selected by the thumb up to the slider's largest value. In a left-to-right layout, this is the portion of the slider track to the right of the thumb.",
-				browsers: "E,IE10"
+				browsers: "E,IE"
 			},
 			{
 				name: "::-ms-reveal",
@@ -663,7 +663,7 @@ export const data : any = {
 			{
 				name: "::-ms-value",
 				desc: "Represents the content of a text or password input control, or a select control.",
-				browsers: "E,IE10"
+				browsers: "E16,IE10"
 			},
 			{
 				name: "::selection",
@@ -2335,7 +2335,7 @@ export const data : any = {
 			{
 				name: "contain",
 				desc: "Indicates that an element and its contents are, as much as possible, independent of the rest of the document tree.",
-				browsers: "C52,O40",
+				browsers: "FF,C52,O40",
 				restriction: "enum",
 				values: [
 					{
@@ -5545,7 +5545,7 @@ export const data : any = {
 			{
 				name: "-moz-appearance",
 				desc: "Used in Gecko (Firefox) to display an element using a platform-native styling based on the operating system's theme.",
-				browsers: "FF54",
+				browsers: "FF1",
 				restriction: "enum",
 				values: [
 					{
@@ -9207,7 +9207,7 @@ export const data : any = {
 			{
 				name: "scrollbar-face-color",
 				desc: "Determines the color of the scroll box and scroll arrows of a scroll bar.",
-				browsers: "IE6",
+				browsers: "FF62",
 				restriction: "color"
 			},
 			{
@@ -9225,7 +9225,7 @@ export const data : any = {
 			{
 				name: "scrollbar-track-color",
 				desc: "Determines the color of the track element of a scroll bar.",
-				browsers: "IE6",
+				browsers: "FF62",
 				restriction: "color"
 			},
 			{
@@ -10614,7 +10614,7 @@ export const data : any = {
 			{
 				name: "-webkit-appearance",
 				desc: "Changes the appearance of buttons and other controls to resemble native controls.",
-				browsers: "E12,S3,C1,O15",
+				browsers: "C,S3",
 				restriction: "enum",
 				values: [
 					{
@@ -12402,7 +12402,8 @@ export const data : any = {
 				desc: "The box-align CSS property specifies how an element aligns its contents across its layout in a perpendicular direction. The effect of the property is only visible if there is extra space in the box.",
 				restriction: "none",
 				"status": "n",
-				"syntax": "start | center | end | baseline | stretch"
+				"syntax": "start | center | end | baseline | stretch",
+				browsers: "E,FF49,S3,C,O"
 			},
 			{
 				name: "box-direction",
@@ -12425,21 +12426,24 @@ export const data : any = {
 				desc: "The box-flex-group CSS property assigns the flexbox's child elements to a flex group.",
 				restriction: "none",
 				"status": "n",
-				"syntax": "<integer>"
+				"syntax": "<integer>",
+				browsers: "S3,C,O"
 			},
 			{
 				name: "box-lines",
 				desc: "The box-lines CSS property determines whether the box may have a single or multiple lines (rows for horizontally oriented boxes, columns for vertically oriented boxes).",
 				restriction: "none",
 				"status": "n",
-				"syntax": "single | multiple"
+				"syntax": "single | multiple",
+				browsers: "S3,C,O"
 			},
 			{
 				name: "box-ordinal-group",
 				desc: "The box-ordinal-group CSS property assigns the flexbox's child elements to an ordinal group.",
 				restriction: "none",
 				"status": "n",
-				"syntax": "<integer>"
+				"syntax": "<integer>",
+				browsers: "E,FF,S3,C,O"
 			},
 			{
 				name: "box-orient",
@@ -12476,7 +12480,7 @@ export const data : any = {
 				desc: "The font-variation-settings CSS property provides low-level control over OpenType or TrueType font variations, by specifying the four letter axis names of the features you want to vary, along with their variation values.",
 				restriction: "none",
 				"syntax": "normal | [ <string> <number> ]#",
-				browsers: "FF62,S11,C62,O49"
+				browsers: "E17,FF62,S11,C62,O49"
 			},
 			{
 				name: "gap",
@@ -12525,7 +12529,8 @@ export const data : any = {
 				desc: "The line-height-step CSS property defines the step units for line box heights. When the step unit is positive, line box heights are rounded up to the closest multiple of the unit. Negative values are invalid.",
 				restriction: "none",
 				"status": "e",
-				"syntax": "<length>"
+				"syntax": "<length>",
+				browsers: "C60,O47"
 			},
 			{
 				name: "mask",
@@ -12633,7 +12638,7 @@ export const data : any = {
 				restriction: "none",
 				"status": "e",
 				"syntax": "none | ray( [ <angle> && <size>? && contain? ] ) | <path()> | <url> | [ <basic-shape> || <geometry-box> ]",
-				browsers: "C55"
+				browsers: "FF63,C55,O45"
 			},
 			{
 				name: "offset-position",
