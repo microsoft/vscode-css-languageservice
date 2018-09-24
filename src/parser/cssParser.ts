@@ -1198,12 +1198,10 @@ export class Parser {
 			return null;
 		}
 		let node = this.createNode(nodes.NodeType.ClassSelector);
-		if (this.acceptDelim('.')) {
-			if (this.hasWhitespace() || !node.addChild(this._parseSelectorIdent())) {
-				return this.finish(node, ParseError.IdentifierExpected);
-			}
-		} else {
-			this.consumeToken();
+		this.consumeToken(); // '.'
+
+		if (this.hasWhitespace() || !node.addChild(this._parseSelectorIdent())) {
+			return this.finish(node, ParseError.IdentifierExpected);
 		}
 		return this.finish(node);
 	}
