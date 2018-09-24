@@ -1199,6 +1199,7 @@ export class Parser {
 		}
 		let node = this.createNode(nodes.NodeType.ClassSelector);
 		this.consumeToken(); // '.'
+
 		if (this.hasWhitespace() || !node.addChild(this._parseSelectorIdent())) {
 			return this.finish(node, ParseError.IdentifierExpected);
 		}
