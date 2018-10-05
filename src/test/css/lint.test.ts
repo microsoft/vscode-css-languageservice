@@ -93,6 +93,8 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { width: 0Px }', Rules.ZeroWithUnit);
 		assertRuleSet('selector { line-height: 0EM }', Rules.ZeroWithUnit);
 		assertRuleSet('selector { line-height: 0pc }', Rules.ZeroWithUnit);
+		assertRuleSet('selector { outline: black 0em solid; }', Rules.ZeroWithUnit);
+		assertRuleSet('selector { grid-template-columns: 40px 50px auto 0px 40px; }', Rules.ZeroWithUnit)
 		assertRuleSet('selector { min-height: 0% }');
 		assertRuleSet('selector { top: calc(0px - 10vw); }'); // issue 46997
 	});
