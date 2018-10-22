@@ -6,6 +6,7 @@
 //@ts-check
 
 const mdnData = require('mdn-data')
+const { abbreviateStatus } = require('./mdn-data-importer')
 const { pseudoSelectorDescriptions, pseudoElementDescriptions } = require('./mdn-documentation')
 
 function addMDNPseudoElements(vscPseudoElements) {
@@ -23,7 +24,8 @@ function addMDNPseudoElements(vscPseudoElements) {
 			) {
 				allPseudoElements.push({
 					name: selectorName,
-					desc: pseudoElementDescriptions[selectorName] ? pseudoElementDescriptions[selectorName] : ''
+					desc: pseudoElementDescriptions[selectorName] ? pseudoElementDescriptions[selectorName] : '',
+					status: abbreviateStatus(selector.status)
 				})
 			}
 		}
@@ -55,7 +57,8 @@ function addMDNPseudoSelectors(vscPseudoClasses) {
 			) {
 				allPseudoSelectors.push({
 					name: selectorName,
-					desc: pseudoSelectorDescriptions[selectorName] ? pseudoSelectorDescriptions[selectorName] : ''
+					desc: pseudoSelectorDescriptions[selectorName] ? pseudoSelectorDescriptions[selectorName] : '',
+					status: abbreviateStatus(selector.status)
 				})
 			}
 		}

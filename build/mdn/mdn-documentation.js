@@ -6,7 +6,8 @@
 /**
  * This file is mainly compiled from https://developer.mozilla.org/en-US/docs/Web/CSS with some additions from the following sources
  *  - https://msdn.microsoft.com/en-us/library/dn433242(v=vs.85).aspx
- *  - https://www.w3.org/,
+ *  - https://www.w3.org/
+ *  - https://drafts.csswg.org/
  */
 
 //@ts-check
@@ -55,6 +56,7 @@ module.exports ={
     'box-orient': `The box-orient CSS property specifies whether an element lays out its contents horizontally or vertically.`,
     'box-pack': `The -moz-box-pack and -webkit-box-pack CSS properties specify how a -moz-box or -webkit-box packs its contents in the direction of its layout. The effect of this is only visible if there is extra space in the box.`,
     'color-adjust': `The color-adjust property is a non-standard CSS extension that can be used to force printing of background colors and images in browsers based on the WebKit engine.`,
+    'font-optical-sizing': 'The font-optical-sizing CSS property allows developers to control whether browsers render text with slightly differing visual representations to optimize viewing at different sizes, or not. This only works for fonts that have an optical size variation axis.',
     'font-variation-settings': `The font-variation-settings CSS property provides low-level control over OpenType or TrueType font variations, by specifying the four letter axis names of the features you want to vary, along with their variation values.`,
     'gap': `The gap CSS property is a shorthand property for row-gap and column-gap specifying the gutters between grid rows and columns.`,
     'row-gap': `The row-gap CSS property specifies the gutter between grid rows.`,
@@ -62,6 +64,11 @@ module.exports ={
     'image-resolution': `The image-resolution property specifies the intrinsic resolution of all raster images used in or on the element. It affects both content images (e.g. replaced elements and generated content) and decorative images (such as background-image). The intrinsic resolution of an image is used to determine the image’s intrinsic dimensions.`,
     'initial-letter': `The initial-letter CSS property specifies styling for dropped, raised, and sunken initial letters.`,
     'initial-letter-align': `The initial-letter-align CSS property specifies the alignment of initial letters within a paragraph.`,
+    'inset-block-start': `The inset-block-start CSS property defines the logical block start offset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation.`,
+    'inset-block-end': `The inset-block-end CSS property defines the logical block end offset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation.`,
+    'inset-inline-start': `The inset-inline-start CSS property defines the logical inline start inset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation.`,
+    'inset-inline-end': `The inset-inline-end CSS property defines the logical inline end inset of an element, which maps to a physical inset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation.`,
+    'line-clamp': `The line-clamp property allows limiting the contents of a block container to the specified number of lines; remaining content is fragmented away and neither rendered nor measured. Optionally, it also allows inserting content into the last line box to indicate the continuity of truncated/interrupted content.`,
     'line-height-step': `The line-height-step CSS property defines the step units for line box heights. When the step unit is positive, line box heights are rounded up to the closest multiple of the unit. Negative values are invalid.`,
     'mask': `The mask CSS property alters the visibility of an element by either partially or fully hiding it. This is accomplished by either masking or clipping the image at specific points.`,
     'mask-border': `The mask-border CSS property lets you create a mask along the edge of an element's border.\n\nThis property is a shorthand for mask-border-source, mask-border-slice, mask-border-width, mask-border-outset, mask-border-repeat, and mask-border-mode. As with all shorthand properties, any omitted sub-values will be set to their initial value.`,
@@ -73,16 +80,21 @@ module.exports ={
     'mask-border-width': `The mask-border-width CSS property specifies the width of an element's mask border.`,
     'mask-clip': `The mask-clip CSS property determines the area, which is affected by a mask. The painted content of an element must be restricted to this area.`,
     'mask-composite': `The mask-composite CSS property represents a compositing operation used on the current mask layer with the mask layers below it.`,
+    'max-lines': `The max-liens property forces a break after a set number of lines`,
     'offset': `The offset CSS property is a shorthand property for animating an element along a defined path.`,
     'offset-anchor': `Defines an anchor point of the box positioned along the path. The anchor point specifies the point of the box which is to be considered as the point that is moved along the path.`,
     'offset-distance': `The offset-distance CSS property specifies a position along an offset-path.`,
     'offset-path': `The offset-path CSS property specifies the offset path where the element gets positioned. The exact element’s position on the offset path is determined by the offset-distance property. An offset path is either a specified path with one or multiple sub-paths or the geometry of a not-styled basic shape. Each shape or path must define an initial position for the computed value of "0" for offset-distance and an initial direction which specifies the rotation of the object to the initial position.\n\nIn this specification, a direction (or rotation) of 0 degrees is equivalent to the direction of the positive x-axis in the object’s local coordinate system. In other words, a rotation of 0 degree points to the right side of the UA if the object and its ancestors have no transformation applied.`,
     'offset-position': `Specifies the initial position of the offset path. If position is specified with static, offset-position would be ignored.`,
     'offset-rotate': `The offset-rotate CSS property defines the direction of the element while positioning along the offset path.`,
+    'overflow-anchor': 'The overflow-anchor CSS property provides a way to opt out browser scroll anchoring behavior which adjusts scroll position to minimize content shifts.',
+    'overflow-block': 'The overflow-block CSS media feature can be used to test how the output device handles content that overflows the initial containing block along the block axis.',
+    'overflow-inline': 'The overflow-inline CSS media feature can be used to test how the output device handles content that overflows the initial containing block along the inline axis.',
     'overflow-clip-box': `The overflow-clip-box CSS property specifies relative to which box the clipping happens when there is an overflow. It is short hand for the overflow-clip-box-inline and overflow-clip-box-block properties.`,
     'overscroll-behavior': `The overscroll-behavior CSS property is shorthand for the overscroll-behavior-x and overscroll-behavior-y properties, which allow you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached.`,
     'overscroll-behavior-x': `The overscroll-behavior-x CSS property is allows you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached — in the x axis direction.`,
     'overscroll-behavior-y': `The overscroll-behavior-y CSS property is allows you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached — in the y axis direction.`,
+    'place-items': 'The CSS place-items shorthand property sets both the align-items and justify-items properties. The first value is the align-items property value, the second the justify-items one. If the second value is not present, the first value is also used for it.',
     'place-content': `The place-content CSS shorthand property sets both the align-content and justify-content properties.`,
     'rotate': `The rotate CSS property allows you to specify rotation transforms individually and independantly of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value.`,
     'ruby-merge': `This property controls how ruby annotation boxes should be rendered when there are more than one in a ruby container box: whether each pair should be kept separate, the annotations should be collapsed and rendered as a group, or the separation should be determined based on the space available.`,
@@ -113,7 +125,8 @@ module.exports ={
     ':dir': 'The :dir() CSS pseudo-class matches elements based on the directionality of the text contained in them.',
     ':focus-visible': 'The :focus-visible pseudo-class applies while an element matches the :focus pseudo-class and the UA determines via heuristics that the focus should be made evident on the element.',
     ':focus-within': 'The :focus-within pseudo-class applies to any element for which the :focus pseudo class applies as well as to an element whose descendant in the flat tree (including non-element nodes, such as text nodes) matches the conditions for matching :focus.',
-    ':placeholder-shown': 'The :placeholder-shown CSS pseudo-class represents any <input> or <textarea> element that is currently displaying placeholder text.'
+    ':placeholder-shown': 'The :placeholder-shown CSS pseudo-class represents any <input> or <textarea> element that is currently displaying placeholder text.',
+    ':has': ':The :has() CSS pseudo-class represents an element if any of the selectors passed as parameters (relative to the :scope of the given element), match at least one element.'
   },
    pseudoElementDescriptions: {
     '::-moz-range-progress': 'The ::-moz-range-progress CSS pseudo-element is a Mozilla extension that represents the lower portion of the track (i.e., groove) in which the indicator slides in an <input> of type="range". This portion corresponds to values lower than the value currently selected by the thumb (i.e., virtual knob).',
