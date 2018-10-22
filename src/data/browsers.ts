@@ -487,6 +487,7 @@ export const data : any = {
 			{
 				name: ":defined",
 				desc: "The :defined CSS pseudo-class represents any element that has been defined. This includes any standard element built in to the browser, and custom elements that have been successfully defined (i.e. with the CustomElementRegistry.define() method).",
+				"status": "e",
 				browsers: "FF63,S,C,O"
 			},
 			{
@@ -502,11 +503,18 @@ export const data : any = {
 			{
 				name: ":focus-within",
 				desc: "The :focus-within pseudo-class applies to any element for which the :focus pseudo class applies as well as to an element whose descendant in the flat tree (including non-element nodes, such as text nodes) matches the conditions for matching :focus.",
+				"status": "e",
 				browsers: "FF52,S10.1,C60,O47"
+			},
+			{
+				name: ":has",
+				desc: ":The :has() CSS pseudo-class represents an element if any of the selectors passed as parameters (relative to the :scope of the given element), match at least one element.",
+				"status": "e"
 			},
 			{
 				name: ":placeholder-shown",
 				desc: "The :placeholder-shown CSS pseudo-class represents any <input> or <textarea> element that is currently displaying placeholder text.",
+				"status": "e",
 				browsers: "FF51,S9,C47,IE10,O34"
 			}
 		],
@@ -805,23 +813,28 @@ export const data : any = {
 			},
 			{
 				name: "::-moz-range-progress",
-				desc: "The ::-moz-range-progress CSS pseudo-element is a Mozilla extension that represents the lower portion of the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\". This portion corresponds to values lower than the value currently selected by the thumb (i.e., virtual knob)."
+				desc: "The ::-moz-range-progress CSS pseudo-element is a Mozilla extension that represents the lower portion of the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\". This portion corresponds to values lower than the value currently selected by the thumb (i.e., virtual knob).",
+				"status": "n"
 			},
 			{
 				name: "::-moz-range-thumb",
-				desc: "The ::-moz-range-thumb CSS pseudo-element is a Mozilla extension that represents the thumb (i.e., virtual knob) of an <input> of type=\"range\". The user can move the thumb along the input's track to alter its numerical value."
+				desc: "The ::-moz-range-thumb CSS pseudo-element is a Mozilla extension that represents the thumb (i.e., virtual knob) of an <input> of type=\"range\". The user can move the thumb along the input's track to alter its numerical value.",
+				"status": "n"
 			},
 			{
 				name: "::-moz-range-track",
-				desc: "The ::-moz-range-track CSS pseudo-element is a Mozilla extension that represents the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\"."
+				desc: "The ::-moz-range-track CSS pseudo-element is a Mozilla extension that represents the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\".",
+				"status": "n"
 			},
 			{
 				name: "::-webkit-progress-inner-value",
-				desc: "The ::-webkit-progress-value CSS pseudo-element represents the filled-in portion of the bar of a <progress> element. It is a child of the ::-webkit-progress-bar pseudo-element.\n\nIn order to let ::-webkit-progress-value take effect, -webkit-appearance needs to be set to none on the <progress> element."
+				desc: "The ::-webkit-progress-value CSS pseudo-element represents the filled-in portion of the bar of a <progress> element. It is a child of the ::-webkit-progress-bar pseudo-element.\n\nIn order to let ::-webkit-progress-value take effect, -webkit-appearance needs to be set to none on the <progress> element.",
+				"status": "n"
 			},
 			{
 				name: "::grammar-error",
-				desc: "The ::grammar-error CSS pseudo-element represents a text segment which the user agent has flagged as grammatically incorrect."
+				desc: "The ::grammar-error CSS pseudo-element represents a text segment which the user agent has flagged as grammatically incorrect.",
+				"status": "e"
 			},
 			{
 				name: "::placeholder",
@@ -835,7 +848,8 @@ export const data : any = {
 			},
 			{
 				name: "::spelling-error",
-				desc: "The ::spelling-error CSS pseudo-element represents a text segment which the user agent has flagged as incorrectly spelled."
+				desc: "The ::spelling-error CSS pseudo-element represents a text segment which the user agent has flagged as incorrectly spelled.",
+				"status": "e"
 			}
 		],
 		"properties": [
@@ -1500,7 +1514,7 @@ export const data : any = {
 				desc: "Shorthand property for setting border width, style, and color.",
 				browsers: "all",
 				restriction: "length, line-width, line-style, color",
-				"syntax": "<br-width> || <br-style> || <color>"
+				"syntax": "<line-width> || <line-style> || <color>"
 			},
 			{
 				name: "border-block-end",
@@ -1563,7 +1577,7 @@ export const data : any = {
 				desc: "Shorthand property for setting border width, style and color.",
 				browsers: "all",
 				restriction: "length, line-width, line-style, color",
-				"syntax": "<br-width> || <br-style> || <color>"
+				"syntax": "<line-width> || <line-style> || <color>"
 			},
 			{
 				name: "border-bottom-color",
@@ -1591,14 +1605,14 @@ export const data : any = {
 				desc: "Sets the style of the bottom border.",
 				browsers: "all",
 				restriction: "line-style",
-				"syntax": "<br-style>"
+				"syntax": "<line-style>"
 			},
 			{
 				name: "border-bottom-width",
 				desc: "Sets the thickness of the bottom border.",
 				browsers: "all",
 				restriction: "length, line-width",
-				"syntax": "<br-width>"
+				"syntax": "<line-width>"
 			},
 			{
 				name: "border-collapse",
@@ -1795,7 +1809,7 @@ export const data : any = {
 				desc: "Shorthand property for setting border width, style and color",
 				browsers: "all",
 				restriction: "length, line-width, line-style, color",
-				"syntax": "<br-width> || <br-style> || <color>"
+				"syntax": "<line-width> || <line-style> || <color>"
 			},
 			{
 				name: "border-left-color",
@@ -1809,14 +1823,14 @@ export const data : any = {
 				desc: "Sets the style of the left border.",
 				browsers: "all",
 				restriction: "line-style",
-				"syntax": "<br-style>"
+				"syntax": "<line-style>"
 			},
 			{
 				name: "border-left-width",
 				desc: "Sets the thickness of the left border.",
 				browsers: "all",
 				restriction: "length, line-width",
-				"syntax": "<br-width>"
+				"syntax": "<line-width>"
 			},
 			{
 				name: "border-radius",
@@ -1830,7 +1844,7 @@ export const data : any = {
 				desc: "Shorthand property for setting border width, style and color",
 				browsers: "all",
 				restriction: "length, line-width, line-style, color",
-				"syntax": "<br-width> || <br-style> || <color>"
+				"syntax": "<line-width> || <line-style> || <color>"
 			},
 			{
 				name: "border-right-color",
@@ -1844,14 +1858,14 @@ export const data : any = {
 				desc: "Sets the style of the right border.",
 				browsers: "all",
 				restriction: "line-style",
-				"syntax": "<br-style>"
+				"syntax": "<line-style>"
 			},
 			{
 				name: "border-right-width",
 				desc: "Sets the thickness of the right border.",
 				browsers: "all",
 				restriction: "length, line-width",
-				"syntax": "<br-width>"
+				"syntax": "<line-width>"
 			},
 			{
 				name: "border-spacing",
@@ -1866,14 +1880,14 @@ export const data : any = {
 				browsers: "all",
 				restriction: "line-style",
 				values: [],
-				"syntax": "<br-style>{1,4}"
+				"syntax": "<line-style>{1,4}"
 			},
 			{
 				name: "border-top",
 				desc: "Shorthand property for setting border width, style and color",
 				browsers: "all",
 				restriction: "length, line-width, line-style, color",
-				"syntax": "<br-width> || <br-style> || <color>"
+				"syntax": "<line-width> || <line-style> || <color>"
 			},
 			{
 				name: "border-top-color",
@@ -1901,14 +1915,14 @@ export const data : any = {
 				desc: "Sets the style of the top border.",
 				browsers: "all",
 				restriction: "line-style",
-				"syntax": "<br-style>"
+				"syntax": "<line-style>"
 			},
 			{
 				name: "border-top-width",
 				desc: "Sets the thickness of the top border.",
 				browsers: "all",
 				restriction: "length, line-width",
-				"syntax": "<br-width>"
+				"syntax": "<line-width>"
 			},
 			{
 				name: "border-width",
@@ -1916,7 +1930,7 @@ export const data : any = {
 				browsers: "all",
 				restriction: "length, line-width",
 				values: [],
-				"syntax": "<br-width>{1,4}"
+				"syntax": "<line-width>{1,4}"
 			},
 			{
 				name: "bottom",
@@ -8530,8 +8544,7 @@ export const data : any = {
 						name: "auto",
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well."
 					}
-				],
-				"syntax": "<'left'>"
+				]
 			},
 			{
 				name: "offset-block-start",
@@ -8543,8 +8556,7 @@ export const data : any = {
 						name: "auto",
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well."
 					}
-				],
-				"syntax": "<'left'>"
+				]
 			},
 			{
 				name: "offset-inline-end",
@@ -8556,8 +8568,7 @@ export const data : any = {
 						name: "auto",
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well."
 					}
-				],
-				"syntax": "<'left'>"
+				]
 			},
 			{
 				name: "offset-inline-start",
@@ -8569,8 +8580,7 @@ export const data : any = {
 						name: "auto",
 						desc: "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well."
 					}
-				],
-				"syntax": "<'left'>"
+				]
 			},
 			{
 				name: "outline",
@@ -8620,14 +8630,14 @@ export const data : any = {
 						desc: "Permits the user agent to render a custom outline style, typically the default platform style."
 					}
 				],
-				"syntax": "auto | <br-style>"
+				"syntax": "auto | <'border-style'>"
 			},
 			{
 				name: "outline-width",
 				desc: "Width of the outline.",
 				browsers: "all",
 				restriction: "length, line-width",
-				"syntax": "<br-width>"
+				"syntax": "<line-width>"
 			},
 			{
 				name: "overflow",
@@ -9048,7 +9058,7 @@ export const data : any = {
 						desc: "The UA presents a unidirectional vertical resizing mechanism to allow the user to adjust only the height of the element."
 					}
 				],
-				"syntax": "none | both | horizontal | vertical"
+				"syntax": "none | both | horizontal | vertical | block | inline"
 			},
 			{
 				name: "right",
@@ -12391,13 +12401,6 @@ export const data : any = {
 				browsers: "E17,S9,C47,O34"
 			},
 			{
-				name: "block-overflow",
-				desc: "",
-				restriction: "none",
-				"status": "e",
-				"syntax": "clip | ellipsis | <string>"
-			},
-			{
 				name: "box-align",
 				desc: "The box-align CSS property specifies how an element aligns its contents across its layout in a perpendicular direction. The effect of the property is only visible if there is extra space in the box.",
 				restriction: "none",
@@ -12470,7 +12473,7 @@ export const data : any = {
 			},
 			{
 				name: "font-optical-sizing",
-				desc: "",
+				desc: "The font-optical-sizing CSS property allows developers to control whether browsers render text with slightly differing visual representations to optimize viewing at different sizes, or not. This only works for fonts that have an optical size variation axis.",
 				restriction: "none",
 				"syntax": "auto | none",
 				browsers: "FF62"
@@ -12518,19 +12521,39 @@ export const data : any = {
 				"syntax": "[ auto | alphabetic | hanging | ideographic ]"
 			},
 			{
+				name: "inset-block-end",
+				desc: "The inset-block-end CSS property defines the logical block end offset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation.",
+				restriction: "none",
+				"syntax": "<'left'>",
+				browsers: "FF63"
+			},
+			{
+				name: "inset-block-start",
+				desc: "The inset-block-start CSS property defines the logical block start offset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation.",
+				restriction: "none",
+				"syntax": "<'left'>",
+				browsers: "FF63"
+			},
+			{
+				name: "inset-inline-end",
+				desc: "The inset-inline-end CSS property defines the logical inline end inset of an element, which maps to a physical inset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation.",
+				restriction: "none",
+				"syntax": "<'left'>",
+				browsers: "FF63"
+			},
+			{
+				name: "inset-inline-start",
+				desc: "The inset-inline-start CSS property defines the logical inline start inset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation.",
+				restriction: "none",
+				"syntax": "<'left'>",
+				browsers: "FF63"
+			},
+			{
 				name: "line-clamp",
-				desc: "",
+				desc: "The line-clamp property allows limiting the contents of a block container to the specified number of lines; remaining content is fragmented away and neither rendered nor measured. Optionally, it also allows inserting content into the last line box to indicate the continuity of truncated/interrupted content.",
 				restriction: "none",
 				"status": "e",
 				"syntax": "none | <integer>"
-			},
-			{
-				name: "line-height-step",
-				desc: "The line-height-step CSS property defines the step units for line box heights. When the step unit is positive, line box heights are rounded up to the closest multiple of the unit. Negative values are invalid.",
-				restriction: "none",
-				"status": "e",
-				"syntax": "<length>",
-				browsers: "C60,O47"
 			},
 			{
 				name: "mask",
@@ -12604,7 +12627,7 @@ export const data : any = {
 			},
 			{
 				name: "max-lines",
-				desc: "",
+				desc: "The max-liens property forces a break after a set number of lines",
 				restriction: "none",
 				"status": "e",
 				"syntax": "none | <integer>"
@@ -12657,14 +12680,14 @@ export const data : any = {
 			},
 			{
 				name: "overflow-anchor",
-				desc: "",
+				desc: "The overflow-anchor CSS property provides a way to opt out browser scroll anchoring behavior which adjusts scroll position to minimize content shifts.",
 				restriction: "none",
 				"status": "e",
 				"syntax": "auto | none"
 			},
 			{
 				name: "overflow-block",
-				desc: "",
+				desc: "The overflow-block CSS media feature can be used to test how the output device handles content that overflows the initial containing block along the block axis.",
 				restriction: "none",
 				"status": "e",
 				"syntax": "<'overflow'>"
@@ -12678,7 +12701,7 @@ export const data : any = {
 			},
 			{
 				name: "overflow-inline",
-				desc: "",
+				desc: "The overflow-inline CSS media feature can be used to test how the output device handles content that overflows the initial containing block along the inline axis.",
 				restriction: "none",
 				"status": "e",
 				"syntax": "<'overflow'>"
@@ -12713,6 +12736,13 @@ export const data : any = {
 				restriction: "none",
 				"syntax": "<'align-content'> <'justify-content'>?",
 				browsers: "FF60,S,C59,O"
+			},
+			{
+				name: "place-items",
+				desc: "The CSS place-items shorthand property sets both the align-items and justify-items properties. The first value is the align-items property value, the second the justify-items one. If the second value is not present, the first value is also used for it.",
+				restriction: "none",
+				"syntax": "<'align-items'> <'justify-items'>?",
+				browsers: "FF45,C59"
 			},
 			{
 				name: "rotate",

@@ -8,7 +8,13 @@
 const { propertyDescriptions } = require('./mdn-documentation')
 
 const mdnExcludedProperties = [
-  '--*' // custom properties
+  '--*', // custom properties
+  'block-overflow', // dropped in favor of `overflow-block`
+  // dropped in favor of `offset`
+  'motion',
+  'motion-offset',
+  'motion-path',
+  'motion-rotation'
 ]
 
 function addMDNProperties(vscProperties) {
@@ -92,5 +98,6 @@ function abbreviateStatus(status) {
 }
 
 module.exports = {
+  abbreviateStatus,
   addMDNProperties
 }
