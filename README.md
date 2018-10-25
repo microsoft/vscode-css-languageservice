@@ -58,6 +58,26 @@ export interface LanguageSettings {
 
 ```
 
+Development
+-----------
+
+How can I run and debug this node module
+
+- clone, npm install
+- open the folder in VSCode.
+- set breakpoints, e.g. in `cssCompletion.ts`
+- run JUnit tests from the debug viewlet and wait until a breakpoint is hit:
+![image](https://user-images.githubusercontent.com/6461412/47481279-5cffcd80-d833-11e8-8c03-18c6e7a28053.png)
+
+
+In VSCode:
+- run VSCode out of sources as described here: https://github.com/Microsoft/vscode/wiki/How-to-Contribute
+  - in the instance run from sources open a `.css` file
+- open a VSCode on the VSCode source
+  - run command `Debug: Attach to Node process` and pick the process with the `css-language-features` path
+  - Set a breakpoint in `extensions/css-language-features/server/node_modules/vscode-css-languageservice/lib/umd/services/cssCompletion.js`
+- in the instance run from sources invoke code completion in the .css file
+- use `yarn link vscode-css-languageservice` in `extensions/css-language-features/server` to run VSCode with your changes to `vscode-css-languageservice`
 
 License
 -------
