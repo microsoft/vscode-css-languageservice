@@ -7,6 +7,7 @@
 import * as nodes from '../parser/cssNodes';
 import { MarkedString } from 'vscode-languageserver-types';
 import { Scanner } from '../parser/cssScanner';
+import { calculate } from 'specificity';
 
 export class Element {
 
@@ -310,14 +311,25 @@ function unescape(content: string) {
 	return content;
 }
 
+function specificityMarkedString(node: nodes.Node): MarkedString {
+	let specificityCalculation = calculate(node.getText())[0];
+	let specificity = specificityCalculation["specificityArray"].slice(1); //remove first score (inline css)
+	let value = "Specificity: " + specificity.join(",");
+	return { language: 'text', value };
+}
+
 export function selectorToMarkedString(node: nodes.Selector): MarkedString[] {
 	let root = selectorToElement(node);
-	return new MarkedStringPrinter('"').print(root);
+	let markedStrings = new MarkedStringPrinter('"').print(root);
+	markedStrings.push(specificityMarkedString(node));
+	return markedStrings; 
 }
 
 export function simpleSelectorToMarkedString(node: nodes.SimpleSelector): MarkedString[] {
 	let element = toElement(node);
-	return new MarkedStringPrinter('"').print(element);
+	let markedStrings = new MarkedStringPrinter('"').print(element);
+	markedStrings.push(specificityMarkedString(node));
+	return markedStrings; 
 }
 
 class SelectorElementBuilder {
