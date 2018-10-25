@@ -8,12 +8,19 @@ import * as nodes from '../parser/cssNodes';
 import * as languageFacts from './languageFacts';
 import { TextDocument, Range, Position, Hover, MarkedString } from 'vscode-languageserver-types';
 import { selectorToMarkedString, simpleSelectorToMarkedString } from './selectorPrinting';
+import { calculate } from 'specificity';
 
 export class CSSHover {
 
 	constructor() {
 	}
 
+	private calculateSpecificity(node: nodes.Node): MarkedString {
+		let specificity = calculate(node.getText());
+		let value = "Specificity: " + specificity[0]["specificity"];
+		return { language: 'text', value };
+	}
+	
 	public doHover(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Hover {
 
 		function getRange(node: nodes.Node) {
@@ -26,8 +33,11 @@ export class CSSHover {
 		for (let i = 0; i < nodepath.length; i++) {
 			let node = nodepath[i];
 			if (node instanceof nodes.Selector) {
+				let content = selectorToMarkedString(<nodes.Selector>node);
+				let specificity = this.calculateSpecificity(node);
+				content.push(specificity);
 				return {
-					contents: selectorToMarkedString(<nodes.Selector>node),
+					contents: content,
 					range: getRange(node)
 				};
 			}
