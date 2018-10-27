@@ -28,7 +28,6 @@
     "xml2js": "^0.4.19"
   },
   "dependencies": {
-    "specificity": "^0.4.1",
     "vscode-languageserver-types": "^3.13.0",
     "vscode-nls": "^4.0.0"
   },

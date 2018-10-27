@@ -7,7 +7,6 @@
 import * as nodes from '../parser/cssNodes';
 import { MarkedString } from 'vscode-languageserver-types';
 import { Scanner } from '../parser/cssScanner';
-import { calculate } from 'specificity';
 
 export class Element {
 
@@ -311,24 +310,59 @@ function unescape(content: string) {
 	return content;
 }
 
-function specificityMarkedString(node: nodes.Node): MarkedString {
-	let specificityCalculation = calculate(node.getText())[0];
-	let specificity = specificityCalculation["specificityArray"].slice(1); //remove first score (inline css)
-	let value = "Specificity: " + specificity.join(",");
-	return { language: 'text', value };
+function selectorToSpecifityMarkedString(node: nodes.Node): MarkedString {	
+	//https://www.w3.org/TR/selectors-3/#specificity
+	function calculateScore(node: nodes.Node) {
+		node.getChildren().forEach(element => {
+			switch(element.type) {
+				case nodes.NodeType.IdentifierSelector:
+					specificity[0] += 1;		//a
+					break;
+				case nodes.NodeType.ClassSelector:
+				case nodes.NodeType.AttributeSelector:
+					specificity[1] += 1;		//b
+					break;
+				case nodes.NodeType.ElementNameSelector:
+					//ignore universal selector
+					if (element.getText() === "*") {
+						break;
+					}
+					specificity[2] += 1;		//c
+					break;
+				case nodes.NodeType.PseudoSelector:
+					if (element.getText().match(/^::/)) {
+						specificity[2] += 1;	//c (speudo element)
+					} else {
+						//ignore psuedo class NOT
+						if (element.getText().match(/^:not/i)) {
+							break;
+						}
+						specificity[1] += 1;	//b (speudo class)
+					}
+					break;
+			} 
+			if (element.getChildren().length > 0) {
+				calculateScore(element);
+			}
+		});
+	}
+
+	let specificity = [0, 0, 0]; //a,b,c
+	calculateScore(node);
+	return { language: 'text', value: "Specificity: " + specificity.join(",") };
 }
 
 export function selectorToMarkedString(node: nodes.Selector): MarkedString[] {
 	let root = selectorToElement(node);
 	let markedStrings = new MarkedStringPrinter('"').print(root);
-	markedStrings.push(specificityMarkedString(node));
+	markedStrings.push(selectorToSpecifityMarkedString(node));
 	return markedStrings; 
 }
 
 export function simpleSelectorToMarkedString(node: nodes.SimpleSelector): MarkedString[] {
 	let element = toElement(node);
 	let markedStrings = new MarkedStringPrinter('"').print(element);
-	markedStrings.push(specificityMarkedString(node));
+	markedStrings.push(selectorToSpecifityMarkedString(node));
 	return markedStrings; 
 }
 
