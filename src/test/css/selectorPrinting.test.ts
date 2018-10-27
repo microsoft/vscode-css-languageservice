@@ -121,22 +121,21 @@ suite('CSS - MarkedStringPrinter selectors', () => {
 
 	test('descendant selector', function () {
 		let p = new Parser();
-		parseSelectorToMarkedString(p, 'e1 e2 { }', 'e1', [{ language: 'html', value: '<e1>\n  …\n    <e2>' }]);
-		parseSelectorToMarkedString(p, 'e1 .div { }', 'e1', [{ language: 'html', value: '<e1>\n  …\n    <element class="div">' }]);
+		parseSelectorToMarkedString(p, 'e1 e2 { }', 'e1', [{ language: 'html', value: '<e1>\n  …\n    <e2>' }, { language: 'text', value: 'Specificity: 0,0,2'}]);
+		parseSelectorToMarkedString(p, 'e1 .div { }', 'e1', [{ language: 'html', value: '<e1>\n  …\n    <element class="div">' }, { language: 'text', value: 'Specificity: 0,1,1'}]);
 	});
 	test('child selector', function () {
 		let p = new Parser();
-		parseSelectorToMarkedString(p, 'e1 > e2 { }', 'e2', [{ language: 'html', value: '<e1>\n  <e2>' }]);
+		parseSelectorToMarkedString(p, 'e1 > e2 { }', 'e2', [{ language: 'html', value: '<e1>\n  <e2>' }, { language: 'text', value: 'Specificity: 0,0,2'}]);
 	});
 	test('group selector', function () {
 		let p = new Parser();
-		parseSelectorToMarkedString(p, 'e1, e2 { }', 'e1', [{ language: 'html', value: '<e1>' }]);
-		parseSelectorToMarkedString(p, 'e1, e2 { }', 'e2', [{ language: 'html', value: '<e2>' }]);
+		parseSelectorToMarkedString(p, 'e1, e2 { }', 'e1', [{ language: 'html', value: '<e1>' }, { language: 'text', value: 'Specificity: 0,0,1'}]);
+		parseSelectorToMarkedString(p, 'e1, e2 { }', 'e2', [{ language: 'html', value: '<e2>' }, { language: 'text', value: 'Specificity: 0,0,1'}]);
 	});
 	test('sibling selector', function () {
 		let p = new Parser();
-		parseSelectorToMarkedString(p, 'e1 + e2 { }', 'e2', [{ language: 'html', value: '<e1>\n<e2>' }]);
-		parseSelectorToMarkedString(p, 'e1 ~ e2 { }', 'e2', [{ language: 'html', value: '<e1>\n<e2>\n⋮\n<e2>' }]);
+		parseSelectorToMarkedString(p, 'e1 + e2 { }', 'e2', [{ language: 'html', value: '<e1>\n<e2>' }, { language: 'text', value: 'Specificity: 0,0,2'}]);
+		parseSelectorToMarkedString(p, 'e1 ~ e2 { }', 'e2', [{ language: 'html', value: '<e1>\n<e2>\n⋮\n<e2>' }, { language: 'text', value: 'Specificity: 0,0,2'}]);
 	});
-
 });
