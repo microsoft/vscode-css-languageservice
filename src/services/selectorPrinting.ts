@@ -337,7 +337,7 @@ function selectorToSpecifityMarkedString(node: nodes.Node): MarkedString {
 						if (element.getText().match(/^:not/i)) {
 							break;
 						}
-						specificity[1] += 1;	//b (speudo class)
+						specificity[1] += 1;	//b (pseudo class)
 					}
 					break;
 			} 
