@@ -331,7 +331,7 @@ function selectorToSpecifityMarkedString(node: nodes.Node): MarkedString {
 					break;
 				case nodes.NodeType.PseudoSelector:
 					if (element.getText().match(/^::/)) {
-						specificity[2] += 1;	//c (speudo element)
+						specificity[2] += 1;	//c (pseudo element)
 					} else {
 						//ignore psuedo class NOT
 						if (element.getText().match(/^:not/i)) {
