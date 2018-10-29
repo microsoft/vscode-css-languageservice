@@ -310,14 +310,60 @@ function unescape(content: string) {
 	return content;
 }
 
+function selectorToSpecifityMarkedString(node: nodes.Node): MarkedString {	
+	//https://www.w3.org/TR/selectors-3/#specificity
+	function calculateScore(node: nodes.Node) {
+		node.getChildren().forEach(element => {
+			switch(element.type) {
+				case nodes.NodeType.IdentifierSelector:
+					specificity[0] += 1;		//a
+					break;
+				case nodes.NodeType.ClassSelector:
+				case nodes.NodeType.AttributeSelector:
+					specificity[1] += 1;		//b
+					break;
+				case nodes.NodeType.ElementNameSelector:
+					//ignore universal selector
+					if (element.getText() === "*") {
+						break;
+					}
+					specificity[2] += 1;		//c
+					break;
+				case nodes.NodeType.PseudoSelector:
+					if (element.getText().match(/^::/)) {
+						specificity[2] += 1;	//c (pseudo element)
+					} else {
+						//ignore psuedo class NOT
+						if (element.getText().match(/^:not/i)) {
+							break;
+						}
+						specificity[1] += 1;	//b (pseudo class)
+					}
+					break;
+			} 
+			if (element.getChildren().length > 0) {
+				calculateScore(element);
+			}
+		});
+	}
+
+	let specificity = [0, 0, 0]; //a,b,c
+	calculateScore(node);
+	return { language: 'text', value: "Specificity: " + specificity.join(",") };
+}
+
 export function selectorToMarkedString(node: nodes.Selector): MarkedString[] {
 	let root = selectorToElement(node);
-	return new MarkedStringPrinter('"').print(root);
+	let markedStrings = new MarkedStringPrinter('"').print(root);
+	markedStrings.push(selectorToSpecifityMarkedString(node));
+	return markedStrings; 
 }
 
 export function simpleSelectorToMarkedString(node: nodes.SimpleSelector): MarkedString[] {
 	let element = toElement(node);
-	return new MarkedStringPrinter('"').print(element);
+	let markedStrings = new MarkedStringPrinter('"').print(element);
+	markedStrings.push(selectorToSpecifityMarkedString(node));
+	return markedStrings; 
 }
 
 class SelectorElementBuilder {

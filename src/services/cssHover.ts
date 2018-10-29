@@ -13,7 +13,7 @@ export class CSSHover {
 
 	constructor() {
 	}
-
+	
 	public doHover(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Hover {
 
 		function getRange(node: nodes.Node) {
