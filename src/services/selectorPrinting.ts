@@ -5,8 +5,11 @@
 'use strict';
 
 import * as nodes from '../parser/cssNodes';
-import { MarkedString } from 'vscode-languageserver-types';
+import { MarkedString, Location } from 'vscode-languageserver-types';
 import { Scanner } from '../parser/cssScanner';
+
+import * as nls from 'vscode-nls';
+const localize = nls.loadMessageBundle();
 
 export class Element {
 
@@ -310,11 +313,11 @@ function unescape(content: string) {
 	return content;
 }
 
-function selectorToSpecifityMarkedString(node: nodes.Node): MarkedString {	
+function selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
 	//https://www.w3.org/TR/selectors-3/#specificity
 	function calculateScore(node: nodes.Node) {
 		node.getChildren().forEach(element => {
-			switch(element.type) {
+			switch (element.type) {
 				case nodes.NodeType.IdentifierSelector:
 					specificity[0] += 1;		//a
 					break;
@@ -340,7 +343,7 @@ function selectorToSpecifityMarkedString(node: nodes.Node): MarkedString {
 						specificity[1] += 1;	//b (pseudo class)
 					}
 					break;
-			} 
+			}
 			if (element.getChildren().length > 0) {
 				calculateScore(element);
 			}
@@ -349,21 +352,23 @@ function selectorToSpecifityMarkedString(node: nodes.Node): MarkedString {
 
 	let specificity = [0, 0, 0]; //a,b,c
 	calculateScore(node);
-	return { language: 'text', value: "Specificity: " + specificity.join(",") };
+	return {
+		language: 'text', value: localize('specificity', "Specificity: {0}, {1}, {2}", ...specificity)
+	};
 }
 
 export function selectorToMarkedString(node: nodes.Selector): MarkedString[] {
 	let root = selectorToElement(node);
 	let markedStrings = new MarkedStringPrinter('"').print(root);
-	markedStrings.push(selectorToSpecifityMarkedString(node));
-	return markedStrings; 
+	markedStrings.push(selectorToSpecificityMarkedString(node));
+	return markedStrings;
 }
 
 export function simpleSelectorToMarkedString(node: nodes.SimpleSelector): MarkedString[] {
 	let element = toElement(node);
 	let markedStrings = new MarkedStringPrinter('"').print(element);
-	markedStrings.push(selectorToSpecifityMarkedString(node));
-	return markedStrings; 
+	markedStrings.push(selectorToSpecificityMarkedString(node));
+	return markedStrings;
 }
 
 class SelectorElementBuilder {

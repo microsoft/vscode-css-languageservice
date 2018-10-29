@@ -121,56 +121,56 @@ suite('CSS - MarkedStringPrinter selectors', () => {
 
 	test('descendant selector', function () {
 		let p = new Parser();
-		parseSelectorToMarkedString(p, 'e1 e2 { }', 'e1', [{ language: 'html', value: '<e1>\n  …\n    <e2>' }, { language: 'text', value: 'Specificity: 0,0,2'}]);
-		parseSelectorToMarkedString(p, 'e1 .div { }', 'e1', [{ language: 'html', value: '<e1>\n  …\n    <element class="div">' }, { language: 'text', value: 'Specificity: 0,1,1'}]);
+		parseSelectorToMarkedString(p, 'e1 e2 { }', 'e1', [{ language: 'html', value: '<e1>\n  …\n    <e2>' }, { language: 'text', value: 'Specificity: 0, 0, 2'}]);
+		parseSelectorToMarkedString(p, 'e1 .div { }', 'e1', [{ language: 'html', value: '<e1>\n  …\n    <element class="div">' }, { language: 'text', value: 'Specificity: 0, 1, 1'}]);
 	});
 	test('child selector', function () {
 		let p = new Parser();
-		parseSelectorToMarkedString(p, 'e1 > e2 { }', 'e2', [{ language: 'html', value: '<e1>\n  <e2>' }, { language: 'text', value: 'Specificity: 0,0,2'}]);
+		parseSelectorToMarkedString(p, 'e1 > e2 { }', 'e2', [{ language: 'html', value: '<e1>\n  <e2>' }, { language: 'text', value: 'Specificity: 0, 0, 2'}]);
 	});
 	test('group selector', function () {
 		let p = new Parser();
-		parseSelectorToMarkedString(p, 'e1, e2 { }', 'e1', [{ language: 'html', value: '<e1>' }, { language: 'text', value: 'Specificity: 0,0,1'}]);
-		parseSelectorToMarkedString(p, 'e1, e2 { }', 'e2', [{ language: 'html', value: '<e2>' }, { language: 'text', value: 'Specificity: 0,0,1'}]);
+		parseSelectorToMarkedString(p, 'e1, e2 { }', 'e1', [{ language: 'html', value: '<e1>' }, { language: 'text', value: 'Specificity: 0, 0, 1'}]);
+		parseSelectorToMarkedString(p, 'e1, e2 { }', 'e2', [{ language: 'html', value: '<e2>' }, { language: 'text', value: 'Specificity: 0, 0, 1'}]);
 	});
 	test('sibling selector', function () {
 		let p = new Parser();
-		parseSelectorToMarkedString(p, 'e1 + e2 { }', 'e2', [{ language: 'html', value: '<e1>\n<e2>' }, { language: 'text', value: 'Specificity: 0,0,2'}]);
-		parseSelectorToMarkedString(p, 'e1 ~ e2 { }', 'e2', [{ language: 'html', value: '<e1>\n<e2>\n⋮\n<e2>' }, { language: 'text', value: 'Specificity: 0,0,2'}]);
+		parseSelectorToMarkedString(p, 'e1 + e2 { }', 'e2', [{ language: 'html', value: '<e1>\n<e2>' }, { language: 'text', value: 'Specificity: 0, 0, 2'}]);
+		parseSelectorToMarkedString(p, 'e1 ~ e2 { }', 'e2', [{ language: 'html', value: '<e1>\n<e2>\n⋮\n<e2>' }, { language: 'text', value: 'Specificity: 0, 0, 2'}]);
 	});
 });
 
 suite('CSS - MarkedStringPrinter selectors specificities', () => {
 	let p = new Parser();
 	test('attribute selector', function() {
-		parseSelectorToMarkedString(p, 'h1 + *[rel=up]', 'h1', [{ language: 'html', value: '<h1>\n<element rel="up">' }, { language: 'text', value: 'Specificity: 0,1,1' }]);
+		parseSelectorToMarkedString(p, 'h1 + *[rel=up]', 'h1', [{ language: 'html', value: '<h1>\n<element rel="up">' }, { language: 'text', value: 'Specificity: 0, 1, 1' }]);
 	});
 	
 	test('class selector', function() {
-		parseSelectorToMarkedString(p, 'ul ol li.red', 'ul', [{ language: 'html', value: '<ul>\n  …\n    <ol>\n      …\n        <li class="red">' }, { language: 'text', value: 'Specificity: 0,1,3' }]);
-		parseSelectorToMarkedString(p, 'li.red.level', 'li', [{ language: 'html', value: '<li class="red level">' }, { language: 'text', value: 'Specificity: 0,2,1' }]);
+		parseSelectorToMarkedString(p, 'ul ol li.red', 'ul', [{ language: 'html', value: '<ul>\n  …\n    <ol>\n      …\n        <li class="red">' }, { language: 'text', value: 'Specificity: 0, 1, 3' }]);
+		parseSelectorToMarkedString(p, 'li.red.level', 'li', [{ language: 'html', value: '<li class="red level">' }, { language: 'text', value: 'Specificity: 0, 2, 1' }]);
 	});
 
 	test('pseudo class selector', function() {
-		parseSelectorToMarkedString(p, 'p:focus', 'p', [{ language: 'html', value: '<p :focus>' }, { language: 'text', value: 'Specificity: 0,1,1' }]);
+		parseSelectorToMarkedString(p, 'p:focus', 'p', [{ language: 'html', value: '<p :focus>' }, { language: 'text', value: 'Specificity: 0, 1, 1' }]);
 	});
 	
 	test('element selector', function() {
-		parseSelectorToMarkedString(p, 'li', 'li', [{ language: 'html', value: '<li>' }, { language: 'text', value: 'Specificity: 0,0,1' }]);
-		parseSelectorToMarkedString(p, 'ul li', 'ul', [{ language: 'html', value: '<ul>\n  …\n    <li>' }, { language: 'text', value: 'Specificity: 0,0,2' }]);
-		parseSelectorToMarkedString(p, 'ul ol+li', 'ul', [{ language: 'html', value: '<ul>\n  …\n    <ol>\n    <li>' }, { language: 'text', value: 'Specificity: 0,0,3' }]);
+		parseSelectorToMarkedString(p, 'li', 'li', [{ language: 'html', value: '<li>' }, { language: 'text', value: 'Specificity: 0, 0, 1' }]);
+		parseSelectorToMarkedString(p, 'ul li', 'ul', [{ language: 'html', value: '<ul>\n  …\n    <li>' }, { language: 'text', value: 'Specificity: 0, 0, 2' }]);
+		parseSelectorToMarkedString(p, 'ul ol+li', 'ul', [{ language: 'html', value: '<ul>\n  …\n    <ol>\n    <li>' }, { language: 'text', value: 'Specificity: 0, 0, 3' }]);
 	});
 
 	test('pseudo element selector', function() {
-		parseSelectorToMarkedString(p, 'p::after', 'p', [{ language: 'html', value: '<p ::after>' }, { language: 'text', value: 'Specificity: 0,0,2' }]);
+		parseSelectorToMarkedString(p, 'p::after', 'p', [{ language: 'html', value: '<p ::after>' }, { language: 'text', value: 'Specificity: 0, 0, 2' }]);
 	});
 	
 	test('identifier selector', function() {
-		parseSelectorToMarkedString(p, '#x34y', '#x34y', [{ language: 'html', value: '<element id="x34y">' }, { language: 'text', value: 'Specificity: 1,0,0' }]);
+		parseSelectorToMarkedString(p, '#x34y', '#x34y', [{ language: 'html', value: '<element id="x34y">' }, { language: 'text', value: 'Specificity: 1, 0, 0' }]);
 	});
 	
 	test('ignore universal and not selector', function() {
-		parseSelectorToMarkedString(p, '*', '*', [{ language: 'html', value: '<element>' }, { language: 'text', value: 'Specificity: 0,0,0' }]);
-		parseSelectorToMarkedString(p, '#s12:not(foo)', '#s12', [{ language: 'html', value: '<element id="s12" :not>' }, { language: 'text', value: 'Specificity: 1,0,1' }]);
+		parseSelectorToMarkedString(p, '*', '*', [{ language: 'html', value: '<element>' }, { language: 'text', value: 'Specificity: 0, 0, 0' }]);
+		parseSelectorToMarkedString(p, '#s12:not(foo)', '#s12', [{ language: 'html', value: '<element id="s12" :not>' }, { language: 'text', value: 'Specificity: 1, 0, 1' }]);
 	});
 });
