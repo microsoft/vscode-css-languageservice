@@ -13,9 +13,9 @@ import { TextDocument } from 'vscode-languageserver-types';
 import { SCSSParser } from '../../parser/scssParser';
 import { LESSParser } from '../../parser/lessParser';
 
-export function assertEntries(node: Node, document: TextDocument, rules: IRule[]): void {
+export function assertEntries(node: Node, document: TextDocument, rules: IRule[], settings = new LintConfigurationSettings()): void {
 
-	let entries = LintVisitor.entries(node, document, new LintConfigurationSettings(), Level.Error | Level.Warning | Level.Ignore);
+	let entries = LintVisitor.entries(node, document, settings, Level.Error | Level.Warning | Level.Ignore);
 	assert.equal(entries.length, rules.length, entries.map(e => e.getRule().id).join(', '));
 
 	for (let entry of entries) {
@@ -34,10 +34,14 @@ function assertStyleSheet(input: string, ...rules: Rule[]): void {
 }
 
 function assertRuleSet(input: string, ...rules: Rule[]): void {
+	assertRuleSetWithSettings(input, rules);
+}
+
+function assertRuleSetWithSettings(input: string, rules: Rule[], settings = new LintConfigurationSettings()): void {
 	for (let p of parsers) {
 		let document = TextDocument.create('test://test/test.css', 'css', 0, input);
 		let node = p.internalParse(input, p._parseRuleset);
-		assertEntries(node, document, rules);
+		assertEntries(node, document, rules, settings);
 	}
 }
 
@@ -94,7 +98,7 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { line-height: 0EM }', Rules.ZeroWithUnit);
 		assertRuleSet('selector { line-height: 0pc }', Rules.ZeroWithUnit);
 		assertRuleSet('selector { outline: black 0em solid; }', Rules.ZeroWithUnit);
-		assertRuleSet('selector { grid-template-columns: 40px 50px auto 0px 40px; }', Rules.ZeroWithUnit)
+		assertRuleSet('selector { grid-template-columns: 40px 50px auto 0px 40px; }', Rules.ZeroWithUnit);
 		assertRuleSet('selector { min-height: 0% }');
 		assertRuleSet('selector { top: calc(0px - 10vw); }'); // issue 46997
 	});
@@ -109,6 +113,7 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { -moz-box-shadow: "rest is missing" }', Rules.UnknownVendorSpecificProperty, Rules.IncludeStandardPropertyWhenUsingVendorPrefix);
 		assertRuleSet('selector { box-shadow: none }'); // no error
 		assertRuleSet('selector { box-property: "rest is missing" }', Rules.UnknownProperty);
+		assertRuleSetWithSettings('selector { foo: "some"; bar: 0px }', [], new LintConfigurationSettings({ validProperties: 'foo,bar'}));
 	});
 
 	test('box model', function () {

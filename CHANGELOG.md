@@ -1,3 +1,8 @@
+3.0.12 / 2018-10-29
+===================
+  * Selector hover shows specificity
+  * New linter setting `validProperties`: a comma separated list of all properties not to be included in validation checking.
+
 3.0.10 / 2018-08-27
 ===================
   * New API `ICompletionParticipant.onCssImportPath` to participate on @import statement.

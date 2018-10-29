@@ -22,7 +22,15 @@ export class Rule implements nodes.IRule {
 		// nothing to do
 	}
 }
-export let Rules = {
+
+export class Setting {
+
+	public constructor(public id: string, public message: string, public defaultValue: string) {
+		// nothing to do
+	}
+}
+
+export const Rules = {
 	AllVendorPrefixes: new Rule('compatibleVendorPrefixes', localize('rule.vendorprefixes.all', "When using a vendor-specific prefix make sure to also include all other vendor-specific properties"), Ignore),
 	IncludeStandardPropertyWhenUsingVendorPrefix: new Rule('vendorPrefix', localize('rule.standardvendorprefix.all', "When using a vendor-specific prefix also include the standard property"), Warning),
 	DuplicateDeclarations: new Rule('duplicateProperties', localize('rule.duplicateDeclarations', "Do not use duplicate style definitions"), Ignore),
@@ -44,11 +52,15 @@ export let Rules = {
 	AvoidIdSelector: new Rule('idSelector', localize('rule.avoidIdSelector', "Selectors should not contain IDs because these rules are too tightly coupled with the HTML."), Ignore),
 };
 
+export const Settings = {
+	ValidProperties: new Setting('validProperties', localize('rule.validProperties', "A comma seperated list of property names that are accepted as-is (no validation)."), '')
+};
+
 export class LintConfigurationSettings {
 	constructor(private conf: LintSettings = {}) {
 	}
 
-	get(rule: Rule): nodes.Level {
+	getRule(rule: Rule): nodes.Level {
 		if (this.conf.hasOwnProperty(rule.id)) {
 			let level = toLevel(this.conf[rule.id]);
 			if (level) {
@@ -56,6 +68,10 @@ export class LintConfigurationSettings {
 			}
 		}
 		return rule.defaultValue;
+	}
+
+	getSetting(setting: Setting): string | undefined {
+		return this.conf[setting.id];
 	}
 }
 

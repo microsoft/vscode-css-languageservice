@@ -5,7 +5,7 @@
 'use strict';
 
 import * as languageFacts from './languageFacts';
-import { Rules, LintConfigurationSettings, Rule } from './lintRules';
+import { Rules, LintConfigurationSettings, Rule, Settings } from './lintRules';
 import * as nodes from '../parser/cssNodes';
 
 import * as nls from 'vscode-nls';
@@ -58,10 +58,28 @@ export class LintVisitor implements nodes.IVisitor {
 	private keyframes: NodesByRootMap;
 	private documentText: string;
 
+	private validProperties : { [name: string]: boolean };
+
 	private constructor(document: TextDocument, settings: LintConfigurationSettings) {
 		this.settings = settings;
 		this.documentText = document.getText();
 		this.keyframes = new NodesByRootMap();
+		this.validProperties = {};
+
+		const properties = settings.getSetting(Settings.ValidProperties);
+		if (typeof properties === 'string') {
+			for (const property of properties.split(',')) {
+				const name = property.trim().toLowerCase();
+				if (name.length) {
+					this.validProperties[name] = true;
+				}
+			}
+		}
+	}
+
+	private isValidPropertyDeclaration(decl: nodes.Declaration) : boolean {
+		const propertyName = decl.getFullPropertyName().toLowerCase();
+		return this.validProperties[propertyName];
 	}
 
 	private fetch(input: Element[], s: string): Element[] {
@@ -108,7 +126,7 @@ export class LintVisitor implements nodes.IVisitor {
 	}
 
 	private addEntry(node: nodes.Node, rule: Rule, details?: string): void {
-		let entry = new nodes.Marker(node, rule, this.settings.get(rule), details);
+		let entry = new nodes.Marker(node, rule, this.settings.getRule(rule), details);
 		this.warnings.push(entry);
 	}
 
@@ -360,7 +378,10 @@ export class LintVisitor implements nodes.IVisitor {
 
 		let elements: Element[] = this.fetch(propertyTable, 'float');
 		for (let index = 0; index < elements.length; index++) {
-			this.addEntry(elements[index].node, Rules.AvoidFloat);
+			const decl = elements[index].node;
+			if (!this.isValidPropertyDeclaration(decl)) {
+				this.addEntry(decl, Rules.AvoidFloat);
+			}
 		}
 
 		/////////////////////////////////////////////////////////////
@@ -368,7 +389,7 @@ export class LintVisitor implements nodes.IVisitor {
 		/////////////////////////////////////////////////////////////
 		for (let i = 0; i < propertyTable.length; i++) {
 			let element = propertyTable[i];
-			if (element.name !== 'background') {
+			if (element.name !== 'background' && !this.validProperties[element.name]) {
 				let value = element.node.getValue();
 				if (value && this.documentText.charAt(value.offset) !== '-') {
 					let elements = this.fetch(propertyTable, element.name);
@@ -394,12 +415,12 @@ export class LintVisitor implements nodes.IVisitor {
 		for (let node of declarations.getChildren()) {
 			if (this.isCSSDeclaration(node)) {
 				let decl = <nodes.Declaration>node;
-				let name = decl.getFullPropertyName();
+				let name = decl.getFullPropertyName().toLowerCase();
 				let firstChar = name.charAt(0);
 
 				if (firstChar === '-') {
 					if (name.charAt(1) !== '-') { // avoid css variables
-						if (!languageFacts.isKnownProperty(name)) {
+						if (!languageFacts.isKnownProperty(name) && !this.validProperties[name]) {
 							this.addEntry(decl.getProperty(), Rules.UnknownVendorSpecificProperty);
 						}
 						let nonPrefixedName = decl.getNonPrefixedPropertyName();
@@ -410,7 +431,7 @@ export class LintVisitor implements nodes.IVisitor {
 						this.addEntry(decl.getProperty(), Rules.IEStarHack);
 						name = name.substr(1);
 					}
-					if (!languageFacts.isKnownProperty(name)) {
+					if (!languageFacts.isKnownProperty(name) && !this.validProperties[name]) {
 						this.addEntry(decl.getProperty(), Rules.UnknownProperty, localize('property.unknownproperty.detailed', "Unknown property: '{0}'", name));
 					}
 					propertiesBySuffix.add(name, name, null); // don't pass the node as we don't show errors on the standard
@@ -475,15 +496,15 @@ export class LintVisitor implements nodes.IVisitor {
 			return true;
 		}
 
-		let decl = node.findParent(nodes.NodeType.Declaration);
+		let decl = <nodes.Declaration> node.findParent(nodes.NodeType.Declaration);
 		if (decl) {
-			let declValue = (<nodes.Declaration>decl).getValue();
+			let declValue = decl.getValue();
 			if (declValue) {
 				let value = node.getValue();
 				if (!value.unit || languageFacts.units.length.indexOf(value.unit.toLowerCase()) === -1) {
 					return true;
 				}
-				if (parseFloat(value.value) === 0.0 && !!value.unit) {
+				if (parseFloat(value.value) === 0.0 && !!value.unit && !this.validProperties[decl.getFullPropertyName()]) {
 					this.addEntry(node, Rules.ZeroWithUnit);
 				}
 			}
