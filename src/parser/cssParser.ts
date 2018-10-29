@@ -320,7 +320,11 @@ export class Parser {
 	}
 
 	public _parseRuleSetDeclaration(): nodes.Node {
-		return this._parseAtApply() || this._tryParseCustomPropertyDeclaration() || this._parseDeclaration();
+		// https://www.w3.org/TR/css-syntax-3/#consume-a-list-of-declarations0
+		return this._parseAtApply()
+			|| this._tryParseCustomPropertyDeclaration()
+			|| this._parseDeclaration()
+			|| this._parseUnknownAtRule();
 	}
 
 	/**
@@ -999,6 +1003,10 @@ export class Parser {
 
 	// https://www.w3.org/TR/css-syntax-3/#consume-an-at-rule
 	public _parseUnknownAtRule(): nodes.Node {
+		if (!this.peek(TokenType.AtKeyword)) {
+			return null;
+		}
+
 		let node = <nodes.UnknownAtRule>this.create(nodes.UnknownAtRule);
 		node.addChild(this._parseUnknownAtRuleName());
 
