@@ -310,12 +310,8 @@ export class Symbols {
 		} else if (node instanceof nodes.Variable) {
 			return [nodes.ReferenceType.Variable];
 		}
-		let selector = node.findParent(nodes.NodeType.Selector);
+		let selector = node.findAParent(nodes.NodeType.Selector, nodes.NodeType.ExtendsReference);
 		if (selector) {
-			return [nodes.ReferenceType.Rule];
-		}
-		let extendsRef = <nodes.ExtendsReference>node.findParent(nodes.NodeType.ExtendsReference);
-		if (extendsRef) {
 			return [nodes.ReferenceType.Rule];
 		}
 		return null;

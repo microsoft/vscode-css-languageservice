@@ -29,6 +29,7 @@ suite('LESS - Symbols', () => {
 		assertSymbolsInScope(p, '.mixin() { .nested() {} }', 11);
 
 		assertSymbolsInScope(p, '@keyframes animation {};', 0, { name: 'animation', type: nodes.ReferenceType.Keyframe });
+		assertSymbolsInScope(p, '.a(@gutter: @gutter-width) { &:extend(.b); }', 1);
 	});
 
 	test('scopes and symbols', function () {

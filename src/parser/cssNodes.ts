@@ -368,6 +368,14 @@ export class Node {
 		return result;
 	}
 
+	public findAParent(...types: NodeType[]): Node {
+		let result: Node = this;
+		while (result && !types.some(t => result.type === t)) {
+			result = result.parent;
+		}
+		return result;
+	}
+
 	public setData(key: string, value: any): void {
 		if (!this.options) {
 			this.options = {};

@@ -65,12 +65,14 @@ export class CSSCompletion {
 						this.getCompletionsForExpression(<nodes.Expression>node, result);
 					}
 				} else if (node instanceof nodes.SimpleSelector) {
-					let parentExtRef = <nodes.ExtendsReference>node.findParent(nodes.NodeType.ExtendsReference);
-					if (parentExtRef) {
-						this.getCompletionsForExtendsReference(parentExtRef, node, result);
-					} else {
-						let parentRuleSet = <nodes.RuleSet>node.findParent(nodes.NodeType.Ruleset);
-						this.getCompletionsForSelector(parentRuleSet, parentRuleSet && parentRuleSet.isNested(), result);
+					let parentRef = node.findAParent(nodes.NodeType.ExtendsReference, nodes.NodeType.Ruleset);
+					if (parentRef) {
+						if (parentRef.type === nodes.NodeType.ExtendsReference) {
+							this.getCompletionsForExtendsReference(<nodes.ExtendsReference>parentRef, node, result);
+						} else {
+							const parentRuleSet = <nodes.RuleSet>parentRef;
+							this.getCompletionsForSelector(parentRuleSet, parentRuleSet && parentRuleSet.isNested(), result);
+						}
 					}
 				} else if (node instanceof nodes.FunctionArgument) {
 					this.getCompletionsForFunctionArgument(<nodes.FunctionArgument>node, <nodes.Function>node.getParent(), result);
@@ -604,7 +606,6 @@ export class CSSCompletion {
 		if (isInSelectors) {
 			return this.getCompletionsForSelector(ruleSet, ruleSet.isNested(), result);
 		}
-		ruleSet.findParent(nodes.NodeType.Ruleset);
 
 		return this.getCompletionsForDeclarations(ruleSet.getDeclarations(), result);
 	}

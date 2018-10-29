@@ -130,9 +130,11 @@ export class CSSNavigation {
 			let locationNode = node;
 			if (node instanceof nodes.Selector) {
 				entry.name = node.getText();
-				locationNode = node.findParent(nodes.NodeType.Ruleset);
-				entry.location = Location.create(document.uri, getRange(locationNode, document));
-				result.push(entry);
+				locationNode = node.findAParent(nodes.NodeType.Ruleset, nodes.NodeType.ExtendsReference);
+				if (locationNode) {
+					entry.location = Location.create(document.uri, getRange(locationNode, document));
+					result.push(entry);
+				}
 				return false;
 			} else if (node instanceof nodes.VariableDeclaration) {
 				entry.name = (<nodes.VariableDeclaration>node).getName();
@@ -279,7 +281,7 @@ function uriStringNodeToDocumentLink(document: TextDocument, uriStringNode: node
 
 function toScssPartialUri(uri: string): string {
 	return uri.replace(/\/(\w+)(.scss)?$/gm, (match, fileName) => {
-			return '/_' + fileName + '.scss';
+		return '/_' + fileName + '.scss';
 	});
 }
 
