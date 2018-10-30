@@ -353,7 +353,7 @@ function selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
 	let specificity = [0, 0, 0]; //a,b,c
 	calculateScore(node);
 	return {
-		language: 'text', value: localize('specificity', "Specificity: {0}, {1}, {2}", ...specificity)
+		language: 'text', value: localize('specificity', "Specificity: ({0}, {1}, {2})", ...specificity)
 	};
 }
 
