@@ -1,3 +1,6 @@
 {
-  "editor.insertSpaces": false
+  "editor.insertSpaces": false,
+  "prettier.useTabs": true,
+  "prettier.printWidth": 120,
+  "prettier.semi": true
 }
