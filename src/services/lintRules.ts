@@ -14,8 +14,6 @@ const Warning = nodes.Level.Warning;
 const Error = nodes.Level.Error;
 const Ignore = nodes.Level.Ignore;
 
-
-
 export class Rule implements nodes.IRule {
 
 	public constructor(public id: string, public message: string, public defaultValue: nodes.Level) {
@@ -25,7 +23,7 @@ export class Rule implements nodes.IRule {
 
 export class Setting {
 
-	public constructor(public id: string, public message: string, public defaultValue: string) {
+	public constructor(public id: string, public message: string, public defaultValue: any) {
 		// nothing to do
 	}
 }
@@ -53,7 +51,7 @@ export const Rules = {
 };
 
 export const Settings = {
-	ValidProperties: new Setting('validProperties', localize('rule.validProperties', "A comma seperated list of property names that are accepted as-is (no validation)."), '')
+	ValidProperties: new Setting('validProperties', localize('rule.validProperties', "A list of properties that are not validated against the `unknownProperties` rule."), [])
 };
 
 export class LintConfigurationSettings {
@@ -70,7 +68,7 @@ export class LintConfigurationSettings {
 		return rule.defaultValue;
 	}
 
-	getSetting(setting: Setting): string | undefined {
+	getSetting(setting: Setting): any {
 		return this.conf[setting.id];
 	}
 }

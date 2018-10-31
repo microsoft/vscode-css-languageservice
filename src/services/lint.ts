@@ -67,13 +67,15 @@ export class LintVisitor implements nodes.IVisitor {
 		this.validProperties = {};
 
 		const properties = settings.getSetting(Settings.ValidProperties);
-		if (typeof properties === 'string') {
-			for (const property of properties.split(',')) {
-				const name = property.trim().toLowerCase();
-				if (name.length) {
-					this.validProperties[name] = true;
+		if (Array.isArray(properties)) {
+			properties.forEach((p) => {
+				if (typeof p === 'string') {
+					const name = p.trim().toLowerCase();
+					if (name.length) {
+						this.validProperties[name] = true;
+					}
 				}
-			}
+			});
 		}
 	}
 

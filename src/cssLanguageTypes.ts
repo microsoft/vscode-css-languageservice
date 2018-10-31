@@ -8,7 +8,7 @@ import { Range, TextEdit, Position } from "vscode-languageserver-types";
 
 export { Range, TextEdit, Position };
 
-export type LintSettings = { [key: string]: string };
+export type LintSettings = { [key: string]: any };
 
 export interface LanguageSettings {
 	validate?: boolean;

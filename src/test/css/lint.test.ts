@@ -113,7 +113,9 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { -moz-box-shadow: "rest is missing" }', Rules.UnknownVendorSpecificProperty, Rules.IncludeStandardPropertyWhenUsingVendorPrefix);
 		assertRuleSet('selector { box-shadow: none }'); // no error
 		assertRuleSet('selector { box-property: "rest is missing" }', Rules.UnknownProperty);
-		assertRuleSetWithSettings('selector { foo: "some"; bar: 0px }', [], new LintConfigurationSettings({ validProperties: 'foo,bar'}));
+		assertRuleSetWithSettings('selector { foo: "some"; bar: 0px }', [], new LintConfigurationSettings({ validProperties: ['foo', 'bar'] }));
+		assertRuleSetWithSettings('selector { foo: "some"; }', [], new LintConfigurationSettings({ validProperties: ['foo', null] }));
+		assertRuleSetWithSettings('selector { bar: "some"; }', [Rules.UnknownProperty], new LintConfigurationSettings({ validProperties: ['foo'] }));
 	});
 
 	test('box model', function () {
