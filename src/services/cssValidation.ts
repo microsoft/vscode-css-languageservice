@@ -37,9 +37,7 @@ export class CSSValidation {
 
 		function toDiagnostic(marker: nodes.IMarker): Diagnostic {
 			let range = Range.create(document.positionAt(marker.getOffset()), document.positionAt(marker.getOffset() + marker.getLength()));
-			let source = ruleIds.indexOf(marker.getRule().id) !== -1
-				? `${document.languageId}.lint.${marker.getRule().id}`
-				: document.languageId;
+			let source = document.languageId;
 
 			return <Diagnostic>{
 				code: marker.getRule().id,
