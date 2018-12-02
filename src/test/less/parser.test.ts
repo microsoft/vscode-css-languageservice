@@ -25,10 +25,14 @@ suite('LESS - Parser', () => {
 		assertNode('@@foo', parser, parser._parseVariable.bind(parser));
 		assertNode('@@@foo', parser, parser._parseVariable.bind(parser));
 		assertNode('@12ooo', parser, parser._parseVariable.bind(parser));
+		assertNode('@foo[]', parser, parser._parseVariable.bind(parser));
 		assertNode('@foo[bar]', parser, parser._parseVariable.bind(parser));
 		assertNode('@foo[@bar]', parser, parser._parseVariable.bind(parser));
 		assertNode('@foo[$bar]', parser, parser._parseVariable.bind(parser));
 		assertNode('@foo[@@bar]', parser, parser._parseVariable.bind(parser));
+		assertNode('@foo[100]', parser, parser._parseVariable.bind(parser));
+		assertNode('@foo[1prop]', parser, parser._parseVariable.bind(parser));
+		assertNode('@foo[--prop]', parser, parser._parseVariable.bind(parser));
 		assertNoNode('@ @foo', parser, parser._parseFunction.bind(parser));
 		assertNoNode('@-@foo', parser, parser._parseFunction.bind(parser));
 	});
@@ -58,7 +62,9 @@ suite('LESS - Parser', () => {
 		assertNode('@greeting: { display: none; }', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('@b: @a !important', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('@rules: .mixin()', parser, parser._parseVariableDeclaration.bind(parser));
-		assertNode('@rules: .mixin()[lookup]', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('@rules: .mixin()[]', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('@rules: .mixin(@value)[@lookup][prop]', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('@expr: .mixin(@value)[] .mixin(@value2)[]', parser, parser._parseVariableDeclaration.bind(parser));
 	});
 
 	test('MixinDeclaration', function () {
@@ -71,7 +77,7 @@ suite('LESS - Parser', () => {
 		assertNode('.color( ) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.mixin (@a) when (@a > 10), (@a < -10) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.mixin (@a) when (isnumber(@a)) and (@a > 0) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
-		assertNode('.mixin (@b) when not (@b >= 0) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
+		assertNode('.mixin (@b) when not (@rules[@b] >= 0) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.mixin (@b) when not (@b > 0) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.mixin (@a, @rest...) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.mixin (@a) when (lightness(@a) >= 50%) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
@@ -202,6 +208,11 @@ suite('LESS - Parser', () => {
 		assertNode('dummy: func(@red)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('dummy: desaturate(@red, 10%)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('dummy: desaturate(16, 10%)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('100: 100', parser, parser._parseDeclaration.bind(parser));
+		assertNode('1prop: 100', parser, parser._parseDeclaration.bind(parser));
+		assertNode('1@{var}prop: 100', parser, parser._parseDeclaration.bind(parser));
+		assertNoNode('--100: 100', parser, parser._parseDeclaration.bind(parser));
+		assertNoNode('--1prop: 100', parser, parser._parseDeclaration.bind(parser));
 
 		assertNode('color: @base-color + #111', parser, parser._parseDeclaration.bind(parser));
 		assertNode('color: 100% / 2 + @ref', parser, parser._parseDeclaration.bind(parser));
@@ -275,6 +286,7 @@ suite('LESS - Parser', () => {
 	test('Interpolation', function () {
 		let parser = new LESSParser();
 		assertNode('.@{name} { }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.${name} { }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.my-element:not(.prefix-@{sub-element}) { }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.-@{color} { }', parser, parser._parseStylesheet.bind(parser));
 		assertNoNode('@', parser, parser._parseInterpolation.bind(parser));
