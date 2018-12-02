@@ -16,11 +16,19 @@ suite('LESS - Parser', () => {
 	test('Variable', function () {
 		let parser = new LESSParser();
 		assertNode('@color', parser, parser._parseVariable.bind(parser));
+		assertNode('$color', parser, parser._parseVariable.bind(parser));
+		assertNode('$$color', parser, parser._parseVariable.bind(parser));
+		assertNode('@$color', parser, parser._parseVariable.bind(parser));
+		assertNode('$@color', parser, parser._parseVariable.bind(parser));
 		assertNode('@co42lor', parser, parser._parseVariable.bind(parser));
 		assertNode('@-co42lor', parser, parser._parseVariable.bind(parser));
 		assertNode('@@foo', parser, parser._parseVariable.bind(parser));
 		assertNode('@@@foo', parser, parser._parseVariable.bind(parser));
 		assertNode('@12ooo', parser, parser._parseVariable.bind(parser));
+		assertNode('@foo[bar]', parser, parser._parseVariable.bind(parser));
+		assertNode('@foo[@bar]', parser, parser._parseVariable.bind(parser));
+		assertNode('@foo[$bar]', parser, parser._parseVariable.bind(parser));
+		assertNode('@foo[@@bar]', parser, parser._parseVariable.bind(parser));
 		assertNoNode('@ @foo', parser, parser._parseFunction.bind(parser));
 		assertNoNode('@-@foo', parser, parser._parseFunction.bind(parser));
 	});
@@ -32,6 +40,7 @@ suite('LESS - Parser', () => {
 		assertNode('@media(max-width: 767px) { .mixinDec() {} }', parser, parser._parseMedia.bind(parser));
 		assertNode('.something { @media (max-width: 760px) { > div { display: block; } } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media (@var) {}', parser, parser._parseMedia.bind(parser));
+		assertNode('@media (@sizes[@large]) {}', parser, parser._parseMedia.bind(parser));
 		assertNode('@media screen and (@var) {}', parser, parser._parseMedia.bind(parser));
 		assertNode('@media (max-width: 760px) { + div { display: block; } }', parser, parser._parseStylesheet.bind(parser));
 	});
@@ -48,6 +57,8 @@ suite('LESS - Parser', () => {
 		assertNode('@greeting: `"hello".toUpperCase() + "!";`', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('@greeting: { display: none; }', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('@b: @a !important', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('@rules: .mixin()', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('@rules: .mixin()[lookup]', parser, parser._parseVariableDeclaration.bind(parser));
 	});
 
 	test('MixinDeclaration', function () {
@@ -89,6 +100,7 @@ suite('LESS - Parser', () => {
 		assertNode('.mixin(@a: 2, @b: 1)', parser, parser._tryParseMixinReference.bind(parser));
 		assertNode('#mixin(@a: 2, @b: 1)', parser, parser._tryParseMixinReference.bind(parser));
 		assertNode('#bundle > .button', parser, parser._tryParseMixinReference.bind(parser));
+		assertNode('#bundle.button', parser, parser._tryParseMixinReference.bind(parser));
 		assertNode('#bundle #inner #button(1)', parser, parser._tryParseMixinReference.bind(parser));
 		assertNode('.mixin(#008000;)', parser, parser._tryParseMixinReference.bind(parser));
 		assertError('.mixin(#008000;;)', parser, parser._tryParseMixinReference.bind(parser), ParseError.ExpressionExpected);
@@ -123,7 +135,13 @@ suite('LESS - Parser', () => {
 		let parser = new LESSParser();
 		assertNode('%()', parser, parser._parseFunction.bind(parser));
 		assertNoNode('% ()', parser, parser._parseFunction.bind(parser));
+		
+		assertNode('func(a, b; bar)', parser, parser._parseRuleSetDeclaration.bind(parser));
+		assertNode('func({a: b();}, bar)', parser, parser._parseRuleSetDeclaration.bind(parser));
+		assertNode('func(.(@val) {})', parser, parser._parseRuleSetDeclaration.bind(parser));
 
+		assertNode('each(@list, .(@v) { prop: @v });', parser, parser._parseStylesheet.bind(parser));
+		assertNode('each(@list, #(@v) { prop: @v });', parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('Expr', function () {
