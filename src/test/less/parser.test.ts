@@ -64,6 +64,7 @@ suite('LESS - Parser', () => {
 		assertNode('@rules: .mixin()', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('@rules: .mixin()[]', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('@rules: .mixin(@value)[@lookup][prop]', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('@rules: .mixin[@lookup][prop]', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('@expr: .mixin(@value)[] .mixin(@value2)[]', parser, parser._parseVariableDeclaration.bind(parser));
 	});
 
@@ -87,7 +88,7 @@ suite('LESS - Parser', () => {
 		assertNode('.color (@color; @padding: 2;) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.font-face(@source, @target) { @font-face { font-family: @source; src: local(\'@{target}\');} }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertError('.color (@color; @padding: 2;;) { }', parser, parser._tryParseMixinDeclaration.bind(parser), ParseError.IdentifierExpected);
-
+		assertNode('.mixin-definition(@a: {}; @b: {default: works;};) { @a(); @b(); }', parser, parser._tryParseMixinDeclaration.bind(parser));
 	});
 
 	test('basic symbols', () => {
@@ -123,6 +124,8 @@ suite('LESS - Parser', () => {
 		assertNode('.foo({ .bar { .baz { color: red; }}})', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.foo(10px; { .bar { .baz { color: red; }}})', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.foo(fade-in; { .bar { .baz { color: red; }}})', parser, parser._parseStylesheet.bind(parser));
+		assertNode('.mixin1({a:b; .mixin2({c: d})})', parser, parser._parseStylesheet.bind(parser));
+
 	});
 
 	test('MixinParameter', function () {
@@ -236,6 +239,7 @@ suite('LESS - Parser', () => {
 		assertNode('.some-mixin { font-weight:bold; } h1 { .some-mixin; font-size:40px; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('#namespace when (@mode=huge) { .mixin() { } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.generate-columns(1);', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@dr1: {f:b}\n@dr2: {f:b}', parser, parser._parseStylesheet.bind(parser));
 
 		assertNode('@color: #F5F5F5;', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@color: #F5F5F5; @color: #F5F5F5;', parser, parser._parseStylesheet.bind(parser));
@@ -281,6 +285,9 @@ suite('LESS - Parser', () => {
 		assertNode('.class1 { @let: 1; > .class2 { display: none; } }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.foo { @supports(display: grid) { .bar { display: none; }}}', parser, parser._parseRuleset.bind(parser));
 		assertNode('.foo { @supports(display: grid) { display: none; }}', parser, parser._parseRuleset.bind(parser));
+		assertNode('.parent { color:green; @document url-prefix() { .child { color:red; }}}', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@supports (property: value) { .outOfMedia & { @media (max-size: 2px) { @supports (whatever: something) { property: value;}}}}', parser, parser._parseStylesheet.bind(parser));
+		
 	});
 
 	test('Interpolation', function () {

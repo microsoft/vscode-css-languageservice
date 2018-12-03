@@ -270,20 +270,20 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseStylesheetStatement(): nodes.Node {
+	public _parseStylesheetStatement(isNested: boolean = false): nodes.Node {
 		if (this.peek(TokenType.AtKeyword)) {
-			return this._parseStylesheetAtStatement();
+			return this._parseStylesheetAtStatement(isNested);
 		}
-		return this._parseRuleset(false);
+		return this._parseRuleset(isNested);
 	}
 
-	public _parseStylesheetAtStatement(): nodes.Node {
+	public _parseStylesheetAtStatement(isNested: boolean = false): nodes.Node {
 		return this._parseImport()
-			|| this._parseMedia()
+			|| this._parseMedia(isNested)
 			|| this._parsePage()
 			|| this._parseFontFace()
 			|| this._parseKeyframe()
-			|| this._parseSupports()
+			|| this._parseSupports(isNested)
 			|| this._parseViewPort()
 			|| this._parseNamespace()
 			|| this._parseDocument()
@@ -361,7 +361,6 @@ export class Parser {
 			case nodes.NodeType.MixinDeclaration:
 			case nodes.NodeType.FunctionDeclaration:
 				return false;
-			case nodes.NodeType.VariableDeclaration:
 			case nodes.NodeType.ExtendsReference:
 			case nodes.NodeType.MixinContent:
 			case nodes.NodeType.ReturnStatement:
@@ -371,6 +370,8 @@ export class Parser {
 			case nodes.NodeType.AtApplyRule:
 			case nodes.NodeType.CustomPropertyDeclaration:
 				return true;
+			case nodes.NodeType.VariableDeclaration:
+				return (<nodes.VariableDeclaration>node).needsSemicolon;
 			case nodes.NodeType.MixinReference:
 				return !(<nodes.MixinReference>node).getContent();
 			case nodes.NodeType.Declaration:
@@ -777,11 +778,11 @@ export class Parser {
 	public _parseSupportsDeclaration(isNested = false): nodes.Node {
 		if (isNested) {
 			// if nested, the body can contain rulesets, but also declarations
-			return this._tryParseRuleset(isNested)
+			return this._tryParseRuleset(true)
 				|| this._tryToParseDeclaration()
-				|| this._parseStylesheetStatement();
+				|| this._parseStylesheetStatement(true);
 		}
-		return this._parseStylesheetStatement();
+		return this._parseStylesheetStatement(false);
 	}
 
 	private _parseSupportsCondition(): nodes.Node {
@@ -844,9 +845,13 @@ export class Parser {
 	}
 
 	public _parseMediaDeclaration(isNested = false): nodes.Node {
-		return this._tryParseRuleset(isNested)
-			|| this._tryToParseDeclaration()
-			|| this._parseStylesheetStatement();
+		if (isNested) {
+			// if nested, the body can contain rulesets, but also declarations
+			return this._tryParseRuleset(true)
+				|| this._tryToParseDeclaration()
+				|| this._parseStylesheetStatement(true);
+		}
+		return this._parseStylesheetStatement(false);
 	}
 
 	public _parseMedia(isNested = false): nodes.Node {

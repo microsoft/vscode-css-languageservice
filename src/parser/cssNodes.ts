@@ -608,7 +608,7 @@ export class Declaration extends AbstractDeclaration {
 
 	public property: Property;
 	public value: Expression;
-	public nestedProprties: NestedProperties;
+	public nestedProperties: NestedProperties;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -657,11 +657,11 @@ export class Declaration extends AbstractDeclaration {
 	}
 
 	public setNestedProperties(value: NestedProperties): boolean {
-		return this.setNode('nestedProprties', value);
+		return this.setNode('nestedProperties', value);
 	}
 
 	public getNestedProperties(): NestedProperties {
-		return this.nestedProprties;
+		return this.nestedProperties;
 	}
 }
 
@@ -1315,6 +1315,7 @@ export class VariableDeclaration extends AbstractDeclaration {
 
 	private variable: Variable;
 	private value: Node;
+	public needsSemicolon: boolean = true;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
