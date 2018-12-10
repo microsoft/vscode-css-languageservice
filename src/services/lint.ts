@@ -411,66 +411,70 @@ export class LintVisitor implements nodes.IVisitor {
 		//	Unknown propery & When using a vendor-prefixed gradient, make sure to use them all.
 		/////////////////////////////////////////////////////////////
 
-		let propertiesBySuffix = new NodesByRootMap();
-		let containsUnknowns = false;
+		let isExportBlock = node.getSelectors().getText() === ":export";
 
-		for (let node of declarations.getChildren()) {
-			if (this.isCSSDeclaration(node)) {
-				let decl = <nodes.Declaration>node;
-				let name = decl.getFullPropertyName().toLowerCase();
-				let firstChar = name.charAt(0);
+		if (!isExportBlock) {
+			let propertiesBySuffix = new NodesByRootMap();
+			let containsUnknowns = false;
 
-				if (firstChar === '-') {
-					if (name.charAt(1) !== '-') { // avoid css variables
-						if (!languageFacts.isKnownProperty(name) && !this.validProperties[name]) {
-							this.addEntry(decl.getProperty(), Rules.UnknownVendorSpecificProperty);
+			for (let node of declarations.getChildren()) {
+				if (this.isCSSDeclaration(node)) {
+					let decl = <nodes.Declaration>node;
+					let name = decl.getFullPropertyName().toLowerCase();
+					let firstChar = name.charAt(0);
+
+					if (firstChar === '-') {
+						if (name.charAt(1) !== '-') { // avoid css variables
+							if (!languageFacts.isKnownProperty(name) && !this.validProperties[name]) {
+								this.addEntry(decl.getProperty(), Rules.UnknownVendorSpecificProperty);
+							}
+							let nonPrefixedName = decl.getNonPrefixedPropertyName();
+							propertiesBySuffix.add(nonPrefixedName, name, decl.getProperty());
 						}
-						let nonPrefixedName = decl.getNonPrefixedPropertyName();
-						propertiesBySuffix.add(nonPrefixedName, name, decl.getProperty());
+					} else {
+						if (firstChar === '*' || firstChar === '_') {
+							this.addEntry(decl.getProperty(), Rules.IEStarHack);
+							name = name.substr(1);
+						}
+						if (!languageFacts.isKnownProperty(name) && !this.validProperties[name]) {
+							this.addEntry(decl.getProperty(), Rules.UnknownProperty, localize('property.unknownproperty.detailed', "Unknown property: '{0}'", name));
+						}
+						propertiesBySuffix.add(name, name, null); // don't pass the node as we don't show errors on the standard
 					}
 				} else {
-					if (firstChar === '*' || firstChar === '_') {
-						this.addEntry(decl.getProperty(), Rules.IEStarHack);
-						name = name.substr(1);
-					}
-					if (!languageFacts.isKnownProperty(name) && !this.validProperties[name]) {
-						this.addEntry(decl.getProperty(), Rules.UnknownProperty, localize('property.unknownproperty.detailed', "Unknown property: '{0}'", name));
-					}
-					propertiesBySuffix.add(name, name, null); // don't pass the node as we don't show errors on the standard
+					containsUnknowns = true;
 				}
-			} else {
-				containsUnknowns = true;
 			}
-		}
 
-		if (!containsUnknowns) { // don't perform this test if there are
-			for (let suffix in propertiesBySuffix.data) {
-				let entry = propertiesBySuffix.data[suffix];
-				let actual = entry.names;
+			if (!containsUnknowns) { // don't perform this test if there are
+				for (let suffix in propertiesBySuffix.data) {
+					let entry = propertiesBySuffix.data[suffix];
+					let actual = entry.names;
 
-				let needsStandard = languageFacts.isStandardProperty(suffix) && (actual.indexOf(suffix) === -1);
-				if (!needsStandard && actual.length === 1) {
-					continue; // only the non-vendor specific rule is used, that's fine, no warning
-				}
-
-				let expected: string[] = [];
-				for (let i = 0, len = LintVisitor.prefixes.length; i < len; i++) {
-					let prefix = LintVisitor.prefixes[i];
-					if (languageFacts.isStandardProperty(prefix + suffix)) {
-						expected.push(prefix + suffix);
+					let needsStandard = languageFacts.isStandardProperty(suffix) && (actual.indexOf(suffix) === -1);
+					if (!needsStandard && actual.length === 1) {
+						continue; // only the non-vendor specific rule is used, that's fine, no warning
 					}
-				}
 
-				let missingVendorSpecific = this.getMissingNames(expected, actual);
-				if (missingVendorSpecific || needsStandard) {
-					for (let node of entry.nodes) {
-						if (needsStandard) {
-							let message = localize('property.standard.missing', "Also define the standard property '{0}' for compatibility", suffix);
-							this.addEntry(node, Rules.IncludeStandardPropertyWhenUsingVendorPrefix, message);
+					let expected: string[] = [];
+					for (let i = 0, len = LintVisitor.prefixes.length; i < len; i++) {
+						let prefix = LintVisitor.prefixes[i];
+						if (languageFacts.isStandardProperty(prefix + suffix)) {
+							expected.push(prefix + suffix);
 						}
-						if (missingVendorSpecific) {
-							let message = localize('property.vendorspecific.missing', "Always include all vendor specific properties: Missing: {0}", missingVendorSpecific);
-							this.addEntry(node, Rules.AllVendorPrefixes, message);
+					}
+
+					let missingVendorSpecific = this.getMissingNames(expected, actual);
+					if (missingVendorSpecific || needsStandard) {
+						for (let node of entry.nodes) {
+							if (needsStandard) {
+								let message = localize('property.standard.missing', "Also define the standard property '{0}' for compatibility", suffix);
+								this.addEntry(node, Rules.IncludeStandardPropertyWhenUsingVendorPrefix, message);
+							}
+							if (missingVendorSpecific) {
+								let message = localize('property.vendorspecific.missing', "Always include all vendor specific properties: Missing: {0}", missingVendorSpecific);
+								this.addEntry(node, Rules.AllVendorPrefixes, message);
+							}
 						}
 					}
 				}
