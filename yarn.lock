@@ -220,10 +220,10 @@ esutils@^2.0.2:
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
   integrity sha1-Cr9PHKpbyx96nYrMbepPqqBLrJs=
 
-extend@3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.1.tgz#a755ea7bc1adfcc5a31ce7e762dbaadc5e636444"
-  integrity sha1-p1Xqe8Gt/MWjHOfnYtuq3F5jZEQ=
+extend@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.2.tgz#f8b1136b4071fbd8eb140aff858b1019ec2915fa"
+  integrity sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==
 
 fast-levenshtein@~2.0.4:
   version "2.0.6"
@@ -377,17 +377,17 @@ longest@^1.0.1:
   resolved "https://registry.yarnpkg.com/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
   integrity sha1-MKCy2jj3N3DoKUoNIuZiXtd9AJc=
 
-mdn-browser-compat-data@^0.0.51:
-  version "0.0.51"
-  resolved "https://registry.yarnpkg.com/mdn-browser-compat-data/-/mdn-browser-compat-data-0.0.51.tgz#8a12fe681d2d6d10f9a56496934ba2439a981e6d"
-  integrity sha512-zTNYGH/uP1/j1VT7us/dEBnqRSH0hC0lF8f5Hup0VWYNkEzhZ5X68fj01g+Gdy+i8HJRxajg5Dt1c5SgsbLS4g==
+mdn-browser-compat-data@^0.0.61:
+  version "0.0.61"
+  resolved "https://registry.yarnpkg.com/mdn-browser-compat-data/-/mdn-browser-compat-data-0.0.61.tgz#bfc091c9fdc441c182afe7b0f046cc1465b65c36"
+  integrity sha512-EWHhyN1KUoMCwge0S5bcmBoTj7e+yWBfUuaoVzFFG4vEUmOwwCSkbuphheD96ublo5M2XKa1g82xJhyAjARx3A==
   dependencies:
-    extend "3.0.1"
+    extend "3.0.2"
 
-mdn-data@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-1.2.0.tgz#eadd28b0f2d307cf27e71524609bfb749ebfc0b6"
-  integrity sha512-esDqNvsJB2q5V28+u7NdtdMg6Rmg4khQmAVSjUiX7BY/7haIv0K2yWM43hYp0or+3nvG7+UaTF1JHz31hgU1TA==
+mdn-data@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-2.0.1.tgz#a964990452810468ad581fd0f431250a26951ec8"
+  integrity sha512-7jlEOfHiwOmxZ9Am+OVEAy7oMw2rdt3WJtJ27TL4Ee1vkdWWl+vO4IhsxF+H6c3vXg0TpbyAYOcrv1FLABzKJw==
 
 "minimatch@2 || 3", minimatch@3.0.4, minimatch@^3.0.4:
   version "3.0.4"
