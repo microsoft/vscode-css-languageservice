@@ -7,21 +7,12 @@
 import * as languageFacts from './languageFacts';
 import { Rules, LintConfigurationSettings, Rule, Settings } from './lintRules';
 import * as nodes from '../parser/cssNodes';
+import calaculateBoxModel, { Element } from './boxModel';
+import { union } from '../utils/arrays';
 
 import * as nls from 'vscode-nls';
 import { TextDocument } from 'vscode-languageserver-types';
 const localize = nls.loadMessageBundle();
-
-class Element {
-
-	public name: string;
-	public node: nodes.Declaration;
-
-	constructor(text: string, data: nodes.Declaration) {
-		this.name = text;
-		this.node = data;
-	}
-}
 
 class NodesByRootMap {
 	public data: { [name: string]: { nodes: nodes.Node[]; names: string[] } } = {};
@@ -58,7 +49,7 @@ export class LintVisitor implements nodes.IVisitor {
 	private keyframes: NodesByRootMap;
 	private documentText: string;
 
-	private validProperties : { [name: string]: boolean };
+	private validProperties: { [name: string]: boolean };
 
 	private constructor(document: TextDocument, settings: LintConfigurationSettings) {
 		this.settings = settings;
@@ -79,7 +70,7 @@ export class LintVisitor implements nodes.IVisitor {
 		}
 	}
 
-	private isValidPropertyDeclaration(decl: nodes.Declaration) : boolean {
+	private isValidPropertyDeclaration(decl: nodes.Declaration): boolean {
 		const propertyName = decl.getFullPropertyName().toLowerCase();
 		return this.validProperties[propertyName];
 	}
@@ -274,7 +265,6 @@ export class LintVisitor implements nodes.IVisitor {
 			this.addEntry(node.getSelectors(), Rules.EmptyRuleSet);
 		}
 
-		let self = this;
 		let propertyTable: Element[] = [];
 		for (let element of declarations.getChildren()) {
 			if (element instanceof nodes.Declaration) {
@@ -290,46 +280,36 @@ export class LintVisitor implements nodes.IVisitor {
 		// No error when box-sizing property is specified, as it assumes the user knows what he's doing.
 		// see https://github.com/CSSLint/csslint/wiki/Beware-of-box-model-size
 		/////////////////////////////////////////////////////////////
-		if (this.fetch(propertyTable, 'box-sizing').length === 0) {
-			let widthEntries = this.fetch(propertyTable, 'width');
-			if (widthEntries.length > 0) {
-				let problemDetected = false;
-				for (let p of ['border', 'border-left', 'border-right', 'padding', 'padding-left', 'padding-right']) {
-					let elements = this.fetch(propertyTable, p);
-					for (let element of elements) {
-						let value = element.node.getValue();
-						if (value && !value.matches('none')) {
-							this.addEntry(element.node, Rules.BewareOfBoxModelSize);
-							problemDetected = true;
-						}
-					}
-				}
-				if (problemDetected) {
-					for (let widthEntry of widthEntries) {
-						this.addEntry(widthEntry.node, Rules.BewareOfBoxModelSize);
-					}
-				}
+		const boxModel = calaculateBoxModel(propertyTable);
+		if (boxModel.width) {
+			let properties: Element[] = [];
+			if (boxModel.right.value) {
+				properties = union(properties, boxModel.right.properties);
 			}
-			let heightEntries = this.fetch(propertyTable, 'height');
-			if (heightEntries.length > 0) {
-				let problemDetected = false;
-				for (let p of ['border', 'border-top', 'border-bottom', 'padding', 'padding-top', 'padding-bottom']) {
-					let elements = this.fetch(propertyTable, p);
-					for (let element of elements) {
-						let value = element.node.getValue();
-						if (value && !value.matches('none')) {
-							this.addEntry(element.node, Rules.BewareOfBoxModelSize);
-							problemDetected = true;
-						}
-					}
-				}
-				if (problemDetected) {
-					for (let heightEntry of heightEntries) {
-						this.addEntry(heightEntry.node, Rules.BewareOfBoxModelSize);
-					}
-				}
+			if (boxModel.left.value) {
+				properties = union(properties, boxModel.left.properties);
 			}
-
+			if (properties.length !== 0) {
+				for (const item of properties) {
+					this.addEntry(item.node, Rules.BewareOfBoxModelSize);
+				}
+				this.addEntry(boxModel.width.node, Rules.BewareOfBoxModelSize);
+			}
+		}
+		if (boxModel.height) {
+			let properties: Element[] = [];
+			if (boxModel.top.value) {
+				properties = union(properties, boxModel.top.properties);
+			}
+			if (boxModel.bottom.value) {
+				properties = union(properties, boxModel.bottom.properties);
+			}
+			if (properties.length !== 0) {
+				for (const item of properties) {
+					this.addEntry(item.node, Rules.BewareOfBoxModelSize);
+				}
+				this.addEntry(boxModel.height.node, Rules.BewareOfBoxModelSize);
+			}
 		}
 
 		/////////////////////////////////////////////////////////////
@@ -340,14 +320,14 @@ export class LintVisitor implements nodes.IVisitor {
 		let displayElems = this.fetchWithValue(propertyTable, 'display', 'inline');
 		if (displayElems.length > 0) {
 			for (let prop of ['width', 'height', 'margin-top', 'margin-bottom', 'float']) {
-				let elem = self.fetch(propertyTable, prop);
+				let elem = this.fetch(propertyTable, prop);
 				for (let index = 0; index < elem.length; index++) {
 					let node = elem[index].node;
 					let value = node.getValue();
 					if (prop === 'float' && (!value || value.matches('none'))) {
 						continue;
 					}
-					self.addEntry(node, Rules.PropertyIgnoredDueToDisplay, localize('rule.propertyIgnoredDueToDisplayInline', "Property is ignored due to the display. With 'display: inline', the width, height, margin-top, margin-bottom, and float properties have no effect."));
+					this.addEntry(node, Rules.PropertyIgnoredDueToDisplay, localize('rule.propertyIgnoredDueToDisplayInline', "Property is ignored due to the display. With 'display: inline', the width, height, margin-top, margin-bottom, and float properties have no effect."));
 				}
 			}
 		}
@@ -498,7 +478,7 @@ export class LintVisitor implements nodes.IVisitor {
 			return true;
 		}
 
-		let decl = <nodes.Declaration> node.findParent(nodes.NodeType.Declaration);
+		let decl = <nodes.Declaration>node.findParent(nodes.NodeType.Declaration);
 		if (decl) {
 			let declValue = decl.getValue();
 			if (declValue) {
@@ -555,7 +535,7 @@ export class LintVisitor implements nodes.IVisitor {
 	}
 
 	private visitHexColorValue(node: nodes.HexColorValue): boolean {
-		// Rule: #eeff0011 or #eeff00 or #ef01 or #ef0 
+		// Rule: #eeff0011 or #eeff00 or #ef01 or #ef0
 		let length = node.length;
 		if (length !== 9 && length !== 7 && length !== 5 && length !== 4) {
 			this.addEntry(node, Rules.HexColorLength);
@@ -597,5 +577,3 @@ export class LintVisitor implements nodes.IVisitor {
 		return true;
 	}
 }
-
-
