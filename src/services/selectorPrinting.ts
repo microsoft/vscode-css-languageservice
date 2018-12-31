@@ -358,7 +358,14 @@ function selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
 export function selectorToMarkedString(node: nodes.Selector): MarkedString[] {
 	let root = selectorToElement(node);
 	let markedStrings = new MarkedStringPrinter('"').print(root);
-	markedStrings.push(selectorToSpecificityMarkedString(node));
+
+	let parentRuleSet = getParentRuleSets(node).pop();
+	let rootNode: nodes.Node = node;
+	if (!!parentRuleSet) {
+		rootNode = parentRuleSet;
+	}
+	
+	markedStrings.push(selectorToSpecificityMarkedString(rootNode));
 	return markedStrings;
 }
 
@@ -443,23 +450,9 @@ export function selectorToElement(node: nodes.Selector): Element {
 		return null;
 	}
 	let root: Element = new RootElement();
-	let parentRuleSets: nodes.RuleSet[] = [];
-
-	if (node.getParent() instanceof nodes.RuleSet) {
-		let parent = node.getParent().getParent(); // parent of the selector's ruleset
-		while (parent && !isNewSelectorContext(parent)) {
-			if (parent instanceof nodes.RuleSet) {
-				if (parent.getSelectors().matches('@at-root')) {
-					break;
-				}
-				parentRuleSets.push(<nodes.RuleSet>parent);
-			}
-			parent = parent.getParent();
-		}
-	}
-
 	let builder = new SelectorElementBuilder(root);
 
+	let parentRuleSets = getParentRuleSets(node);
 	for (let i = parentRuleSets.length - 1; i >= 0; i--) {
 		let selector = <nodes.Selector>parentRuleSets[i].getSelectors().getChild(0);
 		if (selector) {
@@ -469,4 +462,23 @@ export function selectorToElement(node: nodes.Selector): Element {
 
 	builder.processSelector(node);
 	return root;
+}
+
+function getParentRuleSets(node: nodes.Selector): nodes.RuleSet[] {
+	let result: nodes.RuleSet[] = [];
+
+	if (node.getParent() instanceof nodes.RuleSet) {
+		let parent = node.getParent().getParent(); // parent of the selector's ruleset
+		while (parent && !isNewSelectorContext(parent)) {
+			if (parent instanceof nodes.RuleSet) {
+				if (parent.getSelectors().matches('@at-root')) {
+					break;
+				}
+				result.push(<nodes.RuleSet>parent);
+			}
+			parent = parent.getParent();
+		}
+	}
+
+	return result;
 }

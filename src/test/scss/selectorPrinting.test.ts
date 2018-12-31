@@ -6,7 +6,7 @@
 'use strict';
 
 import {SCSSParser} from '../../parser/scssParser';
-import {parseSelector} from '../css/selectorPrinting.test';
+import {parseSelector, parseSelectorToMarkedString} from '../css/selectorPrinting.test';
 
 suite('SCSS - Selector Printing', () => {
 
@@ -33,5 +33,15 @@ suite('SCSS - Selector Printing', () => {
 	test('placeholders', function () {
 		let p = new SCSSParser();
 		parseSelector(p, '%o1 { e1 { } }', 'e1', '{%o1{…{e1}}}');
+	});
+});
+
+suite('CSS - MarkedStringPrinter selectors', () => {
+	test('referencing selector', function() {
+		let p = new SCSSParser();
+		parseSelectorToMarkedString(p, 'o1 { &.c1 { e1 { }}}', 'e1', [
+			{ language: 'html', value: '<o1 class="c1">\n  …\n    <e1>' },
+			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 1, 2)'
+		]);
 	});
 });
