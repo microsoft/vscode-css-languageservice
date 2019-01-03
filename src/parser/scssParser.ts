@@ -121,25 +121,25 @@ export class SCSSParser extends cssParser.Parser {
 
 		let node = <nodes.Identifier>this.create(nodes.Identifier);
 		node.referenceTypes = referenceTypes;
+		node.isCustomProperty = this.peekRegExp(TokenType.Ident, /^--/);
 		let hasContent = false;
-		let delimWithInterpolation = () => {
-			if (!this.acceptDelim('-')) {
-				return null;
+
+		let indentInterpolation = () => {
+			let pos = this.mark();
+			if (this.acceptDelim('-')) {
+				if (!this.hasWhitespace()) {
+					this.acceptDelim('-');
+				}
+				if (this.hasWhitespace()) {
+					this.restoreAtMark(pos);
+					return null;
+				}
 			}
-			if (!this.hasWhitespace() && this.acceptDelim('-')) {
-				node.isCustomProperty = true;
-			}
-			if (!this.hasWhitespace()) {
-				return this._parseInterpolation();
-			}
-			return null;
+			return this._parseInterpolation();
 		};
-		while (this.accept(TokenType.Ident) || node.addChild(this._parseInterpolation() || this.try(delimWithInterpolation))) {
+
+		while (this.accept(TokenType.Ident) || node.addChild(indentInterpolation()) || (hasContent && (this.acceptDelim('-') || this.accept(TokenType.Num)))) {
 			hasContent = true;
-			if (!this.hasWhitespace() && this.acceptDelim('-')) {
-				// '-' is a valid char inside a ident (special treatment here to support #{foo}-#{bar})
-				this.accept(TokenType.Num);
-			}
 			if (this.hasWhitespace()) {
 				break;
 			}

@@ -337,22 +337,22 @@ export class LESSParser extends cssParser.Parser {
 
 	public _acceptInterpolatedIdent(node: nodes.Node): boolean {
 		let hasContent = false;
-		let delimWithInterpolation = (): nodes.Node => {
-			if (!this.acceptDelim('-')) {
-				return null;
+		let indentInterpolation = () => {
+			let pos = this.mark();
+			if (this.acceptDelim('-')) {
+				if (!this.hasWhitespace()) {
+					this.acceptDelim('-');
+				}
+				if (this.hasWhitespace()) {
+					this.restoreAtMark(pos);
+					return null;
+				}
 			}
-			if (!this.hasWhitespace() && this.acceptDelim('-')) {
-			}
-			if (!this.hasWhitespace()) {
-				return this._parseInterpolation();
-			}
-			return null;
+			return this._parseInterpolation();
 		};
-		while (this.accept(TokenType.Ident) || node.addChild(this._parseInterpolation() || this.try(delimWithInterpolation))) {
+
+		while (this.accept(TokenType.Ident) || node.addChild(indentInterpolation()) || (hasContent && (this.acceptDelim('-') || this.accept(TokenType.Num)))) {
 			hasContent = true;
-			if (!this.hasWhitespace() && this.acceptDelim('-')) {
-				// '-' is a valid char inside a ident (special treatment here to support @{foo}-@{bar})
-			}
 			if (this.hasWhitespace()) {
 				break;
 			}
