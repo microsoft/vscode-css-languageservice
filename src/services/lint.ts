@@ -7,7 +7,7 @@
 import * as languageFacts from './languageFacts';
 import { Rules, LintConfigurationSettings, Rule, Settings } from './lintRules';
 import * as nodes from '../parser/cssNodes';
-import calaculateBoxModel, { Element } from './boxModel';
+import calculateBoxModel, { Element } from './boxModel';
 import { union } from '../utils/arrays';
 
 import * as nls from 'vscode-nls';
@@ -280,7 +280,7 @@ export class LintVisitor implements nodes.IVisitor {
 		// No error when box-sizing property is specified, as it assumes the user knows what he's doing.
 		// see https://github.com/CSSLint/csslint/wiki/Beware-of-box-model-size
 		/////////////////////////////////////////////////////////////
-		const boxModel = calaculateBoxModel(propertyTable);
+		const boxModel = calculateBoxModel(propertyTable);
 		if (boxModel.width) {
 			let properties: Element[] = [];
 			if (boxModel.right.value) {

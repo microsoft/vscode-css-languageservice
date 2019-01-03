@@ -156,7 +156,7 @@ function checkBorderShorthand(node: nodes.Node): boolean {
 	return true;
 }
 
-export default function calaculateBoxModel(propertyTable: Element[]): BoxModel {
+export default function calculateBoxModel(propertyTable: Element[]): BoxModel {
 	let model: BoxModel = {
 		top: { value: false, properties: [] },
 		right: { value: false, properties: [] },
