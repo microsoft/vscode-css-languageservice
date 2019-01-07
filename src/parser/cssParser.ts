@@ -964,7 +964,7 @@ export class Parser {
 		}
 		let node = <nodes.PageBoxMarginBox>this.create(nodes.PageBoxMarginBox);
 
-		if (!this.acceptOneKeyword(languageFacts.getPageBoxDirectives())) {
+		if (!this.acceptOneKeyword(languageFacts.pageBoxDirectives)) {
 			this.markError(node, ParseError.UnknownAtRule, [], [TokenType.CurlyL]);
 		}
 

@@ -22,10 +22,16 @@ import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
 import { getFoldingRanges } from './services/cssFolding';
 import { LanguageSettings, ICompletionParticipant, DocumentContext } from './cssLanguageTypes';
+import { IEntry } from './services/languageFacts';
 
 export type Stylesheet = {};
 export * from './cssLanguageTypes';
 export * from 'vscode-languageserver-types';
+
+export interface LanguageServiceOptions {
+	customProperties: { [key: string]: IEntry }
+	customAtProperties: { [key: string]: IEntry }
+}
 
 export interface LanguageService {
 	configure(raw: LanguageSettings): void;
