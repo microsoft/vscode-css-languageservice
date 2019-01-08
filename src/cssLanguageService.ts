@@ -22,17 +22,17 @@ import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
 import { getFoldingRanges } from './services/cssFolding';
 import { LanguageSettings, ICompletionParticipant, DocumentContext } from './cssLanguageTypes';
-import { IEntry, addProperties, addAtDirectives, addPseudoClasses } from './services/languageFacts/index';
+import { addProperties, addAtDirectives, addPseudoClasses, addPseudoElements, IEntryData } from './services/languageFacts/index';
 
 export type Stylesheet = {};
 export * from './cssLanguageTypes';
 export * from 'vscode-languageserver-types';
 
 export interface LanguageServiceOptions {
-	customProperties?: IEntry[];
-	customAtDirectives?: IEntry[];
-	customPseudoElements?: IEntry[];
-	customPseudoClasses?: IEntry[];
+	customProperties?: IEntryData[];
+	customAtDirectives?: IEntryData[];
+	customPseudoClasses?: IEntryData[];
+	customPseudoElements?: IEntryData[];
 }
 
 export interface LanguageService {
@@ -92,7 +92,7 @@ function handleCustomData(options?: LanguageServiceOptions) {
 			addPseudoClasses(options.customPseudoClasses);
 		}
 		if (options.customPseudoElements) {
-			addPseudoClasses(options.customPseudoClasses);
+			addPseudoElements(options.customPseudoElements);
 		}
 	}
 }

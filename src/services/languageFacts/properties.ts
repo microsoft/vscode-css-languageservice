@@ -4,8 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as browsers from '../../data/browsers';
-import { IEntry, EntryImpl } from './entry';
+import { IEntry, EntryImpl, IEntryData } from './entry';
 
 /**
  * Returns true if the given name is a known property.
@@ -31,16 +30,7 @@ export function isStandardProperty(name: string): boolean {
 
 const propertySet: { [key: string]: IEntry } = {};
 
-export function addProperties(properties: IEntry[]) {
-	for (let i = 0; i < properties.length; i++) {
-		let rawEntry = properties[i];
-		propertySet[rawEntry.name] = new EntryImpl(rawEntry);
-	}
-}
-
-function addBuiltinProperties() {
-	let properties = browsers.data.css.properties;
-
+export function addProperties(properties: IEntryData[]) {
 	for (let i = 0; i < properties.length; i++) {
 		let rawEntry = properties[i];
 		propertySet[rawEntry.name] = new EntryImpl(rawEntry);
@@ -50,5 +40,3 @@ function addBuiltinProperties() {
 export function getProperties() {
 	return propertySet;
 }
-
-addBuiltinProperties();

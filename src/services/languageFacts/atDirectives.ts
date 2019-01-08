@@ -5,11 +5,11 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { IEntry, EntryImpl } from './entry';
+import { IEntry, EntryImpl, IEntryData } from './entry';
 
 const atDirectiveSet: { [key: string]: IEntry } = {};
 
-export function addAtDirectives(atDirectives: IEntry[]) {
+export function addAtDirectives(atDirectives: IEntryData[]) {
 	for (let i = 0; i < atDirectives.length; i++) {
 		let rawEntry = atDirectives[i];
 		atDirectiveSet[rawEntry.name] = new EntryImpl(rawEntry);

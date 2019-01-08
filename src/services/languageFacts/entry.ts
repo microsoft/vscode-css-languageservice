@@ -97,19 +97,29 @@ export function getBrowserLabel(b: Browsers): string {
 	return result;
 }
 
+export interface IEntryData {
+	name: string;
+	desc?: string;
+	browsers?: string;
+	restriction?: string;
+	status?: string;
+	syntax?: string;
+	values?: IValueData[];
+}
+
 export interface IEntry {
 	name: string;
 	restrictions: string[];
 	browsers: Browsers;
 	description: string;
-	values: Value[];
+	values: IValue[];
 	status: EntryStatus;
 }
 
 export class EntryImpl implements IEntry {
 	private browserEntry: Browsers;
 
-	constructor(public data: any) {
+	constructor(public data: IEntryData) {
 	}
 
 	get name(): string {
@@ -139,30 +149,33 @@ export class EntryImpl implements IEntry {
 		return expandEntryStatus(this.data.status);
 	}
 
-	get values(): Value[] {
+	get values(): IValue[] {
 		if (!this.data.values) {
 			return [];
 		}
-		if (!Array.isArray(this.data.values)) {
-			return [new ValueImpl(this.data.values.value)];
-		}
-		return this.data.values.map(function (v: string) {
+		return this.data.values.map((v: IValueData) => {
 			return new ValueImpl(v);
 		});
 	}
 }
 
-export interface Value {
+export interface IValueData {
+	name: string;
+	desc?: string;
+	browsers?: string;
+}
+
+export interface IValue {
 	name: string;
 	description: string;
 	browsers: Browsers;
 }
 
-class ValueImpl implements Value {
+class ValueImpl implements IValue {
 
 	private browserEntry: Browsers;
 
-	constructor(public data: any) {
+	constructor(public data: IValueData) {
 	}
 
 	get name(): string {
@@ -208,6 +221,6 @@ function evalBrowserEntry(browsers: string) {
 	return browserEntry;
 }
 
-export function isCommonValue(entry: Value): boolean {
+export function isCommonValue(entry: IValue): boolean {
 	return entry.browsers.count > 1;
 }

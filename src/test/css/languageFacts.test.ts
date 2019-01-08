@@ -153,4 +153,3 @@ suite('CSS - Language Facts', () => {
 		assertHSLValue(hslFromColor(colorFrom256RGB(0, 0, 128, 1)), { h: 240, s: 1, l: 0.251, a: 1 });
 	});
 });
-

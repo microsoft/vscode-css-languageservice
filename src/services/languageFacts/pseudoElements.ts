@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { IEntry, EntryImpl } from './entry';
+import { IEntry, EntryImpl, IEntryData } from './entry';
 
 const pseudoElementSet : { [key: string]: IEntry } = {};
 
-export function addPseudoElements(pseudoElements: IEntry[]) {
+export function addPseudoElements(pseudoElements: IEntryData[]) {
 	for (let i = 0; i < pseudoElements.length; i++) {
 		let rawEntry = pseudoElements[i];
 		pseudoElementSet[rawEntry.name] = new EntryImpl(rawEntry);

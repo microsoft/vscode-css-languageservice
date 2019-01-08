@@ -4,7 +4,18 @@
  *--------------------------------------------------------------------------------------------*/
 // file generated from css-schema.xml and https://github.com/mdn/data using css-exclude_generate_browserjs.js
 
-export const data : any = {
+import { IEntryData } from "../services/languageFacts";
+
+interface BrowserData {
+	css: {
+		properties: IEntryData[];
+		atdirectives: IEntryData[];
+		pseudoclasses: IEntryData[];
+		pseudoelements: IEntryData[];
+	};
+}
+
+export const data : BrowserData = {
 	"css": {
 		"atdirectives": [
 			{
