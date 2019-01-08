@@ -5,18 +5,17 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as browsers from '../../data/browsers';
 import { IEntry, EntryImpl } from './entry';
 
-let atDirectives = browsers.data.css.atdirectives;
-let atDirectiveList: IEntry[];
-export function getAtDirectives(): IEntry[] {
-	if (!atDirectiveList) {
-		atDirectiveList = [];
-		for (let i = 0; i < atDirectives.length; i++) {
-			let rawEntry = atDirectives[i];
-			atDirectiveList.push(new EntryImpl(rawEntry));
-		}
+const atDirectiveSet: { [key: string]: IEntry } = {};
+
+export function addAtDirectives(atDirectives: IEntry[]) {
+	for (let i = 0; i < atDirectives.length; i++) {
+		let rawEntry = atDirectives[i];
+		atDirectiveSet[rawEntry.name] = new EntryImpl(rawEntry);
 	}
-	return atDirectiveList;
+}
+
+export function getAtDirectives() {
+	return atDirectiveSet;
 }

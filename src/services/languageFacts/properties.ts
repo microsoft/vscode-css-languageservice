@@ -29,18 +29,26 @@ export function isStandardProperty(name: string): boolean {
 	}
 }
 
-let propertySet: { [key: string]: IEntry };
-let properties = browsers.data.css.properties;
+const propertySet: { [key: string]: IEntry } = {};
 
-export function getProperties(): { [name: string]: IEntry; } {
-	if (!propertySet) {
-		propertySet = {
-		};
-		for (let i = 0; i < properties.length; i++) {
-			let rawEntry = properties[i];
-			propertySet[rawEntry.name] = new EntryImpl(rawEntry);
-		}
-
+export function addProperties(properties: IEntry[]) {
+	for (let i = 0; i < properties.length; i++) {
+		let rawEntry = properties[i];
+		propertySet[rawEntry.name] = new EntryImpl(rawEntry);
 	}
+}
+
+function addBuiltinProperties() {
+	let properties = browsers.data.css.properties;
+
+	for (let i = 0; i < properties.length; i++) {
+		let rawEntry = properties[i];
+		propertySet[rawEntry.name] = new EntryImpl(rawEntry);
+	}
+}
+
+export function getProperties() {
 	return propertySet;
 }
+
+addBuiltinProperties();

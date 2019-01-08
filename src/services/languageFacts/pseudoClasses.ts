@@ -4,18 +4,17 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as browsers from '../../data/browsers';
 import { IEntry, EntryImpl } from './entry';
 
-let pseudoClasses = browsers.data.css.pseudoclasses;
-let pseudoClassesList: IEntry[];
-export function getPseudoClasses(): IEntry[] {
-	if (!pseudoClassesList) {
-		pseudoClassesList = [];
-		for (let i = 0; i < pseudoClasses.length; i++) {
-			let rawEntry = pseudoClasses[i];
-			pseudoClassesList.push(new EntryImpl(rawEntry));
-		}
+const pseudoClassSet: { [key: string]: IEntry } = {};
+
+export function addPseudoClasses(pseudoClasses: IEntry[]) {
+	for (let i = 0; i < pseudoClasses.length; i++) {
+		let rawEntry = pseudoClasses[i];
+		pseudoClassSet[rawEntry.name] = new EntryImpl(rawEntry);
 	}
-	return pseudoClassesList;
+}
+
+export function getPseudoClasses() {
+	return pseudoClassSet;
 }

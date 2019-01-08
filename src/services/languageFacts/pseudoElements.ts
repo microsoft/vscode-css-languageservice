@@ -4,18 +4,17 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as browsers from '../../data/browsers';
 import { IEntry, EntryImpl } from './entry';
 
-let pseudoElements = browsers.data.css.pseudoelements;
-let pseudoElementList: IEntry[];
-export function getPseudoElements(): IEntry[] {
-	if (!pseudoElementList) {
-		pseudoElementList = [];
-		for (let i = 0; i < pseudoElements.length; i++) {
-			let rawEntry = pseudoElements[i];
-			pseudoElementList.push(new EntryImpl(rawEntry));
-		}
+const pseudoElementSet : { [key: string]: IEntry } = {};
+
+export function addPseudoElements(pseudoElements: IEntry[]) {
+	for (let i = 0; i < pseudoElements.length; i++) {
+		let rawEntry = pseudoElements[i];
+		pseudoElementSet[rawEntry.name] = new EntryImpl(rawEntry);
 	}
-	return pseudoElementList;
+}
+
+export function getPseudoElements() {
+	return pseudoElementSet;
 }

@@ -22,15 +22,17 @@ import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
 import { getFoldingRanges } from './services/cssFolding';
 import { LanguageSettings, ICompletionParticipant, DocumentContext } from './cssLanguageTypes';
-import { IEntry } from './services/languageFacts';
+import { IEntry, addProperties, addAtDirectives, addPseudoClasses } from './services/languageFacts/index';
 
 export type Stylesheet = {};
 export * from './cssLanguageTypes';
 export * from 'vscode-languageserver-types';
 
 export interface LanguageServiceOptions {
-	customProperties: { [key: string]: IEntry }
-	customAtProperties: { [key: string]: IEntry }
+	customProperties?: IEntry[];
+	customAtDirectives?: IEntry[];
+	customPseudoElements?: IEntry[];
+	customPseudoClasses?: IEntry[];
 }
 
 export interface LanguageService {
@@ -78,15 +80,34 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 	};
 }
 
+function handleCustomData(options?: LanguageServiceOptions) {
+	if (options) {
+		if (options.customProperties) {
+			addProperties(options.customProperties);
+		}
+		if (options.customAtDirectives) {
+			addAtDirectives(options.customAtDirectives);
+		}
+		if (options.customPseudoClasses) {
+			addPseudoClasses(options.customPseudoClasses);
+		}
+		if (options.customPseudoElements) {
+			addPseudoClasses(options.customPseudoClasses);
+		}
+	}
+}
 
-export function getCSSLanguageService(): LanguageService {
+export function getCSSLanguageService(options?: LanguageServiceOptions): LanguageService {
+	handleCustomData(options);
 	return createFacade(new Parser(), new CSSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation());
 }
 
-export function getSCSSLanguageService(): LanguageService {
+export function getSCSSLanguageService(options?: LanguageServiceOptions): LanguageService {
+	handleCustomData(options);
 	return createFacade(new SCSSParser(), new SCSSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation());
 }
 
-export function getLESSLanguageService(): LanguageService {
+export function getLESSLanguageService(options?: LanguageServiceOptions): LanguageService {
+	handleCustomData(options);
 	return createFacade(new LESSParser(), new LESSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation());
 }
