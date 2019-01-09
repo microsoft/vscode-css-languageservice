@@ -12,32 +12,32 @@ import { ItemDescription } from './completion.test';
 
 function getLanguageService() {
 	const customData = {
-		customProperties: [
+		properties: [
 			{
 				name: 'foo',
 				desc: 'Foo property',
 			}
 		],
-		customAtDirectives: [
+		atDirectives: [
 			{
 				name: '@foo',
 				desc: 'Foo at directive',
 			}
 		],
-		customPseudoClasses: [
+		pseudoClasses: [
 			{
 				name: ':foo',
 				desc: 'Foo pseudo class'
 			}
 		],
-		customPseudoElements: [
+		pseudoElements: [
 			{
 				name: '::foo',
 				desc: 'Foo pseudo element'
 			}
 		]
 	};
-	return getCSSLanguageService(customData);
+	return getCSSLanguageService({ customDataCollections: [customData] });
 }
 
 function assertCompletion(completions: CompletionList, expected: ItemDescription, document: TextDocument) {

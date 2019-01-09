@@ -43,7 +43,7 @@ export class CSSCodeActions {
 
 		let propertyName = property.getName();
 		let candidates: RankedProperty[] = [];
-		for (let p in languageFacts.getProperties()) {
+		for (let p in languageFacts.builtinCSSDataSet.properties) {
 			let score = difference(propertyName, p);
 			if (score >= propertyName.length / 2 /*score_lim*/) {
 				candidates.push({ property: p, score });

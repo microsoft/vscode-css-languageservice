@@ -22,7 +22,7 @@ import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
 import { getFoldingRanges } from './services/cssFolding';
 import { LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServiceOptions } from './cssLanguageTypes';
-import { addProperties, addAtDirectives, addPseudoClasses, addPseudoElements } from './services/languageFacts/index';
+import { builtinCSSDataSet } from './services/languageFacts';
 
 export type Stylesheet = {};
 export * from './cssLanguageTypes';
@@ -74,19 +74,8 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 }
 
 function handleCustomData(options?: LanguageServiceOptions) {
-	if (options) {
-		if (options.customProperties) {
-			addProperties(options.customProperties);
-		}
-		if (options.customAtDirectives) {
-			addAtDirectives(options.customAtDirectives);
-		}
-		if (options.customPseudoClasses) {
-			addPseudoClasses(options.customPseudoClasses);
-		}
-		if (options.customPseudoElements) {
-			addPseudoElements(options.customPseudoElements);
-		}
+	if (options && options.customDataCollections) {
+		options.customDataCollections.forEach(data => builtinCSSDataSet.addData(data));
 	}
 }
 

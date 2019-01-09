@@ -156,7 +156,7 @@ export class CSSCompletion {
 	}
 
 	private getPropertyProposals(declaration: nodes.Declaration, result: CompletionList): CompletionList {
-		let properties = languageFacts.getProperties();
+		let properties = languageFacts.builtinCSSDataSet.properties;
 
 		for (let key in properties) {
 			if (properties.hasOwnProperty(key)) {
@@ -217,7 +217,7 @@ export class CSSCompletion {
 
 	public getCompletionsForDeclarationValue(node: nodes.Declaration, result: CompletionList): CompletionList {
 		let propertyName = node.getFullPropertyName();
-		let entry = languageFacts.getProperties()[propertyName];
+		let entry = languageFacts.builtinCSSDataSet.properties[propertyName];
 		let existingNode: nodes.Node = node.getValue();
 
 		while (existingNode && existingNode.hasChildren()) {
@@ -581,7 +581,7 @@ export class CSSCompletion {
 	}
 
 	public getCompletionForTopLevel(result: CompletionList): CompletionList {
-		const atDirectives = languageFacts.getAtDirectives();
+		const atDirectives = languageFacts.builtinCSSDataSet.atDirectives;
 
 		for (let entryName in atDirectives) {
 			const entry = atDirectives[entryName];
@@ -622,7 +622,7 @@ export class CSSCompletion {
 			this.defaultReplaceRange = Range.create(Position.create(this.position.line, this.position.character - this.currentWord.length), this.position);
 		}
 
-		const pseudoClasses = languageFacts.getPseudoClasses();
+		const pseudoClasses = languageFacts.builtinCSSDataSet.pseudoClasses;
 		for (let entryName in pseudoClasses) {
 			const entry = pseudoClasses[entryName];
 			if (entry.browsers.onCodeComplete) {
@@ -641,7 +641,7 @@ export class CSSCompletion {
 			}
 		}
 		
-		const pseudoElements = languageFacts.getPseudoElements();
+		const pseudoElements = languageFacts.builtinCSSDataSet.pseudoElements;
 		for (let entryName in pseudoElements) {
 			const entry = pseudoElements[entryName];
 			if (entry.browsers.onCodeComplete) {
