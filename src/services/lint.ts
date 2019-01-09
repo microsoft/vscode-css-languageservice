@@ -7,7 +7,7 @@
 import * as languageFacts from './languageFacts';
 import { Rules, LintConfigurationSettings, Rule, Settings } from './lintRules';
 import * as nodes from '../parser/cssNodes';
-import calculateBoxModel, { Element } from './boxModel';
+import calculateBoxModel, { Element } from './lintUtil';
 import { union } from '../utils/arrays';
 
 import * as nls from 'vscode-nls';
