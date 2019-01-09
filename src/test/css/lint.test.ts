@@ -120,11 +120,101 @@ suite('CSS - Lint', () => {
 	});
 
 	test('box model', function () {
-		assertRuleSet('.mybox { border: 1px solid black; width: 100px; }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
-		assertRuleSet('.mybox { height: 100px; padding: 10px; }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
-		assertRuleSet('.mybox { box-sizing: border-box; border: 1px solid black; width: 100px; }'); // no error
-		assertRuleSet('.mybox { border-top: 1px solid black; width: 100px; }'); // no error
-		assertRuleSet('.mybox { border-top: none; height: 100px; }'); // no error		
+		// border shorthand, zero values
+		assertRuleSet('.mybox { height: 100px;         border: initial;           }');
+		assertRuleSet('.mybox { height: 100px;         border: unset;             }');
+		assertRuleSet('.mybox { height: 100px;         border: none;              }');
+		assertRuleSet('.mybox { height: 100px;         border: hidden;            }');
+		assertRuleSet('.mybox { height: 100px;         border: 0;                 }');
+		assertRuleSet('.mybox { height: 100px;         border: 0 solid;           }');
+		assertRuleSet('.mybox { height: 100px;         border: 1px none;          }');
+		assertRuleSet('.mybox { height: 100px;         border: 0 solid #ccc;      }');
+		// order doesn't matter
+		assertRuleSet('.mybox { border: initial;       height: 100px;             }');
+		assertRuleSet('.mybox { border: 0;             height: 100px;             }');
+
+		// border shorthand, non-zero values
+		assertRuleSet('.mybox { height: 100px;         border: 1px;               }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
+		assertRuleSet('.mybox { height: 100px;         border: 1px solid;         }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
+		assertRuleSet('.mybox { width: 100px;          border: 1px;               }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
+		// order doesn't matter
+		assertRuleSet('.mybox { border: 1px;           height: 100px;             }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
+		assertRuleSet('.mybox { border: 1px solid;     height: 100px;             }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
+
+		// border-top shorthand, zero values
+		assertRuleSet('.mybox { height: 100px;         border-top: initial;       }');
+		assertRuleSet('.mybox { height: 100px;         border-top: none;          }');
+		assertRuleSet('.mybox { height: 100px;         border-top: 0;             }');
+		assertRuleSet('.mybox { height: 100px;         border-top: 0 solid;       }');
+		assertRuleSet('.mybox { width: 100px;          border-top: 1px;           }');
+		assertRuleSet('.mybox { width: 100px;          border-top: 1px solid;     }');
+
+		// border-top shorthand, non-zero values
+		assertRuleSet('.mybox { height: 100px;         border-top: 1px;           }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize); // shorthand | single value | 1px
+		assertRuleSet('.mybox { height: 100px;         border-top: 1px solid;     }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize); // shorthand |
+
+		// border-width shorthand, zero values
+		assertRuleSet('.mybox { height: 100px;         border-width: 0;           }');
+		assertRuleSet('.mybox { height: 100px;         border-width: 0 0;         }');
+		assertRuleSet('.mybox { height: 100px;         border-width: 0 0 0;       }');
+		assertRuleSet('.mybox { height: 100px;         border-width: 0 0 0 0;     }');
+		assertRuleSet('.mybox { height: 100px;         border-width: 0 1px;       }');
+		assertRuleSet('.mybox { height: 100px;         border-width: 0 1px 0 1px; }');
+		assertRuleSet('.mybox { width: 100px;          border-width: 1px 0;       }');
+		assertRuleSet('.mybox { width: 100px;          border-width: 1px 0 1px 0; }');
+
+		// border-width shorthand, non-zero values
+		assertRuleSet('.mybox { height: 100px;         border-width: 1px;         }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
+		assertRuleSet('.mybox { height: 100px;         border-width: 0 0 1px;     }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
+		assertRuleSet('.mybox { width: 100px;          border-width: 0 1px;       }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
+		assertRuleSet('.mybox { width: 100px;          border-width: 0 0 0 1px;   }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
+
+		// border-style shorthand, zero values
+		assertRuleSet('.mybox { height: 100px;         border-style: unset;       }');
+		assertRuleSet('.mybox { height: 100px;         border-style: initial;     }');
+		assertRuleSet('.mybox { height: 100px;         border-style: none;        }');
+		assertRuleSet('.mybox { height: 100px;         border-style: hidden;      }');
+
+		// border-style shorthand, non-zero values
+		assertRuleSet('.mybox { height: 100px;         border-style: solid;       }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
+		assertRuleSet('.mybox { height: 100px;         border-style: dashed;      }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
+
+		// border-top-width property, zero values
+		assertRuleSet('.mybox { height: 100px;         border-top-width: 0;       }');
+		assertRuleSet('.mybox { width: 100px;          border-top-width: 1px;     }');
+
+		// border-top-width property, non-zero values
+		assertRuleSet('.mybox { height: 100px;         border-top-width: 1px;     }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
+
+		// border-top-style property, zero values
+		assertRuleSet('.mybox { height: 100px;         border-top-style: unset;   }');
+		assertRuleSet('.mybox { width: 100px;          border-top-style: solid;   }');
+
+		// border-top-style property, non-zero values
+		assertRuleSet('.mybox { height: 100px;         border-top-style: solid;   }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
+
+		// padding shorthand, zero values
+		assertRuleSet('.mybox { height: 100px;         padding: initial;          }');
+		assertRuleSet('.mybox { height: 100px;         padding: unset;            }');
+		assertRuleSet('.mybox { height: 100px;         padding: 0;                }');
+		assertRuleSet('.mybox { height: 100px;         padding: 0 0;              }');
+		assertRuleSet('.mybox { height: 100px;         padding: 0 0 0;            }');
+		assertRuleSet('.mybox { height: 100px;         padding: 0 0 0 0;          }');
+		assertRuleSet('.mybox { height: 100px;         padding: 0 1px;            }');
+		assertRuleSet('.mybox { height: 100px;         padding: 0 1px 0 1px;      }');
+		assertRuleSet('.mybox { width: 100px;          padding: 1px 0;            }');
+		assertRuleSet('.mybox { width: 100px;          padding: 1px 0 1px;        }');
+
+		// padding shorthand, non-zero values
+		assertRuleSet('.mybox { height: 100px;         padding: 1px;              }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
+		assertRuleSet('.mybox { height: 100px;         padding: 1px 0;            }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
+		assertRuleSet('.mybox { height: 100px;         padding: 0 0 1px;          }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
+
+		// box-sizing supress errors
+		assertRuleSet('.mybox { height: 100px;         border: 1px;               box-sizing: border-box; }');
+
+		// property be overriden
+		assertRuleSet('.mybox { height: 100px;         border: 1px;               border-top: 0; border-bottom: 0; }');
 	});
 
 	test('IE hacks', function () {

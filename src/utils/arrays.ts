@@ -24,3 +24,19 @@ export function findFirst<T>(array: T[], p: (x: T) => boolean): number {
 	}
 	return low;
 }
+
+export function includes<T>(array: T[], item: T): boolean {
+	return array.indexOf(item) !== -1;
+}
+
+export function union<T>(...arrays: T[][]): T[] {
+	const result: T[] = [];
+	for (const array of arrays) {
+		for (const item of array) {
+			if (!includes(result, item)) {
+				result.push(item);
+			}
+		}
+	}
+	return result;
+}
