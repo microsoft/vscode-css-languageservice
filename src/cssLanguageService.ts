@@ -21,19 +21,12 @@ import { SCSSCompletion } from './services/scssCompletion';
 import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
 import { getFoldingRanges } from './services/cssFolding';
-import { LanguageSettings, ICompletionParticipant, DocumentContext } from './cssLanguageTypes';
-import { addProperties, addAtDirectives, addPseudoClasses, addPseudoElements, IEntryData } from './services/languageFacts/index';
+import { LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServiceOptions } from './cssLanguageTypes';
+import { addProperties, addAtDirectives, addPseudoClasses, addPseudoElements } from './services/languageFacts/index';
 
 export type Stylesheet = {};
 export * from './cssLanguageTypes';
 export * from 'vscode-languageserver-types';
-
-export interface LanguageServiceOptions {
-	customProperties?: IEntryData[];
-	customAtDirectives?: IEntryData[];
-	customPseudoClasses?: IEntryData[];
-	customPseudoElements?: IEntryData[];
-}
 
 export interface LanguageService {
 	configure(raw: LanguageSettings): void;
