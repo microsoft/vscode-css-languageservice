@@ -358,28 +358,26 @@ const { addBrowserCompatDataToProperties } = require('./mdn/mdn-browser-compat-d
 
 fs.readFile(path.resolve(__dirname, schemaFileName), (err, data) => {
   parser.parseString(data, function(err, result) {
-		const atdirectives = toSource(result, 'atDirectives')
+		const atDirectives = toSource(result, 'atDirectives')
 
-		let pseudoclasses = toSource(result, 'pseudoClasses')
-		pseudoclasses = addMDNPseudoSelectors(pseudoclasses)
+		let pseudoClasses = toSource(result, 'pseudoClasses')
+		pseudoClasses = addMDNPseudoSelectors(pseudoClasses)
 
-		let pseudoelements = toSource(result, 'pseudoElements')
-		pseudoelements = addMDNPseudoElements(pseudoelements)
+		let pseudoElements = toSource(result, 'pseudoElements')
+		pseudoElements = addMDNPseudoElements(pseudoElements)
 
     let properties = toSource(result, 'properties')
 		properties = addMDNProperties(properties)
 
-    addBrowserCompatDataToProperties(atdirectives, pseudoclasses, pseudoelements, properties)
+    addBrowserCompatDataToProperties(atDirectives, pseudoClasses, pseudoElements, properties)
 
-    const descriptions = internalizeDescriptions([].concat(atdirectives, pseudoclasses, pseudoelements, properties))
+    const descriptions = internalizeDescriptions([].concat(atDirectives, pseudoClasses, pseudoElements, properties))
 
     const resultObject = {
-      css: {
-        atdirectives,
-        pseudoclasses,
-        pseudoelements,
-        properties,
-      }
+      properties,
+      atDirectives,
+      pseudoClasses,
+      pseudoElements,
     }
 
     function toJavaScript(obj) {
@@ -394,10 +392,12 @@ fs.readFile(path.resolve(__dirname, schemaFileName), (err, data) => {
       ' *--------------------------------------------------------------------------------------------*/',
       '// file generated from ' +
         schemaFileName +
-        ' and https://github.com/mdn/data using css-exclude_generate_browserjs.js',
-      '',
-      'export const data : any = ' + toJavaScript(resultObject) + ';',
-      'export const descriptions : any = ' + toJavaScript(descriptions) + ';'
+        ' and https://github.com/mdn/data using build/generate_browserjs.js',
+			'',
+			'import { CSSData } from "../services/languageFacts";',
+			'',
+      'export const cssData : CSSData = ' + toJavaScript(resultObject) + ';',
+			'export const descriptions : any = ' + toJavaScript(descriptions) + ';'
     ]
 
     var outputPath = path.resolve(__dirname, '../src/data/browsers.ts')

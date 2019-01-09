@@ -2,876 +2,11 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-// file generated from css-schema.xml and https://github.com/mdn/data using css-exclude_generate_browserjs.js
+// file generated from css-schema.xml and https://github.com/mdn/data using build/generate_browserjs.js
 
 import { CSSData } from "../services/languageFacts";
 
 export const cssData : CSSData = {
-	"atDirectives": [
-		{
-			name: "@charset",
-			desc: "Defines character set of the document.",
-			browsers: "FF1.5,S4,C2,IE5.5,O9"
-		},
-		{
-			name: "@counter-style",
-			desc: "Defines a custom counter style.",
-			browsers: "FF33"
-		},
-		{
-			name: "@font-face",
-			desc: "Allows for linking to fonts that are automatically activated when needed. This permits authors to work around the limitation of 'web-safe' fonts, allowing for consistent rendering independent of the fonts available in a given user's environment.",
-			browsers: "all"
-		},
-		{
-			name: "@font-feature-values",
-			desc: "Defines named values for the indices used to select alternate glyphs for a given font family.",
-			browsers: "FF34,S9.1"
-		},
-		{
-			name: "@import",
-			desc: "Includes content of another file.",
-			browsers: "all"
-		},
-		{
-			name: "@keyframes",
-			desc: "Defines set of animation key frames.",
-			browsers: "all"
-		},
-		{
-			name: "@media",
-			desc: "Defines a stylesheet for a particular media type.",
-			browsers: "all"
-		},
-		{
-			name: "@-moz-document",
-			desc: "Gecko-specific at-rule that restricts the style rules contained within it based on the URL of the document.",
-			browsers: "FF1.8"
-		},
-		{
-			name: "@-moz-keyframes",
-			desc: "Defines set of animation key frames.",
-			browsers: "FF5"
-		},
-		{
-			name: "@-ms-viewport",
-			desc: "Specifies the size, zoom factor, and orientation of the viewport.",
-			browsers: "E,IE10"
-		},
-		{
-			name: "@namespace",
-			desc: "Declares a prefix and associates it with a namespace name.",
-			browsers: "all"
-		},
-		{
-			name: "@-o-keyframes",
-			desc: "Defines set of animation key frames.",
-			browsers: "O12"
-		},
-		{
-			name: "@-o-viewport",
-			desc: "Specifies the size, zoom factor, and orientation of the viewport.",
-			browsers: "O11"
-		},
-		{
-			name: "@page",
-			desc: "Directive defines various page parameters.",
-			browsers: "E,FF19,C2,IE8,O6"
-		},
-		{
-			name: "@supports",
-			desc: "A conditional group rule whose condition tests whether the user agent supports CSS property:value pairs.",
-			browsers: "E12,FF22,S9,C28,O12.1"
-		},
-		{
-			name: "@-webkit-keyframes",
-			desc: "Defines set of animation key frames.",
-			browsers: "C,S4"
-		}
-	],
-	"pseudoClasses": [
-		{
-			name: ":active",
-			desc: "Applies while an element is being activated by the user. For example, between the times the user presses the mouse button and releases it.",
-			browsers: "all"
-		},
-		{
-			name: ":any-link",
-			desc: "Represents an element that acts as the source anchor of a hyperlink. Applies to both visited and unvisited links.",
-			browsers: "FF50,S,C,O"
-		},
-		{
-			name: ":checked",
-			desc: "Radio and checkbox elements can be toggled by the user. Some menu items are 'checked' when the user selects them. When such elements are toggled 'on' the :checked pseudo-class applies.",
-			browsers: "all"
-		},
-		{
-			name: ":corner-present",
-			desc: "Non-standard. Indicates whether or not a scrollbar corner is present.",
-			browsers: "C,S5"
-		},
-		{
-			name: ":decrement",
-			desc: "Non-standard. Applies to buttons and track pieces. Indicates whether or not the button or track piece will decrement the view’s position when used.",
-			browsers: "C,S5"
-		},
-		{
-			name: ":default",
-			desc: "Applies to the one or more UI elements that are the default among a set of similar elements. Typically applies to context menu items, buttons, and select lists/menus.",
-			browsers: "FF4,S5,C10,O10"
-		},
-		{
-			name: ":disabled",
-			desc: "Represents user interface elements that are in a disabled state; such elements have a corresponding enabled state.",
-			browsers: "all"
-		},
-		{
-			name: ":double-button",
-			desc: "Non-standard. Applies to buttons and track pieces. Applies when both buttons are displayed together at the same end of the scrollbar.",
-			browsers: "C,S5"
-		},
-		{
-			name: ":empty",
-			desc: "Represents an element that has no children at all.",
-			browsers: "all"
-		},
-		{
-			name: ":enabled",
-			desc: "Represents user interface elements that are in an enabled state; such elements have a corresponding disabled state.",
-			browsers: "all"
-		},
-		{
-			name: ":end",
-			desc: "Non-standard. Applies to buttons and track pieces. Indicates whether the object is placed after the thumb.",
-			browsers: "C,S5"
-		},
-		{
-			name: ":first",
-			desc: "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context.",
-			browsers: "E,IE8,O9.2"
-		},
-		{
-			name: ":first-child",
-			desc: "Same as :nth-child(1). Represents an element that is the first child of some other element.",
-			browsers: "all"
-		},
-		{
-			name: ":first-of-type",
-			desc: "Same as :nth-of-type(1). Represents an element that is the first sibling of its type in the list of children of its parent element.",
-			browsers: "all"
-		},
-		{
-			name: ":focus",
-			desc: "Applies while an element has the focus (accepts keyboard or mouse events, or other forms of input).",
-			browsers: "all"
-		},
-		{
-			name: ":fullscreen",
-			desc: "Matches any element that has its fullscreen flag set.",
-			browsers: "E12,FF64,S6,C15,IE11"
-		},
-		{
-			name: ":future",
-			desc: "Represents any element that is defined to occur entirely after a :current element.",
-			browsers: "C,O16,S6"
-		},
-		{
-			name: ":horizontal",
-			desc: "Non-standard. Applies to any scrollbar pieces that have a horizontal orientation.",
-			browsers: "C,S5"
-		},
-		{
-			name: ":host",
-			desc: "When evaluated in the context of a shadow tree, matches the shadow tree’s host element.",
-			browsers: "FF63,S,C,O"
-		},
-		{
-			name: ":host()",
-			desc: "When evaluated in the context of a shadow tree, it matches the shadow tree’s host element if the host element, in its normal context, matches the selector argument.",
-			browsers: "C35,O22"
-		},
-		{
-			name: ":host-context()",
-			desc: "Tests whether there is an ancestor, outside the shadow tree, which matches a particular selector.",
-			browsers: "C35,O22"
-		},
-		{
-			name: ":hover",
-			desc: "Applies while the user designates an element with a pointing device, but does not necessarily activate it. For example, a visual user agent could apply this pseudo-class when the cursor (mouse pointer) hovers over a box generated by the element.",
-			browsers: "all"
-		},
-		{
-			name: ":increment",
-			desc: "Non-standard. Applies to buttons and track pieces. Indicates whether or not the button or track piece will increment the view’s position when used.",
-			browsers: "C,S5"
-		},
-		{
-			name: ":indeterminate",
-			desc: "Applies to UI elements whose value is in an indeterminate state.",
-			browsers: "all"
-		},
-		{
-			name: ":in-range",
-			desc: "Used in conjunction with the min and max attributes, whether on a range input, a number field, or any other types that accept those attributes.",
-			browsers: "E,FF29,S,C10,O11"
-		},
-		{
-			name: ":invalid",
-			desc: "An element is :valid or :invalid when it is, respectively, valid or invalid with respect to data validity semantics defined by a different specification.",
-			browsers: "all"
-		},
-		{
-			name: ":lang()",
-			desc: "Represents an element that is in language specified.",
-			browsers: "E,C,FF1,IE8,O8,S3"
-		},
-		{
-			name: ":last-child",
-			desc: "Same as :nth-last-child(1). Represents an element that is the last child of some other element.",
-			browsers: "all"
-		},
-		{
-			name: ":last-of-type",
-			desc: "Same as :nth-last-of-type(1). Represents an element that is the last sibling of its type in the list of children of its parent element.",
-			browsers: "all"
-		},
-		{
-			name: ":left",
-			desc: "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context.",
-			browsers: "E,IE8,O9.2"
-		},
-		{
-			name: ":link",
-			desc: "Applies to links that have not yet been visited.",
-			browsers: "all"
-		},
-		{
-			name: ":matches()",
-			desc: "Takes a selector list as its argument. It represents an element that is represented by its argument.",
-			browsers: "S9"
-		},
-		{
-			name: ":-moz-any()",
-			desc: "Represents an element that is represented by the selector list passed as its argument. Standardized as :matches().",
-			browsers: "FF4"
-		},
-		{
-			name: ":-moz-any-link",
-			desc: "Represents an element that acts as the source anchor of a hyperlink. Applies to both visited and unvisited links.",
-			browsers: "FF1"
-		},
-		{
-			name: ":-moz-broken",
-			desc: "Non-standard. Matches elements representing broken images.",
-			browsers: "FF3"
-		},
-		{
-			name: ":-moz-drag-over",
-			desc: "Non-standard. Matches elements when a drag-over event applies to it.",
-			browsers: "FF1"
-		},
-		{
-			name: ":-moz-first-node",
-			desc: "Non-standard. Represents an element that is the first child node of some other element.",
-			browsers: "FF1"
-		},
-		{
-			name: ":-moz-focusring",
-			desc: "Non-standard. Matches an element that has focus and focus ring drawing is enabled in the browser.",
-			browsers: "FF4"
-		},
-		{
-			name: ":-moz-full-screen",
-			desc: "Matches any element that has its fullscreen flag set. Standardized as :fullscreen.",
-			browsers: "FF9"
-		},
-		{
-			name: ":-moz-last-node",
-			desc: "Non-standard. Represents an element that is the last child node of some other element.",
-			browsers: "FF1"
-		},
-		{
-			name: ":-moz-loading",
-			desc: "Non-standard. Matches elements, such as images, that haven’t started loading yet.",
-			browsers: "FF3"
-		},
-		{
-			name: ":-moz-only-whitespace",
-			desc: "The same as :empty, except that it additionally matches elements that only contain code points affected by whitespace processing. Standardized as :blank.",
-			browsers: "FF1.5"
-		},
-		{
-			name: ":-moz-placeholder",
-			desc: "Deprecated. Represents placeholder text in an input field. Use ::-moz-placeholder for Firefox 19+.",
-			browsers: "FF4"
-		},
-		{
-			name: ":-moz-submit-invalid",
-			desc: "Non-standard. Represents any submit button when the contents of the associated form are not valid.",
-			browsers: "FF4"
-		},
-		{
-			name: ":-moz-suppressed",
-			desc: "Non-standard. Matches elements representing images that have been blocked from loading.",
-			browsers: "FF3"
-		},
-		{
-			name: ":-moz-ui-invalid",
-			desc: "Non-standard. Represents any validated form element whose value isn't valid ",
-			browsers: "FF4"
-		},
-		{
-			name: ":-moz-ui-valid",
-			desc: "Non-standard. Represents any validated form element whose value is valid ",
-			browsers: "FF4"
-		},
-		{
-			name: ":-moz-user-disabled",
-			desc: "Non-standard. Matches elements representing images that have been disabled due to the user’s preferences.",
-			browsers: "FF3"
-		},
-		{
-			name: ":-moz-window-inactive",
-			desc: "Non-standard. Matches elements in an inactive window.",
-			browsers: "FF4"
-		},
-		{
-			name: ":-ms-fullscreen",
-			desc: "Matches any element that has its fullscreen flag set.",
-			browsers: "IE11"
-		},
-		{
-			name: ":-ms-input-placeholder",
-			desc: "Represents placeholder text in an input field. Note: for Edge use the pseudo-element ::-ms-input-placeholder. Standardized as ::placeholder.",
-			browsers: "IE10"
-		},
-		{
-			name: ":-ms-keyboard-active",
-			desc: "Windows Store apps only. Applies one or more styles to an element when it has focus and the user presses the space bar.",
-			browsers: "IE10"
-		},
-		{
-			name: ":-ms-lang()",
-			desc: "Represents an element that is in the language specified. Accepts a comma seperated list of language tokens.",
-			browsers: "E,IE10"
-		},
-		{
-			name: ":no-button",
-			desc: "Non-standard. Applies to track pieces. Applies when there is no button at that end of the track.",
-			browsers: "C,S5"
-		},
-		{
-			name: ":not()",
-			desc: "The negation pseudo-class, :not(X), is a functional notation taking a simple selector (excluding the negation pseudo-class itself) as an argument. It represents an element that is not represented by its argument.",
-			browsers: "E,C,FF1,IE9,O9.5,S2"
-		},
-		{
-			name: ":nth-child()",
-			desc: "Represents an element that has an+b-1 siblings before it in the document tree, for any positive integer or zero value of n, and has a parent element.",
-			browsers: "E,C,FF3.5,IE9,O9.5,S3.1"
-		},
-		{
-			name: ":nth-last-child()",
-			desc: "Represents an element that has an+b-1 siblings after it in the document tree, for any positive integer or zero value of n, and has a parent element.",
-			browsers: "E,C,FF3.5,IE9,O9.5,S3.1"
-		},
-		{
-			name: ":nth-last-of-type()",
-			desc: "Represents an element that has an+b-1 siblings with the same expanded element name after it in the document tree, for any zero or positive integer value of n, and has a parent element.",
-			browsers: "E,C,FF3.5,IE9,O9.5,S3.1"
-		},
-		{
-			name: ":nth-of-type()",
-			desc: "Represents an element that has an+b-1 siblings with the same expanded element name before it in the document tree, for any zero or positive integer value of n, and has a parent element.",
-			browsers: "E,C,FF3.5,IE9,O9.5,S3.1"
-		},
-		{
-			name: ":only-child",
-			desc: "Represents an element that has a parent element and whose parent element has no other element children. Same as :first-child:last-child or :nth-child(1):nth-last-child(1), but with a lower specificity.",
-			browsers: "all"
-		},
-		{
-			name: ":only-of-type",
-			desc: "Matches every element that is the only child of its type, of its parent. Same as :first-of-type:last-of-type or :nth-of-type(1):nth-last-of-type(1), but with a lower specificity.",
-			browsers: "all"
-		},
-		{
-			name: ":optional",
-			desc: "A form element is :required or :optional if a value for it is, respectively, required or optional before the form it belongs to is submitted. Elements that are not form elements are neither required nor optional.",
-			browsers: "all"
-		},
-		{
-			name: ":out-of-range",
-			desc: "Used in conjunction with the min and max attributes, whether on a range input, a number field, or any other types that accept those attributes.",
-			browsers: "E,FF29,S,C10,O11"
-		},
-		{
-			name: ":past",
-			desc: "Represents any element that is defined to occur entirely prior to a :current element.",
-			browsers: "C,O16,S6"
-		},
-		{
-			name: ":read-only",
-			desc: "An element whose contents are not user-alterable is :read-only. However, elements whose contents are user-alterable (such as text input fields) are considered to be in a :read-write state. In typical documents, most elements are :read-only.",
-			browsers: "E,FF,S,C,O"
-		},
-		{
-			name: ":read-write",
-			desc: "An element whose contents are not user-alterable is :read-only. However, elements whose contents are user-alterable (such as text input fields) are considered to be in a :read-write state. In typical documents, most elements are :read-only.",
-			browsers: "E,FF,S,C,O"
-		},
-		{
-			name: ":required",
-			desc: "A form element is :required or :optional if a value for it is, respectively, required or optional before the form it belongs to is submitted. Elements that are not form elements are neither required nor optional.",
-			browsers: "all"
-		},
-		{
-			name: ":right",
-			desc: "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context.",
-			browsers: "E,IE8,O9.2"
-		},
-		{
-			name: ":root",
-			desc: "Represents an element that is the root of the document. In HTML 4, this is always the HTML element.",
-			browsers: "FF1,S1,C1,IE9,O9.5"
-		},
-		{
-			name: ":scope",
-			desc: "Represents any element that is in the contextual reference element set.",
-			browsers: "FF32,S7,O15"
-		},
-		{
-			name: ":single-button",
-			desc: "Non-standard. Applies to buttons and track pieces. Applies when both buttons are displayed separately at either end of the scrollbar.",
-			browsers: "C,S5"
-		},
-		{
-			name: ":start",
-			desc: "Non-standard. Applies to buttons and track pieces. Indicates whether the object is placed before the thumb.",
-			browsers: "C,S5"
-		},
-		{
-			name: ":target",
-			desc: "Some URIs refer to a location within a resource. This kind of URI ends with a 'number sign' (#) followed by an anchor identifier (called the fragment identifier).",
-			browsers: "all"
-		},
-		{
-			name: ":valid",
-			desc: "An element is :valid or :invalid when it is, respectively, valid or invalid with respect to data validity semantics defined by a different specification.",
-			browsers: "all"
-		},
-		{
-			name: ":vertical",
-			desc: "Non-standard. Applies to any scrollbar pieces that have a vertical orientation.",
-			browsers: "C,S5"
-		},
-		{
-			name: ":visited",
-			desc: "Applies once the link has been visited by the user.",
-			browsers: "all"
-		},
-		{
-			name: ":-webkit-any()",
-			desc: "Represents an element that is represented by the selector list passed as its argument. Standardized as :matches().",
-			browsers: "C,S5"
-		},
-		{
-			name: ":-webkit-full-screen",
-			desc: "Matches any element that has its fullscreen flag set. Standardized as :fullscreen.",
-			browsers: "C,S6"
-		},
-		{
-			name: ":window-inactive",
-			desc: "Non-standard. Applies to all scrollbar pieces. Indicates whether or not the window containing the scrollbar is currently active.",
-			browsers: "C,S3"
-		},
-		{
-			name: ":blank",
-			desc: "The :blank CSS pseudo-class selects empty user input elements (eg. <input> or <textarea>).",
-			"status": "e",
-			browsers: "FF"
-		},
-		{
-			name: ":defined",
-			desc: "The :defined CSS pseudo-class represents any element that has been defined. This includes any standard element built in to the browser, and custom elements that have been successfully defined (i.e. with the CustomElementRegistry.define() method).",
-			"status": "e",
-			browsers: "FF63,S,C,O"
-		},
-		{
-			name: ":dir",
-			desc: "The :dir() CSS pseudo-class matches elements based on the directionality of the text contained in them.",
-			browsers: "FF49"
-		},
-		{
-			name: ":focus-visible",
-			desc: "The :focus-visible pseudo-class applies while an element matches the :focus pseudo-class and the UA determines via heuristics that the focus should be made evident on the element.",
-			browsers: "C67"
-		},
-		{
-			name: ":focus-within",
-			desc: "The :focus-within pseudo-class applies to any element for which the :focus pseudo class applies as well as to an element whose descendant in the flat tree (including non-element nodes, such as text nodes) matches the conditions for matching :focus.",
-			"status": "e",
-			browsers: "FF52,S10.1,C60,O47"
-		},
-		{
-			name: ":has",
-			desc: ":The :has() CSS pseudo-class represents an element if any of the selectors passed as parameters (relative to the :scope of the given element), match at least one element.",
-			"status": "e"
-		},
-		{
-			name: ":is",
-			desc: "The :is() CSS pseudo-class function takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list. This is useful for writing large selectors in a more compact form.",
-			"status": "e"
-		},
-		{
-			name: ":placeholder-shown",
-			desc: "The :placeholder-shown CSS pseudo-class represents any <input> or <textarea> element that is currently displaying placeholder text.",
-			"status": "e",
-			browsers: "FF51,S9,C47,IE10,O34"
-		},
-		{
-			name: ":where",
-			desc: "The :where() CSS pseudo-class function takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list.",
-			"status": "e"
-		}
-	],
-	"pseudoElements": [
-		{
-			name: "::after",
-			desc: "Represents a styleable child pseudo-element immediately after the originating element’s actual content.",
-			browsers: "all"
-		},
-		{
-			name: "::backdrop",
-			desc: "Used to create a backdrop that hides the underlying document for an element in a top layer (such as an element that is displayed fullscreen).",
-			browsers: "E,FF47,C37,IE11"
-		},
-		{
-			name: "::before",
-			desc: "Represents a styleable child pseudo-element immediately before the originating element’s actual content.",
-			browsers: "all"
-		},
-		{
-			name: "::content",
-			desc: "Deprecated. Matches the distribution list itself, on elements that have one. Use ::slotted for forward compatibility.",
-			browsers: "C35,O22"
-		},
-		{
-			name: "::cue",
-			browsers: "FF55,C"
-		},
-		{
-			name: "::cue()",
-			browsers: "C,O16,S6"
-		},
-		{
-			name: "::cue-region",
-			browsers: "C,O16,S6"
-		},
-		{
-			name: "::cue-region()",
-			browsers: "C,O16,S6"
-		},
-		{
-			name: "::first-letter",
-			desc: "Represents the first letter of an element, if it is not preceded by any other content (such as images or inline tables) on its line.",
-			browsers: "all"
-		},
-		{
-			name: "::first-line",
-			desc: "Describes the contents of the first formatted line of its originating element.",
-			browsers: "all"
-		},
-		{
-			name: "::-moz-focus-inner",
-			browsers: "FF4"
-		},
-		{
-			name: "::-moz-focus-outer",
-			browsers: "FF4"
-		},
-		{
-			name: "::-moz-list-bullet",
-			desc: "Used to style the bullet of a list element. Similar to the standardized ::marker.",
-			browsers: "FF1"
-		},
-		{
-			name: "::-moz-list-number",
-			desc: "Used to style the numbers of a list element. Similar to the standardized ::marker.",
-			browsers: "FF1"
-		},
-		{
-			name: "::-moz-placeholder",
-			desc: "Represents placeholder text in an input field",
-			browsers: "FF19"
-		},
-		{
-			name: "::-moz-progress-bar",
-			desc: "Represents the bar portion of a progress bar.",
-			browsers: "FF9"
-		},
-		{
-			name: "::-moz-selection",
-			desc: "Represents the portion of a document that has been highlighted by the user.",
-			browsers: "FF1"
-		},
-		{
-			name: "::-ms-backdrop",
-			desc: "Used to create a backdrop that hides the underlying document for an element in a top layer (such as an element that is displayed fullscreen).",
-			browsers: "IE11"
-		},
-		{
-			name: "::-ms-browse",
-			desc: "Represents the browse button of an input type=file control.",
-			browsers: "E,IE10"
-		},
-		{
-			name: "::-ms-check",
-			desc: "Represents the check of a checkbox or radio button input control.",
-			browsers: "E,IE10"
-		},
-		{
-			name: "::-ms-clear",
-			desc: "Represents the clear button of a text input control",
-			browsers: "E,IE10"
-		},
-		{
-			name: "::-ms-expand",
-			desc: "Represents the drop-down button of a select control.",
-			browsers: "E,IE10"
-		},
-		{
-			name: "::-ms-fill",
-			desc: "Represents the bar portion of a progress bar.",
-			browsers: "E,IE10"
-		},
-		{
-			name: "::-ms-fill-lower",
-			desc: "Represents the portion of the slider track from its smallest value up to the value currently selected by the thumb. In a left-to-right layout, this is the portion of the slider track to the left of the thumb.",
-			browsers: "E,IE"
-		},
-		{
-			name: "::-ms-fill-upper",
-			desc: "Represents the portion of the slider track from the value currently selected by the thumb up to the slider's largest value. In a left-to-right layout, this is the portion of the slider track to the right of the thumb.",
-			browsers: "E,IE"
-		},
-		{
-			name: "::-ms-reveal",
-			desc: "Represents the password reveal button of an input type=password control.",
-			browsers: "E,IE10"
-		},
-		{
-			name: "::-ms-thumb",
-			desc: "Represents the portion of range input control (also known as a slider control) that the user drags.",
-			browsers: "E,IE10"
-		},
-		{
-			name: "::-ms-ticks-after",
-			desc: "Represents the tick marks of a slider that begin just after the thumb and continue up to the slider's largest value. In a left-to-right layout, these are the ticks to the right of the thumb.",
-			browsers: "E,IE10"
-		},
-		{
-			name: "::-ms-ticks-before",
-			desc: "Represents the tick marks of a slider that represent its smallest values up to the value currently selected by the thumb. In a left-to-right layout, these are the ticks to the left of the thumb.",
-			browsers: "E,IE10"
-		},
-		{
-			name: "::-ms-tooltip",
-			desc: "Represents the tooltip of a slider (input type=range).",
-			browsers: "E,IE10"
-		},
-		{
-			name: "::-ms-track",
-			desc: "Represents the track of a slider.",
-			browsers: "E,IE10"
-		},
-		{
-			name: "::-ms-value",
-			desc: "Represents the content of a text or password input control, or a select control.",
-			browsers: "E16,IE10"
-		},
-		{
-			name: "::selection",
-			desc: "Represents the portion of a document that has been highlighted by the user.",
-			browsers: "all"
-		},
-		{
-			name: "::shadow",
-			desc: "Matches the shadow root if an element has a shadow tree.",
-			browsers: "C35,O22"
-		},
-		{
-			name: "::-webkit-file-upload-button",
-			browsers: "S,C,O"
-		},
-		{
-			name: "::-webkit-inner-spin-button",
-			browsers: "S,C,O"
-		},
-		{
-			name: "::-webkit-input-placeholder",
-			browsers: "C,S4"
-		},
-		{
-			name: "::-webkit-keygen-select",
-			browsers: "C,O,S6"
-		},
-		{
-			name: "::-webkit-meter-bar",
-			browsers: "S,C,O"
-		},
-		{
-			name: "::-webkit-meter-even-less-good-value",
-			browsers: "S,C,O"
-		},
-		{
-			name: "::-webkit-meter-optimum-value",
-			browsers: "S,C,O"
-		},
-		{
-			name: "::-webkit-meter-suboptimal-value",
-			browsers: "E13,C,O15,S6"
-		},
-		{
-			name: "::-webkit-outer-spin-button",
-			browsers: "S,C,O"
-		},
-		{
-			name: "::-webkit-progress-bar",
-			browsers: "S,C,O"
-		},
-		{
-			name: "::-webkit-progress-inner-element",
-			browsers: "S,C,O"
-		},
-		{
-			name: "::-webkit-progress-value",
-			browsers: "S,C,O"
-		},
-		{
-			name: "::-webkit-resizer",
-			browsers: "C,S5"
-		},
-		{
-			name: "::-webkit-scrollbar",
-			browsers: "C,S5"
-		},
-		{
-			name: "::-webkit-scrollbar-button",
-			browsers: "C,S5"
-		},
-		{
-			name: "::-webkit-scrollbar-corner",
-			browsers: "C,S5"
-		},
-		{
-			name: "::-webkit-scrollbar-thumb",
-			browsers: "C,S5"
-		},
-		{
-			name: "::-webkit-scrollbar-track",
-			browsers: "C,S5"
-		},
-		{
-			name: "::-webkit-scrollbar-track-piece",
-			browsers: "C,S5"
-		},
-		{
-			name: "::-webkit-search-cancel-button",
-			browsers: "S,C"
-		},
-		{
-			name: "::-webkit-search-decoration",
-			browsers: "C,S4"
-		},
-		{
-			name: "::-webkit-search-results-button",
-			browsers: "S,C"
-		},
-		{
-			name: "::-webkit-search-results-decoration",
-			browsers: "C,S4"
-		},
-		{
-			name: "::-webkit-slider-runnable-track",
-			browsers: "C,O,S6"
-		},
-		{
-			name: "::-webkit-slider-thumb",
-			browsers: "C,O,S6"
-		},
-		{
-			name: "::-webkit-textfield-decoration-container",
-			browsers: "C,O,S6"
-		},
-		{
-			name: "::-webkit-validation-bubble",
-			browsers: "C,O,S6"
-		},
-		{
-			name: "::-webkit-validation-bubble-arrow",
-			browsers: "C,O,S6"
-		},
-		{
-			name: "::-webkit-validation-bubble-arrow-clipper",
-			browsers: "C,O,S6"
-		},
-		{
-			name: "::-webkit-validation-bubble-heading",
-			browsers: "C,O,S6"
-		},
-		{
-			name: "::-webkit-validation-bubble-message",
-			browsers: "C,O,S6"
-		},
-		{
-			name: "::-webkit-validation-bubble-text-block",
-			browsers: "C,O,S6"
-		},
-		{
-			name: "::-moz-range-progress",
-			desc: "The ::-moz-range-progress CSS pseudo-element is a Mozilla extension that represents the lower portion of the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\". This portion corresponds to values lower than the value currently selected by the thumb (i.e., virtual knob).",
-			"status": "n",
-			browsers: "FF"
-		},
-		{
-			name: "::-moz-range-thumb",
-			desc: "The ::-moz-range-thumb CSS pseudo-element is a Mozilla extension that represents the thumb (i.e., virtual knob) of an <input> of type=\"range\". The user can move the thumb along the input's track to alter its numerical value.",
-			"status": "n",
-			browsers: "FF"
-		},
-		{
-			name: "::-moz-range-track",
-			desc: "The ::-moz-range-track CSS pseudo-element is a Mozilla extension that represents the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\".",
-			"status": "n",
-			browsers: "FF"
-		},
-		{
-			name: "::-webkit-progress-inner-value",
-			desc: "The ::-webkit-progress-value CSS pseudo-element represents the filled-in portion of the bar of a <progress> element. It is a child of the ::-webkit-progress-bar pseudo-element.\n\nIn order to let ::-webkit-progress-value take effect, -webkit-appearance needs to be set to none on the <progress> element.",
-			"status": "n"
-		},
-		{
-			name: "::grammar-error",
-			desc: "The ::grammar-error CSS pseudo-element represents a text segment which the user agent has flagged as grammatically incorrect.",
-			"status": "e"
-		},
-		{
-			name: "::placeholder",
-			desc: "The ::placeholder CSS pseudo-element represents the placeholder text of a form element.",
-			browsers: "E,FF51,S10.1,C57,O44"
-		},
-		{
-			name: "::slotted",
-			desc: "The :slotted() CSS pseudo-element represents any element that has been placed into a slot inside an HTML template.",
-			browsers: "FF63,S,C50,O37"
-		},
-		{
-			name: "::spelling-error",
-			desc: "The ::spelling-error CSS pseudo-element represents a text segment which the user agent has flagged as incorrectly spelled.",
-			"status": "e"
-		}
-	],
 	"properties": [
 		{
 			name: "additive-symbols",
@@ -1116,7 +251,7 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "alt",
-			desc: "Provides alternative text for assistive technology to replace the genenerated content of a ::before or ::after element.",
+			desc: "Provides alternative text for assistive technology to replace the generated content of a ::before or ::after element.",
 			browsers: "S9",
 			restriction: "string, enum",
 			values: []
@@ -1575,7 +710,7 @@ export const cssData : CSSData = {
 			name: "border-block-start-style",
 			desc: "Logical 'border-top-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			browsers: "FF41,O56",
-			restriction: "lline-style",
+			restriction: "line-style",
 			"syntax": "<'border-style'>"
 		},
 		{
@@ -1807,7 +942,7 @@ export const cssData : CSSData = {
 			name: "border-inline-start-style",
 			desc: "Logical 'border-left-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			browsers: "FF41,C69,O56",
-			restriction: "lline-style",
+			restriction: "line-style",
 			"syntax": "<'border-style'>"
 		},
 		{
@@ -2199,7 +1334,7 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "clip-path",
-			desc: "Specifies a clipping path where everything inside the path is visable and everything outside is clipped out.",
+			desc: "Specifies a clipping path where everything inside the path is visible and everything outside is clipped out.",
 			browsers: "FF3.5,C55,O42",
 			restriction: "url, shape, geometry-box, enum",
 			values: [
@@ -12822,7 +11957,7 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "rotate",
-			desc: "The rotate CSS property allows you to specify rotation transforms individually and independantly of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value.",
+			desc: "The rotate CSS property allows you to specify rotation transforms individually and independently of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value.",
 			restriction: "none",
 			"syntax": "none | [ x | y | z | <number>{3} ]? && <angle>",
 			browsers: "FF60,C"
@@ -12843,7 +11978,7 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "scale",
-			desc: "The scale CSS property allows you to specify scale transforms individually and independantly of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value.",
+			desc: "The scale CSS property allows you to specify scale transforms individually and independently of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value.",
 			restriction: "none",
 			"syntax": "none | <number>{1,3}",
 			browsers: "FF60,C"
@@ -12954,21 +12089,21 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "scroll-padding-block-start",
-			desc: "The scroll-padding-block-start property defines offsets for the start edge in the block dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targetted element and the edges of the scrollport.",
+			desc: "The scroll-padding-block-start property defines offsets for the start edge in the block dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport.",
 			restriction: "none",
 			"syntax": "auto | <length> | <percentage>",
 			browsers: "S11,C69,O56"
 		},
 		{
 			name: "scroll-padding-block-end",
-			desc: "The scroll-padding-block-end property defines offsets for the end edge in the block dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targetted element and the edges of the scrollport.",
+			desc: "The scroll-padding-block-end property defines offsets for the end edge in the block dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport.",
 			restriction: "none",
 			"syntax": "auto | <length> | <percentage>",
 			browsers: "S11,C69,O56"
 		},
 		{
 			name: "scroll-padding-bottom",
-			desc: "The scroll-padding-bottom property defines offsets for the bottom of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targetted element and the edges of the scrollport.",
+			desc: "The scroll-padding-bottom property defines offsets for the bottom of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport.",
 			restriction: "none",
 			"syntax": "auto | <length> | <percentage>",
 			browsers: "S11,C69,O56"
@@ -12982,35 +12117,35 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "scroll-padding-inline-start",
-			desc: "The scroll-padding-inline-start property defines offsets for the start edge in the inline dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targetted element and the edges of the scrollport.",
+			desc: "The scroll-padding-inline-start property defines offsets for the start edge in the inline dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport.",
 			restriction: "none",
 			"syntax": "auto | <length> | <percentage>",
 			browsers: "S11,C69,O56"
 		},
 		{
 			name: "scroll-padding-inline-end",
-			desc: "The scroll-padding-inline-end property defines offsets for the end edge in the inline dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targetted element and the edges of the scrollport.",
+			desc: "The scroll-padding-inline-end property defines offsets for the end edge in the inline dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport.",
 			restriction: "none",
 			"syntax": "auto | <length> | <percentage>",
 			browsers: "S11,C69,O56"
 		},
 		{
 			name: "scroll-padding-left",
-			desc: "The scroll-padding-left property defines offsets for the left of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targetted element and the edges of the scrollport.",
+			desc: "The scroll-padding-left property defines offsets for the left of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport.",
 			restriction: "none",
 			"syntax": "auto | <length> | <percentage>",
 			browsers: "S11,C69,O56"
 		},
 		{
 			name: "scroll-padding-right",
-			desc: "The scroll-padding-right property defines offsets for the right of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targetted element and the edges of the scrollport.",
+			desc: "The scroll-padding-right property defines offsets for the right of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport.",
 			restriction: "none",
 			"syntax": "auto | <length> | <percentage>",
 			browsers: "S11,C69,O56"
 		},
 		{
 			name: "scroll-padding-top",
-			desc: "The scroll-padding-top property defines offsets for the top of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targetted element and the edges of the scrollport.",
+			desc: "The scroll-padding-top property defines offsets for the top of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport.",
 			restriction: "none",
 			"syntax": "auto | <length> | <percentage>",
 			browsers: "S11,C69,O56"
@@ -13112,7 +12247,7 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "translate",
-			desc: "The translate CSS property allows you to specify translation transforms individually and independantly of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value.",
+			desc: "The translate CSS property allows you to specify translation transforms individually and independently of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value.",
 			restriction: "none",
 			"syntax": "none | <length-percentage> [ <length-percentage> <length>? ]?",
 			browsers: "FF60,C"
@@ -13168,9 +12303,868 @@ export const cssData : CSSData = {
 			restriction: "none",
 			"syntax": "zoom | fixed"
 		}
+	],
+	"atDirectives": [
+		{
+			name: "@charset",
+			desc: "Defines character set of the document.",
+			browsers: "FF1.5,S4,C2,IE5.5,O9"
+		},
+		{
+			name: "@counter-style",
+			desc: "Defines a custom counter style.",
+			browsers: "FF33"
+		},
+		{
+			name: "@font-face",
+			desc: "Allows for linking to fonts that are automatically activated when needed. This permits authors to work around the limitation of 'web-safe' fonts, allowing for consistent rendering independent of the fonts available in a given user's environment.",
+			browsers: "all"
+		},
+		{
+			name: "@font-feature-values",
+			desc: "Defines named values for the indices used to select alternate glyphs for a given font family.",
+			browsers: "FF34,S9.1"
+		},
+		{
+			name: "@import",
+			desc: "Includes content of another file.",
+			browsers: "all"
+		},
+		{
+			name: "@keyframes",
+			desc: "Defines set of animation key frames.",
+			browsers: "all"
+		},
+		{
+			name: "@media",
+			desc: "Defines a stylesheet for a particular media type.",
+			browsers: "all"
+		},
+		{
+			name: "@-moz-document",
+			desc: "Gecko-specific at-rule that restricts the style rules contained within it based on the URL of the document.",
+			browsers: "FF1.8"
+		},
+		{
+			name: "@-moz-keyframes",
+			desc: "Defines set of animation key frames.",
+			browsers: "FF5"
+		},
+		{
+			name: "@-ms-viewport",
+			desc: "Specifies the size, zoom factor, and orientation of the viewport.",
+			browsers: "E,IE10"
+		},
+		{
+			name: "@namespace",
+			desc: "Declares a prefix and associates it with a namespace name.",
+			browsers: "all"
+		},
+		{
+			name: "@-o-keyframes",
+			desc: "Defines set of animation key frames.",
+			browsers: "O12"
+		},
+		{
+			name: "@-o-viewport",
+			desc: "Specifies the size, zoom factor, and orientation of the viewport.",
+			browsers: "O11"
+		},
+		{
+			name: "@page",
+			desc: "Directive defines various page parameters.",
+			browsers: "E,FF19,C2,IE8,O6"
+		},
+		{
+			name: "@supports",
+			desc: "A conditional group rule whose condition tests whether the user agent supports CSS property:value pairs.",
+			browsers: "E12,FF22,S9,C28,O12.1"
+		},
+		{
+			name: "@-webkit-keyframes",
+			desc: "Defines set of animation key frames.",
+			browsers: "C,S4"
+		}
+	],
+	"pseudoClasses": [
+		{
+			name: ":active",
+			desc: "Applies while an element is being activated by the user. For example, between the times the user presses the mouse button and releases it.",
+			browsers: "all"
+		},
+		{
+			name: ":any-link",
+			desc: "Represents an element that acts as the source anchor of a hyperlink. Applies to both visited and unvisited links.",
+			browsers: "FF50,S,C,O"
+		},
+		{
+			name: ":checked",
+			desc: "Radio and checkbox elements can be toggled by the user. Some menu items are 'checked' when the user selects them. When such elements are toggled 'on' the :checked pseudo-class applies.",
+			browsers: "all"
+		},
+		{
+			name: ":corner-present",
+			desc: "Non-standard. Indicates whether or not a scrollbar corner is present.",
+			browsers: "C,S5"
+		},
+		{
+			name: ":decrement",
+			desc: "Non-standard. Applies to buttons and track pieces. Indicates whether or not the button or track piece will decrement the view’s position when used.",
+			browsers: "C,S5"
+		},
+		{
+			name: ":default",
+			desc: "Applies to the one or more UI elements that are the default among a set of similar elements. Typically applies to context menu items, buttons, and select lists/menus.",
+			browsers: "FF4,S5,C10,O10"
+		},
+		{
+			name: ":disabled",
+			desc: "Represents user interface elements that are in a disabled state; such elements have a corresponding enabled state.",
+			browsers: "all"
+		},
+		{
+			name: ":double-button",
+			desc: "Non-standard. Applies to buttons and track pieces. Applies when both buttons are displayed together at the same end of the scrollbar.",
+			browsers: "C,S5"
+		},
+		{
+			name: ":empty",
+			desc: "Represents an element that has no children at all.",
+			browsers: "all"
+		},
+		{
+			name: ":enabled",
+			desc: "Represents user interface elements that are in an enabled state; such elements have a corresponding disabled state.",
+			browsers: "all"
+		},
+		{
+			name: ":end",
+			desc: "Non-standard. Applies to buttons and track pieces. Indicates whether the object is placed after the thumb.",
+			browsers: "C,S5"
+		},
+		{
+			name: ":first",
+			desc: "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context.",
+			browsers: "E,IE8,O9.2"
+		},
+		{
+			name: ":first-child",
+			desc: "Same as :nth-child(1). Represents an element that is the first child of some other element.",
+			browsers: "all"
+		},
+		{
+			name: ":first-of-type",
+			desc: "Same as :nth-of-type(1). Represents an element that is the first sibling of its type in the list of children of its parent element.",
+			browsers: "all"
+		},
+		{
+			name: ":focus",
+			desc: "Applies while an element has the focus (accepts keyboard or mouse events, or other forms of input).",
+			browsers: "all"
+		},
+		{
+			name: ":fullscreen",
+			desc: "Matches any element that has its fullscreen flag set.",
+			browsers: "E12,FF64,S6,C15,IE11"
+		},
+		{
+			name: ":future",
+			desc: "Represents any element that is defined to occur entirely after a :current element.",
+			browsers: "C,O16,S6"
+		},
+		{
+			name: ":horizontal",
+			desc: "Non-standard. Applies to any scrollbar pieces that have a horizontal orientation.",
+			browsers: "C,S5"
+		},
+		{
+			name: ":host",
+			desc: "When evaluated in the context of a shadow tree, matches the shadow tree’s host element.",
+			browsers: "FF63,S,C,O"
+		},
+		{
+			name: ":host()",
+			desc: "When evaluated in the context of a shadow tree, it matches the shadow tree’s host element if the host element, in its normal context, matches the selector argument.",
+			browsers: "C35,O22"
+		},
+		{
+			name: ":host-context()",
+			desc: "Tests whether there is an ancestor, outside the shadow tree, which matches a particular selector.",
+			browsers: "C35,O22"
+		},
+		{
+			name: ":hover",
+			desc: "Applies while the user designates an element with a pointing device, but does not necessarily activate it. For example, a visual user agent could apply this pseudo-class when the cursor (mouse pointer) hovers over a box generated by the element.",
+			browsers: "all"
+		},
+		{
+			name: ":increment",
+			desc: "Non-standard. Applies to buttons and track pieces. Indicates whether or not the button or track piece will increment the view’s position when used.",
+			browsers: "C,S5"
+		},
+		{
+			name: ":indeterminate",
+			desc: "Applies to UI elements whose value is in an indeterminate state.",
+			browsers: "all"
+		},
+		{
+			name: ":in-range",
+			desc: "Used in conjunction with the min and max attributes, whether on a range input, a number field, or any other types that accept those attributes.",
+			browsers: "E,FF29,S,C10,O11"
+		},
+		{
+			name: ":invalid",
+			desc: "An element is :valid or :invalid when it is, respectively, valid or invalid with respect to data validity semantics defined by a different specification.",
+			browsers: "all"
+		},
+		{
+			name: ":lang()",
+			desc: "Represents an element that is in language specified.",
+			browsers: "E,C,FF1,IE8,O8,S3"
+		},
+		{
+			name: ":last-child",
+			desc: "Same as :nth-last-child(1). Represents an element that is the last child of some other element.",
+			browsers: "all"
+		},
+		{
+			name: ":last-of-type",
+			desc: "Same as :nth-last-of-type(1). Represents an element that is the last sibling of its type in the list of children of its parent element.",
+			browsers: "all"
+		},
+		{
+			name: ":left",
+			desc: "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context.",
+			browsers: "E,IE8,O9.2"
+		},
+		{
+			name: ":link",
+			desc: "Applies to links that have not yet been visited.",
+			browsers: "all"
+		},
+		{
+			name: ":matches()",
+			desc: "Takes a selector list as its argument. It represents an element that is represented by its argument.",
+			browsers: "S9"
+		},
+		{
+			name: ":-moz-any()",
+			desc: "Represents an element that is represented by the selector list passed as its argument. Standardized as :matches().",
+			browsers: "FF4"
+		},
+		{
+			name: ":-moz-any-link",
+			desc: "Represents an element that acts as the source anchor of a hyperlink. Applies to both visited and unvisited links.",
+			browsers: "FF1"
+		},
+		{
+			name: ":-moz-broken",
+			desc: "Non-standard. Matches elements representing broken images.",
+			browsers: "FF3"
+		},
+		{
+			name: ":-moz-drag-over",
+			desc: "Non-standard. Matches elements when a drag-over event applies to it.",
+			browsers: "FF1"
+		},
+		{
+			name: ":-moz-first-node",
+			desc: "Non-standard. Represents an element that is the first child node of some other element.",
+			browsers: "FF1"
+		},
+		{
+			name: ":-moz-focusring",
+			desc: "Non-standard. Matches an element that has focus and focus ring drawing is enabled in the browser.",
+			browsers: "FF4"
+		},
+		{
+			name: ":-moz-full-screen",
+			desc: "Matches any element that has its fullscreen flag set. Standardized as :fullscreen.",
+			browsers: "FF9"
+		},
+		{
+			name: ":-moz-last-node",
+			desc: "Non-standard. Represents an element that is the last child node of some other element.",
+			browsers: "FF1"
+		},
+		{
+			name: ":-moz-loading",
+			desc: "Non-standard. Matches elements, such as images, that haven’t started loading yet.",
+			browsers: "FF3"
+		},
+		{
+			name: ":-moz-only-whitespace",
+			desc: "The same as :empty, except that it additionally matches elements that only contain code points affected by whitespace processing. Standardized as :blank.",
+			browsers: "FF1.5"
+		},
+		{
+			name: ":-moz-placeholder",
+			desc: "Deprecated. Represents placeholder text in an input field. Use ::-moz-placeholder for Firefox 19+.",
+			browsers: "FF4"
+		},
+		{
+			name: ":-moz-submit-invalid",
+			desc: "Non-standard. Represents any submit button when the contents of the associated form are not valid.",
+			browsers: "FF4"
+		},
+		{
+			name: ":-moz-suppressed",
+			desc: "Non-standard. Matches elements representing images that have been blocked from loading.",
+			browsers: "FF3"
+		},
+		{
+			name: ":-moz-ui-invalid",
+			desc: "Non-standard. Represents any validated form element whose value isn't valid ",
+			browsers: "FF4"
+		},
+		{
+			name: ":-moz-ui-valid",
+			desc: "Non-standard. Represents any validated form element whose value is valid ",
+			browsers: "FF4"
+		},
+		{
+			name: ":-moz-user-disabled",
+			desc: "Non-standard. Matches elements representing images that have been disabled due to the user’s preferences.",
+			browsers: "FF3"
+		},
+		{
+			name: ":-moz-window-inactive",
+			desc: "Non-standard. Matches elements in an inactive window.",
+			browsers: "FF4"
+		},
+		{
+			name: ":-ms-fullscreen",
+			desc: "Matches any element that has its fullscreen flag set.",
+			browsers: "IE11"
+		},
+		{
+			name: ":-ms-input-placeholder",
+			desc: "Represents placeholder text in an input field. Note: for Edge use the pseudo-element ::-ms-input-placeholder. Standardized as ::placeholder.",
+			browsers: "IE10"
+		},
+		{
+			name: ":-ms-keyboard-active",
+			desc: "Windows Store apps only. Applies one or more styles to an element when it has focus and the user presses the space bar.",
+			browsers: "IE10"
+		},
+		{
+			name: ":-ms-lang()",
+			desc: "Represents an element that is in the language specified. Accepts a comma separated list of language tokens.",
+			browsers: "E,IE10"
+		},
+		{
+			name: ":no-button",
+			desc: "Non-standard. Applies to track pieces. Applies when there is no button at that end of the track.",
+			browsers: "C,S5"
+		},
+		{
+			name: ":not()",
+			desc: "The negation pseudo-class, :not(X), is a functional notation taking a simple selector (excluding the negation pseudo-class itself) as an argument. It represents an element that is not represented by its argument.",
+			browsers: "E,C,FF1,IE9,O9.5,S2"
+		},
+		{
+			name: ":nth-child()",
+			desc: "Represents an element that has an+b-1 siblings before it in the document tree, for any positive integer or zero value of n, and has a parent element.",
+			browsers: "E,C,FF3.5,IE9,O9.5,S3.1"
+		},
+		{
+			name: ":nth-last-child()",
+			desc: "Represents an element that has an+b-1 siblings after it in the document tree, for any positive integer or zero value of n, and has a parent element.",
+			browsers: "E,C,FF3.5,IE9,O9.5,S3.1"
+		},
+		{
+			name: ":nth-last-of-type()",
+			desc: "Represents an element that has an+b-1 siblings with the same expanded element name after it in the document tree, for any zero or positive integer value of n, and has a parent element.",
+			browsers: "E,C,FF3.5,IE9,O9.5,S3.1"
+		},
+		{
+			name: ":nth-of-type()",
+			desc: "Represents an element that has an+b-1 siblings with the same expanded element name before it in the document tree, for any zero or positive integer value of n, and has a parent element.",
+			browsers: "E,C,FF3.5,IE9,O9.5,S3.1"
+		},
+		{
+			name: ":only-child",
+			desc: "Represents an element that has a parent element and whose parent element has no other element children. Same as :first-child:last-child or :nth-child(1):nth-last-child(1), but with a lower specificity.",
+			browsers: "all"
+		},
+		{
+			name: ":only-of-type",
+			desc: "Matches every element that is the only child of its type, of its parent. Same as :first-of-type:last-of-type or :nth-of-type(1):nth-last-of-type(1), but with a lower specificity.",
+			browsers: "all"
+		},
+		{
+			name: ":optional",
+			desc: "A form element is :required or :optional if a value for it is, respectively, required or optional before the form it belongs to is submitted. Elements that are not form elements are neither required nor optional.",
+			browsers: "all"
+		},
+		{
+			name: ":out-of-range",
+			desc: "Used in conjunction with the min and max attributes, whether on a range input, a number field, or any other types that accept those attributes.",
+			browsers: "E,FF29,S,C10,O11"
+		},
+		{
+			name: ":past",
+			desc: "Represents any element that is defined to occur entirely prior to a :current element.",
+			browsers: "C,O16,S6"
+		},
+		{
+			name: ":read-only",
+			desc: "An element whose contents are not user-alterable is :read-only. However, elements whose contents are user-alterable (such as text input fields) are considered to be in a :read-write state. In typical documents, most elements are :read-only.",
+			browsers: "E,FF,S,C,O"
+		},
+		{
+			name: ":read-write",
+			desc: "An element whose contents are not user-alterable is :read-only. However, elements whose contents are user-alterable (such as text input fields) are considered to be in a :read-write state. In typical documents, most elements are :read-only.",
+			browsers: "E,FF,S,C,O"
+		},
+		{
+			name: ":required",
+			desc: "A form element is :required or :optional if a value for it is, respectively, required or optional before the form it belongs to is submitted. Elements that are not form elements are neither required nor optional.",
+			browsers: "all"
+		},
+		{
+			name: ":right",
+			desc: "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context.",
+			browsers: "E,IE8,O9.2"
+		},
+		{
+			name: ":root",
+			desc: "Represents an element that is the root of the document. In HTML 4, this is always the HTML element.",
+			browsers: "FF1,S1,C1,IE9,O9.5"
+		},
+		{
+			name: ":scope",
+			desc: "Represents any element that is in the contextual reference element set.",
+			browsers: "FF32,S7,O15"
+		},
+		{
+			name: ":single-button",
+			desc: "Non-standard. Applies to buttons and track pieces. Applies when both buttons are displayed separately at either end of the scrollbar.",
+			browsers: "C,S5"
+		},
+		{
+			name: ":start",
+			desc: "Non-standard. Applies to buttons and track pieces. Indicates whether the object is placed before the thumb.",
+			browsers: "C,S5"
+		},
+		{
+			name: ":target",
+			desc: "Some URIs refer to a location within a resource. This kind of URI ends with a 'number sign' (#) followed by an anchor identifier (called the fragment identifier).",
+			browsers: "all"
+		},
+		{
+			name: ":valid",
+			desc: "An element is :valid or :invalid when it is, respectively, valid or invalid with respect to data validity semantics defined by a different specification.",
+			browsers: "all"
+		},
+		{
+			name: ":vertical",
+			desc: "Non-standard. Applies to any scrollbar pieces that have a vertical orientation.",
+			browsers: "C,S5"
+		},
+		{
+			name: ":visited",
+			desc: "Applies once the link has been visited by the user.",
+			browsers: "all"
+		},
+		{
+			name: ":-webkit-any()",
+			desc: "Represents an element that is represented by the selector list passed as its argument. Standardized as :matches().",
+			browsers: "C,S5"
+		},
+		{
+			name: ":-webkit-full-screen",
+			desc: "Matches any element that has its fullscreen flag set. Standardized as :fullscreen.",
+			browsers: "C,S6"
+		},
+		{
+			name: ":window-inactive",
+			desc: "Non-standard. Applies to all scrollbar pieces. Indicates whether or not the window containing the scrollbar is currently active.",
+			browsers: "C,S3"
+		},
+		{
+			name: ":blank",
+			desc: "The :blank CSS pseudo-class selects empty user input elements (eg. <input> or <textarea>).",
+			"status": "e",
+			browsers: "FF"
+		},
+		{
+			name: ":defined",
+			desc: "The :defined CSS pseudo-class represents any element that has been defined. This includes any standard element built in to the browser, and custom elements that have been successfully defined (i.e. with the CustomElementRegistry.define() method).",
+			"status": "e",
+			browsers: "FF63,S,C,O"
+		},
+		{
+			name: ":dir",
+			desc: "The :dir() CSS pseudo-class matches elements based on the directionality of the text contained in them.",
+			browsers: "FF49"
+		},
+		{
+			name: ":focus-within",
+			desc: "The :focus-within pseudo-class applies to any element for which the :focus pseudo class applies as well as to an element whose descendant in the flat tree (including non-element nodes, such as text nodes) matches the conditions for matching :focus.",
+			"status": "e",
+			browsers: "FF52,S10.1,C60,O47"
+		},
+		{
+			name: ":has",
+			desc: ":The :has() CSS pseudo-class represents an element if any of the selectors passed as parameters (relative to the :scope of the given element), match at least one element.",
+			"status": "e"
+		},
+		{
+			name: ":is",
+			desc: "The :is() CSS pseudo-class function takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list. This is useful for writing large selectors in a more compact form.",
+			"status": "e"
+		},
+		{
+			name: ":placeholder-shown",
+			desc: "The :placeholder-shown CSS pseudo-class represents any <input> or <textarea> element that is currently displaying placeholder text.",
+			"status": "e",
+			browsers: "FF51,S9,C47,IE10,O34"
+		},
+		{
+			name: ":where",
+			desc: "The :where() CSS pseudo-class function takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list.",
+			"status": "e"
+		}
+	],
+	"pseudoElements": [
+		{
+			name: "::after",
+			desc: "Represents a styleable child pseudo-element immediately after the originating element’s actual content.",
+			browsers: "all"
+		},
+		{
+			name: "::backdrop",
+			desc: "Used to create a backdrop that hides the underlying document for an element in a top layer (such as an element that is displayed fullscreen).",
+			browsers: "E,FF47,C37,IE11"
+		},
+		{
+			name: "::before",
+			desc: "Represents a styleable child pseudo-element immediately before the originating element’s actual content.",
+			browsers: "all"
+		},
+		{
+			name: "::content",
+			desc: "Deprecated. Matches the distribution list itself, on elements that have one. Use ::slotted for forward compatibility.",
+			browsers: "C35,O22"
+		},
+		{
+			name: "::cue",
+			browsers: "FF55,C"
+		},
+		{
+			name: "::cue()",
+			browsers: "C,O16,S6"
+		},
+		{
+			name: "::cue-region",
+			browsers: "C,O16,S6"
+		},
+		{
+			name: "::cue-region()",
+			browsers: "C,O16,S6"
+		},
+		{
+			name: "::first-letter",
+			desc: "Represents the first letter of an element, if it is not preceded by any other content (such as images or inline tables) on its line.",
+			browsers: "all"
+		},
+		{
+			name: "::first-line",
+			desc: "Describes the contents of the first formatted line of its originating element.",
+			browsers: "all"
+		},
+		{
+			name: "::-moz-focus-inner",
+			browsers: "FF4"
+		},
+		{
+			name: "::-moz-focus-outer",
+			browsers: "FF4"
+		},
+		{
+			name: "::-moz-list-bullet",
+			desc: "Used to style the bullet of a list element. Similar to the standardized ::marker.",
+			browsers: "FF1"
+		},
+		{
+			name: "::-moz-list-number",
+			desc: "Used to style the numbers of a list element. Similar to the standardized ::marker.",
+			browsers: "FF1"
+		},
+		{
+			name: "::-moz-placeholder",
+			desc: "Represents placeholder text in an input field",
+			browsers: "FF19"
+		},
+		{
+			name: "::-moz-progress-bar",
+			desc: "Represents the bar portion of a progress bar.",
+			browsers: "FF9"
+		},
+		{
+			name: "::-moz-selection",
+			desc: "Represents the portion of a document that has been highlighted by the user.",
+			browsers: "FF1"
+		},
+		{
+			name: "::-ms-backdrop",
+			desc: "Used to create a backdrop that hides the underlying document for an element in a top layer (such as an element that is displayed fullscreen).",
+			browsers: "IE11"
+		},
+		{
+			name: "::-ms-browse",
+			desc: "Represents the browse button of an input type=file control.",
+			browsers: "E,IE10"
+		},
+		{
+			name: "::-ms-check",
+			desc: "Represents the check of a checkbox or radio button input control.",
+			browsers: "E,IE10"
+		},
+		{
+			name: "::-ms-clear",
+			desc: "Represents the clear button of a text input control",
+			browsers: "E,IE10"
+		},
+		{
+			name: "::-ms-expand",
+			desc: "Represents the drop-down button of a select control.",
+			browsers: "E,IE10"
+		},
+		{
+			name: "::-ms-fill",
+			desc: "Represents the bar portion of a progress bar.",
+			browsers: "E,IE10"
+		},
+		{
+			name: "::-ms-fill-lower",
+			desc: "Represents the portion of the slider track from its smallest value up to the value currently selected by the thumb. In a left-to-right layout, this is the portion of the slider track to the left of the thumb.",
+			browsers: "E,IE"
+		},
+		{
+			name: "::-ms-fill-upper",
+			desc: "Represents the portion of the slider track from the value currently selected by the thumb up to the slider's largest value. In a left-to-right layout, this is the portion of the slider track to the right of the thumb.",
+			browsers: "E,IE"
+		},
+		{
+			name: "::-ms-reveal",
+			desc: "Represents the password reveal button of an input type=password control.",
+			browsers: "E,IE10"
+		},
+		{
+			name: "::-ms-thumb",
+			desc: "Represents the portion of range input control (also known as a slider control) that the user drags.",
+			browsers: "E,IE10"
+		},
+		{
+			name: "::-ms-ticks-after",
+			desc: "Represents the tick marks of a slider that begin just after the thumb and continue up to the slider's largest value. In a left-to-right layout, these are the ticks to the right of the thumb.",
+			browsers: "E,IE10"
+		},
+		{
+			name: "::-ms-ticks-before",
+			desc: "Represents the tick marks of a slider that represent its smallest values up to the value currently selected by the thumb. In a left-to-right layout, these are the ticks to the left of the thumb.",
+			browsers: "E,IE10"
+		},
+		{
+			name: "::-ms-tooltip",
+			desc: "Represents the tooltip of a slider (input type=range).",
+			browsers: "E,IE10"
+		},
+		{
+			name: "::-ms-track",
+			desc: "Represents the track of a slider.",
+			browsers: "E,IE10"
+		},
+		{
+			name: "::-ms-value",
+			desc: "Represents the content of a text or password input control, or a select control.",
+			browsers: "E16,IE10"
+		},
+		{
+			name: "::selection",
+			desc: "Represents the portion of a document that has been highlighted by the user.",
+			browsers: "all"
+		},
+		{
+			name: "::shadow",
+			desc: "Matches the shadow root if an element has a shadow tree.",
+			browsers: "C35,O22"
+		},
+		{
+			name: "::-webkit-file-upload-button",
+			browsers: "S,C,O"
+		},
+		{
+			name: "::-webkit-inner-spin-button",
+			browsers: "S,C,O"
+		},
+		{
+			name: "::-webkit-input-placeholder",
+			browsers: "C,S4"
+		},
+		{
+			name: "::-webkit-keygen-select",
+			browsers: "C,O,S6"
+		},
+		{
+			name: "::-webkit-meter-bar",
+			browsers: "S,C,O"
+		},
+		{
+			name: "::-webkit-meter-even-less-good-value",
+			browsers: "S,C,O"
+		},
+		{
+			name: "::-webkit-meter-optimum-value",
+			browsers: "S,C,O"
+		},
+		{
+			name: "::-webkit-meter-suboptimal-value",
+			browsers: "E13,C,O15,S6"
+		},
+		{
+			name: "::-webkit-outer-spin-button",
+			browsers: "S,C,O"
+		},
+		{
+			name: "::-webkit-progress-bar",
+			browsers: "S,C,O"
+		},
+		{
+			name: "::-webkit-progress-inner-element",
+			browsers: "S,C,O"
+		},
+		{
+			name: "::-webkit-progress-value",
+			browsers: "S,C,O"
+		},
+		{
+			name: "::-webkit-resizer",
+			browsers: "C,S5"
+		},
+		{
+			name: "::-webkit-scrollbar",
+			browsers: "C,S5"
+		},
+		{
+			name: "::-webkit-scrollbar-button",
+			browsers: "C,S5"
+		},
+		{
+			name: "::-webkit-scrollbar-corner",
+			browsers: "C,S5"
+		},
+		{
+			name: "::-webkit-scrollbar-thumb",
+			browsers: "C,S5"
+		},
+		{
+			name: "::-webkit-scrollbar-track",
+			browsers: "C,S5"
+		},
+		{
+			name: "::-webkit-scrollbar-track-piece",
+			browsers: "C,S5"
+		},
+		{
+			name: "::-webkit-search-cancel-button",
+			browsers: "S,C"
+		},
+		{
+			name: "::-webkit-search-decoration",
+			browsers: "C,S4"
+		},
+		{
+			name: "::-webkit-search-results-button",
+			browsers: "S,C"
+		},
+		{
+			name: "::-webkit-search-results-decoration",
+			browsers: "C,S4"
+		},
+		{
+			name: "::-webkit-slider-runnable-track",
+			browsers: "C,O,S6"
+		},
+		{
+			name: "::-webkit-slider-thumb",
+			browsers: "C,O,S6"
+		},
+		{
+			name: "::-webkit-textfield-decoration-container",
+			browsers: "C,O,S6"
+		},
+		{
+			name: "::-webkit-validation-bubble",
+			browsers: "C,O,S6"
+		},
+		{
+			name: "::-webkit-validation-bubble-arrow",
+			browsers: "C,O,S6"
+		},
+		{
+			name: "::-webkit-validation-bubble-arrow-clipper",
+			browsers: "C,O,S6"
+		},
+		{
+			name: "::-webkit-validation-bubble-heading",
+			browsers: "C,O,S6"
+		},
+		{
+			name: "::-webkit-validation-bubble-message",
+			browsers: "C,O,S6"
+		},
+		{
+			name: "::-webkit-validation-bubble-text-block",
+			browsers: "C,O,S6"
+		},
+		{
+			name: "::-moz-range-progress",
+			desc: "The ::-moz-range-progress CSS pseudo-element is a Mozilla extension that represents the lower portion of the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\". This portion corresponds to values lower than the value currently selected by the thumb (i.e., virtual knob).",
+			"status": "n",
+			browsers: "FF"
+		},
+		{
+			name: "::-moz-range-thumb",
+			desc: "The ::-moz-range-thumb CSS pseudo-element is a Mozilla extension that represents the thumb (i.e., virtual knob) of an <input> of type=\"range\". The user can move the thumb along the input's track to alter its numerical value.",
+			"status": "n",
+			browsers: "FF"
+		},
+		{
+			name: "::-moz-range-track",
+			desc: "The ::-moz-range-track CSS pseudo-element is a Mozilla extension that represents the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\".",
+			"status": "n",
+			browsers: "FF"
+		},
+		{
+			name: "::-webkit-progress-inner-value",
+			desc: "The ::-webkit-progress-value CSS pseudo-element represents the filled-in portion of the bar of a <progress> element. It is a child of the ::-webkit-progress-bar pseudo-element.\n\nIn order to let ::-webkit-progress-value take effect, -webkit-appearance needs to be set to none on the <progress> element.",
+			"status": "n"
+		},
+		{
+			name: "::grammar-error",
+			desc: "The ::grammar-error CSS pseudo-element represents a text segment which the user agent has flagged as grammatically incorrect.",
+			"status": "e"
+		},
+		{
+			name: "::placeholder",
+			desc: "The ::placeholder CSS pseudo-element represents the placeholder text of a form element.",
+			browsers: "E,FF51,S10.1,C57,O44"
+		},
+		{
+			name: "::slotted",
+			desc: "The :slotted() CSS pseudo-element represents any element that has been placed into a slot inside an HTML template.",
+			browsers: "FF63,S,C50,O37"
+		},
+		{
+			name: "::spelling-error",
+			desc: "The ::spelling-error CSS pseudo-element represents a text segment which the user agent has flagged as incorrectly spelled.",
+			"status": "e"
+		}
 	]
 };
-
 export const descriptions : any = {
 	"100": "Thin",
 	"200": "Extra Light (Ultra Light)",
