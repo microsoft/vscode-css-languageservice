@@ -22,6 +22,41 @@ interface IFunctionInfo {
 export class LESSCompletion extends CSSCompletion {
 
 	private static builtInProposals: IFunctionInfo[] = [
+		// Boolean functions
+		{
+			'name': 'if',
+			'example': 'if(condition, trueValue [, falseValue]);',
+			'description': localize('less.builtin.if', 'returns one of two values depending on a condition.')
+		},
+		{
+			'name': 'boolean',
+			'example': 'boolean(condition);',
+			'description': localize('less.builtin.boolean', '"store" a boolean test for later evaluation in a guard or if().')
+		},
+
+		// List functions
+		{
+			'name': 'length',
+			'example': 'length(@list);',
+			'description': localize('less.builtin.length', 'returns the number of elements in a value list')
+		},
+		{
+			'name': 'extract',
+			'example': 'extract(@list, index);',
+			'description': localize('less.builtin.extract', 'returns a value at the specified position in the list')
+		},
+		{
+			'name': 'range',
+			'example': 'range([start, ] end [, step]);',
+			'description': localize('less.builtin.range', 'generate a list spanning a range of values')
+		},
+		{
+			'name': 'each',
+			'example': 'each(@list, ruleset);',
+			'description': localize('less.builtin.each', 'bind the evaluation of a ruleset to each member of a list.')
+		},
+
+		// Other built-ins
 		{
 			'name': 'escape',
 			'example': 'escape(@string);',
@@ -58,16 +93,6 @@ export class LESSCompletion extends CSSCompletion {
 			'example': 'data-uri([mimetype,] url);',
 			'description': localize('less.builtin.data-uri', 'inlines a resource and falls back to `url()`'),
 			'type': 'url'
-		},
-		{
-			'name': 'length',
-			'example': 'length(@list);',
-			'description': localize('less.builtin.length', 'returns the number of elements in a value list')
-		},
-		{
-			'name': 'extract',
-			'example': 'extract(@list, index);',
-			'description': localize('less.builtin.extract', 'returns a value at the specified position in the list')
 		},
 		{
 			'name': 'abs',
@@ -368,11 +393,11 @@ export class LESSCompletion extends CSSCompletion {
 		this.createFunctionProposals(LESSCompletion.colorProposals, existingNode, false, result);
 		return super.getColorProposals(entry, existingNode, result);
 	}
-	
+
 	public getCompletionsForDeclarationProperty(declaration: nodes.Declaration, result: CompletionList): CompletionList {
 		this.getCompletionsForSelector(null, true, result);
 		return super.getCompletionsForDeclarationProperty(declaration, result);
-	}	
+	}
 
 }
 

@@ -20,15 +20,16 @@ export class LESSParser extends cssParser.Parser {
 		super(new lessScanner.LESSScanner());
 	}
 
-	public _parseStylesheetStatement(): nodes.Node {
+	public _parseStylesheetStatement(isNested: boolean = false): nodes.Node {
 		if (this.peek(TokenType.AtKeyword)) {
 			return this._parseVariableDeclaration()
 				|| this._parsePlugin()
-				|| super._parseStylesheetAtStatement();
+				|| super._parseStylesheetAtStatement(isNested);
 		}
 
 		return this._tryParseMixinDeclaration()
-			|| this._tryParseMixinReference(true)
+			|| this._tryParseMixinReference()
+			|| this._parseFunction()
 			|| this._parseRuleset(true);
 	}
 
@@ -104,7 +105,7 @@ export class LESSParser extends cssParser.Parser {
 			|| this._tryParseMixinDeclaration()
 			|| this._tryParseMixinReference()
 			|| this._parseDetachedRuleSetMixin()
-			|| this._parseStylesheetStatement();
+			|| this._parseStylesheetStatement(isNested);
 	}
 
 	public _parseMediaFeatureName(): nodes.Node {
@@ -115,13 +116,15 @@ export class LESSParser extends cssParser.Parser {
 		let node = <nodes.VariableDeclaration>this.create(nodes.VariableDeclaration);
 
 		let mark = this.mark();
-		if (!node.setVariable(this._parseVariable())) {
+		if (!this.peekDelim('@') && !this.peek(TokenType.AtKeyword) || !node.setVariable(this._parseVariable())) {
 			return null;
 		}
 
 		if (this.accept(TokenType.Colon)) {
 			node.colonPosition = this.prevToken.offset;
-			if (!node.setValue(this._parseDetachedRuleSet() || this._parseExpr())) {
+			if (node.setValue(this._parseDetachedRuleSet())) {
+				node.needsSemicolon = false;
+			} else if (!node.setValue(this._parseExpr())) {
 				return <nodes.VariableDeclaration>this.finish(node, ParseError.VariableValueExpected, [], panic);
 			}
 
@@ -150,23 +153,24 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseDetachedRuleSetBody(): nodes.Node {
-		return this._tryParseKeyframeSelector() || this._tryParseRuleset(true) || super._parseRuleSetDeclaration();
+		return this._tryParseKeyframeSelector() || this._parseRuleSetDeclaration();
 	}
 
 	public _parseVariable(): nodes.Variable {
-		if (!this.peekDelim('@') && !this.peek(TokenType.AtKeyword)) {
+		if (!this.peekDelim('@') && !this.peekDelim('$') && !this.peek(TokenType.AtKeyword)) {
 			return null;
 		}
 
 		let node = <nodes.Variable>this.create(nodes.Variable);
 		let mark = this.mark();
-		while (this.acceptDelim('@')) {
+
+		while (this.acceptDelim('@') || this.acceptDelim('$')) {
 			if (this.hasWhitespace()) {
 				this.restoreAtMark(mark);
 				return null;
 			}
 		}
-		if (!this.accept(TokenType.AtKeyword)) {
+		if (!this.accept(TokenType.AtKeyword) && !this.accept(TokenType.Ident)) {
 			this.restoreAtMark(mark);
 			return null;
 		}
@@ -179,7 +183,8 @@ export class LESSParser extends cssParser.Parser {
 
 		term = <nodes.Term>this.create(nodes.Term);
 		if (term.setExpression(this._parseVariable()) ||
-			term.setExpression(this._parseEscaped())) {
+			term.setExpression(this._parseEscaped()) ||
+			term.setExpression(this._tryParseMixinReference())) {
 
 			return <nodes.Term>this.finish(term);
 		}
@@ -247,12 +252,14 @@ export class LESSParser extends cssParser.Parser {
 				|| this._parseImport()
 				|| this._parseSupports(true) // @supports
 				|| this._parseDetachedRuleSetMixin() // less detached ruleset mixin
-				|| this._parseVariableDeclaration(); // Variable declarations
+				|| this._parseVariableDeclaration() // Variable declarations
+				|| this._parseUnknownAtRule();
 
 		}
 		return this._tryParseMixinDeclaration()
 			|| this._tryParseRuleset(true)  // nested ruleset
 			|| this._tryParseMixinReference() // less mixin reference
+			|| this._parseFunction()
 			|| this._parseExtend() // less extend declaration
 			|| super._parseRuleSetDeclaration(); // try css ruleset declaration as the last option
 	}
@@ -332,7 +339,10 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	private peekInterpolatedIdent() {
-		return this.peek(TokenType.Ident) || this.peekDelim('@') || this.peekDelim('-');
+		return this.peek(TokenType.Ident) ||
+			this.peekDelim('@') ||
+			this.peekDelim('$') ||
+			this.peekDelim('-');
 	}
 
 	public _acceptInterpolatedIdent(node: nodes.Node): boolean {
@@ -361,9 +371,10 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseInterpolation(): nodes.Node {
-		//  @{name}
+		// @{name} Variable or 
+		// ${name} Property
 		let mark = this.mark();
-		if (this.peekDelim('@')) {
+		if (this.peekDelim('@') || this.peekDelim('$')) {
 			let node = this.createNode(nodes.NodeType.Interpolation);
 			this.consumeToken();
 			if (this.hasWhitespace() || !this.accept(TokenType.CurlyL)) {
@@ -492,7 +503,7 @@ export class LESSParser extends cssParser.Parser {
 		}
 		let mark = this.mark();
 		let node = <nodes.MixinReference>this.create(nodes.MixinReference);
-		if (!node.addChild(this._parseVariable()) || !this.accept(TokenType.ParenthesisL)) {
+		if (node.addChild(this._parseVariable()) && (this.hasWhitespace() || !this.accept(TokenType.ParenthesisL))) {
 			this.restoreAtMark(mark);
 			return null;
 		}
@@ -503,7 +514,7 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 
-	public _tryParseMixinReference(atRoot = false): nodes.Node {
+	public _tryParseMixinReference(): nodes.Node {
 		let mark = this.mark();
 		let node = <nodes.MixinReference>this.create(nodes.MixinReference);
 
@@ -602,7 +613,7 @@ export class LESSParser extends cssParser.Parser {
 			this.accept(TokenType.Colon);
 			hasContent = true;
 		}
-		if (!node.setDefaultValue(this._parseExpr(true)) && !hasContent) {
+		if (!node.setDefaultValue(this._parseDetachedRuleSet() || this._parseExpr(true)) && !hasContent) {
 			return null;
 		}
 		return this.finish(node);
@@ -645,6 +656,37 @@ export class LESSParser extends cssParser.Parser {
 		}
 
 		return this.finish(node);
+	}
+
+	public _parseFunction(): nodes.Function {
+
+		let pos = this.mark();
+		let node = <nodes.Function>this.create(nodes.Function);
+
+		if (!node.setIdentifier(this._parseFunctionIdentifier())) {
+			return null;
+		}
+
+		if (this.hasWhitespace() || !this.accept(TokenType.ParenthesisL)) {
+			this.restoreAtMark(pos);
+			return null;
+		}
+
+		if (node.getArguments().addChild(this._parseMixinArgument())) {
+			while (this.accept(TokenType.Comma) || this.accept(TokenType.SemiColon)) {
+				if (this.peek(TokenType.ParenthesisR)) {
+					break;
+				}
+				if (!node.getArguments().addChild(this._parseMixinArgument())) {
+					return this.finish(node, ParseError.ExpressionExpected);
+				}
+			}
+		}
+
+		if (!this.accept(TokenType.ParenthesisR)) {
+			return <nodes.Function>this.finish(node, ParseError.RightParenthesisExpected);
+		}
+		return <nodes.Function>this.finish(node);
 	}
 
 	public _parseFunctionIdentifier(): nodes.Identifier {
