@@ -21,7 +21,8 @@ import { SCSSCompletion } from './services/scssCompletion';
 import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
 import { getFoldingRanges } from './services/cssFolding';
-import { LanguageSettings, ICompletionParticipant, DocumentContext } from './cssLanguageTypes';
+import { LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServiceOptions } from './cssLanguageTypes';
+import { builtinCSSDataSet } from './services/languageFacts';
 
 export type Stylesheet = {};
 export * from './cssLanguageTypes';
@@ -72,15 +73,23 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 	};
 }
 
+function handleCustomData(options?: LanguageServiceOptions) {
+	if (options && options.customDataCollections) {
+		options.customDataCollections.forEach(data => builtinCSSDataSet.addData(data));
+	}
+}
 
-export function getCSSLanguageService(): LanguageService {
+export function getCSSLanguageService(options?: LanguageServiceOptions): LanguageService {
+	handleCustomData(options);
 	return createFacade(new Parser(), new CSSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation());
 }
 
-export function getSCSSLanguageService(): LanguageService {
+export function getSCSSLanguageService(options?: LanguageServiceOptions): LanguageService {
+	handleCustomData(options);
 	return createFacade(new SCSSParser(), new SCSSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation());
 }
 
-export function getLESSLanguageService(): LanguageService {
+export function getLESSLanguageService(options?: LanguageServiceOptions): LanguageService {
+	handleCustomData(options);
 	return createFacade(new LESSParser(), new LESSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation());
 }

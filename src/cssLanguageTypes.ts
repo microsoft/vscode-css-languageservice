@@ -4,7 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { Range, TextEdit, Position } from "vscode-languageserver-types";
+import { Range, TextEdit, Position } from 'vscode-languageserver-types';
+import { CSSData } from './services/languageFacts';
+export { CSSData } from './services/languageFacts';
 
 export { Range, TextEdit, Position };
 
@@ -47,4 +49,8 @@ export interface ICompletionParticipant {
 
 export interface DocumentContext {
 	resolveReference(ref: string, base?: string): string;
+}
+
+export interface LanguageServiceOptions {
+	customDataCollections?: CSSData[];
 }

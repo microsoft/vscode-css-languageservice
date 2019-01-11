@@ -5,7 +5,7 @@
 'use strict';
 
 import * as assert from 'assert';
-import { isColorValue, getColorValue, getBrowserLabel, getProperties, colorFrom256RGB, colorFromHex, hexDigit, hslFromColor, HSLA } from '../../services/languageFacts';
+import { isColorValue, getColorValue, getBrowserLabel, colorFrom256RGB, colorFromHex, hexDigit, hslFromColor, HSLA, builtinCSSDataSet } from '../../services/languageFacts';
 import { Parser } from '../../parser/cssParser';
 import * as nodes from '../../parser/cssNodes';
 import { TextDocument, Color } from 'vscode-languageserver-types';
@@ -59,7 +59,7 @@ function assertHSLValue(actual: HSLA, expected: HSLA) {
 suite('CSS - Language Facts', () => {
 
 	test('properties', function () {
-		let properties = getProperties();
+		let properties = builtinCSSDataSet.properties;
 		let alignLast = properties['text-align-last'];
 
 		assert.ok(alignLast !== null);
@@ -153,4 +153,3 @@ suite('CSS - Language Facts', () => {
 		assertHSLValue(hslFromColor(colorFrom256RGB(0, 0, 128, 1)), { h: 240, s: 1, l: 0.251, a: 1 });
 	});
 });
-

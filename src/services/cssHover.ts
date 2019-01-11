@@ -39,7 +39,7 @@ export class CSSHover {
 			}
 			if (node instanceof nodes.Declaration) {
 				let propertyName = node.getFullPropertyName();
-				let entry = languageFacts.getProperties()[propertyName];
+				let entry = languageFacts.builtinCSSDataSet.properties[propertyName];
 				if (entry) {
 					let contents: MarkedString[] = [];
 					if (entry.description) {

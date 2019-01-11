@@ -156,7 +156,7 @@ export class CSSCompletion {
 	}
 
 	private getPropertyProposals(declaration: nodes.Declaration, result: CompletionList): CompletionList {
-		let properties = languageFacts.getProperties();
+		let properties = languageFacts.builtinCSSDataSet.properties;
 
 		for (let key in properties) {
 			if (properties.hasOwnProperty(key)) {
@@ -217,7 +217,7 @@ export class CSSCompletion {
 
 	public getCompletionsForDeclarationValue(node: nodes.Declaration, result: CompletionList): CompletionList {
 		let propertyName = node.getFullPropertyName();
-		let entry = languageFacts.getProperties()[propertyName];
+		let entry = languageFacts.builtinCSSDataSet.properties[propertyName];
 		let existingNode: nodes.Node = node.getValue();
 
 		while (existingNode && existingNode.hasChildren()) {
@@ -581,7 +581,10 @@ export class CSSCompletion {
 	}
 
 	public getCompletionForTopLevel(result: CompletionList): CompletionList {
-		for (let entry of languageFacts.getAtDirectives()) {
+		const atDirectives = languageFacts.builtinCSSDataSet.atDirectives;
+
+		for (let entryName in atDirectives) {
+			const entry = atDirectives[entryName];
 			if (entry.browsers.count > 0) {
 				result.items.push({
 					label: entry.name,
@@ -591,6 +594,7 @@ export class CSSCompletion {
 				});
 			}
 		}
+
 		this.getCompletionsForSelector(null, false, result);
 		return result;
 	}
@@ -618,7 +622,9 @@ export class CSSCompletion {
 			this.defaultReplaceRange = Range.create(Position.create(this.position.line, this.position.character - this.currentWord.length), this.position);
 		}
 
-		for (let entry of languageFacts.getPseudoClasses()) {
+		const pseudoClasses = languageFacts.builtinCSSDataSet.pseudoClasses;
+		for (let entryName in pseudoClasses) {
+			const entry = pseudoClasses[entryName];
 			if (entry.browsers.onCodeComplete) {
 				let insertText = moveCursorInsideParenthesis(entry.name);
 				let item: CompletionItem = {
@@ -634,7 +640,10 @@ export class CSSCompletion {
 				result.items.push(item);
 			}
 		}
-		for (let entry of languageFacts.getPseudoElements()) {
+		
+		const pseudoElements = languageFacts.builtinCSSDataSet.pseudoElements;
+		for (let entryName in pseudoElements) {
+			const entry = pseudoElements[entryName];
 			if (entry.browsers.onCodeComplete) {
 				let insertText = moveCursorInsideParenthesis(entry.name);
 				let item: CompletionItem = {
