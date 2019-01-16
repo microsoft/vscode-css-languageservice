@@ -154,7 +154,8 @@ function checkBorderShorthand(node: nodes.Node): boolean {
 	// if any child means no border, the result is no border
 	for (const child of children) {
 		const value = child.getText();
-		if (!checkLineWidth(value) || !checkLineStyle(value, /* allowsKeywords: */ false)) {
+		if (!checkLineWidth(value, /* allowsKeywords: */ false) ||
+			!checkLineStyle(value, /* allowsKeywords: */ false)) {
 			return false;
 		}
 	}
@@ -171,6 +172,9 @@ export default function calculateBoxModel(propertyTable: Element[]): BoxModel {
 
 	for (const property of propertyTable) {
 		const value = property.node.value;
+		if (typeof value === 'undefined') {
+			continue;
+		}
 
 		switch (property.name) {
 			case 'box-sizing':
