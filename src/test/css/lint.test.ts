@@ -113,7 +113,7 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { -moz-box-shadow: "rest is missing" }', Rules.UnknownVendorSpecificProperty, Rules.IncludeStandardPropertyWhenUsingVendorPrefix);
 		assertRuleSet('selector { box-shadow: none }'); // no error
 		assertRuleSet('selector { box-property: "rest is missing" }', Rules.UnknownProperty);
-		assertRuleSet(':export { prop: "some" }') // no error for properties inside :export
+		assertRuleSet(':export { prop: "some" }'); // no error for properties inside :export
 		assertRuleSetWithSettings('selector { foo: "some"; bar: 0px }', [], new LintConfigurationSettings({ validProperties: ['foo', 'bar'] }));
 		assertRuleSetWithSettings('selector { foo: "some"; }', [], new LintConfigurationSettings({ validProperties: ['foo', null] }));
 		assertRuleSetWithSettings('selector { bar: "some"; }', [Rules.UnknownProperty], new LintConfigurationSettings({ validProperties: ['foo'] }));
@@ -215,6 +215,11 @@ suite('CSS - Lint', () => {
 
 		// property be overriden
 		assertRuleSet('.mybox { height: 100px;         border: 1px;               border-top: 0; border-bottom: 0; }');
+
+		// imcomplete rules
+		assertRuleSet('.mybox { padding:; }');
+		assertRuleSet('.mybox { border: ');
+		assertRuleSet('.mybox { height: 100px;         padding: 1px;              border: }', Rules.BewareOfBoxModelSize, Rules.BewareOfBoxModelSize);
 	});
 
 	test('IE hacks', function () {
