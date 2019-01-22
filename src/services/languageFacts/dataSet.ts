@@ -4,17 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { IEntry, EntryImpl, IEntryData } from './entry';
+import { IEntry, EntryImpl } from './entry';
+import { CSSData, IEntryData } from '../../cssLanguageTypes';
 
 interface IEntrySet {
 	[k: string]: IEntry;
-}
-
-export interface CSSData {
-	properties?: IEntryData[];
-	atDirectives?: IEntryData[];
-	pseudoClasses?: IEntryData[];
-	pseudoElements?: IEntryData[];
 }
 
 export class CSSDataSet {

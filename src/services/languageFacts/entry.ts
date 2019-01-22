@@ -5,6 +5,7 @@
 'use strict';
 
 import * as browsers from '../../data/browsers';
+import { IValueData, IEntryData } from '../../cssLanguageTypes';
 
 export interface Browsers {
 	E?: string;
@@ -97,16 +98,6 @@ export function getBrowserLabel(b: Browsers): string {
 	return result;
 }
 
-export interface IEntryData {
-	name: string;
-	desc?: string;
-	browsers?: string;
-	restriction?: string;
-	status?: string;
-	syntax?: string;
-	values?: IValueData[];
-}
-
 export interface IEntry {
 	name: string;
 	restrictions: string[];
@@ -157,12 +148,6 @@ export class EntryImpl implements IEntry {
 			return new ValueImpl(v);
 		});
 	}
-}
-
-export interface IValueData {
-	name: string;
-	desc?: string;
-	browsers?: string;
 }
 
 export interface IValue {

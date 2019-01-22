@@ -5,8 +5,6 @@
 'use strict';
 
 import { Range, TextEdit, Position } from 'vscode-languageserver-types';
-import { CSSData } from './services/languageFacts';
-export { CSSData } from './services/languageFacts';
 
 export { Range, TextEdit, Position };
 
@@ -53,4 +51,27 @@ export interface DocumentContext {
 
 export interface LanguageServiceOptions {
 	customDataCollections?: CSSData[];
+}
+
+export interface IEntryData {
+	name: string;
+	desc?: string;
+	browsers?: string;
+	restriction?: string;
+	status?: string;
+	syntax?: string;
+	values?: IValueData[];
+}
+
+export interface IValueData {
+	name: string;
+	desc?: string;
+	browsers?: string;
+}
+
+export interface CSSData {
+	properties?: IEntryData[];
+	atDirectives?: IEntryData[];
+	pseudoClasses?: IEntryData[];
+	pseudoElements?: IEntryData[];
 }
