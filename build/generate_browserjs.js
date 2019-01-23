@@ -394,7 +394,7 @@ fs.readFile(path.resolve(__dirname, schemaFileName), (err, data) => {
         schemaFileName +
         ' and https://github.com/mdn/data using build/generate_browserjs.js',
 			'',
-			'import { CSSData } from "../services/languageFacts";',
+			`import { CSSData } from '../cssLanguageTypes';`,
 			'',
       'export const cssData : CSSData = ' + toJavaScript(resultObject) + ';',
 			'export const descriptions : any = ' + toJavaScript(descriptions) + ';'
