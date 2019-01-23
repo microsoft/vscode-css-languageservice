@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { IEntry, EntryImpl } from './entry';
 import { CSSData, IEntryData } from '../../cssLanguageTypes';
+import { IEntry } from './entry';
 
 interface IEntrySet {
 	[k: string]: IEntry;
@@ -43,22 +43,22 @@ export class CSSDataSet {
 
 	private addProperties(properties: IEntryData[]) {
 		properties.forEach(p => {
-			this.propertySet[p.name] = new EntryImpl(p);
+			this.propertySet[p.name] = p;
 		});
 	}
 	private addAtDirectives(atDirectives: IEntryData[]) {
 		atDirectives.forEach(a => {
-			this.atDirectiveSet[a.name] = new EntryImpl(a);
+			this.atDirectiveSet[a.name] = a;
 		});
 	}
 	private addPseudoClasses(pseudoClasses: IEntryData[]) {
 		pseudoClasses.forEach(p => {
-			this.pseudoClassSet[p.name] = new EntryImpl(p);
+			this.pseudoClassSet[p.name] = p;
 		});
 	}
 	private addPseudoElements(pseudoElements: IEntryData[]) {
 		pseudoElements.forEach(p => {
-			this.pseudoElementSet[p.name] = new EntryImpl(p);
+			this.pseudoElementSet[p.name] = p;
 		});
 	}
 	

@@ -80,8 +80,6 @@ suite('CSS - Language Facts', () => {
 		let v = alignLast.values;
 		assert.equal(v.length, 5);
 		assert.equal(v[0].name, 'auto');
-		assert.equal(v[0].browsers.all, true);
-		assert.equal(v[0].browsers.count, Number.MAX_VALUE);
 	});
 
 	test('is color', function () {

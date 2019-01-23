@@ -161,7 +161,7 @@ export class CSSCompletion {
 		for (let key in properties) {
 			if (properties.hasOwnProperty(key)) {
 				let entry = properties[key];
-				if (entry.browsers.onCodeComplete) {
+				if (entry.browsers && entry.browsers.length > 0) {
 					let range: Range;
 					let insertText: string;
 					let retrigger = false;
@@ -290,7 +290,8 @@ export class CSSCompletion {
 	public getValueEnumProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		if (entry.values) {
 			for (let value of entry.values) {
-				if (languageFacts.isCommonValue(value)) { // only show if supported by more than one browser
+				// only show if supported by more than one browser
+				if (value.browsers && value.browsers.length > 1) {
 					let insertString = value.name;
 					let insertTextFormat;
 					if (strings.endsWith(insertString, ')')) {
@@ -585,7 +586,7 @@ export class CSSCompletion {
 
 		for (let entryName in atDirectives) {
 			const entry = atDirectives[entryName];
-			if (entry.browsers.count > 0) {
+			if (entry.browsers && entry.browsers.length > 0) {
 				result.items.push({
 					label: entry.name,
 					textEdit: TextEdit.replace(this.getCompletionRange(null), entry.name),
@@ -625,7 +626,7 @@ export class CSSCompletion {
 		const pseudoClasses = languageFacts.builtinCSSDataSet.pseudoClasses;
 		for (let entryName in pseudoClasses) {
 			const entry = pseudoClasses[entryName];
-			if (entry.browsers.onCodeComplete) {
+			if (entry.browsers && entry.browsers.length > 1) {
 				let insertText = moveCursorInsideParenthesis(entry.name);
 				let item: CompletionItem = {
 					label: entry.name,
@@ -644,7 +645,7 @@ export class CSSCompletion {
 		const pseudoElements = languageFacts.builtinCSSDataSet.pseudoElements;
 		for (let entryName in pseudoElements) {
 			const entry = pseudoElements[entryName];
-			if (entry.browsers.onCodeComplete) {
+			if (entry.browsers && entry.browsers.length > 0) {
 				let insertText = moveCursorInsideParenthesis(entry.name);
 				let item: CompletionItem = {
 					label: entry.name,

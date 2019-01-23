@@ -378,7 +378,12 @@ fs.readFile(path.resolve(__dirname, schemaFileName), (err, data) => {
       atDirectives,
       pseudoClasses,
       pseudoElements,
-    }
+		}
+		
+		resultObject.properties.forEach(convertEntry)
+		resultObject.atDirectives.forEach(convertEntry)
+		resultObject.pseudoClasses.forEach(convertEntry)
+		resultObject.pseudoElements.forEach(convertEntry)
 
     function toJavaScript(obj) {
       const str = JSON.stringify(obj, null, '\t')
@@ -407,3 +412,59 @@ fs.readFile(path.resolve(__dirname, schemaFileName), (err, data) => {
     console.log('Done')
   })
 })
+
+/**
+ * Temporarily convert old entry to new entry
+ * Todo@Pine: Change MDN data generation so this yields new entry
+ */
+function convertEntry(entry) {
+	entry.description = entry.desc
+	delete entry.desc
+
+	if (entry.values) {
+		entry.values.forEach(v => {
+			v.description = v.desc
+			delete v.desc
+
+			if (v.browsers) {
+				if (v.browsers === 'all') {
+					v.browsers = []
+				} else {
+					v.browsers = entry.browsers.split(',')
+				}
+			}
+		})
+	}
+
+	if (entry.browsers) {
+		if (entry.browsers === 'all') {
+			entry.browsers = []
+		} else {
+			entry.browsers = entry.browsers.split(',')
+		}
+	}
+
+	if (entry.restriction) {
+		entry.restrictions = entry.restriction.split(',').map((s) => { return s.trim(); });
+	} else {
+		entry.restrictions = []
+	}
+	delete entry.restriction
+
+	if (entry.status) {
+		entry.status = expandEntryStatus(entry.status)
+	}
+}
+
+function expandEntryStatus(status) {
+	switch (status) {
+		case 'e':
+			return 'experimental';
+		case 'n':
+			return 'nonstandard';
+		case 'o':
+			return 'obsolete';
+		default:
+			return 'standard';
+	}
+}

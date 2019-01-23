@@ -53,20 +53,22 @@ export interface LanguageServiceOptions {
 	customDataCollections?: CSSData[];
 }
 
+export type EntryStatus = 'standard' | 'experimental' | 'nonstandard' | 'obsolete';
+
 export interface IEntryData {
 	name: string;
-	desc?: string;
-	browsers?: string;
-	restriction?: string;
-	status?: string;
+	description?: string;
+	browsers?: string[];
+	restrictions?: string[];
+	status?: EntryStatus;
 	syntax?: string;
 	values?: IValueData[];
 }
 
 export interface IValueData {
 	name: string;
-	desc?: string;
-	browsers?: string;
+	description?: string;
+	browsers?: string[];
 }
 
 export interface CSSData {
