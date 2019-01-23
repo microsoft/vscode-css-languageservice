@@ -204,149 +204,149 @@ const otherColors = {
 
 
 function clone(obj) {
-  var copy = {}
-  for (var i in obj) {
-    copy[i] = obj[i]
-  }
-  return copy
+	var copy = {}
+	for (var i in obj) {
+		copy[i] = obj[i]
+	}
+	return copy
 }
 
 function getProperties(obj) {
-  var res = []
-  for (var i in obj) {
-    res.push(i)
-  }
-  return res
+	var res = []
+	for (var i in obj) {
+		res.push(i)
+	}
+	return res
 }
 
 function getValues(valArr, restriction, ruleName) {
-  if (!Array.isArray(valArr)) {
-    if (valArr.$) {
-      valArr = [valArr]
-    } else {
-      return []
-    }
-  }
-  var vals = valArr
-    .map(function(v) {
-      return {
-        name: v.$.name,
-        desc: v.desc,
-        browsers: v.$.browsers !== 'all' ? v.$.browsers : void 0
-      }
-    })
-    .filter(function(v) {
-      if (v.browsers === 'none') {
-        return false
-      }
-      return true
-    })
-  if (restriction.indexOf('color') !== -1) {
-    var colorsCopy = clone(colors)
-    var otherColorsCopy = clone(otherColors)
+	if (!Array.isArray(valArr)) {
+		if (valArr.$) {
+			valArr = [valArr]
+		} else {
+			return []
+		}
+	}
+	var vals = valArr
+		.map(function(v) {
+			return {
+				name: v.$.name,
+				desc: v.desc,
+				browsers: v.$.browsers !== 'all' ? v.$.browsers : void 0
+			}
+		})
+		.filter(function(v) {
+			if (v.browsers === 'none') {
+				return false
+			}
+			return true
+		})
+	if (restriction.indexOf('color') !== -1) {
+		var colorsCopy = clone(colors)
+		var otherColorsCopy = clone(otherColors)
 
-    var moreColors = {}
+		var moreColors = {}
 
-    vals = vals.filter(function(v) {
-      if (typeof colorsCopy[v.name] === 'string') {
-        delete colorsCopy[v.name]
-        return false
-      }
-      if (typeof otherColorsCopy[v.name] === 'string') {
-        /**
-         * When property value is `none` and the restriction is not limited to color
-         * Relax the restriction and always add `none` to result
-         */
-        if (v.name === 'none' && restriction !== 'color') {
-          return true
-        }
-        delete otherColorsCopy[v.name]
-        return false
-      }
-      moreColors[v.name] = v.desc
-      return true
-    })
-    var notCovered = []
-    for (var i in colorsCopy) {
-      notCovered.push(i)
-    }
-    for (var i in otherColorsCopy) {
-      notCovered.push(i)
-    }
-    if (notCovered.length > 0) {
-      console.log('***' + ruleName + ' uncovered: ' + notCovered.length) // + ' - ' + JSON.stringify(notCovered));
-    }
+		vals = vals.filter(function(v) {
+			if (typeof colorsCopy[v.name] === 'string') {
+				delete colorsCopy[v.name]
+				return false
+			}
+			if (typeof otherColorsCopy[v.name] === 'string') {
+				/**
+				 * When property value is `none` and the restriction is not limited to color
+				 * Relax the restriction and always add `none` to result
+				 */
+				if (v.name === 'none' && restriction !== 'color') {
+					return true
+				}
+				delete otherColorsCopy[v.name]
+				return false
+			}
+			moreColors[v.name] = v.desc
+			return true
+		})
+		var notCovered = []
+		for (var i in colorsCopy) {
+			notCovered.push(i)
+		}
+		for (var i in otherColorsCopy) {
+			notCovered.push(i)
+		}
+		if (notCovered.length > 0) {
+			console.log('***' + ruleName + ' uncovered: ' + notCovered.length) // + ' - ' + JSON.stringify(notCovered));
+		}
 
-    if (restriction === 'color') {
-      var properties = getProperties(moreColors)
+		if (restriction === 'color') {
+			var properties = getProperties(moreColors)
 
-      console.log('---' + ruleName + ' others : ' + properties.length) // + ' - ' + JSON.stringify(properties));
-    }
-  }
+			console.log('---' + ruleName + ' others : ' + properties.length) // + ' - ' + JSON.stringify(properties));
+		}
+	}
 
-  return vals
+	return vals
 }
 
 function internalizeDescriptions(entries) {
-  var descriptions = {}
-  var conflicts = {}
-  entries.forEach(function(e) {
-    if (e.values) {
-      e.values.forEach(function(d) {
-        if (!d.desc) {
-          conflicts[d.name] = true
-          return
-        }
-        var existing = descriptions[d.name]
-        if (existing) {
-          if (existing !== d.desc) {
-            conflicts[d.name] = true
-          }
-        }
-        descriptions[d.name] = d.desc
-      })
-    }
-  })
-  entries.forEach(function(e) {
-    if (e.values) {
-      e.values.forEach(function(d) {
-        if (!conflicts[d.name]) {
-          delete d.desc
-        } else {
-          delete descriptions[d.name]
-        }
-      })
-    }
-  })
-  return descriptions
+	var descriptions = {}
+	var conflicts = {}
+	entries.forEach(function(e) {
+		if (e.values) {
+			e.values.forEach(function(d) {
+				if (!d.desc) {
+					conflicts[d.name] = true
+					return
+				}
+				var existing = descriptions[d.name]
+				if (existing) {
+					if (existing !== d.desc) {
+						conflicts[d.name] = true
+					}
+				}
+				descriptions[d.name] = d.desc
+			})
+		}
+	})
+	entries.forEach(function(e) {
+		if (e.values) {
+			e.values.forEach(function(d) {
+				if (!conflicts[d.name]) {
+					delete d.desc
+				} else {
+					delete descriptions[d.name]
+				}
+			})
+		}
+	})
+	return descriptions
 }
 
 function toSource(object, keyName) {
-  if (!object.css[keyName]) {
-    return []
-  }
-  var result = []
-  var entryArr = object.css[keyName].entry
-  entryArr.forEach(function(e) {
-    if (e.$.browsers === 'none') {
-      return
-    }
-    var data = {
-      name: e.$.name,
-      desc: e.desc,
-      browsers: e.$.browsers !== 'all' ? e.$.browsers : void 0
-    }
-    if (e.$.restriction) {
-      data.restriction = e.$.restriction
-    }
-    if (e.values) {
-      data.values = getValues(e.values.value, data.restriction || '', data.name)
-    }
+	if (!object.css[keyName]) {
+		return []
+	}
+	var result = []
+	var entryArr = object.css[keyName].entry
+	entryArr.forEach(function(e) {
+		if (e.$.browsers === 'none') {
+			return
+		}
+		var data = {
+			name: e.$.name,
+			desc: e.desc,
+			browsers: e.$.browsers !== 'all' ? e.$.browsers : void 0
+		}
+		if (e.$.restriction) {
+			data.restriction = e.$.restriction
+		}
+		if (e.values) {
+			data.values = getValues(e.values.value, data.restriction || '', data.name)
+		}
 
-    result.push(data)
-  })
+		result.push(data)
+	})
 
-  return result
+	return result
 }
 
 const parser = new xml2js.Parser({ explicitArray: false })
@@ -357,7 +357,7 @@ const { addMDNPseudoElements, addMDNPseudoSelectors } = require('./mdn/mdn-data-
 const { addBrowserCompatDataToProperties } = require('./mdn/mdn-browser-compat-data-importer')
 
 fs.readFile(path.resolve(__dirname, schemaFileName), (err, data) => {
-  parser.parseString(data, function(err, result) {
+	parser.parseString(data, function(err, result) {
 		const atDirectives = toSource(result, 'atDirectives')
 
 		let pseudoClasses = toSource(result, 'pseudoClasses')
@@ -366,18 +366,18 @@ fs.readFile(path.resolve(__dirname, schemaFileName), (err, data) => {
 		let pseudoElements = toSource(result, 'pseudoElements')
 		pseudoElements = addMDNPseudoElements(pseudoElements)
 
-    let properties = toSource(result, 'properties')
+		let properties = toSource(result, 'properties')
 		properties = addMDNProperties(properties)
 
-    addBrowserCompatDataToProperties(atDirectives, pseudoClasses, pseudoElements, properties)
+		addBrowserCompatDataToProperties(atDirectives, pseudoClasses, pseudoElements, properties)
 
-    const descriptions = internalizeDescriptions([].concat(atDirectives, pseudoClasses, pseudoElements, properties))
+		const descriptions = internalizeDescriptions([].concat(atDirectives, pseudoClasses, pseudoElements, properties))
 
-    const resultObject = {
-      properties,
-      atDirectives,
-      pseudoClasses,
-      pseudoElements,
+		const resultObject = {
+			properties,
+			atDirectives,
+			pseudoClasses,
+			pseudoElements
 		}
 		
 		resultObject.properties.forEach(convertEntry)
@@ -385,32 +385,32 @@ fs.readFile(path.resolve(__dirname, schemaFileName), (err, data) => {
 		resultObject.pseudoClasses.forEach(convertEntry)
 		resultObject.pseudoElements.forEach(convertEntry)
 
-    function toJavaScript(obj) {
-      const str = JSON.stringify(obj, null, '\t')
-      return str.replace(/\"(name|desc|browsers|restriction|values)\"/g, '$1')
-    }
+		function toJavaScript(obj) {
+			const str = JSON.stringify(obj, null, '\t')
+			return str.replace(/\"(name|desc|browsers|restriction|values)\"/g, '$1')
+		}
 
-    const output = [
-      '/*---------------------------------------------------------------------------------------------',
-      ' *  Copyright (c) Microsoft Corporation. All rights reserved.',
-      ' *  Licensed under the MIT License. See License.txt in the project root for license information.',
-      ' *--------------------------------------------------------------------------------------------*/',
-      '// file generated from ' +
-        schemaFileName +
-        ' and https://github.com/mdn/data using build/generate_browserjs.js',
+		const output = [
+			'/*---------------------------------------------------------------------------------------------',
+			' *  Copyright (c) Microsoft Corporation. All rights reserved.',
+			' *  Licensed under the MIT License. See License.txt in the project root for license information.',
+			' *--------------------------------------------------------------------------------------------*/',
+			'// file generated from ' +
+				schemaFileName +
+				' and https://github.com/mdn/data using build/generate_browserjs.js',
 			'',
 			`import { CSSData } from '../cssLanguageTypes';`,
 			'',
-      'export const cssData : CSSData = ' + toJavaScript(resultObject) + ';',
+			'export const cssData : CSSData = ' + toJavaScript(resultObject) + ';',
 			'export const descriptions : any = ' + toJavaScript(descriptions) + ';'
-    ]
+		]
 
-    var outputPath = path.resolve(__dirname, '../src/data/browsers.ts')
-    console.log('Writing to: ' + outputPath)
-    var content = output.join(os.EOL)
-    fs.writeFileSync(outputPath, content)
-    console.log('Done')
-  })
+		var outputPath = path.resolve(__dirname, '../src/data/browsers.ts')
+		console.log('Writing to: ' + outputPath)
+		var content = output.join(os.EOL)
+		fs.writeFileSync(outputPath, content)
+		console.log('Done')
+	})
 })
 
 /**
