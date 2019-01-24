@@ -23,6 +23,7 @@ import { LESSCompletion } from './services/lessCompletion';
 import { getFoldingRanges } from './services/cssFolding';
 import { LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServiceOptions } from './cssLanguageTypes';
 import { builtinCSSDataSet } from './services/languageFacts';
+import { getSelectionRanges } from './services/cssSelectionRange';
 
 export type Stylesheet = {};
 export * from './cssLanguageTypes';
@@ -48,6 +49,7 @@ export interface LanguageService {
 	getColorPresentations(document: TextDocument, stylesheet: Stylesheet, color: Color, range: Range): ColorPresentation[];
 	doRename(document: TextDocument, position: Position, newName: string, stylesheet: Stylesheet): WorkspaceEdit;
 	getFoldingRanges(document: TextDocument, context?: { rangeLimit?: number; }): FoldingRange[];
+	getSelectionRanges(document: TextDocument, position: Position, stylesheet: Stylesheet): Range[];
 }
 
 function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover, navigation: CSSNavigation, codeActions: CSSCodeActions, validation: CSSValidation) {
@@ -69,7 +71,8 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 		findDocumentColors: navigation.findDocumentColors.bind(navigation),
 		getColorPresentations: navigation.getColorPresentations.bind(navigation),
 		doRename: navigation.doRename.bind(navigation),
-		getFoldingRanges: getFoldingRanges
+		getFoldingRanges,
+		getSelectionRanges
 	};
 }
 
