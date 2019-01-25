@@ -428,9 +428,12 @@ function convertEntry(entry) {
 
 			if (v.browsers) {
 				if (v.browsers === 'all') {
-					v.browsers = []
+					delete v.browsers
 				} else {
 					v.browsers = entry.browsers.split(',')
+					if (v.browsers.length === 1 && v.browsers[0] === "all") {
+						delete v.browsers
+					}
 				}
 			}
 		})
@@ -446,6 +449,9 @@ function convertEntry(entry) {
 
 	if (entry.restriction) {
 		entry.restrictions = entry.restriction.split(',').map((s) => { return s.trim(); });
+		if (entry.restrictions.length === 1 && entry.restrictions[0] === "none") {
+			delete entry.restrictions
+		}
 	} else {
 		delete entry.restrictions
 	}

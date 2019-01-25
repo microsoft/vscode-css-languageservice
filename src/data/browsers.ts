@@ -511,9 +511,6 @@ export const cssData : CSSData = {
 				},
 				{
 					name: "local",
-					browsers: [
-						"all"
-					],
 					"description": "The background is fixed with regard to the element’s contents: if the element has a scrolling mechanism, the background scrolls with the element’s contents."
 				},
 				{
@@ -2030,16 +2027,10 @@ export const cssData : CSSData = {
 					name: "ew-resize"
 				},
 				{
-					name: "grab",
-					browsers: [
-						"all"
-					]
+					name: "grab"
 				},
 				{
-					name: "grabbing",
-					browsers: [
-						"all"
-					]
+					name: "grabbing"
 				},
 				{
 					name: "help"
@@ -2048,28 +2039,16 @@ export const cssData : CSSData = {
 					name: "move"
 				},
 				{
-					name: "-moz-grab",
-					browsers: [
-						"all"
-					]
+					name: "-moz-grab"
 				},
 				{
-					name: "-moz-grabbing",
-					browsers: [
-						"all"
-					]
+					name: "-moz-grabbing"
 				},
 				{
-					name: "-moz-zoom-in",
-					browsers: [
-						"all"
-					]
+					name: "-moz-zoom-in"
 				},
 				{
-					name: "-moz-zoom-out",
-					browsers: [
-						"all"
-					]
+					name: "-moz-zoom-out"
 				},
 				{
 					name: "ne-resize"
@@ -2128,43 +2107,25 @@ export const cssData : CSSData = {
 					name: "wait"
 				},
 				{
-					name: "-webkit-grab",
-					browsers: [
-						"all"
-					]
+					name: "-webkit-grab"
 				},
 				{
-					name: "-webkit-grabbing",
-					browsers: [
-						"all"
-					]
+					name: "-webkit-grabbing"
 				},
 				{
-					name: "-webkit-zoom-in",
-					browsers: [
-						"all"
-					]
+					name: "-webkit-zoom-in"
 				},
 				{
-					name: "-webkit-zoom-out",
-					browsers: [
-						"all"
-					]
+					name: "-webkit-zoom-out"
 				},
 				{
 					name: "w-resize"
 				},
 				{
-					name: "zoom-in",
-					browsers: [
-						"all"
-					]
+					name: "zoom-in"
 				},
 				{
-					name: "zoom-out",
-					browsers: [
-						"all"
-					]
+					name: "zoom-out"
 				}
 			],
 			"syntax": "[ [ <url> [ <x> <y> ]? , ]* [ auto | default | none | context-menu | help | pointer | progress | wait | cell | crosshair | text | vertical-text | alias | copy | move | no-drop | not-allowed | e-resize | n-resize | ne-resize | nw-resize | s-resize | se-resize | sw-resize | w-resize | ew-resize | ns-resize | nesw-resize | nwse-resize | col-resize | row-resize | all-scroll | zoom-in | zoom-out | grab | grabbing ] ]",
@@ -2199,34 +2160,19 @@ export const cssData : CSSData = {
 				},
 				{
 					name: "contents",
-					browsers: [
-						"all"
-					],
 					"description": "The element itself does not generate any boxes, but its children and pseudo-elements still generate boxes as normal."
 				},
 				{
-					name: "flex",
-					browsers: [
-						"all"
-					]
+					name: "flex"
 				},
 				{
-					name: "flexbox",
-					browsers: [
-						"all"
-					]
+					name: "flexbox"
 				},
 				{
-					name: "flow-root",
-					browsers: [
-						"all"
-					]
+					name: "flow-root"
 				},
 				{
-					name: "grid",
-					browsers: [
-						"all"
-					]
+					name: "grid"
 				},
 				{
 					name: "inline",
@@ -2236,16 +2182,10 @@ export const cssData : CSSData = {
 					name: "inline-block"
 				},
 				{
-					name: "inline-flex",
-					browsers: [
-						"all"
-					]
+					name: "inline-flex"
 				},
 				{
-					name: "inline-flexbox",
-					browsers: [
-						"all"
-					]
+					name: "inline-flexbox"
 				},
 				{
 					name: "inline-table"
@@ -2254,100 +2194,52 @@ export const cssData : CSSData = {
 					name: "list-item"
 				},
 				{
-					name: "-moz-box",
-					browsers: [
-						"all"
-					]
+					name: "-moz-box"
 				},
 				{
-					name: "-moz-deck",
-					browsers: [
-						"all"
-					]
+					name: "-moz-deck"
 				},
 				{
-					name: "-moz-grid",
-					browsers: [
-						"all"
-					]
+					name: "-moz-grid"
 				},
 				{
-					name: "-moz-grid-group",
-					browsers: [
-						"all"
-					]
+					name: "-moz-grid-group"
 				},
 				{
-					name: "-moz-grid-line",
-					browsers: [
-						"all"
-					]
+					name: "-moz-grid-line"
 				},
 				{
-					name: "-moz-groupbox",
-					browsers: [
-						"all"
-					]
+					name: "-moz-groupbox"
 				},
 				{
-					name: "-moz-inline-box",
-					browsers: [
-						"all"
-					]
+					name: "-moz-inline-box"
 				},
 				{
-					name: "-moz-inline-grid",
-					browsers: [
-						"all"
-					]
+					name: "-moz-inline-grid"
 				},
 				{
-					name: "-moz-inline-stack",
-					browsers: [
-						"all"
-					]
+					name: "-moz-inline-stack"
 				},
 				{
-					name: "-moz-marker",
-					browsers: [
-						"all"
-					]
+					name: "-moz-marker"
 				},
 				{
-					name: "-moz-popup",
-					browsers: [
-						"all"
-					]
+					name: "-moz-popup"
 				},
 				{
-					name: "-moz-stack",
-					browsers: [
-						"all"
-					]
+					name: "-moz-stack"
 				},
 				{
-					name: "-ms-flexbox",
-					browsers: [
-						"all"
-					]
+					name: "-ms-flexbox"
 				},
 				{
-					name: "-ms-grid",
-					browsers: [
-						"all"
-					]
+					name: "-ms-grid"
 				},
 				{
-					name: "-ms-inline-flexbox",
-					browsers: [
-						"all"
-					]
+					name: "-ms-inline-flexbox"
 				},
 				{
-					name: "-ms-inline-grid",
-					browsers: [
-						"all"
-					]
+					name: "-ms-inline-grid"
 				},
 				{
 					name: "none",
@@ -2370,10 +2262,7 @@ export const cssData : CSSData = {
 					name: "ruby-text-container"
 				},
 				{
-					name: "run-in",
-					browsers: [
-						"all"
-					]
+					name: "run-in"
 				},
 				{
 					name: "table"
@@ -2403,28 +2292,16 @@ export const cssData : CSSData = {
 					name: "table-row-group"
 				},
 				{
-					name: "-webkit-box",
-					browsers: [
-						"all"
-					]
+					name: "-webkit-box"
 				},
 				{
-					name: "-webkit-flex",
-					browsers: [
-						"all"
-					]
+					name: "-webkit-flex"
 				},
 				{
-					name: "-webkit-inline-box",
-					browsers: [
-						"all"
-					]
+					name: "-webkit-inline-box"
 				},
 				{
-					name: "-webkit-inline-flex",
-					browsers: [
-						"all"
-					]
+					name: "-webkit-inline-flex"
 				}
 			],
 			"syntax": "[ <display-outside> || <display-inside> ] | <display-listitem> | <display-internal> | <display-box> | <display-legacy>",
@@ -2440,10 +2317,7 @@ export const cssData : CSSData = {
 					name: "hide"
 				},
 				{
-					name: "-moz-show-background",
-					browsers: [
-						"all"
-					]
+					name: "-moz-show-background"
 				},
 				{
 					name: "show"
@@ -2597,9 +2471,6 @@ export const cssData : CSSData = {
 				},
 				{
 					name: "content",
-					browsers: [
-						"all"
-					],
 					"description": "Indicates automatic sizing, based on the flex item’s content."
 				},
 				{
@@ -2624,9 +2495,6 @@ export const cssData : CSSData = {
 				},
 				{
 					name: "content",
-					browsers: [
-						"all"
-					],
 					"description": "Indicates automatic sizing, based on the flex item’s content."
 				}
 			],
@@ -2738,16 +2606,10 @@ export const cssData : CSSData = {
 			name: "float",
 			values: [
 				{
-					name: "inline-end",
-					browsers: [
-						"all"
-					]
+					name: "inline-end"
 				},
 				{
-					name: "inline-start",
-					browsers: [
-						"all"
-					]
+					name: "inline-start"
 				},
 				{
 					name: "left",
@@ -3471,10 +3333,7 @@ export const cssData : CSSData = {
 					name: "extra-expanded"
 				},
 				{
-					name: "narrower",
-					browsers: [
-						"all"
-					]
+					name: "narrower"
 				},
 				{
 					name: "normal"
@@ -3492,10 +3351,7 @@ export const cssData : CSSData = {
 					name: "ultra-expanded"
 				},
 				{
-					name: "wider",
-					browsers: [
-						"all"
-					]
+					name: "wider"
 				}
 			],
 			"syntax": "<font-stretch-absolute>{1,2}",
@@ -4403,23 +4259,14 @@ export const cssData : CSSData = {
 					"description": "The height depends on the values of other properties."
 				},
 				{
-					name: "fit-content",
-					browsers: [
-						"all"
-					]
+					name: "fit-content"
 				},
 				{
 					name: "max-content",
-					browsers: [
-						"all"
-					],
 					"description": "Use the max-content inline size or max-content block size, as appropriate to the writing mode."
 				},
 				{
 					name: "min-content",
-					browsers: [
-						"all"
-					],
 					"description": "Use the min-content inline size or min-content block size, as appropriate to the writing mode."
 				}
 			],
@@ -4813,10 +4660,7 @@ export const cssData : CSSData = {
 					"description": "A filled square."
 				},
 				{
-					name: "symbols()",
-					browsers: [
-						"all"
-					]
+					name: "symbols()"
 				},
 				{
 					name: "upper-alpha"
@@ -4919,10 +4763,7 @@ export const cssData : CSSData = {
 					"description": "A filled square."
 				},
 				{
-					name: "symbols()",
-					browsers: [
-						"all"
-					]
+					name: "symbols()"
 				},
 				{
 					name: "upper-alpha",
@@ -5338,23 +5179,14 @@ export const cssData : CSSData = {
 					"description": "No limit on the height of the box."
 				},
 				{
-					name: "fit-content",
-					browsers: [
-						"all"
-					]
+					name: "fit-content"
 				},
 				{
 					name: "max-content",
-					browsers: [
-						"all"
-					],
 					"description": "Use the max-content inline size or max-content block size, as appropriate to the writing mode."
 				},
 				{
 					name: "min-content",
-					browsers: [
-						"all"
-					],
 					"description": "Use the min-content inline size or min-content block size, as appropriate to the writing mode."
 				}
 			],
@@ -5395,23 +5227,14 @@ export const cssData : CSSData = {
 					"description": "No limit on the width of the box."
 				},
 				{
-					name: "fit-content",
-					browsers: [
-						"all"
-					]
+					name: "fit-content"
 				},
 				{
 					name: "max-content",
-					browsers: [
-						"all"
-					],
 					"description": "Use the max-content inline size or max-content block size, as appropriate to the writing mode."
 				},
 				{
 					name: "min-content",
-					browsers: [
-						"all"
-					],
 					"description": "Use the min-content inline size or min-content block size, as appropriate to the writing mode."
 				}
 			],
@@ -5440,29 +5263,17 @@ export const cssData : CSSData = {
 			name: "min-height",
 			values: [
 				{
-					name: "auto",
-					browsers: [
-						"all"
-					]
+					name: "auto"
 				},
 				{
-					name: "fit-content",
-					browsers: [
-						"all"
-					]
+					name: "fit-content"
 				},
 				{
 					name: "max-content",
-					browsers: [
-						"all"
-					],
 					"description": "Use the max-content inline size or max-content block size, as appropriate to the writing mode."
 				},
 				{
 					name: "min-content",
-					browsers: [
-						"all"
-					],
 					"description": "Use the min-content inline size or min-content block size, as appropriate to the writing mode."
 				}
 			],
@@ -5491,29 +5302,17 @@ export const cssData : CSSData = {
 			name: "min-width",
 			values: [
 				{
-					name: "auto",
-					browsers: [
-						"all"
-					]
+					name: "auto"
 				},
 				{
-					name: "fit-content",
-					browsers: [
-						"all"
-					]
+					name: "fit-content"
 				},
 				{
 					name: "max-content",
-					browsers: [
-						"all"
-					],
 					"description": "Use the max-content inline size or max-content block size, as appropriate to the writing mode."
 				},
 				{
 					name: "min-content",
-					browsers: [
-						"all"
-					],
 					"description": "Use the min-content inline size or min-content block size, as appropriate to the writing mode."
 				}
 			],
@@ -9734,10 +9533,7 @@ export const cssData : CSSData = {
 					"description": "Permits the user agent to render a custom outline style, typically the default platform style."
 				},
 				{
-					name: "invert",
-					browsers: [
-						"all"
-					]
+					name: "invert"
 				}
 			],
 			"syntax": "[ <'outline-color'> || <'outline-style'> || <'outline-width'> ]",
@@ -9754,10 +9550,7 @@ export const cssData : CSSData = {
 			name: "outline-color",
 			values: [
 				{
-					name: "invert",
-					browsers: [
-						"all"
-					]
+					name: "invert"
 				}
 			],
 			"syntax": "<color> | invert",
@@ -9817,10 +9610,7 @@ export const cssData : CSSData = {
 					"description": "Content is clipped and no scrolling mechanism should be provided to view the content outside the clipping region."
 				},
 				{
-					name: "-moz-hidden-unscrollable",
-					browsers: [
-						"all"
-					]
+					name: "-moz-hidden-unscrollable"
 				},
 				{
 					name: "scroll",
@@ -10209,10 +9999,7 @@ export const cssData : CSSData = {
 					"description": "The box's position is calculated according to the 'absolute' model, but in addition, the box is fixed with respect to some reference. As with the 'absolute' model, the box's margins do not collapse with any other margins."
 				},
 				{
-					name: "-ms-page",
-					browsers: [
-						"all"
-					]
+					name: "-ms-page"
 				},
 				{
 					name: "relative"
@@ -10221,16 +10008,10 @@ export const cssData : CSSData = {
 					name: "static"
 				},
 				{
-					name: "sticky",
-					browsers: [
-						"all"
-					]
+					name: "sticky"
 				},
 				{
-					name: "-webkit-sticky",
-					browsers: [
-						"all"
-					]
+					name: "-webkit-sticky"
 				}
 			],
 			"syntax": "static | relative | absolute | sticky | fixed",
@@ -11025,9 +10806,6 @@ export const cssData : CSSData = {
 				},
 				{
 					name: "end",
-					browsers: [
-						"all"
-					],
 					"description": "The inline contents are aligned to the end edge of the line box."
 				},
 				{
@@ -11044,9 +10822,6 @@ export const cssData : CSSData = {
 				},
 				{
 					name: "start",
-					browsers: [
-						"all"
-					],
 					"description": "The inline contents are aligned to the start edge of the line box."
 				}
 			],
@@ -11711,26 +11486,17 @@ export const cssData : CSSData = {
 				},
 				{
 					name: "isolate",
-					browsers: [
-						"all"
-					],
 					"description": "The contents of the element are considered to be inside a separate, independent paragraph."
 				},
 				{
-					name: "isolate-override",
-					browsers: [
-						"all"
-					]
+					name: "isolate-override"
 				},
 				{
 					name: "normal",
 					"description": "The element does not open an additional level of embedding with respect to the bidirectional algorithm. For inline-level elements, implicit reordering works across element boundaries."
 				},
 				{
-					name: "plaintext",
-					browsers: [
-						"all"
-					]
+					name: "plaintext"
 				}
 			],
 			"syntax": "normal | embed | isolate | bidi-override | isolate-override | plaintext",
@@ -12048,10 +11814,7 @@ export const cssData : CSSData = {
 					"description": "Align the before edge of the extended inline box with the before-edge of the line box."
 				},
 				{
-					name: "-webkit-baseline-middle",
-					browsers: [
-						"all"
-					]
+					name: "-webkit-baseline-middle"
 				}
 			],
 			"syntax": "baseline | sub | super | text-top | text-bottom | middle | top | bottom | <percentage> | <length>",
@@ -14092,23 +13855,14 @@ export const cssData : CSSData = {
 					"description": "The width depends on the values of other properties."
 				},
 				{
-					name: "fit-content",
-					browsers: [
-						"all"
-					]
+					name: "fit-content"
 				},
 				{
 					name: "max-content",
-					browsers: [
-						"all"
-					],
 					"description": "Use the max-content inline size or max-content block size, as appropriate to the writing mode."
 				},
 				{
 					name: "min-content",
-					browsers: [
-						"all"
-					],
 					"description": "Use the min-content inline size or min-content block size, as appropriate to the writing mode."
 				}
 			],
@@ -14208,16 +13962,10 @@ export const cssData : CSSData = {
 					name: "horizontal-tb"
 				},
 				{
-					name: "sideways-lr",
-					browsers: [
-						"all"
-					]
+					name: "sideways-lr"
 				},
 				{
-					name: "sideways-rl",
-					browsers: [
-						"all"
-					]
+					name: "sideways-rl"
 				},
 				{
 					name: "vertical-lr"
@@ -14273,10 +14021,7 @@ export const cssData : CSSData = {
 			name: "-ms-ime-align",
 			"status": "nonstandard",
 			"syntax": "auto | after",
-			"description": "Aligns the Input Method Editor (IME) candidate window box relative to the element on which the IME composition is active.",
-			"restrictions": [
-				"none"
-			]
+			"description": "Aligns the Input Method Editor (IME) candidate window box relative to the element on which the IME composition is active."
 		},
 		{
 			name: "-moz-binding",
@@ -14285,10 +14030,7 @@ export const cssData : CSSData = {
 			browsers: [
 				"FF"
 			],
-			"description": "The -moz-binding CSS property is used by Mozilla-based applications to attach an XBL binding to a DOM element.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The -moz-binding CSS property is used by Mozilla-based applications to attach an XBL binding to a DOM element."
 		},
 		{
 			name: "-moz-context-properties",
@@ -14297,28 +14039,19 @@ export const cssData : CSSData = {
 			browsers: [
 				"FF55"
 			],
-			"description": "If you reference an SVG image in a webpage (such as with the <img> element or as a background image), the SVG image can coordinate with the embedding element (its context) to have the image adopt property values set on the embedding element. To do this the embedding element needs to list the properties that are to be made available to the image by listing them as values of the -moz-context-properties property, and the image needs to opt in to using those properties by using values such as the context-fill value.\n\nThis feature is available since Firefox 55, but is only currently supported with SVG images loaded via chrome:// or resource:// URLs. To experiment with the feature in SVG on the Web it is necessary to set the svg.context-properties.content.enabled pref to true.",
-			"restrictions": [
-				"none"
-			]
+			"description": "If you reference an SVG image in a webpage (such as with the <img> element or as a background image), the SVG image can coordinate with the embedding element (its context) to have the image adopt property values set on the embedding element. To do this the embedding element needs to list the properties that are to be made available to the image by listing them as values of the -moz-context-properties property, and the image needs to opt in to using those properties by using values such as the context-fill value.\n\nThis feature is available since Firefox 55, but is only currently supported with SVG images loaded via chrome:// or resource:// URLs. To experiment with the feature in SVG on the Web it is necessary to set the svg.context-properties.content.enabled pref to true."
 		},
 		{
 			name: "-moz-float-edge",
 			"status": "nonstandard",
 			"syntax": "border-box | content-box | margin-box | padding-box",
-			"description": "The non-standard -moz-float-edge CSS property specifies whether the height and width properties of the element include the margin, border, or padding thickness.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The non-standard -moz-float-edge CSS property specifies whether the height and width properties of the element include the margin, border, or padding thickness."
 		},
 		{
 			name: "-moz-force-broken-image-icon",
 			"status": "nonstandard",
 			"syntax": "<integer>",
-			"description": "The -moz-force-broken-image-icon extended CSS property can be used to force the broken image icon to be shown even when a broken image has an alt attribute.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The -moz-force-broken-image-icon extended CSS property can be used to force the broken image icon to be shown even when a broken image has an alt attribute."
 		},
 		{
 			name: "-moz-image-region",
@@ -14327,10 +14060,7 @@ export const cssData : CSSData = {
 			browsers: [
 				"FF"
 			],
-			"description": "For certain XUL elements and pseudo-elements that use an image from the list-style-image property, this property specifies a region of the image that is used in place of the whole image. This allows elements to use different pieces of the same image to improve performance.",
-			"restrictions": [
-				"none"
-			]
+			"description": "For certain XUL elements and pseudo-elements that use an image from the list-style-image property, this property specifies a region of the image that is used in place of the whole image. This allows elements to use different pieces of the same image to improve performance."
 		},
 		{
 			name: "-moz-orient",
@@ -14339,10 +14069,7 @@ export const cssData : CSSData = {
 			browsers: [
 				"FF6"
 			],
-			"description": "The -moz-orient CSS property specifies the orientation of the element to which it's applied.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The -moz-orient CSS property specifies the orientation of the element to which it's applied."
 		},
 		{
 			name: "-moz-outline-radius",
@@ -14351,55 +14078,37 @@ export const cssData : CSSData = {
 			browsers: [
 				"FF1.5"
 			],
-			"description": "In Mozilla applications like Firefox, the -moz-outline-radius CSS property can be used to give an element's outline rounded corners.",
-			"restrictions": [
-				"none"
-			]
+			"description": "In Mozilla applications like Firefox, the -moz-outline-radius CSS property can be used to give an element's outline rounded corners."
 		},
 		{
 			name: "-moz-outline-radius-bottomleft",
 			"status": "nonstandard",
 			"syntax": "<outline-radius>",
-			"description": "In Mozilla applications, the -moz-outline-radius-bottomleft CSS property can be used to round the bottom-left corner of an element's outline.",
-			"restrictions": [
-				"none"
-			]
+			"description": "In Mozilla applications, the -moz-outline-radius-bottomleft CSS property can be used to round the bottom-left corner of an element's outline."
 		},
 		{
 			name: "-moz-outline-radius-bottomright",
 			"status": "nonstandard",
 			"syntax": "<outline-radius>",
-			"description": "In Mozilla applications, the -moz-outline-radius-bottomright CSS property can be used to round the bottom-right corner of an element's outline.",
-			"restrictions": [
-				"none"
-			]
+			"description": "In Mozilla applications, the -moz-outline-radius-bottomright CSS property can be used to round the bottom-right corner of an element's outline."
 		},
 		{
 			name: "-moz-outline-radius-topleft",
 			"status": "nonstandard",
 			"syntax": "<outline-radius>",
-			"description": "In Mozilla applications, the -moz-outline-radius-topleft CSS property can be used to round the top-left corner of an element's outline.",
-			"restrictions": [
-				"none"
-			]
+			"description": "In Mozilla applications, the -moz-outline-radius-topleft CSS property can be used to round the top-left corner of an element's outline."
 		},
 		{
 			name: "-moz-outline-radius-topright",
 			"status": "nonstandard",
 			"syntax": "<outline-radius>",
-			"description": "In Mozilla applications, the -moz-outline-radius-topright CSS property can be used to round the top-right corner of an element's outline.",
-			"restrictions": [
-				"none"
-			]
+			"description": "In Mozilla applications, the -moz-outline-radius-topright CSS property can be used to round the top-right corner of an element's outline."
 		},
 		{
 			name: "-moz-stack-sizing",
 			"status": "nonstandard",
 			"syntax": "ignore | stretch-to-fit",
-			"description": "-moz-stack-sizing is an extended CSS property. Normally, a stack will change its size so that all of its child elements are completely visible. For example, moving a child of the stack far to the right will widen the stack so the child remains visible.",
-			"restrictions": [
-				"none"
-			]
+			"description": "-moz-stack-sizing is an extended CSS property. Normally, a stack will change its size so that all of its child elements are completely visible. For example, moving a child of the stack far to the right will widen the stack so the child remains visible."
 		},
 		{
 			name: "-moz-text-blink",
@@ -14408,10 +14117,7 @@ export const cssData : CSSData = {
 			browsers: [
 				"FF6"
 			],
-			"description": "The -moz-text-blink non-standard Mozilla CSS extension specifies the blink mode.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The -moz-text-blink non-standard Mozilla CSS extension specifies the blink mode."
 		},
 		{
 			name: "-moz-user-input",
@@ -14420,37 +14126,25 @@ export const cssData : CSSData = {
 			browsers: [
 				"FF"
 			],
-			"description": "In Mozilla applications, -moz-user-input determines if an element will accept user input.",
-			"restrictions": [
-				"none"
-			]
+			"description": "In Mozilla applications, -moz-user-input determines if an element will accept user input."
 		},
 		{
 			name: "-moz-user-modify",
 			"status": "nonstandard",
 			"syntax": "read-only | read-write | write-only",
-			"description": "The -moz-user-modify property has no effect. It was originally planned to determine whether or not the content of an element can be edited by a user.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The -moz-user-modify property has no effect. It was originally planned to determine whether or not the content of an element can be edited by a user."
 		},
 		{
 			name: "-moz-window-dragging",
 			"status": "nonstandard",
 			"syntax": "drag | no-drag",
-			"description": "The -moz-window-dragging CSS property specifies whether a window is draggable or not. It only works in Chrome code, and only on Mac OS X.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The -moz-window-dragging CSS property specifies whether a window is draggable or not. It only works in Chrome code, and only on Mac OS X."
 		},
 		{
 			name: "-moz-window-shadow",
 			"status": "nonstandard",
 			"syntax": "default | menu | tooltip | sheet | none",
-			"description": "The -moz-window-shadow CSS property specifies whether a window will have a shadow. It only works on Mac OS X.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The -moz-window-shadow CSS property specifies whether a window will have a shadow. It only works on Mac OS X."
 		},
 		{
 			name: "-webkit-border-before",
@@ -14460,46 +14154,31 @@ export const cssData : CSSData = {
 				"C",
 				"O"
 			],
-			"description": "The -webkit-border-before CSS property is a shorthand property for setting the individual logical block start border property values in a single place in the style sheet.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The -webkit-border-before CSS property is a shorthand property for setting the individual logical block start border property values in a single place in the style sheet."
 		},
 		{
 			name: "-webkit-border-before-color",
 			"status": "nonstandard",
 			"syntax": "<'color'>",
-			"description": "The -webkit-border-before-color CSS property sets the color of the individual logical block start border in a single place in the style sheet.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The -webkit-border-before-color CSS property sets the color of the individual logical block start border in a single place in the style sheet."
 		},
 		{
 			name: "-webkit-border-before-style",
 			"status": "nonstandard",
 			"syntax": "<'border-style'>",
-			"description": "The -webkit-border-before-style CSS property sets the style of the individual logical block start border in a single place in the style sheet.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The -webkit-border-before-style CSS property sets the style of the individual logical block start border in a single place in the style sheet."
 		},
 		{
 			name: "-webkit-border-before-width",
 			"status": "nonstandard",
 			"syntax": "<'border-width'>",
-			"description": "The -webkit-border-before-width CSS property sets the width of the individual logical block start border in a single place in the style sheet.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The -webkit-border-before-width CSS property sets the width of the individual logical block start border in a single place in the style sheet."
 		},
 		{
 			name: "-webkit-mask",
 			"status": "nonstandard",
 			"syntax": "[ <mask-reference> || <position> [ / <bg-size> ]? || <repeat-style> || [ <box> | border | padding | content | text ] || [ <box> | border | padding | content ] ]#",
-			"description": "The mask CSS property alters the visibility of an element by either partially or fully hiding it. This is accomplished by either masking or clipping the image at specific points.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The mask CSS property alters the visibility of an element by either partially or fully hiding it. This is accomplished by either masking or clipping the image at specific points."
 		},
 		{
 			name: "-webkit-mask-attachment",
@@ -14509,10 +14188,7 @@ export const cssData : CSSData = {
 				"S4",
 				"C"
 			],
-			"description": "If a -webkit-mask-image is specified, -webkit-mask-attachment determines whether the mask image's position is fixed within the viewport, or scrolls along with its containing block.",
-			"restrictions": [
-				"none"
-			]
+			"description": "If a -webkit-mask-image is specified, -webkit-mask-attachment determines whether the mask image's position is fixed within the viewport, or scrolls along with its containing block."
 		},
 		{
 			name: "-webkit-mask-composite",
@@ -14523,19 +14199,13 @@ export const cssData : CSSData = {
 				"S4",
 				"C1"
 			],
-			"description": "The -webkit-mask-composite property specifies the manner in which multiple mask images applied to the same element are composited with one another. Mask images are composited in the opposite order that they are declared with the -webkit-mask-image property.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The -webkit-mask-composite property specifies the manner in which multiple mask images applied to the same element are composited with one another. Mask images are composited in the opposite order that they are declared with the -webkit-mask-image property."
 		},
 		{
 			name: "-webkit-mask-position",
 			"status": "nonstandard",
 			"syntax": "<position>#",
-			"description": "The mask-position CSS property sets the initial position, relative to the mask position layer defined by mask-origin, for each defined mask image.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The mask-position CSS property sets the initial position, relative to the mask position layer defined by mask-origin, for each defined mask image."
 		},
 		{
 			name: "-webkit-mask-position-x",
@@ -14546,10 +14216,7 @@ export const cssData : CSSData = {
 				"S4",
 				"C1"
 			],
-			"description": "The -webkit-mask-position-x CSS property sets the initial horizontal position of a mask image.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The -webkit-mask-position-x CSS property sets the initial horizontal position of a mask image."
 		},
 		{
 			name: "-webkit-mask-position-y",
@@ -14560,10 +14227,7 @@ export const cssData : CSSData = {
 				"S4",
 				"C1"
 			],
-			"description": "The -webkit-mask-position-y CSS property sets the initial vertical position of a mask image.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The -webkit-mask-position-y CSS property sets the initial vertical position of a mask image."
 		},
 		{
 			name: "-webkit-mask-repeat-x",
@@ -14574,10 +14238,7 @@ export const cssData : CSSData = {
 				"C",
 				"O"
 			],
-			"description": "The -webkit-mask-repeat-x property specifies whether and how a mask image is repeated (tiled) horizontally.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The -webkit-mask-repeat-x property specifies whether and how a mask image is repeated (tiled) horizontally."
 		},
 		{
 			name: "-webkit-mask-repeat-y",
@@ -14588,10 +14249,7 @@ export const cssData : CSSData = {
 				"C",
 				"O"
 			],
-			"description": "The -webkit-mask-repeat-y property specifies whether and how a mask image is repeated (tiled) vertically.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The -webkit-mask-repeat-y property specifies whether and how a mask image is repeated (tiled) vertically."
 		},
 		{
 			name: "appearance",
@@ -14604,19 +14262,13 @@ export const cssData : CSSData = {
 				"C1",
 				"O15"
 			],
-			"description": "Changes the appearance of buttons and other controls to resemble native controls.",
-			"restrictions": [
-				"none"
-			]
+			"description": "Changes the appearance of buttons and other controls to resemble native controls."
 		},
 		{
 			name: "azimuth",
 			"status": "obsolete",
 			"syntax": "<angle> | [ [ left-side | far-left | left | center-left | center | center-right | right | far-right | right-side ] || behind ] | leftwards | rightwards",
-			"description": "In combination with elevation, the azimuth CSS property enables different audio sources to be positioned spatially for aural presentation. This is important in that it provides a natural way to tell several voices apart, as each can be positioned to originate at a different location on the sound stage. Stereo output produce a lateral sound stage, while binaural headphones and multi-speaker setups allow for a fully three-dimensional stage.",
-			"restrictions": [
-				"none"
-			]
+			"description": "In combination with elevation, the azimuth CSS property enables different audio sources to be positioned spatially for aural presentation. This is important in that it provides a natural way to tell several voices apart, as each can be positioned to originate at a different location on the sound stage. Stereo output produce a lateral sound stage, while binaural headphones and multi-speaker setups allow for a fully three-dimensional stage."
 		},
 		{
 			name: "backdrop-filter",
@@ -14628,42 +14280,27 @@ export const cssData : CSSData = {
 				"C47",
 				"O34"
 			],
-			"description": "The backdrop-filter CSS property lets you apply graphical effects such as blurring or color shifting to the area behind an element. Because it applies to everything behind the element, to see the effect you must make the element or its background at least partially transparent.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The backdrop-filter CSS property lets you apply graphical effects such as blurring or color shifting to the area behind an element. Because it applies to everything behind the element, to see the effect you must make the element or its background at least partially transparent."
 		},
 		{
 			name: "border-end-end-radius",
 			"syntax": "<length-percentage>{1,2}",
-			"description": "The border-end-end-radius CSS property defines a logical border radius on an element, which maps to a physical border radius that depends on on the element's writing-mode, direction, and text-orientation.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The border-end-end-radius CSS property defines a logical border radius on an element, which maps to a physical border radius that depends on on the element's writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "border-end-start-radius",
 			"syntax": "<length-percentage>{1,2}",
-			"description": "The border-end-start-radius CSS property defines a logical border radius on an element, which maps to a physical border radius depending on the element's writing-mode, direction, and text-orientation.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The border-end-start-radius CSS property defines a logical border radius on an element, which maps to a physical border radius depending on the element's writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "border-start-end-radius",
 			"syntax": "<length-percentage>{1,2}",
-			"description": "The border-start-end-radius CSS property defines a logical border radius on an element, which maps to a physical border radius depending on the element's writing-mode, direction, and text-orientation.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The border-start-end-radius CSS property defines a logical border radius on an element, which maps to a physical border radius depending on the element's writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "border-start-start-radius",
 			"syntax": "<length-percentage>{1,2}",
-			"description": "The border-start-start-radius CSS property defines a logical border radius on an element, which maps to a physical border radius that depends on the element's writing-mode, direction, and text-orientation.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The border-start-start-radius CSS property defines a logical border radius on an element, which maps to a physical border radius that depends on the element's writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "box-align",
@@ -14676,10 +14313,7 @@ export const cssData : CSSData = {
 				"C",
 				"O"
 			],
-			"description": "The box-align CSS property specifies how an element aligns its contents across its layout in a perpendicular direction. The effect of the property is only visible if there is extra space in the box.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The box-align CSS property specifies how an element aligns its contents across its layout in a perpendicular direction. The effect of the property is only visible if there is extra space in the box."
 		},
 		{
 			name: "box-direction",
@@ -14692,10 +14326,7 @@ export const cssData : CSSData = {
 				"C",
 				"O"
 			],
-			"description": "The box-direction CSS property specifies whether a box lays out its contents normally (from the top or left edge), or in reverse (from the bottom or right edge).",
-			"restrictions": [
-				"none"
-			]
+			"description": "The box-direction CSS property specifies whether a box lays out its contents normally (from the top or left edge), or in reverse (from the bottom or right edge)."
 		},
 		{
 			name: "box-flex",
@@ -14708,10 +14339,7 @@ export const cssData : CSSData = {
 				"C",
 				"O"
 			],
-			"description": "The -moz-box-flex and -webkit-box-flex CSS properties specify how a -moz-box or -webkit-box grows to fill the box that contains it, in the direction of the containing box's layout.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The -moz-box-flex and -webkit-box-flex CSS properties specify how a -moz-box or -webkit-box grows to fill the box that contains it, in the direction of the containing box's layout."
 		},
 		{
 			name: "box-flex-group",
@@ -14722,10 +14350,7 @@ export const cssData : CSSData = {
 				"C",
 				"O"
 			],
-			"description": "The box-flex-group CSS property assigns the flexbox's child elements to a flex group.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The box-flex-group CSS property assigns the flexbox's child elements to a flex group."
 		},
 		{
 			name: "box-lines",
@@ -14736,10 +14361,7 @@ export const cssData : CSSData = {
 				"C",
 				"O"
 			],
-			"description": "The box-lines CSS property determines whether the box may have a single or multiple lines (rows for horizontally oriented boxes, columns for vertically oriented boxes).",
-			"restrictions": [
-				"none"
-			]
+			"description": "The box-lines CSS property determines whether the box may have a single or multiple lines (rows for horizontally oriented boxes, columns for vertically oriented boxes)."
 		},
 		{
 			name: "box-ordinal-group",
@@ -14752,10 +14374,7 @@ export const cssData : CSSData = {
 				"C",
 				"O"
 			],
-			"description": "The box-ordinal-group CSS property assigns the flexbox's child elements to an ordinal group.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The box-ordinal-group CSS property assigns the flexbox's child elements to an ordinal group."
 		},
 		{
 			name: "box-orient",
@@ -14768,10 +14387,7 @@ export const cssData : CSSData = {
 				"C",
 				"O"
 			],
-			"description": "The box-orient CSS property specifies whether an element lays out its contents horizontally or vertically.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The box-orient CSS property specifies whether an element lays out its contents horizontally or vertically."
 		},
 		{
 			name: "box-pack",
@@ -14784,10 +14400,7 @@ export const cssData : CSSData = {
 				"C",
 				"O"
 			],
-			"description": "The -moz-box-pack and -webkit-box-pack CSS properties specify how a -moz-box or -webkit-box packs its contents in the direction of its layout. The effect of this is only visible if there is extra space in the box.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The -moz-box-pack and -webkit-box-pack CSS properties specify how a -moz-box or -webkit-box packs its contents in the direction of its layout. The effect of this is only visible if there is extra space in the box."
 		},
 		{
 			name: "color-adjust",
@@ -14798,10 +14411,7 @@ export const cssData : CSSData = {
 				"C49",
 				"O15"
 			],
-			"description": "The color-adjust property is a non-standard CSS extension that can be used to force printing of background colors and images in browsers based on the WebKit engine.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The color-adjust property is a non-standard CSS extension that can be used to force printing of background colors and images in browsers based on the WebKit engine."
 		},
 		{
 			name: "font-optical-sizing",
@@ -14809,10 +14419,7 @@ export const cssData : CSSData = {
 			browsers: [
 				"FF62"
 			],
-			"description": "The font-optical-sizing CSS property allows developers to control whether browsers render text with slightly differing visual representations to optimize viewing at different sizes, or not. This only works for fonts that have an optical size variation axis.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The font-optical-sizing CSS property allows developers to control whether browsers render text with slightly differing visual representations to optimize viewing at different sizes, or not. This only works for fonts that have an optical size variation axis."
 		},
 		{
 			name: "font-variation-settings",
@@ -14824,10 +14431,7 @@ export const cssData : CSSData = {
 				"C62",
 				"O49"
 			],
-			"description": "The font-variation-settings CSS property provides low-level control over OpenType or TrueType font variations, by specifying the four letter axis names of the features you want to vary, along with their variation values.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The font-variation-settings CSS property provides low-level control over OpenType or TrueType font variations, by specifying the four letter axis names of the features you want to vary, along with their variation values."
 		},
 		{
 			name: "gap",
@@ -14839,10 +14443,7 @@ export const cssData : CSSData = {
 				"C66",
 				"O53"
 			],
-			"description": "The gap CSS property is a shorthand property for row-gap and column-gap specifying the gutters between grid rows and columns.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The gap CSS property is a shorthand property for row-gap and column-gap specifying the gutters between grid rows and columns."
 		},
 		{
 			name: "hanging-punctuation",
@@ -14850,19 +14451,13 @@ export const cssData : CSSData = {
 			browsers: [
 				"S10"
 			],
-			"description": "The hanging-punctuation CSS property specifies whether a punctuation mark should hang at the start or end of a line of text. Hanging punctuation may be placed outside the line box.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The hanging-punctuation CSS property specifies whether a punctuation mark should hang at the start or end of a line of text. Hanging punctuation may be placed outside the line box."
 		},
 		{
 			name: "image-resolution",
 			"status": "experimental",
 			"syntax": "[ from-image || <resolution> ] && snap?",
-			"description": "The image-resolution property specifies the intrinsic resolution of all raster images used in or on the element. It affects both content images (e.g. replaced elements and generated content) and decorative images (such as background-image). The intrinsic resolution of an image is used to determine the image’s intrinsic dimensions.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The image-resolution property specifies the intrinsic resolution of all raster images used in or on the element. It affects both content images (e.g. replaced elements and generated content) and decorative images (such as background-image). The intrinsic resolution of an image is used to determine the image’s intrinsic dimensions."
 		},
 		{
 			name: "initial-letter",
@@ -14871,35 +14466,23 @@ export const cssData : CSSData = {
 			browsers: [
 				"S9"
 			],
-			"description": "The initial-letter CSS property specifies styling for dropped, raised, and sunken initial letters.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The initial-letter CSS property specifies styling for dropped, raised, and sunken initial letters."
 		},
 		{
 			name: "initial-letter-align",
 			"status": "experimental",
 			"syntax": "[ auto | alphabetic | hanging | ideographic ]",
-			"description": "The initial-letter-align CSS property specifies the alignment of initial letters within a paragraph.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The initial-letter-align CSS property specifies the alignment of initial letters within a paragraph."
 		},
 		{
 			name: "inset",
 			"syntax": "<'top'>{1,4}",
-			"description": "The inset CSS property defines the logical block and inline start and end offsets of an element, which map to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The inset CSS property defines the logical block and inline start and end offsets of an element, which map to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "inset-block",
 			"syntax": "<'top'>{1,2}",
-			"description": "The inset-block CSS property defines the logical block start and end offsets of an element, which maps to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The inset-block CSS property defines the logical block start and end offsets of an element, which maps to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "inset-block-end",
@@ -14907,10 +14490,7 @@ export const cssData : CSSData = {
 			browsers: [
 				"FF63"
 			],
-			"description": "The inset-block-end CSS property defines the logical block end offset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The inset-block-end CSS property defines the logical block end offset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "inset-block-start",
@@ -14918,18 +14498,12 @@ export const cssData : CSSData = {
 			browsers: [
 				"FF63"
 			],
-			"description": "The inset-block-start CSS property defines the logical block start offset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The inset-block-start CSS property defines the logical block start offset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "inset-inline",
 			"syntax": "<'top'>{1,2}",
-			"description": "The inset-inline CSS property defines the logical block start and end offsets of an element, which maps to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The inset-inline CSS property defines the logical block start and end offsets of an element, which maps to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "inset-inline-end",
@@ -14937,10 +14511,7 @@ export const cssData : CSSData = {
 			browsers: [
 				"FF63"
 			],
-			"description": "The inset-inline-end CSS property defines the logical inline end inset of an element, which maps to a physical inset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The inset-inline-end CSS property defines the logical inline end inset of an element, which maps to a physical inset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "inset-inline-start",
@@ -14948,19 +14519,13 @@ export const cssData : CSSData = {
 			browsers: [
 				"FF63"
 			],
-			"description": "The inset-inline-start CSS property defines the logical inline start inset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The inset-inline-start CSS property defines the logical inline start inset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "line-clamp",
 			"status": "experimental",
 			"syntax": "none | <integer>",
-			"description": "The line-clamp property allows limiting the contents of a block container to the specified number of lines; remaining content is fragmented away and neither rendered nor measured. Optionally, it also allows inserting content into the last line box to indicate the continuity of truncated/interrupted content.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The line-clamp property allows limiting the contents of a block container to the specified number of lines; remaining content is fragmented away and neither rendered nor measured. Optionally, it also allows inserting content into the last line box to indicate the continuity of truncated/interrupted content."
 		},
 		{
 			name: "mask",
@@ -14972,73 +14537,49 @@ export const cssData : CSSData = {
 				"C1",
 				"O"
 			],
-			"description": "The mask CSS property alters the visibility of an element by either partially or fully hiding it. This is accomplished by either masking or clipping the image at specific points.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The mask CSS property alters the visibility of an element by either partially or fully hiding it. This is accomplished by either masking or clipping the image at specific points."
 		},
 		{
 			name: "mask-border",
 			"status": "experimental",
 			"syntax": "<'mask-border-source'> || <'mask-border-slice'> [ / <'mask-border-width'>? [ / <'mask-border-outset'> ]? ]? || <'mask-border-repeat'> || <'mask-border-mode'>",
-			"description": "The mask-border CSS property lets you create a mask along the edge of an element's border.\n\nThis property is a shorthand for mask-border-source, mask-border-slice, mask-border-width, mask-border-outset, mask-border-repeat, and mask-border-mode. As with all shorthand properties, any omitted sub-values will be set to their initial value.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The mask-border CSS property lets you create a mask along the edge of an element's border.\n\nThis property is a shorthand for mask-border-source, mask-border-slice, mask-border-width, mask-border-outset, mask-border-repeat, and mask-border-mode. As with all shorthand properties, any omitted sub-values will be set to their initial value."
 		},
 		{
 			name: "mask-border-mode",
 			"status": "experimental",
 			"syntax": "luminance | alpha",
-			"description": "The mask-border-mode CSS property specifies the blending mode used in a mask border.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The mask-border-mode CSS property specifies the blending mode used in a mask border."
 		},
 		{
 			name: "mask-border-outset",
 			"status": "experimental",
 			"syntax": "[ <length> | <number> ]{1,4}",
-			"description": "The mask-border-outset CSS property specifies the distance by which an element's mask border is set out from its border box.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The mask-border-outset CSS property specifies the distance by which an element's mask border is set out from its border box."
 		},
 		{
 			name: "mask-border-repeat",
 			"status": "experimental",
 			"syntax": "[ stretch | repeat | round | space ]{1,2}",
-			"description": "The mask-border-repeat CSS property defines how the edge regions of a source image are adjusted to fit the dimensions of an element's mask border.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The mask-border-repeat CSS property defines how the edge regions of a source image are adjusted to fit the dimensions of an element's mask border."
 		},
 		{
 			name: "mask-border-slice",
 			"status": "experimental",
 			"syntax": "<number-percentage>{1,4} fill?",
-			"description": "The mask-border-slice CSS property divides the image specified by mask-border-source into regions. These regions are used to form the components of an element's mask border.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The mask-border-slice CSS property divides the image specified by mask-border-source into regions. These regions are used to form the components of an element's mask border."
 		},
 		{
 			name: "mask-border-source",
 			"status": "experimental",
 			"syntax": "none | <image>",
-			"description": "The mask-border-source CSS property specifies the source image used to create an element's mask border.\n\nThe mask-border-slice property is used to divide the source image into regions, which are then dynamically applied to the final mask border.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The mask-border-source CSS property specifies the source image used to create an element's mask border.\n\nThe mask-border-slice property is used to divide the source image into regions, which are then dynamically applied to the final mask border."
 		},
 		{
 			name: "mask-border-width",
 			"status": "experimental",
 			"syntax": "[ <length-percentage> | <number> | auto ]{1,4}",
-			"description": "The mask-border-width CSS property specifies the width of an element's mask border.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The mask-border-width CSS property specifies the width of an element's mask border."
 		},
 		{
 			name: "mask-clip",
@@ -15049,10 +14590,7 @@ export const cssData : CSSData = {
 				"C",
 				"O"
 			],
-			"description": "The mask-clip CSS property determines the area, which is affected by a mask. The painted content of an element must be restricted to this area.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The mask-clip CSS property determines the area, which is affected by a mask. The painted content of an element must be restricted to this area."
 		},
 		{
 			name: "mask-composite",
@@ -15061,28 +14599,19 @@ export const cssData : CSSData = {
 				"E18",
 				"FF53"
 			],
-			"description": "The mask-composite CSS property represents a compositing operation used on the current mask layer with the mask layers below it.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The mask-composite CSS property represents a compositing operation used on the current mask layer with the mask layers below it."
 		},
 		{
 			name: "max-lines",
 			"status": "experimental",
 			"syntax": "none | <integer>",
-			"description": "The max-liens property forces a break after a set number of lines",
-			"restrictions": [
-				"none"
-			]
+			"description": "The max-liens property forces a break after a set number of lines"
 		},
 		{
 			name: "offset-position",
 			"status": "experimental",
 			"syntax": "auto | <position>",
-			"description": "Specifies the initial position of the offset path. If position is specified with static, offset-position would be ignored.",
-			"restrictions": [
-				"none"
-			]
+			"description": "Specifies the initial position of the offset path. If position is specified with static, offset-position would be ignored."
 		},
 		{
 			name: "overflow-anchor",
@@ -15092,19 +14621,13 @@ export const cssData : CSSData = {
 				"C56",
 				"O43"
 			],
-			"description": "The overflow-anchor CSS property provides a way to opt out browser scroll anchoring behavior which adjusts scroll position to minimize content shifts.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The overflow-anchor CSS property provides a way to opt out browser scroll anchoring behavior which adjusts scroll position to minimize content shifts."
 		},
 		{
 			name: "overflow-block",
 			"status": "experimental",
 			"syntax": "<'overflow'>",
-			"description": "The overflow-block CSS media feature can be used to test how the output device handles content that overflows the initial containing block along the block axis.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The overflow-block CSS media feature can be used to test how the output device handles content that overflows the initial containing block along the block axis."
 		},
 		{
 			name: "overflow-clip-box",
@@ -15113,19 +14636,13 @@ export const cssData : CSSData = {
 			browsers: [
 				"FF29"
 			],
-			"description": "The overflow-clip-box CSS property specifies relative to which box the clipping happens when there is an overflow. It is short hand for the overflow-clip-box-inline and overflow-clip-box-block properties.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The overflow-clip-box CSS property specifies relative to which box the clipping happens when there is an overflow. It is short hand for the overflow-clip-box-inline and overflow-clip-box-block properties."
 		},
 		{
 			name: "overflow-inline",
 			"status": "experimental",
 			"syntax": "<'overflow'>",
-			"description": "The overflow-inline CSS media feature can be used to test how the output device handles content that overflows the initial containing block along the inline axis.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The overflow-inline CSS media feature can be used to test how the output device handles content that overflows the initial containing block along the inline axis."
 		},
 		{
 			name: "overscroll-behavior",
@@ -15137,10 +14654,7 @@ export const cssData : CSSData = {
 				"C63",
 				"O50"
 			],
-			"description": "The overscroll-behavior CSS property is shorthand for the overscroll-behavior-x and overscroll-behavior-y properties, which allow you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The overscroll-behavior CSS property is shorthand for the overscroll-behavior-x and overscroll-behavior-y properties, which allow you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached."
 		},
 		{
 			name: "overscroll-behavior-x",
@@ -15152,10 +14666,7 @@ export const cssData : CSSData = {
 				"C63",
 				"O50"
 			],
-			"description": "The overscroll-behavior-x CSS property is allows you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached — in the x axis direction.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The overscroll-behavior-x CSS property is allows you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached — in the x axis direction."
 		},
 		{
 			name: "overscroll-behavior-y",
@@ -15167,10 +14678,7 @@ export const cssData : CSSData = {
 				"C63",
 				"O50"
 			],
-			"description": "The overscroll-behavior-y CSS property is allows you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached — in the y axis direction.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The overscroll-behavior-y CSS property is allows you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached — in the y axis direction."
 		},
 		{
 			name: "place-content",
@@ -15181,10 +14689,7 @@ export const cssData : CSSData = {
 				"C59",
 				"O"
 			],
-			"description": "The place-content CSS shorthand property sets both the align-content and justify-content properties.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The place-content CSS shorthand property sets both the align-content and justify-content properties."
 		},
 		{
 			name: "place-items",
@@ -15193,10 +14698,7 @@ export const cssData : CSSData = {
 				"FF45",
 				"C59"
 			],
-			"description": "The CSS place-items shorthand property sets both the align-items and justify-items properties. The first value is the align-items property value, the second the justify-items one. If the second value is not present, the first value is also used for it.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The CSS place-items shorthand property sets both the align-items and justify-items properties. The first value is the align-items property value, the second the justify-items one. If the second value is not present, the first value is also used for it."
 		},
 		{
 			name: "rotate",
@@ -15205,10 +14707,7 @@ export const cssData : CSSData = {
 				"FF60",
 				"C"
 			],
-			"description": "The rotate CSS property allows you to specify rotation transforms individually and independently of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The rotate CSS property allows you to specify rotation transforms individually and independently of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value."
 		},
 		{
 			name: "row-gap",
@@ -15220,19 +14719,13 @@ export const cssData : CSSData = {
 				"C66",
 				"O53"
 			],
-			"description": "The row-gap CSS property specifies the gutter between grid rows.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The row-gap CSS property specifies the gutter between grid rows."
 		},
 		{
 			name: "ruby-merge",
 			"status": "experimental",
 			"syntax": "separate | collapse | auto",
-			"description": "This property controls how ruby annotation boxes should be rendered when there are more than one in a ruby container box: whether each pair should be kept separate, the annotations should be collapsed and rendered as a group, or the separation should be determined based on the space available.",
-			"restrictions": [
-				"none"
-			]
+			"description": "This property controls how ruby annotation boxes should be rendered when there are more than one in a ruby container box: whether each pair should be kept separate, the annotations should be collapsed and rendered as a group, or the separation should be determined based on the space available."
 		},
 		{
 			name: "scale",
@@ -15241,10 +14734,7 @@ export const cssData : CSSData = {
 				"FF60",
 				"C"
 			],
-			"description": "The scale CSS property allows you to specify scale transforms individually and independently of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scale CSS property allows you to specify scale transforms individually and independently of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value."
 		},
 		{
 			name: "scrollbar-color",
@@ -15252,10 +14742,7 @@ export const cssData : CSSData = {
 			browsers: [
 				"FF64"
 			],
-			"description": "The scrollbar-color CSS property sets the color of the scrollbar track and thumb.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scrollbar-color CSS property sets the color of the scrollbar track and thumb."
 		},
 		{
 			name: "scrollbar-width",
@@ -15263,10 +14750,7 @@ export const cssData : CSSData = {
 			browsers: [
 				"FF64"
 			],
-			"description": "The scrollbar-width property allows the author to set the maximum thickness of an element’s scrollbars when they are shown. ",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scrollbar-width property allows the author to set the maximum thickness of an element’s scrollbars when they are shown. "
 		},
 		{
 			name: "scroll-margin",
@@ -15276,10 +14760,7 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-margin property is a shorthand property which sets all of the scroll-margin longhands, assigning values much like the margin property does for the margin-* longhands.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-margin property is a shorthand property which sets all of the scroll-margin longhands, assigning values much like the margin property does for the margin-* longhands."
 		},
 		{
 			name: "scroll-margin-block",
@@ -15288,10 +14769,7 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-margin-block property is a shorthand property which sets the scroll-margin longhands in the block dimension.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-margin-block property is a shorthand property which sets the scroll-margin longhands in the block dimension."
 		},
 		{
 			name: "scroll-margin-block-start",
@@ -15301,10 +14779,7 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-margin-block-start property defines the margin of the scroll snap area at the start of the block dimension that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-margin-block-start property defines the margin of the scroll snap area at the start of the block dimension that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
 			name: "scroll-margin-block-end",
@@ -15314,10 +14789,7 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-margin-block-end property defines the margin of the scroll snap area at the end of the block dimension that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-margin-block-end property defines the margin of the scroll snap area at the end of the block dimension that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
 			name: "scroll-margin-bottom",
@@ -15327,18 +14799,12 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-margin-bottom property defines the bottom margin of the scroll snap area that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-margin-bottom property defines the bottom margin of the scroll snap area that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
 			name: "scroll-margin-inline",
 			"syntax": "[auto | <length> ]{1,2}",
-			"description": "The scroll-margin-inline property is a shorthand property which sets the scroll-margin longhands in the inline dimension.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-margin-inline property is a shorthand property which sets the scroll-margin longhands in the inline dimension."
 		},
 		{
 			name: "scroll-margin-inline-start",
@@ -15348,10 +14814,7 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-margin-inline-start property defines the margin of the scroll snap area at the start of the inline dimension that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-margin-inline-start property defines the margin of the scroll snap area at the start of the inline dimension that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
 			name: "scroll-margin-inline-end",
@@ -15361,10 +14824,7 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-margin-inline-end property defines the margin of the scroll snap area at the end of the inline dimension that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-margin-inline-end property defines the margin of the scroll snap area at the end of the inline dimension that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
 			name: "scroll-margin-left",
@@ -15374,10 +14834,7 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-margin-left property defines the left margin of the scroll snap area that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-margin-left property defines the left margin of the scroll snap area that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
 			name: "scroll-margin-right",
@@ -15387,10 +14844,7 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-margin-right property defines the right margin of the scroll snap area that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-margin-right property defines the right margin of the scroll snap area that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
 			name: "scroll-margin-top",
@@ -15400,10 +14854,7 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-margin-top property defines the top margin of the scroll snap area that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-margin-top property defines the top margin of the scroll snap area that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
 			name: "scroll-padding",
@@ -15413,10 +14864,7 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-padding property is a shorthand property which sets all of the scroll-padding longhands, assigning values much like the padding property does for the padding-* longhands.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-padding property is a shorthand property which sets all of the scroll-padding longhands, assigning values much like the padding property does for the padding-* longhands."
 		},
 		{
 			name: "scroll-padding-block",
@@ -15425,10 +14873,7 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-padding-block property is a shorthand property which sets the scroll-padding longhands for the block dimension.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-padding-block property is a shorthand property which sets the scroll-padding longhands for the block dimension."
 		},
 		{
 			name: "scroll-padding-block-start",
@@ -15438,10 +14883,7 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-padding-block-start property defines offsets for the start edge in the block dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-padding-block-start property defines offsets for the start edge in the block dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
 			name: "scroll-padding-block-end",
@@ -15451,10 +14893,7 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-padding-block-end property defines offsets for the end edge in the block dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-padding-block-end property defines offsets for the end edge in the block dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
 			name: "scroll-padding-bottom",
@@ -15464,10 +14903,7 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-padding-bottom property defines offsets for the bottom of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-padding-bottom property defines offsets for the bottom of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
 			name: "scroll-padding-inline",
@@ -15476,10 +14912,7 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-padding-inline property is a shorthand property which sets the scroll-padding longhands for the inline dimension.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-padding-inline property is a shorthand property which sets the scroll-padding longhands for the inline dimension."
 		},
 		{
 			name: "scroll-padding-inline-start",
@@ -15489,10 +14922,7 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-padding-inline-start property defines offsets for the start edge in the inline dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-padding-inline-start property defines offsets for the start edge in the inline dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
 			name: "scroll-padding-inline-end",
@@ -15502,10 +14932,7 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-padding-inline-end property defines offsets for the end edge in the inline dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-padding-inline-end property defines offsets for the end edge in the inline dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
 			name: "scroll-padding-left",
@@ -15515,10 +14942,7 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-padding-left property defines offsets for the left of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-padding-left property defines offsets for the left of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
 			name: "scroll-padding-right",
@@ -15528,10 +14952,7 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-padding-right property defines offsets for the right of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-padding-right property defines offsets for the right of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
 			name: "scroll-padding-top",
@@ -15541,10 +14962,7 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-padding-top property defines offsets for the top of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-padding-top property defines offsets for the top of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
 			name: "scroll-snap-align",
@@ -15554,18 +14972,12 @@ export const cssData : CSSData = {
 				"C69",
 				"O56"
 			],
-			"description": "The scroll-snap-align property specifies the box’s snap position as an alignment of its snap area (as the alignment subject) within its snap container’s snapport (as the alignment container). The two values specify the snapping alignment in the block axis and inline axis, respectively. If only one value is specified, the second value defaults to the same value.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-snap-align property specifies the box’s snap position as an alignment of its snap area (as the alignment subject) within its snap container’s snapport (as the alignment container). The two values specify the snapping alignment in the block axis and inline axis, respectively. If only one value is specified, the second value defaults to the same value."
 		},
 		{
 			name: "scroll-snap-stop",
 			"syntax": "normal | always",
-			"description": "The scroll-snap-stop CSS property defines whether the scroll container is allowed to \"pass over\" possible snap positions.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-snap-stop CSS property defines whether the scroll container is allowed to \"pass over\" possible snap positions."
 		},
 		{
 			name: "scroll-snap-type-x",
@@ -15575,10 +14987,7 @@ export const cssData : CSSData = {
 				"FF39",
 				"S9"
 			],
-			"description": "The scroll-snap-type-x CSS property defines how strictly snap points are enforced on the horizontal axis of the scroll container in case there is one.\n\nSpecifying any precise animations or physics used to enforce those snap points is not covered by this property but instead left up to the user agent.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-snap-type-x CSS property defines how strictly snap points are enforced on the horizontal axis of the scroll container in case there is one.\n\nSpecifying any precise animations or physics used to enforce those snap points is not covered by this property but instead left up to the user agent."
 		},
 		{
 			name: "scroll-snap-type-y",
@@ -15587,18 +14996,12 @@ export const cssData : CSSData = {
 			browsers: [
 				"FF39"
 			],
-			"description": "The scroll-snap-type-y CSS property defines how strictly snap points are enforced on the vertical axis of the scroll container in case there is one.\n\nSpecifying any precise animations or physics used to enforce those snap points is not covered by this property but instead left up to the user agent.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The scroll-snap-type-y CSS property defines how strictly snap points are enforced on the vertical axis of the scroll container in case there is one.\n\nSpecifying any precise animations or physics used to enforce those snap points is not covered by this property but instead left up to the user agent."
 		},
 		{
 			name: "text-combine-upright",
 			"syntax": "none | all | [ digits <integer>? ]",
-			"description": "The text-combine-upright CSS property specifies the combination of multiple characters into the space of a single character. If the combined text is wider than 1em, the user agent must fit the contents within 1em. The resulting composition is treated as a single upright glyph for layout and decoration. This property only has an effect in vertical writing modes.\n\nThis is used to produce an effect that is known as tate-chū-yoko (縦中横) in Japanese, or as 直書橫向 in Chinese.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The text-combine-upright CSS property specifies the combination of multiple characters into the space of a single character. If the combined text is wider than 1em, the user agent must fit the contents within 1em. The resulting composition is treated as a single upright glyph for layout and decoration. This property only has an effect in vertical writing modes.\n\nThis is used to produce an effect that is known as tate-chū-yoko (縦中横) in Japanese, or as 直書橫向 in Chinese."
 		},
 		{
 			name: "text-decoration-skip",
@@ -15609,10 +15012,7 @@ export const cssData : CSSData = {
 				"C57",
 				"O44"
 			],
-			"description": "The text-decoration-skip CSS property specifies what parts of the element’s content any text decoration affecting the element must skip over. It controls all text decoration lines drawn by the element and also any text decoration lines drawn by its ancestors.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The text-decoration-skip CSS property specifies what parts of the element’s content any text decoration affecting the element must skip over. It controls all text decoration lines drawn by the element and also any text decoration lines drawn by its ancestors."
 		},
 		{
 			name: "text-decoration-skip-ink",
@@ -15622,10 +15022,7 @@ export const cssData : CSSData = {
 				"C64",
 				"O50"
 			],
-			"description": "The text-decoration-skip-ink CSS property specifies how overlines and underlines are drawn when they pass over glyph ascenders and descenders.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The text-decoration-skip-ink CSS property specifies how overlines and underlines are drawn when they pass over glyph ascenders and descenders."
 		},
 		{
 			name: "text-emphasis",
@@ -15636,10 +15033,7 @@ export const cssData : CSSData = {
 				"C25",
 				"O15"
 			],
-			"description": "The text-emphasis CSS property is a shorthand property for setting text-emphasis-style and text-emphasis-color in one declaration. This property will apply the specified emphasis mark to each character of the element's text, except separator characters, like spaces,  and control characters.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The text-emphasis CSS property is a shorthand property for setting text-emphasis-style and text-emphasis-color in one declaration. This property will apply the specified emphasis mark to each character of the element's text, except separator characters, like spaces,  and control characters."
 		},
 		{
 			name: "text-emphasis-color",
@@ -15650,10 +15044,7 @@ export const cssData : CSSData = {
 				"C25",
 				"O15"
 			],
-			"description": "The text-emphasis-color CSS property defines the color used to draw emphasis marks on text being rendered in the HTML document. This value can also be set and reset using the text-emphasis shorthand.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The text-emphasis-color CSS property defines the color used to draw emphasis marks on text being rendered in the HTML document. This value can also be set and reset using the text-emphasis shorthand."
 		},
 		{
 			name: "text-emphasis-position",
@@ -15664,10 +15055,7 @@ export const cssData : CSSData = {
 				"C",
 				"O"
 			],
-			"description": "The text-emphasis-position CSS property describes where emphasis marks are drawn at. The effect of emphasis marks on the line height is the same as for ruby text: if there isn't enough place, the line height is increased.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The text-emphasis-position CSS property describes where emphasis marks are drawn at. The effect of emphasis marks on the line height is the same as for ruby text: if there isn't enough place, the line height is increased."
 		},
 		{
 			name: "text-emphasis-style",
@@ -15678,10 +15066,7 @@ export const cssData : CSSData = {
 				"C25",
 				"O15"
 			],
-			"description": "The text-emphasis-style CSS property defines the type of emphasis used. It can also be set, and reset, using the text-emphasis shorthand.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The text-emphasis-style CSS property defines the type of emphasis used. It can also be set, and reset, using the text-emphasis shorthand."
 		},
 		{
 			name: "text-size-adjust",
@@ -15692,10 +15077,7 @@ export const cssData : CSSData = {
 				"C54",
 				"O42"
 			],
-			"description": "The text-size-adjust CSS property controls the text inflation algorithm used on some smartphones and tablets. Other browsers will ignore this property.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The text-size-adjust CSS property controls the text inflation algorithm used on some smartphones and tablets. Other browsers will ignore this property."
 		},
 		{
 			name: "transform-box",
@@ -15705,10 +15087,7 @@ export const cssData : CSSData = {
 				"C64",
 				"O51"
 			],
-			"description": "The transform-box CSS property defines the layout box to which the transform and transform-origin properties relate.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The transform-box CSS property defines the layout box to which the transform and transform-origin properties relate."
 		},
 		{
 			name: "translate",
@@ -15717,77 +15096,50 @@ export const cssData : CSSData = {
 				"FF60",
 				"C"
 			],
-			"description": "The translate CSS property allows you to specify translation transforms individually and independently of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The translate CSS property allows you to specify translation transforms individually and independently of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value."
 		},
 		{
 			name: "speak-as",
 			"syntax": "auto | bullets | numbers | words | spell-out | <counter-style-name>",
-			"description": "The speak-as descriptor specifies how a counter symbol constructed with a given @counter-style will be represented in the spoken form. For example, an author can specify a counter symbol to be either spoken as its numerical value or just represented with an audio cue.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The speak-as descriptor specifies how a counter symbol constructed with a given @counter-style will be represented in the spoken form. For example, an author can specify a counter symbol to be either spoken as its numerical value or just represented with an audio cue."
 		},
 		{
 			name: "font-display",
 			"status": "experimental",
 			"syntax": "[ auto | block | swap | fallback | optional ]",
-			"description": "The font-display descriptor determines how a font face is displayed based on whether and when it is downloaded and ready to use.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The font-display descriptor determines how a font face is displayed based on whether and when it is downloaded and ready to use."
 		},
 		{
 			name: "bleed",
 			"status": "experimental",
 			"syntax": "auto | <length>",
-			"description": "The bleed CSS at-rule descriptor, used with the @page at-rule, specifies the extent of the page bleed area outside the page box. This property only has effect if crop marks are enabled using the marks property.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The bleed CSS at-rule descriptor, used with the @page at-rule, specifies the extent of the page bleed area outside the page box. This property only has effect if crop marks are enabled using the marks property."
 		},
 		{
 			name: "marks",
 			"status": "experimental",
 			"syntax": "none | [ crop || cross ]",
-			"description": "The marks CSS at-rule descriptor, used with the @page at-rule, adds crop and/or cross marks to the presentation of the document. Crop marks indicate where the page should be cut. Cross marks are used to align sheets.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The marks CSS at-rule descriptor, used with the @page at-rule, adds crop and/or cross marks to the presentation of the document. Crop marks indicate where the page should be cut. Cross marks are used to align sheets."
 		},
 		{
 			name: "max-zoom",
 			"syntax": "auto | <number> | <percentage>",
-			"description": "The max-zoom CSS descriptor sets the maximum zoom factor of a document defined by the @viewport at-rule. The browser will not zoom in any further than this, whether automatically or at the user's request.\n\nA zoom factor of 1.0 or 100% corresponds to no zooming. Larger values are zoomed in. Smaller values are zoomed out.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The max-zoom CSS descriptor sets the maximum zoom factor of a document defined by the @viewport at-rule. The browser will not zoom in any further than this, whether automatically or at the user's request.\n\nA zoom factor of 1.0 or 100% corresponds to no zooming. Larger values are zoomed in. Smaller values are zoomed out."
 		},
 		{
 			name: "min-zoom",
 			"syntax": "auto | <number> | <percentage>",
-			"description": "The min-zoom CSS descriptor sets the minimum zoom factor of a document defined by the @viewport at-rule. The browser will not zoom out any further than this, whether automatically or at the user's request.\n\nA zoom factor of 1.0 or 100% corresponds to no zooming. Larger values are zoomed in. Smaller values are zoomed out.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The min-zoom CSS descriptor sets the minimum zoom factor of a document defined by the @viewport at-rule. The browser will not zoom out any further than this, whether automatically or at the user's request.\n\nA zoom factor of 1.0 or 100% corresponds to no zooming. Larger values are zoomed in. Smaller values are zoomed out."
 		},
 		{
 			name: "orientation",
 			"syntax": "auto | portrait | landscape",
-			"description": "The orientation CSS @media media feature can be used to apply styles based on the orientation of the viewport (or the page box, for paged media).",
-			"restrictions": [
-				"none"
-			]
+			"description": "The orientation CSS @media media feature can be used to apply styles based on the orientation of the viewport (or the page box, for paged media)."
 		},
 		{
 			name: "user-zoom",
 			"syntax": "zoom | fixed",
-			"description": "The user-zoom CSS descriptor controls whether or not the user can change the zoom factor of a document defined by @viewport.",
-			"restrictions": [
-				"none"
-			]
+			"description": "The user-zoom CSS descriptor controls whether or not the user can change the zoom factor of a document defined by @viewport."
 		}
 	],
 	"atDirectives": [
