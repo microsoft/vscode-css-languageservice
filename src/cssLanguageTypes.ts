@@ -77,3 +77,27 @@ export interface CSSData {
 	pseudoClasses?: IEntryData[];
 	pseudoElements?: IEntryData[];
 }
+
+export interface IPropertyData {
+	name: string;
+	description?: string;
+}
+export interface IAtDirectiveData {
+	name: string;
+	description?: string;
+}
+export interface IPseudoClassData {
+	name: string;
+	description?: string;
+}
+export interface IPseudoElementData {
+	name: string;
+	description?: string;
+}
+
+export interface ICSSDataProvider {
+	provideProperties(): Promise<IPropertyData[]>;
+	provideAtDirectives(): Promise<IAtDirectiveData[]>;
+	providePseudoClasses(): Promise<IPseudoClassData[]>;
+	providePseudoElements(): Promise<IPseudoElementData[]>;
+}
