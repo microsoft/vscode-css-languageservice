@@ -4,6 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
+import { EntryStatus } from '../../cssLanguageTypes';
+
 export interface Browsers {
 	E?: string;
 	FF?: string;
@@ -25,8 +27,6 @@ export let browserNames = {
 	O: 'Opera'
 };
 
-export type EntryStatus = 'standard' | 'experimental' | 'nonstandard' | 'obsolete';
-
 function getEntryStatus(status: EntryStatus) {
 	switch (status) {
 		case 'experimental':
@@ -40,7 +40,7 @@ function getEntryStatus(status: EntryStatus) {
 	}
 }
 
-export function getEntryDescription(entry: { description?: string; browsers?: string[], data?: any }): string | null {
+export function getEntryDescription(entry: { description?: string; browsers?: string[]; data?: any }): string | null {
 	if (!entry.description || entry.description === '') {
 		return null;
 	}
@@ -72,20 +72,22 @@ export function getBrowserLabel(browsers: string[]): string {
 		return null;
 	}
 
-	return browsers.map(b => {
-		let result = '';
-		const matches = b.match(/([A-Z]+)(\d+)?/);
-		const name = matches[1];
-		const version = matches[2];
+	return browsers
+		.map(b => {
+			let result = '';
+			const matches = b.match(/([A-Z]+)(\d+)?/);
+			const name = matches[1];
+			const version = matches[2];
 
-		if (name in browserNames) {
-			result += browserNames[name];
-		}
-		if (version) {
-			result += ' ' + version;
-		}
-		return result;
-	}).join(', ');
+			if (name in browserNames) {
+				result += browserNames[name];
+			}
+			if (version) {
+				result += ' ' + version;
+			}
+			return result;
+		})
+		.join(', ');
 }
 
 export interface IEntry {
