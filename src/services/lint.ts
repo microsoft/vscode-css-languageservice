@@ -405,7 +405,7 @@ export class LintVisitor implements nodes.IVisitor {
 
 					if (firstChar === '-') {
 						if (name.charAt(1) !== '-') { // avoid css variables
-							if (!languageFacts.builtinCSSDataSet.isKnownProperty(name) && !this.validProperties[name]) {
+							if (!languageFacts.cssDataManager.isKnownProperty(name) && !this.validProperties[name]) {
 								this.addEntry(decl.getProperty(), Rules.UnknownVendorSpecificProperty);
 							}
 							let nonPrefixedName = decl.getNonPrefixedPropertyName();
@@ -416,7 +416,7 @@ export class LintVisitor implements nodes.IVisitor {
 							this.addEntry(decl.getProperty(), Rules.IEStarHack);
 							name = name.substr(1);
 						}
-						if (!languageFacts.builtinCSSDataSet.isKnownProperty(name) && !this.validProperties[name]) {
+						if (!languageFacts.cssDataManager.isKnownProperty(name) && !this.validProperties[name]) {
 							this.addEntry(decl.getProperty(), Rules.UnknownProperty, localize('property.unknownproperty.detailed', "Unknown property: '{0}'", name));
 						}
 						propertiesBySuffix.add(name, name, null); // don't pass the node as we don't show errors on the standard
@@ -431,7 +431,7 @@ export class LintVisitor implements nodes.IVisitor {
 					let entry = propertiesBySuffix.data[suffix];
 					let actual = entry.names;
 
-					let needsStandard = languageFacts.builtinCSSDataSet.isStandardProperty(suffix) && (actual.indexOf(suffix) === -1);
+					let needsStandard = languageFacts.cssDataManager.isStandardProperty(suffix) && (actual.indexOf(suffix) === -1);
 					if (!needsStandard && actual.length === 1) {
 						continue; // only the non-vendor specific rule is used, that's fine, no warning
 					}
@@ -439,7 +439,7 @@ export class LintVisitor implements nodes.IVisitor {
 					let expected: string[] = [];
 					for (let i = 0, len = LintVisitor.prefixes.length; i < len; i++) {
 						let prefix = LintVisitor.prefixes[i];
-						if (languageFacts.builtinCSSDataSet.isStandardProperty(prefix + suffix)) {
+						if (languageFacts.cssDataManager.isStandardProperty(prefix + suffix)) {
 							expected.push(prefix + suffix);
 						}
 					}

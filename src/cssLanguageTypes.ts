@@ -55,7 +55,7 @@ export interface LanguageServiceOptions {
 
 export type EntryStatus = 'standard' | 'experimental' | 'nonstandard' | 'obsolete';
 
-export interface IEntryData {
+export interface IPropertyData {
 	name: string;
 	description?: string;
 	browsers?: string[];
@@ -64,40 +64,42 @@ export interface IEntryData {
 	syntax?: string;
 	values?: IValueData[];
 }
+export interface IAtDirectiveData {
+	name: string;
+	description?: string;
+	browsers?: string[];
+	status?: EntryStatus;
+}
+export interface IPseudoClassData {
+	name: string;
+	description?: string;
+	browsers?: string[];
+	status?: EntryStatus;
+}
+export interface IPseudoElementData {
+	name: string;
+	description?: string;
+	browsers?: string[];
+	status?: EntryStatus;
+}
 
 export interface IValueData {
 	name: string;
 	description?: string;
 	browsers?: string[];
+	status?: EntryStatus;
 }
 
 export interface CSSData {
-	properties?: IEntryData[];
-	atDirectives?: IEntryData[];
-	pseudoClasses?: IEntryData[];
-	pseudoElements?: IEntryData[];
-}
-
-export interface IPropertyData {
-	name: string;
-	description?: string;
-}
-export interface IAtDirectiveData {
-	name: string;
-	description?: string;
-}
-export interface IPseudoClassData {
-	name: string;
-	description?: string;
-}
-export interface IPseudoElementData {
-	name: string;
-	description?: string;
+	properties?: IPropertyData[];
+	atDirectives?: IAtDirectiveData[];
+	pseudoClasses?: IPseudoClassData[];
+	pseudoElements?: IPseudoElementData[];
 }
 
 export interface ICSSDataProvider {
-	provideProperties(): Promise<IPropertyData[]>;
-	provideAtDirectives(): Promise<IAtDirectiveData[]>;
-	providePseudoClasses(): Promise<IPseudoClassData[]>;
-	providePseudoElements(): Promise<IPseudoElementData[]>;
+	provideProperties(): IPropertyData[];
+	provideAtDirectives(): IAtDirectiveData[];
+	providePseudoClasses(): IPseudoClassData[];
+	providePseudoElements(): IPseudoElementData[];
 }

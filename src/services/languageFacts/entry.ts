@@ -63,25 +63,29 @@ export function getEntryDescription(entry: { description?: string; browsers?: st
 	return desc;
 }
 
-export function getBrowserLabel(b: string[]): string {
-	let result = '';
-	if (!b || b.length === 0) {
+/**
+ * Input is like `["E12","FF49","C47","IE","O"]`
+ * Output is like `Edge 12, Firefox 49, Chrome 47, IE, Opera`
+ */
+export function getBrowserLabel(browsers: string[]): string {
+	if (!browsers || browsers.length === 0) {
 		return null;
 	}
 
-	for (let curr in browserNames) {
-		if (typeof (<any>b)[curr] === 'string') {
-			if (result.length > 0) {
-				result = result + ', ';
-			}
-			result = result + (<any>browserNames)[curr];
-			let version = (<any>b)[curr];
-			if (version.length > 0) {
-				result = result + ' ' + version;
-			}
+	return browsers.map(b => {
+		let result = '';
+		const matches = b.match(/([A-Z]+)(\d+)?/);
+		const name = matches[1];
+		const version = matches[2];
+
+		if (name in browserNames) {
+			result += browserNames[name];
 		}
-	}
-	return result;
+		if (version) {
+			result += ' ' + version;
+		}
+		return result;
+	}).join(', ');
 }
 
 export interface IEntry {

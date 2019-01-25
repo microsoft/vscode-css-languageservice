@@ -16,7 +16,9 @@ import { LESSParser } from '../../parser/lessParser';
 export function assertEntries(node: Node, document: TextDocument, rules: IRule[], settings = new LintConfigurationSettings()): void {
 
 	let entries = LintVisitor.entries(node, document, settings, Level.Error | Level.Warning | Level.Ignore);
-	assert.equal(entries.length, rules.length, entries.map(e => e.getRule().id).join(', '));
+	const message = `Did not find all linting error [${rules.map(e => e.id).join(', ')}]`;
+
+	assert.equal(entries.length, rules.length, message);
 
 	for (let entry of entries) {
 		assert.ok(rules.indexOf(entry.getRule()) !== -1, `${entry.getRule().id} found but not expected (${rules.map(r => r.id).join(', ')})`);

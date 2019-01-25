@@ -22,7 +22,7 @@ import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
 import { getFoldingRanges } from './services/cssFolding';
 import { LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServiceOptions } from './cssLanguageTypes';
-import { builtinCSSDataSet } from './services/languageFacts';
+import { cssDataManager, CSSDataProvider } from './services/languageFacts';
 import { getSelectionRanges } from './services/cssSelectionRange';
 
 export type Stylesheet = {};
@@ -78,7 +78,8 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 
 function handleCustomData(options?: LanguageServiceOptions) {
 	if (options && options.customDataCollections) {
-		options.customDataCollections.forEach(data => builtinCSSDataSet.addData(data));
+		const providers = options.customDataCollections.map(data => new CSSDataProvider(data));
+		cssDataManager.addDataProviders(providers);
 	}
 }
 
