@@ -438,7 +438,7 @@ function convertEntry(entry) {
 
 	if (entry.browsers) {
 		if (entry.browsers === 'all') {
-			entry.browsers = []
+			delete entry.browsers
 		} else {
 			entry.browsers = entry.browsers.split(',')
 		}
@@ -447,7 +447,7 @@ function convertEntry(entry) {
 	if (entry.restriction) {
 		entry.restrictions = entry.restriction.split(',').map((s) => { return s.trim(); });
 	} else {
-		entry.restrictions = []
+		delete entry.restrictions
 	}
 	delete entry.restriction
 

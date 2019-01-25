@@ -24,7 +24,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "align-content",
-			browsers: [],
 			values: [
 				{
 					name: "center",
@@ -59,7 +58,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "align-items",
-			browsers: [],
 			values: [
 				{
 					name: "baseline",
@@ -90,7 +88,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "justify-items",
-			browsers: [],
 			values: [
 				{
 					name: "auto"
@@ -231,7 +228,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "align-self",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -293,7 +289,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "animation",
-			browsers: [],
 			values: [
 				{
 					name: "alternate"
@@ -340,7 +335,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "animation-delay",
-			browsers: [],
 			"syntax": "<time>#",
 			"description": "Defines when the animation will start.",
 			"restrictions": [
@@ -349,7 +343,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "animation-direction",
-			browsers: [],
 			values: [
 				{
 					name: "alternate"
@@ -374,7 +367,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "animation-duration",
-			browsers: [],
 			"syntax": "<time>#",
 			"description": "Defines the length of time that an animation takes to complete one cycle.",
 			"restrictions": [
@@ -383,7 +375,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "animation-fill-mode",
-			browsers: [],
 			values: [
 				{
 					name: "backwards"
@@ -408,7 +399,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "animation-iteration-count",
-			browsers: [],
 			values: [
 				{
 					name: "infinite",
@@ -424,7 +414,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "animation-name",
-			browsers: [],
 			values: [
 				{
 					name: "none",
@@ -440,7 +429,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "animation-play-state",
-			browsers: [],
 			values: [
 				{
 					name: "paused"
@@ -457,7 +445,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "animation-timing-function",
-			browsers: [],
 			"syntax": "<single-timing-function>#",
 			"description": "Describes how the animation will progress over one cycle of its duration.",
 			"restrictions": [
@@ -466,7 +453,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "backface-visibility",
-			browsers: [],
 			values: [
 				{
 					name: "hidden",
@@ -485,7 +471,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "background",
-			browsers: [],
 			values: [
 				{
 					name: "fixed",
@@ -519,7 +504,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "background-attachment",
-			browsers: [],
 			values: [
 				{
 					name: "fixed",
@@ -634,7 +618,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "background-clip",
-			browsers: [],
 			"syntax": "<box>#",
 			"description": "Determines the background painting area.",
 			"restrictions": [
@@ -643,7 +626,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "background-color",
-			browsers: [],
 			"syntax": "<color>",
 			"description": "Sets the background color of an element.",
 			"restrictions": [
@@ -652,7 +634,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "background-image",
-			browsers: [],
 			values: [
 				{
 					name: "none",
@@ -668,7 +649,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "background-origin",
-			browsers: [],
 			"syntax": "<box>#",
 			"description": "For elements rendered as a single box, specifies the background positioning area. For elements rendered as multiple boxes (e.g., inline boxes on several lines, boxes on several pages) specifies which boxes 'box-decoration-break' operates on to determine the background positioning area(s).",
 			"restrictions": [
@@ -677,7 +657,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "background-position",
-			browsers: [],
 			"syntax": "<bg-position>#",
 			"description": "Specifies the initial position of the background image(s) (after any resizing) within their corresponding background positioning area.",
 			"restrictions": [
@@ -688,7 +667,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "background-position-x",
-			browsers: [],
 			values: [
 				{
 					name: "center",
@@ -713,7 +691,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "background-position-y",
-			browsers: [],
 			values: [
 				{
 					name: "bottom",
@@ -738,7 +715,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "background-repeat",
-			browsers: [],
 			values: [],
 			"syntax": "<repeat-style>#",
 			"description": "Specifies how background images are tiled after they have been sized and positioned.",
@@ -748,7 +724,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "background-size",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -802,7 +777,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border",
-			browsers: [],
 			"syntax": "<line-width> || <line-style> || <color>",
 			"description": "Shorthand property for setting border width, style, and color.",
 			"restrictions": [
@@ -921,7 +895,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-bottom",
-			browsers: [],
 			"syntax": "<line-width> || <line-style> || <color>",
 			"description": "Shorthand property for setting border width, style and color.",
 			"restrictions": [
@@ -933,7 +906,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-bottom-color",
-			browsers: [],
 			"syntax": "<color>",
 			"description": "Sets the color of the bottom border.",
 			"restrictions": [
@@ -942,7 +914,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-bottom-left-radius",
-			browsers: [],
 			"syntax": "<length-percentage>{1,2}",
 			"description": "Defines the radii of the bottom left outer border edge.",
 			"restrictions": [
@@ -952,7 +923,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-bottom-right-radius",
-			browsers: [],
 			"syntax": "<length-percentage>{1,2}",
 			"description": "Defines the radii of the bottom right outer border edge.",
 			"restrictions": [
@@ -962,7 +932,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-bottom-style",
-			browsers: [],
 			"syntax": "<line-style>",
 			"description": "Sets the style of the bottom border.",
 			"restrictions": [
@@ -971,7 +940,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-bottom-width",
-			browsers: [],
 			"syntax": "<line-width>",
 			"description": "Sets the thickness of the bottom border.",
 			"restrictions": [
@@ -981,7 +949,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-collapse",
-			browsers: [],
 			values: [
 				{
 					name: "collapse",
@@ -1000,7 +967,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-color",
-			browsers: [],
 			values: [],
 			"syntax": "<color>{1,4}",
 			"description": "The color of the border around all four edges of an element.",
@@ -1010,7 +976,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-image",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -1055,7 +1020,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-image-outset",
-			browsers: [],
 			"syntax": "[ <length> | <number> ]{1,4}",
 			"description": "The values specify the amount by which the border image area extends beyond the border box on the top, right, bottom, and left sides respectively. If the fourth value is absent, it is the same as the second. If the third one is also absent, it is the same as the first. If the second one is also absent, it is the same as the first. Numbers represent multiples of the corresponding border-width.",
 			"restrictions": [
@@ -1065,7 +1029,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-image-repeat",
-			browsers: [],
 			values: [
 				{
 					name: "repeat"
@@ -1091,7 +1054,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-image-slice",
-			browsers: [],
 			values: [
 				{
 					name: "fill",
@@ -1107,7 +1069,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-image-source",
-			browsers: [],
 			values: [
 				{
 					name: "none",
@@ -1122,7 +1083,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-image-width",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -1247,7 +1207,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-left",
-			browsers: [],
 			"syntax": "<line-width> || <line-style> || <color>",
 			"description": "Shorthand property for setting border width, style and color",
 			"restrictions": [
@@ -1259,7 +1218,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-left-color",
-			browsers: [],
 			"syntax": "<color>",
 			"description": "Sets the color of the left border.",
 			"restrictions": [
@@ -1268,7 +1226,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-left-style",
-			browsers: [],
 			"syntax": "<line-style>",
 			"description": "Sets the style of the left border.",
 			"restrictions": [
@@ -1277,7 +1234,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-left-width",
-			browsers: [],
 			"syntax": "<line-width>",
 			"description": "Sets the thickness of the left border.",
 			"restrictions": [
@@ -1287,7 +1243,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-radius",
-			browsers: [],
 			"syntax": "<length-percentage>{1,4} [ / <length-percentage>{1,4} ]?",
 			"description": "Defines the radii of the outer border edge.",
 			"restrictions": [
@@ -1297,7 +1252,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-right",
-			browsers: [],
 			"syntax": "<line-width> || <line-style> || <color>",
 			"description": "Shorthand property for setting border width, style and color",
 			"restrictions": [
@@ -1309,7 +1263,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-right-color",
-			browsers: [],
 			"syntax": "<color>",
 			"description": "Sets the color of the right border.",
 			"restrictions": [
@@ -1318,7 +1271,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-right-style",
-			browsers: [],
 			"syntax": "<line-style>",
 			"description": "Sets the style of the right border.",
 			"restrictions": [
@@ -1327,7 +1279,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-right-width",
-			browsers: [],
 			"syntax": "<line-width>",
 			"description": "Sets the thickness of the right border.",
 			"restrictions": [
@@ -1337,7 +1288,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-spacing",
-			browsers: [],
 			"syntax": "<length> <length>?",
 			"description": "The lengths specify the distance that separates adjoining cell borders. If one length is specified, it gives both the horizontal and vertical spacing. If two are specified, the first gives the horizontal spacing and the second the vertical spacing. Lengths may not be negative.",
 			"restrictions": [
@@ -1346,7 +1296,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-style",
-			browsers: [],
 			values: [],
 			"syntax": "<line-style>{1,4}",
 			"description": "The style of the border around edges of an element.",
@@ -1356,7 +1305,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-top",
-			browsers: [],
 			"syntax": "<line-width> || <line-style> || <color>",
 			"description": "Shorthand property for setting border width, style and color",
 			"restrictions": [
@@ -1368,7 +1316,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-top-color",
-			browsers: [],
 			"syntax": "<color>",
 			"description": "Sets the color of the top border.",
 			"restrictions": [
@@ -1377,7 +1324,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-top-left-radius",
-			browsers: [],
 			"syntax": "<length-percentage>{1,2}",
 			"description": "Defines the radii of the top left outer border edge.",
 			"restrictions": [
@@ -1387,7 +1333,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-top-right-radius",
-			browsers: [],
 			"syntax": "<length-percentage>{1,2}",
 			"description": "Defines the radii of the top right outer border edge.",
 			"restrictions": [
@@ -1397,7 +1342,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-top-style",
-			browsers: [],
 			"syntax": "<line-style>",
 			"description": "Sets the style of the top border.",
 			"restrictions": [
@@ -1406,7 +1350,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-top-width",
-			browsers: [],
 			"syntax": "<line-width>",
 			"description": "Sets the thickness of the top border.",
 			"restrictions": [
@@ -1416,7 +1359,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "border-width",
-			browsers: [],
 			values: [],
 			"syntax": "<line-width>{1,4}",
 			"description": "Shorthand that sets the four 'border-*-width' properties. If it has four values, they set top, right, bottom and left in that order. If left is missing, it is the same as right; if bottom is missing, it is the same as top; if right is missing, it is the same as top.",
@@ -1427,7 +1369,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "bottom",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -1465,7 +1406,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "box-shadow",
-			browsers: [],
 			values: [
 				{
 					name: "inset"
@@ -1485,7 +1425,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "box-sizing",
-			browsers: [],
 			values: [
 				{
 					name: "border-box"
@@ -1641,7 +1580,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "caption-side",
-			browsers: [],
 			values: [
 				{
 					name: "bottom",
@@ -1681,7 +1619,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "clear",
-			browsers: [],
 			values: [
 				{
 					name: "both",
@@ -1708,7 +1645,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "clip",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -1775,7 +1711,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "color",
-			browsers: [],
 			"syntax": "<color>",
 			"description": "Color of an element's text",
 			"restrictions": [
@@ -1811,7 +1746,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "column-count",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -1849,7 +1783,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "column-gap",
-			browsers: [],
 			values: [
 				{
 					name: "normal",
@@ -1865,7 +1798,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "column-rule",
-			browsers: [],
 			"syntax": "<'column-rule-width'> || <'column-rule-style'> || <'column-rule-color'>",
 			"description": "Shorthand for setting 'column-rule-width', 'column-rule-style', and 'column-rule-color' at the same place in the style sheet. Omitted values are set to their initial values.",
 			"restrictions": [
@@ -1877,7 +1809,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "column-rule-color",
-			browsers: [],
 			"syntax": "<color>",
 			"description": "Sets the color of the column rule",
 			"restrictions": [
@@ -1886,7 +1817,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "column-rule-style",
-			browsers: [],
 			"syntax": "<'border-style'>",
 			"description": "Sets the style of the rule between columns of an element.",
 			"restrictions": [
@@ -1895,7 +1825,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "column-rule-width",
-			browsers: [],
 			"syntax": "<'border-width'>",
 			"description": "Sets the width of the rule between columns. Negative values are not allowed.",
 			"restrictions": [
@@ -1905,7 +1834,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "columns",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -1922,7 +1850,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "column-span",
-			browsers: [],
 			values: [
 				{
 					name: "all",
@@ -1941,7 +1868,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "column-width",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -1998,7 +1924,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "content",
-			browsers: [],
 			values: [
 				{
 					name: "attr()"
@@ -2053,7 +1978,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "counter-reset",
-			browsers: [],
 			values: [
 				{
 					name: "none",
@@ -2069,7 +1993,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "cursor",
-			browsers: [],
 			values: [
 				{
 					name: "alias"
@@ -2254,7 +2177,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "direction",
-			browsers: [],
 			values: [
 				{
 					name: "ltr"
@@ -2271,7 +2193,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "display",
-			browsers: [],
 			values: [
 				{
 					name: "block"
@@ -2514,7 +2435,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "empty-cells",
-			browsers: [],
 			values: [
 				{
 					name: "hide"
@@ -2670,7 +2590,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "flex",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -2698,7 +2617,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "flex-basis",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -2722,7 +2640,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "flex-direction",
-			browsers: [],
 			values: [
 				{
 					name: "column",
@@ -2747,7 +2664,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "flex-flow",
-			browsers: [],
 			values: [
 				{
 					name: "column",
@@ -2783,7 +2699,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "flex-grow",
-			browsers: [],
 			"syntax": "<number>",
 			"description": "Sets the flex grow factor. Negative numbers are invalid.",
 			"restrictions": [
@@ -2792,7 +2707,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "flex-shrink",
-			browsers: [],
 			"syntax": "<number>",
 			"description": "Sets the flex shrink factor. Negative numbers are invalid.",
 			"restrictions": [
@@ -2801,7 +2715,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "flex-wrap",
-			browsers: [],
 			values: [
 				{
 					name: "nowrap",
@@ -2823,7 +2736,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "float",
-			browsers: [],
 			values: [
 				{
 					name: "inline-end",
@@ -2889,7 +2801,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "font",
-			browsers: [],
 			values: [
 				{
 					name: "100"
@@ -2998,7 +2909,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "font-family",
-			browsers: [],
 			values: [
 				{
 					name: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"
@@ -3063,7 +2973,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "font-feature-settings",
-			browsers: [],
 			values: [
 				{
 					name: "\"aalt\""
@@ -3491,7 +3400,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "font-size",
-			browsers: [],
 			values: [
 				{
 					name: "large"
@@ -3549,7 +3457,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "font-stretch",
-			browsers: [],
 			values: [
 				{
 					name: "condensed"
@@ -3599,7 +3506,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "font-style",
-			browsers: [],
 			values: [
 				{
 					name: "italic",
@@ -3647,7 +3553,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "font-variant",
-			browsers: [],
 			values: [
 				{
 					name: "normal",
@@ -3930,7 +3835,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "font-weight",
-			browsers: [],
 			values: [
 				{
 					name: "100"
@@ -4048,7 +3952,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "grid-auto-columns",
-			browsers: [],
 			values: [
 				{
 					name: "min-content",
@@ -4103,7 +4006,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "grid-auto-rows",
-			browsers: [],
 			values: [
 				{
 					name: "min-content",
@@ -4495,7 +4397,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "height",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -4531,7 +4432,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "hyphens",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -4690,7 +4590,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "justify-content",
-			browsers: [],
 			values: [
 				{
 					name: "center",
@@ -4776,7 +4675,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "left",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -4792,7 +4690,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "letter-spacing",
-			browsers: [],
 			values: [
 				{
 					name: "normal",
@@ -4855,7 +4752,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "line-height",
-			browsers: [],
 			values: [
 				{
 					name: "normal",
@@ -4872,7 +4768,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "list-style",
-			browsers: [],
 			values: [
 				{
 					name: "armenian"
@@ -4946,7 +4841,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "list-style-image",
-			browsers: [],
 			values: [
 				{
 					name: "none",
@@ -4961,7 +4855,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "list-style-position",
-			browsers: [],
 			values: [
 				{
 					name: "inside"
@@ -4978,7 +4871,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "list-style-type",
-			browsers: [],
 			values: [
 				{
 					name: "armenian",
@@ -5054,7 +4946,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "margin",
-			browsers: [],
 			values: [
 				{
 					name: "auto"
@@ -5107,7 +4998,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "margin-bottom",
-			browsers: [],
 			values: [
 				{
 					name: "auto"
@@ -5162,7 +5052,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "margin-left",
-			browsers: [],
 			values: [
 				{
 					name: "auto"
@@ -5177,7 +5066,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "margin-right",
-			browsers: [],
 			values: [
 				{
 					name: "auto"
@@ -5192,7 +5080,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "margin-top",
-			browsers: [],
 			values: [
 				{
 					name: "auto"
@@ -5445,7 +5332,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "max-height",
-			browsers: [],
 			values: [
 				{
 					name: "none",
@@ -5503,7 +5389,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "max-width",
-			browsers: [],
 			values: [
 				{
 					name: "none",
@@ -5553,7 +5438,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "min-height",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -5605,7 +5489,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "min-width",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -7021,8 +6904,7 @@ export const cssData : CSSData = {
 			],
 			"status": "nonstandard",
 			"syntax": "ignore | normal | select-after | select-before | select-menu | select-same | select-all | none",
-			"description": "Used to indicate whether the element can have focus.",
-			"restrictions": []
+			"description": "Used to indicate whether the element can have focus."
 		},
 		{
 			name: "-moz-user-select",
@@ -7135,8 +7017,7 @@ export const cssData : CSSData = {
 			],
 			"status": "nonstandard",
 			"syntax": "none | chained",
-			"description": "Specifies the zoom behavior that occurs when a user hits the zoom limit during a manipulation.",
-			"restrictions": []
+			"description": "Specifies the zoom behavior that occurs when a user hits the zoom limit during a manipulation."
 		},
 		{
 			name: "-ms-content-zooming",
@@ -7229,8 +7110,7 @@ export const cssData : CSSData = {
 			],
 			"status": "nonstandard",
 			"syntax": "<'-ms-content-zoom-snap-type'> || <'-ms-content-zoom-snap-points'>",
-			"description": "Shorthand property for the -ms-content-zoom-snap-type and -ms-content-zoom-snap-points properties.",
-			"restrictions": []
+			"description": "Shorthand property for the -ms-content-zoom-snap-type and -ms-content-zoom-snap-points properties."
 		},
 		{
 			name: "-ms-content-zoom-snap-points",
@@ -7250,8 +7130,7 @@ export const cssData : CSSData = {
 			],
 			"status": "nonstandard",
 			"syntax": "snapInterval( <percentage>, <percentage> ) | snapList( <percentage># )",
-			"description": "Defines where zoom snap-points are located.",
-			"restrictions": []
+			"description": "Defines where zoom snap-points are located."
 		},
 		{
 			name: "-ms-content-zoom-snap-type",
@@ -7640,8 +7519,7 @@ export const cssData : CSSData = {
 				"E",
 				"IE10"
 			],
-			"description": "Lays out the columns of the grid.",
-			"restrictions": []
+			"description": "Lays out the columns of the grid."
 		},
 		{
 			name: "-ms-grid-column-span",
@@ -7724,8 +7602,7 @@ export const cssData : CSSData = {
 				"E",
 				"IE10"
 			],
-			"description": "Lays out the columns of the grid.",
-			"restrictions": []
+			"description": "Lays out the columns of the grid."
 		},
 		{
 			name: "-ms-grid-row-span",
@@ -7905,8 +7782,7 @@ export const cssData : CSSData = {
 					name: "type"
 				}
 			],
-			"description": "Sets or retrieves the composite document grid properties that specify the layout of text characters.",
-			"restrictions": []
+			"description": "Sets or retrieves the composite document grid properties that specify the layout of text characters."
 		},
 		{
 			name: "-ms-layout-grid-char",
@@ -9555,7 +9431,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "opacity",
-			browsers: [],
 			"syntax": "<number>",
 			"description": "Opacity of an element's text, where 1 is opaque and 0 is entirely transparent.",
 			"restrictions": [
@@ -9564,7 +9439,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "order",
-			browsers: [],
 			"syntax": "<integer>",
 			"description": "Controls the order in which children of a flex container appear within the flex container, by assigning them to ordinal groups.",
 			"restrictions": [
@@ -9854,7 +9728,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "outline",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -9879,7 +9752,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "outline-color",
-			browsers: [],
 			values: [
 				{
 					name: "invert",
@@ -9911,7 +9783,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "outline-style",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -9927,7 +9798,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "outline-width",
-			browsers: [],
 			"syntax": "<line-width>",
 			"description": "Width of the outline.",
 			"restrictions": [
@@ -9937,7 +9807,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "overflow",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -9970,7 +9839,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "overflow-wrap",
-			browsers: [],
 			values: [
 				{
 					name: "break-word",
@@ -9989,7 +9857,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "overflow-x",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -10016,7 +9883,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "overflow-y",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -10057,7 +9923,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "padding",
-			browsers: [],
 			values: [],
 			"syntax": "[ <length> | <percentage> ]{1,4}",
 			"description": "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
@@ -10068,7 +9933,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "padding-bottom",
-			browsers: [],
 			"syntax": "<length> | <percentage>",
 			"description": "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 			"restrictions": [
@@ -10136,7 +10000,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "padding-left",
-			browsers: [],
 			"syntax": "<length> | <percentage>",
 			"description": "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 			"restrictions": [
@@ -10146,7 +10009,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "padding-right",
-			browsers: [],
 			"syntax": "<length> | <percentage>",
 			"description": "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 			"restrictions": [
@@ -10156,7 +10018,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "padding-top",
-			browsers: [],
 			"syntax": "<length> | <percentage>",
 			"description": "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 			"restrictions": [
@@ -10166,7 +10027,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "page-break-after",
-			browsers: [],
 			values: [
 				{
 					name: "always",
@@ -10197,7 +10057,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "page-break-before",
-			browsers: [],
 			values: [
 				{
 					name: "always",
@@ -10228,7 +10087,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "page-break-inside",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -10275,7 +10133,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "perspective",
-			browsers: [],
 			values: [
 				{
 					name: "none",
@@ -10291,7 +10148,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "perspective-origin",
-			browsers: [],
 			"syntax": "<position>",
 			"description": "Establishes the origin for the perspective property. It effectively sets the X and Y position at which the viewer appears to be looking at the children of the element.",
 			"restrictions": [
@@ -10302,7 +10158,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "pointer-events",
-			browsers: [],
 			values: [
 				{
 					name: "all",
@@ -10345,7 +10200,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "position",
-			browsers: [],
 			values: [
 				{
 					name: "absolute"
@@ -10399,7 +10253,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "quotes",
-			browsers: [],
 			values: [
 				{
 					name: "none",
@@ -10468,7 +10321,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "right",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -10818,7 +10670,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "scroll-snap-type",
-			browsers: [],
 			values: [
 				{
 					name: "none",
@@ -11134,7 +10985,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "table-layout",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -11168,7 +11018,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "text-align",
-			browsers: [],
 			values: [
 				{
 					name: "center",
@@ -11267,7 +11116,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "text-decoration",
-			browsers: [],
 			values: [
 				{
 					name: "dashed"
@@ -11385,7 +11233,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "text-indent",
-			browsers: [],
 			values: [],
 			"syntax": "<length-percentage> && hanging? && each-line?",
 			"description": "Specifies the indentation applied to lines of inline content in a block. The indentation only affects the first line of inline content in the block unless the 'hanging' keyword is specified, in which case it affects all lines except the first.",
@@ -11473,7 +11320,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "text-overflow",
-			browsers: [],
 			values: [
 				{
 					name: "clip"
@@ -11521,7 +11367,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "text-shadow",
-			browsers: [],
 			values: [
 				{
 					name: "none",
@@ -11537,7 +11382,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "text-transform",
-			browsers: [],
 			values: [
 				{
 					name: "capitalize"
@@ -11587,7 +11431,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "top",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -11680,7 +11523,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "transform",
-			browsers: [],
 			values: [
 				{
 					name: "matrix()"
@@ -11757,7 +11599,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "transform-origin",
-			browsers: [],
 			"syntax": "[ <length-percentage> | left | center | right | top | bottom ] | [ [ <length-percentage> | left | center | right ] && [ <length-percentage> | top | center | bottom ] ] <length>?",
 			"description": "Establishes the origin of transformation for an element.",
 			"restrictions": [
@@ -11798,7 +11639,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "transition",
-			browsers: [],
 			values: [
 				{
 					name: "all",
@@ -11820,7 +11660,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "transition-delay",
-			browsers: [],
 			"syntax": "<time>#",
 			"description": "Defines when the transition will start. It allows a transition to begin execution some period of time from when it is applied.",
 			"restrictions": [
@@ -11829,7 +11668,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "transition-duration",
-			browsers: [],
 			"syntax": "<time>#",
 			"description": "Specifies how long the transition from the old value to the new value should take.",
 			"restrictions": [
@@ -11838,7 +11676,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "transition-property",
-			browsers: [],
 			values: [
 				{
 					name: "all",
@@ -11857,7 +11694,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "transition-timing-function",
-			browsers: [],
 			"syntax": "<single-transition-timing-function>#",
 			"description": "Describes how the intermediate values used during a transition will be calculated.",
 			"restrictions": [
@@ -11866,7 +11702,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "unicode-bidi",
-			browsers: [],
 			values: [
 				{
 					name: "bidi-override"
@@ -12147,7 +11982,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "user-select",
-			browsers: [],
 			values: [
 				{
 					name: "all",
@@ -12178,7 +12012,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "vertical-align",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -12230,7 +12063,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "visibility",
-			browsers: [],
 			values: [
 				{
 					name: "collapse",
@@ -12915,8 +12747,7 @@ export const cssData : CSSData = {
 			],
 			"status": "nonstandard",
 			"syntax": "[ above | below | right | left ]? <length>? <image>?",
-			"description": "Defines a reflection of a border box.",
-			"restrictions": []
+			"description": "Defines a reflection of a border box."
 		},
 		{
 			name: "-webkit-box-sizing",
@@ -13528,8 +13359,7 @@ export const cssData : CSSData = {
 					name: "normal"
 				}
 			],
-			"description": "Specifies line-breaking rules for CJK (Chinese, Japanese, and Korean) text.",
-			"restrictions": []
+			"description": "Specifies line-breaking rules for CJK (Chinese, Japanese, and Korean) text."
 		},
 		{
 			name: "-webkit-margin-bottom-collapse",
@@ -13722,8 +13552,7 @@ export const cssData : CSSData = {
 					name: "space"
 				}
 			],
-			"description": "Defines the behavior of nonbreaking spaces within text.",
-			"restrictions": []
+			"description": "Defines the behavior of nonbreaking spaces within text."
 		},
 		{
 			name: "-webkit-overflow-scrolling",
@@ -13741,8 +13570,7 @@ export const cssData : CSSData = {
 			],
 			"status": "nonstandard",
 			"syntax": "auto | touch",
-			"description": "Specifies whether to use native-style scrolling in an overflow:scroll element.",
-			"restrictions": []
+			"description": "Specifies whether to use native-style scrolling in an overflow:scroll element."
 		},
 		{
 			name: "-webkit-padding-start",
@@ -14217,7 +14045,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "white-space",
-			browsers: [],
 			values: [
 				{
 					name: "normal",
@@ -14259,7 +14086,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "width",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -14323,7 +14149,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "word-break",
-			browsers: [],
 			values: [
 				{
 					name: "break-all"
@@ -14345,7 +14170,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "word-spacing",
-			browsers: [],
 			values: [
 				{
 					name: "normal",
@@ -14361,7 +14185,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "word-wrap",
-			browsers: [],
 			values: [
 				{
 					name: "break-word",
@@ -14380,7 +14203,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "writing-mode",
-			browsers: [],
 			values: [
 				{
 					name: "horizontal-tb"
@@ -14412,7 +14234,6 @@ export const cssData : CSSData = {
 		},
 		{
 			name: "z-index",
-			browsers: [],
 			values: [
 				{
 					name: "auto",
@@ -15774,7 +15595,6 @@ export const cssData : CSSData = {
 		{
 			name: "text-combine-upright",
 			"syntax": "none | all | [ digits <integer>? ]",
-			browsers: [],
 			"description": "The text-combine-upright CSS property specifies the combination of multiple characters into the space of a single character. If the combined text is wider than 1em, the user agent must fit the contents within 1em. The resulting composition is treated as a single upright glyph for layout and decoration. This property only has an effect in vertical writing modes.\n\nThis is used to produce an effect that is known as tate-chū-yoko (縦中横) in Japanese, or as 直書橫向 in Chinese.",
 			"restrictions": [
 				"none"
@@ -15980,22 +15800,18 @@ export const cssData : CSSData = {
 				"IE5.5",
 				"O9"
 			],
-			"description": "Defines character set of the document.",
-			"restrictions": []
+			"description": "Defines character set of the document."
 		},
 		{
 			name: "@counter-style",
 			browsers: [
 				"FF33"
 			],
-			"description": "Defines a custom counter style.",
-			"restrictions": []
+			"description": "Defines a custom counter style."
 		},
 		{
 			name: "@font-face",
-			browsers: [],
-			"description": "Allows for linking to fonts that are automatically activated when needed. This permits authors to work around the limitation of 'web-safe' fonts, allowing for consistent rendering independent of the fonts available in a given user's environment.",
-			"restrictions": []
+			"description": "Allows for linking to fonts that are automatically activated when needed. This permits authors to work around the limitation of 'web-safe' fonts, allowing for consistent rendering independent of the fonts available in a given user's environment."
 		},
 		{
 			name: "@font-feature-values",
@@ -16003,42 +15819,33 @@ export const cssData : CSSData = {
 				"FF34",
 				"S9.1"
 			],
-			"description": "Defines named values for the indices used to select alternate glyphs for a given font family.",
-			"restrictions": []
+			"description": "Defines named values for the indices used to select alternate glyphs for a given font family."
 		},
 		{
 			name: "@import",
-			browsers: [],
-			"description": "Includes content of another file.",
-			"restrictions": []
+			"description": "Includes content of another file."
 		},
 		{
 			name: "@keyframes",
-			browsers: [],
-			"description": "Defines set of animation key frames.",
-			"restrictions": []
+			"description": "Defines set of animation key frames."
 		},
 		{
 			name: "@media",
-			browsers: [],
-			"description": "Defines a stylesheet for a particular media type.",
-			"restrictions": []
+			"description": "Defines a stylesheet for a particular media type."
 		},
 		{
 			name: "@-moz-document",
 			browsers: [
 				"FF1.8"
 			],
-			"description": "Gecko-specific at-rule that restricts the style rules contained within it based on the URL of the document.",
-			"restrictions": []
+			"description": "Gecko-specific at-rule that restricts the style rules contained within it based on the URL of the document."
 		},
 		{
 			name: "@-moz-keyframes",
 			browsers: [
 				"FF5"
 			],
-			"description": "Defines set of animation key frames.",
-			"restrictions": []
+			"description": "Defines set of animation key frames."
 		},
 		{
 			name: "@-ms-viewport",
@@ -16046,30 +15853,25 @@ export const cssData : CSSData = {
 				"E",
 				"IE10"
 			],
-			"description": "Specifies the size, zoom factor, and orientation of the viewport.",
-			"restrictions": []
+			"description": "Specifies the size, zoom factor, and orientation of the viewport."
 		},
 		{
 			name: "@namespace",
-			browsers: [],
-			"description": "Declares a prefix and associates it with a namespace name.",
-			"restrictions": []
+			"description": "Declares a prefix and associates it with a namespace name."
 		},
 		{
 			name: "@-o-keyframes",
 			browsers: [
 				"O12"
 			],
-			"description": "Defines set of animation key frames.",
-			"restrictions": []
+			"description": "Defines set of animation key frames."
 		},
 		{
 			name: "@-o-viewport",
 			browsers: [
 				"O11"
 			],
-			"description": "Specifies the size, zoom factor, and orientation of the viewport.",
-			"restrictions": []
+			"description": "Specifies the size, zoom factor, and orientation of the viewport."
 		},
 		{
 			name: "@page",
@@ -16080,8 +15882,7 @@ export const cssData : CSSData = {
 				"IE8",
 				"O6"
 			],
-			"description": "Directive defines various page parameters.",
-			"restrictions": []
+			"description": "Directive defines various page parameters."
 		},
 		{
 			name: "@supports",
@@ -16092,8 +15893,7 @@ export const cssData : CSSData = {
 				"C28",
 				"O12.1"
 			],
-			"description": "A conditional group rule whose condition tests whether the user agent supports CSS property:value pairs.",
-			"restrictions": []
+			"description": "A conditional group rule whose condition tests whether the user agent supports CSS property:value pairs."
 		},
 		{
 			name: "@-webkit-keyframes",
@@ -16101,16 +15901,13 @@ export const cssData : CSSData = {
 				"C",
 				"S4"
 			],
-			"description": "Defines set of animation key frames.",
-			"restrictions": []
+			"description": "Defines set of animation key frames."
 		}
 	],
 	"pseudoClasses": [
 		{
 			name: ":active",
-			browsers: [],
-			"description": "Applies while an element is being activated by the user. For example, between the times the user presses the mouse button and releases it.",
-			"restrictions": []
+			"description": "Applies while an element is being activated by the user. For example, between the times the user presses the mouse button and releases it."
 		},
 		{
 			name: ":any-link",
@@ -16120,14 +15917,11 @@ export const cssData : CSSData = {
 				"C",
 				"O"
 			],
-			"description": "Represents an element that acts as the source anchor of a hyperlink. Applies to both visited and unvisited links.",
-			"restrictions": []
+			"description": "Represents an element that acts as the source anchor of a hyperlink. Applies to both visited and unvisited links."
 		},
 		{
 			name: ":checked",
-			browsers: [],
-			"description": "Radio and checkbox elements can be toggled by the user. Some menu items are 'checked' when the user selects them. When such elements are toggled 'on' the :checked pseudo-class applies.",
-			"restrictions": []
+			"description": "Radio and checkbox elements can be toggled by the user. Some menu items are 'checked' when the user selects them. When such elements are toggled 'on' the :checked pseudo-class applies."
 		},
 		{
 			name: ":corner-present",
@@ -16135,8 +15929,7 @@ export const cssData : CSSData = {
 				"C",
 				"S5"
 			],
-			"description": "Non-standard. Indicates whether or not a scrollbar corner is present.",
-			"restrictions": []
+			"description": "Non-standard. Indicates whether or not a scrollbar corner is present."
 		},
 		{
 			name: ":decrement",
@@ -16144,8 +15937,7 @@ export const cssData : CSSData = {
 				"C",
 				"S5"
 			],
-			"description": "Non-standard. Applies to buttons and track pieces. Indicates whether or not the button or track piece will decrement the view’s position when used.",
-			"restrictions": []
+			"description": "Non-standard. Applies to buttons and track pieces. Indicates whether or not the button or track piece will decrement the view’s position when used."
 		},
 		{
 			name: ":default",
@@ -16155,14 +15947,11 @@ export const cssData : CSSData = {
 				"C10",
 				"O10"
 			],
-			"description": "Applies to the one or more UI elements that are the default among a set of similar elements. Typically applies to context menu items, buttons, and select lists/menus.",
-			"restrictions": []
+			"description": "Applies to the one or more UI elements that are the default among a set of similar elements. Typically applies to context menu items, buttons, and select lists/menus."
 		},
 		{
 			name: ":disabled",
-			browsers: [],
-			"description": "Represents user interface elements that are in a disabled state; such elements have a corresponding enabled state.",
-			"restrictions": []
+			"description": "Represents user interface elements that are in a disabled state; such elements have a corresponding enabled state."
 		},
 		{
 			name: ":double-button",
@@ -16170,20 +15959,15 @@ export const cssData : CSSData = {
 				"C",
 				"S5"
 			],
-			"description": "Non-standard. Applies to buttons and track pieces. Applies when both buttons are displayed together at the same end of the scrollbar.",
-			"restrictions": []
+			"description": "Non-standard. Applies to buttons and track pieces. Applies when both buttons are displayed together at the same end of the scrollbar."
 		},
 		{
 			name: ":empty",
-			browsers: [],
-			"description": "Represents an element that has no children at all.",
-			"restrictions": []
+			"description": "Represents an element that has no children at all."
 		},
 		{
 			name: ":enabled",
-			browsers: [],
-			"description": "Represents user interface elements that are in an enabled state; such elements have a corresponding disabled state.",
-			"restrictions": []
+			"description": "Represents user interface elements that are in an enabled state; such elements have a corresponding disabled state."
 		},
 		{
 			name: ":end",
@@ -16191,8 +15975,7 @@ export const cssData : CSSData = {
 				"C",
 				"S5"
 			],
-			"description": "Non-standard. Applies to buttons and track pieces. Indicates whether the object is placed after the thumb.",
-			"restrictions": []
+			"description": "Non-standard. Applies to buttons and track pieces. Indicates whether the object is placed after the thumb."
 		},
 		{
 			name: ":first",
@@ -16201,26 +15984,19 @@ export const cssData : CSSData = {
 				"IE8",
 				"O9.2"
 			],
-			"description": "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context.",
-			"restrictions": []
+			"description": "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context."
 		},
 		{
 			name: ":first-child",
-			browsers: [],
-			"description": "Same as :nth-child(1). Represents an element that is the first child of some other element.",
-			"restrictions": []
+			"description": "Same as :nth-child(1). Represents an element that is the first child of some other element."
 		},
 		{
 			name: ":first-of-type",
-			browsers: [],
-			"description": "Same as :nth-of-type(1). Represents an element that is the first sibling of its type in the list of children of its parent element.",
-			"restrictions": []
+			"description": "Same as :nth-of-type(1). Represents an element that is the first sibling of its type in the list of children of its parent element."
 		},
 		{
 			name: ":focus",
-			browsers: [],
-			"description": "Applies while an element has the focus (accepts keyboard or mouse events, or other forms of input).",
-			"restrictions": []
+			"description": "Applies while an element has the focus (accepts keyboard or mouse events, or other forms of input)."
 		},
 		{
 			name: ":fullscreen",
@@ -16231,8 +16007,7 @@ export const cssData : CSSData = {
 				"C15",
 				"IE11"
 			],
-			"description": "Matches any element that has its fullscreen flag set.",
-			"restrictions": []
+			"description": "Matches any element that has its fullscreen flag set."
 		},
 		{
 			name: ":future",
@@ -16241,8 +16016,7 @@ export const cssData : CSSData = {
 				"O16",
 				"S6"
 			],
-			"description": "Represents any element that is defined to occur entirely after a :current element.",
-			"restrictions": []
+			"description": "Represents any element that is defined to occur entirely after a :current element."
 		},
 		{
 			name: ":horizontal",
@@ -16250,8 +16024,7 @@ export const cssData : CSSData = {
 				"C",
 				"S5"
 			],
-			"description": "Non-standard. Applies to any scrollbar pieces that have a horizontal orientation.",
-			"restrictions": []
+			"description": "Non-standard. Applies to any scrollbar pieces that have a horizontal orientation."
 		},
 		{
 			name: ":host",
@@ -16261,8 +16034,7 @@ export const cssData : CSSData = {
 				"C",
 				"O"
 			],
-			"description": "When evaluated in the context of a shadow tree, matches the shadow tree’s host element.",
-			"restrictions": []
+			"description": "When evaluated in the context of a shadow tree, matches the shadow tree’s host element."
 		},
 		{
 			name: ":host()",
@@ -16270,8 +16042,7 @@ export const cssData : CSSData = {
 				"C35",
 				"O22"
 			],
-			"description": "When evaluated in the context of a shadow tree, it matches the shadow tree’s host element if the host element, in its normal context, matches the selector argument.",
-			"restrictions": []
+			"description": "When evaluated in the context of a shadow tree, it matches the shadow tree’s host element if the host element, in its normal context, matches the selector argument."
 		},
 		{
 			name: ":host-context()",
@@ -16279,14 +16050,11 @@ export const cssData : CSSData = {
 				"C35",
 				"O22"
 			],
-			"description": "Tests whether there is an ancestor, outside the shadow tree, which matches a particular selector.",
-			"restrictions": []
+			"description": "Tests whether there is an ancestor, outside the shadow tree, which matches a particular selector."
 		},
 		{
 			name: ":hover",
-			browsers: [],
-			"description": "Applies while the user designates an element with a pointing device, but does not necessarily activate it. For example, a visual user agent could apply this pseudo-class when the cursor (mouse pointer) hovers over a box generated by the element.",
-			"restrictions": []
+			"description": "Applies while the user designates an element with a pointing device, but does not necessarily activate it. For example, a visual user agent could apply this pseudo-class when the cursor (mouse pointer) hovers over a box generated by the element."
 		},
 		{
 			name: ":increment",
@@ -16294,14 +16062,11 @@ export const cssData : CSSData = {
 				"C",
 				"S5"
 			],
-			"description": "Non-standard. Applies to buttons and track pieces. Indicates whether or not the button or track piece will increment the view’s position when used.",
-			"restrictions": []
+			"description": "Non-standard. Applies to buttons and track pieces. Indicates whether or not the button or track piece will increment the view’s position when used."
 		},
 		{
 			name: ":indeterminate",
-			browsers: [],
-			"description": "Applies to UI elements whose value is in an indeterminate state.",
-			"restrictions": []
+			"description": "Applies to UI elements whose value is in an indeterminate state."
 		},
 		{
 			name: ":in-range",
@@ -16312,14 +16077,11 @@ export const cssData : CSSData = {
 				"C10",
 				"O11"
 			],
-			"description": "Used in conjunction with the min and max attributes, whether on a range input, a number field, or any other types that accept those attributes.",
-			"restrictions": []
+			"description": "Used in conjunction with the min and max attributes, whether on a range input, a number field, or any other types that accept those attributes."
 		},
 		{
 			name: ":invalid",
-			browsers: [],
-			"description": "An element is :valid or :invalid when it is, respectively, valid or invalid with respect to data validity semantics defined by a different specification.",
-			"restrictions": []
+			"description": "An element is :valid or :invalid when it is, respectively, valid or invalid with respect to data validity semantics defined by a different specification."
 		},
 		{
 			name: ":lang()",
@@ -16331,20 +16093,15 @@ export const cssData : CSSData = {
 				"O8",
 				"S3"
 			],
-			"description": "Represents an element that is in language specified.",
-			"restrictions": []
+			"description": "Represents an element that is in language specified."
 		},
 		{
 			name: ":last-child",
-			browsers: [],
-			"description": "Same as :nth-last-child(1). Represents an element that is the last child of some other element.",
-			"restrictions": []
+			"description": "Same as :nth-last-child(1). Represents an element that is the last child of some other element."
 		},
 		{
 			name: ":last-of-type",
-			browsers: [],
-			"description": "Same as :nth-last-of-type(1). Represents an element that is the last sibling of its type in the list of children of its parent element.",
-			"restrictions": []
+			"description": "Same as :nth-last-of-type(1). Represents an element that is the last sibling of its type in the list of children of its parent element."
 		},
 		{
 			name: ":left",
@@ -16353,182 +16110,158 @@ export const cssData : CSSData = {
 				"IE8",
 				"O9.2"
 			],
-			"description": "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context.",
-			"restrictions": []
+			"description": "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context."
 		},
 		{
 			name: ":link",
-			browsers: [],
-			"description": "Applies to links that have not yet been visited.",
-			"restrictions": []
+			"description": "Applies to links that have not yet been visited."
 		},
 		{
 			name: ":matches()",
 			browsers: [
 				"S9"
 			],
-			"description": "Takes a selector list as its argument. It represents an element that is represented by its argument.",
-			"restrictions": []
+			"description": "Takes a selector list as its argument. It represents an element that is represented by its argument."
 		},
 		{
 			name: ":-moz-any()",
 			browsers: [
 				"FF4"
 			],
-			"description": "Represents an element that is represented by the selector list passed as its argument. Standardized as :matches().",
-			"restrictions": []
+			"description": "Represents an element that is represented by the selector list passed as its argument. Standardized as :matches()."
 		},
 		{
 			name: ":-moz-any-link",
 			browsers: [
 				"FF1"
 			],
-			"description": "Represents an element that acts as the source anchor of a hyperlink. Applies to both visited and unvisited links.",
-			"restrictions": []
+			"description": "Represents an element that acts as the source anchor of a hyperlink. Applies to both visited and unvisited links."
 		},
 		{
 			name: ":-moz-broken",
 			browsers: [
 				"FF3"
 			],
-			"description": "Non-standard. Matches elements representing broken images.",
-			"restrictions": []
+			"description": "Non-standard. Matches elements representing broken images."
 		},
 		{
 			name: ":-moz-drag-over",
 			browsers: [
 				"FF1"
 			],
-			"description": "Non-standard. Matches elements when a drag-over event applies to it.",
-			"restrictions": []
+			"description": "Non-standard. Matches elements when a drag-over event applies to it."
 		},
 		{
 			name: ":-moz-first-node",
 			browsers: [
 				"FF1"
 			],
-			"description": "Non-standard. Represents an element that is the first child node of some other element.",
-			"restrictions": []
+			"description": "Non-standard. Represents an element that is the first child node of some other element."
 		},
 		{
 			name: ":-moz-focusring",
 			browsers: [
 				"FF4"
 			],
-			"description": "Non-standard. Matches an element that has focus and focus ring drawing is enabled in the browser.",
-			"restrictions": []
+			"description": "Non-standard. Matches an element that has focus and focus ring drawing is enabled in the browser."
 		},
 		{
 			name: ":-moz-full-screen",
 			browsers: [
 				"FF9"
 			],
-			"description": "Matches any element that has its fullscreen flag set. Standardized as :fullscreen.",
-			"restrictions": []
+			"description": "Matches any element that has its fullscreen flag set. Standardized as :fullscreen."
 		},
 		{
 			name: ":-moz-last-node",
 			browsers: [
 				"FF1"
 			],
-			"description": "Non-standard. Represents an element that is the last child node of some other element.",
-			"restrictions": []
+			"description": "Non-standard. Represents an element that is the last child node of some other element."
 		},
 		{
 			name: ":-moz-loading",
 			browsers: [
 				"FF3"
 			],
-			"description": "Non-standard. Matches elements, such as images, that haven’t started loading yet.",
-			"restrictions": []
+			"description": "Non-standard. Matches elements, such as images, that haven’t started loading yet."
 		},
 		{
 			name: ":-moz-only-whitespace",
 			browsers: [
 				"FF1.5"
 			],
-			"description": "The same as :empty, except that it additionally matches elements that only contain code points affected by whitespace processing. Standardized as :blank.",
-			"restrictions": []
+			"description": "The same as :empty, except that it additionally matches elements that only contain code points affected by whitespace processing. Standardized as :blank."
 		},
 		{
 			name: ":-moz-placeholder",
 			browsers: [
 				"FF4"
 			],
-			"description": "Deprecated. Represents placeholder text in an input field. Use ::-moz-placeholder for Firefox 19+.",
-			"restrictions": []
+			"description": "Deprecated. Represents placeholder text in an input field. Use ::-moz-placeholder for Firefox 19+."
 		},
 		{
 			name: ":-moz-submit-invalid",
 			browsers: [
 				"FF4"
 			],
-			"description": "Non-standard. Represents any submit button when the contents of the associated form are not valid.",
-			"restrictions": []
+			"description": "Non-standard. Represents any submit button when the contents of the associated form are not valid."
 		},
 		{
 			name: ":-moz-suppressed",
 			browsers: [
 				"FF3"
 			],
-			"description": "Non-standard. Matches elements representing images that have been blocked from loading.",
-			"restrictions": []
+			"description": "Non-standard. Matches elements representing images that have been blocked from loading."
 		},
 		{
 			name: ":-moz-ui-invalid",
 			browsers: [
 				"FF4"
 			],
-			"description": "Non-standard. Represents any validated form element whose value isn't valid ",
-			"restrictions": []
+			"description": "Non-standard. Represents any validated form element whose value isn't valid "
 		},
 		{
 			name: ":-moz-ui-valid",
 			browsers: [
 				"FF4"
 			],
-			"description": "Non-standard. Represents any validated form element whose value is valid ",
-			"restrictions": []
+			"description": "Non-standard. Represents any validated form element whose value is valid "
 		},
 		{
 			name: ":-moz-user-disabled",
 			browsers: [
 				"FF3"
 			],
-			"description": "Non-standard. Matches elements representing images that have been disabled due to the user’s preferences.",
-			"restrictions": []
+			"description": "Non-standard. Matches elements representing images that have been disabled due to the user’s preferences."
 		},
 		{
 			name: ":-moz-window-inactive",
 			browsers: [
 				"FF4"
 			],
-			"description": "Non-standard. Matches elements in an inactive window.",
-			"restrictions": []
+			"description": "Non-standard. Matches elements in an inactive window."
 		},
 		{
 			name: ":-ms-fullscreen",
 			browsers: [
 				"IE11"
 			],
-			"description": "Matches any element that has its fullscreen flag set.",
-			"restrictions": []
+			"description": "Matches any element that has its fullscreen flag set."
 		},
 		{
 			name: ":-ms-input-placeholder",
 			browsers: [
 				"IE10"
 			],
-			"description": "Represents placeholder text in an input field. Note: for Edge use the pseudo-element ::-ms-input-placeholder. Standardized as ::placeholder.",
-			"restrictions": []
+			"description": "Represents placeholder text in an input field. Note: for Edge use the pseudo-element ::-ms-input-placeholder. Standardized as ::placeholder."
 		},
 		{
 			name: ":-ms-keyboard-active",
 			browsers: [
 				"IE10"
 			],
-			"description": "Windows Store apps only. Applies one or more styles to an element when it has focus and the user presses the space bar.",
-			"restrictions": []
+			"description": "Windows Store apps only. Applies one or more styles to an element when it has focus and the user presses the space bar."
 		},
 		{
 			name: ":-ms-lang()",
@@ -16536,8 +16269,7 @@ export const cssData : CSSData = {
 				"E",
 				"IE10"
 			],
-			"description": "Represents an element that is in the language specified. Accepts a comma separated list of language tokens.",
-			"restrictions": []
+			"description": "Represents an element that is in the language specified. Accepts a comma separated list of language tokens."
 		},
 		{
 			name: ":no-button",
@@ -16545,8 +16277,7 @@ export const cssData : CSSData = {
 				"C",
 				"S5"
 			],
-			"description": "Non-standard. Applies to track pieces. Applies when there is no button at that end of the track.",
-			"restrictions": []
+			"description": "Non-standard. Applies to track pieces. Applies when there is no button at that end of the track."
 		},
 		{
 			name: ":not()",
@@ -16558,8 +16289,7 @@ export const cssData : CSSData = {
 				"O9.5",
 				"S2"
 			],
-			"description": "The negation pseudo-class, :not(X), is a functional notation taking a simple selector (excluding the negation pseudo-class itself) as an argument. It represents an element that is not represented by its argument.",
-			"restrictions": []
+			"description": "The negation pseudo-class, :not(X), is a functional notation taking a simple selector (excluding the negation pseudo-class itself) as an argument. It represents an element that is not represented by its argument."
 		},
 		{
 			name: ":nth-child()",
@@ -16571,8 +16301,7 @@ export const cssData : CSSData = {
 				"O9.5",
 				"S3.1"
 			],
-			"description": "Represents an element that has an+b-1 siblings before it in the document tree, for any positive integer or zero value of n, and has a parent element.",
-			"restrictions": []
+			"description": "Represents an element that has an+b-1 siblings before it in the document tree, for any positive integer or zero value of n, and has a parent element."
 		},
 		{
 			name: ":nth-last-child()",
@@ -16584,8 +16313,7 @@ export const cssData : CSSData = {
 				"O9.5",
 				"S3.1"
 			],
-			"description": "Represents an element that has an+b-1 siblings after it in the document tree, for any positive integer or zero value of n, and has a parent element.",
-			"restrictions": []
+			"description": "Represents an element that has an+b-1 siblings after it in the document tree, for any positive integer or zero value of n, and has a parent element."
 		},
 		{
 			name: ":nth-last-of-type()",
@@ -16597,8 +16325,7 @@ export const cssData : CSSData = {
 				"O9.5",
 				"S3.1"
 			],
-			"description": "Represents an element that has an+b-1 siblings with the same expanded element name after it in the document tree, for any zero or positive integer value of n, and has a parent element.",
-			"restrictions": []
+			"description": "Represents an element that has an+b-1 siblings with the same expanded element name after it in the document tree, for any zero or positive integer value of n, and has a parent element."
 		},
 		{
 			name: ":nth-of-type()",
@@ -16610,26 +16337,19 @@ export const cssData : CSSData = {
 				"O9.5",
 				"S3.1"
 			],
-			"description": "Represents an element that has an+b-1 siblings with the same expanded element name before it in the document tree, for any zero or positive integer value of n, and has a parent element.",
-			"restrictions": []
+			"description": "Represents an element that has an+b-1 siblings with the same expanded element name before it in the document tree, for any zero or positive integer value of n, and has a parent element."
 		},
 		{
 			name: ":only-child",
-			browsers: [],
-			"description": "Represents an element that has a parent element and whose parent element has no other element children. Same as :first-child:last-child or :nth-child(1):nth-last-child(1), but with a lower specificity.",
-			"restrictions": []
+			"description": "Represents an element that has a parent element and whose parent element has no other element children. Same as :first-child:last-child or :nth-child(1):nth-last-child(1), but with a lower specificity."
 		},
 		{
 			name: ":only-of-type",
-			browsers: [],
-			"description": "Matches every element that is the only child of its type, of its parent. Same as :first-of-type:last-of-type or :nth-of-type(1):nth-last-of-type(1), but with a lower specificity.",
-			"restrictions": []
+			"description": "Matches every element that is the only child of its type, of its parent. Same as :first-of-type:last-of-type or :nth-of-type(1):nth-last-of-type(1), but with a lower specificity."
 		},
 		{
 			name: ":optional",
-			browsers: [],
-			"description": "A form element is :required or :optional if a value for it is, respectively, required or optional before the form it belongs to is submitted. Elements that are not form elements are neither required nor optional.",
-			"restrictions": []
+			"description": "A form element is :required or :optional if a value for it is, respectively, required or optional before the form it belongs to is submitted. Elements that are not form elements are neither required nor optional."
 		},
 		{
 			name: ":out-of-range",
@@ -16640,8 +16360,7 @@ export const cssData : CSSData = {
 				"C10",
 				"O11"
 			],
-			"description": "Used in conjunction with the min and max attributes, whether on a range input, a number field, or any other types that accept those attributes.",
-			"restrictions": []
+			"description": "Used in conjunction with the min and max attributes, whether on a range input, a number field, or any other types that accept those attributes."
 		},
 		{
 			name: ":past",
@@ -16650,8 +16369,7 @@ export const cssData : CSSData = {
 				"O16",
 				"S6"
 			],
-			"description": "Represents any element that is defined to occur entirely prior to a :current element.",
-			"restrictions": []
+			"description": "Represents any element that is defined to occur entirely prior to a :current element."
 		},
 		{
 			name: ":read-only",
@@ -16662,8 +16380,7 @@ export const cssData : CSSData = {
 				"C",
 				"O"
 			],
-			"description": "An element whose contents are not user-alterable is :read-only. However, elements whose contents are user-alterable (such as text input fields) are considered to be in a :read-write state. In typical documents, most elements are :read-only.",
-			"restrictions": []
+			"description": "An element whose contents are not user-alterable is :read-only. However, elements whose contents are user-alterable (such as text input fields) are considered to be in a :read-write state. In typical documents, most elements are :read-only."
 		},
 		{
 			name: ":read-write",
@@ -16674,14 +16391,11 @@ export const cssData : CSSData = {
 				"C",
 				"O"
 			],
-			"description": "An element whose contents are not user-alterable is :read-only. However, elements whose contents are user-alterable (such as text input fields) are considered to be in a :read-write state. In typical documents, most elements are :read-only.",
-			"restrictions": []
+			"description": "An element whose contents are not user-alterable is :read-only. However, elements whose contents are user-alterable (such as text input fields) are considered to be in a :read-write state. In typical documents, most elements are :read-only."
 		},
 		{
 			name: ":required",
-			browsers: [],
-			"description": "A form element is :required or :optional if a value for it is, respectively, required or optional before the form it belongs to is submitted. Elements that are not form elements are neither required nor optional.",
-			"restrictions": []
+			"description": "A form element is :required or :optional if a value for it is, respectively, required or optional before the form it belongs to is submitted. Elements that are not form elements are neither required nor optional."
 		},
 		{
 			name: ":right",
@@ -16690,8 +16404,7 @@ export const cssData : CSSData = {
 				"IE8",
 				"O9.2"
 			],
-			"description": "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context.",
-			"restrictions": []
+			"description": "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context."
 		},
 		{
 			name: ":root",
@@ -16702,8 +16415,7 @@ export const cssData : CSSData = {
 				"IE9",
 				"O9.5"
 			],
-			"description": "Represents an element that is the root of the document. In HTML 4, this is always the HTML element.",
-			"restrictions": []
+			"description": "Represents an element that is the root of the document. In HTML 4, this is always the HTML element."
 		},
 		{
 			name: ":scope",
@@ -16712,8 +16424,7 @@ export const cssData : CSSData = {
 				"S7",
 				"O15"
 			],
-			"description": "Represents any element that is in the contextual reference element set.",
-			"restrictions": []
+			"description": "Represents any element that is in the contextual reference element set."
 		},
 		{
 			name: ":single-button",
@@ -16721,8 +16432,7 @@ export const cssData : CSSData = {
 				"C",
 				"S5"
 			],
-			"description": "Non-standard. Applies to buttons and track pieces. Applies when both buttons are displayed separately at either end of the scrollbar.",
-			"restrictions": []
+			"description": "Non-standard. Applies to buttons and track pieces. Applies when both buttons are displayed separately at either end of the scrollbar."
 		},
 		{
 			name: ":start",
@@ -16730,20 +16440,15 @@ export const cssData : CSSData = {
 				"C",
 				"S5"
 			],
-			"description": "Non-standard. Applies to buttons and track pieces. Indicates whether the object is placed before the thumb.",
-			"restrictions": []
+			"description": "Non-standard. Applies to buttons and track pieces. Indicates whether the object is placed before the thumb."
 		},
 		{
 			name: ":target",
-			browsers: [],
-			"description": "Some URIs refer to a location within a resource. This kind of URI ends with a 'number sign' (#) followed by an anchor identifier (called the fragment identifier).",
-			"restrictions": []
+			"description": "Some URIs refer to a location within a resource. This kind of URI ends with a 'number sign' (#) followed by an anchor identifier (called the fragment identifier)."
 		},
 		{
 			name: ":valid",
-			browsers: [],
-			"description": "An element is :valid or :invalid when it is, respectively, valid or invalid with respect to data validity semantics defined by a different specification.",
-			"restrictions": []
+			"description": "An element is :valid or :invalid when it is, respectively, valid or invalid with respect to data validity semantics defined by a different specification."
 		},
 		{
 			name: ":vertical",
@@ -16751,14 +16456,11 @@ export const cssData : CSSData = {
 				"C",
 				"S5"
 			],
-			"description": "Non-standard. Applies to any scrollbar pieces that have a vertical orientation.",
-			"restrictions": []
+			"description": "Non-standard. Applies to any scrollbar pieces that have a vertical orientation."
 		},
 		{
 			name: ":visited",
-			browsers: [],
-			"description": "Applies once the link has been visited by the user.",
-			"restrictions": []
+			"description": "Applies once the link has been visited by the user."
 		},
 		{
 			name: ":-webkit-any()",
@@ -16766,8 +16468,7 @@ export const cssData : CSSData = {
 				"C",
 				"S5"
 			],
-			"description": "Represents an element that is represented by the selector list passed as its argument. Standardized as :matches().",
-			"restrictions": []
+			"description": "Represents an element that is represented by the selector list passed as its argument. Standardized as :matches()."
 		},
 		{
 			name: ":-webkit-full-screen",
@@ -16775,8 +16476,7 @@ export const cssData : CSSData = {
 				"C",
 				"S6"
 			],
-			"description": "Matches any element that has its fullscreen flag set. Standardized as :fullscreen.",
-			"restrictions": []
+			"description": "Matches any element that has its fullscreen flag set. Standardized as :fullscreen."
 		},
 		{
 			name: ":window-inactive",
@@ -16784,8 +16484,7 @@ export const cssData : CSSData = {
 				"C",
 				"S3"
 			],
-			"description": "Non-standard. Applies to all scrollbar pieces. Indicates whether or not the window containing the scrollbar is currently active.",
-			"restrictions": []
+			"description": "Non-standard. Applies to all scrollbar pieces. Indicates whether or not the window containing the scrollbar is currently active."
 		},
 		{
 			name: ":blank",
@@ -16793,8 +16492,7 @@ export const cssData : CSSData = {
 			browsers: [
 				"FF"
 			],
-			"description": "The :blank CSS pseudo-class selects empty user input elements (eg. <input> or <textarea>).",
-			"restrictions": []
+			"description": "The :blank CSS pseudo-class selects empty user input elements (eg. <input> or <textarea>)."
 		},
 		{
 			name: ":defined",
@@ -16805,16 +16503,14 @@ export const cssData : CSSData = {
 				"C",
 				"O"
 			],
-			"description": "The :defined CSS pseudo-class represents any element that has been defined. This includes any standard element built in to the browser, and custom elements that have been successfully defined (i.e. with the CustomElementRegistry.define() method).",
-			"restrictions": []
+			"description": "The :defined CSS pseudo-class represents any element that has been defined. This includes any standard element built in to the browser, and custom elements that have been successfully defined (i.e. with the CustomElementRegistry.define() method)."
 		},
 		{
 			name: ":dir",
 			browsers: [
 				"FF49"
 			],
-			"description": "The :dir() CSS pseudo-class matches elements based on the directionality of the text contained in them.",
-			"restrictions": []
+			"description": "The :dir() CSS pseudo-class matches elements based on the directionality of the text contained in them."
 		},
 		{
 			name: ":focus-within",
@@ -16825,20 +16521,17 @@ export const cssData : CSSData = {
 				"C60",
 				"O47"
 			],
-			"description": "The :focus-within pseudo-class applies to any element for which the :focus pseudo class applies as well as to an element whose descendant in the flat tree (including non-element nodes, such as text nodes) matches the conditions for matching :focus.",
-			"restrictions": []
+			"description": "The :focus-within pseudo-class applies to any element for which the :focus pseudo class applies as well as to an element whose descendant in the flat tree (including non-element nodes, such as text nodes) matches the conditions for matching :focus."
 		},
 		{
 			name: ":has",
 			"status": "experimental",
-			"description": ":The :has() CSS pseudo-class represents an element if any of the selectors passed as parameters (relative to the :scope of the given element), match at least one element.",
-			"restrictions": []
+			"description": ":The :has() CSS pseudo-class represents an element if any of the selectors passed as parameters (relative to the :scope of the given element), match at least one element."
 		},
 		{
 			name: ":is",
 			"status": "experimental",
-			"description": "The :is() CSS pseudo-class function takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list. This is useful for writing large selectors in a more compact form.",
-			"restrictions": []
+			"description": "The :is() CSS pseudo-class function takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list. This is useful for writing large selectors in a more compact form."
 		},
 		{
 			name: ":placeholder-shown",
@@ -16850,22 +16543,18 @@ export const cssData : CSSData = {
 				"IE10",
 				"O34"
 			],
-			"description": "The :placeholder-shown CSS pseudo-class represents any <input> or <textarea> element that is currently displaying placeholder text.",
-			"restrictions": []
+			"description": "The :placeholder-shown CSS pseudo-class represents any <input> or <textarea> element that is currently displaying placeholder text."
 		},
 		{
 			name: ":where",
 			"status": "experimental",
-			"description": "The :where() CSS pseudo-class function takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list.",
-			"restrictions": []
+			"description": "The :where() CSS pseudo-class function takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list."
 		}
 	],
 	"pseudoElements": [
 		{
 			name: "::after",
-			browsers: [],
-			"description": "Represents a styleable child pseudo-element immediately after the originating element’s actual content.",
-			"restrictions": []
+			"description": "Represents a styleable child pseudo-element immediately after the originating element’s actual content."
 		},
 		{
 			name: "::backdrop",
@@ -16875,14 +16564,11 @@ export const cssData : CSSData = {
 				"C37",
 				"IE11"
 			],
-			"description": "Used to create a backdrop that hides the underlying document for an element in a top layer (such as an element that is displayed fullscreen).",
-			"restrictions": []
+			"description": "Used to create a backdrop that hides the underlying document for an element in a top layer (such as an element that is displayed fullscreen)."
 		},
 		{
 			name: "::before",
-			browsers: [],
-			"description": "Represents a styleable child pseudo-element immediately before the originating element’s actual content.",
-			"restrictions": []
+			"description": "Represents a styleable child pseudo-element immediately before the originating element’s actual content."
 		},
 		{
 			name: "::content",
@@ -16890,16 +16576,14 @@ export const cssData : CSSData = {
 				"C35",
 				"O22"
 			],
-			"description": "Deprecated. Matches the distribution list itself, on elements that have one. Use ::slotted for forward compatibility.",
-			"restrictions": []
+			"description": "Deprecated. Matches the distribution list itself, on elements that have one. Use ::slotted for forward compatibility."
 		},
 		{
 			name: "::cue",
 			browsers: [
 				"FF55",
 				"C"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::cue()",
@@ -16907,8 +16591,7 @@ export const cssData : CSSData = {
 				"C",
 				"O16",
 				"S6"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::cue-region",
@@ -16916,8 +16599,7 @@ export const cssData : CSSData = {
 				"C",
 				"O16",
 				"S6"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::cue-region()",
@@ -16925,82 +16607,69 @@ export const cssData : CSSData = {
 				"C",
 				"O16",
 				"S6"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::first-letter",
-			browsers: [],
-			"description": "Represents the first letter of an element, if it is not preceded by any other content (such as images or inline tables) on its line.",
-			"restrictions": []
+			"description": "Represents the first letter of an element, if it is not preceded by any other content (such as images or inline tables) on its line."
 		},
 		{
 			name: "::first-line",
-			browsers: [],
-			"description": "Describes the contents of the first formatted line of its originating element.",
-			"restrictions": []
+			"description": "Describes the contents of the first formatted line of its originating element."
 		},
 		{
 			name: "::-moz-focus-inner",
 			browsers: [
 				"FF4"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-moz-focus-outer",
 			browsers: [
 				"FF4"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-moz-list-bullet",
 			browsers: [
 				"FF1"
 			],
-			"description": "Used to style the bullet of a list element. Similar to the standardized ::marker.",
-			"restrictions": []
+			"description": "Used to style the bullet of a list element. Similar to the standardized ::marker."
 		},
 		{
 			name: "::-moz-list-number",
 			browsers: [
 				"FF1"
 			],
-			"description": "Used to style the numbers of a list element. Similar to the standardized ::marker.",
-			"restrictions": []
+			"description": "Used to style the numbers of a list element. Similar to the standardized ::marker."
 		},
 		{
 			name: "::-moz-placeholder",
 			browsers: [
 				"FF19"
 			],
-			"description": "Represents placeholder text in an input field",
-			"restrictions": []
+			"description": "Represents placeholder text in an input field"
 		},
 		{
 			name: "::-moz-progress-bar",
 			browsers: [
 				"FF9"
 			],
-			"description": "Represents the bar portion of a progress bar.",
-			"restrictions": []
+			"description": "Represents the bar portion of a progress bar."
 		},
 		{
 			name: "::-moz-selection",
 			browsers: [
 				"FF1"
 			],
-			"description": "Represents the portion of a document that has been highlighted by the user.",
-			"restrictions": []
+			"description": "Represents the portion of a document that has been highlighted by the user."
 		},
 		{
 			name: "::-ms-backdrop",
 			browsers: [
 				"IE11"
 			],
-			"description": "Used to create a backdrop that hides the underlying document for an element in a top layer (such as an element that is displayed fullscreen).",
-			"restrictions": []
+			"description": "Used to create a backdrop that hides the underlying document for an element in a top layer (such as an element that is displayed fullscreen)."
 		},
 		{
 			name: "::-ms-browse",
@@ -17008,8 +16677,7 @@ export const cssData : CSSData = {
 				"E",
 				"IE10"
 			],
-			"description": "Represents the browse button of an input type=file control.",
-			"restrictions": []
+			"description": "Represents the browse button of an input type=file control."
 		},
 		{
 			name: "::-ms-check",
@@ -17017,8 +16685,7 @@ export const cssData : CSSData = {
 				"E",
 				"IE10"
 			],
-			"description": "Represents the check of a checkbox or radio button input control.",
-			"restrictions": []
+			"description": "Represents the check of a checkbox or radio button input control."
 		},
 		{
 			name: "::-ms-clear",
@@ -17026,8 +16693,7 @@ export const cssData : CSSData = {
 				"E",
 				"IE10"
 			],
-			"description": "Represents the clear button of a text input control",
-			"restrictions": []
+			"description": "Represents the clear button of a text input control"
 		},
 		{
 			name: "::-ms-expand",
@@ -17035,8 +16701,7 @@ export const cssData : CSSData = {
 				"E",
 				"IE10"
 			],
-			"description": "Represents the drop-down button of a select control.",
-			"restrictions": []
+			"description": "Represents the drop-down button of a select control."
 		},
 		{
 			name: "::-ms-fill",
@@ -17044,8 +16709,7 @@ export const cssData : CSSData = {
 				"E",
 				"IE10"
 			],
-			"description": "Represents the bar portion of a progress bar.",
-			"restrictions": []
+			"description": "Represents the bar portion of a progress bar."
 		},
 		{
 			name: "::-ms-fill-lower",
@@ -17053,8 +16717,7 @@ export const cssData : CSSData = {
 				"E",
 				"IE"
 			],
-			"description": "Represents the portion of the slider track from its smallest value up to the value currently selected by the thumb. In a left-to-right layout, this is the portion of the slider track to the left of the thumb.",
-			"restrictions": []
+			"description": "Represents the portion of the slider track from its smallest value up to the value currently selected by the thumb. In a left-to-right layout, this is the portion of the slider track to the left of the thumb."
 		},
 		{
 			name: "::-ms-fill-upper",
@@ -17062,8 +16725,7 @@ export const cssData : CSSData = {
 				"E",
 				"IE"
 			],
-			"description": "Represents the portion of the slider track from the value currently selected by the thumb up to the slider's largest value. In a left-to-right layout, this is the portion of the slider track to the right of the thumb.",
-			"restrictions": []
+			"description": "Represents the portion of the slider track from the value currently selected by the thumb up to the slider's largest value. In a left-to-right layout, this is the portion of the slider track to the right of the thumb."
 		},
 		{
 			name: "::-ms-reveal",
@@ -17071,8 +16733,7 @@ export const cssData : CSSData = {
 				"E",
 				"IE10"
 			],
-			"description": "Represents the password reveal button of an input type=password control.",
-			"restrictions": []
+			"description": "Represents the password reveal button of an input type=password control."
 		},
 		{
 			name: "::-ms-thumb",
@@ -17080,8 +16741,7 @@ export const cssData : CSSData = {
 				"E",
 				"IE10"
 			],
-			"description": "Represents the portion of range input control (also known as a slider control) that the user drags.",
-			"restrictions": []
+			"description": "Represents the portion of range input control (also known as a slider control) that the user drags."
 		},
 		{
 			name: "::-ms-ticks-after",
@@ -17089,8 +16749,7 @@ export const cssData : CSSData = {
 				"E",
 				"IE10"
 			],
-			"description": "Represents the tick marks of a slider that begin just after the thumb and continue up to the slider's largest value. In a left-to-right layout, these are the ticks to the right of the thumb.",
-			"restrictions": []
+			"description": "Represents the tick marks of a slider that begin just after the thumb and continue up to the slider's largest value. In a left-to-right layout, these are the ticks to the right of the thumb."
 		},
 		{
 			name: "::-ms-ticks-before",
@@ -17098,8 +16757,7 @@ export const cssData : CSSData = {
 				"E",
 				"IE10"
 			],
-			"description": "Represents the tick marks of a slider that represent its smallest values up to the value currently selected by the thumb. In a left-to-right layout, these are the ticks to the left of the thumb.",
-			"restrictions": []
+			"description": "Represents the tick marks of a slider that represent its smallest values up to the value currently selected by the thumb. In a left-to-right layout, these are the ticks to the left of the thumb."
 		},
 		{
 			name: "::-ms-tooltip",
@@ -17107,8 +16765,7 @@ export const cssData : CSSData = {
 				"E",
 				"IE10"
 			],
-			"description": "Represents the tooltip of a slider (input type=range).",
-			"restrictions": []
+			"description": "Represents the tooltip of a slider (input type=range)."
 		},
 		{
 			name: "::-ms-track",
@@ -17116,8 +16773,7 @@ export const cssData : CSSData = {
 				"E",
 				"IE10"
 			],
-			"description": "Represents the track of a slider.",
-			"restrictions": []
+			"description": "Represents the track of a slider."
 		},
 		{
 			name: "::-ms-value",
@@ -17125,14 +16781,11 @@ export const cssData : CSSData = {
 				"E16",
 				"IE10"
 			],
-			"description": "Represents the content of a text or password input control, or a select control.",
-			"restrictions": []
+			"description": "Represents the content of a text or password input control, or a select control."
 		},
 		{
 			name: "::selection",
-			browsers: [],
-			"description": "Represents the portion of a document that has been highlighted by the user.",
-			"restrictions": []
+			"description": "Represents the portion of a document that has been highlighted by the user."
 		},
 		{
 			name: "::shadow",
@@ -17140,8 +16793,7 @@ export const cssData : CSSData = {
 				"C35",
 				"O22"
 			],
-			"description": "Matches the shadow root if an element has a shadow tree.",
-			"restrictions": []
+			"description": "Matches the shadow root if an element has a shadow tree."
 		},
 		{
 			name: "::-webkit-file-upload-button",
@@ -17149,8 +16801,7 @@ export const cssData : CSSData = {
 				"S",
 				"C",
 				"O"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-inner-spin-button",
@@ -17158,16 +16809,14 @@ export const cssData : CSSData = {
 				"S",
 				"C",
 				"O"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-input-placeholder",
 			browsers: [
 				"C",
 				"S4"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-keygen-select",
@@ -17175,8 +16824,7 @@ export const cssData : CSSData = {
 				"C",
 				"O",
 				"S6"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-meter-bar",
@@ -17184,8 +16832,7 @@ export const cssData : CSSData = {
 				"S",
 				"C",
 				"O"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-meter-even-less-good-value",
@@ -17193,8 +16840,7 @@ export const cssData : CSSData = {
 				"S",
 				"C",
 				"O"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-meter-optimum-value",
@@ -17202,8 +16848,7 @@ export const cssData : CSSData = {
 				"S",
 				"C",
 				"O"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-meter-suboptimal-value",
@@ -17212,8 +16857,7 @@ export const cssData : CSSData = {
 				"C",
 				"O15",
 				"S6"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-outer-spin-button",
@@ -17221,8 +16865,7 @@ export const cssData : CSSData = {
 				"S",
 				"C",
 				"O"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-progress-bar",
@@ -17230,8 +16873,7 @@ export const cssData : CSSData = {
 				"S",
 				"C",
 				"O"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-progress-inner-element",
@@ -17239,8 +16881,7 @@ export const cssData : CSSData = {
 				"S",
 				"C",
 				"O"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-progress-value",
@@ -17248,96 +16889,84 @@ export const cssData : CSSData = {
 				"S",
 				"C",
 				"O"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-resizer",
 			browsers: [
 				"C",
 				"S5"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-scrollbar",
 			browsers: [
 				"C",
 				"S5"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-scrollbar-button",
 			browsers: [
 				"C",
 				"S5"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-scrollbar-corner",
 			browsers: [
 				"C",
 				"S5"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-scrollbar-thumb",
 			browsers: [
 				"C",
 				"S5"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-scrollbar-track",
 			browsers: [
 				"C",
 				"S5"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-scrollbar-track-piece",
 			browsers: [
 				"C",
 				"S5"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-search-cancel-button",
 			browsers: [
 				"S",
 				"C"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-search-decoration",
 			browsers: [
 				"C",
 				"S4"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-search-results-button",
 			browsers: [
 				"S",
 				"C"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-search-results-decoration",
 			browsers: [
 				"C",
 				"S4"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-slider-runnable-track",
@@ -17345,8 +16974,7 @@ export const cssData : CSSData = {
 				"C",
 				"O",
 				"S6"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-slider-thumb",
@@ -17354,8 +16982,7 @@ export const cssData : CSSData = {
 				"C",
 				"O",
 				"S6"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-textfield-decoration-container",
@@ -17363,8 +16990,7 @@ export const cssData : CSSData = {
 				"C",
 				"O",
 				"S6"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-validation-bubble",
@@ -17372,8 +16998,7 @@ export const cssData : CSSData = {
 				"C",
 				"O",
 				"S6"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-validation-bubble-arrow",
@@ -17381,8 +17006,7 @@ export const cssData : CSSData = {
 				"C",
 				"O",
 				"S6"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-validation-bubble-arrow-clipper",
@@ -17390,8 +17014,7 @@ export const cssData : CSSData = {
 				"C",
 				"O",
 				"S6"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-validation-bubble-heading",
@@ -17399,8 +17022,7 @@ export const cssData : CSSData = {
 				"C",
 				"O",
 				"S6"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-validation-bubble-message",
@@ -17408,8 +17030,7 @@ export const cssData : CSSData = {
 				"C",
 				"O",
 				"S6"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-webkit-validation-bubble-text-block",
@@ -17417,8 +17038,7 @@ export const cssData : CSSData = {
 				"C",
 				"O",
 				"S6"
-			],
-			"restrictions": []
+			]
 		},
 		{
 			name: "::-moz-range-progress",
@@ -17426,8 +17046,7 @@ export const cssData : CSSData = {
 			browsers: [
 				"FF"
 			],
-			"description": "The ::-moz-range-progress CSS pseudo-element is a Mozilla extension that represents the lower portion of the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\". This portion corresponds to values lower than the value currently selected by the thumb (i.e., virtual knob).",
-			"restrictions": []
+			"description": "The ::-moz-range-progress CSS pseudo-element is a Mozilla extension that represents the lower portion of the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\". This portion corresponds to values lower than the value currently selected by the thumb (i.e., virtual knob)."
 		},
 		{
 			name: "::-moz-range-thumb",
@@ -17435,8 +17054,7 @@ export const cssData : CSSData = {
 			browsers: [
 				"FF"
 			],
-			"description": "The ::-moz-range-thumb CSS pseudo-element is a Mozilla extension that represents the thumb (i.e., virtual knob) of an <input> of type=\"range\". The user can move the thumb along the input's track to alter its numerical value.",
-			"restrictions": []
+			"description": "The ::-moz-range-thumb CSS pseudo-element is a Mozilla extension that represents the thumb (i.e., virtual knob) of an <input> of type=\"range\". The user can move the thumb along the input's track to alter its numerical value."
 		},
 		{
 			name: "::-moz-range-track",
@@ -17444,20 +17062,17 @@ export const cssData : CSSData = {
 			browsers: [
 				"FF"
 			],
-			"description": "The ::-moz-range-track CSS pseudo-element is a Mozilla extension that represents the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\".",
-			"restrictions": []
+			"description": "The ::-moz-range-track CSS pseudo-element is a Mozilla extension that represents the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\"."
 		},
 		{
 			name: "::-webkit-progress-inner-value",
 			"status": "nonstandard",
-			"description": "The ::-webkit-progress-value CSS pseudo-element represents the filled-in portion of the bar of a <progress> element. It is a child of the ::-webkit-progress-bar pseudo-element.\n\nIn order to let ::-webkit-progress-value take effect, -webkit-appearance needs to be set to none on the <progress> element.",
-			"restrictions": []
+			"description": "The ::-webkit-progress-value CSS pseudo-element represents the filled-in portion of the bar of a <progress> element. It is a child of the ::-webkit-progress-bar pseudo-element.\n\nIn order to let ::-webkit-progress-value take effect, -webkit-appearance needs to be set to none on the <progress> element."
 		},
 		{
 			name: "::grammar-error",
 			"status": "experimental",
-			"description": "The ::grammar-error CSS pseudo-element represents a text segment which the user agent has flagged as grammatically incorrect.",
-			"restrictions": []
+			"description": "The ::grammar-error CSS pseudo-element represents a text segment which the user agent has flagged as grammatically incorrect."
 		},
 		{
 			name: "::placeholder",
@@ -17468,8 +17083,7 @@ export const cssData : CSSData = {
 				"C57",
 				"O44"
 			],
-			"description": "The ::placeholder CSS pseudo-element represents the placeholder text of a form element.",
-			"restrictions": []
+			"description": "The ::placeholder CSS pseudo-element represents the placeholder text of a form element."
 		},
 		{
 			name: "::slotted",
@@ -17479,14 +17093,12 @@ export const cssData : CSSData = {
 				"C50",
 				"O37"
 			],
-			"description": "The :slotted() CSS pseudo-element represents any element that has been placed into a slot inside an HTML template.",
-			"restrictions": []
+			"description": "The :slotted() CSS pseudo-element represents any element that has been placed into a slot inside an HTML template."
 		},
 		{
 			name: "::spelling-error",
 			"status": "experimental",
-			"description": "The ::spelling-error CSS pseudo-element represents a text segment which the user agent has flagged as incorrectly spelled.",
-			"restrictions": []
+			"description": "The ::spelling-error CSS pseudo-element represents a text segment which the user agent has flagged as incorrectly spelled."
 		}
 	]
 };
