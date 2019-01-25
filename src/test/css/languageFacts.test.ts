@@ -5,7 +5,7 @@
 'use strict';
 
 import * as assert from 'assert';
-import { isColorValue, getColorValue, getBrowserLabel, colorFrom256RGB, colorFromHex, hexDigit, hslFromColor, HSLA, builtinCSSDataSet } from '../../services/languageFacts';
+import { isColorValue, getColorValue, getBrowserLabel, colorFrom256RGB, colorFromHex, hexDigit, hslFromColor, HSLA, cssDataManager } from '../../services/languageFacts';
 import { Parser } from '../../parser/cssParser';
 import * as nodes from '../../parser/cssNodes';
 import { TextDocument, Color } from 'vscode-languageserver-types';
@@ -59,16 +59,16 @@ function assertHSLValue(actual: HSLA, expected: HSLA) {
 suite('CSS - Language Facts', () => {
 
 	test('properties', function () {
-		let properties = builtinCSSDataSet.properties;
-		let alignLast = properties['text-align-last'];
+		let alignLast = cssDataManager.getProperty('text-align-last');
 
 		assert.ok(alignLast !== null);
 		assert.equal(alignLast.name, 'text-align-last');
-		let b = alignLast.browsers;
-		assert.equal(b['FF'], '49');
-		assert.equal(b['E'], '12');
-		assert.equal(b['C'], '47');
-		assert.equal(b['count'], 5);
+
+		assert.ok(alignLast.browsers.indexOf("E12") !== -1);
+		assert.ok(alignLast.browsers.indexOf("FF49") !== -1);
+		assert.ok(alignLast.browsers.indexOf("C47") !== -1);
+		assert.ok(alignLast.browsers.indexOf("IE") !== -1);
+		assert.ok(alignLast.browsers.indexOf("O") !== -1);
 
 		assert.equal(getBrowserLabel(alignLast.browsers), 'Edge 12, Firefox 49, Chrome 47, IE, Opera');
 
@@ -80,8 +80,6 @@ suite('CSS - Language Facts', () => {
 		let v = alignLast.values;
 		assert.equal(v.length, 5);
 		assert.equal(v[0].name, 'auto');
-		assert.equal(v[0].browsers.all, true);
-		assert.equal(v[0].browsers.count, Number.MAX_VALUE);
 	});
 
 	test('is color', function () {

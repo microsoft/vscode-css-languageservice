@@ -156,49 +156,45 @@ export class CSSCompletion {
 	}
 
 	private getPropertyProposals(declaration: nodes.Declaration, result: CompletionList): CompletionList {
-		let properties = languageFacts.builtinCSSDataSet.properties;
+		let properties = languageFacts.cssDataManager.getProperties();
 
-		for (let key in properties) {
-			if (properties.hasOwnProperty(key)) {
-				let entry = properties[key];
-				if (entry.browsers.onCodeComplete) {
-					let range: Range;
-					let insertText: string;
-					let retrigger = false;
-					if (declaration) {
-						range = this.getCompletionRange(declaration.getProperty());
-						insertText = entry.name;
-						if (!isDefined(declaration.colonPosition)) {
-							insertText += ': ';
-							retrigger = true;
-						}
-					} else {
-						range = this.getCompletionRange(null);
-						insertText = entry.name + ': ';
-						retrigger = true;
-					}
-					let item: CompletionItem = {
-						label: entry.name,
-						documentation: languageFacts.getEntryDescription(entry),
-						textEdit: TextEdit.replace(range, insertText),
-						kind: CompletionItemKind.Property
-					};
-					if (entry.restrictions.length === 1 && entry.restrictions[0] === 'none') {
-						retrigger = false;
-					}
-					if (retrigger) {
-						item.command = {
-							title: 'Suggest',
-							command: 'editor.action.triggerSuggest'
-						};
-					}
-					if (strings.startsWith(entry.name, '-')) {
-						item.sortText = 'x';
-					}
-					result.items.push(item);
+		properties.forEach(entry => {
+			let range: Range;
+			let insertText: string;
+			let retrigger = false;
+			if (declaration) {
+				range = this.getCompletionRange(declaration.getProperty());
+				insertText = entry.name;
+				if (!isDefined(declaration.colonPosition)) {
+					insertText += ': ';
+					retrigger = true;
 				}
+			} else {
+				range = this.getCompletionRange(null);
+				insertText = entry.name + ': ';
+				retrigger = true;
 			}
-		}
+			let item: CompletionItem = {
+				label: entry.name,
+				documentation: languageFacts.getEntryDescription(entry),
+				textEdit: TextEdit.replace(range, insertText),
+				kind: CompletionItemKind.Property
+			};
+			if (!entry.restrictions) {
+				retrigger = false;
+			}
+			if (retrigger) {
+				item.command = {
+					title: 'Suggest',
+					command: 'editor.action.triggerSuggest'
+				};
+			}
+			if (strings.startsWith(entry.name, '-')) {
+				item.sortText = 'x';
+			}
+			result.items.push(item);
+		});
+
 		this.completionParticipants.forEach(participant => {
 			if (participant.onCssProperty) {
 				participant.onCssProperty({
@@ -217,7 +213,7 @@ export class CSSCompletion {
 
 	public getCompletionsForDeclarationValue(node: nodes.Declaration, result: CompletionList): CompletionList {
 		let propertyName = node.getFullPropertyName();
-		let entry = languageFacts.builtinCSSDataSet.properties[propertyName];
+		let entry = languageFacts.cssDataManager.getProperty(propertyName);
 		let existingNode: nodes.Node = node.getValue();
 
 		while (existingNode && existingNode.hasChildren()) {
@@ -290,7 +286,7 @@ export class CSSCompletion {
 	public getValueEnumProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		if (entry.values) {
 			for (let value of entry.values) {
-				if (languageFacts.isCommonValue(value)) { // only show if supported by more than one browser
+				if (languageFacts.supportedInMoreThanOneBrowser(value)) {
 					let insertString = value.name;
 					let insertTextFormat;
 					if (strings.endsWith(insertString, ')')) {
@@ -581,19 +577,14 @@ export class CSSCompletion {
 	}
 
 	public getCompletionForTopLevel(result: CompletionList): CompletionList {
-		const atDirectives = languageFacts.builtinCSSDataSet.atDirectives;
-
-		for (let entryName in atDirectives) {
-			const entry = atDirectives[entryName];
-			if (entry.browsers.count > 0) {
-				result.items.push({
-					label: entry.name,
-					textEdit: TextEdit.replace(this.getCompletionRange(null), entry.name),
-					documentation: languageFacts.getEntryDescription(entry),
-					kind: CompletionItemKind.Keyword
-				});
-			}
-		}
+		languageFacts.cssDataManager.getAtDirectives().forEach(entry => {
+			result.items.push({
+				label: entry.name,
+				textEdit: TextEdit.replace(this.getCompletionRange(null), entry.name),
+				documentation: languageFacts.getEntryDescription(entry),
+				kind: CompletionItemKind.Keyword
+			});
+		});
 
 		this.getCompletionsForSelector(null, false, result);
 		return result;
@@ -622,43 +613,37 @@ export class CSSCompletion {
 			this.defaultReplaceRange = Range.create(Position.create(this.position.line, this.position.character - this.currentWord.length), this.position);
 		}
 
-		const pseudoClasses = languageFacts.builtinCSSDataSet.pseudoClasses;
-		for (let entryName in pseudoClasses) {
-			const entry = pseudoClasses[entryName];
-			if (entry.browsers.onCodeComplete) {
-				let insertText = moveCursorInsideParenthesis(entry.name);
-				let item: CompletionItem = {
-					label: entry.name,
-					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
-					documentation: languageFacts.getEntryDescription(entry),
-					kind: CompletionItemKind.Function,
-					insertTextFormat: entry.name !== insertText ? SnippetFormat : void 0
-				};
-				if (strings.startsWith(entry.name, ':-')) {
-					item.sortText = 'x';
-				}
-				result.items.push(item);
+		const pseudoClasses = languageFacts.cssDataManager.getPseudoClasses();
+		pseudoClasses.forEach(entry => {
+			let insertText = moveCursorInsideParenthesis(entry.name);
+			let item: CompletionItem = {
+				label: entry.name,
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
+				documentation: languageFacts.getEntryDescription(entry),
+				kind: CompletionItemKind.Function,
+				insertTextFormat: entry.name !== insertText ? SnippetFormat : void 0
+			};
+			if (strings.startsWith(entry.name, ':-')) {
+				item.sortText = 'x';
 			}
-		}
+			result.items.push(item);
+		});
 		
-		const pseudoElements = languageFacts.builtinCSSDataSet.pseudoElements;
-		for (let entryName in pseudoElements) {
-			const entry = pseudoElements[entryName];
-			if (entry.browsers.onCodeComplete) {
-				let insertText = moveCursorInsideParenthesis(entry.name);
-				let item: CompletionItem = {
-					label: entry.name,
-					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
-					documentation: languageFacts.getEntryDescription(entry),
-					kind: CompletionItemKind.Function,
-					insertTextFormat: entry.name !== insertText ? SnippetFormat : void 0
-				};
-				if (strings.startsWith(entry.name, '::-')) {
-					item.sortText = 'x';
-				}
-				result.items.push(item);
+		const pseudoElements = languageFacts.cssDataManager.getPseudoElements();
+		pseudoElements.forEach(entry => {
+			let insertText = moveCursorInsideParenthesis(entry.name);
+			let item: CompletionItem = {
+				label: entry.name,
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
+				documentation: languageFacts.getEntryDescription(entry),
+				kind: CompletionItemKind.Function,
+				insertTextFormat: entry.name !== insertText ? SnippetFormat : void 0
+			};
+			if (strings.startsWith(entry.name, '::-')) {
+				item.sortText = 'x';
 			}
-		}
+			result.items.push(item);
+		});
 		if (!isNested) { // show html tags only for top level
 			for (let entry of languageFacts.html5Tags) {
 				result.items.push({

@@ -53,25 +53,53 @@ export interface LanguageServiceOptions {
 	customDataCollections?: CSSData[];
 }
 
-export interface IEntryData {
+export type EntryStatus = 'standard' | 'experimental' | 'nonstandard' | 'obsolete';
+
+export interface IPropertyData {
 	name: string;
-	desc?: string;
-	browsers?: string;
-	restriction?: string;
-	status?: string;
+	description?: string;
+	browsers?: string[];
+	restrictions?: string[];
+	status?: EntryStatus;
 	syntax?: string;
 	values?: IValueData[];
+}
+export interface IAtDirectiveData {
+	name: string;
+	description?: string;
+	browsers?: string[];
+	status?: EntryStatus;
+}
+export interface IPseudoClassData {
+	name: string;
+	description?: string;
+	browsers?: string[];
+	status?: EntryStatus;
+}
+export interface IPseudoElementData {
+	name: string;
+	description?: string;
+	browsers?: string[];
+	status?: EntryStatus;
 }
 
 export interface IValueData {
 	name: string;
-	desc?: string;
-	browsers?: string;
+	description?: string;
+	browsers?: string[];
+	status?: EntryStatus;
 }
 
 export interface CSSData {
-	properties?: IEntryData[];
-	atDirectives?: IEntryData[];
-	pseudoClasses?: IEntryData[];
-	pseudoElements?: IEntryData[];
+	properties?: IPropertyData[];
+	atDirectives?: IAtDirectiveData[];
+	pseudoClasses?: IPseudoClassData[];
+	pseudoElements?: IPseudoElementData[];
+}
+
+export interface ICSSDataProvider {
+	provideProperties(): IPropertyData[];
+	provideAtDirectives(): IAtDirectiveData[];
+	providePseudoClasses(): IPseudoClassData[];
+	providePseudoElements(): IPseudoElementData[];
 }

@@ -4,12 +4,16 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { CSSDataSet } from './dataSet';
 import * as browsers from '../../data/browsers';
+import { CSSDataManager } from './dataManager';
+import { CSSDataProvider } from './dataProvider';
 
 export * from './entry';
 export * from './colors';
 export * from './builtinData';
-export * from './dataSet';
+export * from './dataProvider';
+export * from './dataManager';
 
-export const builtinCSSDataSet = new CSSDataSet(browsers.cssData);
+export const cssDataManager = new CSSDataManager([
+	new CSSDataProvider(browsers.cssData)
+]);

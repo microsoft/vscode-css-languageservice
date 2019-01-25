@@ -43,12 +43,13 @@ export class CSSCodeActions {
 
 		let propertyName = property.getName();
 		let candidates: RankedProperty[] = [];
-		for (let p in languageFacts.builtinCSSDataSet.properties) {
-			let score = difference(propertyName, p);
+
+		languageFacts.cssDataManager.getProperties().forEach(p => {
+			let score = difference(propertyName, p.name);
 			if (score >= propertyName.length / 2 /*score_lim*/) {
-				candidates.push({ property: p, score });
+				candidates.push({ property: p.name, score });
 			}
-		}
+		});
 
 		// Sort in descending order.
 		candidates.sort((a, b) => {
