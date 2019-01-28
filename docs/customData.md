@@ -9,6 +9,8 @@ Both setting point to a list of JSON files. This document describes the shape of
 
 ## Custom Data Format
 
+🚧 The data format is in experimental phase and subject to change. 🚧
+
 The JSON can have 4 top level properties:
 
 ```jsonc
@@ -19,6 +21,8 @@ The JSON can have 4 top level properties:
 	"pseudoElements": []
 }
 ```
+
+You can find their shapes at [cssLanguageTypes.ts](../src/cssLanguageTypes.ts).
 
 They all share two basic properties, `name` and `description`. For example:
 
