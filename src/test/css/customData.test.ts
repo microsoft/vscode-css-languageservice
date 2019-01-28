@@ -9,35 +9,36 @@ import * as assert from 'assert';
 import { TextDocument, CompletionList, Position } from 'vscode-languageserver-types';
 import { getCSSLanguageService } from '../../cssLanguageService';
 import { ItemDescription } from './completion.test';
+import { ICSSDataProvider } from '../../cssLanguageTypes';
 
 function getLanguageService() {
-	const customData = {
-		properties: [
-			{
-				name: 'foo',
-				desc: 'Foo property',
-			}
+	const customDataProvider: ICSSDataProvider = {
+		provideProperties: () => [
+				{
+					name: 'foo',
+					desc: 'Foo property',
+				}
 		],
-		atDirectives: [
+		provideAtDirectives: () => [
 			{
 				name: '@foo',
 				desc: 'Foo at directive',
 			}
 		],
-		pseudoClasses: [
+		providePseudoClasses: () => [
 			{
 				name: ':foo',
 				desc: 'Foo pseudo class'
 			}
 		],
-		pseudoElements: [
+		providePseudoElements: () => [
 			{
 				name: '::foo',
 				desc: 'Foo pseudo element'
 			}
 		]
 	};
-	return getCSSLanguageService({ customDataCollections: [customData] });
+	return getCSSLanguageService({ customDataProviders: [customDataProvider] });
 }
 
 function assertCompletion(completions: CompletionList, expected: ItemDescription, document: TextDocument) {
