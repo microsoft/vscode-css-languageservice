@@ -6,7 +6,7 @@
 
 import { SCSSParser } from '../../parser/scssParser';
 import { assertColor } from '../css/languageFacts.test';
-import { colorFrom256RGB as newColor } from '../../services/languageFacts';
+import { colorFrom256RGB as newColor } from '../../languageFacts';
 
 suite('SCSS - Language facts', () => {
 

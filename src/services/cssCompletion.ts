@@ -6,7 +6,7 @@
 
 import * as nodes from '../parser/cssNodes';
 import { Symbols, Symbol } from '../parser/cssSymbolScope';
-import * as languageFacts from './languageFacts';
+import * as languageFacts from '../languageFacts';
 import * as strings from '../utils/strings';
 import { TextDocument, Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat } from 'vscode-languageserver-types';
 import { ICompletionParticipant } from '../cssLanguageTypes';

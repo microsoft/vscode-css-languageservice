@@ -5,7 +5,7 @@
 'use strict';
 
 import * as nodes from '../parser/cssNodes';
-import * as languageFacts from './languageFacts';
+import * as languageFacts from '../languageFacts';
 import { difference } from '../utils/strings';
 import { Rules } from '../services/lintRules';
 import { TextDocument, Range, CodeActionContext, Diagnostic, Command, TextEdit, CodeAction, WorkspaceEdit, CodeActionKind, TextDocumentEdit, VersionedTextDocumentIdentifier } from 'vscode-languageserver-types';

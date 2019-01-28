@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as browsers from '../../data/browsers';
+import * as browsers from '../data/browsers';
 import { CSSDataManager } from './dataManager';
 import { CSSDataProvider } from './dataProvider';
 

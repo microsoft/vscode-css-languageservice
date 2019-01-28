@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as languageFacts from './languageFacts';
+import * as languageFacts from '../languageFacts';
 import * as nodes from '../parser/cssNodes';
 import { CSSCompletion } from './cssCompletion';
 import { CompletionList, CompletionItemKind, InsertTextFormat, TextEdit, CompletionItem } from 'vscode-languageserver-types';

@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { EntryStatus } from '../../cssLanguageTypes';
+import { EntryStatus } from '../cssLanguageTypes';
 
 export interface Browsers {
 	E?: string;

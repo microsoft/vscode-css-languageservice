@@ -5,7 +5,7 @@
 
 import { Color } from 'vscode-languageserver-types';
 
-import * as nodes from '../../parser/cssNodes';
+import * as nodes from '../parser/cssNodes';
 
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();

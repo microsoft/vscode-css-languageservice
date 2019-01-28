@@ -11,8 +11,8 @@ import {
 	IPseudoClassData,
 	IPseudoElementData,
 	IValueData
-} from '../../cssLanguageTypes';
-import * as objects from '../../utils/objects';
+} from '../cssLanguageTypes';
+import * as objects from '../utils/objects';
 
 export class CSSDataManager {
 	private _propertySet: { [k: string]: IPropertyData } = {};
