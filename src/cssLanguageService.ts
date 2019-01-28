@@ -77,9 +77,8 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 }
 
 function handleCustomData(options?: LanguageServiceOptions) {
-	if (options && options.customDataCollections) {
-		const providers = options.customDataCollections.map(data => new CSSDataProvider(data));
-		cssDataManager.addDataProviders(providers);
+	if (options && options.customDataProviders) {
+		cssDataManager.addDataProviders(options.customDataProviders);
 	}
 }
 

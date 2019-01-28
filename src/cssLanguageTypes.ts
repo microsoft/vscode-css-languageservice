@@ -50,7 +50,7 @@ export interface DocumentContext {
 }
 
 export interface LanguageServiceOptions {
-	customDataCollections?: CSSData[];
+	customDataProviders?: ICSSDataProvider[];
 }
 
 export type EntryStatus = 'standard' | 'experimental' | 'nonstandard' | 'obsolete';
