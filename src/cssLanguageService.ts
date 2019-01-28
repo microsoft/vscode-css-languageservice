@@ -22,12 +22,13 @@ import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
 import { getFoldingRanges } from './services/cssFolding';
 import { LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServiceOptions } from './cssLanguageTypes';
-import { cssDataManager, CSSDataProvider } from './services/languageFacts';
+import { cssDataManager } from './services/languageFacts';
 import { getSelectionRanges } from './services/cssSelectionRange';
 
 export type Stylesheet = {};
 export * from './cssLanguageTypes';
 export * from 'vscode-languageserver-types';
+export { CSSDataProvider } from './services/languageFacts';
 
 export interface LanguageService {
 	configure(raw: LanguageSettings): void;

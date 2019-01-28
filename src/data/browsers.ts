@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 // file generated from css-schema.xml and https://github.com/mdn/data using build/generate_browserjs.js
 
-import { CSSData } from '../cssLanguageTypes';
+import { CSSDataV1 } from '../cssLanguageTypes';
 
-export const cssData : CSSData = {
+export const cssData : CSSDataV1 = {
 	"properties": [
 		{
 			name: "additive-symbols",
@@ -16452,7 +16452,8 @@ export const cssData : CSSData = {
 			"status": "experimental",
 			"description": "The ::spelling-error CSS pseudo-element represents a text segment which the user agent has flagged as incorrectly spelled."
 		}
-	]
+	],
+	"version": 1
 };
 export const descriptions : any = {
 	"100": "Thin",

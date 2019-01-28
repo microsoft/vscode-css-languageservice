@@ -374,6 +374,7 @@ fs.readFile(path.resolve(__dirname, schemaFileName), (err, data) => {
 		const descriptions = internalizeDescriptions([].concat(atDirectives, pseudoClasses, pseudoElements, properties))
 
 		const resultObject = {
+			version: 1,
 			properties,
 			atDirectives,
 			pseudoClasses,
@@ -390,6 +391,7 @@ fs.readFile(path.resolve(__dirname, schemaFileName), (err, data) => {
 			return str.replace(/\"(name|desc|browsers|restriction|values)\"/g, '$1')
 		}
 
+		const DATA_TYPE = 'CSSDataV1'
 		const output = [
 			'/*---------------------------------------------------------------------------------------------',
 			' *  Copyright (c) Microsoft Corporation. All rights reserved.',
@@ -399,9 +401,9 @@ fs.readFile(path.resolve(__dirname, schemaFileName), (err, data) => {
 				schemaFileName +
 				' and https://github.com/mdn/data using build/generate_browserjs.js',
 			'',
-			`import { CSSData } from '../cssLanguageTypes';`,
+			`import { ${DATA_TYPE} } from '../cssLanguageTypes';`,
 			'',
-			'export const cssData : CSSData = ' + toJavaScript(resultObject) + ';',
+			`export const cssData : ${DATA_TYPE} = ` + toJavaScript(resultObject) + ';',
 			'export const descriptions : any = ' + toJavaScript(descriptions) + ';'
 		]
 

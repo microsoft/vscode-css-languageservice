@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { CSSData, ICSSDataProvider, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData } from '../../cssLanguageTypes';
+import { CSSDataV1, ICSSDataProvider, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData } from '../../cssLanguageTypes';
 
 export class CSSDataProvider implements ICSSDataProvider {
 	private _properties: IPropertyData[] = [];
@@ -12,7 +12,12 @@ export class CSSDataProvider implements ICSSDataProvider {
 	private _pseudoClasses: IPseudoClassData[] = [];
 	private _pseudoElements: IPseudoElementData[] = [];
 
-	constructor(data: CSSData) {
+	/**
+	 * Currently, unversioned data uses the V1 implementation
+	 * In the future when the provider handles multiple versions of HTML custom data,
+	 * use the latest implementation for unversioned data
+	 */
+	constructor(data: CSSDataV1) {
 		this.addData(data);
 	}
 
@@ -29,7 +34,7 @@ export class CSSDataProvider implements ICSSDataProvider {
 		return this._pseudoElements;
 	}
 
-	private addData(data: CSSData) {
+	private addData(data: CSSDataV1) {
 		if (data.properties) {
 			this._properties = this._properties.concat(data.properties);
 		}

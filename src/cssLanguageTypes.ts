@@ -90,7 +90,8 @@ export interface IValueData {
 	status?: EntryStatus;
 }
 
-export interface CSSData {
+export interface CSSDataV1 {
+	version: 1;
 	properties?: IPropertyData[];
 	atDirectives?: IAtDirectiveData[];
 	pseudoClasses?: IPseudoClassData[];
