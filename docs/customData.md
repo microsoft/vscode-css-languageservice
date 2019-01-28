@@ -22,7 +22,7 @@ The JSON can have 4 top level properties:
 }
 ```
 
-You can find their shapes at [cssLanguageTypes.ts](../src/cssLanguageTypes.ts).
+You can find their shapes at [cssLanguageTypes.ts](../src/cssLanguageTypes.ts) or the [JSON Schema](./customData.schema.json).
 
 They all share two basic properties, `name` and `description`. For example:
 
