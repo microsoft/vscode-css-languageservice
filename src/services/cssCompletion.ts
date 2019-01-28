@@ -231,38 +231,40 @@ export class CSSCompletion {
 		});
 
 		if (entry) {
-			for (let restriction of entry.restrictions) {
-				switch (restriction) {
-					case 'color':
-						this.getColorProposals(entry, existingNode, result);
-						break;
-					case 'position':
-						this.getPositionProposals(entry, existingNode, result);
-						break;
-					case 'repeat':
-						this.getRepeatStyleProposals(entry, existingNode, result);
-						break;
-					case 'line-style':
-						this.getLineStyleProposals(entry, existingNode, result);
-						break;
-					case 'line-width':
-						this.getLineWidthProposals(entry, existingNode, result);
-						break;
-					case 'geometry-box':
-						this.getGeometryBoxProposals(entry, existingNode, result);
-						break;
-					case 'box':
-						this.getBoxProposals(entry, existingNode, result);
-						break;
-					case 'image':
-						this.getImageProposals(entry, existingNode, result);
-						break;
-					case 'timing-function':
-						this.getTimingFunctionProposals(entry, existingNode, result);
-						break;
-					case 'shape':
-						this.getBasicShapeProposals(entry, existingNode, result);
-						break;
+			if (entry.restrictions) {
+				for (let restriction of entry.restrictions) {
+					switch (restriction) {
+						case 'color':
+							this.getColorProposals(entry, existingNode, result);
+							break;
+						case 'position':
+							this.getPositionProposals(entry, existingNode, result);
+							break;
+						case 'repeat':
+							this.getRepeatStyleProposals(entry, existingNode, result);
+							break;
+						case 'line-style':
+							this.getLineStyleProposals(entry, existingNode, result);
+							break;
+						case 'line-width':
+							this.getLineWidthProposals(entry, existingNode, result);
+							break;
+						case 'geometry-box':
+							this.getGeometryBoxProposals(entry, existingNode, result);
+							break;
+						case 'box':
+							this.getBoxProposals(entry, existingNode, result);
+							break;
+						case 'image':
+							this.getImageProposals(entry, existingNode, result);
+							break;
+						case 'timing-function':
+							this.getTimingFunctionProposals(entry, existingNode, result);
+							break;
+						case 'shape':
+							this.getBasicShapeProposals(entry, existingNode, result);
+							break;
+					}
 				}
 			}
 			this.getValueEnumProposals(entry, existingNode, result);
@@ -383,16 +385,18 @@ export class CSSCompletion {
 		if (existingNode && existingNode.parent && existingNode.parent.type === nodes.NodeType.Term) {
 			existingNode = existingNode.getParent(); // include the unary operator
 		}
-		for (let restriction of entry.restrictions) {
-			let units = languageFacts.units[restriction];
-			if (units) {
-				for (let unit of units) {
-					let insertText = currentWord + unit;
-					result.items.push({
-						label: insertText,
-						textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
-						kind: CompletionItemKind.Unit
-					});
+		if (entry.restrictions) {
+			for (let restriction of entry.restrictions) {
+				let units = languageFacts.units[restriction];
+				if (units) {
+					for (let unit of units) {
+						let insertText = currentWord + unit;
+						result.items.push({
+							label: insertText,
+							textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
+							kind: CompletionItemKind.Unit
+						});
+					}
 				}
 			}
 		}
