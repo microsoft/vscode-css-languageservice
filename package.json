@@ -18,7 +18,7 @@
     "@types/mocha": "^2.2.33",
     "@types/node": "^7.0.43",
     "istanbul": "^0.4.5",
-    "mdn-browser-compat-data": "^0.0.61",
+    "mdn-browser-compat-data": "^0.0.64",
     "mdn-data": "^2.0.1",
     "mkdirp": "^0.5.1",
     "mocha": "^5.2.0",

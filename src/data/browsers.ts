@@ -7,6 +7,7 @@
 import { CSSDataV1 } from '../cssLanguageTypes';
 
 export const cssData : CSSDataV1 = {
+	"version": 1,
 	"properties": [
 		{
 			name: "additive-symbols",
@@ -1491,13 +1492,6 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "break-before",
-			browsers: [
-				"E12",
-				"S10",
-				"C50",
-				"IE10",
-				"O37"
-			],
 			values: [
 				{
 					name: "always",
@@ -1544,13 +1538,6 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "break-inside",
-			browsers: [
-				"E12",
-				"S10",
-				"C50",
-				"IE10",
-				"O37"
-			],
 			values: [
 				{
 					name: "auto",
@@ -10351,7 +10338,7 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF36",
 				"C61",
-				"O"
+				"O48"
 			],
 			values: [
 				{
@@ -15541,7 +15528,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: ":-moz-only-whitespace",
 			browsers: [
-				"FF1.5"
+				"FF"
 			],
 			"description": "The same as :empty, except that it additionally matches elements that only contain code points affected by whitespace processing. Standardized as :blank."
 		},
@@ -15841,9 +15828,6 @@ export const cssData : CSSDataV1 = {
 		{
 			name: ":blank",
 			"status": "experimental",
-			browsers: [
-				"FF"
-			],
 			"description": "The :blank CSS pseudo-class selects empty user input elements (eg. <input> or <textarea>)."
 		},
 		{
@@ -16246,50 +16230,57 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "::-webkit-resizer",
 			browsers: [
+				"S",
 				"C",
-				"S5"
+				"O15"
 			]
 		},
 		{
 			name: "::-webkit-scrollbar",
 			browsers: [
+				"S",
 				"C",
-				"S5"
+				"O15"
 			]
 		},
 		{
 			name: "::-webkit-scrollbar-button",
 			browsers: [
+				"S",
 				"C",
-				"S5"
+				"O15"
 			]
 		},
 		{
 			name: "::-webkit-scrollbar-corner",
 			browsers: [
+				"S",
 				"C",
-				"S5"
+				"O15"
 			]
 		},
 		{
 			name: "::-webkit-scrollbar-thumb",
 			browsers: [
+				"S",
 				"C",
-				"S5"
+				"O15"
 			]
 		},
 		{
 			name: "::-webkit-scrollbar-track",
 			browsers: [
+				"S",
 				"C",
-				"S5"
+				"O15"
 			]
 		},
 		{
 			name: "::-webkit-scrollbar-track-piece",
 			browsers: [
+				"S",
 				"C",
-				"S5"
+				"O15"
 			]
 		},
 		{
@@ -16452,8 +16443,7 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"description": "The ::spelling-error CSS pseudo-element represents a text segment which the user agent has flagged as incorrectly spelled."
 		}
-	],
-	"version": 1
+	]
 };
 export const descriptions : any = {
 	"100": "Thin",
