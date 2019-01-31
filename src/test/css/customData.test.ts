@@ -9,36 +9,12 @@ import * as assert from 'assert';
 import { TextDocument, CompletionList, Position } from 'vscode-languageserver-types';
 import { getCSSLanguageService } from '../../cssLanguageService';
 import { ItemDescription } from './completion.test';
-import { ICSSDataProvider } from '../../cssLanguageTypes';
+import { ICSSDataProvider, CSSDataV1 } from '../../cssLanguageTypes';
+import { CSSDataProvider } from '../../languageFacts';
 
-function getLanguageService() {
-	const customDataProvider: ICSSDataProvider = {
-		provideProperties: () => [
-				{
-					name: 'foo',
-					desc: 'Foo property',
-				}
-		],
-		provideAtDirectives: () => [
-			{
-				name: '@foo',
-				desc: 'Foo at directive',
-			}
-		],
-		providePseudoClasses: () => [
-			{
-				name: ':foo',
-				desc: 'Foo pseudo class'
-			}
-		],
-		providePseudoElements: () => [
-			{
-				name: '::foo',
-				desc: 'Foo pseudo element'
-			}
-		]
-	};
-	return getCSSLanguageService({ customDataProviders: [customDataProvider] });
+function getLanguageService(data: CSSDataV1) {
+	const provider = new CSSDataProvider(data);
+	return getCSSLanguageService({ customDataProviders: [provider] });
 }
 
 function assertCompletion(completions: CompletionList, expected: ItemDescription, document: TextDocument) {
@@ -74,9 +50,38 @@ function assertCompletion(completions: CompletionList, expected: ItemDescription
 }
 
 suite('CSS - Custom Data', () => {
-	const cssLS = getLanguageService();
 
-	let testCompletionFor = function(
+	const customData: CSSDataV1 = {
+		version: 1,
+		properties: [
+			{
+				name: 'foo',
+				description: 'Foo property'
+			}
+		],
+		atDirectives: [
+			{
+				name: '@foo',
+				description: 'Foo at directive'
+			}
+		],
+		pseudoClasses: [
+			{
+				name: ':foo',
+				description: 'Foo pseudo class'
+			}
+		],
+		pseudoElements: [
+			{
+				name: '::foo',
+				description: 'Foo pseudo element'
+			}
+		]
+	};
+
+	const cssLS = getLanguageService(customData);
+
+	const testCompletionFor = function(
 		value: string,
 		expected: {
 			count?: number;
@@ -89,8 +94,8 @@ suite('CSS - Custom Data', () => {
 
 		let document = TextDocument.create('test://test/test.css', 'css', 0, value);
 		let position = Position.create(0, offset);
-		let jsonDoc = cssLS.parseStylesheet(document);
-		let list = cssLS.doComplete(document, position, jsonDoc);
+		let cssDoc = cssLS.parseStylesheet(document);
+		let list = cssLS.doComplete(document, position, cssDoc);
 		if (typeof expected.count === 'number') {
 			assert.equal(list.items, expected.count);
 		}
@@ -105,11 +110,11 @@ suite('CSS - Custom Data', () => {
 		testCompletionFor('body { | }', {
 			items: [{ label: 'foo', resultText: 'body { foo:  }' }]
 		});
-		
+
 		testCompletionFor('|', {
 			items: [{ label: '@foo', resultText: '@foo' }]
 		});
-		
+
 		testCompletionFor(':|', {
 			items: [{ label: ':foo', resultText: ':foo' }]
 		});
@@ -117,5 +122,38 @@ suite('CSS - Custom Data', () => {
 		testCompletionFor('::foo', {
 			items: [{ label: '::foo', resultText: '::foo' }]
 		});
+	});
+});
+
+suite('CSS - Custom Data Diagnostics', () => {
+	const data: CSSDataV1 = {
+		version: 1,
+		properties: [
+			{
+				name: 'foo'
+			},
+			{
+				name: '_foo'
+			}
+		]
+	};
+
+	const cssLS = getLanguageService(data);
+
+	const testValidationFor = function(
+		value: string,
+		expected: (number | string)[]
+	) {
+		const document = TextDocument.create('test://test/test.css', 'css', 0, value);
+		const cssDoc = cssLS.parseStylesheet(document);
+		const codeList = cssLS.doValidation(document, cssDoc).map(d => d.code);
+		const message = `Return diagnostics: ${JSON.stringify(codeList)} do not match expected diagnostics: ${JSON.stringify(expected)}`;
+
+		assert.deepEqual(codeList, expected, message);
+	};
+
+
+	test('No unknown properties', () => {
+		testValidationFor('.foo { foo: 1; _foo: 1 }', []);
 	});
 });

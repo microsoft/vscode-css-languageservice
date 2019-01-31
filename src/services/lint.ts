@@ -412,13 +412,19 @@ export class LintVisitor implements nodes.IVisitor {
 							propertiesBySuffix.add(nonPrefixedName, name, decl.getProperty());
 						}
 					} else {
+						let fullName = name;
 						if (firstChar === '*' || firstChar === '_') {
 							this.addEntry(decl.getProperty(), Rules.IEStarHack);
 							name = name.substr(1);
 						}
-						if (!languageFacts.cssDataManager.isKnownProperty(name) && !this.validProperties[name]) {
-							this.addEntry(decl.getProperty(), Rules.UnknownProperty, localize('property.unknownproperty.detailed', "Unknown property: '{0}'", name));
+
+						// _property and *property might be contributed via custom data
+						if (!languageFacts.cssDataManager.isKnownProperty(fullName) && !languageFacts.cssDataManager.isKnownProperty(name)) {
+							if (!this.validProperties[name]) {
+								this.addEntry(decl.getProperty(), Rules.UnknownProperty, localize('property.unknownproperty.detailed', "Unknown property: '{0}'", name));
+							}
 						}
+
 						propertiesBySuffix.add(name, name, null); // don't pass the node as we don't show errors on the standard
 					}
 				} else {
