@@ -306,14 +306,17 @@ export class Parser {
 	}
 
 	public _parseRuleset(isNested: boolean = false): nodes.RuleSet {
-		let node = <nodes.RuleSet>this.create(nodes.RuleSet);
+		const node = <nodes.RuleSet>this.create(nodes.RuleSet);
+		const selectors = node.getSelectors();
 
-		if (!node.getSelectors().addChild(this._parseSelector(isNested))) {
+		if (!selectors.addChild(this._parseSelector(isNested))) {
 			return null;
 		}
 
-		while (this.accept(TokenType.Comma) && node.getSelectors().addChild(this._parseSelector(isNested))) {
-			// loop
+		while (this.accept(TokenType.Comma)) {
+			if (!selectors.addChild(this._parseSelector(isNested))) {
+				return this.finish(node, ParseError.SelectorExpected);
+			}
 		}
 
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
