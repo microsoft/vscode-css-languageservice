@@ -4,6 +4,7 @@
   "title": "VS Code CSS Custom Data format",
   "description": "Format for loading Custom Data in VS Code's CSS support",
   "type": "object",
+  "required": ["version"],
   "properties": {
     "version": {
       "description": "The custom data version",
