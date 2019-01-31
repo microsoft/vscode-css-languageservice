@@ -39,6 +39,7 @@
     "clean": "rimraf lib",
     "watch": "tsc -w -p ./src",
     "test": "npm run compile && mocha && npm run lint",
+    "mocha": "mocha",
     "coverage": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --ui tdd -R spec -t 5000",
     "lint": "tslint src/**/*.ts",
     "update-data": "node ./build/generate_browserjs.js",

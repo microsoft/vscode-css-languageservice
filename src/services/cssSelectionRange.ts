@@ -5,7 +5,7 @@
 'use strict';
 
 import { Range, Position, TextDocument } from 'vscode-languageserver-types';
-import { Stylesheet } from '../parser/cssNodes';
+import { Stylesheet, NodeType } from '../parser/cssNodes';
 
 export function getSelectionRanges(document: TextDocument, position: Position, stylesheet: Stylesheet): Range[] {
 	const applicableRanges = getApplicableRanges(document, position, stylesheet);
@@ -37,7 +37,12 @@ export function getApplicableRanges(document: TextDocument, position: Position, 
 			continue;
 		}
 
-		result.push([currNode.offset, currNode.end]);
+		if (currNode.type === NodeType.Declarations) {
+			result.push([currNode.offset + 1, currNode.end - 1]);
+		} else {
+			result.push([currNode.offset, currNode.end]); 
+		}
+
 		currNode = currNode.parent;
 	}
 	

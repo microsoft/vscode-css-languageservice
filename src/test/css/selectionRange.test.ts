@@ -7,25 +7,27 @@
 import 'mocha';
 import * as assert from 'assert';
 import { TextDocument } from 'vscode-languageserver-types';
-import { getApplicableRanges } from '../../services/cssSelectionRange';
 import { getCSSLanguageService } from '../../cssLanguageService';
 import { Stylesheet } from '../../parser/cssNodes';
 
-function assertRanges(content: string, expected: number[][]): void {
-	let ls = getCSSLanguageService();
+function assertRanges(content: string, expected: (number | string)[][]): void {
+	let message = `${content} gives selection range:\n`;
 
-	let message = `Test ${content}`;
-
-	let offset = content.indexOf('|');
+	const offset = content.indexOf('|');
 	content = content.substr(0, offset) + content.substr(offset + 1);
 
+	const ls = getCSSLanguageService();
+
 	const document = TextDocument.create('test://foo/bar.css', 'css', 1, content);
-	const actualRanges = getApplicableRanges(document, document.positionAt(offset), ls.parseStylesheet(
+	const actualRanges = ls.getSelectionRanges(document, document.positionAt(offset), ls.parseStylesheet(
 		document
 	) as Stylesheet);
+	const offsetPairs = actualRanges.map(r => {
+		return [document.offsetAt(r.start), document.getText(r)];
+	});
 
-	message += `\n${JSON.stringify(actualRanges)} should equal to ${JSON.stringify(expected)}`;
-	assert.deepEqual(actualRanges, expected, message);
+	message += `${JSON.stringify(offsetPairs)}\n but should give:\n${JSON.stringify(expected)}\n`;
+	assert.deepEqual(offsetPairs, expected, message);
 }
 
 /**
@@ -34,26 +36,56 @@ function assertRanges(content: string, expected: number[][]): void {
  */
 suite('CSS SelectionRange', () => {
 	test('Basic', () => {
-		assertRanges('.foo { |color: blue; }', [[7, 12], [7, 18], [5, 21], [0, 21]]);
-		assertRanges('.foo { c|olor: blue; }', [[7, 12], [7, 18], [5, 21], [0, 21]]);
-		assertRanges('.foo { color|: blue; }', [[7, 12], [7, 18], [5, 21], [0, 21]]);
+		assertRanges('.foo { |color: blue; }', [
+			[7, 'color'],
+			[7, 'color: blue'],
+			[6, ' color: blue; '],
+			[0, '.foo { color: blue; }']
+		]);
+		assertRanges('.foo { c|olor: blue; }', [
+			[7, 'color'],
+			[7, 'color: blue'],
+			[6, ' color: blue; '],
+			[0, '.foo { color: blue; }']
+		]);
+		assertRanges('.foo { color|: blue; }', [
+			[7, 'color'],
+			[7, 'color: blue'],
+			[6, ' color: blue; '],
+			[0, '.foo { color: blue; }']
+		]);
 
-		assertRanges('.foo { color: |blue; }', [[14, 18], [7, 18], [5, 21], [0, 21]]);
-		assertRanges('.foo { color: b|lue; }', [[14, 18], [7, 18], [5, 21], [0, 21]]);
-		assertRanges('.foo { color: blue|; }', [[14, 18], [7, 18], [5, 21], [0, 21]]);
+		assertRanges('.foo { color: |blue; }', [
+			[14, 'blue'],
+			[7, 'color: blue'],
+			[6, ' color: blue; '],
+			[0, '.foo { color: blue; }']
+		]);
+		assertRanges('.foo { color: b|lue; }', [
+			[14, 'blue'],
+			[7, 'color: blue'],
+			[6, ' color: blue; '],
+			[0, '.foo { color: blue; }']
+		]);
+		assertRanges('.foo { color: blue|; }', [
+			[14, 'blue'],
+			[7, 'color: blue'],
+			[6, ' color: blue; '],
+			[0, '.foo { color: blue; }']
+		]);
 
-		assertRanges('.|foo { color: blue; }', [[1, 4], [0, 4], [0, 21]]);
-		assertRanges('.fo|o { color: blue; }', [[1, 4], [0, 4], [0, 21]]);
-		assertRanges('.foo| { color: blue; }', [[1, 4], [0, 4], [0, 21]]);
+		assertRanges('.|foo { color: blue; }', [[1, 'foo'], [0, '.foo'], [0, '.foo { color: blue; }']]);
+		assertRanges('.fo|o { color: blue; }', [[1, 'foo'], [0, '.foo'], [0, '.foo { color: blue; }']]);
+		assertRanges('.foo| { color: blue; }', [[1, 'foo'], [0, '.foo'], [0, '.foo { color: blue; }']]);
 	});
 
 	test('Multiple values', () => {
 		assertRanges(`.foo { font-family: '|Courier New', Courier, monospace; }`, [
-			[20, 33],
-			[20, 53],
-			[7, 53],
-			[5, 56],
-			[0, 56]
+			[20, `'Courier New'`],
+			[20, `'Courier New', Courier, monospace`],
+			[7, `font-family: 'Courier New', Courier, monospace`],
+			[6, ` font-family: 'Courier New', Courier, monospace; `],
+			[0, `.foo { font-family: 'Courier New', Courier, monospace; }`]
 		]);
 	});
 });
