@@ -11,10 +11,13 @@ Both setting point to a list of JSON files. This document describes the shape of
 
 🚧 The data format is in experimental phase and subject to change. 🚧
 
-The JSON can have 4 top level properties:
+### Overview
+
+The JSON have one required property, `version`, and 4 other top level properties:
 
 ```jsonc
 {
+  "version": 1,
   "properties": [],
   "atDirectives": [],
   "pseudoClasses": [],
@@ -22,9 +25,26 @@ The JSON can have 4 top level properties:
 }
 ```
 
-You can find their shapes at [cssLanguageTypes.ts](../src/cssLanguageTypes.ts) or the [JSON Schema](./customData.schema.json).
+Version denotes the schema version you are using. The latest schema version is V1.
 
-They all share two basic properties, `name` and `description`. For example:
+You can find other properties' shapes at [cssLanguageTypes.ts](../src/cssLanguageTypes.ts) or the [JSON Schema](./customData.schema.json).
+
+You might want to use the `json.schemas` setting to check your data against the schema and get auto-completion:
+
+```json
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["/css.json"],
+      "url": "https://raw.githubusercontent.com/Microsoft/vscode-css-languageservice/master/docs/customData.schema.json"
+    }
+  ]
+}
+```
+
+### Format
+
+All top-level properties share two basic properties, `name` and `description`. For example:
 
 ```jsonc
 {
