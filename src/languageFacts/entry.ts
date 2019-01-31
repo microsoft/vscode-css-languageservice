@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { EntryStatus } from '../cssLanguageTypes';
+import { EntryStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IValueData } from '../cssLanguageTypes';
 
 export interface Browsers {
 	E?: string;
@@ -40,27 +40,27 @@ function getEntryStatus(status: EntryStatus) {
 	}
 }
 
-export function getEntryDescription(entry: { description?: string; browsers?: string[]; data?: any }): string | null {
+export function getEntryDescription(entry: IEntry2): string | null {
 	if (!entry.description || entry.description === '') {
 		return null;
 	}
 
-	let desc: string = '';
+	let result: string = '';
 
-	if (entry.data && entry.data.status) {
-		desc += getEntryStatus(entry.data.status);
+	if (entry.status) {
+		result += getEntryStatus(entry.status);
 	}
 
-	desc += entry.description;
+	result += entry.description;
 
 	let browserLabel = getBrowserLabel(entry.browsers);
 	if (browserLabel) {
-		desc += '\n(' + browserLabel + ')';
+		result += '\n(' + browserLabel + ')';
 	}
-	if (entry.data && entry.data.syntax) {
-		desc += `\n\nSyntax: ${entry.data.syntax}`;
+	if ('syntax' in entry) {
+		result += `\n\nSyntax: ${entry.syntax}`;
 	}
-	return desc;
+	return result;
 }
 
 /**
@@ -90,6 +90,11 @@ export function getBrowserLabel(browsers: string[]): string {
 		.join(', ');
 }
 
+export type IEntry2 = IPropertyData | IAtDirectiveData | IPseudoClassData | IPseudoElementData | IValueData;
+
+/**
+ * Todo@Pine: Drop these two types and use IEntry2
+ */
 export interface IEntry {
 	name: string;
 	description?: string;
