@@ -75,7 +75,7 @@ You can also specify 2 additional properties for them:
     O: 'Opera'
   };
   ```
-  The browser compatibility will be rendered at completion and hover. Items that is only supported in only one browser are dropped from completion.
+  The browser compatibility will be rendered at completion and hover. Items that is supported in only one browser are dropped from completion.
 
 - `status`: The status of the item. The format is:
   ```
