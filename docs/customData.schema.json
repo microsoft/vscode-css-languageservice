@@ -17,6 +17,14 @@
       "items": {
         "type": "object",
         "required": ["name"],
+        "defaultSnippets": [
+          {
+            "body": {
+              "name": "$1",
+              "description": ""
+            }
+          }
+        ],
         "properties": {
           "name": {
             "type": "string"
@@ -25,6 +33,7 @@
             "type": "string"
           },
           "status": {
+            "$id": "#status",
             "type": "string",
             "enum": [
               "standard",
@@ -50,6 +59,14 @@
       "items": {
         "type": "object",
         "required": ["name"],
+        "defaultSnippets": [
+          {
+            "body": {
+              "name": "$1",
+              "description": ""
+            }
+          }
+        ],
         "properties": {
           "name": {
             "type": "string"
@@ -72,6 +89,14 @@
       "items": {
         "type": "object",
         "required": ["name"],
+        "defaultSnippets": [
+          {
+            "body": {
+              "name": "$1",
+              "description": ""
+            }
+          }
+        ],
         "properties": {
           "name": {
             "type": "string"
@@ -94,6 +119,14 @@
       "items": {
         "type": "object",
         "required": ["name"],
+        "defaultSnippets": [
+          {
+            "body": {
+              "name": "$1",
+              "description": ""
+            }
+          }
+        ],
         "properties": {
           "name": {
             "type": "string"
