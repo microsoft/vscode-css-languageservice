@@ -7,7 +7,7 @@
   "required": ["version"],
   "properties": {
     "version": {
-      "const": 1,
+			"const": 1,
       "description": "The custom data version",
       "type": "number"
     },
@@ -36,7 +36,9 @@
           "browsers": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "string",
+              "pattern": "(E|FF|S|C|IE|O)\\d+",
+              "patternErrorMessage": "Browser item must follow the format of `${browser}${version}`. `browser` is one of:\n- E: Edge\n- FF: Firefox\n- S: Safari\n- C: Chrome\n- IE: Internet Explorer\n- O: Opera"
             }
           }
         }
@@ -67,7 +69,9 @@
           "browsers": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "string",
+              "pattern": "(E|FF|S|C|IE|O)\\d+",
+              "patternErrorMessage": "Browser item must follow the format of `${browser}${version}`. `browser` is one of:\n- E: Edge\n- FF: Firefox\n- S: Safari\n- C: Chrome\n- IE: Internet Explorer\n- O: Opera"
             }
           }
         }
@@ -98,7 +102,9 @@
           "browsers": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "string",
+              "pattern": "(E|FF|S|C|IE|O)\\d+",
+              "patternErrorMessage": "Browser item must follow the format of `${browser}${version}`. `browser` is one of:\n- E: Edge\n- FF: Firefox\n- S: Safari\n- C: Chrome\n- IE: Internet Explorer\n- O: Opera"
             }
           }
         }
@@ -129,7 +135,9 @@
           "browsers": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "string",
+              "pattern": "(E|FF|S|C|IE|O)\\d+",
+              "patternErrorMessage": "Browser item must follow the format of `${browser}${version}`. `browser` is one of:\n- E: Edge\n- FF: Firefox\n- S: Safari\n- C: Chrome\n- IE: Internet Explorer\n- O: Opera"
             }
           }
         }
