@@ -58,21 +58,10 @@
             "type": "string"
           },
           "status": {
-            "type": "string",
-            "enum": [
-              "standard",
-              "experimental",
-              "nonstandard",
-              "obsolete"
-            ]
+            "$ref": "#/properties/properties/items/properties/status"
           },
           "browsers": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "pattern": "(E|FF|S|C|IE|O)\\d+",
-              "patternErrorMessage": "Browser item must follow the format of `${browser}${version}`. `browser` is one of:\n- E: Edge\n- FF: Firefox\n- S: Safari\n- C: Chrome\n- IE: Internet Explorer\n- O: Opera"
-            }
+            "$ref": "#/properties/properties/items/properties/browsers"
           }
         }
       }
@@ -91,21 +80,10 @@
             "type": "string"
           },
           "status": {
-            "type": "string",
-            "enum": [
-              "standard",
-              "experimental",
-              "nonstandard",
-              "obsolete"
-            ]
+            "$ref": "#/properties/properties/items/properties/status"
           },
           "browsers": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "pattern": "(E|FF|S|C|IE|O)\\d+",
-              "patternErrorMessage": "Browser item must follow the format of `${browser}${version}`. `browser` is one of:\n- E: Edge\n- FF: Firefox\n- S: Safari\n- C: Chrome\n- IE: Internet Explorer\n- O: Opera"
-            }
+            "$ref": "#/properties/properties/items/properties/browsers"
           }
         }
       }
@@ -124,21 +102,10 @@
             "type": "string"
           },
           "status": {
-            "type": "string",
-            "enum": [
-              "standard",
-              "experimental",
-              "nonstandard",
-              "obsolete"
-            ]
+            "$ref": "#/properties/properties/items/properties/status"
           },
           "browsers": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "pattern": "(E|FF|S|C|IE|O)\\d+",
-              "patternErrorMessage": "Browser item must follow the format of `${browser}${version}`. `browser` is one of:\n- E: Edge\n- FF: Firefox\n- S: Safari\n- C: Chrome\n- IE: Internet Explorer\n- O: Opera"
-            }
+            "$ref": "#/properties/properties/items/properties/browsers"
           }
         }
       }
