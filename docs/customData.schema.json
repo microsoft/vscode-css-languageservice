@@ -7,6 +7,7 @@
   "required": ["version"],
   "properties": {
     "version": {
+      "const": 1,
       "description": "The custom data version",
       "type": "number"
     },
