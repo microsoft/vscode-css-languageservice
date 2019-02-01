@@ -27,14 +27,16 @@
         ],
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "Name of property"
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "description": "Description of property shown in completion and hover"
           },
           "status": {
-            "$id": "#status",
             "type": "string",
+            "description": "Browser status",
             "enum": [
               "standard",
               "experimental",
@@ -44,6 +46,7 @@
           },
           "browsers": {
             "type": "array",
+            "description": "Supported browsers",
             "items": {
               "type": "string",
               "pattern": "(E|FF|S|C|IE|O)\\d+",
@@ -62,17 +65,21 @@
         "defaultSnippets": [
           {
             "body": {
-              "name": "$1",
+              "name": "@$1",
               "description": ""
             }
           }
         ],
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "Name of at directive",
+            "pattern": "^@.+",
+            "patternErrorMessage": "Pseudo class must start with `@`"
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "description": "Description of at directive shown in completion and hover"
           },
           "status": {
             "$ref": "#/properties/properties/items/properties/status"
@@ -92,17 +99,21 @@
         "defaultSnippets": [
           {
             "body": {
-              "name": "$1",
+              "name": ":$1",
               "description": ""
             }
           }
         ],
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "Name of pseudo class",
+            "pattern": "^:.+",
+            "patternErrorMessage": "Pseudo class must start with `:`"
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "description": "Description of pseudo class shown in completion and hover"
           },
           "status": {
             "$ref": "#/properties/properties/items/properties/status"
@@ -122,17 +133,21 @@
         "defaultSnippets": [
           {
             "body": {
-              "name": "$1",
+              "name": "::$1",
               "description": ""
             }
           }
         ],
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "Name of pseudo element",
+            "pattern": "^::.+",
+            "patternErrorMessage": "Pseudo class must start with `::`"
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "description": "Description of pseudo element shown in completion and hover"
           },
           "status": {
             "$ref": "#/properties/properties/items/properties/status"
