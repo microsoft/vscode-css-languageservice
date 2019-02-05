@@ -49,7 +49,7 @@
             "description": "Supported browsers",
             "items": {
               "type": "string",
-              "pattern": "(E|FF|S|C|IE|O)\\d+",
+              "pattern": "(E|FF|S|C|IE|O)([\\d|\\.]+)?",
               "patternErrorMessage": "Browser item must follow the format of `${browser}${version}`. `browser` is one of:\n- E: Edge\n- FF: Firefox\n- S: Safari\n- C: Chrome\n- IE: Internet Explorer\n- O: Opera"
             }
           }
