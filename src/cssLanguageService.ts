@@ -28,7 +28,6 @@ import { getSelectionRanges } from './services/cssSelectionRange';
 export type Stylesheet = {};
 export * from './cssLanguageTypes';
 export * from 'vscode-languageserver-types';
-export { CSSDataProvider } from './languageFacts';
 
 export interface LanguageService {
 	configure(raw: LanguageSettings): void;
