@@ -10,7 +10,7 @@ import { SelectionRange, SelectionRangeKind } from '../cssLanguageTypes';
 
 export function getSelectionRanges(document: TextDocument, positions: Position[], stylesheet: Stylesheet): SelectionRange[][] {
 	function getSelectionRange(position: Position): SelectionRange[] {
-		const applicableRanges = getApplicableRanges(document, position, stylesheet);
+		const applicableRanges = getApplicableRanges(position);
 		const ranges = applicableRanges.map(pair => {
 			return {
 				range: Range.create(
@@ -23,35 +23,35 @@ export function getSelectionRanges(document: TextDocument, positions: Position[]
 		return ranges;
 	}
 	return positions.map(getSelectionRange);
-}
 
-export function getApplicableRanges(document: TextDocument, position: Position, stylesheet: Stylesheet): number[][] {
-	let currNode = stylesheet.findChildAtOffset(document.offsetAt(position), true);
+	function getApplicableRanges(position: Position): number[][] {
+		let currNode = stylesheet.findChildAtOffset(document.offsetAt(position), true);
 
-	if (!currNode) {
-		return [];
-	}
+		if (!currNode) {
+			return [];
+		}
 
-	let result = [];
+		const result = [];
 
-	while (currNode) {
-		if (
-			currNode.parent &&
-			currNode.offset === currNode.parent.offset &&
-			currNode.end === currNode.parent.end
-		) {
+		while (currNode) {
+			if (
+				currNode.parent &&
+				currNode.offset === currNode.parent.offset &&
+				currNode.end === currNode.parent.end
+			) {
+				currNode = currNode.parent;
+				continue;
+			}
+
+			if (currNode.type === NodeType.Declarations) {
+				result.push([currNode.offset + 1, currNode.end - 1]);
+			} else {
+				result.push([currNode.offset, currNode.end]);
+			}
+
 			currNode = currNode.parent;
-			continue;
 		}
 
-		if (currNode.type === NodeType.Declarations) {
-			result.push([currNode.offset + 1, currNode.end - 1]);
-		} else {
-			result.push([currNode.offset, currNode.end]);
-		}
-
-		currNode = currNode.parent;
+		return result;
 	}
-
-	return result;
 }

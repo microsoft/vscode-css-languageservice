@@ -163,7 +163,7 @@ function checkBorderShorthand(node: nodes.Node): boolean {
 }
 
 export default function calculateBoxModel(propertyTable: Element[]): BoxModel {
-	let model: BoxModel = {
+	const model: BoxModel = {
 		top: { value: false, properties: [] },
 		right: { value: false, properties: [] },
 		bottom: { value: false, properties: [] },

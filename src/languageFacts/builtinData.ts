@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-export let positionKeywords: { [name: string]: string } = {
+export const positionKeywords: { [name: string]: string } = {
 	'bottom': 'Computes to ‘100%’ for the vertical position if one or two values are given, otherwise specifies the bottom edge as the origin for the next offset.',
 	'center': 'Computes to ‘50%’ (‘left 50%’) for the horizontal position if the horizontal position is not otherwise specified, or ‘50%’ (‘top 50%’) for the vertical position if it is.',
 	'left': 'Computes to ‘0%’ for the horizontal position if one or two values are given, otherwise specifies the left edge as the origin for the next offset.',
@@ -12,7 +12,7 @@ export let positionKeywords: { [name: string]: string } = {
 	'top': 'Computes to ‘0%’ for the vertical position if one or two values are given, otherwise specifies the top edge as the origin for the next offset.'
 };
 
-export let repeatStyleKeywords: { [name: string]: string } = {
+export const repeatStyleKeywords: { [name: string]: string } = {
 	'no-repeat': 'Placed once and not repeated in this direction.',
 	'repeat': 'Repeated in this direction as often as needed to cover the background painting area.',
 	'repeat-x': 'Computes to ‘repeat no-repeat’.',
@@ -21,7 +21,7 @@ export let repeatStyleKeywords: { [name: string]: string } = {
 	'space': 'Repeated as often as will fit within the background positioning area without being clipped and then the images are spaced out to fill the area.'
 };
 
-export let lineStyleKeywords: { [name: string]: string } = {
+export const lineStyleKeywords: { [name: string]: string } = {
 	'dashed': 'A series of square-ended dashes.',
 	'dotted': 'A series of round dots.',
 	'double': 'Two parallel solid lines with some space between them.',
@@ -34,32 +34,32 @@ export let lineStyleKeywords: { [name: string]: string } = {
 	'solid': 'A single line segment.'
 };
 
-export let lineWidthKeywords = ['medium', 'thick', 'thin'];
+export const lineWidthKeywords = ['medium', 'thick', 'thin'];
 
-export let boxKeywords: { [name: string]: string } = {
+export const boxKeywords: { [name: string]: string } = {
 	'border-box': 'The background is painted within (clipped to) the border box.',
 	'content-box': 'The background is painted within (clipped to) the content box.',
 	'padding-box': 'The background is painted within (clipped to) the padding box.'
 };
 
-export let geometryBoxKeywords: { [name: string]: string } = {
+export const geometryBoxKeywords: { [name: string]: string } = {
 	'margin-box': 'Uses the margin box as reference box.',
 	'fill-box': 'Uses the object bounding box as reference box.',
 	'stroke-box': 'Uses the stroke bounding box as reference box.',
 	'view-box': 'Uses the nearest SVG viewport as reference box.'
 };
 
-export let cssWideKeywords: { [name: string]: string } = {
+export const cssWideKeywords: { [name: string]: string } = {
 	'initial': 'Represents the value specified as the property’s initial value.',
 	'inherit': 'Represents the computed value of the property on the element’s parent.',
 	'unset': 'Acts as either `inherit` or `initial`, depending on whether the property is inherited or not.'
 };
 
-export let imageFunctions: { [name: string]: string } = {
+export const imageFunctions: { [name: string]: string } = {
 	'url()': 'Reference an image file by URL',
 	'image()': 'Provide image fallbacks and annotations.',
 	'-webkit-image-set()': 'Provide multiple resolutions. Remember to use unprefixed image-set() in addition.',
-	'image-set()': 'Provide multiple resolutions of an image and let the UA decide which is most appropriate in a given situation.',
+	'image-set()': 'Provide multiple resolutions of an image and const the UA decide which is most appropriate in a given situation.',
 	'-moz-element()': 'Use an element in the document as an image. Remember to use unprefixed element() in addition.',
 	'element()': 'Use an element in the document as an image.',
 	'cross-fade()': 'Indicates the two images to be combined and how far along in the transition the combination is.',
@@ -80,7 +80,7 @@ export let imageFunctions: { [name: string]: string } = {
 	'repeating-radial-gradient()': 'Same as radial-gradient, except the color-stops are repeated infinitely in both directions, with their positions shifted by multiples of the difference between the last specified color-stop’s position and the first specified color-stop’s position.'
 };
 
-export let transitionTimingFunctions: { [name: string]: string } = {
+export const transitionTimingFunctions: { [name: string]: string } = {
 	'ease': 'Equivalent to cubic-bezier(0.25, 0.1, 0.25, 1.0).',
 	'ease-in': 'Equivalent to cubic-bezier(0.42, 0, 1.0, 1.0).',
 	'ease-in-out': 'Equivalent to cubic-bezier(0.42, 0, 0.58, 1.0).',
@@ -116,14 +116,14 @@ export let transitionTimingFunctions: { [name: string]: string } = {
 	'cubic-bezier(0.23, 1, 0.320, 1)': 'Ease-out Quintic. Based on power of five.'
 };
 
-export let basicShapeFunctions: { [name: string]: string } = {
+export const basicShapeFunctions: { [name: string]: string } = {
 	'circle()': 'Defines a circle.',
 	'ellipse()': 'Defines an ellipse.',
 	'inset()': 'Defines an inset rectangle.',
 	'polygon()': 'Defines a polygon.'
 };
 
-export let units: { [unitName: string]: string[] } = {
+export const units: { [unitName: string]: string[] } = {
 	'length': ['em', 'rem', 'ex', 'px', 'cm', 'mm', 'in', 'pt', 'pc', 'ch', 'vw', 'vh', 'vmin', 'vmax'],
 	'angle': ['deg', 'rad', 'grad', 'turn'],
 	'time': ['ms', 's'],
@@ -132,20 +132,20 @@ export let units: { [unitName: string]: string[] } = {
 	'percentage': ['%', 'fr']
 };
 
-export let html5Tags = ['a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdi', 'bdo', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption',
+export const html5Tags = ['a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdi', 'bdo', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption',
 	'cite', 'code', 'col', 'colgroup', 'data', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'div', 'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer',
 	'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'keygen', 'label', 'legend', 'li', 'link',
 	'main', 'map', 'mark', 'menu', 'menuitem', 'meta', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'picture', 'pre', 'progress', 'q',
 	'rb', 'rp', 'rt', 'rtc', 'ruby', 's', 'samp', 'script', 'section', 'select', 'small', 'source', 'span', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td',
-	'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'let', 'video', 'wbr'];
+	'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'const', 'video', 'wbr'];
 
-export let svgElements = ['circle', 'clipPath', 'cursor', 'defs', 'desc', 'ellipse', 'feBlend', 'feColorMatrix', 'feComponentTransfer', 'feComposite', 'feConvolveMatrix', 'feDiffuseLighting',
+export const svgElements = ['circle', 'clipPath', 'cursor', 'defs', 'desc', 'ellipse', 'feBlend', 'feColorMatrix', 'feComponentTransfer', 'feComposite', 'feConvolveMatrix', 'feDiffuseLighting',
 	'feDisplacementMap', 'feDistantLight', 'feDropShadow', 'feFlood', 'feFuncA', 'feFuncB', 'feFuncG', 'feFuncR', 'feGaussianBlur', 'feImage', 'feMerge', 'feMergeNode', 'feMorphology',
 	'feOffset', 'fePointLight', 'feSpecularLighting', 'feSpotLight', 'feTile', 'feTurbulence', 'filter', 'foreignObject', 'g', 'hatch', 'hatchpath', 'image', 'line', 'linearGradient',
 	'marker', 'mask', 'mesh', 'meshpatch', 'meshrow', 'metadata', 'mpath', 'path', 'pattern', 'polygon', 'polyline', 'radialGradient', 'rect', 'set', 'solidcolor', 'stop', 'svg', 'switch',
 	'symbol', 'text', 'textPath', 'tspan', 'use', 'view'];
 
-export let pageBoxDirectives = [
+export const pageBoxDirectives = [
 	'@bottom-center', '@bottom-left', '@bottom-left-corner', '@bottom-right', '@bottom-right-corner',
 	'@left-bottom', '@left-middle', '@left-top', '@right-bottom', '@right-middle', '@right-top',
 	'@top-center', '@top-left', '@top-left-corner', '@top-right', '@top-right-corner'

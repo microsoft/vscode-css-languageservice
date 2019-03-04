@@ -20,8 +20,8 @@ export class LESSScanner extends scanner.Scanner {
 
 	protected scanNext(offset: number): scanner.IToken {
 
-		// LESS: escaped JavaScript code `let a = "dddd"`
-		let tokenType = this.escapedJavaScript();
+		// LESS: escaped JavaScript code `const a = "dddd"`
+		const tokenType = this.escapedJavaScript();
 		if (tokenType !== null) {
 			return this.finishToken(offset, tokenType);
 		}
@@ -55,7 +55,7 @@ export class LESSScanner extends scanner.Scanner {
 	}
 
 	private escapedJavaScript(): scanner.TokenType {
-		let ch = this.stream.peekChar();
+		const ch = this.stream.peekChar();
 		if (ch === _TIC) {
 			this.stream.advance(1);
 			this.stream.advanceWhileChar((ch) => { return ch !== _TIC; });

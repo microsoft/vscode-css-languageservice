@@ -362,8 +362,8 @@ export class LESSCompletion extends CSSCompletion {
 	}
 
 	private createFunctionProposals(proposals: IFunctionInfo[], existingNode: nodes.Node, sortToEnd: boolean, result: CompletionList): CompletionList {
-		for (let p of proposals) {
-			let item: CompletionItem = {
+		for (const p of proposals) {
+			const item: CompletionItem = {
 				label: p.name,
 				detail: p.example,
 				documentation: p.description,

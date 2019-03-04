@@ -19,7 +19,7 @@ export class Element {
 
 	public findAttribute(name: string): string {
 		if (this.attributes) {
-			for (let attribute of this.attributes) {
+			for (const attribute of this.attributes) {
 				if (attribute.name === name) {
 					return attribute.value;
 				}
@@ -40,14 +40,14 @@ export class Element {
 
 	public append(text: string) {
 		if (this.attributes) {
-			let last = this.attributes[this.attributes.length - 1];
+			const last = this.attributes[this.attributes.length - 1];
 			last.value = last.value + text;
 		}
 	}
 
 	public prepend(text: string) {
 		if (this.attributes) {
-			let first = this.attributes[0];
+			const first = this.attributes[0];
 			first.value = text + first.value;
 		}
 	}
@@ -62,7 +62,7 @@ export class Element {
 
 	public removeChild(child: Element): boolean {
 		if (this.children) {
-			let index = this.children.indexOf(child);
+			const index = this.children.indexOf(child);
 			if (index !== -1) {
 				this.children.splice(index, 1);
 				return true;
@@ -75,7 +75,7 @@ export class Element {
 		if (!this.attributes) {
 			this.attributes = [];
 		}
-		for (let attribute of this.attributes) {
+		for (const attribute of this.attributes) {
 			if (attribute.name === name) {
 				attribute.value += ' ' + value;
 				return;
@@ -85,10 +85,10 @@ export class Element {
 	}
 
 	public clone(cloneChildren: boolean = true): Element {
-		let elem = new Element();
+		const elem = new Element();
 		if (this.attributes) {
 			elem.attributes = [];
-			for (let attribute of this.attributes) {
+			for (const attribute of this.attributes) {
 				elem.addAttr(attribute.name, attribute.value);
 			}
 		}
@@ -102,9 +102,9 @@ export class Element {
 	}
 
 	public cloneWithParent(): Element {
-		let clone = this.clone(false);
+		const clone = this.clone(false);
 		if (this.parent && !(this.parent instanceof RootElement)) {
-			let parentClone = this.parent.cloneWithParent();
+			const parentClone = this.parent.cloneWithParent();
 			parentClone.addChild(clone);
 		}
 		return clone;
@@ -144,7 +144,7 @@ class MarkedStringPrinter {
 	}
 
 	private doPrint(elements: Element[], indent: number) {
-		for (let element of elements) {
+		for (const element of elements) {
 			this.doPrintElement(element, indent);
 			if (element.children) {
 				this.doPrint(element.children, indent + 1);
@@ -153,12 +153,12 @@ class MarkedStringPrinter {
 	}
 
 	private writeLine(level: number, content: string) {
-		let indent = new Array(level + 1).join('  ');
+		const indent = new Array(level + 1).join('  ');
 		this.result.push(indent + content);
 	}
 
 	private doPrintElement(element: Element, indent: number) {
-		let name = element.findAttribute('name');
+		const name = element.findAttribute('name');
 
 		// special case: a simple label
 		if (element instanceof LabelElement || name === '\u2026') {
@@ -167,7 +167,7 @@ class MarkedStringPrinter {
 		}
 
 		// the real deal
-		let content = ['<'];
+		const content = ['<'];
 
 		// element name
 		if (name) {
@@ -178,11 +178,11 @@ class MarkedStringPrinter {
 
 		// attributes
 		if (element.attributes) {
-			for (let attr of element.attributes) {
+			for (const attr of element.attributes) {
 				if (attr.name !== 'name') {
 					content.push(' ');
 					content.push(attr.name);
-					let value = attr.value;
+					const value = attr.value;
 					if (value) {
 						content.push('=');
 						content.push(quotes.ensure(value, this.quote));
@@ -204,7 +204,7 @@ namespace quotes {
 	}
 
 	export function remove(value: string): string {
-		let match = value.match(/^['"](.*)["']$/);
+		const match = value.match(/^['"](.*)["']$/);
 		if (match) {
 			return match[1];
 		}
@@ -219,7 +219,7 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element): 
 		switch (child.type) {
 			case nodes.NodeType.SelectorCombinator:
 				if (parentElement) {
-					let segments = child.getText().split('&');
+					const segments = child.getText().split('&');
 					if (segments.length === 1) {
 						// should not happen
 						result.addAttr('name', segments[0]);
@@ -227,12 +227,12 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element): 
 					}
 					result = parentElement.cloneWithParent();
 					if (segments[0]) {
-						let root = result.findRoot();
+						const root = result.findRoot();
 						root.prepend(segments[0]);
 					}
 					for (let i = 1; i < segments.length; i++) {
 						if (i > 1) {
-							let clone = parentElement.cloneWithParent();
+							const clone = parentElement.cloneWithParent();
 							result.addChild(clone.findRoot());
 							result = clone;
 						}
@@ -246,7 +246,7 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element): 
 				}
 			// fall through
 			case nodes.NodeType.ElementNameSelector:
-				let text = child.getText();
+				const text = child.getText();
 				result.addAttr('name', text === '*' ? 'element' : unescape(text));
 				break;
 			case nodes.NodeType.ClassSelector:
@@ -263,10 +263,10 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element): 
 				break;
 			case nodes.NodeType.AttributeSelector:
 				const selector = <nodes.AttributeSelector>child;
-				let identifuer = selector.getIdentifier();
+				const identifuer = selector.getIdentifier();
 				if (identifuer) {
-					let expression = selector.getValue();
-					let operator = selector.getOperator();
+					const expression = selector.getValue();
+					const operator = selector.getOperator();
 					let value: string;
 					if (expression) {
 						switch (unescape(operator.getText())) {
@@ -304,9 +304,9 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element): 
 }
 
 function unescape(content: string) {
-	let scanner = new Scanner();
+	const scanner = new Scanner();
 	scanner.setSource(content);
-	let token = scanner.scanUnquotedString();
+	const token = scanner.scanUnquotedString();
 	if (token) {
 		return token.text;
 	}
@@ -350,21 +350,21 @@ function selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
 		});
 	}
 
-	let specificity = [0, 0, 0]; //a,b,c
+	const specificity = [0, 0, 0]; //a,b,c
 	calculateScore(node);
 	return localize('specificity', "[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): ({0}, {1}, {2})", ...specificity);
 }
 
 export function selectorToMarkedString(node: nodes.Selector): MarkedString[] {
-	let root = selectorToElement(node);
-	let markedStrings = new MarkedStringPrinter('"').print(root);
+	const root = selectorToElement(node);
+	const markedStrings = new MarkedStringPrinter('"').print(root);
 	markedStrings.push(selectorToSpecificityMarkedString(node));
 	return markedStrings;
 }
 
 export function simpleSelectorToMarkedString(node: nodes.SimpleSelector): MarkedString[] {
-	let element = toElement(node);
-	let markedStrings = new MarkedStringPrinter('"').print(element);
+	const element = toElement(node);
+	const markedStrings = new MarkedStringPrinter('"').print(element);
 	markedStrings.push(selectorToSpecificityMarkedString(node));
 	return markedStrings;
 }
@@ -384,7 +384,7 @@ class SelectorElementBuilder {
 
 		if (!(this.element instanceof RootElement)) {
 			if (selector.getChildren().some((c) => c.hasChildren() && c.getChild(0).type === nodes.NodeType.SelectorCombinator)) {
-				let curr = this.element.findRoot();
+				const curr = this.element.findRoot();
 				if (curr.parent instanceof RootElement) {
 					parentElement = this.element;
 
@@ -395,11 +395,11 @@ class SelectorElementBuilder {
 			}
 		}
 
-		for (let selectorChild of selector.getChildren()) {
+		for (const selectorChild of selector.getChildren()) {
 
 			if (selectorChild instanceof nodes.SimpleSelector) {
 				if (this.prev instanceof nodes.SimpleSelector) {
-					let labelElement = new LabelElement('\u2026');
+					const labelElement = new LabelElement('\u2026');
 					this.element.addChild(labelElement);
 					this.element = labelElement;
 				} else if (this.prev && (this.prev.matches('+') || this.prev.matches('~')) && this.element.parent) {
@@ -411,8 +411,8 @@ class SelectorElementBuilder {
 					this.element.addChild(new LabelElement('\u22EE'));
 				}
 
-				let thisElement = toElement(<nodes.SimpleSelector>selectorChild, parentElement);
-				let root = thisElement.findRoot();
+				const thisElement = toElement(<nodes.SimpleSelector>selectorChild, parentElement);
+				const root = thisElement.findRoot();
 
 				this.element.addChild(root);
 				this.element = thisElement;
@@ -442,8 +442,8 @@ export function selectorToElement(node: nodes.Selector): Element {
 	if (node.matches('@at-root')) {
 		return null;
 	}
-	let root: Element = new RootElement();
-	let parentRuleSets: nodes.RuleSet[] = [];
+	const root: Element = new RootElement();
+	const parentRuleSets: nodes.RuleSet[] = [];
 
 	if (node.getParent() instanceof nodes.RuleSet) {
 		let parent = node.getParent().getParent(); // parent of the selector's ruleset
@@ -458,10 +458,10 @@ export function selectorToElement(node: nodes.Selector): Element {
 		}
 	}
 
-	let builder = new SelectorElementBuilder(root);
+	const builder = new SelectorElementBuilder(root);
 
 	for (let i = parentRuleSets.length - 1; i >= 0; i--) {
-		let selector = <nodes.Selector>parentRuleSets[i].getSelectors().getChild(0);
+		const selector = <nodes.Selector>parentRuleSets[i].getSelectors().getChild(0);
 		if (selector) {
 			builder.processSelector(selector);
 		}

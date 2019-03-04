@@ -114,11 +114,11 @@ export class MultiLineStream {
 	}
 
 	public advanceIfChars(ch: number[]): boolean {
-		let i: number;
 		if (this.position + ch.length > this.source.length) {
 			return false;
 		}
-		for (i = 0; i < ch.length; i++) {
+		let i = 0;
+		for (; i < ch.length; i++) {
 			if (this.source.charCodeAt(this.position + i) !== ch[i]) {
 				return false;
 			}
@@ -128,7 +128,7 @@ export class MultiLineStream {
 	}
 
 	public advanceWhileChar(condition: (ch: number) => boolean): number {
-		let posNow = this.position;
+		const posNow = this.position;
 		while (this.position < this.len && condition(this.source.charCodeAt(this.position))) {
 			this.position++;
 		}
@@ -243,8 +243,8 @@ export class Scanner {
 	}
 
 	public scanUnquotedString(): IToken | null {
-		let offset = this.stream.pos();
-		let content: string[] = [];
+		const offset = this.stream.pos();
+		const content: string[] = [];
 		if (this._unquotedString(content)) {
 			return this.finishToken(offset, TokenType.UnquotedString, content.join(''));
 		}
@@ -253,12 +253,12 @@ export class Scanner {
 
 	public scan(): IToken {
 		// processes all whitespaces and comments
-		let triviaToken = this.trivia();
+		const triviaToken = this.trivia();
 		if (triviaToken !== null) {
 			return triviaToken;
 		}
 
-		let offset = this.stream.pos();
+		const offset = this.stream.pos();
 
 		// End of file/input
 		if (this.stream.eos()) {
@@ -288,7 +288,7 @@ export class Scanner {
 		if (this.stream.advanceIfChar(_ATS)) {
 			content = ['@'];
 			if (this._name(content)) {
-				let keywordText = content.join('');
+				const keywordText = content.join('');
 				if (keywordText === '@charset') {
 					return this.finishToken(offset, TokenType.Charset, keywordText);
 				}
@@ -316,14 +316,14 @@ export class Scanner {
 		// Numbers
 		if (this._number()) {
 
-			let pos = this.stream.pos();
+			const pos = this.stream.pos();
 			content = [this.stream.substring(offset, pos)];
 			if (this.stream.advanceIfChar(_PRC)) {
 				// Percentage 43%
 				return this.finishToken(offset, TokenType.Percentage);
 			} else if (this.ident(content)) {
-				let dim = this.stream.substring(pos).toLowerCase();
-				let tokenType = <TokenType>staticUnitTable[dim];
+				const dim = this.stream.substring(pos).toLowerCase();
+				const tokenType = <TokenType>staticUnitTable[dim];
 				if (typeof tokenType !== 'undefined') {
 					// Known dimension 43px
 					return this.finishToken(offset, tokenType, content.join(''));
@@ -388,7 +388,7 @@ export class Scanner {
 	private _matchWordAnyCase(characters: number[]): boolean {
 		let index = 0;
 		this.stream.advanceWhileChar((ch: number) => {
-			let result = characters[index] === ch || characters[index + 1] === ch;
+			const result = characters[index] === ch || characters[index + 1] === ch;
 			if (result) {
 				index += 2;
 			}
@@ -404,7 +404,7 @@ export class Scanner {
 
 	protected trivia(): IToken | null {
 		while (true) {
-			let offset = this.stream.pos();
+			const offset = this.stream.pos();
 			if (this._whitespace()) {
 				if (!this.ignoreWhitespace) {
 					return this.finishToken(offset, TokenType.Whitespace);
@@ -456,7 +456,7 @@ export class Scanner {
 	}
 
 	private _newline(result: string[]): boolean {
-		let ch = this.stream.peekChar();
+		const ch = this.stream.peekChar();
 		switch (ch) {
 			case _CAR:
 			case _LFD:
@@ -486,7 +486,7 @@ export class Scanner {
 			}
 			if (hexNumCount > 0) {
 				try {
-					let hexVal = parseInt(this.stream.substring(this.stream.pos() - hexNumCount), 16);
+					const hexVal = parseInt(this.stream.substring(this.stream.pos() - hexNumCount), 16);
 					if (hexVal) {
 						result.push(String.fromCharCode(hexVal));
 					}
@@ -515,7 +515,7 @@ export class Scanner {
 
 	private _stringChar(closeQuote: number, result: string[]) {
 		// not closeQuote, not backslash, not newline
-		let ch = this.stream.peekChar();
+		const ch = this.stream.peekChar();
 		if (ch !== 0 && ch !== closeQuote && ch !== _BSL && ch !== _CAR && ch !== _LFD && ch !== _NWL) {
 			this.stream.advance(1);
 			result.push(String.fromCharCode(ch));
@@ -526,7 +526,7 @@ export class Scanner {
 
 	private _string(result: string[]): TokenType | null {
 		if (this.stream.peekChar() === _SQO || this.stream.peekChar() === _DQO) {
-			let closeQuote = this.stream.nextChar();
+			const closeQuote = this.stream.nextChar();
 			result.push(String.fromCharCode(closeQuote));
 
 			while (this._stringChar(closeQuote, result) || this._escape(result, true)) {
@@ -546,7 +546,7 @@ export class Scanner {
 
 	private _unquotedChar(result: string[]): boolean {
 		// not closeQuote, not backslash, not newline
-		let ch = this.stream.peekChar();
+		const ch = this.stream.peekChar();
 		if (ch !== 0 && ch !== _BSL && ch !== _SQO && ch !== _DQO && ch !== _LPA && ch !== _RPA && ch !== _WSP && ch !== _TAB && ch !== _NWL && ch !== _LFD && ch !== _CAR) {
 			this.stream.advance(1);
 			result.push(String.fromCharCode(ch));
@@ -565,7 +565,7 @@ export class Scanner {
 	}
 
 	private _whitespace(): boolean {
-		let n = this.stream.advanceWhileChar((ch) => {
+		const n = this.stream.advanceWhileChar((ch) => {
 			return ch === _WSP || ch === _TAB || ch === _NWL || ch === _LFD || ch === _CAR;
 		});
 		return n > 0;
@@ -580,8 +580,8 @@ export class Scanner {
 	}
 
 	protected ident(result: string[]): boolean {
-		let pos = this.stream.pos();
-		let hasMinus = this._minus(result);
+		const pos = this.stream.pos();
+		const hasMinus = this._minus(result);
 		if (hasMinus && this._minus(result) /* -- */) {
 			if (this._identFirstChar(result) || this._escape(result)) {
 				while (this._identChar(result) || this._escape(result)) {
@@ -600,7 +600,7 @@ export class Scanner {
 	}
 
 	private _identFirstChar(result: string[]): boolean {
-		let ch = this.stream.peekChar();
+		const ch = this.stream.peekChar();
 		if (ch === _USC || // _
 			ch >= _a && ch <= _z || // a-z
 			ch >= _A && ch <= _Z || // A-Z
@@ -614,7 +614,7 @@ export class Scanner {
 
 
 	private _minus(result: string[]): boolean {
-		let ch = this.stream.peekChar();
+		const ch = this.stream.peekChar();
 		if (ch === _MIN) {
 			this.stream.advance(1);
 			result.push(String.fromCharCode(ch));
@@ -624,7 +624,7 @@ export class Scanner {
 	}
 
 	private _identChar(result: string[]): boolean {
-		let ch = this.stream.peekChar();
+		const ch = this.stream.peekChar();
 		if (ch === _USC || // _
 			ch === _MIN || // -
 			ch >= _a && ch <= _z || // a-z

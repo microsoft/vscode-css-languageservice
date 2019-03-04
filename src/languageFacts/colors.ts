@@ -10,14 +10,14 @@ import * as nodes from '../parser/cssNodes';
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();
 
-export let colorFunctions = [
+export const colorFunctions = [
 	{ func: 'rgb($red, $green, $blue)', desc: localize('css.builtin.rgb', 'Creates a Color from red, green, and blue values.') },
 	{ func: 'rgba($red, $green, $blue, $alpha)', desc: localize('css.builtin.rgba', 'Creates a Color from red, green, blue, and alpha values.') },
 	{ func: 'hsl($hue, $saturation, $lightness)', desc: localize('css.builtin.hsl', 'Creates a Color from hue, saturation, and lightness values.') },
 	{ func: 'hsla($hue, $saturation, $lightness, $alpha)', desc: localize('css.builtin.hsla', 'Creates a Color from hue, saturation, lightness, and alpha values.') }
 ];
 
-export let colors: { [name: string]: string } = {
+export const colors: { [name: string]: string } = {
 	aliceblue: '#f0f8ff',
 	antiquewhite: '#faebd7',
 	aqua: '#00ffff',
@@ -168,19 +168,19 @@ export let colors: { [name: string]: string } = {
 	yellowgreen: '#9acd32'
 };
 
-export let colorKeywords: { [name: string]: string } = {
+export const colorKeywords: { [name: string]: string } = {
 	'currentColor': 'The value of the \'color\' property. The computed value of the \'currentColor\' keyword is the computed value of the \'color\' property. If the \'currentColor\' keyword is set on the \'color\' property itself, it is treated as \'color:inherit\' at parse time.',
 	'transparent': 'Fully transparent. This keyword can be considered a shorthand for rgba(0,0,0,0) which is its computed value.',
 };
 
 function getNumericValue(node: nodes.Node, factor: number) {
-	let val = node.getText();
-	let m = val.match(/^([-+]?[0-9]*\.?[0-9]+)(%?)$/);
+	const val = node.getText();
+	const m = val.match(/^([-+]?[0-9]*\.?[0-9]+)(%?)$/);
 	if (m) {
 		if (m[2]) {
 			factor = 100.0;
 		}
-		let result = parseFloat(m[1]) / factor;
+		const result = parseFloat(m[1]) / factor;
 		if (result >= 0 && result <= 1) {
 			return result;
 		}
@@ -189,8 +189,8 @@ function getNumericValue(node: nodes.Node, factor: number) {
 }
 
 function getAngle(node: nodes.Node) {
-	let val = node.getText();
-	let m = val.match(/^([-+]?[0-9]*\.?[0-9]+)(deg)?$/);
+	const val = node.getText();
+	const m = val.match(/^([-+]?[0-9]*\.?[0-9]+)(deg)?$/);
 	if (m) {
 		return parseFloat(val) % 360;
 	}
@@ -198,7 +198,7 @@ function getAngle(node: nodes.Node) {
 }
 
 export function isColorConstructor(node: nodes.Function): boolean {
-	let name = node.getName();
+	const name = node.getName();
 	if (!name) {
 		return false;
 	}
@@ -219,7 +219,7 @@ export function isColorValue(node: nodes.Node): boolean {
 		if (node.parent && node.parent.type !== nodes.NodeType.Term) {
 			return false;
 		}
-		let candidateColor = node.getText().toLowerCase();
+		const candidateColor = node.getText().toLowerCase();
 		if (candidateColor === 'none') {
 			return false;
 		}
@@ -304,7 +304,7 @@ export function colorFromHSL(hue: number, sat: number, light: number, alpha: num
 	if (sat === 0) {
 		return { red: light, green: light, blue: light, alpha };
 	} else {
-		let hueToRgb = (t1, t2, hue) => {
+		const hueToRgb = (t1, t2, hue) => {
 			while (hue < 0) { hue += 6; }
 			while (hue >= 6) { hue -= 6; }
 
@@ -313,8 +313,8 @@ export function colorFromHSL(hue: number, sat: number, light: number, alpha: num
 			if (hue < 4) { return (t2 - t1) * (4 - hue) + t1; }
 			return t1;
 		};
-		let t2 = light <= 0.5 ? (light * (sat + 1)) : (light + sat - (light * sat));
-		var t1 = light * 2 - t2;
+		const t2 = light <= 0.5 ? (light * (sat + 1)) : (light + sat - (light * sat));
+		const t1 = light * 2 - t2;
 		return { red: hueToRgb(t1, t2, hue + 2), green: hueToRgb(t1, t2, hue), blue: hueToRgb(t1, t2, hue - 2), alpha };
 	}
 }
@@ -351,17 +351,17 @@ export function hslFromColor(rgba: Color): HSLA {
 
 export function getColorValue(node: nodes.Node): Color {
 	if (node.type === nodes.NodeType.HexColorValue) {
-		let text = node.getText();
+		const text = node.getText();
 		return colorFromHex(text);
 	} else if (node.type === nodes.NodeType.Function) {
-		let functionNode = <nodes.Function>node;
-		let name = functionNode.getName();
-		let colorValues = functionNode.getArguments().getChildren();
+		const functionNode = <nodes.Function>node;
+		const name = functionNode.getName();
+		const colorValues = functionNode.getArguments().getChildren();
 		if (!name || colorValues.length < 3 || colorValues.length > 4) {
 			return null;
 		}
 		try {
-			let alpha = colorValues.length === 4 ? getNumericValue(colorValues[3], 1) : 1;
+			const alpha = colorValues.length === 4 ? getNumericValue(colorValues[3], 1) : 1;
 			if (name === 'rgb' || name === 'rgba') {
 				return {
 					red: getNumericValue(colorValues[0], 255.0),
@@ -370,9 +370,9 @@ export function getColorValue(node: nodes.Node): Color {
 					alpha
 				};
 			} else if (name === 'hsl' || name === 'hsla') {
-				let h = getAngle(colorValues[0]);
-				let s = getNumericValue(colorValues[1], 100.0);
-				let l = getNumericValue(colorValues[2], 100.0);
+				const h = getAngle(colorValues[0]);
+				const s = getNumericValue(colorValues[1], 100.0);
+				const l = getNumericValue(colorValues[2], 100.0);
 				return colorFromHSL(h, s, l, alpha);
 			}
 		} catch (e) {
@@ -383,19 +383,19 @@ export function getColorValue(node: nodes.Node): Color {
 		if (node.parent && node.parent.type !== nodes.NodeType.Term) {
 			return null;
 		}
-		let term = node.parent;
+		const term = node.parent;
 		if (term.parent && term.parent.type === nodes.NodeType.BinaryExpression) {
-			let expression = term.parent;
+			const expression = term.parent;
 			if (expression.parent && expression.parent.type === nodes.NodeType.ListEntry && (<nodes.ListEntry>expression.parent).key === expression) {
 				return null;
 			}
 		}
 
-		let candidateColor = node.getText().toLowerCase();
+		const candidateColor = node.getText().toLowerCase();
 		if (candidateColor === 'none') {
 			return null;
 		}
-		let colorHex = colors[candidateColor];
+		const colorHex = colors[candidateColor];
 		if (colorHex) {
 			return colorFromHex(colorHex);
 		}

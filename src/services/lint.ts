@@ -33,7 +33,7 @@ class NodesByRootMap {
 export class LintVisitor implements nodes.IVisitor {
 
 	static entries(node: nodes.Node, document: TextDocument, settings: LintConfigurationSettings, entryFilter?: number): nodes.IMarker[] {
-		let visitor = new LintVisitor(document, settings);
+		const visitor = new LintVisitor(document, settings);
 		node.acceptVisitor(visitor);
 		visitor.completeValidations();
 		return visitor.getEntries(entryFilter);
@@ -76,9 +76,9 @@ export class LintVisitor implements nodes.IVisitor {
 	}
 
 	private fetch(input: Element[], s: string): Element[] {
-		let elements: Element[] = [];
+		const elements: Element[] = [];
 
-		for (let curr of input) {
+		for (const curr of input) {
 			if (curr.name === s) {
 				elements.push(curr);
 			}
@@ -88,10 +88,10 @@ export class LintVisitor implements nodes.IVisitor {
 	}
 
 	private fetchWithValue(input: Element[], s: string, v: string): Element[] {
-		let elements: Element[] = [];
-		for (let inputElement of input) {
+		const elements: Element[] = [];
+		for (const inputElement of input) {
 			if (inputElement.name === s) {
-				let expression = inputElement.node.getValue();
+				const expression = inputElement.node.getValue();
 				if (expression && this.findValueInExpression(expression, v)) {
 					elements.push(inputElement);
 				}
@@ -119,21 +119,21 @@ export class LintVisitor implements nodes.IVisitor {
 	}
 
 	private addEntry(node: nodes.Node, rule: Rule, details?: string): void {
-		let entry = new nodes.Marker(node, rule, this.settings.getRule(rule), details);
+		const entry = new nodes.Marker(node, rule, this.settings.getRule(rule), details);
 		this.warnings.push(entry);
 	}
 
 	private getMissingNames(expected: string[], actual: string[]): string {
 		expected = expected.slice(0); // clone
 		for (let i = 0; i < actual.length; i++) {
-			let k = expected.indexOf(actual[i]);
+			const k = expected.indexOf(actual[i]);
 			if (k !== -1) {
 				expected[k] = null;
 			}
 		}
 		let result: string = null;
 		for (let i = 0; i < expected.length; i++) {
-			let curr = expected[i];
+			const curr = expected[i];
 			if (curr) {
 				if (result === null) {
 					result = localize('namelist.single', "'{0}'", curr);
@@ -186,8 +186,8 @@ export class LintVisitor implements nodes.IVisitor {
 	}
 
 	private visitKeyframe(node: nodes.Keyframe): boolean {
-		let keyword = node.getKeyword();
-		let text = keyword.getText();
+		const keyword = node.getKeyword();
+		const text = keyword.getText();
 		this.keyframes.add(node.getName(), text, (text !== '@keyframes') ? keyword : null);
 		return true;
 	}
@@ -195,24 +195,24 @@ export class LintVisitor implements nodes.IVisitor {
 	private validateKeyframes(): boolean {
 		// @keyframe and it's vendor specific alternatives
 		// @keyframe should be included
-		let expected = ['@-webkit-keyframes', '@-moz-keyframes', '@-o-keyframes'];
+		const expected = ['@-webkit-keyframes', '@-moz-keyframes', '@-o-keyframes'];
 
-		for (let name in this.keyframes.data) {
-			let actual = this.keyframes.data[name].names;
-			let needsStandard = (actual.indexOf('@keyframes') === -1);
+		for (const name in this.keyframes.data) {
+			const actual = this.keyframes.data[name].names;
+			const needsStandard = (actual.indexOf('@keyframes') === -1);
 			if (!needsStandard && actual.length === 1) {
 				continue; // only the non-vendor specific keyword is used, that's fine, no warning
 			}
 
-			let missingVendorSpecific = this.getMissingNames(expected, actual);
+			const missingVendorSpecific = this.getMissingNames(expected, actual);
 			if (missingVendorSpecific || needsStandard) {
-				for (let node of this.keyframes.data[name].nodes) {
+				for (const node of this.keyframes.data[name].nodes) {
 					if (needsStandard) {
-						let message = localize('keyframes.standardrule.missing', "Always define standard rule '@keyframes' when defining keyframes.");
+						const message = localize('keyframes.standardrule.missing', "Always define standard rule '@keyframes' when defining keyframes.");
 						this.addEntry(node, Rules.IncludeStandardPropertyWhenUsingVendorPrefix, message);
 					}
 					if (missingVendorSpecific) {
-						let message = localize('keyframes.vendorspecific.missing', "Always include all vendor specific rules: Missing: {0}", missingVendorSpecific);
+						const message = localize('keyframes.vendorspecific.missing', "Always include all vendor specific rules: Missing: {0}", missingVendorSpecific);
 						this.addEntry(node, Rules.AllVendorPrefixes, message);
 					}
 				}
@@ -224,7 +224,7 @@ export class LintVisitor implements nodes.IVisitor {
 
 	private visitSimpleSelector(node: nodes.SimpleSelector): boolean {
 
-		let firstChar = this.documentText.charAt(node.offset);
+		const firstChar = this.documentText.charAt(node.offset);
 
 		/////////////////////////////////////////////////////////////
 		//	Lint - The universal selector (*) is known to be slow.
@@ -254,7 +254,7 @@ export class LintVisitor implements nodes.IVisitor {
 		/////////////////////////////////////////////////////////////
 		//	Lint - Don't use empty rulesets.
 		/////////////////////////////////////////////////////////////
-		let declarations = node.getDeclarations();
+		const declarations = node.getDeclarations();
 		if (!declarations) {
 			// syntax error
 			return false;
@@ -265,10 +265,10 @@ export class LintVisitor implements nodes.IVisitor {
 			this.addEntry(node.getSelectors(), Rules.EmptyRuleSet);
 		}
 
-		let propertyTable: Element[] = [];
-		for (let element of declarations.getChildren()) {
+		const propertyTable: Element[] = [];
+		for (const element of declarations.getChildren()) {
 			if (element instanceof nodes.Declaration) {
-				let decl = <nodes.Declaration>element;
+				const decl = <nodes.Declaration>element;
 				propertyTable.push(new Element(decl.getFullPropertyName().toLowerCase(), decl));
 			}
 		}
@@ -319,11 +319,11 @@ export class LintVisitor implements nodes.IVisitor {
 		// With 'display: inline', the width, height, margin-top, margin-bottom, and float properties have no effect
 		let displayElems = this.fetchWithValue(propertyTable, 'display', 'inline');
 		if (displayElems.length > 0) {
-			for (let prop of ['width', 'height', 'margin-top', 'margin-bottom', 'float']) {
-				let elem = this.fetch(propertyTable, prop);
+			for (const prop of ['width', 'height', 'margin-top', 'margin-bottom', 'float']) {
+				const elem = this.fetch(propertyTable, prop);
 				for (let index = 0; index < elem.length; index++) {
-					let node = elem[index].node;
-					let value = node.getValue();
+					const node = elem[index].node;
+					const value = node.getValue();
 					if (prop === 'float' && (!value || value.matches('none'))) {
 						continue;
 					}
@@ -335,10 +335,10 @@ export class LintVisitor implements nodes.IVisitor {
 		// With 'display: inline-block', 'float' has no effect
 		displayElems = this.fetchWithValue(propertyTable, 'display', 'inline-block');
 		if (displayElems.length > 0) {
-			let elem = this.fetch(propertyTable, 'float');
+			const elem = this.fetch(propertyTable, 'float');
 			for (let index = 0; index < elem.length; index++) {
-				let node = elem[index].node;
-				let value = node.getValue();
+				const node = elem[index].node;
+				const value = node.getValue();
 				if (value && !value.matches('none')) {
 					this.addEntry(node, Rules.PropertyIgnoredDueToDisplay, localize('rule.propertyIgnoredDueToDisplayInlineBlock', "inline-block is ignored due to the float. If 'float' has a value other than 'none', the box is floated and 'display' is treated as 'block'"));
 				}
@@ -348,7 +348,7 @@ export class LintVisitor implements nodes.IVisitor {
 		// With 'display: block', 'vertical-align' has no effect
 		displayElems = this.fetchWithValue(propertyTable, 'display', 'block');
 		if (displayElems.length > 0) {
-			let elem = this.fetch(propertyTable, 'vertical-align');
+			const elem = this.fetch(propertyTable, 'vertical-align');
 			for (let index = 0; index < elem.length; index++) {
 				this.addEntry(elem[index].node, Rules.PropertyIgnoredDueToDisplay, localize('rule.propertyIgnoredDueToDisplayBlock', "Property is ignored due to the display. With 'display: block', vertical-align should not be used."));
 			}
@@ -358,7 +358,7 @@ export class LintVisitor implements nodes.IVisitor {
 		//	Avoid 'float'
 		/////////////////////////////////////////////////////////////
 
-		let elements: Element[] = this.fetch(propertyTable, 'float');
+		const elements: Element[] = this.fetch(propertyTable, 'float');
 		for (let index = 0; index < elements.length; index++) {
 			const decl = elements[index].node;
 			if (!this.isValidPropertyDeclaration(decl)) {
@@ -370,14 +370,14 @@ export class LintVisitor implements nodes.IVisitor {
 		//	Don't use duplicate declarations.
 		/////////////////////////////////////////////////////////////
 		for (let i = 0; i < propertyTable.length; i++) {
-			let element = propertyTable[i];
+			const element = propertyTable[i];
 			if (element.name !== 'background' && !this.validProperties[element.name]) {
-				let value = element.node.getValue();
+				const value = element.node.getValue();
 				if (value && this.documentText.charAt(value.offset) !== '-') {
-					let elements = this.fetch(propertyTable, element.name);
+					const elements = this.fetch(propertyTable, element.name);
 					if (elements.length > 1) {
 						for (let k = 0; k < elements.length; k++) {
-							let value = elements[k].node.getValue();
+							const value = elements[k].node.getValue();
 							if (value && this.documentText.charAt(value.offset) !== '-' && elements[k] !== element) {
 								this.addEntry(element.node, Rules.DuplicateDeclarations);
 							}
@@ -391,28 +391,28 @@ export class LintVisitor implements nodes.IVisitor {
 		//	Unknown propery & When using a vendor-prefixed gradient, make sure to use them all.
 		/////////////////////////////////////////////////////////////
 
-		let isExportBlock = node.getSelectors().getText() === ":export";
+		const isExportBlock = node.getSelectors().getText() === ":export";
 
 		if (!isExportBlock) {
-			let propertiesBySuffix = new NodesByRootMap();
+			const propertiesBySuffix = new NodesByRootMap();
 			let containsUnknowns = false;
 
-			for (let node of declarations.getChildren()) {
+			for (const node of declarations.getChildren()) {
 				if (this.isCSSDeclaration(node)) {
-					let decl = <nodes.Declaration>node;
+					const decl = <nodes.Declaration>node;
 					let name = decl.getFullPropertyName().toLowerCase();
-					let firstChar = name.charAt(0);
+					const firstChar = name.charAt(0);
 
 					if (firstChar === '-') {
 						if (name.charAt(1) !== '-') { // avoid css variables
 							if (!languageFacts.cssDataManager.isKnownProperty(name) && !this.validProperties[name]) {
 								this.addEntry(decl.getProperty(), Rules.UnknownVendorSpecificProperty);
 							}
-							let nonPrefixedName = decl.getNonPrefixedPropertyName();
+							const nonPrefixedName = decl.getNonPrefixedPropertyName();
 							propertiesBySuffix.add(nonPrefixedName, name, decl.getProperty());
 						}
 					} else {
-						let fullName = name;
+						const fullName = name;
 						if (firstChar === '*' || firstChar === '_') {
 							this.addEntry(decl.getProperty(), Rules.IEStarHack);
 							name = name.substr(1);
@@ -433,32 +433,32 @@ export class LintVisitor implements nodes.IVisitor {
 			}
 
 			if (!containsUnknowns) { // don't perform this test if there are
-				for (let suffix in propertiesBySuffix.data) {
-					let entry = propertiesBySuffix.data[suffix];
-					let actual = entry.names;
+				for (const suffix in propertiesBySuffix.data) {
+					const entry = propertiesBySuffix.data[suffix];
+					const actual = entry.names;
 
-					let needsStandard = languageFacts.cssDataManager.isStandardProperty(suffix) && (actual.indexOf(suffix) === -1);
+					const needsStandard = languageFacts.cssDataManager.isStandardProperty(suffix) && (actual.indexOf(suffix) === -1);
 					if (!needsStandard && actual.length === 1) {
 						continue; // only the non-vendor specific rule is used, that's fine, no warning
 					}
 
-					let expected: string[] = [];
+					const expected: string[] = [];
 					for (let i = 0, len = LintVisitor.prefixes.length; i < len; i++) {
-						let prefix = LintVisitor.prefixes[i];
+						const prefix = LintVisitor.prefixes[i];
 						if (languageFacts.cssDataManager.isStandardProperty(prefix + suffix)) {
 							expected.push(prefix + suffix);
 						}
 					}
 
-					let missingVendorSpecific = this.getMissingNames(expected, actual);
+					const missingVendorSpecific = this.getMissingNames(expected, actual);
 					if (missingVendorSpecific || needsStandard) {
-						for (let node of entry.nodes) {
+						for (const node of entry.nodes) {
 							if (needsStandard) {
-								let message = localize('property.standard.missing', "Also define the standard property '{0}' for compatibility", suffix);
+								const message = localize('property.standard.missing', "Also define the standard property '{0}' for compatibility", suffix);
 								this.addEntry(node, Rules.IncludeStandardPropertyWhenUsingVendorPrefix, message);
 							}
 							if (missingVendorSpecific) {
-								let message = localize('property.vendorspecific.missing', "Always include all vendor specific properties: Missing: {0}", missingVendorSpecific);
+								const message = localize('property.vendorspecific.missing', "Always include all vendor specific properties: Missing: {0}", missingVendorSpecific);
 								this.addEntry(node, Rules.AllVendorPrefixes, message);
 							}
 						}
@@ -483,16 +483,16 @@ export class LintVisitor implements nodes.IVisitor {
 		/////////////////////////////////////////////////////////////
 		//	0 has no following unit
 		/////////////////////////////////////////////////////////////
-		let funcDecl = (node.findParent(nodes.NodeType.Function) as nodes.Function);
+		const funcDecl = (node.findParent(nodes.NodeType.Function) as nodes.Function);
 		if (funcDecl && funcDecl.getName() === 'calc') {
 			return true;
 		}
 
-		let decl = <nodes.Declaration>node.findParent(nodes.NodeType.Declaration);
+		const decl = <nodes.Declaration>node.findParent(nodes.NodeType.Declaration);
 		if (decl) {
-			let declValue = decl.getValue();
+			const declValue = decl.getValue();
 			if (declValue) {
-				let value = node.getValue();
+				const value = node.getValue();
 				if (!value.unit || languageFacts.units.length.indexOf(value.unit.toLowerCase()) === -1) {
 					return true;
 				}
@@ -505,7 +505,7 @@ export class LintVisitor implements nodes.IVisitor {
 	}
 
 	private visitFontFace(node: nodes.FontFace): boolean {
-		let declarations = node.getDeclarations();
+		const declarations = node.getDeclarations();
 		if (!declarations) {
 			// syntax error
 			return;
@@ -513,9 +513,9 @@ export class LintVisitor implements nodes.IVisitor {
 
 		let definesSrc = false, definesFontFamily = false;
 		let containsUnknowns = false;
-		for (let node of declarations.getChildren()) {
+		for (const node of declarations.getChildren()) {
 			if (this.isCSSDeclaration(node)) {
-				let name = ((<nodes.Declaration>node).getProperty().getName().toLowerCase());
+				const name = ((<nodes.Declaration>node).getProperty().getName().toLowerCase());
 				if (name === 'src') { definesSrc = true; }
 				if (name === 'font-family') { definesFontFamily = true; }
 			} else {
@@ -535,7 +535,7 @@ export class LintVisitor implements nodes.IVisitor {
 			if (!(<nodes.Declaration>node).getValue()) {
 				return false;
 			}
-			let property = (<nodes.Declaration>node).getProperty();
+			const property = (<nodes.Declaration>node).getProperty();
 			if (!property || property.getIdentifier().containsInterpolation()) {
 				return false;
 			}
@@ -546,7 +546,7 @@ export class LintVisitor implements nodes.IVisitor {
 
 	private visitHexColorValue(node: nodes.HexColorValue): boolean {
 		// Rule: #eeff0011 or #eeff00 or #ef01 or #ef0
-		let length = node.length;
+		const length = node.length;
 		if (length !== 9 && length !== 7 && length !== 5 && length !== 4) {
 			this.addEntry(node, Rules.HexColorLength);
 		}
@@ -555,7 +555,7 @@ export class LintVisitor implements nodes.IVisitor {
 
 	private visitFunction(node: nodes.Function): boolean {
 
-		let fnName = node.getName().toLowerCase();
+		const fnName = node.getName().toLowerCase();
 		let expectedAttrCount = -1;
 		let actualAttrCount = 0;
 

@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"target": "es5",
+		"target": "es6",
 		"module": "es6",
 		"moduleResolution": "node",
 		"sourceMap": true,
@@ -8,8 +8,7 @@
 		"stripInternal": true,
 		"outDir": "../lib/esm",
 		"lib": [
-			"es5",
-			"es2015.promise"
+			"es6"
 		]
 	}
 }

@@ -13,18 +13,18 @@ export class CSSHover {
 
 	constructor() {
 	}
-	
+
 	public doHover(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Hover {
 
 		function getRange(node: nodes.Node) {
 			return Range.create(document.positionAt(node.offset), document.positionAt(node.end));
 		}
 
-		let offset = document.offsetAt(position);
-		let nodepath = nodes.getNodePath(stylesheet, offset);
+		const offset = document.offsetAt(position);
+		const nodepath = nodes.getNodePath(stylesheet, offset);
 
 		for (let i = 0; i < nodepath.length; i++) {
-			let node = nodepath[i];
+			const node = nodepath[i];
 			if (node instanceof nodes.Selector) {
 				return {
 					contents: selectorToMarkedString(<nodes.Selector>node),
@@ -38,14 +38,14 @@ export class CSSHover {
 				};
 			}
 			if (node instanceof nodes.Declaration) {
-				let propertyName = node.getFullPropertyName();
-				let entry = languageFacts.cssDataManager.getProperty(propertyName);
+				const propertyName = node.getFullPropertyName();
+				const entry = languageFacts.cssDataManager.getProperty(propertyName);
 				if (entry) {
-					let contents: MarkedString[] = [];
+					const contents: MarkedString[] = [];
 					if (entry.description) {
 						contents.push(MarkedString.fromPlainText(entry.description));
 					}
-					let browserLabel = languageFacts.getBrowserLabel(entry.browsers);
+					const browserLabel = languageFacts.getBrowserLabel(entry.browsers);
 					if (browserLabel) {
 						contents.push(MarkedString.fromPlainText(browserLabel));
 					}

@@ -18,7 +18,7 @@ export interface Browsers {
 	onCodeComplete: boolean;
 }
 
-export let browserNames = {
+export const browserNames = {
 	E: 'Edge',
 	FF: 'Firefox',
 	S: 'Safari',
@@ -53,7 +53,7 @@ export function getEntryDescription(entry: IEntry2): string | null {
 
 	result += entry.description;
 
-	let browserLabel = getBrowserLabel(entry.browsers);
+	const browserLabel = getBrowserLabel(entry.browsers);
 	if (browserLabel) {
 		result += '\n(' + browserLabel + ')';
 	}
