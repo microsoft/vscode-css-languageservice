@@ -209,6 +209,7 @@ suite('CSS - Completion', () => {
 				{ label: 'transition', resultText: 'body { transition:  ' }
 			]
 		});
+		// TODO: how to test it?
 	});
 	test('MDN properties', function (): any {
 		testCompletionFor('body { m|', {

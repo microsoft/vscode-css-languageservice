@@ -9,13 +9,15 @@ import { Symbols, Symbol } from '../parser/cssSymbolScope';
 import * as languageFacts from '../languageFacts/facts';
 import * as strings from '../utils/strings';
 import { TextDocument, Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat } from 'vscode-languageserver-types';
-import { ICompletionParticipant } from '../cssLanguageTypes';
+import { ICompletionParticipant, CompletionSettings, LanguageSettings } from '../cssLanguageTypes';
 
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();
 const SnippetFormat = InsertTextFormat.Snippet;
 
 export class CSSCompletion {
+
+	private settings: CompletionSettings;
 
 	variablePrefix: string;
 	position: Position;
@@ -30,6 +32,10 @@ export class CSSCompletion {
 
 	constructor(variablePrefix: string = null) {
 		this.variablePrefix = variablePrefix;
+	}
+
+	public configure(settings: LanguageSettings) {
+		this.settings = settings.completion;
 	}
 
 	protected getSymbolContext(): Symbols {
@@ -156,6 +162,7 @@ export class CSSCompletion {
 	}
 
 	private getPropertyProposals(declaration: nodes.Declaration, result: CompletionList): CompletionList {
+		const triggerPropertyValueCompletion = this.settings && this.settings.triggerPropertyValueCompletion;
 		const properties = languageFacts.cssDataManager.getProperties();
 
 		properties.forEach(entry => {
@@ -183,7 +190,7 @@ export class CSSCompletion {
 			if (!entry.restrictions) {
 				retrigger = false;
 			}
-			if (retrigger) {
+			if (triggerPropertyValueCompletion && retrigger) {
 				item.command = {
 					title: 'Suggest',
 					command: 'editor.action.triggerSuggest'
