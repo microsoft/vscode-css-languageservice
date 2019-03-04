@@ -21,7 +21,7 @@ import { SCSSCompletion } from './services/scssCompletion';
 import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
 import { getFoldingRanges } from './services/cssFolding';
-import { LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServiceOptions } from './cssLanguageTypes';
+import { LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServiceOptions, SelectionRange } from './cssLanguageTypes';
 import { cssDataManager } from './languageFacts';
 import { getSelectionRanges } from './services/cssSelectionRange';
 
@@ -49,7 +49,7 @@ export interface LanguageService {
 	getColorPresentations(document: TextDocument, stylesheet: Stylesheet, color: Color, range: Range): ColorPresentation[];
 	doRename(document: TextDocument, position: Position, newName: string, stylesheet: Stylesheet): WorkspaceEdit;
 	getFoldingRanges(document: TextDocument, context?: { rangeLimit?: number; }): FoldingRange[];
-	getSelectionRanges(document: TextDocument, position: Position, stylesheet: Stylesheet): Range[];
+	getSelectionRanges(document: TextDocument, positions: Position[], stylesheet: Stylesheet): SelectionRange[][];
 }
 
 function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover, navigation: CSSNavigation, codeActions: CSSCodeActions, validation: CSSValidation) {

@@ -1,3 +1,7 @@
+NEXT (4.0.0)
+===================
+ * New API `LanguageService.getSelectionRanges`
+
 3.0.12 / 2018-10-29
 ===================
   * Selector hover shows specificity

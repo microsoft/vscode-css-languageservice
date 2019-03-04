@@ -8,6 +8,45 @@ import { Range, TextEdit, Position } from 'vscode-languageserver-types';
 
 export { Range, TextEdit, Position };
 
+// #region Proposed types, remove once added to vscode-languageserver-types
+
+/**
+ * Enum of known selection range kinds
+ */
+export enum SelectionRangeKind {
+	/**
+	 * Empty Kind.
+	 */
+	Empty = '',
+	/**
+	 * The statment kind, its value is `statement`, possible extensions can be
+	 * `statement.if` etc
+	 */
+	Statement = 'statement',
+	/**
+	 * The declaration kind, its value is `declaration`, possible extensions can be
+	 * `declaration.function`, `declaration.class` etc.
+	 */
+	Declaration = 'declaration',
+}
+
+/**
+ * Represents a selection range
+ */
+export interface SelectionRange {
+	/**
+	 * Range of the selection.
+	 */
+	range: Range;
+	/**
+	 * Describes the kind of the selection range such as `statemet' or 'declaration'. See
+	 * [SelectionRangeKind](#SelectionRangeKind) for an enumeration of standardized kinds.
+	 */
+	kind: string;
+}
+
+// #endregion
+
 export type LintSettings = { [key: string]: any };
 
 export interface LanguageSettings {
