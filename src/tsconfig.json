@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"target": "es6",
+		"target": "es5",
 		"module": "umd",
 		"moduleResolution": "node",
 		"sourceMap": true,
@@ -8,7 +8,7 @@
 		"stripInternal": true,
 		"outDir": "../lib/umd",
 		"lib": [
-			"es6"
+			"es5", "es2015.promise"
 		],
 		"strictFunctionTypes": true
 	}
