@@ -7291,7 +7291,7 @@
 			</values>
 		</entry>
 		<entry name="scroll-snap-points-y" restriction="enum" version="3.0" browsers="FF39" ref="http://www.w3.org/TR/css-snappoints-1/#propdef-scroll-snap-points-y">
-			<desc>Defines the positioning of snap points alobg the y axis of the scroll container it is applied to.</desc>
+			<desc>Defines the positioning of snap points along the y axis of the scroll container it is applied to.</desc>
 			<values>
 				<value name="none" version="3.0" browsers="all">
 					<desc>No snap points are defined by this scroll container.</desc>
