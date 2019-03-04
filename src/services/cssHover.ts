@@ -5,7 +5,7 @@
 'use strict';
 
 import * as nodes from '../parser/cssNodes';
-import * as languageFacts from '../languageFacts';
+import * as languageFacts from '../languageFacts/facts';
 import { TextDocument, Range, Position, Hover, MarkedString } from 'vscode-languageserver-types';
 import { selectorToMarkedString, simpleSelectorToMarkedString } from './selectorPrinting';
 

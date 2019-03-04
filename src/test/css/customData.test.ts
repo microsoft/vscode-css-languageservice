@@ -10,7 +10,7 @@ import { TextDocument, CompletionList, Position } from 'vscode-languageserver-ty
 import { getCSSLanguageService } from '../../cssLanguageService';
 import { ItemDescription } from './completion.test';
 import { ICSSDataProvider, CSSDataV1 } from '../../cssLanguageTypes';
-import { CSSDataProvider } from '../../languageFacts';
+import { CSSDataProvider } from '../../languageFacts/facts';
 
 function getLanguageService(data: CSSDataV1) {
 	const provider = new CSSDataProvider(data);

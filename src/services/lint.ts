@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as languageFacts from '../languageFacts';
+import * as languageFacts from '../languageFacts/facts';
 import { Rules, LintConfigurationSettings, Rule, Settings } from './lintRules';
 import * as nodes from '../parser/cssNodes';
 import calculateBoxModel, { Element } from './lintUtil';

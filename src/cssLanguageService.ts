@@ -22,7 +22,7 @@ import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
 import { getFoldingRanges } from './services/cssFolding';
 import { LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServiceOptions, SelectionRange } from './cssLanguageTypes';
-import { cssDataManager } from './languageFacts';
+import { cssDataManager } from './languageFacts/facts';
 import { getSelectionRanges } from './services/cssSelectionRange';
 
 export type Stylesheet = {};
