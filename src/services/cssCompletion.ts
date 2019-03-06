@@ -9,7 +9,7 @@ import { Symbols, Symbol } from '../parser/cssSymbolScope';
 import * as languageFacts from '../languageFacts/facts';
 import * as strings from '../utils/strings';
 import { TextDocument, Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat } from 'vscode-languageserver-types';
-import { ICompletionParticipant, CompletionSettings, LanguageSettings } from '../cssLanguageTypes';
+import { ICompletionParticipant, LanguageSettings } from '../cssLanguageTypes';
 
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();
@@ -17,7 +17,7 @@ const SnippetFormat = InsertTextFormat.Snippet;
 
 export class CSSCompletion {
 
-	private settings: CompletionSettings;
+	private settings: LanguageSettings;
 
 	variablePrefix: string;
 	position: Position;
@@ -35,7 +35,7 @@ export class CSSCompletion {
 	}
 
 	public configure(settings: LanguageSettings) {
-		this.settings = settings.completion;
+			this.settings = settings;
 	}
 
 	protected getSymbolContext(): Symbols {
@@ -162,7 +162,7 @@ export class CSSCompletion {
 	}
 
 	private getPropertyProposals(declaration: nodes.Declaration, result: CompletionList): CompletionList {
-		const triggerPropertyValueCompletion = this.settings && this.settings.triggerPropertyValueCompletion;
+		const triggerPropertyValueCompletion = this.isTriggerPropertyValueCompletionEnabled;
 		const properties = languageFacts.cssDataManager.getProperties();
 
 		properties.forEach(entry => {
@@ -211,6 +211,17 @@ export class CSSCompletion {
 			}
 		});
 		return result;
+	}
+
+	private get isTriggerPropertyValueCompletionEnabled(): boolean {
+		if (
+			!this.settings ||
+			!this.settings.completion ||
+			this.settings.completion.triggerPropertyValueCompletion === undefined
+		) {
+			return true;
+		}
+		return this.settings.completion.triggerPropertyValueCompletion;
 	}
 
 	private valueTypes = [
