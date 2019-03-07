@@ -35,7 +35,7 @@ export class CSSCompletion {
 	}
 
 	public configure(settings: LanguageSettings) {
-			this.settings = settings;
+		this.settings = settings;
 	}
 
 	protected getSymbolContext(): Symbols {
