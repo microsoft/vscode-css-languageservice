@@ -54,7 +54,10 @@ export interface LanguageService {
 
 function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover, navigation: CSSNavigation, codeActions: CSSCodeActions, validation: CSSValidation) {
 	return {
-		configure: validation.configure.bind(validation),
+		configure: (settings) => {
+			validation.configure(settings);
+			completion.configure(settings);
+		},
 		doValidation: validation.doValidation.bind(validation),
 		parseStylesheet: parser.parseStylesheet.bind(parser),
 		doComplete: completion.doComplete.bind(completion),

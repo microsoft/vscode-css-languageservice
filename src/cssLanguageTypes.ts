@@ -49,9 +49,14 @@ export interface SelectionRange {
 
 export type LintSettings = { [key: string]: any };
 
+export interface CompletionSettings {
+	triggerPropertyValueCompletion: boolean;
+}
+
 export interface LanguageSettings {
 	validate?: boolean;
 	lint?: LintSettings;
+	completion?: CompletionSettings;
 }
 
 export interface PropertyCompletionContext {
