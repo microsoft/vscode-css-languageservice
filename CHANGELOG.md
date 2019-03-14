@@ -1,5 +1,6 @@
 NEXT (4.0.0)
 ===================
+ * `LanguageServiceOptions.customDataProviders` allows you to use custom datasets for properties, at-properties, pseudo-classes and pesudo-elements.
  * New API `LanguageService.getSelectionRanges`
 
 3.0.12 / 2018-10-29
