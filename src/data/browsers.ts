@@ -1439,13 +1439,6 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "break-after",
-			browsers: [
-				"E12",
-				"S10",
-				"C50",
-				"IE10",
-				"O37"
-			],
 			values: [
 				{
 					name: "always",
@@ -1647,8 +1640,10 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "clip-path",
 			browsers: [
+				"E15",
 				"FF3.5",
 				"C55",
+				"IE",
 				"O42"
 			],
 			values: [
@@ -1868,7 +1863,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "contain",
 			browsers: [
-				"FF",
+				"FF41",
 				"C52",
 				"O40"
 			],
@@ -1940,13 +1935,6 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "counter-increment",
-			browsers: [
-				"FF1",
-				"S3",
-				"C2",
-				"IE8",
-				"O9.2"
-			],
 			values: [
 				{
 					name: "none",
@@ -6678,7 +6666,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "-moz-user-focus",
 			browsers: [
-				"FF"
+				"FF1"
 			],
 			values: [
 				{
@@ -10431,7 +10419,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "obsolete",
 			"syntax": "none | repeat( <length-percentage> )",
-			"description": "Defines the positioning of snap points alobg the y axis of the scroll container it is applied to.",
+			"description": "Defines the positioning of snap points along the y axis of the scroll container it is applied to.",
 			"restrictions": [
 				"enum"
 			]
@@ -11100,7 +11088,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "text-rendering",
 			browsers: [
-				"FF3",
+				"FF1",
 				"S5",
 				"C4",
 				"O15"
@@ -14015,7 +14003,7 @@ export const cssData : CSSDataV1 = {
 			"status": "nonstandard",
 			"syntax": "<url> | none",
 			browsers: [
-				"FF"
+				"FF1"
 			],
 			"description": "The -moz-binding CSS property is used by Mozilla-based applications to attach an XBL binding to a DOM element."
 		},
@@ -14045,7 +14033,7 @@ export const cssData : CSSDataV1 = {
 			"status": "nonstandard",
 			"syntax": "<shape> | auto",
 			browsers: [
-				"FF"
+				"FF1"
 			],
 			"description": "For certain XUL elements and pseudo-elements that use an image from the list-style-image property, this property specifies a region of the image that is used in place of the whole image. This allows elements to use different pieces of the same image to improve performance."
 		},
@@ -14111,7 +14099,7 @@ export const cssData : CSSDataV1 = {
 			"status": "nonstandard",
 			"syntax": "auto | none | enabled | disabled",
 			browsers: [
-				"FF"
+				"FF1"
 			],
 			"description": "In Mozilla applications, -moz-user-input determines if an element will accept user input."
 		},
@@ -14272,21 +14260,33 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-end-end-radius",
 			"syntax": "<length-percentage>{1,2}",
+			browsers: [
+				"FF66"
+			],
 			"description": "The border-end-end-radius CSS property defines a logical border radius on an element, which maps to a physical border radius that depends on on the element's writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "border-end-start-radius",
 			"syntax": "<length-percentage>{1,2}",
+			browsers: [
+				"FF66"
+			],
 			"description": "The border-end-start-radius CSS property defines a logical border radius on an element, which maps to a physical border radius depending on the element's writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "border-start-end-radius",
 			"syntax": "<length-percentage>{1,2}",
+			browsers: [
+				"FF66"
+			],
 			"description": "The border-start-end-radius CSS property defines a logical border radius on an element, which maps to a physical border radius depending on the element's writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "border-start-start-radius",
 			"syntax": "<length-percentage>{1,2}",
+			browsers: [
+				"FF66"
+			],
 			"description": "The border-start-start-radius CSS property defines a logical border radius on an element, which maps to a physical border radius that depends on the element's writing-mode, direction, and text-orientation."
 		},
 		{
@@ -14519,7 +14519,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<mask-layer>#",
 			browsers: [
 				"E12",
-				"FF",
+				"FF2",
 				"S4",
 				"C1",
 				"O"
@@ -14605,6 +14605,7 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "auto | none",
 			browsers: [
+				"FF66",
 				"C56",
 				"O43"
 			],
@@ -15528,7 +15529,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: ":-moz-only-whitespace",
 			browsers: [
-				"FF"
+				"FF1"
 			],
 			"description": "The same as :empty, except that it additionally matches elements that only contain code points affected by whitespace processing. Standardized as :blank."
 		},
@@ -15714,7 +15715,7 @@ export const cssData : CSSDataV1 = {
 			name: ":read-only",
 			browsers: [
 				"E",
-				"FF",
+				"FF1.5",
 				"S",
 				"C",
 				"O"
@@ -15725,7 +15726,7 @@ export const cssData : CSSDataV1 = {
 			name: ":read-write",
 			browsers: [
 				"E",
-				"FF",
+				"FF1.5",
 				"S",
 				"C",
 				"O"
@@ -15761,6 +15762,7 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF32",
 				"S7",
+				"C27",
 				"O15"
 			],
 			"description": "Represents any element that is in the contextual reference element set."
@@ -15867,6 +15869,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: ":is",
 			"status": "experimental",
+			browsers: [
+				"FF4",
+				"S9",
+				"C66",
+				"O53"
+			],
 			"description": "The :is() CSS pseudo-class function takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list. This is useful for writing large selectors in a more compact form."
 		},
 		{
@@ -16387,7 +16395,7 @@ export const cssData : CSSDataV1 = {
 			name: "::-moz-range-progress",
 			"status": "nonstandard",
 			browsers: [
-				"FF"
+				"FF22"
 			],
 			"description": "The ::-moz-range-progress CSS pseudo-element is a Mozilla extension that represents the lower portion of the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\". This portion corresponds to values lower than the value currently selected by the thumb (i.e., virtual knob)."
 		},
@@ -16395,7 +16403,7 @@ export const cssData : CSSDataV1 = {
 			name: "::-moz-range-thumb",
 			"status": "nonstandard",
 			browsers: [
-				"FF"
+				"FF21"
 			],
 			"description": "The ::-moz-range-thumb CSS pseudo-element is a Mozilla extension that represents the thumb (i.e., virtual knob) of an <input> of type=\"range\". The user can move the thumb along the input's track to alter its numerical value."
 		},
@@ -16403,7 +16411,7 @@ export const cssData : CSSDataV1 = {
 			name: "::-moz-range-track",
 			"status": "nonstandard",
 			browsers: [
-				"FF"
+				"FF21"
 			],
 			"description": "The ::-moz-range-track CSS pseudo-element is a Mozilla extension that represents the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\"."
 		},

@@ -1047,10 +1047,10 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-mdn-browser-compat-data@^0.0.64:
-  version "0.0.64"
-  resolved "https://registry.yarnpkg.com/mdn-browser-compat-data/-/mdn-browser-compat-data-0.0.64.tgz#90c153b9768fdb4308289bbb0119f79c2758ac1e"
-  integrity sha512-kPQqwLBT0hHYnVUFsqaDN/HrktxtuihMCnpoQZmKfHrOe6ZplLTiWrRbp6jwhWhgq2Wo8zL1TG/HhRGs1LC2zw==
+mdn-browser-compat-data@^0.0.72:
+  version "0.0.72"
+  resolved "https://registry.yarnpkg.com/mdn-browser-compat-data/-/mdn-browser-compat-data-0.0.72.tgz#b1d2026bfbf61c82e71c4157059b9d161c8791a9"
+  integrity sha512-vt3BxJRpV638ncYLigX91k0qP1VcpKxgExqPtX+QKFvV4/ZruZ31Sl35LsDDq5q+D7Lt7mfGWnCEuZ0d6bJW1g==
   dependencies:
     extend "3.0.2"
 
