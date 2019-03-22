@@ -542,7 +542,7 @@ suite('CSS - Completion', () => {
 	test('Completion description should include status and browser compat', () => {
 		testCompletionFor('.foo { | }', {
 			items: [
-				{ label: 'contain', documentation: `⚠️ Property is experimental. Be cautious when using it.️\n\nIndicates that an element and its contents are, as much as possible, independent of the rest of the document tree.\n(Firefox, Chrome 52, Opera 40)\n\nSyntax: none | strict | content | [ size || layout || style || paint ]`},
+				{ label: 'contain', documentation: `⚠️ Property is experimental. Be cautious when using it.️\n\nIndicates that an element and its contents are, as much as possible, independent of the rest of the document tree.\n(Firefox 41, Chrome 52, Opera 40)\n\nSyntax: none | strict | content | [ size || layout || style || paint ]`},
 				{ label: 'user-select', documentation: `🚨️ Property is nonstandard. Avoid using it.\n\nControls the appearance of selection.\n\nSyntax: auto | text | none | contain | all` }
 			]
 		});
