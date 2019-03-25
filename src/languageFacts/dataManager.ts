@@ -72,33 +72,17 @@ export class CSSDataManager {
 	getPseudoClass(name: string) { return this._pseudoClassSet[name]; }
 	getPseudoElement(name: string) { return this._pseudoElementSet[name]; }
 
-	getProperties(majorBrowserSupport = true) {
-		if (!majorBrowserSupport) {
-			return this._properties;
-		} else {
-			return this._properties.filter(supportedInMoreThanOneBrowser);
-		}
+	getProperties() {
+		return this._properties;
 	}
-	getAtDirectives(majorBrowserSupport = true) {
-		if (!majorBrowserSupport) {
-			return this._atDirectives;
-		} else {
-			return this._atDirectives.filter(supportedInMoreThanOneBrowser);
-		}
+	getAtDirectives() {
+		return this._atDirectives;
 	}
-	getPseudoClasses(majorBrowserSupport = true) {
-		if (!majorBrowserSupport) {
-			return this._pseudoClasses;
-		} else {
-			return this._pseudoClasses.filter(supportedInMoreThanOneBrowser);
-		}
+	getPseudoClasses() {
+		return this._pseudoClasses;
 	}
-	getPseudoElements(majorBrowserSupport = true) {
-		if (!majorBrowserSupport) {
-			return this._pseudoElements;
-		} else {
-			return this._pseudoElements.filter(supportedInMoreThanOneBrowser);
-		}
+	getPseudoElements() {
+		return this._pseudoElements;
 	}
 
 	isKnownProperty(name: string): boolean {
@@ -109,12 +93,4 @@ export class CSSDataManager {
 		return this.isKnownProperty(name) &&
 			(!this._propertySet[name.toLowerCase()].status || this._propertySet[name.toLowerCase()].status === 'standard');
 	}
-}
-
-export function supportedInMoreThanOneBrowser(entry: IPropertyData | IAtDirectiveData | IPseudoClassData | IPseudoElementData | IValueData) {
-	if (!entry.browsers) {
-		return true;
-	}
-
-	return entry.browsers.length > 1;
 }

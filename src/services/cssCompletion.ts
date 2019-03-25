@@ -306,25 +306,23 @@ export class CSSCompletion {
 	public getValueEnumProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		if (entry.values) {
 			for (const value of entry.values) {
-				if (languageFacts.supportedInMoreThanOneBrowser(value)) {
-					let insertString = value.name;
-					let insertTextFormat;
-					if (strings.endsWith(insertString, ')')) {
-						const from = insertString.lastIndexOf('(');
-						if (from !== -1) {
-							insertString = insertString.substr(0, from) + '($1)';
-							insertTextFormat = SnippetFormat;
-						}
+				let insertString = value.name;
+				let insertTextFormat;
+				if (strings.endsWith(insertString, ')')) {
+					const from = insertString.lastIndexOf('(');
+					if (from !== -1) {
+						insertString = insertString.substr(0, from) + '($1)';
+						insertTextFormat = SnippetFormat;
 					}
-					const item: CompletionItem = {
-						label: value.name,
-						documentation: languageFacts.getEntryDescription(value),
-						textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertString),
-						kind: CompletionItemKind.Value,
-						insertTextFormat
-					};
-					result.items.push(item);
 				}
+				const item: CompletionItem = {
+					label: value.name,
+					documentation: languageFacts.getEntryDescription(value),
+					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertString),
+					kind: CompletionItemKind.Value,
+					insertTextFormat
+				};
+				result.items.push(item);
 			}
 		}
 		return result;
