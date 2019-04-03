@@ -789,7 +789,7 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF41"
 			],
-			"syntax": "<'border-width'> || <'border-style'> || <'color'>",
+			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
 			"description": "Logical 'border-bottom'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -803,7 +803,7 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF41"
 			],
-			"syntax": "<'border-width'> || <'border-style'> || <'color'>",
+			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
 			"description": "Logical 'border-top'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -819,7 +819,7 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
-			"syntax": "<'color'>",
+			"syntax": "<'border-top-color'>",
 			"description": "Logical 'border-bottom-color'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"color"
@@ -832,7 +832,7 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
-			"syntax": "<'color'>",
+			"syntax": "<'border-top-color'>",
 			"description": "Logical 'border-top-color'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"color"
@@ -845,7 +845,7 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
-			"syntax": "<'border-style'>",
+			"syntax": "<'border-top-style'>",
 			"description": "Logical 'border-bottom-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"line-style"
@@ -857,7 +857,7 @@ export const cssData : CSSDataV1 = {
 				"FF41",
 				"O56"
 			],
-			"syntax": "<'border-style'>",
+			"syntax": "<'border-top-style'>",
 			"description": "Logical 'border-top-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"line-style"
@@ -870,7 +870,7 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
-			"syntax": "<'border-width'>",
+			"syntax": "<'border-top-width'>",
 			"description": "Logical 'border-bottom-width'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -884,7 +884,7 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
-			"syntax": "<'border-width'>",
+			"syntax": "<'border-top-width'>",
 			"description": "Logical 'border-top-width'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -904,7 +904,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "border-bottom-color",
-			"syntax": "<color>",
+			"syntax": "<'border-top-color'>",
 			"description": "Sets the color of the bottom border.",
 			"restrictions": [
 				"color"
@@ -1100,7 +1100,7 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF41"
 			],
-			"syntax": "<'border-width'> || <'border-style'> || <'color'>",
+			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
 			"description": "Logical 'border-right'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -1114,7 +1114,7 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF41"
 			],
-			"syntax": "<'border-width'> || <'border-style'> || <'color'>",
+			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
 			"description": "Logical 'border-left'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -1130,7 +1130,7 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
-			"syntax": "<'color'>",
+			"syntax": "<'border-top-color'>",
 			"description": "Logical 'border-right-color'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"color"
@@ -1143,7 +1143,7 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
-			"syntax": "<'color'>",
+			"syntax": "<'border-top-color'>",
 			"description": "Logical 'border-left-color'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"color"
@@ -1156,7 +1156,7 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
-			"syntax": "<'border-style'>",
+			"syntax": "<'border-top-style'>",
 			"description": "Logical 'border-right-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"line-style"
@@ -1169,7 +1169,7 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
-			"syntax": "<'border-style'>",
+			"syntax": "<'border-top-style'>",
 			"description": "Logical 'border-left-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"line-style"
@@ -1182,7 +1182,7 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
-			"syntax": "<'border-width'>",
+			"syntax": "<'border-top-width'>",
 			"description": "Logical 'border-right-width'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -1196,7 +1196,7 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
-			"syntax": "<'border-width'>",
+			"syntax": "<'border-top-width'>",
 			"description": "Logical 'border-left-width'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -9614,7 +9614,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Lines may break only at allowed break points."
 				}
 			],
-			"syntax": "normal | break-word",
+			"syntax": "normal | break-word | anywhere",
 			"description": "Specifies whether the UA may break within a word to prevent overflow when an otherwise-unbreakable string is too long to fit within the line box.",
 			"restrictions": [
 				"enum"
@@ -14229,7 +14229,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "appearance",
 			"status": "experimental",
-			"syntax": "auto | none",
+			"syntax": "none | auto | button | textfield | <compat>",
 			browsers: [
 				"E12",
 				"FF1",
@@ -14258,6 +14258,42 @@ export const cssData : CSSDataV1 = {
 			"description": "The backdrop-filter CSS property lets you apply graphical effects such as blurring or color shifting to the area behind an element. Because it applies to everything behind the element, to see the effect you must make the element or its background at least partially transparent."
 		},
 		{
+			name: "border-block",
+			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
+			browsers: [
+				"FF66",
+				"C69"
+			],
+			"description": ""
+		},
+		{
+			name: "border-block-color",
+			"syntax": "<'border-top-color'>{1,2}",
+			browsers: [
+				"FF66",
+				"C69"
+			],
+			"description": ""
+		},
+		{
+			name: "border-block-style",
+			"syntax": "<'border-top-style'>",
+			browsers: [
+				"FF66",
+				"C69"
+			],
+			"description": ""
+		},
+		{
+			name: "border-block-width",
+			"syntax": "<'border-top-width'>",
+			browsers: [
+				"FF66",
+				"C69"
+			],
+			"description": ""
+		},
+		{
 			name: "border-end-end-radius",
 			"syntax": "<length-percentage>{1,2}",
 			browsers: [
@@ -14272,6 +14308,42 @@ export const cssData : CSSDataV1 = {
 				"FF66"
 			],
 			"description": "The border-end-start-radius CSS property defines a logical border radius on an element, which maps to a physical border radius depending on the element's writing-mode, direction, and text-orientation."
+		},
+		{
+			name: "border-inline",
+			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
+			browsers: [
+				"FF66",
+				"C69"
+			],
+			"description": ""
+		},
+		{
+			name: "border-inline-color",
+			"syntax": "<'border-top-color'>{1,2}",
+			browsers: [
+				"FF66",
+				"C69"
+			],
+			"description": ""
+		},
+		{
+			name: "border-inline-style",
+			"syntax": "<'border-top-style'>",
+			browsers: [
+				"FF66",
+				"C69"
+			],
+			"description": ""
+		},
+		{
+			name: "border-inline-width",
+			"syntax": "<'border-top-width'>",
+			browsers: [
+				"FF66",
+				"C69"
+			],
+			"description": ""
 		},
 		{
 			name: "border-start-end-radius",
@@ -14515,6 +14587,24 @@ export const cssData : CSSDataV1 = {
 			"description": "The line-clamp property allows limiting the contents of a block container to the specified number of lines; remaining content is fragmented away and neither rendered nor measured. Optionally, it also allows inserting content into the last line box to indicate the continuity of truncated/interrupted content."
 		},
 		{
+			name: "margin-block",
+			"syntax": "<'margin-left'>{1,2}",
+			browsers: [
+				"FF66",
+				"C69"
+			],
+			"description": ""
+		},
+		{
+			name: "margin-inline",
+			"syntax": "<'margin-left'>{1,2}",
+			browsers: [
+				"FF66",
+				"C69"
+			],
+			"description": ""
+		},
+		{
 			name: "mask",
 			"syntax": "<mask-layer>#",
 			browsers: [
@@ -14595,10 +14685,54 @@ export const cssData : CSSDataV1 = {
 			"description": "The max-liens property forces a break after a set number of lines"
 		},
 		{
+			name: "offset",
+			"status": "experimental",
+			"syntax": "[ <'offset-position'>? [ <'offset-path'> [ <'offset-distance'> || <'offset-rotate'> ]? ]? ]! [ / <'offset-anchor'> ]?",
+			browsers: [
+				"C55"
+			],
+			"description": "The offset CSS property is a shorthand property for animating an element along a defined path."
+		},
+		{
+			name: "offset-anchor",
+			"status": "experimental",
+			"syntax": "auto | <position>",
+			"description": "Defines an anchor point of the box positioned along the path. The anchor point specifies the point of the box which is to be considered as the point that is moved along the path."
+		},
+		{
+			name: "offset-distance",
+			"status": "experimental",
+			"syntax": "<length-percentage>",
+			browsers: [
+				"C55"
+			],
+			"description": "The offset-distance CSS property specifies a position along an offset-path."
+		},
+		{
+			name: "offset-path",
+			"status": "experimental",
+			"syntax": "none | ray( [ <angle> && <size>? && contain? ] ) | <path()> | <url> | [ <basic-shape> || <geometry-box> ]",
+			browsers: [
+				"FF63",
+				"C55",
+				"O45"
+			],
+			"description": "The offset-path CSS property specifies the offset path where the element gets positioned. The exact element’s position on the offset path is determined by the offset-distance property. An offset path is either a specified path with one or multiple sub-paths or the geometry of a not-styled basic shape. Each shape or path must define an initial position for the computed value of \"0\" for offset-distance and an initial direction which specifies the rotation of the object to the initial position.\n\nIn this specification, a direction (or rotation) of 0 degrees is equivalent to the direction of the positive x-axis in the object’s local coordinate system. In other words, a rotation of 0 degree points to the right side of the UA if the object and its ancestors have no transformation applied."
+		},
+		{
 			name: "offset-position",
 			"status": "experimental",
 			"syntax": "auto | <position>",
 			"description": "Specifies the initial position of the offset path. If position is specified with static, offset-position would be ignored."
+		},
+		{
+			name: "offset-rotate",
+			"status": "experimental",
+			"syntax": "[ auto | reverse ] || <angle>",
+			browsers: [
+				"C56"
+			],
+			"description": "The offset-rotate CSS property defines the direction of the element while positioning along the offset path."
 		},
 		{
 			name: "overflow-anchor",
@@ -14669,6 +14803,24 @@ export const cssData : CSSDataV1 = {
 			"description": "The overscroll-behavior-y CSS property is allows you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached — in the y axis direction."
 		},
 		{
+			name: "padding-block",
+			"syntax": "<'padding-left'>{1,2}",
+			browsers: [
+				"FF66",
+				"C69"
+			],
+			"description": ""
+		},
+		{
+			name: "padding-inline",
+			"syntax": "<'padding-left'>{1,2}",
+			browsers: [
+				"FF66",
+				"C69"
+			],
+			"description": ""
+		},
+		{
 			name: "place-content",
 			"syntax": "<'align-content'> <'justify-content'>?",
 			browsers: [
@@ -14687,6 +14839,15 @@ export const cssData : CSSDataV1 = {
 				"C59"
 			],
 			"description": "The CSS place-items shorthand property sets both the align-items and justify-items properties. The first value is the align-items property value, the second the justify-items one. If the second value is not present, the first value is also used for it."
+		},
+		{
+			name: "place-self",
+			"syntax": "<'align-self'> <'justify-self'>?",
+			browsers: [
+				"FF45",
+				"C59"
+			],
+			"description": ""
 		},
 		{
 			name: "rotate",
@@ -14734,7 +14895,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scrollbar-width",
-			"syntax": "auto | thin | none | <length>",
+			"syntax": "auto | thin | none",
 			browsers: [
 				"FF64"
 			],
@@ -15849,6 +16010,14 @@ export const cssData : CSSDataV1 = {
 				"FF49"
 			],
 			"description": "The :dir() CSS pseudo-class matches elements based on the directionality of the text contained in them."
+		},
+		{
+			name: ":focus-visible",
+			"status": "experimental",
+			browsers: [
+				"C67"
+			],
+			"description": "The :focus-visible pseudo-class applies while an element matches the :focus pseudo-class and the UA determines via heuristics that the focus should be made evident on the element."
 		},
 		{
 			name: ":focus-within",

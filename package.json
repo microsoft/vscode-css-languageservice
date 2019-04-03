@@ -19,7 +19,7 @@
     "@types/node": "^10.12.21",
     "istanbul": "^0.4.5",
     "mdn-browser-compat-data": "^0.0.72",
-    "mdn-data": "^2.0.1",
+    "mdn-data": "^2.0.2",
     "mkdirp": "^0.5.1",
     "mocha": "^6.0.2",
     "rimraf": "^2.6.3",

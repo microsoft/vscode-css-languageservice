@@ -1054,10 +1054,10 @@ mdn-browser-compat-data@^0.0.72:
   dependencies:
     extend "3.0.2"
 
-mdn-data@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-2.0.1.tgz#a964990452810468ad581fd0f431250a26951ec8"
-  integrity sha512-7jlEOfHiwOmxZ9Am+OVEAy7oMw2rdt3WJtJ27TL4Ee1vkdWWl+vO4IhsxF+H6c3vXg0TpbyAYOcrv1FLABzKJw==
+mdn-data@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-2.0.2.tgz#67e12f941a469cc69792f1977bdba2f3502abcef"
+  integrity sha512-LJAYMdB0NNBg3WuMU13sximT6P/8r4Eq/oqa1rJMonw+frE5vD52gWFJeYQHjrXbH3G8c2Ml6OcbXAcqnrroNA==
 
 mem@^4.0.0:
   version "4.1.0"
