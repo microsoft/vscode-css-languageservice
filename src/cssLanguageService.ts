@@ -43,7 +43,9 @@ export interface LanguageService {
 	findDocumentSymbols(document: TextDocument, stylesheet: Stylesheet): SymbolInformation[];
 	doCodeActions(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: Stylesheet): Command[];
 	doCodeActions2(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: Stylesheet): CodeAction[];
-	/** deprecated, use findDocumentColors instead */
+	/**
+	 * @deprecated use findDocumentColors instead
+	 */
 	findColorSymbols(document: TextDocument, stylesheet: Stylesheet): Range[];
 	findDocumentColors(document: TextDocument, stylesheet: Stylesheet): ColorInformation[];
 	getColorPresentations(document: TextDocument, stylesheet: Stylesheet, color: Color, range: Range): ColorPresentation[];
