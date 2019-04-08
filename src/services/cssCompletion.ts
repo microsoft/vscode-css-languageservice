@@ -138,10 +138,16 @@ export class CSSCompletion {
 	}
 
 	private finalize(result: CompletionList): CompletionList {
-		const needsSortText = result.items.some(i => !!i.sortText);
+		const needsSortText = result.items.some(i => !!i.sortText || i.label[0] === '-');
 		if (needsSortText) {
 			for (const i of result.items) {
-				if (!i.sortText) { i.sortText = 'd'; }
+				if (!i.sortText) {
+					if (i.label[0] === '-') {
+						i.sortText = 'x';
+					} else {
+						i.sortText = 'd';
+					}
+				}
 			}
 		}
 		return result;

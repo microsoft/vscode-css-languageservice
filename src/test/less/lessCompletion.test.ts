@@ -101,5 +101,16 @@ suite('LESS - Completions', () => {
 				}
 			]
 		});
+		
+		// https://github.com/Microsoft/vscode/issues/71791
+		test('Items that start with `-` are sorted lower than normal attribute values', () => {
+			testCompletionFor('.foo { display: | }', {
+				items: [
+					{ label: 'grid', sortText: 'd' },
+					{ label: '-moz-grid', sortText: 'x' },
+					{ label: '-ms-grid', sortText: 'x' },
+				]
+			});
+		});
 	});
 });

@@ -19,6 +19,7 @@ export interface ItemDescription {
 	resultText?: string;
 	notAvailable?: boolean;
 	command?: Command;
+	sortText?: string;
 }
 
 function asPromise<T>(result: T): Promise<T> {
@@ -53,6 +54,9 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 	}
 	if (expected.command) {
 		assert.deepEqual(match.command, expected.command);
+	}
+	if (expected.sortText) {
+		assert.equal(match.sortText, expected.sortText);
 	}
 };
 
@@ -544,6 +548,17 @@ suite('CSS - Completion', () => {
 			items: [
 				{ label: 'contain', documentation: `⚠️ Property is experimental. Be cautious when using it.️\n\nIndicates that an element and its contents are, as much as possible, independent of the rest of the document tree.\n(Firefox 41, Chrome 52, Opera 40)\n\nSyntax: none | strict | content | [ size || layout || style || paint ]`},
 				{ label: 'user-select', documentation: `🚨️ Property is nonstandard. Avoid using it.\n\nControls the appearance of selection.\n\nSyntax: auto | text | none | contain | all` }
+			]
+		});
+	});
+	
+			// https://github.com/Microsoft/vscode/issues/71791
+	test('Items that start with `-` are sorted lower than normal attribute values', () => {
+		testCompletionFor('.foo { display: | }', {
+			items: [
+				{ label: 'grid', sortText: 'd' },
+				{ label: '-moz-grid', sortText: 'x' },
+				{ label: '-ms-grid', sortText: 'x' },
 			]
 		});
 	});
