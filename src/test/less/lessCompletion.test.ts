@@ -94,5 +94,12 @@ suite('LESS - Completions', () => {
 				{ label: ':last-of-type', resultText: '.foo { &:last-of-type' }
 			]
 		});
+		testCompletionFor('.foo { appearance:| }', {
+			items: [
+				{
+					label: 'inherit', resultText: '.foo { appearance:inherit }'
+				}
+			]
+		});
 	});
 });
