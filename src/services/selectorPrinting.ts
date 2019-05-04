@@ -329,6 +329,39 @@ class Specificity {
 		public tag: number = 0,
 	) {}
 
+	update(selectorNode: nodes.SelectorAbstract) {
+		switch (selectorNode.type) {
+			case nodes.NodeType.IdentifierSelector:
+				this.id++;
+				break;
+
+			case nodes.NodeType.ClassSelector:
+			case nodes.NodeType.AttributeSelector:
+				this.attr++;
+				break;
+
+			case nodes.NodeType.ElementNameSelector:
+				if (selectorNode.getText() !== "*") {
+					this.tag++; // tag name, but not the universal selector ("*")
+				}
+
+				break;
+
+			case nodes.NodeType.PseudoSelector:
+				const text = selectorNode.getText();
+
+				if (text.match(/^::|:(?:before|after|selection|first-(?:letter|line))/)) {
+					this.tag++; // pseudo-element
+				} else if (!text.match(/^:not/i)) {
+					this.attr++; // pseudo-class, but not the negation pseudo-class (":not()")
+				}
+
+				break;
+		}
+
+		selectorNode.getChildren().forEach(this.update, this);
+	}
+
 	toArray() {
 		return Array.from(this) as [ number, number, number ];
 	}
@@ -340,42 +373,9 @@ class Specificity {
 	}
 }
 
-function selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
+function selectorToSpecificityMarkedString(node: nodes.SelectorAbstract): MarkedString {
 	const specificity = new Specificity();
-
-	node.getChildren().forEach(function updateSpecificity(child: nodes.Node) {
-		switch (child.type) {
-			case nodes.NodeType.IdentifierSelector:
-				specificity.id++;
-				break;
-
-			case nodes.NodeType.ClassSelector:
-			case nodes.NodeType.AttributeSelector:
-				specificity.attr++;
-				break;
-
-			case nodes.NodeType.ElementNameSelector:
-				if (child.getText() !== "*") {
-					specificity.tag++; // tag name, but not the universal selector ("*")
-				}
-
-				break;
-
-			case nodes.NodeType.PseudoSelector:
-				const text = child.getText();
-
-				if (text.match(/^::|:(?:before|after|selection|first-(?:letter|line))/)) {
-					specificity.tag++; // pseudo-element
-				} else if (!text.match(/^:not/i)) {
-					specificity.attr++; // pseudo-class, but not the negation pseudo-class (":not()")
-				}
-
-				break;
-		}
-
-		child.getChildren().forEach(updateSpecificity);
-	});
-
+	node.getChildren().forEach(specificity.update, specificity);
 	return localize('specificity', "[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): ({0}, {1}, {2})", ...specificity.toArray());
 }
 

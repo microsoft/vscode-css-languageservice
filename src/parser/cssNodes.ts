@@ -497,13 +497,15 @@ export class RuleSet extends BodyDeclaration {
 	}
 }
 
-export class Selector extends Node {
-
-	private _selector: void; // workaround for https://github.com/Microsoft/TypeScript/issues/12083
-
+export abstract class SelectorAbstract extends Node {
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
+}
+
+export class Selector extends SelectorAbstract {
+
+	private _selector: void; // workaround for https://github.com/Microsoft/TypeScript/issues/12083
 
 	public get type(): NodeType {
 		return NodeType.Selector;
@@ -511,13 +513,9 @@ export class Selector extends Node {
 
 }
 
-export class SimpleSelector extends Node {
+export class SimpleSelector extends SelectorAbstract {
 
 	private _simpleSelector: void; // workaround for https://github.com/Microsoft/TypeScript/issues/12083
-
-	constructor(offset: number, length: number) {
-		super(offset, length);
-	}
 
 	public get type(): NodeType {
 		return NodeType.SimpleSelector;
