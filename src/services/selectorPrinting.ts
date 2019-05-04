@@ -339,7 +339,7 @@ class Specificity {
 	}
 
 	toArray() {
-		return <const> [
+		return [
 			this.identifier,
 			this.className,
 			this.tagName,
