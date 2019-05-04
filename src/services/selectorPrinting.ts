@@ -313,46 +313,81 @@ function unescape(content: string) {
 	return content;
 }
 
-function selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
-	//https://www.w3.org/TR/selectors-3/#specificity
-	function calculateScore(node: nodes.Node) {
-		node.getChildren().forEach(element => {
-			switch (element.type) {
-				case nodes.NodeType.IdentifierSelector:
-					specificity[0] += 1;		//a
-					break;
-				case nodes.NodeType.ClassSelector:
-				case nodes.NodeType.AttributeSelector:
-					specificity[1] += 1;		//b
-					break;
-				case nodes.NodeType.ElementNameSelector:
-					//ignore universal selector
-					if (element.getText() === "*") {
-						break;
-					}
-					specificity[2] += 1;		//c
-					break;
-				case nodes.NodeType.PseudoSelector:
-					if (element.getText().match(/^::/)) {
-						specificity[2] += 1;	//c (pseudo element)
-					} else {
-						//ignore psuedo class NOT
-						if (element.getText().match(/^:not/i)) {
-							break;
-						}
-						specificity[1] += 1;	//b (pseudo class)
-					}
-					break;
-			}
-			if (element.getChildren().length > 0) {
-				calculateScore(element);
-			}
-		});
+/** @private */
+namespace Specificity {
+	export type Type = "identifier" | "className" | "tagName";
+}
+
+/**
+ * @private
+ * @see https://www.w3.org/TR/selectors-3/#specificity
+*/
+class Specificity {
+	constructor(
+		/** Count of identifiers (e.g., `#app`) */
+		public identifier: number = 0,
+
+		/** Count of classes (`.container-fluid`), pseudo-classes (`:hover`), and attributes (`[type="number"]`) */
+		public className: number = 0,
+
+		/** Count of tag names (`div`), and pseudo-elements (`::before`) */
+		public tagName: number = 0,
+	) {}
+
+	increase(type: Specificity.Type) {
+		this[type]++;
 	}
 
-	const specificity = [0, 0, 0]; //a,b,c
-	calculateScore(node);
-	return localize('specificity', "[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): ({0}, {1}, {2})", ...specificity);
+	toArray() {
+		return <const> [
+			this.identifier,
+			this.className,
+			this.tagName,
+		];
+	}
+
+	*[Symbol.iterator]() {
+		yield* this.toArray();
+	}
+}
+
+function selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
+	const specificity = new Specificity();
+
+	node.getChildren().forEach(function updateScore(child: nodes.Node) {
+		switch (child.type) {
+			case nodes.NodeType.IdentifierSelector:
+				specificity.increase("identifier");
+				break;
+
+			case nodes.NodeType.ClassSelector:
+			case nodes.NodeType.AttributeSelector:
+				specificity.increase("className");
+				break;
+
+			case nodes.NodeType.ElementNameSelector:
+				if (child.getText() !== "*") {
+					specificity.increase("tagName"); // element name, except universal selector ("*")
+				}
+
+				break;
+
+			case nodes.NodeType.PseudoSelector:
+				const text = child.getText();
+
+				if (text.match(/^::|:(?:before|after|selection|first-(?:letter|line))/)) {
+					specificity.increase("tagName"); // pseudo-element
+				} else if (!text.match(/^:not/i)) {
+					specificity.increase("className"); // pseudo-class, except the negation pseudo-class (":not()")
+				}
+
+				break;
+		}
+
+		child.getChildren().forEach(updateScore);
+	});
+
+	return localize('specificity', "[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): ({0}, {1}, {2})", ...specificity.toArray());
 }
 
 export function selectorToMarkedString(node: nodes.Selector): MarkedString[] {

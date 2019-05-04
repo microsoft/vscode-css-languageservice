@@ -2,5 +2,6 @@
   "editor.insertSpaces": false,
   "prettier.useTabs": true,
   "prettier.printWidth": 120,
-  "prettier.semi": true
+  "prettier.semi": true,
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }
