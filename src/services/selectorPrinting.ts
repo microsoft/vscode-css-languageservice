@@ -313,11 +313,6 @@ function unescape(content: string) {
 	return content;
 }
 
-/** @private */
-namespace Specificity {
-	export type Type = "identifier" | "className" | "tagName";
-}
-
 /**
  * @private
  * @see https://www.w3.org/TR/selectors-3/#specificity
@@ -334,20 +329,14 @@ class Specificity {
 		public tagName: number = 0,
 	) {}
 
-	increase(type: Specificity.Type) {
-		this[type]++;
-	}
-
 	toArray() {
-		return [
-			this.identifier,
-			this.className,
-			this.tagName,
-		];
+		return Array.from(this) as [ number, number, number ];
 	}
 
 	*[Symbol.iterator]() {
-		yield* this.toArray();
+		yield this.identifier;
+		yield this.className;
+		yield this.tagName;
 	}
 }
 
@@ -357,17 +346,17 @@ function selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
 	node.getChildren().forEach(function updateScore(child: nodes.Node) {
 		switch (child.type) {
 			case nodes.NodeType.IdentifierSelector:
-				specificity.increase("identifier");
+				specificity.identifier++;
 				break;
 
 			case nodes.NodeType.ClassSelector:
 			case nodes.NodeType.AttributeSelector:
-				specificity.increase("className");
+				specificity.className++;
 				break;
 
 			case nodes.NodeType.ElementNameSelector:
 				if (child.getText() !== "*") {
-					specificity.increase("tagName"); // element name, except universal selector ("*")
+					specificity.tagName++; // element name, except universal selector ("*")
 				}
 
 				break;
@@ -376,9 +365,9 @@ function selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
 				const text = child.getText();
 
 				if (text.match(/^::|:(?:before|after|selection|first-(?:letter|line))/)) {
-					specificity.increase("tagName"); // pseudo-element
+					specificity.tagName++; // pseudo-element
 				} else if (!text.match(/^:not/i)) {
-					specificity.increase("className"); // pseudo-class, except the negation pseudo-class (":not()")
+					specificity.className++; // pseudo-class, except the negation pseudo-class (":not()")
 				}
 
 				break;
