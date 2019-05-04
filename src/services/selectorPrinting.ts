@@ -320,13 +320,13 @@ function unescape(content: string) {
 class Specificity {
 	constructor(
 		/** Count of identifiers (e.g., `#app`) */
-		public identifier: number = 0,
+		public id: number = 0,
 
-		/** Count of classes (`.container-fluid`), pseudo-classes (`:hover`), and attributes (`[type="number"]`) */
-		public className: number = 0,
+		/** Count of attributes (`[type="number"]`), classes (`.container-fluid`), and pseudo-classes (`:hover`) */
+		public attr: number = 0,
 
 		/** Count of tag names (`div`), and pseudo-elements (`::before`) */
-		public tagName: number = 0,
+		public tag: number = 0,
 	) {}
 
 	toArray() {
@@ -334,29 +334,29 @@ class Specificity {
 	}
 
 	*[Symbol.iterator]() {
-		yield this.identifier;
-		yield this.className;
-		yield this.tagName;
+		yield this.id;
+		yield this.attr;
+		yield this.tag;
 	}
 }
 
 function selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
 	const specificity = new Specificity();
 
-	node.getChildren().forEach(function updateScore(child: nodes.Node) {
+	node.getChildren().forEach(function updateSpecificity(child: nodes.Node) {
 		switch (child.type) {
 			case nodes.NodeType.IdentifierSelector:
-				specificity.identifier++;
+				specificity.id++;
 				break;
 
 			case nodes.NodeType.ClassSelector:
 			case nodes.NodeType.AttributeSelector:
-				specificity.className++;
+				specificity.attr++;
 				break;
 
 			case nodes.NodeType.ElementNameSelector:
 				if (child.getText() !== "*") {
-					specificity.tagName++; // element name, except universal selector ("*")
+					specificity.tag++; // tag name, but not the universal selector ("*")
 				}
 
 				break;
@@ -365,15 +365,15 @@ function selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
 				const text = child.getText();
 
 				if (text.match(/^::|:(?:before|after|selection|first-(?:letter|line))/)) {
-					specificity.tagName++; // pseudo-element
+					specificity.tag++; // pseudo-element
 				} else if (!text.match(/^:not/i)) {
-					specificity.className++; // pseudo-class, except the negation pseudo-class (":not()")
+					specificity.attr++; // pseudo-class, but not the negation pseudo-class (":not()")
 				}
 
 				break;
 		}
 
-		child.getChildren().forEach(updateScore);
+		child.getChildren().forEach(updateSpecificity);
 	});
 
 	return localize('specificity', "[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): ({0}, {1}, {2})", ...specificity.toArray());
