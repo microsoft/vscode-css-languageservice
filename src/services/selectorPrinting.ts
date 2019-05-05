@@ -7,8 +7,9 @@
 import * as nodes from '../parser/cssNodes';
 import { MarkedString, Location } from 'vscode-languageserver-types';
 import { Scanner } from '../parser/cssScanner';
-
+import * as languageFacts from "../languageFacts/facts";
 import * as nls from 'vscode-nls';
+
 const localize = nls.loadMessageBundle();
 
 export class Element {
@@ -313,6 +314,16 @@ function unescape(content: string) {
 	return content;
 }
 
+function isPseudoElementIdentifier(text: string): boolean {
+	const match = text.match(/^::?([\w-]+)/);
+
+	if (!match) {
+		return false;
+	}
+
+	return !!languageFacts.cssDataManager.getPseudoElement("::" + match[1]);
+}
+
 /**
  * @private
  * @see https://www.w3.org/TR/selectors-3/#specificity
@@ -350,7 +361,7 @@ class Specificity {
 			case nodes.NodeType.PseudoSelector:
 				const text = selectorNode.getText();
 
-				if (text.match(/^::|:(?:before|after|selection|first-(?:letter|line))/)) {
+				if (isPseudoElementIdentifier(text)) {
 					this.tag++; // pseudo-element
 				} else if (!text.match(/^:not/i)) {
 					this.attr++; // pseudo-class, but not the negation pseudo-class (":not()")
