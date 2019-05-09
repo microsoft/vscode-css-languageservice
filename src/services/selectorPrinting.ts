@@ -357,9 +357,13 @@ function selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
 
 export function selectorToMarkedString(node: nodes.Selector): MarkedString[] {
 	const root = selectorToElement(node);
-	const markedStrings = new MarkedStringPrinter('"').print(root);
-	markedStrings.push(selectorToSpecificityMarkedString(node));
-	return markedStrings;
+	if (root) {
+		const markedStrings = new MarkedStringPrinter('"').print(root);
+		markedStrings.push(selectorToSpecificityMarkedString(node));
+		return markedStrings;
+	} else {
+		return [];
+	}
 }
 
 export function simpleSelectorToMarkedString(node: nodes.SimpleSelector): MarkedString[] {
@@ -438,7 +442,7 @@ function isNewSelectorContext(node: nodes.Node): boolean {
 	return false;
 }
 
-export function selectorToElement(node: nodes.Selector): Element {
+export function selectorToElement(node: nodes.Selector): Element | null {
 	if (node.matches('@at-root')) {
 		return null;
 	}
