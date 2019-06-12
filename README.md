@@ -49,6 +49,7 @@ export interface LanguageService {
 	getColorPresentations(document: TextDocument, stylesheet: Stylesheet, color: Color, range: Range): ColorPresentation[];
 	doRename(document: TextDocument, position: Position, newName: string, stylesheet: Stylesheet): WorkspaceEdit;
 	getFoldingRanges(document: TextDocument, context?: { rangeLimit?: number; }): FoldingRange[];
+	getSelectionRanges(document: TextDocument, positions: Position[], stylesheet: Stylesheet): SelectionRange[];
 }
 
 export interface LanguageSettings {
@@ -84,7 +85,7 @@ License
 
 (MIT License)
 
-Copyright 2016, Microsoft
+Copyright 2016, 2019 Microsoft
 
 With the exceptions of `build/mdn-documentation.js`, which is built upon content from [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web)
 and distributed under CC BY-SA 2.5.
