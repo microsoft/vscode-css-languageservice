@@ -3,7 +3,7 @@
 		"target": "es5",
 		"module": "es6",
 		"moduleResolution": "node",
-		"sourceMap": false,
+		"sourceMap": true,
 		"declaration": true,
 		"stripInternal": true,
 		"outDir": "../lib/esm",

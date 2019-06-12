@@ -32,11 +32,12 @@
     "vscode-nls": "^4.1.1"
   },
   "scripts": {
-    "prepublishOnly": "npm run clean && npm run compile-esm && npm run test",
+    "prepublishOnly": "npm run clean && npm run compile-esm && npm run test && npm run remove-sourcemap-refs",
     "postpublish": "node ./build/post-publish.js",
     "compile": "tsc -p ./src",
     "compile-esm": "tsc -p ./src/tsconfig.esm.json",
     "clean": "rimraf lib",
+    "remove-sourcemap-refs": "node ./build/remove-sourcemap-refs.js",
     "watch": "tsc -w -p ./src",
     "test": "npm run compile && mocha && npm run lint",
     "mocha": "mocha",
