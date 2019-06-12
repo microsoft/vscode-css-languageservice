@@ -7,8 +7,9 @@
 import * as nodes from '../parser/cssNodes';
 import { MarkedString, Location } from 'vscode-languageserver-types';
 import { Scanner } from '../parser/cssScanner';
-
+import * as languageFacts from "../languageFacts/facts";
 import * as nls from 'vscode-nls';
+
 const localize = nls.loadMessageBundle();
 
 export class Element {
@@ -212,6 +213,15 @@ namespace quotes {
 	}
 }
 
+class Specificity {
+	/** Count of identifiers (e.g., `#app`) */
+	public id = 0;
+	/** Count of attributes (`[type="number"]`), classes (`.container-fluid`), and pseudo-classes (`:hover`) */
+	public attr = 0;
+	/** Count of tag names (`div`), and pseudo-elements (`::before`) */
+	public tag = 0;
+}
+
 export function toElement(node: nodes.SimpleSelector, parentElement?: Element): Element {
 
 	let result = new Element();
@@ -313,34 +323,45 @@ function unescape(content: string) {
 	return content;
 }
 
+function isPseudoElementIdentifier(text: string): boolean {
+	const match = text.match(/^::?([\w-]+)/);
+
+	if (!match) {
+		return false;
+	}
+
+	return !!languageFacts.cssDataManager.getPseudoElement("::" + match[1]);
+}
+
 function selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
 	//https://www.w3.org/TR/selectors-3/#specificity
 	function calculateScore(node: nodes.Node) {
 		node.getChildren().forEach(element => {
 			switch (element.type) {
 				case nodes.NodeType.IdentifierSelector:
-					specificity[0] += 1;		//a
+					specificity.id++;
 					break;
 				case nodes.NodeType.ClassSelector:
 				case nodes.NodeType.AttributeSelector:
-					specificity[1] += 1;		//b
+					specificity.attr++;
 					break;
 				case nodes.NodeType.ElementNameSelector:
 					//ignore universal selector
 					if (element.getText() === "*") {
 						break;
 					}
-					specificity[2] += 1;		//c
+					specificity.tag++;
 					break;
 				case nodes.NodeType.PseudoSelector:
-					if (element.getText().match(/^::/)) {
-						specificity[2] += 1;	//c (pseudo element)
+					const text = element.getText();
+					if (isPseudoElementIdentifier(text)) {
+						specificity.tag++;	// pseudo element
 					} else {
 						//ignore psuedo class NOT
 						if (element.getText().match(/^:not/i)) {
 							break;
 						}
-						specificity[1] += 1;	//b (pseudo class)
+						specificity.attr++;	//pseudo class
 					}
 					break;
 			}
@@ -350,9 +371,9 @@ function selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
 		});
 	}
 
-	const specificity = [0, 0, 0]; //a,b,c
+	const specificity = new Specificity();
 	calculateScore(node);
-	return localize('specificity', "[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): ({0}, {1}, {2})", ...specificity);
+	return localize('specificity', "[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): ({0}, {1}, {2})", specificity.id, specificity.attr, specificity.tag);
 }
 
 export function selectorToMarkedString(node: nodes.Selector): MarkedString[] {
