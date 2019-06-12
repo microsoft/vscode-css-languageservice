@@ -4,23 +4,23 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { Range, Position, TextDocument } from 'vscode-languageserver-types';
+import { Range, Position, TextDocument, SelectionRange } from 'vscode-languageserver-types';
 import { Stylesheet, NodeType } from '../parser/cssNodes';
-import { SelectionRange, SelectionRangeKind } from '../cssLanguageTypes';
 
-export function getSelectionRanges(document: TextDocument, positions: Position[], stylesheet: Stylesheet): SelectionRange[][] {
-	function getSelectionRange(position: Position): SelectionRange[] {
+export function getSelectionRanges(document: TextDocument, positions: Position[], stylesheet: Stylesheet): SelectionRange[] {
+	function getSelectionRange(position: Position): SelectionRange {
 		const applicableRanges = getApplicableRanges(position);
-		const ranges = applicableRanges.map(pair => {
-			return {
-				range: Range.create(
-					document.positionAt(pair[0]),
-					document.positionAt(pair[1])
-				),
-				kind: SelectionRangeKind.Statement
-			};
-		});
-		return ranges;
+		let current: SelectionRange | undefined = undefined;
+		for (let index = applicableRanges.length - 1; index >= 0; index--) {
+			current = SelectionRange.create(Range.create(
+				document.positionAt(applicableRanges[index][0]),
+				document.positionAt(applicableRanges[index][1])
+			), current);
+		}
+		if (!current) {
+			current = SelectionRange.create(Range.create(position, position));
+		}
+		return current;
 	}
 	return positions.map(getSelectionRange);
 

@@ -21,9 +21,12 @@ function assertRanges(content: string, expected: (number | string)[][]): void {
 	const document = TextDocument.create('test://foo/bar.css', 'css', 1, content);
 	const actualRanges = ls.getSelectionRanges(document, [document.positionAt(offset)], ls.parseStylesheet(document) as Stylesheet);
 	assert.equal(actualRanges.length, 1);
-	const offsetPairs = actualRanges[0].map(r => {
-		return [document.offsetAt(r.range.start), document.getText(r.range)];
-	});
+	const offsetPairs: [number, string][] = [];
+	let curr = actualRanges[0];
+	while (curr) {
+		offsetPairs.push([document.offsetAt(curr.range.start), document.getText(curr.range)]);
+		curr = curr.parent;
+	}
 
 	message += `${JSON.stringify(offsetPairs)}\n but should give:\n${JSON.stringify(expected)}\n`;
 	assert.deepEqual(offsetPairs, expected, message);
