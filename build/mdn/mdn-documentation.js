@@ -36,6 +36,7 @@ module.exports ={
     '-webkit-border-before-color': `The -webkit-border-before-color CSS property sets the color of the individual logical block start border in a single place in the style sheet.`,
     '-webkit-border-before-style': `The -webkit-border-before-style CSS property sets the style of the individual logical block start border in a single place in the style sheet.`,
     '-webkit-border-before-width': `The -webkit-border-before-width CSS property sets the width of the individual logical block start border in a single place in the style sheet.`,
+    '-webkit-line-clamp': `The -webkit-line-clamp CSS property allows limiting of the contents of a block container to the specified number of lines.`,
     '-webkit-mask': `The mask CSS property alters the visibility of an element by either partially or fully hiding it. This is accomplished by either masking or clipping the image at specific points.`,
     '-webkit-mask-attachment': `If a -webkit-mask-image is specified, -webkit-mask-attachment determines whether the mask image's position is fixed within the viewport, or scrolls along with its containing block.`,
     '-webkit-mask-composite': `The -webkit-mask-composite property specifies the manner in which multiple mask images applied to the same element are composited with one another. Mask images are composited in the opposite order that they are declared with the -webkit-mask-image property.`,
@@ -172,6 +173,7 @@ module.exports ={
     '::grammar-error': 'The ::grammar-error CSS pseudo-element represents a text segment which the user agent has flagged as grammatically incorrect.',
     '::placeholder': 'The ::placeholder CSS pseudo-element represents the placeholder text of a form element.',
     '::spelling-error': 'The ::spelling-error CSS pseudo-element represents a text segment which the user agent has flagged as incorrectly spelled.',
-    '::slotted': 'The :slotted() CSS pseudo-element represents any element that has been placed into a slot inside an HTML template.'
+    '::slotted': 'The :slotted() CSS pseudo-element represents any element that has been placed into a slot inside an HTML template.',
+    '::part': 'The ::part CSS pseudo-element represents any element within a shadow tree that has a matching part attribute.'
   }
 }

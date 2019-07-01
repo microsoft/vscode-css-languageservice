@@ -446,7 +446,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "animation-timing-function",
-			"syntax": "<single-timing-function>#",
+			"syntax": "<timing-function>#",
 			"description": "Describes how the animation will progress over one cycle of its duration.",
 			"restrictions": [
 				"timing-function"
@@ -1477,7 +1477,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Force one or two page breaks before/after the generated box so that the next page is formatted as a right page."
 				}
 			],
-			"syntax": "auto | avoid | avoid-page | page | left | right | recto | verso | avoid-column | column | avoid-region | region",
+			"syntax": "auto | avoid | always | all | avoid-page | page | left | right | recto | verso | avoid-column | column | avoid-region | region",
 			"description": "Describes the page/column/region break behavior after the generated box.",
 			"restrictions": [
 				"enum"
@@ -1523,7 +1523,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Force one or two page breaks before/after the generated box so that the next page is formatted as a right page."
 				}
 			],
-			"syntax": "auto | avoid | avoid-page | page | left | right | recto | verso | avoid-column | column | avoid-region | region",
+			"syntax": "auto | avoid | always | all | avoid-page | page | left | right | recto | verso | avoid-column | column | avoid-region | region",
 			"description": "Describes the page/column/region break behavior before the generated box.",
 			"restrictions": [
 				"enum"
@@ -11147,7 +11147,7 @@ export const cssData : CSSDataV1 = {
 					name: "uppercase"
 				}
 			],
-			"syntax": "none | capitalize | uppercase | lowercase | full-width",
+			"syntax": "none | capitalize | uppercase | lowercase | full-width | full-size-kana",
 			"description": "Controls capitalization effects of an element’s text.",
 			"restrictions": [
 				"enum"
@@ -11444,7 +11444,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "transition-timing-function",
-			"syntax": "<single-transition-timing-function>#",
+			"syntax": "<timing-function>#",
 			"description": "Describes how the intermediate values used during a transition will be calculated.",
 			"restrictions": [
 				"timing-function"
@@ -14150,6 +14150,11 @@ export const cssData : CSSDataV1 = {
 			"description": "The -webkit-border-before-width CSS property sets the width of the individual logical block start border in a single place in the style sheet."
 		},
 		{
+			name: "-webkit-line-clamp",
+			"syntax": "none | <integer>",
+			"description": "The -webkit-line-clamp CSS property allows limiting of the contents of a block container to the specified number of lines."
+		},
+		{
 			name: "-webkit-mask",
 			"status": "nonstandard",
 			"syntax": "[ <mask-reference> || <position> [ / <bg-size> ]? || <repeat-style> || [ <box> | border | padding | content | text ] || [ <box> | border | padding | content ] ]#",
@@ -14587,6 +14592,16 @@ export const cssData : CSSDataV1 = {
 			"description": "The line-clamp property allows limiting the contents of a block container to the specified number of lines; remaining content is fragmented away and neither rendered nor measured. Optionally, it also allows inserting content into the last line box to indicate the continuity of truncated/interrupted content."
 		},
 		{
+			name: "line-height-step",
+			"status": "experimental",
+			"syntax": "<length>",
+			browsers: [
+				"C60",
+				"O47"
+			],
+			"description": "The line-height-step CSS property defines the step units for line box heights. When the step unit is positive, line box heights are rounded up to the closest multiple of the unit. Negative values are invalid."
+		},
+		{
 			name: "margin-block",
 			"syntax": "<'margin-left'>{1,2}",
 			browsers: [
@@ -14748,7 +14763,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "overflow-block",
 			"status": "experimental",
-			"syntax": "<'overflow'>",
+			"syntax": "visible | hidden | clip | scroll | auto",
 			"description": "The overflow-block CSS media feature can be used to test how the output device handles content that overflows the initial containing block along the block axis."
 		},
 		{
@@ -14763,7 +14778,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "overflow-inline",
 			"status": "experimental",
-			"syntax": "<'overflow'>",
+			"syntax": "visible | hidden | clip | scroll | auto",
 			"description": "The overflow-inline CSS media feature can be used to test how the output device handles content that overflows the initial containing block along the inline axis."
 		},
 		{
@@ -14851,7 +14866,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "rotate",
-			"syntax": "none | [ x | y | z | <number>{3} ]? && <angle>",
+			"syntax": "none | <angle> | [ x | y | z | <number>{3} ] && <angle>",
 			browsers: [
 				"FF60",
 				"C"
@@ -15130,7 +15145,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-snap-type-x",
-			"status": "nonstandard",
+			"status": "obsolete",
 			"syntax": "none | mandatory | proximity",
 			browsers: [
 				"FF39",
@@ -15140,7 +15155,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-snap-type-y",
-			"status": "nonstandard",
+			"status": "obsolete",
 			"syntax": "none | mandatory | proximity",
 			browsers: [
 				"FF39"
@@ -16593,6 +16608,11 @@ export const cssData : CSSDataV1 = {
 			name: "::grammar-error",
 			"status": "experimental",
 			"description": "The ::grammar-error CSS pseudo-element represents a text segment which the user agent has flagged as grammatically incorrect."
+		},
+		{
+			name: "::part",
+			"status": "experimental",
+			"description": "The ::part CSS pseudo-element represents any element within a shadow tree that has a matching part attribute."
 		},
 		{
 			name: "::placeholder",
