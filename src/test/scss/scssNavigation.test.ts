@@ -85,16 +85,56 @@ suite('SCSS - Navigation', () => {
 				{ range: newRange(8, 15), target: 'test://test/_foo.scss' }
 			], 'scss');
 
+			assertLinks(p, `@import './_foo'`, [
+				{ range: newRange(8, 16), target: 'test://test/_foo.scss' }
+			], 'scss');
+
+			assertLinks(p, `@import './foo-baz'`, [
+				{ range: newRange(8, 19), target: 'test://test/_foo-baz.scss' }
+			], 'scss');
+
+			assertLinks(p, `@import './foo-baz.quz'`, [
+				{ range: newRange(8, 23), target: 'test://test/_foo-baz.quz.scss' }
+			], 'scss');
+
 			assertLinks(p, `@import './bar/foo'`, [
 				{ range: newRange(8, 19), target: 'test://test/bar/_foo.scss' }
+			], 'scss');
+
+			assertLinks(p, `@import './bar/_foo'`, [
+				{ range: newRange(8, 20), target: 'test://test/bar/_foo.scss' }
+			], 'scss');
+
+			assertLinks(p, `@import './bar/foo-baz.quz'`, [
+				{ range: newRange(8, 27), target: 'test://test/bar/_foo-baz.quz.scss' }
 			], 'scss');
 
 			assertLinks(p, `@import 'foo.scss'`, [
 				{ range: newRange(8, 18), target: 'test://test/_foo.scss' }
 			], 'scss');
 
+			assertLinks(p, `@import 'foo-baz.scss'`, [
+				{ range: newRange(8, 22), target: 'test://test/_foo-baz.scss' }
+			], 'scss');
+
+			assertLinks(p, `@import './foo-baz.quz.scss'`, [
+				{ range: newRange(8, 28), target: 'test://test/_foo-baz.quz.scss' }
+			], 'scss');
+
 			assertLinks(p, `@import './bar/foo.scss'`, [
 				{ range: newRange(8, 24), target: 'test://test/bar/_foo.scss' }
+			], 'scss');
+
+			assertLinks(p, `@import './bar/_foo.scss'`, [
+				{ range: newRange(8, 25), target: 'test://test/bar/_foo.scss' }
+			], 'scss');
+
+			assertLinks(p, `@import './bar/foo-baz.quz.scss'`, [
+				{ range: newRange(8, 32), target: 'test://test/bar/_foo-baz.quz.scss' }
+			], 'scss');
+
+			assertLinks(p, `@import './bar/_foo-baz.quz.scss'`, [
+				{ range: newRange(8, 33), target: 'test://test/bar/_foo-baz.quz.scss' }
 			], 'scss');
 		});
 

@@ -280,8 +280,8 @@ function uriStringNodeToDocumentLink(document: TextDocument, uriStringNode: node
 }
 
 function toScssPartialUri(uri: string): string {
-	return uri.replace(/\/(\w+)(.scss)?$/gm, (match, fileName) => {
-		return '/_' + fileName + '.scss';
+	return uri.replace(/\.scss$/, '').replace(/[^/]+$/, (basename) => {
+		return (basename[0] === '_' ? '': '_') + basename + '.scss';
 	});
 }
 
