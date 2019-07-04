@@ -230,7 +230,7 @@ export class SCSSCompletion extends CSSCompletion {
 	public getTermProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		let functions = SCSSCompletion.builtInFuncs;
 		if (entry) {
-			functions = functions.filter(f => !f.type || entry.restrictions.indexOf(f.type) !== -1);
+			functions = functions.filter(f => !f.type || (entry.restrictions && entry.restrictions.indexOf(f.type) !== -1));
 		}
 		this.createFunctionProposals(functions, existingNode, true, result);
 		return super.getTermProposals(entry, existingNode, result);
