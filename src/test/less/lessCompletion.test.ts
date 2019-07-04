@@ -101,6 +101,11 @@ suite('LESS - Completions', () => {
 				}
 			]
 		});
+		testCompletionFor('.foo { mask: no|', { // bug 76572
+			items: [
+				{ label: 'round' }
+			]
+		});
 		
 		// https://github.com/Microsoft/vscode/issues/71791
 		test('Items that start with `-` are sorted lower than normal attribute values', () => {
