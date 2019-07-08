@@ -181,7 +181,7 @@ export class Node {
 		return this.nodeType || NodeType.Undefined;
 	}
 
-	public getTextProvider(): ITextProvider {
+	private getTextProvider(): ITextProvider {
 		let node: Node | null = this;
 		while (node && !node.textProvider) {
 			node = node.parent;
@@ -427,8 +427,6 @@ export class Identifier extends Node {
 
 export class Stylesheet extends Node {
 
-	private name: string;
-
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -436,11 +434,6 @@ export class Stylesheet extends Node {
 	public get type(): NodeType {
 		return NodeType.Stylesheet;
 	}
-
-	public setName(value: string): void {
-		this.name = value;
-	}
-
 }
 
 export class Declarations extends Node {
@@ -997,8 +990,6 @@ export class KeyframeSelector extends BodyDeclaration {
 
 export class Import extends Node {
 
-	private medialist: Node;
-
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -1010,7 +1001,6 @@ export class Import extends Node {
 	public setMedialist(node: Node): boolean {
 		if (node) {
 			node.attachTo(this);
-			this.medialist = node;
 			return true;
 		}
 		return false;
@@ -1789,7 +1779,7 @@ export class DefaultVisitor implements IVisitor {
 	public visitMixinReference(node:MixinReference):boolean {
 		return true;
 	}
-
+	
 	public visitUnknownNode(node:Node):boolean {
 		return true;
 	}

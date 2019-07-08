@@ -72,7 +72,7 @@ export class CSSNavigation {
 					});
 					return false;
 				}
-			} else if (node.type === candidate.type && node.length === candidate.length && name === candidate.getText()) {
+			} else if (node.type === candidate.type && candidate.matches(name)) {
 				// Same node type and data
 				result.push({
 					kind: getHighlightKind(candidate),

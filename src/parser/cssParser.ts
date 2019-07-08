@@ -201,20 +201,22 @@ export class Parser {
 
 	public parseStylesheet(textDocument: TextDocument): nodes.Stylesheet {
 		const versionId = textDocument.version;
+		const text = textDocument.getText();
 		const textProvider = (offset: number, length: number) => {
 			if (textDocument.version !== versionId) {
 				throw new Error('Underlying model has changed, AST is no longer valid');
 			}
-			return textDocument.getText().substr(offset, length);
+			return text.substr(offset, length);
 		};
 
-		return this.internalParse(textDocument.getText(), this._parseStylesheet, textProvider);
+		return this.internalParse(text, this._parseStylesheet, textProvider);
 	}
+
 
 	public internalParse<T extends nodes.Node>(input: string, parseFunc: () => T, textProvider?: nodes.ITextProvider): T {
 		this.scanner.setSource(input);
 		this.token = this.scanner.scan();
-		const node = parseFunc.bind(this)();
+		const node : T = parseFunc.bind(this)();
 		if (node) {
 			if (textProvider) {
 				node.textProvider = textProvider;
@@ -709,7 +711,7 @@ export class Parser {
 		const atNode = this.create(nodes.Node);
 		this.consumeToken(); // atkeyword
 		node.setKeyword(this.finish(atNode));
-		if (atNode.getText() === '@-ms-keyframes') { // -ms-keyframes never existed
+		if (atNode.matches('@-ms-keyframes')) { // -ms-keyframes never existed
 			this.markError(atNode, ParseError.UnknownKeyword);
 		}
 

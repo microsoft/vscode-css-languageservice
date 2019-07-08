@@ -339,7 +339,7 @@ export class Symbols {
 		while (node.type === nodes.NodeType.Interpolation) {
 			node = node.getParent();
 		}
-		if (symbol.name.length !== node.length || symbol.name !== node.getText()) {
+		if (!node.matches(symbol.name)) {
 			return false;
 		}
 

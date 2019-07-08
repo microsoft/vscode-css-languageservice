@@ -689,10 +689,10 @@ export class CSSCompletion {
 
 		const visited: { [name: string]: boolean } = {};
 		visited[this.currentWord] = true;
-		const textProvider = this.styleSheet.getTextProvider();
+		const docText = this.textDocument.getText();
 		this.styleSheet.accept(n => {
 			if (n.type === nodes.NodeType.SimpleSelector && n.length > 0) {
-				const selector = textProvider(n.offset, n.length);
+				const selector = docText.substr(n.offset, n.length);
 				if (selector.charAt(0) === '.' && !visited[selector]) {
 					visited[selector] = true;
 					result.items.push({
@@ -784,7 +784,7 @@ export class CSSCompletion {
 	}
 
 	public getCompletionsForFunctionArgument(arg: nodes.FunctionArgument, func: nodes.Function, result: CompletionList): CompletionList {
-		if (func.getIdentifier().getText() === 'var') {
+		if (func.getIdentifier().matches('var')) {
 			if (!func.getArguments().hasChildren() || func.getArguments().getChild(0) === arg) {
 				this.getVariableProposalsForCSSVarFunction(result);
 			}

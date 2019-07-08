@@ -9,12 +9,12 @@ import { includes } from '../utils/arrays';
 
 export class Element {
 
-	public name: string;
-	public node: nodes.Declaration;
+	public readonly fullPropertyName: string;
+	public readonly node: nodes.Declaration;
 
-	constructor(text: string, data: nodes.Declaration) {
-		this.name = text;
-		this.node = data;
+	constructor(decl: nodes.Declaration) {
+		this.fullPropertyName = decl.getFullPropertyName().toLowerCase();
+		this.node = decl;
 	}
 }
 
@@ -102,34 +102,43 @@ function updateModelWithList(model: BoxModel, values: boolean[], property: Eleme
 	}
 }
 
+function matches(value: nodes.Node, candidates: string[]) {
+	for (let candidate of candidates) {
+		if (value.matches(candidate)) {
+			return true;
+		}
+	}
+	return false;
+}
+
 /**
  * @param allowsKeywords whether the initial value of property is zero, so keywords `initial` and `unset` count as zero
  * @return `true` if this node represents a non-zero border; otherwise, `false`
  */
-function checkLineWidth(value: string, allowsKeywords: boolean = true): boolean {
-	if (allowsKeywords && includes(['initial', 'unset'], value)) {
+function checkLineWidth(value: nodes.Node, allowsKeywords: boolean = true): boolean {
+	if (allowsKeywords && matches(value, ['initial', 'unset'])) {
 		return false;
 	}
 
 	// a <length> is a value and a unit
 	// so use `parseFloat` to strip the unit
-	return parseFloat(value) !== 0;
+	return parseFloat(value.getText()) !== 0;
 }
 
 function checkLineWidthList(nodes: nodes.Node[], allowsKeywords: boolean = true): boolean[] {
-	return nodes.map(node => checkLineWidth(node.getText(), allowsKeywords));
+	return nodes.map(node => checkLineWidth(node, allowsKeywords));
 }
 
 /**
  * @param allowsKeywords whether keywords `initial` and `unset` count as zero
  * @return `true` if this node represents a non-zero border; otherwise, `false`
  */
-function checkLineStyle(value: string, allowsKeywords: boolean = true): boolean {
-	if (includes(['none', 'hidden'], value)) {
+function checkLineStyle(valueNode: nodes.Node, allowsKeywords: boolean = true): boolean {
+	if (matches(valueNode, ['none', 'hidden'])) {
 		return false;
 	}
 
-	if (allowsKeywords && includes(['initial', 'unset'], value)) {
+	if (allowsKeywords && matches(valueNode, ['initial', 'unset'])) {
 		return false;
 	}
 
@@ -137,7 +146,7 @@ function checkLineStyle(value: string, allowsKeywords: boolean = true): boolean 
 }
 
 function checkLineStyleList(nodes: nodes.Node[], allowsKeywords: boolean = true): boolean[] {
-	return nodes.map(node => checkLineStyle(node.getText(), allowsKeywords));
+	return nodes.map(node => checkLineStyle(node, allowsKeywords));
 }
 
 function checkBorderShorthand(node: nodes.Node): boolean {
@@ -146,14 +155,14 @@ function checkBorderShorthand(node: nodes.Node): boolean {
 	// the only child can be a keyword, a <line-width>, or a <line-style>
 	// if either check returns false, the result is no border
 	if (children.length === 1) {
-		const value = children[0].getText();
+		const value = children[0];
 		return checkLineWidth(value) && checkLineStyle(value);
 	}
 
 	// multiple children can't contain keywords
 	// if any child means no border, the result is no border
 	for (const child of children) {
-		const value = child.getText();
+		const value = child;
 		if (!checkLineWidth(value, /* allowsKeywords: */ false) ||
 			!checkLineStyle(value, /* allowsKeywords: */ false)) {
 			return false;
@@ -176,7 +185,7 @@ export default function calculateBoxModel(propertyTable: Element[]): BoxModel {
 			continue;
 		}
 
-		switch (property.name) {
+		switch (property.fullPropertyName) {
 			case 'box-sizing':
 				// has `box-sizing`, bail out
 				return {
@@ -192,7 +201,7 @@ export default function calculateBoxModel(propertyTable: Element[]): BoxModel {
 				model.height = property;
 				break;
 			default:
-				const segments = property.name.split('-');
+				const segments = property.fullPropertyName.split('-');
 				switch (segments[0]) {
 					case 'border':
 						switch (segments[1]) {
@@ -207,11 +216,11 @@ export default function calculateBoxModel(propertyTable: Element[]): BoxModel {
 										break;
 									case 'width':
 										// the initial value of `border-width` is `medium`, not zero
-										updateModelWithValue(model, segments[1], checkLineWidth(value.getText(), false), property);
+										updateModelWithValue(model, segments[1], checkLineWidth(value, false), property);
 										break;
 									case 'style':
 										// the initial value of `border-style` is `none`
-										updateModelWithValue(model, segments[1], checkLineStyle(value.getText(), true), property);
+										updateModelWithValue(model, segments[1], checkLineStyle(value, true), property);
 										break;
 								}
 								break;
@@ -231,7 +240,7 @@ export default function calculateBoxModel(propertyTable: Element[]): BoxModel {
 							updateModelWithList(model, checkLineWidthList(value.getChildren(), true), property);
 						} else {
 							// the initial value of `padding` is zero
-							updateModelWithValue(model, segments[1], checkLineWidth(value.getText(), true), property);
+							updateModelWithValue(model, segments[1], checkLineWidth(value, true), property);
 						}
 						break;
 				}

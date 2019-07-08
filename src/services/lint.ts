@@ -70,8 +70,8 @@ export class LintVisitor implements nodes.IVisitor {
 		}
 	}
 
-	private isValidPropertyDeclaration(decl: nodes.Declaration): boolean {
-		const propertyName = decl.getFullPropertyName().toLowerCase();
+	private isValidPropertyDeclaration(element: Element): boolean {
+		const propertyName = element.fullPropertyName;
 		return this.validProperties[propertyName];
 	}
 
@@ -79,7 +79,7 @@ export class LintVisitor implements nodes.IVisitor {
 		const elements: Element[] = [];
 
 		for (const curr of input) {
-			if (curr.name === s) {
+			if (curr.fullPropertyName === s) {
 				elements.push(curr);
 			}
 		}
@@ -90,7 +90,7 @@ export class LintVisitor implements nodes.IVisitor {
 	private fetchWithValue(input: Element[], s: string, v: string): Element[] {
 		const elements: Element[] = [];
 		for (const inputElement of input) {
-			if (inputElement.name === s) {
+			if (inputElement.fullPropertyName === s) {
 				const expression = inputElement.node.getValue();
 				if (expression && this.findValueInExpression(expression, v)) {
 					elements.push(inputElement);
@@ -103,7 +103,7 @@ export class LintVisitor implements nodes.IVisitor {
 	private findValueInExpression(expression: nodes.Expression, v: string): boolean {
 		let found = false;
 		expression.accept(node => {
-			if (node.type === nodes.NodeType.Identifier && node.getText() === v) {
+			if (node.type === nodes.NodeType.Identifier && node.matches(v)) {
 				found = true;
 			}
 			return !found;
@@ -268,8 +268,7 @@ export class LintVisitor implements nodes.IVisitor {
 		const propertyTable: Element[] = [];
 		for (const element of declarations.getChildren()) {
 			if (element instanceof nodes.Declaration) {
-				const decl = <nodes.Declaration>element;
-				propertyTable.push(new Element(decl.getFullPropertyName().toLowerCase(), decl));
+				propertyTable.push(new Element(element));
 			}
 		}
 
@@ -360,9 +359,9 @@ export class LintVisitor implements nodes.IVisitor {
 
 		const elements: Element[] = this.fetch(propertyTable, 'float');
 		for (let index = 0; index < elements.length; index++) {
-			const decl = elements[index].node;
-			if (!this.isValidPropertyDeclaration(decl)) {
-				this.addEntry(decl, Rules.AvoidFloat);
+			const element = elements[index];
+			if (!this.isValidPropertyDeclaration(element)) {
+				this.addEntry(element.node, Rules.AvoidFloat);
 			}
 		}
 
@@ -371,10 +370,10 @@ export class LintVisitor implements nodes.IVisitor {
 		/////////////////////////////////////////////////////////////
 		for (let i = 0; i < propertyTable.length; i++) {
 			const element = propertyTable[i];
-			if (element.name !== 'background' && !this.validProperties[element.name]) {
+			if (element.fullPropertyName !== 'background' && !this.validProperties[element.fullPropertyName]) {
 				const value = element.node.getValue();
 				if (value && this.documentText.charAt(value.offset) !== '-') {
-					const elements = this.fetch(propertyTable, element.name);
+					const elements = this.fetch(propertyTable, element.fullPropertyName);
 					if (elements.length > 1) {
 						for (let k = 0; k < elements.length; k++) {
 							const value = elements[k].node.getValue();
@@ -391,16 +390,16 @@ export class LintVisitor implements nodes.IVisitor {
 		//	Unknown propery & When using a vendor-prefixed gradient, make sure to use them all.
 		/////////////////////////////////////////////////////////////
 
-		const isExportBlock = node.getSelectors().getText() === ":export";
+		const isExportBlock = node.getSelectors().matches(":export");
 
 		if (!isExportBlock) {
 			const propertiesBySuffix = new NodesByRootMap();
 			let containsUnknowns = false;
 
-			for (const node of declarations.getChildren()) {
-				if (this.isCSSDeclaration(node)) {
-					const decl = <nodes.Declaration>node;
-					let name = decl.getFullPropertyName().toLowerCase();
+			for (const element of propertyTable) {
+				const decl = element.node;
+				if (this.isCSSDeclaration(element.node)) {
+					let name = element.fullPropertyName;
 					const firstChar = name.charAt(0);
 
 					if (firstChar === '-') {

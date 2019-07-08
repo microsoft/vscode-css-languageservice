@@ -251,7 +251,7 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element): 
 				}
 				break;
 			case nodes.NodeType.SelectorPlaceholder:
-				if (child.getText() === '@at-root') {
+				if (child.matches('@at-root')) {
 					return result;
 				}
 			// fall through
@@ -347,7 +347,7 @@ function selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
 					break;
 				case nodes.NodeType.ElementNameSelector:
 					//ignore universal selector
-					if (element.getText() === "*") {
+					if (element.matches("*")) {
 						break;
 					}
 					specificity.tag++;
@@ -358,7 +358,7 @@ function selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
 						specificity.tag++;	// pseudo element
 					} else {
 						//ignore psuedo class NOT
-						if (element.getText().match(/^:not/i)) {
+						if (text.match(/^:not/i)) {
 							break;
 						}
 						specificity.attr++;	//pseudo class
