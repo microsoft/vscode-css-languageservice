@@ -85,7 +85,7 @@ export class CSSNavigation {
 		return result;
 	}
 
-	public findDocumentLinks(document: TextDocument, stylesheet: nodes.Stylesheet, documentContext: DocumentContext): DocumentLink[] {
+	public async findDocumentLinks(document: TextDocument, stylesheet: nodes.Stylesheet, documentContext: DocumentContext): Promise<DocumentLink[]> {
 		const result: DocumentLink[] = [];
 
 		stylesheet.accept(candidate => {
