@@ -20,7 +20,11 @@ async function assertDynamicLinks(docUri: string, input: string, expected: Docum
 
 	const stylesheet = p.parseStylesheet(document);
 
-	const links = await new SCSSNavigation(getFsProvider()).findDocumentLinks(document, stylesheet, getDocumentContext(document.uri));
+	const links = await new SCSSNavigation(getFsProvider()).findDocumentLinks2(
+		document,
+		stylesheet,
+		getDocumentContext(document.uri)
+	);
 	assert.deepEqual(links, expected);
 }
 

@@ -57,7 +57,7 @@ export async function assertLinks(p: Parser, input: string, expected: DocumentLi
 
 	let stylesheet = p.parseStylesheet(document);
 
-	let links = await new CSSNavigation().findDocumentLinks(document, stylesheet, getDocumentContext(document.uri));
+	let links = await new CSSNavigation().findDocumentLinks2(document, stylesheet, getDocumentContext(document.uri));
 	assert.deepEqual(links, expected);
 }
 

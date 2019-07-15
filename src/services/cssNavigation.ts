@@ -85,7 +85,7 @@ export class CSSNavigation {
 		return result;
 	}
 
-	public async findDocumentLinks(document: TextDocument, stylesheet: nodes.Stylesheet, documentContext: DocumentContext): Promise<DocumentLink[]> {
+	public findDocumentLinks(document: TextDocument, stylesheet: nodes.Stylesheet, documentContext: DocumentContext): DocumentLink[] {
 		const result: DocumentLink[] = [];
 
 		stylesheet.accept(candidate => {
@@ -114,6 +114,10 @@ export class CSSNavigation {
 		});
 
 		return result;
+	}
+
+	public async findDocumentLinks2(document: TextDocument, stylesheet: nodes.Stylesheet, documentContext: DocumentContext): Promise<DocumentLink[]> {
+		return this.findDocumentLinks(document, stylesheet, documentContext);
 	}
 
 	public findDocumentSymbols(document: TextDocument, stylesheet: nodes.Stylesheet): SymbolInformation[] {

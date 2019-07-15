@@ -24,6 +24,7 @@ import { getFoldingRanges } from './services/cssFolding';
 import { LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServiceOptions } from './cssLanguageTypes';
 import { cssDataManager } from './languageFacts/facts';
 import { getSelectionRanges } from './services/cssSelectionRange';
+import { SCSSNavigation } from './services/scssNavigation';
 
 export type Stylesheet = {};
 export * from './cssLanguageTypes';
@@ -39,7 +40,11 @@ export interface LanguageService {
 	findDefinition(document: TextDocument, position: Position, stylesheet: Stylesheet): Location | null;
 	findReferences(document: TextDocument, position: Position, stylesheet: Stylesheet): Location[];
 	findDocumentHighlights(document: TextDocument, position: Position, stylesheet: Stylesheet): DocumentHighlight[];
-	findDocumentLinks(document: TextDocument, stylesheet: Stylesheet, documentContext: DocumentContext): Promise<DocumentLink[]>;
+	findDocumentLinks(document: TextDocument, stylesheet: Stylesheet, documentContext: DocumentContext): DocumentLink[];
+	/**
+	 * Return statically resolved links, and dynamically resolved links if `fsProvider` is proved.
+	 */
+	findDocumentLinks2?(document: TextDocument, stylesheet: Stylesheet, documentContext: DocumentContext): Promise<DocumentLink[]>;
 	findDocumentSymbols(document: TextDocument, stylesheet: Stylesheet): SymbolInformation[];
 	doCodeActions(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: Stylesheet): Command[];
 	doCodeActions2(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: Stylesheet): CodeAction[];
@@ -69,6 +74,7 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 		findReferences: navigation.findReferences.bind(navigation),
 		findDocumentHighlights: navigation.findDocumentHighlights.bind(navigation),
 		findDocumentLinks: navigation.findDocumentLinks.bind(navigation),
+		findDocumentLinks2: navigation.findDocumentLinks.bind(navigation),
 		findDocumentSymbols: navigation.findDocumentSymbols.bind(navigation),
 		doCodeActions: codeActions.doCodeActions.bind(codeActions),
 		doCodeActions2: codeActions.doCodeActions2.bind(codeActions),
@@ -94,7 +100,7 @@ export function getCSSLanguageService(options?: LanguageServiceOptions): Languag
 
 export function getSCSSLanguageService(options?: LanguageServiceOptions): LanguageService {
 	handleCustomData(options);
-	return createFacade(new SCSSParser(), new SCSSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation());
+	return createFacade(new SCSSParser(), new SCSSCompletion(), new CSSHover(), new SCSSNavigation(), new CSSCodeActions(), new CSSValidation());
 }
 
 export function getLESSLanguageService(options?: LanguageServiceOptions): LanguageService {
