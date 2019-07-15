@@ -6,8 +6,66 @@
 
 import { SCSSParser } from '../../parser/scssParser';
 import * as nodes from '../../parser/cssNodes';
-import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertColorSymbols, assertLinks, newRange } from '../css/navigation.test';
-import { getSCSSLanguageService } from '../../cssLanguageService';
+import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertColorSymbols, assertLinks, newRange, getDocumentContext } from '../css/navigation.test';
+import { getSCSSLanguageService, DocumentLink, TextDocument } from '../../cssLanguageService';
+import * as assert from 'assert';
+import { FileSystemProvider, FileType } from '../../cssLanguageTypes';
+import { stat as fsStat } from 'fs';
+import { SCSSNavigation } from '../../services/scssNavigation';
+import * as path from 'path';
+
+async function assertDynamicLinks(docUri: string, input: string, expected: DocumentLink[]) {
+	const p = new SCSSParser();
+	const document = TextDocument.create(docUri, 'scss', 0, input);
+
+	const stylesheet = p.parseStylesheet(document);
+
+	const links = await new SCSSNavigation(getFsProvider()).findDocumentLinks2(
+		document,
+		stylesheet,
+		getDocumentContext(document.uri)
+	);
+	assert.deepEqual(links, expected);
+}
+
+function getFsProvider(): FileSystemProvider {
+	return {
+		stat(uri: string) {
+			return new Promise((c, e) => {
+				fsStat(uri, (err, stats) => {
+					if (err) {
+						if (err.code === 'ENOENT') {
+							return c({
+								type: FileType.Unknown,
+								ctime: -1,
+								mtime: -1,
+								size: -1
+							});
+						} else {
+							return e(err);
+						}
+					}
+	
+					let type = FileType.Unknown;
+					if (stats.isFile()) {
+						type = FileType.File;
+					} else if (stats.isDirectory) {
+						type = FileType.Directory;
+					} else if (stats.isSymbolicLink) {
+						type = FileType.SymbolicLink;
+					}
+	
+					c({
+						type,
+						ctime: stats.ctime.getTime(),
+						mtime: stats.mtime.getTime(),
+						size: stats.size
+					});
+				});
+			});
+		}
+	};
+}
 
 suite('SCSS - Navigation', () => {
 
@@ -138,6 +196,34 @@ suite('SCSS - Navigation', () => {
 			], 'scss');
 		});
 
+		test('SCSS partial file dynamic links', async () => {
+			const fixtureRoot = path.resolve(__dirname, '../../../../src/test/scss/linkFixture');
+
+			await assertDynamicLinks(path.resolve(fixtureRoot, './noUnderscore/index.scss'), `@import 'foo'`, [
+				{ range: newRange(8, 13), target: path.resolve(fixtureRoot, './noUnderscore/foo.scss') }
+			]);
+
+			await assertDynamicLinks(path.resolve(fixtureRoot, './underscore/index.scss'), `@import 'foo'`, [
+				{ range: newRange(8, 13), target: path.resolve(fixtureRoot, './underscore/_foo.scss') }
+			]);
+
+			await assertDynamicLinks(path.resolve(fixtureRoot, './both/index.scss'), `@import 'foo'`, [
+				{ range: newRange(8, 13), target: path.resolve(fixtureRoot, './both/_foo.scss') }
+			]);
+
+			await assertDynamicLinks(path.resolve(fixtureRoot, './both/index.scss'), `@import '_foo'`, [
+				{ range: newRange(8, 14), target: path.resolve(fixtureRoot, './both/_foo.scss') }
+			]);
+
+			await assertDynamicLinks(path.resolve(fixtureRoot, './index/index.scss'), `@import 'foo'`, [
+				{ range: newRange(8, 13), target: path.resolve(fixtureRoot, './index/foo/index.scss') }
+			]);
+
+			await assertDynamicLinks(path.resolve(fixtureRoot, './index/index.scss'), `@import 'bar'`, [
+				{ range: newRange(8, 13), target: path.resolve(fixtureRoot, './index/bar/_index.scss') }
+			]);
+		});
+
 		test('SCSS straight links', () => {
 			const p = new SCSSParser();
 
@@ -159,7 +245,6 @@ suite('SCSS - Navigation', () => {
 
 		});
 	});
-
 
 	suite('Color', () => {
 
