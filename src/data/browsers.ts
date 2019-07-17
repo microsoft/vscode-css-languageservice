@@ -111,10 +111,12 @@ export const cssData : CSSDataV1 = {
 					"description": "\"Flex items are packed toward the start of the line.\""
 				},
 				{
-					name: "self-end"
+					name: "self-end",
+					"description": "The item is packed flush to the edge of the alignment container of the end side of the item, in the appropriate axis."
 				},
 				{
-					name: "self-start"
+					name: "self-start",
+					"description": "The item is packed flush to the edge of the alignment container of the start side of the item, in the appropriate axis.."
 				},
 				{
 					name: "center",
@@ -186,10 +188,12 @@ export const cssData : CSSDataV1 = {
 					"description": "\"Flex items are packed toward the start of the line.\""
 				},
 				{
-					name: "self-end"
+					name: "self-end",
+					"description": "The item is packed flush to the edge of the alignment container of the end side of the item, in the appropriate axis."
 				},
 				{
-					name: "self-start"
+					name: "self-start",
+					"description": "The item is packed flush to the edge of the alignment container of the start side of the item, in the appropriate axis.."
 				},
 				{
 					name: "center",
@@ -292,20 +296,24 @@ export const cssData : CSSDataV1 = {
 			name: "animation",
 			values: [
 				{
-					name: "alternate"
+					name: "alternate",
+					"description": "The animation cycle iterations that are odd counts are played in the normal direction, and the animation cycle iterations that are even counts are played in a reverse direction."
 				},
 				{
-					name: "alternate-reverse"
+					name: "alternate-reverse",
+					"description": "The animation cycle iterations that are odd counts are played in the reverse direction, and the animation cycle iterations that are even counts are played in a normal direction."
 				},
 				{
-					name: "backwards"
+					name: "backwards",
+					"description": "The beginning property value (as defined in the first @keyframes at-rule) is applied before the animation is displayed, during the period defined by 'animation-delay'."
 				},
 				{
 					name: "both",
 					"description": "Both forwards and backwards fill modes are applied."
 				},
 				{
-					name: "forwards"
+					name: "forwards",
+					"description": "The final property value (as defined in the last @keyframes at-rule) is maintained after the animation completes."
 				},
 				{
 					name: "infinite",
@@ -346,10 +354,12 @@ export const cssData : CSSDataV1 = {
 			name: "animation-direction",
 			values: [
 				{
-					name: "alternate"
+					name: "alternate",
+					"description": "The animation cycle iterations that are odd counts are played in the normal direction, and the animation cycle iterations that are even counts are played in a reverse direction."
 				},
 				{
-					name: "alternate-reverse"
+					name: "alternate-reverse",
+					"description": "The animation cycle iterations that are odd counts are played in the reverse direction, and the animation cycle iterations that are even counts are played in a normal direction."
 				},
 				{
 					name: "normal",
@@ -378,14 +388,16 @@ export const cssData : CSSDataV1 = {
 			name: "animation-fill-mode",
 			values: [
 				{
-					name: "backwards"
+					name: "backwards",
+					"description": "The beginning property value (as defined in the first @keyframes at-rule) is applied before the animation is displayed, during the period defined by 'animation-delay'."
 				},
 				{
 					name: "both",
 					"description": "Both forwards and backwards fill modes are applied."
 				},
 				{
-					name: "forwards"
+					name: "forwards",
+					"description": "The final property value (as defined in the last @keyframes at-rule) is maintained after the animation completes."
 				},
 				{
 					name: "none",
@@ -432,10 +444,12 @@ export const cssData : CSSDataV1 = {
 			name: "animation-play-state",
 			values: [
 				{
-					name: "paused"
+					name: "paused",
+					"description": "A running animation will be paused."
 				},
 				{
-					name: "running"
+					name: "running",
+					"description": "Resume playback of a paused animation."
 				}
 			],
 			"syntax": "<single-animation-play-state>#",
@@ -539,37 +553,48 @@ export const cssData : CSSDataV1 = {
 					"description": "Default attribute which specifies no blending"
 				},
 				{
-					name: "multiply"
+					name: "multiply",
+					"description": "The source color is multiplied by the destination color and replaces the destination."
 				},
 				{
-					name: "screen"
+					name: "screen",
+					"description": "Multiplies the complements of the backdrop and source color values, then complements the result."
 				},
 				{
-					name: "overlay"
+					name: "overlay",
+					"description": "Multiplies or screens the colors, depending on the backdrop color value."
 				},
 				{
-					name: "darken"
+					name: "darken",
+					"description": "Selects the darker of the backdrop and source colors."
 				},
 				{
-					name: "lighten"
+					name: "lighten",
+					"description": "Selects the lighter of the backdrop and source colors."
 				},
 				{
-					name: "color-dodge"
+					name: "color-dodge",
+					"description": "Brightens the backdrop color to reflect the source color."
 				},
 				{
-					name: "color-burn"
+					name: "color-burn",
+					"description": "Darkens the backdrop color to reflect the source color."
 				},
 				{
-					name: "hard-light"
+					name: "hard-light",
+					"description": "Multiplies or screens the colors, depending on the source color value."
 				},
 				{
-					name: "soft-light"
+					name: "soft-light",
+					"description": "Darkens or lightens the colors, depending on the source color value."
 				},
 				{
-					name: "difference"
+					name: "difference",
+					"description": "Subtracts the darker of the two constituent colors from the lighter color.."
 				},
 				{
-					name: "exclusion"
+					name: "exclusion",
+					"description": "Produces an effect similar to that of the Difference mode but lower in contrast."
 				},
 				{
 					name: "hue",
@@ -578,7 +603,8 @@ export const cssData : CSSDataV1 = {
 						"S",
 						"C35",
 						"O22"
-					]
+					],
+					"description": "Creates a color with the hue of the source color and the saturation and luminosity of the backdrop color."
 				},
 				{
 					name: "saturation",
@@ -587,7 +613,8 @@ export const cssData : CSSDataV1 = {
 						"S",
 						"C35",
 						"O22"
-					]
+					],
+					"description": "Creates a color with the saturation of the source color and the hue and luminosity of the backdrop color."
 				},
 				{
 					name: "color",
@@ -596,7 +623,8 @@ export const cssData : CSSDataV1 = {
 						"S",
 						"C35",
 						"O22"
-					]
+					],
+					"description": "Creates a color with the hue and saturation of the source color and the luminosity of the backdrop color."
 				},
 				{
 					name: "luminosity",
@@ -605,7 +633,8 @@ export const cssData : CSSDataV1 = {
 						"S",
 						"C35",
 						"O22"
-					]
+					],
+					"description": "Creates a color with the luminosity of the source color and the hue and saturation of the backdrop color."
 				}
 			],
 			"syntax": "<blend-mode>#",
@@ -988,7 +1017,8 @@ export const cssData : CSSDataV1 = {
 					"description": "Use the border styles."
 				},
 				{
-					name: "repeat"
+					name: "repeat",
+					"description": "The image is tiled (repeated) to fill the area."
 				},
 				{
 					name: "round",
@@ -1029,7 +1059,8 @@ export const cssData : CSSDataV1 = {
 			name: "border-image-repeat",
 			values: [
 				{
-					name: "repeat"
+					name: "repeat",
+					"description": "The image is tiled (repeated) to fill the area."
 				},
 				{
 					name: "round",
@@ -1390,10 +1421,12 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "clone"
+					name: "clone",
+					"description": "Each box is independently wrapped with the border and padding."
 				},
 				{
-					name: "slice"
+					name: "slice",
+					"description": "The effect is as though the element were rendered with no breaks present, and then sliced by the breaks afterward."
 				}
 			],
 			"syntax": "slice | clone",
@@ -1406,7 +1439,8 @@ export const cssData : CSSDataV1 = {
 			name: "box-shadow",
 			values: [
 				{
-					name: "inset"
+					name: "inset",
+					"description": "Changes the drop shadow from an outer shadow (one that shadows the box onto the canvas, as if it were lifted above the canvas) to an inner shadow (one that shadows the canvas onto the box, as if the box were cut out of the canvas and shifted behind it)."
 				},
 				{
 					name: "none",
@@ -1425,10 +1459,12 @@ export const cssData : CSSDataV1 = {
 			name: "box-sizing",
 			values: [
 				{
-					name: "border-box"
+					name: "border-box",
+					"description": "The specified width and height (and respective min/max properties) on this element determine the border box of the element."
 				},
 				{
-					name: "content-box"
+					name: "content-box",
+					"description": "Behavior of width and height as specified by CSS2.1. The specified width and height (and respective min/max properties) apply to the width and height respectively of the content box of the element."
 				}
 			],
 			"syntax": "content-box | border-box",
@@ -1628,7 +1664,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The element does not clip."
 				},
 				{
-					name: "rect()"
+					name: "rect()",
+					"description": "Specifies offsets from the edges of the border box."
 				}
 			],
 			"syntax": "<shape> | auto",
@@ -1677,10 +1714,12 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "evenodd"
+					name: "evenodd",
+					"description": "Determines the ‘insideness’ of a point on the canvas by drawing a ray from that point to infinity in any direction and counting the number of path segments from the given shape that the ray crosses."
 				},
 				{
-					name: "nonzero"
+					name: "nonzero",
+					"description": "Determines the ‘insideness’ of a point on the canvas by drawing a ray from that point to infinity in any direction and then examining the places where a segment of the shape crosses the ray."
 				}
 			],
 			"description": "Indicates the algorithm which is to be used to determine what parts of the canvas are included inside the shape.",
@@ -1712,10 +1751,12 @@ export const cssData : CSSDataV1 = {
 					"description": "Color operations are not required to occur in a particular color space."
 				},
 				{
-					name: "linearRGB"
+					name: "linearRGB",
+					"description": "Color operations should occur in the linearized RGB color space."
 				},
 				{
-					name: "sRGB"
+					name: "sRGB",
+					"description": "Color operations should occur in the sRGB color space."
 				}
 			],
 			"description": "Specifies the color space for imaging operations performed via filter effects.",
@@ -1751,7 +1792,8 @@ export const cssData : CSSDataV1 = {
 					"description": "Fills columns sequentially."
 				},
 				{
-					name: "balance"
+					name: "balance",
+					"description": "Balance content equally between columns, if possible."
 				}
 			],
 			"syntax": "auto | balance | balance-all",
@@ -1881,17 +1923,20 @@ export const cssData : CSSDataV1 = {
 					"description": "All containment rules except size are applied to the element."
 				},
 				{
-					name: "size"
+					name: "size",
+					"description": "For properties that can have effects on more than just an element and its descendants, those effects don't escape the containing element."
 				},
 				{
-					name: "layout"
+					name: "layout",
+					"description": "Turns on layout containment for the element."
 				},
 				{
 					name: "style",
 					"description": "Turns on style containment for the element."
 				},
 				{
-					name: "paint"
+					name: "paint",
+					"description": "Turns on paint containment for the element."
 				}
 			],
 			"status": "experimental",
@@ -1905,10 +1950,12 @@ export const cssData : CSSDataV1 = {
 			name: "content",
 			values: [
 				{
-					name: "attr()"
+					name: "attr()",
+					"description": "The attr(n) function returns as a string the value of attribute n for the subject of the selector."
 				},
 				{
-					name: "counter(name)"
+					name: "counter(name)",
+					"description": "Counters are denoted by identifiers (see the 'counter-increment' and 'counter-reset' properties)."
 				},
 				{
 					name: "icon",
@@ -1967,140 +2014,180 @@ export const cssData : CSSDataV1 = {
 			name: "cursor",
 			values: [
 				{
-					name: "alias"
+					name: "alias",
+					"description": "Indicates an alias of/shortcut to something is to be created. Often rendered as an arrow with a small curved arrow next to it."
 				},
 				{
-					name: "all-scroll"
+					name: "all-scroll",
+					"description": "Indicates that the something can be scrolled in any direction. Often rendered as arrows pointing up, down, left, and right with a dot in the middle."
 				},
 				{
 					name: "auto",
 					"description": "The UA determines the cursor to display based on the current context."
 				},
 				{
-					name: "cell"
+					name: "cell",
+					"description": "Indicates that a cell or set of cells may be selected. Often rendered as a thick plus-sign with a dot in the middle."
 				},
 				{
-					name: "col-resize"
+					name: "col-resize",
+					"description": "Indicates that the item/column can be resized horizontally. Often rendered as arrows pointing left and right with a vertical bar separating them."
 				},
 				{
-					name: "context-menu"
+					name: "context-menu",
+					"description": "A context menu is available for the object under the cursor. Often rendered as an arrow with a small menu-like graphic next to it."
 				},
 				{
-					name: "copy"
+					name: "copy",
+					"description": "Indicates something is to be copied. Often rendered as an arrow with a small plus sign next to it."
 				},
 				{
-					name: "crosshair"
+					name: "crosshair",
+					"description": "A simple crosshair (e.g., short line segments resembling a '+' sign). Often used to indicate a two dimensional bitmap selection mode."
 				},
 				{
 					name: "default",
 					"description": "The platform-dependent default cursor. Often rendered as an arrow."
 				},
 				{
-					name: "e-resize"
+					name: "e-resize",
+					"description": "Indicates that east edge is to be moved."
 				},
 				{
-					name: "ew-resize"
+					name: "ew-resize",
+					"description": "Indicates a bidirectional east-west resize cursor."
 				},
 				{
-					name: "grab"
+					name: "grab",
+					"description": "Indicates that something can be grabbed."
 				},
 				{
-					name: "grabbing"
+					name: "grabbing",
+					"description": "Indicates that something is being grabbed."
 				},
 				{
-					name: "help"
+					name: "help",
+					"description": "Help is available for the object under the cursor. Often rendered as a question mark or a balloon."
 				},
 				{
-					name: "move"
+					name: "move",
+					"description": "Indicates something is to be moved."
 				},
 				{
-					name: "-moz-grab"
+					name: "-moz-grab",
+					"description": "Indicates that something can be grabbed."
 				},
 				{
-					name: "-moz-grabbing"
+					name: "-moz-grabbing",
+					"description": "Indicates that something is being grabbed."
 				},
 				{
-					name: "-moz-zoom-in"
+					name: "-moz-zoom-in",
+					"description": "Indicates that something can be zoomed (magnified) in."
 				},
 				{
-					name: "-moz-zoom-out"
+					name: "-moz-zoom-out",
+					"description": "Indicates that something can be zoomed (magnified) out."
 				},
 				{
-					name: "ne-resize"
+					name: "ne-resize",
+					"description": "Indicates that movement starts from north-east corner."
 				},
 				{
-					name: "nesw-resize"
+					name: "nesw-resize",
+					"description": "Indicates a bidirectional north-east/south-west cursor."
 				},
 				{
-					name: "no-drop"
+					name: "no-drop",
+					"description": "Indicates that the dragged item cannot be dropped at the current cursor location. Often rendered as a hand or pointer with a small circle with a line through it."
 				},
 				{
 					name: "none",
 					"description": "No cursor is rendered for the element."
 				},
 				{
-					name: "not-allowed"
+					name: "not-allowed",
+					"description": "Indicates that the requested action will not be carried out. Often rendered as a circle with a line through it."
 				},
 				{
-					name: "n-resize"
+					name: "n-resize",
+					"description": "Indicates that north edge is to be moved."
 				},
 				{
-					name: "ns-resize"
+					name: "ns-resize",
+					"description": "Indicates a bidirectional north-south cursor."
 				},
 				{
-					name: "nw-resize"
+					name: "nw-resize",
+					"description": "Indicates that movement starts from north-west corner."
 				},
 				{
-					name: "nwse-resize"
+					name: "nwse-resize",
+					"description": "Indicates a bidirectional north-west/south-east cursor."
 				},
 				{
-					name: "pointer"
+					name: "pointer",
+					"description": "The cursor is a pointer that indicates a link."
 				},
 				{
-					name: "progress"
+					name: "progress",
+					"description": "A progress indicator. The program is performing some processing, but is different from 'wait' in that the user may still interact with the program. Often rendered as a spinning beach ball, or an arrow with a watch or hourglass."
 				},
 				{
-					name: "row-resize"
+					name: "row-resize",
+					"description": "Indicates that the item/row can be resized vertically. Often rendered as arrows pointing up and down with a horizontal bar separating them."
 				},
 				{
-					name: "se-resize"
+					name: "se-resize",
+					"description": "Indicates that movement starts from south-east corner."
 				},
 				{
-					name: "s-resize"
+					name: "s-resize",
+					"description": "Indicates that south edge is to be moved."
 				},
 				{
-					name: "sw-resize"
+					name: "sw-resize",
+					"description": "Indicates that movement starts from south-west corner."
 				},
 				{
 					name: "text",
 					"description": "Indicates text that may be selected. Often rendered as a vertical I-beam."
 				},
 				{
-					name: "vertical-text"
+					name: "vertical-text",
+					"description": "Indicates vertical-text that may be selected. Often rendered as a horizontal I-beam."
 				},
 				{
-					name: "wait"
+					name: "wait",
+					"description": "Indicates that the program is busy and the user should wait. Often rendered as a watch or hourglass."
 				},
 				{
-					name: "-webkit-grab"
+					name: "-webkit-grab",
+					"description": "Indicates that something can be grabbed."
 				},
 				{
-					name: "-webkit-grabbing"
+					name: "-webkit-grabbing",
+					"description": "Indicates that something is being grabbed."
 				},
 				{
-					name: "-webkit-zoom-in"
+					name: "-webkit-zoom-in",
+					"description": "Indicates that something can be zoomed (magnified) in."
 				},
 				{
-					name: "-webkit-zoom-out"
+					name: "-webkit-zoom-out",
+					"description": "Indicates that something can be zoomed (magnified) out."
 				},
 				{
-					name: "w-resize"
+					name: "w-resize",
+					"description": "Indicates that west edge is to be moved."
 				},
 				{
-					name: "zoom-in"
+					name: "zoom-in",
+					"description": "Indicates that something can be zoomed (magnified) in."
 				},
 				{
-					name: "zoom-out"
+					name: "zoom-out",
+					"description": "Indicates that something can be zoomed (magnified) out."
 				}
 			],
 			"syntax": "[ [ <url> [ <x> <y> ]? , ]* [ auto | default | none | context-menu | help | pointer | progress | wait | cell | crosshair | text | vertical-text | alias | copy | move | no-drop | not-allowed | e-resize | n-resize | ne-resize | nw-resize | s-resize | se-resize | sw-resize | w-resize | ew-resize | ns-resize | nesw-resize | nwse-resize | col-resize | row-resize | all-scroll | zoom-in | zoom-out | grab | grabbing ] ]",
@@ -2115,10 +2202,12 @@ export const cssData : CSSDataV1 = {
 			name: "direction",
 			values: [
 				{
-					name: "ltr"
+					name: "ltr",
+					"description": "Left-to-right direction."
 				},
 				{
-					name: "rtl"
+					name: "rtl",
+					"description": "Right-to-left direction."
 				}
 			],
 			"syntax": "ltr | rtl",
@@ -2131,45 +2220,56 @@ export const cssData : CSSDataV1 = {
 			name: "display",
 			values: [
 				{
-					name: "block"
+					name: "block",
+					"description": "The element generates a block-level box"
 				},
 				{
 					name: "contents",
 					"description": "The element itself does not generate any boxes, but its children and pseudo-elements still generate boxes as normal."
 				},
 				{
-					name: "flex"
+					name: "flex",
+					"description": "The element generates a principal flex container box and establishes a flex formatting context."
 				},
 				{
-					name: "flexbox"
+					name: "flexbox",
+					"description": "The element lays out its contents using flow layout (block-and-inline layout). Standardized as 'flex'."
 				},
 				{
-					name: "flow-root"
+					name: "flow-root",
+					"description": "The element generates a block container box, and lays out its contents using flow layout."
 				},
 				{
-					name: "grid"
+					name: "grid",
+					"description": "The element generates a principal grid container box, and establishes a grid formatting context."
 				},
 				{
 					name: "inline",
 					"description": "The element generates an inline-level box."
 				},
 				{
-					name: "inline-block"
+					name: "inline-block",
+					"description": "A block box, which itself is flowed as a single inline box, similar to a replaced element. The inside of an inline-block is formatted as a block box, and the box itself is formatted as an inline box."
 				},
 				{
-					name: "inline-flex"
+					name: "inline-flex",
+					"description": "Inline-level flex container."
 				},
 				{
-					name: "inline-flexbox"
+					name: "inline-flexbox",
+					"description": "Inline-level flex container. Standardized as 'inline-flex'"
 				},
 				{
-					name: "inline-table"
+					name: "inline-table",
+					"description": "Inline-level table wrapper box containing table box."
 				},
 				{
-					name: "list-item"
+					name: "list-item",
+					"description": "One or more block boxes and one marker box."
 				},
 				{
-					name: "-moz-box"
+					name: "-moz-box",
+					"description": "The element lays out its contents using flow layout (block-and-inline layout). Standardized as 'flex'."
 				},
 				{
 					name: "-moz-deck"
@@ -2187,7 +2287,8 @@ export const cssData : CSSDataV1 = {
 					name: "-moz-groupbox"
 				},
 				{
-					name: "-moz-inline-box"
+					name: "-moz-inline-box",
+					"description": "Inline-level flex container. Standardized as 'inline-flex'"
 				},
 				{
 					name: "-moz-inline-grid"
@@ -2205,16 +2306,20 @@ export const cssData : CSSDataV1 = {
 					name: "-moz-stack"
 				},
 				{
-					name: "-ms-flexbox"
+					name: "-ms-flexbox",
+					"description": "The element lays out its contents using flow layout (block-and-inline layout). Standardized as 'flex'."
 				},
 				{
-					name: "-ms-grid"
+					name: "-ms-grid",
+					"description": "The element generates a principal grid container box, and establishes a grid formatting context."
 				},
 				{
-					name: "-ms-inline-flexbox"
+					name: "-ms-inline-flexbox",
+					"description": "Inline-level flex container. Standardized as 'inline-flex'"
 				},
 				{
-					name: "-ms-inline-grid"
+					name: "-ms-inline-grid",
+					"description": "Inline-level grid container."
 				},
 				{
 					name: "none",
@@ -2237,10 +2342,12 @@ export const cssData : CSSDataV1 = {
 					name: "ruby-text-container"
 				},
 				{
-					name: "run-in"
+					name: "run-in",
+					"description": "The element generates a run-in box. Run-in elements act like inlines or blocks, depending on the surrounding elements."
 				},
 				{
-					name: "table"
+					name: "table",
+					"description": "The element generates a principal table wrapper box containing an additionally-generated table box, and establishes a table formatting context."
 				},
 				{
 					name: "table-caption"
@@ -2267,16 +2374,20 @@ export const cssData : CSSDataV1 = {
 					name: "table-row-group"
 				},
 				{
-					name: "-webkit-box"
+					name: "-webkit-box",
+					"description": "The element lays out its contents using flow layout (block-and-inline layout). Standardized as 'flex'."
 				},
 				{
-					name: "-webkit-flex"
+					name: "-webkit-flex",
+					"description": "The element lays out its contents using flow layout (block-and-inline layout)."
 				},
 				{
-					name: "-webkit-inline-box"
+					name: "-webkit-inline-box",
+					"description": "Inline-level flex container. Standardized as 'inline-flex'"
 				},
 				{
-					name: "-webkit-inline-flex"
+					name: "-webkit-inline-flex",
+					"description": "Inline-level flex container."
 				}
 			],
 			"syntax": "[ <display-outside> || <display-inside> ] | <display-listitem> | <display-internal> | <display-box> | <display-legacy>",
@@ -2289,13 +2400,15 @@ export const cssData : CSSDataV1 = {
 			name: "empty-cells",
 			values: [
 				{
-					name: "hide"
+					name: "hide",
+					"description": "No borders or backgrounds are drawn around/behind empty cells."
 				},
 				{
 					name: "-moz-show-background"
 				},
 				{
-					name: "show"
+					name: "show",
+					"description": "Borders and backgrounds are drawn around/behind empty cells (like normal cells)."
 				}
 			],
 			"syntax": "show | hide",
@@ -2308,10 +2421,12 @@ export const cssData : CSSDataV1 = {
 			name: "enable-background",
 			values: [
 				{
-					name: "accumulate"
+					name: "accumulate",
+					"description": "If the ancestor container element has a property of new, then all graphics elements within the current container are rendered both on the parent's background image and onto the target."
 				},
 				{
-					name: "new"
+					name: "new",
+					"description": "Create a new background image canvas. All children of the current container element can access the background, and they will be rendered onto both the parent's background image canvas in addition to the target device."
 				}
 			],
 			"description": "Deprecated. Use 'isolation' property instead when support allows. Specifies how the accumulation of the background image is managed.",
@@ -2363,10 +2478,12 @@ export const cssData : CSSDataV1 = {
 			name: "fill-rule",
 			values: [
 				{
-					name: "evenodd"
+					name: "evenodd",
+					"description": "Determines the ‘insideness’ of a point on the canvas by drawing a ray from that point to infinity in any direction and counting the number of path segments from the given shape that the ray crosses."
 				},
 				{
-					name: "nonzero"
+					name: "nonzero",
+					"description": "Determines the ‘insideness’ of a point on the canvas by drawing a ray from that point to infinity in any direction and then examining the places where a segment of the shape crosses the ray."
 				}
 			],
 			"description": "Indicates the algorithm (or winding rule) which is to be used to determine what parts of the canvas are included inside the shape.",
@@ -2389,34 +2506,44 @@ export const cssData : CSSDataV1 = {
 					"description": "No filter effects are applied."
 				},
 				{
-					name: "blur()"
+					name: "blur()",
+					"description": "Applies a Gaussian blur to the input image."
 				},
 				{
-					name: "brightness()"
+					name: "brightness()",
+					"description": "Applies a linear multiplier to input image, making it appear more or less bright."
 				},
 				{
-					name: "contrast()"
+					name: "contrast()",
+					"description": "Adjusts the contrast of the input."
 				},
 				{
-					name: "drop-shadow()"
+					name: "drop-shadow()",
+					"description": "Applies a drop shadow effect to the input image."
 				},
 				{
-					name: "grayscale()"
+					name: "grayscale()",
+					"description": "Converts the input image to grayscale."
 				},
 				{
-					name: "hue-rotate()"
+					name: "hue-rotate()",
+					"description": "Applies a hue rotation on the input image. "
 				},
 				{
-					name: "invert()"
+					name: "invert()",
+					"description": "Inverts the samples in the input image."
 				},
 				{
-					name: "opacity()"
+					name: "opacity()",
+					"description": "Applies transparency to the samples in the input image."
 				},
 				{
-					name: "saturate()"
+					name: "saturate()",
+					"description": "Saturates the input image."
 				},
 				{
-					name: "sepia()"
+					name: "sepia()",
+					"description": "Converts the input image to sepia."
 				},
 				{
 					name: "url()",
@@ -2489,14 +2616,16 @@ export const cssData : CSSDataV1 = {
 					"description": "The flex container’s main axis has the same orientation as the block axis of the current writing mode."
 				},
 				{
-					name: "column-reverse"
+					name: "column-reverse",
+					"description": "Same as 'column', except the main-start and main-end directions are swapped."
 				},
 				{
 					name: "row",
 					"description": "The flex container’s main axis has the same orientation as the inline axis of the current writing mode."
 				},
 				{
-					name: "row-reverse"
+					name: "row-reverse",
+					"description": "Same as 'row', except the main-start and main-end directions are swapped."
 				}
 			],
 			"syntax": "row | row-reverse | column | column-reverse",
@@ -2513,7 +2642,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The flex container’s main axis has the same orientation as the block axis of the current writing mode."
 				},
 				{
-					name: "column-reverse"
+					name: "column-reverse",
+					"description": "Same as 'column', except the main-start and main-end directions are swapped."
 				},
 				{
 					name: "nowrap",
@@ -2524,14 +2654,16 @@ export const cssData : CSSDataV1 = {
 					"description": "The flex container’s main axis has the same orientation as the inline axis of the current writing mode."
 				},
 				{
-					name: "row-reverse"
+					name: "row-reverse",
+					"description": "Same as 'row', except the main-start and main-end directions are swapped."
 				},
 				{
 					name: "wrap",
 					"description": "The flexbox is multi-line."
 				},
 				{
-					name: "wrap-reverse"
+					name: "wrap-reverse",
+					"description": "Same as 'wrap', except the cross-start and cross-end directions are swapped."
 				}
 			],
 			"syntax": "<'flex-direction'> || <'flex-wrap'>",
@@ -2568,7 +2700,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The flexbox is multi-line."
 				},
 				{
-					name: "wrap-reverse"
+					name: "wrap-reverse",
+					"description": "Same as 'wrap', except the cross-start and cross-end directions are swapped."
 				}
 			],
 			"syntax": "nowrap | wrap | wrap-reverse",
@@ -2581,10 +2714,12 @@ export const cssData : CSSDataV1 = {
 			name: "float",
 			values: [
 				{
-					name: "inline-end"
+					name: "inline-end",
+					"description": "A keyword indicating that the element must float on the end side of its containing block. That is the right side with ltr scripts, and the left side with rtl scripts."
 				},
 				{
-					name: "inline-start"
+					name: "inline-start",
+					"description": "A keyword indicating that the element must float on the start side of its containing block. That is the left side with ltr scripts, and the right side with rtl scripts."
 				},
 				{
 					name: "left",
@@ -2640,40 +2775,52 @@ export const cssData : CSSDataV1 = {
 			name: "font",
 			values: [
 				{
-					name: "100"
+					name: "100",
+					"description": "Thin"
 				},
 				{
-					name: "200"
+					name: "200",
+					"description": "Extra Light (Ultra Light)"
 				},
 				{
-					name: "300"
+					name: "300",
+					"description": "Light"
 				},
 				{
-					name: "400"
+					name: "400",
+					"description": "Normal"
 				},
 				{
-					name: "500"
+					name: "500",
+					"description": "Medium"
 				},
 				{
-					name: "600"
+					name: "600",
+					"description": "Semi Bold (Demi Bold)"
 				},
 				{
-					name: "700"
+					name: "700",
+					"description": "Bold"
 				},
 				{
-					name: "800"
+					name: "800",
+					"description": "Extra Bold (Ultra Bold)"
 				},
 				{
-					name: "900"
+					name: "900",
+					"description": "Black (Heavy)"
 				},
 				{
-					name: "bold"
+					name: "bold",
+					"description": "Same as 700"
 				},
 				{
-					name: "bolder"
+					name: "bolder",
+					"description": "Specifies the weight of the face bolder than the inherited value."
 				},
 				{
-					name: "caption"
+					name: "caption",
+					"description": "The font used for captioned controls (e.g., buttons, drop-downs, etc.)."
 				},
 				{
 					name: "icon",
@@ -2690,16 +2837,19 @@ export const cssData : CSSDataV1 = {
 					name: "larger"
 				},
 				{
-					name: "lighter"
+					name: "lighter",
+					"description": "Specifies the weight of the face lighter than the inherited value."
 				},
 				{
 					name: "medium"
 				},
 				{
-					name: "menu"
+					name: "menu",
+					"description": "The font used in menus (e.g., dropdown menus and menu lists)."
 				},
 				{
-					name: "message-box"
+					name: "message-box",
+					"description": "The font used in dialog boxes."
 				},
 				{
 					name: "normal",
@@ -2717,13 +2867,15 @@ export const cssData : CSSDataV1 = {
 					"description": "Specifies a font that is labeled as a small-caps font. If a genuine small-caps font is not available, user agents should simulate a small-caps font."
 				},
 				{
-					name: "small-caption"
+					name: "small-caption",
+					"description": "The font used for labeling small controls."
 				},
 				{
 					name: "smaller"
 				},
 				{
-					name: "status-bar"
+					name: "status-bar",
+					"description": "The font used in window status bars."
 				},
 				{
 					name: "x-large"
@@ -2812,364 +2964,472 @@ export const cssData : CSSDataV1 = {
 			name: "font-feature-settings",
 			values: [
 				{
-					name: "\"aalt\""
+					name: "\"aalt\"",
+					"description": "Access All Alternates."
 				},
 				{
-					name: "\"abvf\""
+					name: "\"abvf\"",
+					"description": "Above-base Forms. Required in Khmer script."
 				},
 				{
-					name: "\"abvm\""
+					name: "\"abvm\"",
+					"description": "Above-base Mark Positioning. Required in Indic scripts."
 				},
 				{
-					name: "\"abvs\""
+					name: "\"abvs\"",
+					"description": "Above-base Substitutions. Required in Indic scripts."
 				},
 				{
-					name: "\"afrc\""
+					name: "\"afrc\"",
+					"description": "Alternative Fractions."
 				},
 				{
-					name: "\"akhn\""
+					name: "\"akhn\"",
+					"description": "Akhand. Required in most Indic scripts."
 				},
 				{
-					name: "\"blwf\""
+					name: "\"blwf\"",
+					"description": "Below-base Form. Required in a number of Indic scripts."
 				},
 				{
-					name: "\"blwm\""
+					name: "\"blwm\"",
+					"description": "Below-base Mark Positioning. Required in Indic scripts."
 				},
 				{
-					name: "\"blws\""
+					name: "\"blws\"",
+					"description": "Below-base Substitutions. Required in Indic scripts."
 				},
 				{
-					name: "\"calt\""
+					name: "\"calt\"",
+					"description": "Contextual Alternates."
 				},
 				{
-					name: "\"case\""
+					name: "\"case\"",
+					"description": "Case-Sensitive Forms. Applies only to European scripts; particularly prominent in Spanish-language setting."
 				},
 				{
-					name: "\"ccmp\""
+					name: "\"ccmp\"",
+					"description": "Glyph Composition/Decomposition."
 				},
 				{
-					name: "\"cfar\""
+					name: "\"cfar\"",
+					"description": "Conjunct Form After Ro. Required in Khmer scripts."
 				},
 				{
-					name: "\"cjct\""
+					name: "\"cjct\"",
+					"description": "Conjunct Forms. Required in Indic scripts that show similarity to Devanagari."
 				},
 				{
-					name: "\"clig\""
+					name: "\"clig\"",
+					"description": "Contextual Ligatures."
 				},
 				{
-					name: "\"cpct\""
+					name: "\"cpct\"",
+					"description": "Centered CJK Punctuation. Used primarily in Chinese fonts."
 				},
 				{
-					name: "\"cpsp\""
+					name: "\"cpsp\"",
+					"description": "Capital Spacing. Should not be used in connecting scripts (e.g. most Arabic)."
 				},
 				{
-					name: "\"cswh\""
+					name: "\"cswh\"",
+					"description": "Contextual Swash."
 				},
 				{
-					name: "\"curs\""
+					name: "\"curs\"",
+					"description": "Cursive Positioning. Can be used in any cursive script."
 				},
 				{
-					name: "\"c2pc\""
+					name: "\"c2pc\"",
+					"description": "Petite Capitals From Capitals. Applies only to bicameral scripts."
 				},
 				{
-					name: "\"c2cs\"",
+					name: "\"c2sc\"",
 					"description": "Small Capitals From Capitals. Applies only to bicameral scripts."
 				},
 				{
-					name: "\"dist\""
+					name: "\"dist\"",
+					"description": "Distances. Required in Indic scripts."
 				},
 				{
 					name: "\"dlig\"",
 					"description": "Discretionary ligatures."
 				},
 				{
-					name: "\"dnom\""
+					name: "\"dnom\"",
+					"description": "Denominators."
 				},
 				{
-					name: "\"dtls\""
+					name: "\"dtls\"",
+					"description": "Dotless Forms. Applied to math formula layout."
 				},
 				{
-					name: "\"expt\""
+					name: "\"expt\"",
+					"description": "Expert Forms. Applies only to Japanese."
 				},
 				{
-					name: "\"falt\""
+					name: "\"falt\"",
+					"description": "Final Glyph on Line Alternates. Can be used in any cursive script."
 				},
 				{
-					name: "\"fin2\""
+					name: "\"fin2\"",
+					"description": "Terminal Form #2. Used only with the Syriac script."
 				},
 				{
-					name: "\"fin3\""
+					name: "\"fin3\"",
+					"description": "Terminal Form #3. Used only with the Syriac script."
 				},
 				{
-					name: "\"fina\""
+					name: "\"fina\"",
+					"description": "Terminal Forms. Can be used in any alphabetic script."
 				},
 				{
-					name: "\"flac\""
+					name: "\"flac\"",
+					"description": "Flattened ascent forms. Applied to math formula layout."
 				},
 				{
-					name: "\"frac\""
+					name: "\"frac\"",
+					"description": "Fractions."
 				},
 				{
-					name: "\"fwid\""
+					name: "\"fwid\"",
+					"description": "Full Widths. Applies to any script which can use monospaced forms."
 				},
 				{
-					name: "\"half\""
+					name: "\"half\"",
+					"description": "Half Forms. Required in Indic scripts that show similarity to Devanagari."
 				},
 				{
-					name: "\"haln\""
+					name: "\"haln\"",
+					"description": "Halant Forms. Required in Indic scripts."
 				},
 				{
-					name: "\"halt\""
+					name: "\"halt\"",
+					"description": "Alternate Half Widths. Used only in CJKV fonts."
 				},
 				{
-					name: "\"hist\""
+					name: "\"hist\"",
+					"description": "Historical Forms."
 				},
 				{
-					name: "\"hkna\""
+					name: "\"hkna\"",
+					"description": "Horizontal Kana Alternates. Applies only to fonts that support kana (hiragana and katakana)."
 				},
 				{
-					name: "\"hlig\""
+					name: "\"hlig\"",
+					"description": "Historical Ligatures."
 				},
 				{
-					name: "\"hngl\""
+					name: "\"hngl\"",
+					"description": "Hangul. Korean only."
 				},
 				{
-					name: "\"hojo\""
+					name: "\"hojo\"",
+					"description": "Hojo Kanji Forms (JIS X 0212-1990 Kanji Forms). Used only with Kanji script."
 				},
 				{
-					name: "\"hwid\""
+					name: "\"hwid\"",
+					"description": "Half Widths. Generally used only in CJKV fonts."
 				},
 				{
-					name: "\"init\""
+					name: "\"init\"",
+					"description": "Initial Forms. Can be used in any alphabetic script."
 				},
 				{
-					name: "\"isol\""
+					name: "\"isol\"",
+					"description": "Isolated Forms. Can be used in any cursive script."
 				},
 				{
-					name: "\"ital\""
+					name: "\"ital\"",
+					"description": "Italics. Applies mostly to Latin; note that many non-Latin fonts contain Latin as well."
 				},
 				{
-					name: "\"jalt\""
+					name: "\"jalt\"",
+					"description": "Justification Alternates. Can be used in any cursive script."
 				},
 				{
-					name: "\"jp78\""
+					name: "\"jp78\"",
+					"description": "JIS78 Forms. Applies only to Japanese."
 				},
 				{
-					name: "\"jp83\""
+					name: "\"jp83\"",
+					"description": "JIS83 Forms. Applies only to Japanese."
 				},
 				{
-					name: "\"jp90\""
+					name: "\"jp90\"",
+					"description": "JIS90 Forms. Applies only to Japanese."
 				},
 				{
-					name: "\"jp04\""
+					name: "\"jp04\"",
+					"description": "JIS2004 Forms. Applies only to Japanese."
 				},
 				{
 					name: "\"kern\"",
 					"description": "Kerning."
 				},
 				{
-					name: "\"lfbd\""
+					name: "\"lfbd\"",
+					"description": "Left Bounds."
 				},
 				{
 					name: "\"liga\"",
 					"description": "Standard Ligatures."
 				},
 				{
-					name: "\"ljmo\""
+					name: "\"ljmo\"",
+					"description": "Leading Jamo Forms. Required for Hangul script when Ancient Hangul writing system is supported."
 				},
 				{
 					name: "\"lnum\"",
 					"description": "Lining Figures."
 				},
 				{
-					name: "\"locl\""
+					name: "\"locl\"",
+					"description": "Localized Forms."
 				},
 				{
-					name: "\"ltra\""
+					name: "\"ltra\"",
+					"description": "Left-to-right glyph alternates."
 				},
 				{
-					name: "\"ltrm\""
+					name: "\"ltrm\"",
+					"description": "Left-to-right mirrored forms."
 				},
 				{
-					name: "\"mark\""
+					name: "\"mark\"",
+					"description": "Mark Positioning."
 				},
 				{
-					name: "\"med2\""
+					name: "\"med2\"",
+					"description": "Medial Form #2. Used only with the Syriac script."
 				},
 				{
-					name: "\"medi\""
+					name: "\"medi\"",
+					"description": "Medial Forms."
 				},
 				{
-					name: "\"mgrk\""
+					name: "\"mgrk\"",
+					"description": "Mathematical Greek."
 				},
 				{
-					name: "\"mkmk\""
+					name: "\"mkmk\"",
+					"description": "Mark to Mark Positioning."
 				},
 				{
-					name: "\"nalt\""
+					name: "\"nalt\"",
+					"description": "Alternate Annotation Forms."
 				},
 				{
-					name: "\"nlck\""
+					name: "\"nlck\"",
+					"description": "NLC Kanji Forms. Used only with Kanji script."
 				},
 				{
-					name: "\"nukt\""
+					name: "\"nukt\"",
+					"description": "Nukta Forms. Required in Indic scripts.."
 				},
 				{
-					name: "\"numr\""
+					name: "\"numr\"",
+					"description": "Numerators."
 				},
 				{
 					name: "\"onum\"",
 					"description": "Oldstyle Figures."
 				},
 				{
-					name: "\"opbd\""
+					name: "\"opbd\"",
+					"description": "Optical Bounds."
 				},
 				{
-					name: "\"ordn\""
+					name: "\"ordn\"",
+					"description": "Ordinals. Applies mostly to Latin script."
 				},
 				{
-					name: "\"ornm\""
+					name: "\"ornm\"",
+					"description": "Ornaments."
 				},
 				{
-					name: "\"palt\""
+					name: "\"palt\"",
+					"description": "Proportional Alternate Widths. Used mostly in CJKV fonts."
 				},
 				{
-					name: "\"pcap\""
+					name: "\"pcap\"",
+					"description": "Petite Capitals."
 				},
 				{
-					name: "\"pkna\""
+					name: "\"pkna\"",
+					"description": "Proportional Kana. Generally used only in Japanese fonts."
 				},
 				{
-					name: "\"pnum\""
+					name: "\"pnum\"",
+					"description": "Proportional Figures."
 				},
 				{
-					name: "\"pref\""
+					name: "\"pref\"",
+					"description": "Pre-base Forms. Required in Khmer and Myanmar (Burmese) scripts and southern Indic scripts that may display a pre-base form of Ra."
 				},
 				{
-					name: "\"pres\""
+					name: "\"pres\"",
+					"description": "Pre-base Substitutions. Required in Indic scripts."
 				},
 				{
-					name: "\"pstf\""
+					name: "\"pstf\"",
+					"description": "Post-base Forms. Required in scripts of south and southeast Asia that have post-base forms for consonants eg: Gurmukhi, Malayalam, Khmer."
 				},
 				{
-					name: "\"psts\""
+					name: "\"psts\"",
+					"description": "Post-base Substitutions."
 				},
 				{
-					name: "\"pwid\""
+					name: "\"pwid\"",
+					"description": "Proportional Widths."
 				},
 				{
-					name: "\"qwid\""
+					name: "\"qwid\"",
+					"description": "Quarter Widths. Generally used only in CJKV fonts."
 				},
 				{
-					name: "\"rand\""
+					name: "\"rand\"",
+					"description": "Randomize."
 				},
 				{
-					name: "\"rclt\""
+					name: "\"rclt\"",
+					"description": "Required Contextual Alternates. May apply to any script, but is especially important for many styles of Arabic."
 				},
 				{
-					name: "\"rlig\""
+					name: "\"rlig\"",
+					"description": "Required Ligatures. Applies to Arabic and Syriac. May apply to some other scripts."
 				},
 				{
-					name: "\"rkrf\""
+					name: "\"rkrf\"",
+					"description": "Rakar Forms. Required in Devanagari and Gujarati scripts."
 				},
 				{
-					name: "\"rphf\""
+					name: "\"rphf\"",
+					"description": "Reph Form. Required in Indic scripts. E.g. Devanagari, Kannada."
 				},
 				{
-					name: "\"rtbd\""
+					name: "\"rtbd\"",
+					"description": "Right Bounds."
 				},
 				{
-					name: "\"rtla\""
+					name: "\"rtla\"",
+					"description": "Right-to-left alternates."
 				},
 				{
-					name: "\"rtlm\""
+					name: "\"rtlm\"",
+					"description": "Right-to-left mirrored forms."
 				},
 				{
-					name: "\"ruby\""
+					name: "\"ruby\"",
+					"description": "Ruby Notation Forms. Applies only to Japanese."
 				},
 				{
-					name: "\"salt\""
+					name: "\"salt\"",
+					"description": "Stylistic Alternates."
 				},
 				{
-					name: "\"sinf\""
+					name: "\"sinf\"",
+					"description": "Scientific Inferiors."
 				},
 				{
-					name: "\"size\""
+					name: "\"size\"",
+					"description": "Optical size."
 				},
 				{
 					name: "\"smcp\"",
 					"description": "Small Capitals. Applies only to bicameral scripts."
 				},
 				{
-					name: "\"smpl\""
+					name: "\"smpl\"",
+					"description": "Simplified Forms. Applies only to Chinese and Japanese."
 				},
 				{
-					name: "\"ssty\""
+					name: "\"ssty\"",
+					"description": "Math script style alternates."
 				},
 				{
-					name: "\"stch\""
+					name: "\"stch\"",
+					"description": "Stretching Glyph Decomposition."
 				},
 				{
-					name: "\"subs\""
+					name: "\"subs\"",
+					"description": "Subscript."
 				},
 				{
-					name: "\"sups\""
+					name: "\"sups\"",
+					"description": "Superscript."
 				},
 				{
 					name: "\"swsh\"",
 					"description": "Swash. Does not apply to ideographic scripts."
 				},
 				{
-					name: "\"titl\""
+					name: "\"titl\"",
+					"description": "Titling."
 				},
 				{
-					name: "\"tjmo\""
+					name: "\"tjmo\"",
+					"description": "Trailing Jamo Forms. Required for Hangul script when Ancient Hangul writing system is supported."
 				},
 				{
-					name: "\"tnam\""
+					name: "\"tnam\"",
+					"description": "Traditional Name Forms. Applies only to Japanese."
 				},
 				{
 					name: "\"tnum\"",
 					"description": "Tabular Figures."
 				},
 				{
-					name: "\"trad\""
+					name: "\"trad\"",
+					"description": "Traditional Forms. Applies only to Chinese and Japanese."
 				},
 				{
-					name: "\"twid\""
+					name: "\"twid\"",
+					"description": "Third Widths. Generally used only in CJKV fonts."
 				},
 				{
-					name: "\"unic\""
+					name: "\"unic\"",
+					"description": "Unicase."
 				},
 				{
-					name: "\"valt\""
+					name: "\"valt\"",
+					"description": "Alternate Vertical Metrics. Applies only to scripts with vertical writing modes."
 				},
 				{
-					name: "\"vatu\""
+					name: "\"vatu\"",
+					"description": "Vattu Variants. Used for Indic scripts. E.g. Devanagari."
 				},
 				{
-					name: "\"vert\""
+					name: "\"vert\"",
+					"description": "Vertical Alternates. Applies only to scripts with vertical writing modes."
 				},
 				{
-					name: "\"vhal\""
+					name: "\"vhal\"",
+					"description": "Alternate Vertical Half Metrics. Used only in CJKV fonts."
 				},
 				{
-					name: "\"vjmo\""
+					name: "\"vjmo\"",
+					"description": "Vowel Jamo Forms. Required for Hangul script when Ancient Hangul writing system is supported."
 				},
 				{
-					name: "\"vkna\""
+					name: "\"vkna\"",
+					"description": "Vertical Kana Alternates. Applies only to fonts that support kana (hiragana and katakana)."
 				},
 				{
-					name: "\"vkrn\""
+					name: "\"vkrn\"",
+					"description": "Vertical Kerning."
 				},
 				{
-					name: "\"vpal\""
+					name: "\"vpal\"",
+					"description": "Proportional Alternate Vertical Metrics. Used mostly in CJKV fonts."
 				},
 				{
-					name: "\"vrt2\""
+					name: "\"vrt2\"",
+					"description": "Vertical Alternates and Rotation. Applies only to scripts with vertical writing modes."
 				},
 				{
-					name: "\"zero\""
+					name: "\"zero\"",
+					"description": "Slashed Zero."
 				},
 				{
 					name: "normal",
@@ -3308,7 +3568,8 @@ export const cssData : CSSDataV1 = {
 					name: "extra-expanded"
 				},
 				{
-					name: "narrower"
+					name: "narrower",
+					"description": "Indicates a narrower value relative to the width of the parent element."
 				},
 				{
 					name: "normal"
@@ -3326,7 +3587,8 @@ export const cssData : CSSDataV1 = {
 					name: "ultra-expanded"
 				},
 				{
-					name: "wider"
+					name: "wider",
+					"description": "Indicates a wider value relative to the width of the parent element."
 				}
 			],
 			"syntax": "<font-stretch-absolute>{1,2}",
@@ -3373,7 +3635,8 @@ export const cssData : CSSDataV1 = {
 					"description": "Allow synthetic italic faces."
 				},
 				{
-					name: "weight"
+					name: "weight",
+					"description": "Allow synthetic bold faces."
 				}
 			],
 			"syntax": "none | [ weight || style ]",
@@ -3407,29 +3670,36 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "annotation()"
+					name: "annotation()",
+					"description": "Enables display of alternate annotation forms."
 				},
 				{
-					name: "character-variant()"
+					name: "character-variant()",
+					"description": "Enables display of specific character variants."
 				},
 				{
-					name: "historical-forms"
+					name: "historical-forms",
+					"description": "Enables display of historical forms."
 				},
 				{
 					name: "normal",
 					"description": "None of the features are enabled."
 				},
 				{
-					name: "ornaments()"
+					name: "ornaments()",
+					"description": "Enables replacement of default glyphs with ornaments, if provided in the font."
 				},
 				{
-					name: "styleset()"
+					name: "styleset()",
+					"description": "Enables display with stylistic sets."
 				},
 				{
-					name: "stylistic()"
+					name: "stylistic()",
+					"description": "Enables display of stylistic alternates."
 				},
 				{
-					name: "swash()"
+					name: "swash()",
+					"description": "Enables display of swash glyphs."
 				}
 			],
 			"syntax": "normal | [ stylistic( <feature-value-name> ) || historical-forms || styleset( <feature-value-name># ) || character-variant( <feature-value-name># ) || swash( <feature-value-name> ) || ornaments( <feature-value-name> ) || annotation( <feature-value-name> ) ]",
@@ -3447,27 +3717,32 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "all-petite-caps"
+					name: "all-petite-caps",
+					"description": "Enables display of petite capitals for both upper and lowercase letters."
 				},
 				{
-					name: "all-small-caps"
+					name: "all-small-caps",
+					"description": "Enables display of small capitals for both upper and lowercase letters."
 				},
 				{
 					name: "normal",
 					"description": "None of the features are enabled."
 				},
 				{
-					name: "petite-caps"
+					name: "petite-caps",
+					"description": "Enables display of petite capitals."
 				},
 				{
 					name: "small-caps",
 					"description": "Enables display of small capitals. Small-caps glyphs typically use the form of uppercase letters but are reduced to the size of lowercase letters."
 				},
 				{
-					name: "titling-caps"
+					name: "titling-caps",
+					"description": "Enables display of titling capitals."
 				},
 				{
-					name: "unicase"
+					name: "unicase",
+					"description": "Enables display of mixture of small capitals for uppercase letters with normal lowercase letters."
 				}
 			],
 			"syntax": "normal | small-caps | all-small-caps | petite-caps | all-petite-caps | unicase | titling-caps",
@@ -3485,36 +3760,44 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "full-width"
+					name: "full-width",
+					"description": "Enables rendering of full-width variants."
 				},
 				{
-					name: "jis04"
+					name: "jis04",
+					"description": "Enables rendering of JIS04 forms."
 				},
 				{
-					name: "jis78"
+					name: "jis78",
+					"description": "Enables rendering of JIS78 forms."
 				},
 				{
-					name: "jis83"
+					name: "jis83",
+					"description": "Enables rendering of JIS83 forms."
 				},
 				{
-					name: "jis90"
+					name: "jis90",
+					"description": "Enables rendering of JIS90 forms."
 				},
 				{
 					name: "normal",
 					"description": "None of the features are enabled."
 				},
 				{
-					name: "proportional-width"
+					name: "proportional-width",
+					"description": "Enables rendering of proportionally-spaced variants."
 				},
 				{
 					name: "ruby",
 					"description": "Enables display of ruby variant glyphs."
 				},
 				{
-					name: "simplified"
+					name: "simplified",
+					"description": "Enables rendering of simplified forms."
 				},
 				{
-					name: "traditional"
+					name: "traditional",
+					"description": "Enables rendering of traditional forms."
 				}
 			],
 			"syntax": "normal | [ <east-asian-variant-values> || <east-asian-width-values> || ruby ]",
@@ -3533,10 +3816,12 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "additional-ligatures"
+					name: "additional-ligatures",
+					"description": "Enables display of additional ligatures."
 				},
 				{
-					name: "common-ligatures"
+					name: "common-ligatures",
+					"description": "Enables display of common ligatures."
 				},
 				{
 					name: "contextual",
@@ -3545,19 +3830,24 @@ export const cssData : CSSDataV1 = {
 						"S9.1",
 						"C34",
 						"O21"
-					]
+					],
+					"description": "Enables display of contextual alternates."
 				},
 				{
-					name: "discretionary-ligatures"
+					name: "discretionary-ligatures",
+					"description": "Enables display of discretionary ligatures."
 				},
 				{
-					name: "historical-ligatures"
+					name: "historical-ligatures",
+					"description": "Enables display of historical ligatures."
 				},
 				{
-					name: "no-additional-ligatures"
+					name: "no-additional-ligatures",
+					"description": "Disables display of additional ligatures."
 				},
 				{
-					name: "no-common-ligatures"
+					name: "no-common-ligatures",
+					"description": "Disables display of common ligatures."
 				},
 				{
 					name: "no-contextual",
@@ -3566,13 +3856,16 @@ export const cssData : CSSDataV1 = {
 						"S9.1",
 						"C34",
 						"O21"
-					]
+					],
+					"description": "Disables display of contextual alternates."
 				},
 				{
-					name: "no-discretionary-ligatures"
+					name: "no-discretionary-ligatures",
+					"description": "Disables display of discretionary ligatures."
 				},
 				{
-					name: "no-historical-ligatures"
+					name: "no-historical-ligatures",
+					"description": "Disables display of historical ligatures."
 				},
 				{
 					name: "none",
@@ -3605,32 +3898,40 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "diagonal-fractions"
+					name: "diagonal-fractions",
+					"description": "Enables display of lining diagonal fractions."
 				},
 				{
-					name: "lining-nums"
+					name: "lining-nums",
+					"description": "Enables display of lining numerals."
 				},
 				{
 					name: "normal",
 					"description": "None of the features are enabled."
 				},
 				{
-					name: "oldstyle-nums"
+					name: "oldstyle-nums",
+					"description": "Enables display of old-style numerals."
 				},
 				{
-					name: "ordinal"
+					name: "ordinal",
+					"description": "Enables display of letter forms used with ordinal numbers."
 				},
 				{
-					name: "proportional-nums"
+					name: "proportional-nums",
+					"description": "Enables display of proportional numerals."
 				},
 				{
-					name: "slashed-zero"
+					name: "slashed-zero",
+					"description": "Enables display of slashed zeros."
 				},
 				{
-					name: "stacked-fractions"
+					name: "stacked-fractions",
+					"description": "Enables display of lining stacked fractions."
 				},
 				{
-					name: "tabular-nums"
+					name: "tabular-nums",
+					"description": "Enables display of tabular numerals."
 				}
 			],
 			"syntax": "normal | [ <numeric-figure-values> || <numeric-spacing-values> || <numeric-fraction-values> || ordinal || slashed-zero ]",
@@ -3668,40 +3969,52 @@ export const cssData : CSSDataV1 = {
 			name: "font-weight",
 			values: [
 				{
-					name: "100"
+					name: "100",
+					"description": "Thin"
 				},
 				{
-					name: "200"
+					name: "200",
+					"description": "Extra Light (Ultra Light)"
 				},
 				{
-					name: "300"
+					name: "300",
+					"description": "Light"
 				},
 				{
-					name: "400"
+					name: "400",
+					"description": "Normal"
 				},
 				{
-					name: "500"
+					name: "500",
+					"description": "Medium"
 				},
 				{
-					name: "600"
+					name: "600",
+					"description": "Semi Bold (Demi Bold)"
 				},
 				{
-					name: "700"
+					name: "700",
+					"description": "Bold"
 				},
 				{
-					name: "800"
+					name: "800",
+					"description": "Extra Bold (Ultra Bold)"
 				},
 				{
-					name: "900"
+					name: "900",
+					"description": "Black (Heavy)"
 				},
 				{
-					name: "bold"
+					name: "bold",
+					"description": "Same as 700"
 				},
 				{
-					name: "bolder"
+					name: "bolder",
+					"description": "Specifies the weight of the face bolder than the inherited value."
 				},
 				{
-					name: "lighter"
+					name: "lighter",
+					"description": "Specifies the weight of the face lighter than the inherited value."
 				},
 				{
 					name: "normal",
@@ -3752,7 +4065,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
 				},
 				{
-					name: "span"
+					name: "span",
+					"description": "Contributes a grid span to the grid item’s placement such that the corresponding edge of the grid item’s grid area is N lines from its opposite edge."
 				}
 			],
 			"syntax": "<grid-line> [ / <grid-line> ]{0,3}",
@@ -3797,7 +4111,8 @@ export const cssData : CSSDataV1 = {
 					"description": "As a maximum, identical to 'max-content'. As a minimum, represents the largest minimum size (as specified by min-width/min-height) of the grid items occupying the grid track."
 				},
 				{
-					name: "minmax()"
+					name: "minmax()",
+					"description": "Defines a size range greater than or equal to min and less than or equal to max."
 				}
 			],
 			"syntax": "<track-size>+",
@@ -3826,7 +4141,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The auto-placement algorithm places items by filling each column in turn, adding new columns as necessary."
 				},
 				{
-					name: "dense"
+					name: "dense",
+					"description": "If specified, the auto-placement algorithm uses a “dense” packing algorithm, which attempts to fill in holes earlier in the grid if smaller items come up later."
 				}
 			],
 			"syntax": "[ row | column ] || dense",
@@ -3851,7 +4167,8 @@ export const cssData : CSSDataV1 = {
 					"description": "As a maximum, identical to 'max-content'. As a minimum, represents the largest minimum size (as specified by min-width/min-height) of the grid items occupying the grid track."
 				},
 				{
-					name: "minmax()"
+					name: "minmax()",
+					"description": "Defines a size range greater than or equal to min and less than or equal to max."
 				}
 			],
 			"syntax": "<track-size>+",
@@ -3876,7 +4193,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
 				},
 				{
-					name: "span"
+					name: "span",
+					"description": "Contributes a grid span to the grid item’s placement such that the corresponding edge of the grid item’s grid area is N lines from its opposite edge."
 				}
 			],
 			"syntax": "<grid-line> [ / <grid-line> ]?",
@@ -3902,7 +4220,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
 				},
 				{
-					name: "span"
+					name: "span",
+					"description": "Contributes a grid span to the grid item’s placement such that the corresponding edge of the grid item’s grid area is N lines from its opposite edge."
 				}
 			],
 			"syntax": "<grid-line>",
@@ -3943,7 +4262,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
 				},
 				{
-					name: "span"
+					name: "span",
+					"description": "Contributes a grid span to the grid item’s placement such that the corresponding edge of the grid item’s grid area is N lines from its opposite edge."
 				}
 			],
 			"syntax": "<grid-line>",
@@ -3984,7 +4304,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
 				},
 				{
-					name: "span"
+					name: "span",
+					"description": "Contributes a grid span to the grid item’s placement such that the corresponding edge of the grid item’s grid area is N lines from its opposite edge."
 				}
 			],
 			"syntax": "<grid-line> [ / <grid-line> ]?",
@@ -4010,7 +4331,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
 				},
 				{
-					name: "span"
+					name: "span",
+					"description": "Contributes a grid span to the grid item’s placement such that the corresponding edge of the grid item’s grid area is N lines from its opposite edge."
 				}
 			],
 			"syntax": "<grid-line>",
@@ -4051,7 +4373,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
 				},
 				{
-					name: "span"
+					name: "span",
+					"description": "Contributes a grid span to the grid item’s placement such that the corresponding edge of the grid item’s grid area is N lines from its opposite edge."
 				}
 			],
 			"syntax": "<grid-line>",
@@ -4093,7 +4416,8 @@ export const cssData : CSSDataV1 = {
 					"description": "Sets 'grid-template-rows' and 'grid-template-columns' to 'subgrid', and 'grid-template-areas' to its initial value."
 				},
 				{
-					name: "minmax()"
+					name: "minmax()",
+					"description": "Defines a size range greater than or equal to min and less than or equal to max."
 				},
 				{
 					name: "repeat()",
@@ -4162,7 +4486,8 @@ export const cssData : CSSDataV1 = {
 					"description": "Indicates that the grid will align to its parent grid in that axis."
 				},
 				{
-					name: "minmax()"
+					name: "minmax()",
+					"description": "Defines a size range greater than or equal to min and less than or equal to max."
 				},
 				{
 					name: "repeat()",
@@ -4209,7 +4534,8 @@ export const cssData : CSSDataV1 = {
 					"description": "Indicates that the grid will align to its parent grid in that axis."
 				},
 				{
-					name: "minmax()"
+					name: "minmax()",
+					"description": "Defines a size range greater than or equal to min and less than or equal to max."
 				},
 				{
 					name: "repeat()",
@@ -4234,7 +4560,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The height depends on the values of other properties."
 				},
 				{
-					name: "fit-content"
+					name: "fit-content",
+					"description": "Use the fit-content inline size or fit-content block size, as appropriate to the writing mode."
 				},
 				{
 					name: "max-content",
@@ -4260,7 +4587,8 @@ export const cssData : CSSDataV1 = {
 					"description": "Conditional hyphenation characters inside a word, if present, take priority over automatic resources when determining hyphenation points within the word."
 				},
 				{
-					name: "manual"
+					name: "manual",
+					"description": "Words are only broken at line breaks where there are characters inside the word that suggest line break opportunities"
 				},
 				{
 					name: "none",
@@ -4280,10 +4608,12 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "flip"
+					name: "flip",
+					"description": "After rotating by the precededing angle, the image is flipped horizontally. Defaults to 0deg if the angle is ommitted."
 				},
 				{
-					name: "from-image"
+					name: "from-image",
+					"description": "If the image has an orientation specified in its metadata, such as EXIF, this value computes to the angle that the metadata specifies is necessary to correctly orient the image."
 				}
 			],
 			"syntax": "from-image | <angle> | [ <angle>? flip ]",
@@ -4306,7 +4636,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The image should be scaled with an algorithm that maximizes the appearance of the image."
 				},
 				{
-					name: "crisp-edges"
+					name: "crisp-edges",
+					"description": "The image must be scaled with an algorithm that preserves contrast and edges in the image, and which does not smooth colors or introduce blur to the image in the process."
 				},
 				{
 					name: "-moz-crisp-edges",
@@ -4318,14 +4649,16 @@ export const cssData : CSSDataV1 = {
 					]
 				},
 				{
-					name: "optimizeQuality"
+					name: "optimizeQuality",
+					"description": "Deprecated."
 				},
 				{
 					name: "optimizeSpeed",
 					"description": "Deprecated."
 				},
 				{
-					name: "pixelated"
+					name: "pixelated",
+					"description": "When scaling the image up, the 'nearest neighbor' or similar algorithm must be used, so that the image appears to be simply composed of very large pixels."
 				}
 			],
 			"syntax": "auto | crisp-edges | pixelated",
@@ -4342,17 +4675,20 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "active"
+					name: "active",
+					"description": "The input method editor is initially active; text entry is performed using it unless the user specifically dismisses it."
 				},
 				{
 					name: "auto",
 					"description": "No change is made to the current input method editor state. This is the default."
 				},
 				{
-					name: "disabled"
+					name: "disabled",
+					"description": "The input method editor is disabled and may not be activated by the user."
 				},
 				{
-					name: "inactive"
+					name: "inactive",
+					"description": "The input method editor is initially inactive, but the user may activate it if they wish."
 				},
 				{
 					name: "normal",
@@ -4434,17 +4770,20 @@ export const cssData : CSSDataV1 = {
 					"description": "The items are packed flush to each other toward the right edge of the alignment container in the main axis."
 				},
 				{
-					name: "safe"
+					name: "safe",
+					"description": "If the size of the item overflows the alignment container, the item is instead aligned as if the alignment mode were start."
 				},
 				{
-					name: "unsafe"
+					name: "unsafe",
+					"description": "Regardless of the relative sizes of the item and alignment container, the given alignment value is honored."
 				},
 				{
 					name: "stretch",
 					"description": "If the combined size of the alignment subjects is less than the size of the alignment container, any auto-sized alignment subjects have their size increased equally (not proportionally), while still respecting the constraints imposed by max-height/max-width (or equivalent functionality), so that the combined size exactly fills the alignment container."
 				},
 				{
-					name: "space-evenly"
+					name: "space-evenly",
+					"description": "The items are evenly distributed within the alignment container along the main axis."
 				},
 				{
 					name: "flex-end",
@@ -4595,7 +4934,8 @@ export const cssData : CSSDataV1 = {
 					name: "armenian"
 				},
 				{
-					name: "circle"
+					name: "circle",
+					"description": "A hollow circle."
 				},
 				{
 					name: "decimal"
@@ -4604,13 +4944,15 @@ export const cssData : CSSDataV1 = {
 					name: "decimal-leading-zero"
 				},
 				{
-					name: "disc"
+					name: "disc",
+					"description": "A filled circle."
 				},
 				{
 					name: "georgian"
 				},
 				{
-					name: "inside"
+					name: "inside",
+					"description": "The marker box is outside the principal block box, as described in the section on the ::marker pseudo-element below."
 				},
 				{
 					name: "lower-alpha"
@@ -4628,14 +4970,16 @@ export const cssData : CSSDataV1 = {
 					name: "none"
 				},
 				{
-					name: "outside"
+					name: "outside",
+					"description": "The ::marker pseudo-element is an inline element placed immediately before all ::before pseudo-elements in the principal block box, after which the element's content flows."
 				},
 				{
 					name: "square",
 					"description": "A filled square."
 				},
 				{
-					name: "symbols()"
+					name: "symbols()",
+					"description": "Allows a counter style to be defined inline."
 				},
 				{
 					name: "upper-alpha"
@@ -4676,10 +5020,12 @@ export const cssData : CSSDataV1 = {
 			name: "list-style-position",
 			values: [
 				{
-					name: "inside"
+					name: "inside",
+					"description": "The marker box is outside the principal block box, as described in the section on the ::marker pseudo-element below."
 				},
 				{
-					name: "outside"
+					name: "outside",
+					"description": "The ::marker pseudo-element is an inline element placed immediately before all ::before pseudo-elements in the principal block box, after which the element's content flows."
 				}
 			],
 			"syntax": "inside | outside",
@@ -4696,7 +5042,8 @@ export const cssData : CSSDataV1 = {
 					"description": "Traditional uppercase Armenian numbering."
 				},
 				{
-					name: "circle"
+					name: "circle",
+					"description": "A hollow circle."
 				},
 				{
 					name: "decimal",
@@ -4707,7 +5054,8 @@ export const cssData : CSSDataV1 = {
 					"description": "Decimal numbers padded by initial zeros."
 				},
 				{
-					name: "disc"
+					name: "disc",
+					"description": "A filled circle."
 				},
 				{
 					name: "georgian",
@@ -4738,7 +5086,8 @@ export const cssData : CSSDataV1 = {
 					"description": "A filled square."
 				},
 				{
-					name: "symbols()"
+					name: "symbols()",
+					"description": "Allows a counter style to be defined inline."
 				},
 				{
 					name: "upper-alpha",
@@ -5154,7 +5503,8 @@ export const cssData : CSSDataV1 = {
 					"description": "No limit on the height of the box."
 				},
 				{
-					name: "fit-content"
+					name: "fit-content",
+					"description": "Use the fit-content inline size or fit-content block size, as appropriate to the writing mode."
 				},
 				{
 					name: "max-content",
@@ -5202,7 +5552,8 @@ export const cssData : CSSDataV1 = {
 					"description": "No limit on the width of the box."
 				},
 				{
-					name: "fit-content"
+					name: "fit-content",
+					"description": "Use the fit-content inline size or fit-content block size, as appropriate to the writing mode."
 				},
 				{
 					name: "max-content",
@@ -5241,7 +5592,8 @@ export const cssData : CSSDataV1 = {
 					name: "auto"
 				},
 				{
-					name: "fit-content"
+					name: "fit-content",
+					"description": "Use the fit-content inline size or fit-content block size, as appropriate to the writing mode."
 				},
 				{
 					name: "max-content",
@@ -5280,7 +5632,8 @@ export const cssData : CSSDataV1 = {
 					name: "auto"
 				},
 				{
-					name: "fit-content"
+					name: "fit-content",
+					"description": "Use the fit-content inline size or fit-content block size, as appropriate to the writing mode."
 				},
 				{
 					name: "max-content",
@@ -5312,37 +5665,48 @@ export const cssData : CSSDataV1 = {
 					"description": "Default attribute which specifies no blending"
 				},
 				{
-					name: "multiply"
+					name: "multiply",
+					"description": "The source color is multiplied by the destination color and replaces the destination."
 				},
 				{
-					name: "screen"
+					name: "screen",
+					"description": "Multiplies the complements of the backdrop and source color values, then complements the result."
 				},
 				{
-					name: "overlay"
+					name: "overlay",
+					"description": "Multiplies or screens the colors, depending on the backdrop color value."
 				},
 				{
-					name: "darken"
+					name: "darken",
+					"description": "Selects the darker of the backdrop and source colors."
 				},
 				{
-					name: "lighten"
+					name: "lighten",
+					"description": "Selects the lighter of the backdrop and source colors."
 				},
 				{
-					name: "color-dodge"
+					name: "color-dodge",
+					"description": "Brightens the backdrop color to reflect the source color."
 				},
 				{
-					name: "color-burn"
+					name: "color-burn",
+					"description": "Darkens the backdrop color to reflect the source color."
 				},
 				{
-					name: "hard-light"
+					name: "hard-light",
+					"description": "Multiplies or screens the colors, depending on the source color value."
 				},
 				{
-					name: "soft-light"
+					name: "soft-light",
+					"description": "Darkens or lightens the colors, depending on the source color value."
 				},
 				{
-					name: "difference"
+					name: "difference",
+					"description": "Subtracts the darker of the two constituent colors from the lighter color.."
 				},
 				{
-					name: "exclusion"
+					name: "exclusion",
+					"description": "Produces an effect similar to that of the Difference mode but lower in contrast."
 				},
 				{
 					name: "hue",
@@ -5351,7 +5715,8 @@ export const cssData : CSSDataV1 = {
 						"S8",
 						"C41",
 						"O"
-					]
+					],
+					"description": "Creates a color with the hue of the source color and the saturation and luminosity of the backdrop color."
 				},
 				{
 					name: "saturation",
@@ -5360,7 +5725,8 @@ export const cssData : CSSDataV1 = {
 						"S8",
 						"C41",
 						"O"
-					]
+					],
+					"description": "Creates a color with the saturation of the source color and the hue and luminosity of the backdrop color."
 				},
 				{
 					name: "color",
@@ -5369,7 +5735,8 @@ export const cssData : CSSDataV1 = {
 						"S8",
 						"C41",
 						"O"
-					]
+					],
+					"description": "Creates a color with the hue and saturation of the source color and the luminosity of the backdrop color."
 				},
 				{
 					name: "luminosity",
@@ -5378,7 +5745,8 @@ export const cssData : CSSDataV1 = {
 						"S8",
 						"C41",
 						"O"
-					]
+					],
+					"description": "Creates a color with the luminosity of the source color and the hue and saturation of the backdrop color."
 				}
 			],
 			"syntax": "<blend-mode>",
@@ -5399,7 +5767,8 @@ export const cssData : CSSDataV1 = {
 					"description": "No motion path gets created."
 				},
 				{
-					name: "path()"
+					name: "path()",
+					"description": "Defines an SVG path as a string, with optional 'fill-rule' as the first argument."
 				},
 				{
 					name: "auto",
@@ -5445,7 +5814,8 @@ export const cssData : CSSDataV1 = {
 					"description": "No motion path gets created."
 				},
 				{
-					name: "path()"
+					name: "path()",
+					"description": "Defines an SVG path as a string, with optional 'fill-rule' as the first argument."
 				}
 			],
 			"description": "Specifies the motion path the element gets positioned at.",
@@ -5484,20 +5854,24 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "alternate"
+					name: "alternate",
+					"description": "The animation cycle iterations that are odd counts are played in the normal direction, and the animation cycle iterations that are even counts are played in a reverse direction."
 				},
 				{
-					name: "alternate-reverse"
+					name: "alternate-reverse",
+					"description": "The animation cycle iterations that are odd counts are played in the reverse direction, and the animation cycle iterations that are even counts are played in a normal direction."
 				},
 				{
-					name: "backwards"
+					name: "backwards",
+					"description": "The beginning property value (as defined in the first @keyframes at-rule) is applied before the animation is displayed, during the period defined by 'animation-delay'."
 				},
 				{
 					name: "both",
 					"description": "Both forwards and backwards fill modes are applied."
 				},
 				{
-					name: "forwards"
+					name: "forwards",
+					"description": "The final property value (as defined in the last @keyframes at-rule) is maintained after the animation completes."
 				},
 				{
 					name: "infinite",
@@ -5542,10 +5916,12 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "alternate"
+					name: "alternate",
+					"description": "The animation cycle iterations that are odd counts are played in the normal direction, and the animation cycle iterations that are even counts are played in a reverse direction."
 				},
 				{
-					name: "alternate-reverse"
+					name: "alternate-reverse",
+					"description": "The animation cycle iterations that are odd counts are played in the reverse direction, and the animation cycle iterations that are even counts are played in a normal direction."
 				},
 				{
 					name: "normal",
@@ -5612,10 +5988,12 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "paused"
+					name: "paused",
+					"description": "A running animation will be paused."
 				},
 				{
-					name: "running"
+					name: "running",
+					"description": "Resume playback of a paused animation."
 				}
 			],
 			"description": "Defines whether the animation is running or paused.",
@@ -5946,7 +6324,8 @@ export const cssData : CSSDataV1 = {
 					name: "none"
 				},
 				{
-					name: "repeat"
+					name: "repeat",
+					"description": "The image is tiled (repeated) to fill the area."
 				},
 				{
 					name: "round",
@@ -6098,14 +6477,16 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "block-axis"
+					name: "block-axis",
+					"description": "Elements are oriented along the box's axis."
 				},
 				{
 					name: "horizontal",
 					"description": "The box displays its children from left to right in a horizontal line."
 				},
 				{
-					name: "inline-axis"
+					name: "inline-axis",
+					"description": "Elements are oriented vertically."
 				},
 				{
 					name: "vertical",
@@ -6152,13 +6533,16 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "border-box"
+					name: "border-box",
+					"description": "The specified width and height (and respective min/max properties) on this element determine the border box of the element."
 				},
 				{
-					name: "content-box"
+					name: "content-box",
+					"description": "Behavior of width and height as specified by CSS2.1. The specified width and height (and respective min/max properties) apply to the width and height respectively of the content box of the element."
 				},
 				{
-					name: "padding-box"
+					name: "padding-box",
+					"description": "The specified width and height (and respective min/max properties) on this element determine the padding box of the element."
 				}
 			],
 			"description": "Box Model addition in CSS3.",
@@ -6342,7 +6726,8 @@ export const cssData : CSSDataV1 = {
 					"description": "Conditional hyphenation characters inside a word, if present, take priority over automatic resources when determining hyphenation points within the word."
 				},
 				{
-					name: "manual"
+					name: "manual",
+					"description": "Words are only broken at line breaks where there are characters inside the word that suggest line break opportunities"
 				},
 				{
 					name: "none",
@@ -6430,17 +6815,20 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "line-through"
+					name: "line-through",
+					"description": "Each line of text has a line through the middle."
 				},
 				{
 					name: "none",
 					"description": "Neither produces nor inhibits text decoration."
 				},
 				{
-					name: "overline"
+					name: "overline",
+					"description": "Each line of text has a line above it."
 				},
 				{
-					name: "underline"
+					name: "underline",
+					"description": "Each line of text is underlined."
 				}
 			],
 			"description": "Specifies what line decorations, if any, are added to the element.",
@@ -6455,23 +6843,28 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "dashed"
+					name: "dashed",
+					"description": "Produces a dashed line style."
 				},
 				{
-					name: "dotted"
+					name: "dotted",
+					"description": "Produces a dotted line."
 				},
 				{
-					name: "double"
+					name: "double",
+					"description": "Produces a double line."
 				},
 				{
 					name: "none",
 					"description": "Produces no line."
 				},
 				{
-					name: "solid"
+					name: "solid",
+					"description": "Produces a solid line."
 				},
 				{
-					name: "wavy"
+					name: "wavy",
+					"description": "Produces a wavy line."
 				}
 			],
 			"description": "Specifies the line style for underline, line-through and overline text decoration.",
@@ -6507,70 +6900,91 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "matrix()"
+					name: "matrix()",
+					"description": "Specifies a 2D transformation in the form of a transformation matrix of six values. matrix(a,b,c,d,e,f) is equivalent to applying the transformation matrix [a b c d e f]"
 				},
 				{
-					name: "matrix3d()"
+					name: "matrix3d()",
+					"description": "Specifies a 3D transformation as a 4x4 homogeneous matrix of 16 values in column-major order."
 				},
 				{
 					name: "none"
 				},
 				{
-					name: "perspective"
+					name: "perspective",
+					"description": "Specifies a perspective projection matrix."
 				},
 				{
-					name: "rotate()"
+					name: "rotate()",
+					"description": "Specifies a 2D rotation by the angle specified in the parameter about the origin of the element, as defined by the transform-origin property."
 				},
 				{
-					name: "rotate3d()"
+					name: "rotate3d()",
+					"description": "Specifies a clockwise 3D rotation by the angle specified in last parameter about the [x,y,z] direction vector described by the first 3 parameters."
 				},
 				{
-					name: "rotateX('angle')"
+					name: "rotateX('angle')",
+					"description": "Specifies a clockwise rotation by the given angle about the X axis."
 				},
 				{
-					name: "rotateY('angle')"
+					name: "rotateY('angle')",
+					"description": "Specifies a clockwise rotation by the given angle about the Y axis."
 				},
 				{
-					name: "rotateZ('angle')"
+					name: "rotateZ('angle')",
+					"description": "Specifies a clockwise rotation by the given angle about the Z axis."
 				},
 				{
-					name: "scale()"
+					name: "scale()",
+					"description": "Specifies a 2D scale operation by the [sx,sy] scaling vector described by the 2 parameters. If the second parameter is not provided, it is takes a value equal to the first."
 				},
 				{
-					name: "scale3d()"
+					name: "scale3d()",
+					"description": "Specifies a 3D scale operation by the [sx,sy,sz] scaling vector described by the 3 parameters."
 				},
 				{
-					name: "scaleX()"
+					name: "scaleX()",
+					"description": "Specifies a scale operation using the [sx,1] scaling vector, where sx is given as the parameter."
 				},
 				{
-					name: "scaleY()"
+					name: "scaleY()",
+					"description": "Specifies a scale operation using the [sy,1] scaling vector, where sy is given as the parameter."
 				},
 				{
-					name: "scaleZ()"
+					name: "scaleZ()",
+					"description": "Specifies a scale operation using the [1,1,sz] scaling vector, where sz is given as the parameter."
 				},
 				{
-					name: "skew()"
+					name: "skew()",
+					"description": "Specifies a skew transformation along the X and Y axes. The first angle parameter specifies the skew on the X axis. The second angle parameter specifies the skew on the Y axis. If the second parameter is not given then a value of 0 is used for the Y angle (ie: no skew on the Y axis)."
 				},
 				{
-					name: "skewX()"
+					name: "skewX()",
+					"description": "Specifies a skew transformation along the X axis by the given angle."
 				},
 				{
-					name: "skewY()"
+					name: "skewY()",
+					"description": "Specifies a skew transformation along the Y axis by the given angle."
 				},
 				{
-					name: "translate()"
+					name: "translate()",
+					"description": "Specifies a 2D translation by the vector [tx, ty], where tx is the first translation-value parameter and ty is the optional second translation-value parameter."
 				},
 				{
-					name: "translate3d()"
+					name: "translate3d()",
+					"description": "Specifies a 3D translation by the vector [tx,ty,tz], with tx, ty and tz being the first, second and third translation-value parameters respectively."
 				},
 				{
-					name: "translateX()"
+					name: "translateX()",
+					"description": "Specifies a translation by the given amount in the X direction."
 				},
 				{
-					name: "translateY()"
+					name: "translateY()",
+					"description": "Specifies a translation by the given amount in the Y direction."
 				},
 				{
-					name: "translateZ()"
+					name: "translateZ()",
+					"description": "Specifies a translation by the given amount in the Z direction. Note that percentage values are not allowed in the translateZ translation-value, and if present are evaluated as 0."
 				}
 			],
 			"description": "A two-dimensional transformation is applied to an element through the 'transform' property. This property contains a list of transform functions similar to those allowed by SVG.",
@@ -6724,10 +7138,12 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "false"
+					name: "false",
+					"description": "The element does not contain an accelerator key sequence."
 				},
 				{
-					name: "true"
+					name: "true",
+					"description": "The element contains an accelerator key sequence."
 				}
 			],
 			"status": "nonstandard",
@@ -6754,16 +7170,20 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "bt"
+					name: "bt",
+					"description": "Bottom-to-top block flow. Layout is horizontal."
 				},
 				{
-					name: "lr"
+					name: "lr",
+					"description": "Left-to-right direction. The flow orientation is vertical."
 				},
 				{
-					name: "rl"
+					name: "rl",
+					"description": "Right-to-left direction. The flow orientation is vertical."
 				},
 				{
-					name: "tb"
+					name: "tb",
+					"description": "Top-to-bottom direction. The flow orientation is horizontal."
 				}
 			],
 			"status": "nonstandard",
@@ -6805,7 +7225,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The element is not zoomable."
 				},
 				{
-					name: "zoom"
+					name: "zoom",
+					"description": "The element is zoomable."
 				}
 			],
 			"status": "nonstandard",
@@ -7010,14 +7431,16 @@ export const cssData : CSSDataV1 = {
 					"description": "The flex container’s main axis has the same orientation as the block axis of the current writing mode."
 				},
 				{
-					name: "column-reverse"
+					name: "column-reverse",
+					"description": "Same as 'column', except the main-start and main-end directions are swapped."
 				},
 				{
 					name: "row",
 					"description": "The flex container’s main axis has the same orientation as the inline axis of the current writing mode."
 				},
 				{
-					name: "row-reverse"
+					name: "row-reverse",
+					"description": "Same as 'row', except the main-start and main-end directions are swapped."
 				}
 			],
 			"description": "Specifies how flex items are placed in the flex container, by setting the direction of the flex container’s main axis.",
@@ -7036,7 +7459,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The flex container’s main axis has the same orientation as the block axis of the current writing mode."
 				},
 				{
-					name: "column-reverse"
+					name: "column-reverse",
+					"description": "Same as 'column', except the main-start and main-end directions are swapped."
 				},
 				{
 					name: "nowrap",
@@ -7051,7 +7475,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The flexbox is multi-line."
 				},
 				{
-					name: "wrap-reverse"
+					name: "wrap-reverse",
+					"description": "Same as 'wrap', except the cross-start and cross-end directions are swapped."
 				}
 			],
 			"description": "Specifies how flexbox items are placed in the flexbox.",
@@ -7188,7 +7613,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The flexbox is multi-line."
 				},
 				{
-					name: "wrap-reverse"
+					name: "wrap-reverse",
+					"description": "Same as 'wrap', except the cross-start and cross-end directions are swapped."
 				}
 			],
 			"description": "Controls whether the flex container is single-line or multi-line, and the direction of the cross-axis, which determines the direction new lines are stacked in.",
@@ -7439,7 +7865,8 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "no-limit"
+					name: "no-limit",
+					"description": "There is no limit."
 				}
 			],
 			"status": "nonstandard",
@@ -7475,7 +7902,8 @@ export const cssData : CSSDataV1 = {
 					"description": "Conditional hyphenation characters inside a word, if present, take priority over automatic resources when determining hyphenation points within the word."
 				},
 				{
-					name: "manual"
+					name: "manual",
+					"description": "Words are only broken at line breaks where there are characters inside the word that suggest line break opportunities"
 				},
 				{
 					name: "none",
@@ -7494,17 +7922,20 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "active"
+					name: "active",
+					"description": "The input method editor is initially active; text entry is performed using it unless the user specifically dismisses it."
 				},
 				{
 					name: "auto",
 					"description": "No change is made to the current input method editor state. This is the default."
 				},
 				{
-					name: "disabled"
+					name: "disabled",
+					"description": "The input method editor is disabled and may not be activated by the user."
 				},
 				{
-					name: "inactive"
+					name: "inactive",
+					"description": "The input method editor is initially inactive, but the user may activate it if they wish."
 				},
 				{
 					name: "normal",
@@ -7550,10 +7981,12 @@ export const cssData : CSSDataV1 = {
 					"description": "Any of the range of line values available to the -ms-layout-grid-line property."
 				},
 				{
-					name: "mode"
+					name: "mode",
+					"description": "Any of the range of mode values available to the -ms-layout-grid-mode property."
 				},
 				{
-					name: "type"
+					name: "type",
+					"description": "Any of the range of type values available to the -ms-layout-grid-type property."
 				}
 			],
 			"description": "Sets or retrieves the composite document grid properties that specify the layout of text characters."
@@ -7701,14 +8134,16 @@ export const cssData : CSSDataV1 = {
 					"description": "No preference, UA should use the first scrolling method in the list that it supports."
 				},
 				{
-					name: "-ms-autohiding-scrollbar"
+					name: "-ms-autohiding-scrollbar",
+					"description": "Indicates the element displays auto-hiding scrollbars during mouse interactions and panning indicators during touch and keyboard interactions."
 				},
 				{
 					name: "none",
 					"description": "Indicates the element does not display scrollbars or panning indicators, even when its content overflows."
 				},
 				{
-					name: "scrollbar"
+					name: "scrollbar",
+					"description": "Scrollbars are typically narrow strips inserted on one or two edges of an element and which often have arrows to click on and a \"thumb\" to drag up and down (or left and right) to move the contents of the element."
 				}
 			],
 			"status": "nonstandard",
@@ -8198,23 +8633,28 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "ideograph-alpha"
+					name: "ideograph-alpha",
+					"description": "Creates 1/4em extra spacing between runs of ideographic letters and non-ideographic letters, such as Latin-based, Cyrillic, Greek, Arabic or Hebrew."
 				},
 				{
-					name: "ideograph-numeric"
+					name: "ideograph-numeric",
+					"description": "Creates 1/4em extra spacing between runs of ideographic letters and numeric glyphs."
 				},
 				{
-					name: "ideograph-parenthesis"
+					name: "ideograph-parenthesis",
+					"description": "Creates extra spacing between normal (non wide) parenthesis and ideographs."
 				},
 				{
-					name: "ideograph-space"
+					name: "ideograph-space",
+					"description": "Extends the width of the space character while surrounded by ideographs."
 				},
 				{
 					name: "none",
 					"description": "No extra space is created."
 				},
 				{
-					name: "punctuation"
+					name: "punctuation",
+					"description": "Creates extra non-breaking spacing around punctuation as required by language-specific typographic conventions."
 				}
 			],
 			"status": "nonstandard",
@@ -8236,7 +8676,8 @@ export const cssData : CSSDataV1 = {
 					"description": "Attempt to typeset horizontally all consecutive characters within the box such that they take up the space of a single character within the vertical line box."
 				},
 				{
-					name: "digits"
+					name: "digits",
+					"description": "Attempt to typeset horizontally each maximal sequence of consecutive ASCII digits (U+0030–U+0039) that has as many or fewer characters than the specified integer such that it takes up the space of a single character within the vertical line box."
 				},
 				{
 					name: "none",
@@ -8265,16 +8706,20 @@ export const cssData : CSSDataV1 = {
 					"description": "Justification primarily changes spacing both at word separators and at grapheme cluster boundaries in all scripts except those in the connected and cursive groups. This value is sometimes used in e.g. Japanese, often with the 'text-align-last' property."
 				},
 				{
-					name: "inter-cluster"
+					name: "inter-cluster",
+					"description": "Justification primarily changes spacing at word separators and at grapheme cluster boundaries in clustered scripts. This value is typically used for Southeast Asian scripts such as Thai."
 				},
 				{
-					name: "inter-ideograph"
+					name: "inter-ideograph",
+					"description": "Justification primarily changes spacing at word separators and at inter-graphemic boundaries in scripts that use no word spaces. This value is typically used for CJK languages."
 				},
 				{
-					name: "inter-word"
+					name: "inter-word",
+					"description": "Justification primarily changes spacing at word separators. This value is typically used for languages that separate words using spaces, like English or (sometimes) Korean."
 				},
 				{
-					name: "kashida"
+					name: "kashida",
+					"description": "Justification primarily stretches Arabic and related scripts through the use of kashida or other calligraphic elongation."
 				}
 			],
 			"description": "Selects the justification algorithm used when 'text-align' is set to 'justify'. The property applies to block containers, but the UA may (but is not required to) also support it on inline elements.",
@@ -8300,10 +8745,12 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "clip"
+					name: "clip",
+					"description": "Clip inline content that overflows. Characters may be only partially rendered."
 				},
 				{
-					name: "ellipsis"
+					name: "ellipsis",
+					"description": "Render an ellipsis character (U+2026) to represent clipped inline content."
 				}
 			],
 			"description": "Text can overflow for example when it is prevented from wrapping",
@@ -8349,10 +8796,12 @@ export const cssData : CSSDataV1 = {
 					"description": "The user agent may use any algorithm to determine the underline's position. In horizontal line layout, the underline should be aligned as for alphabetic. In vertical line layout, if the language is set to Japanese or Korean, the underline should be aligned as for over."
 				},
 				{
-					name: "over"
+					name: "over",
+					"description": "The underline is aligned with the 'top' (right in vertical writing) edge of the element's em-box. In this mode, an overline also switches sides."
 				},
 				{
-					name: "under"
+					name: "under",
+					"description": "The underline is aligned with the 'bottom' (left in vertical writing) edge of the element's em-box. In this case the underline usually does not cross the descenders. This is sometimes called 'accounting' underline."
 				}
 			],
 			"description": "Sets the position of an underline specified on the same element: it does not affect underlines specified by ancestor elements.This property is typically used in vertical writing contexts such as in Japanese documents where it often desired to have the underline appear 'over' (to the right of) the affected run of text",
@@ -8408,7 +8857,8 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "grippers"
+					name: "grippers",
+					"description": "Grippers are always on."
 				},
 				{
 					name: "none",
@@ -8429,67 +8879,87 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "matrix()"
+					name: "matrix()",
+					"description": "Specifies a 2D transformation in the form of a transformation matrix of six values. matrix(a,b,c,d,e,f) is equivalent to applying the transformation matrix [a b c d e f]"
 				},
 				{
-					name: "matrix3d()"
+					name: "matrix3d()",
+					"description": "Specifies a 3D transformation as a 4x4 homogeneous matrix of 16 values in column-major order."
 				},
 				{
 					name: "none"
 				},
 				{
-					name: "rotate()"
+					name: "rotate()",
+					"description": "Specifies a 2D rotation by the angle specified in the parameter about the origin of the element, as defined by the transform-origin property."
 				},
 				{
-					name: "rotate3d()"
+					name: "rotate3d()",
+					"description": "Specifies a clockwise 3D rotation by the angle specified in last parameter about the [x,y,z] direction vector described by the first 3 parameters."
 				},
 				{
-					name: "rotateX('angle')"
+					name: "rotateX('angle')",
+					"description": "Specifies a clockwise rotation by the given angle about the X axis."
 				},
 				{
-					name: "rotateY('angle')"
+					name: "rotateY('angle')",
+					"description": "Specifies a clockwise rotation by the given angle about the Y axis."
 				},
 				{
-					name: "rotateZ('angle')"
+					name: "rotateZ('angle')",
+					"description": "Specifies a clockwise rotation by the given angle about the Z axis."
 				},
 				{
-					name: "scale()"
+					name: "scale()",
+					"description": "Specifies a 2D scale operation by the [sx,sy] scaling vector described by the 2 parameters. If the second parameter is not provided, it is takes a value equal to the first."
 				},
 				{
-					name: "scale3d()"
+					name: "scale3d()",
+					"description": "Specifies a 3D scale operation by the [sx,sy,sz] scaling vector described by the 3 parameters."
 				},
 				{
-					name: "scaleX()"
+					name: "scaleX()",
+					"description": "Specifies a scale operation using the [sx,1] scaling vector, where sx is given as the parameter."
 				},
 				{
-					name: "scaleY()"
+					name: "scaleY()",
+					"description": "Specifies a scale operation using the [sy,1] scaling vector, where sy is given as the parameter."
 				},
 				{
-					name: "scaleZ()"
+					name: "scaleZ()",
+					"description": "Specifies a scale operation using the [1,1,sz] scaling vector, where sz is given as the parameter."
 				},
 				{
-					name: "skew()"
+					name: "skew()",
+					"description": "Specifies a skew transformation along the X and Y axes. The first angle parameter specifies the skew on the X axis. The second angle parameter specifies the skew on the Y axis. If the second parameter is not given then a value of 0 is used for the Y angle (ie: no skew on the Y axis)."
 				},
 				{
-					name: "skewX()"
+					name: "skewX()",
+					"description": "Specifies a skew transformation along the X axis by the given angle."
 				},
 				{
-					name: "skewY()"
+					name: "skewY()",
+					"description": "Specifies a skew transformation along the Y axis by the given angle."
 				},
 				{
-					name: "translate()"
+					name: "translate()",
+					"description": "Specifies a 2D translation by the vector [tx, ty], where tx is the first translation-value parameter and ty is the optional second translation-value parameter."
 				},
 				{
-					name: "translate3d()"
+					name: "translate3d()",
+					"description": "Specifies a 3D translation by the vector [tx,ty,tz], with tx, ty and tz being the first, second and third translation-value parameters respectively."
 				},
 				{
-					name: "translateX()"
+					name: "translateX()",
+					"description": "Specifies a translation by the given amount in the X direction."
 				},
 				{
-					name: "translateY()"
+					name: "translateY()",
+					"description": "Specifies a translation by the given amount in the Y direction."
 				},
 				{
-					name: "translateZ()"
+					name: "translateZ()",
+					"description": "Specifies a translation by the given amount in the Z direction. Note that percentage values are not allowed in the translateZ translation-value, and if present are evaluated as 0."
 				}
 			],
 			"description": "A two-dimensional transformation is applied to an element through the 'transform' property. This property contains a list of transform functions similar to those allowed by SVG.",
@@ -8573,7 +9043,8 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "break-all"
+					name: "break-all",
+					"description": "Lines may break between any two grapheme clusters for non-CJK scripts."
 				},
 				{
 					name: "keep-all",
@@ -8625,17 +9096,20 @@ export const cssData : CSSDataV1 = {
 					"description": "Inline flow content can flow on all sides of the exclusion."
 				},
 				{
-					name: "clear"
+					name: "clear",
+					"description": "Inline flow content can only wrap on top and bottom of the exclusion and must leave the areas to the start and end edges of the exclusion box empty."
 				},
 				{
 					name: "end",
 					"description": "Inline flow content can wrap on the end side of the exclusion area but must leave the area to the start edge of the exclusion area empty."
 				},
 				{
-					name: "maximum"
+					name: "maximum",
+					"description": "Inline flow content can wrap on the side of the exclusion with the largest available space for the given line, and must leave the other side of the exclusion empty."
 				},
 				{
-					name: "minimum"
+					name: "minimum",
+					"description": "Inline flow content can flow around the edge of the exclusion with the smallest available space within the flow content’s containing block, and must leave the other edge of the exclusion empty."
 				},
 				{
 					name: "start",
@@ -8769,10 +9243,12 @@ export const cssData : CSSDataV1 = {
 					"description": "The user agent automatically determines which element to navigate the focus to in response to directional navigational input."
 				},
 				{
-					name: "current"
+					name: "current",
+					"description": "Indicates that the user agent should target the frame that the element is in."
 				},
 				{
-					name: "root"
+					name: "root",
+					"description": "Indicates that the user agent should target the full window."
 				}
 			],
 			"description": "Provides an way to control directional focus navigation.",
@@ -8809,10 +9285,12 @@ export const cssData : CSSDataV1 = {
 					"description": "The user agent automatically determines which element to navigate the focus to in response to directional navigational input."
 				},
 				{
-					name: "current"
+					name: "current",
+					"description": "Indicates that the user agent should target the frame that the element is in."
 				},
 				{
-					name: "root"
+					name: "root",
+					"description": "Indicates that the user agent should target the full window."
 				}
 			],
 			"description": "Provides an way to control directional focus navigation.",
@@ -8833,10 +9311,12 @@ export const cssData : CSSDataV1 = {
 					"description": "The user agent automatically determines which element to navigate the focus to in response to directional navigational input."
 				},
 				{
-					name: "current"
+					name: "current",
+					"description": "Indicates that the user agent should target the frame that the element is in."
 				},
 				{
-					name: "root"
+					name: "root",
+					"description": "Indicates that the user agent should target the full window."
 				}
 			],
 			"description": "Provides an way to control directional focus navigation.",
@@ -8857,10 +9337,12 @@ export const cssData : CSSDataV1 = {
 					"description": "The user agent automatically determines which element to navigate the focus to in response to directional navigational input."
 				},
 				{
-					name: "current"
+					name: "current",
+					"description": "Indicates that the user agent should target the frame that the element is in."
 				},
 				{
-					name: "root"
+					name: "root",
+					"description": "Indicates that the user agent should target the full window."
 				}
 			],
 			"description": "Provides an way to control directional focus navigation.",
@@ -8890,20 +9372,24 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "alternate"
+					name: "alternate",
+					"description": "The animation cycle iterations that are odd counts are played in the normal direction, and the animation cycle iterations that are even counts are played in a reverse direction."
 				},
 				{
-					name: "alternate-reverse"
+					name: "alternate-reverse",
+					"description": "The animation cycle iterations that are odd counts are played in the reverse direction, and the animation cycle iterations that are even counts are played in a normal direction."
 				},
 				{
-					name: "backwards"
+					name: "backwards",
+					"description": "The beginning property value (as defined in the first @keyframes at-rule) is applied before the animation is displayed, during the period defined by 'animation-delay'."
 				},
 				{
 					name: "both",
 					"description": "Both forwards and backwards fill modes are applied."
 				},
 				{
-					name: "forwards"
+					name: "forwards",
+					"description": "The final property value (as defined in the last @keyframes at-rule) is maintained after the animation completes."
 				},
 				{
 					name: "infinite",
@@ -8948,10 +9434,12 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "alternate"
+					name: "alternate",
+					"description": "The animation cycle iterations that are odd counts are played in the normal direction, and the animation cycle iterations that are even counts are played in a reverse direction."
 				},
 				{
-					name: "alternate-reverse"
+					name: "alternate-reverse",
+					"description": "The animation cycle iterations that are odd counts are played in the reverse direction, and the animation cycle iterations that are even counts are played in a normal direction."
 				},
 				{
 					name: "normal",
@@ -8984,14 +9472,16 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "backwards"
+					name: "backwards",
+					"description": "The beginning property value (as defined in the first @keyframes at-rule) is applied before the animation is displayed, during the period defined by 'animation-delay'."
 				},
 				{
 					name: "both",
 					"description": "Both forwards and backwards fill modes are applied."
 				},
 				{
-					name: "forwards"
+					name: "forwards",
+					"description": "The final property value (as defined in the last @keyframes at-rule) is maintained after the animation completes."
 				},
 				{
 					name: "none",
@@ -9044,10 +9534,12 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "paused"
+					name: "paused",
+					"description": "A running animation will be paused."
 				},
 				{
-					name: "running"
+					name: "running",
+					"description": "Resume playback of a paused animation."
 				}
 			],
 			"description": "Defines whether the animation is running or paused.",
@@ -9092,7 +9584,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The replaced content is not resized to fit inside the element's content box"
 				},
 				{
-					name: "scale-down"
+					name: "scale-down",
+					"description": "Size the content as if ‘none’ or ‘contain’ were specified, whichever would result in a smaller concrete object size."
 				}
 			],
 			"syntax": "fill | contain | cover | none | scale-down",
@@ -9136,7 +9629,8 @@ export const cssData : CSSDataV1 = {
 					name: "none"
 				},
 				{
-					name: "repeat"
+					name: "repeat",
+					"description": "The image is tiled (repeated) to fill the area."
 				},
 				{
 					name: "round",
@@ -9183,7 +9677,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The replaced content is not resized to fit inside the element's content box"
 				},
 				{
-					name: "scale-down"
+					name: "scale-down",
+					"description": "Size the content as if ‘none’ or ‘contain’ were specified, whichever would result in a smaller concrete object size."
 				}
 			],
 			"description": "Specifies how the contents of a replaced element should be scaled relative to the box established by its used height and width.",
@@ -9261,10 +9756,12 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "clip"
+					name: "clip",
+					"description": "Clip inline content that overflows. Characters may be only partially rendered."
 				},
 				{
-					name: "ellipsis"
+					name: "ellipsis",
+					"description": "Render an ellipsis character (U+2026) to represent clipped inline content."
 				}
 			],
 			"description": "Text can overflow for example when it is prevented from wrapping",
@@ -9279,67 +9776,87 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "matrix()"
+					name: "matrix()",
+					"description": "Specifies a 2D transformation in the form of a transformation matrix of six values. matrix(a,b,c,d,e,f) is equivalent to applying the transformation matrix [a b c d e f]"
 				},
 				{
-					name: "matrix3d()"
+					name: "matrix3d()",
+					"description": "Specifies a 3D transformation as a 4x4 homogeneous matrix of 16 values in column-major order."
 				},
 				{
 					name: "none"
 				},
 				{
-					name: "rotate()"
+					name: "rotate()",
+					"description": "Specifies a 2D rotation by the angle specified in the parameter about the origin of the element, as defined by the transform-origin property."
 				},
 				{
-					name: "rotate3d()"
+					name: "rotate3d()",
+					"description": "Specifies a clockwise 3D rotation by the angle specified in last parameter about the [x,y,z] direction vector described by the first 3 parameters."
 				},
 				{
-					name: "rotateX('angle')"
+					name: "rotateX('angle')",
+					"description": "Specifies a clockwise rotation by the given angle about the X axis."
 				},
 				{
-					name: "rotateY('angle')"
+					name: "rotateY('angle')",
+					"description": "Specifies a clockwise rotation by the given angle about the Y axis."
 				},
 				{
-					name: "rotateZ('angle')"
+					name: "rotateZ('angle')",
+					"description": "Specifies a clockwise rotation by the given angle about the Z axis."
 				},
 				{
-					name: "scale()"
+					name: "scale()",
+					"description": "Specifies a 2D scale operation by the [sx,sy] scaling vector described by the 2 parameters. If the second parameter is not provided, it is takes a value equal to the first."
 				},
 				{
-					name: "scale3d()"
+					name: "scale3d()",
+					"description": "Specifies a 3D scale operation by the [sx,sy,sz] scaling vector described by the 3 parameters."
 				},
 				{
-					name: "scaleX()"
+					name: "scaleX()",
+					"description": "Specifies a scale operation using the [sx,1] scaling vector, where sx is given as the parameter."
 				},
 				{
-					name: "scaleY()"
+					name: "scaleY()",
+					"description": "Specifies a scale operation using the [sy,1] scaling vector, where sy is given as the parameter."
 				},
 				{
-					name: "scaleZ()"
+					name: "scaleZ()",
+					"description": "Specifies a scale operation using the [1,1,sz] scaling vector, where sz is given as the parameter."
 				},
 				{
-					name: "skew()"
+					name: "skew()",
+					"description": "Specifies a skew transformation along the X and Y axes. The first angle parameter specifies the skew on the X axis. The second angle parameter specifies the skew on the Y axis. If the second parameter is not given then a value of 0 is used for the Y angle (ie: no skew on the Y axis)."
 				},
 				{
-					name: "skewX()"
+					name: "skewX()",
+					"description": "Specifies a skew transformation along the X axis by the given angle."
 				},
 				{
-					name: "skewY()"
+					name: "skewY()",
+					"description": "Specifies a skew transformation along the Y axis by the given angle."
 				},
 				{
-					name: "translate()"
+					name: "translate()",
+					"description": "Specifies a 2D translation by the vector [tx, ty], where tx is the first translation-value parameter and ty is the optional second translation-value parameter."
 				},
 				{
-					name: "translate3d()"
+					name: "translate3d()",
+					"description": "Specifies a 3D translation by the vector [tx,ty,tz], with tx, ty and tz being the first, second and third translation-value parameters respectively."
 				},
 				{
-					name: "translateX()"
+					name: "translateX()",
+					"description": "Specifies a translation by the given amount in the X direction."
 				},
 				{
-					name: "translateY()"
+					name: "translateY()",
+					"description": "Specifies a translation by the given amount in the Y direction."
 				},
 				{
-					name: "translateZ()"
+					name: "translateZ()",
+					"description": "Specifies a translation by the given amount in the Z direction. Note that percentage values are not allowed in the translateZ translation-value, and if present are evaluated as 0."
 				}
 			],
 			"description": "A two-dimensional transformation is applied to an element through the 'transform' property. This property contains a list of transform functions similar to those allowed by SVG.",
@@ -9508,7 +10025,8 @@ export const cssData : CSSDataV1 = {
 					"description": "Permits the user agent to render a custom outline style, typically the default platform style."
 				},
 				{
-					name: "invert"
+					name: "invert",
+					"description": "Performs a color inversion on the pixels on the screen."
 				}
 			],
 			"syntax": "[ <'outline-color'> || <'outline-style'> || <'outline-width'> ]",
@@ -9525,7 +10043,8 @@ export const cssData : CSSDataV1 = {
 			name: "outline-color",
 			values: [
 				{
-					name: "invert"
+					name: "invert",
+					"description": "Performs a color inversion on the pixels on the screen."
 				}
 			],
 			"syntax": "<color> | invert",
@@ -9585,7 +10104,8 @@ export const cssData : CSSDataV1 = {
 					"description": "Content is clipped and no scrolling mechanism should be provided to view the content outside the clipping region."
 				},
 				{
-					name: "-moz-hidden-unscrollable"
+					name: "-moz-hidden-unscrollable",
+					"description": "Same as the standardized 'clip', except doesn’t establish a block formatting context."
 				},
 				{
 					name: "scroll",
@@ -9937,7 +10457,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The given element does not receive pointer events."
 				},
 				{
-					name: "painted"
+					name: "painted",
+					"description": "The given element can be the target element for pointer events when the pointer is over a \"painted\" area. "
 				},
 				{
 					name: "stroke",
@@ -9948,13 +10469,16 @@ export const cssData : CSSDataV1 = {
 					"description": "The given element can be the target element for pointer events when the ‘visibility’ property is set to visible and the pointer is over either the interior or the perimete of the element."
 				},
 				{
-					name: "visibleFill"
+					name: "visibleFill",
+					"description": "The given element can be the target element for pointer events when the ‘visibility’ property is set to visible and when the pointer is over the interior of the element."
 				},
 				{
-					name: "visiblePainted"
+					name: "visiblePainted",
+					"description": "The given element can be the target element for pointer events when the ‘visibility’ property is set to visible and when the pointer is over a ‘painted’ area."
 				},
 				{
-					name: "visibleStroke"
+					name: "visibleStroke",
+					"description": "The given element can be the target element for pointer events when the ‘visibility’ property is set to visible and when the pointer is over the perimeter of the element."
 				}
 			],
 			"syntax": "auto | none | visiblePainted | visibleFill | visibleStroke | visible | painted | fill | stroke | all | inherit",
@@ -9967,26 +10491,32 @@ export const cssData : CSSDataV1 = {
 			name: "position",
 			values: [
 				{
-					name: "absolute"
+					name: "absolute",
+					"description": "The box's position (and possibly size) is specified with the 'top', 'right', 'bottom', and 'left' properties. These properties specify offsets with respect to the box's 'containing block'."
 				},
 				{
 					name: "fixed",
 					"description": "The box's position is calculated according to the 'absolute' model, but in addition, the box is fixed with respect to some reference. As with the 'absolute' model, the box's margins do not collapse with any other margins."
 				},
 				{
-					name: "-ms-page"
+					name: "-ms-page",
+					"description": "The box's position is calculated according to the 'absolute' model."
 				},
 				{
-					name: "relative"
+					name: "relative",
+					"description": "The box's position is calculated according to the normal flow (this is called the position in normal flow). Then the box is offset relative to its normal position."
 				},
 				{
-					name: "static"
+					name: "static",
+					"description": "The box is a normal box, laid out according to the normal flow. The 'top', 'right', 'bottom', and 'left' properties do not apply."
 				},
 				{
-					name: "sticky"
+					name: "sticky",
+					"description": "The box's position is calculated according to the normal flow. Then the box is offset relative to its flow root and containing block and in all cases, including table elements, does not affect the position of any following boxes."
 				},
 				{
-					name: "-webkit-sticky"
+					name: "-webkit-sticky",
+					"description": "The box's position is calculated according to the normal flow. Then the box is offset relative to its flow root and containing block and in all cases, including table elements, does not affect the position of any following boxes."
 				}
 			],
 			"syntax": "static | relative | absolute | sticky | fixed",
@@ -10111,13 +10641,15 @@ export const cssData : CSSDataV1 = {
 					name: "distribute-letter",
 					browsers: [
 						"FF38"
-					]
+					],
+					"description": "If the width of the ruby text is smaller than that of the base, then the ruby text contents are evenly distributed across the width of the base, with the first and last ruby text glyphs lining up with the corresponding first and last base glyphs. If the width of the ruby text is at least the width of the base, then the letters of the base are evenly distributed across the width of the ruby text."
 				},
 				{
 					name: "distribute-space",
 					browsers: [
 						"FF38"
-					]
+					],
+					"description": "If the width of the ruby text is smaller than that of the base, then the ruby text contents are evenly distributed across the width of the base, with a certain amount of white space preceding the first and following the last character in the ruby text. That amount of white space is normally equal to half the amount of inter-character space of the ruby text."
 				},
 				{
 					name: "left",
@@ -10127,7 +10659,8 @@ export const cssData : CSSDataV1 = {
 					name: "line-edge",
 					browsers: [
 						"FF38"
-					]
+					],
+					"description": "If the ruby text is not adjacent to a line edge, it is aligned as in 'auto'. If it is adjacent to a line edge, then it is still aligned as in auto, but the side of the ruby text that touches the end of the line is lined up with the corresponding edge of the base."
 				},
 				{
 					name: "right",
@@ -10202,10 +10735,12 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "after"
+					name: "after",
+					"description": "The ruby text appears after the base. This is a relatively rare setting used in ideographic East Asian writing systems, most easily found in educational text."
 				},
 				{
-					name: "before"
+					name: "before",
+					"description": "The ruby text appears before the base. This is the most common setting used in ideographic East Asian writing systems."
 				},
 				{
 					name: "inline"
@@ -10229,7 +10764,8 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "attr(x)"
+					name: "attr(x)",
+					"description": "The value of attribute 'x' is a string value. The string value is evaluated as a <number> to determine the number of ruby base elements to be spanned by the annotation element."
 				},
 				{
 					name: "none",
@@ -10334,7 +10870,8 @@ export const cssData : CSSDataV1 = {
 					"description": "Scrolls in an instant fashion."
 				},
 				{
-					name: "smooth"
+					name: "smooth",
+					"description": "Scrolls in a smooth fashion using a user-agent-defined timing function and time period."
 				}
 			],
 			"syntax": "auto | smooth",
@@ -10486,7 +11023,8 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "margin-box"
+					name: "margin-box",
+					"description": "The background is painted within (clipped to) the margin box."
 				},
 				{
 					name: "none",
@@ -10510,7 +11048,8 @@ export const cssData : CSSDataV1 = {
 					"description": "Suppresses aural rendering."
 				},
 				{
-					name: "crispEdges"
+					name: "crispEdges",
+					"description": "Emphasize the contrast between clean edges of artwork over rendering speed and geometric precision."
 				},
 				{
 					name: "geometricPrecision",
@@ -10544,10 +11083,12 @@ export const cssData : CSSDataV1 = {
 					"description": "Reference font by URL"
 				},
 				{
-					name: "format()"
+					name: "format()",
+					"description": "Optional hint describing the format of the font resource."
 				},
 				{
-					name: "local()"
+					name: "local()",
+					"description": "Format-specific string that identifies a locally available copy of a given font."
 				}
 			],
 			"syntax": "[ <url> [ format( <string># ) ]? | local( <family-name> ) ]#",
@@ -10619,7 +11160,8 @@ export const cssData : CSSDataV1 = {
 			name: "stroke-linecap",
 			values: [
 				{
-					name: "butt"
+					name: "butt",
+					"description": "Indicates that the stroke for each subpath does not extend beyond its two endpoints."
 				},
 				{
 					name: "round",
@@ -10639,10 +11181,12 @@ export const cssData : CSSDataV1 = {
 			name: "stroke-linejoin",
 			values: [
 				{
-					name: "bevel"
+					name: "bevel",
+					"description": "Indicates that a bevelled corner is to be used to join path segments."
 				},
 				{
-					name: "miter"
+					name: "miter",
+					"description": "Indicates that a sharp corner is to be used to join path segments."
 				},
 				{
 					name: "round",
@@ -10696,27 +11240,32 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "additive"
+					name: "additive",
+					"description": "Represents “sign-value” numbering systems, which, rather than using reusing digits in different positions to change their value, define additional digits with much larger values, so that the value of the number can be obtained by adding all the digits together."
 				},
 				{
 					name: "alphabetic",
 					"description": "Interprets the list of counter symbols as digits to an alphabetic numbering system, similar to the default lower-alpha counter style, which wraps from \"a\", \"b\", \"c\", to \"aa\", \"ab\", \"ac\"."
 				},
 				{
-					name: "cyclic"
+					name: "cyclic",
+					"description": "Cycles repeatedly through its provided symbols, looping back to the beginning when it reaches the end of the list."
 				},
 				{
-					name: "extends"
+					name: "extends",
+					"description": "Use the algorithm of another counter style, but alter other aspects."
 				},
 				{
 					name: "fixed",
 					"description": "Runs through its list of counter symbols once, then falls back."
 				},
 				{
-					name: "numeric"
+					name: "numeric",
+					"description": "interprets the list of counter symbols as digits to a \"place-value\" numbering system, similar to the default 'decimal' counter style."
 				},
 				{
-					name: "symbolic"
+					name: "symbolic",
+					"description": "Cycles repeatedly through its provided symbols, doubling, tripling, etc. the symbols on each successive pass through the list."
 				}
 			],
 			"syntax": "cyclic | numeric | alphabetic | symbolic | additive | [ fixed <integer>? ] | [ extends <counter-style-name> ]",
@@ -10868,32 +11417,40 @@ export const cssData : CSSDataV1 = {
 			name: "text-decoration",
 			values: [
 				{
-					name: "dashed"
+					name: "dashed",
+					"description": "Produces a dashed line style."
 				},
 				{
-					name: "dotted"
+					name: "dotted",
+					"description": "Produces a dotted line."
 				},
 				{
-					name: "double"
+					name: "double",
+					"description": "Produces a double line."
 				},
 				{
-					name: "line-through"
+					name: "line-through",
+					"description": "Each line of text has a line through the middle."
 				},
 				{
 					name: "none",
 					"description": "Produces no line."
 				},
 				{
-					name: "overline"
+					name: "overline",
+					"description": "Each line of text has a line above it."
 				},
 				{
-					name: "solid"
+					name: "solid",
+					"description": "Produces a solid line."
 				},
 				{
-					name: "underline"
+					name: "underline",
+					"description": "Each line of text is underlined."
 				},
 				{
-					name: "wavy"
+					name: "wavy",
+					"description": "Produces a wavy line."
 				}
 			],
 			"syntax": "<'text-decoration-line'> || <'text-decoration-style'> || <'text-decoration-color'>",
@@ -10927,17 +11484,20 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "line-through"
+					name: "line-through",
+					"description": "Each line of text has a line through the middle."
 				},
 				{
 					name: "none",
 					"description": "Neither produces nor inhibits text decoration."
 				},
 				{
-					name: "overline"
+					name: "overline",
+					"description": "Each line of text has a line above it."
 				},
 				{
-					name: "underline"
+					name: "underline",
+					"description": "Each line of text is underlined."
 				}
 			],
 			"syntax": "none | [ underline || overline || line-through || blink ]",
@@ -10956,23 +11516,28 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "dashed"
+					name: "dashed",
+					"description": "Produces a dashed line style."
 				},
 				{
-					name: "dotted"
+					name: "dotted",
+					"description": "Produces a dotted line."
 				},
 				{
-					name: "double"
+					name: "double",
+					"description": "Produces a double line."
 				},
 				{
 					name: "none",
 					"description": "Produces no line."
 				},
 				{
-					name: "solid"
+					name: "solid",
+					"description": "Produces a solid line."
 				},
 				{
-					name: "wavy"
+					name: "wavy",
+					"description": "Produces a wavy line."
 				}
 			],
 			"syntax": "solid | double | dotted | dashed | wavy",
@@ -11013,16 +11578,20 @@ export const cssData : CSSDataV1 = {
 					name: "distribute-all-lines"
 				},
 				{
-					name: "inter-cluster"
+					name: "inter-cluster",
+					"description": "Justification primarily changes spacing at word separators and at grapheme cluster boundaries in clustered scripts. This value is typically used for Southeast Asian scripts such as Thai."
 				},
 				{
-					name: "inter-ideograph"
+					name: "inter-ideograph",
+					"description": "Justification primarily changes spacing at word separators and at inter-graphemic boundaries in scripts that use no word spaces. This value is typically used for CJK languages."
 				},
 				{
-					name: "inter-word"
+					name: "inter-word",
+					"description": "Justification primarily changes spacing at word separators. This value is typically used for languages that separate words using spaces, like English or (sometimes) Korean."
 				},
 				{
-					name: "kashida"
+					name: "kashida",
+					"description": "Justification primarily stretches Arabic and related scripts through the use of kashida or other calligraphic elongation."
 				},
 				{
 					name: "newspaper"
@@ -11048,7 +11617,8 @@ export const cssData : CSSDataV1 = {
 						"FF41",
 						"C48",
 						"O"
-					]
+					],
+					"description": "This value is equivalent to 'sideways-right' in 'vertical-rl' writing mode and equivalent to 'sideways-left' in 'vertical-lr' writing mode."
 				},
 				{
 					name: "sideways-right",
@@ -11056,10 +11626,12 @@ export const cssData : CSSDataV1 = {
 						"FF41",
 						"C48",
 						"O"
-					]
+					],
+					"description": "In vertical writing modes, this causes text to be set as if in a horizontal layout, but rotated 90° clockwise."
 				},
 				{
-					name: "upright"
+					name: "upright",
+					"description": "In vertical writing modes, characters from horizontal-only scripts are rendered upright, i.e. in their standard horizontal orientation."
 				}
 			],
 			"syntax": "mixed | upright | sideways",
@@ -11072,10 +11644,12 @@ export const cssData : CSSDataV1 = {
 			name: "text-overflow",
 			values: [
 				{
-					name: "clip"
+					name: "clip",
+					"description": "Clip inline content that overflows. Characters may be only partially rendered."
 				},
 				{
-					name: "ellipsis"
+					name: "ellipsis",
+					"description": "Render an ellipsis character (U+2026) to represent clipped inline content."
 				}
 			],
 			"syntax": "[ clip | ellipsis | <string> ]{1,2}",
@@ -11102,7 +11676,8 @@ export const cssData : CSSDataV1 = {
 					"description": "Indicates that the user agent shall emphasize geometric precision over legibility and rendering speed."
 				},
 				{
-					name: "optimizeLegibility"
+					name: "optimizeLegibility",
+					"description": "Indicates that the user agent shall emphasize legibility over rendering speed and geometric precision."
 				},
 				{
 					name: "optimizeSpeed",
@@ -11134,17 +11709,20 @@ export const cssData : CSSDataV1 = {
 			name: "text-transform",
 			values: [
 				{
-					name: "capitalize"
+					name: "capitalize",
+					"description": "Puts the first typographic letter unit of each word in titlecase."
 				},
 				{
-					name: "lowercase"
+					name: "lowercase",
+					"description": "Puts all letters in lowercase."
 				},
 				{
 					name: "none",
 					"description": "No effects."
 				},
 				{
-					name: "uppercase"
+					name: "uppercase",
+					"description": "Puts all letters in uppercase."
 				}
 			],
 			"syntax": "none | capitalize | uppercase | lowercase | full-width | full-size-kana",
@@ -11275,70 +11853,91 @@ export const cssData : CSSDataV1 = {
 			name: "transform",
 			values: [
 				{
-					name: "matrix()"
+					name: "matrix()",
+					"description": "Specifies a 2D transformation in the form of a transformation matrix of six values. matrix(a,b,c,d,e,f) is equivalent to applying the transformation matrix [a b c d e f]"
 				},
 				{
-					name: "matrix3d()"
+					name: "matrix3d()",
+					"description": "Specifies a 3D transformation as a 4x4 homogeneous matrix of 16 values in column-major order."
 				},
 				{
 					name: "none"
 				},
 				{
-					name: "perspective()"
+					name: "perspective()",
+					"description": "Specifies a perspective projection matrix."
 				},
 				{
-					name: "rotate()"
+					name: "rotate()",
+					"description": "Specifies a 2D rotation by the angle specified in the parameter about the origin of the element, as defined by the transform-origin property."
 				},
 				{
-					name: "rotate3d()"
+					name: "rotate3d()",
+					"description": "Specifies a clockwise 3D rotation by the angle specified in last parameter about the [x,y,z] direction vector described by the first 3 parameters."
 				},
 				{
-					name: "rotateX('angle')"
+					name: "rotateX('angle')",
+					"description": "Specifies a clockwise rotation by the given angle about the X axis."
 				},
 				{
-					name: "rotateY('angle')"
+					name: "rotateY('angle')",
+					"description": "Specifies a clockwise rotation by the given angle about the Y axis."
 				},
 				{
-					name: "rotateZ('angle')"
+					name: "rotateZ('angle')",
+					"description": "Specifies a clockwise rotation by the given angle about the Z axis."
 				},
 				{
-					name: "scale()"
+					name: "scale()",
+					"description": "Specifies a 2D scale operation by the [sx,sy] scaling vector described by the 2 parameters. If the second parameter is not provided, it is takes a value equal to the first."
 				},
 				{
-					name: "scale3d()"
+					name: "scale3d()",
+					"description": "Specifies a 3D scale operation by the [sx,sy,sz] scaling vector described by the 3 parameters."
 				},
 				{
-					name: "scaleX()"
+					name: "scaleX()",
+					"description": "Specifies a scale operation using the [sx,1] scaling vector, where sx is given as the parameter."
 				},
 				{
-					name: "scaleY()"
+					name: "scaleY()",
+					"description": "Specifies a scale operation using the [sy,1] scaling vector, where sy is given as the parameter."
 				},
 				{
-					name: "scaleZ()"
+					name: "scaleZ()",
+					"description": "Specifies a scale operation using the [1,1,sz] scaling vector, where sz is given as the parameter."
 				},
 				{
-					name: "skew()"
+					name: "skew()",
+					"description": "Specifies a skew transformation along the X and Y axes. The first angle parameter specifies the skew on the X axis. The second angle parameter specifies the skew on the Y axis. If the second parameter is not given then a value of 0 is used for the Y angle (ie: no skew on the Y axis)."
 				},
 				{
-					name: "skewX()"
+					name: "skewX()",
+					"description": "Specifies a skew transformation along the X axis by the given angle."
 				},
 				{
-					name: "skewY()"
+					name: "skewY()",
+					"description": "Specifies a skew transformation along the Y axis by the given angle."
 				},
 				{
-					name: "translate()"
+					name: "translate()",
+					"description": "Specifies a 2D translation by the vector [tx, ty], where tx is the first translation-value parameter and ty is the optional second translation-value parameter."
 				},
 				{
-					name: "translate3d()"
+					name: "translate3d()",
+					"description": "Specifies a 3D translation by the vector [tx,ty,tz], with tx, ty and tz being the first, second and third translation-value parameters respectively."
 				},
 				{
-					name: "translateX()"
+					name: "translateX()",
+					"description": "Specifies a translation by the given amount in the X direction."
 				},
 				{
-					name: "translateY()"
+					name: "translateY()",
+					"description": "Specifies a translation by the given amount in the Y direction."
 				},
 				{
-					name: "translateZ()"
+					name: "translateZ()",
+					"description": "Specifies a translation by the given amount in the Z direction. Note that percentage values are not allowed in the translateZ translation-value, and if present are evaluated as 0."
 				}
 			],
 			"syntax": "none | <transform-list>",
@@ -11368,7 +11967,8 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "flat"
+					name: "flat",
+					"description": "All children of this element are rendered flattened into the 2D plane of the element."
 				},
 				{
 					name: "preserve-3d",
@@ -11378,7 +11978,8 @@ export const cssData : CSSDataV1 = {
 						"S",
 						"C12",
 						"O15"
-					]
+					],
+					"description": "Flattening is not performed, so children maintain their position in 3D space."
 				}
 			],
 			"syntax": "flat | preserve-3d",
@@ -11454,24 +12055,28 @@ export const cssData : CSSDataV1 = {
 			name: "unicode-bidi",
 			values: [
 				{
-					name: "bidi-override"
+					name: "bidi-override",
+					"description": "Inside the element, reordering is strictly in sequence according to the 'direction' property; the implicit part of the bidirectional algorithm is ignored."
 				},
 				{
-					name: "embed"
+					name: "embed",
+					"description": "If the element is inline-level, this value opens an additional level of embedding with respect to the bidirectional algorithm. The direction of this embedding level is given by the 'direction' property."
 				},
 				{
 					name: "isolate",
 					"description": "The contents of the element are considered to be inside a separate, independent paragraph."
 				},
 				{
-					name: "isolate-override"
+					name: "isolate-override",
+					"description": "This combines the isolation behavior of 'isolate' with the directional override behavior of 'bidi-override'"
 				},
 				{
 					name: "normal",
 					"description": "The element does not open an additional level of embedding with respect to the bidirectional algorithm. For inline-level elements, implicit reordering works across element boundaries."
 				},
 				{
-					name: "plaintext"
+					name: "plaintext",
+					"description": "For the purposes of the Unicode bidirectional algorithm, the base directionality of each bidi paragraph for which the element forms the containing block is determined not by the element's computed 'direction'."
 				}
 			],
 			"syntax": "normal | embed | isolate | bidi-override | isolate-override | plaintext",
@@ -11484,235 +12089,312 @@ export const cssData : CSSDataV1 = {
 			name: "unicode-range",
 			values: [
 				{
-					name: "U+26"
+					name: "U+26",
+					"description": "Ampersand."
 				},
 				{
-					name: "U+20-24F, U+2B0-2FF, U+370-4FF, U+1E00-1EFF, U+2000-20CF, U+2100-23FF, U+2500-26FF, U+E000-F8FF, U+FB00–FB4F"
+					name: "U+20-24F, U+2B0-2FF, U+370-4FF, U+1E00-1EFF, U+2000-20CF, U+2100-23FF, U+2500-26FF, U+E000-F8FF, U+FB00–FB4F",
+					"description": "WGL4 character set (Pan-European)."
 				},
 				{
-					name: "U+20-17F, U+2B0-2FF, U+2000-206F, U+20A0-20CF, U+2100-21FF, U+2600-26FF"
+					name: "U+20-17F, U+2B0-2FF, U+2000-206F, U+20A0-20CF, U+2100-21FF, U+2600-26FF",
+					"description": "The Multilingual European Subset No. 1. Latin. Covers ~44 languages."
 				},
 				{
-					name: "U+20-2FF, U+370-4FF, U+1E00-20CF, U+2100-23FF, U+2500-26FF, U+FB00-FB4F, U+FFF0-FFFD"
+					name: "U+20-2FF, U+370-4FF, U+1E00-20CF, U+2100-23FF, U+2500-26FF, U+FB00-FB4F, U+FFF0-FFFD",
+					"description": "The Multilingual European Subset No. 2. Latin, Greek, and Cyrillic. Covers ~128 language."
 				},
 				{
-					name: "U+20-4FF, U+530-58F, U+10D0-10FF, U+1E00-23FF, U+2440-245F, U+2500-26FF, U+FB00-FB4F, U+FE20-FE2F, U+FFF0-FFFD"
+					name: "U+20-4FF, U+530-58F, U+10D0-10FF, U+1E00-23FF, U+2440-245F, U+2500-26FF, U+FB00-FB4F, U+FE20-FE2F, U+FFF0-FFFD",
+					"description": "The Multilingual European Subset No. 3. Covers all characters belonging to European scripts."
 				},
 				{
-					name: "U+00-7F"
+					name: "U+00-7F",
+					"description": "Basic Latin (ASCII)."
 				},
 				{
-					name: "U+80-FF"
+					name: "U+80-FF",
+					"description": "Latin-1 Supplement. Accented characters for Western European languages, common punctuation characters, multiplication and division signs."
 				},
 				{
-					name: "U+100-17F"
+					name: "U+100-17F",
+					"description": "Latin Extended-A. Accented characters for for Czech, Dutch, Polish, and Turkish."
 				},
 				{
-					name: "U+180-24F"
+					name: "U+180-24F",
+					"description": "Latin Extended-B. Croatian, Slovenian, Romanian, Non-European and historic latin, Khoisan, Pinyin, Livonian, Sinology."
 				},
 				{
-					name: "U+1E00-1EFF"
+					name: "U+1E00-1EFF",
+					"description": "Latin Extended Additional. Vietnamese, German captial sharp s, Medievalist, Latin general use."
 				},
 				{
-					name: "U+250-2AF"
+					name: "U+250-2AF",
+					"description": "International Phonetic Alphabet Extensions."
 				},
 				{
-					name: "U+370-3FF"
+					name: "U+370-3FF",
+					"description": "Greek and Coptic."
 				},
 				{
-					name: "U+1F00-1FFF"
+					name: "U+1F00-1FFF",
+					"description": "Greek Extended. Accented characters for polytonic Greek."
 				},
 				{
-					name: "U+400-4FF"
+					name: "U+400-4FF",
+					"description": "Cyrillic."
 				},
 				{
-					name: "U+500-52F"
+					name: "U+500-52F",
+					"description": "Cyrillic Supplement. Extra letters for Komi, Khanty, Chukchi, Mordvin, Kurdish, Aleut, Chuvash, Abkhaz, Azerbaijani, and Orok."
 				},
 				{
-					name: "U+00-52F, U+1E00-1FFF, U+2200–22FF"
+					name: "U+00-52F, U+1E00-1FFF, U+2200–22FF",
+					"description": "Latin, Greek, Cyrillic, some punctuation and symbols."
 				},
 				{
-					name: "U+530–58F"
+					name: "U+530–58F",
+					"description": "Armenian."
 				},
 				{
-					name: "U+590–5FF"
+					name: "U+590–5FF",
+					"description": "Hebrew."
 				},
 				{
-					name: "U+600–6FF"
+					name: "U+600–6FF",
+					"description": "Arabic."
 				},
 				{
-					name: "U+750–77F"
+					name: "U+750–77F",
+					"description": "Arabic Supplement. Additional letters for African languages, Khowar, Torwali, Burushaski, and early Persian."
 				},
 				{
-					name: "U+8A0–8FF"
+					name: "U+8A0–8FF",
+					"description": "Arabic Extended-A. Additional letters for African languages, European and Central Asian languages, Rohingya, Tamazight, Arwi, and Koranic annotation signs."
 				},
 				{
-					name: "U+700–74F"
+					name: "U+700–74F",
+					"description": "Syriac."
 				},
 				{
-					name: "U+900–97F"
+					name: "U+900–97F",
+					"description": "Devanagari."
 				},
 				{
-					name: "U+980–9FF"
+					name: "U+980–9FF",
+					"description": "Bengali."
 				},
 				{
-					name: "U+A00–A7F"
+					name: "U+A00–A7F",
+					"description": "Gurmukhi."
 				},
 				{
-					name: "U+A80–AFF"
+					name: "U+A80–AFF",
+					"description": "Gujarati."
 				},
 				{
-					name: "U+B00–B7F"
+					name: "U+B00–B7F",
+					"description": "Oriya."
 				},
 				{
-					name: "U+B80–BFF"
+					name: "U+B80–BFF",
+					"description": "Tamil."
 				},
 				{
-					name: "U+C00–C7F"
+					name: "U+C00–C7F",
+					"description": "Telugu."
 				},
 				{
-					name: "U+C80–CFF"
+					name: "U+C80–CFF",
+					"description": "Kannada."
 				},
 				{
-					name: "U+D00–D7F"
+					name: "U+D00–D7F",
+					"description": "Malayalam."
 				},
 				{
-					name: "U+D80–DFF"
+					name: "U+D80–DFF",
+					"description": "Sinhala."
 				},
 				{
-					name: "U+118A0–118FF"
+					name: "U+118A0–118FF",
+					"description": "Warang Citi."
 				},
 				{
-					name: "U+E00–E7F"
+					name: "U+E00–E7F",
+					"description": "Thai."
 				},
 				{
-					name: "U+1A20–1AAF"
+					name: "U+1A20–1AAF",
+					"description": "Tai Tham."
 				},
 				{
-					name: "U+AA80–AADF"
+					name: "U+AA80–AADF",
+					"description": "Tai Viet."
 				},
 				{
-					name: "U+E80–EFF"
+					name: "U+E80–EFF",
+					"description": "Lao."
 				},
 				{
-					name: "U+F00–FFF"
+					name: "U+F00–FFF",
+					"description": "Tibetan."
 				},
 				{
-					name: "U+1000–109F"
+					name: "U+1000–109F",
+					"description": "Myanmar (Burmese)."
 				},
 				{
-					name: "U+10A0–10FF"
+					name: "U+10A0–10FF",
+					"description": "Georgian."
 				},
 				{
-					name: "U+1200–137F"
+					name: "U+1200–137F",
+					"description": "Ethiopic."
 				},
 				{
-					name: "U+1380–139F"
+					name: "U+1380–139F",
+					"description": "Ethiopic Supplement. Extra Syllables for Sebatbeit, and Tonal marks"
 				},
 				{
-					name: "U+2D80–2DDF"
+					name: "U+2D80–2DDF",
+					"description": "Ethiopic Extended. Extra Syllables for Me'en, Blin, and Sebatbeit."
 				},
 				{
-					name: "U+AB00–AB2F"
+					name: "U+AB00–AB2F",
+					"description": "Ethiopic Extended-A. Extra characters for Gamo-Gofa-Dawro, Basketo, and Gumuz."
 				},
 				{
-					name: "U+1780–17FF"
+					name: "U+1780–17FF",
+					"description": "Khmer."
 				},
 				{
-					name: "U+1800–18AF"
+					name: "U+1800–18AF",
+					"description": "Mongolian."
 				},
 				{
-					name: "U+1B80–1BBF"
+					name: "U+1B80–1BBF",
+					"description": "Sundanese."
 				},
 				{
-					name: "U+1CC0–1CCF"
+					name: "U+1CC0–1CCF",
+					"description": "Sundanese Supplement. Punctuation."
 				},
 				{
-					name: "U+4E00–9FD5"
+					name: "U+4E00–9FD5",
+					"description": "CJK (Chinese, Japanese, Korean) Unified Ideographs. Most common ideographs for modern Chinese and Japanese."
 				},
 				{
-					name: "U+3400–4DB5"
+					name: "U+3400–4DB5",
+					"description": "CJK Unified Ideographs Extension A. Rare ideographs."
 				},
 				{
-					name: "U+2F00–2FDF"
+					name: "U+2F00–2FDF",
+					"description": "Kangxi Radicals."
 				},
 				{
-					name: "U+2E80–2EFF"
+					name: "U+2E80–2EFF",
+					"description": "CJK Radicals Supplement. Alternative forms of Kangxi Radicals."
 				},
 				{
-					name: "U+1100–11FF"
+					name: "U+1100–11FF",
+					"description": "Hangul Jamo."
 				},
 				{
-					name: "U+AC00–D7AF"
+					name: "U+AC00–D7AF",
+					"description": "Hangul Syllables."
 				},
 				{
-					name: "U+3040–309F"
+					name: "U+3040–309F",
+					"description": "Hiragana."
 				},
 				{
-					name: "U+30A0–30FF"
+					name: "U+30A0–30FF",
+					"description": "Katakana."
 				},
 				{
-					name: "U+A5, U+4E00-9FFF, U+30??, U+FF00-FF9F"
+					name: "U+A5, U+4E00-9FFF, U+30??, U+FF00-FF9F",
+					"description": "Japanese Kanji, Hiragana and Katakana characters plus Yen/Yuan symbol."
 				},
 				{
-					name: "U+A4D0–A4FF"
+					name: "U+A4D0–A4FF",
+					"description": "Lisu."
 				},
 				{
-					name: "U+A000–A48F"
+					name: "U+A000–A48F",
+					"description": "Yi Syllables."
 				},
 				{
-					name: "U+A490–A4CF"
+					name: "U+A490–A4CF",
+					"description": "Yi Radicals."
 				},
 				{
-					name: "U+2000-206F"
+					name: "U+2000-206F",
+					"description": "General Punctuation."
 				},
 				{
-					name: "U+3000–303F"
+					name: "U+3000–303F",
+					"description": "CJK Symbols and Punctuation."
 				},
 				{
-					name: "U+2070–209F"
+					name: "U+2070–209F",
+					"description": "Superscripts and Subscripts."
 				},
 				{
-					name: "U+20A0–20CF"
+					name: "U+20A0–20CF",
+					"description": "Currency Symbols."
 				},
 				{
-					name: "U+2100–214F"
+					name: "U+2100–214F",
+					"description": "Letterlike Symbols."
 				},
 				{
-					name: "U+2150–218F"
+					name: "U+2150–218F",
+					"description": "Number Forms."
 				},
 				{
-					name: "U+2190–21FF"
+					name: "U+2190–21FF",
+					"description": "Arrows."
 				},
 				{
-					name: "U+2200–22FF"
+					name: "U+2200–22FF",
+					"description": "Mathematical Operators."
 				},
 				{
-					name: "U+2300–23FF"
+					name: "U+2300–23FF",
+					"description": "Miscellaneous Technical."
 				},
 				{
-					name: "U+E000-F8FF"
+					name: "U+E000-F8FF",
+					"description": "Private Use Area."
 				},
 				{
-					name: "U+FB00–FB4F"
+					name: "U+FB00–FB4F",
+					"description": "Alphabetic Presentation Forms. Ligatures for latin, Armenian, and Hebrew."
 				},
 				{
-					name: "U+FB50–FDFF"
+					name: "U+FB50–FDFF",
+					"description": "Arabic Presentation Forms-A. Contextual forms / ligatures for Persian, Urdu, Sindhi, Central Asian languages, etc, Arabic pedagogical symbols, word ligatures."
 				},
 				{
-					name: "U+1F600–1F64F"
+					name: "U+1F600–1F64F",
+					"description": "Emoji: Emoticons."
 				},
 				{
-					name: "U+2600–26FF"
+					name: "U+2600–26FF",
+					"description": "Emoji: Miscellaneous Symbols."
 				},
 				{
-					name: "U+1F300–1F5FF"
+					name: "U+1F300–1F5FF",
+					"description": "Emoji: Miscellaneous Symbols and Pictographs."
 				},
 				{
-					name: "U+1F900–1F9FF"
+					name: "U+1F900–1F9FF",
+					"description": "Emoji: Supplemental Symbols and Pictographs."
 				},
 				{
-					name: "U+1F680–1F6FF"
+					name: "U+1F680–1F6FF",
+					"description": "Emoji: Transport and Map Symbols."
 				}
 			],
 			"syntax": "<unicode-range>#",
@@ -11779,10 +12461,12 @@ export const cssData : CSSDataV1 = {
 					"description": "Raise the baseline of the box to the proper position for superscripts of the parent's box. (This value has no effect on the font size of the element's text.)"
 				},
 				{
-					name: "text-bottom"
+					name: "text-bottom",
+					"description": "Align the bottom of the box with the after-edge of the parent element's font."
 				},
 				{
-					name: "text-top"
+					name: "text-top",
+					"description": "Align the top of the box with the before-edge of the parent element's font."
 				},
 				{
 					name: "top",
@@ -11829,20 +12513,24 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "alternate"
+					name: "alternate",
+					"description": "The animation cycle iterations that are odd counts are played in the normal direction, and the animation cycle iterations that are even counts are played in a reverse direction."
 				},
 				{
-					name: "alternate-reverse"
+					name: "alternate-reverse",
+					"description": "The animation cycle iterations that are odd counts are played in the reverse direction, and the animation cycle iterations that are even counts are played in a normal direction."
 				},
 				{
-					name: "backwards"
+					name: "backwards",
+					"description": "The beginning property value (as defined in the first @keyframes at-rule) is applied before the animation is displayed, during the period defined by 'animation-delay'."
 				},
 				{
 					name: "both",
 					"description": "Both forwards and backwards fill modes are applied."
 				},
 				{
-					name: "forwards"
+					name: "forwards",
+					"description": "The final property value (as defined in the last @keyframes at-rule) is maintained after the animation completes."
 				},
 				{
 					name: "infinite",
@@ -11889,10 +12577,12 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "alternate"
+					name: "alternate",
+					"description": "The animation cycle iterations that are odd counts are played in the normal direction, and the animation cycle iterations that are even counts are played in a reverse direction."
 				},
 				{
-					name: "alternate-reverse"
+					name: "alternate-reverse",
+					"description": "The animation cycle iterations that are odd counts are played in the reverse direction, and the animation cycle iterations that are even counts are played in a normal direction."
 				},
 				{
 					name: "normal",
@@ -11927,14 +12617,16 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "backwards"
+					name: "backwards",
+					"description": "The beginning property value (as defined in the first @keyframes at-rule) is applied before the animation is displayed, during the period defined by 'animation-delay'."
 				},
 				{
 					name: "both",
 					"description": "Both forwards and backwards fill modes are applied."
 				},
 				{
-					name: "forwards"
+					name: "forwards",
+					"description": "The final property value (as defined in the last @keyframes at-rule) is maintained after the animation completes."
 				},
 				{
 					name: "none",
@@ -11990,10 +12682,12 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "paused"
+					name: "paused",
+					"description": "A running animation will be paused."
 				},
 				{
-					name: "running"
+					name: "running",
+					"description": "Resume playback of a paused animation."
 				}
 			],
 			"description": "Defines whether the animation is running or paused.",
@@ -12170,34 +12864,44 @@ export const cssData : CSSDataV1 = {
 					"description": "No filter effects are applied."
 				},
 				{
-					name: "blur()"
+					name: "blur()",
+					"description": "Applies a Gaussian blur to the input image."
 				},
 				{
-					name: "brightness()"
+					name: "brightness()",
+					"description": "Applies a linear multiplier to input image, making it appear more or less bright."
 				},
 				{
-					name: "contrast()"
+					name: "contrast()",
+					"description": "Adjusts the contrast of the input."
 				},
 				{
-					name: "drop-shadow()"
+					name: "drop-shadow()",
+					"description": "Applies a drop shadow effect to the input image."
 				},
 				{
-					name: "grayscale()"
+					name: "grayscale()",
+					"description": "Converts the input image to grayscale."
 				},
 				{
-					name: "hue-rotate()"
+					name: "hue-rotate()",
+					"description": "Applies a hue rotation on the input image. "
 				},
 				{
-					name: "invert()"
+					name: "invert()",
+					"description": "Inverts the samples in the input image."
 				},
 				{
-					name: "opacity()"
+					name: "opacity()",
+					"description": "Applies transparency to the samples in the input image."
 				},
 				{
-					name: "saturate()"
+					name: "saturate()",
+					"description": "Saturates the input image."
 				},
 				{
-					name: "sepia()"
+					name: "sepia()",
+					"description": "Converts the input image to sepia."
 				},
 				{
 					name: "url()",
@@ -12288,7 +12992,8 @@ export const cssData : CSSDataV1 = {
 					name: "none"
 				},
 				{
-					name: "repeat"
+					name: "repeat",
+					"description": "The image is tiled (repeated) to fill the area."
 				},
 				{
 					name: "round",
@@ -12410,14 +13115,16 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "block-axis"
+					name: "block-axis",
+					"description": "Elements are oriented along the box's axis."
 				},
 				{
 					name: "horizontal",
 					"description": "The box displays its children from left to right in a horizontal line."
 				},
 				{
-					name: "inline-axis"
+					name: "inline-axis",
+					"description": "Elements are oriented vertically."
 				},
 				{
 					name: "vertical",
@@ -12495,10 +13202,12 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "border-box"
+					name: "border-box",
+					"description": "The specified width and height (and respective min/max properties) on this element determine the border box of the element."
 				},
 				{
-					name: "content-box"
+					name: "content-box",
+					"description": "Behavior of width and height as specified by CSS2.1. The specified width and height (and respective min/max properties) apply to the width and height respectively of the content box of the element."
 				}
 			],
 			"description": "Box Model addition in CSS3.",
@@ -12938,34 +13647,44 @@ export const cssData : CSSDataV1 = {
 					"description": "No filter effects are applied."
 				},
 				{
-					name: "blur()"
+					name: "blur()",
+					"description": "Applies a Gaussian blur to the input image."
 				},
 				{
-					name: "brightness()"
+					name: "brightness()",
+					"description": "Applies a linear multiplier to input image, making it appear more or less bright."
 				},
 				{
-					name: "contrast()"
+					name: "contrast()",
+					"description": "Adjusts the contrast of the input."
 				},
 				{
-					name: "drop-shadow()"
+					name: "drop-shadow()",
+					"description": "Applies a drop shadow effect to the input image."
 				},
 				{
-					name: "grayscale()"
+					name: "grayscale()",
+					"description": "Converts the input image to grayscale."
 				},
 				{
-					name: "hue-rotate()"
+					name: "hue-rotate()",
+					"description": "Applies a hue rotation on the input image. "
 				},
 				{
-					name: "invert()"
+					name: "invert()",
+					"description": "Inverts the samples in the input image."
 				},
 				{
-					name: "opacity()"
+					name: "opacity()",
+					"description": "Applies transparency to the samples in the input image."
 				},
 				{
-					name: "saturate()"
+					name: "saturate()",
+					"description": "Saturates the input image."
 				},
 				{
-					name: "sepia()"
+					name: "sepia()",
+					"description": "Converts the input image to sepia."
 				},
 				{
 					name: "url()",
@@ -13071,7 +13790,8 @@ export const cssData : CSSDataV1 = {
 					"description": "Conditional hyphenation characters inside a word, if present, take priority over automatic resources when determining hyphenation points within the word."
 				},
 				{
-					name: "manual"
+					name: "manual",
+					"description": "Words are only broken at line breaks where there are characters inside the word that suggest line break opportunities"
 				},
 				{
 					name: "none",
@@ -13362,7 +14082,8 @@ export const cssData : CSSDataV1 = {
 					"description": "Content flows as it would in a regular content box."
 				},
 				{
-					name: "break"
+					name: "break",
+					"description": "If the content fits within the CSS Region, then this property has no effect."
 				}
 			],
 			"description": "The 'region-fragment' property controls the behavior of the last region associated with a named flow.",
@@ -13495,70 +14216,91 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "matrix()"
+					name: "matrix()",
+					"description": "Specifies a 2D transformation in the form of a transformation matrix of six values. matrix(a,b,c,d,e,f) is equivalent to applying the transformation matrix [a b c d e f]"
 				},
 				{
-					name: "matrix3d()"
+					name: "matrix3d()",
+					"description": "Specifies a 3D transformation as a 4x4 homogeneous matrix of 16 values in column-major order."
 				},
 				{
 					name: "none"
 				},
 				{
-					name: "perspective()"
+					name: "perspective()",
+					"description": "Specifies a perspective projection matrix."
 				},
 				{
-					name: "rotate()"
+					name: "rotate()",
+					"description": "Specifies a 2D rotation by the angle specified in the parameter about the origin of the element, as defined by the transform-origin property."
 				},
 				{
-					name: "rotate3d()"
+					name: "rotate3d()",
+					"description": "Specifies a clockwise 3D rotation by the angle specified in last parameter about the [x,y,z] direction vector described by the first 3 parameters."
 				},
 				{
-					name: "rotateX('angle')"
+					name: "rotateX('angle')",
+					"description": "Specifies a clockwise rotation by the given angle about the X axis."
 				},
 				{
-					name: "rotateY('angle')"
+					name: "rotateY('angle')",
+					"description": "Specifies a clockwise rotation by the given angle about the Y axis."
 				},
 				{
-					name: "rotateZ('angle')"
+					name: "rotateZ('angle')",
+					"description": "Specifies a clockwise rotation by the given angle about the Z axis."
 				},
 				{
-					name: "scale()"
+					name: "scale()",
+					"description": "Specifies a 2D scale operation by the [sx,sy] scaling vector described by the 2 parameters. If the second parameter is not provided, it is takes a value equal to the first."
 				},
 				{
-					name: "scale3d()"
+					name: "scale3d()",
+					"description": "Specifies a 3D scale operation by the [sx,sy,sz] scaling vector described by the 3 parameters."
 				},
 				{
-					name: "scaleX()"
+					name: "scaleX()",
+					"description": "Specifies a scale operation using the [sx,1] scaling vector, where sx is given as the parameter."
 				},
 				{
-					name: "scaleY()"
+					name: "scaleY()",
+					"description": "Specifies a scale operation using the [sy,1] scaling vector, where sy is given as the parameter."
 				},
 				{
-					name: "scaleZ()"
+					name: "scaleZ()",
+					"description": "Specifies a scale operation using the [1,1,sz] scaling vector, where sz is given as the parameter."
 				},
 				{
-					name: "skew()"
+					name: "skew()",
+					"description": "Specifies a skew transformation along the X and Y axes. The first angle parameter specifies the skew on the X axis. The second angle parameter specifies the skew on the Y axis. If the second parameter is not given then a value of 0 is used for the Y angle (ie: no skew on the Y axis)."
 				},
 				{
-					name: "skewX()"
+					name: "skewX()",
+					"description": "Specifies a skew transformation along the X axis by the given angle."
 				},
 				{
-					name: "skewY()"
+					name: "skewY()",
+					"description": "Specifies a skew transformation along the Y axis by the given angle."
 				},
 				{
-					name: "translate()"
+					name: "translate()",
+					"description": "Specifies a 2D translation by the vector [tx, ty], where tx is the first translation-value parameter and ty is the optional second translation-value parameter."
 				},
 				{
-					name: "translate3d()"
+					name: "translate3d()",
+					"description": "Specifies a 3D translation by the vector [tx,ty,tz], with tx, ty and tz being the first, second and third translation-value parameters respectively."
 				},
 				{
-					name: "translateX()"
+					name: "translateX()",
+					"description": "Specifies a translation by the given amount in the X direction."
 				},
 				{
-					name: "translateY()"
+					name: "translateY()",
+					"description": "Specifies a translation by the given amount in the Y direction."
 				},
 				{
-					name: "translateZ()"
+					name: "translateZ()",
+					"description": "Specifies a translation by the given amount in the Z direction. Note that percentage values are not allowed in the translateZ translation-value, and if present are evaluated as 0."
 				}
 			],
 			"description": "A two-dimensional transformation is applied to an element through the 'transform' property. This property contains a list of transform functions similar to those allowed by SVG.",
@@ -13624,7 +14366,8 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [
 				{
-					name: "flat"
+					name: "flat",
+					"description": "All children of this element are rendered flattened into the 2D plane of the element."
 				}
 			],
 			"description": "Defines how nested elements are rendered in 3D space.",
@@ -13793,13 +14536,16 @@ export const cssData : CSSDataV1 = {
 					"description": "Sets 'white-space-collapsing' to 'collapse' and 'text-wrap' to 'none'."
 				},
 				{
-					name: "pre"
+					name: "pre",
+					"description": "Sets 'white-space-collapsing' to 'preserve' and 'text-wrap' to 'none'."
 				},
 				{
-					name: "pre-line"
+					name: "pre-line",
+					"description": "Sets 'white-space-collapsing' to 'preserve-breaks' and 'text-wrap' to 'normal'."
 				},
 				{
-					name: "pre-wrap"
+					name: "pre-wrap",
+					"description": "Sets 'white-space-collapsing' to 'preserve' and 'text-wrap' to 'normal'."
 				}
 			],
 			"syntax": "normal | pre | nowrap | pre-wrap | pre-line",
@@ -13830,7 +14576,8 @@ export const cssData : CSSDataV1 = {
 					"description": "The width depends on the values of other properties."
 				},
 				{
-					name: "fit-content"
+					name: "fit-content",
+					"description": "Use the fit-content inline size or fit-content block size, as appropriate to the writing mode."
 				},
 				{
 					name: "max-content",
@@ -13866,7 +14613,8 @@ export const cssData : CSSDataV1 = {
 					"description": "Indicates that the author expects to animate or change something about the element’s contents in the near future."
 				},
 				{
-					name: "scroll-position"
+					name: "scroll-position",
+					"description": "Indicates that the author expects to animate or change the scroll position of the element in the near future."
 				}
 			],
 			"syntax": "auto | <animateable-feature>#",
@@ -13880,7 +14628,8 @@ export const cssData : CSSDataV1 = {
 			name: "word-break",
 			values: [
 				{
-					name: "break-all"
+					name: "break-all",
+					"description": "Lines may break between any two grapheme clusters for non-CJK scripts."
 				},
 				{
 					name: "keep-all",
@@ -13934,19 +14683,24 @@ export const cssData : CSSDataV1 = {
 			name: "writing-mode",
 			values: [
 				{
-					name: "horizontal-tb"
+					name: "horizontal-tb",
+					"description": "Top-to-bottom block flow direction. The writing mode is horizontal."
 				},
 				{
-					name: "sideways-lr"
+					name: "sideways-lr",
+					"description": "Left-to-right block flow direction. The writing mode is vertical, while the typographic mode is horizontal."
 				},
 				{
-					name: "sideways-rl"
+					name: "sideways-rl",
+					"description": "Right-to-left block flow direction. The writing mode is vertical, while the typographic mode is horizontal."
 				},
 				{
-					name: "vertical-lr"
+					name: "vertical-lr",
+					"description": "Left-to-right block flow direction. The writing mode is vertical."
 				},
 				{
-					name: "vertical-rl"
+					name: "vertical-rl",
+					"description": "Right-to-left block flow direction. The writing mode is vertical."
 				}
 			],
 			"syntax": "horizontal-tb | vertical-rl | vertical-lr | sideways-rl | sideways-lr",
@@ -16641,517 +17395,4 @@ export const cssData : CSSDataV1 = {
 			"description": "The ::spelling-error CSS pseudo-element represents a text segment which the user agent has flagged as incorrectly spelled."
 		}
 	]
-};
-export const descriptions : any = {
-	"100": "Thin",
-	"200": "Extra Light (Ultra Light)",
-	"300": "Light",
-	"400": "Normal",
-	"500": "Medium",
-	"600": "Semi Bold (Demi Bold)",
-	"700": "Bold",
-	"800": "Extra Bold (Ultra Bold)",
-	"900": "Black (Heavy)",
-	"self-end": "The item is packed flush to the edge of the alignment container of the end side of the item, in the appropriate axis.",
-	"self-start": "The item is packed flush to the edge of the alignment container of the start side of the item, in the appropriate axis..",
-	"alternate": "The animation cycle iterations that are odd counts are played in the normal direction, and the animation cycle iterations that are even counts are played in a reverse direction.",
-	"alternate-reverse": "The animation cycle iterations that are odd counts are played in the reverse direction, and the animation cycle iterations that are even counts are played in a normal direction.",
-	"backwards": "The beginning property value (as defined in the first @keyframes at-rule) is applied before the animation is displayed, during the period defined by 'animation-delay'.",
-	"forwards": "The final property value (as defined in the last @keyframes at-rule) is maintained after the animation completes.",
-	"paused": "A running animation will be paused.",
-	"running": "Resume playback of a paused animation.",
-	"multiply": "The source color is multiplied by the destination color and replaces the destination.",
-	"screen": "Multiplies the complements of the backdrop and source color values, then complements the result.",
-	"overlay": "Multiplies or screens the colors, depending on the backdrop color value.",
-	"darken": "Selects the darker of the backdrop and source colors.",
-	"lighten": "Selects the lighter of the backdrop and source colors.",
-	"color-dodge": "Brightens the backdrop color to reflect the source color.",
-	"color-burn": "Darkens the backdrop color to reflect the source color.",
-	"hard-light": "Multiplies or screens the colors, depending on the source color value.",
-	"soft-light": "Darkens or lightens the colors, depending on the source color value.",
-	"difference": "Subtracts the darker of the two constituent colors from the lighter color..",
-	"exclusion": "Produces an effect similar to that of the Difference mode but lower in contrast.",
-	"hue": "Creates a color with the hue of the source color and the saturation and luminosity of the backdrop color.",
-	"saturation": "Creates a color with the saturation of the source color and the hue and luminosity of the backdrop color.",
-	"color": "Creates a color with the hue and saturation of the source color and the luminosity of the backdrop color.",
-	"luminosity": "Creates a color with the luminosity of the source color and the hue and saturation of the backdrop color.",
-	"repeat": "The image is tiled (repeated) to fill the area.",
-	"clone": "Each box is independently wrapped with the border and padding.",
-	"slice": "The effect is as though the element were rendered with no breaks present, and then sliced by the breaks afterward.",
-	"inset": "Changes the drop shadow from an outer shadow (one that shadows the box onto the canvas, as if it were lifted above the canvas) to an inner shadow (one that shadows the canvas onto the box, as if the box were cut out of the canvas and shifted behind it).",
-	"border-box": "The specified width and height (and respective min/max properties) on this element determine the border box of the element.",
-	"content-box": "Behavior of width and height as specified by CSS2.1. The specified width and height (and respective min/max properties) apply to the width and height respectively of the content box of the element.",
-	"rect()": "Specifies offsets from the edges of the border box.",
-	"evenodd": "Determines the ‘insideness’ of a point on the canvas by drawing a ray from that point to infinity in any direction and counting the number of path segments from the given shape that the ray crosses.",
-	"nonzero": "Determines the ‘insideness’ of a point on the canvas by drawing a ray from that point to infinity in any direction and then examining the places where a segment of the shape crosses the ray.",
-	"linearRGB": "Color operations should occur in the linearized RGB color space.",
-	"sRGB": "Color operations should occur in the sRGB color space.",
-	"balance": "Balance content equally between columns, if possible.",
-	"size": "For properties that can have effects on more than just an element and its descendants, those effects don't escape the containing element.",
-	"layout": "Turns on layout containment for the element.",
-	"paint": "Turns on paint containment for the element.",
-	"attr()": "The attr(n) function returns as a string the value of attribute n for the subject of the selector.",
-	"counter(name)": "Counters are denoted by identifiers (see the 'counter-increment' and 'counter-reset' properties).",
-	"alias": "Indicates an alias of/shortcut to something is to be created. Often rendered as an arrow with a small curved arrow next to it.",
-	"all-scroll": "Indicates that the something can be scrolled in any direction. Often rendered as arrows pointing up, down, left, and right with a dot in the middle.",
-	"cell": "Indicates that a cell or set of cells may be selected. Often rendered as a thick plus-sign with a dot in the middle.",
-	"col-resize": "Indicates that the item/column can be resized horizontally. Often rendered as arrows pointing left and right with a vertical bar separating them.",
-	"context-menu": "A context menu is available for the object under the cursor. Often rendered as an arrow with a small menu-like graphic next to it.",
-	"copy": "Indicates something is to be copied. Often rendered as an arrow with a small plus sign next to it.",
-	"crosshair": "A simple crosshair (e.g., short line segments resembling a '+' sign). Often used to indicate a two dimensional bitmap selection mode.",
-	"e-resize": "Indicates that east edge is to be moved.",
-	"ew-resize": "Indicates a bidirectional east-west resize cursor.",
-	"grab": "Indicates that something can be grabbed.",
-	"grabbing": "Indicates that something is being grabbed.",
-	"help": "Help is available for the object under the cursor. Often rendered as a question mark or a balloon.",
-	"move": "Indicates something is to be moved.",
-	"-moz-grab": "Indicates that something can be grabbed.",
-	"-moz-grabbing": "Indicates that something is being grabbed.",
-	"-moz-zoom-in": "Indicates that something can be zoomed (magnified) in.",
-	"-moz-zoom-out": "Indicates that something can be zoomed (magnified) out.",
-	"ne-resize": "Indicates that movement starts from north-east corner.",
-	"nesw-resize": "Indicates a bidirectional north-east/south-west cursor.",
-	"no-drop": "Indicates that the dragged item cannot be dropped at the current cursor location. Often rendered as a hand or pointer with a small circle with a line through it.",
-	"not-allowed": "Indicates that the requested action will not be carried out. Often rendered as a circle with a line through it.",
-	"n-resize": "Indicates that north edge is to be moved.",
-	"ns-resize": "Indicates a bidirectional north-south cursor.",
-	"nw-resize": "Indicates that movement starts from north-west corner.",
-	"nwse-resize": "Indicates a bidirectional north-west/south-east cursor.",
-	"pointer": "The cursor is a pointer that indicates a link.",
-	"progress": "A progress indicator. The program is performing some processing, but is different from 'wait' in that the user may still interact with the program. Often rendered as a spinning beach ball, or an arrow with a watch or hourglass.",
-	"row-resize": "Indicates that the item/row can be resized vertically. Often rendered as arrows pointing up and down with a horizontal bar separating them.",
-	"se-resize": "Indicates that movement starts from south-east corner.",
-	"s-resize": "Indicates that south edge is to be moved.",
-	"sw-resize": "Indicates that movement starts from south-west corner.",
-	"vertical-text": "Indicates vertical-text that may be selected. Often rendered as a horizontal I-beam.",
-	"wait": "Indicates that the program is busy and the user should wait. Often rendered as a watch or hourglass.",
-	"-webkit-grab": "Indicates that something can be grabbed.",
-	"-webkit-grabbing": "Indicates that something is being grabbed.",
-	"-webkit-zoom-in": "Indicates that something can be zoomed (magnified) in.",
-	"-webkit-zoom-out": "Indicates that something can be zoomed (magnified) out.",
-	"w-resize": "Indicates that west edge is to be moved.",
-	"zoom-in": "Indicates that something can be zoomed (magnified) in.",
-	"zoom-out": "Indicates that something can be zoomed (magnified) out.",
-	"ltr": "Left-to-right direction.",
-	"rtl": "Right-to-left direction.",
-	"block": "The element generates a block-level box",
-	"flex": "The element generates a principal flex container box and establishes a flex formatting context.",
-	"flexbox": "The element lays out its contents using flow layout (block-and-inline layout). Standardized as 'flex'.",
-	"flow-root": "The element generates a block container box, and lays out its contents using flow layout.",
-	"grid": "The element generates a principal grid container box, and establishes a grid formatting context.",
-	"inline-block": "A block box, which itself is flowed as a single inline box, similar to a replaced element. The inside of an inline-block is formatted as a block box, and the box itself is formatted as an inline box.",
-	"inline-flex": "Inline-level flex container.",
-	"inline-flexbox": "Inline-level flex container. Standardized as 'inline-flex'",
-	"inline-table": "Inline-level table wrapper box containing table box.",
-	"list-item": "One or more block boxes and one marker box.",
-	"-moz-box": "The element lays out its contents using flow layout (block-and-inline layout). Standardized as 'flex'.",
-	"-moz-inline-box": "Inline-level flex container. Standardized as 'inline-flex'",
-	"-ms-flexbox": "The element lays out its contents using flow layout (block-and-inline layout). Standardized as 'flex'.",
-	"-ms-grid": "The element generates a principal grid container box, and establishes a grid formatting context.",
-	"-ms-inline-flexbox": "Inline-level flex container. Standardized as 'inline-flex'",
-	"-ms-inline-grid": "Inline-level grid container.",
-	"run-in": "The element generates a run-in box. Run-in elements act like inlines or blocks, depending on the surrounding elements.",
-	"table": "The element generates a principal table wrapper box containing an additionally-generated table box, and establishes a table formatting context.",
-	"-webkit-box": "The element lays out its contents using flow layout (block-and-inline layout). Standardized as 'flex'.",
-	"-webkit-flex": "The element lays out its contents using flow layout (block-and-inline layout).",
-	"-webkit-inline-box": "Inline-level flex container. Standardized as 'inline-flex'",
-	"-webkit-inline-flex": "Inline-level flex container.",
-	"hide": "No borders or backgrounds are drawn around/behind empty cells.",
-	"show": "Borders and backgrounds are drawn around/behind empty cells (like normal cells).",
-	"accumulate": "If the ancestor container element has a property of new, then all graphics elements within the current container are rendered both on the parent's background image and onto the target.",
-	"new": "Create a new background image canvas. All children of the current container element can access the background, and they will be rendered onto both the parent's background image canvas in addition to the target device.",
-	"blur()": "Applies a Gaussian blur to the input image.",
-	"brightness()": "Applies a linear multiplier to input image, making it appear more or less bright.",
-	"contrast()": "Adjusts the contrast of the input.",
-	"drop-shadow()": "Applies a drop shadow effect to the input image.",
-	"grayscale()": "Converts the input image to grayscale.",
-	"hue-rotate()": "Applies a hue rotation on the input image. ",
-	"invert()": "Inverts the samples in the input image.",
-	"opacity()": "Applies transparency to the samples in the input image.",
-	"saturate()": "Saturates the input image.",
-	"sepia()": "Converts the input image to sepia.",
-	"column-reverse": "Same as 'column', except the main-start and main-end directions are swapped.",
-	"row-reverse": "Same as 'row', except the main-start and main-end directions are swapped.",
-	"wrap-reverse": "Same as 'wrap', except the cross-start and cross-end directions are swapped.",
-	"inline-end": "A keyword indicating that the element must float on the end side of its containing block. That is the right side with ltr scripts, and the left side with rtl scripts.",
-	"inline-start": "A keyword indicating that the element must float on the start side of its containing block. That is the left side with ltr scripts, and the right side with rtl scripts.",
-	"bold": "Same as 700",
-	"bolder": "Specifies the weight of the face bolder than the inherited value.",
-	"caption": "The font used for captioned controls (e.g., buttons, drop-downs, etc.).",
-	"lighter": "Specifies the weight of the face lighter than the inherited value.",
-	"menu": "The font used in menus (e.g., dropdown menus and menu lists).",
-	"message-box": "The font used in dialog boxes.",
-	"small-caption": "The font used for labeling small controls.",
-	"status-bar": "The font used in window status bars.",
-	"\"aalt\"": "Access All Alternates.",
-	"\"abvf\"": "Above-base Forms. Required in Khmer script.",
-	"\"abvm\"": "Above-base Mark Positioning. Required in Indic scripts.",
-	"\"abvs\"": "Above-base Substitutions. Required in Indic scripts.",
-	"\"afrc\"": "Alternative Fractions.",
-	"\"akhn\"": "Akhand. Required in most Indic scripts.",
-	"\"blwf\"": "Below-base Form. Required in a number of Indic scripts.",
-	"\"blwm\"": "Below-base Mark Positioning. Required in Indic scripts.",
-	"\"blws\"": "Below-base Substitutions. Required in Indic scripts.",
-	"\"calt\"": "Contextual Alternates.",
-	"\"case\"": "Case-Sensitive Forms. Applies only to European scripts; particularly prominent in Spanish-language setting.",
-	"\"ccmp\"": "Glyph Composition/Decomposition.",
-	"\"cfar\"": "Conjunct Form After Ro. Required in Khmer scripts.",
-	"\"cjct\"": "Conjunct Forms. Required in Indic scripts that show similarity to Devanagari.",
-	"\"clig\"": "Contextual Ligatures.",
-	"\"cpct\"": "Centered CJK Punctuation. Used primarily in Chinese fonts.",
-	"\"cpsp\"": "Capital Spacing. Should not be used in connecting scripts (e.g. most Arabic).",
-	"\"cswh\"": "Contextual Swash.",
-	"\"curs\"": "Cursive Positioning. Can be used in any cursive script.",
-	"\"c2pc\"": "Petite Capitals From Capitals. Applies only to bicameral scripts.",
-	"\"dist\"": "Distances. Required in Indic scripts.",
-	"\"dnom\"": "Denominators.",
-	"\"dtls\"": "Dotless Forms. Applied to math formula layout.",
-	"\"expt\"": "Expert Forms. Applies only to Japanese.",
-	"\"falt\"": "Final Glyph on Line Alternates. Can be used in any cursive script.",
-	"\"fin2\"": "Terminal Form #2. Used only with the Syriac script.",
-	"\"fin3\"": "Terminal Form #3. Used only with the Syriac script.",
-	"\"fina\"": "Terminal Forms. Can be used in any alphabetic script.",
-	"\"flac\"": "Flattened ascent forms. Applied to math formula layout.",
-	"\"frac\"": "Fractions.",
-	"\"fwid\"": "Full Widths. Applies to any script which can use monospaced forms.",
-	"\"half\"": "Half Forms. Required in Indic scripts that show similarity to Devanagari.",
-	"\"haln\"": "Halant Forms. Required in Indic scripts.",
-	"\"halt\"": "Alternate Half Widths. Used only in CJKV fonts.",
-	"\"hist\"": "Historical Forms.",
-	"\"hkna\"": "Horizontal Kana Alternates. Applies only to fonts that support kana (hiragana and katakana).",
-	"\"hlig\"": "Historical Ligatures.",
-	"\"hngl\"": "Hangul. Korean only.",
-	"\"hojo\"": "Hojo Kanji Forms (JIS X 0212-1990 Kanji Forms). Used only with Kanji script.",
-	"\"hwid\"": "Half Widths. Generally used only in CJKV fonts.",
-	"\"init\"": "Initial Forms. Can be used in any alphabetic script.",
-	"\"isol\"": "Isolated Forms. Can be used in any cursive script.",
-	"\"ital\"": "Italics. Applies mostly to Latin; note that many non-Latin fonts contain Latin as well.",
-	"\"jalt\"": "Justification Alternates. Can be used in any cursive script.",
-	"\"jp78\"": "JIS78 Forms. Applies only to Japanese.",
-	"\"jp83\"": "JIS83 Forms. Applies only to Japanese.",
-	"\"jp90\"": "JIS90 Forms. Applies only to Japanese.",
-	"\"jp04\"": "JIS2004 Forms. Applies only to Japanese.",
-	"\"lfbd\"": "Left Bounds.",
-	"\"ljmo\"": "Leading Jamo Forms. Required for Hangul script when Ancient Hangul writing system is supported.",
-	"\"locl\"": "Localized Forms.",
-	"\"ltra\"": "Left-to-right glyph alternates.",
-	"\"ltrm\"": "Left-to-right mirrored forms.",
-	"\"mark\"": "Mark Positioning.",
-	"\"med2\"": "Medial Form #2. Used only with the Syriac script.",
-	"\"medi\"": "Medial Forms.",
-	"\"mgrk\"": "Mathematical Greek.",
-	"\"mkmk\"": "Mark to Mark Positioning.",
-	"\"nalt\"": "Alternate Annotation Forms.",
-	"\"nlck\"": "NLC Kanji Forms. Used only with Kanji script.",
-	"\"nukt\"": "Nukta Forms. Required in Indic scripts..",
-	"\"numr\"": "Numerators.",
-	"\"opbd\"": "Optical Bounds.",
-	"\"ordn\"": "Ordinals. Applies mostly to Latin script.",
-	"\"ornm\"": "Ornaments.",
-	"\"palt\"": "Proportional Alternate Widths. Used mostly in CJKV fonts.",
-	"\"pcap\"": "Petite Capitals.",
-	"\"pkna\"": "Proportional Kana. Generally used only in Japanese fonts.",
-	"\"pnum\"": "Proportional Figures.",
-	"\"pref\"": "Pre-base Forms. Required in Khmer and Myanmar (Burmese) scripts and southern Indic scripts that may display a pre-base form of Ra.",
-	"\"pres\"": "Pre-base Substitutions. Required in Indic scripts.",
-	"\"pstf\"": "Post-base Forms. Required in scripts of south and southeast Asia that have post-base forms for consonants eg: Gurmukhi, Malayalam, Khmer.",
-	"\"psts\"": "Post-base Substitutions.",
-	"\"pwid\"": "Proportional Widths.",
-	"\"qwid\"": "Quarter Widths. Generally used only in CJKV fonts.",
-	"\"rand\"": "Randomize.",
-	"\"rclt\"": "Required Contextual Alternates. May apply to any script, but is especially important for many styles of Arabic.",
-	"\"rlig\"": "Required Ligatures. Applies to Arabic and Syriac. May apply to some other scripts.",
-	"\"rkrf\"": "Rakar Forms. Required in Devanagari and Gujarati scripts.",
-	"\"rphf\"": "Reph Form. Required in Indic scripts. E.g. Devanagari, Kannada.",
-	"\"rtbd\"": "Right Bounds.",
-	"\"rtla\"": "Right-to-left alternates.",
-	"\"rtlm\"": "Right-to-left mirrored forms.",
-	"\"ruby\"": "Ruby Notation Forms. Applies only to Japanese.",
-	"\"salt\"": "Stylistic Alternates.",
-	"\"sinf\"": "Scientific Inferiors.",
-	"\"size\"": "Optical size.",
-	"\"smpl\"": "Simplified Forms. Applies only to Chinese and Japanese.",
-	"\"ssty\"": "Math script style alternates.",
-	"\"stch\"": "Stretching Glyph Decomposition.",
-	"\"subs\"": "Subscript.",
-	"\"sups\"": "Superscript.",
-	"\"titl\"": "Titling.",
-	"\"tjmo\"": "Trailing Jamo Forms. Required for Hangul script when Ancient Hangul writing system is supported.",
-	"\"tnam\"": "Traditional Name Forms. Applies only to Japanese.",
-	"\"trad\"": "Traditional Forms. Applies only to Chinese and Japanese.",
-	"\"twid\"": "Third Widths. Generally used only in CJKV fonts.",
-	"\"unic\"": "Unicase.",
-	"\"valt\"": "Alternate Vertical Metrics. Applies only to scripts with vertical writing modes.",
-	"\"vatu\"": "Vattu Variants. Used for Indic scripts. E.g. Devanagari.",
-	"\"vert\"": "Vertical Alternates. Applies only to scripts with vertical writing modes.",
-	"\"vhal\"": "Alternate Vertical Half Metrics. Used only in CJKV fonts.",
-	"\"vjmo\"": "Vowel Jamo Forms. Required for Hangul script when Ancient Hangul writing system is supported.",
-	"\"vkna\"": "Vertical Kana Alternates. Applies only to fonts that support kana (hiragana and katakana).",
-	"\"vkrn\"": "Vertical Kerning.",
-	"\"vpal\"": "Proportional Alternate Vertical Metrics. Used mostly in CJKV fonts.",
-	"\"vrt2\"": "Vertical Alternates and Rotation. Applies only to scripts with vertical writing modes.",
-	"\"zero\"": "Slashed Zero.",
-	"narrower": "Indicates a narrower value relative to the width of the parent element.",
-	"wider": "Indicates a wider value relative to the width of the parent element.",
-	"weight": "Allow synthetic bold faces.",
-	"annotation()": "Enables display of alternate annotation forms.",
-	"character-variant()": "Enables display of specific character variants.",
-	"historical-forms": "Enables display of historical forms.",
-	"ornaments()": "Enables replacement of default glyphs with ornaments, if provided in the font.",
-	"styleset()": "Enables display with stylistic sets.",
-	"stylistic()": "Enables display of stylistic alternates.",
-	"swash()": "Enables display of swash glyphs.",
-	"all-petite-caps": "Enables display of petite capitals for both upper and lowercase letters.",
-	"all-small-caps": "Enables display of small capitals for both upper and lowercase letters.",
-	"petite-caps": "Enables display of petite capitals.",
-	"titling-caps": "Enables display of titling capitals.",
-	"unicase": "Enables display of mixture of small capitals for uppercase letters with normal lowercase letters.",
-	"full-width": "Enables rendering of full-width variants.",
-	"jis04": "Enables rendering of JIS04 forms.",
-	"jis78": "Enables rendering of JIS78 forms.",
-	"jis83": "Enables rendering of JIS83 forms.",
-	"jis90": "Enables rendering of JIS90 forms.",
-	"proportional-width": "Enables rendering of proportionally-spaced variants.",
-	"simplified": "Enables rendering of simplified forms.",
-	"traditional": "Enables rendering of traditional forms.",
-	"additional-ligatures": "Enables display of additional ligatures.",
-	"common-ligatures": "Enables display of common ligatures.",
-	"contextual": "Enables display of contextual alternates.",
-	"discretionary-ligatures": "Enables display of discretionary ligatures.",
-	"historical-ligatures": "Enables display of historical ligatures.",
-	"no-additional-ligatures": "Disables display of additional ligatures.",
-	"no-common-ligatures": "Disables display of common ligatures.",
-	"no-contextual": "Disables display of contextual alternates.",
-	"no-discretionary-ligatures": "Disables display of discretionary ligatures.",
-	"no-historical-ligatures": "Disables display of historical ligatures.",
-	"diagonal-fractions": "Enables display of lining diagonal fractions.",
-	"lining-nums": "Enables display of lining numerals.",
-	"oldstyle-nums": "Enables display of old-style numerals.",
-	"ordinal": "Enables display of letter forms used with ordinal numbers.",
-	"proportional-nums": "Enables display of proportional numerals.",
-	"slashed-zero": "Enables display of slashed zeros.",
-	"stacked-fractions": "Enables display of lining stacked fractions.",
-	"tabular-nums": "Enables display of tabular numerals.",
-	"span": "Contributes a grid span to the grid item’s placement such that the corresponding edge of the grid item’s grid area is N lines from its opposite edge.",
-	"minmax()": "Defines a size range greater than or equal to min and less than or equal to max.",
-	"dense": "If specified, the auto-placement algorithm uses a “dense” packing algorithm, which attempts to fill in holes earlier in the grid if smaller items come up later.",
-	"fit-content": "Use the fit-content inline size or fit-content block size, as appropriate to the writing mode.",
-	"manual": "Words are only broken at line breaks where there are characters inside the word that suggest line break opportunities",
-	"flip": "After rotating by the precededing angle, the image is flipped horizontally. Defaults to 0deg if the angle is ommitted.",
-	"from-image": "If the image has an orientation specified in its metadata, such as EXIF, this value computes to the angle that the metadata specifies is necessary to correctly orient the image.",
-	"crisp-edges": "The image must be scaled with an algorithm that preserves contrast and edges in the image, and which does not smooth colors or introduce blur to the image in the process.",
-	"optimizeQuality": "Deprecated.",
-	"pixelated": "When scaling the image up, the 'nearest neighbor' or similar algorithm must be used, so that the image appears to be simply composed of very large pixels.",
-	"active": "The input method editor is initially active; text entry is performed using it unless the user specifically dismisses it.",
-	"disabled": "The input method editor is disabled and may not be activated by the user.",
-	"inactive": "The input method editor is initially inactive, but the user may activate it if they wish.",
-	"safe": "If the size of the item overflows the alignment container, the item is instead aligned as if the alignment mode were start.",
-	"unsafe": "Regardless of the relative sizes of the item and alignment container, the given alignment value is honored.",
-	"space-evenly": "The items are evenly distributed within the alignment container along the main axis.",
-	"circle": "A hollow circle.",
-	"disc": "A filled circle.",
-	"inside": "The marker box is outside the principal block box, as described in the section on the ::marker pseudo-element below.",
-	"outside": "The ::marker pseudo-element is an inline element placed immediately before all ::before pseudo-elements in the principal block box, after which the element's content flows.",
-	"symbols()": "Allows a counter style to be defined inline.",
-	"path()": "Defines an SVG path as a string, with optional 'fill-rule' as the first argument.",
-	"block-axis": "Elements are oriented along the box's axis.",
-	"inline-axis": "Elements are oriented vertically.",
-	"padding-box": "The specified width and height (and respective min/max properties) on this element determine the padding box of the element.",
-	"line-through": "Each line of text has a line through the middle.",
-	"overline": "Each line of text has a line above it.",
-	"underline": "Each line of text is underlined.",
-	"dashed": "Produces a dashed line style.",
-	"dotted": "Produces a dotted line.",
-	"double": "Produces a double line.",
-	"solid": "Produces a solid line.",
-	"wavy": "Produces a wavy line.",
-	"matrix()": "Specifies a 2D transformation in the form of a transformation matrix of six values. matrix(a,b,c,d,e,f) is equivalent to applying the transformation matrix [a b c d e f]",
-	"matrix3d()": "Specifies a 3D transformation as a 4x4 homogeneous matrix of 16 values in column-major order.",
-	"perspective": "Specifies a perspective projection matrix.",
-	"rotate()": "Specifies a 2D rotation by the angle specified in the parameter about the origin of the element, as defined by the transform-origin property.",
-	"rotate3d()": "Specifies a clockwise 3D rotation by the angle specified in last parameter about the [x,y,z] direction vector described by the first 3 parameters.",
-	"rotateX('angle')": "Specifies a clockwise rotation by the given angle about the X axis.",
-	"rotateY('angle')": "Specifies a clockwise rotation by the given angle about the Y axis.",
-	"rotateZ('angle')": "Specifies a clockwise rotation by the given angle about the Z axis.",
-	"scale()": "Specifies a 2D scale operation by the [sx,sy] scaling vector described by the 2 parameters. If the second parameter is not provided, it is takes a value equal to the first.",
-	"scale3d()": "Specifies a 3D scale operation by the [sx,sy,sz] scaling vector described by the 3 parameters.",
-	"scaleX()": "Specifies a scale operation using the [sx,1] scaling vector, where sx is given as the parameter.",
-	"scaleY()": "Specifies a scale operation using the [sy,1] scaling vector, where sy is given as the parameter.",
-	"scaleZ()": "Specifies a scale operation using the [1,1,sz] scaling vector, where sz is given as the parameter.",
-	"skew()": "Specifies a skew transformation along the X and Y axes. The first angle parameter specifies the skew on the X axis. The second angle parameter specifies the skew on the Y axis. If the second parameter is not given then a value of 0 is used for the Y angle (ie: no skew on the Y axis).",
-	"skewX()": "Specifies a skew transformation along the X axis by the given angle.",
-	"skewY()": "Specifies a skew transformation along the Y axis by the given angle.",
-	"translate()": "Specifies a 2D translation by the vector [tx, ty], where tx is the first translation-value parameter and ty is the optional second translation-value parameter.",
-	"translate3d()": "Specifies a 3D translation by the vector [tx,ty,tz], with tx, ty and tz being the first, second and third translation-value parameters respectively.",
-	"translateX()": "Specifies a translation by the given amount in the X direction.",
-	"translateY()": "Specifies a translation by the given amount in the Y direction.",
-	"translateZ()": "Specifies a translation by the given amount in the Z direction. Note that percentage values are not allowed in the translateZ translation-value, and if present are evaluated as 0.",
-	"false": "The element does not contain an accelerator key sequence.",
-	"true": "The element contains an accelerator key sequence.",
-	"bt": "Bottom-to-top block flow. Layout is horizontal.",
-	"lr": "Left-to-right direction. The flow orientation is vertical.",
-	"rl": "Right-to-left direction. The flow orientation is vertical.",
-	"tb": "Top-to-bottom direction. The flow orientation is horizontal.",
-	"zoom": "The element is zoomable.",
-	"no-limit": "There is no limit.",
-	"mode": "Any of the range of mode values available to the -ms-layout-grid-mode property.",
-	"type": "Any of the range of type values available to the -ms-layout-grid-type property.",
-	"-ms-autohiding-scrollbar": "Indicates the element displays auto-hiding scrollbars during mouse interactions and panning indicators during touch and keyboard interactions.",
-	"scrollbar": "Scrollbars are typically narrow strips inserted on one or two edges of an element and which often have arrows to click on and a \"thumb\" to drag up and down (or left and right) to move the contents of the element.",
-	"ideograph-alpha": "Creates 1/4em extra spacing between runs of ideographic letters and non-ideographic letters, such as Latin-based, Cyrillic, Greek, Arabic or Hebrew.",
-	"ideograph-numeric": "Creates 1/4em extra spacing between runs of ideographic letters and numeric glyphs.",
-	"ideograph-parenthesis": "Creates extra spacing between normal (non wide) parenthesis and ideographs.",
-	"ideograph-space": "Extends the width of the space character while surrounded by ideographs.",
-	"punctuation": "Creates extra non-breaking spacing around punctuation as required by language-specific typographic conventions.",
-	"digits": "Attempt to typeset horizontally each maximal sequence of consecutive ASCII digits (U+0030–U+0039) that has as many or fewer characters than the specified integer such that it takes up the space of a single character within the vertical line box.",
-	"inter-cluster": "Justification primarily changes spacing at word separators and at grapheme cluster boundaries in clustered scripts. This value is typically used for Southeast Asian scripts such as Thai.",
-	"inter-ideograph": "Justification primarily changes spacing at word separators and at inter-graphemic boundaries in scripts that use no word spaces. This value is typically used for CJK languages.",
-	"inter-word": "Justification primarily changes spacing at word separators. This value is typically used for languages that separate words using spaces, like English or (sometimes) Korean.",
-	"kashida": "Justification primarily stretches Arabic and related scripts through the use of kashida or other calligraphic elongation.",
-	"clip": "Clip inline content that overflows. Characters may be only partially rendered.",
-	"ellipsis": "Render an ellipsis character (U+2026) to represent clipped inline content.",
-	"over": "The underline is aligned with the 'top' (right in vertical writing) edge of the element's em-box. In this mode, an overline also switches sides.",
-	"under": "The underline is aligned with the 'bottom' (left in vertical writing) edge of the element's em-box. In this case the underline usually does not cross the descenders. This is sometimes called 'accounting' underline.",
-	"grippers": "Grippers are always on.",
-	"break-all": "Lines may break between any two grapheme clusters for non-CJK scripts.",
-	"clear": "Inline flow content can only wrap on top and bottom of the exclusion and must leave the areas to the start and end edges of the exclusion box empty.",
-	"maximum": "Inline flow content can wrap on the side of the exclusion with the largest available space for the given line, and must leave the other side of the exclusion empty.",
-	"minimum": "Inline flow content can flow around the edge of the exclusion with the smallest available space within the flow content’s containing block, and must leave the other edge of the exclusion empty.",
-	"current": "Indicates that the user agent should target the frame that the element is in.",
-	"root": "Indicates that the user agent should target the full window.",
-	"scale-down": "Size the content as if ‘none’ or ‘contain’ were specified, whichever would result in a smaller concrete object size.",
-	"invert": "Performs a color inversion on the pixels on the screen.",
-	"-moz-hidden-unscrollable": "Same as the standardized 'clip', except doesn’t establish a block formatting context.",
-	"painted": "The given element can be the target element for pointer events when the pointer is over a \"painted\" area. ",
-	"visibleFill": "The given element can be the target element for pointer events when the ‘visibility’ property is set to visible and when the pointer is over the interior of the element.",
-	"visiblePainted": "The given element can be the target element for pointer events when the ‘visibility’ property is set to visible and when the pointer is over a ‘painted’ area.",
-	"visibleStroke": "The given element can be the target element for pointer events when the ‘visibility’ property is set to visible and when the pointer is over the perimeter of the element.",
-	"absolute": "The box's position (and possibly size) is specified with the 'top', 'right', 'bottom', and 'left' properties. These properties specify offsets with respect to the box's 'containing block'.",
-	"-ms-page": "The box's position is calculated according to the 'absolute' model.",
-	"relative": "The box's position is calculated according to the normal flow (this is called the position in normal flow). Then the box is offset relative to its normal position.",
-	"static": "The box is a normal box, laid out according to the normal flow. The 'top', 'right', 'bottom', and 'left' properties do not apply.",
-	"sticky": "The box's position is calculated according to the normal flow. Then the box is offset relative to its flow root and containing block and in all cases, including table elements, does not affect the position of any following boxes.",
-	"-webkit-sticky": "The box's position is calculated according to the normal flow. Then the box is offset relative to its flow root and containing block and in all cases, including table elements, does not affect the position of any following boxes.",
-	"distribute-letter": "If the width of the ruby text is smaller than that of the base, then the ruby text contents are evenly distributed across the width of the base, with the first and last ruby text glyphs lining up with the corresponding first and last base glyphs. If the width of the ruby text is at least the width of the base, then the letters of the base are evenly distributed across the width of the ruby text.",
-	"distribute-space": "If the width of the ruby text is smaller than that of the base, then the ruby text contents are evenly distributed across the width of the base, with a certain amount of white space preceding the first and following the last character in the ruby text. That amount of white space is normally equal to half the amount of inter-character space of the ruby text.",
-	"line-edge": "If the ruby text is not adjacent to a line edge, it is aligned as in 'auto'. If it is adjacent to a line edge, then it is still aligned as in auto, but the side of the ruby text that touches the end of the line is lined up with the corresponding edge of the base.",
-	"after": "The ruby text appears after the base. This is a relatively rare setting used in ideographic East Asian writing systems, most easily found in educational text.",
-	"before": "The ruby text appears before the base. This is the most common setting used in ideographic East Asian writing systems.",
-	"attr(x)": "The value of attribute 'x' is a string value. The string value is evaluated as a <number> to determine the number of ruby base elements to be spanned by the annotation element.",
-	"smooth": "Scrolls in a smooth fashion using a user-agent-defined timing function and time period.",
-	"margin-box": "The background is painted within (clipped to) the margin box.",
-	"crispEdges": "Emphasize the contrast between clean edges of artwork over rendering speed and geometric precision.",
-	"format()": "Optional hint describing the format of the font resource.",
-	"local()": "Format-specific string that identifies a locally available copy of a given font.",
-	"butt": "Indicates that the stroke for each subpath does not extend beyond its two endpoints.",
-	"bevel": "Indicates that a bevelled corner is to be used to join path segments.",
-	"miter": "Indicates that a sharp corner is to be used to join path segments.",
-	"additive": "Represents “sign-value” numbering systems, which, rather than using reusing digits in different positions to change their value, define additional digits with much larger values, so that the value of the number can be obtained by adding all the digits together.",
-	"cyclic": "Cycles repeatedly through its provided symbols, looping back to the beginning when it reaches the end of the list.",
-	"extends": "Use the algorithm of another counter style, but alter other aspects.",
-	"numeric": "interprets the list of counter symbols as digits to a \"place-value\" numbering system, similar to the default 'decimal' counter style.",
-	"symbolic": "Cycles repeatedly through its provided symbols, doubling, tripling, etc. the symbols on each successive pass through the list.",
-	"sideways": "This value is equivalent to 'sideways-right' in 'vertical-rl' writing mode and equivalent to 'sideways-left' in 'vertical-lr' writing mode.",
-	"sideways-right": "In vertical writing modes, this causes text to be set as if in a horizontal layout, but rotated 90° clockwise.",
-	"upright": "In vertical writing modes, characters from horizontal-only scripts are rendered upright, i.e. in their standard horizontal orientation.",
-	"optimizeLegibility": "Indicates that the user agent shall emphasize legibility over rendering speed and geometric precision.",
-	"capitalize": "Puts the first typographic letter unit of each word in titlecase.",
-	"lowercase": "Puts all letters in lowercase.",
-	"uppercase": "Puts all letters in uppercase.",
-	"perspective()": "Specifies a perspective projection matrix.",
-	"flat": "All children of this element are rendered flattened into the 2D plane of the element.",
-	"preserve-3d": "Flattening is not performed, so children maintain their position in 3D space.",
-	"bidi-override": "Inside the element, reordering is strictly in sequence according to the 'direction' property; the implicit part of the bidirectional algorithm is ignored.",
-	"embed": "If the element is inline-level, this value opens an additional level of embedding with respect to the bidirectional algorithm. The direction of this embedding level is given by the 'direction' property.",
-	"isolate-override": "This combines the isolation behavior of 'isolate' with the directional override behavior of 'bidi-override'",
-	"plaintext": "For the purposes of the Unicode bidirectional algorithm, the base directionality of each bidi paragraph for which the element forms the containing block is determined not by the element's computed 'direction'.",
-	"U+26": "Ampersand.",
-	"U+20-24F, U+2B0-2FF, U+370-4FF, U+1E00-1EFF, U+2000-20CF, U+2100-23FF, U+2500-26FF, U+E000-F8FF, U+FB00–FB4F": "WGL4 character set (Pan-European).",
-	"U+20-17F, U+2B0-2FF, U+2000-206F, U+20A0-20CF, U+2100-21FF, U+2600-26FF": "The Multilingual European Subset No. 1. Latin. Covers ~44 languages.",
-	"U+20-2FF, U+370-4FF, U+1E00-20CF, U+2100-23FF, U+2500-26FF, U+FB00-FB4F, U+FFF0-FFFD": "The Multilingual European Subset No. 2. Latin, Greek, and Cyrillic. Covers ~128 language.",
-	"U+20-4FF, U+530-58F, U+10D0-10FF, U+1E00-23FF, U+2440-245F, U+2500-26FF, U+FB00-FB4F, U+FE20-FE2F, U+FFF0-FFFD": "The Multilingual European Subset No. 3. Covers all characters belonging to European scripts.",
-	"U+00-7F": "Basic Latin (ASCII).",
-	"U+80-FF": "Latin-1 Supplement. Accented characters for Western European languages, common punctuation characters, multiplication and division signs.",
-	"U+100-17F": "Latin Extended-A. Accented characters for for Czech, Dutch, Polish, and Turkish.",
-	"U+180-24F": "Latin Extended-B. Croatian, Slovenian, Romanian, Non-European and historic latin, Khoisan, Pinyin, Livonian, Sinology.",
-	"U+1E00-1EFF": "Latin Extended Additional. Vietnamese, German captial sharp s, Medievalist, Latin general use.",
-	"U+250-2AF": "International Phonetic Alphabet Extensions.",
-	"U+370-3FF": "Greek and Coptic.",
-	"U+1F00-1FFF": "Greek Extended. Accented characters for polytonic Greek.",
-	"U+400-4FF": "Cyrillic.",
-	"U+500-52F": "Cyrillic Supplement. Extra letters for Komi, Khanty, Chukchi, Mordvin, Kurdish, Aleut, Chuvash, Abkhaz, Azerbaijani, and Orok.",
-	"U+00-52F, U+1E00-1FFF, U+2200–22FF": "Latin, Greek, Cyrillic, some punctuation and symbols.",
-	"U+530–58F": "Armenian.",
-	"U+590–5FF": "Hebrew.",
-	"U+600–6FF": "Arabic.",
-	"U+750–77F": "Arabic Supplement. Additional letters for African languages, Khowar, Torwali, Burushaski, and early Persian.",
-	"U+8A0–8FF": "Arabic Extended-A. Additional letters for African languages, European and Central Asian languages, Rohingya, Tamazight, Arwi, and Koranic annotation signs.",
-	"U+700–74F": "Syriac.",
-	"U+900–97F": "Devanagari.",
-	"U+980–9FF": "Bengali.",
-	"U+A00–A7F": "Gurmukhi.",
-	"U+A80–AFF": "Gujarati.",
-	"U+B00–B7F": "Oriya.",
-	"U+B80–BFF": "Tamil.",
-	"U+C00–C7F": "Telugu.",
-	"U+C80–CFF": "Kannada.",
-	"U+D00–D7F": "Malayalam.",
-	"U+D80–DFF": "Sinhala.",
-	"U+118A0–118FF": "Warang Citi.",
-	"U+E00–E7F": "Thai.",
-	"U+1A20–1AAF": "Tai Tham.",
-	"U+AA80–AADF": "Tai Viet.",
-	"U+E80–EFF": "Lao.",
-	"U+F00–FFF": "Tibetan.",
-	"U+1000–109F": "Myanmar (Burmese).",
-	"U+10A0–10FF": "Georgian.",
-	"U+1200–137F": "Ethiopic.",
-	"U+1380–139F": "Ethiopic Supplement. Extra Syllables for Sebatbeit, and Tonal marks",
-	"U+2D80–2DDF": "Ethiopic Extended. Extra Syllables for Me'en, Blin, and Sebatbeit.",
-	"U+AB00–AB2F": "Ethiopic Extended-A. Extra characters for Gamo-Gofa-Dawro, Basketo, and Gumuz.",
-	"U+1780–17FF": "Khmer.",
-	"U+1800–18AF": "Mongolian.",
-	"U+1B80–1BBF": "Sundanese.",
-	"U+1CC0–1CCF": "Sundanese Supplement. Punctuation.",
-	"U+4E00–9FD5": "CJK (Chinese, Japanese, Korean) Unified Ideographs. Most common ideographs for modern Chinese and Japanese.",
-	"U+3400–4DB5": "CJK Unified Ideographs Extension A. Rare ideographs.",
-	"U+2F00–2FDF": "Kangxi Radicals.",
-	"U+2E80–2EFF": "CJK Radicals Supplement. Alternative forms of Kangxi Radicals.",
-	"U+1100–11FF": "Hangul Jamo.",
-	"U+AC00–D7AF": "Hangul Syllables.",
-	"U+3040–309F": "Hiragana.",
-	"U+30A0–30FF": "Katakana.",
-	"U+A5, U+4E00-9FFF, U+30??, U+FF00-FF9F": "Japanese Kanji, Hiragana and Katakana characters plus Yen/Yuan symbol.",
-	"U+A4D0–A4FF": "Lisu.",
-	"U+A000–A48F": "Yi Syllables.",
-	"U+A490–A4CF": "Yi Radicals.",
-	"U+2000-206F": "General Punctuation.",
-	"U+3000–303F": "CJK Symbols and Punctuation.",
-	"U+2070–209F": "Superscripts and Subscripts.",
-	"U+20A0–20CF": "Currency Symbols.",
-	"U+2100–214F": "Letterlike Symbols.",
-	"U+2150–218F": "Number Forms.",
-	"U+2190–21FF": "Arrows.",
-	"U+2200–22FF": "Mathematical Operators.",
-	"U+2300–23FF": "Miscellaneous Technical.",
-	"U+E000-F8FF": "Private Use Area.",
-	"U+FB00–FB4F": "Alphabetic Presentation Forms. Ligatures for latin, Armenian, and Hebrew.",
-	"U+FB50–FDFF": "Arabic Presentation Forms-A. Contextual forms / ligatures for Persian, Urdu, Sindhi, Central Asian languages, etc, Arabic pedagogical symbols, word ligatures.",
-	"U+1F600–1F64F": "Emoji: Emoticons.",
-	"U+2600–26FF": "Emoji: Miscellaneous Symbols.",
-	"U+1F300–1F5FF": "Emoji: Miscellaneous Symbols and Pictographs.",
-	"U+1F900–1F9FF": "Emoji: Supplemental Symbols and Pictographs.",
-	"U+1F680–1F6FF": "Emoji: Transport and Map Symbols.",
-	"text-bottom": "Align the bottom of the box with the after-edge of the parent element's font.",
-	"text-top": "Align the top of the box with the before-edge of the parent element's font.",
-	"break": "If the content fits within the CSS Region, then this property has no effect.",
-	"pre": "Sets 'white-space-collapsing' to 'preserve' and 'text-wrap' to 'none'.",
-	"pre-line": "Sets 'white-space-collapsing' to 'preserve-breaks' and 'text-wrap' to 'normal'.",
-	"pre-wrap": "Sets 'white-space-collapsing' to 'preserve' and 'text-wrap' to 'normal'.",
-	"scroll-position": "Indicates that the author expects to animate or change the scroll position of the element in the near future.",
-	"horizontal-tb": "Top-to-bottom block flow direction. The writing mode is horizontal.",
-	"sideways-lr": "Left-to-right block flow direction. The writing mode is vertical, while the typographic mode is horizontal.",
-	"sideways-rl": "Right-to-left block flow direction. The writing mode is vertical, while the typographic mode is horizontal.",
-	"vertical-lr": "Left-to-right block flow direction. The writing mode is vertical.",
-	"vertical-rl": "Right-to-left block flow direction. The writing mode is vertical."
 };

@@ -371,8 +371,6 @@ fs.readFile(path.resolve(__dirname, schemaFileName), (err, data) => {
 
 		addBrowserCompatDataToProperties(atDirectives, pseudoClasses, pseudoElements, properties)
 
-		const descriptions = internalizeDescriptions([].concat(atDirectives, pseudoClasses, pseudoElements, properties))
-
 		const resultObject = {
 			version: 1,
 			properties,
@@ -403,8 +401,7 @@ fs.readFile(path.resolve(__dirname, schemaFileName), (err, data) => {
 			'',
 			`import { ${DATA_TYPE} } from '../cssLanguageTypes';`,
 			'',
-			`export const cssData : ${DATA_TYPE} = ` + toJavaScript(resultObject) + ';',
-			'export const descriptions : any = ' + toJavaScript(descriptions) + ';'
+			`export const cssData : ${DATA_TYPE} = ` + toJavaScript(resultObject) + ';'
 		]
 
 		var outputPath = path.resolve(__dirname, '../src/data/browsers.ts')
