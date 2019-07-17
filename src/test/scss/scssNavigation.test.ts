@@ -14,7 +14,6 @@ import { stat as fsStat } from 'fs';
 import { SCSSNavigation } from '../../services/scssNavigation';
 import * as path from 'path';
 import { URI } from 'vscode-uri';
-import { platform } from 'os';
 
 async function assertDynamicLinks(docUri: string, input: string, expected: DocumentLink[]) {
 	const p = new SCSSParser();
