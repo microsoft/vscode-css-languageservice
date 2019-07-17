@@ -13,6 +13,8 @@ import { FileSystemProvider, FileType } from '../../cssLanguageTypes';
 import { stat as fsStat } from 'fs';
 import { SCSSNavigation } from '../../services/scssNavigation';
 import * as path from 'path';
+import { URI } from 'vscode-uri';
+import { platform } from 'os';
 
 async function assertDynamicLinks(docUri: string, input: string, expected: DocumentLink[]) {
 	const p = new SCSSParser();
@@ -30,9 +32,11 @@ async function assertDynamicLinks(docUri: string, input: string, expected: Docum
 
 function getFsProvider(): FileSystemProvider {
 	return {
-		stat(uri: string) {
+		stat(documentUri: string) {
+			const filePath = URI.parse(documentUri).fsPath;
+
 			return new Promise((c, e) => {
-				fsStat(uri, (err, stats) => {
+				fsStat(filePath, (err, stats) => {
 					if (err) {
 						if (err.code === 'ENOENT') {
 							return c({
@@ -198,29 +202,32 @@ suite('SCSS - Navigation', () => {
 
 		test('SCSS partial file dynamic links', async () => {
 			const fixtureRoot = path.resolve(__dirname, '../../../../src/test/scss/linkFixture');
+			const getPath = (relativePath) => {
+				return URI.file(path.resolve(fixtureRoot, relativePath)).toString();
+			};
 
 			await assertDynamicLinks(path.resolve(fixtureRoot, './noUnderscore/index.scss'), `@import 'foo'`, [
-				{ range: newRange(8, 13), target: path.resolve(fixtureRoot, './noUnderscore/foo.scss') }
+				{ range: newRange(8, 13), target: getPath('./noUnderscore/foo.scss') }
 			]);
 
 			await assertDynamicLinks(path.resolve(fixtureRoot, './underscore/index.scss'), `@import 'foo'`, [
-				{ range: newRange(8, 13), target: path.resolve(fixtureRoot, './underscore/_foo.scss') }
+				{ range: newRange(8, 13), target: getPath('./underscore/_foo.scss') }
 			]);
 
 			await assertDynamicLinks(path.resolve(fixtureRoot, './both/index.scss'), `@import 'foo'`, [
-				{ range: newRange(8, 13), target: path.resolve(fixtureRoot, './both/_foo.scss') }
+				{ range: newRange(8, 13), target: getPath('./both/foo.scss') }
 			]);
 
 			await assertDynamicLinks(path.resolve(fixtureRoot, './both/index.scss'), `@import '_foo'`, [
-				{ range: newRange(8, 14), target: path.resolve(fixtureRoot, './both/_foo.scss') }
+				{ range: newRange(8, 14), target: getPath('./both/_foo.scss') }
 			]);
 
 			await assertDynamicLinks(path.resolve(fixtureRoot, './index/index.scss'), `@import 'foo'`, [
-				{ range: newRange(8, 13), target: path.resolve(fixtureRoot, './index/foo/index.scss') }
+				{ range: newRange(8, 13), target: getPath('./index/foo/index.scss') }
 			]);
 
 			await assertDynamicLinks(path.resolve(fixtureRoot, './index/index.scss'), `@import 'bar'`, [
-				{ range: newRange(8, 13), target: path.resolve(fixtureRoot, './index/bar/_index.scss') }
+				{ range: newRange(8, 13), target: getPath('./index/bar/_index.scss') }
 			]);
 		});
 

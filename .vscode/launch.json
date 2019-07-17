@@ -23,6 +23,7 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
+      "smartStep": true,
       "preLaunchTask": "npm: watch"
     }
   ]

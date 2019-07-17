@@ -5,9 +5,10 @@
 'use strict';
 
 import { CSSNavigation } from './cssNavigation';
-import { FileSystemProvider, DocumentContext, FileType } from '../cssLanguageTypes';
+import { FileSystemProvider, DocumentContext, FileType, DocumentUri } from '../cssLanguageTypes';
 import { TextDocument, DocumentLink } from '../cssLanguageService';
 import * as nodes from '../parser/cssNodes';
+import { URI } from 'vscode-uri';
 
 export class SCSSNavigation extends CSSNavigation {
 	constructor(private fileSystemProvider?: FileSystemProvider) {
@@ -33,62 +34,84 @@ export class SCSSNavigation extends CSSNavigation {
 		/**
 		 * Validate and correct links
 		 */
-		for (let i = 0; i < links.length; i++) {
-			if (links[i].target.endsWith('.scss') && !(await fileExists(links[i].target))) {
-				const { originalBasename, normalizedBasename, normalizedUri, withBasename } = toNormalizedUri(links[i].target);
-				// a.scss case
-				if (originalBasename === normalizedBasename && (await fileExists(withBasename('_' + originalBasename)))) {
-					links[i].target = withBasename('_' + originalBasename);
+		if (fsProvider) {
+			for (let i = 0; i < links.length; i++) {
+				const parsedUri = URI.file(links[i].target);
+				
+				const pathVariations = toPathVariations(parsedUri);
+				if (!pathVariations) {
 					continue;
 				}
-				// _a.scss case
-				else if (originalBasename === '_' + normalizedBasename && (await fileExists(normalizedUri))) {
-					links[i].target = normalizedUri;
-					continue;
-				}
-
-				// a/index.scss and a/_index.scss case
-				const indexUri = withBasename(normalizedBasename.replace('.scss', '/index.scss'));
-				const _indexUri = withBasename(normalizedBasename.replace('.scss', '/_index.scss'));
-
-				if (await fileExists(indexUri)) {
-					links[i].target = indexUri;
-				} else if (await fileExists(_indexUri)) {
-					links[i].target = _indexUri;
+				
+				for (let j = 0; j < pathVariations.length; j++) {
+					if (await fileExists(pathVariations[j])) {
+						links[i].target = pathVariations[j];
+						break;
+					}
 				}
 			}
 		}
 
 		return links;
 
-		function toNormalizedUri(uri: string) {
-			const uriFragments = uri.split('/');
-			let normalizedBasename = uriFragments[uriFragments.length - 1];
-			if (normalizedBasename.startsWith('_')) {
-				normalizedBasename = normalizedBasename.slice(1);
-			}
-			if (!normalizedBasename.endsWith('.scss')) {
-				normalizedBasename += '.scss';
+		function toPathVariations(uri: URI): DocumentUri[] | undefined {
+			// No variation for links that ends with suffix
+			if (uri.path.endsWith('.scss') || uri.path.endsWith('.css')) {
+				return undefined;
 			}
 
-			const normalizedUri = [...uriFragments.slice(0, -1), normalizedBasename].join('/');
-			return {
-				originalBasename: uriFragments[uriFragments.length - 1],
-				normalizedUri,
-				normalizedBasename,
-				withBasename(newBaseName: string) {
-					return [...uriFragments.slice(0, -1), newBaseName].join('/');
+			// If a link is like a/, try resolving a/index.scss and a/_index.scss
+			if (uri.path.endsWith('/')) {
+				return [
+					uri.with({ path: uri.path + 'index.scss' }).toString(),
+					uri.with({ path: uri.path + '_index.scss' }).toString()
+				];
+			}
+
+			// Use `uri.path` since it's normalized to use `/` in all platforms
+			const pathFragments = uri.path.split('/');
+			const basename = pathFragments[pathFragments.length - 1];
+			const pathWithoutBasename = uri.path.slice(0, -basename.length);
+
+			// No variation for links such as _a
+			if (basename.startsWith('_')) {
+				if (uri.path.endsWith('.scss')) {
+					return undefined;
+				} else {
+					return [
+						uri.with({ path: uri.path + '.scss' }).toString(),
+					];
 				}
+			}
+
+			const normalizedBasename = basename + '.scss';
+			
+			const documentUriWithBasename = (newBasename) => {
+				return uri.with({ path: pathWithoutBasename + newBasename }).toString();
 			};
+
+			const normalizedPath = documentUriWithBasename(normalizedBasename);
+			const underScorePath = documentUriWithBasename('_' + normalizedBasename);
+			const indexPath = documentUriWithBasename(normalizedBasename.slice(0, -5) + '/index.scss');
+			const indexUnderscoreUri = documentUriWithBasename(normalizedBasename.slice(0, -5) + '/_index.scss');
+			const cssPath = documentUriWithBasename(normalizedBasename.slice(0, -5) + '.css');
+			
+			return [
+				normalizedPath,
+				underScorePath,
+				indexPath,
+				indexUnderscoreUri,
+				cssPath
+			];
 		}
 
-		async function fileExists(uri: string) {
+		async function fileExists(documentUri: DocumentUri) {
 			if (!fsProvider) {
 				return false;
 			}
 
 			try {
-				const stat = await fsProvider.stat(uri);
+				const stat = await fsProvider.stat(documentUri);
 				if (stat.type === FileType.Unknown && stat.size === -1) {
 					return false;
 				}
