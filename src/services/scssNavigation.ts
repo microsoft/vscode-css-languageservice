@@ -36,7 +36,7 @@ export class SCSSNavigation extends CSSNavigation {
 		 */
 		if (fsProvider) {
 			for (let i = 0; i < links.length; i++) {
-				const parsedUri = URI.file(links[i].target);
+				const parsedUri = URI.parse(links[i].target);
 				
 				const pathVariations = toPathVariations(parsedUri);
 				if (!pathVariations) {
