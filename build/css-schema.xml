@@ -2619,7 +2619,7 @@
 				<value name="&quot;c2pc&quot;" version="3.0" browsers="all">
 					<desc>Petite Capitals From Capitals. Applies only to bicameral scripts.</desc>
 				</value>
-				<value name="&quot;c2cs&quot;" version="3.0" browsers="all">
+				<value name="&quot;c2sc&quot;" version="3.0" browsers="all">
 					<desc>Small Capitals From Capitals. Applies only to bicameral scripts.</desc>
 				</value>
 				<value name="&quot;dist&quot;" version="3.0" browsers="all">
