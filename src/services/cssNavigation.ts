@@ -255,38 +255,12 @@ function uriStringNodeToDocumentLink(document: TextDocument, uriStringNode: node
 		target = rawUri;
 	}
 	else {
-		/**
-		 * In SCSS, @import 'foo' could be referring to `_foo.scss`, if none of the following is true:
-		 * - The file's extension is .css.
-		 * - The filename begins with http://.
-		 * - The filename is a url().
-		 * - The @import has any media queries.
-		 */
-		if (document.languageId === 'scss') {
-			if (
-				!endsWith(rawUri, '.css') &&
-				!startsWith(rawUri, 'http://') && !startsWith(rawUri, 'https://') &&
-				!(uriStringNode.parent && uriStringNode.parent.type === nodes.NodeType.URILiteral) &&
-				uriStringNode.parent.getChildren().length === 1
-			) {
-				target = toScssPartialUri(documentContext.resolveReference(rawUri, document.uri));
-			} else {
-				target = documentContext.resolveReference(rawUri, document.uri);
-			}
-		} else {
-			target = documentContext.resolveReference(rawUri, document.uri);
-		}
+		target = documentContext.resolveReference(rawUri, document.uri);
 	}
 	return {
 		range,
 		target
 	};
-}
-
-function toScssPartialUri(uri: string): string {
-	return uri.replace(/\.scss$/, '').replace(/[^/]+$/, (basename) => {
-		return (basename[0] === '_' ? '': '_') + basename + '.scss';
-	});
 }
 
 function getRange(node: nodes.Node, document: TextDocument): Range {

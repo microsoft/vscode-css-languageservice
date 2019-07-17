@@ -56,6 +56,7 @@ export interface DocumentContext {
 
 export interface LanguageServiceOptions {
 	customDataProviders?: ICSSDataProvider[];
+	fileSystemProvider?: FileSystemProvider;
 }
 
 export type EntryStatus = 'standard' | 'experimental' | 'nonstandard' | 'obsolete';
