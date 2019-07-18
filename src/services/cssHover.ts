@@ -10,12 +10,9 @@ import { TextDocument, Range, Position, Hover, MarkedString, MarkupContent } fro
 import { selectorToMarkedString, simpleSelectorToMarkedString } from './selectorPrinting';
 
 export class CSSHover {
-
-	constructor() {
-	}
+	constructor() {}
 
 	public doHover(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Hover {
-
 		function getRange(node: nodes.Node) {
 			return Range.create(document.positionAt(node.offset), document.positionAt(node.end));
 		}
@@ -25,6 +22,33 @@ export class CSSHover {
 
 		for (let i = 0; i < nodepath.length; i++) {
 			const node = nodepath[i];
+			if (node instanceof nodes.UnknownAtRule) {
+				const atRuleName = node.getText();
+				const entry = languageFacts.cssDataManager.getAtDirective(atRuleName);
+				if (entry) {
+					return {
+						contents: entry.description,
+						range: getRange(node)
+					};
+				} else {
+					return null;
+				}
+			}
+			if (node instanceof nodes.Node && node.type === nodes.NodeType.PseudoSelector) {
+				const selectorName = node.getText();
+				const entry =
+					selectorName[0] === ':'
+						? languageFacts.cssDataManager.getPseudoClass(selectorName)
+						: languageFacts.cssDataManager.getPseudoElement(selectorName);
+				if (entry) {
+					return {
+						contents: entry.description,
+						range: getRange(node)
+					};
+				} else {
+					return null;
+				}
+			}
 			if (node instanceof nodes.Selector) {
 				return {
 					contents: selectorToMarkedString(<nodes.Selector>node),
@@ -69,4 +93,3 @@ export class CSSHover {
 		return null;
 	}
 }
-
