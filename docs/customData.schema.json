@@ -5,6 +5,26 @@
   "description": "Format for loading Custom Data in VS Code's CSS support",
   "type": "object",
   "required": ["version"],
+  "definitions": {
+    "markupDescription": {
+      "type": "object",
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "Whether `description.value` should be rendered as plaintext or markdown",
+          "enum": [
+            "plaintext",
+            "markdown"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "description": "Description shown in completion and hover"
+        }
+      }
+    }
+  },
   "properties": {
     "version": {
 			"const": 1,
@@ -31,8 +51,13 @@
             "description": "Name of property"
           },
           "description": {
-            "type": "string",
-            "description": "Description of property shown in completion and hover"
+            "description": "Description of property shown in completion and hover",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              { "$ref": "#/definitions/markupDescription" }
+            ]
           },
           "status": {
             "type": "string",
@@ -78,8 +103,13 @@
             "patternErrorMessage": "Pseudo class must start with `@`"
           },
           "description": {
-            "type": "string",
-            "description": "Description of at directive shown in completion and hover"
+            "description": "Description of at directive shown in completion and hover",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              { "$ref": "#/definitions/markupDescription" }
+            ]
           },
           "status": {
             "$ref": "#/properties/properties/items/properties/status"
@@ -112,8 +142,13 @@
             "patternErrorMessage": "Pseudo class must start with `:`"
           },
           "description": {
-            "type": "string",
-            "description": "Description of pseudo class shown in completion and hover"
+            "description": "Description of pseudo class shown in completion and hover",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              { "$ref": "#/definitions/markupDescription" }
+            ]
           },
           "status": {
             "$ref": "#/properties/properties/items/properties/status"
@@ -146,8 +181,13 @@
             "patternErrorMessage": "Pseudo class must start with `::`"
           },
           "description": {
-            "type": "string",
-            "description": "Description of pseudo element shown in completion and hover"
+            "description": "Description of pseudo element shown in completion and hover",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              { "$ref": "#/definitions/markupDescription" }
+            ]
           },
           "status": {
             "$ref": "#/properties/properties/items/properties/status"

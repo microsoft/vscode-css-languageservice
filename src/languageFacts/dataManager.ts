@@ -10,7 +10,6 @@ import {
 	IAtDirectiveData,
 	IPseudoClassData,
 	IPseudoElementData,
-	IValueData
 } from '../cssLanguageTypes';
 import * as objects from '../utils/objects';
 

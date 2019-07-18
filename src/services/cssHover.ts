@@ -6,7 +6,7 @@
 
 import * as nodes from '../parser/cssNodes';
 import * as languageFacts from '../languageFacts/facts';
-import { TextDocument, Range, Position, Hover, MarkedString } from 'vscode-languageserver-types';
+import { TextDocument, Range, Position, Hover, MarkedString, MarkupContent } from 'vscode-languageserver-types';
 import { selectorToMarkedString, simpleSelectorToMarkedString } from './selectorPrinting';
 
 export class CSSHover {
@@ -41,19 +41,26 @@ export class CSSHover {
 				const propertyName = node.getFullPropertyName();
 				const entry = languageFacts.cssDataManager.getProperty(propertyName);
 				if (entry) {
-					const contents: MarkedString[] = [];
-					if (entry.description) {
-						contents.push(MarkedString.fromPlainText(entry.description));
-					}
-					const browserLabel = languageFacts.getBrowserLabel(entry.browsers);
-					if (browserLabel) {
-						contents.push(MarkedString.fromPlainText(browserLabel));
-					}
-					if (contents.length) {
+					if (typeof entry.description !== 'string') {
 						return {
-							contents: contents,
+							contents: entry.description,
 							range: getRange(node)
 						};
+					} else {
+						const contents: MarkedString[] = [];
+						if (entry.description) {
+							contents.push(MarkedString.fromPlainText(entry.description));
+						}
+						const browserLabel = languageFacts.getBrowserLabel(entry.browsers);
+						if (browserLabel) {
+							contents.push(MarkedString.fromPlainText(browserLabel));
+						}
+						if (contents.length) {
+							return {
+								contents: contents,
+								range: getRange(node)
+							};
+						}
 					}
 				}
 			}

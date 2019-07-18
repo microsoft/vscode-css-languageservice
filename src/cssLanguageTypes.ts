@@ -61,9 +61,14 @@ export interface LanguageServiceOptions {
 
 export type EntryStatus = 'standard' | 'experimental' | 'nonstandard' | 'obsolete';
 
+export type MarkupDescription = {
+	kind: 'plaintext' | 'markdown',
+	value: string
+};
+
 export interface IPropertyData {
 	name: string;
-	description?: string;
+	description?: string | MarkupDescription;
 	browsers?: string[];
 	restrictions?: string[];
 	status?: EntryStatus;
@@ -72,26 +77,26 @@ export interface IPropertyData {
 }
 export interface IAtDirectiveData {
 	name: string;
-	description?: string;
+	description?: string | MarkupDescription;
 	browsers?: string[];
 	status?: EntryStatus;
 }
 export interface IPseudoClassData {
 	name: string;
-	description?: string;
+	description?: string | MarkupDescription;
 	browsers?: string[];
 	status?: EntryStatus;
 }
 export interface IPseudoElementData {
 	name: string;
-	description?: string;
+	description?: string | MarkupDescription;
 	browsers?: string[];
 	status?: EntryStatus;
 }
 
 export interface IValueData {
 	name: string;
-	description?: string;
+	description?: string | MarkupDescription;
 	browsers?: string[];
 	status?: EntryStatus;
 }

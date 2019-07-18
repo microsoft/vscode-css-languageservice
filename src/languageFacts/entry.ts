@@ -4,7 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { EntryStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IValueData } from '../cssLanguageTypes';
+import { EntryStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IValueData, MarkupDescription } from '../cssLanguageTypes';
+import { MarkupContent } from 'vscode-languageserver-types';
 
 export interface Browsers {
 	E?: string;
@@ -40,9 +41,13 @@ function getEntryStatus(status: EntryStatus) {
 	}
 }
 
-export function getEntryDescription(entry: IEntry2): string | null {
+export function getEntryDescription(entry: IEntry2): string | null | MarkupContent {
 	if (!entry.description || entry.description === '') {
 		return null;
+	}
+	
+	if (typeof entry.description !== 'string') {
+		return entry.description;
 	}
 
 	let result: string = '';
@@ -97,7 +102,7 @@ export type IEntry2 = IPropertyData | IAtDirectiveData | IPseudoClassData | IPse
  */
 export interface IEntry {
 	name: string;
-	description?: string;
+	description?: string | MarkupDescription;
 	browsers?: string[];
 	restrictions?: string[];
 	status?: EntryStatus;
@@ -107,6 +112,6 @@ export interface IEntry {
 
 export interface IValue {
 	name: string;
-	description?: string;
+	description?: string | MarkupDescription;
 	browsers?: string[];
 }
