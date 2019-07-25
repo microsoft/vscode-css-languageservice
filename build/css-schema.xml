@@ -283,7 +283,7 @@
 			<desc>Windows Store apps only. Applies one or more styles to an element when it has focus and the user presses the space bar.</desc>
 		</entry>
 		<entry name=":-ms-lang()" version="4.0" browsers="E,IE10" ref="http://www.w3.org/TR/selectors4/#lang-pseudo" syntax="html:-ms-lang(en, fr, de) { color: blue; }">
-			<desc>Represents an element that is in the language specified. Accepts a comma seperated list of language tokens.</desc>
+			<desc>Represents an element that is in the language specified. Accepts a comma separated list of language tokens.</desc>
 		</entry>
 		<entry name=":no-button" version="3.0" browsers="C,S5" ref="https://webkit.org/blog/363/styling-scrollbars/">
 			<desc>Non-standard. Applies to track pieces. Applies when there is no button at that end of the track.</desc>
@@ -612,7 +612,7 @@
 				<value name="first baseline" version="3.0" browsers="all">
 				</value>
 				<value name="last baseline" version="3.0" browsers="all">
-				</value>								
+				</value>
 				<value name="stretch" version="3.0" browsers="all">
 					<desc>If the cross size property of the flex item computes to auto, and neither of the cross-axis margins are auto, the flex item is stretched.</desc>
 				</value>
@@ -621,7 +621,7 @@
 				<value name="unsave" version="3.0" browsers="all">
 				</value>
 				<value name="legacy" version="3.0" browsers="all">
-				</value>						
+				</value>
 			</values>
 		</entry>
 		<entry name="justify-self" restriction="enum" version="3.0" browsers="FF45" ref="https://www.w3.org/TR/css-grid-1/#row-align">
@@ -659,16 +659,16 @@
 				<value name="first baseline" version="3.0" browsers="all">
 				</value>
 				<value name="last baseline" version="3.0" browsers="all">
-				</value>								
+				</value>
 				<value name="stretch" version="3.0" browsers="all">
 					<desc>If the cross size property of the flex item computes to auto, and neither of the cross-axis margins are auto, the flex item is stretched.</desc>
 				</value>
 				<value name="save" version="3.0" browsers="all">
 				</value>
 				<value name="unsave" version="3.0" browsers="all">
-				</value>					
+				</value>
 			</values>
-		</entry>		
+		</entry>
 		<entry name="alignment-baseline" restriction="enum" version="3.0" browsers="none" ref="http://www.w3.org/TR/css-inline/#propdef-alignment-baseline" syntax="img { $(name): middle; }">
 			<desc>Specifies what point of an inline-level box is aligned to what point in the parent.</desc>
 			<values>
@@ -736,7 +736,7 @@
 			</values>
 		</entry>
 		<entry name="alt" restriction="string, enum" version="3.0" browsers="S9" ref="https://drafts.csswg.org/css-content-3/#propdef-alt" syntax="label::before { $(name): 'alt text'; }">
-			<desc>Provides alternative text for assistive technology to replace the genenerated content of a ::before or ::after element.</desc>
+			<desc>Provides alternative text for assistive technology to replace the generated content of a ::before or ::after element.</desc>
 			<values>
 				<value name="none" version="3.0" browsers="none">
 					<desc>No alternative text.</desc>
@@ -1123,7 +1123,7 @@
 		<entry name="border-block-end-style" restriction="line-style" version="3.0" browsers="FF41" ref="https://drafts.csswg.org/css-logical-props/#border-padding" syntax="article { $(name): solid; }">
 			<desc>Logical 'border-bottom-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.</desc>
 		</entry>
-		<entry name="border-block-start-style" restriction="lline-style" version="3.0" browsers="FF41" ref="https://drafts.csswg.org/css-logical-props/#border-padding" syntax="article { $(name): solid; }">
+		<entry name="border-block-start-style" restriction="line-style" version="3.0" browsers="FF41" ref="https://drafts.csswg.org/css-logical-props/#border-padding" syntax="article { $(name): solid; }">
 			<desc>Logical 'border-top-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.</desc>
 		</entry>
 		<entry name="border-block-end-width" restriction="length, line-width" version="3.0" browsers="FF41" ref="https://drafts.csswg.org/css-logical-props/#border-padding" syntax="article { $(name): 50px; }">
@@ -1269,7 +1269,7 @@
 		<entry name="border-inline-end-style" restriction="line-style" version="3.0" browsers="FF41" ref="https://drafts.csswg.org/css-logical-props/#border-padding" syntax="article { $(name): solid; }">
 			<desc>Logical 'border-right-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.</desc>
 		</entry>
-		<entry name="border-inline-start-style" restriction="lline-style" version="3.0" browsers="FF41" ref="https://drafts.csswg.org/css-logical-props/#border-padding" syntax="article { $(name): solid; }">
+		<entry name="border-inline-start-style" restriction="line-style" version="3.0" browsers="FF41" ref="https://drafts.csswg.org/css-logical-props/#border-padding" syntax="article { $(name): solid; }">
 			<desc>Logical 'border-left-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.</desc>
 		</entry>
 		<entry name="border-inline-end-width" restriction="length, line-width" version="3.0" browsers="FF41" ref="https://drafts.csswg.org/css-logical-props/#border-padding" syntax="article { $(name): 50px; }">
@@ -1457,10 +1457,10 @@
 					<desc>Force one or two page breaks before/after the generated box so that the next page is formatted as a right page.</desc>
 				</value>
 				<value name="recto" version="3.0" browsers="none">
-					<desc>Forces a page break so that the next page is formatted as the right page in ltr langages or the left page for rtl.</desc>
+					<desc>Forces a page break so that the next page is formatted as the right page in ltr languages or the left page for rtl.</desc>
 				</value>
 				<value name="verso" version="3.0" browsers="none">
-					<desc>Forces a page break so that the next page is formatted as the left page in ltr langages or the right page for rtl.</desc>
+					<desc>Forces a page break so that the next page is formatted as the left page in ltr languages or the right page for rtl.</desc>
 				</value>
 			</values>
 		</entry>
@@ -1501,10 +1501,10 @@
 					<desc>Force one or two page breaks before/after the generated box so that the next page is formatted as a right page.</desc>
 				</value>
 				<value name="recto" version="3.0" browsers="none">
-					<desc>Forces a page break so that the next page is formatted as the right page in ltr langages or the left page for rtl.</desc>
+					<desc>Forces a page break so that the next page is formatted as the right page in ltr languages or the left page for rtl.</desc>
 				</value>
 				<value name="verso" version="3.0" browsers="none">
-					<desc>Forces a page break so that the next page is formatted as the left page in ltr langages or the right page for rtl.</desc>
+					<desc>Forces a page break so that the next page is formatted as the left page in ltr languages or the right page for rtl.</desc>
 				</value>
 			</values>
 		</entry>
@@ -1594,7 +1594,7 @@
 			</values>
 		</entry>
 		<entry name="clip-path" restriction="url, shape, geometry-box, enum" version="3.0" browsers="FF3.5" ref="http://www.w3.org/TR/css-masking/#the-clip-path">
-			<desc>Specifies a clipping path where everything inside the path is visable and everything outside is clipped out.</desc>
+			<desc>Specifies a clipping path where everything inside the path is visible and everything outside is clipped out.</desc>
 			<values>
 				<value name="none" version="3.0" browsers="all">
 					<desc>No clipping path gets created.</desc>
@@ -1761,7 +1761,7 @@
 				</value>
 				<value name="size" version="3.0" browsers="all">
 					<desc>For properties that can have effects on more than just an element and its descendants, those effects don't escape the containing element.</desc>
-				</value>		
+				</value>
 				<value name="layout" version="3.0" browsers="all">
 					<desc>Turns on layout containment for the element.</desc>
 				</value>
@@ -1792,7 +1792,7 @@
 					<desc>Value is replaced by the appropriate string from the 'quotes' property.</desc>
 				</value>
 				<value name="contents" version="3.0" browsers="none">
-					<desc>Displays the element's descendents.</desc>
+					<desc>Displays the element's descendants.</desc>
 				</value>
 				<value name="counter(name)" version="2.0" browsers="all">
 					<desc>Counters are denoted by identifiers (see the 'counter-increment' and 'counter-reset' properties).</desc>
@@ -2619,7 +2619,7 @@
 				<value name="&quot;c2pc&quot;" version="3.0" browsers="all">
 					<desc>Petite Capitals From Capitals. Applies only to bicameral scripts.</desc>
 				</value>
-				<value name="&quot;c2cs&quot;" version="3.0" browsers="all">
+				<value name="&quot;c2sc&quot;" version="3.0" browsers="all">
 					<desc>Small Capitals From Capitals. Applies only to bicameral scripts.</desc>
 				</value>
 				<value name="&quot;dist&quot;" version="3.0" browsers="all">
@@ -3269,7 +3269,7 @@
 		</entry>
 		<entry name="grid" restriction="identifier, length, percentage, string, enum" version="3.0" browsers="FF52,C57,E16,S10.1,O44" ref="https://drafts.csswg.org/css-grid/#propdef-grid" syntax="div { $(name): span 3; }">
 			<desc>The grid CSS property is a shorthand property that sets all of the explicit grid properties ('grid-template-rows', 'grid-template-columns', and 'grid-template-areas'), and all the implicit grid properties ('grid-auto-rows', 'grid-auto-columns', and 'grid-auto-flow'), in a single declaration.</desc>
-		</entry>		
+		</entry>
 		<entry name="grid-auto-columns" restriction="length, percentage" version="3.0" browsers="FF52,C57,S10.1,O44" ref="http://www.w3.org/TR/css-grid-1/#propdef-grid-auto-columns" syntax="div { $(name): 100px; }">
 			<desc>Specifies the size of implicitly created columns.</desc>
 			<values>
@@ -3733,7 +3733,7 @@
 				</value>
 				<value name="stretch" version="3.0" browsers="all">
 					<desc>If the combined size of the alignment subjects is less than the size of the alignment container, any auto-sized alignment subjects have their size increased equally (not proportionally), while still respecting the constraints imposed by max-height/max-width (or equivalent functionality), so that the combined size exactly fills the alignment container.</desc>
-				</value>				
+				</value>
 				<value name="space-evenly" version="3.0" browsers="all">
 					<desc>The items are evenly distributed within the alignment container along the main axis.</desc>
 				</value>
@@ -3754,10 +3754,10 @@
 				</value>
 				<value name="first baseline" version="3.0" browsers="all">
 					<desc>Specifies participation in first-baseline alignment.</desc>
-				</value>	
+				</value>
 				<value name="last baseline" version="3.0" browsers="all">
 					<desc>Specifies participation in last-baseline alignment.</desc>
-				</value>								
+				</value>
 			</values>
 		</entry>
 		<entry name="kerning" restriction="length, enum" version="3.0" browsers="all" ref="http://www.w3.org/TR/SVG11/text.html#KerningProperty">
@@ -7291,7 +7291,7 @@
 			</values>
 		</entry>
 		<entry name="scroll-snap-points-y" restriction="enum" version="3.0" browsers="FF39" ref="http://www.w3.org/TR/css-snappoints-1/#propdef-scroll-snap-points-y">
-			<desc>Defines the positioning of snap points alobg the y axis of the scroll container it is applied to.</desc>
+			<desc>Defines the positioning of snap points along the y axis of the scroll container it is applied to.</desc>
 			<values>
 				<value name="none" version="3.0" browsers="all">
 					<desc>No snap points are defined by this scroll container.</desc>

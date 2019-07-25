@@ -10,7 +10,7 @@ import { Scope, GlobalScope, ScopeBuilder } from '../../parser/cssSymbolScope';
 import * as nodes from '../../parser/cssNodes';
 import { Parser } from '../../parser/cssParser';
 import { CSSNavigation } from '../../services/cssNavigation';
-import { colorFrom256RGB, colorFromHSL } from '../../services/languageFacts';
+import { colorFrom256RGB, colorFromHSL } from '../../languageFacts/facts';
 
 import { TextDocument, DocumentHighlightKind, Range, Position, TextEdit, Color, ColorInformation, DocumentLink, DocumentSymbol, SymbolKind, SymbolInformation, Location } from 'vscode-languageserver-types';
 import { getCSSLanguageService, LanguageService, DocumentContext } from '../../cssLanguageService';
@@ -44,7 +44,7 @@ export function assertHighlights(p: Parser, input: string, marker: string, expec
 	assert.equal(nWrites, expectedWrites, input);
 }
 
-function getDocumentContext(documentUrl: string): DocumentContext {
+export function getDocumentContext(documentUrl: string): DocumentContext {
 	return {
 		resolveReference: (ref, base = documentUrl) => {
 			return url.resolve(base, ref);
@@ -52,12 +52,12 @@ function getDocumentContext(documentUrl: string): DocumentContext {
 	};
 }
 
-export function assertLinks(p: Parser, input: string, expected: DocumentLink[], lang: string = 'css') {
+export async function assertLinks(p: Parser, input: string, expected: DocumentLink[], lang: string = 'css') {
 	let document = TextDocument.create(`test://test/test.${lang}`, lang, 0, input);
 
 	let stylesheet = p.parseStylesheet(document);
 
-	let links = new CSSNavigation().findDocumentLinks(document, stylesheet, getDocumentContext(document.uri));
+	let links = await new CSSNavigation().findDocumentLinks2(document, stylesheet, getDocumentContext(document.uri));
 	assert.deepEqual(links, expected);
 }
 
@@ -292,51 +292,51 @@ suite('CSS - Navigation', () => {
 
 	suite('Links', () => {
 
-		test('basic @import links', () => {
+		test('basic @import links', async () => {
 			let p = new Parser();
-			assertLinks(p, `@import 'foo.css';`, [
+			await assertLinks(p, `@import 'foo.css';`, [
 				{ range: newRange(8, 17), target: 'test://test/foo.css' }
 			]);
 
-			assertLinks(p, `@import './foo.css';`, [
+			await assertLinks(p, `@import './foo.css';`, [
 				{ range: newRange(8, 19), target: 'test://test/foo.css' }
 			]);
 
-			assertLinks(p, `@import '../foo.css';`, [
+			await assertLinks(p, `@import '../foo.css';`, [
 				{ range: newRange(8, 20), target: 'test://foo.css' }
 			]);
 		});
 
-		test('complex @import links', () => {
+		test('complex @import links', async () => {
 			let p = new Parser();
-			assertLinks(p, `@import url("foo.css") print;`, [
+			await assertLinks(p, `@import url("foo.css") print;`, [
 				{ range: newRange(12, 21), target: 'test://test/foo.css' }
 			]);
 
-			assertLinks(p, `@import url("chrome://downloads")`, [
+			await assertLinks(p, `@import url("chrome://downloads")`, [
 				{ range: newRange(12, 32), target: 'chrome://downloads' }
 			]);
 
-			assertLinks(p, `@import url('landscape.css') screen and (orientation:landscape);`, [
+			await assertLinks(p, `@import url('landscape.css') screen and (orientation:landscape);`, [
 				{ range: newRange(12, 27), target: 'test://test/landscape.css' }
 			]);
 		});
 
-		test('links in rulesets', () => {
+		test('links in rulesets', async () => {
 			let p = new Parser();
-			assertLinks(p, `body { background-image: url(./foo.jpg)`, [
+			await assertLinks(p, `body { background-image: url(./foo.jpg)`, [
 				{ range: newRange(29, 38), target: 'test://test/foo.jpg' }
 			]);
 
-			assertLinks(p, `body { background-image: url('./foo.jpg')`, [
+			await assertLinks(p, `body { background-image: url('./foo.jpg')`, [
 				{ range: newRange(29, 40), target: 'test://test/foo.jpg' }
 			]);
 		});
 
-		test('No links with empty range', () => {
+		test('No links with empty range', async () => {
 			let p = new Parser();
-			assertLinks(p, `body { background-image: url()`, []);
-			assertLinks(p, `@import url();`, []);
+			await assertLinks(p, `body { background-image: url()`, []);
+			await assertLinks(p, `@import url();`, []);
 		});
 
 	});

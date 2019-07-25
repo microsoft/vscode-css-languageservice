@@ -124,7 +124,7 @@ export function getNodeAtOffset(node: Node, offset: number): Node | null {
 export function getNodePath(node: Node, offset: number): Node[] {
 
 	let candidate = getNodeAtOffset(node, offset);
-	let path: Node[] = [];
+	const path: Node[] = [];
 
 	while (candidate) {
 		path.unshift(candidate);
@@ -135,7 +135,7 @@ export function getNodePath(node: Node, offset: number): Node[] {
 }
 
 export function getParentDeclaration(node: Node): Declaration | null {
-	let decl = <Declaration>node.findParent(NodeType.Declaration);
+	const decl = <Declaration>node.findParent(NodeType.Declaration);
 	if (decl && decl.getValue() && decl.getValue().encloses(node)) {
 		return decl;
 	}
@@ -181,7 +181,7 @@ export class Node {
 		return this.nodeType || NodeType.Undefined;
 	}
 
-	public getTextProvider(): ITextProvider {
+	private getTextProvider(): ITextProvider {
 		let node: Node | null = this;
 		while (node && !node.textProvider) {
 			node = node.parent;
@@ -210,7 +210,7 @@ export class Node {
 
 	public accept(visitor: IVisitorFunction): void {
 		if (visitor(this) && this.children) {
-			for (let child of this.children) {
+			for (const child of this.children) {
 				child.accept(visitor);
 			}
 		}
@@ -222,7 +222,7 @@ export class Node {
 
 	public adoptChild(node: Node, index: number = -1): Node {
 		if (node.parent && node.parent.children) {
-			let idx = node.parent.children.indexOf(node);
+			const idx = node.parent.children.indexOf(node);
 			if (idx >= 0) {
 				node.parent.children.splice(idx, 1);
 			}
@@ -296,7 +296,7 @@ export class Node {
 		if (node.offset < this.offset || this.offset === -1) {
 			this.offset = node.offset;
 		}
-		let nodeEnd = node.end;
+		const nodeEnd = node.end;
 		if ((nodeEnd > this.end) || this.length === -1) {
 			this.length = nodeEnd - this.offset;
 		}
@@ -318,7 +318,7 @@ export class Node {
 	}
 
 	public addChildren(nodes: Node[]): void {
-		for (let node of nodes) {
+		for (const node of nodes) {
 			this.addChild(node);
 		}
 	}
@@ -338,7 +338,7 @@ export class Node {
 	}
 
 	public findChildAtOffset(offset: number, goDeep: boolean): Node {
-		let current: Node = this.findFirstChildBeforeOffset(offset);
+		const current: Node = this.findFirstChildBeforeOffset(offset);
 		if (current && current.end >= offset) {
 			if (goDeep) {
 				return current.findChildAtOffset(offset, true) || current;
@@ -391,6 +391,10 @@ export class Node {
 	}
 }
 
+export interface NodeConstructor {
+	new(offset: number, len: number);
+}
+
 export class Nodelist extends Node {
 	private _nodeList: void; // workaround for https://github.com/Microsoft/TypeScript/issues/12083
 
@@ -423,8 +427,6 @@ export class Identifier extends Node {
 
 export class Stylesheet extends Node {
 
-	private name: string;
-
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -432,11 +434,6 @@ export class Stylesheet extends Node {
 	public get type(): NodeType {
 		return NodeType.Stylesheet;
 	}
-
-	public setName(value: string): void {
-		this.name = value;
-	}
-
 }
 
 export class Declarations extends Node {
@@ -627,9 +624,9 @@ export class Declaration extends AbstractDeclaration {
 	}
 
 	public getFullPropertyName(): string {
-		let propertyName = this.property ? this.property.getName() : 'unknown';
+		const propertyName = this.property ? this.property.getName() : 'unknown';
 		if (this.parent instanceof Declarations && this.parent.getParent() instanceof NestedProperties) {
-			let parentDecl = this.parent.getParent().getParent();
+			const parentDecl = this.parent.getParent().getParent();
 			if (parentDecl instanceof Declaration) {
 				return (<Declaration>parentDecl).getFullPropertyName() + propertyName;
 			}
@@ -638,9 +635,9 @@ export class Declaration extends AbstractDeclaration {
 	}
 
 	public getNonPrefixedPropertyName(): string {
-		let propertyName = this.getFullPropertyName();
+		const propertyName = this.getFullPropertyName();
 		if (propertyName && propertyName.charAt(0) === '-') {
-			let vendorPrefixEnd = propertyName.indexOf('-', 1);
+			const vendorPrefixEnd = propertyName.indexOf('-', 1);
 			if (vendorPrefixEnd !== -1) {
 				return propertyName.substring(vendorPrefixEnd + 1);
 			}
@@ -993,8 +990,6 @@ export class KeyframeSelector extends BodyDeclaration {
 
 export class Import extends Node {
 
-	private medialist: Node;
-
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -1006,7 +1001,6 @@ export class Import extends Node {
 	public setMedialist(node: Node): boolean {
 		if (node) {
 			node.attachTo(this);
-			this.medialist = node;
 			return true;
 		}
 		return false;
@@ -1279,6 +1273,10 @@ export class HexColorValue extends Node {
 
 }
 
+const _dot = '.'.charCodeAt(0),
+	_0 = '0'.charCodeAt(0),
+	_9 = '9'.charCodeAt(0);
+
 export class NumericValue extends Node {
 
 	constructor(offset: number, length: number) {
@@ -1290,13 +1288,9 @@ export class NumericValue extends Node {
 	}
 
 	public getValue(): { value: string; unit: string } {
-		let raw = this.getText();
-		let unitIdx = 0,
-			code: number,
-			_dot = '.'.charCodeAt(0),
-			_0 = '0'.charCodeAt(0),
-			_9 = '9'.charCodeAt(0);
-
+		const raw = this.getText();
+		let unitIdx = 0;
+		let code: number;
 		for (let i = 0, len = raw.length; i < len; i++) {
 			code = raw.charCodeAt(i);
 			if (!(_0 <= code && code <= _9 || code === _dot)) {
@@ -1785,7 +1779,7 @@ export class DefaultVisitor implements IVisitor {
 	public visitMixinReference(node:MixinReference):boolean {
 		return true;
 	}
-
+	
 	public visitUnknownNode(node:Node):boolean {
 		return true;
 	}
@@ -1794,7 +1788,7 @@ export class DefaultVisitor implements IVisitor {
 export class ParseErrorCollector implements IVisitor {
 
 	static entries(node: Node): IMarker[] {
-		let visitor = new ParseErrorCollector();
+		const visitor = new ParseErrorCollector();
 		node.acceptVisitor(visitor);
 		return visitor.entries;
 	}

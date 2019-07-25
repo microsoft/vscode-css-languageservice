@@ -19,7 +19,7 @@ export class CSSIssueType implements nodes.IRule {
 	}
 }
 
-export let ParseError = {
+export const ParseError = {
 	NumberExpected: new CSSIssueType('css-numberexpected', localize('expected.number', "number expected")),
 	ConditionExpected: new CSSIssueType('css-conditionexpected', localize('expected.condt', "condition expected")),
 	RuleOrSelectorExpected: new CSSIssueType('css-ruleorselectorexpected', localize('expected.ruleorselector', "at-rule or selector expected")),

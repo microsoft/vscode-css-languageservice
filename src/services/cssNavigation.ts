@@ -9,7 +9,7 @@ import * as nls from 'vscode-nls';
 import { DocumentContext } from '../cssLanguageTypes';
 import * as nodes from '../parser/cssNodes';
 import { Symbols } from '../parser/cssSymbolScope';
-import { getColorValue, hslFromColor } from '../services/languageFacts';
+import { getColorValue, hslFromColor } from '../languageFacts/facts';
 import { endsWith, startsWith } from '../utils/strings';
 
 const localize = nls.loadMessageBundle();
@@ -18,15 +18,15 @@ export class CSSNavigation {
 
 	public findDefinition(document: TextDocument, position: Position, stylesheet: nodes.Node): Location | null {
 
-		let symbols = new Symbols(stylesheet);
-		let offset = document.offsetAt(position);
-		let node = nodes.getNodeAtOffset(stylesheet, offset);
+		const symbols = new Symbols(stylesheet);
+		const offset = document.offsetAt(position);
+		const node = nodes.getNodeAtOffset(stylesheet, offset);
 
 		if (!node) {
 			return null;
 		}
 
-		let symbol = symbols.findSymbolFromNode(node);
+		const symbol = symbols.findSymbolFromNode(node);
 		if (!symbol) {
 			return null;
 		}
@@ -38,7 +38,7 @@ export class CSSNavigation {
 	}
 
 	public findReferences(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Location[] {
-		let highlights = this.findDocumentHighlights(document, position, stylesheet);
+		const highlights = this.findDocumentHighlights(document, position, stylesheet);
 		return highlights.map(h => {
 			return {
 				uri: document.uri,
@@ -48,9 +48,9 @@ export class CSSNavigation {
 	}
 
 	public findDocumentHighlights(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): DocumentHighlight[] {
-		let result: DocumentHighlight[] = [];
+		const result: DocumentHighlight[] = [];
 
-		let offset = document.offsetAt(position);
+		const offset = document.offsetAt(position);
 		let node = nodes.getNodeAtOffset(stylesheet, offset);
 		if (!node || node.type === nodes.NodeType.Stylesheet || node.type === nodes.NodeType.Declarations) {
 			return result;
@@ -59,9 +59,9 @@ export class CSSNavigation {
 			node = node.parent;
 		}
 
-		let symbols = new Symbols(stylesheet);
-		let symbol = symbols.findSymbolFromNode(node);
-		let name = node.getText();
+		const symbols = new Symbols(stylesheet);
+		const symbol = symbols.findSymbolFromNode(node);
+		const name = node.getText();
 
 		stylesheet.accept(candidate => {
 			if (symbol) {
@@ -72,7 +72,7 @@ export class CSSNavigation {
 					});
 					return false;
 				}
-			} else if (node.type === candidate.type && node.length === candidate.length && name === candidate.getText()) {
+			} else if (node.type === candidate.type && candidate.matches(name)) {
 				// Same node type and data
 				result.push({
 					kind: getHighlightKind(candidate),
@@ -116,13 +116,17 @@ export class CSSNavigation {
 		return result;
 	}
 
+	public async findDocumentLinks2(document: TextDocument, stylesheet: nodes.Stylesheet, documentContext: DocumentContext): Promise<DocumentLink[]> {
+		return this.findDocumentLinks(document, stylesheet, documentContext);
+	}
+
 	public findDocumentSymbols(document: TextDocument, stylesheet: nodes.Stylesheet): SymbolInformation[] {
 
-		let result: SymbolInformation[] = [];
+		const result: SymbolInformation[] = [];
 
 		stylesheet.accept((node) => {
 
-			let entry: SymbolInformation = {
+			const entry: SymbolInformation = {
 				name: null,
 				kind: SymbolKind.Class, // TODO@Martin: find a good SymbolKind
 				location: null
@@ -163,9 +167,9 @@ export class CSSNavigation {
 	}
 
 	public findDocumentColors(document: TextDocument, stylesheet: nodes.Stylesheet): ColorInformation[] {
-		let result: ColorInformation[] = [];
+		const result: ColorInformation[] = [];
 		stylesheet.accept((node) => {
-			let colorInfo = getColorInformation(node, document);
+			const colorInfo = getColorInformation(node, document);
 			if (colorInfo) {
 				result.push(colorInfo);
 			}
@@ -175,8 +179,8 @@ export class CSSNavigation {
 	}
 
 	public getColorPresentations(document: TextDocument, stylesheet: nodes.Stylesheet, color: Color, range: Range): ColorPresentation[] {
-		let result: ColorPresentation[] = [];
-		let red256 = Math.round(color.red * 255), green256 = Math.round(color.green * 255), blue256 = Math.round(color.blue * 255);
+		const result: ColorPresentation[] = [];
+		const red256 = Math.round(color.red * 255), green256 = Math.round(color.green * 255), blue256 = Math.round(color.blue * 255);
 
 		let label;
 		if (color.alpha === 1) {
@@ -205,8 +209,8 @@ export class CSSNavigation {
 	}
 
 	public doRename(document: TextDocument, position: Position, newName: string, stylesheet: nodes.Stylesheet): WorkspaceEdit {
-		let highlights = this.findDocumentHighlights(document, position, stylesheet);
-		let edits = highlights.map(h => TextEdit.replace(h.range, newName));
+		const highlights = this.findDocumentHighlights(document, position, stylesheet);
+		const edits = highlights.map(h => TextEdit.replace(h.range, newName));
 		return {
 			changes: { [document.uri]: edits }
 		};
@@ -215,9 +219,9 @@ export class CSSNavigation {
 }
 
 function getColorInformation(node: nodes.Node, document: TextDocument): ColorInformation | null {
-	let color = getColorValue(node);
+	const color = getColorValue(node);
 	if (color) {
-		let range = getRange(node, document);
+		const range = getRange(node, document);
 		return { color, range };
 	}
 	return null;
@@ -251,38 +255,12 @@ function uriStringNodeToDocumentLink(document: TextDocument, uriStringNode: node
 		target = rawUri;
 	}
 	else {
-		/**
-		 * In SCSS, @import 'foo' could be referring to `_foo.scss`, if none of the following is true:
-		 * - The file's extension is .css.
-		 * - The filename begins with http://.
-		 * - The filename is a url().
-		 * - The @import has any media queries.
-		 */
-		if (document.languageId === 'scss') {
-			if (
-				!endsWith(rawUri, '.css') &&
-				!startsWith(rawUri, 'http://') && !startsWith(rawUri, 'https://') &&
-				!(uriStringNode.parent && uriStringNode.parent.type === nodes.NodeType.URILiteral) &&
-				uriStringNode.parent.getChildren().length === 1
-			) {
-				target = toScssPartialUri(documentContext.resolveReference(rawUri, document.uri));
-			} else {
-				target = documentContext.resolveReference(rawUri, document.uri);
-			}
-		} else {
-			target = documentContext.resolveReference(rawUri, document.uri);
-		}
+		target = documentContext.resolveReference(rawUri, document.uri);
 	}
 	return {
 		range,
 		target
 	};
-}
-
-function toScssPartialUri(uri: string): string {
-	return uri.replace(/\/(\w+)(.scss)?$/gm, (match, fileName) => {
-		return '/_' + fileName + '.scss';
-	});
 }
 
 function getRange(node: nodes.Node, document: TextDocument): Range {

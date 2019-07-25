@@ -60,7 +60,7 @@ export class LintConfigurationSettings {
 
 	getRule(rule: Rule): nodes.Level {
 		if (this.conf.hasOwnProperty(rule.id)) {
-			let level = toLevel(this.conf[rule.id]);
+			const level = toLevel(this.conf[rule.id]);
 			if (level) {
 				return level;
 			}

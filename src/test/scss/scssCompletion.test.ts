@@ -120,6 +120,11 @@ suite('SCSS - Completions', () => {
 				{ label: '.foo' }
 			]
 		});
+		testCompletionFor('.foo { mask: no|', { // bug 76572
+			items: [
+				{ label: 'round' }
+			]
+		});
 	});
 
 	test('at rules', function (): any {

@@ -7,7 +7,8 @@
 import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
-import { CompletionList, TextDocument, Position, CompletionItemKind, InsertTextFormat, Range } from 'vscode-languageserver-types';
+import { CompletionList, TextDocument, Position, CompletionItemKind, InsertTextFormat, Range, Command } from 'vscode-languageserver-types';
+import { LanguageSettings } from '../../cssLanguageTypes';
 
 export interface ItemDescription {
 	label: string;
@@ -17,6 +18,8 @@ export interface ItemDescription {
 	insertTextFormat?: InsertTextFormat;
 	resultText?: string;
 	notAvailable?: boolean;
+	command?: Command;
+	sortText?: string;
 }
 
 function asPromise<T>(result: T): Promise<T> {
@@ -49,11 +52,17 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 	if (expected.insertTextFormat) {
 		assert.equal(match.insertTextFormat, expected.insertTextFormat);
 	}
+	if (expected.command) {
+		assert.deepEqual(match.command, expected.command);
+	}
+	if (expected.sortText) {
+		assert.equal(match.sortText, expected.sortText);
+	}
 };
 
 suite('CSS - Completion', () => {
 
-	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[], participant?: { onProperty?, onPropertValue?, onURILiteralValue?, onImportPath? } }) {
+	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[], participant?: { onProperty?, onPropertValue?, onURILiteralValue?, onImportPath? } }, settings?: LanguageSettings) {
 		let offset = value.indexOf('|');
 		value = value.substr(0, offset) + value.substr(offset + 1);
 
@@ -63,6 +72,8 @@ suite('CSS - Completion', () => {
 		let actualImportPathContexts: { pathValue: string; position: Position; range: Range; }[] = [];
 
 		let ls = cssLanguageService.getCSSLanguageService();
+		ls.configure(settings);
+
 		if (expected.participant) {
 			ls.setCompletionParticipants([{
 				onCssProperty: context => actualPropertyContexts.push(context),
@@ -499,10 +510,55 @@ suite('CSS - Completion', () => {
 		});
 	});
 
-	test('Property completeness', function (): any {
+	test('Property completeness', () => {
 		testCompletionFor('html { text-decoration:|', {
 			items: [
 				{ label: 'none' }
+			]
+		});
+		testCompletionFor('body { disp| ', {
+			items: [
+				{ label: 'display', resultText: 'body { display:  ', command: { title: 'Suggest', command: 'editor.action.triggerSuggest' } }
+			]
+		});
+		testCompletionFor('body { disp| ', {
+			items: [
+				{ label: 'display', resultText: 'body { display:  ', command: { title: 'Suggest', command: 'editor.action.triggerSuggest' } }
+			]
+		}, {});
+		testCompletionFor('body { disp| ', {
+			items: [
+				{ label: 'display', resultText: 'body { display:  ', command: { title: 'Suggest', command: 'editor.action.triggerSuggest' } }
+			]
+		}, { completion: undefined });
+		testCompletionFor('body { disp| ', {
+			items: [
+				{ label: 'display', resultText: 'body { display:  ', command: { title: 'Suggest', command: 'editor.action.triggerSuggest' } }
+			]
+		}, { completion: { triggerPropertyValueCompletion: true } });
+		testCompletionFor('body { disp| ', {
+			items: [
+				{ label: 'display', resultText: 'body { display:  ', command: undefined }
+			]
+		}, { completion: { triggerPropertyValueCompletion: false } });
+	});
+
+	test('Completion description should include status and browser compat', () => {
+		testCompletionFor('.foo { | }', {
+			items: [
+				{ label: 'contain', documentation: `⚠️ Property is experimental. Be cautious when using it.️\n\nIndicates that an element and its contents are, as much as possible, independent of the rest of the document tree.\n(Firefox 41, Chrome 52, Opera 40)\n\nSyntax: none | strict | content | [ size || layout || style || paint ]`},
+				{ label: 'user-select', documentation: `🚨️ Property is nonstandard. Avoid using it.\n\nControls the appearance of selection.\n\nSyntax: auto | text | none | contain | all` }
+			]
+		});
+	});
+	
+			// https://github.com/Microsoft/vscode/issues/71791
+	test('Items that start with `-` are sorted lower than normal attribute values', () => {
+		testCompletionFor('.foo { display: | }', {
+			items: [
+				{ label: 'grid', sortText: 'd' },
+				{ label: '-moz-grid', sortText: 'x' },
+				{ label: '-ms-grid', sortText: 'x' },
 			]
 		});
 	});

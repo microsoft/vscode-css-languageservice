@@ -3,13 +3,14 @@ Language services for CSS, LESS and SCSS
 
 [![npm Package](https://img.shields.io/npm/v/vscode-css-languageservice.svg?style=flat-square)](https://www.npmjs.org/package/vscode-css-languageservice)
 [![NPM Downloads](https://img.shields.io/npm/dm/vscode-css-languageservice.svg)](https://npmjs.org/package/vscode-css-languageservice)
-[![Build Status](https://travis-ci.org/Microsoft/vscode-css-languageservice.svg?branch=master)](https://travis-ci.org/Microsoft/vscode-css-languageservice)
+[![Azure DevOps Build Status](https://img.shields.io/azure-devops/build/vscode/2377f926-a00b-46ed-9fb1-79465b3e998b/20.svg?label=Azure%20DevOps)](https://dev.azure.com/vscode/vscode-css-languageservice/_build?definitionId=20)
+[![Travis Build Status](https://img.shields.io/travis/microsoft/vscode-css-languageservice.svg?label=Travis)](https://travis-ci.org/Microsoft/vscode-css-languageservice)
 
 Why?
 ----
 The _vscode-css-languageservice_ contains the language smarts behind the CSS, LESS and SCSS editing experience of Visual Studio Code
 and the Monaco editor.
- - *doValidation* analyses an input string and returns syntax and lint errros.
+ - *doValidation* analyses an input string and returns syntax and lint errors.
  - *doComplete* provides completion proposals for a given location.
  - *doHover* provides a hover text for a given location.
  - *findDefinition* finds the definition of the symbol at the given location.
@@ -49,6 +50,7 @@ export interface LanguageService {
 	getColorPresentations(document: TextDocument, stylesheet: Stylesheet, color: Color, range: Range): ColorPresentation[];
 	doRename(document: TextDocument, position: Position, newName: string, stylesheet: Stylesheet): WorkspaceEdit;
 	getFoldingRanges(document: TextDocument, context?: { rangeLimit?: number; }): FoldingRange[];
+	getSelectionRanges(document: TextDocument, positions: Position[], stylesheet: Stylesheet): SelectionRange[];
 }
 
 export interface LanguageSettings {
@@ -84,7 +86,7 @@ License
 
 (MIT License)
 
-Copyright 2016, Microsoft
+Copyright 2016, 2019 Microsoft
 
 With the exceptions of `build/mdn-documentation.js`, which is built upon content from [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web)
 and distributed under CC BY-SA 2.5.

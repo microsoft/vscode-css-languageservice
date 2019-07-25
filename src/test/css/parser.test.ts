@@ -297,6 +297,7 @@ suite('CSS - Parser', () => {
 		assertNode('boo { @apply --custom-prop; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('boo { @apply --custom-prop }', parser, parser._parseRuleset.bind(parser));
 		assertNode('boo { @apply --custom-prop; background-color: red }', parser, parser._parseRuleset.bind(parser));
+		assertError('boo, { }', parser, parser._parseRuleset.bind(parser), ParseError.SelectorExpected);
 	});
 
 	test('ruleset /Panic/', function () {

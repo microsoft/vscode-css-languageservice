@@ -44,14 +44,14 @@ export class Scope {
 
 	private findInScope(offset: number, length: number = 0): Scope {
 		// find the first scope child that has an offset larger than offset + length
-		let end = offset + length;
-		let idx = findFirst(this.children, s => s.offset > end);
+		const end = offset + length;
+		const idx = findFirst(this.children, s => s.offset > end);
 		if (idx === 0) {
 			// all scopes have offsets larger than our end
 			return this;
 		}
 
-		let res = this.children[idx - 1];
+		const res = this.children[idx - 1];
 		if (res.offset <= offset && res.offset + res.length >= offset + length) {
 			return res.findInScope(offset, length);
 		}
@@ -64,7 +64,7 @@ export class Scope {
 
 	public getSymbol(name: string, type: nodes.ReferenceType): Symbol | null {
 		for (let index = 0; index < this.symbols.length; index++) {
-			let symbol = this.symbols[index];
+			const symbol = this.symbols[index];
 			if (symbol.name === name && symbol.type === type) {
 				return symbol;
 			}
@@ -111,7 +111,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 
 	private addSymbol(node: nodes.Node, name: string, value: string | undefined, type: nodes.ReferenceType): void {
 		if (node.offset !== -1) {
-			let current = this.scope.findScope(node.offset, node.length);
+			const current = this.scope.findScope(node.offset, node.length);
 			if (current) {
 				current.addSymbol(new Symbol(name, value, node, type));
 			}
@@ -120,9 +120,9 @@ export class ScopeBuilder implements nodes.IVisitor {
 
 	private addScope(node: nodes.Node): Scope | null {
 		if (node.offset !== -1) {
-			let current = this.scope.findScope(node.offset, node.length);
+			const current = this.scope.findScope(node.offset, node.length);
 			if (current && (current.offset !== node.offset || current.length !== node.length)) { // scope already known?
-				let newScope = new Scope(node.offset, node.length);
+				const newScope = new Scope(node.offset, node.length);
 				current.addChild(newScope);
 				return newScope;
 			}
@@ -133,7 +133,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 
 	private addSymbolToChildScope(scopeNode: nodes.Node, node: nodes.Node, name: string, value: string | undefined, type: nodes.ReferenceType): void {
 		if (scopeNode && scopeNode.offset !== -1) {
-			let current = this.addScope(scopeNode); // create the scope or gets the existing one
+			const current = this.addScope(scopeNode); // create the scope or gets the existing one
 			if (current) {
 				current.addSymbol(new Symbol(name, value, node, type));
 			}
@@ -164,18 +164,18 @@ export class ScopeBuilder implements nodes.IVisitor {
 				this.addScope(node);
 				return true;
 			case nodes.NodeType.For:
-				let forNode = <nodes.ForStatement>node;
-				let scopeNode = forNode.getDeclarations();
+				const forNode = <nodes.ForStatement>node;
+				const scopeNode = forNode.getDeclarations();
 				if (scopeNode) {
 					this.addSymbolToChildScope(scopeNode, forNode.variable, forNode.variable.getName(), void 0, nodes.ReferenceType.Variable);
 				}
 				return true;
 			case nodes.NodeType.Each: {
-				let eachNode = <nodes.EachStatement>node;
-				let scopeNode = eachNode.getDeclarations();
+				const eachNode = <nodes.EachStatement>node;
+				const scopeNode = eachNode.getDeclarations();
 				if (scopeNode) {
-					let variables = <nodes.Variable[]>eachNode.getVariables().getChildren();
-					for (let variable of variables) {
+					const variables = <nodes.Variable[]>eachNode.getVariables().getChildren();
+					for (const variable of variables) {
 						this.addSymbolToChildScope(scopeNode, variable, variable.getName(), void 0, nodes.ReferenceType.Variable);
 					}
 				}
@@ -186,9 +186,9 @@ export class ScopeBuilder implements nodes.IVisitor {
 	}
 
 	public visitRuleSet(node: nodes.RuleSet): boolean {
-		let current = this.scope.findScope(node.offset, node.length);
+		const current = this.scope.findScope(node.offset, node.length);
 		if (current) {
-			for (let child of node.getSelectors().getChildren()) {
+			for (const child of node.getSelectors().getChildren()) {
 				if (child instanceof nodes.Selector) {
 					if (child.getChildren().length === 1) { // only selectors with a single element can be extended
 						current.addSymbol(new Symbol(child.getChild(0).getText(), void 0, child, nodes.ReferenceType.Rule));
@@ -207,7 +207,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 
 	public visitFunctionParameterNode(node: nodes.FunctionParameter): boolean {
 		// parameters are part of the body scope
-		let scopeNode = (<nodes.BodyDeclaration>node.getParent()).getDeclarations();
+		const scopeNode = (<nodes.BodyDeclaration>node.getParent()).getDeclarations();
 		if (scopeNode) {
 			const valueNode = (<nodes.FunctionParameter>node).getDefaultValue();
 			const value = valueNode ? valueNode.getText() : void 0;
@@ -217,7 +217,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 	}
 
 	public visitCustomPropertyDeclarationNode(node: nodes.CustomPropertyDeclaration): boolean {
-		let value = node.getValue() ? node.getValue().getText() : '';
+		const value = node.getValue() ? node.getValue().getText() : '';
 		this.addCSSVariable(node.getProperty(), node.getProperty().getName(), value, nodes.ReferenceType.Variable);
 		return true;
 	}
@@ -240,12 +240,12 @@ export class Symbols {
 
 	public findSymbolsAtOffset(offset: number, referenceType: nodes.ReferenceType): Symbol[] {
 		let scope = this.global.findScope(offset, 0);
-		let result: Symbol[] = [];
-		let names: { [name: string]: boolean } = {};
+		const result: Symbol[] = [];
+		const names: { [name: string]: boolean } = {};
 		while (scope) {
-			let symbols = scope.getSymbols();
+			const symbols = scope.getSymbols();
 			for (let i = 0; i < symbols.length; i++) {
-				let symbol = symbols[i];
+				const symbol = symbols[i];
 				if (symbol.type === referenceType && !names[symbol.name]) {
 					result.push(symbol);
 					names[symbol.name] = true;
@@ -262,9 +262,9 @@ export class Symbols {
 			scopeNode = (<nodes.BodyDeclaration>node.parent.getParent()).getDeclarations();
 		}
 		if (node.parent instanceof nodes.FunctionArgument && node.parent.getParent() instanceof nodes.Function) {
-			let funcId = (<nodes.Function>node.parent.getParent()).getIdentifier();
+			const funcId = (<nodes.Function>node.parent.getParent()).getIdentifier();
 			if (funcId) {
-				let functionSymbol = this.internalFindSymbol(funcId, [nodes.ReferenceType.Function]);
+				const functionSymbol = this.internalFindSymbol(funcId, [nodes.ReferenceType.Function]);
 				if (functionSymbol) {
 					scopeNode = (<nodes.FunctionDeclaration>functionSymbol.node).getDeclarations();
 				}
@@ -273,12 +273,12 @@ export class Symbols {
 		if (!scopeNode) {
 			return null;
 		}
-		let name = node.getText();
+		const name = node.getText();
 		let scope = this.global.findScope(scopeNode.offset, scopeNode.length);
 		while (scope) {
 			for (let index = 0; index < referenceTypes.length; index++) {
-				let type = referenceTypes[index];
-				let symbol = scope.getSymbol(name, type);
+				const type = referenceTypes[index];
+				const symbol = scope.getSymbol(name, type);
 				if (symbol) {
 					return symbol;
 				}
@@ -290,7 +290,7 @@ export class Symbols {
 
 	private evaluateReferenceTypes(node: nodes.Node): nodes.ReferenceType[] | null {
 		if (node instanceof nodes.Identifier) {
-			let referenceTypes = (<nodes.Identifier>node).referenceTypes;
+			const referenceTypes = (<nodes.Identifier>node).referenceTypes;
 			if (referenceTypes) {
 				return referenceTypes;
 			} else {
@@ -298,9 +298,9 @@ export class Symbols {
 					return [nodes.ReferenceType.Variable];
 				}
 				// are a reference to a keyframe?
-				let decl = nodes.getParentDeclaration(node);
+				const decl = nodes.getParentDeclaration(node);
 				if (decl) {
-					let propertyName = decl.getNonPrefixedPropertyName();
+					const propertyName = decl.getNonPrefixedPropertyName();
 					if ((propertyName === 'animation' || propertyName === 'animation-name')
 						&& decl.getValue() && decl.getValue().offset === node.offset) {
 						return [nodes.ReferenceType.Keyframe];
@@ -310,7 +310,7 @@ export class Symbols {
 		} else if (node instanceof nodes.Variable) {
 			return [nodes.ReferenceType.Variable];
 		}
-		let selector = node.findAParent(nodes.NodeType.Selector, nodes.NodeType.ExtendsReference);
+		const selector = node.findAParent(nodes.NodeType.Selector, nodes.NodeType.ExtendsReference);
 		if (selector) {
 			return [nodes.ReferenceType.Rule];
 		}
@@ -325,7 +325,7 @@ export class Symbols {
 			node = node.getParent();
 		}
 
-		let referenceTypes = this.evaluateReferenceTypes(node);
+		const referenceTypes = this.evaluateReferenceTypes(node);
 		if (referenceTypes) {
 			return this.internalFindSymbol(node, referenceTypes);
 		}
@@ -339,16 +339,16 @@ export class Symbols {
 		while (node.type === nodes.NodeType.Interpolation) {
 			node = node.getParent();
 		}
-		if (symbol.name.length !== node.length || symbol.name !== node.getText()) {
+		if (!node.matches(symbol.name)) {
 			return false;
 		}
 
-		let referenceTypes = this.evaluateReferenceTypes(node);
+		const referenceTypes = this.evaluateReferenceTypes(node);
 		if (!referenceTypes || referenceTypes.indexOf(symbol.type) === -1) {
 			return false;
 		}
 
-		let nodeSymbol = this.internalFindSymbol(node, referenceTypes);
+		const nodeSymbol = this.internalFindSymbol(node, referenceTypes);
 		return nodeSymbol === symbol;
 	}
 
@@ -356,7 +356,7 @@ export class Symbols {
 	public findSymbol(name: string, type: nodes.ReferenceType, offset: number): Symbol | null {
 		let scope = this.global.findScope(offset);
 		while (scope) {
-			let symbol = scope.getSymbol(name, type);
+			const symbol = scope.getSymbol(name, type);
 			if (symbol) {
 				return symbol;
 			}

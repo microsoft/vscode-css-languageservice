@@ -6,7 +6,7 @@
 
 import {
 	TextDocument, Position, CompletionList, Hover, Range, SymbolInformation, Diagnostic, Location, DocumentHighlight,
-	CodeActionContext, Command, WorkspaceEdit, Color, ColorInformation, ColorPresentation, FoldingRange, CodeAction, DocumentLink
+	CodeActionContext, Command, WorkspaceEdit, Color, ColorInformation, ColorPresentation, FoldingRange, CodeAction, DocumentLink, SelectionRange
 } from 'vscode-languageserver-types';
 
 import { Parser } from './parser/cssParser';
@@ -21,7 +21,10 @@ import { SCSSCompletion } from './services/scssCompletion';
 import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
 import { getFoldingRanges } from './services/cssFolding';
-import { LanguageSettings, ICompletionParticipant, DocumentContext } from './cssLanguageTypes';
+import { LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServiceOptions } from './cssLanguageTypes';
+import { cssDataManager } from './languageFacts/facts';
+import { getSelectionRanges } from './services/cssSelectionRange';
+import { SCSSNavigation } from './services/scssNavigation';
 
 export type Stylesheet = {};
 export * from './cssLanguageTypes';
@@ -38,20 +41,30 @@ export interface LanguageService {
 	findReferences(document: TextDocument, position: Position, stylesheet: Stylesheet): Location[];
 	findDocumentHighlights(document: TextDocument, position: Position, stylesheet: Stylesheet): DocumentHighlight[];
 	findDocumentLinks(document: TextDocument, stylesheet: Stylesheet, documentContext: DocumentContext): DocumentLink[];
+	/**
+	 * Return statically resolved links, and dynamically resolved links if `fsProvider` is proved.
+	 */
+	findDocumentLinks2(document: TextDocument, stylesheet: Stylesheet, documentContext: DocumentContext): Promise<DocumentLink[]>;
 	findDocumentSymbols(document: TextDocument, stylesheet: Stylesheet): SymbolInformation[];
 	doCodeActions(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: Stylesheet): Command[];
 	doCodeActions2(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: Stylesheet): CodeAction[];
-	/** deprecated, use findDocumentColors instead */
+	/**
+	 * @deprecated use findDocumentColors instead
+	 */
 	findColorSymbols(document: TextDocument, stylesheet: Stylesheet): Range[];
 	findDocumentColors(document: TextDocument, stylesheet: Stylesheet): ColorInformation[];
 	getColorPresentations(document: TextDocument, stylesheet: Stylesheet, color: Color, range: Range): ColorPresentation[];
 	doRename(document: TextDocument, position: Position, newName: string, stylesheet: Stylesheet): WorkspaceEdit;
 	getFoldingRanges(document: TextDocument, context?: { rangeLimit?: number; }): FoldingRange[];
+	getSelectionRanges(document: TextDocument, positions: Position[], stylesheet: Stylesheet): SelectionRange[];
 }
 
 function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover, navigation: CSSNavigation, codeActions: CSSCodeActions, validation: CSSValidation) {
 	return {
-		configure: validation.configure.bind(validation),
+		configure: (settings) => {
+			validation.configure(settings);
+			completion.configure(settings);
+		},
 		doValidation: validation.doValidation.bind(validation),
 		parseStylesheet: parser.parseStylesheet.bind(parser),
 		doComplete: completion.doComplete.bind(completion),
@@ -61,6 +74,7 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 		findReferences: navigation.findReferences.bind(navigation),
 		findDocumentHighlights: navigation.findDocumentHighlights.bind(navigation),
 		findDocumentLinks: navigation.findDocumentLinks.bind(navigation),
+		findDocumentLinks2: navigation.findDocumentLinks2.bind(navigation),
 		findDocumentSymbols: navigation.findDocumentSymbols.bind(navigation),
 		doCodeActions: codeActions.doCodeActions.bind(codeActions),
 		doCodeActions2: codeActions.doCodeActions2.bind(codeActions),
@@ -68,19 +82,28 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 		findDocumentColors: navigation.findDocumentColors.bind(navigation),
 		getColorPresentations: navigation.getColorPresentations.bind(navigation),
 		doRename: navigation.doRename.bind(navigation),
-		getFoldingRanges: getFoldingRanges
+		getFoldingRanges,
+		getSelectionRanges
 	};
 }
 
+function handleCustomData(options?: LanguageServiceOptions) {
+	if (options && options.customDataProviders) {
+		cssDataManager.addDataProviders(options.customDataProviders);
+	}
+}
 
-export function getCSSLanguageService(): LanguageService {
+export function getCSSLanguageService(options?: LanguageServiceOptions): LanguageService {
+	handleCustomData(options);
 	return createFacade(new Parser(), new CSSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation());
 }
 
-export function getSCSSLanguageService(): LanguageService {
-	return createFacade(new SCSSParser(), new SCSSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation());
+export function getSCSSLanguageService(options?: LanguageServiceOptions): LanguageService {
+	handleCustomData(options);
+	return createFacade(new SCSSParser(), new SCSSCompletion(), new CSSHover(), new SCSSNavigation(options && options.fileSystemProvider), new CSSCodeActions(), new CSSValidation());
 }
 
-export function getLESSLanguageService(): LanguageService {
+export function getLESSLanguageService(options?: LanguageServiceOptions): LanguageService {
+	handleCustomData(options);
 	return createFacade(new LESSParser(), new LESSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation());
 }

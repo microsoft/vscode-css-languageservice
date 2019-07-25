@@ -8,8 +8,7 @@
 		"stripInternal": true,
 		"outDir": "../lib/esm",
 		"lib": [
-			"es5",
-			"es2015.promise"
+			"es5", "es2015.promise"
 		]
 	}
 }

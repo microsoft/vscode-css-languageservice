@@ -19,7 +19,7 @@ export class SCSSIssueType implements nodes.IRule {
 	}
 }
 
-export var SCSSParseError = {
+export const SCSSParseError = {
 	FromExpected: new SCSSIssueType('scss-fromexpected', localize('expected.from', "'from' expected")),
 	ThroughOrToExpected: new SCSSIssueType('scss-throughexpected', localize('expected.through', "'through' or 'to' expected")),
 	InExpected: new SCSSIssueType('scss-fromexpected', localize('expected.in', "'in' expected")),

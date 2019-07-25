@@ -287,7 +287,6 @@ suite('LESS - Parser', () => {
 		assertNode('.foo { @supports(display: grid) { display: none; }}', parser, parser._parseRuleset.bind(parser));
 		assertNode('.parent { color:green; @document url-prefix() { .child { color:red; }}}', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@supports (property: value) { .outOfMedia & { @media (max-size: 2px) { @supports (whatever: something) { property: value;}}}}', parser, parser._parseStylesheet.bind(parser));
-		
 	});
 
 	test('Interpolation', function () {
@@ -296,6 +295,7 @@ suite('LESS - Parser', () => {
 		assertNode('.${name} { }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.my-element:not(.prefix-@{sub-element}) { }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.-@{color} { }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('.--@{color} { }', parser, parser._parseStylesheet.bind(parser));
 		assertNoNode('@', parser, parser._parseInterpolation.bind(parser));
 		assertNode('.px2rem(@name, @px) { @{name}: @px / @basesize; }', parser, parser._parseStylesheet.bind(parser));
 		assertError('@{', parser, parser._parseInterpolation.bind(parser), ParseError.IdentifierExpected);
@@ -310,6 +310,7 @@ suite('LESS - Parser', () => {
 		assertNode('&-1', parser, parser._parseSimpleSelector.bind(parser));
 		assertNode('&1', parser, parser._parseSimpleSelector.bind(parser));
 		assertNode('&-foo-1', parser, parser._parseSimpleSelector.bind(parser));
+		assertNode('&-foo-1-2', parser, parser._parseSimpleSelector.bind(parser));
 		assertNode('&--&', parser, parser._parseSimpleSelector.bind(parser));
 		assertNode('&-10-thing', parser, parser._parseSimpleSelector.bind(parser));
 	});

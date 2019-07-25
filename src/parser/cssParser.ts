@@ -6,7 +6,7 @@
 import { TokenType, Scanner, IToken } from './cssScanner';
 import * as nodes from './cssNodes';
 import { ParseError, CSSIssueType } from './cssErrors';
-import * as languageFacts from '../services/languageFacts';
+import * as languageFacts from '../languageFacts/facts';
 import { TextDocument } from 'vscode-languageserver-types';
 
 export interface IMark {
@@ -81,8 +81,8 @@ export class Parser {
 	}
 
 	public try(func: () => nodes.Node): nodes.Node {
-		let pos = this.mark();
-		let node = func();
+		const pos = this.mark();
+		const node = func();
 		if (!node) {
 			this.restoreAtMark(pos);
 			return null;
@@ -92,7 +92,7 @@ export class Parser {
 
 	public acceptOneKeyword(keywords: string[]): boolean {
 		if (TokenType.AtKeyword === this.token.type) {
-			for (let keyword of keywords) {
+			for (const keyword of keywords) {
 				if (keyword.length === this.token.text.length && keyword === this.token.text.toLowerCase()) {
 					this.consumeToken();
 					return true;
@@ -134,10 +134,24 @@ export class Parser {
 		return false;
 	}
 
+	public acceptRegexp(regEx: RegExp): boolean {
+		if (regEx.test(this.token.text)) {
+			this.consumeToken();
+			return true;
+		}
+		return false;
+	}
+
+	public _parseRegexp(regEx: RegExp): nodes.Node {
+		let node = this.createNode(nodes.NodeType.Identifier);
+		do {} while (this.acceptRegexp(regEx));
+		return this.finish(node);
+	}
+
 	protected acceptUnquotedString(): boolean {
-		let pos = this.scanner.pos();
+		const pos = this.scanner.pos();
 		this.scanner.goBackTo(this.token.offset);
-		let unquoted = this.scanner.scanUnquotedString();
+		const unquoted = this.scanner.scanUnquotedString();
 		if (unquoted) {
 			this.token = unquoted;
 			this.consumeToken();
@@ -167,10 +181,8 @@ export class Parser {
 		return new nodes.Node(this.token.offset, this.token.len, nodeType);
 	}
 
-	public create(ctor: any): nodes.Node {
-		let obj = Object.create(ctor.prototype);
-		ctor.apply(obj, [this.token.offset, this.token.len]);
-		return obj;
+	public create(ctor: nodes.NodeConstructor): nodes.Node {
+		return new ctor(this.token.offset, this.token.len);
 	}
 
 	public finish<T extends nodes.Node>(node: T, error?: CSSIssueType, resyncTokens?: TokenType[], resyncStopTokens?: TokenType[]): T {
@@ -183,7 +195,7 @@ export class Parser {
 			// set the node end position
 			if (this.prevToken !== null) {
 				// length with more elements belonging together
-				let prevEnd = this.prevToken.offset + this.prevToken.len;
+				const prevEnd = this.prevToken.offset + this.prevToken.len;
 				node.length = prevEnd > node.offset ? prevEnd - node.offset : 0; // offset is taken from current token, end from previous: Use 0 for empty nodes
 			}
 
@@ -202,21 +214,23 @@ export class Parser {
 	}
 
 	public parseStylesheet(textDocument: TextDocument): nodes.Stylesheet {
-		let versionId = textDocument.version;
-		let textProvider = (offset: number, length: number) => {
+		const versionId = textDocument.version;
+		const text = textDocument.getText();
+		const textProvider = (offset: number, length: number) => {
 			if (textDocument.version !== versionId) {
 				throw new Error('Underlying model has changed, AST is no longer valid');
 			}
-			return textDocument.getText().substr(offset, length);
+			return text.substr(offset, length);
 		};
 
-		return this.internalParse(textDocument.getText(), this._parseStylesheet, textProvider);
+		return this.internalParse(text, this._parseStylesheet, textProvider);
 	}
+
 
 	public internalParse<T extends nodes.Node>(input: string, parseFunc: () => T, textProvider?: nodes.ITextProvider): T {
 		this.scanner.setSource(input);
 		this.token = this.scanner.scan();
-		let node = parseFunc.bind(this)();
+		const node : T = parseFunc.bind(this)();
 		if (node) {
 			if (textProvider) {
 				node.textProvider = textProvider;
@@ -228,7 +242,7 @@ export class Parser {
 	}
 
 	public _parseStylesheet(): nodes.Stylesheet {
-		let node = <nodes.Stylesheet>this.create(nodes.Stylesheet);
+		const node = <nodes.Stylesheet>this.create(nodes.Stylesheet);
 		node.addChild(this._parseCharset());
 
 		let inRecovery = false;
@@ -236,7 +250,7 @@ export class Parser {
 			let hasMatch = false;
 			do {
 				hasMatch = false;
-				let statement = this._parseStylesheetStatement();
+				const statement = this._parseStylesheetStatement();
 				if (statement) {
 					node.addChild(statement);
 					hasMatch = true;
@@ -291,7 +305,7 @@ export class Parser {
 	}
 
 	public _tryParseRuleset(isNested: boolean): nodes.RuleSet {
-		let mark = this.mark();
+		const mark = this.mark();
 		if (this._parseSelector(isNested)) {
 			while (this.accept(TokenType.Comma) && this._parseSelector(isNested)) {
 				// loop
@@ -306,14 +320,17 @@ export class Parser {
 	}
 
 	public _parseRuleset(isNested: boolean = false): nodes.RuleSet {
-		let node = <nodes.RuleSet>this.create(nodes.RuleSet);
+		const node = <nodes.RuleSet>this.create(nodes.RuleSet);
+		const selectors = node.getSelectors();
 
-		if (!node.getSelectors().addChild(this._parseSelector(isNested))) {
+		if (!selectors.addChild(this._parseSelector(isNested))) {
 			return null;
 		}
 
-		while (this.accept(TokenType.Comma) && node.getSelectors().addChild(this._parseSelector(isNested))) {
-			// loop
+		while (this.accept(TokenType.Comma)) {
+			if (!selectors.addChild(this._parseSelector(isNested))) {
+				return this.finish(node, ParseError.SelectorExpected);
+			}
 		}
 
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
@@ -381,7 +398,7 @@ export class Parser {
 	}
 
 	public _parseDeclarations(parseDeclaration: () => nodes.Node): nodes.Declarations {
-		let node = <nodes.Declarations>this.create(nodes.Declarations);
+		const node = <nodes.Declarations>this.create(nodes.Declarations);
 		if (!this.accept(TokenType.CurlyL)) {
 			return null;
 		}
@@ -414,7 +431,7 @@ export class Parser {
 	}
 
 	public _parseSelector(isNested: boolean): nodes.Selector {
-		let node = <nodes.Selector>this.create(nodes.Selector);
+		const node = <nodes.Selector>this.create(nodes.Selector);
 
 		let hasContent = false;
 		if (isNested) {
@@ -429,7 +446,7 @@ export class Parser {
 	}
 
 	public _parseDeclaration(resyncStopTokens?: TokenType[]): nodes.Declaration {
-		let node = <nodes.Declaration>this.create(nodes.Declaration);
+		const node = <nodes.Declaration>this.create(nodes.Declaration);
 		if (!node.setProperty(this._parseProperty())) {
 			return null;
 		}
@@ -454,7 +471,7 @@ export class Parser {
 		if (!this.peekRegExp(TokenType.Ident, /^--/)) {
 			return null;
 		}
-		let node = <nodes.CustomPropertyDeclaration>this.create(nodes.CustomPropertyDeclaration);
+		const node = <nodes.CustomPropertyDeclaration>this.create(nodes.CustomPropertyDeclaration);
 		if (!node.setProperty(this._parseProperty())) {
 			return null;
 		}
@@ -464,11 +481,11 @@ export class Parser {
 		}
 		node.colonPosition = this.prevToken.offset;
 
-		let mark = this.mark();
+		const mark = this.mark();
 		if (this.peek(TokenType.CurlyL)) {
 			// try to parse it as nested declaration
-			let propertySet = <nodes.CustomPropertySet>this.create(nodes.CustomPropertySet);
-			let declarations = this._parseDeclarations(this._parseRuleSetDeclaration.bind(this));
+			const propertySet = <nodes.CustomPropertySet>this.create(nodes.CustomPropertySet);
+			const declarations = this._parseDeclarations(this._parseRuleSetDeclaration.bind(this));
 			if (propertySet.setDeclarations(declarations) && !declarations.isErroneous(true)) {
 				propertySet.addChild(this._parsePrio());
 				if (this.peek(TokenType.SemiColon)) {
@@ -481,7 +498,7 @@ export class Parser {
 			this.restoreAtMark(mark);
 		}
 		// try tp parse as expression
-		let expression = this._parseExpr();
+		const expression = this._parseExpr();
 		if (expression && !expression.isErroneous(true)) {
 			this._parsePrio();
 			if (this.peek(TokenType.SemiColon)) {
@@ -581,7 +598,7 @@ export class Parser {
 	}
 
 	public _tryToParseDeclaration(): nodes.Declaration {
-		let mark = this.mark();
+		const mark = this.mark();
 		if (this._parseProperty() && this.accept(TokenType.Colon)) {
 			// looks like a declaration, go ahead
 			this.restoreAtMark(mark);
@@ -593,9 +610,9 @@ export class Parser {
 	}
 
 	public _parseProperty(): nodes.Property {
-		let node = <nodes.Property>this.create(nodes.Property);
+		const node = <nodes.Property>this.create(nodes.Property);
 
-		let mark = this.mark();
+		const mark = this.mark();
 		if (this.acceptDelim('*') || this.acceptDelim('_')) {
 			// support for  IE 5.x, 6 and 7 star hack: see http://en.wikipedia.org/wiki/CSS_filter#Star_hack
 			if (this.hasWhitespace()) {
@@ -618,7 +635,7 @@ export class Parser {
 			return null;
 		}
 
-		let node = this.create(nodes.Node);
+		const node = this.create(nodes.Node);
 		this.consumeToken(); // charset
 		if (!this.accept(TokenType.String)) {
 			return this.finish(node, ParseError.IdentifierExpected);
@@ -636,7 +653,7 @@ export class Parser {
 			return null;
 		}
 
-		let node = <nodes.Import>this.create(nodes.Import);
+		const node = <nodes.Import>this.create(nodes.Import);
 		this.consumeToken(); // @import
 
 		if (!node.addChild(this._parseURILiteral()) && !node.addChild(this._parseStringLiteral())) {
@@ -656,7 +673,7 @@ export class Parser {
 		if (!this.peekKeyword('@namespace')) {
 			return null;
 		}
-		let node = <nodes.Namespace>this.create(nodes.Namespace);
+		const node = <nodes.Namespace>this.create(nodes.Namespace);
 		this.consumeToken(); // @namespace
 
 		if (!node.addChild(this._parseURILiteral())) { // url literal also starts with ident
@@ -678,7 +695,7 @@ export class Parser {
 		if (!this.peekKeyword('@font-face')) {
 			return null;
 		}
-		let node = <nodes.FontFace>this.create(nodes.FontFace);
+		const node = <nodes.FontFace>this.create(nodes.FontFace);
 		this.consumeToken(); // @font-face
 
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
@@ -691,7 +708,7 @@ export class Parser {
 		) {
 			return null;
 		}
-		let node = <nodes.ViewPort>this.create(nodes.ViewPort);
+		const node = <nodes.ViewPort>this.create(nodes.ViewPort);
 		this.consumeToken(); // @-ms-viewport
 
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
@@ -703,12 +720,12 @@ export class Parser {
 		if (!this.peekRegExp(TokenType.AtKeyword, this.keyframeRegex)) {
 			return null;
 		}
-		let node = <nodes.Keyframe>this.create(nodes.Keyframe);
+		const node = <nodes.Keyframe>this.create(nodes.Keyframe);
 
-		let atNode = this.create(nodes.Node);
+		const atNode = this.create(nodes.Node);
 		this.consumeToken(); // atkeyword
 		node.setKeyword(this.finish(atNode));
-		if (atNode.getText() === '@-ms-keyframes') { // -ms-keyframes never existed
+		if (atNode.matches('@-ms-keyframes')) { // -ms-keyframes never existed
 			this.markError(atNode, ParseError.UnknownKeyword);
 		}
 
@@ -724,7 +741,7 @@ export class Parser {
 	}
 
 	public _parseKeyframeSelector(): nodes.Node {
-		let node = <nodes.KeyframeSelector>this.create(nodes.KeyframeSelector);
+		const node = <nodes.KeyframeSelector>this.create(nodes.KeyframeSelector);
 
 		if (!node.addChild(this._parseIdent()) && !this.accept(TokenType.Percentage)) {
 			return null;
@@ -740,8 +757,8 @@ export class Parser {
 	}
 
 	public _tryParseKeyframeSelector(): nodes.Node {
-		let node = <nodes.KeyframeSelector>this.create(nodes.KeyframeSelector);
-		let pos = this.mark();
+		const node = <nodes.KeyframeSelector>this.create(nodes.KeyframeSelector);
+		const pos = this.mark();
 
 		if (!node.addChild(this._parseIdent()) && !this.accept(TokenType.Percentage)) {
 			return null;
@@ -768,7 +785,7 @@ export class Parser {
 			return null;
 		}
 
-		let node = <nodes.Supports>this.create(nodes.Supports);
+		const node = <nodes.Supports>this.create(nodes.Supports);
 		this.consumeToken(); // @supports
 		node.addChild(this._parseSupportsCondition());
 
@@ -793,14 +810,14 @@ export class Parser {
 		// supports_disjunction: supports_condition_in_parens ( S+ OR S+ supports_condition_in_parens )+;
 		// supports_declaration_condition: '(' S* declaration ')';
 		// general_enclosed: ( FUNCTION | '(' ) ( any | unused )* ')' ;
-		let node = <nodes.SupportsCondition>this.create(nodes.SupportsCondition);
+		const node = <nodes.SupportsCondition>this.create(nodes.SupportsCondition);
 
 		if (this.acceptIdent('not')) {
 			node.addChild(this._parseSupportsConditionInParens());
 		} else {
 			node.addChild(this._parseSupportsConditionInParens());
 			if (this.peekRegExp(TokenType.Ident, /^(and|or)$/i)) {
-				let text = this.token.text.toLowerCase();
+				const text = this.token.text.toLowerCase();
 				while (this.acceptIdent(text)) {
 					node.addChild(this._parseSupportsConditionInParens());
 				}
@@ -810,7 +827,7 @@ export class Parser {
 	}
 
 	private _parseSupportsConditionInParens(): nodes.Node {
-		let node = <nodes.SupportsCondition>this.create(nodes.SupportsCondition);
+		const node = <nodes.SupportsCondition>this.create(nodes.SupportsCondition);
 		if (this.accept(TokenType.ParenthesisL)) {
 			node.lParent = this.prevToken.offset;
 			if (!node.addChild(this._tryToParseDeclaration())) {
@@ -824,7 +841,7 @@ export class Parser {
 			node.rParent = this.prevToken.offset;
 			return this.finish(node);
 		} else if (this.peek(TokenType.Ident)) {
-			let pos = this.mark();
+			const pos = this.mark();
 			this.consumeToken();
 			if (!this.hasWhitespace() && this.accept(TokenType.ParenthesisL)) {
 				let openParentCount = 1;
@@ -860,7 +877,7 @@ export class Parser {
 		if (!this.peekKeyword('@media')) {
 			return null;
 		}
-		let node = <nodes.Media>this.create(nodes.Media);
+		const node = <nodes.Media>this.create(nodes.Media);
 		this.consumeToken(); // @media
 
 		if (!node.addChild(this._parseMediaQueryList())) {
@@ -870,7 +887,7 @@ export class Parser {
 	}
 
 	public _parseMediaQueryList(): nodes.Medialist {
-		let node = <nodes.Medialist>this.create(nodes.Medialist);
+		const node = <nodes.Medialist>this.create(nodes.Medialist);
 		if (!node.addChild(this._parseMediaQuery([TokenType.CurlyL]))) {
 			return this.finish(node, ParseError.MediaQueryExpected);
 		}
@@ -887,7 +904,7 @@ export class Parser {
 		// media_query : [ONLY | NOT]? S* IDENT S* [ AND S* expression ]* | expression [ AND S* expression ]*
 		// expression : '(' S* IDENT S* [ ':' S* expr ]? ')' S*
 
-		let node = <nodes.MediaQuery>this.create(nodes.MediaQuery);
+		const node = <nodes.MediaQuery>this.create(nodes.MediaQuery);
 
 		let parseExpression = true;
 		let hasContent = false;
@@ -929,7 +946,7 @@ export class Parser {
 	}
 
 	public _parseMedium(): nodes.Node {
-		let node = this.create(nodes.Node);
+		const node = this.create(nodes.Node);
 		if (node.addChild(this._parseIdent())) {
 			return this.finish(node);
 		} else {
@@ -948,7 +965,7 @@ export class Parser {
 		if (!this.peekKeyword('@page')) {
 			return null;
 		}
-		let node = <nodes.Page>this.create(nodes.Page);
+		const node = <nodes.Page>this.create(nodes.Page);
 		this.consumeToken();
 
 		if (node.addChild(this._parsePageSelector())) {
@@ -967,9 +984,9 @@ export class Parser {
 		if (!this.peek(TokenType.AtKeyword)) {
 			return null;
 		}
-		let node = <nodes.PageBoxMarginBox>this.create(nodes.PageBoxMarginBox);
+		const node = <nodes.PageBoxMarginBox>this.create(nodes.PageBoxMarginBox);
 
-		if (!this.acceptOneKeyword(languageFacts.getPageBoxDirectives())) {
+		if (!this.acceptOneKeyword(languageFacts.pageBoxDirectives)) {
 			this.markError(node, ParseError.UnknownAtRule, [], [TokenType.CurlyL]);
 		}
 
@@ -983,7 +1000,7 @@ export class Parser {
 		if (!this.peek(TokenType.Ident) && !this.peek(TokenType.Colon)) {
 			return null;
 		}
-		let node = this.create(nodes.Node);
+		const node = this.create(nodes.Node);
 		node.addChild(this._parseIdent()); // optional ident
 
 		if (this.accept(TokenType.Colon)) {
@@ -999,7 +1016,7 @@ export class Parser {
 		if (!this.peekKeyword('@-moz-document')) {
 			return null;
 		}
-		let node = <nodes.Document>this.create(nodes.Document);
+		const node = <nodes.Document>this.create(nodes.Document);
 		this.consumeToken(); // @-moz-document
 
 		this.resync([], [TokenType.CurlyL]); // ignore all the rules
@@ -1012,7 +1029,7 @@ export class Parser {
 			return null;
 		}
 
-		let node = <nodes.UnknownAtRule>this.create(nodes.UnknownAtRule);
+		const node = <nodes.UnknownAtRule>this.create(nodes.UnknownAtRule);
 		node.addChild(this._parseUnknownAtRuleName());
 
 		const isTopLevel = () => curlyDepth === 0 && parensDepth === 0 && bracketsDepth === 0;
@@ -1090,7 +1107,7 @@ export class Parser {
 	}
 
 	public _parseUnknownAtRuleName(): nodes.Node {
-		let node = <nodes.Node>this.create(nodes.Node);
+		const node = <nodes.Node>this.create(nodes.Node);
 
 		if (this.accept(TokenType.AtKeyword)) {
 			return this.finish(node);
@@ -1111,7 +1128,7 @@ export class Parser {
 			this.peek(TokenType.PrefixOperator) ||
 			this.peek(TokenType.SuffixOperator) ||
 			this.peekDelim('=')) { // doesn't stick to the standard here
-			let node = this.createNode(nodes.NodeType.Operator);
+			const node = this.createNode(nodes.NodeType.Operator);
 			this.consumeToken();
 			return this.finish(node);
 		} else {
@@ -1123,7 +1140,7 @@ export class Parser {
 		if (!this.peekDelim('+') && !this.peekDelim('-')) {
 			return null;
 		}
-		let node = this.create(nodes.Node);
+		const node = this.create(nodes.Node);
 		this.consumeToken();
 		return this.finish(node);
 	}
@@ -1131,9 +1148,9 @@ export class Parser {
 	public _parseCombinator(): nodes.Node {
 
 		if (this.peekDelim('>')) {
-			let node = this.create(nodes.Node);
+			const node = this.create(nodes.Node);
 			this.consumeToken();
-			let mark = this.mark();
+			const mark = this.mark();
 			if (!this.hasWhitespace() && this.acceptDelim('>')) {
 				if (!this.hasWhitespace() && this.acceptDelim('>')) {
 					node.type = nodes.NodeType.SelectorCombinatorShadowPiercingDescendant;
@@ -1144,19 +1161,19 @@ export class Parser {
 			node.type = nodes.NodeType.SelectorCombinatorParent;
 			return this.finish(node);
 		} else if (this.peekDelim('+')) {
-			let node = this.create(nodes.Node);
+			const node = this.create(nodes.Node);
 			this.consumeToken();
 			node.type = nodes.NodeType.SelectorCombinatorSibling;
 			return this.finish(node);
 		} else if (this.peekDelim('~')) {
-			let node = this.create(nodes.Node);
+			const node = this.create(nodes.Node);
 			this.consumeToken();
 			node.type = nodes.NodeType.SelectorCombinatorAllSiblings;
 			return this.finish(node);
 		} else if (this.peekDelim('/')) {
-			let node = this.create(nodes.Node);
+			const node = this.create(nodes.Node);
 			this.consumeToken();
-			let mark = this.mark();
+			const mark = this.mark();
 			if (!this.hasWhitespace() && this.acceptIdent('deep') && !this.hasWhitespace() && this.acceptDelim('/')) {
 				node.type = nodes.NodeType.SelectorCombinatorShadowPiercingDescendant;
 				return this.finish(node);
@@ -1171,7 +1188,7 @@ export class Parser {
 		// simple_selector
 		//  : element_name [ HASH | class | attrib | pseudo ]* | [ HASH | class | attrib | pseudo ]+ ;
 
-		let node = <nodes.SimpleSelector>this.create(nodes.SimpleSelector);
+		const node = <nodes.SimpleSelector>this.create(nodes.SimpleSelector);
 		let c = 0;
 		if (node.addChild(this._parseElementName())) {
 			c++;
@@ -1194,7 +1211,7 @@ export class Parser {
 		if (!this.peek(TokenType.Hash) && !this.peekDelim('#')) {
 			return null;
 		}
-		let node = this.createNode(nodes.NodeType.IdentifierSelector);
+		const node = this.createNode(nodes.NodeType.IdentifierSelector);
 		if (this.acceptDelim('#')) {
 			if (this.hasWhitespace() || !node.addChild(this._parseSelectorIdent())) {
 				return this.finish(node, ParseError.IdentifierExpected);
@@ -1210,7 +1227,7 @@ export class Parser {
 		if (!this.peekDelim('.')) {
 			return null;
 		}
-		let node = this.createNode(nodes.NodeType.ClassSelector);
+		const node = this.createNode(nodes.NodeType.ClassSelector);
 		this.consumeToken(); // '.'
 
 		if (this.hasWhitespace() || !node.addChild(this._parseSelectorIdent())) {
@@ -1221,8 +1238,8 @@ export class Parser {
 
 	public _parseElementName(): nodes.Node | null {
 		// element_name: (ns? '|')? IDENT | '*';
-		let pos = this.mark();
-		let node = this.createNode(nodes.NodeType.ElementNameSelector);
+		const pos = this.mark();
+		const node = this.createNode(nodes.NodeType.ElementNameSelector);
 		node.addChild(this._parseNamespacePrefix());
 		if (!node.addChild(this._parseSelectorIdent()) && !this.acceptDelim('*')) {
 			this.restoreAtMark(pos);
@@ -1232,8 +1249,8 @@ export class Parser {
 	}
 
 	public _parseNamespacePrefix(): nodes.Node | null {
-		let pos = this.mark();
-		let node = this.createNode(nodes.NodeType.NamespacePrefix);
+		const pos = this.mark();
+		const node = this.createNode(nodes.NodeType.NamespacePrefix);
 		if (!node.addChild(this._parseIdent()) && !this.acceptDelim('*')) {
 			// ns is optional
 		}
@@ -1249,7 +1266,7 @@ export class Parser {
 		if (!this.peek(TokenType.BracketL)) {
 			return null;
 		}
-		let node = <nodes.AttributeSelector>this.create(nodes.AttributeSelector);
+		const node = <nodes.AttributeSelector>this.create(nodes.AttributeSelector);
 		this.consumeToken(); // BracketL
 
 		// Optional attrib namespace
@@ -1271,11 +1288,11 @@ export class Parser {
 
 	public _parsePseudo(): nodes.Node {
 		// pseudo: ':' [ IDENT | FUNCTION S* [IDENT S*]? ')' ]
-		let node = this._tryParsePseudoIdentifier();
+		const node = this._tryParsePseudoIdentifier();
 		if (node) {
 			if (!this.hasWhitespace() && this.accept(TokenType.ParenthesisL)) {
-				let tryAsSelector = () => {
-					let selectors = this.create(nodes.Node);
+				const tryAsSelector = () => {
+					const selectors = this.create(nodes.Node);
 					if (!selectors.addChild(this._parseSelector(false))) {
 						return null;
 					}
@@ -1300,8 +1317,8 @@ export class Parser {
 		if (!this.peek(TokenType.Colon)) {
 			return null;
 		}
-		let pos = this.mark();
-		let node = this.createNode(nodes.NodeType.PseudoSelector);
+		const pos = this.mark();
+		const node = this.createNode(nodes.NodeType.PseudoSelector);
 		this.consumeToken(); // Colon
 		if (this.hasWhitespace()) {
 			this.restoreAtMark(pos);
@@ -1318,9 +1335,9 @@ export class Parser {
 	}
 
 	public _tryParsePrio(): nodes.Node {
-		let mark = this.mark();
+		const mark = this.mark();
 
-		let prio = this._parsePrio();
+		const prio = this._parsePrio();
 		if (prio) {
 			return prio;
 		}
@@ -1333,7 +1350,7 @@ export class Parser {
 			return null;
 		}
 
-		let node = this.createNode(nodes.NodeType.Prio);
+		const node = this.createNode(nodes.NodeType.Prio);
 		if (this.accept(TokenType.Exclamation) && this.acceptIdent('important')) {
 			return this.finish(node);
 		}
@@ -1341,7 +1358,7 @@ export class Parser {
 	}
 
 	public _parseExpr(stopOnComma: boolean = false): nodes.Expression {
-		let node = <nodes.Expression>this.create(nodes.Expression);
+		const node = <nodes.Expression>this.create(nodes.Expression);
 		if (!node.addChild(this._parseBinaryExpr())) {
 			return null;
 		}
@@ -1366,7 +1383,7 @@ export class Parser {
 		if (!this.peek(TokenType.BracketL)) {
 			return null;
 		}
-		let node = this.createNode(nodes.NodeType.GridLine);
+		const node = this.createNode(nodes.NodeType.GridLine);
 		this.consumeToken();
 		while (node.addChild(this._parseIdent())) {
 			// repeat
@@ -1394,7 +1411,7 @@ export class Parser {
 
 		// things needed for multiple binary expressions
 		node = <nodes.BinaryExpression>this.finish(node);
-		let operator = this._parseOperator();
+		const operator = this._parseOperator();
 		if (operator) {
 			node = <nodes.BinaryExpression>this._parseBinaryExpr(node, operator);
 		}
@@ -1426,7 +1443,7 @@ export class Parser {
 		if (!this.peek(TokenType.ParenthesisL)) {
 			return null;
 		}
-		let node = this.create(nodes.Node);
+		const node = this.create(nodes.Node);
 		this.consumeToken(); // ParenthesisL
 		node.addChild(this._parseExpr());
 		if (!this.accept(TokenType.ParenthesisR)) {
@@ -1447,7 +1464,7 @@ export class Parser {
 			this.peek(TokenType.Time) ||
 			this.peek(TokenType.Dimension) ||
 			this.peek(TokenType.Freq)) {
-			let node = <nodes.NumericValue>this.create(nodes.NumericValue);
+			const node = <nodes.NumericValue>this.create(nodes.NumericValue);
 			this.consumeToken();
 			return <nodes.NumericValue>this.finish(node);
 		}
@@ -1459,7 +1476,7 @@ export class Parser {
 		if (!this.peek(TokenType.String) && !this.peek(TokenType.BadString)) {
 			return null;
 		}
-		let node = this.createNode(nodes.NodeType.StringLiteral);
+		const node = this.createNode(nodes.NodeType.StringLiteral);
 		this.consumeToken();
 		return this.finish(node);
 	}
@@ -1468,8 +1485,8 @@ export class Parser {
 		if (!this.peekRegExp(TokenType.Ident, /^url(-prefix)?$/i)) {
 			return null;
 		}
-		let pos = this.mark();
-		let node = this.createNode(nodes.NodeType.URILiteral);
+		const pos = this.mark();
+		const node = this.createNode(nodes.NodeType.URILiteral);
 		this.accept(TokenType.Ident);
 		if (this.hasWhitespace() || !this.peek(TokenType.ParenthesisL)) {
 			this.restoreAtMark(pos);
@@ -1487,7 +1504,7 @@ export class Parser {
 	}
 
 	public _parseURLArgument(): nodes.Node {
-		let node = this.create(nodes.Node);
+		const node = this.create(nodes.Node);
 		if (!this.accept(TokenType.String) && !this.accept(TokenType.BadString) && !this.acceptUnquotedString()) {
 			return null;
 		}
@@ -1498,7 +1515,7 @@ export class Parser {
 		if (!this.peek(TokenType.Ident)) {
 			return null;
 		}
-		let node = <nodes.Identifier>this.create(nodes.Identifier);
+		const node = <nodes.Identifier>this.create(nodes.Identifier);
 		if (referenceTypes) {
 			node.referenceTypes = referenceTypes;
 		}
@@ -1509,8 +1526,8 @@ export class Parser {
 
 	public _parseFunction(): nodes.Function {
 
-		let pos = this.mark();
-		let node = <nodes.Function>this.create(nodes.Function);
+		const pos = this.mark();
+		const node = <nodes.Function>this.create(nodes.Function);
 
 		if (!node.setIdentifier(this._parseFunctionIdentifier())) {
 			return null;
@@ -1543,7 +1560,7 @@ export class Parser {
 			return null;
 		}
 
-		let node = <nodes.Identifier>this.create(nodes.Identifier);
+		const node = <nodes.Identifier>this.create(nodes.Identifier);
 		node.referenceTypes = [nodes.ReferenceType.Function];
 
 		if (this.acceptIdent('progid')) {
@@ -1560,7 +1577,7 @@ export class Parser {
 	}
 
 	public _parseFunctionArgument(): nodes.Node {
-		let node = <nodes.FunctionArgument>this.create(nodes.FunctionArgument);
+		const node = <nodes.FunctionArgument>this.create(nodes.FunctionArgument);
 		if (node.setValue(this._parseExpr(true))) {
 			return this.finish(node);
 		}
@@ -1569,7 +1586,7 @@ export class Parser {
 
 	public _parseHexColor(): nodes.Node {
 		if (this.peekRegExp(TokenType.Hash, /^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{4}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$/g)) {
-			let node = this.create(nodes.HexColorValue);
+			const node = this.create(nodes.HexColorValue);
 			this.consumeToken();
 			return this.finish(node);
 		} else {

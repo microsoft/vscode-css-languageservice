@@ -94,5 +94,28 @@ suite('LESS - Completions', () => {
 				{ label: ':last-of-type', resultText: '.foo { &:last-of-type' }
 			]
 		});
+		testCompletionFor('.foo { appearance:| }', {
+			items: [
+				{
+					label: 'inherit', resultText: '.foo { appearance:inherit }'
+				}
+			]
+		});
+		testCompletionFor('.foo { mask: no|', { // bug 76572
+			items: [
+				{ label: 'round' }
+			]
+		});
+		
+		// https://github.com/Microsoft/vscode/issues/71791
+		test('Items that start with `-` are sorted lower than normal attribute values', () => {
+			testCompletionFor('.foo { display: | }', {
+				items: [
+					{ label: 'grid', sortText: 'd' },
+					{ label: '-moz-grid', sortText: 'x' },
+					{ label: '-ms-grid', sortText: 'x' },
+				]
+			});
+		});
 	});
 });

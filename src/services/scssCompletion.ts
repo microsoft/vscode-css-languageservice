@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as languageFacts from './languageFacts';
+import * as languageFacts from '../languageFacts/facts';
 import { CSSCompletion } from './cssCompletion';
 import * as nodes from '../parser/cssNodes';
 import { CompletionList, CompletionItemKind, TextEdit, InsertTextFormat, CompletionItem } from 'vscode-languageserver-types';
@@ -157,28 +157,28 @@ export class SCSSCompletion extends CSSCompletion {
 		},
 		{
 			label: "@for",
-			documentation: localize("scss.builtin.@for", "For loop that repeatedly outputs a set of styles for each `$var` in the `from/through` or `from/to` clause.",),
+			documentation: localize("scss.builtin.@for", "For loop that repeatedly outputs a set of styles for each `$var` in the `from/through` or `from/to` clause."),
 			insertText: "@for \\$${1:var} from ${2:start} ${3|to,through|} ${4:end} {\n\t$0\n}",
 			insertTextFormat: InsertTextFormat.Snippet,
 			kind: CompletionItemKind.Keyword
 		},
 		{
 			label: "@each",
-			documentation: localize("scss.builtin.@each", "Each loop that sets `$var` to each item in the list or map, then outputs the styles it contains using that value of `$var`.",),
+			documentation: localize("scss.builtin.@each", "Each loop that sets `$var` to each item in the list or map, then outputs the styles it contains using that value of `$var`."),
 			insertText: "@each \\$${1:var} in ${2:list} {\n\t$0\n}",
 			insertTextFormat: InsertTextFormat.Snippet,
 			kind: CompletionItemKind.Keyword
 		},
 		{
 			label: "@while",
-			documentation: localize("scss.builtin.@while", "While loop that takes an expression and repeatedly outputs the nested styles until the statement evaluates to `false`.",),
+			documentation: localize("scss.builtin.@while", "While loop that takes an expression and repeatedly outputs the nested styles until the statement evaluates to `false`."),
 			insertText: "@while ${1:condition} {\n\t$0\n}",
 			insertTextFormat: InsertTextFormat.Snippet,
 			kind: CompletionItemKind.Keyword
 		},
 		{
 			label: "@mixin",
-			documentation: localize("scss.builtin.@mixin", "Defines styles that can be re-used throughout the stylesheet with `@include`.",),
+			documentation: localize("scss.builtin.@mixin", "Defines styles that can be re-used throughout the stylesheet with `@include`."),
 			insertText: "@mixin ${1:name} {\n\t$0\n}",
 			insertTextFormat: InsertTextFormat.Snippet,
 			kind: CompletionItemKind.Keyword
@@ -189,7 +189,7 @@ export class SCSSCompletion extends CSSCompletion {
 			kind: CompletionItemKind.Keyword
 		},
 	];
-	
+
 
 	constructor() {
 		super('$');
@@ -197,16 +197,16 @@ export class SCSSCompletion extends CSSCompletion {
 
 	private createReplaceFunction() {
 		let tabStopCounter = 1;
-		return (match: string, p1: string) => {
+		return (_match: string, p1: string) => {
 			return '\\' + p1 + ': ${' + tabStopCounter++ + ':' + (SCSSCompletion.variableDefaults[p1] || '') + '}';
 		};
 	}
 
 	private createFunctionProposals(proposals: IFunctionInfo[], existingNode: nodes.Node, sortToEnd: boolean, result: CompletionList): CompletionList {
-		for (let p of proposals) {
-			let insertText = p.func.replace(/\[?(\$\w+)\]?/g, this.createReplaceFunction());
-			let label = p.func.substr(0, p.func.indexOf('('));
-			let item: CompletionItem = {
+		for (const p of proposals) {
+			const insertText = p.func.replace(/\[?(\$\w+)\]?/g, this.createReplaceFunction());
+			const label = p.func.substr(0, p.func.indexOf('('));
+			const item: CompletionItem = {
 				label: label,
 				detail: p.func,
 				documentation: p.desc,
@@ -230,7 +230,7 @@ export class SCSSCompletion extends CSSCompletion {
 	public getTermProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		let functions = SCSSCompletion.builtInFuncs;
 		if (entry) {
-			functions = functions.filter(f => !f.type || entry.restrictions.indexOf(f.type) !== -1);
+			functions = functions.filter(f => !f.type || !entry.restrictions || entry.restrictions.indexOf(f.type) !== -1);
 		}
 		this.createFunctionProposals(functions, existingNode, true, result);
 		return super.getTermProposals(entry, existingNode, result);
@@ -247,9 +247,9 @@ export class SCSSCompletion extends CSSCompletion {
 		return super.getCompletionsForDeclarationProperty(declaration, result);
 	}
 
-	public getCompletionsForExtendsReference(extendsRef: nodes.ExtendsReference, existingNode: nodes.Node, result: CompletionList): CompletionList {
-		let symbols = this.getSymbolContext().findSymbolsAtOffset(this.offset, nodes.ReferenceType.Rule);
-		for (let symbol of symbols) {
+	public getCompletionsForExtendsReference(_extendsRef: nodes.ExtendsReference, existingNode: nodes.Node, result: CompletionList): CompletionList {
+		const symbols = this.getSymbolContext().findSymbolsAtOffset(this.offset, nodes.ReferenceType.Rule);
+		for (const symbol of symbols) {
 			const suggest: CompletionItem = {
 				label: symbol.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), symbol.name),

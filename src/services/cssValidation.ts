@@ -26,18 +26,18 @@ export class CSSValidation {
 			return [];
 		}
 
-		let entries: nodes.IMarker[] = [];
+		const entries: nodes.IMarker[] = [];
 		entries.push.apply(entries, nodes.ParseErrorCollector.entries(stylesheet));
 		entries.push.apply(entries, LintVisitor.entries(stylesheet, document, new LintConfigurationSettings(settings && settings.lint)));
 
 		const ruleIds: string[] = [];
-		for (let r in Rules) {
+		for (const r in Rules) {
 			ruleIds.push(Rules[r].id);
 		}
 
 		function toDiagnostic(marker: nodes.IMarker): Diagnostic {
-			let range = Range.create(document.positionAt(marker.getOffset()), document.positionAt(marker.getOffset() + marker.getLength()));
-			let source = document.languageId;
+			const range = Range.create(document.positionAt(marker.getOffset()), document.positionAt(marker.getOffset() + marker.getLength()));
+			const source = document.languageId;
 
 			return <Diagnostic>{
 				code: marker.getRule().id,

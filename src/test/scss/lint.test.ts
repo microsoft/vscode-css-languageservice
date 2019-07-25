@@ -45,6 +45,7 @@ suite('SCSS - Lint', () => {
 		assertRuleSet('selector { box-shadow: none }'); // no error
 		assertRuleSet('selector { -moz-#{box}-shadow: none }'); // no error if theres an interpolation
 		assertRuleSet('selector { outer: { nested : blue }'); // no error for nested
+		assertRuleSet(':export { prop: "some" }'); // no error for properties inside :export
 	});
 
 	test('vendor specific prefixes', function () {

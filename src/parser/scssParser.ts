@@ -39,7 +39,7 @@ export class SCSSParser extends cssParser.Parser {
 		if (!this.peekKeyword('@import')) {
 			return null;
 		}
-		let node = <nodes.Import>this.create(nodes.Import);
+		const node = <nodes.Import>this.create(nodes.Import);
 		this.consumeToken();
 
 
@@ -65,7 +65,7 @@ export class SCSSParser extends cssParser.Parser {
 			return null;
 		}
 
-		let node = <nodes.VariableDeclaration>this.create(nodes.VariableDeclaration);
+		const node = <nodes.VariableDeclaration>this.create(nodes.VariableDeclaration);
 
 		if (!node.setVariable(this._parseVariable())) {
 			return null;
@@ -109,7 +109,7 @@ export class SCSSParser extends cssParser.Parser {
 		if (!this.peek(scssScanner.VariableName)) {
 			return null;
 		}
-		let node = <nodes.Variable>this.create(nodes.Variable);
+		const node = <nodes.Variable>this.create(nodes.Variable);
 		this.consumeToken();
 		return <nodes.Variable>node;
 	}
@@ -119,27 +119,27 @@ export class SCSSParser extends cssParser.Parser {
 			return null;
 		}
 
-		let node = <nodes.Identifier>this.create(nodes.Identifier);
+		const node = <nodes.Identifier>this.create(nodes.Identifier);
 		node.referenceTypes = referenceTypes;
+		node.isCustomProperty = this.peekRegExp(TokenType.Ident, /^--/);
 		let hasContent = false;
-		let delimWithInterpolation = () => {
-			if (!this.acceptDelim('-')) {
-				return null;
+
+		const indentInterpolation = () => {
+			const pos = this.mark();
+			if (this.acceptDelim('-')) {
+				if (!this.hasWhitespace()) {
+					this.acceptDelim('-');
+				}
+				if (this.hasWhitespace()) {
+					this.restoreAtMark(pos);
+					return null;
+				}
 			}
-			if (!this.hasWhitespace() && this.acceptDelim('-')) {
-				node.isCustomProperty = true;
-			}
-			if (!this.hasWhitespace()) {
-				return this._parseInterpolation();
-			}
-			return null;
+			return this._parseInterpolation();
 		};
-		while (this.accept(TokenType.Ident) || node.addChild(this._parseInterpolation() || this.try(delimWithInterpolation))) {
+
+		while (this.accept(TokenType.Ident) || node.addChild(indentInterpolation()) || (hasContent && (this.acceptDelim('-') || this.accept(TokenType.Num)))) {
 			hasContent = true;
-			if (!this.hasWhitespace() && this.acceptDelim('-')) {
-				// '-' is a valid char inside a ident (special treatment here to support #{foo}-#{bar})
-				this.accept(TokenType.Num);
-			}
 			if (this.hasWhitespace()) {
 				break;
 			}
@@ -163,7 +163,7 @@ export class SCSSParser extends cssParser.Parser {
 
 	public _parseInterpolation(): nodes.Node {
 		if (this.peek(scssScanner.InterpolationFunction)) {
-			let node = this.create(nodes.Interpolation);
+			const node = this.create(nodes.Interpolation);
 			this.consumeToken();
 			if (!node.addChild(this._parseExpr()) && !this._parseSelectorCombinator()) {
 				if (this.accept(TokenType.CurlyR)) {
@@ -186,7 +186,7 @@ export class SCSSParser extends cssParser.Parser {
 			|| this.peekIdent('and') || this.peekIdent('or')
 			|| this.peekDelim('%')
 		) {
-			let node = this.createNode(nodes.NodeType.Operator);
+			const node = this.createNode(nodes.NodeType.Operator);
 			this.consumeToken();
 			return this.finish(node);
 		}
@@ -195,7 +195,7 @@ export class SCSSParser extends cssParser.Parser {
 
 	public _parseUnaryOperator(): nodes.Node {
 		if (this.peekIdent('not')) {
-			let node = this.create(nodes.Node);
+			const node = this.create(nodes.Node);
 			this.consumeToken();
 			return this.finish(node);
 		}
@@ -224,7 +224,7 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseDeclaration(resyncStopTokens?: TokenType[]): nodes.Declaration {
-		let node = <nodes.Declaration>this.create(nodes.Declaration);
+		const node = <nodes.Declaration>this.create(nodes.Declaration);
 		if (!node.setProperty(this._parseProperty())) {
 			return null;
 		}
@@ -253,13 +253,13 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseNestedProperties(): nodes.NestedProperties {
-		let node = <nodes.NestedProperties>this.create(nodes.NestedProperties);
+		const node = <nodes.NestedProperties>this.create(nodes.NestedProperties);
 		return this._parseBody(node, this._parseDeclaration.bind(this));
 	}
 
 	public _parseExtends(): nodes.Node {
 		if (this.peekKeyword('@extend')) {
-			let node = <nodes.ExtendsReference>this.create(nodes.ExtendsReference);
+			const node = <nodes.ExtendsReference>this.create(nodes.ExtendsReference);
 			this.consumeToken();
 			if (!node.getSelectors().addChild(this._parseSimpleSelector())) {
 				return this.finish(node, ParseError.SelectorExpected);
@@ -283,7 +283,7 @@ export class SCSSParser extends cssParser.Parser {
 
 	public _parseSelectorCombinator(): nodes.Node {
 		if (this.peekDelim('&')) {
-			let node = this.createNode(nodes.NodeType.SelectorCombinator);
+			const node = this.createNode(nodes.NodeType.SelectorCombinator);
 			this.consumeToken();
 			while (!this.hasWhitespace() && (this.acceptDelim('-') || this.accept(TokenType.Num) || this.accept(TokenType.Dimension) || node.addChild(this._parseIdent()) || this.acceptDelim('&'))) {
 				//  support &-foo-1
@@ -295,12 +295,12 @@ export class SCSSParser extends cssParser.Parser {
 
 	public _parseSelectorPlaceholder(): nodes.Node {
 		if (this.peekDelim('%')) {
-			let node = this.createNode(nodes.NodeType.SelectorPlaceholder);
+			const node = this.createNode(nodes.NodeType.SelectorPlaceholder);
 			this.consumeToken();
 			this._parseIdent();
 			return this.finish(node);
 		} else if (this.peekKeyword('@at-root')) {
-			let node = this.createNode(nodes.NodeType.SelectorPlaceholder);
+			const node = this.createNode(nodes.NodeType.SelectorPlaceholder);
 			this.consumeToken();
 			return this.finish(node);
 		}
@@ -308,8 +308,8 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseElementName(): nodes.Node | null {
-		let pos = this.mark();
-		let node = super._parseElementName();
+		const pos = this.mark();
+		const node = super._parseElementName();
 		if (node && !this.hasWhitespace() && this.peek(TokenType.ParenthesisL)) { // for #49589
 			this.restoreAtMark(pos);
 			return null;
@@ -327,7 +327,7 @@ export class SCSSParser extends cssParser.Parser {
 			&& !this.peekKeyword('@error')) {
 			return null;
 		}
-		let node = this.createNode(nodes.NodeType.Debug);
+		const node = this.createNode(nodes.NodeType.Debug);
 		this.consumeToken(); // @debug, @warn or @error
 		node.addChild(this._parseExpr()); // optional
 		return this.finish(node);
@@ -349,7 +349,7 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	private _internalParseIfStatement(parseStatement: () => nodes.Node): nodes.IfStatement {
-		let node = <nodes.IfStatement>this.create(nodes.IfStatement);
+		const node = <nodes.IfStatement>this.create(nodes.IfStatement);
 		this.consumeToken(); // @if or if
 		if (!node.setExpression(this._parseExpr(true))) {
 			return this.finish(node, ParseError.ExpressionExpected);
@@ -359,7 +359,7 @@ export class SCSSParser extends cssParser.Parser {
 			if (this.peekIdent('if')) {
 				node.setElseClause(this._internalParseIfStatement(parseStatement));
 			} else if (this.peek(TokenType.CurlyL)) {
-				let elseNode = <nodes.BodyDeclaration>this.create(nodes.ElseStatement);
+				const elseNode = <nodes.BodyDeclaration>this.create(nodes.ElseStatement);
 				this._parseBody(elseNode, parseStatement);
 				node.setElseClause(elseNode);
 			}
@@ -372,7 +372,7 @@ export class SCSSParser extends cssParser.Parser {
 			return null;
 		}
 
-		let node = <nodes.ForStatement>this.create(nodes.ForStatement);
+		const node = <nodes.ForStatement>this.create(nodes.ForStatement);
 		this.consumeToken(); // @for
 		if (!node.setVariable(this._parseVariable())) {
 			return this.finish(node, ParseError.VariableNameExpected, [TokenType.CurlyR]);
@@ -398,9 +398,9 @@ export class SCSSParser extends cssParser.Parser {
 			return null;
 		}
 
-		let node = <nodes.EachStatement>this.create(nodes.EachStatement);
+		const node = <nodes.EachStatement>this.create(nodes.EachStatement);
 		this.consumeToken(); // @each
-		let variables = node.getVariables();
+		const variables = node.getVariables();
 		if (!variables.addChild(this._parseVariable())) {
 			return this.finish(node, ParseError.VariableNameExpected, [TokenType.CurlyR]);
 		}
@@ -425,7 +425,7 @@ export class SCSSParser extends cssParser.Parser {
 			return null;
 		}
 
-		let node = <nodes.WhileStatement>this.create(nodes.WhileStatement);
+		const node = <nodes.WhileStatement>this.create(nodes.WhileStatement);
 		this.consumeToken(); // @while
 		if (!node.addChild(this._parseBinaryExpr())) {
 			return this.finish(node, ParseError.ExpressionExpected, [TokenType.CurlyR]);
@@ -444,7 +444,7 @@ export class SCSSParser extends cssParser.Parser {
 			return null;
 		}
 
-		let node = <nodes.FunctionDeclaration>this.create(nodes.FunctionDeclaration);
+		const node = <nodes.FunctionDeclaration>this.create(nodes.FunctionDeclaration);
 		this.consumeToken(); // @function
 
 		if (!node.setIdentifier(this._parseIdent([nodes.ReferenceType.Function]))) {
@@ -478,7 +478,7 @@ export class SCSSParser extends cssParser.Parser {
 			return null;
 		}
 
-		let node = this.createNode(nodes.NodeType.ReturnStatement);
+		const node = this.createNode(nodes.NodeType.ReturnStatement);
 		this.consumeToken(); // @function
 
 		if (!node.addChild(this._parseExpr())) {
@@ -492,7 +492,7 @@ export class SCSSParser extends cssParser.Parser {
 			return null;
 		}
 
-		let node = <nodes.MixinDeclaration>this.create(nodes.MixinDeclaration);
+		const node = <nodes.MixinDeclaration>this.create(nodes.MixinDeclaration);
 		this.consumeToken();
 
 		if (!node.setIdentifier(this._parseIdent([nodes.ReferenceType.Mixin]))) {
@@ -521,7 +521,7 @@ export class SCSSParser extends cssParser.Parser {
 
 	public _parseParameterDeclaration(): nodes.Node {
 
-		let node = <nodes.FunctionParameter>this.create(nodes.FunctionParameter);
+		const node = <nodes.FunctionParameter>this.create(nodes.FunctionParameter);
 
 		if (!node.setIdentifier(this._parseVariable())) {
 			return null;
@@ -543,7 +543,7 @@ export class SCSSParser extends cssParser.Parser {
 		if (!this.peekKeyword('@content')) {
 			return null;
 		}
-		let node = this.createNode(nodes.NodeType.MixinContent);
+		const node = this.createNode(nodes.NodeType.MixinContent);
 		this.consumeToken();
 		return this.finish(node);
 	}
@@ -554,7 +554,7 @@ export class SCSSParser extends cssParser.Parser {
 			return null;
 		}
 
-		let node = <nodes.MixinReference>this.create(nodes.MixinReference);
+		const node = <nodes.MixinReference>this.create(nodes.MixinReference);
 		this.consumeToken();
 
 		if (!node.setIdentifier(this._parseIdent([nodes.ReferenceType.Mixin]))) {
@@ -579,7 +579,7 @@ export class SCSSParser extends cssParser.Parser {
 		}
 
 		if (this.peek(TokenType.CurlyL)) {
-			let content = <nodes.BodyDeclaration>this.create(nodes.BodyDeclaration);
+			const content = <nodes.BodyDeclaration>this.create(nodes.BodyDeclaration);
 			this._parseBody(content, this._parseMixinReferenceBodyStatement.bind(this));
 			node.setContent(content);
 		}
@@ -592,10 +592,10 @@ export class SCSSParser extends cssParser.Parser {
 
 	public _parseFunctionArgument(): nodes.Node {
 		// [variableName ':'] expression | variableName '...'
-		let node = <nodes.FunctionArgument>this.create(nodes.FunctionArgument);
+		const node = <nodes.FunctionArgument>this.create(nodes.FunctionArgument);
 
-		let pos = this.mark();
-		let argument = this._parseVariable();
+		const pos = this.mark();
+		const argument = this._parseVariable();
 		if (argument) {
 			if (!this.accept(TokenType.Colon)) {
 				if (this.accept(scssScanner.Ellipsis)) { // optional
@@ -619,12 +619,12 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseURLArgument(): nodes.Node {
-		let pos = this.mark();
-		let node = super._parseURLArgument();
+		const pos = this.mark();
+		const node = super._parseURLArgument();
 		if (!node || !this.peek(TokenType.ParenthesisR)) {
 			this.restoreAtMark(pos);
 
-			let node = this.create(nodes.Node);
+			const node = this.create(nodes.Node);
 			node.addChild(this._parseBinaryExpr());
 			return this.finish(node);
 		}
@@ -635,7 +635,7 @@ export class SCSSParser extends cssParser.Parser {
 		if (!this.peek(TokenType.ParenthesisL)) {
 			return null;
 		}
-		let node = this.create(nodes.Node);
+		const node = this.create(nodes.Node);
 		this.consumeToken();
 
 		while (node.addChild(this._parseListElement())) {
@@ -648,8 +648,8 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseListElement(): nodes.Node {
-		let node = <nodes.ListEntry>this.create(nodes.ListEntry);
-		let child = this._parseBinaryExpr();
+		const node = <nodes.ListEntry>this.create(nodes.ListEntry);
+		const child = this._parseBinaryExpr();
 		if (!child) {
 			return null;
 		}

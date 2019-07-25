@@ -38,7 +38,7 @@ export class LESSParser extends cssParser.Parser {
 		if (!this.peekKeyword('@import') && !this.peekKeyword('@import-once') /* deprecated in less 1.4.1 */) {
 			return null;
 		}
-		let node = <nodes.Import>this.create(nodes.Import);
+		const node = <nodes.Import>this.create(nodes.Import);
 		this.consumeToken();
 
 		// less 1.4.1: @import (css) "lib"
@@ -73,7 +73,7 @@ export class LESSParser extends cssParser.Parser {
 			return null;
 		}
 
-		let node = this.createNode(nodes.NodeType.Plugin);
+		const node = this.createNode(nodes.NodeType.Plugin);
 		this.consumeToken(); // @import
 
 		if (!node.addChild(this._parseStringLiteral())) {
@@ -88,9 +88,9 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseMediaQuery(resyncStopToken: TokenType[]): nodes.Node {
-		let node = <nodes.MediaQuery>super._parseMediaQuery(resyncStopToken);
+		const node = <nodes.MediaQuery>super._parseMediaQuery(resyncStopToken);
 		if (!node) {
-			let node = <nodes.MediaQuery>this.create(nodes.MediaQuery);
+			const node = <nodes.MediaQuery>this.create(nodes.MediaQuery);
 			if (node.addChild(this._parseVariable())) {
 				return this.finish(node);
 			}
@@ -113,9 +113,9 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseVariableDeclaration(panic: TokenType[] = []): nodes.VariableDeclaration {
-		let node = <nodes.VariableDeclaration>this.create(nodes.VariableDeclaration);
+		const node = <nodes.VariableDeclaration>this.create(nodes.VariableDeclaration);
+		const mark = this.mark();
 
-		let mark = this.mark();
 		if (!node.setVariable(this._parseVariable(true))) {
 			return null;
 		}
@@ -174,7 +174,7 @@ export class LESSParser extends cssParser.Parser {
 		if (!this.peek(TokenType.CurlyL)) {
 			return null;
 		}
-		let content = <nodes.BodyDeclaration>this.create(nodes.BodyDeclaration);
+		const content = <nodes.BodyDeclaration>this.create(nodes.BodyDeclaration);
 
 		this._parseBody(content, this._parseDetachedRuleSetBody.bind(this));
 		return this.finish(content);
@@ -204,8 +204,8 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseLookupValue(): nodes.Node {
-		let node = <nodes.Node>this.create(nodes.Node);
-		let mark = this.mark();
+		const node = <nodes.Node>this.create(nodes.Node);
+		const mark = this.mark();
 		
 		if (!this.accept(TokenType.BracketL)) {
 			this.restoreAtMark(mark);
@@ -228,8 +228,8 @@ export class LESSParser extends cssParser.Parser {
 			return null;
 		}
 
-		let node = <nodes.Variable>this.create(nodes.Variable);
-		let mark = this.mark();
+		const node = <nodes.Variable>this.create(nodes.Variable);
+		const mark = this.mark();
 		
 		while (this.acceptDelim('@') || (!declaration && this.acceptDelim('$'))) {
 			if (this.hasWhitespace()) {
@@ -237,7 +237,6 @@ export class LESSParser extends cssParser.Parser {
 				return null;
 			}
 		}
-
 		if (!this.accept(TokenType.AtKeyword) && !this.accept(TokenType.Ident)) {
 			this.restoreAtMark(mark);
 			return null;
@@ -271,13 +270,13 @@ export class LESSParser extends cssParser.Parser {
 		if (this.peek(TokenType.EscapedJavaScript) ||
 			this.peek(TokenType.BadEscapedJavaScript)) {
 
-			let node = this.createNode(nodes.NodeType.EscapedValue);
+			const node = this.createNode(nodes.NodeType.EscapedValue);
 			this.consumeToken();
 			return this.finish(node);
 		}
 
 		if (this.peekDelim('~')) {
-			let node = this.createNode(nodes.NodeType.EscapedValue);
+			const node = this.createNode(nodes.NodeType.EscapedValue);
 			this.consumeToken();
 			if (this.accept(TokenType.String) || this.accept(TokenType.EscapedJavaScript)) {
 				return this.finish(node);
@@ -290,7 +289,7 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseOperator(): nodes.Node {
-		let node = this._parseGuardOperator();
+		const node = this._parseGuardOperator();
 		if (node) {
 			return node;
 		} else {
@@ -301,17 +300,17 @@ export class LESSParser extends cssParser.Parser {
 	public _parseGuardOperator(): nodes.Node {
 
 		if (this.peekDelim('>')) {
-			let node = this.createNode(nodes.NodeType.Operator);
+			const node = this.createNode(nodes.NodeType.Operator);
 			this.consumeToken();
 			this.acceptDelim('=');
 			return node;
 		} else if (this.peekDelim('=')) {
-			let node = this.createNode(nodes.NodeType.Operator);
+			const node = this.createNode(nodes.NodeType.Operator);
 			this.consumeToken();
 			this.acceptDelim('<');
 			return node;
 		} else if (this.peekDelim('<')) {
-			let node = this.createNode(nodes.NodeType.Operator);
+			const node = this.createNode(nodes.NodeType.Operator);
 			this.consumeToken();
 			this.acceptDelim('=');
 			return node;
@@ -353,7 +352,7 @@ export class LESSParser extends cssParser.Parser {
 
 	public _parseSelector(isNested: boolean): nodes.Selector {
 		// CSS Guards
-		let node = <nodes.Selector>this.create(nodes.Selector);
+		const node = <nodes.Selector>this.create(nodes.Selector);
 
 		let hasContent = false;
 		if (isNested) {
@@ -362,7 +361,7 @@ export class LESSParser extends cssParser.Parser {
 		}
 		while (node.addChild(this._parseSimpleSelector())) {
 			hasContent = true;
-			let mark = this.mark();
+			const mark = this.mark();
 			if (node.addChild(this._parseGuard()) && this.peek(TokenType.CurlyL)) {
 				break;
 			}
@@ -375,7 +374,7 @@ export class LESSParser extends cssParser.Parser {
 	public _parseSelectorCombinator(): nodes.Node {
 
 		if (this.peekDelim('&')) {
-			let node = this.createNode(nodes.NodeType.SelectorCombinator);
+			const node = this.createNode(nodes.NodeType.SelectorCombinator);
 			this.consumeToken();
 			while (!this.hasWhitespace() && (this.acceptDelim('-') || this.accept(TokenType.Num) || this.accept(TokenType.Dimension) || node.addChild(this._parseIdent()) || this.acceptDelim('&'))) {
 				//  support &-foo
@@ -389,8 +388,8 @@ export class LESSParser extends cssParser.Parser {
 		if (!this.peekInterpolatedIdent()) {
 			return null;
 		}
-		let node = this.createNode(nodes.NodeType.SelectorInterpolation);
-		let hasContent = this._acceptInterpolatedIdent(node);
+		const node = this.createNode(nodes.NodeType.SelectorInterpolation);
+		const hasContent = this._acceptInterpolatedIdent(node);
 		return hasContent ? this.finish(node) : null;
 	}
 
@@ -399,9 +398,9 @@ export class LESSParser extends cssParser.Parser {
 		if (!this.peekInterpolatedIdent() && !this.peekRegExp(this.token.type, propertyRegex)) {
 			return null;
 		}
-		let mark = this.mark();
+		const mark = this.mark();
+		const node = <nodes.Identifier>this.create(nodes.Identifier);
 
-		let node = <nodes.Identifier>this.create(nodes.Identifier);
 		node.isCustomProperty = this.acceptDelim('-') && this.acceptDelim('-');
 
 		let childAdded = false;
@@ -442,44 +441,31 @@ export class LESSParser extends cssParser.Parser {
 			this.peekDelim('-');
 	}
 
-	public acceptRegexp(regEx: RegExp): boolean {
-		if (regEx.test(this.token.text)) {
-			this.consumeToken();
-			return true;
-		}
-		return false;
-	}
-
-	public _parseRegexp(regEx: RegExp): nodes.Node {
-		let node = this.createNode(nodes.NodeType.Identifier);
-		do {} while (this.acceptRegexp(regEx));
-		return this.finish(node);
-	}
-
 	public _acceptInterpolatedIdent(node: nodes.Node, identRegex?: RegExp): boolean {
 		let hasContent = false;
-		let delimWithInterpolation = (): nodes.Node => {
-			if (!this.acceptDelim('-')) {
-				return null;
+		const indentInterpolation = () => {
+			const pos = this.mark();
+			if (this.acceptDelim('-')) {
+				if (!this.hasWhitespace()) {
+					this.acceptDelim('-');
+				}
+				if (this.hasWhitespace()) {
+					this.restoreAtMark(pos);
+					return null;
+				}
 			}
-			if (!this.hasWhitespace() && this.acceptDelim('-')) {
-			}
-			if (!this.hasWhitespace()) {
-				return this._parseInterpolation();
-			}
-			return null;
+			return this._parseInterpolation();
 		};
 		const accept = identRegex ?
 			(): boolean => this.acceptRegexp(identRegex) :
 			(): boolean => this.accept(TokenType.Ident);
 
-		while (accept() || 
+		while (
+			accept() || 
 			node.addChild(this._parseInterpolation() || 
-			this.try(delimWithInterpolation))) {
+			this.try(indentInterpolation))
+		) {
 			hasContent = true;
-			if (!this.hasWhitespace() && this.acceptDelim('-')) {
-				// '-' is a valid char inside a ident (special treatment here to support @{foo}-@{bar})
-			}
 			if (this.hasWhitespace()) {
 				break;
 			}
@@ -490,9 +476,9 @@ export class LESSParser extends cssParser.Parser {
 	public _parseInterpolation(): nodes.Node {
 		// @{name} Variable or 
 		// ${name} Property
-		let mark = this.mark();
+		const mark = this.mark();
 		if (this.peekDelim('@') || this.peekDelim('$')) {
-			let node = this.createNode(nodes.NodeType.Interpolation);
+			const node = this.createNode(nodes.NodeType.Interpolation);
 			this.consumeToken();
 			if (this.hasWhitespace() || !this.accept(TokenType.CurlyL)) {
 				this.restoreAtMark(mark);
@@ -510,8 +496,8 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _tryParseMixinDeclaration(): nodes.Node {
-		let mark = this.mark();
-		let node = <nodes.MixinDeclaration>this.create(nodes.MixinDeclaration);
+		const mark = this.mark();
+		const node = <nodes.MixinDeclaration>this.create(nodes.MixinDeclaration);
 
 		if (!node.setIdentifier(this._parseMixinDeclarationIdentifier()) || !this.accept(TokenType.ParenthesisL)) {
 			this.restoreAtMark(mark);
@@ -569,8 +555,8 @@ export class LESSParser extends cssParser.Parser {
 		if (!this.peek(TokenType.Colon)) {
 			return null;
 		}
-		let mark = this.mark();
-		let node = <nodes.ExtendsReference>this.create(nodes.ExtendsReference);
+		const mark = this.mark();
+		const node = <nodes.ExtendsReference>this.create(nodes.ExtendsReference);
 		this.consumeToken(); // :
 		if (this.acceptIdent('extend')) {
 			return this._completeExtends(node);
@@ -584,8 +570,8 @@ export class LESSParser extends cssParser.Parser {
 			return null;
 		}
 
-		let mark = this.mark();
-		let node = <nodes.ExtendsReference>this.create(nodes.ExtendsReference);
+		const mark = this.mark();
+		const node = <nodes.ExtendsReference>this.create(nodes.ExtendsReference);
 		this.consumeToken(); // &
 
 		if (this.hasWhitespace() || !this.accept(TokenType.Colon) || !this.acceptIdent('extend')) {
@@ -599,7 +585,7 @@ export class LESSParser extends cssParser.Parser {
 		if (!this.accept(TokenType.ParenthesisL)) {
 			return this.finish(node, ParseError.LeftParenthesisExpected);
 		}
-		let selectors = node.getSelectors();
+		const selectors = node.getSelectors();
 		if (!selectors.addChild(this._parseSelector(true))) {
 			return this.finish(node, ParseError.SelectorExpected);
 		}
@@ -618,8 +604,8 @@ export class LESSParser extends cssParser.Parser {
 		if (!this.peek(TokenType.AtKeyword)) {
 			return null;
 		}
-		let mark = this.mark();
-		let node = <nodes.MixinReference>this.create(nodes.MixinReference);
+		const mark = this.mark();
+		const node = <nodes.MixinReference>this.create(nodes.MixinReference);
 		if (node.addChild(this._parseVariable(true)) && (this.hasWhitespace() || !this.accept(TokenType.ParenthesisL))) {
 			this.restoreAtMark(mark);
 			return null;
@@ -632,13 +618,13 @@ export class LESSParser extends cssParser.Parser {
 
 
 	public _tryParseMixinReference(atRoot = true): nodes.Node {
-		let mark = this.mark();
-		let node = <nodes.MixinReference>this.create(nodes.MixinReference);
+		const mark = this.mark();
+		const node = <nodes.MixinReference>this.create(nodes.MixinReference);
 
 		let identifier = this._parseMixinDeclarationIdentifier();
 		while (identifier) {
 			this.acceptDelim('>');
-			let nextId = this._parseMixinDeclarationIdentifier();
+			const nextId = this._parseMixinDeclarationIdentifier();
 			if (nextId) {
 				node.getNamespaces().addChild(identifier);
 				identifier = nextId;
@@ -689,10 +675,10 @@ export class LESSParser extends cssParser.Parser {
 
 	public _parseMixinArgument(): nodes.Node {
 		// [variableName ':'] expression | variableName '...'
-		let node = <nodes.FunctionArgument>this.create(nodes.FunctionArgument);
+		const node = <nodes.FunctionArgument>this.create(nodes.FunctionArgument);
 
-		let pos = this.mark();
-		let argument = this._parseVariable();
+		const pos = this.mark();
+		const argument = this._parseVariable();
 		if (argument) {
 			if (!this.accept(TokenType.Colon)) {
 				this.restoreAtMark(pos);
@@ -710,11 +696,11 @@ export class LESSParser extends cssParser.Parser {
 
 	public _parseMixinParameter(): nodes.Node {
 
-		let node = <nodes.FunctionParameter>this.create(nodes.FunctionParameter);
+		const node = <nodes.FunctionParameter>this.create(nodes.FunctionParameter);
 
 		// special rest variable: @rest...
 		if (this.peekKeyword('@rest')) {
-			let restNode = this.create(nodes.Node);
+			const restNode = this.create(nodes.Node);
 			this.consumeToken();
 			if (!this.accept(lessScanner.Ellipsis)) {
 				return this.finish(node, ParseError.DotExpected, [], [TokenType.Comma, TokenType.ParenthesisR]);
@@ -723,9 +709,9 @@ export class LESSParser extends cssParser.Parser {
 			return this.finish(node);
 		}
 
-		// special let args: ...
+		// special const args: ...
 		if (this.peek(lessScanner.Ellipsis)) {
-			let varargsNode = this.create(nodes.Node);
+			const varargsNode = this.create(nodes.Node);
 			this.consumeToken();
 			node.setIdentifier(this.finish(varargsNode));
 			return this.finish(node);
@@ -747,7 +733,7 @@ export class LESSParser extends cssParser.Parser {
 		if (!this.peekIdent('when')) {
 			return null;
 		}
-		let node = <nodes.LessGuard>this.create(nodes.LessGuard);
+		const node = <nodes.LessGuard>this.create(nodes.LessGuard);
 		this.consumeToken(); // when
 		node.isNegated = this.acceptIdent('not');
 
@@ -768,7 +754,7 @@ export class LESSParser extends cssParser.Parser {
 		if (!this.peek(TokenType.ParenthesisL)) {
 			return null;
 		}
-		let node = this.create(nodes.GuardCondition);
+		const node = this.create(nodes.GuardCondition);
 		this.consumeToken(); // ParenthesisL
 
 		if (!node.addChild(this._parseExpr())) {
@@ -783,9 +769,8 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseFunction(): nodes.Function {
-
-		let pos = this.mark();
-		let node = <nodes.Function>this.create(nodes.Function);
+		const pos = this.mark();
+		const node = <nodes.Function>this.create(nodes.Function);
 
 		if (!node.setIdentifier(this._parseFunctionIdentifier())) {
 			return null;
@@ -815,7 +800,7 @@ export class LESSParser extends cssParser.Parser {
 
 	public _parseFunctionIdentifier(): nodes.Identifier {
 		if (this.peekDelim('%')) {
-			let node = <nodes.Identifier>this.create(nodes.Identifier);
+			const node = <nodes.Identifier>this.create(nodes.Identifier);
 			node.referenceTypes = [nodes.ReferenceType.Function];
 			this.consumeToken();
 			return this.finish(node);
@@ -825,12 +810,12 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseURLArgument(): nodes.Node {
-		let pos = this.mark();
-		let node = super._parseURLArgument();
+		const pos = this.mark();
+		const node = super._parseURLArgument();
 		if (!node || !this.peek(TokenType.ParenthesisR)) {
 			this.restoreAtMark(pos);
 
-			let node = this.create(nodes.Node);
+			const node = this.create(nodes.Node);
 			node.addChild(this._parseBinaryExpr());
 			return this.finish(node);
 		}
