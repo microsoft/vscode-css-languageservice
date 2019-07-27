@@ -9,6 +9,7 @@ import { CSSCompletion } from './cssCompletion';
 import * as nodes from '../parser/cssNodes';
 import { CompletionList, CompletionItemKind, TextEdit, InsertTextFormat, CompletionItem } from 'vscode-languageserver-types';
 import * as nls from 'vscode-nls';
+import { ClientCapabilities } from '../cssLanguageTypes';
 const localize = nls.loadMessageBundle();
 
 interface IFunctionInfo {
@@ -191,8 +192,8 @@ export class SCSSCompletion extends CSSCompletion {
 	];
 
 
-	constructor() {
-		super('$');
+	constructor(clientCapabilities: ClientCapabilities) {
+		super('$', clientCapabilities);
 	}
 
 	private createReplaceFunction() {

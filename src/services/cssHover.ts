@@ -6,12 +6,17 @@
 
 import * as nodes from '../parser/cssNodes';
 import * as languageFacts from '../languageFacts/facts';
-import { TextDocument, Range, Position, Hover, MarkedString } from 'vscode-languageserver-types';
+import { TextDocument, Range, Position, Hover, MarkedString, MarkupContent, MarkupKind } from 'vscode-languageserver-types';
 import { selectorToMarkedString, simpleSelectorToMarkedString } from './selectorPrinting';
 import { startsWith } from '../utils/strings';
+import { ClientCapabilities } from '../cssLanguageTypes';
+import { isDefined } from '../utils/objects';
+import { isArray } from 'util';
 
 export class CSSHover {
-	constructor() {}
+	private supportsMarkdown: boolean | undefined;
+
+	constructor(private clientCapabilities: ClientCapabilities) {}
 
 	public doHover(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Hover {
 		function getRange(node: nodes.Node) {
@@ -108,6 +113,52 @@ export class CSSHover {
 			}
 		}
 
+		
+		if (hover) {
+			console.log(this.doesSupportMarkdown());
+			hover.contents = this.convertContents(hover.contents);
+		}
+
 		return hover;
+	}
+
+	private convertContents(contents: MarkupContent | MarkedString | MarkedString[]): MarkupContent | MarkedString | MarkedString[] {
+		if (!this.doesSupportMarkdown()) {
+			if (typeof contents === 'string') {
+				return contents;
+			}
+			// MarkupContent
+			else if ('kind' in contents) {
+				return {
+					kind: 'plaintext',
+					value: contents.value
+				};
+			}
+			// MarkedString[]
+			else if (isArray(contents)) {
+				contents.map(c => {
+					return typeof c === 'string' ? c : c.value;
+				});
+			}
+			// MarkedString
+			else {
+				return contents.value;
+			}
+		}
+
+		return contents;
+	}
+
+	private doesSupportMarkdown() {
+		if (!this.clientCapabilities) {
+			this.supportsMarkdown = true;
+			return this.supportsMarkdown;
+		}
+
+		if (!isDefined(this.supportsMarkdown)) {
+			const hover = this.clientCapabilities.textDocument && this.clientCapabilities.textDocument.hover;
+			this.supportsMarkdown = hover && hover.contentFormat && Array.isArray(hover.contentFormat) && hover.contentFormat.indexOf(MarkupKind.Markdown) !== -1;
+		}
+		return this.supportsMarkdown;
 	}
 }

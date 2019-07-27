@@ -9,12 +9,13 @@ import * as assert from 'assert';
 import { TextDocument, Hover } from 'vscode-languageserver-types';
 import { CSSHover } from '../../services/cssHover';
 import { SCSSParser } from '../../parser/scssParser';
+import { ClientCapabilities } from '../../cssLanguageTypes';
 
 function assertHover(value: string, expected: Hover, languageId = 'css'): void {
 	let offset = value.indexOf('|');
 	value = value.substr(0, offset) + value.substr(offset + 1);
 
-	const hover = new CSSHover();
+	const hover = new CSSHover(ClientCapabilities.LATEST);
 	const document = TextDocument.create(`test://foo/bar.${languageId}`, languageId, 1, value);
 	const hoverResult = hover.doHover(document, document.positionAt(offset), new SCSSParser().parseStylesheet(document));
 

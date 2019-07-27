@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { EntryStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IValueData, MarkupDescription } from '../cssLanguageTypes';
+import { EntryStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IValueData } from '../cssLanguageTypes';
 import { MarkupContent } from 'vscode-languageserver-types';
 
 export interface Browsers {
@@ -102,7 +102,7 @@ export type IEntry2 = IPropertyData | IAtDirectiveData | IPseudoClassData | IPse
  */
 export interface IEntry {
 	name: string;
-	description?: string | MarkupDescription;
+	description?: string | MarkupContent;
 	browsers?: string[];
 	restrictions?: string[];
 	status?: EntryStatus;
@@ -112,6 +112,6 @@ export interface IEntry {
 
 export interface IValue {
 	name: string;
-	description?: string | MarkupDescription;
+	description?: string | MarkupContent;
 	browsers?: string[];
 }

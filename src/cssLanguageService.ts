@@ -95,15 +95,36 @@ function handleCustomData(options?: LanguageServiceOptions) {
 
 export function getCSSLanguageService(options?: LanguageServiceOptions): LanguageService {
 	handleCustomData(options);
-	return createFacade(new Parser(), new CSSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation());
+	return createFacade(
+		new Parser(),
+		new CSSCompletion(null, options && options.clientCapabilities),
+		new CSSHover(options && options.clientCapabilities),
+		new CSSNavigation(),
+		new CSSCodeActions(),
+		new CSSValidation()
+	);
 }
 
 export function getSCSSLanguageService(options?: LanguageServiceOptions): LanguageService {
 	handleCustomData(options);
-	return createFacade(new SCSSParser(), new SCSSCompletion(), new CSSHover(), new SCSSNavigation(options && options.fileSystemProvider), new CSSCodeActions(), new CSSValidation());
+	return createFacade(
+		new SCSSParser(),
+		new SCSSCompletion(options && options.clientCapabilities),
+		new CSSHover(options && options.clientCapabilities),
+		new SCSSNavigation(options && options.fileSystemProvider),
+		new CSSCodeActions(),
+		new CSSValidation()
+	);
 }
 
 export function getLESSLanguageService(options?: LanguageServiceOptions): LanguageService {
 	handleCustomData(options);
-	return createFacade(new LESSParser(), new LESSCompletion(), new CSSHover(), new CSSNavigation(), new CSSCodeActions(), new CSSValidation());
+	return createFacade(
+		new LESSParser(),
+		new LESSCompletion(options && options.clientCapabilities),
+		new CSSHover(options && options.clientCapabilities),
+		new CSSNavigation(),
+		new CSSCodeActions(),
+		new CSSValidation()
+	);
 }
