@@ -7,3 +7,7 @@
 export function values(obj: Object) {
 	return Object.keys(obj).map(k => obj[k]);
 }
+
+export function isDefined(obj: any): boolean {
+	return typeof obj !== 'undefined';
+}

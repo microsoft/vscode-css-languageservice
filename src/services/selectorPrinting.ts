@@ -5,7 +5,7 @@
 'use strict';
 
 import * as nodes from '../parser/cssNodes';
-import { MarkedString, Location } from 'vscode-languageserver-types';
+import { MarkedString } from 'vscode-languageserver-types';
 import { Scanner } from '../parser/cssScanner';
 import * as languageFacts from "../languageFacts/facts";
 import * as nls from 'vscode-nls';

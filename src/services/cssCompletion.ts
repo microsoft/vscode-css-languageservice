@@ -8,16 +8,19 @@ import * as nodes from '../parser/cssNodes';
 import { Symbols, Symbol } from '../parser/cssSymbolScope';
 import * as languageFacts from '../languageFacts/facts';
 import * as strings from '../utils/strings';
-import { TextDocument, Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat } from 'vscode-languageserver-types';
-import { ICompletionParticipant, LanguageSettings } from '../cssLanguageTypes';
+import { TextDocument, Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, MarkupContent } from 'vscode-languageserver-types';
+import { ICompletionParticipant, LanguageSettings, ClientCapabilities } from '../cssLanguageTypes';
 
 import * as nls from 'vscode-nls';
+import { isDefined } from '../utils/objects';
 const localize = nls.loadMessageBundle();
 const SnippetFormat = InsertTextFormat.Snippet;
 
 export class CSSCompletion {
 
 	private settings: LanguageSettings;
+
+	private supportsMarkdown: boolean | undefined;
 
 	variablePrefix: string;
 	position: Position;
@@ -30,7 +33,7 @@ export class CSSCompletion {
 	nodePath: nodes.Node[];
 	completionParticipants: ICompletionParticipant[] = [];
 
-	constructor(variablePrefix: string = null) {
+	constructor(variablePrefix: string = null, private clientCapabilities: ClientCapabilities | undefined) {
 		this.variablePrefix = variablePrefix;
 	}
 
@@ -189,7 +192,7 @@ export class CSSCompletion {
 			}
 			const item: CompletionItem = {
 				label: entry.name,
-				documentation: languageFacts.getEntryDescription(entry),
+				documentation: this.getEntryDescription(entry),
 				textEdit: TextEdit.replace(range, insertText),
 				kind: CompletionItemKind.Property
 			};
@@ -323,7 +326,7 @@ export class CSSCompletion {
 				}
 				const item: CompletionItem = {
 					label: value.name,
-					documentation: languageFacts.getEntryDescription(value),
+					documentation: this.getEntryDescription(value),
 					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertString),
 					kind: CompletionItemKind.Value,
 					insertTextFormat
@@ -607,7 +610,7 @@ export class CSSCompletion {
 			result.items.push({
 				label: entry.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(null), entry.name),
-				documentation: languageFacts.getEntryDescription(entry),
+				documentation: this.getEntryDescription(entry),
 				kind: CompletionItemKind.Keyword
 			});
 		});
@@ -645,7 +648,7 @@ export class CSSCompletion {
 			const item: CompletionItem = {
 				label: entry.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
-				documentation: languageFacts.getEntryDescription(entry),
+				documentation: this.getEntryDescription(entry),
 				kind: CompletionItemKind.Function,
 				insertTextFormat: entry.name !== insertText ? SnippetFormat : void 0
 			};
@@ -661,7 +664,7 @@ export class CSSCompletion {
 			const item: CompletionItem = {
 				label: entry.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
-				documentation: languageFacts.getEntryDescription(entry),
+				documentation: this.getEntryDescription(entry),
 				kind: CompletionItemKind.Function,
 				insertTextFormat: entry.name !== insertText ? SnippetFormat : void 0
 			};
@@ -914,6 +917,30 @@ export class CSSCompletion {
 		});
 		return result;
 	}
+
+	private getEntryDescription(entry: languageFacts.IEntry2): string | MarkupContent {
+		const rawDescription = languageFacts.getEntryDescription(entry);
+		if (!this.doesSupportMarkdown() && typeof rawDescription !== 'string' && rawDescription && rawDescription.kind === 'markdown') {
+			return {
+				kind: 'plaintext',
+				value: rawDescription.value
+			};
+		}
+		return rawDescription;
+	}
+
+	private doesSupportMarkdown() {
+		if (!this.clientCapabilities) {
+			this.supportsMarkdown = true;
+			return this.supportsMarkdown;
+		}
+
+		if (!isDefined(this.supportsMarkdown)) {
+			const completion = this.clientCapabilities.textDocument && this.clientCapabilities.textDocument.completion;
+			this.supportsMarkdown = completion && completion.completionItem && Array.isArray(completion.completionItem.documentationFormat) && completion.completionItem.documentationFormat.indexOf(MarkupKind.Markdown) !== -1;
+		}
+		return this.supportsMarkdown;
+	}
 }
 
 class Set {
@@ -976,10 +1003,6 @@ class ColorValueCollector implements nodes.IVisitor {
 		}
 		return true;
 	}
-}
-
-function isDefined(obj: any): boolean {
-	return typeof obj !== 'undefined';
 }
 
 function getCurrentWord(document: TextDocument, offset: number) {

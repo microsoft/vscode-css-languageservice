@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { Range, TextEdit, Position, DocumentUri } from 'vscode-languageserver-types';
+import { Range, TextEdit, Position, DocumentUri, MarkupContent, MarkupKind } from 'vscode-languageserver-types';
 
 export { Range, TextEdit, Position, DocumentUri };
 
@@ -54,16 +54,83 @@ export interface DocumentContext {
 	resolveReference(ref: string, base?: string): string;
 }
 
+/**
+ * Describes what LSP capabilities the client supports
+ */
+export interface ClientCapabilities {
+	/**
+	 * The text document client capabilities
+	 */
+	textDocument?: {
+		/**
+		 * Capabilities specific to completions.
+		 */
+		completion?: {
+			/**
+			 * The client supports the following `CompletionItem` specific
+			 * capabilities.
+			 */
+			completionItem?: {
+				/**
+				 * Client supports the follow content formats for the documentation
+				 * property. The order describes the preferred format of the client.
+				 */
+				documentationFormat?: MarkupKind[];
+			};
+
+		};
+		/**
+		 * Capabilities specific to hovers.
+		 */
+		hover?: {
+			/**
+			 * Client supports the follow content formats for the content
+			 * property. The order describes the preferred format of the client.
+			 */
+			contentFormat?: MarkupKind[];
+		};
+	};
+}
+
+export namespace ClientCapabilities {
+	export const LATEST: ClientCapabilities = {
+		textDocument: {
+			completion: {
+				completionItem: {
+					documentationFormat: [MarkupKind.Markdown, MarkupKind.PlainText]
+				}
+			},
+			hover: {
+				contentFormat: [MarkupKind.Markdown, MarkupKind.PlainText]
+			}
+		}
+	};
+}
+
 export interface LanguageServiceOptions {
+	/**
+	 * Provide data that could enhance the service's understanding of
+	 * CSS property / at-rule / pseudo-class / pseudo-element
+	 */
 	customDataProviders?: ICSSDataProvider[];
+
+	/**
+	 * Abstract file system access away from the service.
+	 * Used for dynamic link resolving, path completion, etc.
+	 */
 	fileSystemProvider?: FileSystemProvider;
+
+	/**
+	 * Describes the LSP capabilities the client supports.
+	 */
+	clientCapabilities?: ClientCapabilities;
 }
 
 export type EntryStatus = 'standard' | 'experimental' | 'nonstandard' | 'obsolete';
 
 export interface IPropertyData {
 	name: string;
-	description?: string;
+	description?: string | MarkupContent;
 	browsers?: string[];
 	restrictions?: string[];
 	status?: EntryStatus;
@@ -72,26 +139,26 @@ export interface IPropertyData {
 }
 export interface IAtDirectiveData {
 	name: string;
-	description?: string;
+	description?: string | MarkupContent;
 	browsers?: string[];
 	status?: EntryStatus;
 }
 export interface IPseudoClassData {
 	name: string;
-	description?: string;
+	description?: string | MarkupContent;
 	browsers?: string[];
 	status?: EntryStatus;
 }
 export interface IPseudoElementData {
 	name: string;
-	description?: string;
+	description?: string | MarkupContent;
 	browsers?: string[];
 	status?: EntryStatus;
 }
 
 export interface IValueData {
 	name: string;
-	description?: string;
+	description?: string | MarkupContent;
 	browsers?: string[];
 	status?: EntryStatus;
 }
