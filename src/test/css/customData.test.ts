@@ -36,7 +36,11 @@ function assertCompletion(completions: CompletionList, expected: ItemDescription
 		assert.equal(match.detail, expected.detail);
 	}
 	if (expected.documentation) {
-		assert.equal(match.documentation, expected.documentation);
+		if (typeof expected.documentation === 'string') {
+			assert.equal(match.documentation, expected.documentation);
+		} else {
+			assert.deepStrictEqual(match.documentation, expected.documentation);
+		}
 	}
 	if (expected.kind) {
 		assert.equal(match.kind, expected.kind);
@@ -56,7 +60,10 @@ suite('CSS - Custom Data', () => {
 		properties: [
 			{
 				name: 'foo',
-				description: 'Foo property'
+				description: {
+					kind: 'markdown',
+					value: 'Foo property. See link on [MDN](https://developer.mozilla.org/en-US/).'
+				}
 			}
 		],
 		atDirectives: [
@@ -108,7 +115,9 @@ suite('CSS - Custom Data', () => {
 
 	test('Completion', () => {
 		testCompletionFor('body { | }', {
-			items: [{ label: 'foo', resultText: 'body { foo:  }' }]
+			items: [
+				{ label: 'foo', resultText: 'body { foo:  }', documentation: { kind: 'markdown', value: 'Foo property. See link on [MDN](https://developer.mozilla.org/en-US/).' } }
+			]
 		});
 
 		testCompletionFor('|', {

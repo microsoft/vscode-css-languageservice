@@ -7,13 +7,13 @@
 import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
-import { CompletionList, TextDocument, Position, CompletionItemKind, InsertTextFormat, Range, Command } from 'vscode-languageserver-types';
+import { CompletionList, TextDocument, Position, CompletionItemKind, InsertTextFormat, Range, Command, MarkupContent } from 'vscode-languageserver-types';
 import { LanguageSettings } from '../../cssLanguageTypes';
 
 export interface ItemDescription {
 	label: string;
 	detail?: string;
-	documentation?: string;
+	documentation?: string | MarkupContent;
 	kind?: CompletionItemKind;
 	insertTextFormat?: InsertTextFormat;
 	resultText?: string;
@@ -41,7 +41,7 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 		assert.equal(match.detail, expected.detail);
 	}
 	if (expected.documentation) {
-		assert.equal(match.documentation, expected.documentation);
+		assert.deepEqual(match.documentation, expected.documentation);
 	}
 	if (expected.kind) {
 		assert.equal(match.kind, expected.kind);
