@@ -13,10 +13,7 @@
         "kind": {
           "type": "string",
           "description": "Whether `description.value` should be rendered as plaintext or markdown",
-          "enum": [
-            "plaintext",
-            "markdown"
-          ]
+          "enum": ["plaintext", "markdown"]
         },
         "value": {
           "type": "string",
@@ -27,7 +24,7 @@
   },
   "properties": {
     "version": {
-			"const": 1,
+      "const": 1,
       "description": "The custom data version",
       "type": "number"
     },
@@ -62,12 +59,7 @@
           "status": {
             "type": "string",
             "description": "Browser status",
-            "enum": [
-              "standard",
-              "experimental",
-              "nonstandard",
-              "obsolete"
-            ]
+            "enum": ["standard", "experimental", "nonstandard", "obsolete"]
           },
           "browsers": {
             "type": "array",
