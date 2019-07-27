@@ -115,7 +115,6 @@ export class CSSHover {
 
 		
 		if (hover) {
-			console.log(this.doesSupportMarkdown());
 			hover.contents = this.convertContents(hover.contents);
 		}
 

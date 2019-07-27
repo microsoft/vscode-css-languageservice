@@ -39,6 +39,15 @@ suite('CSS Hover', () => {
 			contents: `Represents a styleable child pseudo-element immediately after the originating element’s actual content.`
 		});
 	});
+
+	test('specificity', () => {
+		assertHover('.|foo {}', {
+			contents: [
+				{ language: 'html', value: '<element class="foo">' },
+				'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 1, 0)'
+			]
+		});
+	});
 });
 
 suite('SCSS Hover', () => {
