@@ -150,7 +150,7 @@ export class CSSHover {
 
 	private doesSupportMarkdown() {
 		if (!isDefined(this.supportsMarkdown)) {
-			if (!this.clientCapabilities) {
+			if (!isDefined(this.clientCapabilities)) {
 				this.supportsMarkdown = true;
 				return this.supportsMarkdown;
 			}
