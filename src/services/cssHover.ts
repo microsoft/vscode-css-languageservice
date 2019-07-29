@@ -135,7 +135,7 @@ export class CSSHover {
 			}
 			// MarkedString[]
 			else if (isArray(contents)) {
-				contents.map(c => {
+				return contents.map(c => {
 					return typeof c === 'string' ? c : c.value;
 				});
 			}
@@ -149,12 +149,12 @@ export class CSSHover {
 	}
 
 	private doesSupportMarkdown() {
-		if (!this.clientCapabilities) {
-			this.supportsMarkdown = true;
-			return this.supportsMarkdown;
-		}
-
 		if (!isDefined(this.supportsMarkdown)) {
+			if (!this.clientCapabilities) {
+				this.supportsMarkdown = true;
+				return this.supportsMarkdown;
+			}
+
 			const hover = this.clientCapabilities.textDocument && this.clientCapabilities.textDocument.hover;
 			this.supportsMarkdown = hover && hover.contentFormat && Array.isArray(hover.contentFormat) && hover.contentFormat.indexOf(MarkupKind.Markdown) !== -1;
 		}

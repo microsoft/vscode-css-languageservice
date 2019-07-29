@@ -930,12 +930,12 @@ export class CSSCompletion {
 	}
 
 	private doesSupportMarkdown() {
-		if (!this.clientCapabilities) {
-			this.supportsMarkdown = true;
-			return this.supportsMarkdown;
-		}
-
 		if (!isDefined(this.supportsMarkdown)) {
+			if (!this.clientCapabilities) {
+				this.supportsMarkdown = true;
+				return this.supportsMarkdown;
+			}
+
 			const completion = this.clientCapabilities.textDocument && this.clientCapabilities.textDocument.completion;
 			this.supportsMarkdown = completion && completion.completionItem && Array.isArray(completion.completionItem.documentationFormat) && completion.completionItem.documentationFormat.indexOf(MarkupKind.Markdown) !== -1;
 		}
