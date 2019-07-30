@@ -21,10 +21,10 @@
     "mdn-browser-compat-data": "^0.0.72",
     "mdn-data": "^2.0.3",
     "mkdirp": "^0.5.1",
-    "mocha": "^6.1.4",
+    "mocha": "^6.2.0",
     "rimraf": "^2.6.3",
-    "tslint": "^5.13.1",
-    "typescript": "^3.3.3333",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3",
     "xml2js": "^0.4.19"
   },
   "dependencies": {
