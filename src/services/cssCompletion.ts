@@ -881,7 +881,7 @@ export class CSSCompletion {
 		let position: Position;
 		let range: Range;
 		// No children, empty value
-		if (uriLiteralNode.hasChildren()) {
+		if (!uriLiteralNode.hasChildren()) {
 			uriValue = '';
 			position = this.position;
 			const emptyURIValuePosition = this.textDocument.positionAt(uriLiteralNode.offset + 'url('.length);
