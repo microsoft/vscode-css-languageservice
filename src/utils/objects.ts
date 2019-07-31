@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-export function values(obj: Object) {
-	return Object.keys(obj).map(k => obj[k]);
+export function values<T extends {}>(obj: T): Array<T[keyof T]> {
+	return Object.values(obj);
 }
 
-export function isDefined(obj: any): boolean {
+export function isDefined<T>(obj: T | undefined): obj is T {
 	return typeof obj !== 'undefined';
 }
