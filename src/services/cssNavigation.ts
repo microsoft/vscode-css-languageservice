@@ -72,7 +72,7 @@ export class CSSNavigation {
 					});
 					return false;
 				}
-			} else if (node.type === candidate.type && candidate.matches(name)) {
+			} else if (node && node.type === candidate.type && candidate.matches(name)) {
 				// Same node type and data
 				result.push({
 					kind: getHighlightKind(candidate),
@@ -104,7 +104,10 @@ export class CSSNavigation {
 			if (candidate.parent && candidate.parent.type === nodes.NodeType.Import) {
 				const rawText = candidate.getText();
 				if (startsWith(rawText, `'`) || startsWith(rawText, `"`)) {
-					result.push(uriStringNodeToDocumentLink(document, candidate, documentContext));
+					const link = uriStringNodeToDocumentLink(document, candidate, documentContext);
+					if (link) {
+						result.push(link);
+					}
 				}
 
 				return false;
@@ -127,11 +130,11 @@ export class CSSNavigation {
 		stylesheet.accept((node) => {
 
 			const entry: SymbolInformation = {
-				name: null,
+				name: null!,
 				kind: SymbolKind.Class, // TODO@Martin: find a good SymbolKind
-				location: null
+				location: null!
 			};
-			let locationNode = node;
+			let locationNode: nodes.Node | null = node;
 			if (node instanceof nodes.Selector) {
 				entry.name = node.getText();
 				locationNode = node.findAParent(nodes.NodeType.Ruleset, nodes.NodeType.ExtendsReference);
@@ -227,7 +230,7 @@ function getColorInformation(node: nodes.Node, document: TextDocument): ColorInf
 	return null;
 }
 
-function uriLiteralNodeToDocumentLink(document: TextDocument, uriLiteralNode: nodes.Node, documentContext: DocumentContext): DocumentLink {
+function uriLiteralNodeToDocumentLink(document: TextDocument, uriLiteralNode: nodes.Node, documentContext: DocumentContext): DocumentLink | null {
 	if (uriLiteralNode.getChildren().length === 0) {
 		return null;
 	}
@@ -237,7 +240,11 @@ function uriLiteralNodeToDocumentLink(document: TextDocument, uriLiteralNode: no
 	return uriStringNodeToDocumentLink(document, uriStringNode, documentContext);
 }
 
-function uriStringNodeToDocumentLink(document: TextDocument, uriStringNode: nodes.Node, documentContext: DocumentContext) {
+function uriStringNodeToDocumentLink(document: TextDocument, uriStringNode: nodes.Node | null, documentContext: DocumentContext) {
+	if (!uriStringNode) {
+		return null;
+	}
+
 	let rawUri = uriStringNode.getText();
 	const range = getRange(uriStringNode, document);
 	// Make sure the range is not empty
