@@ -629,7 +629,7 @@ export class CSSCompletion {
 			return this.getCompletionsForSelector(ruleSet, ruleSet.isNested(), result);
 		}
 
-		return this.getCompletionsForDeclarations(ruleSet.getDeclarations() || null, result);
+		return this.getCompletionsForDeclarations(ruleSet.getDeclarations(), result);
 	}
 
 	public getCompletionsForSelector(ruleSet: nodes.RuleSet | null, isNested: boolean, result: CompletionList): CompletionList {
@@ -716,7 +716,7 @@ export class CSSCompletion {
 		return result;
 	}
 
-	public getCompletionsForDeclarations(declarations: nodes.Declarations | null, result: CompletionList): CompletionList {
+	public getCompletionsForDeclarations(declarations: nodes.Declarations | null | undefined, result: CompletionList): CompletionList {
 		if (!declarations || this.offset === declarations.offset) { // incomplete nodes
 			return result;
 		}
