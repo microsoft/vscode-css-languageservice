@@ -14,9 +14,9 @@ const localize = nls.loadMessageBundle();
 
 export class Element {
 
-	public parent: Element | undefined;
-	public children: Element[] =  [];
-	public attributes: { name: string, value: string; }[] = [];
+	public parent: Element | null = null;
+	public children: Element[] | null = null;
+	public attributes: { name: string, value: string; }[] | null = null;
 
 	public findAttribute(name: string): string | null {
 		if (this.attributes) {
@@ -32,6 +32,9 @@ export class Element {
 	public addChild(child: Element): void {
 		if (child instanceof Element) {
 			(<Element>child).parent = this;
+		}
+		if (!this.children) {
+			this.children = [];
 		}
 		this.children.push(child);
 	}
@@ -59,7 +62,7 @@ export class Element {
 	}
 
 	public removeChild(child: Element): boolean {
-		if (this.children.length) {
+		if (this.children) {
 			const index = this.children.indexOf(child);
 			if (index !== -1) {
 				this.children.splice(index, 1);
@@ -90,7 +93,8 @@ export class Element {
 				elem.addAttr(attribute.name, attribute.value);
 			}
 		}
-		if (cloneChildren && this.children.length) {
+		if (cloneChildren && this.children) {
+			elem.children = [];
 			for (let index = 0; index < this.children.length; index++) {
 				elem.addChild(this.children[index].clone());
 			}
@@ -131,7 +135,9 @@ class MarkedStringPrinter {
 	public print(element: Element): MarkedString[] {
 		this.result = [];
 		if (element instanceof RootElement) {
-			this.doPrint(element.children, 0);
+			if (element.children) {
+				this.doPrint(element.children, 0);
+			}
 		} else {
 			this.doPrint([element], 0);
 		}
@@ -269,8 +275,8 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element | 
 				break;
 			case nodes.NodeType.AttributeSelector:
 				const selector = <nodes.AttributeSelector>child;
-				const identifuer = selector.getIdentifier();
-				if (identifuer) {
+				const identifier = selector.getIdentifier();
+				if (identifier) {
 					const expression = selector.getValue();
 					const operator = selector.getOperator();
 					let value: string;
@@ -300,9 +306,8 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element | 
 								value = quotes.remove(unescape(expression.getText()));
 								break;
 						}
-
-						result.addAttr(unescape(identifuer.getText()), value);
 					}
+					result.addAttr(unescape(identifier.getText()), value!);
 				}
 				break;
 		}
