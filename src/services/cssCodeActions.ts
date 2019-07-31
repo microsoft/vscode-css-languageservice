@@ -20,7 +20,8 @@ export class CSSCodeActions {
 
 	public doCodeActions(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: nodes.Stylesheet): Command[] {
 		return this.doCodeActions2(document, range, context, stylesheet).map(ca => {
-			return Command.create(ca.title, '_css.applyCodeAction', document.uri, document.version, (<TextDocumentEdit>ca.edit.documentChanges[0]).edits);
+			const textDocumentEdit: TextDocumentEdit | undefined = ca.edit && ca.edit.documentChanges && ca.edit.documentChanges[0] as TextDocumentEdit;
+			return Command.create(ca.title, '_css.applyCodeAction', document.uri, document.version, textDocumentEdit && textDocumentEdit.edits);
 		});
 	}
 
@@ -94,4 +95,3 @@ export class CSSCodeActions {
 	}
 
 }
-
