@@ -253,7 +253,7 @@ export function hexDigit(charCode: number) {
 	return 0;
 }
 
-export function colorFromHex(text: string): Color {
+export function colorFromHex(text: string): Color | null {
 	if (text[0] !== '#') {
 		return null;
 	}
@@ -304,7 +304,7 @@ export function colorFromHSL(hue: number, sat: number, light: number, alpha: num
 	if (sat === 0) {
 		return { red: light, green: light, blue: light, alpha };
 	} else {
-		const hueToRgb = (t1, t2, hue) => {
+		const hueToRgb = (t1: number, t2: number, hue: number) => {
 			while (hue < 0) { hue += 6; }
 			while (hue >= 6) { hue -= 6; }
 
@@ -349,7 +349,7 @@ export function hslFromColor(rgba: Color): HSLA {
 	return { h, s, l, a };
 }
 
-export function getColorValue(node: nodes.Node): Color {
+export function getColorValue(node: nodes.Node): Color | null {
 	if (node.type === nodes.NodeType.HexColorValue) {
 		const text = node.getText();
 		return colorFromHex(text);
@@ -384,7 +384,7 @@ export function getColorValue(node: nodes.Node): Color {
 			return null;
 		}
 		const term = node.parent;
-		if (term.parent && term.parent.type === nodes.NodeType.BinaryExpression) {
+		if (term && term.parent && term.parent.type === nodes.NodeType.BinaryExpression) {
 			const expression = term.parent;
 			if (expression.parent && expression.parent.type === nodes.NodeType.ListEntry && (<nodes.ListEntry>expression.parent).key === expression) {
 				return null;
