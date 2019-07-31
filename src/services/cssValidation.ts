@@ -17,7 +17,7 @@ export class CSSValidation {
 	constructor() {
 	}
 
-	public configure(settings: LanguageSettings) {
+	public configure(settings?: LanguageSettings) {
 		this.settings = settings;
 	}
 

@@ -32,7 +32,7 @@ export * from './cssLanguageTypes';
 export * from 'vscode-languageserver-types';
 
 export interface LanguageService {
-	configure(raw: LanguageSettings): void;
+	configure(raw?: LanguageSettings): void;
 	doValidation(document: TextDocument, stylesheet: Stylesheet, documentSettings?: LanguageSettings): Diagnostic[];
 	parseStylesheet(document: TextDocument): Stylesheet;
 	doComplete(document: TextDocument, position: Position, stylesheet: Stylesheet): CompletionList;

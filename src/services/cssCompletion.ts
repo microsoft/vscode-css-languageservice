@@ -35,7 +35,7 @@ export class CSSCompletion {
 	constructor(public variablePrefix: string | null = null, private clientCapabilities: ClientCapabilities | undefined) {
 	}
 
-	public configure(settings: LanguageSettings) {
+	public configure(settings?: LanguageSettings) {
 		this.settings = settings;
 	}
 
