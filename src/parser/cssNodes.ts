@@ -451,13 +451,13 @@ export class Declarations extends Node {
 
 export class BodyDeclaration extends Node {
 
-	public declarations: Declarations | null = null;
+	public declarations?: Declarations;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
 
-	public getDeclarations(): Declarations | null {
+	public getDeclarations(): Declarations | undefined {
 		return this.declarations;
 	}
 
@@ -520,7 +520,7 @@ export class SimpleSelector extends Node {
 
 export class AtApplyRule extends Node {
 
-	public identifier: Identifier | null = null;
+	public identifier?: Identifier;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -534,7 +534,7 @@ export class AtApplyRule extends Node {
 		return this.setNode('identifier', node, 0);
 	}
 
-	public getIdentifier(): Identifier | null {
+	public getIdentifier(): Identifier | undefined {
 		return this.identifier;
 	}
 
@@ -1550,7 +1550,7 @@ export class GuardCondition extends Node {
 	public isLess?: boolean;
 	public isEqualsLess?: boolean;
 
-	public setVariable(node: Node): node is Node {
+	public setVariable(node: Node | null): node is Node {
 		return this.setNode('variable', node);
 	}
 }

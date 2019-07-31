@@ -257,7 +257,7 @@ export class Symbols {
 	}
 
 	private internalFindSymbol(node: nodes.Node, referenceTypes: nodes.ReferenceType[]): Symbol | null {
-		let scopeNode: nodes.Node | null = node;
+		let scopeNode: nodes.Node | undefined = node;
 		if (node.parent instanceof nodes.FunctionParameter && node.parent.getParent() instanceof nodes.BodyDeclaration) {
 			scopeNode = (<nodes.BodyDeclaration>node.parent.getParent()).getDeclarations();
 		}
