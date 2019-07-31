@@ -16,9 +16,9 @@ import { isArray } from 'util';
 export class CSSHover {
 	private supportsMarkdown: boolean | undefined;
 
-	constructor(private clientCapabilities: ClientCapabilities) {}
+	constructor(private clientCapabilities: ClientCapabilities | undefined) {}
 
-	public doHover(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Hover {
+	public doHover(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Hover | null {
 		function getRange(node: nodes.Node) {
 			return Range.create(document.positionAt(node.offset), document.positionAt(node.end));
 		}
@@ -30,7 +30,7 @@ export class CSSHover {
 		 * nodepath is top-down
 		 * Build up the hover by appending inner node's information
 		 */
-		let hover: Hover = null;
+		let hover: Hover | null = null;
 
 		for (let i = 0; i < nodepath.length; i++) {
 			const node = nodepath[i];
@@ -62,7 +62,7 @@ export class CSSHover {
 				if (entry) {
 					if (typeof entry.description !== 'string') {
 						hover = {
-							contents: entry.description,
+							contents: entry.description || '',
 							range: getRange(node)
 						};
 					} else {
@@ -90,7 +90,7 @@ export class CSSHover {
 				const entry = languageFacts.cssDataManager.getAtDirective(atRuleName);
 				if (entry) {
 					hover = {
-						contents: entry.description,
+						contents: entry.description || '',
 						range: getRange(node)
 					};
 				}
@@ -105,7 +105,7 @@ export class CSSHover {
 						: languageFacts.cssDataManager.getPseudoClass(selectorName);
 				if (entry) {
 					hover = {
-						contents: entry.description,
+						contents: entry.description || '',
 						range: getRange(node)
 					};
 				}
@@ -113,7 +113,7 @@ export class CSSHover {
 			}
 		}
 
-		
+
 		if (hover) {
 			hover.contents = this.convertContents(hover.contents);
 		}
