@@ -136,7 +136,8 @@ export function getNodePath(node: Node, offset: number): Node[] {
 
 export function getParentDeclaration(node: Node): Declaration | null {
 	const decl = <Declaration>node.findParent(NodeType.Declaration);
-	if (decl && decl.getValue() && decl.getValue().encloses(node)) {
+	const value = decl && decl.getValue();
+	if (value && value.encloses(node)) {
 		return decl;
 	}
 	return null;
@@ -271,7 +272,7 @@ export class Node {
 		return recursive && Array.isArray(this.children) && this.children.some(c => c.isErroneous(true));
 	}
 
-	public setNode(field: keyof this, node: Node, index: number = -1): boolean {
+	public setNode(field: keyof this, node: Node | null, index: number = -1): boolean {
 		if (node) {
 			node.attachTo(this, index);
 			(<any>this)[field] = node;
@@ -280,7 +281,7 @@ export class Node {
 		return false;
 	}
 
-	public addChild(node: Node): boolean {
+	public addChild(node: Node | null): node is Node {
 		if (node) {
 			if (!this.children) {
 				this.children = [];
@@ -303,14 +304,14 @@ export class Node {
 	}
 
 	public hasChildren(): boolean {
-		return this.children && this.children.length > 0;
+		return !!this.children && this.children.length > 0;
 	}
 
 	public getChildren(): Node[] {
 		return this.children ? this.children.slice(0) : [];
 	}
 
-	public getChild(index: number): Node {
+	public getChild(index: number): Node | null {
 		if (this.children && index < this.children.length) {
 			return this.children[index];
 		}
@@ -323,9 +324,9 @@ export class Node {
 		}
 	}
 
-	public findFirstChildBeforeOffset(offset: number): Node {
+	public findFirstChildBeforeOffset(offset: number): Node | null {
 		if (this.children) {
-			let current: Node = null;
+			let current: Node | null = null;
 			for (let i = this.children.length - 1; i >= 0; i--) {
 				// iterate until we find a child that has a start offset smaller than the input offset
 				current = this.children[i];
@@ -337,8 +338,8 @@ export class Node {
 		return null;
 	}
 
-	public findChildAtOffset(offset: number, goDeep: boolean): Node {
-		const current: Node = this.findFirstChildBeforeOffset(offset);
+	public findChildAtOffset(offset: number, goDeep: boolean): Node | null {
+		const current: Node | null = this.findFirstChildBeforeOffset(offset);
 		if (current && current.end >= offset) {
 			if (goDeep) {
 				return current.findChildAtOffset(offset, true) || current;
@@ -352,7 +353,7 @@ export class Node {
 		return this.offset <= candidate.offset && this.offset + this.length >= candidate.offset + candidate.length;
 	}
 
-	public getParent(): Node {
+	public getParent(): Node | null {
 		let result = this.parent;
 		while (result instanceof Nodelist) {
 			result = result.parent;
@@ -360,17 +361,17 @@ export class Node {
 		return result;
 	}
 
-	public findParent(type: NodeType): Node {
-		let result: Node = this;
+	public findParent(type: NodeType): Node | null {
+		let result: Node | null = this;
 		while (result && result.type !== type) {
 			result = result.parent;
 		}
 		return result;
 	}
 
-	public findAParent(...types: NodeType[]): Node {
-		let result: Node = this;
-		while (result && !types.some(t => result.type === t)) {
+	public findAParent(...types: NodeType[]): Node | null {
+		let result: Node | null = this;
+		while (result && !types.some(t => result!.type === t)) {
 			result = result.parent;
 		}
 		return result;
@@ -392,7 +393,7 @@ export class Node {
 }
 
 export interface NodeConstructor {
-	new(offset: number, len: number);
+	new(offset: number, len: number): Node;
 }
 
 export class Nodelist extends Node {
@@ -409,7 +410,7 @@ export class Nodelist extends Node {
 
 export class Identifier extends Node {
 
-	public referenceTypes: ReferenceType[];
+	public referenceTypes?: ReferenceType[];
 	public isCustomProperty = false;
 
 	constructor(offset: number, length: number) {
@@ -450,17 +451,17 @@ export class Declarations extends Node {
 
 export class BodyDeclaration extends Node {
 
-	public declarations: Declarations | undefined;
+	public declarations: Declarations | null = null;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
 
-	public getDeclarations(): Declarations | undefined {
+	public getDeclarations(): Declarations | null {
 		return this.declarations;
 	}
 
-	public setDeclarations(decls: Declarations): boolean {
+	public setDeclarations(decls: Declarations | null): decls is Declarations {
 		return this.setNode('declarations', decls);
 	}
 
@@ -468,7 +469,7 @@ export class BodyDeclaration extends Node {
 
 export class RuleSet extends BodyDeclaration {
 
-	private selectors: Nodelist;
+	private selectors?: Nodelist;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -519,7 +520,7 @@ export class SimpleSelector extends Node {
 
 export class AtApplyRule extends Node {
 
-	public identifier: Identifier | undefined;
+	public identifier: Identifier | null = null;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -529,11 +530,11 @@ export class AtApplyRule extends Node {
 		return NodeType.AtApplyRule;
 	}
 
-	public setIdentifier(node: Identifier): boolean {
+	public setIdentifier(node: Identifier | null): node is Identifier {
 		return this.setNode('identifier', node, 0);
 	}
 
-	public getIdentifier(): Identifier | undefined {
+	public getIdentifier(): Identifier | null {
 		return this.identifier;
 	}
 
@@ -554,9 +555,9 @@ export abstract class AbstractDeclaration extends Node {
 }
 
 export class CustomPropertyDeclaration extends AbstractDeclaration {
-	public property: Property;
-	public value: Expression;
-	public propertySet: CustomPropertySet;
+	public property?: Property;
+	public value?: Expression;
+	public propertySet?: CustomPropertySet;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -566,27 +567,27 @@ export class CustomPropertyDeclaration extends AbstractDeclaration {
 		return NodeType.CustomPropertyDeclaration;
 	}
 
-	public setProperty(node: Property): boolean {
+	public setProperty(node: Property | null): node is Property {
 		return this.setNode('property', node);
 	}
 
-	public getProperty(): Property {
+	public getProperty(): Property | undefined {
 		return this.property;
 	}
 
-	public setValue(value: Expression): boolean {
+	public setValue(value: Expression | null): value is Expression {
 		return this.setNode('value', value);
 	}
 
-	public getValue(): Expression {
+	public getValue(): Expression | undefined {
 		return this.value;
 	}
 
-	public setPropertySet(value: CustomPropertySet): boolean {
+	public setPropertySet(value: CustomPropertySet | null): value is CustomPropertySet {
 		return this.setNode('propertySet', value);
 	}
 
-	public getPropertySet(): CustomPropertySet {
+	public getPropertySet(): CustomPropertySet | undefined {
 		return this.propertySet;
 	}
 }
@@ -603,9 +604,9 @@ export class CustomPropertySet extends BodyDeclaration {
 
 export class Declaration extends AbstractDeclaration {
 
-	public property: Property;
-	public value: Expression;
-	public nestedProperties: NestedProperties;
+	public property: Property | null = null;
+	public value?: Expression;
+	public nestedProperties?: NestedProperties;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -615,18 +616,18 @@ export class Declaration extends AbstractDeclaration {
 		return NodeType.Declaration;
 	}
 
-	public setProperty(node: Property): boolean {
+	public setProperty(node: Property | null): node is Property {
 		return this.setNode('property', node);
 	}
 
-	public getProperty(): Property {
+	public getProperty(): Property | null {
 		return this.property;
 	}
 
 	public getFullPropertyName(): string {
 		const propertyName = this.property ? this.property.getName() : 'unknown';
 		if (this.parent instanceof Declarations && this.parent.getParent() instanceof NestedProperties) {
-			const parentDecl = this.parent.getParent().getParent();
+			const parentDecl = this.parent.getParent()!.getParent();
 			if (parentDecl instanceof Declaration) {
 				return (<Declaration>parentDecl).getFullPropertyName() + propertyName;
 			}
@@ -645,26 +646,26 @@ export class Declaration extends AbstractDeclaration {
 		return propertyName;
 	}
 
-	public setValue(value: Expression): boolean {
+	public setValue(value: Expression | null): value is Expression {
 		return this.setNode('value', value);
 	}
 
-	public getValue(): Expression {
+	public getValue(): Expression | undefined {
 		return this.value;
 	}
 
-	public setNestedProperties(value: NestedProperties): boolean {
+	public setNestedProperties(value: NestedProperties | null): value is NestedProperties {
 		return this.setNode('nestedProperties', value);
 	}
 
-	public getNestedProperties(): NestedProperties {
+	public getNestedProperties(): NestedProperties | undefined {
 		return this.nestedProperties;
 	}
 }
 
 export class Property extends Node {
 
-	public identifier: Identifier;
+	public identifier?: Identifier;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -674,11 +675,11 @@ export class Property extends Node {
 		return NodeType.Property;
 	}
 
-	public setIdentifier(value: Identifier): boolean {
+	public setIdentifier(value: Identifier | null): value is Identifier {
 		return this.setNode('identifier', value);
 	}
 
-	public getIdentifier(): Identifier {
+	public getIdentifier(): Identifier | undefined {
 		return this.identifier;
 	}
 
@@ -687,13 +688,13 @@ export class Property extends Node {
 	}
 
 	public isCustomProperty(): boolean {
-		return this.identifier.isCustomProperty;
+		return !!this.identifier && this.identifier.isCustomProperty;
 	}
 }
 
 export class Invocation extends Node {
 
-	private arguments: Nodelist;
+	private arguments?: Nodelist;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -713,7 +714,7 @@ export class Invocation extends Node {
 
 export class Function extends Invocation {
 
-	public identifier: Identifier;
+	public identifier?: Identifier;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -723,11 +724,11 @@ export class Function extends Invocation {
 		return NodeType.Function;
 	}
 
-	public setIdentifier(node: Identifier): boolean {
+	public setIdentifier(node: Identifier | null): node is Identifier {
 		return this.setNode('identifier', node, 0);
 	}
 
-	public getIdentifier(): Identifier {
+	public getIdentifier(): Identifier | undefined {
 		return this.identifier;
 	}
 
@@ -739,8 +740,8 @@ export class Function extends Invocation {
 
 export class FunctionParameter extends Node {
 
-	public identifier: Node;
-	public defaultValue: Node;
+	public identifier?: Node;
+	public defaultValue?: Node;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -750,11 +751,11 @@ export class FunctionParameter extends Node {
 		return NodeType.FunctionParameter;
 	}
 
-	public setIdentifier(node: Node): boolean {
+	public setIdentifier(node: Node | null): node is Node {
 		return this.setNode('identifier', node, 0);
 	}
 
-	public getIdentifier(): Node {
+	public getIdentifier(): Node | undefined {
 		return this.identifier;
 	}
 
@@ -762,19 +763,19 @@ export class FunctionParameter extends Node {
 		return this.identifier ? this.identifier.getText() : '';
 	}
 
-	public setDefaultValue(node: Node): boolean {
+	public setDefaultValue(node: Node | null): node is Node {
 		return this.setNode('defaultValue', node, 0);
 	}
 
-	public getDefaultValue(): Node {
+	public getDefaultValue(): Node | undefined {
 		return this.defaultValue;
 	}
 }
 
 export class FunctionArgument extends Node {
 
-	public identifier: Node;
-	public value: Node;
+	public identifier?: Node;
+	public value?: Node;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -784,11 +785,11 @@ export class FunctionArgument extends Node {
 		return NodeType.FunctionArgument;
 	}
 
-	public setIdentifier(node: Node): boolean {
+	public setIdentifier(node: Node | null): node is Node {
 		return this.setNode('identifier', node, 0);
 	}
 
-	public getIdentifier(): Node {
+	public getIdentifier(): Node | undefined {
 		return this.identifier;
 	}
 
@@ -796,18 +797,18 @@ export class FunctionArgument extends Node {
 		return this.identifier ? this.identifier.getText() : '';
 	}
 
-	public setValue(node: Node): boolean {
+	public setValue(node: Node | null): node is Node {
 		return this.setNode('value', node, 0);
 	}
 
-	public getValue(): Node {
+	public getValue(): Node | undefined {
 		return this.value;
 	}
 }
 
 export class IfStatement extends BodyDeclaration {
-	public expression: Expression;
-	public elseClause: BodyDeclaration;
+	public expression?: Expression;
+	public elseClause?: BodyDeclaration;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -817,17 +818,17 @@ export class IfStatement extends BodyDeclaration {
 		return NodeType.If;
 	}
 
-	public setExpression(node: Expression): boolean {
+	public setExpression(node: Expression | null): node is Expression {
 		return this.setNode('expression', node, 0);
 	}
 
-	public setElseClause(elseClause: BodyDeclaration): boolean {
+	public setElseClause(elseClause: BodyDeclaration | null): elseClause is BodyDeclaration {
 		return this.setNode('elseClause', elseClause);
 	}
 }
 
 export class ForStatement extends BodyDeclaration {
-	public variable: Variable;
+	public variable?: Variable;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -837,13 +838,13 @@ export class ForStatement extends BodyDeclaration {
 		return NodeType.For;
 	}
 
-	public setVariable(node: Variable): boolean {
+	public setVariable(node: Variable | null): node is Variable {
 		return this.setNode('variable', node, 0);
 	}
 }
 
 export class EachStatement extends BodyDeclaration {
-	public variables: Nodelist;
+	public variables?: Nodelist;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -882,8 +883,8 @@ export class ElseStatement extends BodyDeclaration {
 }
 
 export class FunctionDeclaration extends BodyDeclaration {
-	public identifier: Identifier;
-	public parameters: Nodelist;
+	public identifier?: Identifier;
+	public parameters?: Nodelist;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -893,11 +894,11 @@ export class FunctionDeclaration extends BodyDeclaration {
 		return NodeType.FunctionDeclaration;
 	}
 
-	public setIdentifier(node: Identifier): boolean {
+	public setIdentifier(node: Identifier | null): node is Identifier {
 		return this.setNode('identifier', node, 0);
 	}
 
-	public getIdentifier(): Identifier {
+	public getIdentifier(): Identifier | undefined {
 		return this.identifier;
 	}
 
@@ -946,8 +947,8 @@ export class NestedProperties extends BodyDeclaration {
 
 export class Keyframe extends BodyDeclaration {
 
-	public keyword: Node;
-	public identifier: Identifier;
+	public keyword?: Node;
+	public identifier?: Identifier;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -957,19 +958,19 @@ export class Keyframe extends BodyDeclaration {
 		return NodeType.Keyframe;
 	}
 
-	public setKeyword(keyword: Node): boolean {
+	public setKeyword(keyword: Node | null): keyword is Node {
 		return this.setNode('keyword', keyword, 0);
 	}
 
-	public getKeyword(): Node {
+	public getKeyword(): Node | undefined {
 		return this.keyword;
 	}
 
-	public setIdentifier(node: Node): boolean {
+	public setIdentifier(node: Node | null): node is Node {
 		return this.setNode('identifier', node, 0);
 	}
 
-	public getIdentifier(): Node {
+	public getIdentifier(): Node | undefined {
 		return this.identifier;
 	}
 
@@ -998,7 +999,7 @@ export class Import extends Node {
 		return NodeType.Import;
 	}
 
-	public setMedialist(node: Node): boolean {
+	public setMedialist(node: Node | null): node is Node {
 		if (node) {
 			node.attachTo(this);
 			return true;
@@ -1054,7 +1055,7 @@ export class Document extends BodyDeclaration {
 }
 
 export class Medialist extends Node {
-	private mediums: Nodelist;
+	private mediums?: Nodelist;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1081,8 +1082,8 @@ export class MediaQuery extends Node {
 
 export class SupportsCondition extends Node {
 
-	public lParent: number;
-	public rParent: number;
+	public lParent?: number;
+	public rParent?: number;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1133,9 +1134,9 @@ export class Expression extends Node {
 
 export class BinaryExpression extends Node {
 
-	public left: Node;
-	public right: Node;
-	public operator: Node;
+	public left?: Node;
+	public right?: Node;
+	public operator?: Node;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1145,35 +1146,35 @@ export class BinaryExpression extends Node {
 		return NodeType.BinaryExpression;
 	}
 
-	public setLeft(left: Node): boolean {
+	public setLeft(left: Node | null): left is Node {
 		return this.setNode('left', left);
 	}
 
-	public getLeft(): Node {
+	public getLeft(): Node | undefined {
 		return this.left;
 	}
 
-	public setRight(right: Node): boolean {
+	public setRight(right: Node | null): right is Node {
 		return this.setNode('right', right);
 	}
 
-	public getRight(): Node {
+	public getRight(): Node | undefined {
 		return this.right;
 	}
 
-	public setOperator(value: Node): boolean {
+	public setOperator(value: Node | null): value is Node {
 		return this.setNode('operator', value);
 	}
 
-	public getOperator(): Node {
+	public getOperator(): Node | undefined {
 		return this.operator;
 	}
 }
 
 export class Term extends Node {
 
-	public operator: Node;
-	public expression: Node;
+	public operator?: Node;
+	public expression?: Node;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1183,29 +1184,29 @@ export class Term extends Node {
 		return NodeType.Term;
 	}
 
-	public setOperator(value: Node): boolean {
+	public setOperator(value: Node | null): value is Node {
 		return this.setNode('operator', value);
 	}
 
-	public getOperator(): Node {
+	public getOperator(): Node | undefined {
 		return this.operator;
 	}
 
-	public setExpression(value: Node): boolean {
+	public setExpression(value: Node | null): value is Node {
 		return this.setNode('expression', value);
 	}
 
-	public getExpression(): Node {
+	public getExpression(): Node | undefined {
 		return this.expression;
 	}
 }
 
 export class AttributeSelector extends Node {
 
-	public namespacePrefix: Node;
-	public identifier: Identifier;
-	public operator: Operator;
-	public value: BinaryExpression;
+	public namespacePrefix?: Node;
+	public identifier?: Identifier;
+	public operator?: Operator;
+	public value?: BinaryExpression;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1215,35 +1216,35 @@ export class AttributeSelector extends Node {
 		return NodeType.AttributeSelector;
 	}
 
-	public setNamespacePrefix(value: Node): boolean {
+	public setNamespacePrefix(value: Node | null): value is Node {
 		return this.setNode('namespacePrefix', value);
 	}
 
-	public getNamespacePrefix(): Node {
+	public getNamespacePrefix(): Node | undefined {
 		return this.namespacePrefix;
 	}
 
-	public setIdentifier(value: Identifier): boolean {
+	public setIdentifier(value: Identifier | null): value is Identifier {
 		return this.setNode('identifier', value);
 	}
 
-	public getIdentifier(): Identifier {
+	public getIdentifier(): Identifier | undefined {
 		return this.identifier;
 	}
 
-	public setOperator(operator: Operator): boolean {
+	public setOperator(operator: Operator | null): operator is Operator {
 		return this.setNode('operator', operator);
 	}
 
-	public getOperator(): Operator {
+	public getOperator(): Operator | undefined {
 		return this.operator;
 	}
 
-	public setValue(value: BinaryExpression): boolean {
+	public setValue(value: BinaryExpression | null): value is BinaryExpression {
 		return this.setNode('value', value);
 	}
 
-	public getValue(): BinaryExpression {
+	public getValue(): BinaryExpression | undefined {
 		return this.value;
 	}
 }
@@ -1287,7 +1288,7 @@ export class NumericValue extends Node {
 		return NodeType.NumericValue;
 	}
 
-	public getValue(): { value: string; unit: string } {
+	public getValue(): { value: string; unit?: string } {
 		const raw = this.getText();
 		let unitIdx = 0;
 		let code: number;
@@ -1307,8 +1308,8 @@ export class NumericValue extends Node {
 
 export class VariableDeclaration extends AbstractDeclaration {
 
-	private variable: Variable;
-	private value: Node;
+	private variable: Variable | null = null;
+	private value: Node | null = null;
 	public needsSemicolon: boolean = true;
 
 	constructor(offset: number, length: number) {
@@ -1319,7 +1320,7 @@ export class VariableDeclaration extends AbstractDeclaration {
 		return NodeType.VariableDeclaration;
 	}
 
-	public setVariable(node: Variable): boolean {
+	public setVariable(node: Variable | null): node is Variable {
 		if (node) {
 			node.attachTo(this);
 			this.variable = node;
@@ -1328,7 +1329,7 @@ export class VariableDeclaration extends AbstractDeclaration {
 		return false;
 	}
 
-	public getVariable(): Variable {
+	public getVariable(): Variable | null {
 		return this.variable;
 	}
 
@@ -1336,7 +1337,7 @@ export class VariableDeclaration extends AbstractDeclaration {
 		return this.variable ? this.variable.getName() : '';
 	}
 
-	public setValue(node: Node): boolean {
+	public setValue(node: Node | null): node is Node {
 		if (node) {
 			node.attachTo(this);
 			this.value = node;
@@ -1345,14 +1346,14 @@ export class VariableDeclaration extends AbstractDeclaration {
 		return false;
 	}
 
-	public getValue(): Node {
+	public getValue(): Node | null {
 		return this.value;
 	}
 }
 
 export class Interpolation extends Node {
 
-	private _interpolations: void; // workaround for https://github.com/Microsoft/TypeScript/issues/18276
+	// private _interpolations: void; // workaround for https://github.com/Microsoft/TypeScript/issues/18276
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1380,7 +1381,7 @@ export class Variable extends Node {
 }
 
 export class ExtendsReference extends Node {
-	private selectors: Nodelist;
+	private selectors?: Nodelist;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1400,10 +1401,10 @@ export class ExtendsReference extends Node {
 
 
 export class MixinReference extends Node {
-	public namespaces: Nodelist;
-	public identifier: Identifier;
-	private arguments: Nodelist;
-	public content: BodyDeclaration;
+	public namespaces?: Nodelist;
+	public identifier?: Identifier;
+	private arguments?: Nodelist;
+	public content?: BodyDeclaration;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1420,11 +1421,11 @@ export class MixinReference extends Node {
 		return this.namespaces;
 	}
 
-	public setIdentifier(node: Identifier): boolean {
+	public setIdentifier(node: Identifier | null): node is Identifier {
 		return this.setNode('identifier', node, 0);
 	}
 
-	public getIdentifier(): Identifier {
+	public getIdentifier(): Identifier | undefined {
 		return this.identifier;
 	}
 
@@ -1439,20 +1440,20 @@ export class MixinReference extends Node {
 		return this.arguments;
 	}
 
-	public setContent(node: BodyDeclaration): boolean {
+	public setContent(node: BodyDeclaration | null): node is BodyDeclaration {
 		return this.setNode('content', node);
 	}
 
-	public getContent(): BodyDeclaration {
+	public getContent(): BodyDeclaration | undefined {
 		return this.content;
 	}
 }
 
 export class MixinDeclaration extends BodyDeclaration {
 
-	public identifier: Identifier;
-	private parameters: Nodelist;
-	private guard: LessGuard;
+	public identifier?: Identifier;
+	private parameters?: Nodelist;
+	private guard?: LessGuard;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1462,11 +1463,11 @@ export class MixinDeclaration extends BodyDeclaration {
 		return NodeType.MixinDeclaration;
 	}
 
-	public setIdentifier(node: Identifier): boolean {
+	public setIdentifier(node: Identifier | null): node is Identifier {
 		return this.setNode('identifier', node, 0);
 	}
 
-	public getIdentifier(): Identifier {
+	public getIdentifier(): Identifier | undefined {
 		return this.identifier;
 	}
 
@@ -1481,7 +1482,7 @@ export class MixinDeclaration extends BodyDeclaration {
 		return this.parameters;
 	}
 
-	public setGuard(node: LessGuard): boolean {
+	public setGuard(node: LessGuard | null): boolean {
 		if (node) {
 			node.attachTo(this);
 			this.guard = node;
@@ -1491,7 +1492,7 @@ export class MixinDeclaration extends BodyDeclaration {
 }
 
 export class UnknownAtRule extends BodyDeclaration {
-	public atRuleName: string;
+	public atRuleName?: string;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1504,7 +1505,7 @@ export class UnknownAtRule extends BodyDeclaration {
 	public setAtRuleName(atRuleName: string) {
 		this.atRuleName = atRuleName;
 	}
-	public getAtRuleName(atRuleName: string) {
+	public getAtRuleName() {
 		return this.atRuleName;
 	}
 }
@@ -1512,25 +1513,25 @@ export class UnknownAtRule extends BodyDeclaration {
 export class ListEntry extends Node {
 
 	public key?: Node;
-	public value: Node;
+	public value?: Node;
 
 	public get type(): NodeType {
 		return NodeType.ListEntry;
 	}
 
-	public setKey(node: Node): boolean {
+	public setKey(node: Node | null): node is Node {
 		return this.setNode('key', node, 0);
 	}
 
-	public setValue(node: Node): boolean {
+	public setValue(node: Node | null): node is Node {
 		return this.setNode('value', node, 1);
 	}
 }
 
 export class LessGuard extends Node {
 
-	public isNegated: boolean;
-	private conditions: Nodelist;
+	public isNegated?: boolean;
+	private conditions?: Nodelist;
 
 	public getConditions(): Nodelist {
 		if (!this.conditions) {
@@ -1542,14 +1543,14 @@ export class LessGuard extends Node {
 
 export class GuardCondition extends Node {
 
-	public variable: Node;
-	public isEquals: boolean;
-	public isGreater: boolean;
-	public isEqualsGreater: boolean;
-	public isLess: boolean;
-	public isEqualsLess: boolean;
+	public variable?: Node;
+	public isEquals?: boolean;
+	public isGreater?: boolean;
+	public isEqualsGreater?: boolean;
+	public isLess?: boolean;
+	public isEqualsLess?: boolean;
 
-	public setVariable(node: Node): boolean {
+	public setVariable(node: Node): node is Node {
 		return this.setNode('variable', node);
 	}
 }
@@ -1779,7 +1780,7 @@ export class DefaultVisitor implements IVisitor {
 	public visitMixinReference(node:MixinReference):boolean {
 		return true;
 	}
-	
+
 	public visitUnknownNode(node:Node):boolean {
 		return true;
 	}
@@ -1807,4 +1808,3 @@ export class ParseErrorCollector implements IVisitor {
 		return true;
 	}
 }
-
