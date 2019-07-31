@@ -13,7 +13,7 @@ import { Node } from '../../parser/cssNodes';
 function assertFontFace(input: string, ...rules: Rule[]): void {
 	let p = new SCSSParser();
 	let document = TextDocument.create('test://test/test.scss', 'scss', 0, input);
-	let node = p.internalParse(input, p._parseFontFace as () => Node);
+	let node = p.internalParse(input, p._parseFontFace)!;
 
 	assertEntries(node, document, rules);
 }
@@ -21,7 +21,7 @@ function assertFontFace(input: string, ...rules: Rule[]): void {
 function assertRuleSet(input: string, ...rules: Rule[]): void {
 	let p = new SCSSParser();
 	let document = TextDocument.create('test://test/test.scss', 'scss', 0, input);
-	let node = p.internalParse(input, p._parseRuleset as () => Node);
+	let node = p.internalParse(input, p._parseRuleset)!;
 	assertEntries(node, document, rules);
 }
 

@@ -534,7 +534,7 @@ export class LintVisitor implements nodes.IVisitor {
 		return true;
 	}
 
-	private isCSSDeclaration(node: nodes.Node): node is nodes.Declaration { //& { property: NonNullable<nodes.Declaration['property']> } {
+	private isCSSDeclaration(node: nodes.Node): node is nodes.Declaration {
 		if (node instanceof nodes.Declaration) {
 			if (!(<nodes.Declaration>node).getValue()) {
 				return false;

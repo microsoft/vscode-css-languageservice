@@ -212,11 +212,11 @@ export class Parser {
 		return this.internalParse(text, this._parseStylesheet, textProvider);
 	}
 
-
-	public internalParse<T extends nodes.Node>(input: string, parseFunc: () => T, textProvider?: nodes.ITextProvider): T {
+	public internalParse<T extends nodes.Node, U extends T | null>(input: string, parseFunc: () => U, textProvider?: nodes.ITextProvider): U;
+	public internalParse<T extends nodes.Node, U extends T>(input: string, parseFunc: () => U, textProvider?: nodes.ITextProvider): U {
 		this.scanner.setSource(input);
 		this.token = this.scanner.scan();
-		const node : T = parseFunc.bind(this)();
+		const node : U = parseFunc.bind(this)();
 		if (node) {
 			if (textProvider) {
 				node.textProvider = textProvider;

@@ -13,7 +13,7 @@ import { ParseError } from '../../parser/cssErrors';
 export type ParseFunction = () => nodes.Node;
 
 export function assertNode(text: string, parser: Parser, f: (...args: any[]) => nodes.Node | null): nodes.Node {
-	let node = parser.internalParse(text, f as () => nodes.Node);
+	let node = parser.internalParse(text, f)!;
 	assert.ok(node !== null, 'no node returned');
 	let markers = nodes.ParseErrorCollector.entries(node);
 	if (markers.length > 0) {
@@ -28,12 +28,12 @@ export function assertFunction(text: string, parser: Parser, f: () => nodes.Node
 }
 
 export function assertNoNode(text: string, parser: Parser, f: () => nodes.Node | null): void {
-	let node = parser.internalParse(text, f as () => nodes.Node);
+	let node = parser.internalParse(text, f)!;
 	assert.ok(node === null);
 }
 
 export function assertError(text: string, parser: Parser, f: () => nodes.Node | null, error: nodes.IRule): void {
-	let node = parser.internalParse(text, f as () => nodes.Node);
+	let node = parser.internalParse(text, f)!;
 	assert.ok(node !== null, 'no node returned');
 	let markers = nodes.ParseErrorCollector.entries(node);
 	if (markers.length === 0) {

@@ -61,7 +61,7 @@ export function parseSelector(p: Parser, input: string, selectorName: string, ex
 }
 
 export function assertElement(p: Parser, input: string, expected: { name: string; value?: string }[]): void {
-	let node = p.internalParse(input, p._parseSimpleSelector as () => nodes.SimpleSelector);
+	let node = p.internalParse(input, p._parseSimpleSelector)!;
 	let actual = selectorPrinter.toElement(node);
 
 	assert.deepEqual(actual.attributes, expected);
