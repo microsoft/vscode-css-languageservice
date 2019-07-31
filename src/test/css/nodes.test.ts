@@ -26,16 +26,16 @@ export function assertNodes(fn: (input: string) => nodes.Node, input: string, ex
 
 	let actual = visitor.tree.join(',') + ',';
 	let segments = expected.split(',');
-	let oldIndex: number = undefined;
+	let oldIndex: number | undefined = undefined;
 	let index = -1;
 
 	while (segments.length > 0) {
-		let segment = segments.shift();
+		let segment = segments.shift()!;
 		if (segment === '...') {
 			continue;
 		}
 		index = actual.indexOf(segment + ',', oldIndex);
-		if (index <= oldIndex) {
+		if (oldIndex && index <= oldIndex) {
 			assert.ok(false, segment + ' NOT found in ' + actual);
 		}
 		oldIndex = index + segment.length;
@@ -98,7 +98,7 @@ suite('CSS - Nodes', () => {
 
 	function ruleset(input: string): nodes.RuleSet {
 		let parser = new Parser();
-		let node = parser.internalParse(input, parser._parseRuleset);
+		let node = parser.internalParse(input, parser._parseRuleset as () => nodes.RuleSet);
 		return node;
 	}
 
@@ -110,7 +110,7 @@ suite('CSS - Nodes', () => {
 	test('Keyframe', function () {
 		function fn(input: string): nodes.Node {
 			let parser = new Parser();
-			let node = parser.internalParse(input, parser._parseKeyframe);
+			let node = parser.internalParse(input, parser._parseKeyframe as () => nodes.Node);
 			return node;
 		}
 		assertNodes(fn, '@keyframes name { from { top: 0px} to { top: 100px } }', 'keyframe,identifier,keyframeselector,declaration,keyframeselector,declaration');

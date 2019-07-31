@@ -42,7 +42,7 @@ function assertRuleSet(input: string, ...rules: Rule[]): void {
 function assertRuleSetWithSettings(input: string, rules: Rule[], settings = new LintConfigurationSettings()): void {
 	for (let p of parsers) {
 		let document = TextDocument.create('test://test/test.css', 'css', 0, input);
-		let node = p.internalParse(input, p._parseRuleset);
+		let node = p.internalParse(input, p._parseRuleset as () => Node);
 		assertEntries(node, document, rules, settings);
 	}
 }
@@ -51,7 +51,7 @@ function assertRuleSetWithSettings(input: string, rules: Rule[], settings = new 
 function assertFontFace(input: string, ...rules: Rule[]): void {
 	for (let p of parsers) {
 		let document = TextDocument.create('test://test/test.css', 'css', 0, input);
-		let node = p.internalParse(input, p._parseFontFace);
+		let node = p.internalParse(input, p._parseFontFace as () => Node);
 		assertEntries(node, document, rules);
 	}
 }

@@ -92,7 +92,7 @@ export function assertSymbolsInScope(p: Parser, input: string, offset: number, .
 
 	let global = createScope(p, input);
 
-	let scope = global.findScope(offset);
+	let scope = global.findScope(offset)!;
 
 	let getErrorMessage = function (name: string) {
 		let all = 'symbol ' + name + ' not found. In scope: ';
@@ -116,7 +116,7 @@ export function assertScopeBuilding(p: Parser, input: string, ...scopes: { offse
 		scope.children.forEach((scope) => {
 
 			// check bounds
-			let expected = scopes.shift();
+			let expected = scopes.shift()!;
 			assert.equal(scope.offset, expected.offset);
 			assert.equal(scope.length, expected.length);
 
@@ -127,7 +127,7 @@ export function assertScopeBuilding(p: Parser, input: string, ...scopes: { offse
 
 	assertChildren(global);
 
-	assert.equal(scopes.length, 0, 'remainig scopes: ' + scopes.join());
+	assert.equal(scopes.length, 0, 'remaining scopes: ' + scopes.join());
 }
 
 function scopeToString(scope: Scope): string {
@@ -191,7 +191,7 @@ suite('CSS - Navigation', () => {
 			assert.ok(global.findScope(14) === child1);
 			assert.ok(global.findScope(15) === child2);
 			assert.ok(global.findScope(19) === child2);
-			assert.ok(global.findScope(19).parent === global);
+			assert.ok(global.findScope(19)!.parent === global);
 		});
 
 		test('scope building', function () {

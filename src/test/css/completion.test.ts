@@ -8,12 +8,12 @@ import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
 import { CompletionList, TextDocument, Position, CompletionItemKind, InsertTextFormat, Range, Command, MarkupContent } from 'vscode-languageserver-types';
-import { LanguageSettings } from '../../cssLanguageTypes';
+import { LanguageSettings, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext } from '../../cssLanguageTypes';
 
 export interface ItemDescription {
 	label: string;
 	detail?: string;
-	documentation?: string | MarkupContent;
+	documentation?: string | MarkupContent | null;
 	kind?: CompletionItemKind;
 	insertTextFormat?: InsertTextFormat;
 	resultText?: string;
@@ -47,7 +47,7 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 		assert.equal(match.kind, expected.kind);
 	}
 	if (expected.resultText) {
-		assert.equal(TextDocument.applyEdits(document, [match.textEdit]), expected.resultText);
+		assert.equal(TextDocument.applyEdits(document, [match.textEdit!]), expected.resultText);
 	}
 	if (expected.insertTextFormat) {
 		assert.equal(match.insertTextFormat, expected.insertTextFormat);
@@ -60,13 +60,20 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 	}
 };
 
+type PropertyContext = {
+	propertyName: string;
+	range: Range;
+};
+
+type CompletionContexts = PropertyCompletionContext | PropertyValueCompletionContext | URILiteralCompletionContext | ImportPathCompletionContext;
+
 suite('CSS - Completion', () => {
 
-	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[], participant?: { onProperty?, onPropertValue?, onURILiteralValue?, onImportPath? } }, settings?: LanguageSettings) {
+	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[], participant?: { onProperty?: PropertyCompletionContext[], onPropertyValue?: PropertyValueCompletionContext[], onURILiteralValue?: URILiteralCompletionContext[], onImportPath?: ImportPathCompletionContext[] } }, settings?: LanguageSettings) {
 		let offset = value.indexOf('|');
 		value = value.substr(0, offset) + value.substr(offset + 1);
 
-		let actualPropertyContexts: { propertyName: string; range: Range; }[] = [];
+		let actualPropertyContexts: CompletionContexts[] = [];
 		let actualPropertyValueContexts: { propertyName: string; propertyValue?: string; range: Range; }[] = [];
 		let actualURILiteralValueContexts: { uriValue: string; position: Position; range: Range; }[] = [];
 		let actualImportPathContexts: { pathValue: string; position: Position; range: Range; }[] = [];
@@ -99,8 +106,8 @@ suite('CSS - Completion', () => {
 			if (expected.participant.onProperty) {
 				assert.deepEqual(actualPropertyContexts, expected.participant.onProperty);
 			}
-			if (expected.participant.onPropertValue) {
-				assert.deepEqual(actualPropertyValueContexts, expected.participant.onPropertValue);
+			if (expected.participant.onPropertyValue) {
+				assert.deepEqual(actualPropertyValueContexts, expected.participant.onPropertyValue);
 			}
 			if (expected.participant.onURILiteralValue) {
 				assert.deepEqual(actualURILiteralValueContexts, expected.participant.onURILiteralValue);
@@ -446,13 +453,13 @@ suite('CSS - Completion', () => {
 		testCompletionFor('html { bac|', {
 			participant: {
 				onProperty: [{ propertyName: 'bac', range: newRange(7, 10) }],
-				onPropertValue: []
+				onPropertyValue: []
 			}
 		});
 		testCompletionFor('html { disp|lay: none', {
 			participant: {
 				onProperty: [{ propertyName: 'disp', range: newRange(7, 11) }],
-				onPropertValue: []
+				onPropertyValue: []
 			}
 		});
 		testCompletionFor('html { background-position: t|', {
@@ -461,7 +468,7 @@ suite('CSS - Completion', () => {
 			],
 			participant: {
 				onProperty: [],
-				onPropertValue: [{ propertyName: 'background-position', propertyValue: 't', range: newRange(28, 29) }]
+				onPropertyValue: [{ propertyName: 'background-position', propertyValue: 't', range: newRange(28, 29) }]
 			}
 		});
 
@@ -551,7 +558,7 @@ suite('CSS - Completion', () => {
 			]
 		});
 	});
-	
+
 			// https://github.com/Microsoft/vscode/issues/71791
 	test('Items that start with `-` are sorted lower than normal attribute values', () => {
 		testCompletionFor('.foo { display: | }', {
@@ -568,4 +575,3 @@ suite('CSS - Completion', () => {
 function newRange(start: number, end: number) {
 	return Range.create(Position.create(0, start), Position.create(0, end));
 }
-

@@ -9,7 +9,7 @@ import * as assert from 'assert';
 import { TextDocument, CompletionList, Position } from 'vscode-languageserver-types';
 import { getCSSLanguageService } from '../../cssLanguageService';
 import { ItemDescription } from './completion.test';
-import { ICSSDataProvider, CSSDataV1 } from '../../cssLanguageTypes';
+import { ICSSDataProvider, CSSDataV1, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext } from '../../cssLanguageTypes';
 import { CSSDataProvider } from '../../languageFacts/facts';
 
 function getLanguageService(data: CSSDataV1) {
@@ -46,7 +46,7 @@ function assertCompletion(completions: CompletionList, expected: ItemDescription
 		assert.equal(match.kind, expected.kind);
 	}
 	if (expected.resultText) {
-		assert.equal(TextDocument.applyEdits(document, [match.textEdit]), expected.resultText);
+		assert.equal(TextDocument.applyEdits(document, [match.textEdit!]), expected.resultText);
 	}
 	if (expected.insertTextFormat) {
 		assert.equal(match.insertTextFormat, expected.insertTextFormat);
@@ -93,7 +93,7 @@ suite('CSS - Custom Data', () => {
 		expected: {
 			count?: number;
 			items?: ItemDescription[];
-			participant?: { onProperty?; onPropertValue?; onURILiteralValue?; onImportPath? };
+			participant?: { onProperty?: PropertyCompletionContext; onPropertyValue?: PropertyValueCompletionContext; onURILiteralValue?: URILiteralCompletionContext; onImportPath?: ImportPathCompletionContext };
 		}
 	) {
 		let offset = value.indexOf('|');

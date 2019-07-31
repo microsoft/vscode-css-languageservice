@@ -10,8 +10,10 @@ import { TokenType } from '../../parser/cssScanner';
 import * as nodes from '../../parser/cssNodes';
 import { ParseError } from '../../parser/cssErrors';
 
-export function assertNode(text: string, parser: Parser, f: () => nodes.Node): nodes.Node {
-	let node = parser.internalParse(text, f);
+export type ParseFunction = () => nodes.Node;
+
+export function assertNode(text: string, parser: Parser, f: (...args: any[]) => nodes.Node | null): nodes.Node {
+	let node = parser.internalParse(text, f as () => nodes.Node);
 	assert.ok(node !== null, 'no node returned');
 	let markers = nodes.ParseErrorCollector.entries(node);
 	if (markers.length > 0) {
@@ -21,17 +23,17 @@ export function assertNode(text: string, parser: Parser, f: () => nodes.Node): n
 	return node;
 }
 
-export function assertFunction(text: string, parser: Parser, f: () => nodes.Node): void {
+export function assertFunction(text: string, parser: Parser, f: () => nodes.Node | null): void {
 	assertNode(text, parser, f);
 }
 
-export function assertNoNode(text: string, parser: Parser, f: () => nodes.Node): void {
-	let node = parser.internalParse(text, f);
+export function assertNoNode(text: string, parser: Parser, f: () => nodes.Node | null): void {
+	let node = parser.internalParse(text, f as () => nodes.Node);
 	assert.ok(node === null);
 }
 
-export function assertError(text: string, parser: Parser, f: () => nodes.Node, error: nodes.IRule): void {
-	let node = parser.internalParse(text, f);
+export function assertError(text: string, parser: Parser, f: () => nodes.Node | null, error: nodes.IRule): void {
+	let node = parser.internalParse(text, f as () => nodes.Node);
 	assert.ok(node !== null, 'no node returned');
 	let markers = nodes.ParseErrorCollector.entries(node);
 	if (markers.length === 0) {
@@ -95,10 +97,10 @@ suite('CSS - Parser', () => {
 		let parser = new Parser();
 		const node = assertNode('@unknown-rule (foo) {} .foo {}', parser, parser._parseStylesheet.bind(parser));
 
-		const unknownAtRule = node.getChild(0);
+		const unknownAtRule = node.getChild(0)!;
 		assert.equal(unknownAtRule.type, nodes.NodeType.UnknownAtRule);
 		assert.equal(unknownAtRule.offset, 0);
-		assert.equal(node.getChild(0).length, 13);
+		assert.equal(node.getChild(0)!.length, 13);
 	});
 
 	test('stylesheet /panic/', function () {
