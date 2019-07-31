@@ -25,8 +25,9 @@ import { LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServ
 import { cssDataManager } from './languageFacts/facts';
 import { getSelectionRanges } from './services/cssSelectionRange';
 import { SCSSNavigation } from './services/scssNavigation';
+import { Stylesheet } from './parser/cssNodes';
 
-export type Stylesheet = {};
+export { Stylesheet } from './parser/cssNodes';
 export * from './cssLanguageTypes';
 export * from 'vscode-languageserver-types';
 
@@ -59,7 +60,7 @@ export interface LanguageService {
 	getSelectionRanges(document: TextDocument, positions: Position[], stylesheet: Stylesheet): SelectionRange[];
 }
 
-function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover, navigation: CSSNavigation, codeActions: CSSCodeActions, validation: CSSValidation) {
+function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover, navigation: CSSNavigation, codeActions: CSSCodeActions, validation: CSSValidation): LanguageService {
 	return {
 		configure: (settings) => {
 			validation.configure(settings);
