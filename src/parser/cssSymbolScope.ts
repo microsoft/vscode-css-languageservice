@@ -166,8 +166,8 @@ export class ScopeBuilder implements nodes.IVisitor {
 			case nodes.NodeType.For:
 				const forNode = <nodes.ForStatement>node;
 				const scopeNode = forNode.getDeclarations();
-				if (scopeNode) {
-					this.addSymbolToChildScope(scopeNode, forNode.variable!, forNode.variable!.getName(), void 0, nodes.ReferenceType.Variable);
+				if (scopeNode && forNode.variable) {
+					this.addSymbolToChildScope(scopeNode, forNode.variable, forNode.variable.getName(), void 0, nodes.ReferenceType.Variable);
 				}
 				return true;
 			case nodes.NodeType.Each: {

@@ -110,7 +110,7 @@ export class CSSCompletion {
 				} else if (node.type === nodes.NodeType.StringLiteral && node.parent.type === nodes.NodeType.Import) {
 					this.getCompletionForImportPath(node, result);
 					// } else if (node instanceof nodes.Variable) {
-						// this.getCompletionsForVariableDeclaration()
+					// this.getCompletionsForVariableDeclaration()
 				} else {
 					continue;
 				}
