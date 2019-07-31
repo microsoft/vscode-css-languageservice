@@ -26,12 +26,12 @@ export class Parser {
 	public token: IToken;
 	public prevToken: IToken;
 
-	private lastErrorToken: IToken;
+	private lastErrorToken?: IToken;
 
 	constructor(scnr: Scanner = new Scanner()) {
 		this.scanner = scnr;
-		this.token = null;
-		this.prevToken = null;
+		this.token = null!;
+		this.prevToken = null!;
 	}
 
 	public peekIdent(text: string): boolean {
@@ -80,7 +80,7 @@ export class Parser {
 		this.scanner.goBackTo(mark.pos);
 	}
 
-	public try(func: () => nodes.Node): nodes.Node {
+	public try(func: () => nodes.Node | null): nodes.Node | null {
 		const pos = this.mark();
 		const node = func();
 		if (!node) {
@@ -147,7 +147,7 @@ export class Parser {
 		return false;
 	}
 
-	public resync(resyncTokens: TokenType[], resyncStopTokens: TokenType[]): boolean {
+	public resync(resyncTokens: TokenType[] | undefined, resyncStopTokens: TokenType[] | undefined): boolean {
 		while (true) {
 			if (resyncTokens && resyncTokens.indexOf(this.token.type) !== -1) {
 				this.consumeToken();
@@ -191,7 +191,7 @@ export class Parser {
 
 	public markError<T extends nodes.Node>(node: T, error: CSSIssueType, resyncTokens?: TokenType[], resyncStopTokens?: TokenType[]): void {
 		if (this.token !== this.lastErrorToken) { // do not report twice on the same token
-			node.addIssue(new nodes.Marker(node, error, nodes.Level.Error, null, this.token.offset, this.token.len));
+			node.addIssue(new nodes.Marker(node, error, nodes.Level.Error, undefined, this.token.offset, this.token.len));
 			this.lastErrorToken = this.token;
 		}
 		if (resyncTokens || resyncStopTokens) {
@@ -270,14 +270,14 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseStylesheetStatement(isNested: boolean = false): nodes.Node {
+	public _parseStylesheetStatement(isNested: boolean = false): nodes.Node | null {
 		if (this.peek(TokenType.AtKeyword)) {
 			return this._parseStylesheetAtStatement(isNested);
 		}
 		return this._parseRuleset(isNested);
 	}
 
-	public _parseStylesheetAtStatement(isNested: boolean = false): nodes.Node {
+	public _parseStylesheetAtStatement(isNested: boolean = false): nodes.Node | null {
 		return this._parseImport()
 			|| this._parseMedia(isNested)
 			|| this._parsePage()
@@ -290,7 +290,7 @@ export class Parser {
 			|| this._parseUnknownAtRule();
 	}
 
-	public _tryParseRuleset(isNested: boolean): nodes.RuleSet {
+	public _tryParseRuleset(isNested: boolean): nodes.RuleSet | null {
 		const mark = this.mark();
 		if (this._parseSelector(isNested)) {
 			while (this.accept(TokenType.Comma) && this._parseSelector(isNested)) {
@@ -305,7 +305,7 @@ export class Parser {
 		return null;
 	}
 
-	public _parseRuleset(isNested: boolean = false): nodes.RuleSet {
+	public _parseRuleset(isNested: boolean = false): nodes.RuleSet | null {
 		const node = <nodes.RuleSet>this.create(nodes.RuleSet);
 		const selectors = node.getSelectors();
 
@@ -322,7 +322,7 @@ export class Parser {
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
 	}
 
-	public _parseRuleSetDeclaration(): nodes.Node {
+	public _parseRuleSetDeclaration(): nodes.Node | null {
 		// https://www.w3.org/TR/css-syntax-3/#consume-a-list-of-declarations0
 		return this._parseAtApply()
 			|| this._tryParseCustomPropertyDeclaration()
@@ -336,7 +336,7 @@ export class Parser {
 	 *
 	 * Follows https://tabatkins.github.io/specs/css-apply-rule/#using
 	 */
-	public _parseAtApply(): nodes.Node {
+	public _parseAtApply(): nodes.Node | null {
 		if (!this.peekKeyword('@apply')) {
 			return null;
 		}
@@ -383,7 +383,7 @@ export class Parser {
 		return false;
 	}
 
-	public _parseDeclarations(parseDeclaration: () => nodes.Node): nodes.Declarations {
+	public _parseDeclarations(parseDeclaration: () => nodes.Node | null): nodes.Declarations | null {
 		const node = <nodes.Declarations>this.create(nodes.Declarations);
 		if (!this.accept(TokenType.CurlyL)) {
 			return null;
@@ -409,14 +409,14 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseBody<T extends nodes.BodyDeclaration>(node: T, parseDeclaration: () => nodes.Node): T {
+	public _parseBody<T extends nodes.BodyDeclaration>(node: T, parseDeclaration: () => nodes.Node | null): T {
 		if (!node.setDeclarations(this._parseDeclarations(parseDeclaration))) {
 			return this.finish(node, ParseError.LeftCurlyExpected, [TokenType.CurlyR, TokenType.SemiColon]);
 		}
 		return this.finish(node);
 	}
 
-	public _parseSelector(isNested: boolean): nodes.Selector {
+	public _parseSelector(isNested: boolean): nodes.Selector | null {
 		const node = <nodes.Selector>this.create(nodes.Selector);
 
 		let hasContent = false;
@@ -431,7 +431,7 @@ export class Parser {
 		return hasContent ? this.finish(node) : null;
 	}
 
-	public _parseDeclaration(resyncStopTokens?: TokenType[]): nodes.Declaration {
+	public _parseDeclaration(resyncStopTokens?: TokenType[]): nodes.Declaration | null {
 		const node = <nodes.Declaration>this.create(nodes.Declaration);
 		if (!node.setProperty(this._parseProperty())) {
 			return null;
@@ -453,7 +453,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _tryParseCustomPropertyDeclaration(): nodes.Node {
+	public _tryParseCustomPropertyDeclaration(): nodes.Node | null {
 		if (!this.peekRegExp(TokenType.Ident, /^--/)) {
 			return null;
 		}
@@ -583,7 +583,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _tryToParseDeclaration(): nodes.Declaration {
+	public _tryToParseDeclaration(): nodes.Declaration | null {
 		const mark = this.mark();
 		if (this._parseProperty() && this.accept(TokenType.Colon)) {
 			// looks like a declaration, go ahead
@@ -595,7 +595,7 @@ export class Parser {
 		return null;
 	}
 
-	public _parseProperty(): nodes.Property {
+	public _parseProperty(): nodes.Property | null {
 		const node = <nodes.Property>this.create(nodes.Property);
 
 		const mark = this.mark();
@@ -612,11 +612,11 @@ export class Parser {
 		return null;
 	}
 
-	public _parsePropertyIdentifier(): nodes.Identifier {
+	public _parsePropertyIdentifier(): nodes.Identifier | null {
 		return this._parseIdent();
 	}
 
-	public _parseCharset(): nodes.Node {
+	public _parseCharset(): nodes.Node | null {
 		if (!this.peek(TokenType.Charset)) {
 			return null;
 		}
@@ -634,7 +634,7 @@ export class Parser {
 
 
 
-	public _parseImport(): nodes.Node {
+	public _parseImport(): nodes.Node | null {
 		if (!this.peekKeyword('@import')) {
 			return null;
 		}
@@ -653,7 +653,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseNamespace(): nodes.Node {
+	public _parseNamespace(): nodes.Node | null {
 		// http://www.w3.org/TR/css3-namespace/
 		// namespace  : NAMESPACE_SYM S* [IDENT S*]? [STRING|URI] S* ';' S*
 		if (!this.peekKeyword('@namespace')) {
@@ -677,7 +677,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseFontFace(): nodes.Node {
+	public _parseFontFace(): nodes.Node | null {
 		if (!this.peekKeyword('@font-face')) {
 			return null;
 		}
@@ -687,7 +687,7 @@ export class Parser {
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
 	}
 
-	public _parseViewPort(): nodes.Node {
+	public _parseViewPort(): nodes.Node | null {
 		if (!this.peekKeyword('@-ms-viewport') &&
 			!this.peekKeyword('@-o-viewport') &&
 			!this.peekKeyword('@viewport')
@@ -702,7 +702,7 @@ export class Parser {
 
 	private keyframeRegex = /^@(\-(webkit|ms|moz|o)\-)?keyframes$/i;
 
-	public _parseKeyframe(): nodes.Node {
+	public _parseKeyframe(): nodes.Node | null {
 		if (!this.peekRegExp(TokenType.AtKeyword, this.keyframeRegex)) {
 			return null;
 		}
@@ -722,11 +722,11 @@ export class Parser {
 		return this._parseBody(node, this._parseKeyframeSelector.bind(this));
 	}
 
-	public _parseKeyframeIdent(): nodes.Node {
+	public _parseKeyframeIdent(): nodes.Node | null {
 		return this._parseIdent([nodes.ReferenceType.Keyframe]);
 	}
 
-	public _parseKeyframeSelector(): nodes.Node {
+	public _parseKeyframeSelector(): nodes.Node | null {
 		const node = <nodes.KeyframeSelector>this.create(nodes.KeyframeSelector);
 
 		if (!node.addChild(this._parseIdent()) && !this.accept(TokenType.Percentage)) {
@@ -742,7 +742,7 @@ export class Parser {
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
 	}
 
-	public _tryParseKeyframeSelector(): nodes.Node {
+	public _tryParseKeyframeSelector(): nodes.Node | null {
 		const node = <nodes.KeyframeSelector>this.create(nodes.KeyframeSelector);
 		const pos = this.mark();
 
@@ -765,7 +765,7 @@ export class Parser {
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
 	}
 
-	public _parseSupports(isNested = false): nodes.Node {
+	public _parseSupports(isNested = false): nodes.Node | null {
 		// SUPPORTS_SYM S* supports_condition '{' S* ruleset* '}' S*
 		if (!this.peekKeyword('@supports')) {
 			return null;
@@ -778,7 +778,7 @@ export class Parser {
 		return this._parseBody(node, this._parseSupportsDeclaration.bind(this, isNested));
 	}
 
-	public _parseSupportsDeclaration(isNested = false): nodes.Node {
+	public _parseSupportsDeclaration(isNested = false): nodes.Node | null {
 		if (isNested) {
 			// if nested, the body can contain rulesets, but also declarations
 			return this._tryParseRuleset(true)
@@ -847,7 +847,7 @@ export class Parser {
 		return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.ParenthesisL]);
 	}
 
-	public _parseMediaDeclaration(isNested = false): nodes.Node {
+	public _parseMediaDeclaration(isNested = false): nodes.Node | null {
 		if (isNested) {
 			// if nested, the body can contain rulesets, but also declarations
 			return this._tryParseRuleset(true)
@@ -857,7 +857,7 @@ export class Parser {
 		return this._parseStylesheetStatement(false);
 	}
 
-	public _parseMedia(isNested = false): nodes.Node {
+	public _parseMedia(isNested = false): nodes.Node | null {
 		// MEDIA_SYM S* media_query_list '{' S* ruleset* '}' S*
 		// media_query_list : S* [media_query [ ',' S* media_query ]* ]?
 		if (!this.peekKeyword('@media')) {
@@ -885,7 +885,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseMediaQuery(resyncStopToken: TokenType[]): nodes.Node {
+	public _parseMediaQuery(resyncStopToken: TokenType[]): nodes.Node | null {
 		// http://www.w3.org/TR/css3-mediaqueries/
 		// media_query : [ONLY | NOT]? S* IDENT S* [ AND S* expression ]* | expression [ AND S* expression ]*
 		// expression : '(' S* IDENT S* [ ':' S* expr ]? ')' S*
@@ -927,11 +927,11 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseMediaFeatureName(): nodes.Node {
+	public _parseMediaFeatureName(): nodes.Node | null {
 		return this._parseIdent();
 	}
 
-	public _parseMedium(): nodes.Node {
+	public _parseMedium(): nodes.Node | null {
 		const node = this.create(nodes.Node);
 		if (node.addChild(this._parseIdent())) {
 			return this.finish(node);
@@ -940,11 +940,11 @@ export class Parser {
 		}
 	}
 
-	public _parsePageDeclaration(): nodes.Node {
+	public _parsePageDeclaration(): nodes.Node | null {
 		return this._parsePageMarginBox() || this._parseRuleSetDeclaration();
 	}
 
-	public _parsePage(): nodes.Node {
+	public _parsePage(): nodes.Node | null {
 		// http://www.w3.org/TR/css3-page/
 		// page_rule : PAGE_SYM S* page_selector_list '{' S* page_body '}' S*
 		// page_body :  /* Can be empty */ declaration? [ ';' S* page_body ]? | page_margin_box page_body
@@ -965,7 +965,7 @@ export class Parser {
 		return this._parseBody(node, this._parsePageDeclaration.bind(this));
 	}
 
-	public _parsePageMarginBox(): nodes.Node {
+	public _parsePageMarginBox(): nodes.Node | null {
 		// page_margin_box :  margin_sym S* '{' S* declaration? [ ';' S* declaration? ]* '}' S*
 		if (!this.peek(TokenType.AtKeyword)) {
 			return null;
@@ -980,7 +980,7 @@ export class Parser {
 	}
 
 
-	public _parsePageSelector(): nodes.Node {
+	public _parsePageSelector(): nodes.Node | null {
 		// page_selector : pseudo_page+ | IDENT pseudo_page*
 		// pseudo_page :  ':' [ "left" | "right" | "first" | "blank" ];
 		if (!this.peek(TokenType.Ident) && !this.peek(TokenType.Colon)) {
@@ -997,7 +997,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseDocument(): nodes.Node {
+	public _parseDocument(): nodes.Node | null {
 		// -moz-document is experimental but has been pushed to css4
 		if (!this.peekKeyword('@-moz-document')) {
 			return null;
@@ -1010,7 +1010,7 @@ export class Parser {
 	}
 
 	// https://www.w3.org/TR/css-syntax-3/#consume-an-at-rule
-	public _parseUnknownAtRule(): nodes.Node {
+	public _parseUnknownAtRule(): nodes.Node | null {
 		if (!this.peek(TokenType.AtKeyword)) {
 			return null;
 		}
@@ -1102,7 +1102,7 @@ export class Parser {
 		return node;
 	}
 
-	public _parseOperator(): nodes.Operator {
+	public _parseOperator(): nodes.Operator | null {
 		// these are operators for binary expressions
 		if (this.peekDelim('/') ||
 			this.peekDelim('*') ||
@@ -1122,7 +1122,7 @@ export class Parser {
 		}
 	}
 
-	public _parseUnaryOperator(): nodes.Node {
+	public _parseUnaryOperator(): nodes.Node | null {
 		if (!this.peekDelim('+') && !this.peekDelim('-')) {
 			return null;
 		}
@@ -1131,7 +1131,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseCombinator(): nodes.Node {
+	public _parseCombinator(): nodes.Node | null {
 
 		if (this.peekDelim('>')) {
 			const node = this.create(nodes.Node);
@@ -1165,12 +1165,12 @@ export class Parser {
 				return this.finish(node);
 			}
 			this.restoreAtMark(mark);
-		} else {
-			return null;
 		}
+
+		return null;
 	}
 
-	public _parseSimpleSelector(): nodes.SimpleSelector {
+	public _parseSimpleSelector(): nodes.SimpleSelector | null {
 		// simple_selector
 		//  : element_name [ HASH | class | attrib | pseudo ]* | [ HASH | class | attrib | pseudo ]+ ;
 
@@ -1185,15 +1185,15 @@ export class Parser {
 		return c > 0 ? this.finish(node) : null;
 	}
 
-	public _parseSimpleSelectorBody(): nodes.Node {
+	public _parseSimpleSelectorBody(): nodes.Node | null {
 		return this._parsePseudo() || this._parseHash() || this._parseClass() || this._parseAttrib();
 	}
 
-	public _parseSelectorIdent(): nodes.Node {
+	public _parseSelectorIdent(): nodes.Node | null {
 		return this._parseIdent();
 	}
 
-	public _parseHash(): nodes.Node {
+	public _parseHash(): nodes.Node | null {
 		if (!this.peek(TokenType.Hash) && !this.peekDelim('#')) {
 			return null;
 		}
@@ -1208,7 +1208,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseClass(): nodes.Node {
+	public _parseClass(): nodes.Node | null {
 		// class: '.' IDENT ;
 		if (!this.peekDelim('.')) {
 			return null;
@@ -1247,7 +1247,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseAttrib(): nodes.Node {
+	public _parseAttrib(): nodes.Node | null {
 		// attrib : '[' S* IDENT S* [ [ '=' | INCLUDES | DASHMATCH ] S*   [ IDENT | STRING ] S* ]? ']'
 		if (!this.peek(TokenType.BracketL)) {
 			return null;
@@ -1272,7 +1272,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parsePseudo(): nodes.Node {
+	public _parsePseudo(): nodes.Node | null {
 		// pseudo: ':' [ IDENT | FUNCTION S* [IDENT S*]? ')' ]
 		const node = this._tryParsePseudoIdentifier();
 		if (node) {
@@ -1288,6 +1288,8 @@ export class Parser {
 					if (this.peek(TokenType.ParenthesisR)) {
 						return this.finish(selectors);
 					}
+
+					return null;
 				};
 				node.addChild(this.try(tryAsSelector) || this._parseBinaryExpr());
 				if (!this.accept(TokenType.ParenthesisR)) {
@@ -1299,7 +1301,7 @@ export class Parser {
 		return null;
 	}
 
-	public _tryParsePseudoIdentifier(): nodes.Node {
+	public _tryParsePseudoIdentifier(): nodes.Node | null {
 		if (!this.peek(TokenType.Colon)) {
 			return null;
 		}
@@ -1320,7 +1322,7 @@ export class Parser {
 		return node;
 	}
 
-	public _tryParsePrio(): nodes.Node {
+	public _tryParsePrio(): nodes.Node | null {
 		const mark = this.mark();
 
 		const prio = this._parsePrio();
@@ -1331,7 +1333,7 @@ export class Parser {
 		return null;
 	}
 
-	public _parsePrio(): nodes.Node {
+	public _parsePrio(): nodes.Node | null {
 		if (!this.peek(TokenType.Exclamation)) {
 			return null;
 		}
@@ -1343,7 +1345,7 @@ export class Parser {
 		return null;
 	}
 
-	public _parseExpr(stopOnComma: boolean = false): nodes.Expression {
+	public _parseExpr(stopOnComma: boolean = false): nodes.Expression | null {
 		const node = <nodes.Expression>this.create(nodes.Expression);
 		if (!node.addChild(this._parseBinaryExpr())) {
 			return null;
@@ -1364,7 +1366,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseNamedLine(): nodes.Node {
+	public _parseNamedLine(): nodes.Node | null {
 		// https://www.w3.org/TR/css-grid-1/#named-lines
 		if (!this.peek(TokenType.BracketL)) {
 			return null;
@@ -1380,7 +1382,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseBinaryExpr(preparsedLeft?: nodes.BinaryExpression, preparsedOper?: nodes.Node): nodes.BinaryExpression {
+	public _parseBinaryExpr(preparsedLeft?: nodes.BinaryExpression, preparsedOper?: nodes.Node): nodes.BinaryExpression | null {
 		let node = <nodes.BinaryExpression>this.create(nodes.BinaryExpression);
 
 		if (!node.setLeft((<nodes.Node>preparsedLeft || this._parseTerm()))) {
@@ -1405,7 +1407,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseTerm(): nodes.Term {
+	public _parseTerm(): nodes.Term | null {
 
 		let node = <nodes.Term>this.create(nodes.Term);
 		node.setOperator(this._parseUnaryOperator()); // optional
@@ -1425,7 +1427,7 @@ export class Parser {
 		return null;
 	}
 
-	public _parseOperation(): nodes.Node {
+	public _parseOperation(): nodes.Node | null {
 		if (!this.peek(TokenType.ParenthesisL)) {
 			return null;
 		}
@@ -1438,7 +1440,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseNumeric(): nodes.NumericValue {
+	public _parseNumeric(): nodes.NumericValue | null {
 
 		if (this.peek(TokenType.Num) ||
 			this.peek(TokenType.Percentage) ||
@@ -1458,7 +1460,7 @@ export class Parser {
 		return null;
 	}
 
-	public _parseStringLiteral(): nodes.Node {
+	public _parseStringLiteral(): nodes.Node | null {
 		if (!this.peek(TokenType.String) && !this.peek(TokenType.BadString)) {
 			return null;
 		}
@@ -1467,7 +1469,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseURILiteral(): nodes.Node {
+	public _parseURILiteral(): nodes.Node | null {
 		if (!this.peekRegExp(TokenType.Ident, /^url(-prefix)?$/i)) {
 			return null;
 		}
@@ -1489,7 +1491,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseURLArgument(): nodes.Node {
+	public _parseURLArgument(): nodes.Node | null {
 		const node = this.create(nodes.Node);
 		if (!this.accept(TokenType.String) && !this.accept(TokenType.BadString) && !this.acceptUnquotedString()) {
 			return null;
@@ -1497,7 +1499,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseIdent(referenceTypes?: nodes.ReferenceType[]): nodes.Identifier {
+	public _parseIdent(referenceTypes?: nodes.ReferenceType[]): nodes.Identifier | null {
 		if (!this.peek(TokenType.Ident)) {
 			return null;
 		}
@@ -1510,7 +1512,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseFunction(): nodes.Function {
+	public _parseFunction(): nodes.Function | null {
 
 		const pos = this.mark();
 		const node = <nodes.Function>this.create(nodes.Function);
@@ -1541,7 +1543,7 @@ export class Parser {
 		return <nodes.Function>this.finish(node);
 	}
 
-	public _parseFunctionIdentifier(): nodes.Identifier {
+	public _parseFunctionIdentifier(): nodes.Identifier | null {
 		if (!this.peek(TokenType.Ident)) {
 			return null;
 		}
@@ -1562,7 +1564,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseFunctionArgument(): nodes.Node {
+	public _parseFunctionArgument(): nodes.Node | null {
 		const node = <nodes.FunctionArgument>this.create(nodes.FunctionArgument);
 		if (node.setValue(this._parseExpr(true))) {
 			return this.finish(node);
@@ -1570,7 +1572,7 @@ export class Parser {
 		return null;
 	}
 
-	public _parseHexColor(): nodes.Node {
+	public _parseHexColor(): nodes.Node | null {
 		if (this.peekRegExp(TokenType.Hash, /^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{4}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$/g)) {
 			const node = this.create(nodes.HexColorValue);
 			this.consumeToken();
