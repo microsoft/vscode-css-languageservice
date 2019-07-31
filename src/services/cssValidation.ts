@@ -12,7 +12,7 @@ import { LanguageSettings } from '../cssLanguageTypes';
 
 export class CSSValidation {
 
-	private settings: LanguageSettings;
+	private settings?: LanguageSettings;
 
 	constructor() {
 	}
@@ -21,7 +21,7 @@ export class CSSValidation {
 		this.settings = settings;
 	}
 
-	public doValidation(document: TextDocument, stylesheet: nodes.Stylesheet, settings: LanguageSettings = this.settings): Diagnostic[] {
+	public doValidation(document: TextDocument, stylesheet: nodes.Stylesheet, settings: LanguageSettings | undefined = this.settings): Diagnostic[] {
 		if (settings && settings.validate === false) {
 			return [];
 		}
@@ -32,7 +32,7 @@ export class CSSValidation {
 
 		const ruleIds: string[] = [];
 		for (const r in Rules) {
-			ruleIds.push(Rules[r].id);
+			ruleIds.push(Rules[r as keyof typeof Rules].id);
 		}
 
 		function toDiagnostic(marker: nodes.IMarker): Diagnostic {
