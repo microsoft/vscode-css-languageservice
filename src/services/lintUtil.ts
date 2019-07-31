@@ -64,7 +64,7 @@ function setAllSides(model: BoxModel, value: boolean, property: Element): void {
 
 function updateModelWithValue(
 	model: BoxModel,
-	side: string,
+	side: string | undefined,
 	value: boolean,
 	property: Element
 ): void {
