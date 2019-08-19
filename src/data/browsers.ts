@@ -15023,7 +15023,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The border-block CSS property is a shorthand property for setting the individual logical block border property values in a single place in the style sheet."
 		},
 		{
 			name: "border-block-color",
@@ -15032,7 +15032,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The border-block-color CSS property defines the color of the logical block borders of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color and border-bottom-color, or border-right-color and border-left-color property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "border-block-style",
@@ -15041,7 +15041,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The border-block-style CSS property defines the style of the logical block borders of an element, which maps to a physical border style depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-style and border-bottom-style, or border-left-style and border-right-style properties depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "border-block-width",
@@ -15050,7 +15050,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The border-block-width CSS property defines the width of the logical block borders of an element, which maps to a physical border width depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-width and border-bottom-width, or border-left-width, and border-right-width property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "border-end-end-radius",
@@ -15075,7 +15075,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The border-inline CSS property is a shorthand property for setting the individual logical inline border property values in a single place in the style sheet."
 		},
 		{
 			name: "border-inline-color",
@@ -15084,7 +15084,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The border-inline-color CSS property defines the color of the logical inline borders of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color and border-bottom-color, or border-right-color and border-left-color property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "border-inline-style",
@@ -15093,7 +15093,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The border-inline-style CSS property defines the style of the logical inline borders of an element, which maps to a physical border style depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-style and border-bottom-style, or border-left-style and border-right-style properties depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "border-inline-width",
@@ -15102,7 +15102,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The border-inline-width CSS property defines the width of the logical inline borders of an element, which maps to a physical border width depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-width and border-bottom-width, or border-left-width, and border-right-width property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "border-start-end-radius",
@@ -15234,7 +15234,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "counter-set",
 			"syntax": "[ <custom-ident> <integer>? ]+ | none",
-			"description": ""
+			"description": "The counter-set CSS property sets a CSS counter to a given value. It manipulates the value of existing counters, and will only create new counters if there isn't already a counter of the given name on the element."
 		},
 		{
 			name: "font-optical-sizing",
@@ -15367,7 +15367,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The margin-block CSS property defines the logical block start and end margins of an element, which maps to physical margins depending on the element's writing mode, directionality, and text orientation."
 		},
 		{
 			name: "margin-inline",
@@ -15376,7 +15376,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The margin-inline CSS property defines the logical inline start and end margins of an element, which maps to physical margins depending on the element's writing mode, directionality, and text orientation."
 		},
 		{
 			name: "mask",
@@ -15583,7 +15583,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The padding-block CSS property defines the logical block start and end padding of an element, which maps to physical padding properties depending on the element's writing mode, directionality, and text orientation."
 		},
 		{
 			name: "padding-inline",
@@ -15592,7 +15592,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The padding-inline CSS property defines the logical inline start and end padding of an element, which maps to physical padding properties depending on the element's writing mode, directionality, and text orientation."
 		},
 		{
 			name: "place-content",
@@ -15621,7 +15621,7 @@ export const cssData : CSSDataV1 = {
 				"FF45",
 				"C59"
 			],
-			"description": ""
+			"description": "The place-self CSS property is a shorthand property sets both the align-self and justify-self properties. The first value is the align-self property value, the second the justify-self one. If the second value is not present, the first value is also used for it."
 		},
 		{
 			name: "rotate",
@@ -17370,7 +17370,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "::marker",
-			"description": ""
+			"description": "The ::marker CSS pseudo-element selects the marker box of a list item, which typically contains a bullet or number. It works on any element or pseudo-element set to display: list-item, such as the <li> and <summary> elements."
 		},
 		{
 			name: "::part",
