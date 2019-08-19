@@ -628,10 +628,10 @@ mdn-browser-compat-data@^0.0.72:
   dependencies:
     extend "3.0.2"
 
-mdn-data@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-2.0.3.tgz#a70100a453697827fa3ecc33cd23c8e63490a550"
-  integrity sha512-DCfx3pMW1vNlxApB8XrHAFvhUcvVAdmu3BU9r4tF6eWwv9Eg+gvQpdr2EGaEWsrPlk+jZSkEKxfdezo6d2pWYg==
+mdn-data@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-2.0.4.tgz#699b3c38ac6f1d728091a64650b65d388502fd5b"
+  integrity sha512-iV3XNKw06j5Q7mi6h+9vbx23Tv7JkjEVgKHW4pimwyDGWm0OIQntJJ+u1C6mg6mK1EaTv42XQ7w76yuzH7M2cA==
 
 mem@^4.0.0:
   version "4.1.0"

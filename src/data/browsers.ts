@@ -10977,7 +10977,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The visual viewport of this scroll container may come to rest on a snap point at the termination of a scroll at the discretion of the UA given the parameters of the scroll."
 				}
 			],
-			"syntax": "none | [ x | y | block | inline | both ] [ mandatory | proximity ]",
+			"syntax": "none | [ x | y | block | inline | both ] [ mandatory | proximity ]?",
 			"description": "Defines how strictly snap points are enforced on the scroll container.",
 			"restrictions": [
 				"enum"
@@ -15232,6 +15232,11 @@ export const cssData : CSSDataV1 = {
 			"description": "The color-adjust property is a non-standard CSS extension that can be used to force printing of background colors and images in browsers based on the WebKit engine."
 		},
 		{
+			name: "counter-set",
+			"syntax": "[ <custom-ident> <integer>? ]+ | none",
+			"description": ""
+		},
+		{
 			name: "font-optical-sizing",
 			"syntax": "auto | none",
 			browsers: [
@@ -15672,7 +15677,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-margin",
-			"syntax": "[ auto | <length> ]{1,4}",
+			"syntax": "<length>{1,4}",
 			browsers: [
 				"S11",
 				"C69",
@@ -15682,7 +15687,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-margin-block",
-			"syntax": "[ auto | <length> ]{1,2}",
+			"syntax": "<length>{1,2}",
 			browsers: [
 				"C69",
 				"O56"
@@ -15691,7 +15696,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-margin-block-start",
-			"syntax": "auto | <length> ",
+			"syntax": "<length>",
 			browsers: [
 				"S11",
 				"C69",
@@ -15701,7 +15706,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-margin-block-end",
-			"syntax": "auto | <length>",
+			"syntax": "<length>",
 			browsers: [
 				"S11",
 				"C69",
@@ -15711,7 +15716,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-margin-bottom",
-			"syntax": "auto | <length>",
+			"syntax": "<length>",
 			browsers: [
 				"S11",
 				"C69",
@@ -15721,12 +15726,12 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-margin-inline",
-			"syntax": "[auto | <length> ]{1,2}",
+			"syntax": "<length>{1,2}",
 			"description": "The scroll-margin-inline property is a shorthand property which sets the scroll-margin longhands in the inline dimension."
 		},
 		{
 			name: "scroll-margin-inline-start",
-			"syntax": "auto | <length>",
+			"syntax": "<length>",
 			browsers: [
 				"S11",
 				"C69",
@@ -15736,7 +15741,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-margin-inline-end",
-			"syntax": "auto | <length>",
+			"syntax": "<length>",
 			browsers: [
 				"S11",
 				"C69",
@@ -15746,7 +15751,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-margin-left",
-			"syntax": "auto | <length>",
+			"syntax": "<length>",
 			browsers: [
 				"S11",
 				"C69",
@@ -15756,7 +15761,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-margin-right",
-			"syntax": "auto | <length>",
+			"syntax": "<length>",
 			browsers: [
 				"S11",
 				"C69",
@@ -15766,7 +15771,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-margin-top",
-			"syntax": "auto | <length>",
+			"syntax": "<length>",
 			browsers: [
 				"S11",
 				"C69",
@@ -15776,7 +15781,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding",
-			"syntax": "[ auto | <length> | <percentage> ]{1,4}",
+			"syntax": "[ auto | <length-percentage> ]{1,4}",
 			browsers: [
 				"S11",
 				"C69",
@@ -15786,7 +15791,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding-block",
-			"syntax": "[auto | <length> | <percentage> ]{1,2}",
+			"syntax": "[ auto | <length-percentage> ]{1,2}",
 			browsers: [
 				"C69",
 				"O56"
@@ -15795,7 +15800,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding-block-start",
-			"syntax": "auto | <length> | <percentage>",
+			"syntax": "auto | <length-percentage>",
 			browsers: [
 				"S11",
 				"C69",
@@ -15805,7 +15810,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding-block-end",
-			"syntax": "auto | <length> | <percentage>",
+			"syntax": "auto | <length-percentage>",
 			browsers: [
 				"S11",
 				"C69",
@@ -15815,7 +15820,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding-bottom",
-			"syntax": "auto | <length> | <percentage>",
+			"syntax": "auto | <length-percentage>",
 			browsers: [
 				"S11",
 				"C69",
@@ -15825,7 +15830,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding-inline",
-			"syntax": "[auto | <length> | <percentage> ]{1,2}",
+			"syntax": "[ auto | <length-percentage> ]{1,2}",
 			browsers: [
 				"C69",
 				"O56"
@@ -15834,7 +15839,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding-inline-start",
-			"syntax": "auto | <length> | <percentage>",
+			"syntax": "auto | <length-percentage>",
 			browsers: [
 				"S11",
 				"C69",
@@ -15844,7 +15849,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding-inline-end",
-			"syntax": "auto | <length> | <percentage>",
+			"syntax": "auto | <length-percentage>",
 			browsers: [
 				"S11",
 				"C69",
@@ -15854,7 +15859,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding-left",
-			"syntax": "auto | <length> | <percentage>",
+			"syntax": "auto | <length-percentage>",
 			browsers: [
 				"S11",
 				"C69",
@@ -15864,7 +15869,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding-right",
-			"syntax": "auto | <length> | <percentage>",
+			"syntax": "auto | <length-percentage>",
 			browsers: [
 				"S11",
 				"C69",
@@ -15874,7 +15879,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding-top",
-			"syntax": "auto | <length> | <percentage>",
+			"syntax": "auto | <length-percentage>",
 			browsers: [
 				"S11",
 				"C69",
@@ -17362,6 +17367,10 @@ export const cssData : CSSDataV1 = {
 			name: "::grammar-error",
 			"status": "experimental",
 			"description": "The ::grammar-error CSS pseudo-element represents a text segment which the user agent has flagged as grammatically incorrect."
+		},
+		{
+			name: "::marker",
+			"description": ""
 		},
 		{
 			name: "::part",
