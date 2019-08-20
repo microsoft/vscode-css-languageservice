@@ -621,10 +621,10 @@ map-age-cleaner@^0.1.1:
   dependencies:
     p-defer "^1.0.0"
 
-mdn-browser-compat-data@^0.0.72:
-  version "0.0.72"
-  resolved "https://registry.yarnpkg.com/mdn-browser-compat-data/-/mdn-browser-compat-data-0.0.72.tgz#b1d2026bfbf61c82e71c4157059b9d161c8791a9"
-  integrity sha512-vt3BxJRpV638ncYLigX91k0qP1VcpKxgExqPtX+QKFvV4/ZruZ31Sl35LsDDq5q+D7Lt7mfGWnCEuZ0d6bJW1g==
+mdn-browser-compat-data@^0.0.90:
+  version "0.0.90"
+  resolved "https://registry.yarnpkg.com/mdn-browser-compat-data/-/mdn-browser-compat-data-0.0.90.tgz#f29b8a1cb4980388f66e489cf58ae9dbabd9caad"
+  integrity sha512-UhM04nkX0prUne2wZejI0vFLfl8+hKvcbCfK3xjlpMCmXvhEAPLfil+J7II6Uy8WeddRnek7oz4tL/2xVtMI/g==
   dependencies:
     extend "3.0.2"
 
