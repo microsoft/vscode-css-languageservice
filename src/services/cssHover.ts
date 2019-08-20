@@ -60,27 +60,13 @@ export class CSSHover {
 				const propertyName = node.getFullPropertyName();
 				const entry = languageFacts.cssDataManager.getProperty(propertyName);
 				if (entry) {
-					if (typeof entry.description !== 'string') {
-						hover = {
-							contents: entry.description,
-							range: getRange(node)
-						};
-					} else {
-						const contents: MarkedString[] = [];
-						if (entry.description) {
-							contents.push(MarkedString.fromPlainText(entry.description));
-						}
-						const browserLabel = languageFacts.getBrowserLabel(entry.browsers);
-						if (browserLabel) {
-							contents.push(MarkedString.fromPlainText(browserLabel));
-						}
-						if (contents.length) {
-							hover = {
-								contents: contents,
-								range: getRange(node)
-							};
-						}
-					}
+					hover = {
+						contents: {
+							kind: 'markdown',
+							value: languageFacts.getEntryMarkdownDescription(entry),
+						},
+						range: getRange(node)
+					};
 				}
 				continue;
 			}
@@ -90,7 +76,10 @@ export class CSSHover {
 				const entry = languageFacts.cssDataManager.getAtDirective(atRuleName);
 				if (entry) {
 					hover = {
-						contents: entry.description,
+						contents: {
+							kind: 'markdown',
+							value: languageFacts.getEntryMarkdownDescription(entry),
+						},
 						range: getRange(node)
 					};
 				}
@@ -105,7 +94,10 @@ export class CSSHover {
 						: languageFacts.cssDataManager.getPseudoClass(selectorName);
 				if (entry) {
 					hover = {
-						contents: entry.description,
+						contents: {
+							kind: 'markdown',
+							value: languageFacts.getEntryMarkdownDescription(entry),
+						},
 						range: getRange(node)
 					};
 				}

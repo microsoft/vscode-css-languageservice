@@ -128,6 +128,11 @@ export interface LanguageServiceOptions {
 
 export type EntryStatus = 'standard' | 'experimental' | 'nonstandard' | 'obsolete';
 
+export interface IReference {
+	name: string;
+	url: string;
+}
+
 export interface IPropertyData {
 	name: string;
 	description?: string | MarkupContent;
@@ -136,24 +141,28 @@ export interface IPropertyData {
 	status?: EntryStatus;
 	syntax?: string;
 	values?: IValueData[];
+	references?: IReference[];
 }
 export interface IAtDirectiveData {
 	name: string;
 	description?: string | MarkupContent;
 	browsers?: string[];
 	status?: EntryStatus;
+	references?: IReference[];
 }
 export interface IPseudoClassData {
 	name: string;
 	description?: string | MarkupContent;
 	browsers?: string[];
 	status?: EntryStatus;
+	references?: IReference[];
 }
 export interface IPseudoElementData {
 	name: string;
 	description?: string | MarkupContent;
 	browsers?: string[];
 	status?: EntryStatus;
+	references?: IReference[];
 }
 
 export interface IValueData {
@@ -161,6 +170,7 @@ export interface IValueData {
 	description?: string | MarkupContent;
 	browsers?: string[];
 	status?: EntryStatus;
+	references?: IReference[];
 }
 
 export interface CSSDataV1 {

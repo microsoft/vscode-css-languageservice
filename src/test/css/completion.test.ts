@@ -543,22 +543,36 @@ suite('CSS - Completion', () => {
 		}, { completion: { triggerPropertyValueCompletion: false } });
 	});
 
-	test('Completion description should include status and browser compat', () => {
+	test('Completion description should include status, browser compat and references', () => {
 		testCompletionFor('.foo { | }', {
 			items: [
-				{ label: 'contain', documentation: `⚠️ Property is experimental. Be cautious when using it.️\n\nIndicates that an element and its contents are, as much as possible, independent of the rest of the document tree.\n(Firefox 41, Chrome 52, Opera 40)\n\nSyntax: none | strict | content | [ size || layout || style || paint ]`},
-				{ label: 'user-select', documentation: `🚨️ Property is nonstandard. Avoid using it.\n\nControls the appearance of selection.\n\nSyntax: auto | text | none | contain | all` }
+				{
+					label: 'contain',
+					documentation: {
+						kind: 'markdown',
+						value:
+							'⚠️ Property is experimental. Be cautious when using it.️\n\nIndicates that an element and its contents are, as much as possible, independent of the rest of the document tree.\n(Firefox 41, Chrome 52, Opera 40)\n\nSyntax: none | strict | content | [ size || layout || style || paint ]\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/contain)'
+					}
+				},
+				{
+					label: 'user-select',
+					documentation: {
+						kind: 'markdown',
+						value:
+							'🚨️ Property is nonstandard. Avoid using it.\n\nControls the appearance of selection.\n\nSyntax: auto | text | none | contain | all\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/user-select)'
+					}
+				}
 			]
 		});
 	});
-	
-			// https://github.com/Microsoft/vscode/issues/71791
+
+	// https://github.com/Microsoft/vscode/issues/71791
 	test('Items that start with `-` are sorted lower than normal attribute values', () => {
 		testCompletionFor('.foo { display: | }', {
 			items: [
 				{ label: 'grid', sortText: 'd' },
 				{ label: '-moz-grid', sortText: 'x' },
-				{ label: '-ms-grid', sortText: 'x' },
+				{ label: '-ms-grid', sortText: 'x' }
 			]
 		});
 	});

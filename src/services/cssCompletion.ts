@@ -918,15 +918,15 @@ export class CSSCompletion {
 		return result;
 	}
 
-	private getEntryDescription(entry: languageFacts.IEntry2): string | MarkupContent {
-		const rawDescription = languageFacts.getEntryDescription(entry);
-		if (!this.doesSupportMarkdown() && typeof rawDescription !== 'string' && rawDescription && rawDescription.kind === 'markdown') {
+	private getEntryDescription(entry: languageFacts.IEntry2): string | MarkupContent | undefined {
+		if (this.doesSupportMarkdown()) {
 			return {
-				kind: 'plaintext',
-				value: rawDescription.value
+				kind: 'markdown',
+				value: languageFacts.getEntryMarkdownDescription(entry)
 			};
+		} else {
+			return languageFacts.getEntryStringDescription(entry);
 		}
-		return rawDescription;
 	}
 
 	private doesSupportMarkdown() {
