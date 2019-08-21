@@ -25,13 +25,14 @@ import { LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServ
 import { cssDataManager } from './languageFacts/facts';
 import { getSelectionRanges } from './services/cssSelectionRange';
 import { SCSSNavigation } from './services/scssNavigation';
+import { Stylesheet as StyleSheetImpl } from './parser/cssNodes';
 
 export type Stylesheet = {};
 export * from './cssLanguageTypes';
 export * from 'vscode-languageserver-types';
 
 export interface LanguageService {
-	configure(raw: LanguageSettings): void;
+	configure(raw?: LanguageSettings): void;
 	doValidation(document: TextDocument, stylesheet: Stylesheet, documentSettings?: LanguageSettings): Diagnostic[];
 	parseStylesheet(document: TextDocument): Stylesheet;
 	doComplete(document: TextDocument, position: Position, stylesheet: Stylesheet): CompletionList;
@@ -59,7 +60,7 @@ export interface LanguageService {
 	getSelectionRanges(document: TextDocument, positions: Position[], stylesheet: Stylesheet): SelectionRange[];
 }
 
-function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover, navigation: CSSNavigation, codeActions: CSSCodeActions, validation: CSSValidation) {
+function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover, navigation: CSSNavigation, codeActions: CSSCodeActions, validation: CSSValidation): LanguageService {
 	return {
 		configure: (settings) => {
 			validation.configure(settings);
@@ -78,7 +79,7 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 		findDocumentSymbols: navigation.findDocumentSymbols.bind(navigation),
 		doCodeActions: codeActions.doCodeActions.bind(codeActions),
 		doCodeActions2: codeActions.doCodeActions2.bind(codeActions),
-		findColorSymbols: (d, s) => navigation.findDocumentColors(d, s).map(s => s.range),
+		findColorSymbols: (d, s: StyleSheetImpl) => navigation.findDocumentColors(d, s).map(s => s.range),
 		findDocumentColors: navigation.findDocumentColors.bind(navigation),
 		getColorPresentations: navigation.getColorPresentations.bind(navigation),
 		doRename: navigation.doRename.bind(navigation),

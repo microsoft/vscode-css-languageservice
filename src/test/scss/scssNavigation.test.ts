@@ -48,7 +48,7 @@ function getFsProvider(): FileSystemProvider {
 							return e(err);
 						}
 					}
-	
+
 					let type = FileType.Unknown;
 					if (stats.isFile()) {
 						type = FileType.File;
@@ -57,7 +57,7 @@ function getFsProvider(): FileSystemProvider {
 					} else if (stats.isSymbolicLink) {
 						type = FileType.SymbolicLink;
 					}
-	
+
 					c({
 						type,
 						ctime: stats.ctime.getTime(),
@@ -138,7 +138,7 @@ suite('SCSS - Navigation', () => {
 		// For invalid links that have no corresponding file on disk, return original link
 		test('Invalid SCSS partial file links', async () => {
 			const fixtureRoot = path.resolve(__dirname, '../../../../src/test/scss/linkFixture/non-existent');
-			const getDocumentUri = (relativePath) => {
+			const getDocumentUri = (relativePath: string) => {
 				return URI.file(path.resolve(fixtureRoot, relativePath)).toString();
 			};
 
@@ -161,7 +161,7 @@ suite('SCSS - Navigation', () => {
 
 		test('SCSS partial file dynamic links', async () => {
 			const fixtureRoot = path.resolve(__dirname, '../../../../src/test/scss/linkFixture');
-			const getDocumentUri = (relativePath) => {
+			const getDocumentUri = (relativePath: string) => {
 				return URI.file(path.resolve(fixtureRoot, relativePath)).toString();
 			};
 
@@ -217,7 +217,7 @@ suite('SCSS - Navigation', () => {
 		test('color symbols', () => {
 			const ls = getSCSSLanguageService();
 			assertColorSymbols(ls, '$colors: (blue: $blue,indigo: $indigo)'); // issue #47209
-		});	
+		});
 	});
 
 });

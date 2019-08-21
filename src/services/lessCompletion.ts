@@ -358,7 +358,7 @@ export class LESSCompletion extends CSSCompletion {
 	];
 
 
-	constructor(clientCapabilities: ClientCapabilities) {
+	constructor(clientCapabilities: ClientCapabilities | undefined) {
 		super('@', clientCapabilities);
 	}
 
@@ -401,4 +401,3 @@ export class LESSCompletion extends CSSCompletion {
 	}
 
 }
-

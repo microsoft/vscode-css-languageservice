@@ -36,13 +36,18 @@ export class SCSSNavigation extends CSSNavigation {
 		 */
 		if (fsProvider) {
 			for (let i = 0; i < links.length; i++) {
-				const parsedUri = URI.parse(links[i].target);
-				
+				const target = links[i].target;
+				if (!target) {
+					continue;
+				}
+
+				const parsedUri = URI.parse(target);
+
 				const pathVariations = toPathVariations(parsedUri);
 				if (!pathVariations) {
 					continue;
 				}
-				
+
 				for (let j = 0; j < pathVariations.length; j++) {
 					if (await fileExists(pathVariations[j])) {
 						links[i].target = pathVariations[j];
@@ -85,8 +90,8 @@ export class SCSSNavigation extends CSSNavigation {
 			}
 
 			const normalizedBasename = basename + '.scss';
-			
-			const documentUriWithBasename = (newBasename) => {
+
+			const documentUriWithBasename = (newBasename: string) => {
 				return uri.with({ path: pathWithoutBasename + newBasename }).toString();
 			};
 
@@ -95,7 +100,7 @@ export class SCSSNavigation extends CSSNavigation {
 			const indexPath = documentUriWithBasename(normalizedBasename.slice(0, -5) + '/index.scss');
 			const indexUnderscoreUri = documentUriWithBasename(normalizedBasename.slice(0, -5) + '/_index.scss');
 			const cssPath = documentUriWithBasename(normalizedBasename.slice(0, -5) + '.css');
-			
+
 			return [
 				normalizedPath,
 				underScorePath,

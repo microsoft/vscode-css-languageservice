@@ -192,7 +192,7 @@ export class SCSSCompletion extends CSSCompletion {
 	];
 
 
-	constructor(clientCapabilities: ClientCapabilities) {
+	constructor(clientCapabilities: ClientCapabilities | undefined) {
 		super('$', clientCapabilities);
 	}
 
@@ -203,7 +203,7 @@ export class SCSSCompletion extends CSSCompletion {
 		};
 	}
 
-	private createFunctionProposals(proposals: IFunctionInfo[], existingNode: nodes.Node, sortToEnd: boolean, result: CompletionList): CompletionList {
+	private createFunctionProposals(proposals: IFunctionInfo[], existingNode: nodes.Node | null, sortToEnd: boolean, result: CompletionList): CompletionList {
 		for (const p of proposals) {
 			const insertText = p.func.replace(/\[?(\$\w+)\]?/g, this.createReplaceFunction());
 			const label = p.func.substr(0, p.func.indexOf('('));
@@ -223,8 +223,8 @@ export class SCSSCompletion extends CSSCompletion {
 		return result;
 	}
 
-	public getCompletionsForSelector(ruleSet: nodes.RuleSet, isNested: boolean, result: CompletionList): CompletionList {
-		this.createFunctionProposals(SCSSCompletion.selectorFuncs, void 0, true, result);
+	public getCompletionsForSelector(ruleSet: nodes.RuleSet | null, isNested: boolean, result: CompletionList): CompletionList {
+		this.createFunctionProposals(SCSSCompletion.selectorFuncs, null, true, result);
 		return super.getCompletionsForSelector(ruleSet, isNested, result);
 	}
 
@@ -272,4 +272,3 @@ export class SCSSCompletion extends CSSCompletion {
 		return result;
 	}
 }
-

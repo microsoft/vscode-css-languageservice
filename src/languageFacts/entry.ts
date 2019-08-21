@@ -41,11 +41,11 @@ function getEntryStatus(status: EntryStatus) {
 	}
 }
 
-export function getEntryDescription(entry: IEntry2): string | null | MarkupContent {
+export function getEntryDescription(entry: IEntry2): string | undefined | MarkupContent {
 	if (!entry.description || entry.description === '') {
-		return null;
+		return undefined;
 	}
-	
+
 	if (typeof entry.description !== 'string') {
 		return entry.description;
 	}
@@ -72,20 +72,21 @@ export function getEntryDescription(entry: IEntry2): string | null | MarkupConte
  * Input is like `["E12","FF49","C47","IE","O"]`
  * Output is like `Edge 12, Firefox 49, Chrome 47, IE, Opera`
  */
-export function getBrowserLabel(browsers: string[]): string {
-	if (!browsers || browsers.length === 0) {
+export function getBrowserLabel(browsers: string[] = []): string | null {
+	if (browsers.length === 0) {
 		return null;
 	}
 
 	return browsers
 		.map(b => {
 			let result = '';
-			const matches = b.match(/([A-Z]+)(\d+)?/);
+			const matches = b.match(/([A-Z]+)(\d+)?/)!;
+
 			const name = matches[1];
 			const version = matches[2];
 
 			if (name in browserNames) {
-				result += browserNames[name];
+				result += browserNames[name as keyof typeof browserNames];
 			}
 			if (version) {
 				result += ' ' + version;

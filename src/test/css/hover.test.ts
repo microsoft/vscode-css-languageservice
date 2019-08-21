@@ -18,12 +18,12 @@ function assertHover(value: string, expected: Hover, languageId = 'css'): void {
 	const hover = new CSSHover(ClientCapabilities.LATEST);
 	const document = TextDocument.create(`test://foo/bar.${languageId}`, languageId, 1, value);
 	const hoverResult = hover.doHover(document, document.positionAt(offset), new SCSSParser().parseStylesheet(document));
+	assert(hoverResult);
 
-	if (hoverResult.range && expected.range) {
-		assert.equal(hoverResult.range, expected.range);
+	if (hoverResult!.range && expected.range) {
+		assert.equal(hoverResult!.range, expected.range);
 	}
-	console.log(JSON.stringify(hoverResult.contents));
-	assert.deepEqual(hoverResult.contents, expected.contents);
+	assert.deepEqual(hoverResult!.contents, expected.contents);
 }
 
 suite('CSS Hover', () => {

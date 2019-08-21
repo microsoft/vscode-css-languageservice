@@ -63,10 +63,11 @@ suite('CSS - Scanner', () => {
 		function assertURLArgument(source: string, text: string, tokenType: TokenType): void {
 			scanner.setSource(source);
 			let token = scanner.scanUnquotedString();
-			assert.equal(token.len, text.length);
-			assert.equal(token.offset, 0);
-			assert.equal(token.text, text);
-			assert.equal(token.type, tokenType);
+			assert(token);
+			assert.equal(token!.len, text.length);
+			assert.equal(token!.offset, 0);
+			assert.equal(token!.text, text);
+			assert.equal(token!.type, tokenType);
 		}
 
 		assertURLArgument('http://msft.com', 'http://msft.com', TokenType.UnquotedString);
