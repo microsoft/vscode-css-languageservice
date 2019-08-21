@@ -121,7 +121,9 @@ export class LESSParser extends cssParser.Parser {
 		}
 
 		if (this.accept(TokenType.Colon)) {
-			node.colonPosition = this.prevToken.offset;
+			if (this.prevToken) {
+				node.colonPosition = this.prevToken.offset;
+			}
 			if (node.setValue(this._parseDetachedRuleSet())) {
 				node.needsSemicolon = false;
 			} else if (!node.setValue(this._parseExpr())) {

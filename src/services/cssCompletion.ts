@@ -406,7 +406,7 @@ export class CSSCompletion {
 			result.isIncomplete = true;
 		}
 		if (existingNode && existingNode.parent && existingNode.parent.type === nodes.NodeType.Term) {
-			existingNode = existingNode.parent; // include the unary operator
+			existingNode = existingNode.getParent(); // include the unary operator
 		}
 		if (entry.restrictions) {
 			for (const restriction of entry.restrictions) {
@@ -756,7 +756,7 @@ export class CSSCompletion {
 	}
 
 	public getCompletionsForVariableDeclaration(declaration: nodes.VariableDeclaration, result: CompletionList): CompletionList {
-		if (this.offset && declaration.colonPosition && this.offset > declaration.colonPosition) {
+		if (this.offset && isDefined(declaration.colonPosition) && this.offset > declaration.colonPosition) {
 			this.getVariableProposals(declaration.getValue(), result);
 		}
 		return result;
@@ -843,7 +843,7 @@ export class CSSCompletion {
 		const child = supportsCondition.findFirstChildBeforeOffset(this.offset);
 		if (child) {
 			if (child instanceof nodes.Declaration) {
-				if (!isDefined(child.colonPosition) || !isDefined(this.offset <= child.colonPosition)) {
+				if (!isDefined(child.colonPosition) || this.offset <= child.colonPosition) {
 					return this.getCompletionsForDeclarationProperty(child, result);
 				} else {
 					return this.getCompletionsForDeclarationValue(child, result);
@@ -918,7 +918,7 @@ export class CSSCompletion {
 		return result;
 	}
 
-	private getEntryDescription(entry: languageFacts.IEntry2): string | MarkupContent {
+	private getEntryDescription(entry: languageFacts.IEntry2): string | MarkupContent | undefined {
 		const rawDescription = languageFacts.getEntryDescription(entry);
 		if (!this.doesSupportMarkdown() && typeof rawDescription !== 'string' && rawDescription && rawDescription.kind === 'markdown') {
 			return {
@@ -926,7 +926,7 @@ export class CSSCompletion {
 				value: rawDescription.value
 			};
 		}
-		return rawDescription || '';
+		return rawDescription;
 	}
 
 	private doesSupportMarkdown() {
@@ -973,7 +973,7 @@ function collectValues(styleSheet: nodes.Stylesheet, declaration: nodes.Declarat
 		return fullPropertyName === propertyName;
 	}
 
-	function vistNode(node: nodes.Node) {
+	function vistNode(node: nodes.Node): boolean {
 		if (node instanceof nodes.Declaration && node !== declaration) {
 			if (matchesProperty(<nodes.Declaration>node)) {
 				const value = (<nodes.Declaration>node).getValue();
@@ -1005,7 +1005,7 @@ class ColorValueCollector implements nodes.IVisitor {
 	}
 }
 
-function getCurrentWord(document: TextDocument, offset: number) {
+function getCurrentWord(document: TextDocument, offset: number): string {
 	let i = offset - 1;
 	const text = document.getText();
 	while (i >= 0 && ' \t\n\r":{[()]},*>+'.indexOf(text.charAt(i)) === -1) {

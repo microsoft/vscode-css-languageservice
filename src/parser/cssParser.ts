@@ -8,9 +8,10 @@ import * as nodes from './cssNodes';
 import { ParseError, CSSIssueType } from './cssErrors';
 import * as languageFacts from '../languageFacts/facts';
 import { TextDocument } from 'vscode-languageserver-types';
+import { isDefined } from '../utils/objects';
 
 export interface IMark {
-	prev: IToken;
+	prev?: IToken;
 	curr: IToken;
 	pos: number;
 }
@@ -24,14 +25,14 @@ export class Parser {
 
 	public scanner: Scanner;
 	public token: IToken;
-	public prevToken: IToken;
+	public prevToken?: IToken;
 
 	private lastErrorToken?: IToken;
 
 	constructor(scnr: Scanner = new Scanner()) {
 		this.scanner = scnr;
-		this.token = null!;
-		this.prevToken = null!;
+		this.token = { type: TokenType.EOF, offset: -1, len: 0, text: '' };
+		this.prevToken = undefined!;
 	}
 
 	public peekIdent(text: string): boolean {
@@ -58,7 +59,7 @@ export class Parser {
 	}
 
 	public hasWhitespace(): boolean {
-		return this.prevToken && (this.prevToken.offset + this.prevToken.len !== this.token.offset);
+		return !!this.prevToken && (this.prevToken.offset + this.prevToken.len !== this.token.offset);
 	}
 
 	public consumeToken(): void {
@@ -179,7 +180,7 @@ export class Parser {
 				this.markError(node, error, resyncTokens, resyncStopTokens);
 			}
 			// set the node end position
-			if (this.prevToken !== null) {
+			if (this.prevToken) {
 				// length with more elements belonging together
 				const prevEnd = this.prevToken.offset + this.prevToken.len;
 				node.length = prevEnd > node.offset ? prevEnd - node.offset : 0; // offset is taken from current token, end from previous: Use 0 for empty nodes
@@ -440,7 +441,9 @@ export class Parser {
 		if (!this.accept(TokenType.Colon)) {
 			return <nodes.Declaration>this.finish(node, ParseError.ColonExpected, [TokenType.Colon], resyncStopTokens);
 		}
-		node.colonPosition = this.prevToken.offset;
+		if (this.prevToken) {
+			node.colonPosition = this.prevToken.offset;
+		}
 
 		if (!node.setValue(this._parseExpr())) {
 			return this.finish(node, ParseError.PropertyValueExpected);
@@ -465,7 +468,9 @@ export class Parser {
 		if (!this.accept(TokenType.Colon)) {
 			return this.finish(node, ParseError.ColonExpected, [TokenType.Colon]);
 		}
-		node.colonPosition = this.prevToken.offset;
+		if (this.prevToken) {
+			node.colonPosition = this.prevToken.offset;
+		}
 
 		const mark = this.mark();
 		if (this.peek(TokenType.CurlyL)) {
@@ -496,7 +501,7 @@ export class Parser {
 		this.restoreAtMark(mark);
 		node.addChild(this._parseCustomPropertyValue());
 		node.addChild(this._parsePrio());
-		if (this.token.offset === node.colonPosition + 1) {
+		if (isDefined(node.colonPosition) && this.token.offset === node.colonPosition + 1) {
 			return this.finish(node, ParseError.PropertyValueExpected);
 		}
 		return this.finish(node);
@@ -815,7 +820,9 @@ export class Parser {
 	private _parseSupportsConditionInParens(): nodes.Node {
 		const node = <nodes.SupportsCondition>this.create(nodes.SupportsCondition);
 		if (this.accept(TokenType.ParenthesisL)) {
-			node.lParent = this.prevToken.offset;
+			if (this.prevToken) {
+				node.lParent = this.prevToken.offset;
+			}
 			if (!node.addChild(this._tryToParseDeclaration())) {
 				if (!this._parseSupportsCondition()) {
 					return this.finish(node, ParseError.ConditionExpected);
@@ -824,7 +831,9 @@ export class Parser {
 			if (!this.accept(TokenType.ParenthesisR)) {
 				return this.finish(node, ParseError.RightParenthesisExpected, [TokenType.ParenthesisR], []);
 			}
-			node.rParent = this.prevToken.offset;
+			if (this.prevToken) {
+				node.rParent = this.prevToken.offset;
+			}
 			return this.finish(node);
 		} else if (this.peek(TokenType.Ident)) {
 			const pos = this.mark();

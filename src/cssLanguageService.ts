@@ -25,9 +25,9 @@ import { LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServ
 import { cssDataManager } from './languageFacts/facts';
 import { getSelectionRanges } from './services/cssSelectionRange';
 import { SCSSNavigation } from './services/scssNavigation';
-import { Stylesheet } from './parser/cssNodes';
+import { Stylesheet as StyleSheetImpl } from './parser/cssNodes';
 
-export { Stylesheet } from './parser/cssNodes';
+export type Stylesheet = {};
 export * from './cssLanguageTypes';
 export * from 'vscode-languageserver-types';
 
@@ -79,7 +79,7 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 		findDocumentSymbols: navigation.findDocumentSymbols.bind(navigation),
 		doCodeActions: codeActions.doCodeActions.bind(codeActions),
 		doCodeActions2: codeActions.doCodeActions2.bind(codeActions),
-		findColorSymbols: (d, s) => navigation.findDocumentColors(d, s).map(s => s.range),
+		findColorSymbols: (d, s: StyleSheetImpl) => navigation.findDocumentColors(d, s).map(s => s.range),
 		findDocumentColors: navigation.findDocumentColors.bind(navigation),
 		getColorPresentations: navigation.getColorPresentations.bind(navigation),
 		doRename: navigation.doRename.bind(navigation),

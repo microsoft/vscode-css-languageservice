@@ -60,23 +60,16 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 	}
 };
 
-type PropertyContext = {
-	propertyName: string;
-	range: Range;
-};
-
-type CompletionContexts = PropertyCompletionContext | PropertyValueCompletionContext | URILiteralCompletionContext | ImportPathCompletionContext;
-
 suite('CSS - Completion', () => {
 
 	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[], participant?: { onProperty?: PropertyCompletionContext[], onPropertyValue?: PropertyValueCompletionContext[], onURILiteralValue?: URILiteralCompletionContext[], onImportPath?: ImportPathCompletionContext[] } }, settings?: LanguageSettings) {
 		let offset = value.indexOf('|');
 		value = value.substr(0, offset) + value.substr(offset + 1);
 
-		let actualPropertyContexts: CompletionContexts[] = [];
-		let actualPropertyValueContexts: { propertyName: string; propertyValue?: string; range: Range; }[] = [];
-		let actualURILiteralValueContexts: { uriValue: string; position: Position; range: Range; }[] = [];
-		let actualImportPathContexts: { pathValue: string; position: Position; range: Range; }[] = [];
+		let actualPropertyContexts: PropertyCompletionContext[] = [];
+		let actualPropertyValueContexts: PropertyValueCompletionContext[] = [];
+		let actualURILiteralValueContexts: URILiteralCompletionContext[] = [];
+		let actualImportPathContexts: ImportPathCompletionContext[] = [];
 
 		let ls = cssLanguageService.getCSSLanguageService();
 		ls.configure(settings);

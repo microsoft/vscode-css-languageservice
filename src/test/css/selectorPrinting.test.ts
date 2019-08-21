@@ -41,7 +41,7 @@ function elementToString(element: selectorPrinter.Element): string {
 	return label;
 }
 
-function doParse(p: Parser, input: string, selectorName: string): nodes.Selector | null{
+function doParse(p: Parser, input: string, selectorName: string): nodes.Selector | null {
 	let document = TextDocument.create('test://test/test.css', 'css', 0, input);
 	let styleSheet = p.parseStylesheet(document);
 

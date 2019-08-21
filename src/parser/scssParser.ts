@@ -74,8 +74,10 @@ export class SCSSParser extends cssParser.Parser {
 		if (!this.accept(TokenType.Colon)) {
 			return this.finish(node, ParseError.ColonExpected);
 		}
-		node.colonPosition = this.prevToken.offset;
-
+		if (this.prevToken) {
+			node.colonPosition = this.prevToken.offset;
+		}
+		
 		if (!node.setValue(this._parseExpr())) {
 			return this.finish(node, ParseError.VariableValueExpected, [], panic);
 		}
@@ -232,7 +234,9 @@ export class SCSSParser extends cssParser.Parser {
 		if (!this.accept(TokenType.Colon)) {
 			return this.finish(node, ParseError.ColonExpected, [TokenType.Colon], resyncStopTokens);
 		}
-		node.colonPosition = this.prevToken.offset;
+		if (this.prevToken) {
+			node.colonPosition = this.prevToken.offset;
+		}
 
 		let hasContent = false;
 		if (node.setValue(this._parseExpr())) {

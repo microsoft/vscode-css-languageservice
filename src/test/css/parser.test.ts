@@ -10,8 +10,6 @@ import { TokenType } from '../../parser/cssScanner';
 import * as nodes from '../../parser/cssNodes';
 import { ParseError } from '../../parser/cssErrors';
 
-export type ParseFunction = () => nodes.Node;
-
 export function assertNode(text: string, parser: Parser, f: (...args: any[]) => nodes.Node | null): nodes.Node {
 	let node = parser.internalParse(text, f)!;
 	assert.ok(node !== null, 'no node returned');

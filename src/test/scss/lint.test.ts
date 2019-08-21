@@ -8,7 +8,6 @@ import { Rule, Rules } from '../../services/lintRules';
 import { assertEntries } from '../css/lint.test';
 import { SCSSParser } from '../../parser/scssParser';
 import { TextDocument } from 'vscode-languageserver-types';
-import { Node } from '../../parser/cssNodes';
 
 function assertFontFace(input: string, ...rules: Rule[]): void {
 	let p = new SCSSParser();

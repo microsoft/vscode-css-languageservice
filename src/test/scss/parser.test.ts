@@ -9,7 +9,7 @@ import { SCSSParser } from '../../parser/scssParser';
 import { ParseError } from '../../parser/cssErrors';
 import { SCSSParseError } from '../../parser/scssErrors';
 
-import { assertNode, assertError, ParseFunction } from '../css/parser.test';
+import { assertNode, assertError } from '../css/parser.test';
 
 suite('SCSS - Parser', () => {
 

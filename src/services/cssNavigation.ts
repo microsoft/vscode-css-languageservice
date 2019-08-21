@@ -240,7 +240,7 @@ function uriLiteralNodeToDocumentLink(document: TextDocument, uriLiteralNode: no
 	return uriStringNodeToDocumentLink(document, uriStringNode, documentContext);
 }
 
-function uriStringNodeToDocumentLink(document: TextDocument, uriStringNode: nodes.Node | null, documentContext: DocumentContext) {
+function uriStringNodeToDocumentLink(document: TextDocument, uriStringNode: nodes.Node | null, documentContext: DocumentContext): DocumentLink | null {
 	if (!uriStringNode) {
 		return null;
 	}

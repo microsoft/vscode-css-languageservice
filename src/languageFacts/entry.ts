@@ -41,9 +41,9 @@ function getEntryStatus(status: EntryStatus) {
 	}
 }
 
-export function getEntryDescription(entry: IEntry2): string | null | MarkupContent {
+export function getEntryDescription(entry: IEntry2): string | undefined | MarkupContent {
 	if (!entry.description || entry.description === '') {
-		return null;
+		return undefined;
 	}
 
 	if (typeof entry.description !== 'string') {

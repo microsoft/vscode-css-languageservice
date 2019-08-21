@@ -7,7 +7,7 @@
 import { ParseError } from '../../parser/cssErrors';
 import { LESSParser } from '../../parser/lessParser';
 
-import { assertNode, assertNoNode, assertError, ParseFunction } from '../css/parser.test';
+import { assertNode, assertNoNode, assertError } from '../css/parser.test';
 import { assertSymbols, newRange } from '../css/navigation.test';
 import { SymbolKind, Location } from '../../cssLanguageService';
 
