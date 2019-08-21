@@ -621,17 +621,17 @@ map-age-cleaner@^0.1.1:
   dependencies:
     p-defer "^1.0.0"
 
-mdn-browser-compat-data@^0.0.72:
-  version "0.0.72"
-  resolved "https://registry.yarnpkg.com/mdn-browser-compat-data/-/mdn-browser-compat-data-0.0.72.tgz#b1d2026bfbf61c82e71c4157059b9d161c8791a9"
-  integrity sha512-vt3BxJRpV638ncYLigX91k0qP1VcpKxgExqPtX+QKFvV4/ZruZ31Sl35LsDDq5q+D7Lt7mfGWnCEuZ0d6bJW1g==
+mdn-browser-compat-data@^0.0.90:
+  version "0.0.90"
+  resolved "https://registry.yarnpkg.com/mdn-browser-compat-data/-/mdn-browser-compat-data-0.0.90.tgz#f29b8a1cb4980388f66e489cf58ae9dbabd9caad"
+  integrity sha512-UhM04nkX0prUne2wZejI0vFLfl8+hKvcbCfK3xjlpMCmXvhEAPLfil+J7II6Uy8WeddRnek7oz4tL/2xVtMI/g==
   dependencies:
     extend "3.0.2"
 
-mdn-data@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-2.0.3.tgz#a70100a453697827fa3ecc33cd23c8e63490a550"
-  integrity sha512-DCfx3pMW1vNlxApB8XrHAFvhUcvVAdmu3BU9r4tF6eWwv9Eg+gvQpdr2EGaEWsrPlk+jZSkEKxfdezo6d2pWYg==
+mdn-data@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-2.0.4.tgz#699b3c38ac6f1d728091a64650b65d388502fd5b"
+  integrity sha512-iV3XNKw06j5Q7mi6h+9vbx23Tv7JkjEVgKHW4pimwyDGWm0OIQntJJ+u1C6mg6mK1EaTv42XQ7w76yuzH7M2cA==
 
 mem@^4.0.0:
   version "4.1.0"

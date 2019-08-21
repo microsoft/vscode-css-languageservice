@@ -543,7 +543,7 @@ export const cssData : CSSDataV1 = {
 			name: "background-blend-mode",
 			browsers: [
 				"FF30",
-				"S",
+				"S8",
 				"C35",
 				"O22"
 			],
@@ -600,7 +600,7 @@ export const cssData : CSSDataV1 = {
 					name: "hue",
 					browsers: [
 						"FF30",
-						"S",
+						"S8",
 						"C35",
 						"O22"
 					],
@@ -610,7 +610,7 @@ export const cssData : CSSDataV1 = {
 					name: "saturation",
 					browsers: [
 						"FF30",
-						"S",
+						"S8",
 						"C35",
 						"O22"
 					],
@@ -620,7 +620,7 @@ export const cssData : CSSDataV1 = {
 					name: "color",
 					browsers: [
 						"FF30",
-						"S",
+						"S8",
 						"C35",
 						"O22"
 					],
@@ -630,7 +630,7 @@ export const cssData : CSSDataV1 = {
 					name: "luminosity",
 					browsers: [
 						"FF30",
-						"S",
+						"S8",
 						"C35",
 						"O22"
 					],
@@ -786,6 +786,7 @@ export const cssData : CSSDataV1 = {
 			name: "block-size",
 			browsers: [
 				"FF41",
+				"S12.1",
 				"C57",
 				"O44"
 			],
@@ -816,7 +817,9 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-block-end",
 			browsers: [
-				"FF41"
+				"FF41",
+				"S12.1",
+				"C69"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
 			"description": "Logical 'border-bottom'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
@@ -830,7 +833,9 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-block-start",
 			browsers: [
-				"FF41"
+				"FF41",
+				"S12.1",
+				"C69"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
 			"description": "Logical 'border-top'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
@@ -845,6 +850,7 @@ export const cssData : CSSDataV1 = {
 			name: "border-block-end-color",
 			browsers: [
 				"FF41",
+				"S12.1",
 				"C69",
 				"O56"
 			],
@@ -858,6 +864,7 @@ export const cssData : CSSDataV1 = {
 			name: "border-block-start-color",
 			browsers: [
 				"FF41",
+				"S12.1",
 				"C69",
 				"O56"
 			],
@@ -871,6 +878,7 @@ export const cssData : CSSDataV1 = {
 			name: "border-block-end-style",
 			browsers: [
 				"FF41",
+				"S12.1",
 				"C69",
 				"O56"
 			],
@@ -884,6 +892,8 @@ export const cssData : CSSDataV1 = {
 			name: "border-block-start-style",
 			browsers: [
 				"FF41",
+				"S12.1",
+				"C69",
 				"O56"
 			],
 			"syntax": "<'border-top-style'>",
@@ -896,6 +906,7 @@ export const cssData : CSSDataV1 = {
 			name: "border-block-end-width",
 			browsers: [
 				"FF41",
+				"S12.1",
 				"C69",
 				"O56"
 			],
@@ -910,6 +921,7 @@ export const cssData : CSSDataV1 = {
 			name: "border-block-start-width",
 			browsers: [
 				"FF41",
+				"S12.1",
 				"C69",
 				"O56"
 			],
@@ -1129,7 +1141,9 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-inline-end",
 			browsers: [
-				"FF41"
+				"FF41",
+				"S12.1",
+				"C69"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
 			"description": "Logical 'border-right'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
@@ -1143,7 +1157,9 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-inline-start",
 			browsers: [
-				"FF41"
+				"FF41",
+				"S12.1",
+				"C69"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
 			"description": "Logical 'border-left'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
@@ -1158,6 +1174,7 @@ export const cssData : CSSDataV1 = {
 			name: "border-inline-end-color",
 			browsers: [
 				"FF41",
+				"S12.1",
 				"C69",
 				"O56"
 			],
@@ -1171,6 +1188,7 @@ export const cssData : CSSDataV1 = {
 			name: "border-inline-start-color",
 			browsers: [
 				"FF41",
+				"S12.1",
 				"C69",
 				"O56"
 			],
@@ -1184,6 +1202,7 @@ export const cssData : CSSDataV1 = {
 			name: "border-inline-end-style",
 			browsers: [
 				"FF41",
+				"S12.1",
 				"C69",
 				"O56"
 			],
@@ -1197,6 +1216,7 @@ export const cssData : CSSDataV1 = {
 			name: "border-inline-start-style",
 			browsers: [
 				"FF41",
+				"S12.1",
 				"C69",
 				"O56"
 			],
@@ -1210,6 +1230,7 @@ export const cssData : CSSDataV1 = {
 			name: "border-inline-end-width",
 			browsers: [
 				"FF41",
+				"S12.1",
 				"C69",
 				"O56"
 			],
@@ -1224,6 +1245,7 @@ export const cssData : CSSDataV1 = {
 			name: "border-inline-start-width",
 			browsers: [
 				"FF41",
+				"S12.1",
 				"C69",
 				"O56"
 			],
@@ -1676,13 +1698,6 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "clip-path",
-			browsers: [
-				"E15",
-				"FF3.5",
-				"C55",
-				"IE",
-				"O42"
-			],
 			values: [
 				{
 					name: "none",
@@ -1781,11 +1796,6 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "column-fill",
-			browsers: [
-				"E12",
-				"FF52",
-				"C"
-			],
 			values: [
 				{
 					name: "auto",
@@ -2496,7 +2506,7 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"E12",
 				"FF35",
-				"S6",
+				"S9.1",
 				"C53",
 				"O40"
 			],
@@ -2550,7 +2560,7 @@ export const cssData : CSSDataV1 = {
 					browsers: [
 						"E12",
 						"FF35",
-						"S6",
+						"S9.1",
 						"C53",
 						"O40"
 					],
@@ -3456,7 +3466,8 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF32",
 				"S7",
-				"C32"
+				"C32",
+				"O19"
 			],
 			values: [
 				{
@@ -4626,9 +4637,9 @@ export const cssData : CSSDataV1 = {
 			name: "image-rendering",
 			browsers: [
 				"FF3.6",
-				"S",
-				"C",
-				"O"
+				"S6",
+				"C13",
+				"O15"
 			],
 			values: [
 				{
@@ -4643,9 +4654,9 @@ export const cssData : CSSDataV1 = {
 					name: "-moz-crisp-edges",
 					browsers: [
 						"FF3.6",
-						"S",
-						"C",
-						"O"
+						"S6",
+						"C13",
+						"O15"
 					]
 				},
 				{
@@ -4670,6 +4681,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "ime-mode",
 			browsers: [
+				"E12",
 				"FF3",
 				"IE5"
 			],
@@ -4706,6 +4718,7 @@ export const cssData : CSSDataV1 = {
 			name: "inline-size",
 			browsers: [
 				"FF41",
+				"S12.1",
 				"C57",
 				"O44"
 			],
@@ -4726,7 +4739,7 @@ export const cssData : CSSDataV1 = {
 			name: "isolation",
 			browsers: [
 				"FF36",
-				"S",
+				"S8",
 				"C41",
 				"O30"
 			],
@@ -4882,7 +4895,7 @@ export const cssData : CSSDataV1 = {
 			name: "line-break",
 			browsers: [
 				"E14",
-				"S",
+				"S3",
 				"C58",
 				"IE5.5",
 				"O45"
@@ -5127,6 +5140,7 @@ export const cssData : CSSDataV1 = {
 			name: "margin-block-end",
 			browsers: [
 				"FF41",
+				"S12.1",
 				"C69",
 				"O56"
 			],
@@ -5146,6 +5160,7 @@ export const cssData : CSSDataV1 = {
 			name: "margin-block-start",
 			browsers: [
 				"FF41",
+				"S12.1",
 				"C69",
 				"O56"
 			],
@@ -5179,7 +5194,7 @@ export const cssData : CSSDataV1 = {
 			name: "margin-inline-end",
 			browsers: [
 				"FF41",
-				"S3",
+				"S12.1",
 				"C69",
 				"O56"
 			],
@@ -5199,7 +5214,7 @@ export const cssData : CSSDataV1 = {
 			name: "margin-inline-start",
 			browsers: [
 				"FF41",
-				"S3",
+				"S12.1",
 				"C69",
 				"O56"
 			],
@@ -5383,9 +5398,9 @@ export const cssData : CSSDataV1 = {
 			name: "mask-origin",
 			browsers: [
 				"FF53",
-				"S",
-				"C",
-				"O"
+				"S4",
+				"C1",
+				"O15"
 			],
 			"syntax": "<geometry-box>#",
 			"description": "Specifies the mask positioning area.",
@@ -5399,8 +5414,9 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"E18",
 				"FF53",
-				"S4",
-				"C1"
+				"S3.2",
+				"C1",
+				"O15"
 			],
 			"syntax": "<position>#",
 			"description": "Specifies how mask layer images are positioned.",
@@ -5415,8 +5431,9 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"E18",
 				"FF53",
-				"S4",
-				"C1"
+				"S3.2",
+				"C1",
+				"O15"
 			],
 			"syntax": "<repeat-style>#",
 			"description": "Specifies how mask layer images are tiled after they have been sized and positioned.",
@@ -5427,8 +5444,11 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "mask-size",
 			browsers: [
-				"E17",
-				"FF53"
+				"E18",
+				"FF53",
+				"S4",
+				"C4",
+				"O15"
 			],
 			values: [
 				{
@@ -5456,7 +5476,9 @@ export const cssData : CSSDataV1 = {
 			name: "mask-type",
 			browsers: [
 				"FF35",
-				"C24"
+				"S6.1",
+				"C24",
+				"O15"
 			],
 			values: [
 				{
@@ -5478,6 +5500,7 @@ export const cssData : CSSDataV1 = {
 			name: "max-block-size",
 			browsers: [
 				"FF41",
+				"S12.1",
 				"C57",
 				"O44"
 			],
@@ -5575,6 +5598,7 @@ export const cssData : CSSDataV1 = {
 			name: "min-block-size",
 			browsers: [
 				"FF41",
+				"S12.1",
 				"C57",
 				"O44"
 			],
@@ -5615,6 +5639,7 @@ export const cssData : CSSDataV1 = {
 			name: "min-inline-size",
 			browsers: [
 				"FF41",
+				"S12.1",
 				"C57",
 				"O44"
 			],
@@ -8226,7 +8251,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "-ms-scrollbar-3dlight-color",
 			browsers: [
-				"IE5"
+				"IE8"
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
@@ -8238,7 +8263,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "-ms-scrollbar-arrow-color",
 			browsers: [
-				"IE5"
+				"IE8"
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
@@ -8250,7 +8275,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "-ms-scrollbar-base-color",
 			browsers: [
-				"IE5"
+				"IE8"
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
@@ -8262,7 +8287,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "-ms-scrollbar-darkshadow-color",
 			browsers: [
-				"IE5"
+				"IE8"
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
@@ -8274,7 +8299,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "-ms-scrollbar-face-color",
 			browsers: [
-				"IE5"
+				"IE8"
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
@@ -8286,7 +8311,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "-ms-scrollbar-highlight-color",
 			browsers: [
-				"IE5"
+				"IE8"
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
@@ -8298,7 +8323,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "-ms-scrollbar-shadow-color",
 			browsers: [
-				"IE5"
+				"IE8"
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
@@ -8310,7 +8335,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "-ms-scrollbar-track-color",
 			browsers: [
-				"IE5"
+				"IE8"
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
@@ -9718,6 +9743,7 @@ export const cssData : CSSDataV1 = {
 			name: "orphans",
 			browsers: [
 				"E12",
+				"S1.3",
 				"C25",
 				"IE8",
 				"O9.2"
@@ -10057,6 +10083,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "outline-offset",
 			browsers: [
+				"E15",
 				"FF1.5",
 				"S1.2",
 				"C1",
@@ -10229,6 +10256,7 @@ export const cssData : CSSDataV1 = {
 			name: "padding-block-end",
 			browsers: [
 				"FF41",
+				"S12.1",
 				"C69",
 				"O56"
 			],
@@ -10243,6 +10271,7 @@ export const cssData : CSSDataV1 = {
 			name: "padding-block-start",
 			browsers: [
 				"FF41",
+				"S12.1",
 				"C69",
 				"O56"
 			],
@@ -10257,7 +10286,7 @@ export const cssData : CSSDataV1 = {
 			name: "padding-inline-end",
 			browsers: [
 				"FF41",
-				"S3",
+				"S12.1",
 				"C69",
 				"O56"
 			],
@@ -10272,7 +10301,7 @@ export const cssData : CSSDataV1 = {
 			name: "padding-inline-start",
 			browsers: [
 				"FF41",
-				"S3",
+				"S12.1",
 				"C69",
 				"O56"
 			],
@@ -10391,8 +10420,11 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "paint-order",
 			browsers: [
+				"E17",
 				"FF60",
-				"S"
+				"S8",
+				"C35",
+				"O22"
 			],
 			values: [
 				{
@@ -10576,7 +10608,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "resize",
 			browsers: [
-				"FF",
+				"FF4",
 				"S3",
 				"C1",
 				"O12.1"
@@ -10780,7 +10812,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "scrollbar-3dlight-color",
 			browsers: [
-				"IE6"
+				"IE5"
 			],
 			"description": "Determines the color of the top and left edges of the scroll box and scroll arrows of a scroll bar.",
 			"restrictions": [
@@ -10790,7 +10822,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "scrollbar-arrow-color",
 			browsers: [
-				"IE6"
+				"IE5"
 			],
 			"description": "Determines the color of the arrow elements of a scroll arrow.",
 			"restrictions": [
@@ -10800,7 +10832,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "scrollbar-base-color",
 			browsers: [
-				"IE6"
+				"IE5"
 			],
 			"description": "Determines the color of the main elements of a scroll bar, which include the scroll box, track, and scroll arrows.",
 			"restrictions": [
@@ -10810,7 +10842,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "scrollbar-darkshadow-color",
 			browsers: [
-				"IE6"
+				"IE5"
 			],
 			"description": "Determines the color of the gutter of a scroll bar.",
 			"restrictions": [
@@ -10820,7 +10852,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "scrollbar-face-color",
 			browsers: [
-				"IE6"
+				"IE5"
 			],
 			"description": "Determines the color of the scroll box and scroll arrows of a scroll bar.",
 			"restrictions": [
@@ -10830,7 +10862,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "scrollbar-highlight-color",
 			browsers: [
-				"IE6"
+				"IE5"
 			],
 			"description": "Determines the color of the top and left edges of the scroll box and scroll arrows of a scroll bar.",
 			"restrictions": [
@@ -10840,7 +10872,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "scrollbar-shadow-color",
 			browsers: [
-				"IE6"
+				"IE5"
 			],
 			"description": "Determines the color of the bottom and right edges of the scroll box and scroll arrows of a scroll bar.",
 			"restrictions": [
@@ -10850,7 +10882,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "scrollbar-track-color",
 			browsers: [
-				"IE6"
+				"IE5"
 			],
 			"description": "Determines the color of the track element of a scroll bar.",
 			"restrictions": [
@@ -10977,7 +11009,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The visual viewport of this scroll container may come to rest on a snap point at the termination of a scroll at the discretion of the UA given the parameters of the scroll."
 				}
 			],
-			"syntax": "none | [ x | y | block | inline | both ] [ mandatory | proximity ]",
+			"syntax": "none | [ x | y | block | inline | both ] [ mandatory | proximity ]?",
 			"description": "Defines how strictly snap points are enforced on the scroll container.",
 			"restrictions": [
 				"enum"
@@ -11361,7 +11393,7 @@ export const cssData : CSSDataV1 = {
 				"E12",
 				"FF49",
 				"C47",
-				"IE",
+				"IE5.5",
 				"O"
 			],
 			values: [
@@ -11464,7 +11496,7 @@ export const cssData : CSSDataV1 = {
 			name: "text-decoration-color",
 			browsers: [
 				"FF36",
-				"S",
+				"S12.1",
 				"C57",
 				"O44"
 			],
@@ -11478,8 +11510,8 @@ export const cssData : CSSDataV1 = {
 			name: "text-decoration-line",
 			browsers: [
 				"FF36",
-				"S",
-				"C",
+				"S12.1",
+				"C57",
 				"O"
 			],
 			values: [
@@ -11510,7 +11542,7 @@ export const cssData : CSSDataV1 = {
 			name: "text-decoration-style",
 			browsers: [
 				"FF36",
-				"S",
+				"S12.1",
 				"C57",
 				"O44"
 			],
@@ -11559,11 +11591,11 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "text-justify",
 			browsers: [
-				"E14",
+				"E12",
 				"FF55",
-				"C",
+				"C32",
 				"IE11",
-				"O"
+				"O19"
 			],
 			values: [
 				{
@@ -11607,16 +11639,18 @@ export const cssData : CSSDataV1 = {
 			name: "text-orientation",
 			browsers: [
 				"FF41",
+				"S5.1",
 				"C48",
-				"O"
+				"O15"
 			],
 			values: [
 				{
 					name: "sideways",
 					browsers: [
 						"FF41",
+						"S5.1",
 						"C48",
-						"O"
+						"O15"
 					],
 					"description": "This value is equivalent to 'sideways-right' in 'vertical-rl' writing mode and equivalent to 'sideways-left' in 'vertical-lr' writing mode."
 				},
@@ -11624,8 +11658,9 @@ export const cssData : CSSDataV1 = {
 					name: "sideways-right",
 					browsers: [
 						"FF41",
+						"S5.1",
 						"C48",
-						"O"
+						"O15"
 					],
 					"description": "In vertical writing modes, this causes text to be set as if in a horizontal layout, but rotated 90° clockwise."
 				},
@@ -11774,47 +11809,19 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "touch-action",
-			browsers: [
-				"E12",
-				"FF52",
-				"C36",
-				"IE11",
-				"O23"
-			],
 			values: [
 				{
 					name: "auto",
 					"description": "The user agent may determine any permitted touch behaviors for touches that begin on the element."
 				},
 				{
-					name: "cross-slide-x",
-					browsers: [
-						"E12",
-						"FF52",
-						"C36",
-						"IE11",
-						"O23"
-					]
+					name: "cross-slide-x"
 				},
 				{
-					name: "cross-slide-y",
-					browsers: [
-						"E12",
-						"FF52",
-						"C36",
-						"IE11",
-						"O23"
-					]
+					name: "cross-slide-y"
 				},
 				{
-					name: "double-tap-zoom",
-					browsers: [
-						"E12",
-						"FF52",
-						"C36",
-						"IE11",
-						"O23"
-					]
+					name: "double-tap-zoom"
 				},
 				{
 					name: "manipulation",
@@ -11833,14 +11840,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The user agent may consider touches that begin on the element only for the purposes of vertically scrolling the element’s nearest ancestor with vertically scrollable content."
 				},
 				{
-					name: "pinch-zoom",
-					browsers: [
-						"E12",
-						"FF52",
-						"C36",
-						"IE11",
-						"O23"
-					]
+					name: "pinch-zoom"
 				}
 			],
 			"syntax": "auto | none | [ [ pan-x | pan-left | pan-right ] || [ pan-y | pan-up | pan-down ] || pinch-zoom ] | manipulation",
@@ -11961,8 +11961,8 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"E12",
 				"FF16",
-				"S",
-				"C12",
+				"S9",
+				"C36",
 				"O15"
 			],
 			values: [
@@ -11975,8 +11975,8 @@ export const cssData : CSSDataV1 = {
 					browsers: [
 						"E12",
 						"FF16",
-						"S",
-						"C12",
+						"S9",
+						"C36",
 						"O15"
 					],
 					"description": "Flattening is not performed, so children maintain their position in 3D space."
@@ -14109,9 +14109,9 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"E12",
 				"FF49",
-				"S",
-				"C",
-				"O"
+				"S3",
+				"C1",
+				"O15"
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
@@ -14146,7 +14146,7 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"E15",
 				"FF49",
-				"S3.1",
+				"S3",
 				"C4",
 				"O15"
 			],
@@ -14164,9 +14164,9 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"E15",
 				"FF49",
-				"S",
-				"C",
-				"O"
+				"S3",
+				"C1",
+				"O15"
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
@@ -14179,9 +14179,9 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"E15",
 				"FF49",
-				"S",
-				"C",
-				"O"
+				"S3",
+				"C1",
+				"O15"
 			],
 			"status": "nonstandard",
 			"syntax": "<length>",
@@ -14194,7 +14194,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "-webkit-touch-callout",
 			browsers: [
-				"S4"
+				"S3"
 			],
 			values: [
 				{
@@ -14558,6 +14558,7 @@ export const cssData : CSSDataV1 = {
 			name: "widows",
 			browsers: [
 				"E12",
+				"S1.3",
 				"C25",
 				"IE8",
 				"O9.2"
@@ -14727,8 +14728,8 @@ export const cssData : CSSDataV1 = {
 			name: "zoom",
 			browsers: [
 				"E12",
-				"S4",
-				"C",
+				"S3.1",
+				"C1",
 				"IE5.5",
 				"O15"
 			],
@@ -14873,6 +14874,9 @@ export const cssData : CSSDataV1 = {
 			name: "-moz-window-shadow",
 			"status": "nonstandard",
 			"syntax": "default | menu | tooltip | sheet | none",
+			browsers: [
+				"FF3.5"
+			],
 			"description": "The -moz-window-shadow CSS property specifies whether a window will have a shadow. It only works on Mac OS X."
 		},
 		{
@@ -14880,8 +14884,9 @@ export const cssData : CSSDataV1 = {
 			"status": "nonstandard",
 			"syntax": "<'border-width'> || <'border-style'> || <'color'>",
 			browsers: [
-				"C",
-				"O"
+				"S5.1",
+				"C8",
+				"O15"
 			],
 			"description": "The -webkit-border-before CSS property is a shorthand property for setting the individual logical block start border property values in a single place in the style sheet."
 		},
@@ -14906,6 +14911,13 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "-webkit-line-clamp",
 			"syntax": "none | <integer>",
+			browsers: [
+				"E17",
+				"FF68",
+				"S5",
+				"C6",
+				"O15"
+			],
 			"description": "The -webkit-line-clamp CSS property allows limiting of the contents of a block container to the specified number of lines."
 		},
 		{
@@ -14920,7 +14932,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<attachment>#",
 			browsers: [
 				"S4",
-				"C"
+				"C1"
 			],
 			"description": "If a -webkit-mask-image is specified, -webkit-mask-attachment determines whether the mask image's position is fixed within the viewport, or scrolls along with its containing block."
 		},
@@ -14930,8 +14942,9 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<composite-style>#",
 			browsers: [
 				"E18",
-				"S4",
-				"C1"
+				"S3.2",
+				"C1",
+				"O15"
 			],
 			"description": "The -webkit-mask-composite property specifies the manner in which multiple mask images applied to the same element are composited with one another. Mask images are composited in the opposite order that they are declared with the -webkit-mask-image property."
 		},
@@ -14947,8 +14960,9 @@ export const cssData : CSSDataV1 = {
 			"syntax": "[ <length-percentage> | left | center | right ]#",
 			browsers: [
 				"E18",
-				"S4",
-				"C1"
+				"S3.2",
+				"C1",
+				"O15"
 			],
 			"description": "The -webkit-mask-position-x CSS property sets the initial horizontal position of a mask image."
 		},
@@ -14958,8 +14972,9 @@ export const cssData : CSSDataV1 = {
 			"syntax": "[ <length-percentage> | top | center | bottom ]#",
 			browsers: [
 				"E18",
-				"S4",
-				"C1"
+				"S3.2",
+				"C1",
+				"O15"
 			],
 			"description": "The -webkit-mask-position-y CSS property sets the initial vertical position of a mask image."
 		},
@@ -14969,8 +14984,9 @@ export const cssData : CSSDataV1 = {
 			"syntax": "repeat | no-repeat | space | round",
 			browsers: [
 				"E18",
-				"C",
-				"O"
+				"S5",
+				"C3",
+				"O15"
 			],
 			"description": "The -webkit-mask-repeat-x property specifies whether and how a mask image is repeated (tiled) horizontally."
 		},
@@ -14980,8 +14996,9 @@ export const cssData : CSSDataV1 = {
 			"syntax": "repeat | no-repeat | space | round",
 			browsers: [
 				"E18",
-				"C",
-				"O"
+				"S5",
+				"C3",
+				"O15"
 			],
 			"description": "The -webkit-mask-repeat-y property specifies whether and how a mask image is repeated (tiled) vertically."
 		},
@@ -15011,7 +15028,7 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"E17",
 				"S9",
-				"C47",
+				"C76",
 				"O34"
 			],
 			"description": "The backdrop-filter CSS property lets you apply graphical effects such as blurring or color shifting to the area behind an element. Because it applies to everything behind the element, to see the effect you must make the element or its background at least partially transparent."
@@ -15023,7 +15040,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The border-block CSS property is a shorthand property for setting the individual logical block border property values in a single place in the style sheet."
 		},
 		{
 			name: "border-block-color",
@@ -15032,7 +15049,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The border-block-color CSS property defines the color of the logical block borders of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color and border-bottom-color, or border-right-color and border-left-color property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "border-block-style",
@@ -15041,7 +15058,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The border-block-style CSS property defines the style of the logical block borders of an element, which maps to a physical border style depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-style and border-bottom-style, or border-left-style and border-right-style properties depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "border-block-width",
@@ -15050,7 +15067,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The border-block-width CSS property defines the width of the logical block borders of an element, which maps to a physical border width depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-width and border-bottom-width, or border-left-width, and border-right-width property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "border-end-end-radius",
@@ -15075,7 +15092,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The border-inline CSS property is a shorthand property for setting the individual logical inline border property values in a single place in the style sheet."
 		},
 		{
 			name: "border-inline-color",
@@ -15084,7 +15101,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The border-inline-color CSS property defines the color of the logical inline borders of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color and border-bottom-color, or border-right-color and border-left-color property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "border-inline-style",
@@ -15093,7 +15110,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The border-inline-style CSS property defines the style of the logical inline borders of an element, which maps to a physical border style depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-style and border-bottom-style, or border-left-style and border-right-style properties depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "border-inline-width",
@@ -15102,7 +15119,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The border-inline-width CSS property defines the width of the logical inline borders of an element, which maps to a physical border width depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-width and border-bottom-width, or border-left-width, and border-right-width property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "border-start-end-radius",
@@ -15125,10 +15142,10 @@ export const cssData : CSSDataV1 = {
 			"status": "nonstandard",
 			"syntax": "start | center | end | baseline | stretch",
 			browsers: [
-				"E",
-				"FF49",
+				"E12",
+				"FF1",
 				"S3",
-				"C",
+				"C1",
 				"O"
 			],
 			"description": "The box-align CSS property specifies how an element aligns its contents across its layout in a perpendicular direction. The effect of the property is only visible if there is extra space in the box."
@@ -15139,9 +15156,9 @@ export const cssData : CSSDataV1 = {
 			"syntax": "normal | reverse | inherit",
 			browsers: [
 				"E12",
-				"FF",
+				"FF1",
 				"S3",
-				"C",
+				"C1",
 				"O"
 			],
 			"description": "The box-direction CSS property specifies whether a box lays out its contents normally (from the top or left edge), or in reverse (from the bottom or right edge)."
@@ -15152,9 +15169,9 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<number>",
 			browsers: [
 				"E12",
-				"FF",
+				"FF1",
 				"S3",
-				"C",
+				"C1",
 				"O"
 			],
 			"description": "The -moz-box-flex and -webkit-box-flex CSS properties specify how a -moz-box or -webkit-box grows to fill the box that contains it, in the direction of the containing box's layout."
@@ -15165,7 +15182,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<integer>",
 			browsers: [
 				"S3",
-				"C",
+				"C1",
 				"O"
 			],
 			"description": "The box-flex-group CSS property assigns the flexbox's child elements to a flex group."
@@ -15176,7 +15193,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "single | multiple",
 			browsers: [
 				"S3",
-				"C",
+				"C1",
 				"O"
 			],
 			"description": "The box-lines CSS property determines whether the box may have a single or multiple lines (rows for horizontally oriented boxes, columns for vertically oriented boxes)."
@@ -15186,10 +15203,10 @@ export const cssData : CSSDataV1 = {
 			"status": "nonstandard",
 			"syntax": "<integer>",
 			browsers: [
-				"E",
-				"FF",
+				"E12",
+				"FF1",
 				"S3",
-				"C",
+				"C1",
 				"O"
 			],
 			"description": "The box-ordinal-group CSS property assigns the flexbox's child elements to an ordinal group."
@@ -15200,9 +15217,9 @@ export const cssData : CSSDataV1 = {
 			"syntax": "horizontal | vertical | inline-axis | block-axis | inherit",
 			browsers: [
 				"E12",
-				"FF",
+				"FF1",
 				"S3",
-				"C",
+				"C1",
 				"O"
 			],
 			"description": "The box-orient CSS property specifies whether an element lays out its contents horizontally or vertically."
@@ -15213,9 +15230,9 @@ export const cssData : CSSDataV1 = {
 			"syntax": "start | center | end | justify",
 			browsers: [
 				"E12",
-				"FF",
+				"FF1",
 				"S3",
-				"C",
+				"C1",
 				"O"
 			],
 			"description": "The -moz-box-pack and -webkit-box-pack CSS properties specify how a -moz-box or -webkit-box packs its contents in the direction of its layout. The effect of this is only visible if there is extra space in the box."
@@ -15232,10 +15249,20 @@ export const cssData : CSSDataV1 = {
 			"description": "The color-adjust property is a non-standard CSS extension that can be used to force printing of background colors and images in browsers based on the WebKit engine."
 		},
 		{
+			name: "counter-set",
+			"syntax": "[ <custom-ident> <integer>? ]+ | none",
+			browsers: [
+				"FF68"
+			],
+			"description": "The counter-set CSS property sets a CSS counter to a given value. It manipulates the value of existing counters, and will only create new counters if there isn't already a counter of the given name on the element."
+		},
+		{
 			name: "font-optical-sizing",
 			"syntax": "auto | none",
 			browsers: [
-				"FF62"
+				"E17",
+				"FF62",
+				"S11"
 			],
 			"description": "The font-optical-sizing CSS property allows developers to control whether browsers render text with slightly differing visual representations to optimize viewing at different sizes, or not. This only works for fonts that have an optical size variation axis."
 		},
@@ -15295,18 +15322,28 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "inset",
 			"syntax": "<'top'>{1,4}",
+			browsers: [
+				"FF66"
+			],
 			"description": "The inset CSS property defines the logical block and inline start and end offsets of an element, which map to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "inset-block",
 			"syntax": "<'top'>{1,2}",
+			browsers: [
+				"FF63",
+				"C69",
+				"O56"
+			],
 			"description": "The inset-block CSS property defines the logical block start and end offsets of an element, which maps to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "inset-block-end",
 			"syntax": "<'top'>",
 			browsers: [
-				"FF63"
+				"FF63",
+				"C69",
+				"O56"
 			],
 			"description": "The inset-block-end CSS property defines the logical block end offset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
@@ -15314,20 +15351,29 @@ export const cssData : CSSDataV1 = {
 			name: "inset-block-start",
 			"syntax": "<'top'>",
 			browsers: [
-				"FF63"
+				"FF63",
+				"C69",
+				"O56"
 			],
 			"description": "The inset-block-start CSS property defines the logical block start offset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "inset-inline",
 			"syntax": "<'top'>{1,2}",
+			browsers: [
+				"FF63",
+				"C69",
+				"O56"
+			],
 			"description": "The inset-inline CSS property defines the logical block start and end offsets of an element, which maps to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			name: "inset-inline-end",
 			"syntax": "<'top'>",
 			browsers: [
-				"FF63"
+				"FF63",
+				"C69",
+				"O56"
 			],
 			"description": "The inset-inline-end CSS property defines the logical inline end inset of an element, which maps to a physical inset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
@@ -15335,7 +15381,9 @@ export const cssData : CSSDataV1 = {
 			name: "inset-inline-start",
 			"syntax": "<'top'>",
 			browsers: [
-				"FF63"
+				"FF63",
+				"C69",
+				"O56"
 			],
 			"description": "The inset-inline-start CSS property defines the logical inline start inset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
@@ -15362,7 +15410,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The margin-block CSS property defines the logical block start and end margins of an element, which maps to physical margins depending on the element's writing mode, directionality, and text orientation."
 		},
 		{
 			name: "margin-inline",
@@ -15371,7 +15419,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The margin-inline CSS property defines the logical inline start and end margins of an element, which maps to physical margins depending on the element's writing mode, directionality, and text orientation."
 		},
 		{
 			name: "mask",
@@ -15379,9 +15427,9 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"E12",
 				"FF2",
-				"S4",
+				"S3.2",
 				"C1",
-				"O"
+				"O15"
 			],
 			"description": "The mask CSS property alters the visibility of an element by either partially or fully hiding it. This is accomplished by either masking or clipping the image at specific points."
 		},
@@ -15432,9 +15480,9 @@ export const cssData : CSSDataV1 = {
 			"syntax": "[ <geometry-box> | no-clip ]#",
 			browsers: [
 				"FF53",
-				"S",
-				"C",
-				"O"
+				"S4",
+				"C1",
+				"O15"
 			],
 			"description": "The mask-clip CSS property determines the area, which is affected by a mask. The painted content of an element must be restricted to this area."
 		},
@@ -15458,7 +15506,8 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "[ <'offset-position'>? [ <'offset-path'> [ <'offset-distance'> || <'offset-rotate'> ]? ]? ]! [ / <'offset-anchor'> ]?",
 			browsers: [
-				"C55"
+				"C55",
+				"O42"
 			],
 			"description": "The offset CSS property is a shorthand property for animating an element along a defined path."
 		},
@@ -15473,7 +15522,8 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "<length-percentage>",
 			browsers: [
-				"C55"
+				"C55",
+				"O42"
 			],
 			"description": "The offset-distance CSS property specifies a position along an offset-path."
 		},
@@ -15499,7 +15549,8 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "[ auto | reverse ] || <angle>",
 			browsers: [
-				"C56"
+				"C56",
+				"O43"
 			],
 			"description": "The offset-rotate CSS property defines the direction of the element while positioning along the offset path."
 		},
@@ -15518,6 +15569,9 @@ export const cssData : CSSDataV1 = {
 			name: "overflow-block",
 			"status": "experimental",
 			"syntax": "visible | hidden | clip | scroll | auto",
+			browsers: [
+				"FF69"
+			],
 			"description": "The overflow-block CSS media feature can be used to test how the output device handles content that overflows the initial containing block along the block axis."
 		},
 		{
@@ -15533,6 +15587,9 @@ export const cssData : CSSDataV1 = {
 			name: "overflow-inline",
 			"status": "experimental",
 			"syntax": "visible | hidden | clip | scroll | auto",
+			browsers: [
+				"FF69"
+			],
 			"description": "The overflow-inline CSS media feature can be used to test how the output device handles content that overflows the initial containing block along the inline axis."
 		},
 		{
@@ -15578,7 +15635,7 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The padding-block CSS property defines the logical block start and end padding of an element, which maps to physical padding properties depending on the element's writing mode, directionality, and text orientation."
 		},
 		{
 			name: "padding-inline",
@@ -15587,14 +15644,14 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
-			"description": ""
+			"description": "The padding-inline CSS property defines the logical inline start and end padding of an element, which maps to physical padding properties depending on the element's writing mode, directionality, and text orientation."
 		},
 		{
 			name: "place-content",
 			"syntax": "<'align-content'> <'justify-content'>?",
 			browsers: [
-				"FF60",
-				"S",
+				"FF53",
+				"S9",
 				"C59",
 				"O"
 			],
@@ -15605,7 +15662,9 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'align-items'> <'justify-items'>?",
 			browsers: [
 				"FF45",
-				"C59"
+				"S11",
+				"C59",
+				"O46"
 			],
 			"description": "The CSS place-items shorthand property sets both the align-items and justify-items properties. The first value is the align-items property value, the second the justify-items one. If the second value is not present, the first value is also used for it."
 		},
@@ -15614,16 +15673,16 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'align-self'> <'justify-self'>?",
 			browsers: [
 				"FF45",
-				"C59"
+				"C59",
+				"O46"
 			],
-			"description": ""
+			"description": "The place-self CSS property is a shorthand property sets both the align-self and justify-self properties. The first value is the align-self property value, the second the justify-self one. If the second value is not present, the first value is also used for it."
 		},
 		{
 			name: "rotate",
 			"syntax": "none | <angle> | [ x | y | z | <number>{3} ] && <angle>",
 			browsers: [
-				"FF60",
-				"C"
+				"FF60"
 			],
 			"description": "The rotate CSS property allows you to specify rotation transforms individually and independently of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value."
 		},
@@ -15649,8 +15708,7 @@ export const cssData : CSSDataV1 = {
 			name: "scale",
 			"syntax": "none | <number>{1,3}",
 			browsers: [
-				"FF60",
-				"C"
+				"FF60"
 			],
 			"description": "The scale CSS property allows you to specify scale transforms individually and independently of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value."
 		},
@@ -15672,8 +15730,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-margin",
-			"syntax": "[ auto | <length> ]{1,4}",
+			"syntax": "<length>{1,4}",
 			browsers: [
+				"FF68",
 				"S11",
 				"C69",
 				"O56"
@@ -15682,8 +15741,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-margin-block",
-			"syntax": "[ auto | <length> ]{1,2}",
+			"syntax": "<length>{1,2}",
 			browsers: [
+				"FF68",
 				"C69",
 				"O56"
 			],
@@ -15691,8 +15751,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-margin-block-start",
-			"syntax": "auto | <length> ",
+			"syntax": "<length>",
 			browsers: [
+				"FF68",
 				"S11",
 				"C69",
 				"O56"
@@ -15701,8 +15762,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-margin-block-end",
-			"syntax": "auto | <length>",
+			"syntax": "<length>",
 			browsers: [
+				"FF68",
 				"S11",
 				"C69",
 				"O56"
@@ -15711,8 +15773,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-margin-bottom",
-			"syntax": "auto | <length>",
+			"syntax": "<length>",
 			browsers: [
+				"FF68",
 				"S11",
 				"C69",
 				"O56"
@@ -15721,13 +15784,17 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-margin-inline",
-			"syntax": "[auto | <length> ]{1,2}",
+			"syntax": "<length>{1,2}",
+			browsers: [
+				"FF68"
+			],
 			"description": "The scroll-margin-inline property is a shorthand property which sets the scroll-margin longhands in the inline dimension."
 		},
 		{
 			name: "scroll-margin-inline-start",
-			"syntax": "auto | <length>",
+			"syntax": "<length>",
 			browsers: [
+				"FF68",
 				"S11",
 				"C69",
 				"O56"
@@ -15736,8 +15803,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-margin-inline-end",
-			"syntax": "auto | <length>",
+			"syntax": "<length>",
 			browsers: [
+				"FF68",
 				"S11",
 				"C69",
 				"O56"
@@ -15746,8 +15814,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-margin-left",
-			"syntax": "auto | <length>",
+			"syntax": "<length>",
 			browsers: [
+				"FF68",
 				"S11",
 				"C69",
 				"O56"
@@ -15756,8 +15825,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-margin-right",
-			"syntax": "auto | <length>",
+			"syntax": "<length>",
 			browsers: [
+				"FF68",
 				"S11",
 				"C69",
 				"O56"
@@ -15766,8 +15836,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-margin-top",
-			"syntax": "auto | <length>",
+			"syntax": "<length>",
 			browsers: [
+				"FF68",
 				"S11",
 				"C69",
 				"O56"
@@ -15776,8 +15847,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding",
-			"syntax": "[ auto | <length> | <percentage> ]{1,4}",
+			"syntax": "[ auto | <length-percentage> ]{1,4}",
 			browsers: [
+				"FF68",
 				"S11",
 				"C69",
 				"O56"
@@ -15786,8 +15858,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding-block",
-			"syntax": "[auto | <length> | <percentage> ]{1,2}",
+			"syntax": "[ auto | <length-percentage> ]{1,2}",
 			browsers: [
+				"FF68",
 				"C69",
 				"O56"
 			],
@@ -15795,8 +15868,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding-block-start",
-			"syntax": "auto | <length> | <percentage>",
+			"syntax": "auto | <length-percentage>",
 			browsers: [
+				"FF68",
 				"S11",
 				"C69",
 				"O56"
@@ -15805,8 +15879,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding-block-end",
-			"syntax": "auto | <length> | <percentage>",
+			"syntax": "auto | <length-percentage>",
 			browsers: [
+				"FF68",
 				"S11",
 				"C69",
 				"O56"
@@ -15815,8 +15890,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding-bottom",
-			"syntax": "auto | <length> | <percentage>",
+			"syntax": "auto | <length-percentage>",
 			browsers: [
+				"FF68",
 				"S11",
 				"C69",
 				"O56"
@@ -15825,8 +15901,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding-inline",
-			"syntax": "[auto | <length> | <percentage> ]{1,2}",
+			"syntax": "[ auto | <length-percentage> ]{1,2}",
 			browsers: [
+				"FF68",
 				"C69",
 				"O56"
 			],
@@ -15834,8 +15911,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding-inline-start",
-			"syntax": "auto | <length> | <percentage>",
+			"syntax": "auto | <length-percentage>",
 			browsers: [
+				"FF68",
 				"S11",
 				"C69",
 				"O56"
@@ -15844,8 +15922,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding-inline-end",
-			"syntax": "auto | <length> | <percentage>",
+			"syntax": "auto | <length-percentage>",
 			browsers: [
+				"FF68",
 				"S11",
 				"C69",
 				"O56"
@@ -15854,8 +15933,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding-left",
-			"syntax": "auto | <length> | <percentage>",
+			"syntax": "auto | <length-percentage>",
 			browsers: [
+				"FF68",
 				"S11",
 				"C69",
 				"O56"
@@ -15864,8 +15944,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding-right",
-			"syntax": "auto | <length> | <percentage>",
+			"syntax": "auto | <length-percentage>",
 			browsers: [
+				"FF68",
 				"S11",
 				"C69",
 				"O56"
@@ -15874,8 +15955,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "scroll-padding-top",
-			"syntax": "auto | <length> | <percentage>",
+			"syntax": "auto | <length-percentage>",
 			browsers: [
+				"FF68",
 				"S11",
 				"C69",
 				"O56"
@@ -15886,6 +15968,7 @@ export const cssData : CSSDataV1 = {
 			name: "scroll-snap-align",
 			"syntax": "[ none | start | end | center ]{1,2}",
 			browsers: [
+				"FF68",
 				"S11",
 				"C69",
 				"O56"
@@ -15895,6 +15978,9 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "scroll-snap-stop",
 			"syntax": "normal | always",
+			browsers: [
+				"C75"
+			],
 			"description": "The scroll-snap-stop CSS property defines whether the scroll container is allowed to \"pass over\" possible snap positions."
 		},
 		{
@@ -15926,7 +16012,7 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "none | [ objects || [ spaces | [ leading-spaces || trailing-spaces ] ] || edges || box-decoration ]",
 			browsers: [
-				"S8",
+				"S12.1",
 				"C57",
 				"O44"
 			],
@@ -15937,6 +16023,7 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "auto | none",
 			browsers: [
+				"FF70",
 				"C64",
 				"O50"
 			],
@@ -15947,7 +16034,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'text-emphasis-style'> || <'text-emphasis-color'>",
 			browsers: [
 				"FF46",
-				"S",
+				"S6.1",
 				"C25",
 				"O15"
 			],
@@ -15958,7 +16045,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<color>",
 			browsers: [
 				"FF46",
-				"S",
+				"S6.1",
 				"C25",
 				"O15"
 			],
@@ -15969,9 +16056,9 @@ export const cssData : CSSDataV1 = {
 			"syntax": "[ over | under ] && [ right | left ]",
 			browsers: [
 				"FF46",
-				"S",
-				"C",
-				"O"
+				"S6.1",
+				"C25",
+				"O15"
 			],
 			"description": "The text-emphasis-position CSS property describes where emphasis marks are drawn at. The effect of emphasis marks on the line height is the same as for ruby text: if there isn't enough place, the line height is increased."
 		},
@@ -15980,7 +16067,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "none | [ [ filled | open ] || [ dot | circle | double-circle | triangle | sesame ] ] | <string>",
 			browsers: [
 				"FF46",
-				"S",
+				"S6.1",
 				"C25",
 				"O15"
 			],
@@ -16002,6 +16089,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "border-box | fill-box | view-box",
 			browsers: [
 				"FF55",
+				"S11",
 				"C64",
 				"O51"
 			],
@@ -16011,8 +16099,7 @@ export const cssData : CSSDataV1 = {
 			name: "translate",
 			"syntax": "none | <length-percentage> [ <length-percentage> <length>? ]?",
 			browsers: [
-				"FF60",
-				"C"
+				"FF60"
 			],
 			"description": "The translate CSS property allows you to specify translation transforms individually and independently of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value."
 		},
@@ -16063,13 +16150,6 @@ export const cssData : CSSDataV1 = {
 	"atDirectives": [
 		{
 			name: "@charset",
-			browsers: [
-				"FF1.5",
-				"S4",
-				"C2",
-				"IE5.5",
-				"O9"
-			],
 			"description": "Defines character set of the document."
 		},
 		{
@@ -16146,7 +16226,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "@page",
 			browsers: [
-				"E",
+				"E12",
 				"FF19",
 				"C2",
 				"IE8",
@@ -16183,9 +16263,9 @@ export const cssData : CSSDataV1 = {
 			name: ":any-link",
 			browsers: [
 				"FF50",
-				"S",
-				"C",
-				"O"
+				"S9",
+				"C65",
+				"O52"
 			],
 			"description": "Represents an element that acts as the source anchor of a hyperlink. Applies to both visited and unvisited links."
 		},
@@ -16250,7 +16330,9 @@ export const cssData : CSSDataV1 = {
 		{
 			name: ":first",
 			browsers: [
-				"E",
+				"E12",
+				"S6",
+				"C18",
 				"IE8",
 				"O9.2"
 			],
@@ -16270,13 +16352,6 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: ":fullscreen",
-			browsers: [
-				"E12",
-				"FF64",
-				"S6",
-				"C15",
-				"IE11"
-			],
 			"description": "Matches any element that has its fullscreen flag set."
 		},
 		{
@@ -16300,9 +16375,9 @@ export const cssData : CSSDataV1 = {
 			name: ":host",
 			browsers: [
 				"FF63",
-				"S",
-				"C",
-				"O"
+				"S10",
+				"C54",
+				"O41"
 			],
 			"description": "When evaluated in the context of a shadow tree, matches the shadow tree’s host element."
 		},
@@ -16341,9 +16416,9 @@ export const cssData : CSSDataV1 = {
 		{
 			name: ":in-range",
 			browsers: [
-				"E",
+				"E13",
 				"FF29",
-				"S",
+				"S5.1",
 				"C10",
 				"O11"
 			],
@@ -16376,7 +16451,9 @@ export const cssData : CSSDataV1 = {
 		{
 			name: ":left",
 			browsers: [
-				"E",
+				"E12",
+				"S5.1",
+				"C6",
 				"IE8",
 				"O9.2"
 			],
@@ -16624,9 +16701,9 @@ export const cssData : CSSDataV1 = {
 		{
 			name: ":out-of-range",
 			browsers: [
-				"E",
+				"E13",
 				"FF29",
-				"S",
+				"S5.1",
 				"C10",
 				"O11"
 			],
@@ -16644,10 +16721,10 @@ export const cssData : CSSDataV1 = {
 		{
 			name: ":read-only",
 			browsers: [
-				"E",
+				"E13",
 				"FF1.5",
-				"S",
-				"C",
+				"S4",
+				"C1",
 				"O"
 			],
 			"description": "An element whose contents are not user-alterable is :read-only. However, elements whose contents are user-alterable (such as text input fields) are considered to be in a :read-write state. In typical documents, most elements are :read-only."
@@ -16655,10 +16732,10 @@ export const cssData : CSSDataV1 = {
 		{
 			name: ":read-write",
 			browsers: [
-				"E",
+				"E13",
 				"FF1.5",
-				"S",
-				"C",
+				"S4",
+				"C1",
 				"O"
 			],
 			"description": "An element whose contents are not user-alterable is :read-only. However, elements whose contents are user-alterable (such as text input fields) are considered to be in a :read-write state. In typical documents, most elements are :read-only."
@@ -16670,7 +16747,9 @@ export const cssData : CSSDataV1 = {
 		{
 			name: ":right",
 			browsers: [
-				"E",
+				"E12",
+				"S5.1",
+				"C6",
 				"IE8",
 				"O9.2"
 			],
@@ -16678,13 +16757,6 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: ":root",
-			browsers: [
-				"FF1",
-				"S1",
-				"C1",
-				"IE9",
-				"O9.5"
-			],
 			"description": "Represents an element that is the root of the document. In HTML 4, this is always the HTML element."
 		},
 		{
@@ -16767,9 +16839,9 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			browsers: [
 				"FF63",
-				"S",
-				"C",
-				"O"
+				"S10",
+				"C54",
+				"O41"
 			],
 			"description": "The :defined CSS pseudo-class represents any element that has been defined. This includes any standard element built in to the browser, and custom elements that have been successfully defined (i.e. with the CustomElementRegistry.define() method)."
 		},
@@ -16784,6 +16856,7 @@ export const cssData : CSSDataV1 = {
 			name: ":focus-visible",
 			"status": "experimental",
 			browsers: [
+				"FF4",
 				"C67"
 			],
 			"description": "The :focus-visible pseudo-class applies while an element matches the :focus pseudo-class and the UA determines via heuristics that the focus should be made evident on the element."
@@ -16841,7 +16914,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "::backdrop",
 			browsers: [
-				"E",
+				"E12",
 				"FF47",
 				"C37",
 				"IE11"
@@ -16864,7 +16937,9 @@ export const cssData : CSSDataV1 = {
 			name: "::cue",
 			browsers: [
 				"FF55",
-				"C"
+				"S6.1",
+				"C26",
+				"O15"
 			]
 		},
 		{
@@ -16956,7 +17031,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "::-ms-browse",
 			browsers: [
-				"E",
+				"E12",
 				"IE10"
 			],
 			"description": "Represents the browse button of an input type=file control."
@@ -16964,7 +17039,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "::-ms-check",
 			browsers: [
-				"E",
+				"E12",
 				"IE10"
 			],
 			"description": "Represents the check of a checkbox or radio button input control."
@@ -16972,7 +17047,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "::-ms-clear",
 			browsers: [
-				"E",
+				"E12",
 				"IE10"
 			],
 			"description": "Represents the clear button of a text input control"
@@ -16988,7 +17063,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "::-ms-fill",
 			browsers: [
-				"E",
+				"E12",
 				"IE10"
 			],
 			"description": "Represents the bar portion of a progress bar."
@@ -16996,23 +17071,23 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "::-ms-fill-lower",
 			browsers: [
-				"E",
-				"IE"
+				"E12",
+				"IE10"
 			],
 			"description": "Represents the portion of the slider track from its smallest value up to the value currently selected by the thumb. In a left-to-right layout, this is the portion of the slider track to the left of the thumb."
 		},
 		{
 			name: "::-ms-fill-upper",
 			browsers: [
-				"E",
-				"IE"
+				"E12",
+				"IE10"
 			],
 			"description": "Represents the portion of the slider track from the value currently selected by the thumb up to the slider's largest value. In a left-to-right layout, this is the portion of the slider track to the right of the thumb."
 		},
 		{
 			name: "::-ms-reveal",
 			browsers: [
-				"E",
+				"E12",
 				"IE10"
 			],
 			"description": "Represents the password reveal button of an input type=password control."
@@ -17080,17 +17155,17 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "::-webkit-file-upload-button",
 			browsers: [
-				"S",
-				"C",
-				"O"
+				"S3",
+				"C1",
+				"O15"
 			]
 		},
 		{
 			name: "::-webkit-inner-spin-button",
 			browsers: [
-				"S",
-				"C",
-				"O"
+				"S4.1",
+				"C6",
+				"O15"
 			]
 		},
 		{
@@ -17111,25 +17186,25 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "::-webkit-meter-bar",
 			browsers: [
-				"S",
-				"C",
-				"O"
+				"S5.1",
+				"C12",
+				"O15"
 			]
 		},
 		{
 			name: "::-webkit-meter-even-less-good-value",
 			browsers: [
-				"S",
-				"C",
-				"O"
+				"S5.1",
+				"C12",
+				"O15"
 			]
 		},
 		{
 			name: "::-webkit-meter-optimum-value",
 			browsers: [
-				"S",
-				"C",
-				"O"
+				"S5.1",
+				"C12",
+				"O15"
 			]
 		},
 		{
@@ -17144,96 +17219,96 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "::-webkit-outer-spin-button",
 			browsers: [
-				"S",
-				"C",
-				"O"
+				"S4.1",
+				"C6"
 			]
 		},
 		{
 			name: "::-webkit-progress-bar",
 			browsers: [
-				"S",
-				"C",
-				"O"
+				"S6.1",
+				"C25",
+				"O15"
 			]
 		},
 		{
 			name: "::-webkit-progress-inner-element",
 			browsers: [
-				"S",
-				"C",
-				"O"
+				"S6.1",
+				"C23",
+				"O15"
 			]
 		},
 		{
 			name: "::-webkit-progress-value",
 			browsers: [
-				"S",
-				"C",
-				"O"
+				"S6.1",
+				"C25",
+				"O15"
 			]
 		},
 		{
 			name: "::-webkit-resizer",
 			browsers: [
-				"S",
-				"C",
+				"S4",
+				"C2",
 				"O15"
 			]
 		},
 		{
 			name: "::-webkit-scrollbar",
 			browsers: [
-				"S",
-				"C",
+				"S4",
+				"C2",
 				"O15"
 			]
 		},
 		{
 			name: "::-webkit-scrollbar-button",
 			browsers: [
-				"S",
-				"C",
+				"S4",
+				"C2",
 				"O15"
 			]
 		},
 		{
 			name: "::-webkit-scrollbar-corner",
 			browsers: [
-				"S",
-				"C",
+				"S4",
+				"C2",
 				"O15"
 			]
 		},
 		{
 			name: "::-webkit-scrollbar-thumb",
 			browsers: [
-				"S",
-				"C",
+				"S4",
+				"C2",
 				"O15"
 			]
 		},
 		{
 			name: "::-webkit-scrollbar-track",
 			browsers: [
-				"S",
-				"C",
+				"S4",
+				"C2",
 				"O15"
 			]
 		},
 		{
 			name: "::-webkit-scrollbar-track-piece",
 			browsers: [
-				"S",
-				"C",
+				"S4",
+				"C2",
 				"O15"
 			]
 		},
 		{
 			name: "::-webkit-search-cancel-button",
 			browsers: [
-				"S",
-				"C"
+				"S3",
+				"C1",
+				"O15"
 			]
 		},
 		{
@@ -17246,8 +17321,9 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "::-webkit-search-results-button",
 			browsers: [
-				"S",
-				"C"
+				"S3",
+				"C1",
+				"O15"
 			]
 		},
 		{
@@ -17364,14 +17440,26 @@ export const cssData : CSSDataV1 = {
 			"description": "The ::grammar-error CSS pseudo-element represents a text segment which the user agent has flagged as grammatically incorrect."
 		},
 		{
+			name: "::marker",
+			browsers: [
+				"FF68"
+			],
+			"description": "The ::marker CSS pseudo-element selects the marker box of a list item, which typically contains a bullet or number. It works on any element or pseudo-element set to display: list-item, such as the <li> and <summary> elements."
+		},
+		{
 			name: "::part",
 			"status": "experimental",
+			browsers: [
+				"FF69",
+				"C73",
+				"O60"
+			],
 			"description": "The ::part CSS pseudo-element represents any element within a shadow tree that has a matching part attribute."
 		},
 		{
 			name: "::placeholder",
 			browsers: [
-				"E",
+				"E12",
 				"FF51",
 				"S10.1",
 				"C57",
@@ -17383,7 +17471,7 @@ export const cssData : CSSDataV1 = {
 			name: "::slotted",
 			browsers: [
 				"FF63",
-				"S",
+				"S10",
 				"C50",
 				"O37"
 			],

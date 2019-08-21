@@ -40,7 +40,7 @@ export class CSSHover {
 					contents: selectorToMarkedString(<nodes.Selector>node),
 					range: getRange(node)
 				};
-				continue;
+				break;
 			}
 
 			if (node instanceof nodes.SimpleSelector) {
@@ -53,7 +53,7 @@ export class CSSHover {
 						range: getRange(node)
 					};
 				}
-				continue;
+				break;
 			}
 
 			if (node instanceof nodes.Declaration) {
