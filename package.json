@@ -15,15 +15,15 @@
     "url": "https://github.com/Microsoft/vscode-css-languageservice"
   },
   "devDependencies": {
-    "@types/mocha": "2.2.42",
+    "@types/mocha": "^5.2.7",
     "@types/node": "^10.12.21",
-    "istanbul": "^0.4.5",
+    "nyc": "^14.1.1",
     "mdn-browser-compat-data": "^0.0.90",
     "mdn-data": "^2.0.4",
     "mkdirp": "^0.5.1",
     "mocha": "^6.2.0",
-    "rimraf": "^2.6.3",
-    "tslint": "^5.18.0",
+    "rimraf": "^3.0.0",
+    "tslint": "^5.19.0",
     "typescript": "^3.5.3",
     "xml2js": "^0.4.19"
   },
@@ -42,7 +42,7 @@
     "watch": "tsc -w -p ./src",
     "test": "npm run compile && mocha",
     "mocha": "mocha",
-    "coverage": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --ui tdd -R spec -t 5000",
+    "coverage": "nyc --reporter=html --reporter=text  mocha",
     "lint": "tslint src/**/*.ts",
     "update-data": "node ./build/generate_browserjs.js",
     "install-types-next": "yarn add vscode-languageserver-types@next",
