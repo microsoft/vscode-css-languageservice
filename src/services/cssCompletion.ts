@@ -191,6 +191,7 @@ export class CSSCompletion {
 			const item: CompletionItem = {
 				label: entry.name,
 				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
+				deprecated: entry.status && (entry.status === 'nonstandard' || entry.status === 'obsolete'),
 				textEdit: TextEdit.replace(range, insertText),
 				kind: CompletionItemKind.Property
 			};
@@ -325,6 +326,7 @@ export class CSSCompletion {
 				const item: CompletionItem = {
 					label: value.name,
 					documentation: languageFacts.getEntryDescription(value, this.doesSupportMarkdown()),
+					deprecated: entry.status && (entry.status === 'nonstandard' || entry.status === 'obsolete'),
 					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertString),
 					kind: CompletionItemKind.Value,
 					insertTextFormat
@@ -609,6 +611,7 @@ export class CSSCompletion {
 				label: entry.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(null), entry.name),
 				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
+				deprecated: entry.status && (entry.status === 'nonstandard' || entry.status === 'obsolete'),
 				kind: CompletionItemKind.Keyword
 			});
 		});
@@ -647,6 +650,7 @@ export class CSSCompletion {
 				label: entry.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
 				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
+				deprecated: entry.status && (entry.status === 'nonstandard' || entry.status === 'obsolete'),
 				kind: CompletionItemKind.Function,
 				insertTextFormat: entry.name !== insertText ? SnippetFormat : void 0
 			};
@@ -663,6 +667,7 @@ export class CSSCompletion {
 				label: entry.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
 				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
+				deprecated: entry.status && (entry.status === 'nonstandard' || entry.status === 'obsolete'),
 				kind: CompletionItemKind.Function,
 				insertTextFormat: entry.name !== insertText ? SnippetFormat : void 0
 			};
