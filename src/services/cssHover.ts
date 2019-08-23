@@ -61,10 +61,7 @@ export class CSSHover {
 				const entry = languageFacts.cssDataManager.getProperty(propertyName);
 				if (entry) {
 					hover = {
-						contents: {
-							kind: 'markdown',
-							value: languageFacts.getEntryMarkdownDescription(entry),
-						},
+						contents: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
 						range: getRange(node)
 					};
 				}
@@ -76,10 +73,7 @@ export class CSSHover {
 				const entry = languageFacts.cssDataManager.getAtDirective(atRuleName);
 				if (entry) {
 					hover = {
-						contents: {
-							kind: 'markdown',
-							value: languageFacts.getEntryMarkdownDescription(entry),
-						},
+						contents: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
 						range: getRange(node)
 					};
 				}
@@ -94,10 +88,7 @@ export class CSSHover {
 						: languageFacts.cssDataManager.getPseudoClass(selectorName);
 				if (entry) {
 					hover = {
-						contents: {
-							kind: 'markdown',
-							value: languageFacts.getEntryMarkdownDescription(entry),
-						},
+						contents: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
 						range: getRange(node)
 					};
 				}
@@ -150,6 +141,6 @@ export class CSSHover {
 			const hover = this.clientCapabilities.textDocument && this.clientCapabilities.textDocument.hover;
 			this.supportsMarkdown = hover && hover.contentFormat && Array.isArray(hover.contentFormat) && hover.contentFormat.indexOf(MarkupKind.Markdown) !== -1;
 		}
-		return this.supportsMarkdown;
+		return <boolean>this.supportsMarkdown;
 	}
 }

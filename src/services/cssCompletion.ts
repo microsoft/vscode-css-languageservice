@@ -190,7 +190,7 @@ export class CSSCompletion {
 			}
 			const item: CompletionItem = {
 				label: entry.name,
-				documentation: this.getEntryDescription(entry),
+				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
 				textEdit: TextEdit.replace(range, insertText),
 				kind: CompletionItemKind.Property
 			};
@@ -324,7 +324,7 @@ export class CSSCompletion {
 				}
 				const item: CompletionItem = {
 					label: value.name,
-					documentation: this.getEntryDescription(value),
+					documentation: languageFacts.getEntryDescription(value, this.doesSupportMarkdown()),
 					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertString),
 					kind: CompletionItemKind.Value,
 					insertTextFormat
@@ -608,7 +608,7 @@ export class CSSCompletion {
 			result.items.push({
 				label: entry.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(null), entry.name),
-				documentation: this.getEntryDescription(entry),
+				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
 				kind: CompletionItemKind.Keyword
 			});
 		});
@@ -646,7 +646,7 @@ export class CSSCompletion {
 			const item: CompletionItem = {
 				label: entry.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
-				documentation: this.getEntryDescription(entry),
+				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
 				kind: CompletionItemKind.Function,
 				insertTextFormat: entry.name !== insertText ? SnippetFormat : void 0
 			};
@@ -662,7 +662,7 @@ export class CSSCompletion {
 			const item: CompletionItem = {
 				label: entry.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
-				documentation: this.getEntryDescription(entry),
+				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
 				kind: CompletionItemKind.Function,
 				insertTextFormat: entry.name !== insertText ? SnippetFormat : void 0
 			};
@@ -918,18 +918,6 @@ export class CSSCompletion {
 		return result;
 	}
 
-	private getEntryDescription(entry: languageFacts.IEntry2): string | MarkupContent | undefined {
-		const rawDescription = this.getEntryDescription(entry);
-		if (this.doesSupportMarkdown() && typeof rawDescription !== 'string' && rawDescription && rawDescription.kind === 'markdown') {
-			return {
-				kind: 'markdown',
-				value: languageFacts.getEntryMarkdownDescription(entry)
-			};
-		} else {
-			return languageFacts.getEntryStringDescription(entry);
-		}
-	}
-
 	private doesSupportMarkdown() {
 		if (!isDefined(this.supportsMarkdown)) {
 			if (!isDefined(this.clientCapabilities)) {
@@ -940,7 +928,7 @@ export class CSSCompletion {
 			const completion = this.clientCapabilities.textDocument && this.clientCapabilities.textDocument.completion;
 			this.supportsMarkdown = completion && completion.completionItem && Array.isArray(completion.completionItem.documentationFormat) && completion.completionItem.documentationFormat.indexOf(MarkupKind.Markdown) !== -1;
 		}
-		return this.supportsMarkdown;
+		return <boolean>this.supportsMarkdown;
 	}
 }
 

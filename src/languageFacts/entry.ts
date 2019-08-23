@@ -41,7 +41,21 @@ function getEntryStatus(status: EntryStatus) {
 	}
 }
 
-export function getEntryStringDescription(entry: IEntry2): string {
+export function getEntryDescription(entry: IEntry2, doesSupportMarkdown: boolean): MarkupContent {
+	if (doesSupportMarkdown) {
+		return {
+			kind: 'markdown',
+			value: getEntryMarkdownDescription(entry)
+		};
+	} else {
+		return {
+			kind: 'plaintext',
+			value: getEntryStringDescription(entry)
+		};
+	}
+}
+
+function getEntryStringDescription(entry: IEntry2): string {
 	if (!entry.description || entry.description === '') {
 		return '';
 	}
@@ -75,7 +89,7 @@ export function getEntryStringDescription(entry: IEntry2): string {
 	return result;
 }
 
-export function getEntryMarkdownDescription(entry: IEntry2): string {
+function getEntryMarkdownDescription(entry: IEntry2): string {
 	if (!entry.description || entry.description === '') {
 		return '';
 	}

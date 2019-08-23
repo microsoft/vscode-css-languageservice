@@ -67,10 +67,10 @@ suite('CSS - Language Facts', () => {
 		assert.ok(alignLast.browsers!.indexOf("E12") !== -1);
 		assert.ok(alignLast.browsers!.indexOf("FF49") !== -1);
 		assert.ok(alignLast.browsers!.indexOf("C47") !== -1);
-		assert.ok(alignLast.browsers!.indexOf("IE") !== -1);
+		assert.ok(alignLast.browsers!.indexOf("IE5.5") !== -1);
 		assert.ok(alignLast.browsers!.indexOf("O") !== -1);
 
-		assert.equal(getBrowserLabel(alignLast.browsers!), 'Edge 12, Firefox 49, Chrome 47, IE, Opera');
+		assert.equal(getBrowserLabel(alignLast.browsers!), 'Edge 12, Firefox 49, Chrome 47, IE 5, Opera');
 
 		let r = alignLast.restrictions;
 
