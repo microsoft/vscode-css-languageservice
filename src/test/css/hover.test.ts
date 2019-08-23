@@ -29,7 +29,11 @@ function assertHover(value: string, expected: Hover, languageId = 'css'): void {
 suite('CSS Hover', () => {
 	test('basic', () => {
 		assertHover('.test { |color: blue; }', {
-			contents: [`Color of an element's text`]
+			contents: {
+				kind: 'markdown',
+				value:
+					"Color of an element's text\n\nSyntax: <color>\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/color)"
+			}
 		});
 
 		/**

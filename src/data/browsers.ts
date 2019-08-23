@@ -275,6 +275,12 @@ export const cssData : CSSDataV1 = {
 			],
 			values: [],
 			"syntax": "initial | inherit | unset | revert",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/all"
+				}
+			],
 			"description": "Shorthand that resets all properties except 'direction' and 'unicode-bidi'.",
 			"restrictions": [
 				"enum"
@@ -286,6 +292,12 @@ export const cssData : CSSDataV1 = {
 				"S9"
 			],
 			values: [],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/alt"
+				}
+			],
 			"description": "Provides alternative text for assistive technology to replace the generated content of a ::before or ::after element.",
 			"restrictions": [
 				"string",
@@ -333,6 +345,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-animation>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/animation"
+				}
+			],
 			"description": "Shorthand property combines six of the animation properties into a single property.",
 			"restrictions": [
 				"time",
@@ -345,6 +363,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "animation-delay",
 			"syntax": "<time>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-delay"
+				}
+			],
 			"description": "Defines when the animation will start.",
 			"restrictions": [
 				"time"
@@ -371,6 +395,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-animation-direction>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-direction"
+				}
+			],
 			"description": "Defines whether or not the animation should play in reverse on alternate cycles.",
 			"restrictions": [
 				"enum"
@@ -379,6 +409,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "animation-duration",
 			"syntax": "<time>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-duration"
+				}
+			],
 			"description": "Defines the length of time that an animation takes to complete one cycle.",
 			"restrictions": [
 				"time"
@@ -405,6 +441,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-animation-fill-mode>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-fill-mode"
+				}
+			],
 			"description": "Defines what values are applied by the animation outside the time it is executing.",
 			"restrictions": [
 				"enum"
@@ -419,6 +461,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-animation-iteration-count>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-iteration-count"
+				}
+			],
 			"description": "Defines the number of times an animation cycle is played. The default value is one, meaning the animation will play from beginning to end once.",
 			"restrictions": [
 				"number",
@@ -434,6 +482,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ none | <keyframes-name> ]#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-name"
+				}
+			],
 			"description": "Defines a list of animations that apply. Each name is used to select the keyframe at-rule that provides the property values for the animation.",
 			"restrictions": [
 				"identifier",
@@ -453,6 +507,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-animation-play-state>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-play-state"
+				}
+			],
 			"description": "Defines whether the animation is running or paused.",
 			"restrictions": [
 				"enum"
@@ -461,6 +521,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "animation-timing-function",
 			"syntax": "<timing-function>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-timing-function"
+				}
+			],
 			"description": "Describes how the animation will progress over one cycle of its duration.",
 			"restrictions": [
 				"timing-function"
@@ -479,6 +545,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "visible | hidden",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/backface-visibility"
+				}
+			],
 			"description": "Determines whether or not the 'back' side of a transformed element is visible when facing the viewer. With an identity transform, the front side of an element faces the viewer.",
 			"restrictions": [
 				"enum"
@@ -505,6 +577,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ <bg-layer> , ]* <final-bg-layer>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/background"
+				}
+			],
 			"description": "Shorthand property for setting most background properties at the same place in the style sheet.",
 			"restrictions": [
 				"enum",
@@ -534,6 +612,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<attachment>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/background-attachment"
+				}
+			],
 			"description": "Specifies whether the background images are fixed with regard to the viewport ('fixed') or scroll along with the element ('scroll') or its contents ('local').",
 			"restrictions": [
 				"enum"
@@ -638,6 +722,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<blend-mode>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/background-blend-mode"
+				}
+			],
 			"description": "Defines the blending mode of each background layer.",
 			"restrictions": [
 				"enum"
@@ -646,6 +736,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "background-clip",
 			"syntax": "<box>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/background-clip"
+				}
+			],
 			"description": "Determines the background painting area.",
 			"restrictions": [
 				"box"
@@ -654,6 +750,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "background-color",
 			"syntax": "<color>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/background-color"
+				}
+			],
 			"description": "Sets the background color of an element.",
 			"restrictions": [
 				"color"
@@ -668,6 +770,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<bg-image>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/background-image"
+				}
+			],
 			"description": "Sets the background image(s) of an element.",
 			"restrictions": [
 				"image",
@@ -677,6 +785,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "background-origin",
 			"syntax": "<box>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/background-origin"
+				}
+			],
 			"description": "For elements rendered as a single box, specifies the background positioning area. For elements rendered as multiple boxes (e.g., inline boxes on several lines, boxes on several pages) specifies which boxes 'box-decoration-break' operates on to determine the background positioning area(s).",
 			"restrictions": [
 				"box"
@@ -685,6 +799,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "background-position",
 			"syntax": "<bg-position>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/background-position"
+				}
+			],
 			"description": "Specifies the initial position of the background image(s) (after any resizing) within their corresponding background positioning area.",
 			"restrictions": [
 				"position",
@@ -710,6 +830,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "experimental",
 			"syntax": "[ center | [ left | right | x-start | x-end ]? <length-percentage>? ]#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/background-position-x"
+				}
+			],
 			"description": "If background images have been specified, this property specifies their initial position (after any resizing) within their corresponding background positioning area.",
 			"restrictions": [
 				"length",
@@ -734,6 +860,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "experimental",
 			"syntax": "[ center | [ top | bottom | y-start | y-end ]? <length-percentage>? ]#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/background-position-y"
+				}
+			],
 			"description": "If background images have been specified, this property specifies their initial position (after any resizing) within their corresponding background positioning area.",
 			"restrictions": [
 				"length",
@@ -744,6 +876,12 @@ export const cssData : CSSDataV1 = {
 			name: "background-repeat",
 			values: [],
 			"syntax": "<repeat-style>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/background-repeat"
+				}
+			],
 			"description": "Specifies how background images are tiled after they have been sized and positioned.",
 			"restrictions": [
 				"repeat"
@@ -766,6 +904,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<bg-size>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/background-size"
+				}
+			],
 			"description": "Specifies the size of the background images.",
 			"restrictions": [
 				"length",
@@ -797,6 +941,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'width'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/block-size"
+				}
+			],
 			"description": "Logical 'width'. Mapping depends on the element’s 'writing-mode'.",
 			"restrictions": [
 				"length",
@@ -806,6 +956,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border",
 			"syntax": "<line-width> || <line-style> || <color>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border"
+				}
+			],
 			"description": "Shorthand property for setting border width, style, and color.",
 			"restrictions": [
 				"length",
@@ -822,6 +978,12 @@ export const cssData : CSSDataV1 = {
 				"C69"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-end"
+				}
+			],
 			"description": "Logical 'border-bottom'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -838,6 +1000,12 @@ export const cssData : CSSDataV1 = {
 				"C69"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-start"
+				}
+			],
 			"description": "Logical 'border-top'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -855,6 +1023,12 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-color'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-end-color"
+				}
+			],
 			"description": "Logical 'border-bottom-color'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"color"
@@ -869,6 +1043,12 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-color'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-start-color"
+				}
+			],
 			"description": "Logical 'border-top-color'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"color"
@@ -883,6 +1063,12 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-style'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-end-style"
+				}
+			],
 			"description": "Logical 'border-bottom-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"line-style"
@@ -897,6 +1083,12 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-style'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-start-style"
+				}
+			],
 			"description": "Logical 'border-top-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"line-style"
@@ -911,6 +1103,12 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-width'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-end-width"
+				}
+			],
 			"description": "Logical 'border-bottom-width'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -926,6 +1124,12 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-width'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-start-width"
+				}
+			],
 			"description": "Logical 'border-top-width'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -935,6 +1139,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-bottom",
 			"syntax": "<line-width> || <line-style> || <color>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom"
+				}
+			],
 			"description": "Shorthand property for setting border width, style and color.",
 			"restrictions": [
 				"length",
@@ -946,6 +1156,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-bottom-color",
 			"syntax": "<'border-top-color'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom-color"
+				}
+			],
 			"description": "Sets the color of the bottom border.",
 			"restrictions": [
 				"color"
@@ -954,6 +1170,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-bottom-left-radius",
 			"syntax": "<length-percentage>{1,2}",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom-left-radius"
+				}
+			],
 			"description": "Defines the radii of the bottom left outer border edge.",
 			"restrictions": [
 				"length",
@@ -963,6 +1185,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-bottom-right-radius",
 			"syntax": "<length-percentage>{1,2}",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom-right-radius"
+				}
+			],
 			"description": "Defines the radii of the bottom right outer border edge.",
 			"restrictions": [
 				"length",
@@ -972,6 +1200,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-bottom-style",
 			"syntax": "<line-style>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom-style"
+				}
+			],
 			"description": "Sets the style of the bottom border.",
 			"restrictions": [
 				"line-style"
@@ -980,6 +1214,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-bottom-width",
 			"syntax": "<line-width>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom-width"
+				}
+			],
 			"description": "Sets the thickness of the bottom border.",
 			"restrictions": [
 				"length",
@@ -999,6 +1239,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "collapse | separate",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-collapse"
+				}
+			],
 			"description": "Selects a table's border model.",
 			"restrictions": [
 				"enum"
@@ -1008,6 +1254,12 @@ export const cssData : CSSDataV1 = {
 			name: "border-color",
 			values: [],
 			"syntax": "<color>{1,4}",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-color"
+				}
+			],
 			"description": "The color of the border around all four edges of an element.",
 			"restrictions": [
 				"color"
@@ -1049,6 +1301,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'border-image-source'> || <'border-image-slice'> [ / <'border-image-width'> | / <'border-image-width'>? / <'border-image-outset'> ]? || <'border-image-repeat'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image"
+				}
+			],
 			"description": "Shorthand property for setting 'border-image-source', 'border-image-slice', 'border-image-width', 'border-image-outset' and 'border-image-repeat'. Omitted values are set to their initial values.",
 			"restrictions": [
 				"length",
@@ -1061,6 +1319,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-image-outset",
 			"syntax": "[ <length> | <number> ]{1,4}",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image-outset"
+				}
+			],
 			"description": "The values specify the amount by which the border image area extends beyond the border box on the top, right, bottom, and left sides respectively. If the fourth value is absent, it is the same as the second. If the third one is also absent, it is the same as the first. If the second one is also absent, it is the same as the first. Numbers represent multiples of the corresponding border-width.",
 			"restrictions": [
 				"length",
@@ -1088,6 +1352,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ stretch | repeat | round | space ]{1,2}",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image-repeat"
+				}
+			],
 			"description": "Specifies how the images for the sides and the middle part of the border image are scaled and tiled. If the second keyword is absent, it is assumed to be the same as the first.",
 			"restrictions": [
 				"enum"
@@ -1102,6 +1372,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<number-percentage>{1,4} && fill?",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image-slice"
+				}
+			],
 			"description": "Specifies inward offsets from the top, right, bottom, and left edges of the image, dividing it into nine regions: four corners, four edges and a middle.",
 			"restrictions": [
 				"number",
@@ -1117,6 +1393,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <image>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image-source"
+				}
+			],
 			"description": "Specifies an image to use instead of the border styles given by the 'border-style' properties and as an additional background layer for the element. If the value is 'none' or if the image cannot be displayed, the border styles will be used.",
 			"restrictions": [
 				"image"
@@ -1131,6 +1413,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ <length-percentage> | <number> | auto ]{1,4}",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image-width"
+				}
+			],
 			"description": "The four values of 'border-image-width' specify offsets that are used to divide the border image area into nine parts. They represent inward distances from the top, right, bottom, and left sides of the area, respectively.",
 			"restrictions": [
 				"length",
@@ -1146,6 +1434,12 @@ export const cssData : CSSDataV1 = {
 				"C69"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-end"
+				}
+			],
 			"description": "Logical 'border-right'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -1162,6 +1456,12 @@ export const cssData : CSSDataV1 = {
 				"C69"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-start"
+				}
+			],
 			"description": "Logical 'border-left'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -1179,6 +1479,12 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-color'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-end-color"
+				}
+			],
 			"description": "Logical 'border-right-color'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"color"
@@ -1193,6 +1499,12 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-color'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-start-color"
+				}
+			],
 			"description": "Logical 'border-left-color'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"color"
@@ -1207,6 +1519,12 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-style'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-end-style"
+				}
+			],
 			"description": "Logical 'border-right-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"line-style"
@@ -1221,6 +1539,12 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-style'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-start-style"
+				}
+			],
 			"description": "Logical 'border-left-style'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"line-style"
@@ -1235,6 +1559,12 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-width'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-end-width"
+				}
+			],
 			"description": "Logical 'border-right-width'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -1250,6 +1580,12 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-width'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-start-width"
+				}
+			],
 			"description": "Logical 'border-left-width'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -1259,6 +1595,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-left",
 			"syntax": "<line-width> || <line-style> || <color>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-left"
+				}
+			],
 			"description": "Shorthand property for setting border width, style and color",
 			"restrictions": [
 				"length",
@@ -1270,6 +1612,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-left-color",
 			"syntax": "<color>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-left-color"
+				}
+			],
 			"description": "Sets the color of the left border.",
 			"restrictions": [
 				"color"
@@ -1278,6 +1626,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-left-style",
 			"syntax": "<line-style>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-left-style"
+				}
+			],
 			"description": "Sets the style of the left border.",
 			"restrictions": [
 				"line-style"
@@ -1286,6 +1640,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-left-width",
 			"syntax": "<line-width>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-left-width"
+				}
+			],
 			"description": "Sets the thickness of the left border.",
 			"restrictions": [
 				"length",
@@ -1295,6 +1655,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-radius",
 			"syntax": "<length-percentage>{1,4} [ / <length-percentage>{1,4} ]?",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-radius"
+				}
+			],
 			"description": "Defines the radii of the outer border edge.",
 			"restrictions": [
 				"length",
@@ -1304,6 +1670,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-right",
 			"syntax": "<line-width> || <line-style> || <color>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-right"
+				}
+			],
 			"description": "Shorthand property for setting border width, style and color",
 			"restrictions": [
 				"length",
@@ -1315,6 +1687,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-right-color",
 			"syntax": "<color>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-right-color"
+				}
+			],
 			"description": "Sets the color of the right border.",
 			"restrictions": [
 				"color"
@@ -1323,6 +1701,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-right-style",
 			"syntax": "<line-style>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-right-style"
+				}
+			],
 			"description": "Sets the style of the right border.",
 			"restrictions": [
 				"line-style"
@@ -1331,6 +1715,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-right-width",
 			"syntax": "<line-width>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-right-width"
+				}
+			],
 			"description": "Sets the thickness of the right border.",
 			"restrictions": [
 				"length",
@@ -1340,6 +1730,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-spacing",
 			"syntax": "<length> <length>?",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-spacing"
+				}
+			],
 			"description": "The lengths specify the distance that separates adjoining cell borders. If one length is specified, it gives both the horizontal and vertical spacing. If two are specified, the first gives the horizontal spacing and the second the vertical spacing. Lengths may not be negative.",
 			"restrictions": [
 				"length"
@@ -1349,6 +1745,12 @@ export const cssData : CSSDataV1 = {
 			name: "border-style",
 			values: [],
 			"syntax": "<line-style>{1,4}",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-style"
+				}
+			],
 			"description": "The style of the border around edges of an element.",
 			"restrictions": [
 				"line-style"
@@ -1357,6 +1759,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-top",
 			"syntax": "<line-width> || <line-style> || <color>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top"
+				}
+			],
 			"description": "Shorthand property for setting border width, style and color",
 			"restrictions": [
 				"length",
@@ -1368,6 +1776,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-top-color",
 			"syntax": "<color>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top-color"
+				}
+			],
 			"description": "Sets the color of the top border.",
 			"restrictions": [
 				"color"
@@ -1376,6 +1790,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-top-left-radius",
 			"syntax": "<length-percentage>{1,2}",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top-left-radius"
+				}
+			],
 			"description": "Defines the radii of the top left outer border edge.",
 			"restrictions": [
 				"length",
@@ -1385,6 +1805,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-top-right-radius",
 			"syntax": "<length-percentage>{1,2}",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top-right-radius"
+				}
+			],
 			"description": "Defines the radii of the top right outer border edge.",
 			"restrictions": [
 				"length",
@@ -1394,6 +1820,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-top-style",
 			"syntax": "<line-style>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top-style"
+				}
+			],
 			"description": "Sets the style of the top border.",
 			"restrictions": [
 				"line-style"
@@ -1402,6 +1834,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "border-top-width",
 			"syntax": "<line-width>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top-width"
+				}
+			],
 			"description": "Sets the thickness of the top border.",
 			"restrictions": [
 				"length",
@@ -1412,6 +1850,12 @@ export const cssData : CSSDataV1 = {
 			name: "border-width",
 			values: [],
 			"syntax": "<line-width>{1,4}",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-width"
+				}
+			],
 			"description": "Shorthand that sets the four 'border-*-width' properties. If it has four values, they set top, right, bottom and left in that order. If left is missing, it is the same as right; if bottom is missing, it is the same as top; if right is missing, it is the same as top.",
 			"restrictions": [
 				"length",
@@ -1427,6 +1871,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/bottom"
+				}
+			],
 			"description": "Specifies how far an absolutely positioned box's bottom margin edge is offset above the bottom edge of the box's 'containing block'.",
 			"restrictions": [
 				"length",
@@ -1452,6 +1902,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "slice | clone",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/box-decoration-break"
+				}
+			],
 			"description": "Specifies whether individual boxes are treated as broken pieces of one continuous box, or whether each box is individually wrapped with the border and padding.",
 			"restrictions": [
 				"enum"
@@ -1470,6 +1926,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <shadow>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/box-shadow"
+				}
+			],
 			"description": "Attaches one or more drop-shadows to the box. The property is a comma-separated list of shadows, each specified by 2-4 length values, an optional color, and an optional 'inset' keyword. Omitted lengths are 0; omitted colors are a user agent chosen color.",
 			"restrictions": [
 				"length",
@@ -1490,6 +1952,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "content-box | border-box",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/box-sizing"
+				}
+			],
 			"description": "Specifies the behavior of the 'width' and 'height' properties.",
 			"restrictions": [
 				"enum"
@@ -1626,6 +2094,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "top | bottom | block-start | block-end | inline-start | inline-end",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/caption-side"
+				}
+			],
 			"description": "Specifies the position of the caption box with respect to the table box.",
 			"restrictions": [
 				"enum"
@@ -1646,6 +2120,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | <color>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/caret-color"
+				}
+			],
 			"description": "Controls the color of the text insertion indicator.",
 			"restrictions": [
 				"color",
@@ -1673,6 +2153,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | left | right | both | inline-start | inline-end",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/clear"
+				}
+			],
 			"description": "Indicates which sides of an element's box(es) may not be adjacent to an earlier floating box. The 'clear' property does not consider floats inside the element itself or in other block formatting contexts.",
 			"restrictions": [
 				"enum"
@@ -1691,6 +2177,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<shape> | auto",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/clip"
+				}
+			],
 			"description": "Deprecated. Use the 'clip-path' property when support allows. Defines the visible portion of an element’s box.",
 			"restrictions": [
 				"enum"
@@ -1709,6 +2201,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<clip-source> | [ <basic-shape> || <geometry-box> ] | none",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/clip-path"
+				}
+			],
 			"description": "Specifies a clipping path where everything inside the path is visible and everything outside is clipped out.",
 			"restrictions": [
 				"url",
@@ -1745,6 +2243,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "color",
 			"syntax": "<color>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/color"
+				}
+			],
 			"description": "Color of an element's text",
 			"restrictions": [
 				"color"
@@ -1788,6 +2292,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<integer> | auto",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/column-count"
+				}
+			],
 			"description": "Describes the optimal number of columns into which the content of the element will be flowed.",
 			"restrictions": [
 				"integer",
@@ -1807,6 +2317,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | balance | balance-all",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/column-fill"
+				}
+			],
 			"description": "In continuous media, this property will only be consulted if the length of columns has been constrained. Otherwise, columns will automatically be balanced.",
 			"restrictions": [
 				"enum"
@@ -1830,6 +2346,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "column-rule",
 			"syntax": "<'column-rule-width'> || <'column-rule-style'> || <'column-rule-color'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/column-rule"
+				}
+			],
 			"description": "Shorthand for setting 'column-rule-width', 'column-rule-style', and 'column-rule-color' at the same place in the style sheet. Omitted values are set to their initial values.",
 			"restrictions": [
 				"length",
@@ -1841,6 +2363,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "column-rule-color",
 			"syntax": "<color>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/column-rule-color"
+				}
+			],
 			"description": "Sets the color of the column rule",
 			"restrictions": [
 				"color"
@@ -1849,6 +2377,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "column-rule-style",
 			"syntax": "<'border-style'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/column-rule-style"
+				}
+			],
 			"description": "Sets the style of the rule between columns of an element.",
 			"restrictions": [
 				"line-style"
@@ -1857,6 +2391,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "column-rule-width",
 			"syntax": "<'border-width'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/column-rule-width"
+				}
+			],
 			"description": "Sets the width of the rule between columns. Negative values are not allowed.",
 			"restrictions": [
 				"length",
@@ -1872,6 +2412,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'column-width'> || <'column-count'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/columns"
+				}
+			],
 			"description": "A shorthand property which sets both 'column-width' and 'column-count'.",
 			"restrictions": [
 				"length",
@@ -1892,6 +2438,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | all",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/column-span"
+				}
+			],
 			"description": "Describes the page/column break behavior after the generated box.",
 			"restrictions": [
 				"enum"
@@ -1906,6 +2458,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | auto",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/column-width"
+				}
+			],
 			"description": "Describes the width of columns in multicol elements.",
 			"restrictions": [
 				"length",
@@ -1951,6 +2509,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "experimental",
 			"syntax": "none | strict | content | [ size || layout || style || paint ]",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/contain"
+				}
+			],
 			"description": "Indicates that an element and its contents are, as much as possible, independent of the rest of the document tree.",
 			"restrictions": [
 				"enum"
@@ -1984,6 +2548,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | none | [ <content-replacement> | <content-list> ] [/ <string> ]?",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/content"
+				}
+			],
 			"description": "Determines which page-based occurrence of a given element is applied to a counter or string value.",
 			"restrictions": [
 				"string",
@@ -1999,6 +2569,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ <custom-ident> <integer>? ]+ | none",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/counter-increment"
+				}
+			],
 			"description": "Manipulate the value of existing counters.",
 			"restrictions": [
 				"identifier",
@@ -2014,6 +2590,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ <custom-ident> <integer>? ]+ | none",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/counter-reset"
+				}
+			],
 			"description": "Property accepts one or more names of counters (identifiers), each one optionally followed by an integer. The integer gives the value that the counter is set to on each occurrence of the element.",
 			"restrictions": [
 				"identifier",
@@ -2201,6 +2783,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ [ <url> [ <x> <y> ]? , ]* [ auto | default | none | context-menu | help | pointer | progress | wait | cell | crosshair | text | vertical-text | alias | copy | move | no-drop | not-allowed | e-resize | n-resize | ne-resize | nw-resize | s-resize | se-resize | sw-resize | w-resize | ew-resize | ns-resize | nesw-resize | nwse-resize | col-resize | row-resize | all-scroll | zoom-in | zoom-out | grab | grabbing ] ]",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/cursor"
+				}
+			],
 			"description": "Allows control over cursor appearance in an element",
 			"restrictions": [
 				"url",
@@ -2221,6 +2809,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "ltr | rtl",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/direction"
+				}
+			],
 			"description": "Specifies the inline base direction or directionality of any bidi paragraph, embedding, isolate, or override established by the box. Note: for HTML content use the 'dir' attribute and 'bdo' element rather than this property.",
 			"restrictions": [
 				"enum"
@@ -2401,6 +2995,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ <display-outside> || <display-inside> ] | <display-listitem> | <display-internal> | <display-box> | <display-legacy>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/display"
+				}
+			],
 			"description": "In combination with 'float' and 'position', determines the type of box or boxes that are generated for an element.",
 			"restrictions": [
 				"enum"
@@ -2422,6 +3022,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "show | hide",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/empty-cells"
+				}
+			],
 			"description": "In the separated borders model, this property controls the rendering of borders and backgrounds around cells that have no visible content.",
 			"restrictions": [
 				"enum"
@@ -2568,6 +3174,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <filter-function-list>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/filter"
+				}
+			],
 			"description": "Processes an element’s rendering before it is displayed in the document, by applying one or more filter effects.",
 			"restrictions": [
 				"enum",
@@ -2591,6 +3203,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/flex"
+				}
+			],
 			"description": "Specifies the components of a flexible length: the flex grow factor and flex shrink factor, and the flex basis.",
 			"restrictions": [
 				"length",
@@ -2611,6 +3229,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "content | <'width'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-basis"
+				}
+			],
 			"description": "Sets the flex basis.",
 			"restrictions": [
 				"length",
@@ -2639,6 +3263,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "row | row-reverse | column | column-reverse",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-direction"
+				}
+			],
 			"description": "Specifies how flex items are placed in the flex container, by setting the direction of the flex container’s main axis.",
 			"restrictions": [
 				"enum"
@@ -2677,6 +3307,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'flex-direction'> || <'flex-wrap'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-flow"
+				}
+			],
 			"description": "Specifies how flexbox items are placed in the flexbox.",
 			"restrictions": [
 				"enum"
@@ -2685,6 +3321,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "flex-grow",
 			"syntax": "<number>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-grow"
+				}
+			],
 			"description": "Sets the flex grow factor. Negative numbers are invalid.",
 			"restrictions": [
 				"number"
@@ -2693,6 +3335,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "flex-shrink",
 			"syntax": "<number>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-shrink"
+				}
+			],
 			"description": "Sets the flex shrink factor. Negative numbers are invalid.",
 			"restrictions": [
 				"number"
@@ -2715,6 +3363,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "nowrap | wrap | wrap-reverse",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-wrap"
+				}
+			],
 			"description": "Controls whether the flex container is single-line or multi-line, and the direction of the cross-axis, which determines the direction new lines are stacked in.",
 			"restrictions": [
 				"enum"
@@ -2745,6 +3399,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "left | right | none | inline-start | inline-end",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/float"
+				}
+			],
 			"description": "Specifies how a box should be floated. It may be set for any element, but only applies to elements that generate boxes that are not absolutely positioned.",
 			"restrictions": [
 				"enum"
@@ -2901,6 +3561,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ [ <'font-style'> || <font-variant-css21> || <'font-weight'> || <'font-stretch'> ]? <'font-size'> [ / <'line-height'> ]? <'font-family'> ] | caption | icon | menu | message-box | small-caption | status-bar",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font"
+				}
+			],
 			"description": "Shorthand property for setting 'font-style', 'font-variant', 'font-weight', 'font-size', 'line-height', and 'font-family', at the same place in the style sheet. The syntax of this property is based on a traditional typographical shorthand notation to set multiple properties related to fonts.",
 			"restrictions": [
 				"font"
@@ -2965,6 +3631,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<family-name>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-family"
+				}
+			],
 			"description": "Specifies a prioritized list of font family names or generic family names. A user agent iterates through the list of family names until it matches an available font that contains a glyph for the character to be rendered.",
 			"restrictions": [
 				"font"
@@ -3455,6 +4127,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <feature-tag-value>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-feature-settings"
+				}
+			],
 			"description": "Provides low-level control over OpenType font features. It is intended as a way of providing access to font features that are not widely used but are needed for a particular use case.",
 			"restrictions": [
 				"string",
@@ -3484,6 +4162,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | normal | none",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-kerning"
+				}
+			],
 			"description": "Kerning is the contextual adjustment of inter-glyph spacing. This property controls metric kerning, kerning that utilizes adjustment data contained in the font.",
 			"restrictions": [
 				"enum"
@@ -3501,6 +4185,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <string>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-language-override"
+				}
+			],
 			"description": "The value of 'normal' implies that when rendering with OpenType fonts the language of the document is used to infer the OpenType language system, used to select language specific features when rendering.",
 			"restrictions": [
 				"string"
@@ -3538,6 +4228,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<absolute-size> | <relative-size> | <length-percentage>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-size"
+				}
+			],
 			"description": "Indicates the desired height of glyphs from the font. For scalable fonts, the font-size is a scale factor applied to the EM unit of the font. (Note that certain glyphs may bleed outside their EM box.) For non-scalable fonts, the font-size is converted into absolute units and matched against the declared font-size of the font, using the same absolute coordinate space for both of the matched values.",
 			"restrictions": [
 				"length",
@@ -3558,6 +4254,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <number>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-size-adjust"
+				}
+			],
 			"description": "Preserves the readability of text when font fallback occurs by adjusting the font-size so that the x-height is the same irregardless of the font used.",
 			"restrictions": [
 				"number"
@@ -3603,6 +4305,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<font-stretch-absolute>{1,2}",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-stretch"
+				}
+			],
 			"description": "Selects a normal, condensed, or expanded face from a font family.",
 			"restrictions": [
 				"enum"
@@ -3625,6 +4333,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | italic | oblique <angle>{0,2}",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-style"
+				}
+			],
 			"description": "Allows italic or oblique faces to be selected. Italic forms are generally cursive in nature while oblique faces are typically sloped versions of the regular face.",
 			"restrictions": [
 				"enum"
@@ -3651,6 +4365,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | [ weight || style ]",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-synthesis"
+				}
+			],
 			"description": "Controls whether user agents are allowed to synthesize bold or oblique font faces when a font family lacks bold or italic faces.",
 			"restrictions": [
 				"enum"
@@ -3669,6 +4389,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | none | [ <common-lig-values> || <discretionary-lig-values> || <historical-lig-values> || <contextual-alt-values> || stylistic(<feature-value-name>) || historical-forms || styleset(<feature-value-name>#) || character-variant(<feature-value-name>#) || swash(<feature-value-name>) || ornaments(<feature-value-name>) || annotation(<feature-value-name>) || [ small-caps | all-small-caps | petite-caps | all-petite-caps | unicase | titling-caps ] || <numeric-figure-values> || <numeric-spacing-values> || <numeric-fraction-values> || ordinal || slashed-zero || <east-asian-variant-values> || <east-asian-width-values> || ruby ]",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant"
+				}
+			],
 			"description": "Specifies variant representations of the font",
 			"restrictions": [
 				"enum"
@@ -3714,6 +4440,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | [ stylistic( <feature-value-name> ) || historical-forms || styleset( <feature-value-name># ) || character-variant( <feature-value-name># ) || swash( <feature-value-name> ) || ornaments( <feature-value-name> ) || annotation( <feature-value-name> ) ]",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-alternates"
+				}
+			],
 			"description": "For any given character, fonts can provide a variety of alternate glyphs in addition to the default glyph for that character. This property provides control over the selection of these alternate glyphs.",
 			"restrictions": [
 				"enum"
@@ -3757,6 +4489,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | small-caps | all-small-caps | petite-caps | all-petite-caps | unicase | titling-caps",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-caps"
+				}
+			],
 			"description": "Specifies control over capitalized forms.",
 			"restrictions": [
 				"enum"
@@ -3812,6 +4550,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | [ <east-asian-variant-values> || <east-asian-width-values> || ruby ]",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-east-asian"
+				}
+			],
 			"description": "Allows control of glyph substitute and positioning in East Asian text.",
 			"restrictions": [
 				"enum"
@@ -3894,6 +4638,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | none | [ <common-lig-values> || <discretionary-lig-values> || <historical-lig-values> || <contextual-alt-values> ]",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-ligatures"
+				}
+			],
 			"description": "Specifies control over which ligatures are enabled or disabled. A value of ‘normal’ implies that the defaults set by the font are used.",
 			"restrictions": [
 				"enum"
@@ -3946,6 +4696,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | [ <numeric-figure-values> || <numeric-spacing-values> || <numeric-fraction-values> || ordinal || slashed-zero ]",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-numeric"
+				}
+			],
 			"description": "Specifies control over numerical forms.",
 			"restrictions": [
 				"enum"
@@ -3971,6 +4727,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | sub | super",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-position"
+				}
+			],
 			"description": "Specifies the vertical position",
 			"restrictions": [
 				"enum"
@@ -4033,6 +4795,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<font-weight-absolute>{1,2}",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-weight"
+				}
+			],
 			"description": "Specifies weight of glyphs in the font, their degree of blackness or stroke thickness.",
 			"restrictions": [
 				"enum"
@@ -4081,6 +4849,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line> [ / <grid-line> ]{0,3}",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-area"
+				}
+			],
 			"description": "Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement. Shorthand for 'grid-row-start', 'grid-column-start', 'grid-row-end', and 'grid-column-end'.",
 			"restrictions": [
 				"identifier",
@@ -4097,6 +4871,12 @@ export const cssData : CSSDataV1 = {
 				"O44"
 			],
 			"syntax": "<'grid-template'> | <'grid-template-rows'> / [ auto-flow && dense? ] <'grid-auto-columns'>? | [ auto-flow && dense? ] <'grid-auto-rows'>? / <'grid-template-columns'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/grid"
+				}
+			],
 			"description": "The grid CSS property is a shorthand property that sets all of the explicit grid properties ('grid-template-rows', 'grid-template-columns', and 'grid-template-areas'), and all the implicit grid properties ('grid-auto-rows', 'grid-auto-columns', and 'grid-auto-flow'), in a single declaration.",
 			"restrictions": [
 				"identifier",
@@ -4127,6 +4907,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<track-size>+",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-auto-columns"
+				}
+			],
 			"description": "Specifies the size of implicitly created columns.",
 			"restrictions": [
 				"length",
@@ -4157,6 +4943,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ row | column ] || dense",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-auto-flow"
+				}
+			],
 			"description": "Controls how the auto-placement algorithm works, specifying exactly how auto-placed items get flowed into the grid.",
 			"restrictions": [
 				"enum"
@@ -4183,6 +4975,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<track-size>+",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-auto-rows"
+				}
+			],
 			"description": "Specifies the size of implicitly created rows.",
 			"restrictions": [
 				"length",
@@ -4209,6 +5007,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line> [ / <grid-line> ]?",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-column"
+				}
+			],
 			"description": "Shorthand for 'grid-column-start' and 'grid-column-end'.",
 			"restrictions": [
 				"identifier",
@@ -4236,6 +5040,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-column-end"
+				}
+			],
 			"description": "Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.",
 			"restrictions": [
 				"identifier",
@@ -4278,6 +5088,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-column-start"
+				}
+			],
 			"description": "Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.",
 			"restrictions": [
 				"identifier",
@@ -4320,6 +5136,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line> [ / <grid-line> ]?",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-row"
+				}
+			],
 			"description": "Shorthand for 'grid-row-start' and 'grid-row-end'.",
 			"restrictions": [
 				"identifier",
@@ -4347,6 +5169,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-row-end"
+				}
+			],
 			"description": "Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.",
 			"restrictions": [
 				"identifier",
@@ -4389,6 +5217,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-row-start"
+				}
+			],
 			"description": "Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.",
 			"restrictions": [
 				"identifier",
@@ -4436,6 +5270,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | [ <'grid-template-rows'> / <'grid-template-columns'> ] | [ <line-names>? <string> <track-size>? <line-names>? ]+ [ / <explicit-track-list> ]?",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-template"
+				}
+			],
 			"description": "Shorthand for setting grid-template-columns, grid-template-rows, and grid-template-areas in a single declaration.",
 			"restrictions": [
 				"identifier",
@@ -4461,6 +5301,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <string>+",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-template-areas"
+				}
+			],
 			"description": "Specifies named grid areas, which are not associated with any particular grid item, but can be referenced from the grid-placement properties.",
 			"restrictions": [
 				"string"
@@ -4506,6 +5352,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <track-list> | <auto-track-list>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-template-columns"
+				}
+			],
 			"description": "specifies, as a space-separated track list, the line names and track sizing functions of the grid.",
 			"restrictions": [
 				"identifier",
@@ -4554,6 +5406,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <track-list> | <auto-track-list>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-template-rows"
+				}
+			],
 			"description": "specifies, as a space-separated track list, the line names and track sizing functions of the grid.",
 			"restrictions": [
 				"identifier",
@@ -4584,6 +5442,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<viewport-length>{1,2}",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/height"
+				}
+			],
 			"description": "Specifies the height of the content area, padding area or border area (depending on 'box-sizing') of certain boxes.",
 			"restrictions": [
 				"length",
@@ -4607,6 +5471,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | manual | auto",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/hyphens"
+				}
+			],
 			"description": "Controls whether hyphenation is allowed to create more break opportunities within a line of text.",
 			"restrictions": [
 				"enum"
@@ -4628,6 +5498,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "from-image | <angle> | [ <angle>? flip ]",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/image-orientation"
+				}
+			],
 			"description": "Specifies an orthogonal rotation to be applied to an image before it is laid out.",
 			"restrictions": [
 				"angle"
@@ -4673,6 +5549,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | crisp-edges | pixelated",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/image-rendering"
+				}
+			],
 			"description": "Provides a hint to the user-agent about what aspects of an image are most important to preserve when the image is scaled, to aid the user-agent in the choice of an appropriate scaling algorithm.",
 			"restrictions": [
 				"enum"
@@ -4709,6 +5591,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "obsolete",
 			"syntax": "auto | normal | active | inactive | disabled",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/ime-mode"
+				}
+			],
 			"description": "Controls the state of the input method editor for text fields.",
 			"restrictions": [
 				"enum"
@@ -4729,6 +5617,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'width'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/inline-size"
+				}
+			],
 			"description": "Logical 'height'. Mapping depends on the element’s 'writing-mode'.",
 			"restrictions": [
 				"length",
@@ -4754,6 +5648,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | isolate",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/isolation"
+				}
+			],
 			"description": "In CSS setting to 'isolate' will turn the element into a stacking context. In SVG, it defines whether an element is isolated or not.",
 			"restrictions": [
 				"enum"
@@ -4856,6 +5756,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/left"
+				}
+			],
 			"description": "Specifies how far an absolutely positioned box's left margin edge is offset to the right of the left edge of the box's 'containing block'.",
 			"restrictions": [
 				"length",
@@ -4871,6 +5777,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <length>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/letter-spacing"
+				}
+			],
 			"description": "Specifies the minimum, maximum, and optimal spacing between grapheme clusters.",
 			"restrictions": [
 				"length"
@@ -4919,6 +5831,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | loose | normal | strict",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/line-break"
+				}
+			],
 			"description": "Specifies what set of line breaking restrictions are in effect within the element.",
 			"restrictions": [
 				"enum"
@@ -4933,6 +5851,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <number> | <length> | <percentage>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/line-height"
+				}
+			],
 			"description": "Determines the block-progression dimension of the text content area of an inline box.",
 			"restrictions": [
 				"number",
@@ -5008,6 +5932,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'list-style-type'> || <'list-style-position'> || <'list-style-image'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/list-style"
+				}
+			],
 			"description": "Shorthand for setting 'list-style-type', 'list-style-position' and 'list-style-image'",
 			"restrictions": [
 				"image",
@@ -5024,6 +5954,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<url> | none",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/list-style-image"
+				}
+			],
 			"description": "Sets the image that will be used as the list item marker. When the image is available, it will replace the marker set with the 'list-style-type' marker.",
 			"restrictions": [
 				"image"
@@ -5042,6 +5978,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "inside | outside",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/list-style-position"
+				}
+			],
 			"description": "Specifies the position of the '::marker' pseudo-element's box in the list item.",
 			"restrictions": [
 				"enum"
@@ -5116,6 +6058,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<counter-style> | <string> | none",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/list-style-type"
+				}
+			],
 			"description": "Used to construct the default contents of a list item’s marker",
 			"restrictions": [
 				"enum",
@@ -5130,6 +6078,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ <length> | <percentage> | auto ]{1,4}",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/margin"
+				}
+			],
 			"description": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits.",
 			"restrictions": [
 				"length",
@@ -5150,6 +6104,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'margin-left'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-block-end"
+				}
+			],
 			"description": "Logical 'margin-bottom'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -5170,6 +6130,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'margin-left'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-block-start"
+				}
+			],
 			"description": "Logical 'margin-top'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -5184,6 +6150,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-bottom"
+				}
+			],
 			"description": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
 			"restrictions": [
 				"length",
@@ -5204,6 +6176,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'margin-left'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-inline-end"
+				}
+			],
 			"description": "Logical 'margin-right'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -5224,6 +6202,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'margin-left'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-inline-start"
+				}
+			],
 			"description": "Logical 'margin-left'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -5238,6 +6222,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-left"
+				}
+			],
 			"description": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
 			"restrictions": [
 				"length",
@@ -5252,6 +6242,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-right"
+				}
+			],
 			"description": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
 			"restrictions": [
 				"length",
@@ -5266,6 +6262,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-top"
+				}
+			],
 			"description": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
 			"restrictions": [
 				"length",
@@ -5360,6 +6362,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<mask-reference>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-image"
+				}
+			],
 			"description": "Sets the mask layer image of an element.",
 			"restrictions": [
 				"url",
@@ -5387,6 +6395,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<masking-mode>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-mode"
+				}
+			],
 			"description": "Indicates whether the mask layer image is treated as luminance mask or alpha mask.",
 			"restrictions": [
 				"url",
@@ -5403,6 +6417,12 @@ export const cssData : CSSDataV1 = {
 				"O15"
 			],
 			"syntax": "<geometry-box>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-origin"
+				}
+			],
 			"description": "Specifies the mask positioning area.",
 			"restrictions": [
 				"geometry-box",
@@ -5419,6 +6439,12 @@ export const cssData : CSSDataV1 = {
 				"O15"
 			],
 			"syntax": "<position>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-position"
+				}
+			],
 			"description": "Specifies how mask layer images are positioned.",
 			"restrictions": [
 				"position",
@@ -5436,6 +6462,12 @@ export const cssData : CSSDataV1 = {
 				"O15"
 			],
 			"syntax": "<repeat-style>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-repeat"
+				}
+			],
 			"description": "Specifies how mask layer images are tiled after they have been sized and positioned.",
 			"restrictions": [
 				"repeat"
@@ -5465,6 +6497,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<bg-size>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-size"
+				}
+			],
 			"description": "Specifies the size of the mask layer images.",
 			"restrictions": [
 				"length",
@@ -5491,6 +6529,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "luminance | alpha",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-type"
+				}
+			],
 			"description": "Defines whether the content of the <mask> element is treated as as luminance mask or alpha mask.",
 			"restrictions": [
 				"enum"
@@ -5512,6 +6556,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "experimental",
 			"syntax": "<'max-width'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/max-block-size"
+				}
+			],
 			"description": "Logical 'max-width'. Mapping depends on the element’s 'writing-mode'.",
 			"restrictions": [
 				"length",
@@ -5539,6 +6589,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<viewport-length>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/max-height"
+				}
+			],
 			"description": "Allows authors to constrain content height to a certain range.",
 			"restrictions": [
 				"length",
@@ -5561,6 +6617,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "experimental",
 			"syntax": "<'max-width'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/max-inline-size"
+				}
+			],
 			"description": "Logical 'max-height'. Mapping depends on the element’s 'writing-mode'.",
 			"restrictions": [
 				"length",
@@ -5588,6 +6650,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<viewport-length>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/max-width"
+				}
+			],
 			"description": "Allows authors to constrain content width to a certain range.",
 			"restrictions": [
 				"length",
@@ -5603,6 +6671,12 @@ export const cssData : CSSDataV1 = {
 				"O44"
 			],
 			"syntax": "<'min-width'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/min-block-size"
+				}
+			],
 			"description": "Logical 'min-width'. Mapping depends on the element’s 'writing-mode'.",
 			"restrictions": [
 				"length",
@@ -5629,6 +6703,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<viewport-length>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/min-height"
+				}
+			],
 			"description": "Allows authors to constrain content height to a certain range.",
 			"restrictions": [
 				"length",
@@ -5644,6 +6724,12 @@ export const cssData : CSSDataV1 = {
 				"O44"
 			],
 			"syntax": "<'min-width'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/min-inline-size"
+				}
+			],
 			"description": "Logical 'min-height'. Mapping depends on the element’s 'writing-mode'.",
 			"restrictions": [
 				"length",
@@ -5670,6 +6756,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<viewport-length>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/min-width"
+				}
+			],
 			"description": "Allows authors to constrain content width to a certain range.",
 			"restrictions": [
 				"length",
@@ -5775,6 +6867,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<blend-mode>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/mix-blend-mode"
+				}
+			],
 			"description": "Defines the formula that must be used to mix the colors with the backdrop.",
 			"restrictions": [
 				"enum"
@@ -6326,6 +7424,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<color>+ | none",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-border-bottom-colors"
+				}
+			],
 			"description": "Sets a list of colors for the bottom border.",
 			"restrictions": [
 				"color"
@@ -6384,6 +7488,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<color>+ | none",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-border-left-colors"
+				}
+			],
 			"description": "Sets a list of colors for the bottom border.",
 			"restrictions": [
 				"color"
@@ -6396,6 +7506,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<color>+ | none",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-border-right-colors"
+				}
+			],
 			"description": "Sets a list of colors for the bottom border.",
 			"restrictions": [
 				"color"
@@ -6408,6 +7524,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<color>+ | none",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-border-top-colors"
+				}
+			],
 			"description": "Ske Firefox, -moz-border-bottom-colors sets a list of colors for the bottom border.",
 			"restrictions": [
 				"color"
@@ -7117,6 +8239,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "ignore | normal | select-after | select-before | select-menu | select-same | select-all | none",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-user-focus"
+				}
+			],
 			"description": "Used to indicate whether the element can have focus."
 		},
 		{
@@ -9614,6 +10742,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "fill | contain | cover | none | scale-down",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/object-fit"
+				}
+			],
 			"description": "Specifies how the contents of a replaced element should be scaled relative to the box established by its used height and width.",
 			"restrictions": [
 				"enum"
@@ -9629,6 +10763,12 @@ export const cssData : CSSDataV1 = {
 				"O19"
 			],
 			"syntax": "<position>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/object-position"
+				}
+			],
 			"description": "Determines the alignment of the replaced element inside its box.",
 			"restrictions": [
 				"position",
@@ -9726,6 +10866,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "opacity",
 			"syntax": "<number>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/opacity"
+				}
+			],
 			"description": "Opacity of an element's text, where 1 is opaque and 0 is entirely transparent.",
 			"restrictions": [
 				"number(0-1)"
@@ -9734,6 +10880,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "order",
 			"syntax": "<integer>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/order"
+				}
+			],
 			"description": "Controls the order in which children of a flex container appear within the flex container, by assigning them to ordinal groups.",
 			"restrictions": [
 				"integer"
@@ -9749,6 +10901,12 @@ export const cssData : CSSDataV1 = {
 				"O9.2"
 			],
 			"syntax": "<integer>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/orphans"
+				}
+			],
 			"description": "Specifies the minimum number of line boxes in a block container that must be left in a fragment before a fragmentation break.",
 			"restrictions": [
 				"integer"
@@ -10056,6 +11214,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ <'outline-color'> || <'outline-style'> || <'outline-width'> ]",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/outline"
+				}
+			],
 			"description": "Shorthand property for 'outline-style', 'outline-width', and 'outline-color'.",
 			"restrictions": [
 				"length",
@@ -10074,6 +11238,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<color> | invert",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/outline-color"
+				}
+			],
 			"description": "The color of the outline.",
 			"restrictions": [
 				"enum",
@@ -10090,6 +11260,12 @@ export const cssData : CSSDataV1 = {
 				"O9.5"
 			],
 			"syntax": "<length>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/outline-offset"
+				}
+			],
 			"description": "Offset the outline and draw it beyond the border edge.",
 			"restrictions": [
 				"length"
@@ -10104,6 +11280,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | <'border-style'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/outline-style"
+				}
+			],
 			"description": "Style of the outline.",
 			"restrictions": [
 				"line-style",
@@ -10113,6 +11295,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "outline-width",
 			"syntax": "<line-width>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/outline-width"
+				}
+			],
 			"description": "Width of the outline.",
 			"restrictions": [
 				"length",
@@ -10144,6 +11332,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ visible | hidden | clip | scroll | auto ]{1,2}",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow"
+				}
+			],
 			"description": "Shorthand for setting 'overflow-x' and 'overflow-y'.",
 			"restrictions": [
 				"enum"
@@ -10162,6 +11356,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | break-word | anywhere",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-wrap"
+				}
+			],
 			"description": "Specifies whether the UA may break within a word to prevent overflow when an otherwise-unbreakable string is too long to fit within the line box.",
 			"restrictions": [
 				"enum"
@@ -10188,6 +11388,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "visible | hidden | clip | scroll | auto",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-x"
+				}
+			],
 			"description": "Specifies the handling of overflow in the horizontal direction.",
 			"restrictions": [
 				"enum"
@@ -10214,6 +11420,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "visible | hidden | clip | scroll | auto",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-y"
+				}
+			],
 			"description": "Specifies the handling of overflow in the vertical direction.",
 			"restrictions": [
 				"enum"
@@ -10237,6 +11449,12 @@ export const cssData : CSSDataV1 = {
 			name: "padding",
 			values: [],
 			"syntax": "[ <length> | <percentage> ]{1,4}",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/padding"
+				}
+			],
 			"description": "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 			"restrictions": [
 				"length",
@@ -10246,6 +11464,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "padding-bottom",
 			"syntax": "<length> | <percentage>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-bottom"
+				}
+			],
 			"description": "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 			"restrictions": [
 				"length",
@@ -10261,6 +11485,12 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'padding-left'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-block-end"
+				}
+			],
 			"description": "Logical 'padding-bottom'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -10276,6 +11506,12 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'padding-left'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-block-start"
+				}
+			],
 			"description": "Logical 'padding-top'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -10291,6 +11527,12 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'padding-left'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-inline-end"
+				}
+			],
 			"description": "Logical 'padding-right'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -10306,6 +11548,12 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'padding-left'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-inline-start"
+				}
+			],
 			"description": "Logical 'padding-left'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -10315,6 +11563,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "padding-left",
 			"syntax": "<length> | <percentage>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-left"
+				}
+			],
 			"description": "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 			"restrictions": [
 				"length",
@@ -10324,6 +11578,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "padding-right",
 			"syntax": "<length> | <percentage>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-right"
+				}
+			],
 			"description": "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 			"restrictions": [
 				"length",
@@ -10333,6 +11593,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "padding-top",
 			"syntax": "<length> | <percentage>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-top"
+				}
+			],
 			"description": "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 			"restrictions": [
 				"length",
@@ -10364,6 +11630,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | always | avoid | left | right | recto | verso",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/page-break-after"
+				}
+			],
 			"description": "Defines rules for page breaks after an element.",
 			"restrictions": [
 				"enum"
@@ -10394,6 +11666,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | always | avoid | left | right | recto | verso",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/page-break-before"
+				}
+			],
 			"description": "Defines rules for page breaks before an element.",
 			"restrictions": [
 				"enum"
@@ -10412,6 +11690,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | avoid",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/page-break-inside"
+				}
+			],
 			"description": "Defines rules for page breaks inside an element.",
 			"restrictions": [
 				"enum"
@@ -10443,6 +11727,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "experimental",
 			"syntax": "normal | [ fill || stroke || markers ]",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/paint-order"
+				}
+			],
 			"description": "Controls the order that the three paint operations that shapes and text are rendered with: their fill, their stroke and any markers they might have.",
 			"restrictions": [
 				"enum"
@@ -10457,6 +11747,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <length>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/perspective"
+				}
+			],
 			"description": "Applies the same transform as the perspective(<number>) transform function, except that it applies only to the positioned or transformed children of the element, not to the transform on the element itself.",
 			"restrictions": [
 				"length",
@@ -10466,6 +11762,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "perspective-origin",
 			"syntax": "<position>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/perspective-origin"
+				}
+			],
 			"description": "Establishes the origin for the perspective property. It effectively sets the X and Y position at which the viewer appears to be looking at the children of the element.",
 			"restrictions": [
 				"position",
@@ -10514,6 +11816,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | none | visiblePainted | visibleFill | visibleStroke | visible | painted | fill | stroke | all | inherit",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/pointer-events"
+				}
+			],
 			"description": "Specifies under what circumstances a given element can be the target element for a pointer event.",
 			"restrictions": [
 				"enum"
@@ -10552,6 +11860,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "static | relative | absolute | sticky | fixed",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/position"
+				}
+			],
 			"restrictions": [
 				"enum"
 			]
@@ -10578,6 +11892,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | [ <string> <string> ]+",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/quotes"
+				}
+			],
 			"description": "Specifies quotation marks for any number of embedded quotations.",
 			"restrictions": [
 				"string"
@@ -10632,6 +11952,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | both | horizontal | vertical | block | inline",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/resize"
+				}
+			],
 			"description": "Specifies whether or not an element is resizable by the user, and if so, along which axis/axes.",
 			"restrictions": [
 				"enum"
@@ -10646,6 +11972,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/right"
+				}
+			],
 			"description": "Specifies how far an absolutely positioned box's right margin edge is offset to the left of the right edge of the box's 'containing block'.",
 			"restrictions": [
 				"length",
@@ -10725,6 +12057,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "experimental",
 			"syntax": "start | center | space-between | space-around",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/ruby-align"
+				}
+			],
 			"description": "Specifies how text is distributed within the various ruby boxes when their contents do not exactly fill their respective boxes.",
 			"restrictions": [
 				"enum"
@@ -10784,6 +12122,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "experimental",
 			"syntax": "over | under | inter-character",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/ruby-position"
+				}
+			],
 			"description": "Used by the parent of elements with display: ruby-text to control the position of the ruby text with respect to its base.",
 			"restrictions": [
 				"enum"
@@ -10814,6 +12158,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"IE5"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-3dlight-color"
+				}
+			],
 			"description": "Determines the color of the top and left edges of the scroll box and scroll arrows of a scroll bar.",
 			"restrictions": [
 				"color"
@@ -10823,6 +12173,12 @@ export const cssData : CSSDataV1 = {
 			name: "scrollbar-arrow-color",
 			browsers: [
 				"IE5"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-arrow-color"
+				}
 			],
 			"description": "Determines the color of the arrow elements of a scroll arrow.",
 			"restrictions": [
@@ -10834,6 +12190,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"IE5"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-base-color"
+				}
+			],
 			"description": "Determines the color of the main elements of a scroll bar, which include the scroll box, track, and scroll arrows.",
 			"restrictions": [
 				"color"
@@ -10843,6 +12205,12 @@ export const cssData : CSSDataV1 = {
 			name: "scrollbar-darkshadow-color",
 			browsers: [
 				"IE5"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-darkshadow-color"
+				}
 			],
 			"description": "Determines the color of the gutter of a scroll bar.",
 			"restrictions": [
@@ -10854,6 +12222,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"IE5"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-face-color"
+				}
+			],
 			"description": "Determines the color of the scroll box and scroll arrows of a scroll bar.",
 			"restrictions": [
 				"color"
@@ -10863,6 +12237,12 @@ export const cssData : CSSDataV1 = {
 			name: "scrollbar-highlight-color",
 			browsers: [
 				"IE5"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-highlight-color"
+				}
 			],
 			"description": "Determines the color of the top and left edges of the scroll box and scroll arrows of a scroll bar.",
 			"restrictions": [
@@ -10874,6 +12254,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"IE5"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-shadow-color"
+				}
+			],
 			"description": "Determines the color of the bottom and right edges of the scroll box and scroll arrows of a scroll bar.",
 			"restrictions": [
 				"color"
@@ -10883,6 +12269,12 @@ export const cssData : CSSDataV1 = {
 			name: "scrollbar-track-color",
 			browsers: [
 				"IE5"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-track-color"
+				}
 			],
 			"description": "Determines the color of the track element of a scroll bar.",
 			"restrictions": [
@@ -10907,6 +12299,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | smooth",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-behavior"
+				}
+			],
 			"description": "Specifies the scrolling behavior for a scrolling box, when scrolling happens due to navigation or CSSOM scrolling APIs.",
 			"restrictions": [
 				"enum"
@@ -10925,6 +12323,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "obsolete",
 			"syntax": "none | <position>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-coordinate"
+				}
+			],
 			"description": "Defines the x and y coordinate within the element which will align with the nearest ancestor scroll container’s snap-destination for the respective axis.",
 			"restrictions": [
 				"position",
@@ -10940,6 +12344,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "obsolete",
 			"syntax": "<position>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-destination"
+				}
+			],
 			"description": "Define the x and y coordinate within the scroll container’s visual viewport which element snap points will align with.",
 			"restrictions": [
 				"position",
@@ -10965,6 +12375,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "obsolete",
 			"syntax": "none | repeat( <length-percentage> )",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-points-x"
+				}
+			],
 			"description": "Defines the positioning of snap points along the x axis of the scroll container it is applied to.",
 			"restrictions": [
 				"enum"
@@ -10988,6 +12404,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "obsolete",
 			"syntax": "none | repeat( <length-percentage> )",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-points-y"
+				}
+			],
 			"description": "Defines the positioning of snap points along the y axis of the scroll container it is applied to.",
 			"restrictions": [
 				"enum"
@@ -11010,6 +12432,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | [ x | y | block | inline | both ] [ mandatory | proximity ]?",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-type"
+				}
+			],
 			"description": "Defines how strictly snap points are enforced on the scroll container.",
 			"restrictions": [
 				"enum"
@@ -11024,6 +12452,12 @@ export const cssData : CSSDataV1 = {
 				"O24"
 			],
 			"syntax": "<number>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/shape-image-threshold"
+				}
+			],
 			"description": "Defines the alpha channel threshold used to extract the shape using an image. A value of 0.5 means that the shape will enclose all the pixels that are more than 50% opaque.",
 			"restrictions": [
 				"number"
@@ -11038,6 +12472,12 @@ export const cssData : CSSDataV1 = {
 				"O24"
 			],
 			"syntax": "<length-percentage>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/shape-margin"
+				}
+			],
 			"description": "Adds a margin to a 'shape-outside'. This defines a new shape that is the smallest contour that includes all the points that are the 'shape-margin' distance outward in the perpendicular direction from a point on the underlying shape.",
 			"restrictions": [
 				"url",
@@ -11064,6 +12504,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <shape-box> || <basic-shape> | <image>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/shape-outside"
+				}
+			],
 			"description": "Specifies an orthogonal rotation to be applied to an image before it is laid out.",
 			"restrictions": [
 				"image",
@@ -11333,6 +12779,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | fixed",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/table-layout"
+				}
+			],
 			"description": "Controls the algorithm used to lay out the table cells, rows, and columns.",
 			"restrictions": [
 				"enum"
@@ -11347,6 +12799,12 @@ export const cssData : CSSDataV1 = {
 				"O15"
 			],
 			"syntax": "<integer> | <length>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/tab-size"
+				}
+			],
 			"description": "Determines the width of the tab character (U+0009), in space characters (U+0020), when rendered.",
 			"restrictions": [
 				"integer",
@@ -11382,6 +12840,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "start | end | left | right | center | justify | match-parent",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-align"
+				}
+			],
 			"description": "Describes how inline contents of a block are horizontally aligned if the contents do not completely fill the line box.",
 			"restrictions": [
 				"string"
@@ -11419,6 +12883,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | start | end | left | right | center | justify",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-align-last"
+				}
+			],
 			"description": "Describes how the last line of a block or a line right before a forced line break is aligned when 'text-align' is set to 'justify'.",
 			"restrictions": [
 				"enum"
@@ -11486,6 +12956,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'text-decoration-line'> || <'text-decoration-style'> || <'text-decoration-color'>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration"
+				}
+			],
 			"description": "Decorations applied to font used for an element's text.",
 			"restrictions": [
 				"enum",
@@ -11501,6 +12977,12 @@ export const cssData : CSSDataV1 = {
 				"O44"
 			],
 			"syntax": "<color>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-color"
+				}
+			],
 			"description": "Specifies the color of text decoration (underlines overlines, and line-throughs) set on the element with text-decoration-line.",
 			"restrictions": [
 				"color"
@@ -11533,6 +13015,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | [ underline || overline || line-through || blink ]",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-line"
+				}
+			],
 			"description": "Specifies what line decorations, if any, are added to the element.",
 			"restrictions": [
 				"enum"
@@ -11573,6 +13061,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "solid | double | dotted | dashed | wavy",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-style"
+				}
+			],
 			"description": "Specifies the line style for underline, line-through and overline text decoration.",
 			"restrictions": [
 				"enum"
@@ -11582,6 +13076,12 @@ export const cssData : CSSDataV1 = {
 			name: "text-indent",
 			values: [],
 			"syntax": "<length-percentage> && hanging? && each-line?",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-indent"
+				}
+			],
 			"description": "Specifies the indentation applied to lines of inline content in a block. The indentation only affects the first line of inline content in the block unless the 'hanging' keyword is specified, in which case it affects all lines except the first.",
 			"restrictions": [
 				"percentage",
@@ -11630,6 +13130,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | inter-character | inter-word | none",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-justify"
+				}
+			],
 			"description": "Selects the justification algorithm used when 'text-align' is set to 'justify'. The property applies to block containers, but the UA may (but is not required to) also support it on inline elements.",
 			"restrictions": [
 				"enum"
@@ -11670,6 +13176,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "mixed | upright | sideways",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-orientation"
+				}
+			],
 			"description": "Specifies the orientation of text within a line.",
 			"restrictions": [
 				"enum"
@@ -11688,6 +13200,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ clip | ellipsis | <string> ]{1,2}",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-overflow"
+				}
+			],
 			"description": "Text can overflow for example when it is prevented from wrapping.",
 			"restrictions": [
 				"enum",
@@ -11720,6 +13238,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | optimizeSpeed | optimizeLegibility | geometricPrecision",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-rendering"
+				}
+			],
 			"description": "The creator of SVG content might want to provide a hint to the implementation about what tradeoffs to make as it renders text. The ‘text-rendering’ property provides these hints.",
 			"restrictions": [
 				"enum"
@@ -11734,6 +13258,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <shadow-t>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-shadow"
+				}
+			],
 			"description": "Enables shadow effects to be applied to the text of the element.",
 			"restrictions": [
 				"length",
@@ -11761,6 +13291,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | capitalize | uppercase | lowercase | full-width | full-size-kana",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-transform"
+				}
+			],
 			"description": "Controls capitalization effects of an element’s text.",
 			"restrictions": [
 				"enum"
@@ -11787,6 +13323,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | [ under || [ left | right ] ]",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-underline-position"
+				}
+			],
 			"description": "Sets the position of an underline specified on the same element: it does not affect underlines specified by ancestor elements. This property is typically used in vertical writing contexts such as in Japanese documents where it often desired to have the underline appear 'over' (to the right of) the affected run of text",
 			"restrictions": [
 				"enum"
@@ -11801,6 +13343,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/top"
+				}
+			],
 			"description": "Specifies how far an absolutely positioned box's top margin edge is offset below the top edge of the box's 'containing block'.",
 			"restrictions": [
 				"length",
@@ -11844,6 +13392,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | none | [ [ pan-x | pan-left | pan-right ] || [ pan-y | pan-up | pan-down ] || pinch-zoom ] | manipulation",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/touch-action"
+				}
+			],
 			"description": "Determines whether touch input may trigger default behavior supplied by user agent.",
 			"restrictions": [
 				"enum"
@@ -11941,6 +13495,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <transform-list>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/transform"
+				}
+			],
 			"description": "A two-dimensional transformation is applied to an element through the 'transform' property. This property contains a list of transform functions similar to those allowed by SVG.",
 			"restrictions": [
 				"enum"
@@ -11949,6 +13509,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "transform-origin",
 			"syntax": "[ <length-percentage> | left | center | right | top | bottom ] | [ [ <length-percentage> | left | center | right ] && [ <length-percentage> | top | center | bottom ] ] <length>?",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
+				}
+			],
 			"description": "Establishes the origin of transformation for an element.",
 			"restrictions": [
 				"position",
@@ -11983,6 +13549,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "flat | preserve-3d",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/transform-style"
+				}
+			],
 			"description": "Defines how nested elements are rendered in 3D space.",
 			"restrictions": [
 				"enum"
@@ -12001,6 +13573,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-transition>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/transition"
+				}
+			],
 			"description": "Shorthand property combines four of the transition properties into a single property.",
 			"restrictions": [
 				"time",
@@ -12012,6 +13590,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "transition-delay",
 			"syntax": "<time>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/transition-delay"
+				}
+			],
 			"description": "Defines when the transition will start. It allows a transition to begin execution some period of time from when it is applied.",
 			"restrictions": [
 				"time"
@@ -12020,6 +13604,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "transition-duration",
 			"syntax": "<time>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/transition-duration"
+				}
+			],
 			"description": "Specifies how long the transition from the old value to the new value should take.",
 			"restrictions": [
 				"time"
@@ -12038,6 +13628,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <single-transition-property>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/transition-property"
+				}
+			],
 			"description": "Specifies the name of the CSS property to which the transition is applied.",
 			"restrictions": [
 				"property"
@@ -12046,6 +13642,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "transition-timing-function",
 			"syntax": "<timing-function>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/transition-timing-function"
+				}
+			],
 			"description": "Describes how the intermediate values used during a transition will be calculated.",
 			"restrictions": [
 				"timing-function"
@@ -12080,6 +13682,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | embed | isolate | bidi-override | isolate-override | plaintext",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/unicode-bidi"
+				}
+			],
 			"description": "The level of embedding with respect to the bidirectional algorithm.",
 			"restrictions": [
 				"enum"
@@ -12428,6 +14036,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "auto | text | none | contain | all",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/user-select"
+				}
+			],
 			"description": "Controls the appearance of selection.",
 			"restrictions": [
 				"enum"
@@ -12477,6 +14091,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "baseline | sub | super | text-top | text-bottom | middle | top | bottom | <percentage> | <length>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/vertical-align"
+				}
+			],
 			"description": "Affects the vertical positioning of the inline boxes generated by an inline-level element inside a line box.",
 			"restrictions": [
 				"percentage",
@@ -12500,6 +14120,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "visible | hidden | collapse",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/visibility"
+				}
+			],
 			"description": "Specifies whether the boxes generated by an element are rendered. Invisible boxes still affect layout (set the ‘display’ property to ‘none’ to suppress box generation altogether).",
 			"restrictions": [
 				"enum"
@@ -13192,6 +14818,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "[ above | below | right | left ]? <length>? <image>?",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-box-reflect"
+				}
+			],
 			"description": "Defines a reflection of a border box."
 		},
 		{
@@ -14028,6 +15660,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "auto | touch",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-overflow-scrolling"
+				}
+			],
 			"description": "Specifies whether to use native-style scrolling in an overflow:scroll element."
 		},
 		{
@@ -14115,6 +15753,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-fill-color"
+				}
+			],
 			"restrictions": [
 				"color"
 			]
@@ -14152,6 +15796,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<length> || <color>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke"
+				}
+			],
 			"restrictions": [
 				"length",
 				"line-width",
@@ -14170,6 +15820,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke-color"
+				}
+			],
 			"restrictions": [
 				"color"
 			]
@@ -14185,6 +15841,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<length>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke-width"
+				}
+			],
 			"restrictions": [
 				"length",
 				"line-width",
@@ -14203,6 +15865,12 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "default | none",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-touch-callout"
+				}
+			],
 			"restrictions": [
 				"enum"
 			]
@@ -14549,6 +16217,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | pre | nowrap | pre-wrap | pre-line",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/white-space"
+				}
+			],
 			"description": "Shorthand property for the 'white-space-collapsing' and 'text-wrap' properties.",
 			"restrictions": [
 				"enum"
@@ -14564,6 +16238,12 @@ export const cssData : CSSDataV1 = {
 				"O9.2"
 			],
 			"syntax": "<integer>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/widows"
+				}
+			],
 			"description": "Specifies the minimum number of line boxes of a block container that must be left in a fragment after a break.",
 			"restrictions": [
 				"integer"
@@ -14590,6 +16270,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<viewport-length>{1,2}",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/width"
+				}
+			],
 			"description": "Specifies the width of the content area, padding area or border area (depending on 'box-sizing') of certain boxes.",
 			"restrictions": [
 				"length",
@@ -14619,6 +16305,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | <animateable-feature>#",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/will-change"
+				}
+			],
 			"description": "Provides a rendering hint to the user agent, stating what kinds of changes the author expects to perform on the element.",
 			"restrictions": [
 				"enum",
@@ -14642,6 +16334,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | break-all | keep-all | break-word",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/word-break"
+				}
+			],
 			"description": "Specifies line break opportunities for non-CJK scripts.",
 			"restrictions": [
 				"enum"
@@ -14656,6 +16354,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <length-percentage>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/word-spacing"
+				}
+			],
 			"description": "Specifies additional spacing between “words”.",
 			"restrictions": [
 				"length",
@@ -14675,6 +16379,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | break-word",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-wrap"
+				}
+			],
 			"description": "Specifies whether the UA may break within a word to prevent overflow when an otherwise-unbreakable string is too long to fit.",
 			"restrictions": [
 				"enum"
@@ -14705,6 +16415,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "horizontal-tb | vertical-rl | vertical-lr | sideways-rl | sideways-lr",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/writing-mode"
+				}
+			],
 			"description": "This is a shorthand property for both 'direction' and 'block-progression'.",
 			"restrictions": [
 				"enum"
@@ -14719,6 +16435,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | <integer>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/z-index"
+				}
+			],
 			"description": "For a positioned box, the 'z-index' property specifies the stack level of the box in the current stacking context and whether the box establishes a local stacking context.",
 			"restrictions": [
 				"integer"
@@ -14739,6 +16461,12 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | <number> | <percentage>",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/zoom"
+				}
+			],
 			"description": "Non-standard. Specifies the magnification scale of the object. See 'transform: scale()' for a standards-based alternative.",
 			"restrictions": [
 				"enum",
@@ -14760,6 +16488,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF1"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-binding"
+				}
+			],
 			"description": "The -moz-binding CSS property is used by Mozilla-based applications to attach an XBL binding to a DOM element."
 		},
 		{
@@ -14768,6 +16502,12 @@ export const cssData : CSSDataV1 = {
 			"syntax": "none | [ fill | fill-opacity | stroke | stroke-opacity ]#",
 			browsers: [
 				"FF55"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-context-properties"
+				}
 			],
 			"description": "If you reference an SVG image in a webpage (such as with the <img> element or as a background image), the SVG image can coordinate with the embedding element (its context) to have the image adopt property values set on the embedding element. To do this the embedding element needs to list the properties that are to be made available to the image by listing them as values of the -moz-context-properties property, and the image needs to opt in to using those properties by using values such as the context-fill value.\n\nThis feature is available since Firefox 55, but is only currently supported with SVG images loaded via chrome:// or resource:// URLs. To experiment with the feature in SVG on the Web it is necessary to set the svg.context-properties.content.enabled pref to true."
 		},
@@ -14790,6 +16530,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF1"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-image-region"
+				}
+			],
 			"description": "For certain XUL elements and pseudo-elements that use an image from the list-style-image property, this property specifies a region of the image that is used in place of the whole image. This allows elements to use different pieces of the same image to improve performance."
 		},
 		{
@@ -14799,6 +16545,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF6"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-orient"
+				}
+			],
 			"description": "The -moz-orient CSS property specifies the orientation of the element to which it's applied."
 		},
 		{
@@ -14807,6 +16559,12 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<outline-radius>{1,4} [ / <outline-radius>{1,4} ]?",
 			browsers: [
 				"FF1.5"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-outline-radius"
+				}
 			],
 			"description": "In Mozilla applications like Firefox, the -moz-outline-radius CSS property can be used to give an element's outline rounded corners."
 		},
@@ -14847,6 +16605,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF6"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-text-blink"
+				}
+			],
 			"description": "The -moz-text-blink non-standard Mozilla CSS extension specifies the blink mode."
 		},
 		{
@@ -14855,6 +16619,12 @@ export const cssData : CSSDataV1 = {
 			"syntax": "auto | none | enabled | disabled",
 			browsers: [
 				"FF1"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-user-input"
+				}
 			],
 			"description": "In Mozilla applications, -moz-user-input determines if an element will accept user input."
 		},
@@ -14877,6 +16647,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF3.5"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-window-shadow"
+				}
+			],
 			"description": "The -moz-window-shadow CSS property specifies whether a window will have a shadow. It only works on Mac OS X."
 		},
 		{
@@ -14887,6 +16663,12 @@ export const cssData : CSSDataV1 = {
 				"S5.1",
 				"C8",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-border-before"
+				}
 			],
 			"description": "The -webkit-border-before CSS property is a shorthand property for setting the individual logical block start border property values in a single place in the style sheet."
 		},
@@ -14918,6 +16700,12 @@ export const cssData : CSSDataV1 = {
 				"C6",
 				"O15"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-line-clamp"
+				}
+			],
 			"description": "The -webkit-line-clamp CSS property allows limiting of the contents of a block container to the specified number of lines."
 		},
 		{
@@ -14934,6 +16722,12 @@ export const cssData : CSSDataV1 = {
 				"S4",
 				"C1"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-attachment"
+				}
+			],
 			"description": "If a -webkit-mask-image is specified, -webkit-mask-attachment determines whether the mask image's position is fixed within the viewport, or scrolls along with its containing block."
 		},
 		{
@@ -14945,6 +16739,12 @@ export const cssData : CSSDataV1 = {
 				"S3.2",
 				"C1",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-composite"
+				}
 			],
 			"description": "The -webkit-mask-composite property specifies the manner in which multiple mask images applied to the same element are composited with one another. Mask images are composited in the opposite order that they are declared with the -webkit-mask-image property."
 		},
@@ -14964,6 +16764,12 @@ export const cssData : CSSDataV1 = {
 				"C1",
 				"O15"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-position-x"
+				}
+			],
 			"description": "The -webkit-mask-position-x CSS property sets the initial horizontal position of a mask image."
 		},
 		{
@@ -14975,6 +16781,12 @@ export const cssData : CSSDataV1 = {
 				"S3.2",
 				"C1",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-position-y"
+				}
 			],
 			"description": "The -webkit-mask-position-y CSS property sets the initial vertical position of a mask image."
 		},
@@ -14988,6 +16800,12 @@ export const cssData : CSSDataV1 = {
 				"C3",
 				"O15"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-repeat-x"
+				}
+			],
 			"description": "The -webkit-mask-repeat-x property specifies whether and how a mask image is repeated (tiled) horizontally."
 		},
 		{
@@ -14999,6 +16817,12 @@ export const cssData : CSSDataV1 = {
 				"S5",
 				"C3",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-repeat-y"
+				}
 			],
 			"description": "The -webkit-mask-repeat-y property specifies whether and how a mask image is repeated (tiled) vertically."
 		},
@@ -15013,12 +16837,24 @@ export const cssData : CSSDataV1 = {
 				"C1",
 				"O15"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/appearance"
+				}
+			],
 			"description": "Changes the appearance of buttons and other controls to resemble native controls."
 		},
 		{
 			name: "azimuth",
 			"status": "obsolete",
 			"syntax": "<angle> | [ [ left-side | far-left | left | center-left | center | center-right | right | far-right | right-side ] || behind ] | leftwards | rightwards",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/azimuth"
+				}
+			],
 			"description": "In combination with elevation, the azimuth CSS property enables different audio sources to be positioned spatially for aural presentation. This is important in that it provides a natural way to tell several voices apart, as each can be positioned to originate at a different location on the sound stage. Stereo output produce a lateral sound stage, while binaural headphones and multi-speaker setups allow for a fully three-dimensional stage."
 		},
 		{
@@ -15031,6 +16867,12 @@ export const cssData : CSSDataV1 = {
 				"C76",
 				"O34"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/backdrop-filter"
+				}
+			],
 			"description": "The backdrop-filter CSS property lets you apply graphical effects such as blurring or color shifting to the area behind an element. Because it applies to everything behind the element, to see the effect you must make the element or its background at least partially transparent."
 		},
 		{
@@ -15039,6 +16881,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF66",
 				"C69"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block"
+				}
 			],
 			"description": "The border-block CSS property is a shorthand property for setting the individual logical block border property values in a single place in the style sheet."
 		},
@@ -15049,6 +16897,12 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-color"
+				}
+			],
 			"description": "The border-block-color CSS property defines the color of the logical block borders of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color and border-bottom-color, or border-right-color and border-left-color property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
@@ -15057,6 +16911,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF66",
 				"C69"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-style"
+				}
 			],
 			"description": "The border-block-style CSS property defines the style of the logical block borders of an element, which maps to a physical border style depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-style and border-bottom-style, or border-left-style and border-right-style properties depending on the values defined for writing-mode, direction, and text-orientation."
 		},
@@ -15067,6 +16927,12 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-width"
+				}
+			],
 			"description": "The border-block-width CSS property defines the width of the logical block borders of an element, which maps to a physical border width depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-width and border-bottom-width, or border-left-width, and border-right-width property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
@@ -15075,6 +16941,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF66"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-end-end-radius"
+				}
+			],
 			"description": "The border-end-end-radius CSS property defines a logical border radius on an element, which maps to a physical border radius that depends on on the element's writing-mode, direction, and text-orientation."
 		},
 		{
@@ -15082,6 +16954,12 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<length-percentage>{1,2}",
 			browsers: [
 				"FF66"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-end-start-radius"
+				}
 			],
 			"description": "The border-end-start-radius CSS property defines a logical border radius on an element, which maps to a physical border radius depending on the element's writing-mode, direction, and text-orientation."
 		},
@@ -15092,6 +16970,12 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline"
+				}
+			],
 			"description": "The border-inline CSS property is a shorthand property for setting the individual logical inline border property values in a single place in the style sheet."
 		},
 		{
@@ -15100,6 +16984,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF66",
 				"C69"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-color"
+				}
 			],
 			"description": "The border-inline-color CSS property defines the color of the logical inline borders of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color and border-bottom-color, or border-right-color and border-left-color property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
@@ -15110,6 +17000,12 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-style"
+				}
+			],
 			"description": "The border-inline-style CSS property defines the style of the logical inline borders of an element, which maps to a physical border style depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-style and border-bottom-style, or border-left-style and border-right-style properties depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
@@ -15119,6 +17015,12 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-width"
+				}
+			],
 			"description": "The border-inline-width CSS property defines the width of the logical inline borders of an element, which maps to a physical border width depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-width and border-bottom-width, or border-left-width, and border-right-width property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
@@ -15127,6 +17029,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF66"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-start-end-radius"
+				}
+			],
 			"description": "The border-start-end-radius CSS property defines a logical border radius on an element, which maps to a physical border radius depending on the element's writing-mode, direction, and text-orientation."
 		},
 		{
@@ -15134,6 +17042,12 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<length-percentage>{1,2}",
 			browsers: [
 				"FF66"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/border-start-start-radius"
+				}
 			],
 			"description": "The border-start-start-radius CSS property defines a logical border radius on an element, which maps to a physical border radius that depends on the element's writing-mode, direction, and text-orientation."
 		},
@@ -15148,6 +17062,12 @@ export const cssData : CSSDataV1 = {
 				"C1",
 				"O"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/box-align"
+				}
+			],
 			"description": "The box-align CSS property specifies how an element aligns its contents across its layout in a perpendicular direction. The effect of the property is only visible if there is extra space in the box."
 		},
 		{
@@ -15160,6 +17080,12 @@ export const cssData : CSSDataV1 = {
 				"S3",
 				"C1",
 				"O"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/box-direction"
+				}
 			],
 			"description": "The box-direction CSS property specifies whether a box lays out its contents normally (from the top or left edge), or in reverse (from the bottom or right edge)."
 		},
@@ -15174,6 +17100,12 @@ export const cssData : CSSDataV1 = {
 				"C1",
 				"O"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/box-flex"
+				}
+			],
 			"description": "The -moz-box-flex and -webkit-box-flex CSS properties specify how a -moz-box or -webkit-box grows to fill the box that contains it, in the direction of the containing box's layout."
 		},
 		{
@@ -15185,6 +17117,12 @@ export const cssData : CSSDataV1 = {
 				"C1",
 				"O"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/box-flex-group"
+				}
+			],
 			"description": "The box-flex-group CSS property assigns the flexbox's child elements to a flex group."
 		},
 		{
@@ -15195,6 +17133,12 @@ export const cssData : CSSDataV1 = {
 				"S3",
 				"C1",
 				"O"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/box-lines"
+				}
 			],
 			"description": "The box-lines CSS property determines whether the box may have a single or multiple lines (rows for horizontally oriented boxes, columns for vertically oriented boxes)."
 		},
@@ -15209,6 +17153,12 @@ export const cssData : CSSDataV1 = {
 				"C1",
 				"O"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/box-ordinal-group"
+				}
+			],
 			"description": "The box-ordinal-group CSS property assigns the flexbox's child elements to an ordinal group."
 		},
 		{
@@ -15221,6 +17171,12 @@ export const cssData : CSSDataV1 = {
 				"S3",
 				"C1",
 				"O"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/box-orient"
+				}
 			],
 			"description": "The box-orient CSS property specifies whether an element lays out its contents horizontally or vertically."
 		},
@@ -15235,6 +17191,12 @@ export const cssData : CSSDataV1 = {
 				"C1",
 				"O"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/box-pack"
+				}
+			],
 			"description": "The -moz-box-pack and -webkit-box-pack CSS properties specify how a -moz-box or -webkit-box packs its contents in the direction of its layout. The effect of this is only visible if there is extra space in the box."
 		},
 		{
@@ -15246,6 +17208,12 @@ export const cssData : CSSDataV1 = {
 				"C49",
 				"O15"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/color-adjust"
+				}
+			],
 			"description": "The color-adjust property is a non-standard CSS extension that can be used to force printing of background colors and images in browsers based on the WebKit engine."
 		},
 		{
@@ -15253,6 +17221,12 @@ export const cssData : CSSDataV1 = {
 			"syntax": "[ <custom-ident> <integer>? ]+ | none",
 			browsers: [
 				"FF68"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/counter-set"
+				}
 			],
 			"description": "The counter-set CSS property sets a CSS counter to a given value. It manipulates the value of existing counters, and will only create new counters if there isn't already a counter of the given name on the element."
 		},
@@ -15263,6 +17237,12 @@ export const cssData : CSSDataV1 = {
 				"E17",
 				"FF62",
 				"S11"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-optical-sizing"
+				}
 			],
 			"description": "The font-optical-sizing CSS property allows developers to control whether browsers render text with slightly differing visual representations to optimize viewing at different sizes, or not. This only works for fonts that have an optical size variation axis."
 		},
@@ -15275,6 +17255,12 @@ export const cssData : CSSDataV1 = {
 				"S11",
 				"C62",
 				"O49"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variation-settings"
+				}
 			],
 			"description": "The font-variation-settings CSS property provides low-level control over OpenType or TrueType font variations, by specifying the four letter axis names of the features you want to vary, along with their variation values."
 		},
@@ -15296,6 +17282,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"S10"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/hanging-punctuation"
+				}
+			],
 			"description": "The hanging-punctuation CSS property specifies whether a punctuation mark should hang at the start or end of a line of text. Hanging punctuation may be placed outside the line box."
 		},
 		{
@@ -15311,12 +17303,24 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"S9"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/initial-letter"
+				}
+			],
 			"description": "The initial-letter CSS property specifies styling for dropped, raised, and sunken initial letters."
 		},
 		{
 			name: "initial-letter-align",
 			"status": "experimental",
 			"syntax": "[ auto | alphabetic | hanging | ideographic ]",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/initial-letter-align"
+				}
+			],
 			"description": "The initial-letter-align CSS property specifies the alignment of initial letters within a paragraph."
 		},
 		{
@@ -15324,6 +17328,12 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'top'>{1,4}",
 			browsers: [
 				"FF66"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/inset"
+				}
 			],
 			"description": "The inset CSS property defines the logical block and inline start and end offsets of an element, which map to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation."
 		},
@@ -15335,6 +17345,12 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-block"
+				}
+			],
 			"description": "The inset-block CSS property defines the logical block start and end offsets of an element, which maps to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
@@ -15344,6 +17360,12 @@ export const cssData : CSSDataV1 = {
 				"FF63",
 				"C69",
 				"O56"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-block-end"
+				}
 			],
 			"description": "The inset-block-end CSS property defines the logical block end offset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
@@ -15355,6 +17377,12 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-block-start"
+				}
+			],
 			"description": "The inset-block-start CSS property defines the logical block start offset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
@@ -15364,6 +17392,12 @@ export const cssData : CSSDataV1 = {
 				"FF63",
 				"C69",
 				"O56"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-inline"
+				}
 			],
 			"description": "The inset-inline CSS property defines the logical block start and end offsets of an element, which maps to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation."
 		},
@@ -15375,6 +17409,12 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-inline-end"
+				}
+			],
 			"description": "The inset-inline-end CSS property defines the logical inline end inset of an element, which maps to a physical inset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
@@ -15384,6 +17424,12 @@ export const cssData : CSSDataV1 = {
 				"FF63",
 				"C69",
 				"O56"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-inline-start"
+				}
 			],
 			"description": "The inset-inline-start CSS property defines the logical inline start inset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
@@ -15401,6 +17447,12 @@ export const cssData : CSSDataV1 = {
 				"C60",
 				"O47"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/line-height-step"
+				}
+			],
 			"description": "The line-height-step CSS property defines the step units for line box heights. When the step unit is positive, line box heights are rounded up to the closest multiple of the unit. Negative values are invalid."
 		},
 		{
@@ -15410,6 +17462,12 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-block"
+				}
+			],
 			"description": "The margin-block CSS property defines the logical block start and end margins of an element, which maps to physical margins depending on the element's writing mode, directionality, and text orientation."
 		},
 		{
@@ -15418,6 +17476,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF66",
 				"C69"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-inline"
+				}
 			],
 			"description": "The margin-inline CSS property defines the logical inline start and end margins of an element, which maps to physical margins depending on the element's writing mode, directionality, and text orientation."
 		},
@@ -15430,6 +17494,12 @@ export const cssData : CSSDataV1 = {
 				"S3.2",
 				"C1",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/mask"
+				}
 			],
 			"description": "The mask CSS property alters the visibility of an element by either partially or fully hiding it. This is accomplished by either masking or clipping the image at specific points."
 		},
@@ -15484,6 +17554,12 @@ export const cssData : CSSDataV1 = {
 				"C1",
 				"O15"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-clip"
+				}
+			],
 			"description": "The mask-clip CSS property determines the area, which is affected by a mask. The painted content of an element must be restricted to this area."
 		},
 		{
@@ -15492,6 +17568,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"E18",
 				"FF53"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-composite"
+				}
 			],
 			"description": "The mask-composite CSS property represents a compositing operation used on the current mask layer with the mask layers below it."
 		},
@@ -15509,6 +17591,12 @@ export const cssData : CSSDataV1 = {
 				"C55",
 				"O42"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/offset"
+				}
+			],
 			"description": "The offset CSS property is a shorthand property for animating an element along a defined path."
 		},
 		{
@@ -15525,6 +17613,12 @@ export const cssData : CSSDataV1 = {
 				"C55",
 				"O42"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/offset-distance"
+				}
+			],
 			"description": "The offset-distance CSS property specifies a position along an offset-path."
 		},
 		{
@@ -15535,6 +17629,12 @@ export const cssData : CSSDataV1 = {
 				"FF63",
 				"C55",
 				"O45"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/offset-path"
+				}
 			],
 			"description": "The offset-path CSS property specifies the offset path where the element gets positioned. The exact element’s position on the offset path is determined by the offset-distance property. An offset path is either a specified path with one or multiple sub-paths or the geometry of a not-styled basic shape. Each shape or path must define an initial position for the computed value of \"0\" for offset-distance and an initial direction which specifies the rotation of the object to the initial position.\n\nIn this specification, a direction (or rotation) of 0 degrees is equivalent to the direction of the positive x-axis in the object’s local coordinate system. In other words, a rotation of 0 degree points to the right side of the UA if the object and its ancestors have no transformation applied."
 		},
@@ -15552,6 +17652,12 @@ export const cssData : CSSDataV1 = {
 				"C56",
 				"O43"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/offset-rotate"
+				}
+			],
 			"description": "The offset-rotate CSS property defines the direction of the element while positioning along the offset path."
 		},
 		{
@@ -15563,6 +17669,12 @@ export const cssData : CSSDataV1 = {
 				"C56",
 				"O43"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-anchor"
+				}
+			],
 			"description": "The overflow-anchor CSS property provides a way to opt out browser scroll anchoring behavior which adjusts scroll position to minimize content shifts."
 		},
 		{
@@ -15571,6 +17683,12 @@ export const cssData : CSSDataV1 = {
 			"syntax": "visible | hidden | clip | scroll | auto",
 			browsers: [
 				"FF69"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-block"
+				}
 			],
 			"description": "The overflow-block CSS media feature can be used to test how the output device handles content that overflows the initial containing block along the block axis."
 		},
@@ -15581,6 +17699,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF29"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Mozilla/CSS/overflow-clip-box"
+				}
+			],
 			"description": "The overflow-clip-box CSS property specifies relative to which box the clipping happens when there is an overflow. It is short hand for the overflow-clip-box-inline and overflow-clip-box-block properties."
 		},
 		{
@@ -15589,6 +17713,12 @@ export const cssData : CSSDataV1 = {
 			"syntax": "visible | hidden | clip | scroll | auto",
 			browsers: [
 				"FF69"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-inline"
+				}
 			],
 			"description": "The overflow-inline CSS media feature can be used to test how the output device handles content that overflows the initial containing block along the inline axis."
 		},
@@ -15602,6 +17732,12 @@ export const cssData : CSSDataV1 = {
 				"C63",
 				"O50"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior"
+				}
+			],
 			"description": "The overscroll-behavior CSS property is shorthand for the overscroll-behavior-x and overscroll-behavior-y properties, which allow you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached."
 		},
 		{
@@ -15613,6 +17749,12 @@ export const cssData : CSSDataV1 = {
 				"FF59",
 				"C63",
 				"O50"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-x"
+				}
 			],
 			"description": "The overscroll-behavior-x CSS property is allows you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached — in the x axis direction."
 		},
@@ -15626,6 +17768,12 @@ export const cssData : CSSDataV1 = {
 				"C63",
 				"O50"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-y"
+				}
+			],
 			"description": "The overscroll-behavior-y CSS property is allows you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached — in the y axis direction."
 		},
 		{
@@ -15635,6 +17783,12 @@ export const cssData : CSSDataV1 = {
 				"FF66",
 				"C69"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-block"
+				}
+			],
 			"description": "The padding-block CSS property defines the logical block start and end padding of an element, which maps to physical padding properties depending on the element's writing mode, directionality, and text orientation."
 		},
 		{
@@ -15643,6 +17797,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF66",
 				"C69"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-inline"
+				}
 			],
 			"description": "The padding-inline CSS property defines the logical inline start and end padding of an element, which maps to physical padding properties depending on the element's writing mode, directionality, and text orientation."
 		},
@@ -15684,6 +17844,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF60"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/rotate"
+				}
+			],
 			"description": "The rotate CSS property allows you to specify rotation transforms individually and independently of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value."
 		},
 		{
@@ -15710,6 +17876,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF60"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scale"
+				}
+			],
 			"description": "The scale CSS property allows you to specify scale transforms individually and independently of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value."
 		},
 		{
@@ -15718,6 +17890,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF64"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-color"
+				}
+			],
 			"description": "The scrollbar-color CSS property sets the color of the scrollbar track and thumb."
 		},
 		{
@@ -15725,6 +17903,12 @@ export const cssData : CSSDataV1 = {
 			"syntax": "auto | thin | none",
 			browsers: [
 				"FF64"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-width"
+				}
 			],
 			"description": "The scrollbar-width property allows the author to set the maximum thickness of an element’s scrollbars when they are shown. "
 		},
@@ -15737,6 +17921,12 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin"
+				}
+			],
 			"description": "The scroll-margin property is a shorthand property which sets all of the scroll-margin longhands, assigning values much like the margin property does for the margin-* longhands."
 		},
 		{
@@ -15746,6 +17936,12 @@ export const cssData : CSSDataV1 = {
 				"FF68",
 				"C69",
 				"O56"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block"
+				}
 			],
 			"description": "The scroll-margin-block property is a shorthand property which sets the scroll-margin longhands in the block dimension."
 		},
@@ -15758,6 +17954,12 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block-start"
+				}
+			],
 			"description": "The scroll-margin-block-start property defines the margin of the scroll snap area at the start of the block dimension that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
@@ -15768,6 +17970,12 @@ export const cssData : CSSDataV1 = {
 				"S11",
 				"C69",
 				"O56"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block-end"
+				}
 			],
 			"description": "The scroll-margin-block-end property defines the margin of the scroll snap area at the end of the block dimension that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
@@ -15780,6 +17988,12 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-bottom"
+				}
+			],
 			"description": "The scroll-margin-bottom property defines the bottom margin of the scroll snap area that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
@@ -15787,6 +18001,12 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<length>{1,2}",
 			browsers: [
 				"FF68"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline"
+				}
 			],
 			"description": "The scroll-margin-inline property is a shorthand property which sets the scroll-margin longhands in the inline dimension."
 		},
@@ -15799,6 +18019,12 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline-start"
+				}
+			],
 			"description": "The scroll-margin-inline-start property defines the margin of the scroll snap area at the start of the inline dimension that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
@@ -15809,6 +18035,12 @@ export const cssData : CSSDataV1 = {
 				"S11",
 				"C69",
 				"O56"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline-end"
+				}
 			],
 			"description": "The scroll-margin-inline-end property defines the margin of the scroll snap area at the end of the inline dimension that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
@@ -15821,6 +18053,12 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-left"
+				}
+			],
 			"description": "The scroll-margin-left property defines the left margin of the scroll snap area that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
@@ -15831,6 +18069,12 @@ export const cssData : CSSDataV1 = {
 				"S11",
 				"C69",
 				"O56"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-right"
+				}
 			],
 			"description": "The scroll-margin-right property defines the right margin of the scroll snap area that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
@@ -15843,6 +18087,12 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-top"
+				}
+			],
 			"description": "The scroll-margin-top property defines the top margin of the scroll snap area that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
@@ -15854,6 +18104,12 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding"
+				}
+			],
 			"description": "The scroll-padding property is a shorthand property which sets all of the scroll-padding longhands, assigning values much like the padding property does for the padding-* longhands."
 		},
 		{
@@ -15863,6 +18119,12 @@ export const cssData : CSSDataV1 = {
 				"FF68",
 				"C69",
 				"O56"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block"
+				}
 			],
 			"description": "The scroll-padding-block property is a shorthand property which sets the scroll-padding longhands for the block dimension."
 		},
@@ -15875,6 +18137,12 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block-start"
+				}
+			],
 			"description": "The scroll-padding-block-start property defines offsets for the start edge in the block dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
@@ -15885,6 +18153,12 @@ export const cssData : CSSDataV1 = {
 				"S11",
 				"C69",
 				"O56"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block-end"
+				}
 			],
 			"description": "The scroll-padding-block-end property defines offsets for the end edge in the block dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
@@ -15897,6 +18171,12 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-bottom"
+				}
+			],
 			"description": "The scroll-padding-bottom property defines offsets for the bottom of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
@@ -15906,6 +18186,12 @@ export const cssData : CSSDataV1 = {
 				"FF68",
 				"C69",
 				"O56"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline"
+				}
 			],
 			"description": "The scroll-padding-inline property is a shorthand property which sets the scroll-padding longhands for the inline dimension."
 		},
@@ -15918,6 +18204,12 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline-start"
+				}
+			],
 			"description": "The scroll-padding-inline-start property defines offsets for the start edge in the inline dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
@@ -15928,6 +18220,12 @@ export const cssData : CSSDataV1 = {
 				"S11",
 				"C69",
 				"O56"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline-end"
+				}
 			],
 			"description": "The scroll-padding-inline-end property defines offsets for the end edge in the inline dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
@@ -15940,6 +18238,12 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-left"
+				}
+			],
 			"description": "The scroll-padding-left property defines offsets for the left of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
@@ -15950,6 +18254,12 @@ export const cssData : CSSDataV1 = {
 				"S11",
 				"C69",
 				"O56"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-right"
+				}
 			],
 			"description": "The scroll-padding-right property defines offsets for the right of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
@@ -15962,6 +18272,12 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-top"
+				}
+			],
 			"description": "The scroll-padding-top property defines offsets for the top of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
@@ -15973,6 +18289,12 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-align"
+				}
+			],
 			"description": "The scroll-snap-align property specifies the box’s snap position as an alignment of its snap area (as the alignment subject) within its snap container’s snapport (as the alignment container). The two values specify the snapping alignment in the block axis and inline axis, respectively. If only one value is specified, the second value defaults to the same value."
 		},
 		{
@@ -15980,6 +18302,12 @@ export const cssData : CSSDataV1 = {
 			"syntax": "normal | always",
 			browsers: [
 				"C75"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-stop"
+				}
 			],
 			"description": "The scroll-snap-stop CSS property defines whether the scroll container is allowed to \"pass over\" possible snap positions."
 		},
@@ -15991,6 +18319,12 @@ export const cssData : CSSDataV1 = {
 				"FF39",
 				"S9"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-type-x"
+				}
+			],
 			"description": "The scroll-snap-type-x CSS property defines how strictly snap points are enforced on the horizontal axis of the scroll container in case there is one.\n\nSpecifying any precise animations or physics used to enforce those snap points is not covered by this property but instead left up to the user agent."
 		},
 		{
@@ -16000,11 +18334,23 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF39"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-type-y"
+				}
+			],
 			"description": "The scroll-snap-type-y CSS property defines how strictly snap points are enforced on the vertical axis of the scroll container in case there is one.\n\nSpecifying any precise animations or physics used to enforce those snap points is not covered by this property but instead left up to the user agent."
 		},
 		{
 			name: "text-combine-upright",
 			"syntax": "none | all | [ digits <integer>? ]",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-combine-upright"
+				}
+			],
 			"description": "The text-combine-upright CSS property specifies the combination of multiple characters into the space of a single character. If the combined text is wider than 1em, the user agent must fit the contents within 1em. The resulting composition is treated as a single upright glyph for layout and decoration. This property only has an effect in vertical writing modes.\n\nThis is used to produce an effect that is known as tate-chū-yoko (縦中横) in Japanese, or as 直書橫向 in Chinese."
 		},
 		{
@@ -16015,6 +18361,12 @@ export const cssData : CSSDataV1 = {
 				"S12.1",
 				"C57",
 				"O44"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-skip"
+				}
 			],
 			"description": "The text-decoration-skip CSS property specifies what parts of the element’s content any text decoration affecting the element must skip over. It controls all text decoration lines drawn by the element and also any text decoration lines drawn by its ancestors."
 		},
@@ -16027,6 +18379,12 @@ export const cssData : CSSDataV1 = {
 				"C64",
 				"O50"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-skip-ink"
+				}
+			],
 			"description": "The text-decoration-skip-ink CSS property specifies how overlines and underlines are drawn when they pass over glyph ascenders and descenders."
 		},
 		{
@@ -16037,6 +18395,12 @@ export const cssData : CSSDataV1 = {
 				"S6.1",
 				"C25",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis"
+				}
 			],
 			"description": "The text-emphasis CSS property is a shorthand property for setting text-emphasis-style and text-emphasis-color in one declaration. This property will apply the specified emphasis mark to each character of the element's text, except separator characters, like spaces,  and control characters."
 		},
@@ -16049,6 +18413,12 @@ export const cssData : CSSDataV1 = {
 				"C25",
 				"O15"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis-color"
+				}
+			],
 			"description": "The text-emphasis-color CSS property defines the color used to draw emphasis marks on text being rendered in the HTML document. This value can also be set and reset using the text-emphasis shorthand."
 		},
 		{
@@ -16059,6 +18429,12 @@ export const cssData : CSSDataV1 = {
 				"S6.1",
 				"C25",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis-position"
+				}
 			],
 			"description": "The text-emphasis-position CSS property describes where emphasis marks are drawn at. The effect of emphasis marks on the line height is the same as for ruby text: if there isn't enough place, the line height is increased."
 		},
@@ -16071,6 +18447,12 @@ export const cssData : CSSDataV1 = {
 				"C25",
 				"O15"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis-style"
+				}
+			],
 			"description": "The text-emphasis-style CSS property defines the type of emphasis used. It can also be set, and reset, using the text-emphasis shorthand."
 		},
 		{
@@ -16081,6 +18463,12 @@ export const cssData : CSSDataV1 = {
 				"E12",
 				"C54",
 				"O42"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-size-adjust"
+				}
 			],
 			"description": "The text-size-adjust CSS property controls the text inflation algorithm used on some smartphones and tablets. Other browsers will ignore this property."
 		},
@@ -16093,6 +18481,12 @@ export const cssData : CSSDataV1 = {
 				"C64",
 				"O51"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/transform-box"
+				}
+			],
 			"description": "The transform-box CSS property defines the layout box to which the transform and transform-origin properties relate."
 		},
 		{
@@ -16100,6 +18494,12 @@ export const cssData : CSSDataV1 = {
 			"syntax": "none | <length-percentage> [ <length-percentage> <length>? ]?",
 			browsers: [
 				"FF60"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/translate"
+				}
 			],
 			"description": "The translate CSS property allows you to specify translation transforms individually and independently of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value."
 		},
@@ -16150,6 +18550,12 @@ export const cssData : CSSDataV1 = {
 	"atDirectives": [
 		{
 			name: "@charset",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/@charset"
+				}
+			],
 			"description": "Defines character set of the document."
 		},
 		{
@@ -16157,10 +18563,22 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF33"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/@counter-style"
+				}
+			],
 			"description": "Defines a custom counter style."
 		},
 		{
 			name: "@font-face",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/@font-face"
+				}
+			],
 			"description": "Allows for linking to fonts that are automatically activated when needed. This permits authors to work around the limitation of 'web-safe' fonts, allowing for consistent rendering independent of the fonts available in a given user's environment."
 		},
 		{
@@ -16169,18 +18587,42 @@ export const cssData : CSSDataV1 = {
 				"FF34",
 				"S9.1"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/@font-feature-values"
+				}
+			],
 			"description": "Defines named values for the indices used to select alternate glyphs for a given font family."
 		},
 		{
 			name: "@import",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/@import"
+				}
+			],
 			"description": "Includes content of another file."
 		},
 		{
 			name: "@keyframes",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/@keyframes"
+				}
+			],
 			"description": "Defines set of animation key frames."
 		},
 		{
 			name: "@media",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/@media"
+				}
+			],
 			"description": "Defines a stylesheet for a particular media type."
 		},
 		{
@@ -16207,6 +18649,12 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "@namespace",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/@namespace"
+				}
+			],
 			"description": "Declares a prefix and associates it with a namespace name."
 		},
 		{
@@ -16232,6 +18680,12 @@ export const cssData : CSSDataV1 = {
 				"IE8",
 				"O6"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/@page"
+				}
+			],
 			"description": "Directive defines various page parameters."
 		},
 		{
@@ -16242,6 +18696,12 @@ export const cssData : CSSDataV1 = {
 				"S9",
 				"C28",
 				"O12.1"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/@supports"
+				}
 			],
 			"description": "A conditional group rule whose condition tests whether the user agent supports CSS property:value pairs."
 		},
@@ -16257,6 +18717,12 @@ export const cssData : CSSDataV1 = {
 	"pseudoClasses": [
 		{
 			name: ":active",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:active"
+				}
+			],
 			"description": "Applies while an element is being activated by the user. For example, between the times the user presses the mouse button and releases it."
 		},
 		{
@@ -16267,10 +18733,22 @@ export const cssData : CSSDataV1 = {
 				"C65",
 				"O52"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:any-link"
+				}
+			],
 			"description": "Represents an element that acts as the source anchor of a hyperlink. Applies to both visited and unvisited links."
 		},
 		{
 			name: ":checked",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:checked"
+				}
+			],
 			"description": "Radio and checkbox elements can be toggled by the user. Some menu items are 'checked' when the user selects them. When such elements are toggled 'on' the :checked pseudo-class applies."
 		},
 		{
@@ -16297,10 +18775,22 @@ export const cssData : CSSDataV1 = {
 				"C10",
 				"O10"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:default"
+				}
+			],
 			"description": "Applies to the one or more UI elements that are the default among a set of similar elements. Typically applies to context menu items, buttons, and select lists/menus."
 		},
 		{
 			name: ":disabled",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:disabled"
+				}
+			],
 			"description": "Represents user interface elements that are in a disabled state; such elements have a corresponding enabled state."
 		},
 		{
@@ -16313,10 +18803,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: ":empty",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:empty"
+				}
+			],
 			"description": "Represents an element that has no children at all."
 		},
 		{
 			name: ":enabled",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:enabled"
+				}
+			],
 			"description": "Represents user interface elements that are in an enabled state; such elements have a corresponding disabled state."
 		},
 		{
@@ -16336,22 +18838,52 @@ export const cssData : CSSDataV1 = {
 				"IE8",
 				"O9.2"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:first"
+				}
+			],
 			"description": "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context."
 		},
 		{
 			name: ":first-child",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:first-child"
+				}
+			],
 			"description": "Same as :nth-child(1). Represents an element that is the first child of some other element."
 		},
 		{
 			name: ":first-of-type",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:first-of-type"
+				}
+			],
 			"description": "Same as :nth-of-type(1). Represents an element that is the first sibling of its type in the list of children of its parent element."
 		},
 		{
 			name: ":focus",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:focus"
+				}
+			],
 			"description": "Applies while an element has the focus (accepts keyboard or mouse events, or other forms of input)."
 		},
 		{
 			name: ":fullscreen",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:fullscreen"
+				}
+			],
 			"description": "Matches any element that has its fullscreen flag set."
 		},
 		{
@@ -16379,6 +18911,12 @@ export const cssData : CSSDataV1 = {
 				"C54",
 				"O41"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:host"
+				}
+			],
 			"description": "When evaluated in the context of a shadow tree, matches the shadow tree’s host element."
 		},
 		{
@@ -16399,6 +18937,12 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: ":hover",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:hover"
+				}
+			],
 			"description": "Applies while the user designates an element with a pointing device, but does not necessarily activate it. For example, a visual user agent could apply this pseudo-class when the cursor (mouse pointer) hovers over a box generated by the element."
 		},
 		{
@@ -16411,6 +18955,12 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: ":indeterminate",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:indeterminate"
+				}
+			],
 			"description": "Applies to UI elements whose value is in an indeterminate state."
 		},
 		{
@@ -16422,10 +18972,22 @@ export const cssData : CSSDataV1 = {
 				"C10",
 				"O11"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:in-range"
+				}
+			],
 			"description": "Used in conjunction with the min and max attributes, whether on a range input, a number field, or any other types that accept those attributes."
 		},
 		{
 			name: ":invalid",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:invalid"
+				}
+			],
 			"description": "An element is :valid or :invalid when it is, respectively, valid or invalid with respect to data validity semantics defined by a different specification."
 		},
 		{
@@ -16442,10 +19004,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: ":last-child",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:last-child"
+				}
+			],
 			"description": "Same as :nth-last-child(1). Represents an element that is the last child of some other element."
 		},
 		{
 			name: ":last-of-type",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:last-of-type"
+				}
+			],
 			"description": "Same as :nth-last-of-type(1). Represents an element that is the last sibling of its type in the list of children of its parent element."
 		},
 		{
@@ -16457,10 +19031,22 @@ export const cssData : CSSDataV1 = {
 				"IE8",
 				"O9.2"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:left"
+				}
+			],
 			"description": "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context."
 		},
 		{
 			name: ":link",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:link"
+				}
+			],
 			"description": "Applies to links that have not yet been visited."
 		},
 		{
@@ -16538,6 +19124,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF1"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-only-whitespace"
+				}
+			],
 			"description": "The same as :empty, except that it additionally matches elements that only contain code points affected by whitespace processing. Standardized as :blank."
 		},
 		{
@@ -16551,6 +19143,12 @@ export const cssData : CSSDataV1 = {
 			name: ":-moz-submit-invalid",
 			browsers: [
 				"FF4"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-submit-invalid"
+				}
 			],
 			"description": "Non-standard. Represents any submit button when the contents of the associated form are not valid."
 		},
@@ -16566,12 +19164,24 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF4"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-ui-invalid"
+				}
+			],
 			"description": "Non-standard. Represents any validated form element whose value isn't valid "
 		},
 		{
 			name: ":-moz-ui-valid",
 			browsers: [
 				"FF4"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-ui-valid"
+				}
 			],
 			"description": "Non-standard. Represents any validated form element whose value is valid "
 		},
@@ -16586,6 +19196,12 @@ export const cssData : CSSDataV1 = {
 			name: ":-moz-window-inactive",
 			browsers: [
 				"FF4"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-window-inactive"
+				}
 			],
 			"description": "Non-standard. Matches elements in an inactive window."
 		},
@@ -16688,14 +19304,32 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: ":only-child",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:only-child"
+				}
+			],
 			"description": "Represents an element that has a parent element and whose parent element has no other element children. Same as :first-child:last-child or :nth-child(1):nth-last-child(1), but with a lower specificity."
 		},
 		{
 			name: ":only-of-type",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:only-of-type"
+				}
+			],
 			"description": "Matches every element that is the only child of its type, of its parent. Same as :first-of-type:last-of-type or :nth-of-type(1):nth-last-of-type(1), but with a lower specificity."
 		},
 		{
 			name: ":optional",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:optional"
+				}
+			],
 			"description": "A form element is :required or :optional if a value for it is, respectively, required or optional before the form it belongs to is submitted. Elements that are not form elements are neither required nor optional."
 		},
 		{
@@ -16706,6 +19340,12 @@ export const cssData : CSSDataV1 = {
 				"S5.1",
 				"C10",
 				"O11"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:out-of-range"
+				}
 			],
 			"description": "Used in conjunction with the min and max attributes, whether on a range input, a number field, or any other types that accept those attributes."
 		},
@@ -16727,6 +19367,12 @@ export const cssData : CSSDataV1 = {
 				"C1",
 				"O"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:read-only"
+				}
+			],
 			"description": "An element whose contents are not user-alterable is :read-only. However, elements whose contents are user-alterable (such as text input fields) are considered to be in a :read-write state. In typical documents, most elements are :read-only."
 		},
 		{
@@ -16738,10 +19384,22 @@ export const cssData : CSSDataV1 = {
 				"C1",
 				"O"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:read-write"
+				}
+			],
 			"description": "An element whose contents are not user-alterable is :read-only. However, elements whose contents are user-alterable (such as text input fields) are considered to be in a :read-write state. In typical documents, most elements are :read-only."
 		},
 		{
 			name: ":required",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:required"
+				}
+			],
 			"description": "A form element is :required or :optional if a value for it is, respectively, required or optional before the form it belongs to is submitted. Elements that are not form elements are neither required nor optional."
 		},
 		{
@@ -16753,10 +19411,22 @@ export const cssData : CSSDataV1 = {
 				"IE8",
 				"O9.2"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:right"
+				}
+			],
 			"description": "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context."
 		},
 		{
 			name: ":root",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:root"
+				}
+			],
 			"description": "Represents an element that is the root of the document. In HTML 4, this is always the HTML element."
 		},
 		{
@@ -16766,6 +19436,12 @@ export const cssData : CSSDataV1 = {
 				"S7",
 				"C27",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:scope"
+				}
 			],
 			"description": "Represents any element that is in the contextual reference element set."
 		},
@@ -16787,10 +19463,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: ":target",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:target"
+				}
+			],
 			"description": "Some URIs refer to a location within a resource. This kind of URI ends with a 'number sign' (#) followed by an anchor identifier (called the fragment identifier)."
 		},
 		{
 			name: ":valid",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:valid"
+				}
+			],
 			"description": "An element is :valid or :invalid when it is, respectively, valid or invalid with respect to data validity semantics defined by a different specification."
 		},
 		{
@@ -16803,6 +19491,12 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: ":visited",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:visited"
+				}
+			],
 			"description": "Applies once the link has been visited by the user."
 		},
 		{
@@ -16832,6 +19526,12 @@ export const cssData : CSSDataV1 = {
 		{
 			name: ":blank",
 			"status": "experimental",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:blank"
+				}
+			],
 			"description": "The :blank CSS pseudo-class selects empty user input elements (eg. <input> or <textarea>)."
 		},
 		{
@@ -16843,12 +19543,24 @@ export const cssData : CSSDataV1 = {
 				"C54",
 				"O41"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:defined"
+				}
+			],
 			"description": "The :defined CSS pseudo-class represents any element that has been defined. This includes any standard element built in to the browser, and custom elements that have been successfully defined (i.e. with the CustomElementRegistry.define() method)."
 		},
 		{
 			name: ":dir",
 			browsers: [
 				"FF49"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:dir"
+				}
 			],
 			"description": "The :dir() CSS pseudo-class matches elements based on the directionality of the text contained in them."
 		},
@@ -16858,6 +19570,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF4",
 				"C67"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:focus-visible"
+				}
 			],
 			"description": "The :focus-visible pseudo-class applies while an element matches the :focus pseudo-class and the UA determines via heuristics that the focus should be made evident on the element."
 		},
@@ -16870,11 +19588,23 @@ export const cssData : CSSDataV1 = {
 				"C60",
 				"O47"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:focus-within"
+				}
+			],
 			"description": "The :focus-within pseudo-class applies to any element for which the :focus pseudo class applies as well as to an element whose descendant in the flat tree (including non-element nodes, such as text nodes) matches the conditions for matching :focus."
 		},
 		{
 			name: ":has",
 			"status": "experimental",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:has"
+				}
+			],
 			"description": ":The :has() CSS pseudo-class represents an element if any of the selectors passed as parameters (relative to the :scope of the given element), match at least one element."
 		},
 		{
@@ -16885,6 +19615,12 @@ export const cssData : CSSDataV1 = {
 				"S9",
 				"C66",
 				"O53"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:is"
+				}
 			],
 			"description": "The :is() CSS pseudo-class function takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list. This is useful for writing large selectors in a more compact form."
 		},
@@ -16898,6 +19634,12 @@ export const cssData : CSSDataV1 = {
 				"IE10",
 				"O34"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:placeholder-shown"
+				}
+			],
 			"description": "The :placeholder-shown CSS pseudo-class represents any <input> or <textarea> element that is currently displaying placeholder text."
 		},
 		{
@@ -16909,6 +19651,12 @@ export const cssData : CSSDataV1 = {
 	"pseudoElements": [
 		{
 			name: "::after",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::after"
+				}
+			],
 			"description": "Represents a styleable child pseudo-element immediately after the originating element’s actual content."
 		},
 		{
@@ -16919,10 +19667,22 @@ export const cssData : CSSDataV1 = {
 				"C37",
 				"IE11"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::backdrop"
+				}
+			],
 			"description": "Used to create a backdrop that hides the underlying document for an element in a top layer (such as an element that is displayed fullscreen)."
 		},
 		{
 			name: "::before",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::before"
+				}
+			],
 			"description": "Represents a styleable child pseudo-element immediately before the originating element’s actual content."
 		},
 		{
@@ -16940,6 +19700,12 @@ export const cssData : CSSDataV1 = {
 				"S6.1",
 				"C26",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::cue"
+				}
 			]
 		},
 		{
@@ -16968,10 +19734,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "::first-letter",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::first-letter"
+				}
+			],
 			"description": "Represents the first letter of an element, if it is not preceded by any other content (such as images or inline tables) on its line."
 		},
 		{
 			name: "::first-line",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::first-line"
+				}
+			],
 			"description": "Describes the contents of the first formatted line of its originating element."
 		},
 		{
@@ -17034,6 +19812,12 @@ export const cssData : CSSDataV1 = {
 				"E12",
 				"IE10"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-ms-browse"
+				}
+			],
 			"description": "Represents the browse button of an input type=file control."
 		},
 		{
@@ -17042,6 +19826,12 @@ export const cssData : CSSDataV1 = {
 				"E12",
 				"IE10"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-ms-check"
+				}
+			],
 			"description": "Represents the check of a checkbox or radio button input control."
 		},
 		{
@@ -17049,6 +19839,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"E12",
 				"IE10"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-ms-clear"
+				}
 			],
 			"description": "Represents the clear button of a text input control"
 		},
@@ -17066,6 +19862,12 @@ export const cssData : CSSDataV1 = {
 				"E12",
 				"IE10"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-ms-fill"
+				}
+			],
 			"description": "Represents the bar portion of a progress bar."
 		},
 		{
@@ -17073,6 +19875,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"E12",
 				"IE10"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-ms-fill-lower"
+				}
 			],
 			"description": "Represents the portion of the slider track from its smallest value up to the value currently selected by the thumb. In a left-to-right layout, this is the portion of the slider track to the left of the thumb."
 		},
@@ -17082,6 +19890,12 @@ export const cssData : CSSDataV1 = {
 				"E12",
 				"IE10"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-ms-fill-upper"
+				}
+			],
 			"description": "Represents the portion of the slider track from the value currently selected by the thumb up to the slider's largest value. In a left-to-right layout, this is the portion of the slider track to the right of the thumb."
 		},
 		{
@@ -17089,6 +19903,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"E12",
 				"IE10"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-ms-reveal"
+				}
 			],
 			"description": "Represents the password reveal button of an input type=password control."
 		},
@@ -17138,10 +19958,22 @@ export const cssData : CSSDataV1 = {
 				"E16",
 				"IE10"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-ms-value"
+				}
+			],
 			"description": "Represents the content of a text or password input control, or a select control."
 		},
 		{
 			name: "::selection",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::selection"
+				}
+			],
 			"description": "Represents the portion of a document that has been highlighted by the user."
 		},
 		{
@@ -17158,6 +19990,12 @@ export const cssData : CSSDataV1 = {
 				"S3",
 				"C1",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-file-upload-button"
+				}
 			]
 		},
 		{
@@ -17166,6 +20004,12 @@ export const cssData : CSSDataV1 = {
 				"S4.1",
 				"C6",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-inner-spin-button"
+				}
 			]
 		},
 		{
@@ -17189,6 +20033,12 @@ export const cssData : CSSDataV1 = {
 				"S5.1",
 				"C12",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-meter-bar"
+				}
 			]
 		},
 		{
@@ -17197,6 +20047,12 @@ export const cssData : CSSDataV1 = {
 				"S5.1",
 				"C12",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-meter-even-less-good-value"
+				}
 			]
 		},
 		{
@@ -17205,6 +20061,12 @@ export const cssData : CSSDataV1 = {
 				"S5.1",
 				"C12",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-meter-optimum-value"
+				}
 			]
 		},
 		{
@@ -17221,6 +20083,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"S4.1",
 				"C6"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-outer-spin-button"
+				}
 			]
 		},
 		{
@@ -17229,6 +20097,12 @@ export const cssData : CSSDataV1 = {
 				"S6.1",
 				"C25",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-progress-bar"
+				}
 			]
 		},
 		{
@@ -17237,6 +20111,12 @@ export const cssData : CSSDataV1 = {
 				"S6.1",
 				"C23",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-progress-inner-element"
+				}
 			]
 		},
 		{
@@ -17245,6 +20125,12 @@ export const cssData : CSSDataV1 = {
 				"S6.1",
 				"C25",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-progress-value"
+				}
 			]
 		},
 		{
@@ -17253,6 +20139,12 @@ export const cssData : CSSDataV1 = {
 				"S4",
 				"C2",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-resizer"
+				}
 			]
 		},
 		{
@@ -17261,6 +20153,12 @@ export const cssData : CSSDataV1 = {
 				"S4",
 				"C2",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar"
+				}
 			]
 		},
 		{
@@ -17269,6 +20167,12 @@ export const cssData : CSSDataV1 = {
 				"S4",
 				"C2",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar-button"
+				}
 			]
 		},
 		{
@@ -17277,6 +20181,12 @@ export const cssData : CSSDataV1 = {
 				"S4",
 				"C2",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar-corner"
+				}
 			]
 		},
 		{
@@ -17285,6 +20195,12 @@ export const cssData : CSSDataV1 = {
 				"S4",
 				"C2",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar-thumb"
+				}
 			]
 		},
 		{
@@ -17293,6 +20209,12 @@ export const cssData : CSSDataV1 = {
 				"S4",
 				"C2",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar-track"
+				}
 			]
 		},
 		{
@@ -17301,6 +20223,12 @@ export const cssData : CSSDataV1 = {
 				"S4",
 				"C2",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar-track-piece"
+				}
 			]
 		},
 		{
@@ -17309,6 +20237,12 @@ export const cssData : CSSDataV1 = {
 				"S3",
 				"C1",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-search-cancel-button"
+				}
 			]
 		},
 		{
@@ -17324,6 +20258,12 @@ export const cssData : CSSDataV1 = {
 				"S3",
 				"C1",
 				"O15"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-search-results-button"
+				}
 			]
 		},
 		{
@@ -17411,6 +20351,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF22"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-range-progress"
+				}
+			],
 			"description": "The ::-moz-range-progress CSS pseudo-element is a Mozilla extension that represents the lower portion of the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\". This portion corresponds to values lower than the value currently selected by the thumb (i.e., virtual knob)."
 		},
 		{
@@ -17419,6 +20365,12 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF21"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-range-thumb"
+				}
+			],
 			"description": "The ::-moz-range-thumb CSS pseudo-element is a Mozilla extension that represents the thumb (i.e., virtual knob) of an <input> of type=\"range\". The user can move the thumb along the input's track to alter its numerical value."
 		},
 		{
@@ -17426,6 +20378,12 @@ export const cssData : CSSDataV1 = {
 			"status": "nonstandard",
 			browsers: [
 				"FF21"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-range-track"
+				}
 			],
 			"description": "The ::-moz-range-track CSS pseudo-element is a Mozilla extension that represents the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\"."
 		},
@@ -17437,12 +20395,24 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "::grammar-error",
 			"status": "experimental",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::grammar-error"
+				}
+			],
 			"description": "The ::grammar-error CSS pseudo-element represents a text segment which the user agent has flagged as grammatically incorrect."
 		},
 		{
 			name: "::marker",
 			browsers: [
 				"FF68"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::marker"
+				}
 			],
 			"description": "The ::marker CSS pseudo-element selects the marker box of a list item, which typically contains a bullet or number. It works on any element or pseudo-element set to display: list-item, such as the <li> and <summary> elements."
 		},
@@ -17453,6 +20423,12 @@ export const cssData : CSSDataV1 = {
 				"FF69",
 				"C73",
 				"O60"
+			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::part"
+				}
 			],
 			"description": "The ::part CSS pseudo-element represents any element within a shadow tree that has a matching part attribute."
 		},
@@ -17465,6 +20441,12 @@ export const cssData : CSSDataV1 = {
 				"C57",
 				"O44"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::placeholder"
+				}
+			],
 			"description": "The ::placeholder CSS pseudo-element represents the placeholder text of a form element."
 		},
 		{
@@ -17475,11 +20457,23 @@ export const cssData : CSSDataV1 = {
 				"C50",
 				"O37"
 			],
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::slotted"
+				}
+			],
 			"description": "The :slotted() CSS pseudo-element represents any element that has been placed into a slot inside an HTML template."
 		},
 		{
 			name: "::spelling-error",
 			"status": "experimental",
+			"references": [
+				{
+					name: "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::spelling-error"
+				}
+			],
 			"description": "The ::spelling-error CSS pseudo-element represents a text segment which the user agent has flagged as incorrectly spelled."
 		}
 	]

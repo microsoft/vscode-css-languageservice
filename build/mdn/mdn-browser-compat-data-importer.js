@@ -37,6 +37,48 @@ function addBrowserCompatDataToProperties(atdirectives, pseudoclasses, pseudoele
   })
 }
 
+function addMDNReferences(atdirectives, pseudoclasses, pseudoelements, properties) {
+  const addReference = (item, matchingItem) => {
+    if (matchingItem.__compat && matchingItem.__compat.mdn_url) {
+      if (!item.references) {
+        item.references = [];
+      }
+      item.references.push({
+        name: 'MDN Reference',
+        url: matchingItem.__compat.mdn_url
+      })
+    }
+  }
+
+  atdirectives.forEach(item => {
+    if (bcd.css['at-rules'][item.name.slice(1)]) {
+      const matchingBCDItem = bcd.css['at-rules'][item.name.slice(1)]  
+      addReference(item, matchingBCDItem);
+    }
+  })
+  
+  pseudoclasses.forEach(item => {
+    if (bcd.css.selectors[item.name.slice(1)]) {
+      const matchingBCDItem = bcd.css.selectors[item.name.slice(1)]
+      addReference(item, matchingBCDItem)
+    }
+  })
+
+  pseudoelements.forEach(item => {
+    if (bcd.css.selectors[item.name.slice(2)]) {
+      const matchingBCDItem = bcd.css.selectors[item.name.slice(2)]
+      addReference(item, matchingBCDItem)
+    }
+  })
+
+  properties.forEach(item => {
+    if (bcd.css.properties[item.name]) {
+      const matchingBCDItem = bcd.css.properties[item.name]
+      addReference(item, matchingBCDItem)
+    }
+  })
+}
+
 const browserNames = {
 	E: 'Edge',
 	FF: 'Firefox',
@@ -201,4 +243,7 @@ function isSupported(support) {
   return false
 }
 
-module.exports.addBrowserCompatDataToProperties = addBrowserCompatDataToProperties
+module.exports = {
+  addBrowserCompatDataToProperties,
+  addMDNReferences
+}

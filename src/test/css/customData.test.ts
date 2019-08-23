@@ -62,8 +62,14 @@ suite('CSS - Custom Data', () => {
 				name: 'foo',
 				description: {
 					kind: 'markdown',
-					value: 'Foo property. See link on [MDN](https://developer.mozilla.org/en-US/).'
-				}
+					value: 'Foo property. See link on [MDN](https://developer.mozilla.org/en-US/).',
+				},
+				references: [
+					{
+						name: 'MDN Reference',
+						url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/foo'
+					}
+				]
 			}
 		],
 		atDirectives: [
@@ -116,7 +122,14 @@ suite('CSS - Custom Data', () => {
 	test('Completion', () => {
 		testCompletionFor('body { | }', {
 			items: [
-				{ label: 'foo', resultText: 'body { foo:  }', documentation: { kind: 'markdown', value: 'Foo property. See link on [MDN](https://developer.mozilla.org/en-US/).' } }
+				{
+					label: 'foo',
+					resultText: 'body { foo:  }',
+					documentation: {
+						kind: 'markdown',
+						value: 'Foo property. See link on [MDN](https://developer.mozilla.org/en-US/).\n\n[MDN Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/foo)'
+					}
+				}
 			]
 		});
 

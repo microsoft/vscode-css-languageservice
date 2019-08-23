@@ -41,13 +41,27 @@ function getEntryStatus(status: EntryStatus) {
 	}
 }
 
-export function getEntryDescription(entry: IEntry2): string | undefined | MarkupContent {
+export function getEntryDescription(entry: IEntry2, doesSupportMarkdown: boolean): MarkupContent {
+	if (doesSupportMarkdown) {
+		return {
+			kind: 'markdown',
+			value: getEntryMarkdownDescription(entry)
+		};
+	} else {
+		return {
+			kind: 'plaintext',
+			value: getEntryStringDescription(entry)
+		};
+	}
+}
+
+function getEntryStringDescription(entry: IEntry2): string {
 	if (!entry.description || entry.description === '') {
-		return undefined;
+		return '';
 	}
 
 	if (typeof entry.description !== 'string') {
-		return entry.description;
+		return entry.description.value;
 	}
 
 	let result: string = '';
@@ -65,6 +79,48 @@ export function getEntryDescription(entry: IEntry2): string | undefined | Markup
 	if ('syntax' in entry) {
 		result += `\n\nSyntax: ${entry.syntax}`;
 	}
+	if (entry.references && entry.references.length > 0) {
+		result += '\n\n';
+		result += entry.references.map(r => {
+			return `${r.name}: ${r.url}`;
+		}).join(' | ');
+	}
+
+	return result;
+}
+
+function getEntryMarkdownDescription(entry: IEntry2): string {
+	if (!entry.description || entry.description === '') {
+		return '';
+	}
+
+	let result: string = '';
+
+	if (entry.status) {
+		result += getEntryStatus(entry.status);
+	}
+
+	
+	if (typeof entry.description === 'string') {
+		result += entry.description;
+	} else {
+		result = entry.description.value;
+	}
+
+	const browserLabel = getBrowserLabel(entry.browsers);
+	if (browserLabel) {
+		result += '\n(' + browserLabel + ')';
+	}
+	if ('syntax' in entry) {
+		result += `\n\nSyntax: ${entry.syntax}`;
+	}
+	if (entry.references && entry.references.length > 0) {
+		result += '\n\n';
+		result += entry.references.map(r => {
+			return `[${r.name}](${r.url})`;
+		}).join(' | ');
+	}
+
 	return result;
 }
 
