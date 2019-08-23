@@ -17,7 +17,7 @@ const localize = nls.loadMessageBundle();
 class NodesByRootMap {
 	public data: { [name: string]: { nodes: nodes.Node[]; names: string[] } } = {};
 
-	public add(root: string, name: string, node: nodes.Node): void {
+	public add(root: string, name: string, node?: nodes.Node | null): void {
 		let entry = this.data[root];
 		if (!entry) {
 			entry = { nodes: [], names: [] };
@@ -123,17 +123,18 @@ export class LintVisitor implements nodes.IVisitor {
 		this.warnings.push(entry);
 	}
 
-	private getMissingNames(expected: string[], actual: string[]): string {
-		expected = expected.slice(0); // clone
+	private getMissingNames(expected: string[], actual: string[]): string | null {
+		const expectedClone: (string | null)[] = expected.slice(0); // clone
+
 		for (let i = 0; i < actual.length; i++) {
-			const k = expected.indexOf(actual[i]);
+			const k = expectedClone.indexOf(actual[i]);
 			if (k !== -1) {
-				expected[k] = null;
+				expectedClone[k] = null;
 			}
 		}
-		let result: string = null;
-		for (let i = 0; i < expected.length; i++) {
-			const curr = expected[i];
+		let result: string | null = null;
+		for (let i = 0; i < expectedClone.length; i++) {
+			const curr = expectedClone[i];
 			if (curr) {
 				if (result === null) {
 					result = localize('namelist.single', "'{0}'", curr);
@@ -187,6 +188,10 @@ export class LintVisitor implements nodes.IVisitor {
 
 	private visitKeyframe(node: nodes.Keyframe): boolean {
 		const keyword = node.getKeyword();
+		if (!keyword) {
+			return false;
+		}
+
 		const text = keyword.getText();
 		this.keyframes.add(node.getName(), text, (text !== '@keyframes') ? keyword : null);
 		return true;
@@ -398,14 +403,14 @@ export class LintVisitor implements nodes.IVisitor {
 
 			for (const element of propertyTable) {
 				const decl = element.node;
-				if (this.isCSSDeclaration(element.node)) {
+				if (this.isCSSDeclaration(decl)) {
 					let name = element.fullPropertyName;
 					const firstChar = name.charAt(0);
 
 					if (firstChar === '-') {
 						if (name.charAt(1) !== '-') { // avoid css variables
 							if (!languageFacts.cssDataManager.isKnownProperty(name) && !this.validProperties[name]) {
-								this.addEntry(decl.getProperty(), Rules.UnknownVendorSpecificProperty);
+								this.addEntry(decl.getProperty()!, Rules.UnknownVendorSpecificProperty);
 							}
 							const nonPrefixedName = decl.getNonPrefixedPropertyName();
 							propertiesBySuffix.add(nonPrefixedName, name, decl.getProperty());
@@ -413,14 +418,14 @@ export class LintVisitor implements nodes.IVisitor {
 					} else {
 						const fullName = name;
 						if (firstChar === '*' || firstChar === '_') {
-							this.addEntry(decl.getProperty(), Rules.IEStarHack);
+							this.addEntry(decl.getProperty()!, Rules.IEStarHack);
 							name = name.substr(1);
 						}
 
 						// _property and *property might be contributed via custom data
 						if (!languageFacts.cssDataManager.isKnownProperty(fullName) && !languageFacts.cssDataManager.isKnownProperty(name)) {
 							if (!this.validProperties[name]) {
-								this.addEntry(decl.getProperty(), Rules.UnknownProperty, localize('property.unknownproperty.detailed', "Unknown property: '{0}'", name));
+								this.addEntry(decl.getProperty()!, Rules.UnknownProperty, localize('property.unknownproperty.detailed', "Unknown property: '{0}'", name));
 							}
 						}
 
@@ -507,14 +512,14 @@ export class LintVisitor implements nodes.IVisitor {
 		const declarations = node.getDeclarations();
 		if (!declarations) {
 			// syntax error
-			return;
+			return false;
 		}
 
 		let definesSrc = false, definesFontFamily = false;
 		let containsUnknowns = false;
 		for (const node of declarations.getChildren()) {
 			if (this.isCSSDeclaration(node)) {
-				const name = ((<nodes.Declaration>node).getProperty().getName().toLowerCase());
+				const name = node.getProperty()!.getName().toLowerCase();
 				if (name === 'src') { definesSrc = true; }
 				if (name === 'font-family') { definesFontFamily = true; }
 			} else {
@@ -529,13 +534,17 @@ export class LintVisitor implements nodes.IVisitor {
 		return true;
 	}
 
-	private isCSSDeclaration(node: nodes.Node): boolean {
+	private isCSSDeclaration(node: nodes.Node): node is nodes.Declaration {
 		if (node instanceof nodes.Declaration) {
 			if (!(<nodes.Declaration>node).getValue()) {
 				return false;
 			}
 			const property = (<nodes.Declaration>node).getProperty();
-			if (!property || property.getIdentifier().containsInterpolation()) {
+			if (!property) {
+				return false;
+			}
+			const identifier = property.getIdentifier();
+			if (!identifier || identifier.containsInterpolation()) {
 				return false;
 			}
 			return true;

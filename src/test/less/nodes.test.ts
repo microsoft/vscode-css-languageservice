@@ -12,7 +12,7 @@ suite('LESS - Nodes', () => {
 
 	function ruleset(input: string): nodes.RuleSet {
 		let parser = new LESSParser();
-		let node = parser.internalParse(input, parser._parseRuleset);
+		let node = parser.internalParse(input, parser._parseRuleset)!;
 		return node;
 	}
 

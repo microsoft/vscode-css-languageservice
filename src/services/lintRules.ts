@@ -73,7 +73,7 @@ export class LintConfigurationSettings {
 	}
 }
 
-function toLevel(level: string): nodes.Level {
+function toLevel(level: string): nodes.Level | null {
 	switch (level) {
 		case 'ignore': return nodes.Level.Ignore;
 		case 'warning': return nodes.Level.Warning;

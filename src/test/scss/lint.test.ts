@@ -12,7 +12,7 @@ import { TextDocument } from 'vscode-languageserver-types';
 function assertFontFace(input: string, ...rules: Rule[]): void {
 	let p = new SCSSParser();
 	let document = TextDocument.create('test://test/test.scss', 'scss', 0, input);
-	let node = p.internalParse(input, p._parseFontFace);
+	let node = p.internalParse(input, p._parseFontFace)!;
 
 	assertEntries(node, document, rules);
 }
@@ -20,7 +20,7 @@ function assertFontFace(input: string, ...rules: Rule[]): void {
 function assertRuleSet(input: string, ...rules: Rule[]): void {
 	let p = new SCSSParser();
 	let document = TextDocument.create('test://test/test.scss', 'scss', 0, input);
-	let node = p.internalParse(input, p._parseRuleset);
+	let node = p.internalParse(input, p._parseRuleset)!;
 	assertEntries(node, document, rules);
 }
 

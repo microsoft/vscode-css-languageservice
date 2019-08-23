@@ -5,11 +5,11 @@
 		"moduleResolution": "node",
 		"sourceMap": true,
 		"declaration": true,
+		"strict": true,
 		"stripInternal": true,
 		"outDir": "../lib/umd",
 		"lib": [
 			"es5", "es2015.promise"
-		],
-		"strictFunctionTypes": true
+		]
 	}
 }

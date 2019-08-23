@@ -41,23 +41,27 @@ function elementToString(element: selectorPrinter.Element): string {
 	return label;
 }
 
-function doParse(p: Parser, input: string, selectorName: string): nodes.Selector {
+function doParse(p: Parser, input: string, selectorName: string): nodes.Selector | null {
 	let document = TextDocument.create('test://test/test.css', 'css', 0, input);
 	let styleSheet = p.parseStylesheet(document);
 
 	let node = nodes.getNodeAtOffset(styleSheet, input.indexOf(selectorName));
+	if (!node) { return null; }
 	return <nodes.Selector>node.findParent(nodes.NodeType.Selector);
 }
 
 export function parseSelector(p: Parser, input: string, selectorName: string, expected: string): void {
 	let selector = doParse(p, input, selectorName);
-	let element = selectorPrinter.selectorToElement(selector);
+	assert(selector);
 
-	assert.equal(elementToString(element), expected);
+	let element = selectorPrinter.selectorToElement(selector!);
+	assert(element);
+
+	assert.equal(elementToString(element!), expected);
 }
 
-export function assertElement(p: Parser, input: string, expected: { name: string; value: string }[]): void {
-	let node = p.internalParse(input, p._parseSimpleSelector);
+export function assertElement(p: Parser, input: string, expected: { name: string; value?: string }[]): void {
+	let node = p.internalParse(input, p._parseSimpleSelector)!;
 	let actual = selectorPrinter.toElement(node);
 
 	assert.deepEqual(actual.attributes, expected);
@@ -70,7 +74,8 @@ export function parseSelectorToMarkedString(
 	expected: MarkedString[]
 ): void {
 	let selector = doParse(p, input, selectorName);
-	let printedElement = selectorPrinter.selectorToMarkedString(selector);
+	assert(selector);
+	let printedElement = selectorPrinter.selectorToMarkedString(selector!);
 
 	assert.deepEqual(printedElement, expected);
 }

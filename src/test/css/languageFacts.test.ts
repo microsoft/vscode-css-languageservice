@@ -10,26 +10,26 @@ import { Parser } from '../../parser/cssParser';
 import * as nodes from '../../parser/cssNodes';
 import { TextDocument, Color } from 'vscode-languageserver-types';
 
-export function assertColor(parser: Parser, text: string, selection: string, expected: Color, isColor = expected !== null): void {
+export function assertColor(parser: Parser, text: string, selection: string, expected: Color | null, isColor = expected !== null): void {
 	let document = TextDocument.create('test://test/test.css', 'css', 0, text);
 	let stylesheet = parser.parseStylesheet(document);
 	assert.equal(nodes.ParseErrorCollector.entries(stylesheet).length, 0, 'compile errors');
 
 	let node = nodes.getNodeAtOffset(stylesheet, text.indexOf(selection));
 	assert(node);
-	if (node.parent && node.parent.type === nodes.NodeType.Function) {
-		node = node.parent;
+	if (node!.parent && node!.parent.type === nodes.NodeType.Function) {
+		node = node!.parent;
 	}
 
-	assert.equal(isColorValue(node), isColor);
-	assertColorValue(getColorValue(node), expected, text);
+	assert.equal(isColorValue(node!), isColor);
+	assertColorValue(getColorValue(node!), expected, text);
 }
 
-function assertColorFromHex(s: string, expected: Color) {
+function assertColorFromHex(s: string, expected: Color | null) {
 	assertColorValue(colorFromHex(s), expected, s);
 }
 
-function assertColorValue(actual: Color, expected: Color, message: string) {
+function assertColorValue(actual: Color | null, expected: Color | null, message: string) {
 	if (actual && expected) {
 		let rDiff = Math.abs((actual.red - expected.red) * 255);
 		let gDiff = Math.abs((actual.green - expected.green) * 255);
@@ -64,22 +64,22 @@ suite('CSS - Language Facts', () => {
 		assert.ok(alignLast !== null);
 		assert.equal(alignLast.name, 'text-align-last');
 
-		assert.ok(alignLast.browsers.indexOf("E12") !== -1);
-		assert.ok(alignLast.browsers.indexOf("FF49") !== -1);
-		assert.ok(alignLast.browsers.indexOf("C47") !== -1);
-		assert.ok(alignLast.browsers.indexOf("IE5.5") !== -1);
-		assert.ok(alignLast.browsers.indexOf("O") !== -1);
+		assert.ok(alignLast.browsers!.indexOf("E12") !== -1);
+		assert.ok(alignLast.browsers!.indexOf("FF49") !== -1);
+		assert.ok(alignLast.browsers!.indexOf("C47") !== -1);
+		assert.ok(alignLast.browsers!.indexOf("IE") !== -1);
+		assert.ok(alignLast.browsers!.indexOf("O") !== -1);
 
-		assert.equal(getBrowserLabel(alignLast.browsers), 'Edge 12, Firefox 49, Chrome 47, IE 5, Opera');
+		assert.equal(getBrowserLabel(alignLast.browsers!), 'Edge 12, Firefox 49, Chrome 47, IE, Opera');
 
 		let r = alignLast.restrictions;
 
-		assert.equal(r.length, 1);
-		assert.equal(r[0], 'enum');
+		assert.equal(r!.length, 1);
+		assert.equal(r![0], 'enum');
 
 		let v = alignLast.values;
-		assert.equal(v.length, 5);
-		assert.equal(v[0].name, 'auto');
+		assert.equal(v!.length, 5);
+		assert.equal(v![0].name, 'auto');
 	});
 
 	test('is color', function () {
