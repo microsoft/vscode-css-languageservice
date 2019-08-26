@@ -144,7 +144,7 @@ suite('LESS - Parser', () => {
 		let parser = new LESSParser();
 		assertNode('%()', parser, parser._parseFunction.bind(parser));
 		assertNoNode('% ()', parser, parser._parseFunction.bind(parser));
-		
+
 		assertNode('func(a, b; bar)', parser, parser._parseRuleSetDeclaration.bind(parser));
 		assertNode('func({a: b();}, bar)', parser, parser._parseRuleSetDeclaration.bind(parser));
 		assertNode('func(.(@val) {})', parser, parser._parseRuleSetDeclaration.bind(parser));

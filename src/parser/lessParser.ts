@@ -232,7 +232,7 @@ export class LESSParser extends cssParser.Parser {
 
 		const node = <nodes.Variable>this.create(nodes.Variable);
 		const mark = this.mark();
-		
+
 		while (this.acceptDelim('@') || (!declaration && this.acceptDelim('$'))) {
 			if (this.hasWhitespace()) {
 				this.restoreAtMark(mark);
