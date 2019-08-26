@@ -188,10 +188,10 @@ export class CSSCompletion {
 				insertText = entry.name + ': ';
 				retrigger = true;
 			}
-			const item: CompletionItem = {
+			const item = <CompletionItem>{
 				label: entry.name,
 				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
-				deprecated: entry.status && (entry.status === 'nonstandard' || entry.status === 'obsolete'),
+				deprecated: isDeprecated(entry),
 				textEdit: TextEdit.replace(range, insertText),
 				kind: CompletionItemKind.Property
 			};
@@ -323,10 +323,10 @@ export class CSSCompletion {
 						insertTextFormat = SnippetFormat;
 					}
 				}
-				const item: CompletionItem = {
+				const item = <CompletionItem>{
 					label: value.name,
 					documentation: languageFacts.getEntryDescription(value, this.doesSupportMarkdown()),
-					deprecated: entry.status && (entry.status === 'nonstandard' || entry.status === 'obsolete'),
+					deprecated: isDeprecated(entry),
 					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertString),
 					kind: CompletionItemKind.Value,
 					insertTextFormat
@@ -607,11 +607,11 @@ export class CSSCompletion {
 
 	public getCompletionForTopLevel(result: CompletionList): CompletionList {
 		languageFacts.cssDataManager.getAtDirectives().forEach(entry => {
-			result.items.push({
+			result.items.push(<CompletionItem>{
 				label: entry.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(null), entry.name),
 				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
-				deprecated: entry.status && (entry.status === 'nonstandard' || entry.status === 'obsolete'),
+				deprecated: isDeprecated(entry),
 				kind: CompletionItemKind.Keyword
 			});
 		});
@@ -646,11 +646,11 @@ export class CSSCompletion {
 		const pseudoClasses = languageFacts.cssDataManager.getPseudoClasses();
 		pseudoClasses.forEach(entry => {
 			const insertText = moveCursorInsideParenthesis(entry.name);
-			const item: CompletionItem = {
+			const item = <CompletionItem>{
 				label: entry.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
 				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
-				deprecated: entry.status && (entry.status === 'nonstandard' || entry.status === 'obsolete'),
+				deprecated: isDeprecated(entry),
 				kind: CompletionItemKind.Function,
 				insertTextFormat: entry.name !== insertText ? SnippetFormat : void 0
 			};
@@ -663,11 +663,11 @@ export class CSSCompletion {
 		const pseudoElements = languageFacts.cssDataManager.getPseudoElements();
 		pseudoElements.forEach(entry => {
 			const insertText = moveCursorInsideParenthesis(entry.name);
-			const item: CompletionItem = {
+			const item = <CompletionItem>{
 				label: entry.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
 				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
-				deprecated: entry.status && (entry.status === 'nonstandard' || entry.status === 'obsolete'),
+				deprecated: isDeprecated(entry),
 				kind: CompletionItemKind.Function,
 				insertTextFormat: entry.name !== insertText ? SnippetFormat : void 0
 			};
@@ -935,6 +935,14 @@ export class CSSCompletion {
 		}
 		return <boolean>this.supportsMarkdown;
 	}
+}
+
+function isDeprecated(entry: languageFacts.IEntry2): boolean {
+	if (entry.status && (entry.status === 'nonstandard' || entry.status === 'obsolete')) {
+		return true;
+	}
+	
+	return false;
 }
 
 class Set {
