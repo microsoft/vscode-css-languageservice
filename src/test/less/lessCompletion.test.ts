@@ -10,6 +10,7 @@ import * as cssLanguageService from '../../cssLanguageService';
 import { LESSCompletion } from '../../services/lessCompletion';
 import { TextDocument, Position } from 'vscode-languageserver-types';
 import { assertCompletion, ItemDescription } from '../css/completion.test';
+import { ClientCapabilities } from '../../cssLanguageTypes';
 
 
 suite('LESS - Completions', () => {
@@ -19,7 +20,6 @@ suite('LESS - Completions', () => {
 		value = value.substr(0, offset) + value.substr(offset + 1);
 
 		let ls = cssLanguageService.getLESSLanguageService();
-		let ls2 = new LESSCompletion();
 
 		let document = TextDocument.create('test://test/test.less', 'less', 0, value);
 		let position = Position.create(0, offset);

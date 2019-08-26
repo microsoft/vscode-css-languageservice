@@ -9,9 +9,9 @@ import * as assert from 'assert';
 import { TextDocument, FoldingRange, FoldingRangeKind } from 'vscode-languageserver-types';
 import { getFoldingRanges } from '../../services/cssFolding';
 
-function assertRanges(lines: string[], expected: FoldingRange[], languageId = 'css', rangeLimit = null): void {
+function assertRanges(lines: string[], expected: FoldingRange[], languageId = 'css', rangeLimit: number | null = null): void {
 	const document = TextDocument.create(`test://foo/bar.${languageId}`, languageId, 1, lines.join('\n'));
-	const context = rangeLimit ? { rangeLimit } : void 0;
+	const context = rangeLimit ? { rangeLimit } : {};
 	let actualRanges = getFoldingRanges(document, context);
 
 	actualRanges = actualRanges.sort((r1, r2) => r1.startLine - r2.startLine);

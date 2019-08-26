@@ -5,7 +5,7 @@
 'use strict';
 
 import * as nodes from '../parser/cssNodes';
-import { MarkedString, Location } from 'vscode-languageserver-types';
+import { MarkedString } from 'vscode-languageserver-types';
 import { Scanner } from '../parser/cssScanner';
 import * as languageFacts from "../languageFacts/facts";
 import * as nls from 'vscode-nls';
@@ -14,11 +14,11 @@ const localize = nls.loadMessageBundle();
 
 export class Element {
 
-	public parent: Element;
-	public children: Element[];
-	public attributes: { name: string, value: string; }[];
+	public parent: Element | null = null;
+	public children: Element[] | null = null;
+	public attributes: { name: string, value: string; }[] | null = null;
 
-	public findAttribute(name: string): string {
+	public findAttribute(name: string): string | null {
 		if (this.attributes) {
 			for (const attribute of this.attributes) {
 				if (attribute.name === name) {
@@ -126,7 +126,7 @@ export class LabelElement extends Element {
 
 class MarkedStringPrinter {
 
-	private result: string[];
+	private result: string[] = [];
 
 	constructor(public quote: string) {
 		// empty
@@ -135,7 +135,9 @@ class MarkedStringPrinter {
 	public print(element: Element): MarkedString[] {
 		this.result = [];
 		if (element instanceof RootElement) {
-			this.doPrint(element.children, 0);
+			if (element.children) {
+				this.doPrint(element.children, 0);
+			}
 		} else {
 			this.doPrint([element], 0);
 		}
@@ -163,7 +165,7 @@ class MarkedStringPrinter {
 
 		// special case: a simple label
 		if (element instanceof LabelElement || name === '\u2026') {
-			this.writeLine(indent, name);
+			this.writeLine(indent, name!);
 			return;
 		}
 
@@ -222,7 +224,7 @@ class Specificity {
 	public tag = 0;
 }
 
-export function toElement(node: nodes.SimpleSelector, parentElement?: Element): Element {
+export function toElement(node: nodes.SimpleSelector, parentElement?: Element | null): Element {
 
 	let result = new Element();
 	for (const child of node.getChildren()) {
@@ -273,12 +275,12 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element): 
 				break;
 			case nodes.NodeType.AttributeSelector:
 				const selector = <nodes.AttributeSelector>child;
-				const identifuer = selector.getIdentifier();
-				if (identifuer) {
+				const identifier = selector.getIdentifier();
+				if (identifier) {
 					const expression = selector.getValue();
 					const operator = selector.getOperator();
 					let value: string;
-					if (expression) {
+					if (expression && operator) {
 						switch (unescape(operator.getText())) {
 							case '|=':
 								// excatly or followed by -words
@@ -305,7 +307,7 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element): 
 								break;
 						}
 					}
-					result.addAttr(unescape(identifuer.getText()), value);
+					result.addAttr(unescape(identifier.getText()), value!);
 				}
 				break;
 		}
@@ -396,7 +398,7 @@ export function simpleSelectorToMarkedString(node: nodes.SimpleSelector): Marked
 
 class SelectorElementBuilder {
 
-	private prev: nodes.Node;
+	private prev: nodes.Node | null;
 	private element: Element;
 
 	public constructor(element: Element) {
@@ -405,10 +407,10 @@ class SelectorElementBuilder {
 	}
 
 	public processSelector(selector: nodes.Selector): void {
-		let parentElement: Element = null;
+		let parentElement: Element | null = null;
 
 		if (!(this.element instanceof RootElement)) {
-			if (selector.getChildren().some((c) => c.hasChildren() && c.getChild(0).type === nodes.NodeType.SelectorCombinator)) {
+			if (selector.getChildren().some((c) => c.hasChildren() && c.getChild(0)!.type === nodes.NodeType.SelectorCombinator)) {
 				const curr = this.element.findRoot();
 				if (curr.parent instanceof RootElement) {
 					parentElement = this.element;
@@ -469,9 +471,10 @@ export function selectorToElement(node: nodes.Selector): Element | null {
 	}
 	const root: Element = new RootElement();
 	const parentRuleSets: nodes.RuleSet[] = [];
+	const ruleSet = node.getParent();
 
-	if (node.getParent() instanceof nodes.RuleSet) {
-		let parent = node.getParent().getParent(); // parent of the selector's ruleset
+	if (ruleSet instanceof nodes.RuleSet) {
+		let parent = ruleSet.getParent(); // parent of the selector's ruleset
 		while (parent && !isNewSelectorContext(parent)) {
 			if (parent instanceof nodes.RuleSet) {
 				if (parent.getSelectors().matches('@at-root')) {

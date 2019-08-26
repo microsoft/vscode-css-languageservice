@@ -9,7 +9,7 @@ import * as assert from 'assert';
 import { TextDocument, CompletionList, Position } from 'vscode-languageserver-types';
 import { getCSSLanguageService } from '../../cssLanguageService';
 import { ItemDescription } from './completion.test';
-import { ICSSDataProvider, CSSDataV1 } from '../../cssLanguageTypes';
+import { ICSSDataProvider, CSSDataV1, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext } from '../../cssLanguageTypes';
 import { CSSDataProvider } from '../../languageFacts/facts';
 
 function getLanguageService(data: CSSDataV1) {
@@ -36,13 +36,17 @@ function assertCompletion(completions: CompletionList, expected: ItemDescription
 		assert.equal(match.detail, expected.detail);
 	}
 	if (expected.documentation) {
-		assert.equal(match.documentation, expected.documentation);
+		if (typeof expected.documentation === 'string') {
+			assert.equal(match.documentation, expected.documentation);
+		} else {
+			assert.deepStrictEqual(match.documentation, expected.documentation);
+		}
 	}
 	if (expected.kind) {
 		assert.equal(match.kind, expected.kind);
 	}
 	if (expected.resultText) {
-		assert.equal(TextDocument.applyEdits(document, [match.textEdit]), expected.resultText);
+		assert.equal(TextDocument.applyEdits(document, [match.textEdit!]), expected.resultText);
 	}
 	if (expected.insertTextFormat) {
 		assert.equal(match.insertTextFormat, expected.insertTextFormat);
@@ -56,7 +60,16 @@ suite('CSS - Custom Data', () => {
 		properties: [
 			{
 				name: 'foo',
-				description: 'Foo property'
+				description: {
+					kind: 'markdown',
+					value: 'Foo property. See link on [MDN](https://developer.mozilla.org/en-US/).',
+				},
+				references: [
+					{
+						name: 'MDN Reference',
+						url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/foo'
+					}
+				]
 			}
 		],
 		atDirectives: [
@@ -86,7 +99,7 @@ suite('CSS - Custom Data', () => {
 		expected: {
 			count?: number;
 			items?: ItemDescription[];
-			participant?: { onProperty?; onPropertValue?; onURILiteralValue?; onImportPath? };
+			participant?: { onProperty?: PropertyCompletionContext; onPropertyValue?: PropertyValueCompletionContext; onURILiteralValue?: URILiteralCompletionContext; onImportPath?: ImportPathCompletionContext };
 		}
 	) {
 		let offset = value.indexOf('|');
@@ -108,7 +121,16 @@ suite('CSS - Custom Data', () => {
 
 	test('Completion', () => {
 		testCompletionFor('body { | }', {
-			items: [{ label: 'foo', resultText: 'body { foo:  }' }]
+			items: [
+				{
+					label: 'foo',
+					resultText: 'body { foo:  }',
+					documentation: {
+						kind: 'markdown',
+						value: 'Foo property. See link on [MDN](https://developer.mozilla.org/en-US/).\n\n[MDN Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/foo)'
+					}
+				}
+			]
 		});
 
 		testCompletionFor('|', {

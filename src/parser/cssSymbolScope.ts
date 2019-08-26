@@ -166,7 +166,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 			case nodes.NodeType.For:
 				const forNode = <nodes.ForStatement>node;
 				const scopeNode = forNode.getDeclarations();
-				if (scopeNode) {
+				if (scopeNode && forNode.variable) {
 					this.addSymbolToChildScope(scopeNode, forNode.variable, forNode.variable.getName(), void 0, nodes.ReferenceType.Variable);
 				}
 				return true;
@@ -191,7 +191,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 			for (const child of node.getSelectors().getChildren()) {
 				if (child instanceof nodes.Selector) {
 					if (child.getChildren().length === 1) { // only selectors with a single element can be extended
-						current.addSymbol(new Symbol(child.getChild(0).getText(), void 0, child, nodes.ReferenceType.Rule));
+						current.addSymbol(new Symbol(child.getChild(0)!.getText(), void 0, child, nodes.ReferenceType.Rule));
 					}
 				}
 			}
@@ -200,7 +200,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 	}
 
 	public visitVariableDeclarationNode(node: nodes.VariableDeclaration): boolean {
-		const value = node.getValue() ? node.getValue().getText() : void 0;
+		const value = node.getValue() ? node.getValue()!.getText() : void 0;
 		this.addSymbol(node, node.getName(), value, nodes.ReferenceType.Variable);
 		return true;
 	}
@@ -217,8 +217,8 @@ export class ScopeBuilder implements nodes.IVisitor {
 	}
 
 	public visitCustomPropertyDeclarationNode(node: nodes.CustomPropertyDeclaration): boolean {
-		const value = node.getValue() ? node.getValue().getText() : '';
-		this.addCSSVariable(node.getProperty(), node.getProperty().getName(), value, nodes.ReferenceType.Variable);
+		const value = node.getValue() ? node.getValue()!.getText() : '';
+		this.addCSSVariable(node.getProperty()!, node.getProperty()!.getName(), value, nodes.ReferenceType.Variable);
 		return true;
 	}
 
@@ -302,7 +302,7 @@ export class Symbols {
 				if (decl) {
 					const propertyName = decl.getNonPrefixedPropertyName();
 					if ((propertyName === 'animation' || propertyName === 'animation-name')
-						&& decl.getValue() && decl.getValue().offset === node.offset) {
+						&& decl.getValue() && decl.getValue()!.offset === node.offset) {
 						return [nodes.ReferenceType.Keyframe];
 					}
 				}
@@ -322,7 +322,7 @@ export class Symbols {
 			return null;
 		}
 		while (node.type === nodes.NodeType.Interpolation) {
-			node = node.getParent();
+			node = node.getParent()!;
 		}
 
 		const referenceTypes = this.evaluateReferenceTypes(node);
@@ -337,7 +337,7 @@ export class Symbols {
 			return false;
 		}
 		while (node.type === nodes.NodeType.Interpolation) {
-			node = node.getParent();
+			node = node.getParent()!;
 		}
 		if (!node.matches(symbol.name)) {
 			return false;

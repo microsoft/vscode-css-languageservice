@@ -6,7 +6,7 @@
 
 import 'mocha';
 import * as assert from 'assert';
-import { TextDocument } from 'vscode-languageserver-types';
+import { TextDocument, SelectionRange } from 'vscode-languageserver-types';
 import { getCSSLanguageService } from '../../cssLanguageService';
 import { Stylesheet } from '../../parser/cssNodes';
 
@@ -22,7 +22,7 @@ function assertRanges(content: string, expected: (number | string)[][]): void {
 	const actualRanges = ls.getSelectionRanges(document, [document.positionAt(offset)], ls.parseStylesheet(document) as Stylesheet);
 	assert.equal(actualRanges.length, 1);
 	const offsetPairs: [number, string][] = [];
-	let curr = actualRanges[0];
+	let curr: SelectionRange | undefined = actualRanges[0];
 	while (curr) {
 		offsetPairs.push([document.offsetAt(curr.range.start), document.getText(curr.range)]);
 		curr = curr.parent;

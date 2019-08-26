@@ -58,7 +58,7 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 	scanner.setSource(document.getText());
 
 	let token = scanner.scan();
-	let prevToken: IToken;
+	let prevToken: IToken | null = null;
 	while (token.type !== TokenType.EOF) {
 		switch (token.type) {
 			case TokenType.CurlyL:
@@ -83,7 +83,7 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 						 *   color: red; }
 						 * Use endLine minus one to show ending curly brace
 						 */
-						if (getEndLine(prevToken) !== endLine) {
+						if (prevToken && getEndLine(prevToken) !== endLine) {
 							endLine--;
 						}
 
@@ -103,7 +103,7 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 			 * All comments are marked as `Comment`
 			 */
 			case TokenType.Comment: {
-				const commentRegionMarkerToDelimiter = (marker): Delimiter => {
+				const commentRegionMarkerToDelimiter = (marker: string): Delimiter => {
 					if (marker === '#region') {
 						return { line: getStartLine(token), type: 'comment', isStart: true };
 					} else {
@@ -111,7 +111,7 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 					}
 				};
 
-				const getCurrDelimiter = (token: IToken): Delimiter => {
+				const getCurrDelimiter = (token: IToken): Delimiter | null => {
 					const matches = token.text.match(/^\s*\/\*\s*(#region|#endregion)\b\s*(.*?)\s*\*\//);
 					if (matches) {
 						return commentRegionMarkerToDelimiter(matches[1]);
@@ -198,7 +198,7 @@ function limitFoldingRanges(ranges: FoldingRange[], context: { rangeLimit?: numb
 		return diff;
 	});
 
-	const validRanges = [];
+	const validRanges: FoldingRange[] = [];
 	let prevEndLine = -1;
 	sortedRanges.forEach(r => {
 		if (!(r.startLine < prevEndLine && prevEndLine < r.endLine)) {

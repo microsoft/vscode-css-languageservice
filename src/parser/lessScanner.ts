@@ -54,7 +54,7 @@ export class LESSScanner extends scanner.Scanner {
 		}
 	}
 
-	private escapedJavaScript(): scanner.TokenType {
+	private escapedJavaScript(): scanner.TokenType | null {
 		const ch = this.stream.peekChar();
 		if (ch === _TIC) {
 			this.stream.advance(1);

@@ -48,7 +48,7 @@ function getFsProvider(): FileSystemProvider {
 							return e(err);
 						}
 					}
-	
+
 					let type = FileType.Unknown;
 					if (stats.isFile()) {
 						type = FileType.File;
@@ -57,7 +57,7 @@ function getFsProvider(): FileSystemProvider {
 					} else if (stats.isSymbolicLink) {
 						type = FileType.SymbolicLink;
 					}
-	
+
 					c({
 						type,
 						ctime: stats.ctime.getTime(),
@@ -135,73 +135,33 @@ suite('SCSS - Navigation', () => {
 
 	suite('Links', () => {
 
-		test('SCSS partial file links', () => {
-			const p = new SCSSParser();
+		// For invalid links that have no corresponding file on disk, return original link
+		test('Invalid SCSS partial file links', async () => {
+			const fixtureRoot = path.resolve(__dirname, '../../../../src/test/scss/linkFixture/non-existent');
+			const getDocumentUri = (relativePath: string) => {
+				return URI.file(path.resolve(fixtureRoot, relativePath)).toString();
+			};
 
-			assertLinks(p, `@import 'foo'`, [
-				{ range: newRange(8, 13), target: 'test://test/_foo.scss' }
-			], 'scss');
+			await assertDynamicLinks(getDocumentUri('./index.scss'), `@import 'foo'`, [
+				{ range: newRange(8, 13), target: getDocumentUri('./foo') }
+			]);
 
-			assertLinks(p, `@import './foo'`, [
-				{ range: newRange(8, 15), target: 'test://test/_foo.scss' }
-			], 'scss');
+			await assertDynamicLinks(getDocumentUri('./index.scss'), `@import './foo'`, [
+				{ range: newRange(8, 15), target: getDocumentUri('./foo') }
+			]);
 
-			assertLinks(p, `@import './_foo'`, [
-				{ range: newRange(8, 16), target: 'test://test/_foo.scss' }
-			], 'scss');
+			await assertDynamicLinks(getDocumentUri('./index.scss'), `@import './_foo'`, [
+				{ range: newRange(8, 16), target: getDocumentUri('./_foo') }
+			]);
 
-			assertLinks(p, `@import './foo-baz'`, [
-				{ range: newRange(8, 19), target: 'test://test/_foo-baz.scss' }
-			], 'scss');
-
-			assertLinks(p, `@import './foo-baz.quz'`, [
-				{ range: newRange(8, 23), target: 'test://test/_foo-baz.quz.scss' }
-			], 'scss');
-
-			assertLinks(p, `@import './bar/foo'`, [
-				{ range: newRange(8, 19), target: 'test://test/bar/_foo.scss' }
-			], 'scss');
-
-			assertLinks(p, `@import './bar/_foo'`, [
-				{ range: newRange(8, 20), target: 'test://test/bar/_foo.scss' }
-			], 'scss');
-
-			assertLinks(p, `@import './bar/foo-baz.quz'`, [
-				{ range: newRange(8, 27), target: 'test://test/bar/_foo-baz.quz.scss' }
-			], 'scss');
-
-			assertLinks(p, `@import 'foo.scss'`, [
-				{ range: newRange(8, 18), target: 'test://test/_foo.scss' }
-			], 'scss');
-
-			assertLinks(p, `@import 'foo-baz.scss'`, [
-				{ range: newRange(8, 22), target: 'test://test/_foo-baz.scss' }
-			], 'scss');
-
-			assertLinks(p, `@import './foo-baz.quz.scss'`, [
-				{ range: newRange(8, 28), target: 'test://test/_foo-baz.quz.scss' }
-			], 'scss');
-
-			assertLinks(p, `@import './bar/foo.scss'`, [
-				{ range: newRange(8, 24), target: 'test://test/bar/_foo.scss' }
-			], 'scss');
-
-			assertLinks(p, `@import './bar/_foo.scss'`, [
-				{ range: newRange(8, 25), target: 'test://test/bar/_foo.scss' }
-			], 'scss');
-
-			assertLinks(p, `@import './bar/foo-baz.quz.scss'`, [
-				{ range: newRange(8, 32), target: 'test://test/bar/_foo-baz.quz.scss' }
-			], 'scss');
-
-			assertLinks(p, `@import './bar/_foo-baz.quz.scss'`, [
-				{ range: newRange(8, 33), target: 'test://test/bar/_foo-baz.quz.scss' }
-			], 'scss');
+			await assertDynamicLinks(getDocumentUri('./index.scss'), `@import './foo-baz'`, [
+				{ range: newRange(8, 19), target: getDocumentUri('./foo-baz') }
+			]);
 		});
 
 		test('SCSS partial file dynamic links', async () => {
 			const fixtureRoot = path.resolve(__dirname, '../../../../src/test/scss/linkFixture');
-			const getDocumentUri = (relativePath) => {
+			const getDocumentUri = (relativePath: string) => {
 				return URI.file(path.resolve(fixtureRoot, relativePath)).toString();
 			};
 
@@ -230,22 +190,22 @@ suite('SCSS - Navigation', () => {
 			]);
 		});
 
-		test('SCSS straight links', () => {
+		test('SCSS straight links', async () => {
 			const p = new SCSSParser();
 
-			assertLinks(p, `@import 'foo.css'`, [
+			await assertLinks(p, `@import 'foo.css'`, [
 				{ range: newRange(8, 17), target: 'test://test/foo.css' }
 			], 'scss');
 
-			assertLinks(p, `@import 'foo' print;`, [
+			await assertLinks(p, `@import 'foo' print;`, [
 				{ range: newRange(8, 13), target: 'test://test/foo' }
 			]);
 
-			assertLinks(p, `@import 'http://foo.com/foo.css'`, [
+			await assertLinks(p, `@import 'http://foo.com/foo.css'`, [
 				{ range: newRange(8, 32), target: 'http://foo.com/foo.css' }
 			], 'scss');
 
-			assertLinks(p, `@import url("foo.css") print;`, [
+			await assertLinks(p, `@import url("foo.css") print;`, [
 				{ range: newRange(12, 21), target: 'test://test/foo.css' }
 			]);
 
@@ -257,7 +217,7 @@ suite('SCSS - Navigation', () => {
 		test('color symbols', () => {
 			const ls = getSCSSLanguageService();
 			assertColorSymbols(ls, '$colors: (blue: $blue,indigo: $indigo)'); // issue #47209
-		});	
+		});
 	});
 
 });
