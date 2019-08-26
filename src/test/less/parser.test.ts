@@ -16,17 +16,25 @@ suite('LESS - Parser', () => {
 	test('Variable', function () {
 		let parser = new LESSParser();
 		assertNode('@color', parser, parser._parseVariable.bind(parser));
+		assertNode('$color', parser, parser._parseVariable.bind(parser));
+		assertNode('$$color', parser, parser._parseVariable.bind(parser));
+		assertNode('@$color', parser, parser._parseVariable.bind(parser));
+		assertNode('$@color', parser, parser._parseVariable.bind(parser));
 		assertNode('@co42lor', parser, parser._parseVariable.bind(parser));
 		assertNode('@-co42lor', parser, parser._parseVariable.bind(parser));
 		assertNode('@@foo', parser, parser._parseVariable.bind(parser));
 		assertNode('@@@foo', parser, parser._parseVariable.bind(parser));
 		assertNode('@12ooo', parser, parser._parseVariable.bind(parser));
-		assertNode('$color', parser, parser._parseVariable.bind(parser));
-		assertNode('$$color', parser, parser._parseVariable.bind(parser));
-		assertNode('@$color', parser, parser._parseVariable.bind(parser));
-		assertNode('$@color', parser, parser._parseVariable.bind(parser));
-		assertNoNode('@ @foo', parser, parser._parseVariable.bind(parser));
-		assertNoNode('@+@foo', parser, parser._parseVariable.bind(parser));
+		assertNode('@foo[]', parser, parser._parseVariable.bind(parser));
+		assertNode('@foo[bar]', parser, parser._parseVariable.bind(parser));
+		assertNode('@foo[@bar]', parser, parser._parseVariable.bind(parser));
+		assertNode('@foo[$bar]', parser, parser._parseVariable.bind(parser));
+		assertNode('@foo[@@bar]', parser, parser._parseVariable.bind(parser));
+		assertNode('@foo[100]', parser, parser._parseVariable.bind(parser));
+		assertNode('@foo[1prop]', parser, parser._parseVariable.bind(parser));
+		assertNode('@foo[--prop]', parser, parser._parseVariable.bind(parser));
+		assertNoNode('@ @foo', parser, parser._parseFunction.bind(parser));
+		assertNoNode('@-@foo', parser, parser._parseFunction.bind(parser));
 	});
 
 	test('Media', function () {
@@ -36,6 +44,7 @@ suite('LESS - Parser', () => {
 		assertNode('@media(max-width: 767px) { .mixinDec() {} }', parser, parser._parseMedia.bind(parser));
 		assertNode('.something { @media (max-width: 760px) { > div { display: block; } } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media (@var) {}', parser, parser._parseMedia.bind(parser));
+		assertNode('@media (@sizes[@large]) {}', parser, parser._parseMedia.bind(parser));
 		assertNode('@media screen and (@var) {}', parser, parser._parseMedia.bind(parser));
 		assertNode('@media (max-width: 760px) { + div { display: block; } }', parser, parser._parseStylesheet.bind(parser));
 	});
@@ -53,6 +62,10 @@ suite('LESS - Parser', () => {
 		assertNode('@greeting: { display: none; }', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('@b: @a !important', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('@rules: .mixin()', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('@rules: .mixin()[]', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('@rules: .mixin(@value)[@lookup][prop]', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('@rules: .mixin[@lookup][prop]', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('@expr: .mixin(@value)[] .mixin(@value2)[]', parser, parser._parseVariableDeclaration.bind(parser));
 	});
 
 	test('MixinDeclaration', function () {
@@ -65,7 +78,7 @@ suite('LESS - Parser', () => {
 		assertNode('.color( ) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.mixin (@a) when (@a > 10), (@a < -10) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.mixin (@a) when (isnumber(@a)) and (@a > 0) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
-		assertNode('.mixin (@b) when not (@b >= 0) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
+		assertNode('.mixin (@b) when not (@rules[@b] >= 0) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.mixin (@b) when not (@b > 0) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.mixin (@a, @rest...) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.mixin (@a) when (lightness(@a) >= 50%) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
@@ -134,6 +147,10 @@ suite('LESS - Parser', () => {
 
 		assertNode('func(a, b; bar)', parser, parser._parseRuleSetDeclaration.bind(parser));
 		assertNode('func({a: b();}, bar)', parser, parser._parseRuleSetDeclaration.bind(parser));
+		assertNode('func(.(@val) {})', parser, parser._parseRuleSetDeclaration.bind(parser));
+
+		assertNode('each(@list, .(@v) { prop: @v });', parser, parser._parseStylesheet.bind(parser));
+		assertNode('each(@list, #(@v) { prop: @v });', parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('Expr', function () {
@@ -194,6 +211,11 @@ suite('LESS - Parser', () => {
 		assertNode('dummy: func(@red)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('dummy: desaturate(@red, 10%)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('dummy: desaturate(16, 10%)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('100: 100', parser, parser._parseDeclaration.bind(parser));
+		assertNode('1prop: 100', parser, parser._parseDeclaration.bind(parser));
+		assertNode('1@{var}prop: 100', parser, parser._parseDeclaration.bind(parser));
+		assertNoNode('--100: 100', parser, parser._parseDeclaration.bind(parser));
+		assertNoNode('--1prop: 100', parser, parser._parseDeclaration.bind(parser));
 
 		assertNode('color: @base-color + #111', parser, parser._parseDeclaration.bind(parser));
 		assertNode('color: 100% / 2 + @ref', parser, parser._parseDeclaration.bind(parser));
@@ -265,7 +287,6 @@ suite('LESS - Parser', () => {
 		assertNode('.foo { @supports(display: grid) { display: none; }}', parser, parser._parseRuleset.bind(parser));
 		assertNode('.parent { color:green; @document url-prefix() { .child { color:red; }}}', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@supports (property: value) { .outOfMedia & { @media (max-size: 2px) { @supports (whatever: something) { property: value;}}}}', parser, parser._parseStylesheet.bind(parser));
-
 	});
 
 	test('Interpolation', function () {

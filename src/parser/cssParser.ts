@@ -135,6 +135,20 @@ export class Parser {
 		return false;
 	}
 
+	public acceptRegexp(regEx: RegExp): boolean {
+		if (regEx.test(this.token.text)) {
+			this.consumeToken();
+			return true;
+		}
+		return false;
+	}
+
+	public _parseRegexp(regEx: RegExp): nodes.Node {
+		let node = this.createNode(nodes.NodeType.Identifier);
+		do {} while (this.acceptRegexp(regEx));
+		return this.finish(node);
+	}
+
 	protected acceptUnquotedString(): boolean {
 		const pos = this.scanner.pos();
 		this.scanner.goBackTo(this.token.offset);
