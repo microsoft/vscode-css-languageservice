@@ -81,7 +81,7 @@ You can also specify 3 additional properties for them:
       "status": "standard",
       "references": [
         {
-          "name": "My foo reference",
+          "name": "My foo property reference",
           "url": "https://www.foo.com/property/foo"
         }
       ]
