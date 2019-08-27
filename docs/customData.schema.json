@@ -6,6 +6,22 @@
   "type": "object",
   "required": ["version"],
   "definitions": {
+    "references": {
+      "type": "object",
+      "required": ["name", "url"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the reference."
+        },
+        "url": {
+          "type": "string",
+          "description": "The URL of the reference.",
+          "pattern": "https?:\/\/",
+          "patternErrorMessage": "URL should start with http:// or https://"
+        }
+      }
+    },
     "markupDescription": {
       "type": "object",
       "required": ["kind", "value"],
@@ -24,7 +40,7 @@
   },
   "properties": {
     "version": {
-      "const": 1,
+      "const": 1.1,
       "description": "The custom data version",
       "type": "number"
     },
@@ -69,6 +85,13 @@
               "pattern": "(E|FF|S|C|IE|O)([\\d|\\.]+)?",
               "patternErrorMessage": "Browser item must follow the format of `${browser}${version}`. `browser` is one of:\n- E: Edge\n- FF: Firefox\n- S: Safari\n- C: Chrome\n- IE: Internet Explorer\n- O: Opera"
             }
+          },
+          "references": {
+            "type": "array",
+            "description": "A list of references for the property shown in completion and hover",
+            "items": {
+              "$ref": "#/definitions/references"
+            }
           }
         }
       }
@@ -108,6 +131,13 @@
           },
           "browsers": {
             "$ref": "#/properties/properties/items/properties/browsers"
+          },
+          "references": {
+            "type": "array",
+            "description": "A list of references for the at-directive shown in completion and hover",
+            "items": {
+              "$ref": "#/definitions/references"
+            }
           }
         }
       }
@@ -147,6 +177,13 @@
           },
           "browsers": {
             "$ref": "#/properties/properties/items/properties/browsers"
+          },
+          "references": {
+            "type": "array",
+            "description": "A list of references for the pseudo-class shown in completion and hover",
+            "items": {
+              "$ref": "#/definitions/references"
+            }
           }
         }
       }
@@ -186,6 +223,13 @@
           },
           "browsers": {
             "$ref": "#/properties/properties/items/properties/browsers"
+          },
+          "references": {
+            "type": "array",
+            "description": "A list of references for the pseudo-element shown in completion and hover",
+            "items": {
+              "$ref": "#/definitions/references"
+            }
           }
         }
       }
