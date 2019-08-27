@@ -2,8 +2,8 @@
 
 In VS Code, there are two ways of loading custom CSS datasets:
 
-1. With setting `css.experimental.customData`
-2. With an extension that contributes `contributes.css.experimental.customData`
+1. With setting `css.customData`
+2. With an extension that contributes `contributes.css.customData`
 
 Both setting point to a list of JSON files. This document describes the shape of the JSON files.
 
@@ -17,7 +17,7 @@ The JSON have one required property, `version`, and 4 other top level properties
 
 ```jsonc
 {
-  "version": 1,
+  "version": 1.1,
   "properties": [],
   "atDirectives": [],
   "pseudoClasses": [],
@@ -63,7 +63,7 @@ All top-level properties share two basic properties, `name` and `description`. F
 }
 ```
 
-You can also specify 2 additional properties for them:
+You can also specify 3 additional properties for them:
 
 ```jsonc
 {
@@ -78,7 +78,13 @@ You can also specify 2 additional properties for them:
         "IE10",
         "O37"
       ],
-      "status": "standard"
+      "status": "standard",
+      "references": [
+        {
+          "name": "My foo reference",
+          "url": "https://www.foo.com/property/foo"
+        }
+      ]
     }
   ]
 }
@@ -102,3 +108,5 @@ You can also specify 2 additional properties for them:
   export type EntryStatus = 'standard' | 'experimental' | 'nonstandard' | 'obsolete';
   ```
   The status will be rendered at the top of completion and hover. For example, `nonstandard` items are prefixed with the message `🚨️ Property is nonstandard. Avoid using it.`.
+
+- `references`: A list of references. They will be displayed in Markdown form in completion and hover as `[Ref1 Name](Ref1 URL) | [Ref2 Name](Ref2 URL) | ...`.
