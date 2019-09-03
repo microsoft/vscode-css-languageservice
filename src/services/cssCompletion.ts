@@ -367,6 +367,10 @@ export class CSSCompletion {
 				kind: CompletionItemKind.Variable,
 				sortText: 'z'
 			};
+			
+			if (typeof suggest.documentation === 'string' && isColorString(suggest.documentation)) {
+				suggest.kind = CompletionItemKind.Color;
+			}
 
 			if (symbol.node.type === nodes.NodeType.FunctionParameter) {
 				const mixinNode = <nodes.MixinDeclaration>(symbol.node.getParent());
@@ -1014,4 +1018,9 @@ function getCurrentWord(document: TextDocument, offset: number): string {
 		i--;
 	}
 	return text.substring(i + 1, offset);
+}
+
+function isColorString(s: string) {
+	// From https://stackoverflow.com/questions/8027423/how-to-check-if-a-string-is-a-valid-hex-color-representation/8027444
+	return (s.toLowerCase() in languageFacts.colors) || /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(s);
 }
