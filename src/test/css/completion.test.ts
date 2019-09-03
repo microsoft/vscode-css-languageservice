@@ -565,6 +565,49 @@ suite('CSS - Completion', () => {
 			]
 		});
 	});
+	
+	test(`Color swatch for variables that's color`, () => {
+		testCompletionFor('.foo { --foo: #bbb; color: --| }', {
+			items: [
+				{
+					label: '--foo',
+					documentation: '#bbb',
+					kind: CompletionItemKind.Color
+				}
+			]
+		});
+		
+		testCompletionFor('.foo { --foo: #bbbbbb; color: --| }', {
+			items: [
+				{
+					label: '--foo',
+					documentation: '#bbbbbb',
+					kind: CompletionItemKind.Color
+				}
+			]
+		});
+		
+		testCompletionFor('.foo { --foo: red; color: --| }', {
+			items: [
+				{
+					label: '--foo',
+					documentation: 'red',
+					kind: CompletionItemKind.Color
+				}
+			]
+		});
+		
+		testCompletionFor('.foo { --foo: RED; color: --| }', {
+			items: [
+				{
+					label: '--foo',
+					documentation: 'RED',
+					kind: CompletionItemKind.Color
+				}
+			]
+		});
+	});
+
 
 	// https://github.com/Microsoft/vscode/issues/71791
 	test('Items that start with `-` are sorted lower than normal attribute values', () => {
