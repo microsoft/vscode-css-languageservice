@@ -25,22 +25,11 @@ The JSON have one required property, `version`, and 4 other top level properties
 }
 ```
 
-Version denotes the schema version you are using. The latest schema version is V1.
+Version denotes the schema version you are using. The latest schema version is `V1.1`.
 
 You can find other properties' shapes at [cssLanguageTypes.ts](../src/cssLanguageTypes.ts) or the [JSON Schema](./customData.schema.json).
 
-You might want to use the `json.schemas` setting to check your data against the schema and get auto-completion:
-
-```json
-{
-  "json.schemas": [
-    {
-      "fileMatch": ["/css.json"],
-      "url": "https://raw.githubusercontent.com/Microsoft/vscode-css-languageservice/master/docs/customData.schema.json"
-    }
-  ]
-}
-```
+You should suffix your custom data file with `.css-data.json`, so VS Code will load the most recent schema for the JSON file to offer auto completion and error checking.
 
 ### Format
 
