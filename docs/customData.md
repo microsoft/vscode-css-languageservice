@@ -7,9 +7,9 @@ In VS Code, there are two ways of loading custom CSS datasets:
 
 Both setting point to a list of JSON files. This document describes the shape of the JSON files.
 
-## Custom Data Format
+You can read more about custom data at: https://github.com/microsoft/vscode-custom-data.
 
-🚧 The data format is in experimental phase and subject to change. 🚧
+## Custom Data Format
 
 ### Overview
 
