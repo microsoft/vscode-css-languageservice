@@ -120,27 +120,34 @@ suite('SCSS - Completions', () => {
 				{ label: '.foo' }
 			]
 		});
-		testCompletionFor('.foo { mask: no|', { // bug 76572
+		// issue 76572
+		testCompletionFor('.foo { mask: no|', {
 			items: [
 				{ label: 'round' }
+			]
+		});
+		// issue 76507
+		testCompletionFor('.foo { .foobar { .foobar2 {  outline-color: blue; cool  }| } .fokzlb {} .baaaa { counter - reset: unset;}', {
+			items: [
+				{ label: 'display' }
 			]
 		});
 	});
 
 	test('at rules', function (): any {
 		const allAtProposals = {
-				items: [
-					{ label: '@extend' },
-					{ label: '@at-root' },
-					{ label: '@debug' },
-					{ label: '@warn' },
-					{ label: '@error' },
-					{ label: '@if' },
-					{ label: '@for' },
-					{ label: '@each' },
-					{ label: '@while' },
-					{ label: '@mixin' },
-					{ label: '@include' }
+			items: [
+				{ label: '@extend' },
+				{ label: '@at-root' },
+				{ label: '@debug' },
+				{ label: '@warn' },
+				{ label: '@error' },
+				{ label: '@if' },
+				{ label: '@for' },
+				{ label: '@each' },
+				{ label: '@while' },
+				{ label: '@mixin' },
+				{ label: '@include' }
 			]
 		};
 

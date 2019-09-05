@@ -433,9 +433,12 @@ export class CSSCompletion {
 	}
 
 	protected getCompletionRange(existingNode: nodes.Node | null) {
-		if (existingNode && existingNode.offset <= this.offset) {
+		if (existingNode && existingNode.offset <= this.offset && this.offset <= existingNode.end) {
 			const end = existingNode.end !== -1 ? this.textDocument.positionAt(existingNode.end) : this.position;
-			return Range.create(this.textDocument.positionAt(existingNode.offset), end);
+			const start = this.textDocument.positionAt(existingNode.offset);
+			if (start.line === end.line) {
+				return Range.create(start, end); // multi line edits are not allowed
+			}
 		}
 		return this.defaultReplaceRange;
 	}
