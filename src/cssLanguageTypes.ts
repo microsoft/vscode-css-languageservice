@@ -12,6 +12,7 @@ export type LintSettings = { [key: string]: any };
 
 export interface CompletionSettings {
 	triggerPropertyValueCompletion: boolean;
+	completePropertyWithSemicolon?: boolean;
 }
 
 export interface LanguageSettings {

@@ -170,6 +170,7 @@ export class CSSCompletion {
 
 	private getPropertyProposals(declaration: nodes.Declaration | null, result: CompletionList): CompletionList {
 		const triggerPropertyValueCompletion = this.isTriggerPropertyValueCompletionEnabled;
+		const completePropertyWithSemicolon = this.isCompletePropertyWithSemicolonEnabled;
 		const properties = languageFacts.cssDataManager.getProperties();
 
 		properties.forEach(entry => {
@@ -188,11 +189,16 @@ export class CSSCompletion {
 				insertText = entry.name + ': ';
 				retrigger = true;
 			}
+			if (completePropertyWithSemicolon && this.offset >= this.textDocument.offsetAt(range.end)) {
+				insertText += '$0;';
+			}
+			
 			const item = <CompletionItem>{
 				label: entry.name,
 				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
 				deprecated: isDeprecated(entry),
 				textEdit: TextEdit.replace(range, insertText),
+				insertTextFormat: InsertTextFormat.Snippet,
 				kind: CompletionItemKind.Property
 			};
 			if (!entry.restrictions) {
@@ -231,6 +237,18 @@ export class CSSCompletion {
 		}
 		return this.settings.completion.triggerPropertyValueCompletion;
 	}
+	
+	private get isCompletePropertyWithSemicolonEnabled(): boolean {
+		if (
+			!this.settings ||
+			!this.settings.completion ||
+			this.settings.completion.completePropertyWithSemicolon === undefined
+		) {
+			return false;
+		}
+		return this.settings.completion.completePropertyWithSemicolon;
+	}
+
 
 	private valueTypes = [
 		nodes.NodeType.Identifier, nodes.NodeType.Value, nodes.NodeType.StringLiteral, nodes.NodeType.URILiteral, nodes.NodeType.NumericValue,

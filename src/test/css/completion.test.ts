@@ -607,7 +607,35 @@ suite('CSS - Completion', () => {
 			]
 		});
 	});
+	
+	test('Seimicolon on property completion', () => {
+		testCompletionFor('.foo { p| }', {
+			items: [
+				{
+					label: 'position',
+					resultText: '.foo { position: $0; }'
+				}
+			]
+		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true }});
+		
+		testCompletionFor('.foo { p|o }', {
+			items: [
+				{
+					label: 'position',
+					resultText: '.foo { position:  }'
+				}
+			]
+		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true }});
 
+		testCompletionFor('.foo { p|os: relative; }', {
+			items: [
+				{
+					label: 'position',
+					resultText: '.foo { position: relative; }'
+				}
+			]
+		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true }});
+	});
 
 	// https://github.com/Microsoft/vscode/issues/71791
 	test('Items that start with `-` are sorted lower than normal attribute values', () => {
