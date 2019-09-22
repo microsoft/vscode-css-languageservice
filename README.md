@@ -17,7 +17,7 @@ and the Monaco editor.
  - *findReferences* finds all references to the symbol at the given location.
  - *findDocumentHighlights* finds all symbols connected to the given location.
  - *findDocumentSymbols* provides all symbols in the given document
- - *doCodeActions* evaluats code actions for the given location, typically to fix a problem.
+ - *doCodeActions* evaluates code actions for the given location, typically to fix a problem.
  - *findColorSymbols* evaluates all color symbols in the given document
  - *doRename* renames all symbols connected to the given location.
   - *getFoldingRanges* returns folding ranges in the given document.
