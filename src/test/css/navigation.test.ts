@@ -324,12 +324,18 @@ suite('CSS - Navigation', () => {
 
 		test('links in rulesets', async () => {
 			let p = new Parser();
+			
 			await assertLinks(p, `body { background-image: url(./foo.jpg)`, [
 				{ range: newRange(29, 38), target: 'test://test/foo.jpg' }
 			]);
 
 			await assertLinks(p, `body { background-image: url('./foo.jpg')`, [
 				{ range: newRange(29, 40), target: 'test://test/foo.jpg' }
+			]);
+
+			// https://github.com/microsoft/vscode/issues/79215
+			await assertLinks(p, `body { background-image: url(gantry-theme://images/image-name.png); }`, [
+				{ range: newRange(29, 65), target: 'gantry-theme://images/image-name.png' }
 			]);
 		});
 
