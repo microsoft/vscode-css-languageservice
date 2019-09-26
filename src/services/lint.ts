@@ -182,6 +182,11 @@ export class LintVisitor implements nodes.IVisitor {
 			return false;
 		}
 
+		const atDirective = languageFacts.cssDataManager.getAtDirective(atRuleName.getText());
+		if (atDirective) {
+			return false;
+		}
+
 		this.addEntry(atRuleName, Rules.UnknownAtRules, `Unknown at rule ${atRuleName.getText()}`);
 		return true;
 	}

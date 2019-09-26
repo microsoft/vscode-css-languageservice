@@ -9,7 +9,7 @@ import * as assert from 'assert';
 import { TextDocument, CompletionList, Position } from 'vscode-languageserver-types';
 import { getCSSLanguageService } from '../../cssLanguageService';
 import { ItemDescription } from './completion.test';
-import { ICSSDataProvider, CSSDataV1, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext } from '../../cssLanguageTypes';
+import { CSSDataV1, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext } from '../../cssLanguageTypes';
 import { CSSDataProvider } from '../../languageFacts/facts';
 
 function getLanguageService(data: CSSDataV1) {
@@ -157,6 +157,11 @@ suite('CSS - Custom Data Diagnostics', () => {
 			{
 				name: '_foo'
 			}
+		],
+		atDirectives: [
+			{
+				name: '@foo'
+			}
 		]
 	};
 
@@ -177,5 +182,10 @@ suite('CSS - Custom Data Diagnostics', () => {
 
 	test('No unknown properties', () => {
 		testValidationFor('.foo { foo: 1; _foo: 1 }', []);
+		testValidationFor('.foo { FOO: 1; }', []);
+	});
+
+	test('No unknown at-directives', () => {
+		testValidationFor(`@foo 'bar';`, []);
 	});
 });
