@@ -606,6 +606,17 @@ suite('CSS - Completion', () => {
 				}
 			]
 		});
+		
+
+		testCompletionFor('.foo { --foo: #bbb; color: var(|) }', {
+			items: [
+				{
+					label: '--foo',
+					documentation: '#bbb',
+					kind: CompletionItemKind.Color
+				}
+			]
+		});
 	});
 	
 	test('Seimicolon on property completion', () => {

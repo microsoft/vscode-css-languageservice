@@ -378,7 +378,7 @@ export class CSSCompletion {
 		const symbols = this.getSymbolContext().findSymbolsAtOffset(this.offset, nodes.ReferenceType.Variable);
 		for (const symbol of symbols) {
 			const insertText = strings.startsWith(symbol.name, '--') ? `var(${symbol.name})` : symbol.name;
-			const suggest: CompletionItem = {
+			const completionItem: CompletionItem = {
 				label: symbol.name,
 				documentation: symbol.value ? strings.getLimitedString(symbol.value) : symbol.value,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
@@ -386,18 +386,18 @@ export class CSSCompletion {
 				sortText: 'z'
 			};
 			
-			if (typeof suggest.documentation === 'string' && isColorString(suggest.documentation)) {
-				suggest.kind = CompletionItemKind.Color;
+			if (typeof completionItem.documentation === 'string' && isColorString(completionItem.documentation)) {
+				completionItem.kind = CompletionItemKind.Color;
 			}
 
 			if (symbol.node.type === nodes.NodeType.FunctionParameter) {
 				const mixinNode = <nodes.MixinDeclaration>(symbol.node.getParent());
 				if (mixinNode.type === nodes.NodeType.MixinDeclaration) {
-					suggest.detail = localize('completion.argument', 'argument from \'{0}\'', mixinNode.getName());
+					completionItem.detail = localize('completion.argument', 'argument from \'{0}\'', mixinNode.getName());
 				}
 			}
 
-			result.items.push(suggest);
+			result.items.push(completionItem);
 		}
 		return result;
 	}
@@ -408,12 +408,18 @@ export class CSSCompletion {
 			return strings.startsWith(symbol.name, '--');
 		});
 		for (const symbol of symbols) {
-			result.items.push({
+			const completionItem: CompletionItem = {
 				label: symbol.name,
 				documentation: symbol.value ? strings.getLimitedString(symbol.value) : symbol.value,
 				textEdit: TextEdit.replace(this.getCompletionRange(null), symbol.name),
 				kind: CompletionItemKind.Variable
-			});
+			};
+			
+			if (typeof completionItem.documentation === 'string' && isColorString(completionItem.documentation)) {
+				completionItem.kind = CompletionItemKind.Color;
+			}
+
+			result.items.push(completionItem);
 		}
 		return result;
 	}
