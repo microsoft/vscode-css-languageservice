@@ -109,7 +109,7 @@ function getEntryMarkdownDescription(entry: IEntry2): string {
 
 	const browserLabel = getBrowserLabel(entry.browsers);
 	if (browserLabel) {
-		result += '\n(' + browserLabel + ')';
+		result += '\n\n(' + browserLabel + ')';
 	}
 	if ('syntax' in entry) {
 		result += `\n\nSyntax: ${entry.syntax}`;
