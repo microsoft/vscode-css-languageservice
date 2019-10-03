@@ -62,7 +62,25 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 
 suite('CSS - Completion', () => {
 
-	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[], participant?: { onProperty?: PropertyCompletionContext[], onPropertyValue?: PropertyValueCompletionContext[], onURILiteralValue?: URILiteralCompletionContext[], onImportPath?: ImportPathCompletionContext[] } }, settings?: LanguageSettings) {
+	let testCompletionFor = function(
+		value: string,
+		expected: {
+			count?: number;
+			items?: ItemDescription[];
+			participant?: {
+				onProperty?: PropertyCompletionContext[];
+				onPropertyValue?: PropertyValueCompletionContext[];
+				onURILiteralValue?: URILiteralCompletionContext[];
+				onImportPath?: ImportPathCompletionContext[];
+			};
+		},
+		settings: LanguageSettings = {
+			completion: {
+				triggerPropertyValueCompletion: true,
+				completePropertyWithSemicolon: false
+			}
+		}
+	) {
 		let offset = value.indexOf('|');
 		value = value.substr(0, offset) + value.substr(offset + 1);
 
@@ -75,12 +93,14 @@ suite('CSS - Completion', () => {
 		ls.configure(settings);
 
 		if (expected.participant) {
-			ls.setCompletionParticipants([{
-				onCssProperty: context => actualPropertyContexts.push(context),
-				onCssPropertyValue: context => actualPropertyValueContexts.push(context),
-				onCssURILiteralValue: context => actualURILiteralValueContexts.push(context),
-				onCssImportPath: context => actualImportPathContexts.push(context)
-			}]);
+			ls.setCompletionParticipants([
+				{
+					onCssProperty: context => actualPropertyContexts.push(context),
+					onCssPropertyValue: context => actualPropertyValueContexts.push(context),
+					onCssURILiteralValue: context => actualURILiteralValueContexts.push(context),
+					onCssImportPath: context => actualImportPathContexts.push(context)
+				}
+			]);
 		}
 
 		let document = TextDocument.create('test://test/test.css', 'css', 0, value);
@@ -523,24 +543,30 @@ suite('CSS - Completion', () => {
 		});
 		testCompletionFor('body { disp| ', {
 			items: [
-				{ label: 'display', resultText: 'body { display:  ', command: { title: 'Suggest', command: 'editor.action.triggerSuggest' } }
+				{ label: 'display', resultText: 'body { display: $0; ', command: { title: 'Suggest', command: 'editor.action.triggerSuggest' } }
 			]
 		}, {});
 		testCompletionFor('body { disp| ', {
 			items: [
-				{ label: 'display', resultText: 'body { display:  ', command: { title: 'Suggest', command: 'editor.action.triggerSuggest' } }
+				{ label: 'display', resultText: 'body { display: $0; ', command: { title: 'Suggest', command: 'editor.action.triggerSuggest' } }
 			]
 		}, { completion: undefined });
 		testCompletionFor('body { disp| ', {
 			items: [
-				{ label: 'display', resultText: 'body { display:  ', command: { title: 'Suggest', command: 'editor.action.triggerSuggest' } }
+				{ label: 'display', resultText: 'body { display: $0; ', command: { title: 'Suggest', command: 'editor.action.triggerSuggest' } }
 			]
 		}, { completion: { triggerPropertyValueCompletion: true } });
 		testCompletionFor('body { disp| ', {
 			items: [
-				{ label: 'display', resultText: 'body { display:  ', command: undefined }
+				{ label: 'display', resultText: 'body { display: $0; ', command: undefined }
 			]
 		}, { completion: { triggerPropertyValueCompletion: false } });
+
+		testCompletionFor('body { disp| ', {
+			items: [
+				{ label: 'display', resultText: 'body { display:  ', command: undefined }
+			]
+		}, { completion: { triggerPropertyValueCompletion: false, completePropertyWithSemicolon: false } });
 	});
 
 	test('Completion description should include status, browser compat and references', () => {
