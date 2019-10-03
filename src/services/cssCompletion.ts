@@ -244,7 +244,7 @@ export class CSSCompletion {
 			!this.settings.completion ||
 			this.settings.completion.completePropertyWithSemicolon === undefined
 		) {
-			return false;
+			return true;
 		}
 		return this.settings.completion.completePropertyWithSemicolon;
 	}
