@@ -41,7 +41,15 @@ export class SCSSNavigation extends CSSNavigation {
 					continue;
 				}
 
-				const parsedUri = URI.parse(target);
+				let parsedUri = null;
+				try {
+					parsedUri = URI.parse(target);
+				} catch (e) {
+					if (e instanceof URIError) {
+						continue;
+					}
+					throw e;
+				}
 
 				const pathVariations = toPathVariations(parsedUri);
 				if (!pathVariations) {
