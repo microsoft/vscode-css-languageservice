@@ -179,8 +179,11 @@ suite('SCSS - Parser', () => {
 
 	test('@use', function () {
 		let parser = new SCSSParser();
+		assertNode('@use "test"', parser, parser._parseUse.bind(parser));
+		assertNode('@use "test" as foo', parser, parser._parseUse.bind(parser));
 
 		assertError('@use', parser, parser._parseUse.bind(parser), ParseError.StringLiteralExpected);
+		assertError('@use "test" as', parser, parser._parseUse.bind(parser), ParseError.IdentifierExpected);
 	})
 
 	test('@media', function () {
