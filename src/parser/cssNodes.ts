@@ -92,7 +92,8 @@ export enum ReferenceType {
 	Variable,
 	Function,
 	Keyframe,
-	Unknown
+	Unknown,
+	Module,
 }
 
 
@@ -1011,8 +1012,18 @@ export class Import extends Node {
 
 export class Use extends Node {
 
+	public identifier?: Identifier;
+
 	public get type(): NodeType {
 		return NodeType.Use;
+	}
+
+	public setIdentifier(node: Identifier | null): node is Identifier {
+		return this.setNode('identifier', node, 0);
+	}
+
+	public getIdentifier(): Identifier | undefined {
+		return this.identifier;
 	}
 }
 

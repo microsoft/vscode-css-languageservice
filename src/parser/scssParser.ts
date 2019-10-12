@@ -681,7 +681,10 @@ export class SCSSParser extends cssParser.Parser {
 			return this.finish(node, ParseError.StringLiteralExpected);
 		}
 
-		if (this.acceptIdent('as') && (!node.addChild(this._parseIdent()) && !this.acceptDelim('*'))) {
+		if (
+			this.acceptIdent('as') &&
+			(!node.setIdentifier(this._parseIdent([nodes.ReferenceType.Module])) && !this.acceptDelim('*'))
+		) {
 			return this.finish(node, ParseError.IdentifierOrWildcardExpected);
 		}
 
