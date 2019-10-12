@@ -63,6 +63,7 @@ export enum NodeType {
 	Keyframe,
 	FontFace,
 	Import,
+	Use,
 	Namespace,
 	Invocation,
 	FunctionDeclaration,
@@ -1005,6 +1006,13 @@ export class Import extends Node {
 			return true;
 		}
 		return false;
+	}
+}
+
+export class Use extends Node {
+
+	public get type(): NodeType {
+		return NodeType.Use;
 	}
 }
 

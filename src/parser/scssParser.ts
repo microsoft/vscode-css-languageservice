@@ -29,6 +29,7 @@ export class SCSSParser extends cssParser.Parser {
 				|| this._parseMixinContent()
 				|| this._parseMixinReference() // @include
 				|| this._parseFunctionDeclaration()
+				|| this._parseUse()
 				|| super._parseStylesheetAtStatement();
 		}
 		return this._parseRuleset(true) || this._parseVariableDeclaration();
@@ -77,7 +78,7 @@ export class SCSSParser extends cssParser.Parser {
 		if (this.prevToken) {
 			node.colonPosition = this.prevToken.offset;
 		}
-		
+
 		if (!node.setValue(this._parseExpr())) {
 			return this.finish(node, ParseError.VariableValueExpected, [], panic);
 		}
@@ -665,6 +666,21 @@ export class SCSSParser extends cssParser.Parser {
 		} else {
 			node.setValue(child);
 		}
+		return this.finish(node);
+	}
+
+	public _parseUse(): nodes.Node | null {
+		if (!this.peekKeyword('@use')) {
+			return null;
+		}
+
+		const node = <nodes.Use>this.create(nodes.Use);
+		this.consumeToken();
+
+		if (!node.addChild(this._parseStringLiteral())) {
+			return this.finish(node, ParseError.StringLiteralExpected);
+		}
+
 		return this.finish(node);
 	}
 }

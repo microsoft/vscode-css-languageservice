@@ -177,6 +177,12 @@ suite('SCSS - Parser', () => {
 		assertError('@import', parser, parser._parseImport.bind(parser), ParseError.URIOrStringExpected);
 	});
 
+	test('@use', function () {
+		let parser = new SCSSParser();
+
+		assertError('@use', parser, parser._parseUse.bind(parser), ParseError.StringLiteralExpected);
+	})
+
 	test('@media', function () {
 		let parser = new SCSSParser();
 		assertNode('@media screen { .sidebar { @media (orientation: landscape) { width: 500px; } } }', parser, parser._parseStylesheet.bind(parser));
