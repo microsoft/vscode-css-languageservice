@@ -688,6 +688,46 @@ export class SCSSParser extends cssParser.Parser {
 			return this.finish(node, ParseError.IdentifierOrWildcardExpected);
 		}
 
+		if (this.acceptIdent('with')) {
+			if (!this.accept(TokenType.ParenthesisL)) {
+				return this.finish(node, ParseError.LeftParenthesisExpected, [TokenType.ParenthesisR]);
+			}
+
+			// First variable statement, no comma.
+			if (!node.getParameters().addChild(this._parseModuleConfigDeclaration())) {
+				return this.finish(node, ParseError.VariableNameExpected);
+			}
+
+			while (this.accept(TokenType.Comma)) {
+				if (this.peek(TokenType.ParenthesisR)) {
+					break;
+				}
+				if (!node.getParameters().addChild(this._parseModuleConfigDeclaration())) {
+					return this.finish(node, ParseError.VariableNameExpected);
+				}
+			}
+
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected);
+			}
+
+		}
+
+		return this.finish(node);
+	}
+
+	public _parseModuleConfigDeclaration(): nodes.Node | null {
+
+		const node = <nodes.ModuleConfiguration>this.create(nodes.ModuleConfiguration);
+
+		if (!node.setIdentifier(this._parseVariable())) {
+			return null;
+		}
+
+		if (!this.accept(TokenType.Colon) || !node.setValue(this._parseExpr(true))) {
+			return this.finish(node, ParseError.VariableValueExpected, [], [TokenType.Comma, TokenType.ParenthesisR]);
+		}
+
 		return this.finish(node);
 	}
 }

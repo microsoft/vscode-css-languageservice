@@ -182,9 +182,16 @@ suite('SCSS - Parser', () => {
 		assertNode('@use "test"', parser, parser._parseUse.bind(parser));
 		assertNode('@use "test" as foo', parser, parser._parseUse.bind(parser));
 		assertNode('@use "test" as *', parser, parser._parseUse.bind(parser));
+		assertNode('@use "test" with ($foo: "test", $bar: 1)', parser, parser._parseUse.bind(parser));
+		assertNode('@use "test" as foo with ($foo: "test", $bar: 1)', parser, parser._parseUse.bind(parser));
 
 		assertError('@use', parser, parser._parseUse.bind(parser), ParseError.StringLiteralExpected);
-		assertError('@use "test" as', parser, parser._parseUse.bind(parser), ParseError.IdentifierExpected);
+		assertError('@use "test" as', parser, parser._parseUse.bind(parser), ParseError.IdentifierOrWildcardExpected);
+		assertError('@use "test" with', parser, parser._parseUse.bind(parser), ParseError.LeftParenthesisExpected);
+		assertError('@use "test" with ($foo)', parser, parser._parseUse.bind(parser), ParseError.VariableValueExpected);
+		assertError('@use "test" with ("bar")', parser, parser._parseUse.bind(parser), ParseError.VariableNameExpected);
+		assertError('@use "test" with ($foo: 1, "bar")', parser, parser._parseUse.bind(parser), ParseError.VariableNameExpected);
+		assertError('@use "test" with ($foo: "bar"', parser, parser._parseUse.bind(parser), ParseError.RightParenthesisExpected);
 	})
 
 	test('@media', function () {
