@@ -192,7 +192,7 @@ suite('SCSS - Parser', () => {
 		assertError('@use "test" with ("bar")', parser, parser._parseUse.bind(parser), ParseError.VariableNameExpected);
 		assertError('@use "test" with ($foo: 1, "bar")', parser, parser._parseUse.bind(parser), ParseError.VariableNameExpected);
 		assertError('@use "test" with ($foo: "bar"', parser, parser._parseUse.bind(parser), ParseError.RightParenthesisExpected);
-	})
+	});
 
 	test('@media', function () {
 		let parser = new SCSSParser();
