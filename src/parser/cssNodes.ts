@@ -63,7 +63,6 @@ export enum NodeType {
 	Keyframe,
 	FontFace,
 	Import,
-	Use,
 	Namespace,
 	Invocation,
 	FunctionDeclaration,
@@ -84,6 +83,7 @@ export enum NodeType {
 	GridLine,
 	Plugin,
 	UnknownAtRule,
+	Use,
 	ModuleConfiguration,
 }
 
