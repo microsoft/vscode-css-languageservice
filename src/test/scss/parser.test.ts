@@ -186,6 +186,7 @@ suite('SCSS - Parser', () => {
 		assertNode('@use "test" as foo with ($foo: "test", $bar: 1)', parser, parser._parseUse.bind(parser));
 
 		assertError('@use', parser, parser._parseUse.bind(parser), ParseError.StringLiteralExpected);
+		assertError('@use "test" foo', parser, parser._parseUse.bind(parser), ParseError.UnknownKeyword);
 		assertError('@use "test" as', parser, parser._parseUse.bind(parser), ParseError.IdentifierOrWildcardExpected);
 		assertError('@use "test" with', parser, parser._parseUse.bind(parser), ParseError.LeftParenthesisExpected);
 		assertError('@use "test" with ($foo)', parser, parser._parseUse.bind(parser), ParseError.VariableValueExpected);
@@ -203,6 +204,7 @@ suite('SCSS - Parser', () => {
 		assertNode('@forward "test" as foo-* show this $that', parser, parser._parseForward.bind(parser));
 
 		assertError('@forward', parser, parser._parseForward.bind(parser), ParseError.StringLiteralExpected);
+		assertError('@forward "test" foo', parser, parser._parseForward.bind(parser), ParseError.UnknownKeyword);
 		assertError('@forward "test" as', parser, parser._parseForward.bind(parser), ParseError.IdentifierExpected);
 		assertError('@forward "test" as foo-', parser, parser._parseForward.bind(parser), ParseError.WildcardExpected);
 		assertError('@forward "test" as foo- *', parser, parser._parseForward.bind(parser), ParseError.WildcardExpected);
