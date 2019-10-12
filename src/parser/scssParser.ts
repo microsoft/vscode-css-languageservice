@@ -29,6 +29,7 @@ export class SCSSParser extends cssParser.Parser {
 				|| this._parseMixinContent()
 				|| this._parseMixinReference() // @include
 				|| this._parseFunctionDeclaration()
+				|| this._parseForward()
 				|| this._parseUse()
 				|| super._parseStylesheetAtStatement();
 		}
@@ -726,6 +727,21 @@ export class SCSSParser extends cssParser.Parser {
 
 		if (!this.accept(TokenType.Colon) || !node.setValue(this._parseExpr(true))) {
 			return this.finish(node, ParseError.VariableValueExpected, [], [TokenType.Comma, TokenType.ParenthesisR]);
+		}
+
+		return this.finish(node);
+	}
+
+	public _parseForward(): nodes.Node | null {
+		if (!this.peekKeyword('@forward')) {
+			return null;
+		}
+
+		const node = <nodes.Forward>this.create(nodes.Forward);
+		this.consumeToken();
+
+		if (!node.addChild(this._parseStringLiteral())) {
+			return this.finish(node, ParseError.StringLiteralExpected);
 		}
 
 		return this.finish(node);

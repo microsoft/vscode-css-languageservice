@@ -85,6 +85,7 @@ export enum NodeType {
 	UnknownAtRule,
 	Use,
 	ModuleConfiguration,
+	Forward,
 }
 
 export enum ReferenceType {
@@ -1064,6 +1065,14 @@ export class ModuleConfiguration extends Node {
 	public getValue(): Node | undefined {
 		return this.value;
 	}
+}
+
+export class Forward extends Node {
+
+	public get type(): NodeType {
+		return NodeType.Forward;
+	}
+
 }
 
 export class Namespace extends Node {

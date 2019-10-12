@@ -194,6 +194,13 @@ suite('SCSS - Parser', () => {
 		assertError('@use "test" with ($foo: "bar"', parser, parser._parseUse.bind(parser), ParseError.RightParenthesisExpected);
 	});
 
+	test('@forward', function () {
+		let parser = new SCSSParser();
+		assertNode('@forward "test"', parser, parser._parseForward.bind(parser));
+
+		assertError('@forward', parser, parser._parseForward.bind(parser), ParseError.StringLiteralExpected);
+	});
+
 	test('@media', function () {
 		let parser = new SCSSParser();
 		assertNode('@media screen { .sidebar { @media (orientation: landscape) { width: 500px; } } }', parser, parser._parseStylesheet.bind(parser));
