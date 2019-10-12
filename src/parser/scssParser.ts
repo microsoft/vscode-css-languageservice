@@ -744,6 +744,18 @@ export class SCSSParser extends cssParser.Parser {
 			return this.finish(node, ParseError.StringLiteralExpected);
 		}
 
+		if (this.acceptIdent('as')) {
+			const identifier = this._parseIdent([nodes.ReferenceType.Forward]);
+			if (!node.setIdentifier(identifier)) {
+				return this.finish(node, ParseError.IdentifierExpected);
+			}
+
+			// Wildcard must be the next character after the identifier string.
+			if (!this.acceptDelim('*') || this.prevToken!.offset != identifier.end) {
+				return this.finish(node, ParseError.WildcardExpected);
+			}
+		}
+
 		return this.finish(node);
 	}
 }

@@ -197,8 +197,12 @@ suite('SCSS - Parser', () => {
 	test('@forward', function () {
 		let parser = new SCSSParser();
 		assertNode('@forward "test"', parser, parser._parseForward.bind(parser));
+		assertNode('@forward "test" as foo-*', parser, parser._parseForward.bind(parser));
 
 		assertError('@forward', parser, parser._parseForward.bind(parser), ParseError.StringLiteralExpected);
+		assertError('@forward "test" as', parser, parser._parseForward.bind(parser), ParseError.IdentifierExpected);
+		assertError('@forward "test" as foo-', parser, parser._parseForward.bind(parser), ParseError.WildcardExpected);
+		assertError('@forward "test" as foo- *', parser, parser._parseForward.bind(parser), ParseError.WildcardExpected);
 	});
 
 	test('@media', function () {

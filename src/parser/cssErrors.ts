@@ -51,4 +51,5 @@ export const ParseError = {
 	WhitespaceExpected: new CSSIssueType('css-whitespaceexpected', localize('expected.whitespace', "whitespace expected")),
 	MediaQueryExpected: new CSSIssueType('css-mediaqueryexpected', localize('expected.mediaquery', "media query expected")),
 	IdentifierOrWildcardExpected: new CSSIssueType('css-idorwildcardexpected', localize('expected.idorwildcard', "identifier or wildcard expected")),
+	WildcardExpected: new CSSIssueType('css-wildcardexpected', localize('expected.wildcard', "wildcard expected")),
 };

@@ -96,6 +96,7 @@ export enum ReferenceType {
 	Keyframe,
 	Unknown,
 	Module,
+	Forward,
 }
 
 
@@ -1069,8 +1070,18 @@ export class ModuleConfiguration extends Node {
 
 export class Forward extends Node {
 
+	public identifier?: Node;
+
 	public get type(): NodeType {
 		return NodeType.Forward;
+	}
+
+	public setIdentifier(node: Node | null): node is Node {
+		return this.setNode('identifier', node, 0);
+	}
+
+	public getIdentifier(): Node | undefined {
+		return this.identifier;
 	}
 
 }
