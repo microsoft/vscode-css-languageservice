@@ -86,6 +86,7 @@ export enum NodeType {
 	Use,
 	ModuleConfiguration,
 	Forward,
+	ForwardVisibility,
 }
 
 export enum ReferenceType {
@@ -97,6 +98,7 @@ export enum ReferenceType {
 	Unknown,
 	Module,
 	Forward,
+	ForwardVisibility,
 }
 
 
@@ -1082,6 +1084,25 @@ export class Forward extends Node {
 
 	public getIdentifier(): Node | undefined {
 		return this.identifier;
+	}
+
+}
+
+export class ForwardVisibility extends Node {
+
+	public visibility?: string;
+
+	public get type(): NodeType {
+		return NodeType.ForwardVisibility;
+	}
+
+	public setVisibility(visibility: string): boolean {
+		this.visibility = visibility;
+		return true;
+	}
+
+	public getVisibility(): string | undefined {
+		return this.visibility;
 	}
 
 }

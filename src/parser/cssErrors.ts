@@ -52,4 +52,5 @@ export const ParseError = {
 	MediaQueryExpected: new CSSIssueType('css-mediaqueryexpected', localize('expected.mediaquery', "media query expected")),
 	IdentifierOrWildcardExpected: new CSSIssueType('css-idorwildcardexpected', localize('expected.idorwildcard', "identifier or wildcard expected")),
 	WildcardExpected: new CSSIssueType('css-wildcardexpected', localize('expected.wildcard', "wildcard expected")),
+	IdentifierOrVariableExpected: new CSSIssueType('css-idorvarexpected', localize('expected.idorvar', "identifier or variable expected")),
 };

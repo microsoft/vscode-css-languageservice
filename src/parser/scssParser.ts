@@ -756,6 +756,33 @@ export class SCSSParser extends cssParser.Parser {
 			}
 		}
 
+		for (const visibility of ['hide', 'show']) {
+			if (this.acceptIdent(visibility)) {
+				if (!node.addChild(this._parseForwardVisibility(visibility))) {
+					return this.finish(node, ParseError.IdentifierOrVariableExpected);
+				}
+				// Only can have one of 'hide' or 'show'.
+				break;
+			}
+		}
+
 		return this.finish(node);
 	}
+
+	public _parseForwardVisibility(visibility: string): nodes.Node | null {
+		const node = <nodes.ForwardVisibility>this.create(nodes.ForwardVisibility);
+		node.setVisibility(visibility);
+
+		this.consumeToken();
+
+		const children: nodes.Node[] = [];
+		let child: nodes.Node | null;
+		while (child = this._parseVariable() || this._parseIdent()) {
+			children.push(child);
+		}
+		node.addChildren(children);
+
+		return children.length ? node : null;
+	}
+
 }
