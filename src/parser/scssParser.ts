@@ -118,6 +118,18 @@ export class SCSSParser extends cssParser.Parser {
 		return <nodes.Variable>node;
 	}
 
+	public _parseModuleVariable(): nodes.Module | null {
+		if (!this.peek(scssScanner.Module)) {
+			return null;
+		}
+		const moduleNode = <nodes.Module>this.create(nodes.Module);
+		this.consumeToken();
+
+		moduleNode.addChild(this._parseVariable());
+
+		return moduleNode;
+	}
+
 	public _parseIdent(referenceTypes?: nodes.ReferenceType[]): nodes.Identifier | null {
 		if (!this.peek(TokenType.Ident) && !this.peek(scssScanner.InterpolationFunction) && !this.peekDelim('-')) {
 			return null;

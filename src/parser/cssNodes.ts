@@ -87,6 +87,7 @@ export enum NodeType {
 	ModuleConfiguration,
 	Forward,
 	ForwardVisibility,
+	ModuleName,
 }
 
 export enum ReferenceType {
@@ -1465,6 +1466,8 @@ export class Interpolation extends Node {
 
 export class Variable extends Node {
 
+	public module?: Module;
+
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -1652,6 +1655,19 @@ export class GuardCondition extends Node {
 	public setVariable(node: Node | null): node is Node {
 		return this.setNode('variable', node);
 	}
+}
+
+export class Module extends Node {
+
+	public get type(): NodeType {
+		return NodeType.ModuleName;
+	}
+
+	public getName(): string {
+		const text = this.getText();
+		return text.substr(0, text.length - 1);
+	}
+
 }
 
 export interface IRule {

@@ -27,6 +27,13 @@ suite('SCSS - Parser', () => {
 		assertNode('$-co42lor', parser, parser._parseVariable.bind(parser));
 	});
 
+	test('Module variable', function () {
+		let parser = new SCSSParser();
+		assertNode('module.$color', parser, parser._parseModuleVariable.bind(parser));
+		assertNode('module.$co42lor', parser, parser._parseModuleVariable.bind(parser));
+		assertNode('module.$-co42lor', parser, parser._parseModuleVariable.bind(parser));
+	});
+
 	test('VariableDeclaration', function () {
 		let parser = new SCSSParser();
 		assertNode('$color: #F5F5F5', parser, parser._parseVariableDeclaration.bind(parser));

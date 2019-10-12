@@ -30,6 +30,7 @@ export const NotEqualsOperator: TokenType = customTokenValue++;
 export const GreaterEqualsOperator: TokenType = customTokenValue++;
 export const SmallerEqualsOperator: TokenType = customTokenValue++;
 export const Ellipsis: TokenType = customTokenValue++;
+export const Module: TokenType = customTokenValue++;
 
 export class SCSSScanner extends Scanner {
 
@@ -43,6 +44,15 @@ export class SCSSScanner extends Scanner {
 			} else {
 				this.stream.goBackTo(offset);
 			}
+		}
+
+		// scss module variable access
+		const moduleVariable: string[] = [];
+		if (this.ident(moduleVariable) && this.stream.advanceIfChars([_DOT, _DLR])) {
+			this.stream.goBack(1);
+			return this.finishToken(offset, Module, moduleVariable.concat('.').join(''));
+		} else {
+			this.stream.goBackTo(offset);
 		}
 
 		// scss: interpolation function #{..})
