@@ -181,6 +181,7 @@ suite('SCSS - Parser', () => {
 		let parser = new SCSSParser();
 		assertNode('@media screen { .sidebar { @media (orientation: landscape) { width: 500px; } } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media #{$media} and ($feature: $value)  {}', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@media only screen and #{$query} {}', parser, parser._parseStylesheet.bind(parser));
 		assertNode('foo { bar { @media screen and (orientation: landscape) {}} }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media screen and (nth($query, 1): nth($query, 2)) { }', parser, parser._parseMedia.bind(parser));
 		assertNode('.something { @media (max-width: 760px) { > .test { color: blue; } } }', parser, parser._parseStylesheet.bind(parser));

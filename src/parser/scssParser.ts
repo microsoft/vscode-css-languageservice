@@ -96,6 +96,10 @@ export class SCSSParser extends cssParser.Parser {
 		return this.finish(node);
 	}
 
+	public _parseMediaContentStart(): nodes.Node | null {
+		return this._parseInterpolation();
+	}
+
 	public _parseMediaFeatureName(): nodes.Node | null {
 		return this._parseFunction() || this._parseIdent() || this._parseVariable(); // first function, the indent
 	}

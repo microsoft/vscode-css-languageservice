@@ -933,6 +933,11 @@ export class Parser {
 			parseExpression = this.acceptIdent('and');
 		}
 		while (parseExpression) {
+			// Allow short-circuting for other language constructs.
+			if (node.addChild(this._parseMediaContentStart())) {
+				parseExpression = this.acceptIdent('and');
+				continue;
+			}
 			if (!this.accept(TokenType.ParenthesisL)) {
 				if (hasContent) {
 					return this.finish(node, ParseError.LeftParenthesisExpected, [], resyncStopToken);
@@ -953,6 +958,10 @@ export class Parser {
 			parseExpression = this.acceptIdent('and');
 		}
 		return this.finish(node);
+	}
+
+	public _parseMediaContentStart(): nodes.Node | null {
+		return null;
 	}
 
 	public _parseMediaFeatureName(): nodes.Node | null {
