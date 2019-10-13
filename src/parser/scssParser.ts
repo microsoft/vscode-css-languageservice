@@ -812,7 +812,7 @@ export class SCSSParser extends cssParser.Parser {
 				}
 
 				// Wildcard must be the next character after the identifier string.
-				if (!this.acceptDelim('*') || this.prevToken!.offset != identifier.end) {
+				if (this.hasWhitespace() || !this.acceptDelim('*')) {
 					return this.finish(node, ParseError.WildcardExpected);
 				}
 			}
