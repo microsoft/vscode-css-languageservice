@@ -346,6 +346,8 @@ suite('SCSS - Parser', () => {
 		assertNode('@keyframes name { @content; }', parser, parser._parseKeyframe.bind(parser));
 		assertNode('@keyframes name { @for $i from 0 through $steps { #{$i * (100%/$steps)} { transform: $rotate $translate; } } }', parser, parser._parseKeyframe.bind(parser)); // issue 42086
 		assertNode('@keyframes test-keyframe { @for $i from 1 through 60 { $s: ($i * 100) / 60 + "%"; } }', parser, parser._parseKeyframe.bind(parser));
+
+		assertNode('@keyframes name { @for $i from 0 through m.$steps { #{$i * (100%/$steps)} { transform: $rotate $translate; } } }', parser, parser._parseKeyframe.bind(parser));
 	});
 
 	test('@extend', function () {
