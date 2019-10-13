@@ -83,6 +83,48 @@ suite('SCSS - Parser', () => {
 		assertNode('100% / 2 + $filler', parser, parser._parseExpr.bind(parser));
 		assertNode('not ($v and $b) or $c', parser, parser._parseExpr.bind(parser));
 
+		assertNode('(module.$let + 20)', parser, parser._parseExpr.bind(parser));
+		assertNode('(module.$let - 20)', parser, parser._parseExpr.bind(parser));
+		assertNode('(module.$let * 20)', parser, parser._parseExpr.bind(parser));
+		assertNode('(module.$let / 20)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 + module.$let)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 - module.$let)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 * module.$let)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 / module.$let)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 + 20 + module.$let)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 + 20 + 20 + module.$let)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 + 20 + 20 + 20 + module.$let)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 + 20 + module.$let + 20 + 20 + module.$let)', parser, parser._parseExpr.bind(parser));
+		assertNode('($var1 + module.$var2)', parser, parser._parseExpr.bind(parser));
+		assertNode('(module.$var1 + $var2)', parser, parser._parseExpr.bind(parser));
+		assertNode('(module.$var1 + module.$var2)', parser, parser._parseExpr.bind(parser));
+		assertNode('((module.$let + 5) * 2)', parser, parser._parseExpr.bind(parser));
+		assertNode('((module.$let + (5 + 2)) * 2)', parser, parser._parseExpr.bind(parser));
+		assertNode('(module.$let + ((5 + 2) * 2))', parser, parser._parseExpr.bind(parser));
+		assertNode('module.$color', parser, parser._parseExpr.bind(parser));
+		assertNode('module.$color, $color', parser, parser._parseExpr.bind(parser));
+		assertNode('$color, module.$color', parser, parser._parseExpr.bind(parser));
+		assertNode('module.$color, module.$color', parser, parser._parseExpr.bind(parser));
+		assertNode('module.$color, 42%', parser, parser._parseExpr.bind(parser));
+		assertNode('module.$color, 42%, $color', parser, parser._parseExpr.bind(parser));
+		assertNode('$color, 42%, module.$color', parser, parser._parseExpr.bind(parser));
+		assertNode('module.$color, 42%, module.$color', parser, parser._parseExpr.bind(parser));
+		assertNode('module.$color - ($color + 10%)', parser, parser._parseExpr.bind(parser));
+		assertNode('$color - (module.$color + 10%)', parser, parser._parseExpr.bind(parser));
+		assertNode('module.$color - (module.$color + 10%)', parser, parser._parseExpr.bind(parser));
+		assertNode('(module.$base + $filler)', parser, parser._parseExpr.bind(parser));
+		assertNode('($base + module.$filler)', parser, parser._parseExpr.bind(parser));
+		assertNode('(module.$base + module.$filler)', parser, parser._parseExpr.bind(parser));
+		assertNode('(100% / 2 + module.$filler)', parser, parser._parseExpr.bind(parser));
+		assertNode('100% / 2 + module.$filler', parser, parser._parseExpr.bind(parser));
+		assertNode('not (module.$v and $b) or $c', parser, parser._parseExpr.bind(parser));
+		assertNode('not ($v and module.$b) or $c', parser, parser._parseExpr.bind(parser));
+		assertNode('not ($v and $b) or module.$c', parser, parser._parseExpr.bind(parser));
+		assertNode('not (module.$v and module.$b) or $c', parser, parser._parseExpr.bind(parser));
+		assertNode('not (module.$v and $b) or module.$c', parser, parser._parseExpr.bind(parser));
+		assertNode('not ($v and module.$b) or module.$c', parser, parser._parseExpr.bind(parser));
+		assertNode('not (module.$v and module.$b) or module.$c', parser, parser._parseExpr.bind(parser));
+
 		assertError('(20 + 20', parser, parser._parseExpr.bind(parser), ParseError.RightParenthesisExpected);
 	});
 
