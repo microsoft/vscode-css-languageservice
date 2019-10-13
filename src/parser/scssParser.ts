@@ -118,16 +118,24 @@ export class SCSSParser extends cssParser.Parser {
 		return <nodes.Variable>node;
 	}
 
-	public _parseModuleVariable(): nodes.Module | null {
-		if (!this.peek(scssScanner.Module)) {
+	public _parseModuleMember(): nodes.Module | null {
+
+		const pos = this.mark();
+		const node = <nodes.Module>this.create(nodes.Module);
+
+		if (!node.setIdentifier(this._parseIdent([nodes.ReferenceType.Module]))) {
 			return null;
 		}
-		const moduleNode = <nodes.Module>this.create(nodes.Module);
-		this.consumeToken();
 
-		moduleNode.addChild(this._parseVariable());
+		if (this.hasWhitespace()
+			|| !this.acceptDelim('.')
+			|| this.hasWhitespace()
+			|| !node.addChild(this._parseVariable() || this._parseFunction())) {
+			this.restoreAtMark(pos);
+			return null;
+		}
 
-		return moduleNode;
+		return node;
 	}
 
 	public _parseIdent(referenceTypes?: nodes.ReferenceType[]): nodes.Identifier | null {
@@ -164,12 +172,15 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseTerm(): nodes.Term | null {
-		let term = super._parseTerm();
-		if (term) { return term; }
+		let term = <nodes.Term>this.create(nodes.Term);
+		if (term.setExpression(this._parseModuleMember())) {
+			return this.finish(term);
+		}
 
-		term = <nodes.Term>this.create(nodes.Term);
+		const superTerm = super._parseTerm();
+		if (superTerm) { return superTerm; }
+
 		if (term.setExpression(this._parseVariable())
-			|| term.setExpression(this._parseModuleVariable())
 			|| term.setExpression(this._parseSelectorCombinator())
 			|| term.setExpression(this._tryParsePrio())) {
 			return <nodes.Term>this.finish(term);

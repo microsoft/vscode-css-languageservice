@@ -46,15 +46,6 @@ export class SCSSScanner extends Scanner {
 			}
 		}
 
-		// scss module variable access
-		const moduleVariable: string[] = [];
-		if (this.ident(moduleVariable) && this.stream.advanceIfChars([_DOT, _DLR])) {
-			this.stream.goBack(1);
-			return this.finishToken(offset, Module, moduleVariable.concat('.').join(''));
-		} else {
-			this.stream.goBackTo(offset);
-		}
-
 		// scss: interpolation function #{..})
 		if (this.stream.advanceIfChars([_HSH, _CUL])) {
 			return this.finishToken(offset, InterpolationFunction);

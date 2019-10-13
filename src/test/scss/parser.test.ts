@@ -29,9 +29,10 @@ suite('SCSS - Parser', () => {
 
 	test('Module variable', function () {
 		let parser = new SCSSParser();
-		assertNode('module.$color', parser, parser._parseModuleVariable.bind(parser));
-		assertNode('module.$co42lor', parser, parser._parseModuleVariable.bind(parser));
-		assertNode('module.$-co42lor', parser, parser._parseModuleVariable.bind(parser));
+		assertNode('module.$color', parser, parser._parseModuleMember.bind(parser));
+		assertNode('module.$co42lor', parser, parser._parseModuleMember.bind(parser));
+		assertNode('module.$-co42lor', parser, parser._parseModuleMember.bind(parser));
+		assertNode('module.function()', parser, parser._parseModuleMember.bind(parser));
 	});
 
 	test('VariableDeclaration', function () {
@@ -205,6 +206,36 @@ suite('SCSS - Parser', () => {
 		assertNode('foo: if($value == \'default\', flex-gutter(), $value)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('foo: if(true, !important, null)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('color: selector-replace(&, 1)', parser, parser._parseDeclaration.bind(parser));
+
+		assertNode('dummy: module.$color', parser, parser._parseDeclaration.bind(parser));
+		assertNode('dummy: (20 / module.$let)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('dummy: (20 / 20 + module.$let)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('dummy: module.func($red)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('dummy: module.func($red) !important', parser, parser._parseDeclaration.bind(parser));
+		assertNode('dummy: module.desaturate($red, 10%)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('dummy: desaturate(module.$red, 10%)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('dummy: module.desaturate(module.$red, 10%)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('dummy: module.desaturate(16, 10%)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('color: module.$base-color + #111', parser, parser._parseDeclaration.bind(parser));
+		assertNode('color: 100% / 2 + module.$ref', parser, parser._parseDeclaration.bind(parser));
+		assertNode('border: (module.$width * 2) solid black', parser, parser._parseDeclaration.bind(parser));
+		assertNode('property: module.$class', parser, parser._parseDeclaration.bind(parser));
+		assertNode('prop-erty: module.fnc($t, 10%)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('prop-erty: fnc(module.$t, 10%)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('prop-erty: module.fnc(module.$t, 10%)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('width: (1em + 2em) * 3', parser, parser._parseDeclaration.bind(parser));
+		assertNode('color: #010203 + #040506', parser, parser._parseDeclaration.bind(parser));
+		assertNode('font-family: sans- + "serif"', parser, parser._parseDeclaration.bind(parser));
+		assertNode('margin: 3px + 4px auto', parser, parser._parseDeclaration.bind(parser));
+		assertNode('color: color.hsl(0, 100%, 50%)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('color: color.hsl($hue: 0, $saturation: 100%, $lightness: 50%)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('foo: if(module.$value == \'default\', flex-gutter(), $value)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('foo: if($value == \'default\', module.flex-gutter(), $value)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('foo: if($value == \'default\', flex-gutter(), module.$value)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('foo: if(module.$value == \'default\', module.flex-gutter(), $value)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('foo: if($value == \'default\', module.flex-gutter(), module.$value)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('foo: if(module.$value == \'default\', module.flex-gutter(), module.$value)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('color: selector.replace(&, 1)', parser, parser._parseDeclaration.bind(parser));
 
 		assertError('fo = 8', parser, parser._parseDeclaration.bind(parser), ParseError.ColonExpected);
 		assertError('fo:', parser, parser._parseDeclaration.bind(parser), ParseError.PropertyValueExpected);

@@ -87,7 +87,7 @@ export enum NodeType {
 	ModuleConfiguration,
 	Forward,
 	ForwardVisibility,
-	ModuleName,
+	Module,
 }
 
 export enum ReferenceType {
@@ -1659,13 +1659,18 @@ export class GuardCondition extends Node {
 
 export class Module extends Node {
 
+	public identifier?: Identifier;
+
 	public get type(): NodeType {
-		return NodeType.ModuleName;
+		return NodeType.Module;
 	}
 
-	public getName(): string {
-		const text = this.getText();
-		return text.substr(0, text.length - 1);
+	public setIdentifier(node: Identifier | null): node is Identifier {
+		return this.setNode('identifier', node, 0);
+	}
+
+	public getIdentifier(): Identifier | undefined {
+		return this.identifier;
 	}
 
 }
