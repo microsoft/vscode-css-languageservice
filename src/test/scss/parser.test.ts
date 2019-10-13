@@ -410,6 +410,10 @@ suite('SCSS - Parser', () => {
 		assertError('@for $i from {}', parser, parser._parseRuleSetDeclaration.bind(parser), ParseError.ExpressionExpected);
 		assertError('@for $i from 0 to {}', parser, parser._parseRuleSetDeclaration.bind(parser), ParseError.ExpressionExpected);
 		assertNode('@for $i from 1 through 60 { $s: $i + "%"; }', parser, parser._parseRuleSetDeclaration.bind(parser));
+
+		assertNode('@for $k from 1 + m.$x through 5 + $x {  }', parser, parser._parseRuleSetDeclaration.bind(parser));
+		assertNode('@for $k from 1 + $x through 5 + m.$x {  }', parser, parser._parseRuleSetDeclaration.bind(parser));
+		assertNode('@for $k from 1 + m.$x through 5 + m.$x {  }', parser, parser._parseRuleSetDeclaration.bind(parser));
 	});
 
 	test('@each', function () {
