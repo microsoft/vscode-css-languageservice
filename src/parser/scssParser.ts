@@ -99,7 +99,10 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseMediaFeatureName(): nodes.Node | null {
-		return this._parseFunction() || this._parseIdent() || this._parseVariable(); // first function, the indent
+		return this._parseModuleMember()
+			|| this._parseFunction() // function before ident
+			|| this._parseIdent()
+			|| this._parseVariable();
 	}
 
 	public _parseKeyframeSelector(): nodes.Node | null {

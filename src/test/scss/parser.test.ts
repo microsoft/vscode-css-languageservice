@@ -319,6 +319,26 @@ suite('SCSS - Parser', () => {
 		assertNode('.something { @media (max-width: 760px) { ~ div { display: block; } } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.something { @media (max-width: 760px) { + div { display: block; } } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media (max-width: 760px) { + div { display: block; } }', parser, parser._parseStylesheet.bind(parser));
+
+		assertNode('@media #{layout.$media} and ($feature: $value)  {}', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@media #{$media} and (layout.$feature: $value)  {}', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@media #{$media} and ($feature: layout.$value)  {}', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@media #{layout.$media} and (layout.$feature: $value)  {}', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@media #{$media} and (layout.$feature: layout.$value)  {}', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@media #{layout.$media} and (layout.$feature: layout.$value)  {}', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@media screen and (list.nth($query, 1): nth($query, 2)) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media screen and (nth(list.$query, 1): nth($query, 2)) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media screen and (nth($query, 1): list.nth($query, 2)) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media screen and (nth($query, 1): nth(list.$query, 2)) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media screen and (list.nth(list.$query, 1): nth($query, 2)) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media screen and (list.nth($query, 1): list.nth($query, 2)) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media screen and (list.nth($query, 1): nth(list.$query, 2)) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media screen and (nth(list.$query, 1): list.nth($query, 2)) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media screen and (nth(list.$query, 1): nth(list.$query, 2)) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media screen and (nth($query, 1): list.nth(list.$query, 2)) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media screen and (list.nth(list.$query, 1): list.nth($query, 2)) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media screen and (nth(list.$query, 1): list.nth(list.$query, 2)) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media screen and (list.nth(list.$query, 1): list.nth(list.$query, 2)) { }', parser, parser._parseMedia.bind(parser));
 	});
 
 	test('@keyframe', function () {
