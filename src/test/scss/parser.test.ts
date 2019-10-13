@@ -546,6 +546,17 @@ suite('SCSS - Parser', () => {
 		assertNode('.foo-#{&} .foo-#{&-sub} { }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.-#{$variable} { }', parser, parser._parseRuleset.bind(parser));
 		assertNode('#{&}([foo=bar][bar=foo]) { }', parser, parser._parseRuleset.bind(parser)); // #49589
+
+		assertNode('.#{module.$name} { }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.#{module.$name}-foo { }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.#{module.$name}-foo-3 { }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.#{module.$name}-1 { }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.sc-col#{module.$postfix}-2-1 { }', parser, parser._parseRuleset.bind(parser));
+		assertNode('p.#{module.$name} { #{$attr}-color: blue; }', parser, parser._parseRuleset.bind(parser));
+		assertNode('p.#{$name} { #{module.$attr}-color: blue; }', parser, parser._parseRuleset.bind(parser));
+		assertNode('p.#{module.$name} { #{module.$attr}-color: blue; }', parser, parser._parseRuleset.bind(parser));
+		assertNode('sans-#{serif} { a-#{1 + 2}-color-#{module.$attr}: blue; }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.-#{module.$variable} { }', parser, parser._parseRuleset.bind(parser));
 	});
 
 	test('Parent Selector', function () {
