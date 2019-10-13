@@ -259,6 +259,9 @@ suite('SCSS - Parser', () => {
 		assertNode('@include keyframe { 10% { top: 3px; } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.class{&--sub-class-with-ampersand{color: red;}}', parser, parser._parseStylesheet.bind(parser));
 		assertError('fo { font: 2px/3px { family } }', parser, parser._parseStylesheet.bind(parser), ParseError.ColonExpected);
+
+		assertNode('legend {foo{a:s}margin-top:0;margin-bottom:#123;margin-top:m.s(1)}', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@include module.keyframe { 10% { top: 3px; } }', parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('@import', function () {
@@ -386,6 +389,15 @@ suite('SCSS - Parser', () => {
 		assertNode('@if $i == 1 { p { x: 3px; } }', parser, parser._parseStylesheet.bind(parser));
 		assertError('@if { border: 1px solid;  }', parser, parser._parseRuleSetDeclaration.bind(parser), ParseError.ExpressionExpected);
 		assertError('@if 1 }', parser, parser._parseRuleSetDeclaration.bind(parser), ParseError.LeftCurlyExpected);
+
+		assertNode('@if 1 <= m.$let { border: 3px; } @else { border: 4px; }', parser, parser._parseRuleSetDeclaration.bind(parser));
+		assertNode('@if 1 >= (1 + m.$foo) { border: 3px; } @else if 1 + 1 == 2 { border: 4px; }', parser, parser._parseRuleSetDeclaration.bind(parser));
+		assertNode('p { @if m.$i == 1 { x: 3px; } @else if $i == 1 { x: 4px; } @else { x: 4px; } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('p { @if $i == 1 { x: 3px; } @else if m.$i == 1 { x: 4px; } @else { x: 4px; } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('p { @if m.$i == 1 { x: 3px; } @else if m.$i == 1 { x: 4px; } @else { x: 4px; } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@if (list.index($_RESOURCES, "clean") != null) { @error "sdssd"; }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@if (index(m.$_RESOURCES, "clean") != null) { @error "sdssd"; }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@if (list.index(m.$_RESOURCES, "clean") != null) { @error "sdssd"; }', parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('@for', function () {
