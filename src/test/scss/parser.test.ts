@@ -33,6 +33,8 @@ suite('SCSS - Parser', () => {
 		assertNode('module.$co42lor', parser, parser._parseModuleMember.bind(parser));
 		assertNode('module.$-co42lor', parser, parser._parseModuleMember.bind(parser));
 		assertNode('module.function()', parser, parser._parseModuleMember.bind(parser));
+
+		assertError('module.', parser, parser._parseModuleMember.bind(parser), ParseError.IdentifierOrVariableExpected);
 	});
 
 	test('VariableDeclaration', function () {

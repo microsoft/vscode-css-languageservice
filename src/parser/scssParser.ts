@@ -132,10 +132,13 @@ export class SCSSParser extends cssParser.Parser {
 
 		if (this.hasWhitespace()
 			|| !this.acceptDelim('.')
-			|| this.hasWhitespace()
-			|| !node.addChild(this._parseVariable() || this._parseFunction())) {
+			|| this.hasWhitespace()) {
 			this.restoreAtMark(pos);
 			return null;
+		}
+
+		if (!node.addChild(this._parseVariable() || this._parseFunction())) {
+			return this.finish(node, ParseError.IdentifierOrVariableExpected);
 		}
 
 		return node;
@@ -601,8 +604,8 @@ export class SCSSParser extends cssParser.Parser {
 			const secondIdent = this._parseIdent([nodes.ReferenceType.Mixin]);
 
 			if (!secondIdent) {
-			return this.finish(node, ParseError.IdentifierExpected, [TokenType.CurlyR]);
-		}
+				return this.finish(node, ParseError.IdentifierExpected, [TokenType.CurlyR]);
+			}
 
 			const moduleToken = <nodes.Module>this.create(nodes.Module);
 			// Re-purpose first matched ident as identifier for module token.
