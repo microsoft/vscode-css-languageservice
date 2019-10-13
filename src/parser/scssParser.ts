@@ -590,8 +590,28 @@ export class SCSSParser extends cssParser.Parser {
 		const node = <nodes.MixinReference>this.create(nodes.MixinReference);
 		this.consumeToken();
 
-		if (!node.setIdentifier(this._parseIdent([nodes.ReferenceType.Mixin]))) {
+		// Could be module or mixin identifier, set as mixin as default.
+		const firstIdent = this._parseIdent([nodes.ReferenceType.Mixin]);
+		if (!node.setIdentifier(firstIdent)) {
 			return this.finish(node, ParseError.IdentifierExpected, [TokenType.CurlyR]);
+		}
+
+		// Is a module accessor.
+		if (!this.hasWhitespace() && this.acceptDelim('.') && !this.hasWhitespace()) {
+			const secondIdent = this._parseIdent([nodes.ReferenceType.Mixin]);
+
+			if (!secondIdent) {
+			return this.finish(node, ParseError.IdentifierExpected, [TokenType.CurlyR]);
+		}
+
+			const moduleToken = <nodes.Module>this.create(nodes.Module);
+			// Re-purpose first matched ident as identifier for module token.
+			firstIdent.referenceTypes = [nodes.ReferenceType.Module];
+			moduleToken.setIdentifier(firstIdent);
+
+			// Override identifier with second ident.
+			node.setIdentifier(secondIdent);
+			node.addChild(moduleToken);
 		}
 
 		if (this.accept(TokenType.ParenthesisL)) {
