@@ -163,7 +163,9 @@ suite('SCSS - Completions', () => {
 				{ label: '@each', insertTextFormat: InsertTextFormat.Snippet },
 				{ label: '@while', insertTextFormat: InsertTextFormat.Snippet },
 				{ label: '@mixin', insertTextFormat: InsertTextFormat.Snippet },
-				{ label: '@include' }
+				{ label: '@include' },
+				{ label: '@use' },
+				{ label: '@forward' }
 			]
 		});
 

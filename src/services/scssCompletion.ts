@@ -189,6 +189,16 @@ export class SCSSCompletion extends CSSCompletion {
 			documentation: localize("scss.builtin.@include", "Includes the styles defined by another mixin into the current rule."),
 			kind: CompletionItemKind.Keyword
 		},
+		{
+			label: "@use",
+			documentation: localize("scss.builtin.@use", "Loads mixins, functions, and variables from other Sass stylesheets as 'modules', and combines CSS from multiple stylesheets together."),
+			kind: CompletionItemKind.Keyword
+		},
+		{
+			label: "@forward",
+			documentation: localize("scss.builtin.@forward", "Loads a Sass stylesheet and makes its mixins, functions, and variables available when this stylesheet is loaded with the @use rule."),
+			kind: CompletionItemKind.Keyword
+		},
 	];
 
 
