@@ -164,8 +164,6 @@ suite('SCSS - Completions', () => {
 				{ label: '@while', insertTextFormat: InsertTextFormat.Snippet },
 				{ label: '@mixin', insertTextFormat: InsertTextFormat.Snippet },
 				{ label: '@include' },
-				{ label: '@use' },
-				{ label: '@forward' }
 			]
 		});
 
@@ -179,6 +177,17 @@ suite('SCSS - Completions', () => {
 			items: [
 				{ label: '@for' }
 			]
+		});
+	});
+
+	suite('Modules', function (): any {
+		test('module-loading at-rules', function (): any {
+			testCompletionFor('@', {
+				items: [
+					{ label: '@use' },
+					{ label: '@forward' },
+				],
+			});
 		});
 	});
 });
