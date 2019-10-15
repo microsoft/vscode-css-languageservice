@@ -244,7 +244,10 @@ export class Parser {
 
 	public _parseStylesheet(): nodes.Stylesheet {
 		const node = <nodes.Stylesheet>this.create(nodes.Stylesheet);
-		node.addChild(this._parseCharset());
+
+		while (node.addChild(this._parseStylesheetStart())) {
+			// Parse statements only valid at the beginning of stylesheets.
+		}
 
 		let inRecovery = false;
 		do {
@@ -283,6 +286,10 @@ export class Parser {
 		} while (!this.peek(TokenType.EOF));
 
 		return this.finish(node);
+	}
+
+	public _parseStylesheetStart(): nodes.Node | null {
+		return this._parseCharset();
 	}
 
 	public _parseStylesheetStatement(isNested: boolean = false): nodes.Node | null {

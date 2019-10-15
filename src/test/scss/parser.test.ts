@@ -295,6 +295,11 @@ suite('SCSS - Parser', () => {
 		assertError('@use "test" with ("bar")', parser, parser._parseUse.bind(parser), ParseError.VariableNameExpected);
 		assertError('@use "test" with ($foo: 1, "bar")', parser, parser._parseUse.bind(parser), ParseError.VariableNameExpected);
 		assertError('@use "test" with ($foo: "bar"', parser, parser._parseUse.bind(parser), ParseError.RightParenthesisExpected);
+
+		assertNode('@forward "test"; @use "lib"', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@use "test"; @use "lib"', parser, parser._parseStylesheet.bind(parser));
+		assertError('body { @use "test" }', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
+		assertError('body { color: red; } @use "test"', parser, parser._parseStylesheet.bind(parser), ParseError.RuleOrSelectorExpected);
 	});
 
 	test('@forward', function () {
@@ -312,6 +317,11 @@ suite('SCSS - Parser', () => {
 		assertError('@forward "test" as foo- *', parser, parser._parseForward.bind(parser), ParseError.WildcardExpected);
 		assertError('@forward "test" show', parser, parser._parseForward.bind(parser), ParseError.IdentifierOrVariableExpected);
 		assertError('@forward "test" hide', parser, parser._parseForward.bind(parser), ParseError.IdentifierOrVariableExpected);
+
+		assertNode('@use "lib"; @forward "test"', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@forward "test"; @forward "lib"', parser, parser._parseStylesheet.bind(parser));
+		assertError('body { @forward "test" }', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
+		assertError('body { color: red; } @forward "test"', parser, parser._parseStylesheet.bind(parser), ParseError.RuleOrSelectorExpected);
 	});
 
 	test('@media', function () {

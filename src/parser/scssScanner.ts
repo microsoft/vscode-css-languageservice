@@ -19,6 +19,7 @@ const _BNG = '!'.charCodeAt(0);
 const _LAN = '<'.charCodeAt(0);
 const _RAN = '>'.charCodeAt(0);
 const _DOT = '.'.charCodeAt(0);
+const _ATS = '@'.charCodeAt(0);
 
 let customTokenValue = TokenType.CustomToken;
 
@@ -31,6 +32,8 @@ export const GreaterEqualsOperator: TokenType = customTokenValue++;
 export const SmallerEqualsOperator: TokenType = customTokenValue++;
 export const Ellipsis: TokenType = customTokenValue++;
 export const Module: TokenType = customTokenValue++;
+export const Forward: TokenType = customTokenValue++;
+export const Use: TokenType = customTokenValue++;
 
 export class SCSSScanner extends Scanner {
 
@@ -80,6 +83,22 @@ export class SCSSScanner extends Scanner {
 		// ellipis
 		if (this.stream.advanceIfChars([_DOT, _DOT, _DOT])) {
 			return this.finishToken(offset, Ellipsis);
+		}
+
+		// module loaders, @forward and @use
+		if (this.stream.advanceIfChar(_ATS)) {
+			const content = ['@'];
+			if (this.ident(content)) {
+				const keywordText = content.join('');
+				if (keywordText === '@forward') {
+					return this.finishToken(offset, Forward, keywordText);
+				}
+				else if (keywordText === '@use') {
+					return this.finishToken(offset, Use, keywordText);
+				}
+			}
+
+			this.stream.goBackTo(offset);
 		}
 
 		return super.scanNext(offset);

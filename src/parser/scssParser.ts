@@ -21,6 +21,12 @@ export class SCSSParser extends cssParser.Parser {
 		super(new scssScanner.SCSSScanner());
 	}
 
+	public _parseStylesheetStart(): nodes.Node | null {
+		return this._parseForward()
+			|| this._parseUse()
+			|| super._parseStylesheetStart();
+	}
+
 	public _parseStylesheetStatement(): nodes.Node | null {
 		if (this.peek(TokenType.AtKeyword)) {
 			return this._parseWarnAndDebug()
@@ -29,8 +35,6 @@ export class SCSSParser extends cssParser.Parser {
 				|| this._parseMixinContent()
 				|| this._parseMixinReference() // @include
 				|| this._parseFunctionDeclaration()
-				|| this._parseForward()
-				|| this._parseUse()
 				|| super._parseStylesheetAtStatement();
 		}
 		return this._parseRuleset(true) || this._parseVariableDeclaration();
@@ -721,7 +725,7 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseUse(): nodes.Node | null {
-		if (!this.peekKeyword('@use')) {
+		if (!this.peek(scssScanner.Use)) {
 			return null;
 		}
 
@@ -770,6 +774,10 @@ export class SCSSParser extends cssParser.Parser {
 			}
 		}
 
+		if (!this.accept(TokenType.SemiColon) && !this.accept(TokenType.EOF)) {
+			return this.finish(node, ParseError.SemiColonExpected);
+		}
+
 		return this.finish(node);
 	}
 
@@ -789,7 +797,7 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseForward(): nodes.Node | null {
-		if (!this.peekKeyword('@forward')) {
+		if (!this.peek(scssScanner.Forward)) {
 			return null;
 		}
 
@@ -826,6 +834,10 @@ export class SCSSParser extends cssParser.Parser {
 					break;
 				}
 			}
+		}
+
+		if (!this.accept(TokenType.SemiColon) && !this.accept(TokenType.EOF)) {
+			return this.finish(node, ParseError.SemiColonExpected);
 		}
 
 		return this.finish(node);
