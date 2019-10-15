@@ -189,6 +189,9 @@ export class SCSSCompletion extends CSSCompletion {
 			documentation: localize("scss.builtin.@include", "Includes the styles defined by another mixin into the current rule."),
 			kind: CompletionItemKind.Keyword
 		},
+	];
+
+	private static scssModuleLoaders = [
 		{
 			label: "@use",
 			documentation: localize("scss.builtin.@use", "Loads mixins, functions, and variables from other Sass stylesheets as 'modules', and combines CSS from multiple stylesheets together."),
@@ -278,7 +281,13 @@ export class SCSSCompletion extends CSSCompletion {
 
 	public getCompletionForTopLevel(result: CompletionList): CompletionList {
 		this.getCompletionForAtDirectives(result);
+		this.getCompletionForModuleLoaders(result);
 		super.getCompletionForTopLevel(result);
+		return result;
+	}
+
+	public getCompletionForModuleLoaders(result: CompletionList): CompletionList {
+		result.items.push(...SCSSCompletion.scssModuleLoaders);
 		return result;
 	}
 }

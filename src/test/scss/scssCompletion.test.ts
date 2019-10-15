@@ -188,6 +188,14 @@ suite('SCSS - Completions', () => {
 					{ label: '@forward' },
 				],
 			});
+
+			// Limit to top-level scope.
+			testCompletionFor('.foo { @| }', {
+				items: [
+					{ label: '@use', notAvailable: true },
+					{ label: '@forward', notAvailable: true },
+				],
+			});
 		});
 	});
 });
