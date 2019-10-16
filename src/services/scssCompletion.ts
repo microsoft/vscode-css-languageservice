@@ -195,11 +195,15 @@ export class SCSSCompletion extends CSSCompletion {
 		{
 			label: "@use",
 			documentation: localize("scss.builtin.@use", "Loads mixins, functions, and variables from other Sass stylesheets as 'modules', and combines CSS from multiple stylesheets together."),
+			insertText: "@use '$0';",
+			insertTextFormat: InsertTextFormat.Snippet,
 			kind: CompletionItemKind.Keyword
 		},
 		{
 			label: "@forward",
 			documentation: localize("scss.builtin.@forward", "Loads a Sass stylesheet and makes its mixins, functions, and variables available when this stylesheet is loaded with the @use rule."),
+			insertText: "@forward '$0';",
+			insertTextFormat: InsertTextFormat.Snippet,
 			kind: CompletionItemKind.Keyword
 		},
 	];
