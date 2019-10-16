@@ -213,6 +213,12 @@ export class SCSSCompletion extends CSSCompletion {
 		super('$', clientCapabilities);
 	}
 
+	protected isImportPathParent(type: nodes.NodeType): boolean {
+		return type === nodes.NodeType.Forward
+			|| type === nodes.NodeType.Use
+			|| super.isImportPathParent(type);
+	}
+
 	private createReplaceFunction() {
 		let tabStopCounter = 1;
 		return (_match: string, p1: string) => {

@@ -9,14 +9,35 @@ import * as cssLanguageService from '../../cssLanguageService';
 
 import { TextDocument, Position, InsertTextFormat } from 'vscode-languageserver-types';
 import { assertCompletion, ItemDescription } from '../css/completion.test';
+import { ImportPathCompletionContext } from '../../cssLanguageTypes';
+import { newRange } from '../css/navigation.test';
 
 suite('SCSS - Completions', () => {
 
-	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[] }) {
+	let testCompletionFor = function (
+		value: string,
+		expected: {
+			count?: number,
+			items?: ItemDescription[],
+			participant?: {
+				onImportPath?: ImportPathCompletionContext[],
+			},
+		},
+	) {
 		let offset = value.indexOf('|');
 		value = value.substr(0, offset) + value.substr(offset + 1);
 
+		let actualImportPathContexts: ImportPathCompletionContext[] = [];
+
 		let ls = cssLanguageService.getSCSSLanguageService();
+
+		if (expected.participant) {
+			ls.setCompletionParticipants([
+				{
+					onCssImportPath: context => actualImportPathContexts.push(context)
+				}
+			]);
+		}
 
 		let document = TextDocument.create('test://test/test.scss', 'scss', 0, value);
 		let position = Position.create(0, offset);
@@ -29,6 +50,11 @@ suite('SCSS - Completions', () => {
 		if (expected.items) {
 			for (let item of expected.items) {
 				assertCompletion(list, item, document, offset);
+			}
+		}
+		if (expected.participant) {
+			if (expected.participant.onImportPath) {
+				assert.deepEqual(actualImportPathContexts, expected.participant.onImportPath);
 			}
 		}
 	};
@@ -195,6 +221,20 @@ suite('SCSS - Completions', () => {
 					{ label: '@use', notAvailable: true },
 					{ label: '@forward', notAvailable: true },
 				],
+			});
+
+			testCompletionFor(`@use './|'`, {
+				count: 0,
+				participant: {
+					onImportPath: [{ pathValue: `'./'`, position: Position.create(0, 8), range: newRange(5, 9) }]
+				}
+			});
+
+			testCompletionFor(`@forward './|'`, {
+				count: 0,
+				participant: {
+					onImportPath: [{ pathValue: `'./'`, position: Position.create(0, 12), range: newRange(9, 13) }]
+				}
 			});
 		});
 	});
