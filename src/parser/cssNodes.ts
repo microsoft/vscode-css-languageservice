@@ -1091,19 +1091,18 @@ export class Forward extends Node {
 
 export class ForwardVisibility extends Node {
 
-	public visibility?: string;
+	public identifier?: Node;
 
 	public get type(): NodeType {
 		return NodeType.ForwardVisibility;
 	}
 
-	public setVisibility(visibility: string): boolean {
-		this.visibility = visibility;
-		return true;
+	public setIdentifier(node: Node | null): node is Node {
+		return this.setNode('identifier', node, 0);
 	}
 
-	public getVisibility(): string | undefined {
-		return this.visibility;
+	public getIdentifier(): Node | undefined {
+		return this.identifier;
 	}
 
 }

@@ -825,13 +825,9 @@ export class SCSSParser extends cssParser.Parser {
 				}
 			}
 
-			for (const visibility of ['hide', 'show']) {
-				if (this.acceptIdent(visibility)) {
-					if (!node.addChild(this._parseForwardVisibility(visibility))) {
-						return this.finish(node, ParseError.IdentifierOrVariableExpected);
-					}
-					// Only can have one of 'hide' or 'show'.
-					break;
+			if (this.peekIdent('hide') || this.peekIdent('show')) {
+				if (!node.addChild(this._parseForwardVisibility())) {
+					return this.finish(node, ParseError.IdentifierOrVariableExpected);
 				}
 			}
 		}
@@ -843,20 +839,18 @@ export class SCSSParser extends cssParser.Parser {
 		return this.finish(node);
 	}
 
-	public _parseForwardVisibility(visibility: string): nodes.Node | null {
+	public _parseForwardVisibility(): nodes.Node | null {
 		const node = <nodes.ForwardVisibility>this.create(nodes.ForwardVisibility);
-		node.setVisibility(visibility);
 
-		this.consumeToken();
+		// Assume to be "hide" or "show".
+		node.setIdentifier(this._parseIdent());
 
-		const children: nodes.Node[] = [];
-		let child: nodes.Node | null;
-		while (child = this._parseVariable() || this._parseIdent()) {
-			children.push(child);
+		while (node.addChild(this._parseVariable() || this._parseIdent())) {
+			// Consume all variables and idents ahead.
 		}
-		node.addChildren(children);
 
-		return children.length ? node : null;
+		// More than just identifier 
+		return node.getChildren().length > 1 ? node : null;
 	}
 
 }
