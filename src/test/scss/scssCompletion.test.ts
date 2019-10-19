@@ -223,15 +223,27 @@ suite('SCSS - Completions', () => {
 				],
 			});
 
+			const builtIns = {
+				items: [
+					{ label: 'sass:math' },
+					{ label: 'sass:string' },
+					{ label: 'sass:color' },
+					{ label: 'sass:list' },
+					{ label: 'sass:map' },
+					{ label: 'sass:selector' },
+					{ label: 'sass:meta' },
+				],
+			};
+			testCompletionFor(`@use '|'`, builtIns);
+			testCompletionFor(`@forward '|'`, builtIns);
+
 			testCompletionFor(`@use './|'`, {
-				count: 0,
 				participant: {
 					onImportPath: [{ pathValue: `'./'`, position: Position.create(0, 8), range: newRange(5, 9) }]
 				}
 			});
 
 			testCompletionFor(`@forward './|'`, {
-				count: 0,
 				participant: {
 					onImportPath: [{ pathValue: `'./'`, position: Position.create(0, 12), range: newRange(9, 13) }]
 				}

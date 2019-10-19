@@ -208,6 +208,44 @@ export class SCSSCompletion extends CSSCompletion {
 		},
 	];
 
+	private static scssModuleBuiltIns = [
+		{
+			label: 'sass:math',
+			documentation: localize('scss.builtin.sass:math', 'Provides functions that operate on numbers.'),
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'sass:string',
+			documentation: localize('scss.builtin.sass:string', 'Makes it easy to combine, search, or split apart strings.'),
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'sass:color',
+			documentation: localize('scss.builtin.sass:color', 'Generates new colors based on existing ones, making it easy to build color themes.'),
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'sass:list',
+			documentation: localize('scss.builtin.sass:list', 'Lets you access and modify values in lists.'),
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'sass:map',
+			documentation: localize('scss.builtin.sass:map', 'Makes it possible to look up the value associated with a key in a map, and much more.'),
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'sass:selector',
+			documentation: localize('scss.builtin.sass:selector', 'Provides access to Sass’s powerful selector engine.'),
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'sass:meta',
+			documentation: localize('scss.builtin.sass:meta', 'Exposes the details of Sass’s inner workings.'),
+			kind: CompletionItemKind.Text,
+		},
+	];
+
 
 	constructor(clientCapabilities: ClientCapabilities | undefined) {
 		super('$', clientCapabilities);
@@ -217,6 +255,16 @@ export class SCSSCompletion extends CSSCompletion {
 		return type === nodes.NodeType.Forward
 			|| type === nodes.NodeType.Use
 			|| super.isImportPathParent(type);
+	}
+
+	public getCompletionForImportPath(importPathNode: nodes.Node, result: CompletionList): CompletionList {
+		const parentType = importPathNode.getParent()!.type;
+
+		if (parentType === nodes.NodeType.Forward || parentType === nodes.NodeType.Use) {
+			result.items.push(...SCSSCompletion.scssModuleBuiltIns);
+		}
+
+		return super.getCompletionForImportPath(importPathNode, result);
 	}
 
 	private createReplaceFunction() {
