@@ -242,6 +242,9 @@ suite('CSS - Navigation', () => {
 			let p = new Parser();
 			assertSymbols(p, '.foo {}', [{ name: '.foo', kind: SymbolKind.Class, location: Location.create('test://test/test.css' ,newRange(0, 7)) }]);
 			assertSymbols(p, '.foo:not(.selected) {}', [{ name: '.foo:not(.selected)', kind: SymbolKind.Class, location: Location.create('test://test/test.css' ,newRange(0, 22)) }]);
+
+			// Media Query
+			assertSymbols(p, '@media screen, print {}', [{ name: '@media screen, print', kind: SymbolKind.Class, location: Location.create('test://test/test.css' ,newRange(0, 23)) }]);
 		});
 	});
 

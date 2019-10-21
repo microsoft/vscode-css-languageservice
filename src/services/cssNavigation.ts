@@ -156,6 +156,11 @@ export class CSSNavigation {
 				entry.name = localize('literal.keyframes', "@keyframes {0}", (<nodes.Keyframe>node).getName());
 			} else if (node instanceof nodes.FontFace) {
 				entry.name = localize('literal.fontface', "@font-face");
+			} else if (node instanceof nodes.Media) {
+				const mediaList = node.getChild(0);
+				if (mediaList instanceof nodes.Medialist) {
+					entry.name = '@media ' + mediaList.getText();
+				}
 			}
 
 			if (entry.name) {
