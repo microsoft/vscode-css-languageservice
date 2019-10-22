@@ -244,7 +244,7 @@ suite('CSS - Navigation', () => {
 			assertSymbols(p, '.foo:not(.selected) {}', [{ name: '.foo:not(.selected)', kind: SymbolKind.Class, location: Location.create('test://test/test.css' ,newRange(0, 22)) }]);
 
 			// Media Query
-			assertSymbols(p, '@media screen, print {}', [{ name: '@media screen, print', kind: SymbolKind.Class, location: Location.create('test://test/test.css' ,newRange(0, 23)) }]);
+			assertSymbols(p, '@media screen, print {}', [{ name: '@media screen, print', kind: SymbolKind.Module, location: Location.create('test://test/test.css' ,newRange(0, 23)) }]);
 		});
 	});
 
