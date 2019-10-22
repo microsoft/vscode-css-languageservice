@@ -678,9 +678,13 @@ suite('CSS - Completion', () => {
 	test('Items that start with `-` are sorted lower than normal attribute values', () => {
 		testCompletionFor('.foo { display: | }', {
 			items: [
-				{ label: 'grid', sortText: 'd' },
-				{ label: '-moz-grid', sortText: 'x' },
-				{ label: '-ms-grid', sortText: 'x' }
+				// Enum with no prefix come before everything
+				{ label: 'grid', sortText: 'ad' },
+				// Enum with prefix come next
+				{ label: '-moz-grid', sortText: 'ax' },
+				{ label: '-ms-grid', sortText: 'ax' },
+				// Others come last
+				{ label: 'inherit' }
 			]
 		});
 	});

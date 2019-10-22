@@ -179,4 +179,17 @@ suite('SCSS - Completions', () => {
 			]
 		});
 	});
+	
+	test('Enum + color restrictions are sorted properly', () => {
+		testCompletionFor('.foo { text-decoration: | }', {
+			items: [
+				// Enum come before everything
+				{ label: 'dashed', sortText: 'ad' },
+				// Others come later
+				{ label: 'aqua' },
+				{ label: 'inherit' }
+			]
+		});
+	});
+
 });

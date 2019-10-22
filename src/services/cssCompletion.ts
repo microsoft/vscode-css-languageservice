@@ -148,6 +148,12 @@ export class CSSCompletion {
 					} else {
 						i.sortText = 'd';
 					}
+				} else {
+					if (i.label[0] === '-') {
+						i.sortText += 'x';
+					} else {
+						i.sortText += 'd';
+					}
 				}
 			}
 		}
@@ -346,6 +352,8 @@ export class CSSCompletion {
 					documentation: languageFacts.getEntryDescription(value, this.doesSupportMarkdown()),
 					tags: isDeprecated(entry) ? [CompletionItemTag.Deprecated] : [],
 					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertString),
+					// Enum completions should come before everything else
+					sortText: 'a',
 					kind: CompletionItemKind.Value,
 					insertTextFormat
 				};
