@@ -160,6 +160,7 @@ export class CSSNavigation {
 				const mediaList = node.getChild(0);
 				if (mediaList instanceof nodes.Medialist) {
 					entry.name = '@media ' + mediaList.getText();
+					entry.kind = SymbolKind.Module;
 				}
 			}
 
