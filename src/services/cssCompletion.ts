@@ -8,7 +8,7 @@ import * as nodes from '../parser/cssNodes';
 import { Symbols, Symbol } from '../parser/cssSymbolScope';
 import * as languageFacts from '../languageFacts/facts';
 import * as strings from '../utils/strings';
-import { TextDocument, Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, MarkupContent } from 'vscode-languageserver-types';
+import { TextDocument, Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, MarkupContent, CompletionItemTag } from 'vscode-languageserver-types';
 import { ICompletionParticipant, LanguageSettings, ClientCapabilities } from '../cssLanguageTypes';
 
 import * as nls from 'vscode-nls';
@@ -193,10 +193,10 @@ export class CSSCompletion {
 				insertText += '$0;';
 			}
 			
-			const item = <CompletionItem>{
+			const item: CompletionItem = {
 				label: entry.name,
 				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
-				deprecated: isDeprecated(entry),
+				tags: isDeprecated(entry) ? [CompletionItemTag.Deprecated] : [],
 				textEdit: TextEdit.replace(range, insertText),
 				insertTextFormat: InsertTextFormat.Snippet,
 				kind: CompletionItemKind.Property
@@ -341,10 +341,10 @@ export class CSSCompletion {
 						insertTextFormat = SnippetFormat;
 					}
 				}
-				const item = <CompletionItem>{
+				const item: CompletionItem = {
 					label: value.name,
 					documentation: languageFacts.getEntryDescription(value, this.doesSupportMarkdown()),
-					deprecated: isDeprecated(entry),
+					tags: isDeprecated(entry) ? [CompletionItemTag.Deprecated] : [],
 					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertString),
 					kind: CompletionItemKind.Value,
 					insertTextFormat
@@ -638,11 +638,11 @@ export class CSSCompletion {
 
 	public getCompletionForTopLevel(result: CompletionList): CompletionList {
 		languageFacts.cssDataManager.getAtDirectives().forEach(entry => {
-			result.items.push(<CompletionItem>{
+			result.items.push({
 				label: entry.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(null), entry.name),
 				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
-				deprecated: isDeprecated(entry),
+				tags: isDeprecated(entry) ? [CompletionItemTag.Deprecated] : [],
 				kind: CompletionItemKind.Keyword
 			});
 		});
@@ -677,11 +677,11 @@ export class CSSCompletion {
 		const pseudoClasses = languageFacts.cssDataManager.getPseudoClasses();
 		pseudoClasses.forEach(entry => {
 			const insertText = moveCursorInsideParenthesis(entry.name);
-			const item = <CompletionItem>{
+			const item: CompletionItem = {
 				label: entry.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
 				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
-				deprecated: isDeprecated(entry),
+				tags: isDeprecated(entry) ? [CompletionItemTag.Deprecated] : [],
 				kind: CompletionItemKind.Function,
 				insertTextFormat: entry.name !== insertText ? SnippetFormat : void 0
 			};
@@ -694,11 +694,11 @@ export class CSSCompletion {
 		const pseudoElements = languageFacts.cssDataManager.getPseudoElements();
 		pseudoElements.forEach(entry => {
 			const insertText = moveCursorInsideParenthesis(entry.name);
-			const item = <CompletionItem>{
+			const item: CompletionItem = {
 				label: entry.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
 				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
-				deprecated: isDeprecated(entry),
+				tags: isDeprecated(entry) ? [CompletionItemTag.Deprecated] : [],
 				kind: CompletionItemKind.Function,
 				insertTextFormat: entry.name !== insertText ? SnippetFormat : void 0
 			};
