@@ -6084,7 +6084,7 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin"
 				}
 			],
-			"description": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits.",
+			"description": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits.  \nmargin: vertical/horizontile  \nmargin: vertical | horizontal  \nmargin: top | horizontal | bottom  \nmargin: top | right | bottom | left",
 			"restrictions": [
 				"length",
 				"percentage"
@@ -11455,7 +11455,7 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding"
 				}
 			],
-			"description": "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
+			"description": "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.  \npadding: vertical/horizontal  \npadding: vertical | horizontal  \npadding: top | horizontal | bottom  \npadding: top | right | bottom | left",
 			"restrictions": [
 				"length",
 				"percentage"
