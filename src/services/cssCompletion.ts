@@ -195,8 +195,15 @@ export class CSSCompletion {
 				insertText = entry.name + ': ';
 				retrigger = true;
 			}
-			if (completePropertyWithSemicolon && this.offset >= this.textDocument.offsetAt(range.end)) {
+			// Empty .selector { | } case
+			if (!declaration && completePropertyWithSemicolon) {
 				insertText += '$0;';
+			}
+			// Cases such as .selector { p; } or .selector { p:; }
+			if (declaration && !declaration.semicolonPosition) {
+				if (completePropertyWithSemicolon && this.offset >= this.textDocument.offsetAt(range.end)) {
+					insertText += '$0;';
+				}
 			}
 			
 			const item: CompletionItem = {

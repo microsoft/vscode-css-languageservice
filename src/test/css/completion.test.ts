@@ -646,6 +646,15 @@ suite('CSS - Completion', () => {
 	});
 	
 	test('Seimicolon on property completion', () => {
+		testCompletionFor('.foo { | }', {
+			items: [
+				{
+					label: 'position',
+					resultText: '.foo { position: $0; }'
+				}
+			]
+		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true }});
+
 		testCompletionFor('.foo { p| }', {
 			items: [
 				{
@@ -669,6 +678,24 @@ suite('CSS - Completion', () => {
 				{
 					label: 'position',
 					resultText: '.foo { position: relative; }'
+				}
+			]
+		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true }});
+
+		testCompletionFor('.foo { p|: ; }', {
+			items: [
+				{
+					label: 'position',
+					resultText: '.foo { position: ; }'
+				}
+			]
+		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true }});
+
+		testCompletionFor('.foo { p|; }', {
+			items: [
+				{
+					label: 'position',
+					resultText: '.foo { position: ; }'
 				}
 			]
 		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true }});
