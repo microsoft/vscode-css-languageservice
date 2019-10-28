@@ -190,13 +190,15 @@ export class CSSCompletion {
 					insertText += ': ';
 					retrigger = true;
 				}
+				if (!isDefined(declaration.semicolonPosition)) {
+					if (completePropertyWithSemicolon && this.offset >= this.textDocument.offsetAt(range.end)) {
+						insertText += '$0;';
+					}
+				}
 			} else {
 				range = this.getCompletionRange(null);
 				insertText = entry.name + ': ';
 				retrigger = true;
-			}
-			if (completePropertyWithSemicolon && this.offset >= this.textDocument.offsetAt(range.end)) {
-				insertText += '$0;';
 			}
 			
 			const item: CompletionItem = {
