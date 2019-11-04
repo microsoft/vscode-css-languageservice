@@ -25,6 +25,7 @@
     "rimraf": "^3.0.0",
     "tslint": "^5.20.0",
     "typescript": "^3.6.3",
+    "vscode-web-custom-data": "^0.1.0",
     "xml2js": "^0.4.22"
   },
   "dependencies": {

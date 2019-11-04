@@ -2,12 +2,12 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-// file generated from css-schema.xml and https://github.com/mdn/data using build/generate_browserjs.js
+// file generated from vscode-web-custom-data NPM package
 
 import { CSSDataV1 } from '../cssLanguageTypes';
 
 export const cssData : CSSDataV1 = {
-	"version": 1,
+	"version": 1.1,
 	"properties": [
 		{
 			name: "additive-symbols",
@@ -975,7 +975,8 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF41",
 				"S12.1",
-				"C69"
+				"C69",
+				"O56"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
 			"references": [
@@ -997,7 +998,8 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF41",
 				"S12.1",
-				"C69"
+				"C69",
+				"O56"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
 			"references": [
@@ -1431,7 +1433,8 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF41",
 				"S12.1",
-				"C69"
+				"C69",
+				"O56"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
 			"references": [
@@ -1453,7 +1456,8 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF41",
 				"S12.1",
-				"C69"
+				"C69",
+				"O56"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
 			"references": [
@@ -2473,7 +2477,7 @@ export const cssData : CSSDataV1 = {
 		{
 			name: "contain",
 			browsers: [
-				"FF41",
+				"FF69",
 				"C52",
 				"O40"
 			],
@@ -5805,13 +5809,6 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			name: "line-break",
-			browsers: [
-				"E14",
-				"S3",
-				"C58",
-				"IE5.5",
-				"O45"
-			],
 			values: [
 				{
 					name: "auto",
@@ -16736,6 +16733,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<composite-style>#",
 			browsers: [
 				"E18",
+				"FF53",
 				"S3.2",
 				"C1",
 				"O15"
@@ -16760,6 +16758,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "[ <length-percentage> | left | center | right ]#",
 			browsers: [
 				"E18",
+				"FF49",
 				"S3.2",
 				"C1",
 				"O15"
@@ -16778,6 +16777,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "[ <length-percentage> | top | center | bottom ]#",
 			browsers: [
 				"E18",
+				"FF49",
 				"S3.2",
 				"C1",
 				"O15"
@@ -16863,6 +16863,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "none | <filter-function-list>",
 			browsers: [
 				"E17",
+				"FF70",
 				"S9",
 				"C76",
 				"O34"
@@ -16880,7 +16881,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
 			browsers: [
 				"FF66",
-				"C69"
+				"C69",
+				"O56"
 			],
 			"references": [
 				{
@@ -16895,7 +16897,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'border-top-color'>{1,2}",
 			browsers: [
 				"FF66",
-				"C69"
+				"C69",
+				"O56"
 			],
 			"references": [
 				{
@@ -16910,7 +16913,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'border-top-style'>",
 			browsers: [
 				"FF66",
-				"C69"
+				"C69",
+				"O56"
 			],
 			"references": [
 				{
@@ -16925,7 +16929,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'border-top-width'>",
 			browsers: [
 				"FF66",
-				"C69"
+				"C69",
+				"O56"
 			],
 			"references": [
 				{
@@ -16968,7 +16973,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
 			browsers: [
 				"FF66",
-				"C69"
+				"C69",
+				"O56"
 			],
 			"references": [
 				{
@@ -16983,7 +16989,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'border-top-color'>{1,2}",
 			browsers: [
 				"FF66",
-				"C69"
+				"C69",
+				"O56"
 			],
 			"references": [
 				{
@@ -16998,7 +17005,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'border-top-style'>",
 			browsers: [
 				"FF66",
-				"C69"
+				"C69",
+				"O56"
 			],
 			"references": [
 				{
@@ -17013,7 +17021,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'border-top-width'>",
 			browsers: [
 				"FF66",
-				"C69"
+				"C69",
+				"O56"
 			],
 			"references": [
 				{
@@ -17610,6 +17619,7 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "<length-percentage>",
 			browsers: [
+				"FF69",
 				"C55",
 				"O42"
 			],
@@ -17649,6 +17659,7 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "[ auto | reverse ] || <angle>",
 			browsers: [
+				"FF69",
 				"C56",
 				"O43"
 			],
@@ -18462,7 +18473,7 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"E12",
 				"C54",
-				"O42"
+				"O41"
 			],
 			"references": [
 				{
@@ -19613,8 +19624,8 @@ export const cssData : CSSDataV1 = {
 			browsers: [
 				"FF4",
 				"S9",
-				"C66",
-				"O53"
+				"C68",
+				"O55"
 			],
 			"references": [
 				{

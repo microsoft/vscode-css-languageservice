@@ -577,7 +577,7 @@ suite('CSS - Completion', () => {
 					documentation: {
 						kind: 'markdown',
 						value:
-							'⚠️ Property is experimental. Be cautious when using it.️\n\nIndicates that an element and its contents are, as much as possible, independent of the rest of the document tree.\n\n(Firefox 41, Chrome 52, Opera 40)\n\nSyntax: none | strict | content | [ size || layout || style || paint ]\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/contain)'
+							'⚠️ Property is experimental. Be cautious when using it.️\n\nIndicates that an element and its contents are, as much as possible, independent of the rest of the document tree.\n\n(Firefox 69, Chrome 52, Opera 40)\n\nSyntax: none | strict | content | [ size || layout || style || paint ]\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/contain)'
 					}
 				},
 				{
