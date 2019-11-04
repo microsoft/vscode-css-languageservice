@@ -7,7 +7,8 @@
 import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
-import { TextDocument, Position, InsertTextFormat } from 'vscode-languageserver-types';
+import { Position, InsertTextFormat } from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import { assertCompletion, ItemDescription } from '../css/completion.test';
 
 suite('SCSS - Completions', () => {

@@ -6,7 +6,8 @@
 
 import * as assert from 'assert';
 
-import { TextDocument, CompletionList, Position } from 'vscode-languageserver-types';
+import { CompletionList, Position } from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import { getCSSLanguageService } from '../../cssLanguageService';
 import { ItemDescription } from './completion.test';
 import { CSSDataV1, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext } from '../../cssLanguageTypes';

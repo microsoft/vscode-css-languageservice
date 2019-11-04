@@ -12,7 +12,8 @@ import { Parser } from '../../parser/cssParser';
 import { CSSNavigation } from '../../services/cssNavigation';
 import { colorFrom256RGB, colorFromHSL } from '../../languageFacts/facts';
 
-import { TextDocument, DocumentHighlightKind, Range, Position, TextEdit, Color, ColorInformation, DocumentLink, DocumentSymbol, SymbolKind, SymbolInformation, Location } from 'vscode-languageserver-types';
+import { DocumentHighlightKind, Range, Position, TextEdit, Color, ColorInformation, DocumentLink, DocumentSymbol, SymbolKind, SymbolInformation, Location } from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import { getCSSLanguageService, LanguageService, DocumentContext } from '../../cssLanguageService';
 
 export function assertScopesAndSymbols(p: Parser, input: string, expected: string): void {

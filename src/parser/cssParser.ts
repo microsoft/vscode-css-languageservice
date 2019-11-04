@@ -7,7 +7,7 @@ import { TokenType, Scanner, IToken } from './cssScanner';
 import * as nodes from './cssNodes';
 import { ParseError, CSSIssueType } from './cssErrors';
 import * as languageFacts from '../languageFacts/facts';
-import { TextDocument } from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import { isDefined } from '../utils/objects';
 
 export interface IMark {

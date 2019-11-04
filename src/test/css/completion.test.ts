@@ -7,7 +7,8 @@
 import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
-import { CompletionList, TextDocument, Position, CompletionItemKind, InsertTextFormat, Range, Command, MarkupContent } from 'vscode-languageserver-types';
+import { CompletionList, Position, CompletionItemKind, InsertTextFormat, Range, Command, MarkupContent } from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import { LanguageSettings, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext } from '../../cssLanguageTypes';
 
 export interface ItemDescription {

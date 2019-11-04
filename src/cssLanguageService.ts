@@ -5,9 +5,11 @@
 'use strict';
 
 import {
-	TextDocument, Position, CompletionList, Hover, Range, SymbolInformation, Diagnostic, Location, DocumentHighlight,
+	Position, CompletionList, Hover, Range, SymbolInformation, Diagnostic, Location, DocumentHighlight,
 	CodeActionContext, Command, WorkspaceEdit, Color, ColorInformation, ColorPresentation, FoldingRange, CodeAction, DocumentLink, SelectionRange
 } from 'vscode-languageserver-types';
+
+import { TextDocument } from 'vscode-languageserver-textdocument';
 
 import { Parser } from './parser/cssParser';
 import { CSSCompletion } from './services/cssCompletion';
@@ -29,6 +31,7 @@ import { Stylesheet as StyleSheetImpl } from './parser/cssNodes';
 
 export type Stylesheet = {};
 export * from './cssLanguageTypes';
+export { TextDocument } from 'vscode-languageserver-textdocument';
 export * from 'vscode-languageserver-types';
 
 export interface LanguageService {

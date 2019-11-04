@@ -6,7 +6,8 @@
 'use strict';
 
 import * as assert from 'assert';
-import { TextDocument, FoldingRange, FoldingRangeKind } from 'vscode-languageserver-types';
+import { FoldingRange, FoldingRangeKind } from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import { getFoldingRanges } from '../../services/cssFolding';
 
 function assertRanges(lines: string[], expected: FoldingRange[], languageId = 'css', rangeLimit: number | null = null): void {

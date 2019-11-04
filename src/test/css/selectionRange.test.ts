@@ -6,7 +6,8 @@
 
 import 'mocha';
 import * as assert from 'assert';
-import { TextDocument, SelectionRange } from 'vscode-languageserver-types';
+import { SelectionRange } from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import { getCSSLanguageService } from '../../cssLanguageService';
 import { Stylesheet } from '../../parser/cssNodes';
 

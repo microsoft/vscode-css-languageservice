@@ -9,7 +9,7 @@ import { Node, IRule, Level } from '../../parser/cssNodes';
 import { Parser } from '../../parser/cssParser';
 import { LintVisitor } from '../../services/lint';
 import { Rule, Rules, LintConfigurationSettings } from '../../services/lintRules';
-import { TextDocument } from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import { SCSSParser } from '../../parser/scssParser';
 import { LESSParser } from '../../parser/lessParser';
 

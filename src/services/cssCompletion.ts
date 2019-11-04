@@ -8,7 +8,8 @@ import * as nodes from '../parser/cssNodes';
 import { Symbols, Symbol } from '../parser/cssSymbolScope';
 import * as languageFacts from '../languageFacts/facts';
 import * as strings from '../utils/strings';
-import { TextDocument, Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, MarkupContent, CompletionItemTag } from 'vscode-languageserver-types';
+import { Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, MarkupContent, CompletionItemTag } from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import { ICompletionParticipant, LanguageSettings, ClientCapabilities } from '../cssLanguageTypes';
 
 import * as nls from 'vscode-nls';

@@ -6,7 +6,8 @@
 'use strict';
 
 import * as assert from 'assert';
-import { TextDocument, Hover } from 'vscode-languageserver-types';
+import { Hover } from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import { CSSHover } from '../../services/cssHover';
 import { SCSSParser } from '../../parser/scssParser';
 import { ClientCapabilities } from '../../cssLanguageTypes';

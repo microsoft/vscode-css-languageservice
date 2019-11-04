@@ -7,7 +7,8 @@
 import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
-import { TextDocument, TextEdit, Range, Command, CodeAction, TextDocumentEdit } from 'vscode-languageserver-types';
+import { TextEdit, Range, Command, CodeAction, TextDocumentEdit } from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 
 suite('CSS - Code Actions', () => {
 

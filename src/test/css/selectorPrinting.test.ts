@@ -8,7 +8,8 @@ import * as assert from 'assert';
 import { Parser } from '../../parser/cssParser';
 import * as nodes from '../../parser/cssNodes';
 import * as selectorPrinter from '../../services/selectorPrinting';
-import { TextDocument, MarkedString } from 'vscode-languageserver-types';
+import { MarkedString } from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 
 function elementToString(element: selectorPrinter.Element): string {
 	let label = element.findAttribute('name') || '';
