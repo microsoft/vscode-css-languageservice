@@ -185,7 +185,7 @@ suite('SCSS - Completions', () => {
 		testCompletionFor('.foo { text-decoration: | }', {
 			items: [
 				// Enum come before everything
-				{ label: 'dashed', sortText: 'ad' },
+				{ label: 'dashed', sortText: 'ad_0180' },
 				// Others come later
 				{ label: 'aqua' },
 				{ label: 'inherit' }

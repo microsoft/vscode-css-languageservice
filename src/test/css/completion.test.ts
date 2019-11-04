@@ -707,10 +707,10 @@ suite('CSS - Completion', () => {
 		testCompletionFor('.foo { display: | }', {
 			items: [
 				// Enum with no prefix come before everything
-				{ label: 'grid', sortText: 'ad' },
+				{ label: 'grid', sortText: 'ad_0005' },
 				// Enum with prefix come next
-				{ label: '-moz-grid', sortText: 'ax' },
-				{ label: '-ms-grid', sortText: 'ax' },
+				{ label: '-moz-grid', sortText: 'ax_0014' },
+				{ label: '-ms-grid', sortText: 'ax_0025' },
 				// Others come last
 				{ label: 'inherit' }
 			]

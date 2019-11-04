@@ -142,21 +142,21 @@ export class CSSCompletion {
 	private finalize(result: CompletionList): CompletionList {
 		const needsSortText = result.items.some(i => !!i.sortText || i.label[0] === '-');
 		if (needsSortText) {
-			for (const i of result.items) {
-				if (!i.sortText) {
-					if (i.label[0] === '-') {
-						i.sortText = 'x';
+			result.items.forEach((item, index) => {
+				if (!item.sortText) {
+					if (item.label[0] === '-') {
+						item.sortText = 'x_' + computeRankNumber(index);
 					} else {
-						i.sortText = 'd';
+						item.sortText = 'd_' + computeRankNumber(index);
 					}
 				} else {
-					if (i.label[0] === '-') {
-						i.sortText += 'x';
+					if (item.label[0] === '-') {
+						item.sortText += 'x_' + computeRankNumber(index);
 					} else {
-						i.sortText += 'd';
+						item.sortText += 'd_' + computeRankNumber(index);
 					}
 				}
-			}
+			});
 		}
 		return result;
 	}
@@ -990,6 +990,25 @@ function isDeprecated(entry: languageFacts.IEntry2): boolean {
 	}
 	
 	return false;
+}
+
+/**
+ * Rank number should all be same length strings
+ */
+function computeRankNumber(n: Number): string {
+	const nstr = n.toString();
+	switch (nstr.length) {
+		case 4:
+			return nstr;
+		case 3:
+			return '0' + nstr;
+		case 2:
+			return '00' + nstr;
+		case 1:
+			return '000' + nstr;
+		default:
+			return '0000';
+	}
 }
 
 class Set {
