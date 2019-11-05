@@ -1272,10 +1272,10 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-vscode-languageserver-textdocument@^1.0.0-next.2:
-  version "1.0.0-next.2"
-  resolved "https://registry.yarnpkg.com/vscode-languageserver-textdocument/-/vscode-languageserver-textdocument-1.0.0-next.2.tgz#0324c50e93c32e39a151ba635a4ac61dbf6aa760"
-  integrity sha512-omA1bS2ENVnhYnenmGGNQjAdxz3FbGgNvGOKrppAS1KxdYrOczxon+AQF0JswRwE0yxwhFwEFDvB4e5earYCww==
+vscode-languageserver-textdocument@^1.0.0-next.4:
+  version "1.0.0-next.4"
+  resolved "https://registry.yarnpkg.com/vscode-languageserver-textdocument/-/vscode-languageserver-textdocument-1.0.0-next.4.tgz#8f7afdfe3e81411f57baaa29bb3214d1907160cd"
+  integrity sha512-LJ5WfoBO54nqinjlLJKnjoo2Im4bIvPJ8bFT7R0C84ZI36iK8M29ddslfe5jUeWNSTtCda7YuKdKsDIq38HpgA==
 
 vscode-languageserver-types@^3.15.0-next.6:
   version "3.15.0-next.6"
