@@ -17,16 +17,13 @@
   "devDependencies": {
     "@types/mocha": "^5.2.7",
     "@types/node": "^10.12.21",
-    "mdn-browser-compat-data": "^0.0.90",
-    "mdn-data": "^2.0.4",
     "mkdirp": "^0.5.1",
     "mocha": "^6.2.2",
     "nyc": "^14.1.1",
     "rimraf": "^3.0.0",
     "tslint": "^5.20.0",
     "typescript": "^3.6.4",
-    "vscode-web-custom-data": "^0.1.0",
-    "xml2js": "^0.4.22"
+    "vscode-web-custom-data": "^0.1.1"
   },
   "dependencies": {
     "vscode-languageserver-textdocument": "^1.0.0-next.4",
