@@ -43,7 +43,7 @@
     "mocha": "mocha",
     "coverage": "nyc --reporter=html --reporter=text  mocha",
     "lint": "tslint src/**/*.ts",
-    "update-data": "node ./build/generate_browserjs.js",
+    "update-data": "node ./build/generateData.js",
     "install-types-next": "yarn add vscode-languageserver-types@next -f -S && yarn add vscode-languageserver-textdocument@next -f -S",
     "preversion": "npm test",
     "postversion": "git push && git push --tags"
