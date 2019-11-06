@@ -27,7 +27,7 @@ const output = [
 	`export const cssData : ${DATA_TYPE} = ` + toJavaScript(customData) + ';'
 ];
 
-var outputPath = path.resolve(__dirname, '../src/data/browsers.ts');
+var outputPath = path.resolve(__dirname, '../src/data/webCustomData.ts');
 console.log('Writing to: ' + outputPath);
 var content = output.join(os.EOL);
 fs.writeFileSync(outputPath, content);
