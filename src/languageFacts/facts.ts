@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as browsers from '../data/browsers';
+import * as webCustomData from '../data/webCustomData';
 import { CSSDataManager } from './dataManager';
 import { CSSDataProvider } from './dataProvider';
 
@@ -15,5 +15,5 @@ export * from './dataProvider';
 export * from './dataManager';
 
 export const cssDataManager = new CSSDataManager([
-	new CSSDataProvider(browsers.cssData)
+	new CSSDataProvider(webCustomData.cssData)
 ]);

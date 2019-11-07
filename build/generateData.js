@@ -10,8 +10,7 @@ const os = require('os')
 const customData = require('vscode-web-custom-data/data/browsers.css-data.json');
 
 function toJavaScript(obj) {
-	const str = JSON.stringify(obj, null, '\t');
-	return str.replace(/\"(name|desc|browsers|restriction|values)\"/g, '$1');
+	return JSON.stringify(obj, null, '\t');
 }
 
 const DATA_TYPE = 'CSSDataV1';
@@ -27,7 +26,7 @@ const output = [
 	`export const cssData : ${DATA_TYPE} = ` + toJavaScript(customData) + ';'
 ];
 
-var outputPath = path.resolve(__dirname, '../src/data/browsers.ts');
+var outputPath = path.resolve(__dirname, '../src/data/webCustomData.ts');
 console.log('Writing to: ' + outputPath);
 var content = output.join(os.EOL);
 fs.writeFileSync(outputPath, content);
