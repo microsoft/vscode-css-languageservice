@@ -148,7 +148,8 @@ suite('SCSS - Completions', () => {
 				{ label: '@each' },
 				{ label: '@while' },
 				{ label: '@mixin' },
-				{ label: '@include' }
+				{ label: '@include' },
+				{ label: '@function' }
 			]
 		};
 
@@ -164,7 +165,8 @@ suite('SCSS - Completions', () => {
 				{ label: '@each', insertTextFormat: InsertTextFormat.Snippet },
 				{ label: '@while', insertTextFormat: InsertTextFormat.Snippet },
 				{ label: '@mixin', insertTextFormat: InsertTextFormat.Snippet },
-				{ label: '@include' }
+				{ label: '@include' },
+				{ label: '@function' }
 			]
 		});
 
