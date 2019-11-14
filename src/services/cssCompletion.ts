@@ -17,6 +17,17 @@ import { isDefined } from '../utils/objects';
 const localize = nls.loadMessageBundle();
 const SnippetFormat = InsertTextFormat.Snippet;
 
+enum SortTexts {
+	// char code 32, comes before everything
+	Enums = ' ',
+
+	Normal = 'd',
+
+	VendorPrefixed = 'x',
+	Term = 'y',
+	Variable = 'z'
+}
+
 export class CSSCompletion {
 
 	private settings?: LanguageSettings;
@@ -145,15 +156,15 @@ export class CSSCompletion {
 			result.items.forEach((item, index) => {
 				if (!item.sortText) {
 					if (item.label[0] === '-') {
-						item.sortText = 'x_' + computeRankNumber(index);
+						item.sortText = SortTexts.VendorPrefixed + '_' + computeRankNumber(index);
 					} else {
-						item.sortText = 'd_' + computeRankNumber(index);
+						item.sortText = SortTexts.Normal + '_' + computeRankNumber(index);
 					}
 				} else {
 					if (item.label[0] === '-') {
-						item.sortText += 'x_' + computeRankNumber(index);
+						item.sortText += SortTexts.VendorPrefixed + '_' + computeRankNumber(index);
 					} else {
-						item.sortText += 'd_' + computeRankNumber(index);
+						item.sortText += SortTexts.Normal + '_' + computeRankNumber(index);
 					}
 				}
 			});
@@ -225,7 +236,7 @@ export class CSSCompletion {
 				};
 			}
 			if (strings.startsWith(entry.name, '-')) {
-				item.sortText = 'x';
+				item.sortText = SortTexts.VendorPrefixed;
 			}
 			result.items.push(item);
 		});
@@ -360,8 +371,7 @@ export class CSSCompletion {
 					documentation: languageFacts.getEntryDescription(value, this.doesSupportMarkdown()),
 					tags: isDeprecated(entry) ? [CompletionItemTag.Deprecated] : [],
 					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertString),
-					// Enum completions should come before everything else
-					sortText: 'a',
+					sortText: SortTexts.Enums,
 					kind: CompletionItemKind.Value,
 					insertTextFormat
 				};
@@ -399,7 +409,7 @@ export class CSSCompletion {
 				documentation: symbol.value ? strings.getLimitedString(symbol.value) : symbol.value,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
 				kind: CompletionItemKind.Variable,
-				sortText: 'z'
+				sortText: SortTexts.Variable
 			};
 			
 			if (typeof completionItem.documentation === 'string' && isColorString(completionItem.documentation)) {
@@ -702,7 +712,7 @@ export class CSSCompletion {
 				insertTextFormat: entry.name !== insertText ? SnippetFormat : void 0
 			};
 			if (strings.startsWith(entry.name, ':-')) {
-				item.sortText = 'x';
+				item.sortText = SortTexts.VendorPrefixed;
 			}
 			result.items.push(item);
 		});
@@ -719,7 +729,7 @@ export class CSSCompletion {
 				insertTextFormat: entry.name !== insertText ? SnippetFormat : void 0
 			};
 			if (strings.startsWith(entry.name, '::-')) {
-				item.sortText = 'x';
+				item.sortText = SortTexts.VendorPrefixed;
 			}
 			result.items.push(item);
 		});
@@ -887,7 +897,7 @@ export class CSSCompletion {
 			textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
 			insertTextFormat: SnippetFormat,
 			kind: CompletionItemKind.Function,
-			sortText: 'z'
+			sortText: SortTexts.Term
 		};
 	}
 
