@@ -334,6 +334,9 @@ suite('SCSS - Parser', () => {
 		assertNode('selector { property: value; property: $value; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('selector { property: value; @keyframes foo {} @-moz-keyframes foo {}}', parser, parser._parseRuleset.bind(parser));
 		assertNode('foo|bar { }', parser, parser._parseRuleset.bind(parser));
+		assertNode('boo { @apply --custom-prop; }', parser, parser._parseRuleset.bind(parser));
+		assertNode('boo { @apply --custom-prop }', parser, parser._parseRuleset.bind(parser));
+		assertNode('boo { @apply --custom-prop; background-color: red }', parser, parser._parseRuleset.bind(parser));
 	});
 
 	test('Nested Ruleset', function () {
