@@ -189,6 +189,11 @@ export class SCSSCompletion extends CSSCompletion {
 			documentation: localize("scss.builtin.@include", "Includes the styles defined by another mixin into the current rule."),
 			kind: CompletionItemKind.Keyword
 		},
+		{
+			label: "@function",
+			documentation: localize("scss.builtin.@function", "Defines complex operations that can be re-used throughout stylesheets."),
+			kind: CompletionItemKind.Keyword
+		}
 	];
 
 	private static scssModuleLoaders = [

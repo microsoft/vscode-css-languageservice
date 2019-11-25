@@ -7,7 +7,7 @@ import { TokenType, Scanner, IToken } from './cssScanner';
 import * as nodes from './cssNodes';
 import { ParseError, CSSIssueType } from './cssErrors';
 import * as languageFacts from '../languageFacts/facts';
-import { TextDocument } from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import { isDefined } from '../utils/objects';
 
 export interface IMark {
@@ -419,6 +419,10 @@ export class Parser {
 			if (this._needsSemicolonAfter(decl) && !this.accept(TokenType.SemiColon)) {
 				return this.finish(node, ParseError.SemiColonExpected, [TokenType.SemiColon, TokenType.CurlyR]);
 			}
+			// We accepted semicolon token. Link it to declaration.
+			if (decl && this.prevToken && this.prevToken.type === TokenType.SemiColon) {
+				(decl as nodes.Declaration).semicolonPosition = this.prevToken.offset;
+			}
 			while (this.accept(TokenType.SemiColon)) {
 				// accept empty statements
 			}
@@ -460,7 +464,8 @@ export class Parser {
 		}
 
 		if (!this.accept(TokenType.Colon)) {
-			return <nodes.Declaration>this.finish(node, ParseError.ColonExpected, [TokenType.Colon], resyncStopTokens);
+			const stopTokens = resyncStopTokens ? [...resyncStopTokens, TokenType.SemiColon] : [TokenType.SemiColon];
+			return <nodes.Declaration>this.finish(node, ParseError.ColonExpected, [TokenType.Colon], stopTokens);
 		}
 		if (this.prevToken) {
 			node.colonPosition = this.prevToken.offset;

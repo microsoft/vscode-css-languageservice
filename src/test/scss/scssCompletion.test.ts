@@ -7,7 +7,8 @@
 import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
-import { TextDocument, Position, InsertTextFormat } from 'vscode-languageserver-types';
+import { Position, InsertTextFormat } from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import { assertCompletion, ItemDescription } from '../css/completion.test';
 import { ImportPathCompletionContext } from '../../cssLanguageTypes';
 import { newRange } from '../css/navigation.test';
@@ -173,7 +174,8 @@ suite('SCSS - Completions', () => {
 				{ label: '@each' },
 				{ label: '@while' },
 				{ label: '@mixin' },
-				{ label: '@include' }
+				{ label: '@include' },
+				{ label: '@function' }
 			]
 		};
 
@@ -190,6 +192,7 @@ suite('SCSS - Completions', () => {
 				{ label: '@while', insertTextFormat: InsertTextFormat.Snippet },
 				{ label: '@mixin', insertTextFormat: InsertTextFormat.Snippet },
 				{ label: '@include' },
+				{ label: '@function' }
 			]
 		});
 
@@ -250,4 +253,17 @@ suite('SCSS - Completions', () => {
 			});
 		});
 	});
+	
+	test('Enum + color restrictions are sorted properly', () => {
+		testCompletionFor('.foo { text-decoration: | }', {
+			items: [
+				// Enum come before everything
+				{ label: 'dashed', sortText: ' d_0180' },
+				// Others come later
+				{ label: 'aqua' },
+				{ label: 'inherit' }
+			]
+		});
+	});
+
 });

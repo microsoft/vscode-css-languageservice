@@ -68,6 +68,11 @@ export class SCSSNavigation extends CSSNavigation {
 		return links;
 
 		function toPathVariations(uri: URI): DocumentUri[] | undefined {
+			// No valid path
+			if (uri.path === '') {
+				return undefined;
+			}
+
 			// No variation for links that ends with suffix
 			if (uri.path.endsWith('.scss') || uri.path.endsWith('.css')) {
 				return undefined;

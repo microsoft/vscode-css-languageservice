@@ -210,6 +210,19 @@ suite('SCSS - Navigation', () => {
 			]);
 
 		});
+		
+		test('SCSS empty path', async () => {
+			const p = new SCSSParser();
+
+			/**
+			 * https://github.com/microsoft/vscode/issues/79215
+			 * No valid path — gradient-verlay.png is authority and path is ''
+			 */
+			await assertLinks(p, `#navigation { background: #3d3d3d url(gantry-media://gradient-overlay.png); }`, [
+				{ range: newRange(38, 73), target: 'gantry-media://gradient-overlay.png'}
+			], 'scss');
+
+		});
 	});
 
 	suite('Color', () => {

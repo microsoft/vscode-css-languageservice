@@ -7,7 +7,8 @@
 import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
-import { CompletionList, TextDocument, Position, CompletionItemKind, InsertTextFormat, Range, Command, MarkupContent } from 'vscode-languageserver-types';
+import { CompletionList, Position, CompletionItemKind, InsertTextFormat, Range, Command, MarkupContent } from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import { LanguageSettings, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext } from '../../cssLanguageTypes';
 
 export interface ItemDescription {
@@ -577,7 +578,7 @@ suite('CSS - Completion', () => {
 					documentation: {
 						kind: 'markdown',
 						value:
-							'⚠️ Property is experimental. Be cautious when using it.️\n\nIndicates that an element and its contents are, as much as possible, independent of the rest of the document tree.\n\n(Firefox 41, Chrome 52, Opera 40)\n\nSyntax: none | strict | content | [ size || layout || style || paint ]\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/contain)'
+							'⚠️ Property is experimental. Be cautious when using it.️\n\nIndicates that an element and its contents are, as much as possible, independent of the rest of the document tree.\n\n(Firefox 69, Chrome 52, Opera 40)\n\nSyntax: none | strict | content | [ size || layout || style || paint ]\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/contain)'
 					}
 				},
 				{
@@ -646,6 +647,15 @@ suite('CSS - Completion', () => {
 	});
 	
 	test('Seimicolon on property completion', () => {
+		testCompletionFor('.foo { | }', {
+			items: [
+				{
+					label: 'position',
+					resultText: '.foo { position: $0; }'
+				}
+			]
+		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true }});
+
 		testCompletionFor('.foo { p| }', {
 			items: [
 				{
@@ -672,15 +682,37 @@ suite('CSS - Completion', () => {
 				}
 			]
 		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true }});
+
+		testCompletionFor('.foo { p|: ; }', {
+			items: [
+				{
+					label: 'position',
+					resultText: '.foo { position: ; }'
+				}
+			]
+		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true }});
+
+		testCompletionFor('.foo { p|; }', {
+			items: [
+				{
+					label: 'position',
+					resultText: '.foo { position: ; }'
+				}
+			]
+		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true }});
 	});
 
 	// https://github.com/Microsoft/vscode/issues/71791
 	test('Items that start with `-` are sorted lower than normal attribute values', () => {
 		testCompletionFor('.foo { display: | }', {
 			items: [
-				{ label: 'grid', sortText: 'd' },
-				{ label: '-moz-grid', sortText: 'x' },
-				{ label: '-ms-grid', sortText: 'x' }
+				// Enum with no prefix come before everything
+				{ label: 'grid', sortText: ' d_0005' },
+				// Enum with prefix come next
+				{ label: '-moz-grid', sortText: ' x_0014' },
+				{ label: '-ms-grid', sortText: ' x_0025' },
+				// Others come last
+				{ label: 'inherit' }
 			]
 		});
 	});

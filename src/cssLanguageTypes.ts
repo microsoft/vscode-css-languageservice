@@ -175,7 +175,7 @@ export interface IValueData {
 }
 
 export interface CSSDataV1 {
-	version: 1;
+	version: 1 | 1.1;
 	properties?: IPropertyData[];
 	atDirectives?: IAtDirectiveData[];
 	pseudoClasses?: IPseudoClassData[];

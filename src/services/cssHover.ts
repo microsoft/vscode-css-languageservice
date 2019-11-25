@@ -6,7 +6,8 @@
 
 import * as nodes from '../parser/cssNodes';
 import * as languageFacts from '../languageFacts/facts';
-import { TextDocument, Range, Position, Hover, MarkedString, MarkupContent, MarkupKind } from 'vscode-languageserver-types';
+import { Range, Position, Hover, MarkedString, MarkupContent, MarkupKind } from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import { selectorToMarkedString, simpleSelectorToMarkedString } from './selectorPrinting';
 import { startsWith } from '../utils/strings';
 import { ClientCapabilities } from '../cssLanguageTypes';

@@ -8,7 +8,8 @@ import * as assert from 'assert';
 
 import * as cssLanguageService from '../../cssLanguageService';
 import { LESSCompletion } from '../../services/lessCompletion';
-import { TextDocument, Position } from 'vscode-languageserver-types';
+import { Position } from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import { assertCompletion, ItemDescription } from '../css/completion.test';
 import { ClientCapabilities } from '../../cssLanguageTypes';
 

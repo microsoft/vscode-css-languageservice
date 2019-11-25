@@ -1,3 +1,7 @@
+4.0.4 
+===================
+* Switch to `TextDocument` from `vscode-languageserver-textdocument`
+
 4.0.0 / 2019-06-12
 ===================
  * `LanguageServiceOptions.customDataProviders` allows you to use custom datasets for properties, at-properties, pseudo-classes and pesudo-elements.

@@ -4,7 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { Color, ColorInformation, ColorPresentation, DocumentHighlight, DocumentHighlightKind, DocumentLink, Location, Position, Range, SymbolInformation, SymbolKind, TextDocument, TextEdit, WorkspaceEdit } from 'vscode-languageserver-types';
+import { Color, ColorInformation, ColorPresentation, DocumentHighlight, DocumentHighlightKind, DocumentLink, Location, Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit } from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import * as nls from 'vscode-nls';
 import { DocumentContext } from '../cssLanguageTypes';
 import * as nodes from '../parser/cssNodes';
@@ -156,6 +157,12 @@ export class CSSNavigation {
 				entry.name = localize('literal.keyframes', "@keyframes {0}", (<nodes.Keyframe>node).getName());
 			} else if (node instanceof nodes.FontFace) {
 				entry.name = localize('literal.fontface', "@font-face");
+			} else if (node instanceof nodes.Media) {
+				const mediaList = node.getChild(0);
+				if (mediaList instanceof nodes.Medialist) {
+					entry.name = '@media ' + mediaList.getText();
+					entry.kind = SymbolKind.Module;
+				}
 			}
 
 			if (entry.name) {

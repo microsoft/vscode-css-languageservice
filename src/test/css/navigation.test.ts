@@ -12,7 +12,8 @@ import { Parser } from '../../parser/cssParser';
 import { CSSNavigation } from '../../services/cssNavigation';
 import { colorFrom256RGB, colorFromHSL } from '../../languageFacts/facts';
 
-import { TextDocument, DocumentHighlightKind, Range, Position, TextEdit, Color, ColorInformation, DocumentLink, DocumentSymbol, SymbolKind, SymbolInformation, Location } from 'vscode-languageserver-types';
+import { DocumentHighlightKind, Range, Position, TextEdit, Color, ColorInformation, DocumentLink, DocumentSymbol, SymbolKind, SymbolInformation, Location } from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import { getCSSLanguageService, LanguageService, DocumentContext } from '../../cssLanguageService';
 
 export function assertScopesAndSymbols(p: Parser, input: string, expected: string): void {
@@ -242,6 +243,9 @@ suite('CSS - Navigation', () => {
 			let p = new Parser();
 			assertSymbols(p, '.foo {}', [{ name: '.foo', kind: SymbolKind.Class, location: Location.create('test://test/test.css' ,newRange(0, 7)) }]);
 			assertSymbols(p, '.foo:not(.selected) {}', [{ name: '.foo:not(.selected)', kind: SymbolKind.Class, location: Location.create('test://test/test.css' ,newRange(0, 22)) }]);
+
+			// Media Query
+			assertSymbols(p, '@media screen, print {}', [{ name: '@media screen, print', kind: SymbolKind.Module, location: Location.create('test://test/test.css' ,newRange(0, 23)) }]);
 		});
 	});
 

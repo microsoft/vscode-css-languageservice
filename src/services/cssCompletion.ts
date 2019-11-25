@@ -8,13 +8,25 @@ import * as nodes from '../parser/cssNodes';
 import { Symbols, Symbol } from '../parser/cssSymbolScope';
 import * as languageFacts from '../languageFacts/facts';
 import * as strings from '../utils/strings';
-import { TextDocument, Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, MarkupContent } from 'vscode-languageserver-types';
+import { Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, MarkupContent, CompletionItemTag } from 'vscode-languageserver-types';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import { ICompletionParticipant, LanguageSettings, ClientCapabilities } from '../cssLanguageTypes';
 
 import * as nls from 'vscode-nls';
 import { isDefined } from '../utils/objects';
 const localize = nls.loadMessageBundle();
 const SnippetFormat = InsertTextFormat.Snippet;
+
+enum SortTexts {
+	// char code 32, comes before everything
+	Enums = ' ',
+
+	Normal = 'd',
+
+	VendorPrefixed = 'x',
+	Term = 'y',
+	Variable = 'z'
+}
 
 export class CSSCompletion {
 
@@ -145,15 +157,21 @@ export class CSSCompletion {
 	private finalize(result: CompletionList): CompletionList {
 		const needsSortText = result.items.some(i => !!i.sortText || i.label[0] === '-');
 		if (needsSortText) {
-			for (const i of result.items) {
-				if (!i.sortText) {
-					if (i.label[0] === '-') {
-						i.sortText = 'x';
+			result.items.forEach((item, index) => {
+				if (!item.sortText) {
+					if (item.label[0] === '-') {
+						item.sortText = SortTexts.VendorPrefixed + '_' + computeRankNumber(index);
 					} else {
-						i.sortText = 'd';
+						item.sortText = SortTexts.Normal + '_' + computeRankNumber(index);
+					}
+				} else {
+					if (item.label[0] === '-') {
+						item.sortText += SortTexts.VendorPrefixed + '_' + computeRankNumber(index);
+					} else {
+						item.sortText += SortTexts.Normal + '_' + computeRankNumber(index);
 					}
 				}
-			}
+			});
 		}
 		return result;
 	}
@@ -193,14 +211,22 @@ export class CSSCompletion {
 				insertText = entry.name + ': ';
 				retrigger = true;
 			}
-			if (completePropertyWithSemicolon && this.offset >= this.textDocument.offsetAt(range.end)) {
+			// Empty .selector { | } case
+			if (!declaration && completePropertyWithSemicolon) {
 				insertText += '$0;';
 			}
 
-			const item = <CompletionItem>{
+			// Cases such as .selector { p; } or .selector { p:; }
+			if (declaration && !declaration.semicolonPosition) {
+				if (completePropertyWithSemicolon && this.offset >= this.textDocument.offsetAt(range.end)) {
+					insertText += '$0;';
+				}
+			}
+			
+			const item: CompletionItem = {
 				label: entry.name,
 				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
-				deprecated: isDeprecated(entry),
+				tags: isDeprecated(entry) ? [CompletionItemTag.Deprecated] : [],
 				textEdit: TextEdit.replace(range, insertText),
 				insertTextFormat: InsertTextFormat.Snippet,
 				kind: CompletionItemKind.Property
@@ -215,7 +241,7 @@ export class CSSCompletion {
 				};
 			}
 			if (strings.startsWith(entry.name, '-')) {
-				item.sortText = 'x';
+				item.sortText = SortTexts.VendorPrefixed;
 			}
 			result.items.push(item);
 		});
@@ -345,11 +371,12 @@ export class CSSCompletion {
 						insertTextFormat = SnippetFormat;
 					}
 				}
-				const item = <CompletionItem>{
+				const item: CompletionItem = {
 					label: value.name,
 					documentation: languageFacts.getEntryDescription(value, this.doesSupportMarkdown()),
-					deprecated: isDeprecated(entry),
+					tags: isDeprecated(entry) ? [CompletionItemTag.Deprecated] : [],
 					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertString),
+					sortText: SortTexts.Enums,
 					kind: CompletionItemKind.Value,
 					insertTextFormat
 				};
@@ -387,7 +414,7 @@ export class CSSCompletion {
 				documentation: symbol.value ? strings.getLimitedString(symbol.value) : symbol.value,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
 				kind: CompletionItemKind.Variable,
-				sortText: 'z'
+				sortText: SortTexts.Variable
 			};
 
 			if (typeof completionItem.documentation === 'string' && isColorString(completionItem.documentation)) {
@@ -642,11 +669,11 @@ export class CSSCompletion {
 
 	public getCompletionForTopLevel(result: CompletionList): CompletionList {
 		languageFacts.cssDataManager.getAtDirectives().forEach(entry => {
-			result.items.push(<CompletionItem>{
+			result.items.push({
 				label: entry.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(null), entry.name),
 				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
-				deprecated: isDeprecated(entry),
+				tags: isDeprecated(entry) ? [CompletionItemTag.Deprecated] : [],
 				kind: CompletionItemKind.Keyword
 			});
 		});
@@ -681,16 +708,16 @@ export class CSSCompletion {
 		const pseudoClasses = languageFacts.cssDataManager.getPseudoClasses();
 		pseudoClasses.forEach(entry => {
 			const insertText = moveCursorInsideParenthesis(entry.name);
-			const item = <CompletionItem>{
+			const item: CompletionItem = {
 				label: entry.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
 				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
-				deprecated: isDeprecated(entry),
+				tags: isDeprecated(entry) ? [CompletionItemTag.Deprecated] : [],
 				kind: CompletionItemKind.Function,
 				insertTextFormat: entry.name !== insertText ? SnippetFormat : void 0
 			};
 			if (strings.startsWith(entry.name, ':-')) {
-				item.sortText = 'x';
+				item.sortText = SortTexts.VendorPrefixed;
 			}
 			result.items.push(item);
 		});
@@ -698,16 +725,16 @@ export class CSSCompletion {
 		const pseudoElements = languageFacts.cssDataManager.getPseudoElements();
 		pseudoElements.forEach(entry => {
 			const insertText = moveCursorInsideParenthesis(entry.name);
-			const item = <CompletionItem>{
+			const item: CompletionItem = {
 				label: entry.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
 				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
-				deprecated: isDeprecated(entry),
+				tags: isDeprecated(entry) ? [CompletionItemTag.Deprecated] : [],
 				kind: CompletionItemKind.Function,
 				insertTextFormat: entry.name !== insertText ? SnippetFormat : void 0
 			};
 			if (strings.startsWith(entry.name, '::-')) {
-				item.sortText = 'x';
+				item.sortText = SortTexts.VendorPrefixed;
 			}
 			result.items.push(item);
 		});
@@ -875,7 +902,7 @@ export class CSSCompletion {
 			textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
 			insertTextFormat: SnippetFormat,
 			kind: CompletionItemKind.Function,
-			sortText: 'z'
+			sortText: SortTexts.Term
 		};
 	}
 
@@ -978,6 +1005,25 @@ function isDeprecated(entry: languageFacts.IEntry2): boolean {
 	}
 
 	return false;
+}
+
+/**
+ * Rank number should all be same length strings
+ */
+function computeRankNumber(n: Number): string {
+	const nstr = n.toString();
+	switch (nstr.length) {
+		case 4:
+			return nstr;
+		case 3:
+			return '0' + nstr;
+		case 2:
+			return '00' + nstr;
+		case 1:
+			return '000' + nstr;
+		default:
+			return '0000';
+	}
 }
 
 class Set {
