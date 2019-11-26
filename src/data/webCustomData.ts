@@ -871,6 +871,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "text-underline-offset",
+			"browsers": [
+				"FF70",
+				"S12.1"
+			],
 			"values": [
 				{
 					"name": "auto",
