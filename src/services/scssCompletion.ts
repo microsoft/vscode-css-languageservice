@@ -196,9 +196,80 @@ export class SCSSCompletion extends CSSCompletion {
 		}
 	];
 
+	private static scssModuleLoaders = [
+		{
+			label: "@use",
+			documentation: localize("scss.builtin.@use", "Loads mixins, functions, and variables from other Sass stylesheets as 'modules', and combines CSS from multiple stylesheets together."),
+			insertText: "@use '$0';",
+			insertTextFormat: InsertTextFormat.Snippet,
+			kind: CompletionItemKind.Keyword
+		},
+		{
+			label: "@forward",
+			documentation: localize("scss.builtin.@forward", "Loads a Sass stylesheet and makes its mixins, functions, and variables available when this stylesheet is loaded with the @use rule."),
+			insertText: "@forward '$0';",
+			insertTextFormat: InsertTextFormat.Snippet,
+			kind: CompletionItemKind.Keyword
+		},
+	];
+
+	private static scssModuleBuiltIns = [
+		{
+			label: 'sass:math',
+			documentation: localize('scss.builtin.sass:math', 'Provides functions that operate on numbers.'),
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'sass:string',
+			documentation: localize('scss.builtin.sass:string', 'Makes it easy to combine, search, or split apart strings.'),
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'sass:color',
+			documentation: localize('scss.builtin.sass:color', 'Generates new colors based on existing ones, making it easy to build color themes.'),
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'sass:list',
+			documentation: localize('scss.builtin.sass:list', 'Lets you access and modify values in lists.'),
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'sass:map',
+			documentation: localize('scss.builtin.sass:map', 'Makes it possible to look up the value associated with a key in a map, and much more.'),
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'sass:selector',
+			documentation: localize('scss.builtin.sass:selector', 'Provides access to Sass’s powerful selector engine.'),
+			kind: CompletionItemKind.Text,
+		},
+		{
+			label: 'sass:meta',
+			documentation: localize('scss.builtin.sass:meta', 'Exposes the details of Sass’s inner workings.'),
+			kind: CompletionItemKind.Text,
+		},
+	];
+
 
 	constructor(clientCapabilities: ClientCapabilities | undefined) {
 		super('$', clientCapabilities);
+	}
+
+	protected isImportPathParent(type: nodes.NodeType): boolean {
+		return type === nodes.NodeType.Forward
+			|| type === nodes.NodeType.Use
+			|| super.isImportPathParent(type);
+	}
+
+	public getCompletionForImportPath(importPathNode: nodes.Node, result: CompletionList): CompletionList {
+		const parentType = importPathNode.getParent()!.type;
+
+		if (parentType === nodes.NodeType.Forward || parentType === nodes.NodeType.Use) {
+			result.items.push(...SCSSCompletion.scssModuleBuiltIns);
+		}
+
+		return super.getCompletionForImportPath(importPathNode, result);
 	}
 
 	private createReplaceFunction() {
@@ -273,7 +344,13 @@ export class SCSSCompletion extends CSSCompletion {
 
 	public getCompletionForTopLevel(result: CompletionList): CompletionList {
 		this.getCompletionForAtDirectives(result);
+		this.getCompletionForModuleLoaders(result);
 		super.getCompletionForTopLevel(result);
+		return result;
+	}
+
+	public getCompletionForModuleLoaders(result: CompletionList): CompletionList {
+		result.items.push(...SCSSCompletion.scssModuleLoaders);
 		return result;
 	}
 }

@@ -210,7 +210,22 @@ suite('SCSS - Navigation', () => {
 			]);
 
 		});
-		
+
+		test('SCSS module file links', async () => {
+			const fixtureRoot = path.resolve(__dirname, '../../../../src/test/scss/linkFixture/non-existent');
+			const getDocumentUri = (relativePath: string) => {
+				return URI.file(path.resolve(fixtureRoot, relativePath)).toString();
+			};
+
+			await assertDynamicLinks(getDocumentUri('./index.scss'), `@use './foo' as f`, [
+				{ range: newRange(5, 12), target: getDocumentUri('./foo') }
+			]);
+
+			await assertDynamicLinks(getDocumentUri('./index.scss'), `@forward './foo' hide $private`, [
+				{ range: newRange(9, 16), target: getDocumentUri('./foo') }
+			]);
+		});
+
 		test('SCSS empty path', async () => {
 			const p = new SCSSParser();
 

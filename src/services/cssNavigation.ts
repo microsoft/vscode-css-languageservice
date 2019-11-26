@@ -86,6 +86,10 @@ export class CSSNavigation {
 		return result;
 	}
 
+	protected isRawStringDocumentLinkNode(node: nodes.Node): boolean {
+		return node.type === nodes.NodeType.Import;
+	}
+
 	public findDocumentLinks(document: TextDocument, stylesheet: nodes.Stylesheet, documentContext: DocumentContext): DocumentLink[] {
 		const result: DocumentLink[] = [];
 
@@ -102,7 +106,7 @@ export class CSSNavigation {
 			 * In @import, it is possible to include links that do not use `url()`
 			 * For example, `@import 'foo.css';`
 			 */
-			if (candidate.parent && candidate.parent.type === nodes.NodeType.Import) {
+			if (candidate.parent && this.isRawStringDocumentLinkNode(candidate.parent)) {
 				const rawText = candidate.getText();
 				if (startsWith(rawText, `'`) || startsWith(rawText, `"`)) {
 					const link = uriStringNodeToDocumentLink(document, candidate, documentContext);

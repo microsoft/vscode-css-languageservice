@@ -119,7 +119,7 @@ export class CSSCompletion {
 					this.getCompletionForUriLiteralValue(node, result);
 				} else if (node.parent === null) {
 					this.getCompletionForTopLevel(result);
-				} else if (node.type === nodes.NodeType.StringLiteral && node.parent.type === nodes.NodeType.Import) {
+				} else if (node.type === nodes.NodeType.StringLiteral && this.isImportPathParent(node.parent.type)) {
 					this.getCompletionForImportPath(node, result);
 					// } else if (node instanceof nodes.Variable) {
 					// this.getCompletionsForVariableDeclaration()
@@ -148,6 +148,10 @@ export class CSSCompletion {
 			this.defaultReplaceRange = null!;
 			this.nodePath = null!;
 		}
+	}
+
+	protected isImportPathParent(type: nodes.NodeType): boolean {
+		return type === nodes.NodeType.Import;
 	}
 
 	private finalize(result: CompletionList): CompletionList {
@@ -211,6 +215,7 @@ export class CSSCompletion {
 			if (!declaration && completePropertyWithSemicolon) {
 				insertText += '$0;';
 			}
+
 			// Cases such as .selector { p; } or .selector { p:; }
 			if (declaration && !declaration.semicolonPosition) {
 				if (completePropertyWithSemicolon && this.offset >= this.textDocument.offsetAt(range.end)) {
@@ -262,7 +267,7 @@ export class CSSCompletion {
 		}
 		return this.settings.completion.triggerPropertyValueCompletion;
 	}
-	
+
 	private get isCompletePropertyWithSemicolonEnabled(): boolean {
 		if (
 			!this.settings ||
@@ -411,7 +416,7 @@ export class CSSCompletion {
 				kind: CompletionItemKind.Variable,
 				sortText: SortTexts.Variable
 			};
-			
+
 			if (typeof completionItem.documentation === 'string' && isColorString(completionItem.documentation)) {
 				completionItem.kind = CompletionItemKind.Color;
 			}
@@ -440,7 +445,7 @@ export class CSSCompletion {
 				textEdit: TextEdit.replace(this.getCompletionRange(null), symbol.name),
 				kind: CompletionItemKind.Variable
 			};
-			
+
 			if (typeof completionItem.documentation === 'string' && isColorString(completionItem.documentation)) {
 				completionItem.kind = CompletionItemKind.Color;
 			}
@@ -998,7 +1003,7 @@ function isDeprecated(entry: languageFacts.IEntry2): boolean {
 	if (entry.status && (entry.status === 'nonstandard' || entry.status === 'obsolete')) {
 		return true;
 	}
-	
+
 	return false;
 }
 

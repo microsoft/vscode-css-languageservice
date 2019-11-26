@@ -83,6 +83,11 @@ export enum NodeType {
 	GridLine,
 	Plugin,
 	UnknownAtRule,
+	Use,
+	ModuleConfiguration,
+	Forward,
+	ForwardVisibility,
+	Module,
 }
 
 export enum ReferenceType {
@@ -91,7 +96,10 @@ export enum ReferenceType {
 	Variable,
 	Function,
 	Keyframe,
-	Unknown
+	Unknown,
+	Module,
+	Forward,
+	ForwardVisibility,
 }
 
 
@@ -1008,6 +1016,97 @@ export class Import extends Node {
 	}
 }
 
+export class Use extends Node {
+
+	public identifier?: Identifier;
+	public parameters?: Nodelist;
+
+	public get type(): NodeType {
+		return NodeType.Use;
+	}
+
+	public getParameters(): Nodelist {
+		if (!this.parameters) {
+			this.parameters = new Nodelist(this);
+		}
+		return this.parameters;
+	}
+
+	public setIdentifier(node: Identifier | null): node is Identifier {
+		return this.setNode('identifier', node, 0);
+	}
+
+	public getIdentifier(): Identifier | undefined {
+		return this.identifier;
+	}
+}
+
+export class ModuleConfiguration extends Node {
+
+	public identifier?: Node;
+	public value?: Node;
+
+	public get type(): NodeType {
+		return NodeType.ModuleConfiguration;
+	}
+
+	public setIdentifier(node: Node | null): node is Node {
+		return this.setNode('identifier', node, 0);
+	}
+
+	public getIdentifier(): Node | undefined {
+		return this.identifier;
+	}
+
+	public getName(): string {
+		return this.identifier ? this.identifier.getText() : '';
+	}
+
+	public setValue(node: Node | null): node is Node {
+		return this.setNode('value', node, 0);
+	}
+
+	public getValue(): Node | undefined {
+		return this.value;
+	}
+}
+
+export class Forward extends Node {
+
+	public identifier?: Node;
+
+	public get type(): NodeType {
+		return NodeType.Forward;
+	}
+
+	public setIdentifier(node: Node | null): node is Node {
+		return this.setNode('identifier', node, 0);
+	}
+
+	public getIdentifier(): Node | undefined {
+		return this.identifier;
+	}
+
+}
+
+export class ForwardVisibility extends Node {
+
+	public identifier?: Node;
+
+	public get type(): NodeType {
+		return NodeType.ForwardVisibility;
+	}
+
+	public setIdentifier(node: Node | null): node is Node {
+		return this.setNode('identifier', node, 0);
+	}
+
+	public getIdentifier(): Node | undefined {
+		return this.identifier;
+	}
+
+}
+
 export class Namespace extends Node {
 
 	constructor(offset: number, length: number) {
@@ -1366,6 +1465,8 @@ export class Interpolation extends Node {
 
 export class Variable extends Node {
 
+	public module?: Module;
+
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -1553,6 +1654,24 @@ export class GuardCondition extends Node {
 	public setVariable(node: Node | null): node is Node {
 		return this.setNode('variable', node);
 	}
+}
+
+export class Module extends Node {
+
+	public identifier?: Identifier;
+
+	public get type(): NodeType {
+		return NodeType.Module;
+	}
+
+	public setIdentifier(node: Identifier | null): node is Identifier {
+		return this.setNode('identifier', node, 0);
+	}
+
+	public getIdentifier(): Identifier | undefined {
+		return this.identifier;
+	}
+
 }
 
 export interface IRule {

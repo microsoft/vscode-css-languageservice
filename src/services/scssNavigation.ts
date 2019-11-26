@@ -15,6 +15,12 @@ export class SCSSNavigation extends CSSNavigation {
 		super();
 	}
 
+	protected isRawStringDocumentLinkNode(node: nodes.Node): boolean {
+		return super.isRawStringDocumentLinkNode(node)
+			|| node.type === nodes.NodeType.Use
+			|| node.type === nodes.NodeType.Forward;
+	}
+
 	public findDocumentLinks(
 		document: TextDocument,
 		stylesheet: nodes.Stylesheet,
