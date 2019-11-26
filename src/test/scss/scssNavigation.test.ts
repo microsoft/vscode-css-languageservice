@@ -52,9 +52,9 @@ function getFsProvider(): FileSystemProvider {
 					let type = FileType.Unknown;
 					if (stats.isFile()) {
 						type = FileType.File;
-					} else if (stats.isDirectory) {
+					} else if (stats.isDirectory()) {
 						type = FileType.Directory;
-					} else if (stats.isSymbolicLink) {
+					} else if (stats.isSymbolicLink()) {
 						type = FileType.SymbolicLink;
 					}
 

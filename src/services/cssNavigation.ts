@@ -11,7 +11,7 @@ import { DocumentContext } from '../cssLanguageTypes';
 import * as nodes from '../parser/cssNodes';
 import { Symbols } from '../parser/cssSymbolScope';
 import { getColorValue, hslFromColor } from '../languageFacts/facts';
-import { endsWith, startsWith } from '../utils/strings';
+import { startsWith } from '../utils/strings';
 
 const localize = nls.loadMessageBundle();
 

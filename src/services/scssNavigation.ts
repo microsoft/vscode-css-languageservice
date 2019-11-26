@@ -21,14 +21,6 @@ export class SCSSNavigation extends CSSNavigation {
 			|| node.type === nodes.NodeType.Forward;
 	}
 
-	public findDocumentLinks(
-		document: TextDocument,
-		stylesheet: nodes.Stylesheet,
-		documentContext: DocumentContext
-	): DocumentLink[] {
-		return super.findDocumentLinks(document, stylesheet, documentContext);
-	}
-
 	public async findDocumentLinks2(
 		document: TextDocument,
 		stylesheet: nodes.Stylesheet,
