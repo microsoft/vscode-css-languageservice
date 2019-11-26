@@ -525,6 +525,7 @@ suite('SCSS - Parser', () => {
 
 	test('Ruleset', function () {
 		let parser = new SCSSParser();
+		assertNode('.selector { prop: erty $let 1px; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.selector { prop: erty $let 1px m.$foo; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('selector:active { property:value; nested:hover {}}', parser, parser._parseRuleset.bind(parser));
 		assertNode('selector {}', parser, parser._parseRuleset.bind(parser));
@@ -539,7 +540,8 @@ suite('SCSS - Parser', () => {
 
 	test('Nested Ruleset', function () {
 		let parser = new SCSSParser();
-		assertNode('.class1 { $let: 1; .class { $let: 2; three: $let; let: 3; four: m.$foo } one: $let; }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.class1 { $let: 1; .class { $let: 2; three: $let; let: 3; } one: $let; }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.class1 { $let: 1; .class { $let: m.$foo; } one: $let; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.class1 { > .class2 { & > .class4 { rule1: v1; } } }', parser, parser._parseRuleset.bind(parser));
 		assertNode('foo { @at-root { display: none; } }', parser, parser._parseRuleset.bind(parser));
 		assertNode('th, tr { @at-root #{selector-replace(&, "tr")} { border-bottom: 0; } }', parser, parser._parseRuleset.bind(parser));
