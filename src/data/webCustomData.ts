@@ -870,6 +870,30 @@ export const cssData : CSSDataV1 = {
 			]
 		},
 		{
+			"name": "text-underline-offset",
+			"values": [
+				{
+					"name": "auto",
+					"description": "The browser chooses the appropriate offset for underlines."
+				},
+				{
+					"name": "from-font",
+					"description": "If the font file includes information about a preferred offset, use that value. If the font file doesn't include this information, behave as if auto was set, with the browser choosing an appropriate offset."
+				}
+			],
+			"syntax": "auto | from-font | <length>",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/text-underline-offset"
+				}
+			],
+			"description": "The offset distance of an underline text decoration line (applied using text-decoration) from its original position.",
+			"restrictions": [
+				"length"
+			]
+		},
+		{
 			"name": "box-sizing",
 			"values": [
 				{
