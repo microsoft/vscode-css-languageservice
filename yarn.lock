@@ -1262,10 +1262,10 @@ vscode-uri@^2.1.1:
   resolved "https://registry.yarnpkg.com/vscode-uri/-/vscode-uri-2.1.1.tgz#5aa1803391b6ebdd17d047f51365cf62c38f6e90"
   integrity sha512-eY9jmGoEnVf8VE8xr5znSah7Qt1P/xsCdErz+g8HYZtJ7bZqKH5E3d+6oVNm1AC/c6IHUDokbmVXKOi4qPAC9A==
 
-vscode-web-custom-data@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/vscode-web-custom-data/-/vscode-web-custom-data-0.1.1.tgz#67567abc6ee36ce34ccbc7933b638e77ecda92a9"
-  integrity sha512-9Jkwi6dE79cHHdtMoGkHCjAnoonMPmYjPBzsG9+T7qAboZiOBGMDVRlD4UuCLjye9rBtC0QkQFZPJwi8JTv0sw==
+vscode-web-custom-data@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/vscode-web-custom-data/-/vscode-web-custom-data-0.1.2.tgz#ed7fe4a6814364a20666c0081e2acd4fceaa6764"
+  integrity sha512-VNl7GVzX67kf5cv5/4jrh2mcopVrQEI6tjMqIS1ZHCaQCfcnTMQ8DLylqZDvnHzitphkK6Z9fqn935ATjsAehg==
 
 which-module@^2.0.0:
   version "2.0.0"

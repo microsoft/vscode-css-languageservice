@@ -533,7 +533,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "opacity",
-			"syntax": "<number>",
+			"syntax": "<alpha-value>",
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -856,7 +856,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Produces a wavy line."
 				}
 			],
-			"syntax": "<'text-decoration-line'> || <'text-decoration-style'> || <'text-decoration-color'>",
+			"syntax": "<'text-decoration-line'> || <'text-decoration-style'> || <'text-decoration-color'> || <'text-decoration-thickness'>",
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1443,7 +1443,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Sets 'white-space-collapsing' to 'preserve' and 'text-wrap' to 'normal'."
 				}
 			],
-			"syntax": "normal | pre | nowrap | pre-wrap | pre-line",
+			"syntax": "normal | pre | nowrap | pre-wrap | pre-line | break-spaces",
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4657,7 +4657,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Represents a repeated fragment of the track list, allowing a large number of columns or rows that exhibit a recurring pattern to be written in a more compact form."
 				}
 			],
-			"syntax": "none | <track-list> | <auto-track-list>",
+			"syntax": "none | <track-list> | <auto-track-list> | subgrid <line-name-list>?",
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4788,7 +4788,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The 'open-quote' and 'close-quote' values of the 'content' property produce no quotations marks, as if they were 'no-open-quote' and 'no-close-quote' respectively."
 				}
 			],
-			"syntax": "none | [ <string> <string> ]+",
+			"syntax": "none | auto | [ <string> <string> ]+",
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6073,7 +6073,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Represents a repeated fragment of the track list, allowing a large number of columns or rows that exhibit a recurring pattern to be written in a more compact form."
 				}
 			],
-			"syntax": "none | <track-list> | <auto-track-list>",
+			"syntax": "none | <track-list> | <auto-track-list> | subgrid <line-name-list>?",
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6292,7 +6292,7 @@ export const cssData : CSSDataV1 = {
 				"FF32",
 				"S8",
 				"C41",
-				"O"
+				"O28"
 			],
 			"values": [
 				{
@@ -6349,7 +6349,7 @@ export const cssData : CSSDataV1 = {
 						"FF32",
 						"S8",
 						"C41",
-						"O"
+						"O28"
 					],
 					"description": "Creates a color with the hue of the source color and the saturation and luminosity of the backdrop color."
 				},
@@ -6359,7 +6359,7 @@ export const cssData : CSSDataV1 = {
 						"FF32",
 						"S8",
 						"C41",
-						"O"
+						"O28"
 					],
 					"description": "Creates a color with the saturation of the source color and the hue and luminosity of the backdrop color."
 				},
@@ -6369,7 +6369,7 @@ export const cssData : CSSDataV1 = {
 						"FF32",
 						"S8",
 						"C41",
-						"O"
+						"O28"
 					],
 					"description": "Creates a color with the hue and saturation of the source color and the luminosity of the backdrop color."
 				},
@@ -6379,7 +6379,7 @@ export const cssData : CSSDataV1 = {
 						"FF32",
 						"S8",
 						"C41",
-						"O"
+						"O28"
 					],
 					"description": "Creates a color with the luminosity of the source color and the hue and saturation of the backdrop color."
 				}
@@ -6622,7 +6622,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Breaks CJK scripts using a more restrictive set of line-breaking rules than 'normal'."
 				}
 			],
-			"syntax": "auto | loose | normal | strict",
+			"syntax": "auto | loose | normal | strict | anywhere",
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -7030,7 +7030,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Each line of text is underlined."
 				}
 			],
-			"syntax": "none | [ underline || overline || line-through || blink ]",
+			"syntax": "none | [ underline || overline || line-through || blink ] | spelling-error | grammar-error",
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -8224,7 +8224,8 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"C33",
-				"IE6"
+				"IE6",
+				"O20"
 			],
 			"values": [
 				{
@@ -8460,7 +8461,7 @@ export const cssData : CSSDataV1 = {
 				"C37",
 				"O24"
 			],
-			"syntax": "<number>",
+			"syntax": "<alpha-value>",
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -8991,7 +8992,8 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-snap-stop",
 			"syntax": "normal | always",
 			"browsers": [
-				"C75"
+				"C75",
+				"O62"
 			],
 			"references": [
 				{
@@ -9454,7 +9456,8 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E17",
 				"FF62",
-				"S11"
+				"S11",
+				"C79"
 			],
 			"references": [
 				{
@@ -9538,6 +9541,7 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "[ <'offset-position'>? [ <'offset-path'> [ <'offset-distance'> || <'offset-rotate'> ]? ]? ]! [ / <'offset-anchor'> ]?",
 			"browsers": [
+				"FF71",
 				"C55",
 				"O42"
 			],
@@ -9644,7 +9648,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'margin-left'>{1,2}",
 			"browsers": [
 				"FF66",
-				"C69"
+				"C69",
+				"O56"
 			],
 			"references": [
 				{
@@ -9659,7 +9664,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'padding-left'>{1,2}",
 			"browsers": [
 				"FF66",
-				"C69"
+				"C69",
+				"O56"
 			],
 			"references": [
 				{
@@ -9674,7 +9680,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'padding-left'>{1,2}",
 			"browsers": [
 				"FF66",
-				"C69"
+				"C69",
+				"O56"
 			],
 			"references": [
 				{
@@ -9688,8 +9695,8 @@ export const cssData : CSSDataV1 = {
 			"name": "font-size-adjust",
 			"browsers": [
 				"FF40",
-				"C43",
-				"O30"
+				"C54",
+				"O41"
 			],
 			"values": [
 				{
@@ -9704,7 +9711,7 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-size-adjust"
 				}
 			],
-			"description": "Preserves the readability of text when font fallback occurs by adjusting the font-size so that the x-height is the same irregardless of the font used.",
+			"description": "Preserves the readability of text when font fallback occurs by adjusting the font-size so that the x-height is the same regardless of the font used.",
 			"restrictions": [
 				"number"
 			]
@@ -9906,6 +9913,16 @@ export const cssData : CSSDataV1 = {
 			"name": "offset-anchor",
 			"status": "experimental",
 			"syntax": "auto | <position>",
+			"browsers": [
+				"FF70",
+				"C79"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/offset-anchor"
+				}
+			],
 			"description": "Defines an anchor point of the box positioned along the path. The anchor point specifies the point of the box which is to be considered as the point that is moved along the path."
 		},
 		{
@@ -9919,7 +9936,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'margin-left'>{1,2}",
 			"browsers": [
 				"FF66",
-				"C69"
+				"C69",
+				"O56"
 			],
 			"references": [
 				{
@@ -10610,7 +10628,7 @@ export const cssData : CSSDataV1 = {
 				"FF53",
 				"S4",
 				"C1",
-				"O"
+				"O15"
 			],
 			"values": [
 				{
@@ -17736,6 +17754,12 @@ export const cssData : CSSDataV1 = {
 			"description": "Changes the appearance of buttons and other controls to resemble native controls."
 		},
 		{
+			"name": "aspect-ratio",
+			"status": "experimental",
+			"syntax": "auto | <ratio>",
+			"description": ""
+		},
+		{
 			"name": "azimuth",
 			"status": "obsolete",
 			"syntax": "<angle> | [ [ left-side | far-left | left | center-left | center | center-right | right | far-right | right-side ] || behind ] | leftwards | rightwards",
@@ -18473,6 +18497,21 @@ export const cssData : CSSDataV1 = {
 			"description": "The scroll-snap-type-y CSS property defines how strictly snap points are enforced on the vertical axis of the scroll container in case there is one.\n\nSpecifying any precise animations or physics used to enforce those snap points is not covered by this property but instead left up to the user agent."
 		},
 		{
+			"name": "text-decoration-thickness",
+			"syntax": "auto | from-font | <length>",
+			"browsers": [
+				"FF70",
+				"S12.1"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-thickness"
+				}
+			],
+			"description": "The text-decoration-thickness CSS property sets the thickness, or width, of the decoration line that is used on text in an element, such as a line-through, underline, or overline."
+		},
+		{
 			"name": "text-emphasis",
 			"syntax": "<'text-emphasis-style'> || <'text-emphasis-color'>",
 			"browsers": [
@@ -18539,6 +18578,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"description": "The text-emphasis-style CSS property defines the type of emphasis used. It can also be set, and reset, using the text-emphasis shorthand."
+		},
+		{
+			"name": "text-underline-offset",
+			"syntax": "auto | from-font | <length>",
+			"browsers": [
+				"FF70",
+				"S12.1"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-underline-offset"
+				}
+			],
+			"description": "The text-underline-offset CSS property sets the offset distance of an underline text decoration line (applied using text-decoration) from its original position."
 		},
 		{
 			"name": "speak-as",
@@ -19580,7 +19634,8 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"browsers": [
 				"FF4",
-				"C67"
+				"C67",
+				"O54"
 			],
 			"references": [
 				{
@@ -19676,7 +19731,8 @@ export const cssData : CSSDataV1 = {
 				"E12",
 				"FF47",
 				"C37",
-				"IE11"
+				"IE11",
+				"O24"
 			],
 			"references": [
 				{
@@ -20417,7 +20473,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "::marker",
 			"browsers": [
-				"FF68"
+				"FF68",
+				"C80"
 			],
 			"references": [
 				{

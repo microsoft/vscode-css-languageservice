@@ -23,7 +23,7 @@
     "rimraf": "^3.0.0",
     "tslint": "^5.20.0",
     "typescript": "^3.6.4",
-    "vscode-web-custom-data": "^0.1.1"
+    "vscode-web-custom-data": "^0.1.2"
   },
   "dependencies": {
     "vscode-languageserver-textdocument": "^1.0.0-next.4",
