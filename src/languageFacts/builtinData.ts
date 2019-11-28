@@ -70,7 +70,7 @@ export const imageFunctions: { [name: string]: string } = {
 	'linear-gradient()': 'A linear gradient is created by specifying a straight gradient line, and then several colors placed along that line.',
 	'-webkit-repeating-linear-gradient()': 'Repeating Linear gradient. Remember to use unprefixed version in addition.',
 	'-moz-repeating-linear-gradient()': 'Repeating Linear gradient. Remember to use unprefixed version in addition.',
-	'-o-repeating-linear-gradient()': 'RepeatingLinear gradient. Remember to use unprefixed version in addition.',
+	'-o-repeating-linear-gradient()': 'Repeating Linear gradient. Remember to use unprefixed version in addition.',
 	'repeating-linear-gradient()': 'Same as linear-gradient, except the color-stops are repeated infinitely in both directions, with their positions shifted by multiples of the difference between the last specified color-stop’s position and the first specified color-stop’s position.',
 	'-webkit-radial-gradient()': 'Radial gradient. Remember to use unprefixed version in addition.',
 	'-moz-radial-gradient()': 'Radial gradient. Remember to use unprefixed version in addition.',
