@@ -16,9 +16,11 @@ export class SCSSNavigation extends CSSNavigation {
 	}
 
 	protected isRawStringDocumentLinkNode(node: nodes.Node): boolean {
-		return super.isRawStringDocumentLinkNode(node)
-			|| node.type === nodes.NodeType.Use
-			|| node.type === nodes.NodeType.Forward;
+		return (
+			super.isRawStringDocumentLinkNode(node) ||
+			node.type === nodes.NodeType.Use ||
+			node.type === nodes.NodeType.Forward
+		);
 	}
 
 	public async findDocumentLinks2(
@@ -28,6 +30,8 @@ export class SCSSNavigation extends CSSNavigation {
 	): Promise<DocumentLink[]> {
 		const links = this.findDocumentLinks(document, stylesheet, documentContext);
 		const fsProvider = this.fileSystemProvider;
+		
+		const validLinks: DocumentLink[] = [];
 
 		/**
 		 * Validate and correct links
@@ -51,19 +55,26 @@ export class SCSSNavigation extends CSSNavigation {
 
 				const pathVariations = toPathVariations(parsedUri);
 				if (!pathVariations) {
+					if (await fileExists(target)) {
+						validLinks.push(links[i]);
+					}
 					continue;
 				}
 
 				for (let j = 0; j < pathVariations.length; j++) {
 					if (await fileExists(pathVariations[j])) {
-						links[i].target = pathVariations[j];
+						validLinks.push({
+							...links[i],
+							target: pathVariations[j]
+						});
+						
 						break;
 					}
 				}
 			}
 		}
 
-		return links;
+		return validLinks;
 
 		function toPathVariations(uri: URI): DocumentUri[] | undefined {
 			// No valid path
@@ -94,9 +105,7 @@ export class SCSSNavigation extends CSSNavigation {
 				if (uri.path.endsWith('.scss')) {
 					return undefined;
 				} else {
-					return [
-						uri.with({ path: uri.path + '.scss' }).toString(),
-					];
+					return [uri.with({ path: uri.path + '.scss' }).toString()];
 				}
 			}
 
@@ -112,13 +121,7 @@ export class SCSSNavigation extends CSSNavigation {
 			const indexUnderscoreUri = documentUriWithBasename(normalizedBasename.slice(0, -5) + '/_index.scss');
 			const cssPath = documentUriWithBasename(normalizedBasename.slice(0, -5) + '.css');
 
-			return [
-				normalizedPath,
-				underScorePath,
-				indexPath,
-				indexUnderscoreUri,
-				cssPath
-			];
+			return [normalizedPath, underScorePath, indexPath, indexUnderscoreUri, cssPath];
 		}
 
 		async function fileExists(documentUri: DocumentUri) {
