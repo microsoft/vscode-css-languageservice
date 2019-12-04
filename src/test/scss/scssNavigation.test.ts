@@ -29,6 +29,21 @@ async function assertDynamicLinks(docUri: string, input: string, expected: Docum
 	assert.deepEqual(links, expected);
 }
 
+async function assertNoDynamicLinks(docUri: string, input: string) {
+	const p = new SCSSParser();
+	const document = TextDocument.create(docUri, 'scss', 0, input);
+
+	const stylesheet = p.parseStylesheet(document);
+
+	const links = await new SCSSNavigation(getFsProvider()).findDocumentLinks2(
+		document,
+		stylesheet,
+		getDocumentContext(document.uri)
+	);
+	assert.deepEqual(links.length, 0, `${docUri.toString()} should have no link`);
+}
+
+
 function getFsProvider(): FileSystemProvider {
 	return {
 		stat(documentUri: string) {
@@ -135,28 +150,20 @@ suite('SCSS - Navigation', () => {
 
 	suite('Links', () => {
 
-		// For invalid links that have no corresponding file on disk, return original link
+		// For invalid links that have no corresponding file on disk, return no link
 		test('Invalid SCSS partial file links', async () => {
 			const fixtureRoot = path.resolve(__dirname, '../../../../src/test/scss/linkFixture/non-existent');
 			const getDocumentUri = (relativePath: string) => {
 				return URI.file(path.resolve(fixtureRoot, relativePath)).toString();
 			};
 
-			await assertDynamicLinks(getDocumentUri('./index.scss'), `@import 'foo'`, [
-				{ range: newRange(8, 13), target: getDocumentUri('./foo') }
-			]);
+			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@import 'foo'`);
 
-			await assertDynamicLinks(getDocumentUri('./index.scss'), `@import './foo'`, [
-				{ range: newRange(8, 15), target: getDocumentUri('./foo') }
-			]);
+			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@import './foo'`);
 
-			await assertDynamicLinks(getDocumentUri('./index.scss'), `@import './_foo'`, [
-				{ range: newRange(8, 16), target: getDocumentUri('./_foo') }
-			]);
+			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@import './_foo'`);
 
-			await assertDynamicLinks(getDocumentUri('./index.scss'), `@import './foo-baz'`, [
-				{ range: newRange(8, 19), target: getDocumentUri('./foo-baz') }
-			]);
+			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@import './foo-baz'`);
 		});
 
 		test('SCSS partial file dynamic links', async () => {
@@ -212,18 +219,22 @@ suite('SCSS - Navigation', () => {
 		});
 
 		test('SCSS module file links', async () => {
-			const fixtureRoot = path.resolve(__dirname, '../../../../src/test/scss/linkFixture/non-existent');
+			const fixtureRoot = path.resolve(__dirname, '../../../../src/test/scss/linkFixture/module');
 			const getDocumentUri = (relativePath: string) => {
 				return URI.file(path.resolve(fixtureRoot, relativePath)).toString();
 			};
 
 			await assertDynamicLinks(getDocumentUri('./index.scss'), `@use './foo' as f`, [
-				{ range: newRange(5, 12), target: getDocumentUri('./foo') }
+				{ range: newRange(5, 12), target: getDocumentUri('./foo.scss') }
 			]);
 
 			await assertDynamicLinks(getDocumentUri('./index.scss'), `@forward './foo' hide $private`, [
-				{ range: newRange(9, 16), target: getDocumentUri('./foo') }
+				{ range: newRange(9, 16), target: getDocumentUri('./foo.scss') }
 			]);
+
+			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@use 'sass:math'`);
+			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@use './non-existent'`);
+			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@use './non-existent.scss'`);
 		});
 
 		test('SCSS empty path', async () => {
