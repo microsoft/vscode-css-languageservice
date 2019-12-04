@@ -7,7 +7,7 @@
 import * as assert from 'assert';
 import * as cssLanguageService from '../../cssLanguageService';
 
-import { Position, InsertTextFormat } from 'vscode-languageserver-types';
+import { Position, InsertTextFormat, CompletionItemKind } from 'vscode-languageserver-types';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { assertCompletion, ItemDescription } from '../css/completion.test';
 import { ImportPathCompletionContext } from '../../cssLanguageTypes';
@@ -228,13 +228,13 @@ suite('SCSS - Completions', () => {
 
 			const builtIns = {
 				items: [
-					{ label: 'sass:math' },
-					{ label: 'sass:string' },
-					{ label: 'sass:color' },
-					{ label: 'sass:list' },
-					{ label: 'sass:map' },
-					{ label: 'sass:selector' },
-					{ label: 'sass:meta' },
+					{ label: 'sass:math', kind: CompletionItemKind.Module },
+					{ label: 'sass:string', kind: CompletionItemKind.Module },
+					{ label: 'sass:color', kind: CompletionItemKind.Module },
+					{ label: 'sass:list', kind: CompletionItemKind.Module },
+					{ label: 'sass:map', kind: CompletionItemKind.Module },
+					{ label: 'sass:selector', kind: CompletionItemKind.Module },
+					{ label: 'sass:meta', kind: CompletionItemKind.Module },
 				],
 			};
 			testCompletionFor(`@use '|'`, builtIns);
