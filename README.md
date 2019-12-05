@@ -63,7 +63,9 @@ export interface LanguageSettings {
 Development
 -----------
 
-How can I run and debug this node module
+**Note: All CSS entites (properties, at-rules, etc) are sourced from https://github.com/microsoft/vscode-custom-data/tree/master/web-data and transpiled here. For adding new property or fixing existing properties' completion/hover description, please open PR there).**
+
+How can I run and debug this node module?
 
 - clone, npm install
 - open the folder in VSCode.
@@ -80,6 +82,8 @@ In VSCode:
   - Set a breakpoint in `extensions/css-language-features/server/node_modules/vscode-css-languageservice/lib/umd/services/cssCompletion.js`
 - in the instance run from sources invoke code completion in the .css file
 - use `yarn link vscode-css-languageservice` in `extensions/css-language-features/server` to run VSCode with your changes to `vscode-css-languageservice`
+
+
 
 License
 -------
