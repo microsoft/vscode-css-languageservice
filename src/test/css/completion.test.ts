@@ -15,6 +15,10 @@ export interface ItemDescription {
 	label: string;
 	detail?: string;
 	documentation?: string | MarkupContent | null;
+	/**
+	 * Only test that the documentation includes the substring
+	 */
+	documentationIncludes?: string;
 	kind?: CompletionItemKind;
 	insertTextFormat?: InsertTextFormat;
 	resultText?: string;
@@ -43,6 +47,14 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 	}
 	if (expected.documentation) {
 		assert.deepEqual(match.documentation, expected.documentation);
+	}
+	if (expected.documentationIncludes) {
+		assert.ok(match.documentation !== undefined);
+		if (typeof match.documentation === 'string') {
+			assert.ok(match.documentation.indexOf(expected.documentationIncludes) !== -1);
+		} else {
+			assert.ok(match.documentation!.value.indexOf(expected.documentationIncludes) !== -1);
+		}
 	}
 	if (expected.kind) {
 		assert.equal(match.kind, expected.kind);

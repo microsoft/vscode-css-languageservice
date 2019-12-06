@@ -7,9 +7,9 @@
 import * as languageFacts from '../languageFacts/facts';
 import { CSSCompletion } from './cssCompletion';
 import * as nodes from '../parser/cssNodes';
-import { CompletionList, CompletionItemKind, TextEdit, InsertTextFormat, CompletionItem } from 'vscode-languageserver-types';
+import { CompletionList, CompletionItemKind, TextEdit, InsertTextFormat, CompletionItem, MarkupContent } from 'vscode-languageserver-types';
 import * as nls from 'vscode-nls';
-import { ClientCapabilities } from '../cssLanguageTypes';
+import { ClientCapabilities, IReference } from '../cssLanguageTypes';
 const localize = nls.loadMessageBundle();
 
 interface IFunctionInfo {
@@ -200,6 +200,7 @@ export class SCSSCompletion extends CSSCompletion {
 		{
 			label: "@use",
 			documentation: localize("scss.builtin.@use", "Loads mixins, functions, and variables from other Sass stylesheets as 'modules', and combines CSS from multiple stylesheets together."),
+			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/at-rules/use' }],
 			insertText: "@use '$0';",
 			insertTextFormat: InsertTextFormat.Snippet,
 			kind: CompletionItemKind.Keyword
@@ -207,6 +208,7 @@ export class SCSSCompletion extends CSSCompletion {
 		{
 			label: "@forward",
 			documentation: localize("scss.builtin.@forward", "Loads a Sass stylesheet and makes its mixins, functions, and variables available when this stylesheet is loaded with the @use rule."),
+			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/at-rules/forward' }],
 			insertText: "@forward '$0';",
 			insertTextFormat: InsertTextFormat.Snippet,
 			kind: CompletionItemKind.Keyword
@@ -217,36 +219,43 @@ export class SCSSCompletion extends CSSCompletion {
 		{
 			label: 'sass:math',
 			documentation: localize('scss.builtin.sass:math', 'Provides functions that operate on numbers.'),
+			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/math' }],
 			kind: CompletionItemKind.Module,
 		},
 		{
 			label: 'sass:string',
 			documentation: localize('scss.builtin.sass:string', 'Makes it easy to combine, search, or split apart strings.'),
+			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/string' }],
 			kind: CompletionItemKind.Module,
 		},
 		{
 			label: 'sass:color',
 			documentation: localize('scss.builtin.sass:color', 'Generates new colors based on existing ones, making it easy to build color themes.'),
+			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/color' }],
 			kind: CompletionItemKind.Module,
 		},
 		{
 			label: 'sass:list',
 			documentation: localize('scss.builtin.sass:list', 'Lets you access and modify values in lists.'),
+			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/list' }],
 			kind: CompletionItemKind.Module,
 		},
 		{
 			label: 'sass:map',
 			documentation: localize('scss.builtin.sass:map', 'Makes it possible to look up the value associated with a key in a map, and much more.'),
+			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/map' }],
 			kind: CompletionItemKind.Module,
 		},
 		{
 			label: 'sass:selector',
 			documentation: localize('scss.builtin.sass:selector', 'Provides access to Sass’s powerful selector engine.'),
+			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/selector' }],
 			kind: CompletionItemKind.Module,
 		},
 		{
 			label: 'sass:meta',
 			documentation: localize('scss.builtin.sass:meta', 'Exposes the details of Sass’s inner workings.'),
+			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/meta' }],
 			kind: CompletionItemKind.Module,
 		},
 	];
@@ -254,6 +263,9 @@ export class SCSSCompletion extends CSSCompletion {
 
 	constructor(clientCapabilities: ClientCapabilities | undefined) {
 		super('$', clientCapabilities);
+		
+		addReferencesToDocumentation(SCSSCompletion.scssModuleLoaders);
+		addReferencesToDocumentation(SCSSCompletion.scssModuleBuiltIns);
 	}
 
 	protected isImportPathParent(type: nodes.NodeType): boolean {
@@ -353,4 +365,27 @@ export class SCSSCompletion extends CSSCompletion {
 		result.items.push(...SCSSCompletion.scssModuleLoaders);
 		return result;
 	}
+}
+
+/**
+ * Todo @Pine: Remove this and do it through custom data
+ */
+function addReferencesToDocumentation(items: (CompletionItem & { references?: IReference[] })[]) {
+	items.forEach(i => {
+		if (i.documentation && i.references && i.references.length > 0) {
+			const markdownDoc: MarkupContent =
+				typeof i.documentation === 'string'
+					? { kind: 'markdown', value: i.documentation }
+					: { kind: 'markdown', value: i.documentation.value };
+
+			markdownDoc.value += '\n\n';
+			markdownDoc.value += i.references
+				.map(r => {
+					return `[${r.name}](${r.url})`;
+				})
+				.join(' | ');
+
+			i.documentation = markdownDoc;
+		}
+	});
 }

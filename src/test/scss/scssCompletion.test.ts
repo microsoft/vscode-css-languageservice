@@ -213,8 +213,8 @@ suite('SCSS - Completions', () => {
 		test('module-loading at-rules', function (): any {
 			testCompletionFor('@', {
 				items: [
-					{ label: '@use' },
-					{ label: '@forward' },
+					{ label: '@use', documentationIncludes: '[Sass documentation](https://sass-lang.com/documentation/at-rules/use)' },
+					{ label: '@forward', documentationIncludes: '[Sass documentation](https://sass-lang.com/documentation/at-rules/forward)' },
 				],
 			});
 
@@ -228,13 +228,13 @@ suite('SCSS - Completions', () => {
 
 			const builtIns = {
 				items: [
-					{ label: 'sass:math', kind: CompletionItemKind.Module },
-					{ label: 'sass:string', kind: CompletionItemKind.Module },
-					{ label: 'sass:color', kind: CompletionItemKind.Module },
-					{ label: 'sass:list', kind: CompletionItemKind.Module },
-					{ label: 'sass:map', kind: CompletionItemKind.Module },
-					{ label: 'sass:selector', kind: CompletionItemKind.Module },
-					{ label: 'sass:meta', kind: CompletionItemKind.Module },
+					{ label: 'sass:math', kind: CompletionItemKind.Module, documentationIncludes: '[Sass documentation](https://sass-lang.com/documentation/modules/math)' },
+					{ label: 'sass:string', kind: CompletionItemKind.Module, documentationIncludes: '[Sass documentation](https://sass-lang.com/documentation/modules/string)' },
+					{ label: 'sass:color', kind: CompletionItemKind.Module, documentationIncludes: '[Sass documentation](https://sass-lang.com/documentation/modules/color)' },
+					{ label: 'sass:list', kind: CompletionItemKind.Module, documentationIncludes: '[Sass documentation](https://sass-lang.com/documentation/modules/list)' },
+					{ label: 'sass:map', kind: CompletionItemKind.Module, documentationIncludes: '[Sass documentation](https://sass-lang.com/documentation/modules/map)' },
+					{ label: 'sass:selector', kind: CompletionItemKind.Module, documentationIncludes: '[Sass documentation](https://sass-lang.com/documentation/modules/selector)' },
+					{ label: 'sass:meta', kind: CompletionItemKind.Module, documentationIncludes: '[Sass documentation](https://sass-lang.com/documentation/modules/meta)' },
 				],
 			};
 			testCompletionFor(`@use '|'`, builtIns);
