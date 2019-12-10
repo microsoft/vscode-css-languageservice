@@ -24,7 +24,7 @@ export class SCSSCompletion extends CSSCompletion {
 		const parentType = importPathNode.getParent()!.type;
 
 		if (parentType === nodes.NodeType.Forward || parentType === nodes.NodeType.Use) {
-			result.items.push(...scssLanguageFacts.scssDataManager.getBuiltinModules());
+			result.items.push(...scssLanguageFacts.getBuiltinModules());
 		}
 
 		return super.getCompletionForImportPath(importPathNode, result);
@@ -45,42 +45,30 @@ export class SCSSCompletion extends CSSCompletion {
 		});
 	}
 
-	public getCompletionsForSelector(
-		ruleSet: nodes.RuleSet | null,
-		isNested: boolean,
-		result: CompletionList
-	): CompletionList {
-		const selectorFunctionCompletionItems = scssLanguageFacts.scssDataManager.getSelectorFunctions();
+	public getCompletionsForSelector(ruleSet: nodes.RuleSet | null, isNested: boolean, result: CompletionList): CompletionList {
+		const selectorFunctionCompletionItems = scssLanguageFacts.getSelectorFunctions();
 		this.sortToEnd(selectorFunctionCompletionItems);
 
-		selectorFunctionCompletionItems.forEach(i => result.items.push(i));
+		result.items.push(...selectorFunctionCompletionItems);
 
 		return super.getCompletionsForSelector(ruleSet, isNested, result);
 	}
 
-	public getTermProposals(
-		entry: languageFacts.IEntry,
-		existingNode: nodes.Node,
-		result: CompletionList
-	): CompletionList {
-		const builtinFunctionCompletionItems = scssLanguageFacts.scssDataManager.getBuiltInFunctions(entry.restrictions);
+	public getTermProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
+		const builtinFunctionCompletionItems = scssLanguageFacts.getBuiltInFunctions(entry.restrictions);
 		this.convertInsertTextToReplaceTextEdit(builtinFunctionCompletionItems, existingNode);
 		this.sortToEnd(builtinFunctionCompletionItems);
 
-		builtinFunctionCompletionItems.forEach(i => result.items.push(i));
+		result.items.push(...builtinFunctionCompletionItems);
 
 		return super.getTermProposals(entry, existingNode, result);
 	}
 
-	protected getColorProposals(
-		entry: languageFacts.IEntry,
-		existingNode: nodes.Node,
-		result: CompletionList
-	): CompletionList {
-		const colorFunctionCompletionItems = scssLanguageFacts.scssDataManager.getColorFunctions();
+	protected getColorProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
+		const colorFunctionCompletionItems = scssLanguageFacts.getColorFunctions();
 		this.convertInsertTextToReplaceTextEdit(colorFunctionCompletionItems, existingNode);
 
-		colorFunctionCompletionItems.forEach(i => result.items.push(i));
+		result.items.push(...colorFunctionCompletionItems);
 
 		return super.getColorProposals(entry, existingNode, result);
 	}
@@ -91,11 +79,7 @@ export class SCSSCompletion extends CSSCompletion {
 		return super.getCompletionsForDeclarationProperty(declaration, result);
 	}
 
-	public getCompletionsForExtendsReference(
-		_extendsRef: nodes.ExtendsReference,
-		existingNode: nodes.Node,
-		result: CompletionList
-	): CompletionList {
+	public getCompletionsForExtendsReference(_extendsRef: nodes.ExtendsReference, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		const symbols = this.getSymbolContext().findSymbolsAtOffset(this.offset, nodes.ReferenceType.Rule);
 		for (const symbol of symbols) {
 			const suggest: CompletionItem = {
@@ -109,7 +93,7 @@ export class SCSSCompletion extends CSSCompletion {
 	}
 
 	public getCompletionForAtDirectives(result: CompletionList): CompletionList {
-		result.items.push(...scssLanguageFacts.scssDataManager.getAtDirectives());
+		result.items.push(...scssLanguageFacts.getAtDirectives());
 		return result;
 	}
 
@@ -121,7 +105,7 @@ export class SCSSCompletion extends CSSCompletion {
 	}
 
 	public getCompletionForModuleLoaders(result: CompletionList): CompletionList {
-		result.items.push(...scssLanguageFacts.scssDataManager.getModuleAtDirectives());
+		result.items.push(...scssLanguageFacts.getModuleAtDirectives());
 		return result;
 	}
 }

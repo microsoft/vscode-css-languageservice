@@ -345,117 +345,11 @@ const builtInFunctions: IFunctionInfo[] = [
 	{ func: 'call($name, $args…)', desc: localize('scss.builtin.call', 'Dynamically calls a Sass function.') }
 ];
 
-const atDirectives = [
-	{
-		label: '@extend',
-		documentation: localize('scss.builtin.@extend', 'Inherits the styles of another selector.'),
-		kind: CompletionItemKind.Keyword
-	},
-	{
-		label: '@at-root',
-		documentation: localize(
-			'scss.builtin.@at-root',
-			'Causes one or more rules to be emitted at the root of the document.'
-		),
-		kind: CompletionItemKind.Keyword
-	},
-	{
-		label: '@debug',
-		documentation: localize(
-			'scss.builtin.@debug',
-			'Prints the value of an expression to the standard error output stream. Useful for debugging complicated Sass files.'
-		),
-		kind: CompletionItemKind.Keyword
-	},
-	{
-		label: '@warn',
-		documentation: localize(
-			'scss.builtin.@warn',
-			'Prints the value of an expression to the standard error output stream. Useful for libraries that need to warn users of deprecations or recovering from minor mixin usage mistakes. Warnings can be turned off with the `--quiet` command-line option or the `:quiet` Sass option.'
-		),
-		kind: CompletionItemKind.Keyword
-	},
-	{
-		label: '@error',
-		documentation: localize(
-			'scss.builtin.@error',
-			'Throws the value of an expression as a fatal error with stack trace. Useful for validating arguments to mixins and functions.'
-		),
-		kind: CompletionItemKind.Keyword
-	},
-	{
-		label: '@if',
-		documentation: localize(
-			'scss.builtin.@if',
-			'Includes the body if the expression does not evaluate to `false` or `null`.'
-		),
-		insertText: '@if ${1:expr} {\n\t$0\n}',
-		insertTextFormat: InsertTextFormat.Snippet,
-		kind: CompletionItemKind.Keyword
-	},
-	{
-		label: '@for',
-		documentation: localize(
-			'scss.builtin.@for',
-			'For loop that repeatedly outputs a set of styles for each `$var` in the `from/through` or `from/to` clause.'
-		),
-		insertText: '@for \\$${1:var} from ${2:start} ${3|to,through|} ${4:end} {\n\t$0\n}',
-		insertTextFormat: InsertTextFormat.Snippet,
-		kind: CompletionItemKind.Keyword
-	},
-	{
-		label: '@each',
-		documentation: localize(
-			'scss.builtin.@each',
-			'Each loop that sets `$var` to each item in the list or map, then outputs the styles it contains using that value of `$var`.'
-		),
-		insertText: '@each \\$${1:var} in ${2:list} {\n\t$0\n}',
-		insertTextFormat: InsertTextFormat.Snippet,
-		kind: CompletionItemKind.Keyword
-	},
-	{
-		label: '@while',
-		documentation: localize(
-			'scss.builtin.@while',
-			'While loop that takes an expression and repeatedly outputs the nested styles until the statement evaluates to `false`.'
-		),
-		insertText: '@while ${1:condition} {\n\t$0\n}',
-		insertTextFormat: InsertTextFormat.Snippet,
-		kind: CompletionItemKind.Keyword
-	},
-	{
-		label: '@mixin',
-		documentation: localize(
-			'scss.builtin.@mixin',
-			'Defines styles that can be re-used throughout the stylesheet with `@include`.'
-		),
-		insertText: '@mixin ${1:name} {\n\t$0\n}',
-		insertTextFormat: InsertTextFormat.Snippet,
-		kind: CompletionItemKind.Keyword
-	},
-	{
-		label: '@include',
-		documentation: localize(
-			'scss.builtin.@include',
-			'Includes the styles defined by another mixin into the current rule.'
-		),
-		kind: CompletionItemKind.Keyword
-	},
-	{
-		label: '@function',
-		documentation: localize(
-			'scss.builtin.@function',
-			'Defines complex operations that can be re-used throughout stylesheets.'
-		),
-		kind: CompletionItemKind.Keyword
-	}
-];
-
 interface CompletionItemWithReferences extends CompletionItem {
 	references?: IReference[];
 }
 
-const scssAtDirectives: CompletionItemWithReferences[] = [
+const atDirectives: CompletionItemWithReferences[] = [
 	{
 		label: '@extend',
 		documentation: localize('scss.builtin.@extend', 'Inherits the styles of another selector.'),
@@ -678,64 +572,48 @@ function functionToCompletionItem(proposal: IFunctionInfo): CompletionItem {
 	return item;
 }
 
-class SCSSDataManager {
-	private _atDirectives: CompletionItem[];
-	private _moduleAtDirectives: CompletionItem[];
-	private _builtinModules: CompletionItem[];
-
-	constructor() {
-		this._atDirectives = atDirectives.map(i => {
-			return {
-				...i,
-				documentation: computeReferenceDocumentation(i)
-			};
-		});
-
-		this._moduleAtDirectives = moduleAtDirectives.map(i => {
-			return {
-				...i,
-				documentation: computeReferenceDocumentation(i)
-			};
-		});
-
-		this._builtinModules = builtinModules.map(i => {
-			return {
-				...i,
-				documentation: computeReferenceDocumentation(i)
-			};
-		});
-	}
-
-	getColorFunctions(): CompletionItem[] {
-		return colorFunctions.map(functionToCompletionItem);
-	}
-
-	getSelectorFunctions(): CompletionItem[] {
-		return selectorFunctions.map(functionToCompletionItem);
-	}
-
-	getBuiltInFunctions(restrictions?: string[]): CompletionItem[] {
-		if (!restrictions) {
-			return builtInFunctions.map(functionToCompletionItem);
-		}
-
-		return builtInFunctions.filter(f => !f.type || restrictions.indexOf(f.type) !== -1).map(functionToCompletionItem);
-	}
-
-	getAtDirectives(): CompletionItem[] {
-		return this._atDirectives;
-	}
-
-	getModuleAtDirectives(): CompletionItem[] {
-		return this._moduleAtDirectives;
-	}
-
-	getBuiltinModules(): CompletionItem[] {
-		return this._builtinModules;
-	}
+export function getColorFunctions(): CompletionItem[] {
+	return colorFunctions.map(functionToCompletionItem);
 }
 
-export const scssDataManager = new SCSSDataManager();
+export function getSelectorFunctions(): CompletionItem[] {
+	return selectorFunctions.map(functionToCompletionItem);
+}
+
+export function getBuiltInFunctions(restrictions?: string[]): CompletionItem[] {
+	if (!restrictions) {
+		return builtInFunctions.map(functionToCompletionItem);
+	}
+
+	return builtInFunctions.filter(f => !f.type || restrictions.indexOf(f.type) !== -1).map(functionToCompletionItem);
+}
+
+export function getAtDirectives(): CompletionItem[] {
+	return atDirectives.map(i => {
+		return {
+			...i,
+			documentation: computeReferenceDocumentation(i)
+		};
+	});
+}
+
+export function getModuleAtDirectives(): CompletionItem[] {
+	return moduleAtDirectives.map(i => {
+		return {
+			...i,
+			documentation: computeReferenceDocumentation(i)
+		};
+	});
+}
+
+export function getBuiltinModules(): CompletionItem[] {
+	return builtinModules.map(i => {
+		return {
+			...i,
+			documentation: computeReferenceDocumentation(i)
+		};
+	});
+}
 
 function computeReferenceDocumentation(i: CompletionItemWithReferences) {
 	let markdownDoc: MarkupContent = { kind: 'markdown', value: '' };
