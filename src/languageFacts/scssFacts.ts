@@ -768,36 +768,60 @@ function createReplaceFunction() {
 	};
 }
 
-function functionToCompletionItem(proposal: IFunctionInfo): CompletionItem {
+function functionToCompletionItem(proposal: IFunctionInfo) {
 	const label = proposal.func.substr(0, proposal.func.indexOf('('));
 	const insertText = proposal.func.replace(/\[?(\$\w+)\]?/g, createReplaceFunction());
 
-	const item: CompletionItem = {
+	const item: CompletionItemWithReferences = {
 		label: label,
 		detail: proposal.func,
 		documentation: proposal.desc,
 		insertText,
 		insertTextFormat: InsertTextFormat.Snippet,
-		kind: CompletionItemKind.Function
+		kind: CompletionItemKind.Function,
+		references: proposal.references
 	};
 
 	return item;
 }
 
 export function getColorFunctions(): CompletionItem[] {
-	return colorFunctions.map(functionToCompletionItem);
+	return colorFunctions.map(functionToCompletionItem).map(i => {
+		return {
+			...i,
+			documentation: computeReferenceDocumentation(i)
+		};
+	});
 }
 
 export function getSelectorFunctions(): CompletionItem[] {
-	return selectorFunctions.map(functionToCompletionItem);
+	return selectorFunctions.map(functionToCompletionItem).map(i => {
+		return {
+			...i,
+			documentation: computeReferenceDocumentation(i)
+		};
+	});
 }
 
 export function getBuiltInFunctions(restrictions?: string[]): CompletionItem[] {
 	if (!restrictions) {
-		return builtInFunctions.map(functionToCompletionItem);
+		return builtInFunctions.map(functionToCompletionItem).map(i => {
+			return {
+				...i,
+				documentation: computeReferenceDocumentation(i)
+			};
+		});
 	}
 
-	return builtInFunctions.filter(f => !f.type || restrictions.indexOf(f.type) !== -1).map(functionToCompletionItem);
+	return builtInFunctions
+		.filter(f => !f.type || restrictions.indexOf(f.type) !== -1)
+		.map(functionToCompletionItem)
+		.map(i => {
+			return {
+				...i,
+				documentation: computeReferenceDocumentation(i)
+			};
+		});
 }
 
 export function getAtDirectives(): CompletionItem[] {
