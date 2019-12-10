@@ -16,6 +16,7 @@ interface IFunctionInfo {
 	references?: IReference[];
 }
 
+// Color module: https://sass-lang.com/documentation/modules/color
 const colorFunctions: IFunctionInfo[] = [
 	{
 		func: 'adjust-color($color, [$red], [$green], [$blue], [$hue], [$saturation], [$lightness], [$alpha])',
@@ -180,169 +181,380 @@ const colorFunctions: IFunctionInfo[] = [
 	}
 ];
 
+// Selector module: https://sass-lang.com/documentation/modules/selector
 const selectorFunctions: IFunctionInfo[] = [
 	{
 		func: 'selector-nest($selectors…)',
 		desc: localize(
 			'scss.builtin.selector-nest',
-			'Nests selector beneath one another like they would be nested in the stylesheet.'
-		)
+			'Combines `$selectors` as though they were nested within one another in the stylesheet.'
+		),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/selector#nest' }]
 	},
 	{
 		func: 'selector-append($selectors…)',
-		desc: localize('scss.builtin.selector-append', 'Appends selectors to one another without spaces in between.')
+		desc: localize(
+			'scss.builtin.selector-append',
+			'Combines `$selectors` without descendant combinators—that is, without whitespace between them.'
+		),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/selector#append' }]
 	},
 	{
 		func: 'selector-extend($selector, $extendee, $extender)',
-		desc: localize('scss.builtin.selector-extend', 'Extends $extendee with $extender within $selector.')
+		desc: localize('scss.builtin.selector-extend', 'Extends `$selector` as with the `@extend` rule.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/selector#extend' }]
 	},
 	{
 		func: 'selector-replace($selector, $original, $replacement)',
-		desc: localize('scss.builtin.selector-replace', 'Replaces $original with $replacement within $selector.')
+		desc: localize(
+			'scss.builtin.selector-replace',
+			'Returns a copy of `$selector` with all instances of `$original` replaced by `$replacement`.'
+		),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/selector#replace' }]
 	},
 	{
 		func: 'selector-unify($selector1, $selector2)',
 		desc: localize(
 			'scss.builtin.selector-unify',
-			'Unifies two selectors to produce a selector that matches elements matched by both.'
-		)
+			'Returns a selector that matches only elements matched by both `$selector1` and `$selector2`.'
+		),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/selector#unify' }]
 	},
 	{
 		func: 'is-superselector($super, $sub)',
 		desc: localize(
 			'scss.builtin.is-superselector',
-			'Returns whether $super matches all the elements $sub does, and possibly more.'
-		)
+			'Returns whether the selector `$super` matches all the elements that the selector `$sub` matches.'
+		),
+		references: [
+			{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/selector#is-superselector' }
+		]
 	},
 	{
 		func: 'simple-selectors($selector)',
-		desc: localize('scss.builtin.simple-selectors', 'Returns the simple selectors that comprise a compound selector.')
+		desc: localize('scss.builtin.simple-selectors', 'Returns a list of simple selectors in `$selector`.'),
+		references: [
+			{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/selector#simple-selectors' }
+		]
 	},
 	{
 		func: 'selector-parse($selector)',
-		desc: localize('scss.builtin.selector-parse', 'Parses a selector into the format returned by &.')
+		desc: localize('scss.builtin.selector-parse', 'Returns `$selector` in the selector value format.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/selector#parse' }]
 	}
 ];
 
 const builtInFunctions: IFunctionInfo[] = [
-	{ func: 'unquote($string)', desc: localize('scss.builtin.unquote', 'Removes quotes from a string.') },
-	{ func: 'quote($string)', desc: localize('scss.builtin.quote', 'Adds quotes to a string.') },
+	// String module: https://sass-lang.com/documentation/modules/string
+	{
+		func: 'unquote($string)',
+		desc: localize(
+			'scss.builtin.unquote',
+			'Returns `$string` as an unquoted string. This can produce strings that aren’t valid CSS, so use with caution.'
+		),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/string#unquote' }]
+	},
+	{
+		func: 'quote($string)',
+		desc: localize('scss.builtin.quote', 'Returns `$string` as a quoted string.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/string#quote' }]
+	},
 	{
 		func: 'str-length($string)',
-		desc: localize('scss.builtin.str-length', 'Returns the number of characters in a string.')
+		desc: localize('scss.builtin.str-length', 'Returns the number of characters in `$string`.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/string#str-length' }]
 	},
 	{
 		func: 'str-insert($string, $insert, $index)',
-		desc: localize('scss.builtin.str-insert', 'Inserts $insert into $string at $index.')
+		desc: localize('scss.builtin.str-insert', 'Inserts $insert into $string at $index.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/string#str-insert' }]
 	},
 	{
 		func: 'str-index($string, $substring)',
-		desc: localize('scss.builtin.str-index', 'Returns the index of the first occurance of $substring in $string.')
+		desc: localize('scss.builtin.str-index', 'Returns the index of the first occurance of $substring in $string.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/string#str-index' }]
 	},
 	{
 		func: 'str-slice($string, $start-at, [$end-at])',
-		desc: localize('scss.builtin.str-slice', 'Extracts a substring from $string.')
+		desc: localize(
+			'scss.builtin.str-slice',
+			'Returns the slice of `$string` starting at index `$start-at` and ending at index `$end-at` (both inclusive).'
+		),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/string#str-slice' }]
 	},
-	{ func: 'to-upper-case($string)', desc: localize('scss.builtin.to-upper-case', 'Converts a string to upper case.') },
-	{ func: 'to-lower-case($string)', desc: localize('scss.builtin.to-lower-case', 'Converts a string to lower case.') },
+	{
+		func: 'to-upper-case($string)',
+		desc: localize(
+			'scss.builtin.to-upper-case',
+			'Returns a copy of `$string` with the ASCII letters converted to upper case.'
+		),
+		references: [
+			{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/string#to-upper-case' }
+		]
+	},
+	{
+		func: 'to-lower-case($string)',
+		desc: localize(
+			'scss.builtin.to-lower-case',
+			'Returns a copy of `$string` with the ASCII letters converted to lower case.'
+		),
+		references: [
+			{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/string#to-lower-case' }
+		]
+	},
+	// Math module: https://sass-lang.com/documentation/modules/math
+	{
+		func: 'abs($number)',
+		desc: localize(
+			'scss.builtin.abs',
+			'Returns the absolute value of `$number`. If `$number` is negative, this returns `-$number`, and if `$number` is positive, it returns `$number` as-is.'
+		),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/math#abs' }]
+	},
 	{
 		func: 'percentage($number)',
-		desc: localize('scss.builtin.percentage', 'Converts a unitless number to a percentage.'),
-		type: 'percentage'
+		desc: localize(
+			'scss.builtin.percentage',
+			'Converts a unitless `$number` (usually a decimal between 0 and 1) to a percentage.'
+		),
+		type: 'percentage',
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/math#percentage' }]
 	},
-	{ func: 'round($number)', desc: localize('scss.builtin.round', 'Rounds a number to the nearest whole number.') },
-	{ func: 'ceil($number)', desc: localize('scss.builtin.ceil', 'Rounds a number up to the next whole number.') },
+	{
+		func: 'round($number)',
+		desc: localize('scss.builtin.round', 'Rounds `$number` to the nearest whole number.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/math#round' }]
+	},
+	{
+		func: 'ceil($number)',
+		desc: localize('scss.builtin.ceil', 'Rounds `$number` up to the next highest whole number.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/math#ceil' }]
+	},
 	{
 		func: 'floor($number)',
-		desc: localize('scss.builtin.floor', 'Rounds a number down to the previous whole number.')
+		desc: localize('scss.builtin.floor', 'Rounds `$number` down to the next lowest whole number.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/math#floor' }]
 	},
-	{ func: 'abs($number)', desc: localize('scss.builtin.abs', 'Returns the absolute value of a number.') },
-	{ func: 'min($numbers)', desc: localize('scss.builtin.min', 'Finds the minimum of several numbers.') },
-	{ func: 'max($numbers)', desc: localize('scss.builtin.max', 'Finds the maximum of several numbers.') },
-	{ func: 'random([$limit])', desc: localize('scss.builtin.random', 'Returns a random number.') },
-	{ func: 'length($list)', desc: localize('scss.builtin.length', 'Returns the length of a list.') },
-	{ func: 'nth($list, $n)', desc: localize('scss.builtin.nth', 'Returns a specific item in a list.') },
-	{ func: 'set-nth($list, $n, $value)', desc: localize('scss.builtin.set-nth', 'Replaces the nth item in a list.') },
+	{
+		func: 'min($numbers)',
+		desc: localize(
+			'scss.builtin.min',
+			'Returns the lowest of one or more numbers. A list of numbers can be passed using ...'
+		),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/math#min' }]
+	},
+	{
+		func: 'max($numbers)',
+		desc: localize(
+			'scss.builtin.max',
+			'Returns the highest of one or more numbers. A list of numbers can be passed using ...'
+		),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/math#max' }]
+	},
+	{
+		func: 'random([$limit])',
+		desc: localize(
+			'scss.builtin.random',
+			'If `$limit` is null, returns a random decimal number between 0 and 1.\n\nIf `$limit` is a number greater than or equal to 1, returns a random whole number between 1 and `$limit`.'
+		),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/math#random' }]
+	},
+	{
+		func: 'comparable($number1, $number2)',
+		desc: localize('scss.builtin.comparable', 'Returns whether `$number1` and `$number2` have compatible units.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/math#compatible' }]
+	},
+	{
+		func: 'unit($number)',
+		desc: localize('scss.builtin.unit', "Returns a string representation of `$number`'s units."),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/math#unit' }]
+	},
+	{
+		func: 'unitless($number)',
+		desc: localize('scss.builtin.unitless', 'Returns whether `$number` has no units.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/math#unitless' }]
+	},
+
+	// List module: https://sass-lang.com/documentation/modules/list
+	{
+		func: 'length($list)',
+		desc: localize('scss.builtin.length', 'Returns the length of `$list`.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/list#length' }]
+	},
+	{
+		func: 'nth($list, $n)',
+		desc: localize('scss.builtin.nth', 'Returns the element of `$list` at index `$n`.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/list#nth' }]
+	},
+	{
+		func: 'set-nth($list, $n, $value)',
+		desc: localize('scss.builtin.set-nth', 'Combines every list in `$lists` into a single list of sub-lists.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/list#set-nth' }]
+	},
 	{
 		func: 'join($list1, $list2, [$separator])',
-		desc: localize('scss.builtin.join', 'Joins together two lists into one.')
+		desc: localize(
+			'scss.builtin.join',
+			'Returns a new list containing the elements of `$list1` followed by the elements of `$list2`.'
+		),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/list#join' }]
 	},
 	{
 		func: 'append($list1, $val, [$separator])',
-		desc: localize('scss.builtin.append', 'Appends a single value onto the end of a list.')
+		desc: localize('scss.builtin.append', 'Returns a copy of `$list` with `$val` added to the end.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/list#append' }]
 	},
 	{
 		func: 'zip($lists)',
-		desc: localize('scss.builtin.zip', 'Combines several lists into a single multidimensional list.')
+		desc: localize('scss.builtin.zip', 'Combines every list in `$lists` into a single list of sub-lists.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/list#zip' }]
 	},
 	{
 		func: 'index($list, $value)',
-		desc: localize('scss.builtin.index', 'Returns the position of a value within a list.')
+		desc: localize('scss.builtin.index', 'Returns the index of `$value` in `$list`.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/list#index' }]
 	},
-	{ func: 'list-separator(#list)', desc: localize('scss.builtin.list-separator', 'Returns the separator of a list.') },
+	{
+		func: 'list-separator(#list)',
+		desc: localize(
+			'scss.builtin.list-separator',
+			'Returns the name of the separator used by `$list`, either space or comma.\n\nIf `$list` doesn’t have a separator, returns space.'
+		),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/list#separator' }]
+	},
+	{
+		func: 'is-bracketed($list)',
+		desc: localize('scss.builtin.is-bracketed', 'Returns whether `$list` has square brackets.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/list#is-bracketed' }]
+	},
+
+	// Map module: https://sass-lang.com/documentation/modules/map
 	{
 		func: 'map-get($map, $key)',
-		desc: localize('scss.builtin.map-get', 'Returns the value in a map associated with a given key.')
+		desc: localize('scss.builtin.map-get', 'Returns the value in `$map` associated with `$key`.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/map#get' }]
 	},
 	{
 		func: 'map-merge($map1, $map2)',
-		desc: localize('scss.builtin.map-merge', 'Merges two maps together into a new map.')
+		desc: localize(
+			'scss.builtin.map-merge',
+			'Returns a new map with all the keys and values from both `$map1` and `$map2`.'
+		),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/map#merge' }]
 	},
 	{
 		func: 'map-remove($map, $keys)',
-		desc: localize('scss.builtin.map-remove', 'Returns a new map with keys removed.')
+		desc: localize('scss.builtin.map-remove', 'Returns a copy of `$map` without any values associated with `$keys`.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/map#remove' }]
 	},
-	{ func: 'map-keys($map)', desc: localize('scss.builtin.map-keys', 'Returns a list of all keys in a map.') },
-	{ func: 'map-values($map)', desc: localize('scss.builtin.map-values', 'Returns a list of all values in a map.') },
+	{
+		func: 'map-keys($map)',
+		desc: localize('scss.builtin.map-keys', 'Returns a comma-separated list of all the keys in `$map`.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/map#keys' }]
+	},
+	{
+		func: 'map-values($map)',
+		desc: localize('scss.builtin.map-values', 'Returns a comma-separated list of all the values in `$map`.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/map#values' }]
+	},
 	{
 		func: 'map-has-key($map, $key)',
-		desc: localize('scss.builtin.map-has-key', 'Returns whether a map has a value associated with a given key.')
+		desc: localize('scss.builtin.map-has-key', 'Returns whether `$map` contains a value associated with `$key`.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/map#has-key' }]
+	},
+
+	// Meta module: https://sass-lang.com/documentation/modules/meta
+	/**
+	 * Not handled yet; only usable through module support
+	 * meta.load-css
+	 * meta.module-functions
+	 * meta.module-variables
+	 */
+	{
+		func: 'call($function, $args…)',
+		desc: localize('scss.builtin.call', 'Invokes `$function` with `$args` and returns the result.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/meta#call' }]
 	},
 	{
-		func: 'keywords($args)',
-		desc: localize('scss.builtin.keywords', 'Returns the keywords passed to a function that takes variable arguments.')
+		func: 'content-exists()',
+		desc: localize(
+			'scss.builtin.content-exists',
+			'Returns whether the current mixin was passed a [@content block](https://sass-lang.com/documentation/at-rules/mixin#content-blocks).\n\nThrows an error if called outside of a mixin.'
+		),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/meta#content-exists' }]
 	},
 	{
 		func: 'feature-exists($feature)',
-		desc: localize('scss.builtin.feature-exists', 'Returns whether a feature exists in the current Sass runtime.')
+		desc: localize(
+			'scss.builtin.feature-exists',
+			'Returns whether the current Sass implementation supports `$feature`.'
+		),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/meta#feature-exists' }]
 	},
 	{
-		func: 'variable-exists($name)',
+		func: 'function-exists($name)',
 		desc: localize(
-			'scss.builtin.variable-exists',
-			'Returns whether a variable with the given name exists in the current scope.'
-		)
+			'scss.builtin.function-exists',
+			'Returns whether a function named `$name` is defined, either as a built-in function or a user-defined function.'
+		),
+		references: [
+			{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/meta#function-exists' }
+		]
+	},
+	{
+		func: 'get-function($name, $css, $module)',
+		desc: localize(
+			'scss.builtin.get-function',
+			'Returns the [function](https://sass-lang.com/documentation/values/functions) named `$name`.'
+		),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/meta#get-function' }]
 	},
 	{
 		func: 'global-variable-exists($name)',
 		desc: localize(
 			'scss.builtin.global-variable-exists',
-			'Returns whether a variable with the given name exists in the global scope.'
-		)
-	},
-	{
-		func: 'function-exists($name)',
-		desc: localize('scss.builtin.function-exists', 'Returns whether a function with the given name exists.')
-	},
-	{
-		func: 'mixin-exists($name)',
-		desc: localize('scss.builtin.mixin-exists', 'Returns whether a mixin with the given name exists.')
+			'Returns whether a [global variable](https://sass-lang.com/documentation/variables#scope) named `$name` (without the `$`) exists.'
+		),
+		references: [
+			{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/meta#global-variable-exists' }
+		]
 	},
 	{
 		func: 'inspect($value)',
-		desc: localize(
-			'scss.builtin.inspect',
-			'Returns the string representation of a value as it would be represented in Sass.'
-		)
+		desc: localize('scss.builtin.inspect', 'Returns a string representation of `$value`.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/meta#inspect' }]
 	},
-	{ func: 'type-of($value)', desc: localize('scss.builtin.type-of', 'Returns the type of a value.') },
-	{ func: 'unit($number)', desc: localize('scss.builtin.unit', 'Returns the unit(s) associated with a number.') },
-	{ func: 'unitless($number)', desc: localize('scss.builtin.unitless', 'Returns whether a number has units.') },
 	{
-		func: 'comparable($number1, $number2)',
-		desc: localize('scss.builtin.comparable', 'Returns whether two numbers can be added, subtracted, or compared.')
+		func: 'keywords($args)',
+		desc: localize(
+			'scss.builtin.keywords',
+			'Returns the keywords passed to a mixin or function that takes [arbitrary arguments](https://sass-lang.com/documentation/at-rules/mixin#taking-arbitrary-arguments). The `$args` argument must be an [argument list](https://sass-lang.com/documentation/values/lists#argument-lists).'
+		),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/meta#keywords' }]
 	},
-	{ func: 'call($name, $args…)', desc: localize('scss.builtin.call', 'Dynamically calls a Sass function.') }
+	{
+		func: 'mixin-exists($name)',
+		desc: localize(
+			'scss.builtin.mixin-exists',
+			'Returns whether a [mixin](https://sass-lang.com/documentation/at-rules/mixin) named `$name` exists.'
+		),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/meta#mixin-exists' }]
+	},
+	{
+		func: 'type-of($value)',
+		desc: localize('scss.builtin.type-of', 'Returns the type of `$value`.'),
+		references: [{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/meta#type-of' }]
+	},
+	{
+		func: 'variable-exists($name)',
+		desc: localize(
+			'scss.builtin.variable-exists',
+			'Returns whether a variable named `$name` (without the `$`) exists in the current scope.'
+		),
+		references: [
+			{ name: 'SASS documentation', url: 'https://sass-lang.com/documentation/modules/meta#variable-exists' }
+		]
+	}
 ];
 
 interface CompletionItemWithReferences extends CompletionItem {
