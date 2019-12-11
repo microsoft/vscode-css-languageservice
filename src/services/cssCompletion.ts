@@ -878,6 +878,18 @@ export class CSSCompletion {
 				result.items.push(this.makeTermProposal(mixinSymbol, mixinSymbol.node.getParameters(), null));
 			}
 		}
+
+		const identifierNode: nodes.Node | null = ref.getIdentifier() || null;
+
+		this.completionParticipants.forEach(participant => {
+			if (participant.onCssMixinReference) {
+				participant.onCssMixinReference({
+					mixinName: this.currentWord,
+					range: this.getCompletionRange(identifierNode)
+				});
+			}
+		});
+
 		return result;
 	}
 

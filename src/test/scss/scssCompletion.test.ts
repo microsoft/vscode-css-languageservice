@@ -6,20 +6,21 @@
 
 import * as assert from 'assert';
 
-import { getSCSSLanguageService, TextDocument, Position, InsertTextFormat, CompletionItemKind, ImportPathCompletionContext } from '../../cssLanguageService';
+import { getSCSSLanguageService, TextDocument, Position, InsertTextFormat, CompletionItemKind, MixinReferenceCompletionContext, ImportPathCompletionContext } from '../../cssLanguageService';
 
 import { assertCompletion, ItemDescription } from '../css/completion.test';
 import { newRange } from '../css/navigation.test';
 
 suite('SCSS - Completions', () => {
 
-	let testCompletionFor = function (
+	let testCompletionFor = function(
 		value: string,
 		expected: {
 			count?: number,
 			items?: ItemDescription[],
 			participant?: {
 				onImportPath?: ImportPathCompletionContext[],
+				onMixinReference?: MixinReferenceCompletionContext[],
 			},
 		},
 	) {
@@ -27,13 +28,15 @@ suite('SCSS - Completions', () => {
 		value = value.substr(0, offset) + value.substr(offset + 1);
 
 		let actualImportPathContexts: ImportPathCompletionContext[] = [];
+		let actualMixinReferenceContexts: MixinReferenceCompletionContext[] = [];
 
 		let ls = getSCSSLanguageService();
 
 		if (expected.participant) {
 			ls.setCompletionParticipants([
 				{
-					onCssImportPath: context => actualImportPathContexts.push(context)
+					onCssImportPath: context => actualImportPathContexts.push(context),
+					onCssMixinReference: context => actualMixinReferenceContexts.push(context)
 				}
 			]);
 		}
@@ -55,10 +58,13 @@ suite('SCSS - Completions', () => {
 			if (expected.participant.onImportPath) {
 				assert.deepEqual(actualImportPathContexts, expected.participant.onImportPath);
 			}
+			if (expected.participant.onMixinReference) {
+				assert.deepEqual(actualMixinReferenceContexts, expected.participant.onMixinReference);
+			}
 		}
 	};
 
-	test('stylesheet', function (): any {
+	test('stylesheet', function(): any {
 		testCompletionFor('$i: 0; body { width: |', {
 			items: [
 				{ label: '$i', documentation: '0' }
@@ -159,7 +165,27 @@ suite('SCSS - Completions', () => {
 		});
 	});
 
-	test('at rules', function (): any {
+	test('suggestParticipants', function(): any {
+		testCompletionFor(`html { @include | }`, {
+			participant: {
+				onMixinReference: [{ mixinName: '', range: newRange(16, 16) }]
+			}
+		});
+
+		testCompletionFor(`html { @include m| }`, {
+			participant: {
+				onMixinReference: [{ mixinName: 'm', range: newRange(16, 17) }]
+			}
+		});
+
+		testCompletionFor(`html { @include mixin(|) }`, {
+			participant: {
+				onMixinReference: [{ mixinName: '', range: newRange(22, 22) }]
+			}
+		});
+	});
+
+	test('at rules', function(): any {
 		const allAtProposals = {
 			items: [
 				{ label: '@extend' },
@@ -207,8 +233,8 @@ suite('SCSS - Completions', () => {
 		});
 	});
 
-	suite('Modules', function (): any {
-		test('module-loading at-rules', function (): any {
+	suite('Modules', function(): any {
+		test('module-loading at-rules', function(): any {
 			testCompletionFor('@', {
 				items: [
 					{ label: '@use', documentationIncludes: '[Sass documentation](https://sass-lang.com/documentation/at-rules/use)' },

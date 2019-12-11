@@ -45,11 +45,17 @@ export interface ImportPathCompletionContext {
 	range: Range;
 }
 
+export interface MixinReferenceCompletionContext {
+	mixinName: string;
+	range: Range;
+}
+
 export interface ICompletionParticipant {
 	onCssProperty?: (context: PropertyCompletionContext) => void;
 	onCssPropertyValue?: (context: PropertyValueCompletionContext) => void;
 	onCssURILiteralValue?: (context: URILiteralCompletionContext) => void;
 	onCssImportPath?: (context: ImportPathCompletionContext) => void;
+	onCssMixinReference?: (context: MixinReferenceCompletionContext) => void;
 }
 
 export interface DocumentContext {
