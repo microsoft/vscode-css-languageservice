@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { Color } from 'vscode-languageserver-types';
+import { Color } from '../cssLanguageService';
 
 import * as nodes from '../parser/cssNodes';
 

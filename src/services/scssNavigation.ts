@@ -30,7 +30,7 @@ export class SCSSNavigation extends CSSNavigation {
 	): Promise<DocumentLink[]> {
 		const links = this.findDocumentLinks(document, stylesheet, documentContext);
 		const fsProvider = this.fileSystemProvider;
-		
+
 		const validLinks: DocumentLink[] = [];
 
 		/**
@@ -67,11 +67,13 @@ export class SCSSNavigation extends CSSNavigation {
 							...links[i],
 							target: pathVariations[j]
 						});
-						
+
 						break;
 					}
 				}
 			}
+		} else {
+			validLinks.push(...links);
 		}
 
 		return validLinks;

@@ -8,8 +8,6 @@ import { ParseError } from '../../parser/cssErrors';
 import { LESSParser } from '../../parser/lessParser';
 
 import { assertNode, assertNoNode, assertError } from '../css/parser.test';
-import { assertSymbols, newRange } from '../css/navigation.test';
-import { SymbolKind, Location } from '../../cssLanguageService';
 
 suite('LESS - Parser', () => {
 
@@ -89,14 +87,6 @@ suite('LESS - Parser', () => {
 		assertNode('.font-face(@source, @target) { @font-face { font-family: @source; src: local(\'@{target}\');} }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertError('.color (@color; @padding: 2;;) { }', parser, parser._tryParseMixinDeclaration.bind(parser), ParseError.IdentifierExpected);
 		assertNode('.mixin-definition(@a: {}; @b: {default: works;};) { @a(); @b(); }', parser, parser._tryParseMixinDeclaration.bind(parser));
-	});
-
-	test('basic symbols', () => {
-		let p = new LESSParser();
-		assertSymbols(p, '.a(@gutter: @gutter-width) { &:extend(.b); }', [
-			{ name: '.a', kind: SymbolKind.Method, location: Location.create('test://test/test.css', newRange(0, 44)) },
-			{ name: '.b', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(29, 41)) }
-		]);
 	});
 
 	test('MixinReference', function () {

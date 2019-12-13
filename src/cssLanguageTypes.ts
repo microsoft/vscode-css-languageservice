@@ -4,9 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { Range, TextEdit, Position, DocumentUri, MarkupContent, MarkupKind } from 'vscode-languageserver-types';
+import { Range, Position, DocumentUri, MarkupContent, MarkupKind } from 'vscode-languageserver-types';
+export { TextDocument } from 'vscode-languageserver-textdocument';
 
-export { Range, TextEdit, Position, DocumentUri };
+export * from 'vscode-languageserver-types';
 
 export type LintSettings = { [key: string]: any };
 

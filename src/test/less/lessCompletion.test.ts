@@ -6,13 +6,8 @@
 
 import * as assert from 'assert';
 
-import * as cssLanguageService from '../../cssLanguageService';
-import { LESSCompletion } from '../../services/lessCompletion';
-import { Position } from 'vscode-languageserver-types';
-import { TextDocument } from 'vscode-languageserver-textdocument';
 import { assertCompletion, ItemDescription } from '../css/completion.test';
-import { ClientCapabilities } from '../../cssLanguageTypes';
-
+import { getLESSLanguageService, Position, TextDocument } from '../../cssLanguageService';
 
 suite('LESS - Completions', () => {
 
@@ -20,7 +15,7 @@ suite('LESS - Completions', () => {
 		let offset = value.indexOf('|');
 		value = value.substr(0, offset) + value.substr(offset + 1);
 
-		let ls = cssLanguageService.getLESSLanguageService();
+		let ls = getLESSLanguageService();
 
 		let document = TextDocument.create('test://test/test.less', 'less', 0, value);
 		let position = Position.create(0, offset);
@@ -107,7 +102,7 @@ suite('LESS - Completions', () => {
 				{ label: 'round' }
 			]
 		});
-		
+
 		// https://github.com/Microsoft/vscode/issues/71791
 		test('Items that start with `-` are sorted lower than normal attribute values', () => {
 			testCompletionFor('.foo { display: | }', {

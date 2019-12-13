@@ -4,8 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { FoldingRange, FoldingRangeKind } from 'vscode-languageserver-types';
-import { TextDocument } from 'vscode-languageserver-textdocument';
+import { TextDocument, FoldingRange, FoldingRangeKind } from '../cssLanguageTypes';
 import { TokenType, Scanner, IToken } from '../parser/cssScanner';
 import { SCSSScanner, InterpolationFunction } from '../parser/scssScanner';
 import { LESSScanner } from '../parser/lessScanner';

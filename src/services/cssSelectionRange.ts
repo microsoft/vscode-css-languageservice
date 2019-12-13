@@ -4,8 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { Range, Position, SelectionRange } from 'vscode-languageserver-types';
-import { TextDocument } from 'vscode-languageserver-textdocument';
+import { Range, Position, SelectionRange, TextDocument } from '../cssLanguageTypes';
 import { Stylesheet, NodeType } from '../parser/cssNodes';
 
 export function getSelectionRanges(document: TextDocument, positions: Position[], stylesheet: Stylesheet): SelectionRange[] {

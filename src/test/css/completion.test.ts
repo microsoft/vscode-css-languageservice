@@ -5,11 +5,11 @@
 'use strict';
 
 import * as assert from 'assert';
-import * as cssLanguageService from '../../cssLanguageService';
-
-import { CompletionList, Position, CompletionItemKind, InsertTextFormat, Range, Command, MarkupContent } from 'vscode-languageserver-types';
-import { TextDocument } from 'vscode-languageserver-textdocument';
-import { LanguageSettings, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext } from '../../cssLanguageTypes';
+import {
+	getCSSLanguageService,
+	LanguageSettings, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext,
+	TextDocument, CompletionList, Position, CompletionItemKind, InsertTextFormat, Range, Command, MarkupContent
+} from '../../cssLanguageService';
 
 export interface ItemDescription {
 	label: string;
@@ -75,7 +75,7 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 
 suite('CSS - Completion', () => {
 
-	let testCompletionFor = function(
+	let testCompletionFor = function (
 		value: string,
 		expected: {
 			count?: number;
@@ -102,7 +102,7 @@ suite('CSS - Completion', () => {
 		let actualURILiteralValueContexts: URILiteralCompletionContext[] = [];
 		let actualImportPathContexts: ImportPathCompletionContext[] = [];
 
-		let ls = cssLanguageService.getCSSLanguageService();
+		let ls = getCSSLanguageService();
 		ls.configure(settings);
 
 		if (expected.participant) {
@@ -526,19 +526,19 @@ suite('CSS - Completion', () => {
 		testCompletionFor(`@import './|'`, {
 			count: 0,
 			participant: {
-				onImportPath: [{ pathValue: `'./'`, position: Position.create(0, 11), range: newRange(8, 12)}]
+				onImportPath: [{ pathValue: `'./'`, position: Position.create(0, 11), range: newRange(8, 12) }]
 			}
 		});
 		testCompletionFor(`@import "./|";`, {
 			count: 0,
 			participant: {
-				onImportPath: [{ pathValue: `"./"`, position: Position.create(0, 11), range: newRange(8, 12)}]
+				onImportPath: [{ pathValue: `"./"`, position: Position.create(0, 11), range: newRange(8, 12) }]
 			}
 		});
 		testCompletionFor(`@import "./|foo";`, {
 			count: 0,
 			participant: {
-				onImportPath: [{ pathValue: `"./foo"`, position: Position.create(0, 11), range: newRange(8, 15)}]
+				onImportPath: [{ pathValue: `"./foo"`, position: Position.create(0, 11), range: newRange(8, 15) }]
 			}
 		});
 	});
@@ -604,7 +604,7 @@ suite('CSS - Completion', () => {
 			]
 		});
 	});
-	
+
 	test(`Color swatch for variables that's color`, () => {
 		testCompletionFor('.foo { --foo: #bbb; color: --| }', {
 			items: [
@@ -615,7 +615,7 @@ suite('CSS - Completion', () => {
 				}
 			]
 		});
-		
+
 		testCompletionFor('.foo { --foo: #bbbbbb; color: --| }', {
 			items: [
 				{
@@ -625,7 +625,7 @@ suite('CSS - Completion', () => {
 				}
 			]
 		});
-		
+
 		testCompletionFor('.foo { --foo: red; color: --| }', {
 			items: [
 				{
@@ -635,7 +635,7 @@ suite('CSS - Completion', () => {
 				}
 			]
 		});
-		
+
 		testCompletionFor('.foo { --foo: RED; color: --| }', {
 			items: [
 				{
@@ -645,7 +645,7 @@ suite('CSS - Completion', () => {
 				}
 			]
 		});
-		
+
 
 		testCompletionFor('.foo { --foo: #bbb; color: var(|) }', {
 			items: [
@@ -657,7 +657,7 @@ suite('CSS - Completion', () => {
 			]
 		});
 	});
-	
+
 	test('Seimicolon on property completion', () => {
 		testCompletionFor('.foo { | }', {
 			items: [
@@ -666,7 +666,7 @@ suite('CSS - Completion', () => {
 					resultText: '.foo { position: $0; }'
 				}
 			]
-		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true }});
+		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true } });
 
 		testCompletionFor('.foo { p| }', {
 			items: [
@@ -675,8 +675,8 @@ suite('CSS - Completion', () => {
 					resultText: '.foo { position: $0; }'
 				}
 			]
-		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true }});
-		
+		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true } });
+
 		testCompletionFor('.foo { p|o }', {
 			items: [
 				{
@@ -684,7 +684,7 @@ suite('CSS - Completion', () => {
 					resultText: '.foo { position:  }'
 				}
 			]
-		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true }});
+		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true } });
 
 		testCompletionFor('.foo { p|os: relative; }', {
 			items: [
@@ -693,7 +693,7 @@ suite('CSS - Completion', () => {
 					resultText: '.foo { position: relative; }'
 				}
 			]
-		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true }});
+		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true } });
 
 		testCompletionFor('.foo { p|: ; }', {
 			items: [
@@ -702,7 +702,7 @@ suite('CSS - Completion', () => {
 					resultText: '.foo { position: ; }'
 				}
 			]
-		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true }});
+		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true } });
 
 		testCompletionFor('.foo { p|; }', {
 			items: [
@@ -711,7 +711,7 @@ suite('CSS - Completion', () => {
 					resultText: '.foo { position: ; }'
 				}
 			]
-		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true }});
+		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true } });
 	});
 
 	// https://github.com/Microsoft/vscode/issues/71791

@@ -8,29 +8,29 @@ import * as assert from 'assert';
 import * as url from 'url';
 import { Scope, GlobalScope, ScopeBuilder } from '../../parser/cssSymbolScope';
 import * as nodes from '../../parser/cssNodes';
-import { Parser } from '../../parser/cssParser';
-import { CSSNavigation } from '../../services/cssNavigation';
 import { colorFrom256RGB, colorFromHSL } from '../../languageFacts/facts';
 
-import { DocumentHighlightKind, Range, Position, TextEdit, Color, ColorInformation, DocumentLink, DocumentSymbol, SymbolKind, SymbolInformation, Location } from 'vscode-languageserver-types';
-import { TextDocument } from 'vscode-languageserver-textdocument';
-import { getCSSLanguageService, LanguageService, DocumentContext } from '../../cssLanguageService';
+import {
+	DocumentContext, TextDocument, DocumentHighlightKind, Range, Position, TextEdit, Color,
+	ColorInformation, DocumentLink, SymbolKind, SymbolInformation, Location,
+	getCSSLanguageService, LanguageService, Diagnostic, Stylesheet
+} from '../../cssLanguageService';
 
-export function assertScopesAndSymbols(p: Parser, input: string, expected: string): void {
-	let global = createScope(p, input);
+export function assertScopesAndSymbols(ls: LanguageService, input: string, expected: string): void {
+	let global = createScope(ls, input);
 	assert.equal(scopeToString(global), expected);
 }
 
-export function assertHighlights(p: Parser, input: string, marker: string, expectedMatches: number, expectedWrites: number, elementName?: string) {
+export function assertHighlights(ls: LanguageService, input: string, marker: string, expectedMatches: number, expectedWrites: number, elementName?: string) {
 	let document = TextDocument.create('test://test/test.css', 'css', 0, input);
 
-	let stylesheet = p.parseStylesheet(document);
+	let stylesheet = ls.parseStylesheet(document);
 	assertNoErrors(stylesheet);
 
 	let index = input.indexOf(marker) + marker.length;
 	let position = document.positionAt(index);
 
-	let highlights = new CSSNavigation().findDocumentHighlights(document, position, stylesheet);
+	let highlights = ls.findDocumentHighlights(document, position, stylesheet);
 	assert.equal(highlights.length, expectedMatches, input);
 
 	let nWrites = 0;
@@ -53,21 +53,21 @@ export function getDocumentContext(documentUrl: string): DocumentContext {
 	};
 }
 
-export async function assertLinks(p: Parser, input: string, expected: DocumentLink[], lang: string = 'css') {
+export async function assertLinks(ls: LanguageService, input: string, expected: DocumentLink[], lang: string = 'css') {
 	let document = TextDocument.create(`test://test/test.${lang}`, lang, 0, input);
 
-	let stylesheet = p.parseStylesheet(document);
+	let stylesheet = ls.parseStylesheet(document);
 
-	let links = await new CSSNavigation().findDocumentLinks2(document, stylesheet, getDocumentContext(document.uri));
+	let links = await ls.findDocumentLinks2(document, stylesheet, getDocumentContext(document.uri));
 	assert.deepEqual(links, expected);
 }
 
-export function assertSymbols(p: Parser, input: string, expected: SymbolInformation[], lang: string = 'css') {
+export function assertSymbols(ls: LanguageService, input: string, expected: SymbolInformation[], lang: string = 'css') {
 	let document = TextDocument.create(`test://test/test.${lang}`, lang, 0, input);
 
-	let stylesheet = p.parseStylesheet(document);
+	let stylesheet = ls.parseStylesheet(document);
 
-	let symbols = new CSSNavigation().findDocumentSymbols(document, stylesheet);
+	let symbols = ls.findDocumentSymbols(document, stylesheet);
 	assert.deepEqual(symbols, expected);
 }
 
@@ -89,9 +89,9 @@ export function assertColorPresentations(ls: LanguageService, color: Color, ...e
 	assert.deepEqual(result.map(r => r.textEdit), expected.map(l => TextEdit.replace(range, l)));
 }
 
-export function assertSymbolsInScope(p: Parser, input: string, offset: number, ...selections: { name: string; type: nodes.ReferenceType }[]): void {
+export function assertSymbolsInScope(ls: LanguageService, input: string, offset: number, ...selections: { name: string; type: nodes.ReferenceType }[]): void {
 
-	let global = createScope(p, input);
+	let global = createScope(ls, input);
 
 	let scope = global.findScope(offset)!;
 
@@ -108,9 +108,9 @@ export function assertSymbolsInScope(p: Parser, input: string, offset: number, .
 	}
 }
 
-export function assertScopeBuilding(p: Parser, input: string, ...scopes: { offset: number; length: number; }[]): void {
+export function assertScopeBuilding(ls: LanguageService, input: string, ...scopes: { offset: number; length: number; }[]): void {
 
-	let global = createScope(p, input);
+	let global = createScope(ls, input);
 
 	function assertChildren(scope: Scope): void {
 
@@ -150,22 +150,23 @@ function scopeToString(scope: Scope): string {
 	return str;
 }
 
-function assertNoErrors(node: nodes.Node): void {
-	let markers = nodes.ParseErrorCollector.entries(node);
+function assertNoErrors(stylesheet: Stylesheet): void {
+	const markers = nodes.ParseErrorCollector.entries(<nodes.Stylesheet>stylesheet);
 	if (markers.length > 0) {
 		assert.ok(false, 'node has errors: ' + markers[0].getMessage() + ', offset: ' + markers[0].getNode().offset);
 	}
 }
 
-function createScope(p: Parser, input: string): Scope {
+function createScope(ls: LanguageService, input: string): Scope {
 	let document = TextDocument.create('test://test/test.css', 'css', 0, input);
 
-	let styleSheet = p.parseStylesheet(document),
+	let styleSheet = ls.parseStylesheet(document),
 		global = new GlobalScope(),
 		builder = new ScopeBuilder(global);
 
 	assertNoErrors(styleSheet);
-	styleSheet.acceptVisitor(builder);
+
+	(<nodes.Stylesheet>styleSheet).acceptVisitor(builder);
 	return global;
 }
 
@@ -196,151 +197,151 @@ suite('CSS - Navigation', () => {
 		});
 
 		test('scope building', function () {
-			let p = new Parser();
-			assertScopeBuilding(p, '.class {}', { offset: 7, length: 2 });
-			assertScopeBuilding(p, '.class {} .class {}', { offset: 7, length: 2 }, { offset: 17, length: 2 });
+			let ls = getCSSLanguageService();
+			assertScopeBuilding(ls, '.class {}', { offset: 7, length: 2 });
+			assertScopeBuilding(ls, '.class {} .class {}', { offset: 7, length: 2 }, { offset: 17, length: 2 });
 		});
 
 		test('symbols in scopes', function () {
-			let p = new Parser();
-			assertSymbolsInScope(p, '@keyframes animation {};', 0, { name: 'animation', type: nodes.ReferenceType.Keyframe });
-			assertSymbolsInScope(p, ' .class1 {} .class2 {}', 0, { name: '.class1', type: nodes.ReferenceType.Rule }, { name: '.class2', type: nodes.ReferenceType.Rule });
+			let ls = getCSSLanguageService();
+			assertSymbolsInScope(ls, '@keyframes animation {};', 0, { name: 'animation', type: nodes.ReferenceType.Keyframe });
+			assertSymbolsInScope(ls, ' .class1 {} .class2 {}', 0, { name: '.class1', type: nodes.ReferenceType.Rule }, { name: '.class2', type: nodes.ReferenceType.Rule });
 		});
 
 		test('scopes and symbols', function () {
-			let p = new Parser();
-			assertScopesAndSymbols(p, '.class {}', '.class,[]');
-			assertScopesAndSymbols(p, '@keyframes animation {}; .class {}', 'animation,.class,[],[]');
-			assertScopesAndSymbols(p, '@page :pseudo-class { margin:2in; }', '[]');
-			assertScopesAndSymbols(p, '@media print { body { font-size: 10pt } }', '[body,[]]');
-			assertScopesAndSymbols(p, '@-moz-keyframes identifier { 0% { top: 0; } 50% { top: 30px; left: 20px; }}', 'identifier,[[],[]]');
-			assertScopesAndSymbols(p, '@font-face { font-family: "Bitstream Vera Serif Bold"; }', '[]');
+			let ls = getCSSLanguageService();
+			assertScopesAndSymbols(ls, '.class {}', '.class,[]');
+			assertScopesAndSymbols(ls, '@keyframes animation {}; .class {}', 'animation,.class,[],[]');
+			assertScopesAndSymbols(ls, '@page :pseudo-class { margin:2in; }', '[]');
+			assertScopesAndSymbols(ls, '@media print { body { font-size: 10pt } }', '[body,[]]');
+			assertScopesAndSymbols(ls, '@-moz-keyframes identifier { 0% { top: 0; } 50% { top: 30px; left: 20px; }}', 'identifier,[[],[]]');
+			assertScopesAndSymbols(ls, '@font-face { font-family: "Bitstream Vera Serif Bold"; }', '[]');
 		});
 
 		test('test variables in root scope', function () {
-			let p = new Parser();
-			assertSymbolsInScope(p, ':root{ --var1: abc; --var2: def; }', 0, { name: '--var1', type: nodes.ReferenceType.Variable }, { name: '--var2', type: nodes.ReferenceType.Variable });
+			let ls = getCSSLanguageService();
+			assertSymbolsInScope(ls, ':root{ --var1: abc; --var2: def; }', 0, { name: '--var1', type: nodes.ReferenceType.Variable }, { name: '--var2', type: nodes.ReferenceType.Variable });
 		});
 
 		test('test variables in local scope', function () {
-			let p = new Parser();
-			assertSymbolsInScope(p, '.a{ --var1: abc; --var2: def; }', 2, { name: '--var1', type: nodes.ReferenceType.Variable }, { name: '--var2', type: nodes.ReferenceType.Variable });
+			let ls = getCSSLanguageService();
+			assertSymbolsInScope(ls, '.a{ --var1: abc; --var2: def; }', 2, { name: '--var1', type: nodes.ReferenceType.Variable }, { name: '--var2', type: nodes.ReferenceType.Variable });
 		});
 
 		test('test variables in local scope get root variables too', function () {
-			let p = new Parser();
-			assertSymbolsInScope(p, '.a{ --var1: abc; } :root{ --var2: abc;}', 2, { name: '--var1', type: nodes.ReferenceType.Variable }, { name: '--var2', type: nodes.ReferenceType.Variable });
+			let ls = getCSSLanguageService();
+			assertSymbolsInScope(ls, '.a{ --var1: abc; } :root{ --var2: abc;}', 2, { name: '--var1', type: nodes.ReferenceType.Variable }, { name: '--var2', type: nodes.ReferenceType.Variable });
 		});
 
 		test('test variables in local scope get root variables and other local variables too', function () {
-			let p = new Parser();
-			assertSymbolsInScope(p, '.a{ --var1: abc; } .b{ --var2: abc; } :root{ --var3: abc;}', 2, { name: '--var1', type: nodes.ReferenceType.Variable }, { name: '--var2', type: nodes.ReferenceType.Variable }, { name: '--var3', type: nodes.ReferenceType.Variable });
+			let ls = getCSSLanguageService();
+			assertSymbolsInScope(ls, '.a{ --var1: abc; } .b{ --var2: abc; } :root{ --var3: abc;}', 2, { name: '--var1', type: nodes.ReferenceType.Variable }, { name: '--var2', type: nodes.ReferenceType.Variable }, { name: '--var3', type: nodes.ReferenceType.Variable });
 		});
 	});
 
 	suite('Symbols', () => {
 		test('basic symbols', () => {
-			let p = new Parser();
-			assertSymbols(p, '.foo {}', [{ name: '.foo', kind: SymbolKind.Class, location: Location.create('test://test/test.css' ,newRange(0, 7)) }]);
-			assertSymbols(p, '.foo:not(.selected) {}', [{ name: '.foo:not(.selected)', kind: SymbolKind.Class, location: Location.create('test://test/test.css' ,newRange(0, 22)) }]);
+			let ls = getCSSLanguageService();
+			assertSymbols(ls, '.foo {}', [{ name: '.foo', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(0, 7)) }]);
+			assertSymbols(ls, '.foo:not(.selected) {}', [{ name: '.foo:not(.selected)', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(0, 22)) }]);
 
 			// Media Query
-			assertSymbols(p, '@media screen, print {}', [{ name: '@media screen, print', kind: SymbolKind.Module, location: Location.create('test://test/test.css' ,newRange(0, 23)) }]);
+			assertSymbols(ls, '@media screen, print {}', [{ name: '@media screen, print', kind: SymbolKind.Module, location: Location.create('test://test/test.css', newRange(0, 23)) }]);
 		});
 	});
 
 	suite('Highlights', () => {
 
 		test('mark highlights', function () {
-			let p = new Parser();
-			assertHighlights(p, '@keyframes id {}; #main { animation: id 4s linear 0s infinite alternate; }', 'id', 2, 1);
-			assertHighlights(p, '@keyframes id {}; #main { animation-name: id; foo: id;}', 'id', 2, 1);
+			let ls = getCSSLanguageService();
+			assertHighlights(ls, '@keyframes id {}; #main { animation: id 4s linear 0s infinite alternate; }', 'id', 2, 1);
+			assertHighlights(ls, '@keyframes id {}; #main { animation-name: id; foo: id;}', 'id', 2, 1);
 		});
 
 		test('mark occurrences for variable defined in root and used in a rule', function () {
-			let p = new Parser();
-			assertHighlights(p, '.a{ background: let(--var1); } :root{ --var1: abc;}', '--var1', 2, 1);
+			let ls = getCSSLanguageService();
+			assertHighlights(ls, '.a{ background: let(--var1); } :root{ --var1: abc;}', '--var1', 2, 1);
 		});
 
 		test('mark occurrences for variable defined in a rule and used in a different rule', function () {
-			let p = new Parser();
-			assertHighlights(p, '.a{ background: let(--var1); } :b{ --var1: abc;}', '--var1', 2, 1);
+			let ls = getCSSLanguageService();
+			assertHighlights(ls, '.a{ background: let(--var1); } :b{ --var1: abc;}', '--var1', 2, 1);
 		});
 
 		test('mark occurrences for property', function () {
-			let p = new Parser();
-			assertHighlights(p, 'body { display: inline } #foo { display: inline }', 'display', 2, 0);
+			let ls = getCSSLanguageService();
+			assertHighlights(ls, 'body { display: inline } #foo { display: inline }', 'display', 2, 0);
 		});
 
 		test('mark occurrences for value', function () {
-			let p = new Parser();
-			assertHighlights(p, 'body { display: inline } #foo { display: inline }', 'inline', 2, 0);
+			let ls = getCSSLanguageService();
+			assertHighlights(ls, 'body { display: inline } #foo { display: inline }', 'inline', 2, 0);
 		});
 
 		test('mark occurrences for selector', function () {
-			let p = new Parser();
-			assertHighlights(p, 'body { display: inline } #foo { display: inline }', 'body', 1, 1);
+			let ls = getCSSLanguageService();
+			assertHighlights(ls, 'body { display: inline } #foo { display: inline }', 'body', 1, 1);
 		});
 
 		test('mark occurrences for comment', function () {
-			let p = new Parser();
-			assertHighlights(p, '/* comment */body { display: inline } ', 'comment', 0, 0);
+			let ls = getCSSLanguageService();
+			assertHighlights(ls, '/* comment */body { display: inline } ', 'comment', 0, 0);
 		});
 
 		test('mark occurrences for whole classname instead of only class identifier', () => {
-			let p = new Parser();
-			assertHighlights(p, '.foo { }', '.foo', 1, 1);
-			assertHighlights(p, '.body { } body { }', '.body', 1, 1);
+			let ls = getCSSLanguageService();
+			assertHighlights(ls, '.foo { }', '.foo', 1, 1);
+			assertHighlights(ls, '.body { } body { }', '.body', 1, 1);
 		});
 	});
 
 	suite('Links', () => {
 
 		test('basic @import links', async () => {
-			let p = new Parser();
-			await assertLinks(p, `@import 'foo.css';`, [
+			let ls = getCSSLanguageService();
+			await assertLinks(ls, `@import 'foo.css';`, [
 				{ range: newRange(8, 17), target: 'test://test/foo.css' }
 			]);
 
-			await assertLinks(p, `@import './foo.css';`, [
+			await assertLinks(ls, `@import './foo.css';`, [
 				{ range: newRange(8, 19), target: 'test://test/foo.css' }
 			]);
 
-			await assertLinks(p, `@import '../foo.css';`, [
+			await assertLinks(ls, `@import '../foo.css';`, [
 				{ range: newRange(8, 20), target: 'test://foo.css' }
 			]);
 		});
 
 		test('complex @import links', async () => {
-			let p = new Parser();
-			await assertLinks(p, `@import url("foo.css") print;`, [
+			let ls = getCSSLanguageService();
+			await assertLinks(ls, `@import url("foo.css") print;`, [
 				{ range: newRange(12, 21), target: 'test://test/foo.css' }
 			]);
 
-			await assertLinks(p, `@import url("chrome://downloads")`, [
+			await assertLinks(ls, `@import url("chrome://downloads")`, [
 				{ range: newRange(12, 32), target: 'chrome://downloads' }
 			]);
 
-			await assertLinks(p, `@import url('landscape.css') screen and (orientation:landscape);`, [
+			await assertLinks(ls, `@import url('landscape.css') screen and (orientation:landscape);`, [
 				{ range: newRange(12, 27), target: 'test://test/landscape.css' }
 			]);
 		});
 
 		test('links in rulesets', async () => {
-			let p = new Parser();
-			await assertLinks(p, `body { background-image: url(./foo.jpg)`, [
+			let ls = getCSSLanguageService();
+			await assertLinks(ls, `body { background-image: url(./foo.jpg)`, [
 				{ range: newRange(29, 38), target: 'test://test/foo.jpg' }
 			]);
 
-			await assertLinks(p, `body { background-image: url('./foo.jpg')`, [
+			await assertLinks(ls, `body { background-image: url('./foo.jpg')`, [
 				{ range: newRange(29, 40), target: 'test://test/foo.jpg' }
 			]);
 		});
 
 		test('No links with empty range', async () => {
-			let p = new Parser();
-			await assertLinks(p, `body { background-image: url()`, []);
-			await assertLinks(p, `@import url();`, []);
+			let ls = getCSSLanguageService();
+			await assertLinks(ls, `body { background-image: url()`, []);
+			await assertLinks(ls, `@import url();`, []);
 		});
 
 	});

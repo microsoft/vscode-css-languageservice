@@ -4,13 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import {
-	Position, CompletionList, Hover, Range, SymbolInformation, Diagnostic, Location, DocumentHighlight,
-	CodeActionContext, Command, WorkspaceEdit, Color, ColorInformation, ColorPresentation, FoldingRange, CodeAction, DocumentLink, SelectionRange
-} from 'vscode-languageserver-types';
-
-import { TextDocument } from 'vscode-languageserver-textdocument';
-
 import { Parser } from './parser/cssParser';
 import { CSSCompletion } from './services/cssCompletion';
 import { CSSHover } from './services/cssHover';
@@ -23,7 +16,15 @@ import { SCSSCompletion } from './services/scssCompletion';
 import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
 import { getFoldingRanges } from './services/cssFolding';
-import { LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServiceOptions } from './cssLanguageTypes';
+
+import {
+	LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServiceOptions,
+	Diagnostic, Position, CompletionList, Hover, Location, DocumentHighlight, DocumentLink,
+	SymbolInformation, Range, CodeActionContext, Command, CodeAction, ColorInformation,
+	Color, ColorPresentation, WorkspaceEdit, FoldingRange, SelectionRange, TextDocument
+
+} from './cssLanguageTypes';
+
 import { cssDataManager } from './languageFacts/facts';
 import { getSelectionRanges } from './services/cssSelectionRange';
 import { SCSSNavigation } from './services/scssNavigation';
@@ -31,8 +32,6 @@ import { Stylesheet as StyleSheetImpl } from './parser/cssNodes';
 
 export type Stylesheet = {};
 export * from './cssLanguageTypes';
-export { TextDocument } from 'vscode-languageserver-textdocument';
-export * from 'vscode-languageserver-types';
 
 export interface LanguageService {
 	configure(raw?: LanguageSettings): void;

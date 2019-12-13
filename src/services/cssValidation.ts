@@ -5,11 +5,9 @@
 'use strict';
 
 import * as nodes from '../parser/cssNodes';
-import { Range, Diagnostic, DiagnosticSeverity } from 'vscode-languageserver-types';
-import { TextDocument } from 'vscode-languageserver-textdocument';
 import { LintConfigurationSettings, Rules } from './lintRules';
 import { LintVisitor } from './lint';
-import { LanguageSettings } from '../cssLanguageTypes';
+import { TextDocument, Range, Diagnostic, DiagnosticSeverity, LanguageSettings } from '../cssLanguageTypes';
 
 export class CSSValidation {
 

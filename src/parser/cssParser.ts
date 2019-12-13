@@ -7,7 +7,7 @@ import { TokenType, Scanner, IToken } from './cssScanner';
 import * as nodes from './cssNodes';
 import { ParseError, CSSIssueType } from './cssErrors';
 import * as languageFacts from '../languageFacts/facts';
-import { TextDocument } from 'vscode-languageserver-textdocument';
+import { TextDocument } from '../cssLanguageTypes';
 import { isDefined } from '../utils/objects';
 
 export interface IMark {
@@ -145,7 +145,7 @@ export class Parser {
 
 	public _parseRegexp(regEx: RegExp): nodes.Node {
 		let node = this.createNode(nodes.NodeType.Identifier);
-		do {} while (this.acceptRegexp(regEx));
+		do { } while (this.acceptRegexp(regEx));
 		return this.finish(node);
 	}
 
@@ -231,7 +231,7 @@ export class Parser {
 	public internalParse<T extends nodes.Node, U extends T>(input: string, parseFunc: () => U, textProvider?: nodes.ITextProvider): U {
 		this.scanner.setSource(input);
 		this.token = this.scanner.scan();
-		const node : U = parseFunc.bind(this)();
+		const node: U = parseFunc.bind(this)();
 		if (node) {
 			if (textProvider) {
 				node.textProvider = textProvider;

@@ -7,9 +7,9 @@
 import * as languageFacts from '../languageFacts/facts';
 import { CSSCompletion } from './cssCompletion';
 import * as nodes from '../parser/cssNodes';
-import { CompletionList, CompletionItemKind, TextEdit, InsertTextFormat, CompletionItem, MarkupContent } from 'vscode-languageserver-types';
+import { CompletionList, CompletionItemKind, TextEdit, InsertTextFormat, CompletionItem, MarkupContent, ClientCapabilities, IReference } from '../cssLanguageTypes';
 import * as nls from 'vscode-nls';
-import { ClientCapabilities, IReference } from '../cssLanguageTypes';
+
 const localize = nls.loadMessageBundle();
 
 interface IFunctionInfo {
@@ -263,7 +263,7 @@ export class SCSSCompletion extends CSSCompletion {
 
 	constructor(clientCapabilities: ClientCapabilities | undefined) {
 		super('$', clientCapabilities);
-		
+
 		addReferencesToDocumentation(SCSSCompletion.scssModuleLoaders);
 		addReferencesToDocumentation(SCSSCompletion.scssModuleBuiltIns);
 	}

@@ -8,9 +8,10 @@ import * as nodes from '../parser/cssNodes';
 import { Symbols, Symbol } from '../parser/cssSymbolScope';
 import * as languageFacts from '../languageFacts/facts';
 import * as strings from '../utils/strings';
-import { Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, MarkupContent, CompletionItemTag } from 'vscode-languageserver-types';
-import { TextDocument } from 'vscode-languageserver-textdocument';
-import { ICompletionParticipant, LanguageSettings, ClientCapabilities } from '../cssLanguageTypes';
+import {
+	ICompletionParticipant, LanguageSettings, ClientCapabilities, TextDocument,
+	Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, MarkupContent, CompletionItemTag
+} from '../cssLanguageTypes';
 
 import * as nls from 'vscode-nls';
 import { isDefined } from '../utils/objects';
@@ -222,7 +223,7 @@ export class CSSCompletion {
 					insertText += '$0;';
 				}
 			}
-			
+
 			const item: CompletionItem = {
 				label: entry.name,
 				documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),

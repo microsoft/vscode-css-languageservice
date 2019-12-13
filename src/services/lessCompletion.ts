@@ -7,10 +7,10 @@
 import * as languageFacts from '../languageFacts/facts';
 import * as nodes from '../parser/cssNodes';
 import { CSSCompletion } from './cssCompletion';
-import { CompletionList, CompletionItemKind, InsertTextFormat, TextEdit, CompletionItem } from 'vscode-languageserver-types';
+import { ClientCapabilities, CompletionList, CompletionItemKind, InsertTextFormat, TextEdit, CompletionItem } from '../cssLanguageTypes';
 
 import * as nls from 'vscode-nls';
-import { ClientCapabilities } from '../cssLanguageTypes';
+
 const localize = nls.loadMessageBundle();
 
 interface IFunctionInfo {

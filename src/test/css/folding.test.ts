@@ -6,14 +6,12 @@
 'use strict';
 
 import * as assert from 'assert';
-import { FoldingRange, FoldingRangeKind } from 'vscode-languageserver-types';
-import { TextDocument } from 'vscode-languageserver-textdocument';
-import { getFoldingRanges } from '../../services/cssFolding';
+import { TextDocument, FoldingRange, FoldingRangeKind, getCSSLanguageService } from '../../cssLanguageService';
 
 function assertRanges(lines: string[], expected: FoldingRange[], languageId = 'css', rangeLimit: number | null = null): void {
 	const document = TextDocument.create(`test://foo/bar.${languageId}`, languageId, 1, lines.join('\n'));
 	const context = rangeLimit ? { rangeLimit } : {};
-	let actualRanges = getFoldingRanges(document, context);
+	let actualRanges = getCSSLanguageService().getFoldingRanges(document, context);
 
 	actualRanges = actualRanges.sort((r1, r2) => r1.startLine - r2.startLine);
 	assert.deepEqual(actualRanges, expected);

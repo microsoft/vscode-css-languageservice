@@ -6,18 +6,15 @@
 
 import * as nodes from '../parser/cssNodes';
 import * as languageFacts from '../languageFacts/facts';
-import { Range, Position, Hover, MarkedString, MarkupContent, MarkupKind } from 'vscode-languageserver-types';
-import { TextDocument } from 'vscode-languageserver-textdocument';
 import { selectorToMarkedString, simpleSelectorToMarkedString } from './selectorPrinting';
 import { startsWith } from '../utils/strings';
-import { ClientCapabilities } from '../cssLanguageTypes';
+import { TextDocument, Range, Position, Hover, MarkedString, MarkupContent, MarkupKind, ClientCapabilities } from '../cssLanguageTypes';
 import { isDefined } from '../utils/objects';
-import { isArray } from 'util';
 
 export class CSSHover {
 	private supportsMarkdown: boolean | undefined;
 
-	constructor(private clientCapabilities: ClientCapabilities | undefined) {}
+	constructor(private clientCapabilities: ClientCapabilities | undefined) { }
 
 	public doHover(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Hover | null {
 		function getRange(node: nodes.Node) {
@@ -118,7 +115,7 @@ export class CSSHover {
 				};
 			}
 			// MarkedString[]
-			else if (isArray(contents)) {
+			else if (Array.isArray(contents)) {
 				return contents.map(c => {
 					return typeof c === 'string' ? c : c.value;
 				});

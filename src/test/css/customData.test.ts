@@ -6,11 +6,12 @@
 
 import * as assert from 'assert';
 
-import { CompletionList, Position } from 'vscode-languageserver-types';
-import { TextDocument } from 'vscode-languageserver-textdocument';
-import { getCSSLanguageService } from '../../cssLanguageService';
 import { ItemDescription } from './completion.test';
-import { CSSDataV1, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext } from '../../cssLanguageTypes';
+import {
+	getCSSLanguageService,
+	CompletionList, Position, TextDocument,
+	CSSDataV1, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext
+} from '../../cssLanguageService';
 import { CSSDataProvider } from '../../languageFacts/facts';
 
 function getLanguageService(data: CSSDataV1) {
@@ -95,7 +96,7 @@ suite('CSS - Custom Data', () => {
 
 	const cssLS = getLanguageService(customData);
 
-	const testCompletionFor = function(
+	const testCompletionFor = function (
 		value: string,
 		expected: {
 			count?: number;
@@ -168,7 +169,7 @@ suite('CSS - Custom Data Diagnostics', () => {
 
 	const cssLS = getLanguageService(data);
 
-	const testValidationFor = function(
+	const testValidationFor = function (
 		value: string,
 		expected: (number | string)[]
 	) {

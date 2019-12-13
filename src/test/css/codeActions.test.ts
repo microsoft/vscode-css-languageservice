@@ -5,15 +5,13 @@
 'use strict';
 
 import * as assert from 'assert';
-import * as cssLanguageService from '../../cssLanguageService';
 
-import { TextEdit, Range, Command, CodeAction, TextDocumentEdit } from 'vscode-languageserver-types';
-import { TextDocument } from 'vscode-languageserver-textdocument';
+import { getCSSLanguageService, TextDocument, TextEdit, Range, Command, CodeAction, TextDocumentEdit } from '../../cssLanguageService';
 
 suite('CSS - Code Actions', () => {
 
 	let testCodeActions = function (value: string, tokenBefore: string, expected: { title: string; content: string; }[]) {
-		let ls = cssLanguageService.getCSSLanguageService();
+		let ls = getCSSLanguageService();
 
 		let document = TextDocument.create('test://test/test.css', 'css', 0, value);
 		let styleSheet = ls.parseStylesheet(document);

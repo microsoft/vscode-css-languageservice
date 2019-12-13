@@ -4,10 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { Color, ColorInformation, ColorPresentation, DocumentHighlight, DocumentHighlightKind, DocumentLink, Location, Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit } from 'vscode-languageserver-types';
-import { TextDocument } from 'vscode-languageserver-textdocument';
+import {
+	Color, ColorInformation, ColorPresentation, DocumentHighlight, DocumentHighlightKind, DocumentLink, Location,
+	Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit, TextDocument, DocumentContext
+} from '../cssLanguageTypes';
 import * as nls from 'vscode-nls';
-import { DocumentContext } from '../cssLanguageTypes';
 import * as nodes from '../parser/cssNodes';
 import { Symbols } from '../parser/cssSymbolScope';
 import { getColorValue, hslFromColor } from '../languageFacts/facts';

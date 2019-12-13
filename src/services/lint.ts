@@ -11,7 +11,8 @@ import calculateBoxModel, { Element } from './lintUtil';
 import { union } from '../utils/arrays';
 
 import * as nls from 'vscode-nls';
-import { TextDocument } from 'vscode-languageserver-textdocument';
+import { TextDocument } from '../cssLanguageTypes';
+
 const localize = nls.loadMessageBundle();
 
 class NodesByRootMap {

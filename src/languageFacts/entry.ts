@@ -4,8 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { EntryStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IValueData } from '../cssLanguageTypes';
-import { MarkupContent } from 'vscode-languageserver-types';
+import { EntryStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IValueData, MarkupContent } from '../cssLanguageTypes';
 
 export interface Browsers {
 	E?: string;
@@ -100,7 +99,7 @@ function getEntryMarkdownDescription(entry: IEntry2): string {
 		result += getEntryStatus(entry.status);
 	}
 
-	
+
 	if (typeof entry.description === 'string') {
 		result += entry.description;
 	} else {

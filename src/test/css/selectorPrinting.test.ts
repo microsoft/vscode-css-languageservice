@@ -8,8 +8,7 @@ import * as assert from 'assert';
 import { Parser } from '../../parser/cssParser';
 import * as nodes from '../../parser/cssNodes';
 import * as selectorPrinter from '../../services/selectorPrinting';
-import { MarkedString } from 'vscode-languageserver-types';
-import { TextDocument } from 'vscode-languageserver-textdocument';
+import { TextDocument, MarkedString } from '../../cssLanguageTypes';
 
 function elementToString(element: selectorPrinter.Element): string {
 	let label = element.findAttribute('name') || '';
@@ -82,7 +81,7 @@ export function parseSelectorToMarkedString(
 }
 
 suite('CSS - Selector Printing', () => {
-	test('class/hash/elementname/attr', function() {
+	test('class/hash/elementname/attr', function () {
 		let p = new Parser();
 		assertElement(p, 'element', [{ name: 'name', value: 'element' }]);
 		assertElement(p, '.div', [{ name: 'class', value: 'div' }]);
@@ -99,7 +98,7 @@ suite('CSS - Selector Printing', () => {
 		assertElement(p, '[enabled]', [{ name: 'enabled', value: void 0 }]);
 	});
 
-	test('simple selector', function() {
+	test('simple selector', function () {
 		let p = new Parser();
 		parseSelector(p, 'element { }', 'element', '{element}');
 		parseSelector(p, 'element.div { }', 'element', '{element[class=div]}');
@@ -112,7 +111,7 @@ suite('CSS - Selector Printing', () => {
 		parseSelector(p, '* { }', '*', '{element}');
 	});
 
-	test('selector', function() {
+	test('selector', function () {
 		let p = new Parser();
 		parseSelector(p, 'e1 e2 { }', 'e1', '{e1{…{e2}}}');
 		parseSelector(p, 'e1 .div { }', 'e1', '{e1{…{[class=div]}}}');
@@ -122,14 +121,14 @@ suite('CSS - Selector Printing', () => {
 		parseSelector(p, 'e1 ~ e2 { }', 'e2', '{e1|e2|⋮|e2}');
 	});
 
-	test('escaping', function() {
+	test('escaping', function () {
 		let p = new Parser();
 		parseSelector(p, '#\\34 04-error { }', '#\\34 04-error', '{[id=404-error]}');
 	});
 });
 
 suite('CSS - MarkedStringPrinter selectors', () => {
-	test('descendant selector', function() {
+	test('descendant selector', function () {
 		let p = new Parser();
 		parseSelectorToMarkedString(p, 'e1 e2 { }', 'e1', [
 			{ language: 'html', value: '<e1>\n  …\n    <e2>' },
@@ -140,14 +139,14 @@ suite('CSS - MarkedStringPrinter selectors', () => {
 			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 1, 1)'
 		]);
 	});
-	test('child selector', function() {
+	test('child selector', function () {
 		let p = new Parser();
 		parseSelectorToMarkedString(p, 'e1 > e2 { }', 'e2', [
 			{ language: 'html', value: '<e1>\n  <e2>' },
 			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 0, 2)'
 		]);
 	});
-	test('group selector', function() {
+	test('group selector', function () {
 		let p = new Parser();
 		parseSelectorToMarkedString(p, 'e1, e2 { }', 'e1', [
 			{ language: 'html', value: '<e1>' },
@@ -158,7 +157,7 @@ suite('CSS - MarkedStringPrinter selectors', () => {
 			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 0, 1)'
 		]);
 	});
-	test('sibling selector', function() {
+	test('sibling selector', function () {
 		let p = new Parser();
 		parseSelectorToMarkedString(p, 'e1 + e2 { }', 'e2', [
 			{ language: 'html', value: '<e1>\n<e2>' },
@@ -173,14 +172,14 @@ suite('CSS - MarkedStringPrinter selectors', () => {
 
 suite('CSS - MarkedStringPrinter selectors specificities', () => {
 	let p = new Parser();
-	test('attribute selector', function() {
+	test('attribute selector', function () {
 		parseSelectorToMarkedString(p, 'h1 + *[rel=up]', 'h1', [
 			{ language: 'html', value: '<h1>\n<element rel="up">' },
 			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 1, 1)'
 		]);
 	});
 
-	test('class selector', function() {
+	test('class selector', function () {
 		parseSelectorToMarkedString(p, 'ul ol li.red', 'ul', [
 			{ language: 'html', value: '<ul>\n  …\n    <ol>\n      …\n        <li class="red">' },
 			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 1, 3)'
@@ -191,14 +190,14 @@ suite('CSS - MarkedStringPrinter selectors specificities', () => {
 		]);
 	});
 
-	test('pseudo class selector', function() {
+	test('pseudo class selector', function () {
 		parseSelectorToMarkedString(p, 'p:focus', 'p', [
 			{ language: 'html', value: '<p :focus>' },
 			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 1, 1)'
 		]);
 	});
 
-	test('element selector', function() {
+	test('element selector', function () {
 		parseSelectorToMarkedString(p, 'li', 'li', [
 			{ language: 'html', value: '<li>' },
 			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 0, 1)'
@@ -213,7 +212,7 @@ suite('CSS - MarkedStringPrinter selectors specificities', () => {
 		]);
 	});
 
-	test('pseudo element selector', function() {
+	test('pseudo element selector', function () {
 		parseSelectorToMarkedString(p, 'p::after', 'p', [
 			{ language: 'html', value: '<p ::after>' },
 			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 0, 2)'
@@ -224,14 +223,14 @@ suite('CSS - MarkedStringPrinter selectors specificities', () => {
 		]);
 	});
 
-	test('identifier selector', function() {
+	test('identifier selector', function () {
 		parseSelectorToMarkedString(p, '#x34y', '#x34y', [
 			{ language: 'html', value: '<element id="x34y">' },
 			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (1, 0, 0)'
 		]);
 	});
 
-	test('ignore universal and not selector', function() {
+	test('ignore universal and not selector', function () {
 		parseSelectorToMarkedString(p, '*', '*', [
 			{ language: 'html', value: '<element>' },
 			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 0, 0)'

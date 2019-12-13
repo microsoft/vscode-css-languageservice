@@ -6,10 +6,7 @@
 
 import 'mocha';
 import * as assert from 'assert';
-import { SelectionRange } from 'vscode-languageserver-types';
-import { TextDocument } from 'vscode-languageserver-textdocument';
-import { getCSSLanguageService } from '../../cssLanguageService';
-import { Stylesheet } from '../../parser/cssNodes';
+import { getCSSLanguageService, TextDocument, SelectionRange } from '../../cssLanguageService';
 
 function assertRanges(content: string, expected: (number | string)[][]): void {
 	let message = `${content} gives selection range:\n`;
@@ -20,7 +17,7 @@ function assertRanges(content: string, expected: (number | string)[][]): void {
 	const ls = getCSSLanguageService();
 
 	const document = TextDocument.create('test://foo/bar.css', 'css', 1, content);
-	const actualRanges = ls.getSelectionRanges(document, [document.positionAt(offset)], ls.parseStylesheet(document) as Stylesheet);
+	const actualRanges = ls.getSelectionRanges(document, [document.positionAt(offset)], ls.parseStylesheet(document));
 	assert.equal(actualRanges.length, 1);
 	const offsetPairs: [number, string][] = [];
 	let curr: SelectionRange | undefined = actualRanges[0];

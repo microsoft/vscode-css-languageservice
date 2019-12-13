@@ -8,8 +8,10 @@ import * as nodes from '../parser/cssNodes';
 import * as languageFacts from '../languageFacts/facts';
 import { difference } from '../utils/strings';
 import { Rules } from '../services/lintRules';
-import { Range, CodeActionContext, Diagnostic, Command, TextEdit, CodeAction, WorkspaceEdit, CodeActionKind, TextDocumentEdit, VersionedTextDocumentIdentifier } from 'vscode-languageserver-types';
-import { TextDocument } from 'vscode-languageserver-textdocument';
+import {
+	Range, CodeActionContext, Diagnostic, Command, TextEdit, CodeAction, WorkspaceEdit, CodeActionKind,
+	TextDocumentEdit, VersionedTextDocumentIdentifier, TextDocument
+} from '../cssLanguageTypes';
 import * as nls from 'vscode-nls';
 const localize = nls.loadMessageBundle();
 

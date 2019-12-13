@@ -5,12 +5,10 @@
 'use strict';
 
 import * as assert from 'assert';
-import * as cssLanguageService from '../../cssLanguageService';
 
-import { Position, InsertTextFormat, CompletionItemKind } from 'vscode-languageserver-types';
-import { TextDocument } from 'vscode-languageserver-textdocument';
+import { getSCSSLanguageService, TextDocument, Position, InsertTextFormat, CompletionItemKind, ImportPathCompletionContext } from '../../cssLanguageService';
+
 import { assertCompletion, ItemDescription } from '../css/completion.test';
-import { ImportPathCompletionContext } from '../../cssLanguageTypes';
 import { newRange } from '../css/navigation.test';
 
 suite('SCSS - Completions', () => {
@@ -30,7 +28,7 @@ suite('SCSS - Completions', () => {
 
 		let actualImportPathContexts: ImportPathCompletionContext[] = [];
 
-		let ls = cssLanguageService.getSCSSLanguageService();
+		let ls = getSCSSLanguageService();
 
 		if (expected.participant) {
 			ls.setCompletionParticipants([
@@ -253,7 +251,7 @@ suite('SCSS - Completions', () => {
 			});
 		});
 	});
-	
+
 	test('Enum + color restrictions are sorted properly', () => {
 		testCompletionFor('.foo { text-decoration: | }', {
 			items: [
