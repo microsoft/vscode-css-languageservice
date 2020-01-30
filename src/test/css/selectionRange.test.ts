@@ -40,18 +40,21 @@ suite('CSS SelectionRange', () => {
 			[7, 'color'],
 			[7, 'color: blue'],
 			[6, ' color: blue; '],
+			[5, '{ color: blue; }'],
 			[0, '.foo { color: blue; }']
 		]);
 		assertRanges('.foo { c|olor: blue; }', [
 			[7, 'color'],
 			[7, 'color: blue'],
 			[6, ' color: blue; '],
+			[5, '{ color: blue; }'],
 			[0, '.foo { color: blue; }']
 		]);
 		assertRanges('.foo { color|: blue; }', [
 			[7, 'color'],
 			[7, 'color: blue'],
 			[6, ' color: blue; '],
+			[5, '{ color: blue; }'],
 			[0, '.foo { color: blue; }']
 		]);
 
@@ -59,24 +62,39 @@ suite('CSS SelectionRange', () => {
 			[14, 'blue'],
 			[7, 'color: blue'],
 			[6, ' color: blue; '],
+			[5, '{ color: blue; }'],
 			[0, '.foo { color: blue; }']
 		]);
 		assertRanges('.foo { color: b|lue; }', [
 			[14, 'blue'],
 			[7, 'color: blue'],
 			[6, ' color: blue; '],
+			[5, '{ color: blue; }'],
 			[0, '.foo { color: blue; }']
 		]);
 		assertRanges('.foo { color: blue|; }', [
 			[14, 'blue'],
 			[7, 'color: blue'],
 			[6, ' color: blue; '],
+			[5, '{ color: blue; }'],
 			[0, '.foo { color: blue; }']
 		]);
 
-		assertRanges('.|foo { color: blue; }', [[1, 'foo'], [0, '.foo'], [0, '.foo { color: blue; }']]);
-		assertRanges('.fo|o { color: blue; }', [[1, 'foo'], [0, '.foo'], [0, '.foo { color: blue; }']]);
-		assertRanges('.foo| { color: blue; }', [[1, 'foo'], [0, '.foo'], [0, '.foo { color: blue; }']]);
+		assertRanges('.|foo { color: blue; }', [
+			[1, 'foo'],
+			[0, '.foo'],
+			[0, '.foo { color: blue; }']
+		]);
+		assertRanges('.fo|o { color: blue; }', [
+			[1, 'foo'],
+			[0, '.foo'],
+			[0, '.foo { color: blue; }']
+		]);
+		assertRanges('.foo| { color: blue; }', [
+			[1, 'foo'],
+			[0, '.foo'],
+			[0, '.foo { color: blue; }']
+		]);
 	});
 
 	test('Multiple values', () => {
@@ -85,7 +103,35 @@ suite('CSS SelectionRange', () => {
 			[20, `'Courier New', Courier, monospace`],
 			[7, `font-family: 'Courier New', Courier, monospace`],
 			[6, ` font-family: 'Courier New', Courier, monospace; `],
+			[5, `{ font-family: 'Courier New', Courier, monospace; }`],
 			[0, `.foo { font-family: 'Courier New', Courier, monospace; }`]
+		]);
+	});
+
+	// https://github.com/microsoft/vscode/issues/83570
+	test('Edge behavior for Declaration', () => {
+		assertRanges(`.foo |{ }`, [
+			[5, '{ }'],
+			[0, '.foo { }']
+		]);
+		assertRanges(`.foo { }|`, [
+			[5, '{ }'],
+			[0, '.foo { }']
+		]);
+		assertRanges(`.foo {| }`, [
+			[6, ' '],
+			[5, '{ }'],
+			[0, '.foo { }']
+		]);
+		assertRanges(`.foo { | }`, [
+			[6, '  '],
+			[5, '{  }'],
+			[0, '.foo {  }']
+		]);
+		assertRanges(`.foo { |}`, [
+			[6, ' '],
+			[5, '{ }'],
+			[0, '.foo { }']
 		]);
 	});
 });
