@@ -58,10 +58,15 @@ export class CSSHover {
 				const propertyName = node.getFullPropertyName();
 				const entry = languageFacts.cssDataManager.getProperty(propertyName);
 				if (entry) {
-					hover = {
-						contents: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
-						range: getRange(node)
-					};
+					const contents = languageFacts.getEntryDescription(entry, this.doesSupportMarkdown());
+					if (contents) {
+						hover = {
+							contents,
+							range: getRange(node)
+						};
+					} else {
+						hover = null;
+					}
 				}
 				continue;
 			}
@@ -70,10 +75,15 @@ export class CSSHover {
 				const atRuleName = node.getText();
 				const entry = languageFacts.cssDataManager.getAtDirective(atRuleName);
 				if (entry) {
-					hover = {
-						contents: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
-						range: getRange(node)
-					};
+					const contents = languageFacts.getEntryDescription(entry, this.doesSupportMarkdown());
+					if (contents) {
+						hover = {
+							contents,
+							range: getRange(node)
+						};
+					} else {
+						hover = null;
+					}
 				}
 				continue;
 			}
@@ -85,10 +95,15 @@ export class CSSHover {
 						? languageFacts.cssDataManager.getPseudoElement(selectorName)
 						: languageFacts.cssDataManager.getPseudoClass(selectorName);
 				if (entry) {
-					hover = {
-						contents: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
-						range: getRange(node)
-					};
+					const contents = languageFacts.getEntryDescription(entry, this.doesSupportMarkdown());
+					if (contents) {
+						hover = {
+							contents,
+							range: getRange(node)
+						};
+					} else {
+						hover = null;
+					}
 				}
 				continue;
 			}

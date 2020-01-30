@@ -40,18 +40,26 @@ function getEntryStatus(status: EntryStatus) {
 	}
 }
 
-export function getEntryDescription(entry: IEntry2, doesSupportMarkdown: boolean): MarkupContent {
+export function getEntryDescription(entry: IEntry2, doesSupportMarkdown: boolean): MarkupContent | undefined {
+	let result: MarkupContent;
+
 	if (doesSupportMarkdown) {
-		return {
+		result = {
 			kind: 'markdown',
 			value: getEntryMarkdownDescription(entry)
 		};
 	} else {
-		return {
+		result = {
 			kind: 'plaintext',
 			value: getEntryStringDescription(entry)
 		};
 	}
+	
+	if (result.value === '') {
+		return undefined;
+	}
+	
+	return result;
 }
 
 function getEntryStringDescription(entry: IEntry2): string {
