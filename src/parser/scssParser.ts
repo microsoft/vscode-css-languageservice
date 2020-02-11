@@ -22,7 +22,11 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseStylesheetStart(): nodes.Node | null {
-		return this._parseForward()
+		if (this.peek(TokenType.SemiColon)) {
+			this.consumeToken();
+		}
+		return this._parseVariableDeclaration()
+			|| this._parseForward()
 			|| this._parseUse()
 			|| super._parseStylesheetStart();
 	}
@@ -853,7 +857,7 @@ export class SCSSParser extends cssParser.Parser {
 			// Consume all variables and idents ahead.
 		}
 
-		// More than just identifier 
+		// More than just identifier
 		return node.getChildren().length > 1 ? node : null;
 	}
 
