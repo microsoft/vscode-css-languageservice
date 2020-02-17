@@ -299,7 +299,7 @@ suite('SCSS - Parser', () => {
 		assertNode('@forward "test"; @use "lib"', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@use "test"; @use "lib"', parser, parser._parseStylesheet.bind(parser));
 		assertError('body { @use "test" }', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
-		assertError('body { color: red; } @use "test"', parser, parser._parseStylesheet.bind(parser), ParseError.RuleOrSelectorExpected);
+		assertNode('$test: "test"; @use "lib"', parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('@forward', function () {
@@ -325,7 +325,7 @@ suite('SCSS - Parser', () => {
 		assertNode('@use "lib"; @forward "test"', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@forward "test"; @forward "lib"', parser, parser._parseStylesheet.bind(parser));
 		assertError('body { @forward "test" }', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
-		assertError('body { color: red; } @forward "test"', parser, parser._parseStylesheet.bind(parser), ParseError.RuleOrSelectorExpected);
+		assertNode('$test: "test"; @forward "test"', parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('@media', function () {

@@ -21,12 +21,6 @@ export class SCSSParser extends cssParser.Parser {
 		super(new scssScanner.SCSSScanner());
 	}
 
-	public _parseStylesheetStart(): nodes.Node | null {
-		return this._parseForward()
-			|| this._parseUse()
-			|| super._parseStylesheetStart();
-	}
-
 	public _parseStylesheetStatement(): nodes.Node | null {
 		if (this.peek(TokenType.AtKeyword)) {
 			return this._parseWarnAndDebug()
@@ -35,6 +29,8 @@ export class SCSSParser extends cssParser.Parser {
 				|| this._parseMixinContent()
 				|| this._parseMixinReference() // @include
 				|| this._parseFunctionDeclaration()
+				|| this._parseForward()
+				|| this._parseUse()
 				|| super._parseStylesheetAtStatement();
 		}
 		return this._parseRuleset(true) || this._parseVariableDeclaration();
@@ -729,12 +725,12 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseUse(): nodes.Node | null {
-		if (!this.peek(scssScanner.Use)) {
+		if (!this.peekKeyword('@use')) {
 			return null;
 		}
 
 		const node = <nodes.Use>this.create(nodes.Use);
-		this.consumeToken();
+		this.consumeToken(); // @use
 
 		if (!node.addChild(this._parseStringLiteral())) {
 			return this.finish(node, ParseError.StringLiteralExpected);
@@ -801,7 +797,7 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseForward(): nodes.Node | null {
-		if (!this.peek(scssScanner.Forward)) {
+		if (!this.peekKeyword('@forward')) {
 			return null;
 		}
 
