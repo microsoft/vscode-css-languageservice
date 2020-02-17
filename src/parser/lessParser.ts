@@ -162,7 +162,7 @@ export class LESSParser extends cssParser.Parser {
 						}
 					}
 				}
-		
+
 				if (!this.accept(TokenType.ParenthesisR)) {
 					this.restoreAtMark(mark);
 					return null;
@@ -208,7 +208,7 @@ export class LESSParser extends cssParser.Parser {
 	public _parseLookupValue(): nodes.Node | null {
 		const node = <nodes.Node>this.create(nodes.Node);
 		const mark = this.mark();
-		
+
 		if (!this.accept(TokenType.BracketL)) {
 			this.restoreAtMark(mark);
 			return null;
@@ -246,7 +246,7 @@ export class LESSParser extends cssParser.Parser {
 		if (!insideLookup && this.peek(TokenType.BracketL)) {
 			if (!this._addLookupChildren(node)) {
 				this.restoreAtMark(mark);
-				return null;	
+				return null;
 			}
 		}
 		return <nodes.Variable>node;
@@ -328,8 +328,7 @@ export class LESSParser extends cssParser.Parser {
 				|| this._parseSupports(true) // @supports
 				|| this._parseDetachedRuleSetMixin() // less detached ruleset mixin
 				|| this._parseVariableDeclaration() // Variable declarations
-				|| this._parseUnknownAtRule();
-
+				|| super._parseRuleSetDeclarationAtStatement();
 		}
 		return this._tryParseMixinDeclaration()
 			|| this._tryParseRuleset(true)  // nested ruleset
@@ -463,9 +462,9 @@ export class LESSParser extends cssParser.Parser {
 			(): boolean => this.accept(TokenType.Ident);
 
 		while (
-			accept() || 
-			node.addChild(this._parseInterpolation() || 
-			this.try(indentInterpolation))
+			accept() ||
+			node.addChild(this._parseInterpolation() ||
+				this.try(indentInterpolation))
 		) {
 			hasContent = true;
 			if (this.hasWhitespace()) {

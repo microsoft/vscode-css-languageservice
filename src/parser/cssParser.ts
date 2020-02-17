@@ -344,13 +344,20 @@ export class Parser {
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
 	}
 
-	public _parseRuleSetDeclaration(): nodes.Node | null {
-		// https://www.w3.org/TR/css-syntax-3/#consume-a-list-of-declarations0
+	protected _parseRuleSetDeclarationAtStatement(): nodes.Node | null {
 		return this._parseAtApply()
-			|| this._tryParseCustomPropertyDeclaration()
-			|| this._parseDeclaration()
 			|| this._parseUnknownAtRule();
 	}
+
+	public _parseRuleSetDeclaration(): nodes.Node | null {
+		// https://www.w3.org/TR/css-syntax-3/#consume-a-list-of-declarations0
+		if (this.peek(TokenType.AtKeyword)) {
+			return this._parseRuleSetDeclarationAtStatement();
+		}
+		return this._tryParseCustomPropertyDeclaration()
+			|| this._parseDeclaration();
+	}
+
 
 	/**
 	 * Parses declarations like:
