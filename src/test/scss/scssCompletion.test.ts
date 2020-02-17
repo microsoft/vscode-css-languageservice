@@ -163,6 +163,11 @@ suite('SCSS - Completions', () => {
 				{ label: 'display' }
 			]
 		});
+		testCompletionFor('div { &:hover { } | }', {
+			items: [
+				{ label: 'display' }
+			]
+		});
 	});
 
 	test('suggestParticipants', function(): any {

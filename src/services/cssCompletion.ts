@@ -818,6 +818,8 @@ export class CSSCompletion {
 			this.getCompletionsForExtendsReference(node, null, result);
 		} else if (this.currentWord && this.currentWord[0] === '@') {
 			this.getCompletionsForDeclarationProperty(null, result);
+		} else if (node instanceof nodes.RuleSet) {
+			this.getCompletionsForDeclarationProperty(null, result);
 		}
 
 		return result;
