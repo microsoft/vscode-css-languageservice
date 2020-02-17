@@ -132,6 +132,11 @@ suite('SCSS - Completions', () => {
 				{ label: 'display' }
 			]
 		});
+		testCompletionFor('div { &:hover { } | }', {
+			items: [
+				{ label: 'display' }
+			]
+		});
 	});
 
 	test('at rules', function (): any {
