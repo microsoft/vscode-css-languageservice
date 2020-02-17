@@ -7,20 +7,41 @@
 import * as assert from 'assert';
 
 import { assertCompletion, ItemDescription } from '../css/completion.test';
-import { getLESSLanguageService, Position, TextDocument } from '../../cssLanguageService';
+import { getLESSLanguageService, Position, TextDocument, ClientCapabilities, MixinReferenceCompletionContext } from '../../cssLanguageService';
+import { newRange } from '../css/navigation.test';
 
 suite('LESS - Completions', () => {
 
-	let testCompletionFor = function (value: string, expected: { count?: number, items?: ItemDescription[] }) {
+	let testCompletionFor = function(
+		value: string,
+		expected: {
+			count?: number,
+			items?: ItemDescription[],
+			participant?: {
+				onMixinReference?: MixinReferenceCompletionContext[],
+			},
+		},
+	) {
 		let offset = value.indexOf('|');
 		value = value.substr(0, offset) + value.substr(offset + 1);
 
+		let actualMixinReferenceContexts: MixinReferenceCompletionContext[] = [];
+
 		let ls = getLESSLanguageService();
+
+		if (expected.participant) {
+			ls.setCompletionParticipants([
+				{
+					onCssMixinReference: context => actualMixinReferenceContexts.push(context)
+				}
+			]);
+		}
 
 		let document = TextDocument.create('test://test/test.less', 'less', 0, value);
 		let position = Position.create(0, offset);
 		let jsonDoc = ls.parseStylesheet(document);
 		let list = ls.doComplete(document, position, jsonDoc);
+
 		if (expected.count) {
 			assert.equal(list.items, expected.count);
 		}
@@ -29,9 +50,14 @@ suite('LESS - Completions', () => {
 				assertCompletion(list, item, document, offset);
 			}
 		}
+		if (expected.participant) {
+			if (expected.participant.onMixinReference) {
+				assert.deepEqual(actualMixinReferenceContexts, expected.participant.onMixinReference);
+			}
+		}
 	};
 
-	test('stylesheet', function (): any {
+	test('stylesheet', function(): any {
 		testCompletionFor('body { |', {
 			items: [
 				{ label: 'display' },
@@ -112,6 +138,20 @@ suite('LESS - Completions', () => {
 					{ label: '-ms-grid', sortText: 'x' },
 				]
 			});
+		});
+	});
+
+	test('suggestParticipants', function(): any {
+		testCompletionFor(`html { .m| }`, {
+			participant: {
+				onMixinReference: [{ mixinName: '.m', range: newRange(7, 9) }]
+			}
+		});
+
+		testCompletionFor(`html { .mixin(|) }`, {
+			participant: {
+				onMixinReference: [{ mixinName: '', range: newRange(14, 14) }]
+			}
 		});
 	});
 });
