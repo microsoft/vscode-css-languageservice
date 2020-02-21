@@ -431,7 +431,7 @@ export class LintVisitor implements nodes.IVisitor {
 						// _property and *property might be contributed via custom data
 						if (!languageFacts.cssDataManager.isKnownProperty(fullName) && !languageFacts.cssDataManager.isKnownProperty(name)) {
 							if (!this.validProperties[name]) {
-								this.addEntry(decl.getProperty()!, Rules.UnknownProperty, localize('property.unknownproperty.detailed', "Unknown property: '{0}'", name));
+								this.addEntry(decl.getProperty()!, Rules.UnknownProperty, localize('property.unknownproperty.detailed', "Unknown property: '{0}'", decl.getFullPropertyName()));
 							}
 						}
 

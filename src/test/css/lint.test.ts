@@ -13,45 +13,49 @@ import { TextDocument } from '../../cssLanguageTypes';
 import { SCSSParser } from '../../parser/scssParser';
 import { LESSParser } from '../../parser/lessParser';
 
-export function assertEntries(node: Node, document: TextDocument, rules: IRule[], settings = new LintConfigurationSettings()): void {
+export function assertEntries(node: Node, document: TextDocument, expectedRules: IRule[], expectedMessages: string[] | undefined = undefined, settings = new LintConfigurationSettings()): void {
 
-	let entries = LintVisitor.entries(node, document, settings, Level.Error | Level.Warning | Level.Ignore);
-	const message = `Did not find all linting error [${rules.map(e => e.id).join(', ')}]`;
+	const entries = LintVisitor.entries(node, document, settings, Level.Error | Level.Warning | Level.Ignore);
+	const message = `Did not find all linting error [${expectedRules.map(e => e.id).join(', ')}]`;
 
-	assert.equal(entries.length, rules.length, message);
+	assert.equal(entries.length, expectedRules.length, message);
 
-	for (let entry of entries) {
-		assert.ok(rules.indexOf(entry.getRule()) !== -1, `${entry.getRule().id} found but not expected (${rules.map(r => r.id).join(', ')})`);
+	for (const entry of entries) {
+		const index = expectedRules.indexOf(entry.getRule());
+		assert.ok(index !== -1, `${entry.getRule().id} found but not expected (${expectedRules.map(r => r.id).join(', ')})`);
+		if (expectedMessages) {
+			assert.equal(entry.getMessage(), expectedMessages[index]);
+		}
 	}
 }
-let parsers = [new Parser(), new LESSParser(), new SCSSParser()];
+const parsers = [new Parser(), new LESSParser(), new SCSSParser()];
 
 function assertStyleSheet(input: string, ...rules: Rule[]): void {
-	for (let p of parsers) {
-		let document = TextDocument.create('test://test/test.css', 'css', 0, input);
-		let node = p.parseStylesheet(document);
+	for (const p of parsers) {
+		const document = TextDocument.create('test://test/test.css', 'css', 0, input);
+		const node = p.parseStylesheet(document);
 
 		assertEntries(node, document, rules);
 	}
 }
 
 function assertRuleSet(input: string, ...rules: Rule[]): void {
-	assertRuleSetWithSettings(input, rules);
+	assertRuleSet2(input, rules);
 }
 
-function assertRuleSetWithSettings(input: string, rules: Rule[], settings = new LintConfigurationSettings()): void {
-	for (let p of parsers) {
-		let document = TextDocument.create('test://test/test.css', 'css', 0, input);
-		let node = p.internalParse(input, p._parseRuleset)!;
-		assertEntries(node, document, rules, settings);
+function assertRuleSet2(input: string, rules: Rule[], messages?: string[], settings?: LintConfigurationSettings): void {
+	for (const p of parsers) {
+		const document = TextDocument.create('test://test/test.css', 'css', 0, input);
+		const node = p.internalParse(input, p._parseRuleset)!;
+		assertEntries(node, document, rules, messages, settings);
 	}
 }
 
 
 function assertFontFace(input: string, ...rules: Rule[]): void {
-	for (let p of parsers) {
-		let document = TextDocument.create('test://test/test.css', 'css', 0, input);
-		let node = p.internalParse(input, p._parseFontFace)!;
+	for (const p of parsers) {
+		const document = TextDocument.create('test://test/test.css', 'css', 0, input);
+		const node = p.internalParse(input, p._parseFontFace)!;
 		assertEntries(node, document, rules);
 	}
 }
@@ -116,9 +120,10 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { box-shadow: none }'); // no error
 		assertRuleSet('selector { box-property: "rest is missing" }', Rules.UnknownProperty);
 		assertRuleSet(':export { prop: "some" }'); // no error for properties inside :export
-		assertRuleSetWithSettings('selector { foo: "some"; bar: 0px }', [], new LintConfigurationSettings({ validProperties: ['foo', 'bar'] }));
-		assertRuleSetWithSettings('selector { foo: "some"; }', [], new LintConfigurationSettings({ validProperties: ['foo', null] }));
-		assertRuleSetWithSettings('selector { bar: "some"; }', [Rules.UnknownProperty], new LintConfigurationSettings({ validProperties: ['foo'] }));
+		assertRuleSet2('selector { foo: "some"; bar: 0px }', [], undefined, new LintConfigurationSettings({ validProperties: ['foo', 'bar'] }));
+		assertRuleSet2('selector { foo: "some"; }', [], undefined, new LintConfigurationSettings({ validProperties: ['foo', null] }));
+		assertRuleSet2('selector { bar: "some"; }', [Rules.UnknownProperty], undefined, new LintConfigurationSettings({ validProperties: ['foo'] }));
+		assertRuleSet2('selector { Box-Property: "rest is missing" }', [Rules.UnknownProperty], ["Unknown property: 'Box-Property'"]);
 	});
 
 	test('box model', function () {
