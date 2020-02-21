@@ -509,6 +509,8 @@ suite('SCSS - Parser', () => {
 		assertNode('p { @include lib.foo(m.$values,); }', parser, parser._parseStylesheet.bind(parser));
 
 		assertError('p { @include foo.($values) }', parser, parser._parseStylesheet.bind(parser), ParseError.IdentifierExpected);
+
+		assertNode('@include rtl("left") using ($dir) { margin-#{$dir}: 10px; }', parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('@function', function () {

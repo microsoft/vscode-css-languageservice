@@ -645,11 +645,33 @@ export class SCSSParser extends cssParser.Parser {
 			}
 		}
 
+		if (this.acceptIdent('using')) {
+			if (!this.accept(TokenType.ParenthesisL)) {
+				return this.finish(node, ParseError.LeftParenthesisExpected, [TokenType.CurlyL]);
+			}
+			if (node.getContentArguments().addChild(this._parseParameterDeclaration())) {
+				while (this.accept(TokenType.Comma)) {
+					if (this.peek(TokenType.ParenthesisR)) {
+						break;
+					}
+					if (!node.getContentArguments().addChild(this._parseParameterDeclaration())) {
+						return this.finish(node, ParseError.VariableNameExpected);
+					}
+				}
+			}
+
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected, [TokenType.CurlyL]);
+			}
+		}
+
 		if (this.peek(TokenType.CurlyL)) {
 			const content = <nodes.BodyDeclaration>this.create(nodes.BodyDeclaration);
 			this._parseBody(content, this._parseMixinReferenceBodyStatement.bind(this));
 			node.setContent(content);
 		}
+
+
 		return this.finish(node);
 	}
 

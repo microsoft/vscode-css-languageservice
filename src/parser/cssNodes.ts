@@ -1525,6 +1525,7 @@ export class MixinReference extends Node {
 	public identifier?: Identifier;
 	private arguments?: Nodelist;
 	public content?: BodyDeclaration;
+	private contentArguments?: Nodelist;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1566,6 +1567,13 @@ export class MixinReference extends Node {
 
 	public getContent(): BodyDeclaration | undefined {
 		return this.content;
+	}
+
+	public getContentArguments(): Nodelist {
+		if (!this.contentArguments) {
+			this.contentArguments = new Nodelist(this);
+		}
+		return this.contentArguments;
 	}
 }
 
