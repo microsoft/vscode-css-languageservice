@@ -183,6 +183,7 @@ suite('SCSS - Parser', () => {
 		assertNode('--#{module.$propname}: some-value', parser, parser._parseDeclaration.bind(parser));
 		assertNode('some-property: var(--#{module.$propname})', parser, parser._parseDeclaration.bind(parser));
 		assertNode('@supports #{$val} { }', parser, parser._parseStylesheet.bind(parser)); // #88283
+		assertNode('.mb-#{$i}0np {} .push-up-#{$i}0 {} .mt-#{$i}0vh {}', parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('Declaration', function () {

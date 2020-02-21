@@ -385,23 +385,6 @@ export class Scanner {
 		return this.finishToken(offset, TokenType.Delim);
 	}
 
-	private _matchWordAnyCase(characters: number[]): boolean {
-		let index = 0;
-		this.stream.advanceWhileChar((ch: number) => {
-			const result = characters[index] === ch || characters[index + 1] === ch;
-			if (result) {
-				index += 2;
-			}
-			return result;
-		});
-		if (index === characters.length) {
-			return true;
-		} else {
-			this.stream.goBack(index / 2);
-			return false;
-		}
-	}
-
 	protected trivia(): IToken | null {
 		while (true) {
 			const offset = this.stream.pos();
