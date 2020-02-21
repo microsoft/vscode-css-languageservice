@@ -533,6 +533,12 @@ suite('SCSS - Parser', () => {
 
 	});
 
+	test('@at-root', function () {
+		let parser = new SCSSParser();
+		assertNode('@mixin unify-parent($child) { @at-root #{selector.unify(&, $child)} { }}', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@at-root #main2 .some-class {  padding-left: calc( #{$a-variable} + 8px ); }', parser, parser._parseStylesheet.bind(parser));
+	});
+
 	test('Ruleset', function () {
 		let parser = new SCSSParser();
 		assertNode('.selector { prop: erty $let 1px; }', parser, parser._parseRuleset.bind(parser));

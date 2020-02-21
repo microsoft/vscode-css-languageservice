@@ -23,14 +23,15 @@ export class SCSSParser extends cssParser.Parser {
 
 	public _parseStylesheetStatement(isNested: boolean = false): nodes.Node | null {
 		if (this.peek(TokenType.AtKeyword)) {
-			return this._parseWarnAndDebug()
-				|| this._parseControlStatement()
-				|| this._parseMixinDeclaration()
-				|| this._parseMixinContent()
+			return this._parseWarnAndDebug() // @warn, @debug and @error statements
+				|| this._parseControlStatement() // @if, @while, @for, @each
+				|| this._parseMixinDeclaration() // @mixin
+				|| this._parseMixinContent() // @content
 				|| this._parseMixinReference() // @include
-				|| this._parseFunctionDeclaration()
-				|| this._parseForward()
-				|| this._parseUse()
+				|| this._parseFunctionDeclaration() // @function
+				|| this._parseForward() // @forward
+				|| this._parseUse() // @use
+				|| this._parseRuleset(isNested) // @at-rule
 				|| super._parseStylesheetAtStatement(isNested);
 		}
 		return this._parseRuleset(true) || this._parseVariableDeclaration();
