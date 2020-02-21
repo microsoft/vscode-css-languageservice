@@ -1463,19 +1463,22 @@ export class Parser {
 		let node = <nodes.Term>this.create(nodes.Term);
 		node.setOperator(this._parseUnaryOperator()); // optional
 
-		if (node.setExpression(this._parseURILiteral()) || // url before function
-			node.setExpression(this._parseFunction()) || // function before ident
-			node.setExpression(this._parseIdent()) ||
-			node.setExpression(this._parseStringLiteral()) ||
-			node.setExpression(this._parseNumeric()) ||
-			node.setExpression(this._parseHexColor()) ||
-			node.setExpression(this._parseOperation()) ||
-			node.setExpression(this._parseNamedLine())
-		) {
+		if (node.setExpression(this._parseTermExpression())) {
 			return <nodes.Term>this.finish(node);
 		}
 
 		return null;
+	}
+
+	public _parseTermExpression(): nodes.Node | null {
+		return this._parseURILiteral() || // url before function
+			this._parseFunction() || // function before ident
+			this._parseIdent() ||
+			this._parseStringLiteral() ||
+			this._parseNumeric() ||
+			this._parseHexColor() ||
+			this._parseOperation() ||
+			this._parseNamedLine();
 	}
 
 	public _parseOperation(): nodes.Node | null {

@@ -127,6 +127,7 @@ suite('SCSS - Parser', () => {
 		assertNode('not (module.$v and $b) or module.$c', parser, parser._parseExpr.bind(parser));
 		assertNode('not ($v and module.$b) or module.$c', parser, parser._parseExpr.bind(parser));
 		assertNode('not (module.$v and module.$b) or module.$c', parser, parser._parseExpr.bind(parser));
+		assertNode('not module.$v', parser, parser._parseExpr.bind(parser));
 
 		assertError('(20 + 20', parser, parser._parseExpr.bind(parser), ParseError.RightParenthesisExpected);
 	});

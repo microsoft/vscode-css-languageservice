@@ -181,22 +181,12 @@ export class SCSSParser extends cssParser.Parser {
 		return hasContent ? this.finish(node) : null;
 	}
 
-	public _parseTerm(): nodes.Term | null {
-		let term = <nodes.Term>this.create(nodes.Term);
-		if (term.setExpression(this._parseModuleMember())) {
-			return this.finish(term);
-		}
-
-		const superTerm = super._parseTerm();
-		if (superTerm) { return superTerm; }
-
-		if (term.setExpression(this._parseVariable())
-			|| term.setExpression(this._parseSelectorCombinator())
-			|| term.setExpression(this._tryParsePrio())) {
-			return <nodes.Term>this.finish(term);
-		}
-
-		return null;
+	public _parseTermExpression(): nodes.Node | null {
+		return this._parseModuleMember() ||
+			this._parseVariable() ||
+			this._parseSelectorCombinator() ||
+			this._tryParsePrio() ||
+			super._parseTermExpression();
 	}
 
 	public _parseInterpolation(): nodes.Node | null {

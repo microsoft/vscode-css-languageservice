@@ -252,19 +252,11 @@ export class LESSParser extends cssParser.Parser {
 		return <nodes.Variable>node;
 	}
 
-	public _parseTerm(): nodes.Term | null {
-		let term = super._parseTerm();
-		if (term) { return term; }
-
-		term = <nodes.Term>this.create(nodes.Term);
-		if (term.setExpression(this._parseVariable()) ||
-			term.setExpression(this._parseEscaped()) ||
-			term.setExpression(this._tryParseMixinReference(false))) {
-
-			return <nodes.Term>this.finish(term);
-		}
-
-		return null;
+	public _parseTermExpression(): nodes.Node | null {
+		return this._parseVariable() ||
+			this._parseEscaped() ||
+			this._tryParseMixinReference(false) ||
+			super._parseTermExpression();
 	}
 
 	public _parseEscaped(): nodes.Node | null {
