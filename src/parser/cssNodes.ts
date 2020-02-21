@@ -400,8 +400,8 @@ export class Node {
 	}
 }
 
-export interface NodeConstructor {
-	new(offset: number, len: number): Node;
+export interface NodeConstructor<T> {
+	new(offset: number, len: number): T;
 }
 
 export class Nodelist extends Node {
@@ -1497,6 +1497,25 @@ export class ExtendsReference extends Node {
 			this.selectors = new Nodelist(this);
 		}
 		return this.selectors;
+	}
+}
+
+export class MixinContent extends Node {
+	private arguments?: Nodelist;
+
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.MixinContent;
+	}
+
+	public getArguments(): Nodelist {
+		if (!this.arguments) {
+			this.arguments = new Nodelist(this);
+		}
+		return this.arguments;
 	}
 }
 

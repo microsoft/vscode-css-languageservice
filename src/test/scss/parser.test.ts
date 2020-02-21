@@ -471,6 +471,12 @@ suite('SCSS - Parser', () => {
 		assertError('@mixin foo($color,){', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
 	});
 
+	test('@content', function () {
+		let parser = new SCSSParser();
+		assertNode('@content', parser, parser._parseMixinContent.bind(parser));
+		assertNode('@content($type)', parser, parser._parseMixinContent.bind(parser));
+	});
+
 	test('@include', function () {
 		let parser = new SCSSParser();
 		assertNode('p { @include sexy-border(blue); }', parser, parser._parseStylesheet.bind(parser));

@@ -574,8 +574,24 @@ export class SCSSParser extends cssParser.Parser {
 		if (!this.peekKeyword('@content')) {
 			return null;
 		}
-		const node = this.createNode(nodes.NodeType.MixinContent);
+		const node = this.create(nodes.MixinContent);
 		this.consumeToken();
+		if (this.accept(TokenType.ParenthesisL)) {
+			if (node.getArguments().addChild(this._parseFunctionArgument())) {
+				while (this.accept(TokenType.Comma)) {
+					if (this.peek(TokenType.ParenthesisR)) {
+						break;
+					}
+					if (!node.getArguments().addChild(this._parseFunctionArgument())) {
+						return this.finish(node, ParseError.ExpressionExpected);
+					}
+				}
+			}
+
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected);
+			}
+		}
 		return this.finish(node);
 	}
 
