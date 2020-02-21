@@ -550,7 +550,7 @@ export class LintVisitor implements nodes.IVisitor {
 				return false;
 			}
 			const identifier = property.getIdentifier();
-			if (!identifier || identifier.containsInterpolation()) {
+			if (!identifier || identifier.containsInterpolation() || identifier.endsWith('+') || identifier.endsWith('_') /* less merge */) {
 				return false;
 			}
 			return true;
