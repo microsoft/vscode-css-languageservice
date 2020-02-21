@@ -826,7 +826,7 @@ export class Parser {
 		return this._parseStylesheetStatement(false);
 	}
 
-	private _parseSupportsCondition(): nodes.Node {
+	protected _parseSupportsCondition(): nodes.Node {
 		// supports_condition : supports_negation | supports_conjunction | supports_disjunction | supports_condition_in_parens ;
 		// supports_condition_in_parens: ( '(' S* supports_condition S* ')' ) | supports_declaration_condition | general_enclosed ;
 		// supports_negation: NOT S+ supports_condition_in_parens ;

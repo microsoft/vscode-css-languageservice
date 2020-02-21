@@ -182,6 +182,7 @@ suite('SCSS - Parser', () => {
 		assertNode('&:nth-child(#{module.$query}+1) { clear: module.$opposite-direction; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('--#{module.$propname}: some-value', parser, parser._parseDeclaration.bind(parser));
 		assertNode('some-property: var(--#{module.$propname})', parser, parser._parseDeclaration.bind(parser));
+		assertNode('@supports #{$val} { }', parser, parser._parseStylesheet.bind(parser)); // #88283
 	});
 
 	test('Declaration', function () {

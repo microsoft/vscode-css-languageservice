@@ -844,4 +844,8 @@ export class SCSSParser extends cssParser.Parser {
 		return node.getChildren().length > 1 ? node : null;
 	}
 
+	protected _parseSupportsCondition(): nodes.Node {
+		return this._parseInterpolation() || super._parseSupportsCondition();
+	}
+
 }
