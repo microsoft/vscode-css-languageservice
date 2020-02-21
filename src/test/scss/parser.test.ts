@@ -550,6 +550,7 @@ suite('SCSS - Parser', () => {
 		assertNode('th, tr { @at-root #{selector-replace(&, "tr")} { border-bottom: 0; } }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.foo { @supports(display: grid) { .bar { display: none; }}}', parser, parser._parseRuleset.bind(parser));
 		assertNode('.foo { @supports(display: grid) { display: none; }}', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { @supports (position: sticky) { @media (min-width: map-get($grid-breakpoints, md)) { position: sticky; } }}', parser, parser._parseRuleset.bind(parser)); // issue #152
 	});
 
 	test('Selector Interpolation', function () {

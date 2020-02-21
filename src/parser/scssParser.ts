@@ -21,7 +21,7 @@ export class SCSSParser extends cssParser.Parser {
 		super(new scssScanner.SCSSScanner());
 	}
 
-	public _parseStylesheetStatement(): nodes.Node | null {
+	public _parseStylesheetStatement(isNested: boolean = false): nodes.Node | null {
 		if (this.peek(TokenType.AtKeyword)) {
 			return this._parseWarnAndDebug()
 				|| this._parseControlStatement()
@@ -31,7 +31,7 @@ export class SCSSParser extends cssParser.Parser {
 				|| this._parseFunctionDeclaration()
 				|| this._parseForward()
 				|| this._parseUse()
-				|| super._parseStylesheetAtStatement();
+				|| super._parseStylesheetAtStatement(isNested);
 		}
 		return this._parseRuleset(true) || this._parseVariableDeclaration();
 	}
