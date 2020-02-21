@@ -100,6 +100,7 @@ suite('LESS - Parser', () => {
 		assertNode('#bundle.button', parser, parser._tryParseMixinReference.bind(parser));
 		assertNode('#bundle #inner #button(1)', parser, parser._tryParseMixinReference.bind(parser));
 		assertNode('.mixin(#008000;)', parser, parser._tryParseMixinReference.bind(parser));
+		assertNode('.mixin ()', parser, parser._tryParseMixinReference.bind(parser));
 		assertError('.mixin(#008000;;)', parser, parser._tryParseMixinReference.bind(parser), ParseError.ExpressionExpected);
 	});
 

@@ -631,7 +631,7 @@ export class LESSParser extends cssParser.Parser {
 		}
 		let hasArguments = false;
 
-		if (!this.hasWhitespace() && this.accept(TokenType.ParenthesisL)) {
+		if (this.accept(TokenType.ParenthesisL)) {
 			hasArguments = true;
 			if (node.getArguments().addChild(this._parseMixinArgument())) {
 				while (this.accept(TokenType.Comma) || this.accept(TokenType.SemiColon)) {
