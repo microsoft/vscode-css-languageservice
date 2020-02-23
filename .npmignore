@@ -13,3 +13,5 @@ coverage/
 gulpfile.js
 tslint.json
 yarn.lock
+azure-pipelines.yml
+.editorconfig
