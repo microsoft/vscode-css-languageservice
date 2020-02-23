@@ -69,7 +69,7 @@ suite('CSS - Code Actions', () => {
 		testCodeActions('body { /*here*/background-colar: red }', '/*here*/', [
 			{ title: 'Rename to \'background-color\'', content: 'body { /*here*/background-color: red }' },
 			{ title: 'Rename to \'background-clip\'', content: 'body { /*here*/background-clip: red }' },
-			{ title: 'Rename to \'background-origin\'', content: 'body { /*here*/background-origin: red }' }
+			{ title: 'Rename to \'background-image\'', content: 'body { /*here*/background-image: red }' }
 		]);
 	});
 });

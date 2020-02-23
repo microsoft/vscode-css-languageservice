@@ -55,8 +55,8 @@ export class CSSCodeActions {
 		});
 
 		// Sort in descending order.
-		candidates.sort((a, b) => {
-			return b.score - a.score;
+		candidates.sort((a: RankedProperty, b: RankedProperty) => {
+			return b.score - a.score || a.property.localeCompare(b.property);
 		});
 
 		let maxActions = 3;
