@@ -1,5 +1,3 @@
 --ui tdd
 --useColors true
-./lib/umd/test/css
-./lib/umd/test/scss
-./lib/umd/test/less
+./lib/umd/test/**/*.test.js

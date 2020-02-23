@@ -4,6 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
+import { trim } from "../utils/strings";
+
 /// <summary>
 /// Nodes for the css 2.1 specification. See for reference:
 /// http://www.w3.org/TR/CSS21/grammar.html#grammar
@@ -692,7 +694,7 @@ export class Property extends Node {
 	}
 
 	public getName(): string {
-		return this.getText();
+		return trim(this.getText(), /[_\+]+$/); /* +_: less merge */
 	}
 
 	public isCustomProperty(): boolean {
