@@ -1,6 +1,14 @@
-4.0.4 
+4.1.0 - 2020-02-23
 ===================
-* Switch to `TextDocument` from `vscode-languageserver-textdocument`
+* markdown descriptions in completions and hover
+  * new API `LanguageServiceOptions.clientCapabilities` with `ClientCapabilities` for completion documentationFormat and hover content
+  * extended format of CustomData (version 1.1) with MarkupContent contents and reference links
+* dynamically resolved links for scss include statements
+  * new API `LanguageService.findDocumentLinks2`: Also returns dynamically resolved links if `fileSystemProvider` is provided
+  * new API `LanguageServiceOptions.fileSystemProvider` with `FileSystemProvider` to query the file syetem (currenly used to resolve the location of included files)
+* new API `CompletionSettings.completePropertyWithSemicolon`
+* new API `ICompletionParticipant.onCssMixinReference`
+* Switch to `TextDocument` from `vscode-languageserver-textdocument` (reexported from the main module)
 
 4.0.0 / 2019-06-12
 ===================
