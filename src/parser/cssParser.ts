@@ -392,9 +392,10 @@ export class Parser {
 			case nodes.NodeType.While:
 			case nodes.NodeType.MixinDeclaration:
 			case nodes.NodeType.FunctionDeclaration:
+			case nodes.NodeType.MixinContentDeclaration:
 				return false;
 			case nodes.NodeType.ExtendsReference:
-			case nodes.NodeType.MixinContent:
+			case nodes.NodeType.MixinContentReference:
 			case nodes.NodeType.ReturnStatement:
 			case nodes.NodeType.MediaQuery:
 			case nodes.NodeType.Debug:

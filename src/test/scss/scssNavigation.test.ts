@@ -134,6 +134,8 @@ suite('SCSS - Navigation', () => {
 			assertHighlights(ls, '@mixin foo { display: inline } /*here*/foo { @include foo; }', '/*here*/', 1, 1, 'foo');
 			assertHighlights(ls, '@function /*here*/foo($i) { @return $i*$i; } #foo { width: foo(2); }', '/*here*/', 2, 1, 'foo');
 			assertHighlights(ls, '@function foo($i) { @return $i*$i; } #foo { width: /*here*/foo(2); }', '/*here*/', 2, 1, 'foo');
+
+			assertHighlights(ls, '.text { @include mixins.responsive using ($multiplier) { font-size: /*here*/$multiplier * 10px; } }', '/*here*/$', 2, 1, '$multiplier');
 		});
 	});
 

@@ -60,7 +60,8 @@ export enum NodeType {
 	For,
 	Each,
 	While,
-	MixinContent,
+	MixinContentReference,
+	MixinContentDeclaration,
 	Media,
 	Keyframe,
 	FontFace,
@@ -1502,7 +1503,7 @@ export class ExtendsReference extends Node {
 	}
 }
 
-export class MixinContent extends Node {
+export class MixinContentReference extends Node {
 	private arguments?: Nodelist;
 
 	constructor(offset: number, length: number) {
@@ -1510,7 +1511,7 @@ export class MixinContent extends Node {
 	}
 
 	public get type(): NodeType {
-		return NodeType.MixinContent;
+		return NodeType.MixinContentReference;
 	}
 
 	public getArguments(): Nodelist {
@@ -1521,13 +1522,32 @@ export class MixinContent extends Node {
 	}
 }
 
+export class MixinContentDeclaration extends BodyDeclaration {
+	private parameters?: Nodelist;
+
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.MixinContentReference;
+	}
+
+	public getParameters(): Nodelist {
+		if (!this.parameters) {
+			this.parameters = new Nodelist(this);
+		}
+		return this.parameters;
+	}
+}
+
+
 
 export class MixinReference extends Node {
 	public namespaces?: Nodelist;
 	public identifier?: Identifier;
 	private arguments?: Nodelist;
-	public content?: BodyDeclaration;
-	private contentArguments?: Nodelist;
+	public content?: MixinContentDeclaration;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1563,20 +1583,14 @@ export class MixinReference extends Node {
 		return this.arguments;
 	}
 
-	public setContent(node: BodyDeclaration | null): node is BodyDeclaration {
+	public setContent(node: MixinContentDeclaration | null): node is MixinContentDeclaration {
 		return this.setNode('content', node);
 	}
 
-	public getContent(): BodyDeclaration | undefined {
+	public getContent(): MixinContentDeclaration | undefined {
 		return this.content;
 	}
 
-	public getContentArguments(): Nodelist {
-		if (!this.contentArguments) {
-			this.contentArguments = new Nodelist(this);
-		}
-		return this.contentArguments;
-	}
 }
 
 export class MixinDeclaration extends BodyDeclaration {

@@ -575,7 +575,7 @@ export class SCSSParser extends cssParser.Parser {
 		if (!this.peekKeyword('@content')) {
 			return null;
 		}
-		const node = this.create(nodes.MixinContent);
+		const node = this.create(nodes.MixinContentReference);
 		this.consumeToken();
 		if (this.accept(TokenType.ParenthesisL)) {
 			if (node.getArguments().addChild(this._parseFunctionArgument())) {
@@ -646,16 +646,24 @@ export class SCSSParser extends cssParser.Parser {
 			}
 		}
 
+		if (this.peekIdent('using') || this.peek(TokenType.CurlyL)) {
+			node.setContent(this._parseMixinContentDeclaration());
+		}
+		return this.finish(node);
+	}
+
+	public _parseMixinContentDeclaration() {
+		const node = <nodes.MixinContentDeclaration>this.create(nodes.MixinContentDeclaration);
 		if (this.acceptIdent('using')) {
 			if (!this.accept(TokenType.ParenthesisL)) {
 				return this.finish(node, ParseError.LeftParenthesisExpected, [TokenType.CurlyL]);
 			}
-			if (node.getContentArguments().addChild(this._parseParameterDeclaration())) {
+			if (node.getParameters().addChild(this._parseParameterDeclaration())) {
 				while (this.accept(TokenType.Comma)) {
 					if (this.peek(TokenType.ParenthesisR)) {
 						break;
 					}
-					if (!node.getContentArguments().addChild(this._parseParameterDeclaration())) {
+					if (!node.getParameters().addChild(this._parseParameterDeclaration())) {
 						return this.finish(node, ParseError.VariableNameExpected);
 					}
 				}
@@ -667,11 +675,8 @@ export class SCSSParser extends cssParser.Parser {
 		}
 
 		if (this.peek(TokenType.CurlyL)) {
-			const content = <nodes.BodyDeclaration>this.create(nodes.BodyDeclaration);
-			this._parseBody(content, this._parseMixinReferenceBodyStatement.bind(this));
-			node.setContent(content);
+			this._parseBody(node, this._parseMixinReferenceBodyStatement.bind(this));
 		}
-
 
 		return this.finish(node);
 	}
