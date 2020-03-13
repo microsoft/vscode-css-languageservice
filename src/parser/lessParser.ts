@@ -255,8 +255,8 @@ export class LESSParser extends cssParser.Parser {
 	public _parseTermExpression(): nodes.Node | null {
 		return this._parseVariable() ||
 			this._parseEscaped() ||
-			this._tryParseMixinReference(false) ||
-			super._parseTermExpression();
+			super._parseTermExpression() || // preference for colors before mixin references
+			this._tryParseMixinReference(false);
 	}
 
 	public _parseEscaped(): nodes.Node | null {

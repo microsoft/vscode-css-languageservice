@@ -5,8 +5,9 @@
 'use strict';
 
 import * as nodes from '../../parser/cssNodes';
-import { assertScopeBuilding, assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertSymbols, newRange } from '../css/navigation.test';
+import { assertScopeBuilding, assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertSymbols, newRange, assertColorSymbols } from '../css/navigation.test';
 import { getLESSLanguageService, SymbolKind, Location } from '../../cssLanguageService';
+import { colorFrom256RGB, colorFromHSL } from '../../languageFacts/facts';
 
 suite('LESS - Symbols', () => {
 
@@ -60,4 +61,20 @@ suite('LESS - Symbols', () => {
 		]);
 	});
 
+});
+
+suite('Color', () => {
+
+	test('color symbols', function () {
+		let ls = getLESSLanguageService();
+		assertColorSymbols(ls, '@foo: #ff9977;',
+			{ color: colorFrom256RGB(0xff, 0x99, 0x77), range: newRange(6, 13) }
+		);
+		assertColorSymbols(ls, 'body { @foo: hsl(0, 0%, 100%); }',
+			{ color: colorFrom256RGB(255, 255, 255), range: newRange(13, 29) }
+		);
+		assertColorSymbols(ls, 'body { @foo: hsl(0, 1%, 100%); }',
+			{ color: colorFrom256RGB(255, 255, 255), range: newRange(13, 29) }
+		);
+	});
 });
