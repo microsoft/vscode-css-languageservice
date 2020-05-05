@@ -219,44 +219,37 @@ export class SCSSCompletion extends CSSCompletion {
 		{
 			label: 'sass:math',
 			documentation: localize('scss.builtin.sass:math', 'Provides functions that operate on numbers.'),
-			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/math' }],
-			kind: CompletionItemKind.Module,
+			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/math' }]
 		},
 		{
 			label: 'sass:string',
 			documentation: localize('scss.builtin.sass:string', 'Makes it easy to combine, search, or split apart strings.'),
-			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/string' }],
-			kind: CompletionItemKind.Module,
+			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/string' }]
 		},
 		{
 			label: 'sass:color',
 			documentation: localize('scss.builtin.sass:color', 'Generates new colors based on existing ones, making it easy to build color themes.'),
-			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/color' }],
-			kind: CompletionItemKind.Module,
+			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/color' }]
 		},
 		{
 			label: 'sass:list',
 			documentation: localize('scss.builtin.sass:list', 'Lets you access and modify values in lists.'),
-			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/list' }],
-			kind: CompletionItemKind.Module,
+			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/list' }]
 		},
 		{
 			label: 'sass:map',
 			documentation: localize('scss.builtin.sass:map', 'Makes it possible to look up the value associated with a key in a map, and much more.'),
-			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/map' }],
-			kind: CompletionItemKind.Module,
+			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/map' }]
 		},
 		{
 			label: 'sass:selector',
 			documentation: localize('scss.builtin.sass:selector', 'Provides access to Sass’s powerful selector engine.'),
-			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/selector' }],
-			kind: CompletionItemKind.Module,
+			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/selector' }]
 		},
 		{
 			label: 'sass:meta',
 			documentation: localize('scss.builtin.sass:meta', 'Exposes the details of Sass’s inner workings.'),
-			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/meta' }],
-			kind: CompletionItemKind.Module,
+			references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/modules/meta' }]
 		},
 	];
 
@@ -278,7 +271,15 @@ export class SCSSCompletion extends CSSCompletion {
 		const parentType = importPathNode.getParent()!.type;
 
 		if (parentType === nodes.NodeType.Forward || parentType === nodes.NodeType.Use) {
-			result.items.push(...SCSSCompletion.scssModuleBuiltIns);
+			for (let p of SCSSCompletion.scssModuleBuiltIns) {
+				const item: CompletionItem = {
+					label: p.label,
+					documentation: p.documentation,
+					textEdit: TextEdit.replace(this.getCompletionRange(importPathNode), `'${p.label}'`),
+					kind: CompletionItemKind.Module
+				};
+				result.items.push(item);
+			}
 		}
 
 		return super.getCompletionForImportPath(importPathNode, result);
