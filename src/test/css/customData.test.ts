@@ -10,13 +10,13 @@ import { ItemDescription } from './completion.test';
 import {
 	getCSSLanguageService,
 	CompletionList, Position, TextDocument,
-	CSSDataV1, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext
+	CSSDataV1, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext, newCSSDataProvider
 } from '../../cssLanguageService';
-import { CSSDataProvider } from '../../languageFacts/facts';
 
 function getLanguageService(data: CSSDataV1) {
-	const provider = new CSSDataProvider(data);
-	return getCSSLanguageService({ customDataProviders: [provider] });
+	const service = getCSSLanguageService();
+	service.setDataProviders(true, [newCSSDataProvider(data)]);
+	return service;
 }
 
 function assertCompletion(completions: CompletionList, expected: ItemDescription, document: TextDocument) {

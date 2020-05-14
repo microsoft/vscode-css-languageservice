@@ -7,7 +7,7 @@
 import * as nodes from '../../parser/cssNodes';
 import { assertScopeBuilding, assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertSymbols, newRange, assertColorSymbols } from '../css/navigation.test';
 import { getLESSLanguageService, SymbolKind, Location } from '../../cssLanguageService';
-import { colorFrom256RGB, colorFromHSL } from '../../languageFacts/facts';
+import { colorFrom256RGB } from '../../languageFacts/facts';
 
 suite('LESS - Symbols', () => {
 

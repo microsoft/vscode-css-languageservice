@@ -10,11 +10,12 @@ import * as languageFacts from '../languageFacts/facts';
 import * as strings from '../utils/strings';
 import {
 	ICompletionParticipant, LanguageSettings, ClientCapabilities, TextDocument,
-	Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, MarkupContent, CompletionItemTag
+	Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, MarkupContent, CompletionItemTag, ICSSDataProvider
 } from '../cssLanguageTypes';
 
 import * as nls from 'vscode-nls';
 import { isDefined } from '../utils/objects';
+import { CSSDataManager } from '../languageFacts/dataManager';
 const localize = nls.loadMessageBundle();
 const SnippetFormat = InsertTextFormat.Snippet;
 
@@ -45,7 +46,7 @@ export class CSSCompletion {
 	nodePath!: nodes.Node[];
 	completionParticipants: ICompletionParticipant[] = [];
 
-	constructor(public variablePrefix: string | null = null, private clientCapabilities: ClientCapabilities | undefined) {
+	constructor(public variablePrefix: string | null = null, private clientCapabilities: ClientCapabilities | undefined, private cssDataManager: CSSDataManager) {
 	}
 
 	public configure(settings?: LanguageSettings) {
@@ -194,7 +195,7 @@ export class CSSCompletion {
 	private getPropertyProposals(declaration: nodes.Declaration | null, result: CompletionList): CompletionList {
 		const triggerPropertyValueCompletion = this.isTriggerPropertyValueCompletionEnabled;
 		const completePropertyWithSemicolon = this.isCompletePropertyWithSemicolonEnabled;
-		const properties = languageFacts.cssDataManager.getProperties();
+		const properties = this.cssDataManager.getProperties();
 
 		properties.forEach(entry => {
 			let range: Range;
@@ -288,7 +289,7 @@ export class CSSCompletion {
 
 	public getCompletionsForDeclarationValue(node: nodes.Declaration, result: CompletionList): CompletionList {
 		const propertyName = node.getFullPropertyName();
-		const entry = languageFacts.cssDataManager.getProperty(propertyName);
+		const entry = this.cssDataManager.getProperty(propertyName);
 		let existingNode: nodes.Node | null = node.getValue() || null;
 
 		while (existingNode && existingNode.hasChildren()) {
@@ -669,7 +670,7 @@ export class CSSCompletion {
 	}
 
 	public getCompletionForTopLevel(result: CompletionList): CompletionList {
-		languageFacts.cssDataManager.getAtDirectives().forEach(entry => {
+		this.cssDataManager.getAtDirectives().forEach(entry => {
 			result.items.push({
 				label: entry.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(null), entry.name),
@@ -706,7 +707,7 @@ export class CSSCompletion {
 			this.defaultReplaceRange = Range.create(Position.create(this.position.line, this.position.character - this.currentWord.length), this.position);
 		}
 
-		const pseudoClasses = languageFacts.cssDataManager.getPseudoClasses();
+		const pseudoClasses = this.cssDataManager.getPseudoClasses();
 		pseudoClasses.forEach(entry => {
 			const insertText = moveCursorInsideParenthesis(entry.name);
 			const item: CompletionItem = {
@@ -723,7 +724,7 @@ export class CSSCompletion {
 			result.items.push(item);
 		});
 
-		const pseudoElements = languageFacts.cssDataManager.getPseudoElements();
+		const pseudoElements = this.cssDataManager.getPseudoElements();
 		pseudoElements.forEach(entry => {
 			const insertText = moveCursorInsideParenthesis(entry.name);
 			const item: CompletionItem = {

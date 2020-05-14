@@ -13,7 +13,7 @@ import { colorFrom256RGB, colorFromHSL } from '../../languageFacts/facts';
 import {
 	DocumentContext, TextDocument, DocumentHighlightKind, Range, Position, TextEdit, Color,
 	ColorInformation, DocumentLink, SymbolKind, SymbolInformation, Location,
-	getCSSLanguageService, LanguageService, Diagnostic, Stylesheet
+	getCSSLanguageService, LanguageService, Stylesheet
 } from '../../cssLanguageService';
 
 export function assertScopesAndSymbols(ls: LanguageService, input: string, expected: string): void {
@@ -362,6 +362,9 @@ suite('CSS - Navigation', () => {
 			assertColorSymbols(ls, '.oo { color: rgb(1,40,1); borderColor: hsl(120, 75%, 85%) }',
 				{ color: colorFrom256RGB(1, 40, 1), range: newRange(13, 24) },
 				{ color: colorFromHSL(120, 0.75, 0.85), range: newRange(39, 57) }
+			);
+			assertColorSymbols(ls, 'body { backgroundColor: rgba(1, 40, 1, 0.3); }',
+				{ color: colorFrom256RGB(1, 40, 1, 0.3 ), range: newRange(24, 43) }
 			);
 		});
 

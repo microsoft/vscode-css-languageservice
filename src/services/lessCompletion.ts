@@ -10,6 +10,7 @@ import { CSSCompletion } from './cssCompletion';
 import { ClientCapabilities, CompletionList, CompletionItemKind, InsertTextFormat, TextEdit, CompletionItem } from '../cssLanguageTypes';
 
 import * as nls from 'vscode-nls';
+import { CSSDataManager } from '../languageFacts/dataManager';
 
 const localize = nls.loadMessageBundle();
 
@@ -358,8 +359,8 @@ export class LESSCompletion extends CSSCompletion {
 	];
 
 
-	constructor(clientCapabilities: ClientCapabilities | undefined) {
-		super('@', clientCapabilities);
+	constructor(clientCapabilities: ClientCapabilities | undefined, cssDataManager: CSSDataManager) {
+		super('@', clientCapabilities, cssDataManager);
 	}
 
 	private createFunctionProposals(proposals: IFunctionInfo[], existingNode: nodes.Node, sortToEnd: boolean, result: CompletionList): CompletionList {

@@ -11,9 +11,14 @@ import {
 	IPseudoClassData,
 	IPseudoElementData,
 } from '../cssLanguageTypes';
+
 import * as objects from '../utils/objects';
+import { cssData } from '../data/webCustomData';
+import { CSSDataProvider } from './dataProvider';
 
 export class CSSDataManager {
+	private dataProviders: ICSSDataProvider[] = [];
+
 	private _propertySet: { [k: string]: IPropertyData } = {};
 	private _atDirectiveSet: { [k: string]: IAtDirectiveData } = {};
 	private _pseudoClassSet: { [k: string]: IPseudoClassData } = {};
@@ -24,12 +29,16 @@ export class CSSDataManager {
 	private _pseudoClasses: IPseudoClassData[] = [];
 	private _pseudoElements: IPseudoElementData[] = [];
 
-	constructor(private dataProviders: ICSSDataProvider[]) {
-		this.collectData();
+	constructor(options?: { useDefaultDataProvider?: boolean, customDataProviders?: ICSSDataProvider[] }) {
+		this.setDataProviders(options?.useDefaultDataProvider !== false, options?.customDataProviders || []);
 	}
 
-	addDataProviders(providers: ICSSDataProvider[]) {
-		this.dataProviders = this.dataProviders.concat(providers);
+	setDataProviders(builtIn: boolean, providers: ICSSDataProvider[]) {
+		this.dataProviders = [];
+		if (builtIn) {
+			this.dataProviders.push(new CSSDataProvider(cssData));
+		}
+		this.dataProviders.push(...providers);
 		this.collectData();
 	}
 
@@ -37,6 +46,11 @@ export class CSSDataManager {
 	 * Collect all data  & handle duplicates
 	 */
 	private collectData() {
+		this._propertySet = {};
+		this._atDirectiveSet = {};
+		this._pseudoClassSet = {};
+		this._pseudoElementSet = {};
+
 		this.dataProviders.forEach(provider => {
 			provider.provideProperties().forEach(p => {
 				if (!this._propertySet[p.name]) {
@@ -87,7 +101,7 @@ export class CSSDataManager {
 	isKnownProperty(name: string): boolean {
 		return name.toLowerCase() in this._propertySet;
 	}
-	
+
 	isStandardProperty(name: string): boolean {
 		return this.isKnownProperty(name) &&
 			(!this._propertySet[name.toLowerCase()].status || this._propertySet[name.toLowerCase()].status === 'standard');

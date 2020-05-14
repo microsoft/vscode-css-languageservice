@@ -7,8 +7,8 @@
 import * as nodes from '../parser/cssNodes';
 import { MarkedString } from '../cssLanguageTypes';
 import { Scanner } from '../parser/cssScanner';
-import * as languageFacts from "../languageFacts/facts";
 import * as nls from 'vscode-nls';
+import { CSSDataManager } from '../languageFacts/dataManager';
 
 const localize = nls.loadMessageBundle();
 
@@ -325,75 +325,83 @@ function unescape(content: string) {
 	return content;
 }
 
-function isPseudoElementIdentifier(text: string): boolean {
-	const match = text.match(/^::?([\w-]+)/);
 
-	if (!match) {
-		return false;
+export class SelectorPrinting {
+	constructor(private cssDataManager: CSSDataManager) {
+
 	}
 
-	return !!languageFacts.cssDataManager.getPseudoElement("::" + match[1]);
-}
+	public selectorToMarkedString(node: nodes.Selector): MarkedString[] {
+		const root = selectorToElement(node);
+		if (root) {
+			const markedStrings = new MarkedStringPrinter('"').print(root);
+			markedStrings.push(this.selectorToSpecificityMarkedString(node));
+			return markedStrings;
+		} else {
+			return [];
+		}
+	}
 
-function selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
-	//https://www.w3.org/TR/selectors-3/#specificity
-	function calculateScore(node: nodes.Node) {
-		node.getChildren().forEach(element => {
-			switch (element.type) {
-				case nodes.NodeType.IdentifierSelector:
-					specificity.id++;
-					break;
-				case nodes.NodeType.ClassSelector:
-				case nodes.NodeType.AttributeSelector:
-					specificity.attr++;
-					break;
-				case nodes.NodeType.ElementNameSelector:
-					//ignore universal selector
-					if (element.matches("*")) {
+	public simpleSelectorToMarkedString(node: nodes.SimpleSelector): MarkedString[] {
+		const element = toElement(node);
+		const markedStrings = new MarkedStringPrinter('"').print(element);
+		markedStrings.push(this.selectorToSpecificityMarkedString(node));
+		return markedStrings;
+	}
+
+	private isPseudoElementIdentifier(text: string): boolean {
+		const match = text.match(/^::?([\w-]+)/);
+
+		if (!match) {
+			return false;
+		}
+
+		return !!this.cssDataManager.getPseudoElement("::" + match[1]);
+	}
+
+	private selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
+		//https://www.w3.org/TR/selectors-3/#specificity
+		const calculateScore = (node: nodes.Node) => {
+			for (const element of node.getChildren()) {
+				switch (element.type) {
+					case nodes.NodeType.IdentifierSelector:
+						specificity.id++;
 						break;
-					}
-					specificity.tag++;
-					break;
-				case nodes.NodeType.PseudoSelector:
-					const text = element.getText();
-					if (isPseudoElementIdentifier(text)) {
-						specificity.tag++;	// pseudo element
-					} else {
-						//ignore psuedo class NOT
-						if (text.match(/^:not/i)) {
+					case nodes.NodeType.ClassSelector:
+					case nodes.NodeType.AttributeSelector:
+						specificity.attr++;
+						break;
+					case nodes.NodeType.ElementNameSelector:
+						//ignore universal selector
+						if (element.matches("*")) {
 							break;
 						}
-						specificity.attr++;	//pseudo class
-					}
-					break;
+						specificity.tag++;
+						break;
+					case nodes.NodeType.PseudoSelector:
+						const text = element.getText();
+						if (this.isPseudoElementIdentifier(text)) {
+							specificity.tag++;	// pseudo element
+						} else {
+							//ignore psuedo class NOT
+							if (text.match(/^:not/i)) {
+								break;
+							}
+							specificity.attr++;	//pseudo class
+						}
+						break;
+				}
+				if (element.getChildren().length > 0) {
+					calculateScore(element);
+				}
 			}
-			if (element.getChildren().length > 0) {
-				calculateScore(element);
-			}
-		});
+		};
+
+		const specificity = new Specificity();
+		calculateScore(node);
+		return localize('specificity', "[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): ({0}, {1}, {2})", specificity.id, specificity.attr, specificity.tag);
 	}
 
-	const specificity = new Specificity();
-	calculateScore(node);
-	return localize('specificity', "[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): ({0}, {1}, {2})", specificity.id, specificity.attr, specificity.tag);
-}
-
-export function selectorToMarkedString(node: nodes.Selector): MarkedString[] {
-	const root = selectorToElement(node);
-	if (root) {
-		const markedStrings = new MarkedStringPrinter('"').print(root);
-		markedStrings.push(selectorToSpecificityMarkedString(node));
-		return markedStrings;
-	} else {
-		return [];
-	}
-}
-
-export function simpleSelectorToMarkedString(node: nodes.SimpleSelector): MarkedString[] {
-	const element = toElement(node);
-	const markedStrings = new MarkedStringPrinter('"').print(element);
-	markedStrings.push(selectorToSpecificityMarkedString(node));
-	return markedStrings;
 }
 
 class SelectorElementBuilder {

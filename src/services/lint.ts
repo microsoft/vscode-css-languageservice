@@ -12,6 +12,7 @@ import { union } from '../utils/arrays';
 
 import * as nls from 'vscode-nls';
 import { TextDocument } from '../cssLanguageTypes';
+import { CSSDataManager } from '../languageFacts/dataManager';
 
 const localize = nls.loadMessageBundle();
 
@@ -33,8 +34,8 @@ class NodesByRootMap {
 
 export class LintVisitor implements nodes.IVisitor {
 
-	static entries(node: nodes.Node, document: TextDocument, settings: LintConfigurationSettings, entryFilter?: number): nodes.IMarker[] {
-		const visitor = new LintVisitor(document, settings);
+	static entries(node: nodes.Node, document: TextDocument, settings: LintConfigurationSettings, cssDataManager: CSSDataManager, entryFilter?: number): nodes.IMarker[] {
+		const visitor = new LintVisitor(document, settings, cssDataManager);
 		node.acceptVisitor(visitor);
 		visitor.completeValidations();
 		return visitor.getEntries(entryFilter);
@@ -52,7 +53,7 @@ export class LintVisitor implements nodes.IVisitor {
 
 	private validProperties: { [name: string]: boolean };
 
-	private constructor(document: TextDocument, settings: LintConfigurationSettings) {
+	private constructor(document: TextDocument, settings: LintConfigurationSettings, private cssDataManager: CSSDataManager) {
 		this.settings = settings;
 		this.documentText = document.getText();
 		this.keyframes = new NodesByRootMap();
@@ -183,7 +184,7 @@ export class LintVisitor implements nodes.IVisitor {
 			return false;
 		}
 
-		const atDirective = languageFacts.cssDataManager.getAtDirective(atRuleName.getText());
+		const atDirective = this.cssDataManager.getAtDirective(atRuleName.getText());
 		if (atDirective) {
 			return false;
 		}
@@ -415,7 +416,7 @@ export class LintVisitor implements nodes.IVisitor {
 
 					if (firstChar === '-') {
 						if (name.charAt(1) !== '-') { // avoid css variables
-							if (!languageFacts.cssDataManager.isKnownProperty(name) && !this.validProperties[name]) {
+							if (!this.cssDataManager.isKnownProperty(name) && !this.validProperties[name]) {
 								this.addEntry(decl.getProperty()!, Rules.UnknownVendorSpecificProperty);
 							}
 							const nonPrefixedName = decl.getNonPrefixedPropertyName();
@@ -429,7 +430,7 @@ export class LintVisitor implements nodes.IVisitor {
 						}
 
 						// _property and *property might be contributed via custom data
-						if (!languageFacts.cssDataManager.isKnownProperty(fullName) && !languageFacts.cssDataManager.isKnownProperty(name)) {
+						if (!this.cssDataManager.isKnownProperty(fullName) && !this.cssDataManager.isKnownProperty(name)) {
 							if (!this.validProperties[name]) {
 								this.addEntry(decl.getProperty()!, Rules.UnknownProperty, localize('property.unknownproperty.detailed', "Unknown property: '{0}'", decl.getFullPropertyName()));
 							}
@@ -447,7 +448,7 @@ export class LintVisitor implements nodes.IVisitor {
 					const entry = propertiesBySuffix.data[suffix];
 					const actual = entry.names;
 
-					const needsStandard = languageFacts.cssDataManager.isStandardProperty(suffix) && (actual.indexOf(suffix) === -1);
+					const needsStandard = this.cssDataManager.isStandardProperty(suffix) && (actual.indexOf(suffix) === -1);
 					if (!needsStandard && actual.length === 1) {
 						continue; // only the non-vendor specific rule is used, that's fine, no warning
 					}
@@ -455,7 +456,7 @@ export class LintVisitor implements nodes.IVisitor {
 					const expected: string[] = [];
 					for (let i = 0, len = LintVisitor.prefixes.length; i < len; i++) {
 						const prefix = LintVisitor.prefixes[i];
-						if (languageFacts.cssDataManager.isStandardProperty(prefix + suffix)) {
+						if (this.cssDataManager.isStandardProperty(prefix + suffix)) {
 							expected.push(prefix + suffix);
 						}
 					}

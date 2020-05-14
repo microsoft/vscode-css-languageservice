@@ -21,20 +21,23 @@ import {
 	LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServiceOptions,
 	Diagnostic, Position, CompletionList, Hover, Location, DocumentHighlight, DocumentLink,
 	SymbolInformation, Range, CodeActionContext, Command, CodeAction, ColorInformation,
-	Color, ColorPresentation, WorkspaceEdit, FoldingRange, SelectionRange, TextDocument
+	Color, ColorPresentation, WorkspaceEdit, FoldingRange, SelectionRange, TextDocument, ICSSDataProvider, CSSDataV1
 
 } from './cssLanguageTypes';
 
-import { cssDataManager } from './languageFacts/facts';
+import { CSSDataManager } from './languageFacts/dataManager';
+import { CSSDataProvider } from './languageFacts/dataProvider';
 import { getSelectionRanges } from './services/cssSelectionRange';
 import { SCSSNavigation } from './services/scssNavigation';
 import { Stylesheet as StyleSheetImpl } from './parser/cssNodes';
+import { cssData } from './data/webCustomData';
 
 export type Stylesheet = {};
 export * from './cssLanguageTypes';
 
 export interface LanguageService {
 	configure(raw?: LanguageSettings): void;
+	setDataProviders(useDefaultDataProvider: boolean, customDataProviders: ICSSDataProvider[]): void;
 	doValidation(document: TextDocument, stylesheet: Stylesheet, documentSettings?: LanguageSettings): Diagnostic[];
 	parseStylesheet(document: TextDocument): Stylesheet;
 	doComplete(document: TextDocument, position: Position, stylesheet: Stylesheet): CompletionList;
@@ -62,12 +65,21 @@ export interface LanguageService {
 	getSelectionRanges(document: TextDocument, positions: Position[], stylesheet: Stylesheet): SelectionRange[];
 }
 
-function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover, navigation: CSSNavigation, codeActions: CSSCodeActions, validation: CSSValidation): LanguageService {
+export function getDefaultCSSDataProvider(): ICSSDataProvider {
+	return newCSSDataProvider(cssData);
+}
+
+export function newCSSDataProvider(data: CSSDataV1): ICSSDataProvider {
+	return new CSSDataProvider(data);
+}
+
+function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover, navigation: CSSNavigation, codeActions: CSSCodeActions, validation: CSSValidation, cssDataManager: CSSDataManager): LanguageService {
 	return {
 		configure: (settings) => {
 			validation.configure(settings);
 			completion.configure(settings);
 		},
+		setDataProviders: cssDataManager.setDataProviders.bind(cssDataManager),
 		doValidation: validation.doValidation.bind(validation),
 		parseStylesheet: parser.parseStylesheet.bind(parser),
 		doComplete: completion.doComplete.bind(completion),
@@ -89,45 +101,41 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 		getSelectionRanges
 	};
 }
-
-function handleCustomData(options?: LanguageServiceOptions) {
-	if (options && options.customDataProviders) {
-		cssDataManager.addDataProviders(options.customDataProviders);
-	}
-}
-
 export function getCSSLanguageService(options?: LanguageServiceOptions): LanguageService {
-	handleCustomData(options);
+	const cssDataManager = new CSSDataManager(options);
 	return createFacade(
 		new Parser(),
-		new CSSCompletion(null, options && options.clientCapabilities),
-		new CSSHover(options && options.clientCapabilities),
+		new CSSCompletion(null, options && options.clientCapabilities, cssDataManager),
+		new CSSHover(options && options.clientCapabilities, cssDataManager),
 		new CSSNavigation(),
-		new CSSCodeActions(),
-		new CSSValidation()
+		new CSSCodeActions(cssDataManager),
+		new CSSValidation(cssDataManager),
+		cssDataManager
 	);
 }
 
 export function getSCSSLanguageService(options?: LanguageServiceOptions): LanguageService {
-	handleCustomData(options);
+	const cssDataManager = new CSSDataManager(options);
 	return createFacade(
 		new SCSSParser(),
-		new SCSSCompletion(options && options.clientCapabilities),
-		new CSSHover(options && options.clientCapabilities),
+		new SCSSCompletion(options?.clientCapabilities, cssDataManager),
+		new CSSHover(options && options.clientCapabilities, cssDataManager),
 		new SCSSNavigation(options && options.fileSystemProvider),
-		new CSSCodeActions(),
-		new CSSValidation()
+		new CSSCodeActions(cssDataManager),
+		new CSSValidation(cssDataManager),
+		cssDataManager
 	);
 }
 
 export function getLESSLanguageService(options?: LanguageServiceOptions): LanguageService {
-	handleCustomData(options);
+	const cssDataManager = new CSSDataManager(options);
 	return createFacade(
 		new LESSParser(),
-		new LESSCompletion(options && options.clientCapabilities),
-		new CSSHover(options && options.clientCapabilities),
+		new LESSCompletion(options && options.clientCapabilities, cssDataManager),
+		new CSSHover(options && options.clientCapabilities, cssDataManager),
 		new CSSNavigation(),
-		new CSSCodeActions(),
-		new CSSValidation()
+		new CSSCodeActions(cssDataManager),
+		new CSSValidation(cssDataManager),
+		cssDataManager
 	);
 }

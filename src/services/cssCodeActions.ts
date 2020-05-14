@@ -5,19 +5,20 @@
 'use strict';
 
 import * as nodes from '../parser/cssNodes';
-import * as languageFacts from '../languageFacts/facts';
 import { difference } from '../utils/strings';
 import { Rules } from '../services/lintRules';
 import {
 	Range, CodeActionContext, Diagnostic, Command, TextEdit, CodeAction, WorkspaceEdit, CodeActionKind,
-	TextDocumentEdit, VersionedTextDocumentIdentifier, TextDocument
+	TextDocumentEdit, VersionedTextDocumentIdentifier, TextDocument, ICSSDataProvider
 } from '../cssLanguageTypes';
 import * as nls from 'vscode-nls';
+import { CSSDataManager } from '../languageFacts/dataManager';
+
 const localize = nls.loadMessageBundle();
 
 export class CSSCodeActions {
 
-	constructor() {
+	constructor(private readonly cssDataManager: CSSDataManager) {
 	}
 
 	public doCodeActions(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: nodes.Stylesheet): Command[] {
@@ -47,7 +48,7 @@ export class CSSCodeActions {
 		const propertyName = property.getName();
 		const candidates: RankedProperty[] = [];
 
-		languageFacts.cssDataManager.getProperties().forEach(p => {
+		this.cssDataManager.getProperties().forEach(p => {
 			const score = difference(propertyName, p.name);
 			if (score >= propertyName.length / 2 /*score_lim*/) {
 				candidates.push({ property: p.name, score });

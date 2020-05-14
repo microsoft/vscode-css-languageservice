@@ -6,15 +6,19 @@
 
 import * as nodes from '../parser/cssNodes';
 import * as languageFacts from '../languageFacts/facts';
-import { selectorToMarkedString, simpleSelectorToMarkedString } from './selectorPrinting';
+import { SelectorPrinting } from './selectorPrinting';
 import { startsWith } from '../utils/strings';
 import { TextDocument, Range, Position, Hover, MarkedString, MarkupContent, MarkupKind, ClientCapabilities } from '../cssLanguageTypes';
 import { isDefined } from '../utils/objects';
+import { CSSDataManager } from '../languageFacts/dataManager';
 
 export class CSSHover {
 	private supportsMarkdown: boolean | undefined;
+	private readonly selectorPrinting: SelectorPrinting;
 
-	constructor(private clientCapabilities: ClientCapabilities | undefined) { }
+	constructor(private readonly clientCapabilities: ClientCapabilities | undefined, private readonly cssDataManager: CSSDataManager) {
+		this.selectorPrinting = new SelectorPrinting(cssDataManager);
+	}
 
 	public doHover(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Hover | null {
 		function getRange(node: nodes.Node) {
@@ -35,7 +39,7 @@ export class CSSHover {
 
 			if (node instanceof nodes.Selector) {
 				hover = {
-					contents: selectorToMarkedString(<nodes.Selector>node),
+					contents: this.selectorPrinting.selectorToMarkedString(<nodes.Selector>node),
 					range: getRange(node)
 				};
 				break;
@@ -47,7 +51,7 @@ export class CSSHover {
 				 */
 				if (!startsWith(node.getText(), '@')) {
 					hover = {
-						contents: simpleSelectorToMarkedString(<nodes.SimpleSelector>node),
+						contents: this.selectorPrinting.simpleSelectorToMarkedString(<nodes.SimpleSelector>node),
 						range: getRange(node)
 					};
 				}
@@ -56,7 +60,7 @@ export class CSSHover {
 
 			if (node instanceof nodes.Declaration) {
 				const propertyName = node.getFullPropertyName();
-				const entry = languageFacts.cssDataManager.getProperty(propertyName);
+				const entry = this.cssDataManager.getProperty(propertyName);
 				if (entry) {
 					const contents = languageFacts.getEntryDescription(entry, this.doesSupportMarkdown());
 					if (contents) {
@@ -73,7 +77,7 @@ export class CSSHover {
 
 			if (node instanceof nodes.UnknownAtRule) {
 				const atRuleName = node.getText();
-				const entry = languageFacts.cssDataManager.getAtDirective(atRuleName);
+				const entry = this.cssDataManager.getAtDirective(atRuleName);
 				if (entry) {
 					const contents = languageFacts.getEntryDescription(entry, this.doesSupportMarkdown());
 					if (contents) {
@@ -92,8 +96,8 @@ export class CSSHover {
 				const selectorName = node.getText();
 				const entry =
 					selectorName.slice(0, 2) === '::'
-						? languageFacts.cssDataManager.getPseudoElement(selectorName)
-						: languageFacts.cssDataManager.getPseudoClass(selectorName);
+						? this.cssDataManager.getPseudoElement(selectorName)
+						: this.cssDataManager.getPseudoClass(selectorName);
 				if (entry) {
 					const contents = languageFacts.getEntryDescription(entry, this.doesSupportMarkdown());
 					if (contents) {

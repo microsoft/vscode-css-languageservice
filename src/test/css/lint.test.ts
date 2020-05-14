@@ -12,10 +12,13 @@ import { Rule, Rules, LintConfigurationSettings } from '../../services/lintRules
 import { TextDocument } from '../../cssLanguageTypes';
 import { SCSSParser } from '../../parser/scssParser';
 import { LESSParser } from '../../parser/lessParser';
+import { CSSDataManager } from '../../languageFacts/dataManager';
+
+const cssDataManager = new CSSDataManager({ useDefaultDataProvider: true });
 
 export function assertEntries(node: Node, document: TextDocument, expectedRules: IRule[], expectedMessages: string[] | undefined = undefined, settings = new LintConfigurationSettings()): void {
 
-	const entries = LintVisitor.entries(node, document, settings, Level.Error | Level.Warning | Level.Ignore);
+	const entries = LintVisitor.entries(node, document, settings, cssDataManager, Level.Error | Level.Warning | Level.Ignore);
 	const message = `Did not find all linting error [${expectedRules.map(e => e.id).join(', ')}]`;
 
 	assert.equal(entries.length, expectedRules.length, message);
