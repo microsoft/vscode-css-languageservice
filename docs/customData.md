@@ -47,7 +47,7 @@ All top-level properties share two basic properties, `name` and `description`. F
     { "name": ":foo", "description": "Foo pseudo class" }
   ],
   "pseudoElements": [
-    { "name": ":foo", "description": "Foo pseudo elements" }
+    { "name": "::foo", "description": "Foo pseudo elements" }
   ]
 }
 ```
