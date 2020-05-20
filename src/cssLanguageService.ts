@@ -107,7 +107,7 @@ export function getCSSLanguageService(options?: LanguageServiceOptions): Languag
 		new Parser(),
 		new CSSCompletion(null, options && options.clientCapabilities, cssDataManager),
 		new CSSHover(options && options.clientCapabilities, cssDataManager),
-		new CSSNavigation(),
+		new CSSNavigation(options && options.fileSystemProvider),
 		new CSSCodeActions(cssDataManager),
 		new CSSValidation(cssDataManager),
 		cssDataManager
@@ -133,7 +133,7 @@ export function getLESSLanguageService(options?: LanguageServiceOptions): Langua
 		new LESSParser(),
 		new LESSCompletion(options && options.clientCapabilities, cssDataManager),
 		new CSSHover(options && options.clientCapabilities, cssDataManager),
-		new CSSNavigation(),
+		new CSSNavigation(options && options.fileSystemProvider),
 		new CSSCodeActions(cssDataManager),
 		new CSSValidation(cssDataManager),
 		cssDataManager

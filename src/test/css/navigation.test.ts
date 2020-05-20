@@ -6,15 +6,20 @@
 
 import * as assert from 'assert';
 import * as url from 'url';
+import { join } from 'path';
 import { Scope, GlobalScope, ScopeBuilder } from '../../parser/cssSymbolScope';
 import * as nodes from '../../parser/cssNodes';
 import { colorFrom256RGB, colorFromHSL } from '../../languageFacts/facts';
 
 import {
 	DocumentContext, TextDocument, DocumentHighlightKind, Range, Position, TextEdit, Color,
-	ColorInformation, DocumentLink, SymbolKind, SymbolInformation, Location,
-	getCSSLanguageService, LanguageService, Stylesheet
+	ColorInformation, DocumentLink, SymbolKind, SymbolInformation, Location, LanguageService, Stylesheet, getCSSLanguageService,
 } from '../../cssLanguageService';
+
+import { URI } from 'vscode-uri';
+import { startsWith } from '../../utils/strings';
+import { getFsProvider } from '../testUtil/fsProvider';
+import { joinPath } from '../../utils/resources';
 
 export function assertScopesAndSymbols(ls: LanguageService, input: string, expected: string): void {
 	let global = createScope(ls, input);
@@ -45,20 +50,23 @@ export function assertHighlights(ls: LanguageService, input: string, marker: str
 	assert.equal(nWrites, expectedWrites, input);
 }
 
-export function getDocumentContext(documentUrl: string): DocumentContext {
+export function getDocumentContext(documentUrl: string, workspaceFolder?: string): DocumentContext {
 	return {
 		resolveReference: (ref, base = documentUrl) => {
+			if (startsWith(ref, '/') && workspaceFolder) {
+				return joinPath(workspaceFolder, ref);
+			}
 			return url.resolve(base, ref);
 		}
 	};
 }
 
-export async function assertLinks(ls: LanguageService, input: string, expected: DocumentLink[], lang: string = 'css') {
-	let document = TextDocument.create(`test://test/test.${lang}`, lang, 0, input);
+export async function assertLinks(ls: LanguageService, input: string, expected: DocumentLink[], lang: string = 'css', testUri?: string, workspaceFolder?: string) {
+	let document = TextDocument.create(testUri || `test://test/test.${lang}`, lang, 0, input);
 
 	let stylesheet = ls.parseStylesheet(document);
 
-	let links = await ls.findDocumentLinks2(document, stylesheet, getDocumentContext(document.uri));
+	let links = await ls.findDocumentLinks2(document, stylesheet, getDocumentContext(document.uri, workspaceFolder || 'test://test'));
 	assert.deepEqual(links, expected);
 }
 
@@ -170,6 +178,10 @@ function createScope(ls: LanguageService, input: string): Scope {
 	return global;
 }
 
+function getCSSLS() {
+	return getCSSLanguageService({ fileSystemProvider: getFsProvider() });
+}
+
 suite('CSS - Navigation', () => {
 
 	suite('Scope', () => {
@@ -197,19 +209,19 @@ suite('CSS - Navigation', () => {
 		});
 
 		test('scope building', function () {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			assertScopeBuilding(ls, '.class {}', { offset: 7, length: 2 });
 			assertScopeBuilding(ls, '.class {} .class {}', { offset: 7, length: 2 }, { offset: 17, length: 2 });
 		});
 
 		test('symbols in scopes', function () {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			assertSymbolsInScope(ls, '@keyframes animation {};', 0, { name: 'animation', type: nodes.ReferenceType.Keyframe });
 			assertSymbolsInScope(ls, ' .class1 {} .class2 {}', 0, { name: '.class1', type: nodes.ReferenceType.Rule }, { name: '.class2', type: nodes.ReferenceType.Rule });
 		});
 
 		test('scopes and symbols', function () {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			assertScopesAndSymbols(ls, '.class {}', '.class,[]');
 			assertScopesAndSymbols(ls, '@keyframes animation {}; .class {}', 'animation,.class,[],[]');
 			assertScopesAndSymbols(ls, '@page :pseudo-class { margin:2in; }', '[]');
@@ -219,29 +231,29 @@ suite('CSS - Navigation', () => {
 		});
 
 		test('test variables in root scope', function () {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			assertSymbolsInScope(ls, ':root{ --var1: abc; --var2: def; }', 0, { name: '--var1', type: nodes.ReferenceType.Variable }, { name: '--var2', type: nodes.ReferenceType.Variable });
 		});
 
 		test('test variables in local scope', function () {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			assertSymbolsInScope(ls, '.a{ --var1: abc; --var2: def; }', 2, { name: '--var1', type: nodes.ReferenceType.Variable }, { name: '--var2', type: nodes.ReferenceType.Variable });
 		});
 
 		test('test variables in local scope get root variables too', function () {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			assertSymbolsInScope(ls, '.a{ --var1: abc; } :root{ --var2: abc;}', 2, { name: '--var1', type: nodes.ReferenceType.Variable }, { name: '--var2', type: nodes.ReferenceType.Variable });
 		});
 
 		test('test variables in local scope get root variables and other local variables too', function () {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			assertSymbolsInScope(ls, '.a{ --var1: abc; } .b{ --var2: abc; } :root{ --var3: abc;}', 2, { name: '--var1', type: nodes.ReferenceType.Variable }, { name: '--var2', type: nodes.ReferenceType.Variable }, { name: '--var3', type: nodes.ReferenceType.Variable });
 		});
 	});
 
 	suite('Symbols', () => {
 		test('basic symbols', () => {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			assertSymbols(ls, '.foo {}', [{ name: '.foo', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(0, 7)) }]);
 			assertSymbols(ls, '.foo:not(.selected) {}', [{ name: '.foo:not(.selected)', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(0, 22)) }]);
 
@@ -253,43 +265,43 @@ suite('CSS - Navigation', () => {
 	suite('Highlights', () => {
 
 		test('mark highlights', function () {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			assertHighlights(ls, '@keyframes id {}; #main { animation: id 4s linear 0s infinite alternate; }', 'id', 2, 1);
 			assertHighlights(ls, '@keyframes id {}; #main { animation-name: id; foo: id;}', 'id', 2, 1);
 		});
 
 		test('mark occurrences for variable defined in root and used in a rule', function () {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			assertHighlights(ls, '.a{ background: let(--var1); } :root{ --var1: abc;}', '--var1', 2, 1);
 		});
 
 		test('mark occurrences for variable defined in a rule and used in a different rule', function () {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			assertHighlights(ls, '.a{ background: let(--var1); } :b{ --var1: abc;}', '--var1', 2, 1);
 		});
 
 		test('mark occurrences for property', function () {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			assertHighlights(ls, 'body { display: inline } #foo { display: inline }', 'display', 2, 0);
 		});
 
 		test('mark occurrences for value', function () {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			assertHighlights(ls, 'body { display: inline } #foo { display: inline }', 'inline', 2, 0);
 		});
 
 		test('mark occurrences for selector', function () {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			assertHighlights(ls, 'body { display: inline } #foo { display: inline }', 'body', 1, 1);
 		});
 
 		test('mark occurrences for comment', function () {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			assertHighlights(ls, '/* comment */body { display: inline } ', 'comment', 0, 0);
 		});
 
 		test('mark occurrences for whole classname instead of only class identifier', () => {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			assertHighlights(ls, '.foo { }', '.foo', 1, 1);
 			assertHighlights(ls, '.body { } body { }', '.body', 1, 1);
 		});
@@ -298,7 +310,7 @@ suite('CSS - Navigation', () => {
 	suite('Links', () => {
 
 		test('basic @import links', async () => {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			await assertLinks(ls, `@import 'foo.css';`, [
 				{ range: newRange(8, 17), target: 'test://test/foo.css' }
 			]);
@@ -313,7 +325,7 @@ suite('CSS - Navigation', () => {
 		});
 
 		test('complex @import links', async () => {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			await assertLinks(ls, `@import url("foo.css") print;`, [
 				{ range: newRange(12, 21), target: 'test://test/foo.css' }
 			]);
@@ -328,7 +340,7 @@ suite('CSS - Navigation', () => {
 		});
 
 		test('links in rulesets', async () => {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			await assertLinks(ls, `body { background-image: url(./foo.jpg)`, [
 				{ range: newRange(29, 38), target: 'test://test/foo.jpg' }
 			]);
@@ -339,17 +351,50 @@ suite('CSS - Navigation', () => {
 		});
 
 		test('No links with empty range', async () => {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			await assertLinks(ls, `body { background-image: url()`, []);
 			await assertLinks(ls, `@import url();`, []);
 		});
 
+		function getTestResource(path: string) {
+			return URI.file(join(__dirname, '../../../../test/linksTestFixtures', path)).toString();
+		}
+
+		test('url links', async function () {
+			let ls = getCSSLS();
+			let testUri = getTestResource('about.css');
+			let workspaceFolder = getTestResource('');
+
+			await assertLinks(ls, 'html { background-image: url("hello.html")',
+				[{ range: newRange(29, 41), target: getTestResource('hello.html') }], 'css', testUri, workspaceFolder
+			);
+		});
+
+		test('node module resolving', async function () {
+			let ls = getCSSLS();
+			let testUri = getTestResource('about.css');
+			let workspaceFolder = getTestResource('');
+
+			await assertLinks(ls, 'html { background-image: url("~foo/hello.html")',
+				[{ range: newRange(29, 46), target: getTestResource('node_modules/foo/hello.html') }], 'css', testUri, workspaceFolder
+			);
+		});
+
+		test('node module subfolder resolving', async function () {
+			let ls = getCSSLS();
+			let testUri = getTestResource('subdir/about.css');
+			let workspaceFolder = getTestResource('');
+
+			await assertLinks(ls, 'html { background-image: url("~foo/hello.html")',
+				[{ range: newRange(29, 46), target: getTestResource('node_modules/foo/hello.html') }], 'css', testUri, workspaceFolder
+			);
+		});
 	});
 
 	suite('Color', () => {
 
 		test('color symbols', function () {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			assertColorSymbols(ls, 'body { backgroundColor: #ff9977; }',
 				{ color: colorFrom256RGB(0xff, 0x99, 0x77), range: newRange(24, 31) }
 			);
@@ -364,12 +409,12 @@ suite('CSS - Navigation', () => {
 				{ color: colorFromHSL(120, 0.75, 0.85), range: newRange(39, 57) }
 			);
 			assertColorSymbols(ls, 'body { backgroundColor: rgba(1, 40, 1, 0.3); }',
-				{ color: colorFrom256RGB(1, 40, 1, 0.3 ), range: newRange(24, 43) }
+				{ color: colorFrom256RGB(1, 40, 1, 0.3), range: newRange(24, 43) }
 			);
 		});
 
 		test('color presentations', function () {
-			let ls = getCSSLanguageService();
+			let ls = getCSSLS();
 			assertColorPresentations(ls, colorFrom256RGB(255, 0, 0), 'rgb(255, 0, 0)', '#ff0000', 'hsl(0, 100%, 50%)');
 			assertColorPresentations(ls, colorFrom256RGB(77, 33, 111, 0.5), 'rgba(77, 33, 111, 0.5)', '#4d216f80', 'hsla(274, 54%, 28%, 0.5)');
 		});

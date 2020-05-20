@@ -11,8 +11,8 @@ import * as nodes from '../parser/cssNodes';
 import { URI } from 'vscode-uri';
 
 export class SCSSNavigation extends CSSNavigation {
-	constructor(private fileSystemProvider?: FileSystemProvider) {
-		super();
+	constructor(fileSystemProvider: FileSystemProvider | undefined) {
+		super(fileSystemProvider);
 	}
 
 	protected isRawStringDocumentLinkNode(node: nodes.Node): boolean {
@@ -23,11 +23,7 @@ export class SCSSNavigation extends CSSNavigation {
 		);
 	}
 
-	public async findDocumentLinks2(
-		document: TextDocument,
-		stylesheet: nodes.Stylesheet,
-		documentContext: DocumentContext
-	): Promise<DocumentLink[]> {
+	public async findDocumentLinks2(document: TextDocument, stylesheet: nodes.Stylesheet, documentContext: DocumentContext): Promise<DocumentLink[]> {
 		const links = this.findDocumentLinks(document, stylesheet, documentContext);
 		const fsProvider = this.fileSystemProvider;
 
@@ -55,14 +51,14 @@ export class SCSSNavigation extends CSSNavigation {
 
 				const pathVariations = toPathVariations(parsedUri);
 				if (!pathVariations) {
-					if (await fileExists(target)) {
+					if (await this.fileExists(target)) {
 						validLinks.push(links[i]);
 					}
 					continue;
 				}
 
 				for (let j = 0; j < pathVariations.length; j++) {
-					if (await fileExists(pathVariations[j])) {
+					if (await this.fileExists(pathVariations[j])) {
 						validLinks.push({
 							...links[i],
 							target: pathVariations[j]
@@ -124,23 +120,6 @@ export class SCSSNavigation extends CSSNavigation {
 			const cssPath = documentUriWithBasename(normalizedBasename.slice(0, -5) + '.css');
 
 			return [normalizedPath, underScorePath, indexPath, indexUnderscoreUri, cssPath];
-		}
-
-		async function fileExists(documentUri: DocumentUri) {
-			if (!fsProvider) {
-				return false;
-			}
-
-			try {
-				const stat = await fsProvider.stat(documentUri);
-				if (stat.type === FileType.Unknown && stat.size === -1) {
-					return false;
-				}
-
-				return true;
-			} catch (err) {
-				return false;
-			}
 		}
 	}
 }

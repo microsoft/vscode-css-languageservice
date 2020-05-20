@@ -11,6 +11,7 @@ import * as assert from 'assert';
 import { stat as fsStat } from 'fs';
 import * as path from 'path';
 import { URI } from 'vscode-uri';
+import { getFsProvider } from '../testUtil/fsProvider';
 
 async function assertDynamicLinks(docUri: string, input: string, expected: DocumentLink[]) {
 	const ls = getSCSSLanguageService({ fileSystemProvider: getFsProvider() });
@@ -30,48 +31,6 @@ async function assertNoDynamicLinks(docUri: string, input: string) {
 
 	const links = await ls.findDocumentLinks2(document, stylesheet, getDocumentContext(document.uri));
 	assert.deepEqual(links.length, 0, `${docUri.toString()} should have no link`);
-}
-
-
-function getFsProvider(): FileSystemProvider {
-	return {
-		stat(documentUri: string) {
-			const filePath = URI.parse(documentUri).fsPath;
-
-			return new Promise((c, e) => {
-				fsStat(filePath, (err, stats) => {
-					if (err) {
-						if (err.code === 'ENOENT') {
-							return c({
-								type: FileType.Unknown,
-								ctime: -1,
-								mtime: -1,
-								size: -1
-							});
-						} else {
-							return e(err);
-						}
-					}
-
-					let type = FileType.Unknown;
-					if (stats.isFile()) {
-						type = FileType.File;
-					} else if (stats.isDirectory()) {
-						type = FileType.Directory;
-					} else if (stats.isSymbolicLink()) {
-						type = FileType.SymbolicLink;
-					}
-
-					c({
-						type,
-						ctime: stats.ctime.getTime(),
-						mtime: stats.mtime.getTime(),
-						size: stats.size
-					});
-				});
-			});
-		}
-	};
 }
 
 suite('SCSS - Navigation', () => {

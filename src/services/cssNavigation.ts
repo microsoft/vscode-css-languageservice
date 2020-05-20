@@ -6,17 +6,21 @@
 
 import {
 	Color, ColorInformation, ColorPresentation, DocumentHighlight, DocumentHighlightKind, DocumentLink, Location,
-	Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit, TextDocument, DocumentContext
+	Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit, TextDocument, DocumentContext, FileSystemProvider, DocumentUri, FileType
 } from '../cssLanguageTypes';
 import * as nls from 'vscode-nls';
 import * as nodes from '../parser/cssNodes';
 import { Symbols } from '../parser/cssSymbolScope';
 import { getColorValue, hslFromColor } from '../languageFacts/facts';
 import { startsWith } from '../utils/strings';
+import { dirname, joinPath } from '../utils/resources';
 
 const localize = nls.loadMessageBundle();
 
 export class CSSNavigation {
+
+	constructor(protected fileSystemProvider: FileSystemProvider | undefined) {
+	}
 
 	public findDefinition(document: TextDocument, position: Position, stylesheet: nodes.Node): Location | null {
 
@@ -92,13 +96,50 @@ export class CSSNavigation {
 	}
 
 	public findDocumentLinks(document: TextDocument, stylesheet: nodes.Stylesheet, documentContext: DocumentContext): DocumentLink[] {
+		const links = this.findUnresolvedLinks(document, stylesheet);
+		for (let i = 0; i < links.length; i++) {
+			const target = links[i].target;
+			if (target && !(/^\w+:\/\//g.test(target))) {
+				links[i].target = documentContext.resolveReference(target, document.uri);
+			}
+		}
+		return links;
+	}
+
+	public async findDocumentLinks2(document: TextDocument, stylesheet: nodes.Stylesheet, documentContext: DocumentContext): Promise<DocumentLink[]> {
+		const links = this.findUnresolvedLinks(document, stylesheet);
+		for (let i = 0; i < links.length; i++) {
+			const target = links[i].target;
+			if (target && !(/^\w+:\/\//g.test(target))) {
+				links[i].target = await this.resolveRelativeReference(target, document.uri, documentContext);
+			}
+		}
+		return links;
+	}
+
+
+	private findUnresolvedLinks(document: TextDocument, stylesheet: nodes.Stylesheet): DocumentLink[] {
 		const result: DocumentLink[] = [];
+
+		const collect = (uriStringNode: nodes.Node) => {
+			let rawUri = uriStringNode.getText();
+			const range = getRange(uriStringNode, document);
+			// Make sure the range is not empty
+			if (range.start.line === range.end.line && range.start.character === range.end.character) {
+				return;
+			}
+
+			if (startsWith(rawUri, `'`) || startsWith(rawUri, `"`)) {
+				rawUri = rawUri.slice(1, -1);
+			}
+			result.push({ target: rawUri, range });
+		};
 
 		stylesheet.accept(candidate => {
 			if (candidate.type === nodes.NodeType.URILiteral) {
-				const link = uriLiteralNodeToDocumentLink(document, candidate, documentContext);
-				if (link) {
-					result.push(link);
+				const first = candidate.getChild(0);
+				if (first) {
+					collect(first);
 				}
 				return false;
 			}
@@ -110,12 +151,8 @@ export class CSSNavigation {
 			if (candidate.parent && this.isRawStringDocumentLinkNode(candidate.parent)) {
 				const rawText = candidate.getText();
 				if (startsWith(rawText, `'`) || startsWith(rawText, `"`)) {
-					const link = uriStringNodeToDocumentLink(document, candidate, documentContext);
-					if (link) {
-						result.push(link);
-					}
+					collect(candidate);
 				}
-
 				return false;
 			}
 
@@ -125,9 +162,6 @@ export class CSSNavigation {
 		return result;
 	}
 
-	public async findDocumentLinks2(document: TextDocument, stylesheet: nodes.Stylesheet, documentContext: DocumentContext): Promise<DocumentLink[]> {
-		return this.findDocumentLinks(document, stylesheet, documentContext);
-	}
 
 	public findDocumentSymbols(document: TextDocument, stylesheet: nodes.Stylesheet): SymbolInformation[] {
 
@@ -231,6 +265,56 @@ export class CSSNavigation {
 		};
 	}
 
+	protected async resolveRelativeReference(ref: string, documentUri: string, documentContext: DocumentContext): Promise<string> {
+		// Following [css-loader](https://github.com/webpack-contrib/css-loader#url)
+		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#imports)
+		// convention, if an import path starts with ~ then use node module resolution
+		// *unless* it starts with "~/" as this refers to the user's home directory.
+		if (ref[0] === '~' && ref[1] !== '/' && this.fileSystemProvider) {
+			ref = ref.substring(1);
+			if (startsWith(documentUri, 'file://')) {
+				const moduleName = getModuleNameFromPath(ref);
+				const rootFolderUri = documentContext.resolveReference('/', documentUri);
+				const documentFolderUri = dirname(documentUri);
+				const modulePath = await this.resolvePathToModule(moduleName, documentFolderUri, rootFolderUri);
+				if (modulePath) {
+					const pathWithinModule = ref.substring(moduleName.length + 1);
+					return joinPath(modulePath, pathWithinModule);
+				}
+			}
+			return documentContext.resolveReference(ref, documentUri);
+		}
+		return documentContext.resolveReference(ref, documentUri);
+	}
+
+	private async resolvePathToModule(_moduleName: string, documentFolderUri: string, rootFolderUri: string | undefined): Promise<string | undefined> {
+		// resolve the module relative to the document. We can't use `require` here as the code is webpacked.
+
+		const packPath = joinPath(documentFolderUri, 'node_modules', _moduleName, 'package.json');
+		if (await this.fileExists(packPath)) {
+			return dirname(packPath);
+		} else if (rootFolderUri && documentFolderUri.startsWith(rootFolderUri) && (documentFolderUri.length !== rootFolderUri.length)) {
+			return this.resolvePathToModule(_moduleName, dirname(documentFolderUri), rootFolderUri);
+		}
+		return undefined;
+	}
+
+	protected async fileExists(uri: string): Promise<boolean> {
+		if (!this.fileSystemProvider) {
+			return false;
+		}
+		try {
+			const stat = await this.fileSystemProvider.stat(uri);
+			if (stat.type === FileType.Unknown && stat.size === -1) {
+				return false;
+			}
+
+			return true;
+		} catch (err) {
+			return false;
+		}
+	}
+
 }
 
 function getColorInformation(node: nodes.Node, document: TextDocument): ColorInformation | null {
@@ -242,45 +326,6 @@ function getColorInformation(node: nodes.Node, document: TextDocument): ColorInf
 	return null;
 }
 
-function uriLiteralNodeToDocumentLink(document: TextDocument, uriLiteralNode: nodes.Node, documentContext: DocumentContext): DocumentLink | null {
-	if (uriLiteralNode.getChildren().length === 0) {
-		return null;
-	}
-
-	const uriStringNode = uriLiteralNode.getChild(0);
-
-	return uriStringNodeToDocumentLink(document, uriStringNode, documentContext);
-}
-
-function uriStringNodeToDocumentLink(document: TextDocument, uriStringNode: nodes.Node | null, documentContext: DocumentContext): DocumentLink | null {
-	if (!uriStringNode) {
-		return null;
-	}
-
-	let rawUri = uriStringNode.getText();
-	const range = getRange(uriStringNode, document);
-	// Make sure the range is not empty
-	if (range.start.line === range.end.line && range.start.character === range.end.character) {
-		return null;
-	}
-
-	if (startsWith(rawUri, `'`) || startsWith(rawUri, `"`)) {
-		rawUri = rawUri.slice(1, -1);
-	}
-	let target: string;
-	if (startsWith(rawUri, 'http://') || startsWith(rawUri, 'https://')) {
-		target = rawUri;
-	} else if (/^\w+:\/\//g.test(rawUri)) {
-		target = rawUri;
-	}
-	else {
-		target = documentContext.resolveReference(rawUri, document.uri);
-	}
-	return {
-		range,
-		target
-	};
-}
 
 function getRange(node: nodes.Node, document: TextDocument): Range {
 	return Range.create(document.positionAt(node.offset), document.positionAt(node.end));
@@ -317,4 +362,12 @@ function getHighlightKind(node: nodes.Node): DocumentHighlightKind {
 function toTwoDigitHex(n: number): string {
 	const r = n.toString(16);
 	return r.length !== 2 ? '0' + r : r;
+}
+
+function getModuleNameFromPath(path: string) {
+	// If a scoped module (starts with @) then get up until second instance of '/', otherwise get until first instance of '/'
+	if (path[0] === '@') {
+		return path.substring(0, path.indexOf('/', path.indexOf('/') + 1));
+	}
+	return path.substring(0, path.indexOf('/'));
 }
