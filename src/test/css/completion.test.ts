@@ -31,8 +31,8 @@ export interface ItemDescription {
 	sortText?: string;
 }
 
-let assertCompletion = function (completions: CompletionList, expected: ItemDescription, document: TextDocument) {
-	let matches = completions.items.filter(completion => {
+const assertCompletion = function (completions: CompletionList, expected: ItemDescription, document: TextDocument) {
+	const matches = completions.items.filter(completion => {
 		return completion.label === expected.label;
 	});
 	if (expected.notAvailable) {
@@ -41,7 +41,7 @@ let assertCompletion = function (completions: CompletionList, expected: ItemDesc
 		assert.equal(matches.length, 1, expected.label + " should only existing once: Actual: " + completions.items.map(c => c.label).join(', '));
 	}
 
-	let match = matches[0];
+	const match = matches[0];
 	if (expected.detail) {
 		assert.equal(match.detail, expected.detail);
 	}
@@ -97,14 +97,14 @@ export async function testCompletionFor(
 	testUri: string = 'test://test/test.css',
 	workspaceFolderUri: string = 'test://test'
 ) {
-	let offset = value.indexOf('|');
+	const offset = value.indexOf('|');
 	value = value.substr(0, offset) + value.substr(offset + 1);
 
-	let actualPropertyContexts: PropertyCompletionContext[] = [];
-	let actualPropertyValueContexts: PropertyValueCompletionContext[] = [];
-	let actualURILiteralValueContexts: URILiteralCompletionContext[] = [];
-	let actualImportPathContexts: ImportPathCompletionContext[] = [];
-	let actualMixinReferenceContexts: MixinReferenceCompletionContext[] = [];
+	const actualPropertyContexts: PropertyCompletionContext[] = [];
+	const actualPropertyValueContexts: PropertyValueCompletionContext[] = [];
+	const actualURILiteralValueContexts: URILiteralCompletionContext[] = [];
+	const actualImportPathContexts: ImportPathCompletionContext[] = [];
+	const actualMixinReferenceContexts: MixinReferenceCompletionContext[] = [];
 
 	const lang = path.extname(testUri).substr(1);
 	const lsOptions = { fileSystemProvider: getFsProvider() };
@@ -136,12 +136,12 @@ export async function testCompletionFor(
 
 	const context = getDocumentContext(testUri, workspaceFolderUri);
 
-	let list = await ls.doComplete2(document, position, jsonDoc, context);
+	const list = await ls.doComplete2(document, position, jsonDoc, context);
 	if (typeof expected.count === 'number') {
 		assert.equal(list.items.length, expected.count);
 	}
 	if (expected.items) {
-		for (let item of expected.items) {
+		for (const item of expected.items) {
 			assertCompletion(list, item, document);
 		}
 	}
@@ -756,8 +756,8 @@ suite('CSS - Completion', () => {
 	const testFixturesPath = path.join(__dirname, '../../../../test');
 
 	test('CSS url() Path completion', async function () {
-		let testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString();
-		let workspaceFolderUri = URI.file(path.resolve(testFixturesPath)).toString();
+		const testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString();
+		const workspaceFolderUri = URI.file(path.resolve(testFixturesPath)).toString();
 
 		await testCompletionFor('html { background-image: url("./|")', {
 			items: [
@@ -815,8 +815,8 @@ suite('CSS - Completion', () => {
 	});
 
 	test('CSS url() Path Completion - Unquoted url', async function () {
-		let testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString();
-		let workspaceFolderUri = URI.file(path.resolve('testFixturesPath')).toString();
+		const testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString();
+		const workspaceFolderUri = URI.file(path.resolve('testFixturesPath')).toString();
 
 		await testCompletionFor('html { background-image: url(./|)', {
 			items: [
@@ -844,8 +844,8 @@ suite('CSS - Completion', () => {
 	});
 
 	test('CSS @import Path completion', async function () {
-		let testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString();
-		let workspaceFolderUri = URI.file(path.resolve(testFixturesPath)).toString();
+		const testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString();
+		const workspaceFolderUri = URI.file(path.resolve(testFixturesPath)).toString();
 
 		await await testCompletionFor(`@import './|'`, {
 			items: [
@@ -864,8 +864,8 @@ suite('CSS - Completion', () => {
 	});
 
 	test('Completion should ignore files/folders starting with dot', async function () {
-		let testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString();
-		let workspaceFolderUri = URI.file(path.resolve(testFixturesPath)).toString();
+		const testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString();
+		const workspaceFolderUri = URI.file(path.resolve(testFixturesPath)).toString();
 
 		await testCompletionFor('html { background-image: url("../|")', {
 			count: 4

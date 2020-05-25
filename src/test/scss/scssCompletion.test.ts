@@ -277,8 +277,8 @@ suite('SCSS - Completions', () => {
 	 * For SCSS, `@import 'foo';` can be used for importing partial file `_foo.scss`
 	 */
 	test('SCSS @import Path completion', async function () {
-		let testCSSUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString();
-		let workspaceFolderUri = URI.file(path.resolve(testFixturesPath)).toString();
+		const testCSSUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString();
+		const workspaceFolderUri = URI.file(path.resolve(testFixturesPath)).toString();
 
 		/**
 		 * We are in a CSS file, so no special treatment for SCSS partial files
@@ -290,7 +290,7 @@ suite('SCSS - Completions', () => {
 			]
 		}, undefined, testCSSUri, workspaceFolderUri);
 
-		let testSCSSUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/scss/main.scss')).toString();
+		const testSCSSUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/scss/main.scss')).toString();
 		await testCompletionFor(`@import './|'`, {
 			items: [
 				{ label: '_foo.scss', resultText: `@import './foo'` }

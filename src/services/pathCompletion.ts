@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { DocumentUri } from 'vscode-languageserver-types';
-import { ICompletionParticipant, URILiteralCompletionContext, ImportPathCompletionContext, FileType, DocumentContext, FileSystemProvider, TextDocument, CompletionList, CompletionItemKind, CompletionItem, TextEdit, Range, Position } from '../cssLanguageTypes';
+import { ICompletionParticipant, URILiteralCompletionContext, ImportPathCompletionContext, FileType, DocumentContext, TextDocument, CompletionList, CompletionItemKind, CompletionItem, TextEdit, Range, Position } from '../cssLanguageTypes';
 
 import { startsWith, endsWith } from '../utils/strings';
 import { joinPath } from '../utils/resources';
