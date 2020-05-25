@@ -5,7 +5,7 @@
 
 import { FileSystemProvider, FileType } from "../../cssLanguageTypes";
 import { URI } from 'vscode-uri';
-import { stat as fsStat } from 'fs';
+import { stat as fsStat, readdir } from 'fs';
 
 export function getFsProvider(): FileSystemProvider {
 	return {
@@ -42,6 +42,28 @@ export function getFsProvider(): FileSystemProvider {
 						mtime: stats.mtime.getTime(),
 						size: stats.size
 					});
+				});
+			});
+		},
+		readDirectory(location: string) {
+			return new Promise((c, e) => {
+				const path = URI.parse(location).fsPath;
+
+				readdir(path, { withFileTypes: true }, (err, children) => {
+					if (err) {
+						return e(err);
+					}
+					c(children.map(stat => {
+						if (stat.isSymbolicLink()) {
+							return [stat.name, FileType.SymbolicLink];
+						} else if (stat.isDirectory()) {
+							return [stat.name, FileType.Directory];
+						} else if (stat.isFile()) {
+							return [stat.name, FileType.File];
+						} else {
+							return [stat.name, FileType.Unknown];
+						}
+					}));
 				});
 			});
 		}

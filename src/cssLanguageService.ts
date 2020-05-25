@@ -41,6 +41,7 @@ export interface LanguageService {
 	doValidation(document: TextDocument, stylesheet: Stylesheet, documentSettings?: LanguageSettings): Diagnostic[];
 	parseStylesheet(document: TextDocument): Stylesheet;
 	doComplete(document: TextDocument, position: Position, stylesheet: Stylesheet): CompletionList;
+	doComplete2(document: TextDocument, position: Position, stylesheet: Stylesheet, documentContext: DocumentContext): Promise<CompletionList>;
 	setCompletionParticipants(registeredCompletionParticipants: ICompletionParticipant[]): void;
 	doHover(document: TextDocument, position: Position, stylesheet: Stylesheet): Hover | null;
 	findDefinition(document: TextDocument, position: Position, stylesheet: Stylesheet): Location | null;
@@ -83,6 +84,7 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 		doValidation: validation.doValidation.bind(validation),
 		parseStylesheet: parser.parseStylesheet.bind(parser),
 		doComplete: completion.doComplete.bind(completion),
+		doComplete2: completion.doComplete2.bind(completion),
 		setCompletionParticipants: completion.setCompletionParticipants.bind(completion),
 		doHover: hover.doHover.bind(hover),
 		findDefinition: navigation.findDefinition.bind(navigation),
@@ -101,11 +103,14 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 		getSelectionRanges
 	};
 }
-export function getCSSLanguageService(options?: LanguageServiceOptions): LanguageService {
+
+const defaultLanguageServiceOptions = {};
+
+export function getCSSLanguageService(options: LanguageServiceOptions = defaultLanguageServiceOptions): LanguageService {
 	const cssDataManager = new CSSDataManager(options);
 	return createFacade(
 		new Parser(),
-		new CSSCompletion(null, options && options.clientCapabilities, cssDataManager),
+		new CSSCompletion(null, options, cssDataManager),
 		new CSSHover(options && options.clientCapabilities, cssDataManager),
 		new CSSNavigation(options && options.fileSystemProvider),
 		new CSSCodeActions(cssDataManager),
@@ -114,11 +119,11 @@ export function getCSSLanguageService(options?: LanguageServiceOptions): Languag
 	);
 }
 
-export function getSCSSLanguageService(options?: LanguageServiceOptions): LanguageService {
+export function getSCSSLanguageService(options: LanguageServiceOptions = defaultLanguageServiceOptions): LanguageService {
 	const cssDataManager = new CSSDataManager(options);
 	return createFacade(
 		new SCSSParser(),
-		new SCSSCompletion(options?.clientCapabilities, cssDataManager),
+		new SCSSCompletion(options, cssDataManager),
 		new CSSHover(options && options.clientCapabilities, cssDataManager),
 		new SCSSNavigation(options && options.fileSystemProvider),
 		new CSSCodeActions(cssDataManager),
@@ -127,11 +132,11 @@ export function getSCSSLanguageService(options?: LanguageServiceOptions): Langua
 	);
 }
 
-export function getLESSLanguageService(options?: LanguageServiceOptions): LanguageService {
+export function getLESSLanguageService(options: LanguageServiceOptions = defaultLanguageServiceOptions): LanguageService {
 	const cssDataManager = new CSSDataManager(options);
 	return createFacade(
 		new LESSParser(),
-		new LESSCompletion(options && options.clientCapabilities, cssDataManager),
+		new LESSCompletion(options, cssDataManager),
 		new CSSHover(options && options.clientCapabilities, cssDataManager),
 		new CSSNavigation(options && options.fileSystemProvider),
 		new CSSCodeActions(cssDataManager),

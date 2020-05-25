@@ -5,13 +5,13 @@
 'use strict';
 
 import * as nodes from '../../parser/cssNodes';
-import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertColorSymbols, assertLinks, newRange, getDocumentContext } from '../css/navigation.test';
-import { FileSystemProvider, FileType, getSCSSLanguageService, DocumentLink, TextDocument } from '../../cssLanguageService';
+import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertColorSymbols, assertLinks, newRange } from '../css/navigation.test';
+import { getSCSSLanguageService, DocumentLink, TextDocument } from '../../cssLanguageService';
 import * as assert from 'assert';
-import { stat as fsStat } from 'fs';
 import * as path from 'path';
 import { URI } from 'vscode-uri';
 import { getFsProvider } from '../testUtil/fsProvider';
+import { getDocumentContext } from '../testUtil/documentContext';
 
 async function assertDynamicLinks(docUri: string, input: string, expected: DocumentLink[]) {
 	const ls = getSCSSLanguageService({ fileSystemProvider: getFsProvider() });

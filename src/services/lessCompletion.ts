@@ -7,7 +7,7 @@
 import * as languageFacts from '../languageFacts/facts';
 import * as nodes from '../parser/cssNodes';
 import { CSSCompletion } from './cssCompletion';
-import { ClientCapabilities, CompletionList, CompletionItemKind, InsertTextFormat, TextEdit, CompletionItem } from '../cssLanguageTypes';
+import { ClientCapabilities, CompletionList, CompletionItemKind, InsertTextFormat, TextEdit, CompletionItem, LanguageServiceOptions } from '../cssLanguageTypes';
 
 import * as nls from 'vscode-nls';
 import { CSSDataManager } from '../languageFacts/dataManager';
@@ -359,8 +359,8 @@ export class LESSCompletion extends CSSCompletion {
 	];
 
 
-	constructor(clientCapabilities: ClientCapabilities | undefined, cssDataManager: CSSDataManager) {
-		super('@', clientCapabilities, cssDataManager);
+	constructor(lsOptions: LanguageServiceOptions, cssDataManager: CSSDataManager) {
+		super('@', lsOptions, cssDataManager);
 	}
 
 	private createFunctionProposals(proposals: IFunctionInfo[], existingNode: nodes.Node, sortToEnd: boolean, result: CompletionList): CompletionList {

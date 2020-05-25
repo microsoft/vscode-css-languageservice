@@ -5,21 +5,19 @@
 'use strict';
 
 import * as assert from 'assert';
-import * as url from 'url';
 import { join } from 'path';
 import { Scope, GlobalScope, ScopeBuilder } from '../../parser/cssSymbolScope';
 import * as nodes from '../../parser/cssNodes';
 import { colorFrom256RGB, colorFromHSL } from '../../languageFacts/facts';
 
 import {
-	DocumentContext, TextDocument, DocumentHighlightKind, Range, Position, TextEdit, Color,
+	TextDocument, DocumentHighlightKind, Range, Position, TextEdit, Color,
 	ColorInformation, DocumentLink, SymbolKind, SymbolInformation, Location, LanguageService, Stylesheet, getCSSLanguageService,
 } from '../../cssLanguageService';
 
 import { URI } from 'vscode-uri';
-import { startsWith } from '../../utils/strings';
 import { getFsProvider } from '../testUtil/fsProvider';
-import { joinPath } from '../../utils/resources';
+import { getDocumentContext } from '../testUtil/documentContext';
 
 export function assertScopesAndSymbols(ls: LanguageService, input: string, expected: string): void {
 	let global = createScope(ls, input);
@@ -50,16 +48,7 @@ export function assertHighlights(ls: LanguageService, input: string, marker: str
 	assert.equal(nWrites, expectedWrites, input);
 }
 
-export function getDocumentContext(documentUrl: string, workspaceFolder?: string): DocumentContext {
-	return {
-		resolveReference: (ref, base = documentUrl) => {
-			if (startsWith(ref, '/') && workspaceFolder) {
-				return joinPath(workspaceFolder, ref);
-			}
-			return url.resolve(base, ref);
-		}
-	};
-}
+
 
 export async function assertLinks(ls: LanguageService, input: string, expected: DocumentLink[], lang: string = 'css', testUri?: string, workspaceFolder?: string) {
 	let document = TextDocument.create(testUri || `test://test/test.${lang}`, lang, 0, input);

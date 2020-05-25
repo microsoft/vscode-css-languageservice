@@ -7,7 +7,7 @@
 import * as languageFacts from '../languageFacts/facts';
 import { CSSCompletion } from './cssCompletion';
 import * as nodes from '../parser/cssNodes';
-import { CompletionList, CompletionItemKind, TextEdit, InsertTextFormat, CompletionItem, MarkupContent, ClientCapabilities, IReference } from '../cssLanguageTypes';
+import { CompletionList, CompletionItemKind, TextEdit, InsertTextFormat, CompletionItem, MarkupContent, ClientCapabilities, IReference, LanguageServiceOptions } from '../cssLanguageTypes';
 import * as nls from 'vscode-nls';
 import { CSSDataManager } from '../languageFacts/dataManager';
 
@@ -255,8 +255,8 @@ export class SCSSCompletion extends CSSCompletion {
 	];
 
 
-	constructor(clientCapabilities: ClientCapabilities | undefined, cssDataManager: CSSDataManager) {
-		super('$', clientCapabilities, cssDataManager);
+	constructor(lsServiceOptions: LanguageServiceOptions, cssDataManager: CSSDataManager) {
+		super('$', lsServiceOptions, cssDataManager);
 
 		addReferencesToDocumentation(SCSSCompletion.scssModuleLoaders);
 		addReferencesToDocumentation(SCSSCompletion.scssModuleBuiltIns);

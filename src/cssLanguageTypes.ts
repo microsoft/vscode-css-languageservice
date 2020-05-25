@@ -244,4 +244,5 @@ export interface FileStat {
 
 export interface FileSystemProvider {
 	stat(uri: DocumentUri): Promise<FileStat>;
+	readDirectory?(uri: DocumentUri): Promise<[string, FileType][]>;
 }
