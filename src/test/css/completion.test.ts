@@ -9,7 +9,7 @@ import * as path from 'path';
 import {
 	getCSSLanguageService,
 	LanguageSettings, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext,
-	TextDocument, CompletionList, Position, CompletionItemKind, InsertTextFormat, Range, Command, MarkupContent
+	TextDocument, CompletionList, Position, CompletionItemKind, InsertTextFormat, Range, Command, MarkupContent, MixinReferenceCompletionContext, getSCSSLanguageService, getLESSLanguageService
 } from '../../cssLanguageService';
 import { getDocumentContext } from '../testUtil/documentContext';
 import { URI } from 'vscode-uri';
@@ -31,11 +31,7 @@ export interface ItemDescription {
 	sortText?: string;
 }
 
-function asPromise<T>(result: T): Promise<T> {
-	return Promise.resolve(result);
-}
-
-export let assertCompletion = function (completions: CompletionList, expected: ItemDescription, document: TextDocument) {
+let assertCompletion = function (completions: CompletionList, expected: ItemDescription, document: TextDocument) {
 	let matches = completions.items.filter(completion => {
 		return completion.label === expected.label;
 	});
@@ -77,18 +73,21 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 	}
 };
 
+export type ExpectedCompetions = {
+	count?: number;
+	items?: ItemDescription[];
+	participant?: {
+		onProperty?: PropertyCompletionContext[];
+		onPropertyValue?: PropertyValueCompletionContext[];
+		onURILiteralValue?: URILiteralCompletionContext[];
+		onImportPath?: ImportPathCompletionContext[];
+		onMixinReference?: MixinReferenceCompletionContext[];
+	};
+};
+
 export async function testCompletionFor(
 	value: string,
-	expected: {
-		count?: number;
-		items?: ItemDescription[];
-		participant?: {
-			onProperty?: PropertyCompletionContext[];
-			onPropertyValue?: PropertyValueCompletionContext[];
-			onURILiteralValue?: URILiteralCompletionContext[];
-			onImportPath?: ImportPathCompletionContext[];
-		};
-	},
+	expected: ExpectedCompetions,
 	settings: LanguageSettings = {
 		completion: {
 			triggerPropertyValueCompletion: true,
@@ -105,8 +104,18 @@ export async function testCompletionFor(
 	let actualPropertyValueContexts: PropertyValueCompletionContext[] = [];
 	let actualURILiteralValueContexts: URILiteralCompletionContext[] = [];
 	let actualImportPathContexts: ImportPathCompletionContext[] = [];
+	let actualMixinReferenceContexts: MixinReferenceCompletionContext[] = [];
 
-	let ls = getCSSLanguageService({ fileSystemProvider: getFsProvider() });
+	const lang = path.extname(testUri).substr(1);
+	const lsOptions = { fileSystemProvider: getFsProvider() };
+	let ls;
+	if (lang === 'scss') {
+		ls = getSCSSLanguageService(lsOptions);
+	} else if (lang === 'less') {
+		ls = getLESSLanguageService(lsOptions);
+	} else {
+		ls = getCSSLanguageService(lsOptions);
+	}
 	ls.configure(settings);
 
 	if (expected.participant) {
@@ -115,14 +124,15 @@ export async function testCompletionFor(
 				onCssProperty: context => actualPropertyContexts.push(context),
 				onCssPropertyValue: context => actualPropertyValueContexts.push(context),
 				onCssURILiteralValue: context => actualURILiteralValueContexts.push(context),
-				onCssImportPath: context => actualImportPathContexts.push(context)
+				onCssImportPath: context => actualImportPathContexts.push(context),
+				onCssMixinReference: context => actualMixinReferenceContexts.push(context)
 			}
 		]);
 	}
 
-	let document = TextDocument.create(testUri, 'css', 0, value);
-	let position = Position.create(0, offset);
-	let jsonDoc = ls.parseStylesheet(document);
+	const document = TextDocument.create(testUri, lang, 0, value);
+	const position = Position.create(0, offset);
+	const jsonDoc = ls.parseStylesheet(document);
 
 	const context = getDocumentContext(testUri, workspaceFolderUri);
 
@@ -147,6 +157,9 @@ export async function testCompletionFor(
 		}
 		if (expected.participant.onImportPath) {
 			assert.deepEqual(actualImportPathContexts, expected.participant.onImportPath);
+		}
+		if (expected.participant.onMixinReference) {
+			assert.deepEqual(actualMixinReferenceContexts, expected.participant.onMixinReference);
 		}
 	}
 };

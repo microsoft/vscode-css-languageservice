@@ -4,73 +4,22 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as assert from 'assert';
 import * as path from 'path';
 
-import { getSCSSLanguageService, TextDocument, Position, InsertTextFormat, CompletionItemKind, MixinReferenceCompletionContext, ImportPathCompletionContext } from '../../cssLanguageService';
-
-import { assertCompletion, ItemDescription, testCompletionFor as testCSSCompletionFor } from '../css/completion.test';
+import { Position, InsertTextFormat, CompletionItemKind, LanguageSettings } from '../../cssLanguageService';
+import { testCompletionFor as testCSSCompletionFor, ExpectedCompetions } from '../css/completion.test';
 import { newRange } from '../css/navigation.test';
 import { URI } from 'vscode-uri';
-import { getFsProvider } from '../testUtil/fsProvider';
-import { getDocumentContext } from '../testUtil/documentContext';
 
 async function testCompletionFor(
 	value: string,
-	expected: {
-		count?: number,
-		items?: ItemDescription[],
-		participant?: {
-			onImportPath?: ImportPathCompletionContext[],
-			onMixinReference?: MixinReferenceCompletionContext[],
-		},
-	},
+	expected: ExpectedCompetions,
+	settings: LanguageSettings | undefined = undefined,
 	testUri: string = 'test://test/test.scss',
 	workspaceFolderUri: string = 'test://test'
 ) {
-	let offset = value.indexOf('|');
-	value = value.substr(0, offset) + value.substr(offset + 1);
-
-	let actualImportPathContexts: ImportPathCompletionContext[] = [];
-	let actualMixinReferenceContexts: MixinReferenceCompletionContext[] = [];
-
-	let ls = getSCSSLanguageService({ fileSystemProvider: getFsProvider() });
-
-	if (expected.participant) {
-		ls.setCompletionParticipants([
-			{
-				onCssImportPath: context => actualImportPathContexts.push(context),
-				onCssMixinReference: context => actualMixinReferenceContexts.push(context)
-			}
-		]);
-	}
-
-	const context = getDocumentContext(testUri, workspaceFolderUri);
-
-	let document = TextDocument.create(testUri, 'scss', 0, value);
-	let position = Position.create(0, offset);
-	let jsonDoc = ls.parseStylesheet(document);
-	let list = await ls.doComplete2(document, position, jsonDoc, context);
-
-	if (expected.count) {
-		assert.equal(list.items, expected.count);
-	}
-	if (expected.items) {
-		for (let item of expected.items) {
-			assertCompletion(list, item, document);
-		}
-	}
-	if (expected.participant) {
-		if (expected.participant.onImportPath) {
-			assert.deepEqual(actualImportPathContexts, expected.participant.onImportPath);
-		}
-		if (expected.participant.onMixinReference) {
-			assert.deepEqual(actualMixinReferenceContexts, expected.participant.onMixinReference);
-		}
-	}
+	testCSSCompletionFor(value, expected, settings, testUri, workspaceFolderUri);
 };
-
-
 
 suite('SCSS - Completions', () => {
 	test('stylesheet', async () => {
@@ -346,7 +295,7 @@ suite('SCSS - Completions', () => {
 			items: [
 				{ label: '_foo.scss', resultText: `@import './foo'` }
 			]
-		}, testSCSSUri, workspaceFolderUri);
+		}, undefined, testSCSSUri, workspaceFolderUri);
 	});
 
 });

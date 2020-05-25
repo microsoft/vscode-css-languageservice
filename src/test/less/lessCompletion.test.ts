@@ -6,58 +6,18 @@
 
 import * as assert from 'assert';
 
-import { assertCompletion, ItemDescription } from '../css/completion.test';
-import { getLESSLanguageService, Position, TextDocument, ClientCapabilities, MixinReferenceCompletionContext } from '../../cssLanguageService';
+import { testCompletionFor as testCSSCompletionFor, ExpectedCompetions } from '../css/completion.test';
+import { LanguageSettings } from '../../cssLanguageService';
 import { newRange } from '../css/navigation.test';
-import { getDocumentContext } from '../testUtil/documentContext';
 
 async function testCompletionFor(
 	value: string,
-	expected: {
-		count?: number,
-		items?: ItemDescription[],
-		participant?: {
-			onMixinReference?: MixinReferenceCompletionContext[],
-		},
-	},
+	expected: ExpectedCompetions,
+	settings: LanguageSettings | undefined = undefined,
 	testUri: string = 'test://test/test.less',
 	workspaceFolderUri: string = 'test://test'
 ) {
-	let offset = value.indexOf('|');
-	value = value.substr(0, offset) + value.substr(offset + 1);
-
-	let actualMixinReferenceContexts: MixinReferenceCompletionContext[] = [];
-
-	let ls = getLESSLanguageService();
-
-	if (expected.participant) {
-		ls.setCompletionParticipants([
-			{
-				onCssMixinReference: context => actualMixinReferenceContexts.push(context)
-			}
-		]);
-	}
-
-	const context = getDocumentContext(testUri, workspaceFolderUri);
-
-	let document = TextDocument.create(testUri, 'less', 0, value);
-	let position = Position.create(0, offset);
-	let jsonDoc = ls.parseStylesheet(document);
-	let list = await ls.doComplete2(document, position, jsonDoc, context);
-
-	if (expected.count) {
-		assert.equal(list.items, expected.count);
-	}
-	if (expected.items) {
-		for (let item of expected.items) {
-			assertCompletion(list, item, document);
-		}
-	}
-	if (expected.participant) {
-		if (expected.participant.onMixinReference) {
-			assert.deepEqual(actualMixinReferenceContexts, expected.participant.onMixinReference);
-		}
-	}
+	testCSSCompletionFor(value, expected, settings, testUri, workspaceFolderUri);
 };
 
 
