@@ -6,58 +6,13 @@
 
 import * as assert from 'assert';
 
-import { ItemDescription } from './completion.test';
-import {
-	getCSSLanguageService,
-	CompletionList, Position, TextDocument,
-	CSSDataV1, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext, newCSSDataProvider
-} from '../../cssLanguageService';
+import { testCompletionFor } from './completion.test';
+import { getCSSLanguageService, TextDocument, newCSSDataProvider, LanguageSettings } from '../../cssLanguageService';
 
-function getLanguageService(data: CSSDataV1) {
-	const service = getCSSLanguageService();
-	service.setDataProviders(true, [newCSSDataProvider(data)]);
-	return service;
-}
 
-function assertCompletion(completions: CompletionList, expected: ItemDescription, document: TextDocument) {
-	let matches = completions.items.filter(completion => {
-		return completion.label === expected.label;
-	});
-	if (expected.notAvailable) {
-		assert.equal(matches.length, 0, expected.label + ' should not be present');
-	} else {
-		assert.equal(
-			matches.length,
-			1,
-			expected.label + ' should only existing once: Actual: ' + completions.items.map(c => c.label).join(', ')
-		);
-	}
+suite('CSS - Custom Data', async () => {
 
-	let match = matches[0];
-	if (expected.detail) {
-		assert.equal(match.detail, expected.detail);
-	}
-	if (expected.documentation) {
-		if (typeof expected.documentation === 'string') {
-			assert.equal(match.documentation, expected.documentation);
-		} else {
-			assert.deepStrictEqual(match.documentation, expected.documentation);
-		}
-	}
-	if (expected.kind) {
-		assert.equal(match.kind, expected.kind);
-	}
-	if (expected.resultText) {
-		assert.equal(TextDocument.applyEdits(document, [match.textEdit!]), expected.resultText);
-	}
-	if (expected.insertTextFormat) {
-		assert.equal(match.insertTextFormat, expected.insertTextFormat);
-	}
-}
-
-suite('CSS - Custom Data', () => {
-
-	const customData: CSSDataV1 = {
+	const customData = [newCSSDataProvider({
 		version: 1,
 		properties: [
 			{
@@ -92,37 +47,17 @@ suite('CSS - Custom Data', () => {
 				description: 'Foo pseudo element'
 			}
 		]
-	};
+	})];
 
-	const cssLS = getLanguageService(customData);
-
-	const testCompletionFor = function (
-		value: string,
-		expected: {
-			count?: number;
-			items?: ItemDescription[];
-			participant?: { onProperty?: PropertyCompletionContext; onPropertyValue?: PropertyValueCompletionContext; onURILiteralValue?: URILiteralCompletionContext; onImportPath?: ImportPathCompletionContext };
-		}
-	) {
-		let offset = value.indexOf('|');
-		value = value.substr(0, offset) + value.substr(offset + 1);
-
-		let document = TextDocument.create('test://test/test.css', 'css', 0, value);
-		let position = Position.create(0, offset);
-		let cssDoc = cssLS.parseStylesheet(document);
-		let list = cssLS.doComplete(document, position, cssDoc);
-		if (typeof expected.count === 'number') {
-			assert.equal(list.items, expected.count);
-		}
-		if (expected.items) {
-			for (let item of expected.items) {
-				assertCompletion(list, item, document);
-			}
+	const settings: LanguageSettings = {
+		completion: {
+			triggerPropertyValueCompletion: true,
+			completePropertyWithSemicolon: true
 		}
 	};
 
-	test('Completion', () => {
-		testCompletionFor('body { | }', {
+	test('Completion', async () => {
+		await testCompletionFor('body { | }', {
 			items: [
 				{
 					label: 'foo',
@@ -133,24 +68,24 @@ suite('CSS - Custom Data', () => {
 					}
 				}
 			]
-		});
+		}, settings, undefined, undefined, customData);
 
-		testCompletionFor('|', {
+		await testCompletionFor('|', {
 			items: [{ label: '@foo', resultText: '@foo' }]
-		});
+		}, settings, undefined, undefined, customData);
 
-		testCompletionFor(':|', {
+		await testCompletionFor(':|', {
 			items: [{ label: ':foo', resultText: ':foo' }]
-		});
+		}, settings, undefined, undefined, customData);
 
-		testCompletionFor('::foo', {
+		await testCompletionFor('::foo', {
 			items: [{ label: '::foo', resultText: '::foo' }]
-		});
+		}, settings, undefined, undefined, customData);
 	});
 });
 
 suite('CSS - Custom Data Diagnostics', () => {
-	const data: CSSDataV1 = {
+	const customDataProviders = [newCSSDataProvider({
 		version: 1,
 		properties: [
 			{
@@ -165,9 +100,9 @@ suite('CSS - Custom Data Diagnostics', () => {
 				name: '@foo'
 			}
 		]
-	};
+	})];
 
-	const cssLS = getLanguageService(data);
+	const cssLS = getCSSLanguageService({ customDataProviders });
 
 	const testValidationFor = function (
 		value: string,

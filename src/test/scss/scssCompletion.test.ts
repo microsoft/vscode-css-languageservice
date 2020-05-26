@@ -11,14 +11,14 @@ import { testCompletionFor as testCSSCompletionFor, ExpectedCompetions } from '.
 import { newRange } from '../css/navigation.test';
 import { URI } from 'vscode-uri';
 
-async function testCompletionFor(
+function testCompletionFor(
 	value: string,
 	expected: ExpectedCompetions,
 	settings: LanguageSettings | undefined = undefined,
 	testUri: string = 'test://test/test.scss',
 	workspaceFolderUri: string = 'test://test'
 ) {
-	testCSSCompletionFor(value, expected, settings, testUri, workspaceFolderUri);
+	return testCSSCompletionFor(value, expected, settings, testUri, workspaceFolderUri);
 };
 
 suite('SCSS - Completions', () => {

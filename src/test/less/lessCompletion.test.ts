@@ -4,20 +4,18 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as assert from 'assert';
-
 import { testCompletionFor as testCSSCompletionFor, ExpectedCompetions } from '../css/completion.test';
 import { LanguageSettings } from '../../cssLanguageService';
 import { newRange } from '../css/navigation.test';
 
-async function testCompletionFor(
+function testCompletionFor(
 	value: string,
 	expected: ExpectedCompetions,
 	settings: LanguageSettings | undefined = undefined,
 	testUri: string = 'test://test/test.less',
 	workspaceFolderUri: string = 'test://test'
 ) {
-	testCSSCompletionFor(value, expected, settings, testUri, workspaceFolderUri);
+	return testCSSCompletionFor(value, expected, settings, testUri, workspaceFolderUri);
 };
 
 

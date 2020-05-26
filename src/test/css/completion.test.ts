@@ -9,11 +9,12 @@ import * as path from 'path';
 import {
 	getCSSLanguageService,
 	LanguageSettings, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext,
-	TextDocument, CompletionList, Position, CompletionItemKind, InsertTextFormat, Range, Command, MarkupContent, MixinReferenceCompletionContext, getSCSSLanguageService, getLESSLanguageService
+	TextDocument, CompletionList, Position, CompletionItemKind, InsertTextFormat, Range, Command, MarkupContent, MixinReferenceCompletionContext, getSCSSLanguageService, getLESSLanguageService, ICSSDataProvider
 } from '../../cssLanguageService';
 import { getDocumentContext } from '../testUtil/documentContext';
 import { URI } from 'vscode-uri';
 import { getFsProvider } from '../testUtil/fsProvider';
+import { TextEdit } from 'vscode-languageserver-types';
 
 export interface ItemDescription {
 	label: string;
@@ -31,7 +32,7 @@ export interface ItemDescription {
 	sortText?: string;
 }
 
-const assertCompletion = function (completions: CompletionList, expected: ItemDescription, document: TextDocument) {
+export function assertCompletion(completions: CompletionList, expected: ItemDescription, document: TextDocument) {
 	const matches = completions.items.filter(completion => {
 		return completion.label === expected.label;
 	});
@@ -59,8 +60,9 @@ const assertCompletion = function (completions: CompletionList, expected: ItemDe
 	if (expected.kind) {
 		assert.equal(match.kind, expected.kind);
 	}
-	if (expected.resultText) {
-		assert.equal(TextDocument.applyEdits(document, [match.textEdit!]), expected.resultText);
+	if (expected.resultText && match.textEdit) {
+		const edit = TextEdit.is(match.textEdit) ? match.textEdit : TextEdit.replace(match.textEdit.replace, match.textEdit.newText);
+		assert.equal(TextDocument.applyEdits(document, [edit]), expected.resultText);
 	}
 	if (expected.insertTextFormat) {
 		assert.equal(match.insertTextFormat, expected.insertTextFormat);
@@ -95,7 +97,8 @@ export async function testCompletionFor(
 		}
 	},
 	testUri: string = 'test://test/test.css',
-	workspaceFolderUri: string = 'test://test'
+	workspaceFolderUri: string = 'test://test',
+	customData: ICSSDataProvider[] = [],
 ) {
 	const offset = value.indexOf('|');
 	value = value.substr(0, offset) + value.substr(offset + 1);
@@ -116,6 +119,7 @@ export async function testCompletionFor(
 	} else {
 		ls = getCSSLanguageService(lsOptions);
 	}
+	ls.setDataProviders(true, customData);
 	ls.configure(settings);
 
 	if (expected.participant) {
@@ -847,13 +851,13 @@ suite('CSS - Completion', () => {
 		const testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString();
 		const workspaceFolderUri = URI.file(path.resolve(testFixturesPath)).toString();
 
-		await await testCompletionFor(`@import './|'`, {
+		await testCompletionFor(`@import './|'`, {
 			items: [
 				{ label: 'about.html', resultText: `@import './about.html'` },
 			]
 		}, undefined, testUri, workspaceFolderUri);
 
-		await await testCompletionFor(`@import '../|'`, {
+		await testCompletionFor(`@import '../|'`, {
 			items: [
 				{ label: 'about/', resultText: `@import '../about/'` },
 				{ label: 'scss/', resultText: `@import '../scss/'` },
