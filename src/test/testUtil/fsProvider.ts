@@ -9,11 +9,14 @@ import { stat as fsStat, readdir } from 'fs';
 
 export function getFsProvider(): FileSystemProvider {
 	return {
-		stat(documentUri: string) {
-			const filePath = URI.parse(documentUri).fsPath;
-
+		stat(documentUriString: string) {
 			return new Promise((c, e) => {
-				fsStat(filePath, (err, stats) => {
+				const documentUri = URI.parse(documentUriString);
+				if (documentUri.scheme !== 'file') {
+					e(new Error('Protocol not supported: ' + documentUri.scheme));
+					return;
+				}
+				fsStat(documentUri.fsPath, (err, stats) => {
 					if (err) {
 						if (err.code === 'ENOENT') {
 							return c({
@@ -45,11 +48,14 @@ export function getFsProvider(): FileSystemProvider {
 				});
 			});
 		},
-		readDirectory(location: string) {
+		readDirectory(locationString: string) {
 			return new Promise((c, e) => {
-				const path = URI.parse(location).fsPath;
-
-				readdir(path, { withFileTypes: true }, (err, children) => {
+				const location = URI.parse(locationString);
+				if (location.scheme !== 'file') {
+					e(new Error('Protocol not supported: ' + location.scheme));
+					return;
+				}
+				readdir(location.fsPath, { withFileTypes: true }, (err, children) => {
 					if (err) {
 						return e(err);
 					}
