@@ -26,9 +26,6 @@ export class PathCompletionParticipant implements ICompletionParticipant {
 
 	public async computeCompletions(document: TextDocument, documentContext: DocumentContext): Promise<CompletionList> {
 		const result: CompletionList = { items: [], isIncomplete: false };
-		if (!(startsWith(document.uri, 'file:'))) {
-			return result;
-		}
 		for (const literalCompletion of this.literalCompletions) {
 			const uriValue = literalCompletion.uriValue;
 			const fullValue = stripQuotes(uriValue);
