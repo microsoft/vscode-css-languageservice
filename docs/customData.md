@@ -3,6 +3,11 @@
 In VS Code, there are two ways of loading custom CSS datasets:
 
 1. With setting `css.customData`
+```json
+    "css.customData": [
+        "./foo.css-data.json"
+    ]
+```
 2. With an extension that contributes `contributes.css.customData`
 
 Both setting point to a list of JSON files. This document describes the shape of the JSON files.
@@ -37,6 +42,7 @@ All top-level properties share two basic properties, `name` and `description`. F
 
 ```jsonc
 {
+  "version": 1.1,
   "properties": [
     { "name": "foo", "description": "Foo property" }
   ],
