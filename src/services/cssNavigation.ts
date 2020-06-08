@@ -108,13 +108,20 @@ export class CSSNavigation {
 
 	public async findDocumentLinks2(document: TextDocument, stylesheet: nodes.Stylesheet, documentContext: DocumentContext): Promise<DocumentLink[]> {
 		const links = this.findUnresolvedLinks(document, stylesheet);
-		for (let i = 0; i < links.length; i++) {
-			const target = links[i].target;
+		const resolvedLinks: DocumentLink[] = [];
+		for (let link of links) {
+			const target = link.target;
 			if (target && !(/^\w+:\/\//g.test(target))) {
-				links[i].target = await this.resolveRelativeReference(target, document.uri, documentContext);
+				const resolvedTarget = await this.resolveRelativeReference(target, document.uri, documentContext);
+				if (resolvedTarget !== undefined) {
+					link.target = resolvedTarget;
+					resolvedLinks.push(link);
+				}
+			} else {
+				resolvedLinks.push(link);
 			}
 		}
-		return links;
+		return resolvedLinks;
 	}
 
 
@@ -265,7 +272,7 @@ export class CSSNavigation {
 		};
 	}
 
-	protected async resolveRelativeReference(ref: string, documentUri: string, documentContext: DocumentContext): Promise<string> {
+	protected async resolveRelativeReference(ref: string, documentUri: string, documentContext: DocumentContext): Promise<string | undefined> {
 		// Following [css-loader](https://github.com/webpack-contrib/css-loader#url)
 		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#imports)
 		// convention, if an import path starts with ~ then use node module resolution

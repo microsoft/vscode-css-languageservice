@@ -5,7 +5,7 @@
 'use strict';
 
 import * as nodes from '../../parser/cssNodes';
-import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertColorSymbols, assertLinks, newRange } from '../css/navigation.test';
+import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertColorSymbols, assertLinks, newRange, getTestResource } from '../css/navigation.test';
 import { getSCSSLanguageService, DocumentLink, TextDocument } from '../../cssLanguageService';
 import * as assert from 'assert';
 import * as path from 'path';
@@ -13,8 +13,12 @@ import { URI } from 'vscode-uri';
 import { getFsProvider } from '../testUtil/fsProvider';
 import { getDocumentContext } from '../testUtil/documentContext';
 
+function getSCSSLS() {
+	return getSCSSLanguageService({ fileSystemProvider: getFsProvider() });
+}
+
 async function assertDynamicLinks(docUri: string, input: string, expected: DocumentLink[]) {
-	const ls = getSCSSLanguageService({ fileSystemProvider: getFsProvider() });
+	const ls = getSCSSLS();
 	const document = TextDocument.create(docUri, 'scss', 0, input);
 
 	const stylesheet = ls.parseStylesheet(document);
@@ -24,7 +28,7 @@ async function assertDynamicLinks(docUri: string, input: string, expected: Docum
 }
 
 async function assertNoDynamicLinks(docUri: string, input: string) {
-	const ls = getSCSSLanguageService({ fileSystemProvider: getFsProvider() });
+	const ls = getSCSSLS();
 	const document = TextDocument.create(docUri, 'scss', 0, input);
 
 	const stylesheet = ls.parseStylesheet(document);
@@ -38,7 +42,7 @@ suite('SCSS - Navigation', () => {
 	suite('Scopes and Symbols', () => {
 
 		test('symbols in scopes', () => {
-			const ls = getSCSSLanguageService();
+			const ls = getSCSSLS();
 			assertSymbolsInScope(ls, '$var: iable;', 0, { name: '$var', type: nodes.ReferenceType.Variable });
 			assertSymbolsInScope(ls, '$var: iable;', 11, { name: '$var', type: nodes.ReferenceType.Variable });
 			assertSymbolsInScope(ls, '$var: iable; .class { $color: blue; }', 11, { name: '$var', type: nodes.ReferenceType.Variable }, { name: '.class', type: nodes.ReferenceType.Rule });
@@ -51,7 +55,7 @@ suite('SCSS - Navigation', () => {
 		});
 
 		test('scopes and symbols', () => {
-			const ls = getSCSSLanguageService();
+			const ls = getSCSSLS();
 			assertScopesAndSymbols(ls, '$var1: 1; $var2: 2; .foo { $var3: 3; }', '$var1,$var2,.foo,[$var3]');
 			assertScopesAndSymbols(ls, '@mixin mixin1 { $var0: 1} @mixin mixin2($var1) { $var3: 3 }', 'mixin1,mixin2,[$var0],[$var1,$var3]');
 			assertScopesAndSymbols(ls, 'a b { $var0: 1; c { d { } } }', '[$var0,c,[d,[]]]');
@@ -68,7 +72,7 @@ suite('SCSS - Navigation', () => {
 	suite('Highlight', () => {
 
 		test('mark highlights', () => {
-			const ls = getSCSSLanguageService();
+			const ls = getSCSSLS();
 
 			assertHighlights(ls, '$var1: 1; $var2: /**/$var1;', '$var1', 2, 1);
 			assertHighlights(ls, '$var1: 1; ls { $var2: /**/$var1; }', '/**/', 2, 1, '$var1');
@@ -148,16 +152,15 @@ suite('SCSS - Navigation', () => {
 		});
 
 		test('SCSS straight links', async () => {
-			const ls = getSCSSLanguageService();
+			const ls = getSCSSLS();
 
 			await assertLinks(ls, `@import 'foo.css'`, [
 				{ range: newRange(8, 17), target: 'test://test/foo.css' }
 			], 'scss');
 
-			await assertLinks(ls, `@import 'foo' print;`, [
-				{ range: newRange(8, 13), target: 'test://test/foo' }
+			await assertLinks(ls, `@import 'foo.scss' print;`, [
+				{ range: newRange(8, 18), target: 'test://test/foo.scss' }
 			]);
-
 			await assertLinks(ls, `@import 'http://foo.com/foo.css'`, [
 				{ range: newRange(8, 32), target: 'http://foo.com/foo.css' }
 			], 'scss');
@@ -184,11 +187,10 @@ suite('SCSS - Navigation', () => {
 
 			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@use 'sass:math'`);
 			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@use './non-existent'`);
-			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@use './non-existent.scss'`);
 		});
 
 		test('SCSS empty path', async () => {
-			const ls = getSCSSLanguageService();
+			const ls = getSCSSLS();
 
 			/**
 			 * https://github.com/microsoft/vscode/issues/79215
@@ -199,12 +201,22 @@ suite('SCSS - Navigation', () => {
 			], 'scss');
 
 		});
+
+		test('SCSS node module resolving', async function () {
+			let ls = getSCSSLS();
+			let testUri = getTestResource('about.scss');
+			let workspaceFolder = getTestResource('');
+
+			await assertLinks(ls, 'html { background-image: url("~foo/hello.html")',
+				[{ range: newRange(29, 46), target: getTestResource('node_modules/foo/hello.html') }], 'scss', testUri, workspaceFolder
+			);
+		});
 	});
 
 	suite('Color', () => {
 
 		test('color symbols', () => {
-			const ls = getSCSSLanguageService();
+			const ls = getSCSSLS();
 			assertColorSymbols(ls, '$colors: (blue: $blue,indigo: $indigo)'); // issue #47209
 		});
 	});

@@ -128,6 +128,10 @@ export function assertScopeBuilding(ls: LanguageService, input: string, ...scope
 	assert.equal(scopes.length, 0, 'remaining scopes: ' + scopes.join());
 }
 
+export function getTestResource(path: string) {
+	return URI.file(join(__dirname, '../../../../test/linksTestFixtures', path)).toString();
+}
+
 function scopeToString(scope: Scope): string {
 	let str = '';
 	let symbols = scope.getSymbols();
@@ -344,10 +348,6 @@ suite('CSS - Navigation', () => {
 			await assertLinks(ls, `body { background-image: url()`, []);
 			await assertLinks(ls, `@import url();`, []);
 		});
-
-		function getTestResource(path: string) {
-			return URI.file(join(__dirname, '../../../../test/linksTestFixtures', path)).toString();
-		}
 
 		test('url links', async function () {
 			let ls = getCSSLS();

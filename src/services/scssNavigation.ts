@@ -6,9 +6,10 @@
 
 import { CSSNavigation } from './cssNavigation';
 import { FileSystemProvider, DocumentContext, FileType, DocumentUri } from '../cssLanguageTypes';
-import { TextDocument, DocumentLink } from '../cssLanguageService';
 import * as nodes from '../parser/cssNodes';
 import { URI } from 'vscode-uri';
+import { startsWith } from '../utils/strings';
+import { extname } from '../utils/resources';
 
 export class SCSSNavigation extends CSSNavigation {
 	constructor(fileSystemProvider: FileSystemProvider | undefined) {
@@ -23,56 +24,28 @@ export class SCSSNavigation extends CSSNavigation {
 		);
 	}
 
-	public async findDocumentLinks2(document: TextDocument, stylesheet: nodes.Stylesheet, documentContext: DocumentContext): Promise<DocumentLink[]> {
-		const links = this.findDocumentLinks(document, stylesheet, documentContext);
-		const fsProvider = this.fileSystemProvider;
-
-		const validLinks: DocumentLink[] = [];
-
-		/**
-		 * Validate and correct links
-		 */
-		if (fsProvider) {
-			for (let i = 0; i < links.length; i++) {
-				const target = links[i].target;
-				if (!target) {
-					continue;
-				}
-
-				let parsedUri = null;
-				try {
-					parsedUri = URI.parse(target);
-				} catch (e) {
-					if (e instanceof URIError) {
-						continue;
-					}
-					throw e;
-				}
-
-				const pathVariations = toPathVariations(parsedUri);
-				if (!pathVariations) {
-					if (await this.fileExists(target)) {
-						validLinks.push(links[i]);
-					}
-					continue;
-				}
-
-				for (let j = 0; j < pathVariations.length; j++) {
-					if (await this.fileExists(pathVariations[j])) {
-						validLinks.push({
-							...links[i],
-							target: pathVariations[j]
-						});
-
-						break;
-					}
-				}
-			}
-		} else {
-			validLinks.push(...links);
+	protected async resolveRelativeReference(ref: string, documentUri: string, documentContext: DocumentContext): Promise<string | undefined> {
+		if (startsWith(ref, 'sass:')) {
+			return undefined; // sass library
 		}
-
-		return validLinks;
+		const target = await super.resolveRelativeReference(ref, documentUri, documentContext);
+		if (this.fileSystemProvider && target && extname(target).length === 0) {
+			try {
+				const parsedUri = URI.parse(target);
+				const pathVariations = toPathVariations(parsedUri);
+				if (pathVariations) {
+					for (let j = 0; j < pathVariations.length; j++) {
+						if (await this.fileExists(pathVariations[j])) {
+							return pathVariations[j];
+						}
+					}
+				}
+				return undefined;
+			} catch (e) {
+				// ignore
+			}
+		}
+		return target;
 
 		function toPathVariations(uri: URI): DocumentUri[] | undefined {
 			// No valid path
