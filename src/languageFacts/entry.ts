@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { EntryStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IValueData, MarkupContent } from '../cssLanguageTypes';
+import { EntryStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IValueData, MarkupContent, MarkedString } from '../cssLanguageTypes';
 
 export interface Browsers {
 	E?: string;
@@ -54,12 +54,16 @@ export function getEntryDescription(entry: IEntry2, doesSupportMarkdown: boolean
 			value: getEntryStringDescription(entry)
 		};
 	}
-	
+
 	if (result.value === '') {
 		return undefined;
 	}
-	
+
 	return result;
+}
+
+export function textToMarkedString(text: string): MarkedString {
+	return text.replace(/[\\`*_{}[\]()#+\-.!<>]/g, '\\$&'); // escape markdown syntax tokens: http://daringfireball.net/projects/markdown/syntax#backslash
 }
 
 function getEntryStringDescription(entry: IEntry2): string {
@@ -107,19 +111,16 @@ function getEntryMarkdownDescription(entry: IEntry2): string {
 		result += getEntryStatus(entry.status);
 	}
 
+	const description = typeof entry.description === 'string' ? entry.description : entry.description.value;
 
-	if (typeof entry.description === 'string') {
-		result += entry.description;
-	} else {
-		result = entry.description.value;
-	}
+	result += textToMarkedString(description);
 
 	const browserLabel = getBrowserLabel(entry.browsers);
 	if (browserLabel) {
-		result += '\n\n(' + browserLabel + ')';
+		result += '\n\n(' + textToMarkedString(browserLabel) + ')';
 	}
-	if ('syntax' in entry) {
-		result += `\n\nSyntax: ${entry.syntax}`;
+	if ('syntax' in entry && entry.syntax) {
+		result += `\n\nSyntax: ${textToMarkedString(entry.syntax)}`;
 	}
 	if (entry.references && entry.references.length > 0) {
 		result += '\n\n';

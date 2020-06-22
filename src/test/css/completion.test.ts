@@ -618,7 +618,7 @@ suite('CSS - Completion', () => {
 					documentation: {
 						kind: 'markdown',
 						value:
-							'⚠️ Property is experimental. Be cautious when using it.️\n\nThe text-decoration-skip CSS property specifies what parts of the element’s content any text decoration affecting the element must skip over. It controls all text decoration lines drawn by the element and also any text decoration lines drawn by its ancestors.\n\n(Safari 12, Chrome 57, Opera 44)\n\nSyntax: none | [ objects || [ spaces | [ leading-spaces || trailing-spaces ] ] || edges || box-decoration ]\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/text-decoration-skip)'
+							'⚠️ Property is experimental. Be cautious when using it.️\n\nThe text\\-decoration\\-skip CSS property specifies what parts of the element’s content any text decoration affecting the element must skip over\\. It controls all text decoration lines drawn by the element and also any text decoration lines drawn by its ancestors\\.\n\n(Safari 12, Chrome 57, Opera 44)\n\nSyntax: none | \\[ objects || \\[ spaces | \\[ leading\\-spaces || trailing\\-spaces \\] \\] || edges || box\\-decoration \\]\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/text-decoration-skip)'
 					}
 				},
 				{
@@ -626,7 +626,7 @@ suite('CSS - Completion', () => {
 					documentation: {
 						kind: 'markdown',
 						value:
-							'🚨️ Property is nonstandard. Avoid using it.\n\nControls the appearance of selection.\n\nSyntax: auto | text | none | contain | all\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/user-select)'
+							'🚨️ Property is nonstandard. Avoid using it.\n\nControls the appearance of selection\\.\n\nSyntax: auto | text | none | contain | all\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/user-select)'
 					}
 				}
 			]
