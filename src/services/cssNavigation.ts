@@ -100,7 +100,10 @@ export class CSSNavigation {
 		for (let i = 0; i < links.length; i++) {
 			const target = links[i].target;
 			if (target && !(/^\w+:\/\//g.test(target))) {
-				links[i].target = documentContext.resolveReference(target, document.uri);
+				const resolved = documentContext.resolveReference(target, document.uri);
+				if (resolved) {
+					links[i].target = resolved;
+				}
 			}
 		}
 		return links;

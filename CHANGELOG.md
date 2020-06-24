@@ -1,30 +1,32 @@
-4.3.0 - 2020-05-25
-===================
-- module resolving in urls (`~foo/hello.html`) when using `LanguageService.findDocumentLinks2` and if `fileSystemProvider` is provided.
-- new API `LanguageService.doComplete2`. Support path completion if `fileSystemProvider.readDirectory` is provided.
 
+
+4.3.0 - 
+===================
+  * module resolving in urls (`~foo/hello.html`) when using `LanguageService.findDocumentLinks2` and if `fileSystemProvider` is provided.
+  * new API `LanguageService.doComplete2`. Support path completion if `fileSystemProvider.readDirectory` is provided.
+  * `DocumentContext.resolveReference` can also return undefined (if the ref is invalid)
 
 4.2.0 - 2020-05-14
 ===================
-* new API `LanguageServiceOptions.useDefaultDataProvider` to control whether the default data provider is used. Defaults to true
-* new API `LanguageService.setDataProviders` to update the data providers.
+  * new API `LanguageServiceOptions.useDefaultDataProvider` to control whether the default data provider is used. Defaults to true
+  * new API `LanguageService.setDataProviders` to update the data providers.
 
 4.1.0 - 2020-02-23
 ===================
-* markdown descriptions in completions and hover
-  * new API `LanguageServiceOptions.clientCapabilities` with `ClientCapabilities` for completion documentationFormat and hover content
-  * extended format of CustomData (version 1.1) with MarkupContent contents and reference links
-* dynamically resolved links for scss include statements
-  * new API `LanguageService.findDocumentLinks2`: Also returns dynamically resolved links if `fileSystemProvider` is provided
-  * new API `LanguageServiceOptions.fileSystemProvider` with `FileSystemProvider` to query the file system (currently used to resolve the location of included files)
-* new API `CompletionSettings.completePropertyWithSemicolon`
-* new API `ICompletionParticipant.onCssMixinReference`
-* Switch to `TextDocument` from `vscode-languageserver-textdocument` (reexported from the main module)
+  * markdown descriptions in completions and hover
+    * new API `LanguageServiceOptions.clientCapabilities` with `ClientCapabilities` for completion documentationFormat and hover content
+    * extended format of CustomData (version 1.1) with MarkupContent contents and reference links
+  * dynamically resolved links for scss include statements
+    * new API `LanguageService.findDocumentLinks2`: Also returns dynamically resolved links if `fileSystemProvider` is provided
+    * new API `LanguageServiceOptions.fileSystemProvider` with `FileSystemProvider` to query the file system (currently used to resolve the location of included files)
+  * new API `CompletionSettings.completePropertyWithSemicolon`
+  * new API `ICompletionParticipant.onCssMixinReference`
+  * Switch to `TextDocument` from `vscode-languageserver-textdocument` (reexported from the main module)
 
 4.0.0 / 2019-06-12
 ===================
- * `LanguageServiceOptions.customDataProviders` allows you to use custom datasets for properties, at-properties, pseudo-classes and pseudo-elements.
- * New API `LanguageService.getSelectionRanges`
+  * `LanguageServiceOptions.customDataProviders` allows you to use custom datasets for properties, at-properties, pseudo-classes and pseudo-elements.
+  * New API `LanguageService.getSelectionRanges`
 
 3.0.12 / 2018-10-29
 ===================

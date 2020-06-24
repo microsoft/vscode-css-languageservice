@@ -55,7 +55,7 @@ export async function assertLinks(ls: LanguageService, input: string, expected: 
 
 	let stylesheet = ls.parseStylesheet(document);
 
-	let links = await ls.findDocumentLinks2(document, stylesheet, getDocumentContext(document.uri, workspaceFolder || 'test://test'));
+	let links = await ls.findDocumentLinks2(document, stylesheet, getDocumentContext(workspaceFolder || 'test://test'));
 	assert.deepEqual(links, expected);
 }
 

@@ -9,13 +9,18 @@ import { DocumentContext } from "../../cssLanguageTypes";
 import { startsWith } from "../../utils/strings";
 import { joinPath } from "../../utils/resources";
 
-export function getDocumentContext(documentUrl: string, workspaceFolder?: string): DocumentContext {
+export function getDocumentContext(workspaceFolder?: string): DocumentContext {
 	return {
-		resolveReference: (ref, base = documentUrl) => {
+		resolveReference: (ref, base) => {
 			if (startsWith(ref, '/') && workspaceFolder) {
 				return joinPath(workspaceFolder, ref);
 			}
-			return url.resolve(base, ref);
+			try {
+				return url.resolve(base, ref);
+			} catch (e) {
+				return undefined;
+			}
+			
 		}
 	};
 }

@@ -59,7 +59,7 @@ export interface ICompletionParticipant {
 }
 
 export interface DocumentContext {
-	resolveReference(ref: string, base?: string): string;
+	resolveReference(ref: string, baseUrl: string): string | undefined;
 }
 
 /**

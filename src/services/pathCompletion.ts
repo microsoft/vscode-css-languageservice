@@ -80,19 +80,22 @@ export class PathCompletionParticipant implements ICompletionParticipant {
 		const valueBeforeLastSlash = valueBeforeCursor.substring(0, valueBeforeCursor.lastIndexOf('/') + 1); // keep the last slash
 
 		let parentDir = documentContext.resolveReference(valueBeforeLastSlash || '.', currentDocUri);
-		try {
-			const result: CompletionItem[] = [];
-			const infos = await this.readDirectory(parentDir);
-			for (const [name, type] of infos) {
-				// Exclude paths that start with `.`
-				if (name.charCodeAt(0) !== CharCode_dot && (type === FileType.Directory || joinPath(parentDir, name) !== currentDocUri)) {
-					result.push(createCompletionItem(name, type === FileType.Directory, replaceRange));
+		if (parentDir) {
+			try {
+				const result: CompletionItem[] = [];
+				const infos = await this.readDirectory(parentDir);
+				for (const [name, type] of infos) {
+					// Exclude paths that start with `.`
+					if (name.charCodeAt(0) !== CharCode_dot && (type === FileType.Directory || joinPath(parentDir, name) !== currentDocUri)) {
+						result.push(createCompletionItem(name, type === FileType.Directory, replaceRange));
+					}
 				}
+				return result;
+			} catch (e) {
+				// ignore
 			}
-			return result;
-		} catch (e) {
-			return [];
 		}
+		return [];
 	}
 }
 

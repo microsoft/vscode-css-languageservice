@@ -138,7 +138,7 @@ export async function testCompletionFor(
 	const position = Position.create(0, offset);
 	const jsonDoc = ls.parseStylesheet(document);
 
-	const context = getDocumentContext(testUri, workspaceFolderUri);
+	const context = getDocumentContext(workspaceFolderUri);
 
 	const list = await ls.doComplete2(document, position, jsonDoc, context);
 	if (typeof expected.count === 'number') {
