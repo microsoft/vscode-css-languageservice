@@ -85,11 +85,16 @@ export class SCSSParser extends cssParser.Parser {
 			return this.finish(node, ParseError.VariableValueExpected, [], panic);
 		}
 
-		while (this.accept(TokenType.Exclamation)) {
-			if (!this.peekRegExp(TokenType.Ident, /^(default|global)$/)) {
-				return this.finish(node, ParseError.UnknownKeyword);
+		while (this.peek(TokenType.Exclamation)) {
+			if (node.addChild(this._tryParsePrio())) {
+				// !important
+			} else {
+				this.consumeToken();
+				if (!this.peekRegExp(TokenType.Ident, /^(default|global)$/)) {
+					return this.finish(node, ParseError.UnknownKeyword);
+				}
+				this.consumeToken();
 			}
-			this.consumeToken();
 		}
 
 		if (this.peek(TokenType.SemiColon)) {
@@ -186,7 +191,7 @@ export class SCSSParser extends cssParser.Parser {
 		return this._parseModuleMember() ||
 			this._parseVariable() ||
 			this._parseSelectorCombinator() ||
-			this._tryParsePrio() ||
+			//this._tryParsePrio() ||
 			super._parseTermExpression();
 	}
 
@@ -707,6 +712,8 @@ export class SCSSParser extends cssParser.Parser {
 		if (node.setValue(this._parseExpr(true))) {
 			this.accept(scssScanner.Ellipsis); // #43746
 			node.addChild(this._parsePrio()); // #9859
+			return this.finish(node);
+		} else if (node.setValue(this._tryParsePrio())) {
 			return this.finish(node);
 		}
 

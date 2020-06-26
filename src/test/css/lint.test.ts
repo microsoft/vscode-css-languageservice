@@ -87,6 +87,7 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { display: inline-block; float: right; }', Rules.PropertyIgnoredDueToDisplay, Rules.AvoidFloat);
 		assertRuleSet('selector { display: inline-block; float: none; }', Rules.AvoidFloat);
 		assertRuleSet('selector { display: block; vertical-align: center; }', Rules.PropertyIgnoredDueToDisplay);
+		assertRuleSet('selector { display: inline-block; float: none !important; }', Rules.AvoidFloat, Rules.AvoidImportant);
 	});
 
 	test('avoid !important', function () {
