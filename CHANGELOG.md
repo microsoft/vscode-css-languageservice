@@ -1,6 +1,6 @@
 
 
-4.3.0 - 
+4.3.0 - 2020-06-26
 ===================
   * module resolving in urls (`~foo/hello.html`) when using `LanguageService.findDocumentLinks2` and if `fileSystemProvider` is provided.
   * new API `LanguageService.doComplete2`. Support path completion if `fileSystemProvider.readDirectory` is provided.
