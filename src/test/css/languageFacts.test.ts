@@ -63,8 +63,10 @@ suite('CSS - Language Facts', () => {
 
 	test('properties', function () {
 		let alignLast = cssDataManager.getProperty('text-align-last');
-
-		assert.ok(alignLast !== null);
+		if (!alignLast) {
+			assert.ok(alignLast);
+			return;
+		}
 		assert.equal(alignLast.name, 'text-align-last');
 
 		assert.ok(alignLast.browsers!.indexOf("E12") !== -1);

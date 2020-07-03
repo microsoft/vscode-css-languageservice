@@ -58,7 +58,7 @@ All top-level properties share two basic properties, `name` and `description`. F
 }
 ```
 
-You can also specify 3 additional properties for them:
+You can also specify 4 additional properties for them:
 
 ```jsonc
 {
@@ -79,7 +79,8 @@ You can also specify 3 additional properties for them:
           "name": "My foo property reference",
           "url": "https://www.foo.com/property/foo"
         }
-      ]
+      ],
+      "relevance": 25
     }
   ]
 }
@@ -105,3 +106,5 @@ You can also specify 3 additional properties for them:
   The status will be rendered at the top of completion and hover. For example, `nonstandard` items are prefixed with the message `🚨️ Property is nonstandard. Avoid using it.`.
 
 - `references`: A list of references. They will be displayed in Markdown form in completion and hover as `[Ref1 Name](Ref1 URL) | [Ref2 Name](Ref2 URL) | ...`.
+
+- `relevance`: A number in the range [0, 100] used for sorting. Bigger number means more relevant and will be sorted first. Entries that do not specify a relevance will get 50 as default value.

@@ -4,10 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as languageFacts from '../languageFacts/facts';
 import * as nodes from '../parser/cssNodes';
 import { CSSCompletion } from './cssCompletion';
-import { ClientCapabilities, CompletionList, CompletionItemKind, InsertTextFormat, TextEdit, CompletionItem, LanguageServiceOptions } from '../cssLanguageTypes';
+import { CompletionList, CompletionItemKind, InsertTextFormat, TextEdit, CompletionItem, LanguageServiceOptions, IPropertyData } from '../cssLanguageTypes';
 
 import * as nls from 'vscode-nls';
 import { CSSDataManager } from '../languageFacts/dataManager';
@@ -382,7 +381,7 @@ export class LESSCompletion extends CSSCompletion {
 	}
 
 
-	public getTermProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
+	public getTermProposals(entry: IPropertyData | undefined, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		let functions = LESSCompletion.builtInProposals;
 		if (entry) {
 			functions = functions.filter(f => !f.type || !entry.restrictions || entry.restrictions.indexOf(f.type) !== -1);
@@ -391,7 +390,7 @@ export class LESSCompletion extends CSSCompletion {
 		return super.getTermProposals(entry, existingNode, result);
 	}
 
-	protected getColorProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
+	protected getColorProposals(entry: IPropertyData, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		this.createFunctionProposals(LESSCompletion.colorProposals, existingNode, false, result);
 		return super.getColorProposals(entry, existingNode, result);
 	}

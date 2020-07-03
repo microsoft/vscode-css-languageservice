@@ -4,10 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as languageFacts from '../languageFacts/facts';
 import { CSSCompletion } from './cssCompletion';
 import * as nodes from '../parser/cssNodes';
-import { CompletionList, CompletionItemKind, TextEdit, InsertTextFormat, CompletionItem, MarkupContent, ClientCapabilities, IReference, LanguageServiceOptions } from '../cssLanguageTypes';
+import { CompletionList, CompletionItemKind, TextEdit, InsertTextFormat, CompletionItem, MarkupContent, IReference, LanguageServiceOptions, IPropertyData } from '../cssLanguageTypes';
 import * as nls from 'vscode-nls';
 import { CSSDataManager } from '../languageFacts/dataManager';
 
@@ -318,7 +317,7 @@ export class SCSSCompletion extends CSSCompletion {
 		return super.getCompletionsForSelector(ruleSet, isNested, result);
 	}
 
-	public getTermProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
+	public getTermProposals(entry: IPropertyData | undefined, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		let functions = SCSSCompletion.builtInFuncs;
 		if (entry) {
 			functions = functions.filter(f => !f.type || !entry.restrictions || entry.restrictions.indexOf(f.type) !== -1);
@@ -327,7 +326,7 @@ export class SCSSCompletion extends CSSCompletion {
 		return super.getTermProposals(entry, existingNode, result);
 	}
 
-	protected getColorProposals(entry: languageFacts.IEntry, existingNode: nodes.Node, result: CompletionList): CompletionList {
+	protected getColorProposals(entry: IPropertyData, existingNode: nodes.Node, result: CompletionList): CompletionList {
 		this.createFunctionProposals(SCSSCompletion.colorProposals, existingNode, false, result);
 		return super.getColorProposals(entry, existingNode, result);
 	}

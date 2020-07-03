@@ -80,21 +80,21 @@ export class CSSDataManager {
 		this._pseudoElements = objects.values(this._pseudoElementSet);
 	}
 
-	getProperty(name: string) { return this._propertySet[name]; }
-	getAtDirective(name: string) { return this._atDirectiveSet[name]; }
-	getPseudoClass(name: string) { return this._pseudoClassSet[name]; }
-	getPseudoElement(name: string) { return this._pseudoElementSet[name]; }
+	getProperty(name: string) : IPropertyData | undefined { return this._propertySet[name]; }
+	getAtDirective(name: string) : IAtDirectiveData | undefined { return this._atDirectiveSet[name]; }
+	getPseudoClass(name: string) : IPseudoClassData | undefined { return this._pseudoClassSet[name]; }
+	getPseudoElement(name: string) : IPseudoElementData | undefined { return this._pseudoElementSet[name]; }
 
-	getProperties() {
+	getProperties() : IPropertyData[] {
 		return this._properties;
 	}
-	getAtDirectives() {
+	getAtDirectives() : IAtDirectiveData[] {
 		return this._atDirectives;
 	}
-	getPseudoClasses() {
+	getPseudoClasses() : IPseudoClassData[]{
 		return this._pseudoClasses;
 	}
-	getPseudoElements() {
+	getPseudoElements() : IPseudoElementData[] {
 		return this._pseudoElements;
 	}
 

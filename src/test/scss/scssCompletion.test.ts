@@ -263,10 +263,10 @@ suite('SCSS - Completions', () => {
 		await testCompletionFor('.foo { text-decoration: | }', {
 			items: [
 				// Enum come before everything
-				{ label: 'dashed', sortText: ' d_0180' },
+				{ label: 'dashed', sortText: ' ' },
 				// Others come later
-				{ label: 'aqua' },
-				{ label: 'inherit' }
+				{ label: 'aqua', sortText: undefined },
+				{ label: 'inherit', sortText: undefined }
 			]
 		});
 	});

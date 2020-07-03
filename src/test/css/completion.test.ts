@@ -9,7 +9,7 @@ import * as path from 'path';
 import {
 	getCSSLanguageService,
 	LanguageSettings, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext,
-	TextDocument, CompletionList, Position, CompletionItemKind, InsertTextFormat, Range, Command, MarkupContent, MixinReferenceCompletionContext, getSCSSLanguageService, getLESSLanguageService, ICSSDataProvider
+	TextDocument, CompletionList, Position, CompletionItemKind, InsertTextFormat, Range, Command, MarkupContent, MixinReferenceCompletionContext, getSCSSLanguageService, getLESSLanguageService, ICSSDataProvider, newCSSDataProvider
 } from '../../cssLanguageService';
 import { getDocumentContext } from '../testUtil/documentContext';
 import { URI } from 'vscode-uri';
@@ -747,14 +747,36 @@ suite('CSS - Completion', () => {
 		await testCompletionFor('.foo { display: | }', {
 			items: [
 				// Enum with no prefix come before everything
-				{ label: 'grid', sortText: ' d_0005' },
+				{ label: 'grid', sortText: ' ' },
 				// Enum with prefix come next
-				{ label: '-moz-grid', sortText: ' x_0014' },
-				{ label: '-ms-grid', sortText: ' x_0025' },
+				{ label: '-moz-grid', sortText: ' x' },
+				{ label: '-ms-grid', sortText: ' x' },
 				// Others come last
-				{ label: 'inherit' }
+				{ label: 'inherit', sortText: undefined }
 			]
 		});
+	});
+
+	test('Properties sorted by relevance', async () => {
+		const customData = [newCSSDataProvider({
+			version: 1,
+			properties: [
+				{ name: 'foo', relevance: 93 },
+				{ name: 'bar', relevance: 1 },
+				{ name: '-webkit-bar', relevance: 12 },
+				{ name: 'xoo' },
+				{ name: 'bar2', relevance: 0 },
+			]
+		})];
+		await testCompletionFor('.foo { | }', {
+			items: [
+				{ label: 'foo', sortText: 'd_0093' },
+				{ label: 'bar', sortText: 'd_0001' },
+				{ label: '-webkit-bar', sortText: 'x_0012' },
+				{ label: 'xoo', sortText: 'd_0050' },
+				{ label: 'bar2', sortText: 'd_0000' }
+			]
+		}, undefined, undefined, undefined, customData);
 	});
 
 	const testFixturesPath = path.join(__dirname, '../../../../test');

@@ -97,9 +97,9 @@ suite('LESS - Completions', () => {
 	test('Items that start with `-` are sorted lower than normal attribute values', async () => {
 		await testCompletionFor('.foo { display: | }', {
 			items: [
-				{ label: 'grid', sortText: ' d_0005' },
-				{ label: '-moz-grid', sortText: ' x_0014' },
-				{ label: '-ms-grid', sortText: ' x_0025' },
+				{ label: 'grid', sortText: ' ' },
+				{ label: '-moz-grid', sortText: ' x' },
+				{ label: '-ms-grid', sortText: ' x' },
 			]
 		});
 	});

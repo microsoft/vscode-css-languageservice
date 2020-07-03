@@ -93,6 +93,12 @@
             "items": {
               "$ref": "#/definitions/references"
             }
+          },
+          "relevance": {
+            "type": "number",
+            "description": "A number in the range [0, 100] used for sorting. Bigger number means more relevant and will be sorted first. Entries that do not specify a relevance will get 50 as default value.",
+            "minimum": 0,
+            "exclusiveMaximum": 100
           }
         }
       }

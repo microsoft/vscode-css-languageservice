@@ -157,6 +157,7 @@ export interface IPropertyData {
 	syntax?: string;
 	values?: IValueData[];
 	references?: IReference[];
+	relevance?: number;
 }
 export interface IAtDirectiveData {
 	name: string;
