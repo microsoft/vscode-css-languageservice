@@ -63,7 +63,8 @@ export function getEntryDescription(entry: IEntry2, doesSupportMarkdown: boolean
 }
 
 export function textToMarkedString(text: string): MarkedString {
-	return text.replace(/[\\`*_{}[\]()#+\-.!<>]/g, '\\$&'); // escape markdown syntax tokens: http://daringfireball.net/projects/markdown/syntax#backslash
+	text = text.replace(/[\\`*_{}[\]()#+\-.!]/g, '\\$&'); // escape markdown syntax tokens: http://daringfireball.net/projects/markdown/syntax#backslash
+	return text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
 function getEntryStringDescription(entry: IEntry2): string {
