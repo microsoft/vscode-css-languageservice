@@ -15,6 +15,7 @@ export const cssData : CSSDataV1 = {
 				"FF33"
 			],
 			"syntax": "[ <integer> && <symbol> ]#",
+			"relevance": 50,
 			"description": "@counter-style descriptor. Specifies the symbols used by the marker-construction algorithm specified by the system descriptor. Needs to be specified if the counter system is 'additive'.",
 			"restrictions": [
 				"integer",
@@ -52,7 +53,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <baseline-position> | <content-distribution> | <overflow-position>? <content-position>",
-			"relevance": 18,
+			"relevance": 59,
 			"description": "Aligns a flex container’s lines within the flex container when there is extra space in the cross-axis, similar to how 'justify-content' aligns individual items within the main-axis.",
 			"restrictions": [
 				"enum"
@@ -83,7 +84,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | stretch | <baseline-position> | [ <overflow-position>? <self-position> ]",
-			"relevance": 61,
+			"relevance": 81,
 			"description": "Aligns flex items along the cross axis of the current line of the flex container.",
 			"restrictions": [
 				"enum"
@@ -154,7 +155,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | stretch | <baseline-position> | <overflow-position>? [ <self-position> | left | right ] | legacy | legacy && [ left | right | center ]",
-			"relevance": 1,
+			"relevance": 50,
 			"description": "Defines the default justify-self for all items of the box, giving them the default way of justifying each box along the appropriate axis",
 			"restrictions": [
 				"enum"
@@ -229,7 +230,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | normal | stretch | <baseline-position> | <overflow-position>? [ <self-position> | left | right ]",
-			"relevance": 3,
+			"relevance": 52,
 			"description": "Defines the way of justifying a box inside its container along the appropriate axis.",
 			"restrictions": [
 				"enum"
@@ -264,7 +265,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | normal | stretch | <baseline-position> | <overflow-position>? <self-position>",
-			"relevance": 37,
+			"relevance": 69,
 			"description": "Allows the default alignment along the cross axis to be overridden for individual flex items.",
 			"restrictions": [
 				"enum"
@@ -281,7 +282,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"values": [],
 			"syntax": "initial | inherit | unset | revert",
-			"relevance": 2,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -299,6 +300,7 @@ export const cssData : CSSDataV1 = {
 				"S9"
 			],
 			"values": [],
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -352,7 +354,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-animation>#",
-			"relevance": 57,
+			"relevance": 79,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -371,7 +373,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "animation-delay",
 			"syntax": "<time>#",
-			"relevance": 23,
+			"relevance": 62,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -404,7 +406,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-animation-direction>#",
-			"relevance": 10,
+			"relevance": 55,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -419,7 +421,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "animation-duration",
 			"syntax": "<time>#",
-			"relevance": 27,
+			"relevance": 64,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -452,7 +454,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-animation-fill-mode>#",
-			"relevance": 22,
+			"relevance": 61,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -473,7 +475,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-animation-iteration-count>#",
-			"relevance": 18,
+			"relevance": 59,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -495,7 +497,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ none | <keyframes-name> ]#",
-			"relevance": 27,
+			"relevance": 64,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -521,7 +523,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-animation-play-state>#",
-			"relevance": 6,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -536,7 +538,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "animation-timing-function",
 			"syntax": "<timing-function>#",
-			"relevance": 35,
+			"relevance": 68,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -561,7 +563,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "visible | hidden",
-			"relevance": 17,
+			"relevance": 59,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -594,7 +596,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ <bg-layer> , ]* <final-bg-layer>",
-			"relevance": 86,
+			"relevance": 93,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -630,7 +632,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<attachment>#",
-			"relevance": 7,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -746,7 +748,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<blend-mode>#",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -761,7 +763,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "background-clip",
 			"syntax": "<box>#",
-			"relevance": 34,
+			"relevance": 67,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -776,7 +778,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "background-color",
 			"syntax": "<color>",
-			"relevance": 88,
+			"relevance": 94,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -797,7 +799,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<bg-image>#",
-			"relevance": 77,
+			"relevance": 88,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -813,7 +815,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "background-origin",
 			"syntax": "<box>#",
-			"relevance": 7,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -828,7 +830,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "background-position",
 			"syntax": "<bg-position>#",
-			"relevance": 75,
+			"relevance": 87,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -860,7 +862,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "experimental",
 			"syntax": "[ center | [ [ left | right | x-start | x-end ]? <length-percentage>? ]! ]#",
-			"relevance": 9,
+			"relevance": 54,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -891,7 +893,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "experimental",
 			"syntax": "[ center | [ [ top | bottom | y-start | y-end ]? <length-percentage>? ]! ]#",
-			"relevance": 5,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -908,7 +910,7 @@ export const cssData : CSSDataV1 = {
 			"name": "background-repeat",
 			"values": [],
 			"syntax": "<repeat-style>#",
-			"relevance": 70,
+			"relevance": 85,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -937,7 +939,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<bg-size>#",
-			"relevance": 69,
+			"relevance": 85,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -955,6 +957,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"IE6"
 			],
+			"relevance": 50,
 			"description": "IE only. Used to extend behaviors of the browser.",
 			"restrictions": [
 				"url"
@@ -976,7 +979,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'width'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -992,7 +995,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border",
 			"syntax": "<line-width> || <line-style> || <color>",
-			"relevance": 91,
+			"relevance": 95,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1017,7 +1020,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1042,7 +1045,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1067,7 +1070,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-color'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1089,7 +1092,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-color'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1111,7 +1114,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-style'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1133,7 +1136,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-style'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1155,7 +1158,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-width'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1178,7 +1181,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-width'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1194,7 +1197,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-bottom",
 			"syntax": "<line-width> || <line-style> || <color>",
-			"relevance": 76,
+			"relevance": 88,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1212,7 +1215,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-bottom-color",
 			"syntax": "<'border-top-color'>",
-			"relevance": 41,
+			"relevance": 71,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1227,7 +1230,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-bottom-left-radius",
 			"syntax": "<length-percentage>{1,2}",
-			"relevance": 49,
+			"relevance": 74,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1243,7 +1246,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-bottom-right-radius",
 			"syntax": "<length-percentage>{1,2}",
-			"relevance": 46,
+			"relevance": 73,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1259,7 +1262,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-bottom-style",
 			"syntax": "<line-style>",
-			"relevance": 13,
+			"relevance": 57,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1274,7 +1277,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-bottom-width",
 			"syntax": "<line-width>",
-			"relevance": 24,
+			"relevance": 62,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1300,7 +1303,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "collapse | separate",
-			"relevance": 52,
+			"relevance": 75,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1316,7 +1319,7 @@ export const cssData : CSSDataV1 = {
 			"name": "border-color",
 			"values": [],
 			"syntax": "<color>{1,4}",
-			"relevance": 72,
+			"relevance": 86,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1364,7 +1367,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'border-image-source'> || <'border-image-slice'> [ / <'border-image-width'> | / <'border-image-width'>? / <'border-image-outset'> ]? || <'border-image-repeat'>",
-			"relevance": 4,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1383,7 +1386,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-image-outset",
 			"syntax": "[ <length> | <number> ]{1,4}",
-			"relevance": 1,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1417,7 +1420,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ stretch | repeat | round | space ]{1,2}",
-			"relevance": 2,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1438,7 +1441,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<number-percentage>{1,4} && fill?",
-			"relevance": 2,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1460,7 +1463,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <image>",
-			"relevance": 1,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1481,7 +1484,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ <length-percentage> | <number> | auto ]{1,4}",
-			"relevance": 2,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1505,7 +1508,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1530,7 +1533,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1555,7 +1558,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-color'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1577,7 +1580,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-color'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1599,7 +1602,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-style'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1621,7 +1624,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-style'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1643,7 +1646,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-width'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1666,7 +1669,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-width'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1682,7 +1685,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-left",
 			"syntax": "<line-width> || <line-style> || <color>",
-			"relevance": 65,
+			"relevance": 82,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1700,7 +1703,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-left-color",
 			"syntax": "<color>",
-			"relevance": 29,
+			"relevance": 65,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1715,7 +1718,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-left-style",
 			"syntax": "<line-style>",
-			"relevance": 7,
+			"relevance": 54,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1730,7 +1733,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-left-width",
 			"syntax": "<line-width>",
-			"relevance": 16,
+			"relevance": 58,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1746,7 +1749,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-radius",
 			"syntax": "<length-percentage>{1,4} [ / <length-percentage>{1,4} ]?",
-			"relevance": 82,
+			"relevance": 91,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1762,7 +1765,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-right",
 			"syntax": "<line-width> || <line-style> || <color>",
-			"relevance": 62,
+			"relevance": 81,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1780,7 +1783,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-right-color",
 			"syntax": "<color>",
-			"relevance": 28,
+			"relevance": 64,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1795,7 +1798,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-right-style",
 			"syntax": "<line-style>",
-			"relevance": 7,
+			"relevance": 54,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1810,7 +1813,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-right-width",
 			"syntax": "<line-width>",
-			"relevance": 19,
+			"relevance": 60,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1826,7 +1829,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-spacing",
 			"syntax": "<length> <length>?",
-			"relevance": 36,
+			"relevance": 68,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1842,7 +1845,7 @@ export const cssData : CSSDataV1 = {
 			"name": "border-style",
 			"values": [],
 			"syntax": "<line-style>{1,4}",
-			"relevance": 58,
+			"relevance": 79,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1857,7 +1860,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-top",
 			"syntax": "<line-width> || <line-style> || <color>",
-			"relevance": 75,
+			"relevance": 87,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1875,7 +1878,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-top-color",
 			"syntax": "<color>",
-			"relevance": 42,
+			"relevance": 71,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1890,7 +1893,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-top-left-radius",
 			"syntax": "<length-percentage>{1,2}",
-			"relevance": 48,
+			"relevance": 74,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1906,7 +1909,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-top-right-radius",
 			"syntax": "<length-percentage>{1,2}",
-			"relevance": 44,
+			"relevance": 72,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1922,7 +1925,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-top-style",
 			"syntax": "<line-style>",
-			"relevance": 13,
+			"relevance": 57,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1937,7 +1940,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-top-width",
 			"syntax": "<line-width>",
-			"relevance": 22,
+			"relevance": 61,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1954,7 +1957,7 @@ export const cssData : CSSDataV1 = {
 			"name": "border-width",
 			"values": [],
 			"syntax": "<line-width>{1,4}",
-			"relevance": 62,
+			"relevance": 81,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1976,7 +1979,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
-			"relevance": 78,
+			"relevance": 89,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2009,6 +2012,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "slice | clone",
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2033,7 +2037,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <shadow>#",
-			"relevance": 77,
+			"relevance": 89,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2060,7 +2064,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "content-box | border-box",
-			"relevance": 83,
+			"relevance": 92,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2113,7 +2117,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | avoid | always | all | avoid-page | page | left | right | recto | verso | avoid-column | column | avoid-region | region",
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Describes the page/column/region break behavior after the generated box.",
 			"restrictions": [
 				"enum"
@@ -2160,7 +2164,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | avoid | always | all | avoid-page | page | left | right | recto | verso | avoid-column | column | avoid-region | region",
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Describes the page/column/region break behavior before the generated box.",
 			"restrictions": [
 				"enum"
@@ -2187,7 +2191,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | avoid | avoid-page | avoid-column | avoid-region",
-			"relevance": 1,
+			"relevance": 50,
 			"description": "Describes the page/column/region break behavior inside the principal box.",
 			"restrictions": [
 				"enum"
@@ -2206,7 +2210,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "top | bottom | block-start | block-end | inline-start | inline-end",
-			"relevance": 2,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2234,7 +2238,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | <color>",
-			"relevance": 2,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2268,7 +2272,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | left | right | both | inline-start | inline-end",
-			"relevance": 69,
+			"relevance": 84,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2293,7 +2297,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<shape> | auto",
-			"relevance": 45,
+			"relevance": 73,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2318,7 +2322,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<clip-source> | [ <basic-shape> || <geometry-box> ] | none",
-			"relevance": 8,
+			"relevance": 55,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2353,7 +2357,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Determines the ‘insideness’ of a point on the canvas by drawing a ray from that point to infinity in any direction and then examining the places where a segment of the shape crosses the ray."
 				}
 			],
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Indicates the algorithm which is to be used to determine what parts of the canvas are included inside the shape.",
 			"restrictions": [
 				"enum"
@@ -2362,7 +2366,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "color",
 			"syntax": "<color>",
-			"relevance": 89,
+			"relevance": 94,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2398,7 +2402,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Color operations should occur in the sRGB color space."
 				}
 			],
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Specifies the color space for imaging operations performed via filter effects.",
 			"restrictions": [
 				"enum"
@@ -2413,7 +2417,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<integer> | auto",
-			"relevance": 4,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2439,7 +2443,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | balance | balance-all",
-			"relevance": 1,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2460,7 +2464,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <length-percentage>",
-			"relevance": 4,
+			"relevance": 52,
 			"description": "Sets the gap between columns. If there is a column rule between columns, it will appear in the middle of the gap.",
 			"restrictions": [
 				"length",
@@ -2470,7 +2474,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "column-rule",
 			"syntax": "<'column-rule-width'> || <'column-rule-style'> || <'column-rule-color'>",
-			"relevance": 1,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2488,7 +2492,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "column-rule-color",
 			"syntax": "<color>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2503,7 +2507,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "column-rule-style",
 			"syntax": "<'border-style'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2518,7 +2522,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "column-rule-width",
 			"syntax": "<'border-width'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2540,7 +2544,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'column-width'> || <'column-count'>",
-			"relevance": 2,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2567,7 +2571,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | all",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2588,7 +2592,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | auto",
-			"relevance": 2,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2640,7 +2644,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | strict | content | [ size || layout || style || paint ]",
-			"relevance": 9,
+			"relevance": 55,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2680,7 +2684,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | none | [ <content-replacement> | <content-list> ] [/ <string> ]?",
-			"relevance": 78,
+			"relevance": 89,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2702,7 +2706,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ <custom-ident> <integer>? ]+ | none",
-			"relevance": 4,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2724,7 +2728,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ <custom-ident> <integer>? ]+ | none",
-			"relevance": 4,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2918,7 +2922,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ [ <url> [ <x> <y> ]? , ]* [ auto | default | none | context-menu | help | pointer | progress | wait | cell | crosshair | text | vertical-text | alias | copy | move | no-drop | not-allowed | e-resize | n-resize | ne-resize | nw-resize | s-resize | se-resize | sw-resize | w-resize | ew-resize | ns-resize | nesw-resize | nwse-resize | col-resize | row-resize | all-scroll | zoom-in | zoom-out | grab | grabbing ] ]",
-			"relevance": 82,
+			"relevance": 91,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2945,7 +2949,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "ltr | rtl",
-			"relevance": 35,
+			"relevance": 68,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3132,7 +3136,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ <display-outside> || <display-inside> ] | <display-listitem> | <display-internal> | <display-box> | <display-legacy>",
-			"relevance": 92,
+			"relevance": 96,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3160,7 +3164,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "show | hide",
-			"relevance": 3,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3184,7 +3188,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Create a new background image canvas. All children of the current container element can access the background, and they will be rendered onto both the parent's background image canvas in addition to the target device."
 				}
 			],
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Deprecated. Use 'isolation' property instead when support allows. Specifies how the accumulation of the background image is managed.",
 			"restrictions": [
 				"integer",
@@ -3199,6 +3203,7 @@ export const cssData : CSSDataV1 = {
 				"FF33"
 			],
 			"syntax": "<counter-style-name>",
+			"relevance": 50,
 			"description": "@counter-style descriptor. Specifies a fallback counter style to be used when the current counter style can’t create a representation for a given counter value.",
 			"restrictions": [
 				"identifier"
@@ -3216,7 +3221,7 @@ export const cssData : CSSDataV1 = {
 					"description": "No paint is applied in this layer."
 				}
 			],
-			"relevance": 47,
+			"relevance": 74,
 			"description": "Paints the interior of the given graphical element.",
 			"restrictions": [
 				"color",
@@ -3226,7 +3231,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "fill-opacity",
-			"relevance": 3,
+			"relevance": 52,
 			"description": "Specifies the opacity of the painting operation used to paint the interior the current object.",
 			"restrictions": [
 				"number(0-1)"
@@ -3244,7 +3249,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Determines the ‘insideness’ of a point on the canvas by drawing a ray from that point to infinity in any direction and then examining the places where a segment of the shape crosses the ray."
 				}
 			],
-			"relevance": 1,
+			"relevance": 50,
 			"description": "Indicates the algorithm (or winding rule) which is to be used to determine what parts of the canvas are included inside the shape.",
 			"restrictions": [
 				"enum"
@@ -3317,7 +3322,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <filter-function-list>",
-			"relevance": 28,
+			"relevance": 64,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3347,7 +3352,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]",
-			"relevance": 52,
+			"relevance": 77,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3374,7 +3379,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "content | <'width'>",
-			"relevance": 23,
+			"relevance": 62,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3409,7 +3414,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "row | row-reverse | column | column-reverse",
-			"relevance": 56,
+			"relevance": 78,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3454,7 +3459,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'flex-direction'> || <'flex-wrap'>",
-			"relevance": 16,
+			"relevance": 58,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3469,7 +3474,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "flex-grow",
 			"syntax": "<number>",
-			"relevance": 42,
+			"relevance": 71,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3484,7 +3489,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "flex-shrink",
 			"syntax": "<number>",
-			"relevance": 36,
+			"relevance": 69,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3513,7 +3518,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "nowrap | wrap | wrap-reverse",
-			"relevance": 47,
+			"relevance": 74,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3550,7 +3555,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "left | right | none | inline-start | inline-end",
-			"relevance": 85,
+			"relevance": 92,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3572,7 +3577,7 @@ export const cssData : CSSDataV1 = {
 				"O9",
 				"S6"
 			],
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Indicates what color to use to flood the current filter primitive subregion.",
 			"restrictions": [
 				"color"
@@ -3588,7 +3593,7 @@ export const cssData : CSSDataV1 = {
 				"O9",
 				"S6"
 			],
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Indicates what opacity to use to flood the current filter primitive subregion.",
 			"restrictions": [
 				"number(0-1)",
@@ -3715,7 +3720,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ [ <'font-style'> || <font-variant-css21> || <'font-weight'> || <'font-stretch'> ]? <'font-size'> [ / <'line-height'> ]? <'font-family'> ] | caption | icon | menu | message-box | small-caption | status-bar",
-			"relevance": 64,
+			"relevance": 82,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3786,7 +3791,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<family-name>",
-			"relevance": 85,
+			"relevance": 92,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4283,7 +4288,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <feature-tag-value>#",
-			"relevance": 8,
+			"relevance": 55,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4320,7 +4325,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | normal | none",
-			"relevance": 1,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4344,6 +4349,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <string>",
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4387,7 +4393,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<absolute-size> | <relative-size> | <length-percentage>",
-			"relevance": 88,
+			"relevance": 94,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4415,7 +4421,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <number>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4467,7 +4473,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<font-stretch-absolute>{1,2}",
-			"relevance": 6,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4496,7 +4502,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | italic | oblique <angle>{0,2}",
-			"relevance": 65,
+			"relevance": 83,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4529,6 +4535,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | [ weight || style ]",
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4553,7 +4560,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | none | [ <common-lig-values> || <discretionary-lig-values> || <historical-lig-values> || <contextual-alt-values> || stylistic(<feature-value-name>) || historical-forms || styleset(<feature-value-name>#) || character-variant(<feature-value-name>#) || swash(<feature-value-name>) || ornaments(<feature-value-name>) || annotation(<feature-value-name>) || [ small-caps | all-small-caps | petite-caps | all-petite-caps | unicase | titling-caps ] || <numeric-figure-values> || <numeric-spacing-values> || <numeric-fraction-values> || ordinal || slashed-zero || <east-asian-variant-values> || <east-asian-width-values> || ruby ]",
-			"relevance": 27,
+			"relevance": 63,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4605,6 +4612,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | [ stylistic( <feature-value-name> ) || historical-forms || styleset( <feature-value-name># ) || character-variant( <feature-value-name># ) || swash( <feature-value-name> ) || ornaments( <feature-value-name> ) || annotation( <feature-value-name> ) ]",
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4655,7 +4663,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | small-caps | all-small-caps | petite-caps | all-petite-caps | unicase | titling-caps",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4718,7 +4726,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | [ <east-asian-variant-values> || <east-asian-width-values> || ruby ]",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4811,7 +4819,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | none | [ <common-lig-values> || <discretionary-lig-values> || <historical-lig-values> || <contextual-alt-values> ]",
-			"relevance": 3,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4871,7 +4879,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | [ <numeric-figure-values> || <numeric-spacing-values> || <numeric-fraction-values> || ordinal || slashed-zero ]",
-			"relevance": 1,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4903,6 +4911,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | sub | super",
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4971,7 +4980,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<font-weight-absolute>{1,2}",
-			"relevance": 86,
+			"relevance": 93,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4985,7 +4994,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "glyph-orientation-horizontal",
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Controls glyph orientation when the inline-progression-direction is horizontal.",
 			"restrictions": [
 				"angle",
@@ -5000,7 +5009,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Sets the orientation based on the fullwidth or non-fullwidth characters and the most common orientation."
 				}
 			],
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Controls glyph orientation when the inline-progression-direction is vertical.",
 			"restrictions": [
 				"angle",
@@ -5028,7 +5037,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line> [ / <grid-line> ]{0,3}",
-			"relevance": 2,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5051,7 +5060,7 @@ export const cssData : CSSDataV1 = {
 				"O44"
 			],
 			"syntax": "<'grid-template'> | <'grid-template-rows'> / [ auto-flow && dense? ] <'grid-auto-columns'>? | [ auto-flow && dense? ] <'grid-auto-rows'>? / <'grid-template-columns'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5088,7 +5097,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<track-size>+",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5125,7 +5134,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ row | column ] || dense",
-			"relevance": 1,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5158,7 +5167,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<track-size>+",
-			"relevance": 1,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5191,7 +5200,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line> [ / <grid-line> ]?",
-			"relevance": 3,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5225,7 +5234,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line>",
-			"relevance": 1,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5249,7 +5258,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "obsolete",
 			"syntax": "<length-percentage>",
-			"relevance": 2,
+			"relevance": 1,
 			"description": "Specifies the gutters between grid columns. Replaced by 'column-gap' property.",
 			"restrictions": [
 				"length"
@@ -5275,7 +5284,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line>",
-			"relevance": 1,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5299,7 +5308,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "obsolete",
 			"syntax": "<'grid-row-gap'> <'grid-column-gap'>?",
-			"relevance": 3,
+			"relevance": 1,
 			"description": "Shorthand that specifies the gutters between grid columns and grid rows in one declaration. Replaced by 'gap' property.",
 			"restrictions": [
 				"length"
@@ -5325,7 +5334,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line> [ / <grid-line> ]?",
-			"relevance": 2,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5359,7 +5368,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5409,7 +5418,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5463,7 +5472,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | [ <'grid-template-rows'> / <'grid-template-columns'> ] | [ <line-names>? <string> <track-size>? <line-names>? ]+ [ / <explicit-track-list> ]?",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5495,7 +5504,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <string>+",
-			"relevance": 1,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5547,7 +5556,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <track-list> | <auto-track-list> | subgrid <line-name-list>?",
-			"relevance": 10,
+			"relevance": 55,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5602,7 +5611,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <track-list> | <auto-track-list> | subgrid <line-name-list>?",
-			"relevance": 3,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5639,7 +5648,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<viewport-length>{1,2}",
-			"relevance": 92,
+			"relevance": 96,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5669,7 +5678,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | manual | auto",
-			"relevance": 7,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5701,7 +5710,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "from-image | <angle> | [ <angle>? flip ]",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5755,7 +5764,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | crisp-edges | pixelated",
-			"relevance": 11,
+			"relevance": 55,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5798,6 +5807,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "obsolete",
 			"syntax": "auto | normal | active | inactive | disabled",
+			"relevance": 0,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5825,7 +5835,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'width'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5858,7 +5868,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | isolate",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5939,7 +5949,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <content-distribution> | <overflow-position>? [ <content-position> | left | right ]",
-			"relevance": 62,
+			"relevance": 82,
 			"description": "Aligns flex items along the main axis of the current line of the flex container.",
 			"restrictions": [
 				"enum"
@@ -5953,7 +5963,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Indicates that the user agent should adjust inter-glyph spacing based on kerning tables that are included in the font that will be used."
 				}
 			],
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Indicates whether the user agent should adjust inter-glyph spacing based on kerning tables that are included in the relevant font or instead disable auto-kerning and set inter-character spacing to a specific length.",
 			"restrictions": [
 				"length",
@@ -5969,7 +5979,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
-			"relevance": 90,
+			"relevance": 95,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5991,7 +6001,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <length>",
-			"relevance": 58,
+			"relevance": 79,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6013,7 +6023,7 @@ export const cssData : CSSDataV1 = {
 				"O9",
 				"S6"
 			],
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Defines the color of the light source for filter primitives 'feDiffuseLighting' and 'feSpecularLighting'.",
 			"restrictions": [
 				"color"
@@ -6040,7 +6050,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | loose | normal | strict | anywhere",
-			"relevance": 1,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6061,7 +6071,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <number> | <length> | <percentage>",
-			"relevance": 84,
+			"relevance": 92,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6143,7 +6153,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'list-style-type'> || <'list-style-position'> || <'list-style-image'>",
-			"relevance": 68,
+			"relevance": 84,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6166,7 +6176,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<url> | none",
-			"relevance": 4,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6191,7 +6201,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "inside | outside",
-			"relevance": 9,
+			"relevance": 55,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6272,7 +6282,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<counter-style> | <string> | none",
-			"relevance": 48,
+			"relevance": 74,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6293,7 +6303,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ <length> | <percentage> | auto ]{1,4}",
-			"relevance": 91,
+			"relevance": 95,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6321,7 +6331,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'margin-left'>",
-			"relevance": 6,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6349,7 +6359,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'margin-left'>",
-			"relevance": 4,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6370,7 +6380,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
-			"relevance": 82,
+			"relevance": 91,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6398,7 +6408,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'margin-left'>",
-			"relevance": 2,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6426,7 +6436,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'margin-left'>",
-			"relevance": 3,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6447,7 +6457,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
-			"relevance": 82,
+			"relevance": 91,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6468,7 +6478,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
-			"relevance": 81,
+			"relevance": 90,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6489,7 +6499,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
-			"relevance": 90,
+			"relevance": 95,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6514,7 +6524,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Indicates that the <marker> element referenced will be used."
 				}
 			],
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Specifies the marker symbol that shall be used for all points on the sets the value for all vertices on the given ‘path’ element or basic shape.",
 			"restrictions": [
 				"url"
@@ -6532,7 +6542,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Indicates that the <marker> element referenced will be used."
 				}
 			],
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Specifies the marker that will be drawn at the last vertices of the given markable element.",
 			"restrictions": [
 				"url"
@@ -6550,7 +6560,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Indicates that the <marker> element referenced will be used."
 				}
 			],
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Specifies the marker that will be drawn at all vertices except the first and last.",
 			"restrictions": [
 				"url"
@@ -6568,7 +6578,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Indicates that the <marker> element referenced will be used."
 				}
 			],
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Specifies the marker that will be drawn at the first vertices of the given markable element.",
 			"restrictions": [
 				"url"
@@ -6594,6 +6604,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<mask-reference>#",
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6627,6 +6638,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<masking-mode>#",
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6650,6 +6662,7 @@ export const cssData : CSSDataV1 = {
 				"O15"
 			],
 			"syntax": "<geometry-box>#",
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6672,6 +6685,7 @@ export const cssData : CSSDataV1 = {
 				"O15"
 			],
 			"syntax": "<position>#",
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6695,6 +6709,7 @@ export const cssData : CSSDataV1 = {
 				"O15"
 			],
 			"syntax": "<repeat-style>#",
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6730,6 +6745,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<bg-size>#",
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6763,7 +6779,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "luminance | alpha",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6791,7 +6807,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'max-width'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6825,7 +6841,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<viewport-length>",
-			"relevance": 68,
+			"relevance": 84,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6854,7 +6870,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'max-width'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6888,7 +6904,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<viewport-length>",
-			"relevance": 79,
+			"relevance": 89,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6911,7 +6927,7 @@ export const cssData : CSSDataV1 = {
 				"O44"
 			],
 			"syntax": "<'min-width'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6944,7 +6960,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<viewport-length>",
-			"relevance": 76,
+			"relevance": 88,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6967,7 +6983,7 @@ export const cssData : CSSDataV1 = {
 				"O44"
 			],
 			"syntax": "<'min-width'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -7000,7 +7016,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<viewport-length>",
-			"relevance": 74,
+			"relevance": 87,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -7117,7 +7133,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<blend-mode>",
-			"relevance": 2,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -7153,7 +7169,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Indicates that the object is rotated by the angle of the direction of the motion path plus 180 degrees."
 				}
 			],
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Shorthand property for setting 'motion-path', 'motion-offset' and 'motion-rotation'.",
 			"restrictions": [
 				"url",
@@ -7171,7 +7187,7 @@ export const cssData : CSSDataV1 = {
 				"C46",
 				"O33"
 			],
-			"relevance": 0,
+			"relevance": 50,
 			"description": "A distance that describes the position along the specified motion path.",
 			"restrictions": [
 				"length",
@@ -7194,7 +7210,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Defines an SVG path as a string, with optional 'fill-rule' as the first argument."
 				}
 			],
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Specifies the motion path the element gets positioned at.",
 			"restrictions": [
 				"url",
@@ -7219,7 +7235,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Indicates that the object is rotated by the angle of the direction of the motion path plus 180 degrees."
 				}
 			],
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Defines the direction of the element while positioning along the motion path.",
 			"restrictions": [
 				"angle"
@@ -7268,6 +7284,7 @@ export const cssData : CSSDataV1 = {
 					"description": "All iterations of the animation are played in the reverse direction from the way they were specified."
 				}
 			],
+			"relevance": 50,
 			"description": "Shorthand property combines six of the animation properties into a single property.",
 			"restrictions": [
 				"time",
@@ -7282,6 +7299,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"FF9"
 			],
+			"relevance": 50,
 			"description": "Defines when the animation will start.",
 			"restrictions": [
 				"time"
@@ -7310,6 +7328,7 @@ export const cssData : CSSDataV1 = {
 					"description": "All iterations of the animation are played in the reverse direction from the way they were specified."
 				}
 			],
+			"relevance": 50,
 			"description": "Defines whether or not the animation should play in reverse on alternate cycles.",
 			"restrictions": [
 				"enum"
@@ -7320,6 +7339,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"FF9"
 			],
+			"relevance": 50,
 			"description": "Defines the length of time that an animation takes to complete one cycle.",
 			"restrictions": [
 				"time"
@@ -7336,6 +7356,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Causes the animation to repeat forever."
 				}
 			],
+			"relevance": 50,
 			"description": "Defines the number of times an animation cycle is played. The default value is one, meaning the animation will play from beginning to end once.",
 			"restrictions": [
 				"number",
@@ -7353,6 +7374,7 @@ export const cssData : CSSDataV1 = {
 					"description": "No animation is performed"
 				}
 			],
+			"relevance": 50,
 			"description": "Defines a list of animations that apply. Each name is used to select the keyframe at-rule that provides the property values for the animation.",
 			"restrictions": [
 				"identifier",
@@ -7374,6 +7396,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Resume playback of a paused animation."
 				}
 			],
+			"relevance": 50,
 			"description": "Defines whether the animation is running or paused.",
 			"restrictions": [
 				"enum"
@@ -7384,6 +7407,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"FF9"
 			],
+			"relevance": 50,
 			"description": "Describes how the animation will progress over one cycle of its duration. See the 'transition-timing-function'.",
 			"restrictions": [
 				"timing-function"
@@ -7602,6 +7626,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "none | button | button-arrow-down | button-arrow-next | button-arrow-previous | button-arrow-up | button-bevel | button-focus | caret | checkbox | checkbox-container | checkbox-label | checkmenuitem | dualbutton | groupbox | listbox | listitem | menuarrow | menubar | menucheckbox | menuimage | menuitem | menuitemtext | menulist | menulist-button | menulist-text | menulist-textfield | menupopup | menuradio | menuseparator | meterbar | meterchunk | progressbar | progressbar-vertical | progresschunk | progresschunk-vertical | radio | radio-container | radio-label | radiomenuitem | range | range-thumb | resizer | resizerpanel | scale-horizontal | scalethumbend | scalethumb-horizontal | scalethumbstart | scalethumbtick | scalethumb-vertical | scale-vertical | scrollbarbutton-down | scrollbarbutton-left | scrollbarbutton-right | scrollbarbutton-up | scrollbarthumb-horizontal | scrollbarthumb-vertical | scrollbartrack-horizontal | scrollbartrack-vertical | searchfield | separator | sheet | spinner | spinner-downbutton | spinner-textfield | spinner-upbutton | splitter | statusbar | statusbarpanel | tab | tabpanel | tabpanels | tab-scroll-arrow-back | tab-scroll-arrow-forward | textfield | textfield-multiline | toolbar | toolbarbutton | toolbarbutton-dropdown | toolbargripper | toolbox | tooltip | treeheader | treeheadercell | treeheadersortarrow | treeitem | treeline | treetwisty | treetwistyopen | treeview | -moz-mac-unified-toolbar | -moz-win-borderless-glass | -moz-win-browsertabbar-toolbox | -moz-win-communicationstext | -moz-win-communications-toolbox | -moz-win-exclude-glass | -moz-win-glass | -moz-win-mediatext | -moz-win-media-toolbox | -moz-window-button-box | -moz-window-button-box-maximized | -moz-window-button-close | -moz-window-button-maximize | -moz-window-button-minimize | -moz-window-button-restore | -moz-window-frame-bottom | -moz-window-frame-left | -moz-window-frame-right | -moz-window-titlebar | -moz-window-titlebar-maximized",
+			"relevance": 0,
 			"description": "Used in Gecko (Firefox) to display an element using a platform-native styling based on the operating system's theme.",
 			"restrictions": [
 				"enum"
@@ -7620,6 +7645,7 @@ export const cssData : CSSDataV1 = {
 					"name": "visible"
 				}
 			],
+			"relevance": 50,
 			"description": "Determines whether or not the 'back' side of a transformed element is visible when facing the viewer. With an identity transform, the front side of an element faces the viewer.",
 			"restrictions": [
 				"enum"
@@ -7635,6 +7661,7 @@ export const cssData : CSSDataV1 = {
 					"name": "padding"
 				}
 			],
+			"relevance": 50,
 			"description": "Determines the background painting area.",
 			"restrictions": [
 				"box",
@@ -7657,6 +7684,7 @@ export const cssData : CSSDataV1 = {
 					"name": "each-box"
 				}
 			],
+			"relevance": 50,
 			"description": "In Gecko-based applications like Firefox, the -moz-background-inline-policy CSS property specifies how the background image of an inline element is determined when the content of the inline element wraps onto multiple lines. The choice of position has significant effects on repetition.",
 			"restrictions": [
 				"enum"
@@ -7667,6 +7695,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"FF1"
 			],
+			"relevance": 50,
 			"description": "For elements rendered as a single box, specifies the background positioning area. For elements rendered as multiple boxes (e.g., inline boxes on several lines, boxes on several pages) specifies which boxes 'box-decoration-break' operates on to determine the background positioning area(s).",
 			"restrictions": [
 				"box"
@@ -7679,12 +7708,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<color>+ | none",
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-border-bottom-colors"
-				}
-			],
+			"relevance": 0,
 			"description": "Sets a list of colors for the bottom border.",
 			"restrictions": [
 				"color"
@@ -7727,6 +7751,7 @@ export const cssData : CSSDataV1 = {
 					"name": "url()"
 				}
 			],
+			"relevance": 50,
 			"description": "Shorthand property for setting 'border-image-source', 'border-image-slice', 'border-image-width', 'border-image-outset' and 'border-image-repeat'. Omitted values are set to their initial values.",
 			"restrictions": [
 				"length",
@@ -7743,12 +7768,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<color>+ | none",
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-border-left-colors"
-				}
-			],
+			"relevance": 0,
 			"description": "Sets a list of colors for the bottom border.",
 			"restrictions": [
 				"color"
@@ -7761,12 +7781,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<color>+ | none",
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-border-right-colors"
-				}
-			],
+			"relevance": 0,
 			"description": "Sets a list of colors for the bottom border.",
 			"restrictions": [
 				"color"
@@ -7779,12 +7794,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<color>+ | none",
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-border-top-colors"
-				}
-			],
+			"relevance": 0,
 			"description": "Ske Firefox, -moz-border-bottom-colors sets a list of colors for the bottom border.",
 			"restrictions": [
 				"color"
@@ -7817,6 +7827,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The height of each child is adjusted to that of the containing block."
 				}
 			],
+			"relevance": 50,
 			"description": "Specifies how a XUL box aligns its contents across (perpendicular to) the direction of its layout. The effect of this is only visible if there is extra space in the box.",
 			"restrictions": [
 				"enum"
@@ -7837,6 +7848,7 @@ export const cssData : CSSDataV1 = {
 					"description": "A box with a computed value of horizontal for box-orient displays its children from right to left. A box with a computed value of vertical displays its children from bottom to top."
 				}
 			],
+			"relevance": 50,
 			"description": "Specifies whether a box lays out its contents normally (from the top or left edge), or in reverse (from the bottom or right edge).",
 			"restrictions": [
 				"enum"
@@ -7847,6 +7859,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"FF1"
 			],
+			"relevance": 50,
 			"description": "Specifies how a box grows to fill the box that contains it, in the direction of the containing box's layout.",
 			"restrictions": [
 				"number"
@@ -7857,6 +7870,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"FF1"
 			],
+			"relevance": 50,
 			"description": "Flexible elements can be assigned to flex groups using the 'box-flex-group' property.",
 			"restrictions": [
 				"integer"
@@ -7867,6 +7881,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"FF1"
 			],
+			"relevance": 50,
 			"description": "Indicates the ordinal group the element belongs to. Elements with a lower ordinal group are displayed before those with a higher ordinal group.",
 			"restrictions": [
 				"integer"
@@ -7895,6 +7910,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The box displays its children from stacked from top to bottom vertically."
 				}
 			],
+			"relevance": 50,
 			"description": "In Mozilla applications, -moz-box-orient specifies whether a box lays out its contents horizontally or vertically.",
 			"restrictions": [
 				"enum"
@@ -7923,6 +7939,7 @@ export const cssData : CSSDataV1 = {
 					"description": "For normal direction boxes, the left edge of the first child is placed at the left side, with all extra space placed after the last child. For reverse direction boxes, the right edge of the last child is placed at the right side, with all extra space placed before the first child."
 				}
 			],
+			"relevance": 50,
 			"description": "Specifies how a box packs its contents in the direction of its layout. The effect of this is only visible if there is extra space in the box.",
 			"restrictions": [
 				"enum"
@@ -7947,6 +7964,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The specified width and height (and respective min/max properties) on this element determine the padding box of the element."
 				}
 			],
+			"relevance": 50,
 			"description": "Box Model addition in CSS3.",
 			"restrictions": [
 				"enum"
@@ -7963,6 +7981,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Determines the number of columns by the 'column-width' property and the element width."
 				}
 			],
+			"relevance": 50,
 			"description": "Describes the optimal number of columns into which the content of the element will be flowed.",
 			"restrictions": [
 				"integer"
@@ -7979,6 +7998,7 @@ export const cssData : CSSDataV1 = {
 					"description": "User agent specific and typically equivalent to 1em."
 				}
 			],
+			"relevance": 50,
 			"description": "Sets the gap between columns. If there is a column rule between columns, it will appear in the middle of the gap.",
 			"restrictions": [
 				"length"
@@ -7989,6 +8009,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"FF3.5"
 			],
+			"relevance": 50,
 			"description": "Shorthand for setting 'column-rule-width', 'column-rule-style', and 'column-rule-color' at the same place in the style sheet. Omitted values are set to their initial values.",
 			"restrictions": [
 				"length",
@@ -8002,6 +8023,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"FF3.5"
 			],
+			"relevance": 50,
 			"description": "Sets the color of the column rule",
 			"restrictions": [
 				"color"
@@ -8012,6 +8034,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"FF3.5"
 			],
+			"relevance": 50,
 			"description": "Sets the style of the rule between columns of an element.",
 			"restrictions": [
 				"line-style"
@@ -8022,6 +8045,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"FF3.5"
 			],
+			"relevance": 50,
 			"description": "Sets the width of the rule between columns. Negative values are not allowed.",
 			"restrictions": [
 				"length",
@@ -8039,6 +8063,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The width depends on the values of other properties."
 				}
 			],
+			"relevance": 50,
 			"description": "A shorthand property which sets both 'column-width' and 'column-count'.",
 			"restrictions": [
 				"length",
@@ -8056,6 +8081,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The width depends on the values of other properties."
 				}
 			],
+			"relevance": 50,
 			"description": "This property describes the width of columns in multicol elements.",
 			"restrictions": [
 				"length"
@@ -8111,6 +8137,7 @@ export const cssData : CSSDataV1 = {
 					]
 				}
 			],
+			"relevance": 50,
 			"description": "Provides low-level control over OpenType font features. It is intended as a way of providing access to font features that are not widely used but are needed for a particular use case.",
 			"restrictions": [
 				"string",
@@ -8136,6 +8163,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Words are not broken at line breaks, even if characters inside the word suggest line break points."
 				}
 			],
+			"relevance": 50,
 			"description": "Controls whether hyphenation is allowed to create more break opportunities within a line of text.",
 			"restrictions": [
 				"enum"
@@ -8152,6 +8180,7 @@ export const cssData : CSSDataV1 = {
 					"description": "No perspective transform is applied."
 				}
 			],
+			"relevance": 50,
 			"description": "Applies the same transform as the perspective(<number>) transform function, except that it applies only to the positioned or transformed children of the element, not to the transform on the element itself.",
 			"restrictions": [
 				"length"
@@ -8162,6 +8191,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"FF10"
 			],
+			"relevance": 50,
 			"description": "Establishes the origin for the perspective property. It effectively sets the X and Y position at which the viewer appears to be looking at the children of the element.",
 			"restrictions": [
 				"position",
@@ -8195,6 +8225,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The inline contents are aligned to the right edge of the line box. In vertical text, 'right' aligns to the edge of the line box that would be the end edge for left-to-right text."
 				}
 			],
+			"relevance": 50,
 			"description": "Describes how the last line of a block or a line right before a forced line break is aligned when 'text-align' is set to 'justify'.",
 			"restrictions": [
 				"enum"
@@ -8205,6 +8236,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"FF6"
 			],
+			"relevance": 50,
 			"description": "Specifies the color of text decoration (underlines overlines, and line-throughs) set on the element with text-decoration-line.",
 			"restrictions": [
 				"color"
@@ -8233,6 +8265,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Each line of text is underlined."
 				}
 			],
+			"relevance": 50,
 			"description": "Specifies what line decorations, if any, are added to the element.",
 			"restrictions": [
 				"enum"
@@ -8269,6 +8302,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Produces a wavy line."
 				}
 			],
+			"relevance": 50,
 			"description": "Specifies the line style for underline, line-through and overline text decoration.",
 			"restrictions": [
 				"enum"
@@ -8289,6 +8323,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Renderers must not do size adjustment when displaying on a small device."
 				}
 			],
+			"relevance": 50,
 			"description": "Specifies a size adjustment for displaying text content in mobile browsers.",
 			"restrictions": [
 				"enum",
@@ -8389,6 +8424,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Specifies a translation by the given amount in the Z direction. Note that percentage values are not allowed in the translateZ translation-value, and if present are evaluated as 0."
 				}
 			],
+			"relevance": 50,
 			"description": "A two-dimensional transformation is applied to an element through the 'transform' property. This property contains a list of transform functions similar to those allowed by SVG.",
 			"restrictions": [
 				"enum"
@@ -8399,6 +8435,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"FF3.5"
 			],
+			"relevance": 50,
 			"description": "Establishes the origin of transformation for an element.",
 			"restrictions": [
 				"position",
@@ -8421,6 +8458,7 @@ export const cssData : CSSDataV1 = {
 					"description": "No property will transition."
 				}
 			],
+			"relevance": 50,
 			"description": "Shorthand property combines four of the transition properties into a single property.",
 			"restrictions": [
 				"time",
@@ -8434,6 +8472,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"FF4"
 			],
+			"relevance": 50,
 			"description": "Defines when the transition will start. It allows a transition to begin execution some period of time from when it is applied.",
 			"restrictions": [
 				"time"
@@ -8444,6 +8483,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"FF4"
 			],
+			"relevance": 50,
 			"description": "Specifies how long the transition from the old value to the new value should take.",
 			"restrictions": [
 				"time"
@@ -8464,6 +8504,7 @@ export const cssData : CSSDataV1 = {
 					"description": "No property will transition."
 				}
 			],
+			"relevance": 50,
 			"description": "Specifies the name of the CSS property to which the transition is applied.",
 			"restrictions": [
 				"property"
@@ -8474,6 +8515,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"FF4"
 			],
+			"relevance": 50,
 			"description": "Describes how the intermediate values used during a transition will be calculated.",
 			"restrictions": [
 				"timing-function"
@@ -8494,6 +8536,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "ignore | normal | select-after | select-before | select-menu | select-same | select-all | none",
+			"relevance": 0,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -8533,6 +8576,7 @@ export const cssData : CSSDataV1 = {
 					"name": "toggle"
 				}
 			],
+			"relevance": 50,
 			"description": "Controls the appearance of selection.",
 			"restrictions": [
 				"enum"
@@ -8556,6 +8600,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "false | true",
+			"relevance": 0,
 			"description": "IE only. Has the ability to turn off its system underlines for accelerator keys until the ALT key is pressed",
 			"restrictions": [
 				"enum"
@@ -8566,6 +8611,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"IE8"
 			],
+			"relevance": 50,
 			"description": "IE only. Used to extend behaviors of the browser",
 			"restrictions": [
 				"url"
@@ -8596,6 +8642,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "tb | rl | bt | lr",
+			"relevance": 0,
 			"description": "Sets the block-progression value and the flow orientation",
 			"restrictions": [
 				"enum"
@@ -8619,6 +8666,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "none | chained",
+			"relevance": 0,
 			"description": "Specifies the zoom behavior that occurs when a user hits the zoom limit during a manipulation."
 		},
 		{
@@ -8639,6 +8687,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "none | zoom",
+			"relevance": 0,
 			"description": "Specifies whether zooming is enabled.",
 			"restrictions": [
 				"enum"
@@ -8652,6 +8701,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<'-ms-content-zoom-limit-min'> <'-ms-content-zoom-limit-max'>",
+			"relevance": 0,
 			"description": "Shorthand property for the -ms-content-zoom-limit-min and -ms-content-zoom-limit-max properties.",
 			"restrictions": [
 				"percentage"
@@ -8665,6 +8715,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<percentage>",
+			"relevance": 0,
 			"description": "Specifies the maximum zoom factor.",
 			"restrictions": [
 				"percentage"
@@ -8678,6 +8729,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<percentage>",
+			"relevance": 0,
 			"description": "Specifies the minimum zoom factor.",
 			"restrictions": [
 				"percentage"
@@ -8713,6 +8765,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<'-ms-content-zoom-snap-type'> || <'-ms-content-zoom-snap-points'>",
+			"relevance": 0,
 			"description": "Shorthand property for the -ms-content-zoom-snap-type and -ms-content-zoom-snap-points properties."
 		},
 		{
@@ -8733,6 +8786,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "snapInterval( <percentage>, <percentage> ) | snapList( <percentage># )",
+			"relevance": 0,
 			"description": "Defines where zoom snap-points are located."
 		},
 		{
@@ -8757,6 +8811,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "none | proximity | mandatory",
+			"relevance": 0,
 			"description": "Specifies how zooming is affected by defined snap-points.",
 			"restrictions": [
 				"enum"
@@ -8769,6 +8824,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<string>",
+			"relevance": 0,
 			"description": "IE only. Used to produce visual effects.",
 			"restrictions": [
 				"string"
@@ -8789,6 +8845,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Expands to '0 0 auto'."
 				}
 			],
+			"relevance": 50,
 			"description": "specifies the parameters of a flexible length: the positive and negative flexibility, and the preferred size.",
 			"restrictions": [
 				"length",
@@ -8823,6 +8880,7 @@ export const cssData : CSSDataV1 = {
 					"description": "If the cross size property of the flexbox item is anything other than 'auto', this value is identical to 'start'."
 				}
 			],
+			"relevance": 50,
 			"description": "Aligns flex items along the cross axis of the current line of the flex container.",
 			"restrictions": [
 				"enum"
@@ -8851,6 +8909,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Same as 'row', except the main-start and main-end directions are swapped."
 				}
 			],
+			"relevance": 50,
 			"description": "Specifies how flex items are placed in the flex container, by setting the direction of the flex container’s main axis.",
 			"restrictions": [
 				"enum"
@@ -8887,6 +8946,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Same as 'wrap', except the cross-start and cross-end directions are swapped."
 				}
 			],
+			"relevance": 50,
 			"description": "Specifies how flexbox items are placed in the flexbox.",
 			"restrictions": [
 				"enum"
@@ -8923,6 +8983,7 @@ export const cssData : CSSDataV1 = {
 					"description": "If the cross size property of the flex item computes to auto, and neither of the cross-axis margins are auto, the flex item is stretched."
 				}
 			],
+			"relevance": 50,
 			"description": "Allows the default alignment along the cross axis to be overridden for individual flex items.",
 			"restrictions": [
 				"enum"
@@ -8959,6 +9020,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Lines stretch to take up the remaining space."
 				}
 			],
+			"relevance": 50,
 			"description": "Aligns a flex container’s lines within the flex container when there is extra space in the cross-axis, similar to how 'justify-content' aligns individual items within the main-axis.",
 			"restrictions": [
 				"enum"
@@ -8969,6 +9031,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"IE10"
 			],
+			"relevance": 50,
 			"description": "Controls the order in which children of a flex container appear within the flex container, by assigning them to ordinal groups.",
 			"restrictions": [
 				"integer"
@@ -9001,6 +9064,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Flex items are packed toward the start of the line."
 				}
 			],
+			"relevance": 50,
 			"description": "Aligns flex items along the main axis of the current line of the flex container.",
 			"restrictions": [
 				"enum"
@@ -9025,6 +9089,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Same as 'wrap', except the cross-start and cross-end directions are swapped."
 				}
 			],
+			"relevance": 50,
 			"description": "Controls whether the flex container is single-line or multi-line, and the direction of the cross-axis, which determines the direction new lines are stacked in.",
 			"restrictions": [
 				"enum"
@@ -9044,6 +9109,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "[ none | <custom-ident> ]#",
+			"relevance": 0,
 			"description": "Makes a block container a region and associates it with a named flow.",
 			"restrictions": [
 				"identifier"
@@ -9063,6 +9129,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "[ none | <custom-ident> ]#",
+			"relevance": 0,
 			"description": "Places an element or its contents into a named flow.",
 			"restrictions": [
 				"identifier"
@@ -9085,6 +9152,7 @@ export const cssData : CSSDataV1 = {
 					"name": "start"
 				}
 			],
+			"relevance": 50,
 			"description": "Used to place grid items and explicitly defined grid cells in the Grid.",
 			"restrictions": [
 				"integer",
@@ -9116,6 +9184,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Ensures that the Grid Item's margin box is equal to the size of the Grid Item's column."
 				}
 			],
+			"relevance": 50,
 			"description": "Aligns the columns in a grid.",
 			"restrictions": [
 				"enum"
@@ -9127,6 +9196,7 @@ export const cssData : CSSDataV1 = {
 				"E12",
 				"IE10"
 			],
+			"relevance": 50,
 			"description": "Lays out the columns of the grid."
 		},
 		{
@@ -9135,6 +9205,7 @@ export const cssData : CSSDataV1 = {
 				"E12",
 				"IE10"
 			],
+			"relevance": 50,
 			"description": "Specifies the number of columns to span.",
 			"restrictions": [
 				"integer"
@@ -9146,6 +9217,7 @@ export const cssData : CSSDataV1 = {
 				"E",
 				"IE10"
 			],
+			"relevance": 50,
 			"description": "Grid-layer is similar in concept to z-index, but avoids overloading the meaning of the z-index property, which is applicable only to positioned elements.",
 			"restrictions": [
 				"integer"
@@ -9168,6 +9240,7 @@ export const cssData : CSSDataV1 = {
 					"name": "start"
 				}
 			],
+			"relevance": 50,
 			"description": "grid-row is used to place grid items and explicitly defined grid cells in the Grid.",
 			"restrictions": [
 				"integer",
@@ -9199,6 +9272,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Ensures that the Grid Item's margin box is equal to the size of the Grid Item's row."
 				}
 			],
+			"relevance": 50,
 			"description": "Aligns the rows in a grid.",
 			"restrictions": [
 				"enum"
@@ -9210,6 +9284,7 @@ export const cssData : CSSDataV1 = {
 				"E12",
 				"IE10"
 			],
+			"relevance": 50,
 			"description": "Lays out the columns of the grid."
 		},
 		{
@@ -9218,6 +9293,7 @@ export const cssData : CSSDataV1 = {
 				"E12",
 				"IE10"
 			],
+			"relevance": 50,
 			"description": "Specifies the number of rows to span.",
 			"restrictions": [
 				"integer"
@@ -9241,6 +9317,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "auto | none",
+			"relevance": 0,
 			"description": "Specifies if properties should be adjusted in high contrast mode.",
 			"restrictions": [
 				"enum"
@@ -9260,6 +9337,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "auto | <integer>{1,3}",
+			"relevance": 0,
 			"description": "Specifies the minimum number of characters in a hyphenated word.",
 			"restrictions": [
 				"integer"
@@ -9279,6 +9357,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "no-limit | <integer>",
+			"relevance": 0,
 			"description": "Indicates the maximum number of successive hyphenated lines in an element.",
 			"restrictions": [
 				"integer"
@@ -9292,6 +9371,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<percentage> | <length>",
+			"relevance": 0,
 			"description": "Specifies the maximum amount of unfilled space (before justification) that may be left in the line box before hyphenation is triggered to pull part of a word from the next line back up into the current line.",
 			"restrictions": [
 				"percentage",
@@ -9318,6 +9398,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Words are not broken at line breaks, even if characters inside the word suggest line break points."
 				}
 			],
+			"relevance": 50,
 			"description": "Controls whether hyphenation is allowed to create more break opportunities within a line of text.",
 			"restrictions": [
 				"enum"
@@ -9350,6 +9431,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The IME state should be normal; this value can be used in a user style sheet to override the page setting."
 				}
 			],
+			"relevance": 50,
 			"description": "Controls the state of the input method editor for text fields.",
 			"restrictions": [
 				"enum"
@@ -9368,6 +9450,7 @@ export const cssData : CSSDataV1 = {
 					"name": "nearest-neighbor"
 				}
 			],
+			"relevance": 50,
 			"description": "Gets or sets the interpolation (resampling) method used to stretch images.",
 			"restrictions": [
 				"enum"
@@ -9397,6 +9480,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Any of the range of type values available to the -ms-layout-grid-type property."
 				}
 			],
+			"relevance": 50,
 			"description": "Sets or retrieves the composite document grid properties that specify the layout of text characters."
 		},
 		{
@@ -9415,6 +9499,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Default. No character grid is set."
 				}
 			],
+			"relevance": 50,
 			"description": "Sets or retrieves the size of the character grid used for rendering the text content of an element.",
 			"restrictions": [
 				"enum",
@@ -9438,6 +9523,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Default. No grid line is set."
 				}
 			],
+			"relevance": 50,
 			"description": "Sets or retrieves the gridline value used for rendering the text content of an element.",
 			"restrictions": [
 				"length"
@@ -9467,6 +9553,7 @@ export const cssData : CSSDataV1 = {
 					"description": "No grid is used."
 				}
 			],
+			"relevance": 50,
 			"description": "Gets or sets whether the text layout grid uses two dimensions.",
 			"restrictions": [
 				"enum"
@@ -9492,6 +9579,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Grid used for Chinese, as well as Japanese (Genko) and Korean characters. Only the ideographs, kanas, and wide characters are snapped to the grid."
 				}
 			],
+			"relevance": 50,
 			"description": "Sets or retrieves the type of grid used for rendering the text content of an element.",
 			"restrictions": [
 				"enum"
@@ -9525,6 +9613,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Breaks CJK scripts using a more restrictive set of line-breaking rules than 'normal'."
 				}
 			],
+			"relevance": 50,
 			"description": "Specifies what set of line breaking restrictions are in effect within the element.",
 			"restrictions": [
 				"enum"
@@ -9556,6 +9645,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "auto | none | scrollbar | -ms-autohiding-scrollbar",
+			"relevance": 0,
 			"description": "Specify whether content is clipped when it overflows the element's content area.",
 			"restrictions": [
 				"enum"
@@ -9572,6 +9662,7 @@ export const cssData : CSSDataV1 = {
 					"description": "No perspective transform is applied."
 				}
 			],
+			"relevance": 50,
 			"description": "Applies the same transform as the perspective(<number>) transform function, except that it applies only to the positioned or transformed children of the element, not to the transform on the element itself.",
 			"restrictions": [
 				"length"
@@ -9582,6 +9673,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"IE10"
 			],
+			"relevance": 50,
 			"description": "Establishes the origin for the perspective property. It effectively sets the X and Y position at which the viewer appears to be looking at the children of the element.",
 			"restrictions": [
 				"position",
@@ -9594,6 +9686,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"IE10"
 			],
+			"relevance": 50,
 			"description": "Establishes the origin for the perspective property. It effectively sets the X  position at which the viewer appears to be looking at the children of the element.",
 			"restrictions": [
 				"position",
@@ -9606,6 +9699,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"IE10"
 			],
+			"relevance": 50,
 			"description": "Establishes the origin for the perspective property. It effectively sets the Y position at which the viewer appears to be looking at the children of the element.",
 			"restrictions": [
 				"position",
@@ -9626,6 +9720,7 @@ export const cssData : CSSDataV1 = {
 					"name": "ring"
 				}
 			],
+			"relevance": 50,
 			"description": "Gets or sets a value that specifies whether a progress control displays as a bar or a ring.",
 			"restrictions": [
 				"enum"
@@ -9638,6 +9733,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
+			"relevance": 0,
 			"description": "Determines the color of the top and left edges of the scroll box and scroll arrows of a scroll bar.",
 			"restrictions": [
 				"color"
@@ -9650,6 +9746,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
+			"relevance": 0,
 			"description": "Determines the color of the arrow elements of a scroll arrow.",
 			"restrictions": [
 				"color"
@@ -9662,6 +9759,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
+			"relevance": 0,
 			"description": "Determines the color of the main elements of a scroll bar, which include the scroll box, track, and scroll arrows.",
 			"restrictions": [
 				"color"
@@ -9674,6 +9772,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
+			"relevance": 0,
 			"description": "Determines the color of the gutter of a scroll bar.",
 			"restrictions": [
 				"color"
@@ -9686,6 +9785,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
+			"relevance": 0,
 			"description": "Determines the color of the scroll box and scroll arrows of a scroll bar.",
 			"restrictions": [
 				"color"
@@ -9698,6 +9798,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
+			"relevance": 0,
 			"description": "Determines the color of the top and left edges of the scroll box and scroll arrows of a scroll bar.",
 			"restrictions": [
 				"color"
@@ -9710,6 +9811,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
+			"relevance": 0,
 			"description": "Determines the color of the bottom and right edges of the scroll box and scroll arrows of a scroll bar.",
 			"restrictions": [
 				"color"
@@ -9722,6 +9824,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
+			"relevance": 0,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -9749,6 +9852,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "chained | none",
+			"relevance": 0,
 			"description": "Gets or sets a value that indicates the scrolling behavior that occurs when a user hits the content boundary during a manipulation.",
 			"restrictions": [
 				"enum",
@@ -9768,6 +9872,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<'-ms-scroll-limit-x-min'> <'-ms-scroll-limit-y-min'> <'-ms-scroll-limit-x-max'> <'-ms-scroll-limit-y-max'>",
+			"relevance": 0,
 			"description": "Gets or sets a shorthand value that sets values for the -ms-scroll-limit-x-min, -ms-scroll-limit-y-min, -ms-scroll-limit-x-max, and -ms-scroll-limit-y-max properties.",
 			"restrictions": [
 				"length"
@@ -9786,6 +9891,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "auto | <length>",
+			"relevance": 0,
 			"description": "Gets or sets a value that specifies the maximum value for the scrollLeft property.",
 			"restrictions": [
 				"length"
@@ -9799,6 +9905,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<length>",
+			"relevance": 0,
 			"description": "Gets or sets a value that specifies the minimum value for the scrollLeft property.",
 			"restrictions": [
 				"length"
@@ -9817,6 +9924,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "auto | <length>",
+			"relevance": 0,
 			"description": "Gets or sets a value that specifies the maximum value for the scrollTop property.",
 			"restrictions": [
 				"length"
@@ -9830,6 +9938,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<length>",
+			"relevance": 0,
 			"description": "Gets or sets a value that specifies the minimum value for the scrollTop property.",
 			"restrictions": [
 				"length"
@@ -9851,6 +9960,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "none | railed",
+			"relevance": 0,
 			"description": "Gets or sets a value that indicates whether or not small motions perpendicular to the primary axis of motion will result in either changes to both the scrollTop and scrollLeft properties or a change to the primary axis (for instance, either the scrollTop or scrollLeft properties will change, but not both).",
 			"restrictions": [
 				"enum",
@@ -9873,6 +9983,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "snapInterval( <length-percentage>, <length-percentage> ) | snapList( <length-percentage># )",
+			"relevance": 0,
 			"description": "Gets or sets a value that defines where snap-points will be located along the x-axis.",
 			"restrictions": [
 				"enum"
@@ -9894,6 +10005,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "snapInterval( <length-percentage>, <length-percentage> ) | snapList( <length-percentage># )",
+			"relevance": 0,
 			"description": "Gets or sets a value that defines where snap-points will be located along the y-axis.",
 			"restrictions": [
 				"enum"
@@ -9921,6 +10033,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "none | proximity | mandatory",
+			"relevance": 0,
 			"description": "Gets or sets a value that defines what type of snap-point should be used for the current element. There are two type of snap-points, with the primary difference being whether or not the user is guaranteed to always stop on a snap-point.",
 			"restrictions": [
 				"enum"
@@ -9951,6 +10064,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<'-ms-scroll-snap-type'> <'-ms-scroll-snap-points-x'>",
+			"relevance": 0,
 			"description": "Gets or sets a shorthand value that sets values for the -ms-scroll-snap-type and -ms-scroll-snap-points-x properties.",
 			"restrictions": [
 				"enum"
@@ -9981,6 +10095,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<'-ms-scroll-snap-type'> <'-ms-scroll-snap-points-y'>",
+			"relevance": 0,
 			"description": "Gets or sets a shorthand value that sets values for the -ms-scroll-snap-type and -ms-scroll-snap-points-y properties.",
 			"restrictions": [
 				"enum"
@@ -10002,6 +10117,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "none | vertical-to-horizontal",
+			"relevance": 0,
 			"description": "Gets or sets a value that specifies whether vertical-to-horizontal scroll wheel translation occurs on the specified element.",
 			"restrictions": [
 				"enum"
@@ -10034,6 +10150,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The inline contents are aligned to the right edge of the line box. In vertical text, 'right' aligns to the edge of the line box that would be the end edge for left-to-right text."
 				}
 			],
+			"relevance": 50,
 			"description": "Describes how the last line of a block or a line right before a forced line break is aligned when 'text-align' is set to 'justify'.",
 			"restrictions": [
 				"enum"
@@ -10073,6 +10190,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "none | ideograph-alpha | ideograph-numeric | ideograph-parenthesis | ideograph-space",
+			"relevance": 0,
 			"description": "Determines whether or not a full-width punctuation mark character should be trimmed if it appears at the beginning of a line, so that its 'ink' lines up with the first glyph in the line above and below.",
 			"restrictions": [
 				"enum"
@@ -10098,6 +10216,7 @@ export const cssData : CSSDataV1 = {
 					"description": "No special processing."
 				}
 			],
+			"relevance": 50,
 			"description": "This property specifies the combination of multiple characters into the space of a single character.",
 			"restrictions": [
 				"enum",
@@ -10136,6 +10255,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Justification primarily stretches Arabic and related scripts through the use of kashida or other calligraphic elongation."
 				}
 			],
+			"relevance": 50,
 			"description": "Selects the justification algorithm used when 'text-align' is set to 'justify'. The property applies to block containers, but the UA may (but is not required to) also support it on inline elements.",
 			"restrictions": [
 				"enum"
@@ -10147,6 +10267,7 @@ export const cssData : CSSDataV1 = {
 				"E",
 				"IE10"
 			],
+			"relevance": 50,
 			"description": "Sets or retrieves the ratio of kashida expansion to white space expansion when justifying lines of text in the object.",
 			"restrictions": [
 				"percentage"
@@ -10167,6 +10288,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Render an ellipsis character (U+2026) to represent clipped inline content."
 				}
 			],
+			"relevance": 50,
 			"description": "Text can overflow for example when it is prevented from wrapping",
 			"restrictions": [
 				"enum"
@@ -10188,6 +10310,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Renderers must not do size adjustment when displaying on a small device."
 				}
 			],
+			"relevance": 50,
 			"description": "Specifies a size adjustment for displaying text content in mobile browsers.",
 			"restrictions": [
 				"enum",
@@ -10218,6 +10341,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The underline is aligned with the 'bottom' (left in vertical writing) edge of the element's em-box. In this case the underline usually does not cross the descenders. This is sometimes called 'accounting' underline."
 				}
 			],
+			"relevance": 50,
 			"description": "Sets the position of an underline specified on the same element: it does not affect underlines specified by ancestor elements.This property is typically used in vertical writing contexts such as in Japanese documents where it often desired to have the underline appear 'over' (to the right of) the affected run of text",
 			"restrictions": [
 				"enum"
@@ -10258,6 +10382,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The element permits pinch-zooming. The pinch-zoom is performed on the nearest ancestor with zoomable content."
 				}
 			],
+			"relevance": 50,
 			"description": "Gets or sets a value that indicates whether and how a given region can be manipulated by the user.",
 			"restrictions": [
 				"enum"
@@ -10281,6 +10406,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "grippers | none",
+			"relevance": 0,
 			"description": "Gets or sets a value that toggles the 'gripper' visual elements that enable touch text selection.",
 			"restrictions": [
 				"enum"
@@ -10376,6 +10502,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Specifies a translation by the given amount in the Z direction. Note that percentage values are not allowed in the translateZ translation-value, and if present are evaluated as 0."
 				}
 			],
+			"relevance": 50,
 			"description": "A two-dimensional transformation is applied to an element through the 'transform' property. This property contains a list of transform functions similar to those allowed by SVG.",
 			"restrictions": [
 				"enum"
@@ -10386,6 +10513,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"IE9-9"
 			],
+			"relevance": 50,
 			"description": "Establishes the origin of transformation for an element.",
 			"restrictions": [
 				"position",
@@ -10398,6 +10526,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"IE10"
 			],
+			"relevance": 50,
 			"description": "The x coordinate of the origin for transforms applied to an element with respect to its border box.",
 			"restrictions": [
 				"length",
@@ -10409,6 +10538,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"IE10"
 			],
+			"relevance": 50,
 			"description": "The y coordinate of the origin for transforms applied to an element with respect to its border box.",
 			"restrictions": [
 				"length",
@@ -10420,6 +10550,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"IE10"
 			],
+			"relevance": 50,
 			"description": "The z coordinate of the origin for transforms applied to an element with respect to its border box.",
 			"restrictions": [
 				"length",
@@ -10445,6 +10576,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "none | element | text",
+			"relevance": 0,
 			"description": "Controls the appearance of selection.",
 			"restrictions": [
 				"enum"
@@ -10469,6 +10601,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Breaks non-CJK scripts according to their own rules."
 				}
 			],
+			"relevance": 50,
 			"description": "Specifies line break opportunities for non-CJK scripts.",
 			"restrictions": [
 				"enum"
@@ -10489,6 +10622,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Lines may break only at allowed break points."
 				}
 			],
+			"relevance": 50,
 			"description": "Specifies whether the UA may break within a word to prevent overflow when an otherwise-unbreakable string is too long to fit.",
 			"restrictions": [
 				"enum"
@@ -10532,6 +10666,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "auto | both | start | end | maximum | clear",
+			"relevance": 0,
 			"description": "An element becomes an exclusion when its 'wrap-flow' property has a computed value other than 'auto'.",
 			"restrictions": [
 				"enum"
@@ -10545,6 +10680,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<length>",
+			"relevance": 0,
 			"description": "Gets or sets a value that is used to offset the inner wrap shape from other shapes.",
 			"restrictions": [
 				"length",
@@ -10569,6 +10705,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "wrap | none",
+			"relevance": 0,
 			"description": "Specifies if an element inherits its parent wrapping context. In other words if it is subject to the exclusions defined outside the element.",
 			"restrictions": [
 				"enum"
@@ -10605,6 +10742,7 @@ export const cssData : CSSDataV1 = {
 					"name": "tb-rl"
 				}
 			],
+			"relevance": 50,
 			"description": "Shorthand property for both 'direction' and 'block-progression'.",
 			"restrictions": [
 				"enum"
@@ -10620,6 +10758,7 @@ export const cssData : CSSDataV1 = {
 					"name": "normal"
 				}
 			],
+			"relevance": 50,
 			"description": "Sets or retrieves the magnification scale of the object.",
 			"restrictions": [
 				"enum",
@@ -10641,6 +10780,7 @@ export const cssData : CSSDataV1 = {
 					"name": "none"
 				}
 			],
+			"relevance": 50,
 			"description": "Gets or sets a value that indicates whether an animation is used when zooming.",
 			"restrictions": [
 				"enum"
@@ -10665,6 +10805,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Indicates that the user agent should target the full window."
 				}
 			],
+			"relevance": 50,
 			"description": "Provides an way to control directional focus navigation.",
 			"restrictions": [
 				"enum",
@@ -10683,6 +10824,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The element's sequential navigation order is assigned automatically by the user agent."
 				}
 			],
+			"relevance": 50,
 			"description": "Provides an input-method-neutral way of specifying the sequential navigation order (also known as 'tabbing order').",
 			"restrictions": [
 				"number"
@@ -10707,6 +10849,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Indicates that the user agent should target the full window."
 				}
 			],
+			"relevance": 50,
 			"description": "Provides an way to control directional focus navigation.",
 			"restrictions": [
 				"enum",
@@ -10733,6 +10876,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Indicates that the user agent should target the full window."
 				}
 			],
+			"relevance": 50,
 			"description": "Provides an way to control directional focus navigation.",
 			"restrictions": [
 				"enum",
@@ -10759,6 +10903,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Indicates that the user agent should target the full window."
 				}
 			],
+			"relevance": 50,
 			"description": "Provides an way to control directional focus navigation.",
 			"restrictions": [
 				"enum",
@@ -10772,6 +10917,7 @@ export const cssData : CSSDataV1 = {
 				"FF33"
 			],
 			"syntax": "<symbol> <symbol>?",
+			"relevance": 50,
 			"description": "@counter-style descriptor. Defines how to alter the representation when the counter value is negative.",
 			"restrictions": [
 				"image",
@@ -10822,6 +10968,7 @@ export const cssData : CSSDataV1 = {
 					"description": "All iterations of the animation are played in the reverse direction from the way they were specified."
 				}
 			],
+			"relevance": 50,
 			"description": "Shorthand property combines six of the animation properties into a single property.",
 			"restrictions": [
 				"time",
@@ -10836,6 +10983,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"O12"
 			],
+			"relevance": 50,
 			"description": "Defines when the animation will start.",
 			"restrictions": [
 				"time"
@@ -10864,6 +11012,7 @@ export const cssData : CSSDataV1 = {
 					"description": "All iterations of the animation are played in the reverse direction from the way they were specified."
 				}
 			],
+			"relevance": 50,
 			"description": "Defines whether or not the animation should play in reverse on alternate cycles.",
 			"restrictions": [
 				"enum"
@@ -10874,6 +11023,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"O12"
 			],
+			"relevance": 50,
 			"description": "Defines the length of time that an animation takes to complete one cycle.",
 			"restrictions": [
 				"time"
@@ -10902,6 +11052,7 @@ export const cssData : CSSDataV1 = {
 					"description": "There is no change to the property value between the time the animation is applied and the time the animation begins playing or after the animation completes."
 				}
 			],
+			"relevance": 50,
 			"description": "Defines what values are applied by the animation outside the time it is executing.",
 			"restrictions": [
 				"enum"
@@ -10918,6 +11069,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Causes the animation to repeat forever."
 				}
 			],
+			"relevance": 50,
 			"description": "Defines the number of times an animation cycle is played. The default value is one, meaning the animation will play from beginning to end once.",
 			"restrictions": [
 				"number",
@@ -10935,6 +11087,7 @@ export const cssData : CSSDataV1 = {
 					"description": "No animation is performed"
 				}
 			],
+			"relevance": 50,
 			"description": "Defines a list of animations that apply. Each name is used to select the keyframe at-rule that provides the property values for the animation.",
 			"restrictions": [
 				"identifier",
@@ -10956,6 +11109,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Resume playback of a paused animation."
 				}
 			],
+			"relevance": 50,
 			"description": "Defines whether the animation is running or paused.",
 			"restrictions": [
 				"enum"
@@ -10966,6 +11120,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"O12"
 			],
+			"relevance": 50,
 			"description": "Describes how the animation will progress over one cycle of its duration. See the 'transition-timing-function'.",
 			"restrictions": [
 				"timing-function"
@@ -11003,7 +11158,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "fill | contain | cover | none | scale-down",
-			"relevance": 22,
+			"relevance": 61,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11025,7 +11180,7 @@ export const cssData : CSSDataV1 = {
 				"O19"
 			],
 			"syntax": "<position>",
-			"relevance": 5,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11073,6 +11228,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The image is stretched to fill the area."
 				}
 			],
+			"relevance": 50,
 			"description": "Shorthand property for setting 'border-image-source', 'border-image-slice', 'border-image-width', 'border-image-outset' and 'border-image-repeat'. Omitted values are set to their initial values.",
 			"restrictions": [
 				"length",
@@ -11109,6 +11265,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Size the content as if ‘none’ or ‘contain’ were specified, whichever would result in a smaller concrete object size."
 				}
 			],
+			"relevance": 50,
 			"description": "Specifies how the contents of a replaced element should be scaled relative to the box established by its used height and width.",
 			"restrictions": [
 				"enum"
@@ -11119,6 +11276,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"O10.6"
 			],
+			"relevance": 50,
 			"description": "Determines the alignment of the replaced element inside its box.",
 			"restrictions": [
 				"position",
@@ -11129,7 +11287,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "opacity",
 			"syntax": "<alpha-value>",
-			"relevance": 87,
+			"relevance": 93,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11144,7 +11302,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "order",
 			"syntax": "<integer>",
-			"relevance": 22,
+			"relevance": 61,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11166,7 +11324,7 @@ export const cssData : CSSDataV1 = {
 				"O9.2"
 			],
 			"syntax": "<integer>",
-			"relevance": 2,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11183,6 +11341,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"O9.6"
 			],
+			"relevance": 50,
 			"description": "Determines which row of a inline-table should be used as baseline of inline-table.",
 			"restrictions": [
 				"integer"
@@ -11193,6 +11352,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"O10.6"
 			],
+			"relevance": 50,
 			"description": "This property determines the width of the tab character (U+0009), in space characters (U+0020), when rendered.",
 			"restrictions": [
 				"integer",
@@ -11214,6 +11374,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Render an ellipsis character (U+2026) to represent clipped inline content."
 				}
 			],
+			"relevance": 50,
 			"description": "Text can overflow for example when it is prevented from wrapping",
 			"restrictions": [
 				"enum"
@@ -11309,6 +11470,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Specifies a translation by the given amount in the Z direction. Note that percentage values are not allowed in the translateZ translation-value, and if present are evaluated as 0."
 				}
 			],
+			"relevance": 50,
 			"description": "A two-dimensional transformation is applied to an element through the 'transform' property. This property contains a list of transform functions similar to those allowed by SVG.",
 			"restrictions": [
 				"enum"
@@ -11319,6 +11481,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"O10.5"
 			],
+			"relevance": 50,
 			"description": "Establishes the origin of transformation for an element.",
 			"restrictions": [
 				"positon",
@@ -11341,6 +11504,7 @@ export const cssData : CSSDataV1 = {
 					"description": "No property will transition."
 				}
 			],
+			"relevance": 50,
 			"description": "Shorthand property combines four of the transition properties into a single property.",
 			"restrictions": [
 				"time",
@@ -11354,6 +11518,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"O11.5"
 			],
+			"relevance": 50,
 			"description": "Defines when the transition will start. It allows a transition to begin execution some period of time from when it is applied.",
 			"restrictions": [
 				"time"
@@ -11364,6 +11529,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"O11.5"
 			],
+			"relevance": 50,
 			"description": "Specifies how long the transition from the old value to the new value should take.",
 			"restrictions": [
 				"time"
@@ -11384,6 +11550,7 @@ export const cssData : CSSDataV1 = {
 					"description": "No property will transition."
 				}
 			],
+			"relevance": 50,
 			"description": "Specifies the name of the CSS property to which the transition is applied.",
 			"restrictions": [
 				"property"
@@ -11394,6 +11561,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"O11.5"
 			],
+			"relevance": 50,
 			"description": "Describes how the intermediate values used during a transition will be calculated.",
 			"restrictions": [
 				"timing-function"
@@ -11410,6 +11578,7 @@ export const cssData : CSSDataV1 = {
 					"description": "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well."
 				}
 			],
+			"relevance": 50,
 			"description": "Logical 'bottom'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -11427,6 +11596,7 @@ export const cssData : CSSDataV1 = {
 					"description": "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well."
 				}
 			],
+			"relevance": 50,
 			"description": "Logical 'top'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -11444,6 +11614,7 @@ export const cssData : CSSDataV1 = {
 					"description": "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well."
 				}
 			],
+			"relevance": 50,
 			"description": "Logical 'right'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -11461,6 +11632,7 @@ export const cssData : CSSDataV1 = {
 					"description": "For non-replaced elements, the effect of this value depends on which of related properties have the value 'auto' as well."
 				}
 			],
+			"relevance": 50,
 			"description": "Logical 'left'. Mapping depends on the parent element’s 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -11480,7 +11652,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ <'outline-color'> || <'outline-style'> || <'outline-width'> ]",
-			"relevance": 74,
+			"relevance": 87,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11505,7 +11677,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<color> | invert",
-			"relevance": 6,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11528,7 +11700,7 @@ export const cssData : CSSDataV1 = {
 				"O9.5"
 			],
 			"syntax": "<length>",
-			"relevance": 17,
+			"relevance": 59,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11549,7 +11721,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | <'border-style'>",
-			"relevance": 20,
+			"relevance": 60,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11565,7 +11737,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "outline-width",
 			"syntax": "<line-width>",
-			"relevance": 21,
+			"relevance": 60,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11603,7 +11775,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ visible | hidden | clip | scroll | auto ]{1,2}",
-			"relevance": 85,
+			"relevance": 92,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11628,7 +11800,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | break-word | anywhere",
-			"relevance": 25,
+			"relevance": 63,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11661,7 +11833,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "visible | hidden | clip | scroll | auto",
-			"relevance": 58,
+			"relevance": 79,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11694,7 +11866,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "visible | hidden | clip | scroll | auto",
-			"relevance": 61,
+			"relevance": 81,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11712,6 +11884,7 @@ export const cssData : CSSDataV1 = {
 				"FF33"
 			],
 			"syntax": "<integer> && <symbol>",
+			"relevance": 50,
 			"description": "@counter-style descriptor. Specifies a “fixed-width” counter style, where representations shorter than the pad value are padded with a particular <symbol>",
 			"restrictions": [
 				"integer",
@@ -11724,7 +11897,7 @@ export const cssData : CSSDataV1 = {
 			"name": "padding",
 			"values": [],
 			"syntax": "[ <length> | <percentage> ]{1,4}",
-			"relevance": 92,
+			"relevance": 96,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11740,7 +11913,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "padding-bottom",
 			"syntax": "<length> | <percentage>",
-			"relevance": 77,
+			"relevance": 88,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11763,7 +11936,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'padding-left'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11786,7 +11959,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'padding-left'>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11809,7 +11982,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'padding-left'>",
-			"relevance": 3,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11832,7 +12005,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'padding-left'>",
-			"relevance": 4,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11848,7 +12021,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "padding-left",
 			"syntax": "<length> | <percentage>",
-			"relevance": 80,
+			"relevance": 90,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11864,7 +12037,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "padding-right",
 			"syntax": "<length> | <percentage>",
-			"relevance": 77,
+			"relevance": 88,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11880,7 +12053,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "padding-top",
 			"syntax": "<length> | <percentage>",
-			"relevance": 79,
+			"relevance": 90,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11918,7 +12091,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | always | avoid | left | right | recto | verso",
-			"relevance": 3,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11955,7 +12128,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | always | avoid | left | right | recto | verso",
-			"relevance": 1,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11980,7 +12153,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | avoid",
-			"relevance": 4,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12017,7 +12190,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | [ fill || stroke || markers ]",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12038,7 +12211,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <length>",
-			"relevance": 11,
+			"relevance": 55,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12054,7 +12227,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "perspective-origin",
 			"syntax": "<position>",
-			"relevance": 2,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12109,7 +12282,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | none | visiblePainted | visibleFill | visibleStroke | visible | painted | fill | stroke | all | inherit",
-			"relevance": 60,
+			"relevance": 80,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12154,7 +12327,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "static | relative | absolute | sticky | fixed",
-			"relevance": 92,
+			"relevance": 96,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12172,6 +12345,7 @@ export const cssData : CSSDataV1 = {
 				"FF33"
 			],
 			"syntax": "<symbol>",
+			"relevance": 50,
 			"description": "@counter-style descriptor. Specifies a <symbol> that is prepended to the marker representation.",
 			"restrictions": [
 				"image",
@@ -12188,7 +12362,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | auto | [ <string> <string> ]+",
-			"relevance": 6,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12216,6 +12390,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ [ <integer> | infinite ]{2} ]# | auto",
+			"relevance": 50,
 			"description": "@counter-style descriptor. Defines the ranges over which the counter style is defined.",
 			"restrictions": [
 				"integer",
@@ -12250,7 +12425,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | both | horizontal | vertical | block | inline",
-			"relevance": 19,
+			"relevance": 60,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12271,7 +12446,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
-			"relevance": 80,
+			"relevance": 90,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12357,6 +12532,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "experimental",
 			"syntax": "start | center | space-between | space-around",
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12392,6 +12568,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The ruby text can overhang the text that precedes it."
 				}
 			],
+			"relevance": 50,
 			"description": "Determines whether, and on which side, ruby text is allowed to partially overhang any adjacent text in addition to its own base, when the ruby text is wider than the ruby base.",
 			"restrictions": [
 				"enum"
@@ -12422,7 +12599,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "experimental",
 			"syntax": "over | under | inter-character",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12449,6 +12626,7 @@ export const cssData : CSSDataV1 = {
 					"description": "No spanning. The computed value is '1'."
 				}
 			],
+			"relevance": 50,
 			"description": "Determines whether, and on which side, ruby text is allowed to partially overhang any adjacent text in addition to its own base, when the ruby text is wider than the ruby base.",
 			"restrictions": [
 				"enum"
@@ -12459,6 +12637,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"IE5"
 			],
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12475,6 +12654,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"IE5"
 			],
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12491,6 +12671,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"IE5"
 			],
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12507,6 +12688,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"IE5"
 			],
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12523,6 +12705,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"IE5"
 			],
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12539,6 +12722,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"IE5"
 			],
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12555,6 +12739,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"IE5"
 			],
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12571,6 +12756,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"IE6"
 			],
+			"relevance": 50,
 			"description": "Determines the color of the track element of a scroll bar.",
 			"restrictions": [
 				"color"
@@ -12595,7 +12781,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | smooth",
-			"relevance": 2,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12733,7 +12919,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | [ x | y | block | inline | both ] [ mandatory | proximity ]?",
-			"relevance": 2,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12755,7 +12941,7 @@ export const cssData : CSSDataV1 = {
 				"O24"
 			],
 			"syntax": "<alpha-value>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12777,7 +12963,7 @@ export const cssData : CSSDataV1 = {
 				"O24"
 			],
 			"syntax": "<length-percentage>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12811,7 +12997,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <shape-box> || <basic-shape> | <image>",
-			"relevance": 1,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12846,7 +13032,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Emphasize rendering speed over geometric precision and crisp edges."
 				}
 			],
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Provides hints about what tradeoffs to make as it renders vector graphics elements such as <path> elements and basic shapes such as circles and rectangles.",
 			"restrictions": [
 				"enum"
@@ -12859,7 +13045,7 @@ export const cssData : CSSDataV1 = {
 				"O8"
 			],
 			"syntax": "<length>{1,2} | auto | [ <page-size> || [ portrait | landscape ] ]",
-			"relevance": 4,
+			"relevance": 52,
 			"description": "The size CSS at-rule descriptor, used with the @page at-rule, defines the size and orientation of the box which is used to represent a page. Most of the time, this size corresponds to the target size of the printed page if applicable.",
 			"restrictions": [
 				"length"
@@ -12882,7 +13068,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ <url> [ format( <string># ) ]? | local( <family-name> ) ]#",
-			"relevance": 31,
+			"relevance": 67,
 			"description": "@font-face descriptor. Specifies the resource containing font data. It is required, whether the font is downloadable or locally installed.",
 			"restrictions": [
 				"enum",
@@ -12892,7 +13078,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "stop-color",
-			"relevance": 2,
+			"relevance": 51,
 			"description": "Indicates what color to use at that gradient stop.",
 			"restrictions": [
 				"color"
@@ -12900,7 +13086,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "stop-opacity",
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Defines the opacity of a given gradient stop.",
 			"restrictions": [
 				"number(0-1)"
@@ -12918,7 +13104,7 @@ export const cssData : CSSDataV1 = {
 					"description": "No paint is applied in this layer."
 				}
 			],
-			"relevance": 25,
+			"relevance": 63,
 			"description": "Paints along the outline of the given graphical element.",
 			"restrictions": [
 				"color",
@@ -12934,7 +13120,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Indicates that no dashing is used."
 				}
 			],
-			"relevance": 17,
+			"relevance": 58,
 			"description": "Controls the pattern of dashes and gaps used to stroke paths.",
 			"restrictions": [
 				"length",
@@ -12945,7 +13131,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "stroke-dashoffset",
-			"relevance": 16,
+			"relevance": 58,
 			"description": "Specifies the distance into the dash pattern to start the dash.",
 			"restrictions": [
 				"percentage",
@@ -12968,7 +13154,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Indicates that at the end of each subpath, the shape representing the stroke will be extended by a rectangle with the same width as the stroke width and whose length is half of the stroke width."
 				}
 			],
-			"relevance": 5,
+			"relevance": 53,
 			"description": "Specifies the shape to be used at the end of open subpaths when they are stroked.",
 			"restrictions": [
 				"enum"
@@ -12990,7 +13176,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Indicates that a round corner is to be used to join path segments."
 				}
 			],
-			"relevance": 1,
+			"relevance": 50,
 			"description": "Specifies the shape to be used at the corners of paths or basic shapes when they are stroked.",
 			"restrictions": [
 				"enum"
@@ -12998,7 +13184,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "stroke-miterlimit",
-			"relevance": 1,
+			"relevance": 50,
 			"description": "When two line segments meet at a sharp angle and miter joins have been specified for 'stroke-linejoin', it is possible for the miter to extend far beyond the thickness of the line stroking the path.",
 			"restrictions": [
 				"number"
@@ -13006,7 +13192,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "stroke-opacity",
-			"relevance": 2,
+			"relevance": 51,
 			"description": "Specifies the opacity of the painting operation used to stroke the current object.",
 			"restrictions": [
 				"number(0-1)"
@@ -13014,7 +13200,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "stroke-width",
-			"relevance": 19,
+			"relevance": 60,
 			"description": "Specifies the width of the stroke on the current object.",
 			"restrictions": [
 				"percentage",
@@ -13027,6 +13213,7 @@ export const cssData : CSSDataV1 = {
 				"FF33"
 			],
 			"syntax": "<symbol>",
+			"relevance": 50,
 			"description": "@counter-style descriptor. Specifies a <symbol> that is appended to the marker representation.",
 			"restrictions": [
 				"image",
@@ -13070,6 +13257,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "cyclic | numeric | alphabetic | symbolic | additive | [ fixed <integer>? ] | [ extends <counter-style-name> ]",
+			"relevance": 50,
 			"description": "@counter-style descriptor. Specifies which algorithm will be used to construct the counter’s representation based on the counter value.",
 			"restrictions": [
 				"enum",
@@ -13082,6 +13270,7 @@ export const cssData : CSSDataV1 = {
 				"FF33"
 			],
 			"syntax": "<symbol>+",
+			"relevance": 50,
 			"description": "@counter-style descriptor. Specifies the symbols used by the marker-construction algorithm specified by the system descriptor.",
 			"restrictions": [
 				"image",
@@ -13102,7 +13291,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | fixed",
-			"relevance": 22,
+			"relevance": 61,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13124,7 +13313,7 @@ export const cssData : CSSDataV1 = {
 				"O15"
 			],
 			"syntax": "<integer> | <length>",
-			"relevance": 1,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13166,7 +13355,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "start | end | left | right | center | justify | match-parent",
-			"relevance": 87,
+			"relevance": 93,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13210,7 +13399,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | start | end | left | right | center | justify",
-			"relevance": 1,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13238,7 +13427,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The rendered characters are aligned such that the start of the resulting rendered text is at the initial current text position."
 				}
 			],
-			"relevance": 0,
+			"relevance": 50,
 			"description": "Used to align (start-, middle- or end-alignment) a string of text relative to a given point.",
 			"restrictions": [
 				"enum"
@@ -13285,7 +13474,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'text-decoration-line'> || <'text-decoration-style'> || <'text-decoration-color'> || <'text-decoration-thickness'>",
-			"relevance": 83,
+			"relevance": 91,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13308,7 +13497,7 @@ export const cssData : CSSDataV1 = {
 				"O44"
 			],
 			"syntax": "<color>",
-			"relevance": 4,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13348,7 +13537,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | [ underline || overline || line-through || blink ] | spelling-error | grammar-error",
-			"relevance": 1,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13396,7 +13585,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "solid | double | dotted | dashed | wavy",
-			"relevance": 1,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13412,7 +13601,7 @@ export const cssData : CSSDataV1 = {
 			"name": "text-indent",
 			"values": [],
 			"syntax": "<length-percentage> && hanging? && each-line?",
-			"relevance": 37,
+			"relevance": 68,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13467,7 +13656,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | inter-character | inter-word | none",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13517,7 +13706,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "mixed | upright | sideways",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13542,7 +13731,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ clip | ellipsis | <string> ]{1,2}",
-			"relevance": 62,
+			"relevance": 81,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13582,7 +13771,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | optimizeSpeed | optimizeLegibility | geometricPrecision",
-			"relevance": 36,
+			"relevance": 68,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13603,7 +13792,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <shadow-t>#",
-			"relevance": 47,
+			"relevance": 74,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13637,7 +13826,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | capitalize | uppercase | lowercase | full-width | full-size-kana",
-			"relevance": 69,
+			"relevance": 84,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13665,7 +13854,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | from-font | [ under || [ left | right ] ]",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13686,7 +13875,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
-			"relevance": 91,
+			"relevance": 95,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13736,7 +13925,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | none | [ [ pan-x | pan-left | pan-right ] || [ pan-y | pan-up | pan-down ] || pinch-zoom ] | manipulation",
-			"relevance": 31,
+			"relevance": 65,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13840,7 +14029,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <transform-list>",
-			"relevance": 76,
+			"relevance": 88,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13855,7 +14044,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "transform-origin",
 			"syntax": "[ <length-percentage> | left | center | right | top | bottom ] | [ [ <length-percentage> | left | center | right ] && [ <length-percentage> | top | center | bottom ] ] <length>?",
-			"relevance": 47,
+			"relevance": 74,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13896,7 +14085,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "flat | preserve-3d",
-			"relevance": 8,
+			"relevance": 54,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13921,7 +14110,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-transition>#",
-			"relevance": 73,
+			"relevance": 87,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13939,7 +14128,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "transition-delay",
 			"syntax": "<time>#",
-			"relevance": 24,
+			"relevance": 62,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13954,7 +14143,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "transition-duration",
 			"syntax": "<time>#",
-			"relevance": 22,
+			"relevance": 62,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13979,7 +14168,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <single-transition-property>#",
-			"relevance": 27,
+			"relevance": 64,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13994,7 +14183,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "transition-timing-function",
 			"syntax": "<timing-function>#",
-			"relevance": 20,
+			"relevance": 60,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -14035,7 +14224,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | embed | isolate | bidi-override | isolate-override | plaintext",
-			"relevance": 15,
+			"relevance": 57,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -14360,7 +14549,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<unicode-range>#",
-			"relevance": 15,
+			"relevance": 58,
 			"description": "@font-face descriptor. Defines the set of Unicode codepoints that may be supported by the font face for which it is declared.",
 			"restrictions": [
 				"unicode-range"
@@ -14391,7 +14580,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "auto | text | none | contain | all",
-			"relevance": 48,
+			"relevance": 24,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -14447,7 +14636,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "baseline | sub | super | text-top | text-bottom | middle | top | bottom | <percentage> | <length>",
-			"relevance": 82,
+			"relevance": 91,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -14477,7 +14666,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "visible | hidden | collapse",
-			"relevance": 76,
+			"relevance": 88,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -14533,6 +14722,7 @@ export const cssData : CSSDataV1 = {
 					"description": "All iterations of the animation are played in the reverse direction from the way they were specified."
 				}
 			],
+			"relevance": 50,
 			"description": "Shorthand property combines six of the animation properties into a single property.",
 			"restrictions": [
 				"time",
@@ -14548,6 +14738,7 @@ export const cssData : CSSDataV1 = {
 				"C",
 				"S5"
 			],
+			"relevance": 50,
 			"description": "Defines when the animation will start.",
 			"restrictions": [
 				"time"
@@ -14577,6 +14768,7 @@ export const cssData : CSSDataV1 = {
 					"description": "All iterations of the animation are played in the reverse direction from the way they were specified."
 				}
 			],
+			"relevance": 50,
 			"description": "Defines whether or not the animation should play in reverse on alternate cycles.",
 			"restrictions": [
 				"enum"
@@ -14588,6 +14780,7 @@ export const cssData : CSSDataV1 = {
 				"C",
 				"S5"
 			],
+			"relevance": 50,
 			"description": "Defines the length of time that an animation takes to complete one cycle.",
 			"restrictions": [
 				"time"
@@ -14617,6 +14810,7 @@ export const cssData : CSSDataV1 = {
 					"description": "There is no change to the property value between the time the animation is applied and the time the animation begins playing or after the animation completes."
 				}
 			],
+			"relevance": 50,
 			"description": "Defines what values are applied by the animation outside the time it is executing.",
 			"restrictions": [
 				"enum"
@@ -14634,6 +14828,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Causes the animation to repeat forever."
 				}
 			],
+			"relevance": 50,
 			"description": "Defines the number of times an animation cycle is played. The default value is one, meaning the animation will play from beginning to end once.",
 			"restrictions": [
 				"number",
@@ -14652,6 +14847,7 @@ export const cssData : CSSDataV1 = {
 					"description": "No animation is performed"
 				}
 			],
+			"relevance": 50,
 			"description": "Defines a list of animations that apply. Each name is used to select the keyframe at-rule that provides the property values for the animation.",
 			"restrictions": [
 				"identifier",
@@ -14674,6 +14870,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Resume playback of a paused animation."
 				}
 			],
+			"relevance": 50,
 			"description": "Defines whether the animation is running or paused.",
 			"restrictions": [
 				"enum"
@@ -14685,6 +14882,7 @@ export const cssData : CSSDataV1 = {
 				"C",
 				"S5"
 			],
+			"relevance": 50,
 			"description": "Describes how the animation will progress over one cycle of its duration. See the 'transition-timing-function'.",
 			"restrictions": [
 				"timing-function"
@@ -14832,6 +15030,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "none | button | button-bevel | caret | checkbox | default-button | inner-spin-button | listbox | listitem | media-controls-background | media-controls-fullscreen-background | media-current-time-display | media-enter-fullscreen-button | media-exit-fullscreen-button | media-fullscreen-button | media-mute-button | media-overlay-play-button | media-play-button | media-seek-back-button | media-seek-forward-button | media-slider | media-sliderthumb | media-time-remaining-display | media-toggle-closed-captions-button | media-volume-slider | media-volume-slider-container | media-volume-sliderthumb | menulist | menulist-button | menulist-text | menulist-textfield | meter | progress-bar | progress-bar-value | push-button | radio | searchfield | searchfield-cancel-button | searchfield-decoration | searchfield-results-button | searchfield-results-decoration | slider-horizontal | slider-vertical | sliderthumb-horizontal | sliderthumb-vertical | square-button | textarea | textfield",
+			"relevance": 0,
 			"description": "Changes the appearance of buttons and other controls to resemble native controls.",
 			"restrictions": [
 				"enum"
@@ -14892,6 +15091,7 @@ export const cssData : CSSDataV1 = {
 					"description": "A filter reference to a <filter> element."
 				}
 			],
+			"relevance": 50,
 			"description": "Applies a filter effect where the first filter in the list takes the element's background image as the input image.",
 			"restrictions": [
 				"enum",
@@ -14912,6 +15112,7 @@ export const cssData : CSSDataV1 = {
 					"name": "visible"
 				}
 			],
+			"relevance": 50,
 			"description": "Determines whether or not the 'back' side of a transformed element is visible when facing the viewer. With an identity transform, the front side of an element faces the viewer.",
 			"restrictions": [
 				"enum"
@@ -14923,6 +15124,7 @@ export const cssData : CSSDataV1 = {
 				"C",
 				"S3"
 			],
+			"relevance": 50,
 			"description": "Determines the background painting area.",
 			"restrictions": [
 				"box"
@@ -14942,6 +15144,7 @@ export const cssData : CSSDataV1 = {
 					"name": "padding"
 				}
 			],
+			"relevance": 50,
 			"restrictions": [
 				"enum"
 			]
@@ -14952,6 +15155,7 @@ export const cssData : CSSDataV1 = {
 				"C",
 				"S3"
 			],
+			"relevance": 50,
 			"description": "For elements rendered as a single box, specifies the background positioning area. For elements rendered as multiple boxes (e.g., inline boxes on several lines, boxes on several pages) specifies which boxes 'box-decoration-break' operates on to determine the background positioning area(s).",
 			"restrictions": [
 				"box"
@@ -14995,6 +15199,7 @@ export const cssData : CSSDataV1 = {
 					"name": "url()"
 				}
 			],
+			"relevance": 50,
 			"description": "Shorthand property for setting 'border-image-source', 'border-image-slice', 'border-image-width', 'border-image-outset' and 'border-image-repeat'. Omitted values are set to their initial values.",
 			"restrictions": [
 				"length",
@@ -15032,6 +15237,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The height of each child is adjusted to that of the containing block."
 				}
 			],
+			"relevance": 50,
 			"description": "Specifies the alignment of nested elements within an outer flexible box element.",
 			"restrictions": [
 				"enum"
@@ -15053,6 +15259,7 @@ export const cssData : CSSDataV1 = {
 					"description": "A box with a computed value of horizontal for box-orient displays its children from right to left. A box with a computed value of vertical displays its children from bottom to top."
 				}
 			],
+			"relevance": 50,
 			"description": "In webkit applications, -webkit-box-direction specifies whether a box lays out its contents normally (from the top or left edge), or in reverse (from the bottom or right edge).",
 			"restrictions": [
 				"enum"
@@ -15064,6 +15271,7 @@ export const cssData : CSSDataV1 = {
 				"C",
 				"S3"
 			],
+			"relevance": 50,
 			"description": "Specifies an element's flexibility.",
 			"restrictions": [
 				"number"
@@ -15075,6 +15283,7 @@ export const cssData : CSSDataV1 = {
 				"C",
 				"S3"
 			],
+			"relevance": 50,
 			"description": "Flexible elements can be assigned to flex groups using the 'box-flex-group' property.",
 			"restrictions": [
 				"integer"
@@ -15086,6 +15295,7 @@ export const cssData : CSSDataV1 = {
 				"C",
 				"S3"
 			],
+			"relevance": 50,
 			"description": "Indicates the ordinal group the element belongs to. Elements with a lower ordinal group are displayed before those with a higher ordinal group.",
 			"restrictions": [
 				"integer"
@@ -15115,6 +15325,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The box displays its children from stacked from top to bottom vertically."
 				}
 			],
+			"relevance": 50,
 			"description": "In webkit applications, -webkit-box-orient specifies whether a box lays out its contents horizontally or vertically.",
 			"restrictions": [
 				"enum"
@@ -15144,6 +15355,7 @@ export const cssData : CSSDataV1 = {
 					"description": "For normal direction boxes, the left edge of the first child is placed at the left side, with all extra space placed after the last child. For reverse direction boxes, the right edge of the last child is placed at the right side, with all extra space placed before the first child."
 				}
 			],
+			"relevance": 50,
 			"description": "Specifies alignment of child elements within the current element in the direction of orientation.",
 			"restrictions": [
 				"enum"
@@ -15177,6 +15389,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "[ above | below | right | left ]? <length>? <image>?",
+			"relevance": 0,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -15201,6 +15414,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Behavior of width and height as specified by CSS2.1. The specified width and height (and respective min/max properties) apply to the width and height respectively of the content box of the element."
 				}
 			],
+			"relevance": 50,
 			"description": "Box Model addition in CSS3.",
 			"restrictions": [
 				"enum"
@@ -15255,6 +15469,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Force one or two page breaks before/after the generated box so that the next page is formatted as a right page."
 				}
 			],
+			"relevance": 50,
 			"description": "Describes the page/column break behavior before the generated box.",
 			"restrictions": [
 				"enum"
@@ -15309,6 +15524,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Force one or two page breaks before/after the generated box so that the next page is formatted as a right page."
 				}
 			],
+			"relevance": 50,
 			"description": "Describes the page/column break behavior before the generated box.",
 			"restrictions": [
 				"enum"
@@ -15340,6 +15556,7 @@ export const cssData : CSSDataV1 = {
 					"name": "avoid-region"
 				}
 			],
+			"relevance": 50,
 			"description": "Describes the page/column break behavior inside the generated box.",
 			"restrictions": [
 				"enum"
@@ -15395,6 +15612,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Force one or two page breaks before/after the generated box so that the next page is formatted as a right page."
 				}
 			],
+			"relevance": 50,
 			"description": "Describes the page/column break behavior before the generated box.",
 			"restrictions": [
 				"enum"
@@ -15450,6 +15668,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Force one or two page breaks before/after the generated box so that the next page is formatted as a right page."
 				}
 			],
+			"relevance": 50,
 			"description": "Describes the page/column break behavior before the generated box.",
 			"restrictions": [
 				"enum"
@@ -15482,6 +15701,7 @@ export const cssData : CSSDataV1 = {
 					"name": "avoid-region"
 				}
 			],
+			"relevance": 50,
 			"description": "Describes the page/column break behavior inside the generated box.",
 			"restrictions": [
 				"enum"
@@ -15499,6 +15719,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Determines the number of columns by the 'column-width' property and the element width."
 				}
 			],
+			"relevance": 50,
 			"description": "Describes the optimal number of columns into which the content of the element will be flowed.",
 			"restrictions": [
 				"integer"
@@ -15516,6 +15737,7 @@ export const cssData : CSSDataV1 = {
 					"description": "User agent specific and typically equivalent to 1em."
 				}
 			],
+			"relevance": 50,
 			"description": "Sets the gap between columns. If there is a column rule between columns, it will appear in the middle of the gap.",
 			"restrictions": [
 				"length"
@@ -15527,6 +15749,7 @@ export const cssData : CSSDataV1 = {
 				"C",
 				"S3"
 			],
+			"relevance": 50,
 			"description": "This property is a shorthand for setting 'column-rule-width', 'column-rule-style', and 'column-rule-color' at the same place in the style sheet. Omitted values are set to their initial values.",
 			"restrictions": [
 				"length",
@@ -15541,6 +15764,7 @@ export const cssData : CSSDataV1 = {
 				"C",
 				"S3"
 			],
+			"relevance": 50,
 			"description": "Sets the color of the column rule",
 			"restrictions": [
 				"color"
@@ -15552,6 +15776,7 @@ export const cssData : CSSDataV1 = {
 				"C",
 				"S3"
 			],
+			"relevance": 50,
 			"description": "Sets the style of the rule between columns of an element.",
 			"restrictions": [
 				"line-style"
@@ -15563,6 +15788,7 @@ export const cssData : CSSDataV1 = {
 				"C",
 				"S3"
 			],
+			"relevance": 50,
 			"description": "Sets the width of the rule between columns. Negative values are not allowed.",
 			"restrictions": [
 				"length",
@@ -15581,6 +15807,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The width depends on the values of other properties."
 				}
 			],
+			"relevance": 50,
 			"description": "A shorthand property which sets both 'column-width' and 'column-count'.",
 			"restrictions": [
 				"length",
@@ -15603,6 +15830,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The element does not span multiple columns."
 				}
 			],
+			"relevance": 50,
 			"description": "Describes the page/column break behavior after the generated box.",
 			"restrictions": [
 				"enum"
@@ -15620,6 +15848,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The width depends on the values of other properties."
 				}
 			],
+			"relevance": 50,
 			"description": "This property describes the width of columns in multicol elements.",
 			"restrictions": [
 				"length"
@@ -15682,6 +15911,7 @@ export const cssData : CSSDataV1 = {
 					"description": "A filter reference to a <filter> element."
 				}
 			],
+			"relevance": 50,
 			"description": "Processes an element’s rendering before it is displayed in the document, by applying one or more filter effects.",
 			"restrictions": [
 				"enum",
@@ -15699,6 +15929,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The block container is not a CSS Region."
 				}
 			],
+			"relevance": 50,
 			"description": "Makes a block container a region and associates it with a named flow.",
 			"restrictions": [
 				"identifier"
@@ -15715,6 +15946,7 @@ export const cssData : CSSDataV1 = {
 					"description": "The element is not moved to a named flow and normal CSS processing takes place."
 				}
 			],
+			"relevance": 50,
 			"description": "Places an element or its contents into a named flow.",
 			"restrictions": [
 				"identifier"
@@ -15764,6 +15996,7 @@ export const cssData : CSSDataV1 = {
 					"name": "on"
 				}
 			],
+			"relevance": 50,
 			"description": "This property provides low-level control over OpenType font features. It is intended as a way of providing access to font features that are not widely used but are needed for a particular use case.",
 			"restrictions": [
 				"string",
@@ -15789,6 +16022,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Words are not broken at line breaks, even if characters inside the word suggest line break points."
 				}
 			],
+			"relevance": 50,
 			"description": "Controls whether hyphenation is allowed to create more break opportunities within a line of text.",
 			"restrictions": [
 				"enum"
@@ -15808,6 +16042,7 @@ export const cssData : CSSDataV1 = {
 					"name": "normal"
 				}
 			],
+			"relevance": 50,
 			"description": "Specifies line-breaking rules for CJK (Chinese, Japanese, and Korean) text."
 		},
 		{
@@ -15827,6 +16062,7 @@ export const cssData : CSSDataV1 = {
 					"name": "separate"
 				}
 			],
+			"relevance": 50,
 			"restrictions": [
 				"enum"
 			]
@@ -15848,6 +16084,7 @@ export const cssData : CSSDataV1 = {
 					"name": "separate"
 				}
 			],
+			"relevance": 50,
 			"restrictions": [
 				"enum"
 			]
@@ -15863,6 +16100,7 @@ export const cssData : CSSDataV1 = {
 					"name": "auto"
 				}
 			],
+			"relevance": 50,
 			"restrictions": [
 				"percentage",
 				"length"
@@ -15885,6 +16123,7 @@ export const cssData : CSSDataV1 = {
 					"name": "separate"
 				}
 			],
+			"relevance": 50,
 			"restrictions": [
 				"enum"
 			]
@@ -15898,6 +16137,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "[ <box> | border | padding | content | text ]#",
+			"relevance": 0,
 			"description": "Determines the mask painting area, which determines the area that is affected by the mask.",
 			"restrictions": [
 				"box"
@@ -15922,6 +16162,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<mask-reference>#",
+			"relevance": 0,
 			"description": "Sets the mask layer image of an element.",
 			"restrictions": [
 				"url",
@@ -15938,6 +16179,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "[ <box> | border | padding | content ]#",
+			"relevance": 0,
 			"description": "Specifies the mask positioning area.",
 			"restrictions": [
 				"box"
@@ -15952,6 +16194,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<repeat-style>#",
+			"relevance": 0,
 			"description": "Specifies how mask layer images are tiled after they have been sized and positioned.",
 			"restrictions": [
 				"repeat"
@@ -15980,6 +16223,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<bg-size>#",
+			"relevance": 0,
 			"description": "Specifies the size of the mask layer images.",
 			"restrictions": [
 				"length",
@@ -16001,6 +16245,7 @@ export const cssData : CSSDataV1 = {
 					"name": "space"
 				}
 			],
+			"relevance": 50,
 			"description": "Defines the behavior of nonbreaking spaces within text."
 		},
 		{
@@ -16019,6 +16264,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "auto | touch",
+			"relevance": 0,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -16033,6 +16279,7 @@ export const cssData : CSSDataV1 = {
 				"C",
 				"S3"
 			],
+			"relevance": 50,
 			"restrictions": [
 				"percentage",
 				"length"
@@ -16050,6 +16297,7 @@ export const cssData : CSSDataV1 = {
 					"description": "No perspective transform is applied."
 				}
 			],
+			"relevance": 50,
 			"description": "Applies the same transform as the perspective(<number>) transform function, except that it applies only to the positioned or transformed children of the element, not to the transform on the element itself.",
 			"restrictions": [
 				"length"
@@ -16061,6 +16309,7 @@ export const cssData : CSSDataV1 = {
 				"C",
 				"S4"
 			],
+			"relevance": 50,
 			"description": "Establishes the origin for the perspective property. It effectively sets the X and Y position at which the viewer appears to be looking at the children of the element.",
 			"restrictions": [
 				"position",
@@ -16083,6 +16332,7 @@ export const cssData : CSSDataV1 = {
 					"description": "If the content fits within the CSS Region, then this property has no effect."
 				}
 			],
+			"relevance": 50,
 			"description": "The 'region-fragment' property controls the behavior of the last region associated with a named flow.",
 			"restrictions": [
 				"enum"
@@ -16091,12 +16341,19 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "-webkit-tap-highlight-color",
 			"browsers": [
-				"E",
-				"C",
-				"S3.1"
+				"E12",
+				"C16",
+				"O≤15"
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
+			"relevance": 0,
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-tap-highlight-color"
+				}
+			],
 			"restrictions": [
 				"color"
 			]
@@ -16112,6 +16369,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
+			"relevance": 0,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -16139,6 +16397,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Renderers must not do size adjustment when displaying on a small device."
 				}
 			],
+			"relevance": 50,
 			"description": "Specifies a size adjustment for displaying text content in mobile browsers.",
 			"restrictions": [
 				"percentage"
@@ -16155,6 +16414,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<length> || <color>",
+			"relevance": 0,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -16179,6 +16439,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
+			"relevance": 0,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -16200,6 +16461,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "<length>",
+			"relevance": 0,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -16224,6 +16486,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "default | none",
+			"relevance": 0,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -16330,6 +16593,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Specifies a translation by the given amount in the Z direction. Note that percentage values are not allowed in the translateZ translation-value, and if present are evaluated as 0."
 				}
 			],
+			"relevance": 50,
 			"description": "A two-dimensional transformation is applied to an element through the 'transform' property. This property contains a list of transform functions similar to those allowed by SVG.",
 			"restrictions": [
 				"enum"
@@ -16342,6 +16606,7 @@ export const cssData : CSSDataV1 = {
 				"O15",
 				"S3.1"
 			],
+			"relevance": 50,
 			"description": "Establishes the origin of transformation for an element.",
 			"restrictions": [
 				"position",
@@ -16355,6 +16620,7 @@ export const cssData : CSSDataV1 = {
 				"C",
 				"S3.1"
 			],
+			"relevance": 50,
 			"description": "The x coordinate of the origin for transforms applied to an element with respect to its border box.",
 			"restrictions": [
 				"length",
@@ -16367,6 +16633,7 @@ export const cssData : CSSDataV1 = {
 				"C",
 				"S3.1"
 			],
+			"relevance": 50,
 			"description": "The y coordinate of the origin for transforms applied to an element with respect to its border box.",
 			"restrictions": [
 				"length",
@@ -16379,6 +16646,7 @@ export const cssData : CSSDataV1 = {
 				"C",
 				"S4"
 			],
+			"relevance": 50,
 			"description": "The z coordinate of the origin for transforms applied to an element with respect to its border box.",
 			"restrictions": [
 				"length",
@@ -16397,6 +16665,7 @@ export const cssData : CSSDataV1 = {
 					"description": "All children of this element are rendered flattened into the 2D plane of the element."
 				}
 			],
+			"relevance": 50,
 			"description": "Defines how nested elements are rendered in 3D space.",
 			"restrictions": [
 				"enum"
@@ -16419,6 +16688,7 @@ export const cssData : CSSDataV1 = {
 					"description": "No property will transition."
 				}
 			],
+			"relevance": 50,
 			"description": "Shorthand property combines four of the transition properties into a single property.",
 			"restrictions": [
 				"time",
@@ -16434,6 +16704,7 @@ export const cssData : CSSDataV1 = {
 				"O12",
 				"S5"
 			],
+			"relevance": 50,
 			"description": "Defines when the transition will start. It allows a transition to begin execution some period of time from when it is applied.",
 			"restrictions": [
 				"time"
@@ -16446,6 +16717,7 @@ export const cssData : CSSDataV1 = {
 				"O12",
 				"S5"
 			],
+			"relevance": 50,
 			"description": "Specifies how long the transition from the old value to the new value should take.",
 			"restrictions": [
 				"time"
@@ -16468,6 +16740,7 @@ export const cssData : CSSDataV1 = {
 					"description": "No property will transition."
 				}
 			],
+			"relevance": 50,
 			"description": "Specifies the name of the CSS property to which the transition is applied.",
 			"restrictions": [
 				"property"
@@ -16480,6 +16753,7 @@ export const cssData : CSSDataV1 = {
 				"O12",
 				"S5"
 			],
+			"relevance": 50,
 			"description": "Describes how the intermediate values used during a transition will be calculated.",
 			"restrictions": [
 				"timing-function"
@@ -16501,6 +16775,7 @@ export const cssData : CSSDataV1 = {
 					"name": "none"
 				}
 			],
+			"relevance": 50,
 			"restrictions": [
 				"enum"
 			]
@@ -16524,6 +16799,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "nonstandard",
 			"syntax": "read-only | read-write | read-write-plaintext-only",
+			"relevance": 0,
 			"description": "Determines whether a user can edit the content of an element.",
 			"restrictions": [
 				"enum"
@@ -16546,6 +16822,7 @@ export const cssData : CSSDataV1 = {
 					"name": "text"
 				}
 			],
+			"relevance": 50,
 			"description": "Controls the appearance of selection.",
 			"restrictions": [
 				"enum"
@@ -16576,7 +16853,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | pre | nowrap | pre-wrap | pre-line | break-spaces",
-			"relevance": 77,
+			"relevance": 88,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -16598,7 +16875,7 @@ export const cssData : CSSDataV1 = {
 				"O9.2"
 			],
 			"syntax": "<integer>",
-			"relevance": 2,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -16631,7 +16908,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<viewport-length>{1,2}",
-			"relevance": 93,
+			"relevance": 96,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -16668,7 +16945,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | <animateable-feature>#",
-			"relevance": 23,
+			"relevance": 62,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -16698,7 +16975,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | break-all | keep-all | break-word",
-			"relevance": 44,
+			"relevance": 72,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -16719,7 +16996,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <length-percentage>",
-			"relevance": 14,
+			"relevance": 57,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -16745,7 +17022,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | break-word",
-			"relevance": 54,
+			"relevance": 77,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -16782,7 +17059,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "horizontal-tb | vertical-rl | vertical-lr | sideways-rl | sideways-lr",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -16803,7 +17080,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | <integer>",
-			"relevance": 83,
+			"relevance": 91,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -16830,7 +17107,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | <number> | <percentage>",
-			"relevance": 49,
+			"relevance": 74,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -16849,12 +17126,14 @@ export const cssData : CSSDataV1 = {
 			"name": "-ms-ime-align",
 			"status": "nonstandard",
 			"syntax": "auto | after",
+			"relevance": 0,
 			"description": "Aligns the Input Method Editor (IME) candidate window box relative to the element on which the IME composition is active."
 		},
 		{
 			"name": "-moz-binding",
 			"status": "nonstandard",
 			"syntax": "<url> | none",
+			"relevance": 0,
 			"browsers": [
 				"FF1"
 			],
@@ -16870,6 +17149,7 @@ export const cssData : CSSDataV1 = {
 			"name": "-moz-context-properties",
 			"status": "nonstandard",
 			"syntax": "none | [ fill | fill-opacity | stroke | stroke-opacity ]#",
+			"relevance": 0,
 			"browsers": [
 				"FF55"
 			],
@@ -16885,18 +17165,39 @@ export const cssData : CSSDataV1 = {
 			"name": "-moz-float-edge",
 			"status": "nonstandard",
 			"syntax": "border-box | content-box | margin-box | padding-box",
+			"relevance": 0,
+			"browsers": [
+				"FF1"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-float-edge"
+				}
+			],
 			"description": "The non-standard -moz-float-edge CSS property specifies whether the height and width properties of the element include the margin, border, or padding thickness."
 		},
 		{
 			"name": "-moz-force-broken-image-icon",
 			"status": "nonstandard",
 			"syntax": "<integer>",
+			"relevance": 0,
+			"browsers": [
+				"FF1"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-force-broken-image-icon"
+				}
+			],
 			"description": "The -moz-force-broken-image-icon extended CSS property can be used to force the broken image icon to be shown even when a broken image has an alt attribute."
 		},
 		{
 			"name": "-moz-image-region",
 			"status": "nonstandard",
 			"syntax": "<shape> | auto",
+			"relevance": 0,
 			"browsers": [
 				"FF1"
 			],
@@ -16912,6 +17213,7 @@ export const cssData : CSSDataV1 = {
 			"name": "-moz-orient",
 			"status": "nonstandard",
 			"syntax": "inline | block | horizontal | vertical",
+			"relevance": 0,
 			"browsers": [
 				"FF6"
 			],
@@ -16927,8 +17229,9 @@ export const cssData : CSSDataV1 = {
 			"name": "-moz-outline-radius",
 			"status": "nonstandard",
 			"syntax": "<outline-radius>{1,4} [ / <outline-radius>{1,4} ]?",
+			"relevance": 0,
 			"browsers": [
-				"FF1.5"
+				"FF1"
 			],
 			"references": [
 				{
@@ -16942,51 +17245,85 @@ export const cssData : CSSDataV1 = {
 			"name": "-moz-outline-radius-bottomleft",
 			"status": "nonstandard",
 			"syntax": "<outline-radius>",
+			"relevance": 0,
+			"browsers": [
+				"FF1"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-outline-radius-bottomleft"
+				}
+			],
 			"description": "In Mozilla applications, the -moz-outline-radius-bottomleft CSS property can be used to round the bottom-left corner of an element's outline."
 		},
 		{
 			"name": "-moz-outline-radius-bottomright",
 			"status": "nonstandard",
 			"syntax": "<outline-radius>",
+			"relevance": 0,
+			"browsers": [
+				"FF1"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-outline-radius-bottomright"
+				}
+			],
 			"description": "In Mozilla applications, the -moz-outline-radius-bottomright CSS property can be used to round the bottom-right corner of an element's outline."
 		},
 		{
 			"name": "-moz-outline-radius-topleft",
 			"status": "nonstandard",
 			"syntax": "<outline-radius>",
+			"relevance": 0,
+			"browsers": [
+				"FF1"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-outline-radius-topleft"
+				}
+			],
 			"description": "In Mozilla applications, the -moz-outline-radius-topleft CSS property can be used to round the top-left corner of an element's outline."
 		},
 		{
 			"name": "-moz-outline-radius-topright",
 			"status": "nonstandard",
 			"syntax": "<outline-radius>",
+			"relevance": 0,
+			"browsers": [
+				"FF1"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-outline-radius-topright"
+				}
+			],
 			"description": "In Mozilla applications, the -moz-outline-radius-topright CSS property can be used to round the top-right corner of an element's outline."
 		},
 		{
 			"name": "-moz-stack-sizing",
 			"status": "nonstandard",
 			"syntax": "ignore | stretch-to-fit",
+			"relevance": 0,
 			"description": "-moz-stack-sizing is an extended CSS property. Normally, a stack will change its size so that all of its child elements are completely visible. For example, moving a child of the stack far to the right will widen the stack so the child remains visible."
 		},
 		{
 			"name": "-moz-text-blink",
 			"status": "nonstandard",
 			"syntax": "none | blink",
-			"browsers": [
-				"FF6"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-text-blink"
-				}
-			],
+			"relevance": 0,
 			"description": "The -moz-text-blink non-standard Mozilla CSS extension specifies the blink mode."
 		},
 		{
 			"name": "-moz-user-input",
 			"status": "nonstandard",
 			"syntax": "auto | none | enabled | disabled",
+			"relevance": 0,
 			"browsers": [
 				"FF1"
 			],
@@ -17002,33 +17339,28 @@ export const cssData : CSSDataV1 = {
 			"name": "-moz-user-modify",
 			"status": "nonstandard",
 			"syntax": "read-only | read-write | write-only",
+			"relevance": 0,
 			"description": "The -moz-user-modify property has no effect. It was originally planned to determine whether or not the content of an element can be edited by a user."
 		},
 		{
 			"name": "-moz-window-dragging",
 			"status": "nonstandard",
 			"syntax": "drag | no-drag",
+			"relevance": 0,
 			"description": "The -moz-window-dragging CSS property specifies whether a window is draggable or not. It only works in Chrome code, and only on Mac OS X."
 		},
 		{
 			"name": "-moz-window-shadow",
 			"status": "nonstandard",
 			"syntax": "default | menu | tooltip | sheet | none",
-			"browsers": [
-				"FF3.5"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-window-shadow"
-				}
-			],
+			"relevance": 0,
 			"description": "The -moz-window-shadow CSS property specifies whether a window will have a shadow. It only works on Mac OS X."
 		},
 		{
 			"name": "-webkit-border-before",
 			"status": "nonstandard",
 			"syntax": "<'border-width'> || <'border-style'> || <'color'>",
+			"relevance": 0,
 			"browsers": [
 				"E79",
 				"S5.1",
@@ -17047,23 +17379,27 @@ export const cssData : CSSDataV1 = {
 			"name": "-webkit-border-before-color",
 			"status": "nonstandard",
 			"syntax": "<'color'>",
+			"relevance": 0,
 			"description": "The -webkit-border-before-color CSS property sets the color of the individual logical block start border in a single place in the style sheet."
 		},
 		{
 			"name": "-webkit-border-before-style",
 			"status": "nonstandard",
 			"syntax": "<'border-style'>",
+			"relevance": 0,
 			"description": "The -webkit-border-before-style CSS property sets the style of the individual logical block start border in a single place in the style sheet."
 		},
 		{
 			"name": "-webkit-border-before-width",
 			"status": "nonstandard",
 			"syntax": "<'border-width'>",
+			"relevance": 0,
 			"description": "The -webkit-border-before-width CSS property sets the width of the individual logical block start border in a single place in the style sheet."
 		},
 		{
 			"name": "-webkit-line-clamp",
 			"syntax": "none | <integer>",
+			"relevance": 50,
 			"browsers": [
 				"E17",
 				"FF68",
@@ -17083,12 +17419,14 @@ export const cssData : CSSDataV1 = {
 			"name": "-webkit-mask",
 			"status": "nonstandard",
 			"syntax": "[ <mask-reference> || <position> [ / <bg-size> ]? || <repeat-style> || [ <box> | border | padding | content | text ] || [ <box> | border | padding | content ] ]#",
+			"relevance": 0,
 			"description": "The mask CSS property alters the visibility of an element by either partially or fully hiding it. This is accomplished by either masking or clipping the image at specific points."
 		},
 		{
 			"name": "-webkit-mask-attachment",
 			"status": "nonstandard",
 			"syntax": "<attachment>#",
+			"relevance": 0,
 			"browsers": [
 				"S4",
 				"C1"
@@ -17105,6 +17443,7 @@ export const cssData : CSSDataV1 = {
 			"name": "-webkit-mask-composite",
 			"status": "nonstandard",
 			"syntax": "<composite-style>#",
+			"relevance": 0,
 			"browsers": [
 				"E18",
 				"FF53",
@@ -17124,12 +17463,14 @@ export const cssData : CSSDataV1 = {
 			"name": "-webkit-mask-position",
 			"status": "nonstandard",
 			"syntax": "<position>#",
+			"relevance": 0,
 			"description": "The mask-position CSS property sets the initial position, relative to the mask position layer defined by mask-origin, for each defined mask image."
 		},
 		{
 			"name": "-webkit-mask-position-x",
 			"status": "nonstandard",
 			"syntax": "[ <length-percentage> | left | center | right ]#",
+			"relevance": 0,
 			"browsers": [
 				"E18",
 				"FF49",
@@ -17149,6 +17490,7 @@ export const cssData : CSSDataV1 = {
 			"name": "-webkit-mask-position-y",
 			"status": "nonstandard",
 			"syntax": "[ <length-percentage> | top | center | bottom ]#",
+			"relevance": 0,
 			"browsers": [
 				"E18",
 				"FF49",
@@ -17168,6 +17510,7 @@ export const cssData : CSSDataV1 = {
 			"name": "-webkit-mask-repeat-x",
 			"status": "nonstandard",
 			"syntax": "repeat | no-repeat | space | round",
+			"relevance": 0,
 			"browsers": [
 				"E18",
 				"S5",
@@ -17186,6 +17529,7 @@ export const cssData : CSSDataV1 = {
 			"name": "-webkit-mask-repeat-y",
 			"status": "nonstandard",
 			"syntax": "repeat | no-repeat | space | round",
+			"relevance": 0,
 			"browsers": [
 				"E18",
 				"S5",
@@ -17204,13 +17548,13 @@ export const cssData : CSSDataV1 = {
 			"name": "appearance",
 			"status": "experimental",
 			"syntax": "none | auto | button | textfield | menulist-button | <compat-auto>",
-			"relevance": 17,
+			"relevance": 60,
 			"browsers": [
-				"E12",
+				"E84",
 				"FF1",
 				"S3",
-				"C1",
-				"O15"
+				"C84",
+				"O70"
 			],
 			"references": [
 				{
@@ -17224,7 +17568,7 @@ export const cssData : CSSDataV1 = {
 			"name": "aspect-ratio",
 			"status": "experimental",
 			"syntax": "auto | <ratio>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF71",
@@ -17242,6 +17586,7 @@ export const cssData : CSSDataV1 = {
 			"name": "azimuth",
 			"status": "obsolete",
 			"syntax": "<angle> | [ [ left-side | far-left | left | center-left | center | center-right | right | far-right | right-side ] || behind ] | leftwards | rightwards",
+			"relevance": 0,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -17253,7 +17598,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "backdrop-filter",
 			"syntax": "none | <filter-function-list>",
-			"relevance": 2,
+			"relevance": 51,
 			"browsers": [
 				"E17",
 				"FF70",
@@ -17272,7 +17617,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-block",
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF66",
@@ -17290,7 +17635,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-block-color",
 			"syntax": "<'border-top-color'>{1,2}",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF66",
@@ -17308,7 +17653,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-block-style",
 			"syntax": "<'border-top-style'>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF66",
@@ -17326,7 +17671,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-block-width",
 			"syntax": "<'border-top-width'>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF66",
@@ -17344,6 +17689,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-end-end-radius",
 			"syntax": "<length-percentage>{1,2}",
+			"relevance": 50,
 			"browsers": [
 				"FF66"
 			],
@@ -17358,6 +17704,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-end-start-radius",
 			"syntax": "<length-percentage>{1,2}",
+			"relevance": 50,
 			"browsers": [
 				"FF66"
 			],
@@ -17372,7 +17719,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-inline",
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF66",
@@ -17390,7 +17737,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-inline-color",
 			"syntax": "<'border-top-color'>{1,2}",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF66",
@@ -17408,7 +17755,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-inline-style",
 			"syntax": "<'border-top-style'>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF66",
@@ -17426,7 +17773,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-inline-width",
 			"syntax": "<'border-top-width'>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF66",
@@ -17444,6 +17791,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-start-end-radius",
 			"syntax": "<length-percentage>{1,2}",
+			"relevance": 50,
 			"browsers": [
 				"FF66"
 			],
@@ -17458,6 +17806,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-start-start-radius",
 			"syntax": "<length-percentage>{1,2}",
+			"relevance": 50,
 			"browsers": [
 				"FF66"
 			],
@@ -17473,6 +17822,7 @@ export const cssData : CSSDataV1 = {
 			"name": "box-align",
 			"status": "nonstandard",
 			"syntax": "start | center | end | baseline | stretch",
+			"relevance": 0,
 			"browsers": [
 				"E12",
 				"FF1",
@@ -17492,6 +17842,7 @@ export const cssData : CSSDataV1 = {
 			"name": "box-direction",
 			"status": "nonstandard",
 			"syntax": "normal | reverse | inherit",
+			"relevance": 0,
 			"browsers": [
 				"E12",
 				"FF1",
@@ -17511,6 +17862,7 @@ export const cssData : CSSDataV1 = {
 			"name": "box-flex",
 			"status": "nonstandard",
 			"syntax": "<number>",
+			"relevance": 0,
 			"browsers": [
 				"E12",
 				"FF1",
@@ -17530,6 +17882,7 @@ export const cssData : CSSDataV1 = {
 			"name": "box-flex-group",
 			"status": "nonstandard",
 			"syntax": "<integer>",
+			"relevance": 0,
 			"browsers": [
 				"S3",
 				"C1",
@@ -17547,6 +17900,7 @@ export const cssData : CSSDataV1 = {
 			"name": "box-lines",
 			"status": "nonstandard",
 			"syntax": "single | multiple",
+			"relevance": 0,
 			"browsers": [
 				"S3",
 				"C1",
@@ -17564,6 +17918,7 @@ export const cssData : CSSDataV1 = {
 			"name": "box-ordinal-group",
 			"status": "nonstandard",
 			"syntax": "<integer>",
+			"relevance": 0,
 			"browsers": [
 				"E12",
 				"FF1",
@@ -17583,6 +17938,7 @@ export const cssData : CSSDataV1 = {
 			"name": "box-orient",
 			"status": "nonstandard",
 			"syntax": "horizontal | vertical | inline-axis | block-axis | inherit",
+			"relevance": 0,
 			"browsers": [
 				"E12",
 				"FF1",
@@ -17602,6 +17958,7 @@ export const cssData : CSSDataV1 = {
 			"name": "box-pack",
 			"status": "nonstandard",
 			"syntax": "start | center | end | justify",
+			"relevance": 0,
 			"browsers": [
 				"E12",
 				"FF1",
@@ -17620,6 +17977,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "color-adjust",
 			"syntax": "economy | exact",
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF48",
@@ -17638,7 +17996,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "counter-set",
 			"syntax": "[ <custom-ident> <integer>? ]+ | none",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"FF68"
 			],
@@ -17653,7 +18011,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "font-optical-sizing",
 			"syntax": "auto | none",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E17",
 				"FF62",
@@ -17672,7 +18030,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "font-variation-settings",
 			"syntax": "normal | [ <string> <number> ]#",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E17",
 				"FF62",
@@ -17689,21 +18047,42 @@ export const cssData : CSSDataV1 = {
 			"description": "The font-variation-settings CSS property provides low-level control over OpenType or TrueType font variations, by specifying the four letter axis names of the features you want to vary, along with their variation values."
 		},
 		{
-			"name": "gap",
-			"syntax": "<'row-gap'> <'column-gap'>?",
+			"name": "font-smooth",
+			"status": "nonstandard",
+			"syntax": "auto | never | always | <absolute-size> | <length>",
 			"relevance": 0,
 			"browsers": [
-				"E16",
+				"E79",
+				"FF25",
+				"S4",
+				"C5",
+				"O15"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-smooth"
+				}
+			],
+			"description": ""
+		},
+		{
+			"name": "gap",
+			"syntax": "<'row-gap'> <'column-gap'>?",
+			"relevance": 50,
+			"browsers": [
+				"E84",
 				"FF63",
 				"S10.1",
-				"C66",
-				"O53"
+				"C84",
+				"O70"
 			],
 			"description": "The gap CSS property is a shorthand property for row-gap and column-gap specifying the gutters between grid rows and columns."
 		},
 		{
 			"name": "hanging-punctuation",
 			"syntax": "none | [ first || [ force-end | allow-end ] || last ]",
+			"relevance": 50,
 			"browsers": [
 				"S10"
 			],
@@ -17719,13 +18098,14 @@ export const cssData : CSSDataV1 = {
 			"name": "image-resolution",
 			"status": "experimental",
 			"syntax": "[ from-image || <resolution> ] && snap?",
-			"relevance": 0,
+			"relevance": 50,
 			"description": "The image-resolution property specifies the intrinsic resolution of all raster images used in or on the element. It affects both content images (e.g. replaced elements and generated content) and decorative images (such as background-image). The intrinsic resolution of an image is used to determine the image’s intrinsic dimensions."
 		},
 		{
 			"name": "initial-letter",
 			"status": "experimental",
 			"syntax": "normal | [ <number> <integer>? ]",
+			"relevance": 50,
 			"browsers": [
 				"S9"
 			],
@@ -17741,6 +18121,7 @@ export const cssData : CSSDataV1 = {
 			"name": "initial-letter-align",
 			"status": "experimental",
 			"syntax": "[ auto | alphabetic | hanging | ideographic ]",
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -17752,7 +18133,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "inset",
 			"syntax": "<'top'>{1,4}",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"FF66"
 			],
@@ -17767,7 +18148,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "inset-block",
 			"syntax": "<'top'>{1,2}",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF63",
@@ -17785,7 +18166,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "inset-block-end",
 			"syntax": "<'top'>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF63",
@@ -17803,7 +18184,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "inset-block-start",
 			"syntax": "<'top'>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF63",
@@ -17821,7 +18202,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "inset-inline",
 			"syntax": "<'top'>{1,2}",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF63",
@@ -17839,7 +18220,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "inset-inline-end",
 			"syntax": "<'top'>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF63",
@@ -17857,7 +18238,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "inset-inline-start",
 			"syntax": "<'top'>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF63",
@@ -17876,12 +18257,14 @@ export const cssData : CSSDataV1 = {
 			"name": "line-clamp",
 			"status": "experimental",
 			"syntax": "none | <integer>",
+			"relevance": 50,
 			"description": "The line-clamp property allows limiting the contents of a block container to the specified number of lines; remaining content is fragmented away and neither rendered nor measured. Optionally, it also allows inserting content into the last line box to indicate the continuity of truncated/interrupted content."
 		},
 		{
 			"name": "line-height-step",
 			"status": "experimental",
 			"syntax": "<length>",
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"C60",
@@ -17898,7 +18281,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "margin-block",
 			"syntax": "<'margin-left'>{1,2}",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF66",
@@ -17916,7 +18299,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "margin-inline",
 			"syntax": "<'margin-left'>{1,2}",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF66",
@@ -17935,6 +18318,7 @@ export const cssData : CSSDataV1 = {
 			"name": "margin-trim",
 			"status": "experimental",
 			"syntax": "none | in-flow | all",
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -17946,7 +18330,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "mask",
 			"syntax": "<mask-layer>#",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E12",
 				"FF2",
@@ -17965,41 +18349,49 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "mask-border",
 			"syntax": "<'mask-border-source'> || <'mask-border-slice'> [ / <'mask-border-width'>? [ / <'mask-border-outset'> ]? ]? || <'mask-border-repeat'> || <'mask-border-mode'>",
+			"relevance": 50,
 			"description": "The mask-border CSS property lets you create a mask along the edge of an element's border.\n\nThis property is a shorthand for mask-border-source, mask-border-slice, mask-border-width, mask-border-outset, mask-border-repeat, and mask-border-mode. As with all shorthand properties, any omitted sub-values will be set to their initial value."
 		},
 		{
 			"name": "mask-border-mode",
 			"syntax": "luminance | alpha",
+			"relevance": 50,
 			"description": "The mask-border-mode CSS property specifies the blending mode used in a mask border."
 		},
 		{
 			"name": "mask-border-outset",
 			"syntax": "[ <length> | <number> ]{1,4}",
+			"relevance": 50,
 			"description": "The mask-border-outset CSS property specifies the distance by which an element's mask border is set out from its border box."
 		},
 		{
 			"name": "mask-border-repeat",
 			"syntax": "[ stretch | repeat | round | space ]{1,2}",
+			"relevance": 50,
 			"description": "The mask-border-repeat CSS property defines how the edge regions of a source image are adjusted to fit the dimensions of an element's mask border."
 		},
 		{
 			"name": "mask-border-slice",
 			"syntax": "<number-percentage>{1,4} fill?",
+			"relevance": 50,
 			"description": "The mask-border-slice CSS property divides the image specified by mask-border-source into regions. These regions are used to form the components of an element's mask border."
 		},
 		{
 			"name": "mask-border-source",
 			"syntax": "none | <image>",
+			"relevance": 50,
 			"description": "The mask-border-source CSS property specifies the source image used to create an element's mask border.\n\nThe mask-border-slice property is used to divide the source image into regions, which are then dynamically applied to the final mask border."
 		},
 		{
 			"name": "mask-border-width",
 			"syntax": "[ <length-percentage> | <number> | auto ]{1,4}",
+			"relevance": 50,
 			"description": "The mask-border-width CSS property specifies the width of an element's mask border."
 		},
 		{
 			"name": "mask-clip",
 			"syntax": "[ <geometry-box> | no-clip ]#",
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF53",
@@ -18018,6 +18410,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "mask-composite",
 			"syntax": "<compositing-operator>#",
+			"relevance": 50,
 			"browsers": [
 				"E18",
 				"FF53"
@@ -18034,12 +18427,13 @@ export const cssData : CSSDataV1 = {
 			"name": "max-lines",
 			"status": "experimental",
 			"syntax": "none | <integer>",
+			"relevance": 50,
 			"description": "The max-liens property forces a break after a set number of lines"
 		},
 		{
 			"name": "offset",
 			"syntax": "[ <'offset-position'>? [ <'offset-path'> [ <'offset-distance'> || <'offset-rotate'> ]? ]? ]! [ / <'offset-anchor'> ]?",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF72",
@@ -18057,7 +18451,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "offset-anchor",
 			"syntax": "auto | <position>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF72",
@@ -18074,7 +18468,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "offset-distance",
 			"syntax": "<length-percentage>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF72",
@@ -18092,7 +18486,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "offset-path",
 			"syntax": "none | ray( [ <angle> && <size>? && contain? ] ) | <path()> | <url> | [ <basic-shape> || <geometry-box> ]",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF72",
@@ -18111,7 +18505,7 @@ export const cssData : CSSDataV1 = {
 			"name": "offset-position",
 			"status": "experimental",
 			"syntax": "auto | <position>",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -18123,7 +18517,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "offset-rotate",
 			"syntax": "[ auto | reverse ] || <angle>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF72",
@@ -18141,7 +18535,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "overflow-anchor",
 			"syntax": "auto | none",
-			"relevance": 2,
+			"relevance": 51,
 			"browsers": [
 				"E79",
 				"FF66",
@@ -18159,7 +18553,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "overflow-block",
 			"syntax": "visible | hidden | clip | scroll | auto",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"FF69"
 			],
@@ -18175,6 +18569,7 @@ export const cssData : CSSDataV1 = {
 			"name": "overflow-clip-box",
 			"status": "nonstandard",
 			"syntax": "padding-box | content-box",
+			"relevance": 0,
 			"browsers": [
 				"FF29"
 			],
@@ -18189,6 +18584,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "overflow-inline",
 			"syntax": "visible | hidden | clip | scroll | auto",
+			"relevance": 50,
 			"browsers": [
 				"FF69"
 			],
@@ -18203,6 +18599,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "overscroll-behavior",
 			"syntax": "[ contain | none | auto ]{1,2}",
+			"relevance": 50,
 			"browsers": [
 				"E18",
 				"FF59",
@@ -18220,7 +18617,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "overscroll-behavior-block",
 			"syntax": "contain | none | auto",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF73",
@@ -18238,7 +18635,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "overscroll-behavior-inline",
 			"syntax": "contain | none | auto",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF73",
@@ -18256,6 +18653,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "overscroll-behavior-x",
 			"syntax": "contain | none | auto",
+			"relevance": 50,
 			"browsers": [
 				"E18",
 				"FF59",
@@ -18273,6 +18671,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "overscroll-behavior-y",
 			"syntax": "contain | none | auto",
+			"relevance": 50,
 			"browsers": [
 				"E18",
 				"FF59",
@@ -18290,7 +18689,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "padding-block",
 			"syntax": "<'padding-left'>{1,2}",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF66",
@@ -18308,7 +18707,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "padding-inline",
 			"syntax": "<'padding-left'>{1,2}",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF66",
@@ -18326,7 +18725,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "place-content",
 			"syntax": "<'align-content'> <'justify-content'>?",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF53",
@@ -18339,7 +18738,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "place-items",
 			"syntax": "<'align-items'> <'justify-items'>?",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF45",
@@ -18352,7 +18751,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "place-self",
 			"syntax": "<'align-self'> <'justify-self'>?",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF45",
@@ -18364,7 +18763,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "rotate",
 			"syntax": "none | <angle> | [ x | y | z | <number>{3} ] && <angle>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"FF72"
 			],
@@ -18379,13 +18778,13 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "row-gap",
 			"syntax": "normal | <length-percentage>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
-				"E16",
+				"E84",
 				"FF63",
 				"S10.1",
-				"C66",
-				"O53"
+				"C84",
+				"O70"
 			],
 			"description": "The row-gap CSS property specifies the gutter between grid rows."
 		},
@@ -18393,12 +18792,13 @@ export const cssData : CSSDataV1 = {
 			"name": "ruby-merge",
 			"status": "experimental",
 			"syntax": "separate | collapse | auto",
+			"relevance": 50,
 			"description": "This property controls how ruby annotation boxes should be rendered when there are more than one in a ruby container box: whether each pair should be kept separate, the annotations should be collapsed and rendered as a group, or the separation should be determined based on the space available."
 		},
 		{
 			"name": "scale",
 			"syntax": "none | <number>{1,3}",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"FF72"
 			],
@@ -18413,6 +18813,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scrollbar-color",
 			"syntax": "auto | dark | light | <color>{2}",
+			"relevance": 50,
 			"browsers": [
 				"FF64"
 			],
@@ -18427,6 +18828,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scrollbar-width",
 			"syntax": "auto | thin | none",
+			"relevance": 50,
 			"browsers": [
 				"FF64"
 			],
@@ -18441,6 +18843,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-margin",
 			"syntax": "<length>{1,4}",
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18459,6 +18862,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-margin-block",
 			"syntax": "<length>{1,2}",
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18476,6 +18880,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-margin-block-start",
 			"syntax": "<length>",
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18493,6 +18898,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-margin-block-end",
 			"syntax": "<length>",
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18510,6 +18916,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-margin-bottom",
 			"syntax": "<length>",
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18528,6 +18935,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-margin-inline",
 			"syntax": "<length>{1,2}",
+			"relevance": 50,
 			"browsers": [
 				"FF68"
 			],
@@ -18542,6 +18950,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-margin-inline-start",
 			"syntax": "<length>",
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18559,6 +18968,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-margin-inline-end",
 			"syntax": "<length>",
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18576,6 +18986,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-margin-left",
 			"syntax": "<length>",
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18594,6 +19005,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-margin-right",
 			"syntax": "<length>",
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18612,6 +19024,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-margin-top",
 			"syntax": "<length>",
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18630,7 +19043,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-padding",
 			"syntax": "[ auto | <length-percentage> ]{1,4}",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18649,7 +19062,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-padding-block",
 			"syntax": "[ auto | <length-percentage> ]{1,2}",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18667,7 +19080,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-padding-block-start",
 			"syntax": "auto | <length-percentage>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18685,7 +19098,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-padding-block-end",
 			"syntax": "auto | <length-percentage>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18703,7 +19116,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-padding-bottom",
 			"syntax": "auto | <length-percentage>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18722,7 +19135,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-padding-inline",
 			"syntax": "[ auto | <length-percentage> ]{1,2}",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18740,7 +19153,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-padding-inline-start",
 			"syntax": "auto | <length-percentage>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18758,7 +19171,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-padding-inline-end",
 			"syntax": "auto | <length-percentage>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18776,7 +19189,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-padding-left",
 			"syntax": "auto | <length-percentage>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18795,7 +19208,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-padding-right",
 			"syntax": "auto | <length-percentage>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18814,7 +19227,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-padding-top",
 			"syntax": "auto | <length-percentage>",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18833,7 +19246,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-snap-align",
 			"syntax": "[ none | start | end | center ]{1,2}",
-			"relevance": 2,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -18852,7 +19265,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-snap-stop",
 			"syntax": "normal | always",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"C75",
@@ -18870,6 +19283,7 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-snap-type-x",
 			"status": "obsolete",
 			"syntax": "none | mandatory | proximity",
+			"relevance": 0,
 			"browsers": [
 				"FF39",
 				"S9"
@@ -18886,6 +19300,7 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-snap-type-y",
 			"status": "obsolete",
 			"syntax": "none | mandatory | proximity",
+			"relevance": 0,
 			"browsers": [
 				"FF39"
 			],
@@ -18900,7 +19315,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "text-combine-upright",
 			"syntax": "none | all | [ digits <integer>? ]",
-			"relevance": 0,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -18913,7 +19328,7 @@ export const cssData : CSSDataV1 = {
 			"name": "text-decoration-skip",
 			"status": "experimental",
 			"syntax": "none | [ objects || [ spaces | [ leading-spaces || trailing-spaces ] ] || edges || box-decoration ]",
-			"relevance": 5,
+			"relevance": 52,
 			"browsers": [
 				"S12.1",
 				"C57",
@@ -18930,7 +19345,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "text-decoration-skip-ink",
 			"syntax": "auto | all | none",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF70",
@@ -18948,6 +19363,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "text-decoration-thickness",
 			"syntax": "auto | from-font | <length> | <percentage> ",
+			"relevance": 50,
 			"browsers": [
 				"FF70",
 				"S12.1"
@@ -18963,6 +19379,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "text-emphasis",
 			"syntax": "<'text-emphasis-style'> || <'text-emphasis-color'>",
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF46",
@@ -18981,6 +19398,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "text-emphasis-color",
 			"syntax": "<color>",
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF46",
@@ -18999,6 +19417,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "text-emphasis-position",
 			"syntax": "[ over | under ] && [ right | left ]",
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF46",
@@ -19017,6 +19436,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "text-emphasis-style",
 			"syntax": "none | [ [ filled | open ] || [ dot | circle | double-circle | triangle | sesame ] ] | <string>",
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF46",
@@ -19036,7 +19456,7 @@ export const cssData : CSSDataV1 = {
 			"name": "text-size-adjust",
 			"status": "experimental",
 			"syntax": "none | auto | <percentage>",
-			"relevance": 13,
+			"relevance": 56,
 			"browsers": [
 				"E79",
 				"C54",
@@ -19053,6 +19473,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "text-underline-offset",
 			"syntax": "auto | <length> | <percentage> ",
+			"relevance": 50,
 			"browsers": [
 				"FF70",
 				"S12.1"
@@ -19068,7 +19489,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "transform-box",
 			"syntax": "content-box | border-box | fill-box | stroke-box | view-box",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF55",
@@ -19087,7 +19508,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "translate",
 			"syntax": "none | <length-percentage> [ <length-percentage> <length>? ]?",
-			"relevance": 0,
+			"relevance": 50,
 			"browsers": [
 				"FF72"
 			],
@@ -19102,53 +19523,56 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "speak-as",
 			"syntax": "auto | bullets | numbers | words | spell-out | <counter-style-name>",
+			"relevance": 50,
 			"description": "The speak-as descriptor specifies how a counter symbol constructed with a given @counter-style will be represented in the spoken form. For example, an author can specify a counter symbol to be either spoken as its numerical value or just represented with an audio cue."
 		},
 		{
 			"name": "font-display",
 			"status": "experimental",
 			"syntax": "[ auto | block | swap | fallback | optional ]",
-			"relevance": 7,
+			"relevance": 54,
 			"description": "The font-display descriptor determines how a font face is displayed based on whether and when it is downloaded and ready to use."
 		},
 		{
 			"name": "bleed",
 			"syntax": "auto | <length>",
+			"relevance": 50,
 			"description": "The bleed CSS at-rule descriptor, used with the @page at-rule, specifies the extent of the page bleed area outside the page box. This property only has effect if crop marks are enabled using the marks property."
 		},
 		{
 			"name": "marks",
 			"syntax": "none | [ crop || cross ]",
+			"relevance": 50,
 			"description": "The marks CSS at-rule descriptor, used with the @page at-rule, adds crop and/or cross marks to the presentation of the document. Crop marks indicate where the page should be cut. Cross marks are used to align sheets."
 		},
 		{
 			"name": "max-zoom",
 			"syntax": "auto | <number> | <percentage>",
-			"relevance": 0,
+			"relevance": 50,
 			"description": "The max-zoom CSS descriptor sets the maximum zoom factor of a document defined by the @viewport at-rule. The browser will not zoom in any further than this, whether automatically or at the user's request.\n\nA zoom factor of 1.0 or 100% corresponds to no zooming. Larger values are zoomed in. Smaller values are zoomed out."
 		},
 		{
 			"name": "min-zoom",
 			"syntax": "auto | <number> | <percentage>",
-			"relevance": 0,
+			"relevance": 50,
 			"description": "The min-zoom CSS descriptor sets the minimum zoom factor of a document defined by the @viewport at-rule. The browser will not zoom out any further than this, whether automatically or at the user's request.\n\nA zoom factor of 1.0 or 100% corresponds to no zooming. Larger values are zoomed in. Smaller values are zoomed out."
 		},
 		{
 			"name": "orientation",
 			"syntax": "auto | portrait | landscape",
-			"relevance": 0,
+			"relevance": 50,
 			"description": "The orientation CSS @media media feature can be used to apply styles based on the orientation of the viewport (or the page box, for paged media)."
 		},
 		{
 			"name": "user-zoom",
 			"syntax": "zoom | fixed",
-			"relevance": 0,
+			"relevance": 50,
 			"description": "The user-zoom CSS descriptor controls whether or not the user can change the zoom factor of a document defined by @viewport."
 		},
 		{
 			"name": "viewport-fit",
 			"syntax": "auto | contain | cover",
-			"relevance": 0,
+			"relevance": 50,
 			"description": "The border-block-style CSS property defines the style of the logical block borders of an element, which maps to a physical border style depending on the element's writing mode, directionality, and text orientation."
 		}
 	],
@@ -19682,6 +20106,12 @@ export const cssData : CSSDataV1 = {
 			"name": ":-moz-broken",
 			"browsers": [
 				"FF3"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-broken"
+				}
 			],
 			"description": "Non-standard. Matches elements representing broken images."
 		},
@@ -20428,42 +20858,24 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "::-ms-browse",
 			"browsers": [
-				"E12",
+				"E",
 				"IE10"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-ms-browse"
-				}
 			],
 			"description": "Represents the browse button of an input type=file control."
 		},
 		{
 			"name": "::-ms-check",
 			"browsers": [
-				"E12",
+				"E",
 				"IE10"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-ms-check"
-				}
 			],
 			"description": "Represents the check of a checkbox or radio button input control."
 		},
 		{
 			"name": "::-ms-clear",
 			"browsers": [
-				"E12",
+				"E",
 				"IE10"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-ms-clear"
-				}
 			],
 			"description": "Represents the clear button of a text input control"
 		},
@@ -20478,56 +20890,32 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "::-ms-fill",
 			"browsers": [
-				"E12",
+				"E",
 				"IE10"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-ms-fill"
-				}
 			],
 			"description": "Represents the bar portion of a progress bar."
 		},
 		{
 			"name": "::-ms-fill-lower",
 			"browsers": [
-				"E12",
+				"E",
 				"IE10"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-ms-fill-lower"
-				}
 			],
 			"description": "Represents the portion of the slider track from its smallest value up to the value currently selected by the thumb. In a left-to-right layout, this is the portion of the slider track to the left of the thumb."
 		},
 		{
 			"name": "::-ms-fill-upper",
 			"browsers": [
-				"E12",
+				"E",
 				"IE10"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-ms-fill-upper"
-				}
 			],
 			"description": "Represents the portion of the slider track from the value currently selected by the thumb up to the slider's largest value. In a left-to-right layout, this is the portion of the slider track to the right of the thumb."
 		},
 		{
 			"name": "::-ms-reveal",
 			"browsers": [
-				"E12",
+				"E",
 				"IE10"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-ms-reveal"
-				}
 			],
 			"description": "Represents the password reveal button of an input type=password control."
 		},
@@ -20574,14 +20962,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "::-ms-value",
 			"browsers": [
-				"E16",
+				"E",
 				"IE10"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-ms-value"
-				}
 			],
 			"description": "Represents the content of a text or password input control, or a select control."
 		},
