@@ -770,13 +770,14 @@ suite('CSS - Completion', () => {
 		})];
 		await testCompletionFor('.foo { | }', {
 			items: [
-				{ label: 'foo', sortText: 'd_0093' },
-				{ label: 'bar', sortText: 'd_0001' },
-				{ label: '-webkit-bar', sortText: 'x_0012' },
-				{ label: 'xoo', sortText: 'd_0050' },
-				{ label: 'bar2', sortText: 'd_0000' }
+				{ label: 'foo', sortText: 'd_a2' },
+				{ label: 'bar', sortText: 'd_fe' },
+				{ label: '-webkit-bar', sortText: 'x_f3' },
+				{ label: 'xoo', sortText: 'd_cd' },
+				{ label: 'bar2', sortText: 'd_ff' }
 			]
 		}, undefined, undefined, undefined, customData);
+		assert.ok('d_a2' < 'd_fe');
 	});
 
 	const testFixturesPath = path.join(__dirname, '../../../../test');

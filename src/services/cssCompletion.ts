@@ -248,8 +248,8 @@ export class CSSCompletion {
 					command: 'editor.action.triggerSuggest'
 				};
 			}
-			const relevance = typeof entry.relevance === 'number' ? entry.relevance : 50;
-			const sortTextSuffix = ("000" + relevance).slice(-4);
+			const relevance = typeof entry.relevance === 'number' ? Math.min(Math.max(entry.relevance, 0), 99) : 50;
+			const sortTextSuffix = (255 - relevance).toString(16);
 			const sortTextPrefix = strings.startsWith(entry.name, '-') ? SortTexts.VendorPrefixed : SortTexts.Normal;
 			item.sortText = sortTextPrefix + '_' + sortTextSuffix;
 			result.items.push(item);
