@@ -327,24 +327,8 @@ export class LintVisitor implements nodes.IVisitor {
 		//	Properties ignored due to display
 		/////////////////////////////////////////////////////////////
 
-		// With 'display: inline', the width, height, margin-top, margin-bottom, and float properties have no effect
-		let displayElems = this.fetchWithValue(propertyTable, 'display', 'inline');
-		if (displayElems.length > 0) {
-			for (const prop of ['width', 'height', 'margin-top', 'margin-bottom', 'float']) {
-				const elem = this.fetch(propertyTable, prop);
-				for (let index = 0; index < elem.length; index++) {
-					const node = elem[index].node;
-					const value = node.getValue();
-					if (prop === 'float' && (!value || value.matches('none'))) {
-						continue;
-					}
-					this.addEntry(node, Rules.PropertyIgnoredDueToDisplay, localize('rule.propertyIgnoredDueToDisplayInline', "Property is ignored due to the display. With 'display: inline', the width, height, margin-top, margin-bottom, and float properties have no effect."));
-				}
-			}
-		}
-
 		// With 'display: inline-block', 'float' has no effect
-		displayElems = this.fetchWithValue(propertyTable, 'display', 'inline-block');
+		let displayElems = this.fetchWithValue(propertyTable, 'display', 'inline-block');
 		if (displayElems.length > 0) {
 			const elem = this.fetch(propertyTable, 'float');
 			for (let index = 0; index < elem.length; index++) {

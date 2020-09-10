@@ -78,11 +78,7 @@ suite('CSS - Lint', () => {
 	});
 
 	test('properies ignored due to inline ', function () {
-		assertRuleSet('selector { display: inline; height: 100px; }', Rules.PropertyIgnoredDueToDisplay);
-		assertRuleSet('selector { display: inline; width: 100px; }', Rules.PropertyIgnoredDueToDisplay);
-		assertRuleSet('selector { display: inline; margin-top: 1em; }', Rules.PropertyIgnoredDueToDisplay);
-		assertRuleSet('selector { display: inline; margin-bottom: 1em; }', Rules.PropertyIgnoredDueToDisplay);
-		assertRuleSet('selector { display: inline; float: right; }', Rules.PropertyIgnoredDueToDisplay, Rules.AvoidFloat);
+		assertRuleSet('selector { display: inline; float: right; }', Rules.AvoidFloat);
 		assertRuleSet('selector { display: inline; float: none; }', Rules.AvoidFloat);
 		assertRuleSet('selector { display: inline-block; float: right; }', Rules.PropertyIgnoredDueToDisplay, Rules.AvoidFloat);
 		assertRuleSet('selector { display: inline-block; float: none; }', Rules.AvoidFloat);
