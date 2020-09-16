@@ -4,7 +4,6 @@ lib/*/test/
 lib/**/*.js.map
 lib/*/*/*.d.ts
 src/
-test/
 build/
 coverage/
 .eslintrc
@@ -15,3 +14,4 @@ tslint.json
 yarn.lock
 azure-pipelines.yml
 .editorconfig
+.mocharc.json
