@@ -10,6 +10,17 @@ import { assertSelector } from '../css/selectorPrinting.test';
 
 suite('SCSS - Selector Printing', () => {
 
+	test('simple selector', function () {
+		let p = new SCSSParser();
+		assertSelector(p, 'o1 { }', 'o1', '{o1}');
+		assertSelector(p, '.div { } ', '.div', '{[class=div]}');
+		assertSelector(p, '#div { } ', '#div', '{[id=div]}');
+		assertSelector(p, 'o1.div { } ', 'o1', '{o1[class=div]}');
+		assertSelector(p, 'o1#div { }', 'o1', '{o1[id=div]}');
+		assertSelector(p, '#div.o1 { }', 'o1', '{[id=div|class=o1]}');
+		assertSelector(p, '.o1#div { }', 'o1', '{[class=o1|id=div]}');
+	});
+
 	test('nested selector', function () {
 		let p = new SCSSParser();
 		assertSelector(p, 'o1 { e1 { } }', 'e1', '{o1{…{e1}}}');
