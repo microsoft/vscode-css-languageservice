@@ -178,7 +178,7 @@ export class SCSSParser extends cssParser.Parser {
 			return this._parseInterpolation();
 		};
 
-		while (this.accept(TokenType.Ident) || node.addChild(indentInterpolation()) || (hasContent && !this.peek(TokenType.Hash) && this.acceptRegexp(/[\w-]/))) {
+		while (this.accept(TokenType.Ident) || node.addChild(indentInterpolation()) || (hasContent && this.acceptRegexp(/^[\w-]/))) {
 			hasContent = true;
 			if (this.hasWhitespace()) {
 				break;
