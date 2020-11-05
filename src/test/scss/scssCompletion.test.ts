@@ -81,7 +81,7 @@ suite('SCSS - Completions', () => {
 		await testCompletionFor('.foo { display: block;|', {
 			count: 0
 		});
-		// issue #17726
+		// issue microsoft/vscode#17726
 		await testCompletionFor('.foo { &:|', {
 			items: [
 				{ label: ':last-of-type', resultText: '.foo { &:last-of-type' }
@@ -92,7 +92,14 @@ suite('SCSS - Completions', () => {
 				{ label: ':last-of-type', resultText: '.foo { &:last-of-type' }
 			]
 		});
-		// issue 33911
+		// issue microsoft/vscode#109185
+		await testCompletionFor('.test { &::|  }', {
+			items: [
+				{ label: ':hover', resultText: '.test { &:hover  }' },
+				{ label: '::after', resultText: '.test { &::after  }' }
+			]
+		});
+		// issue microsoft/vscode#33911
 		await testCompletionFor('@include media(\'ddd\') { dis| &:not(:first-child) {', {
 			items: [
 				{ label: 'display' }

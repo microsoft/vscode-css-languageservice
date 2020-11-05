@@ -707,9 +707,12 @@ export class CSSCompletion {
 
 	public getCompletionsForSelector(ruleSet: nodes.RuleSet | null, isNested: boolean, result: CompletionList): CompletionList {
 		const existingNode = this.findInNodePath(nodes.NodeType.PseudoSelector, nodes.NodeType.IdentifierSelector, nodes.NodeType.ClassSelector, nodes.NodeType.ElementNameSelector);
-		if (!existingNode && this.offset - this.currentWord.length > 0 && this.textDocument.getText()[this.offset - this.currentWord.length - 1] === ':') {
+		if (!existingNode && this.hasCharacterAtPosition(this.offset - this.currentWord.length - 1, ':')) {
 			// after the ':' of a pseudo selector, no node generated for just ':'
 			this.currentWord = ':' + this.currentWord;
+			if (this.hasCharacterAtPosition(this.offset - this.currentWord.length - 1, ':')) {
+				this.currentWord = ':' + this.currentWord; // for '::'
+			}
 			this.defaultReplaceRange = Range.create(Position.create(this.position.line, this.position.character - this.currentWord.length), this.position);
 		}
 
@@ -1005,6 +1008,11 @@ export class CSSCompletion {
 			}
 		});
 		return result;
+	}
+
+	private hasCharacterAtPosition(offset: number, char: string) {
+		const text = this.textDocument.getText();
+		return (offset >= 0 && offset < text.length) && text.charAt(offset) === char;
 	}
 
 	private doesSupportMarkdown() {
