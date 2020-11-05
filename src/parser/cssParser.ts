@@ -1365,13 +1365,11 @@ export class Parser {
 			return null;
 		}
 		// optional, support ::
-		if (this.accept(TokenType.Colon) && this.hasWhitespace()) {
-			this.markError(node, ParseError.IdentifierExpected);
+		this.accept(TokenType.Colon);
+		if (this.hasWhitespace() || !node.addChild(this._parseIdent())) {
+			return this.finish(node, ParseError.IdentifierExpected);
 		}
-		if (!node.addChild(this._parseIdent())) {
-			this.markError(node, ParseError.IdentifierExpected);
-		}
-		return node;
+		return this.finish(node);
 	}
 
 	public _tryParsePrio(): nodes.Node | null {

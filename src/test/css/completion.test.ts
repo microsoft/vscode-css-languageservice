@@ -230,6 +230,18 @@ suite('CSS - Completion', () => {
 				{ label: '::after', resultText: 'a::after ' }
 			]
 		});
+		await testCompletionFor('a::| foo { }', { // #104111
+			items: [
+				{ label: ':hover', resultText: 'a:hover foo { }' },
+				{ label: '::after', resultText: 'a::after foo { }' }
+			]
+		});
+		await testCompletionFor('a:| foo { }', { // #104111
+			items: [
+				{ label: ':hover', resultText: 'a:hover foo { }' },
+				{ label: '::after', resultText: 'a::after foo { }' }
+			]
+		});
 		await testCompletionFor('a#| ', {
 			items: [
 				{ label: ':hover', resultText: 'a:hover ' },
