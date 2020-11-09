@@ -442,7 +442,6 @@ class SelectorElementBuilder {
 				}
 
 				if (this.prev && this.prev.matches('~')) {
-					this.element.addChild(toElement(<nodes.SimpleSelector>selectorChild));
 					this.element.addChild(new LabelElement('\u22EE'));
 				}
 
