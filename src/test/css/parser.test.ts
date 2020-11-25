@@ -168,6 +168,7 @@ suite('CSS - Parser', () => {
 		assertNode('@supports (display: flexbox !important) { }', parser, parser._parseSupports.bind(parser));
 		assertNode('@supports (grid-area: auto) { @media screen and (min-width: 768px) { .me { } } }', parser, parser._parseSupports.bind(parser));
 		assertNode('@supports (column-width: 1rem) OR (-moz-column-width: 1rem) OR (-webkit-column-width: 1rem) oR (-x-column-width: 1rem) { }', parser, parser._parseSupports.bind(parser)); // #49288
+		assertNode('@supports not (--validValue: , 0 ) {}', parser, parser._parseSupports.bind(parser)); // #82178
 		assertError('@supports (transition-property: color) or (animation-name: foo) and (transform: rotate(10deg)) { }', parser, parser._parseSupports.bind(parser), ParseError.LeftCurlyExpected);
 		assertError('@supports display: flexbox { }', parser, parser._parseSupports.bind(parser), ParseError.LeftParenthesisExpected);
 	});
@@ -294,6 +295,8 @@ suite('CSS - Parser', () => {
 		assertNode('boo {--squares: this[]is[]ok[]too[]}', parser, parser._parseRuleset.bind(parser));
 		assertNode('boo {--combined: ([{{[]()()}[]{}}])()}', parser, parser._parseRuleset.bind(parser));
 		assertNode('boo {--weird-inside-delims: {color: green;;;;;;!important;;}}', parser, parser._parseRuleset.bind(parser));
+		assertNode(`boo {--validValue: , 0 0}`, parser, parser._parseRuleset.bind(parser));
+		assertNode(`boo {--validValue: , 0 0;}`, parser, parser._parseRuleset.bind(parser));
 		assertNode('boo { @apply --custom-prop; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('boo { @apply --custom-prop }', parser, parser._parseRuleset.bind(parser));
 		assertNode('boo { @apply --custom-prop; background-color: red }', parser, parser._parseRuleset.bind(parser));

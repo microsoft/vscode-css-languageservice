@@ -258,14 +258,19 @@ export class SCSSParser extends cssParser.Parser {
 			|| super._parseRuleSetDeclaration(); // try css ruleset declaration as last so in the error case, the ast will contain a declaration
 	}
 
-	public _parseDeclaration(resyncStopTokens?: TokenType[]): nodes.Declaration | null {
+	public _parseDeclaration(stopTokens?: TokenType[]): nodes.Declaration | null {
+		const custonProperty = this._tryParseCustomPropertyDeclaration(stopTokens);
+		if (custonProperty) {
+			return custonProperty;
+		}
+
 		const node = <nodes.Declaration>this.create(nodes.Declaration);
 		if (!node.setProperty(this._parseProperty())) {
 			return null;
 		}
 
 		if (!this.accept(TokenType.Colon)) {
-			return this.finish(node, ParseError.ColonExpected, [TokenType.Colon], resyncStopTokens);
+			return this.finish(node, ParseError.ColonExpected, [TokenType.Colon], stopTokens || [TokenType.SemiColon]);
 		}
 		if (this.prevToken) {
 			node.colonPosition = this.prevToken.offset;

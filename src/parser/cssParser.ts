@@ -51,6 +51,10 @@ export class Parser {
 		return type === this.token.type;
 	}
 
+	public peekOne(types: TokenType[]): boolean {
+		return types.indexOf(this.token.type) !== -1;
+	}
+
 	public peekRegExp(type: TokenType, regEx: RegExp): boolean {
 		if (type !== this.token.type) {
 			return false;
@@ -354,8 +358,7 @@ export class Parser {
 		if (this.peek(TokenType.AtKeyword)) {
 			return this._parseRuleSetDeclarationAtStatement();
 		}
-		return this._tryParseCustomPropertyDeclaration()
-			|| this._parseDeclaration();
+		return this._parseDeclaration();
 	}
 
 
@@ -465,15 +468,19 @@ export class Parser {
 		return hasContent ? this.finish(node) : null;
 	}
 
-	public _parseDeclaration(resyncStopTokens?: TokenType[]): nodes.Declaration | null {
+	public _parseDeclaration(stopTokens?: TokenType[]): nodes.Declaration | null {
+		const custonProperty = this._tryParseCustomPropertyDeclaration(stopTokens);
+		if (custonProperty) {
+			return custonProperty;
+		}
+
 		const node = this.create(nodes.Declaration);
 		if (!node.setProperty(this._parseProperty())) {
 			return null;
 		}
 
 		if (!this.accept(TokenType.Colon)) {
-			const stopTokens = resyncStopTokens ? [...resyncStopTokens, TokenType.SemiColon] : [TokenType.SemiColon];
-			return <nodes.Declaration>this.finish(node, ParseError.ColonExpected, [TokenType.Colon], stopTokens);
+			return <nodes.Declaration>this.finish(node, ParseError.ColonExpected, [TokenType.Colon], stopTokens || [TokenType.SemiColon]);
 		}
 		if (this.prevToken) {
 			node.colonPosition = this.prevToken.offset;
@@ -490,7 +497,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _tryParseCustomPropertyDeclaration(): nodes.Node | null {
+	public _tryParseCustomPropertyDeclaration(stopTokens?: TokenType[]): nodes.CustomPropertyDeclaration | null {
 		if (!this.peekRegExp(TokenType.Ident, /^--/)) {
 			return null;
 		}
@@ -522,18 +529,19 @@ export class Parser {
 			}
 			this.restoreAtMark(mark);
 		}
+
 		// try tp parse as expression
 		const expression = this._parseExpr();
 		if (expression && !expression.isErroneous(true)) {
 			this._parsePrio();
-			if (this.peek(TokenType.SemiColon)) {
+			if (this.peekOne(stopTokens || [TokenType.SemiColon])) {
 				node.setValue(expression);
 				node.semicolonPosition = this.token.offset; // not part of the declaration, but useful information for code assist
 				return this.finish(node);
 			}
 		}
 		this.restoreAtMark(mark);
-		node.addChild(this._parseCustomPropertyValue());
+		node.addChild(this._parseCustomPropertyValue(stopTokens));
 		node.addChild(this._parsePrio());
 		if (isDefined(node.colonPosition) && this.token.offset === node.colonPosition + 1) {
 			return this.finish(node, ParseError.PropertyValueExpected);
@@ -552,9 +560,10 @@ export class Parser {
 	 * terminators like semicolons and !important directives (when not inside
 	 * of delimitors).
 	 */
-	public _parseCustomPropertyValue(): nodes.Node {
+	public _parseCustomPropertyValue(stopTokens: TokenType[] = [TokenType.CurlyR]): nodes.Node {
 		const node = this.create(nodes.Node);
 		const isTopLevel = () => curlyDepth === 0 && parensDepth === 0 && bracketsDepth === 0;
+		const onStopToken = () => stopTokens.indexOf(this.token.type) !== -1;
 		let curlyDepth = 0;
 		let parensDepth = 0;
 		let bracketsDepth = 0;
@@ -580,7 +589,7 @@ export class Parser {
 					if (curlyDepth < 0) {
 						// The property value has been terminated without a semicolon, and
 						// this is the last declaration in the ruleset.
-						if (parensDepth === 0 && bracketsDepth === 0) {
+						if (onStopToken() && parensDepth === 0 && bracketsDepth === 0) {
 							break done;
 						}
 						return this.finish(node, ParseError.LeftCurlyExpected);
@@ -592,6 +601,9 @@ export class Parser {
 				case TokenType.ParenthesisR:
 					parensDepth--;
 					if (parensDepth < 0) {
+						if (onStopToken() && bracketsDepth === 0 && curlyDepth === 0) {
+							break done;
+						}
 						return this.finish(node, ParseError.LeftParenthesisExpected);
 					}
 					break;
@@ -622,12 +634,12 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _tryToParseDeclaration(): nodes.Declaration | null {
+	public _tryToParseDeclaration(stopTokens?: TokenType[]): nodes.Declaration | null {
 		const mark = this.mark();
 		if (this._parseProperty() && this.accept(TokenType.Colon)) {
 			// looks like a declaration, go ahead
 			this.restoreAtMark(mark);
-			return this._parseDeclaration();
+			return this._parseDeclaration(stopTokens);
 		}
 
 		this.restoreAtMark(mark);
@@ -857,7 +869,7 @@ export class Parser {
 			if (this.prevToken) {
 				node.lParent = this.prevToken.offset;
 			}
-			if (!node.addChild(this._tryToParseDeclaration())) {
+			if (!node.addChild(this._tryToParseDeclaration([TokenType.ParenthesisR]))) {
 				if (!this._parseSupportsCondition()) {
 					return this.finish(node, ParseError.ConditionExpected);
 				}

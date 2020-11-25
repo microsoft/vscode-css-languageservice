@@ -565,44 +565,6 @@ export abstract class AbstractDeclaration extends Node {
 	}
 }
 
-export class CustomPropertyDeclaration extends AbstractDeclaration {
-	public property?: Property;
-	public value?: Expression;
-	public propertySet?: CustomPropertySet;
-
-	constructor(offset: number, length: number) {
-		super(offset, length);
-	}
-
-	public get type(): NodeType {
-		return NodeType.CustomPropertyDeclaration;
-	}
-
-	public setProperty(node: Property | null): node is Property {
-		return this.setNode('property', node);
-	}
-
-	public getProperty(): Property | undefined {
-		return this.property;
-	}
-
-	public setValue(value: Expression | null): value is Expression {
-		return this.setNode('value', value);
-	}
-
-	public getValue(): Expression | undefined {
-		return this.value;
-	}
-
-	public setPropertySet(value: CustomPropertySet | null): value is CustomPropertySet {
-		return this.setNode('propertySet', value);
-	}
-
-	public getPropertySet(): CustomPropertySet | undefined {
-		return this.propertySet;
-	}
-}
-
 export class CustomPropertySet extends BodyDeclaration {
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -674,6 +636,25 @@ export class Declaration extends AbstractDeclaration {
 	}
 }
 
+export class CustomPropertyDeclaration extends Declaration {
+	public propertySet?: CustomPropertySet;
+
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.CustomPropertyDeclaration;
+	}
+
+	public setPropertySet(value: CustomPropertySet | null): value is CustomPropertySet {
+		return this.setNode('propertySet', value);
+	}
+
+	public getPropertySet(): CustomPropertySet | undefined {
+		return this.propertySet;
+	}
+}
 export class Property extends Node {
 
 	public identifier?: Identifier;
