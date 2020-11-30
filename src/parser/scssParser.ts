@@ -894,6 +894,7 @@ export class SCSSParser extends cssParser.Parser {
 
 		while (node.addChild(this._parseVariable() || this._parseIdent())) {
 			// Consume all variables and idents ahead.
+			this.accept(TokenType.Comma);
 		}
 
 		// More than just identifier 

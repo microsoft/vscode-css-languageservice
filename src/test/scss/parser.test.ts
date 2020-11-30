@@ -311,6 +311,8 @@ suite('SCSS - Parser', () => {
 		assertNode('@forward "test" hide this', parser, parser._parseForward.bind(parser));
 		assertNode('@forward "test" hide $that', parser, parser._parseForward.bind(parser));
 		assertNode('@forward "test" hide this $that', parser, parser._parseForward.bind(parser));
+		assertNode('@forward "test" hide this, $that', parser, parser._parseForward.bind(parser));
+		assertNode('@forward "abstracts/functions" show px-to-rem, theme-color', parser, parser._parseForward.bind(parser));
 		assertNode('@forward "test" show this', parser, parser._parseForward.bind(parser));
 		assertNode('@forward "test" show $that', parser, parser._parseForward.bind(parser));
 		assertNode('@forward "test" show this $that', parser, parser._parseForward.bind(parser));
