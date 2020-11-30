@@ -7,14 +7,15 @@
 
 import * as assert from 'assert';
 import { Hover, TextDocument, getCSSLanguageService, getLESSLanguageService, getSCSSLanguageService } from '../../cssLanguageService';
+import { HoverSettings } from '../../cssLanguageTypes';
 
-function assertHover(value: string, expected: Hover, languageId = 'css'): void {
+function assertHover(value: string, expected: Hover, languageId = 'css', hoverSettings?: HoverSettings): void {
 	let offset = value.indexOf('|');
 	value = value.substr(0, offset) + value.substr(offset + 1);
 	const ls = languageId === 'css' ? getCSSLanguageService() : languageId === 'less' ? getLESSLanguageService() : getSCSSLanguageService();
 
 	const document = TextDocument.create(`test://foo/bar.${languageId}`, languageId, 1, value);
-	const hoverResult = ls.doHover(document, document.positionAt(offset), ls.parseStylesheet(document));
+	const hoverResult = ls.doHover(document, document.positionAt(offset), ls.parseStylesheet(document), hoverSettings);
 	assert(hoverResult);
 
 	if (hoverResult!.range && expected.range) {
@@ -32,6 +33,20 @@ suite('CSS Hover', () => {
 					"Sets the color of an element's text\n\nSyntax: &lt;color&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/color)"
 			}
 		});
+		assertHover('.test { |color: blue; }', {
+			contents: {
+				kind: 'markdown',
+				value:
+					"[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/color)"
+			}
+		}, undefined, { documentation: false });
+		assertHover('.test { |color: blue; }', {
+			contents: {
+				kind: 'markdown',
+				value:
+					"Sets the color of an element's text\n\nSyntax: &lt;color&gt;"
+			}
+		}, undefined, { references: false });
 
 		/**
 		 * Reenable after converting specificity to use MarkupContent

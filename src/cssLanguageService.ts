@@ -21,7 +21,7 @@ import {
 	LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServiceOptions,
 	Diagnostic, Position, CompletionList, Hover, Location, DocumentHighlight, DocumentLink,
 	SymbolInformation, Range, CodeActionContext, Command, CodeAction, ColorInformation,
-	Color, ColorPresentation, WorkspaceEdit, FoldingRange, SelectionRange, TextDocument, ICSSDataProvider, CSSDataV1
+	Color, ColorPresentation, WorkspaceEdit, FoldingRange, SelectionRange, TextDocument, ICSSDataProvider, CSSDataV1, HoverSettings
 
 } from './cssLanguageTypes';
 
@@ -43,7 +43,7 @@ export interface LanguageService {
 	doComplete(document: TextDocument, position: Position, stylesheet: Stylesheet): CompletionList;
 	doComplete2(document: TextDocument, position: Position, stylesheet: Stylesheet, documentContext: DocumentContext): Promise<CompletionList>;
 	setCompletionParticipants(registeredCompletionParticipants: ICompletionParticipant[]): void;
-	doHover(document: TextDocument, position: Position, stylesheet: Stylesheet): Hover | null;
+	doHover(document: TextDocument, position: Position, stylesheet: Stylesheet, settings?: HoverSettings): Hover | null;
 	findDefinition(document: TextDocument, position: Position, stylesheet: Stylesheet): Location | null;
 	findReferences(document: TextDocument, position: Position, stylesheet: Stylesheet): Location[];
 	findDocumentHighlights(document: TextDocument, position: Position, stylesheet: Stylesheet): DocumentHighlight[];

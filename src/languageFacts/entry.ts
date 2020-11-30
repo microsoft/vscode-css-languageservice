@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { EntryStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IValueData, MarkupContent, MarkedString } from '../cssLanguageTypes';
+import { EntryStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IValueData, MarkupContent, MarkedString, HoverSettings } from '../cssLanguageTypes';
 
 export interface Browsers {
 	E?: string;
@@ -40,18 +40,18 @@ function getEntryStatus(status: EntryStatus) {
 	}
 }
 
-export function getEntryDescription(entry: IEntry2, doesSupportMarkdown: boolean): MarkupContent | undefined {
+export function getEntryDescription(entry: IEntry2, doesSupportMarkdown: boolean, settings?: HoverSettings): MarkupContent | undefined {
 	let result: MarkupContent;
 
 	if (doesSupportMarkdown) {
 		result = {
 			kind: 'markdown',
-			value: getEntryMarkdownDescription(entry)
+			value: getEntryMarkdownDescription(entry, settings)
 		};
 	} else {
 		result = {
 			kind: 'plaintext',
-			value: getEntryStringDescription(entry)
+			value: getEntryStringDescription(entry, settings)
 		};
 	}
 
@@ -67,7 +67,7 @@ export function textToMarkedString(text: string): MarkedString {
 	return text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-function getEntryStringDescription(entry: IEntry2): string {
+function getEntryStringDescription(entry: IEntry2, settings?: HoverSettings): string {
 	if (!entry.description || entry.description === '') {
 		return '';
 	}
@@ -78,21 +78,24 @@ function getEntryStringDescription(entry: IEntry2): string {
 
 	let result: string = '';
 
-	if (entry.status) {
-		result += getEntryStatus(entry.status);
-	}
+	if (settings?.documentation !== false) {
+		if (entry.status) {
+			result += getEntryStatus(entry.status);
+		}
+		result += entry.description;
 
-	result += entry.description;
-
-	const browserLabel = getBrowserLabel(entry.browsers);
-	if (browserLabel) {
-		result += '\n(' + browserLabel + ')';
+		const browserLabel = getBrowserLabel(entry.browsers);
+		if (browserLabel) {
+			result += '\n(' + browserLabel + ')';
+		}
+		if ('syntax' in entry) {
+			result += `\n\nSyntax: ${entry.syntax}`;
+		}
 	}
-	if ('syntax' in entry) {
-		result += `\n\nSyntax: ${entry.syntax}`;
-	}
-	if (entry.references && entry.references.length > 0) {
-		result += '\n\n';
+	if (entry.references && entry.references.length > 0 && settings?.references !== false) {
+		if (result.length > 0) {
+			result += '\n\n';
+		}
 		result += entry.references.map(r => {
 			return `${r.name}: ${r.url}`;
 		}).join(' | ');
@@ -101,30 +104,33 @@ function getEntryStringDescription(entry: IEntry2): string {
 	return result;
 }
 
-function getEntryMarkdownDescription(entry: IEntry2): string {
+function getEntryMarkdownDescription(entry: IEntry2, settings?: HoverSettings): string {
 	if (!entry.description || entry.description === '') {
 		return '';
 	}
 
 	let result: string = '';
+	if (settings?.documentation !== false) {
+		if (entry.status) {
+			result += getEntryStatus(entry.status);
+		}
 
-	if (entry.status) {
-		result += getEntryStatus(entry.status);
+		const description = typeof entry.description === 'string' ? entry.description : entry.description.value;
+
+		result += textToMarkedString(description);
+
+		const browserLabel = getBrowserLabel(entry.browsers);
+		if (browserLabel) {
+			result += '\n\n(' + textToMarkedString(browserLabel) + ')';
+		}
+		if ('syntax' in entry && entry.syntax) {
+			result += `\n\nSyntax: ${textToMarkedString(entry.syntax)}`;
+		}
 	}
-
-	const description = typeof entry.description === 'string' ? entry.description : entry.description.value;
-
-	result += textToMarkedString(description);
-
-	const browserLabel = getBrowserLabel(entry.browsers);
-	if (browserLabel) {
-		result += '\n\n(' + textToMarkedString(browserLabel) + ')';
-	}
-	if ('syntax' in entry && entry.syntax) {
-		result += `\n\nSyntax: ${textToMarkedString(entry.syntax)}`;
-	}
-	if (entry.references && entry.references.length > 0) {
-		result += '\n\n';
+	if (entry.references && entry.references.length > 0 && settings?.references !== false) {
+		if (result.length > 0) {
+			result += '\n\n';
+		}
 		result += entry.references.map(r => {
 			return `[${r.name}](${r.url})`;
 		}).join(' | ');

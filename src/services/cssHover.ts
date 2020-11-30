@@ -8,7 +8,7 @@ import * as nodes from '../parser/cssNodes';
 import * as languageFacts from '../languageFacts/facts';
 import { SelectorPrinting } from './selectorPrinting';
 import { startsWith } from '../utils/strings';
-import { TextDocument, Range, Position, Hover, MarkedString, MarkupContent, MarkupKind, ClientCapabilities } from '../cssLanguageTypes';
+import { TextDocument, Range, Position, Hover, MarkedString, MarkupContent, MarkupKind, ClientCapabilities, HoverSettings } from '../cssLanguageTypes';
 import { isDefined } from '../utils/objects';
 import { CSSDataManager } from '../languageFacts/dataManager';
 
@@ -20,7 +20,7 @@ export class CSSHover {
 		this.selectorPrinting = new SelectorPrinting(cssDataManager);
 	}
 
-	public doHover(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Hover | null {
+	public doHover(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet, settings?: HoverSettings): Hover | null {
 		function getRange(node: nodes.Node) {
 			return Range.create(document.positionAt(node.offset), document.positionAt(node.end));
 		}
@@ -62,7 +62,7 @@ export class CSSHover {
 				const propertyName = node.getFullPropertyName();
 				const entry = this.cssDataManager.getProperty(propertyName);
 				if (entry) {
-					const contents = languageFacts.getEntryDescription(entry, this.doesSupportMarkdown());
+					const contents = languageFacts.getEntryDescription(entry, this.doesSupportMarkdown(), settings);
 					if (contents) {
 						hover = {
 							contents,
@@ -79,7 +79,7 @@ export class CSSHover {
 				const atRuleName = node.getText();
 				const entry = this.cssDataManager.getAtDirective(atRuleName);
 				if (entry) {
-					const contents = languageFacts.getEntryDescription(entry, this.doesSupportMarkdown());
+					const contents = languageFacts.getEntryDescription(entry, this.doesSupportMarkdown(), settings);
 					if (contents) {
 						hover = {
 							contents,
@@ -99,7 +99,7 @@ export class CSSHover {
 						? this.cssDataManager.getPseudoElement(selectorName)
 						: this.cssDataManager.getPseudoClass(selectorName);
 				if (entry) {
-					const contents = languageFacts.getEntryDescription(entry, this.doesSupportMarkdown());
+					const contents = languageFacts.getEntryDescription(entry, this.doesSupportMarkdown(), settings);
 					if (contents) {
 						hover = {
 							contents,

@@ -1,4 +1,6 @@
-
+4.4.0 - 2020-11-30
+===================
+  * New parameter `HoverSettings` for `LanguageService.doHover`: Defines whether the hover contains element documentation and/or a reference to MDN.
 
 4.3.0 - 2020-06-26
 ===================
