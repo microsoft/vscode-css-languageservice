@@ -1,6 +1,6 @@
 {
   "name": "vscode-css-languageservice",
-  "version": "4.3.5",
+  "version": "4.3.6",
   "description": "Language service for CSS, LESS and SCSS",
   "main": "./lib/umd/cssLanguageService.js",
   "typings": "./lib/umd/cssLanguageService",
