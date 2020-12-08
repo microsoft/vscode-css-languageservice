@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
+import { TextDocument } from '../../cssLanguageTypes';
+import { SCSSParser } from '../../parser/scssParser';
 import { Rule, Rules } from '../../services/lintRules';
 import { assertEntries } from '../css/lint.test';
-import { SCSSParser } from '../../parser/scssParser';
-import { TextDocument } from '../../cssLanguageTypes';
 
 function assertFontFace(input: string, ...rules: Rule[]): void {
 	let p = new SCSSParser();
@@ -28,6 +28,18 @@ suite('SCSS - Lint', () => {
 
 	test('empty ruleset', function () {
 		assertRuleSet('selector { color: red; nested {} }', Rules.EmptyRuleSet);
+	});
+
+	test('ID selectors', function () {
+		assertRuleSet('#id { color: red; }', Rules.AvoidIdSelector);
+		assertRuleSet('element#id { color: red; }', Rules.AvoidIdSelector);
+		assertRuleSet('#id__#{foo} { color: red; }', Rules.AvoidIdSelector);
+	});
+
+	test('Interpolation selectors', function () {
+		assertRuleSet('#{foo} { color: red; }');
+		assertRuleSet('#{foo}__cont { color: red; }');
+		assertRuleSet('#{foo}.class { color: red; }');
 	});
 
 	test('font-face required properties', function () {

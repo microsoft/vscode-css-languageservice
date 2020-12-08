@@ -4,15 +4,15 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as languageFacts from '../languageFacts/facts';
-import { Rules, LintConfigurationSettings, Rule, Settings } from './lintRules';
-import * as nodes from '../parser/cssNodes';
-import calculateBoxModel, { Element } from './lintUtil';
-import { union } from '../utils/arrays';
-
 import * as nls from 'vscode-nls';
 import { TextDocument } from '../cssLanguageTypes';
 import { CSSDataManager } from '../languageFacts/dataManager';
+import * as languageFacts from '../languageFacts/facts';
+import * as nodes from '../parser/cssNodes';
+import { union } from '../utils/arrays';
+import { LintConfigurationSettings, Rule, Rules, Settings } from './lintRules';
+import calculateBoxModel, { Element } from './lintUtil';
+
 
 const localize = nls.loadMessageBundle();
 
@@ -170,6 +170,8 @@ export class LintVisitor implements nodes.IVisitor {
 				return this.visitHexColorValue(<nodes.HexColorValue>node);
 			case nodes.NodeType.Prio:
 				return this.visitPrio(node);
+			case nodes.NodeType.IdentifierSelector:
+				return this.visitIdentifierSelector(node);
 		}
 		return true;
 	}
@@ -235,22 +237,23 @@ export class LintVisitor implements nodes.IVisitor {
 	}
 
 	private visitSimpleSelector(node: nodes.SimpleSelector): boolean {
-
-		const firstChar = this.documentText.charAt(node.offset);
-
 		/////////////////////////////////////////////////////////////
 		//	Lint - The universal selector (*) is known to be slow.
 		/////////////////////////////////////////////////////////////
+		const firstChar = this.documentText.charAt(node.offset);
+
 		if (node.length === 1 && firstChar === '*') {
 			this.addEntry(node, Rules.UniversalSelector);
 		}
 
+		return true;
+	}
+
+	private visitIdentifierSelector(node: nodes.Node): boolean {
 		/////////////////////////////////////////////////////////////
 		//	Lint - Avoid id selectors
 		/////////////////////////////////////////////////////////////
-		if (firstChar === '#') {
-			this.addEntry(node, Rules.AvoidIdSelector);
-		}
+		this.addEntry(node, Rules.AvoidIdSelector);
 		return true;
 	}
 
