@@ -78,7 +78,7 @@ suite('CSS - Custom Data', async () => {
 			items: [{ label: ':foo', resultText: ':foo' }]
 		}, settings, undefined, undefined, customData);
 
-		await testCompletionFor('::foo', {
+		await testCompletionFor('::foo|', {
 			items: [{ label: '::foo', resultText: '::foo' }]
 		}, settings, undefined, undefined, customData);
 	});

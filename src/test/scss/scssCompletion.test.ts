@@ -173,7 +173,7 @@ suite('SCSS - Completions', () => {
 			]
 		};
 
-		await testCompletionFor('@', {
+		await testCompletionFor('@|', {
 			items: [
 				{ label: '@extend' },
 				{ label: '@at-root' },
@@ -205,7 +205,7 @@ suite('SCSS - Completions', () => {
 
 	suite('Modules', async () => {
 		test('module-loading at-rules', async () => {
-			await testCompletionFor('@', {
+			await testCompletionFor('@|', {
 				items: [
 					{ label: '@use', documentationIncludes: '[Sass documentation](https://sass-lang.com/documentation/at-rules/use)' },
 					{ label: '@forward', documentationIncludes: '[Sass documentation](https://sass-lang.com/documentation/at-rules/forward)' },

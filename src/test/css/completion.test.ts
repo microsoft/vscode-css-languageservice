@@ -101,6 +101,7 @@ export async function testCompletionFor(
 	customData: ICSSDataProvider[] = [],
 ) {
 	const offset = value.indexOf('|');
+	assert.ok(offset !== -1, '| missing in ' + value);
 	value = value.substr(0, offset) + value.substr(offset + 1);
 
 	const actualPropertyContexts: PropertyCompletionContext[] = [];
