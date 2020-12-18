@@ -123,7 +123,7 @@ suite('CSS - Selector Printing', () => {
 		assertSelector(p, 'e1 > e2 { }', 'e2', '{e1{e2}}');
 		assertSelector(p, 'e1, e2 { }', 'e1', '{e1}');
 		assertSelector(p, 'e1 + e2 { }', 'e2', '{e1|e2}');
-		assertSelector(p, 'e1 ~ e2 { }', 'e2', '{e1|e2|⋮|e2}');
+		assertSelector(p, 'e1 ~ e2 { }', 'e2', '{e1|⋮|e2}');
 	});
 
 	test('escaping', function () {
@@ -169,7 +169,7 @@ suite('CSS - MarkedStringPrinter selectors', () => {
 			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 0, 2)'
 		]);
 		assertSelectorMarkdown(p, 'e1 ~ e2 { }', 'e2', [
-			{ language: 'html', value: '<e1>\n<e2>\n⋮\n<e2>' },
+			{ language: 'html', value: '<e1>\n⋮\n<e2>' },
 			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 0, 2)'
 		]);
 	});
