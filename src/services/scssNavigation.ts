@@ -7,9 +7,8 @@
 import { CSSNavigation } from './cssNavigation';
 import { FileSystemProvider, DocumentContext, FileType, DocumentUri } from '../cssLanguageTypes';
 import * as nodes from '../parser/cssNodes';
-import { URI } from 'vscode-uri';
+import { URI, Utils } from 'vscode-uri';
 import { startsWith } from '../utils/strings';
-import { extname } from '../utils/resources';
 
 export class SCSSNavigation extends CSSNavigation {
 	constructor(fileSystemProvider: FileSystemProvider | undefined) {
@@ -29,20 +28,22 @@ export class SCSSNavigation extends CSSNavigation {
 			return undefined; // sass library
 		}
 		const target = await super.resolveRelativeReference(ref, documentUri, documentContext);
-		if (this.fileSystemProvider && target && extname(target).length === 0) {
-			try {
-				const parsedUri = URI.parse(target);
-				const pathVariations = toPathVariations(parsedUri);
-				if (pathVariations) {
-					for (let j = 0; j < pathVariations.length; j++) {
-						if (await this.fileExists(pathVariations[j])) {
-							return pathVariations[j];
+		if (this.fileSystemProvider && target) {
+			const parsedUri = URI.parse(target);
+			if (parsedUri.path && Utils.extname(parsedUri).length === 0) {
+				try {
+					const pathVariations = toPathVariations(parsedUri);
+					if (pathVariations) {
+						for (let j = 0; j < pathVariations.length; j++) {
+							if (await this.fileExists(pathVariations[j])) {
+								return pathVariations[j];
+							}
 						}
 					}
+					return undefined;
+				} catch (e) {
+					// ignore
 				}
-				return undefined;
-			} catch (e) {
-				// ignore
 			}
 		}
 		return target;

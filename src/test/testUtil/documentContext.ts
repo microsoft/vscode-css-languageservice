@@ -5,9 +5,9 @@
 
 import * as url from 'url';
 
-import { DocumentContext } from "../../cssLanguageTypes";
-import { startsWith } from "../../utils/strings";
-import { joinPath } from "../../utils/resources";
+import { DocumentContext } from '../../cssLanguageTypes';
+import { startsWith } from '../../utils/strings';
+import { joinPath } from '../../utils/resources';
 
 export function getDocumentContext(workspaceFolder?: string): DocumentContext {
 	return {
@@ -20,7 +20,7 @@ export function getDocumentContext(workspaceFolder?: string): DocumentContext {
 			} catch (e) {
 				return undefined;
 			}
-			
+
 		}
 	};
 }
