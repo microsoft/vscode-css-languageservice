@@ -29,7 +29,7 @@
     "vscode-languageserver-textdocument": "^1.0.1",
     "vscode-languageserver-types": "^3.16.0",
     "vscode-nls": "^5.0.0",
-    "vscode-uri": "^3.0.0"
+    "vscode-uri": "^3.0.1"
   },
   "scripts": {
     "prepublishOnly": "npm run clean && npm run compile-esm && npm run test && npm run remove-sourcemap-refs",
