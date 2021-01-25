@@ -635,11 +635,11 @@ suite('CSS - Completion', () => {
 					}
 				},
 				{
-					label: 'user-select',
+					label: 'box-ordinal-group',
 					documentation: {
 						kind: 'markdown',
 						value:
-							'🚨️ Property is nonstandard. Avoid using it.\n\nControls the appearance of selection\\.\n\nSyntax: auto | text | none | contain | all\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/user-select)'
+							'🚨️ Property is nonstandard. Avoid using it.\n\nThe box\\-ordinal\\-group CSS property assigns the flexbox\'s child elements to an ordinal group\\.\n\n(Edge 12, Firefox 1, Safari 3, Chrome 1, Opera 15)\n\nSyntax: &lt;integer&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/box-ordinal-group)'
 					}
 				}
 			]
