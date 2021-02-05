@@ -22,7 +22,6 @@ import {
 	Diagnostic, Position, CompletionList, Hover, Location, DocumentHighlight, DocumentLink,
 	SymbolInformation, Range, CodeActionContext, Command, CodeAction, ColorInformation,
 	Color, ColorPresentation, WorkspaceEdit, FoldingRange, SelectionRange, TextDocument, ICSSDataProvider, CSSDataV1, HoverSettings, CompletionSettings
-
 } from './cssLanguageTypes';
 
 import { CSSDataManager } from './languageFacts/dataManager';

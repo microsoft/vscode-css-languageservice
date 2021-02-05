@@ -30,8 +30,6 @@ export class CSSHover {
 		function getRange(node: nodes.Node) {
 			return Range.create(document.positionAt(node.offset), document.positionAt(node.end));
 		}
-		const combinedSettings = settings
-
 		const offset = document.offsetAt(position);
 		const nodepath = nodes.getNodePath(stylesheet, offset);
 
