@@ -1,5 +1,5 @@
 
-5.1.0 /
+5.1.0 / 2021-02-05
 ==================
   * new API `LanguageSettings.hover`
   * New parameter `CompletionSettings` for `LanguageService.doComplete` and `LanguageService.doComplete2`
