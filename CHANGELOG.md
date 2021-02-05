@@ -1,3 +1,9 @@
+
+5.1.0 /
+==================
+  * new API `LanguageSettings.hover`
+  * New parameter `CompletionSettings` for `LanguageService.doComplete` and `LanguageService.doComplete2`
+
 5.0.0 / 2020-12-14
 ==================
   * Update to `vscode-languageserver-types@3.16`

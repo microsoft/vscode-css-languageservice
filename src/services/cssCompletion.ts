@@ -10,7 +10,7 @@ import * as languageFacts from '../languageFacts/facts';
 import * as strings from '../utils/strings';
 import {
 	ICompletionParticipant, LanguageSettings, TextDocument,
-	Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, CompletionItemTag, DocumentContext, LanguageServiceOptions, IPropertyData
+	Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, CompletionItemTag, DocumentContext, LanguageServiceOptions, IPropertyData, CompletionSettings
 } from '../cssLanguageTypes';
 
 import * as nls from 'vscode-nls';
@@ -34,7 +34,7 @@ enum SortTexts {
 
 export class CSSCompletion {
 
-	private settings?: LanguageSettings;
+	private defaultSettings?: CompletionSettings;
 
 	private supportsMarkdown: boolean | undefined;
 
@@ -47,12 +47,14 @@ export class CSSCompletion {
 	defaultReplaceRange!: Range;
 	nodePath!: nodes.Node[];
 	completionParticipants: ICompletionParticipant[] = [];
+	documentSettings?: CompletionSettings;
+
 
 	constructor(public variablePrefix: string | null = null, private lsOptions: LanguageServiceOptions, private cssDataManager: CSSDataManager) {
 	}
 
-	public configure(settings?: LanguageSettings) {
-		this.settings = settings;
+	public configure(settings?: CompletionSettings) {
+		this.defaultSettings = settings;
 	}
 
 	protected getSymbolContext(): Symbols {
@@ -66,16 +68,16 @@ export class CSSCompletion {
 		this.completionParticipants = registeredCompletionParticipants || [];
 	}
 
-	public async doComplete2(document: TextDocument, position: Position, styleSheet: nodes.Stylesheet, documentContext: DocumentContext): Promise<CompletionList> {
+	public async doComplete2(document: TextDocument, position: Position, styleSheet: nodes.Stylesheet, documentContext: DocumentContext, completionSettings = this.defaultSettings): Promise<CompletionList> {
 		if (!this.lsOptions.fileSystemProvider || !this.lsOptions.fileSystemProvider.readDirectory) {
-			return this.doComplete(document, position, styleSheet);
+			return this.doComplete(document, position, styleSheet, completionSettings);
 		}
 
 		const participant: PathCompletionParticipant = new PathCompletionParticipant(this.lsOptions.fileSystemProvider.readDirectory);
 		const contributedParticipants = this.completionParticipants;
 		this.completionParticipants = [participant as ICompletionParticipant].concat(contributedParticipants);
 
-		const result = this.doComplete(document, position, styleSheet);
+		const result = this.doComplete(document, position, styleSheet, completionSettings);
 		try {
 			const pathCompletionResult = await participant.computeCompletions(document, documentContext);
 			return {
@@ -88,13 +90,14 @@ export class CSSCompletion {
 	}
 
 
-	public doComplete(document: TextDocument, position: Position, styleSheet: nodes.Stylesheet): CompletionList {
+	public doComplete(document: TextDocument, position: Position, styleSheet: nodes.Stylesheet, documentSettings: CompletionSettings | undefined): CompletionList {
 		this.offset = document.offsetAt(position);
 		this.position = position;
 		this.currentWord = getCurrentWord(document, this.offset);
 		this.defaultReplaceRange = Range.create(Position.create(this.position.line, this.position.character - this.currentWord.length), this.position);
 		this.textDocument = document;
 		this.styleSheet = styleSheet;
+		this.documentSettings = documentSettings;
 		try {
 			const result: CompletionList = { isIncomplete: false, items: [] };
 			this.nodePath = nodes.getNodePath(this.styleSheet, this.offset);
@@ -267,25 +270,11 @@ export class CSSCompletion {
 	}
 
 	private get isTriggerPropertyValueCompletionEnabled(): boolean {
-		if (
-			!this.settings ||
-			!this.settings.completion ||
-			this.settings.completion.triggerPropertyValueCompletion === undefined
-		) {
-			return true;
-		}
-		return this.settings.completion.triggerPropertyValueCompletion;
+		return this.documentSettings?.triggerPropertyValueCompletion ?? true;
 	}
 
 	private get isCompletePropertyWithSemicolonEnabled(): boolean {
-		if (
-			!this.settings ||
-			!this.settings.completion ||
-			this.settings.completion.completePropertyWithSemicolon === undefined
-		) {
-			return true;
-		}
-		return this.settings.completion.completePropertyWithSemicolon;
+		return this.documentSettings?.completePropertyWithSemicolon ?? true;
 	}
 
 	public getCompletionsForDeclarationValue(node: nodes.Declaration, result: CompletionList): CompletionList {

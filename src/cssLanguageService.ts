@@ -21,7 +21,7 @@ import {
 	LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServiceOptions,
 	Diagnostic, Position, CompletionList, Hover, Location, DocumentHighlight, DocumentLink,
 	SymbolInformation, Range, CodeActionContext, Command, CodeAction, ColorInformation,
-	Color, ColorPresentation, WorkspaceEdit, FoldingRange, SelectionRange, TextDocument, ICSSDataProvider, CSSDataV1, HoverSettings
+	Color, ColorPresentation, WorkspaceEdit, FoldingRange, SelectionRange, TextDocument, ICSSDataProvider, CSSDataV1, HoverSettings, CompletionSettings
 
 } from './cssLanguageTypes';
 
@@ -29,7 +29,6 @@ import { CSSDataManager } from './languageFacts/dataManager';
 import { CSSDataProvider } from './languageFacts/dataProvider';
 import { getSelectionRanges } from './services/cssSelectionRange';
 import { SCSSNavigation } from './services/scssNavigation';
-import { Stylesheet as StyleSheetImpl } from './parser/cssNodes';
 import { cssData } from './data/webCustomData';
 
 export type Stylesheet = {};
@@ -40,8 +39,8 @@ export interface LanguageService {
 	setDataProviders(useDefaultDataProvider: boolean, customDataProviders: ICSSDataProvider[]): void;
 	doValidation(document: TextDocument, stylesheet: Stylesheet, documentSettings?: LanguageSettings): Diagnostic[];
 	parseStylesheet(document: TextDocument): Stylesheet;
-	doComplete(document: TextDocument, position: Position, stylesheet: Stylesheet): CompletionList;
-	doComplete2(document: TextDocument, position: Position, stylesheet: Stylesheet, documentContext: DocumentContext): Promise<CompletionList>;
+	doComplete(document: TextDocument, position: Position, stylesheet: Stylesheet, settings?: CompletionSettings): CompletionList;
+	doComplete2(document: TextDocument, position: Position, stylesheet: Stylesheet, documentContext: DocumentContext, settings?: CompletionSettings): Promise<CompletionList>;
 	setCompletionParticipants(registeredCompletionParticipants: ICompletionParticipant[]): void;
 	doHover(document: TextDocument, position: Position, stylesheet: Stylesheet, settings?: HoverSettings): Hover | null;
 	findDefinition(document: TextDocument, position: Position, stylesheet: Stylesheet): Location | null;
@@ -74,7 +73,8 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 	return {
 		configure: (settings) => {
 			validation.configure(settings);
-			completion.configure(settings);
+			completion.configure(settings?.completion);
+			hover.configure(settings?.hover);
 		},
 		setDataProviders: cssDataManager.setDataProviders.bind(cssDataManager),
 		doValidation: validation.doValidation.bind(validation),

@@ -20,6 +20,7 @@ export interface LanguageSettings {
 	validate?: boolean;
 	lint?: LintSettings;
 	completion?: CompletionSettings;
+	hover?: HoverSettings;
 }
 
 
