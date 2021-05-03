@@ -115,7 +115,7 @@ export class CSSNavigation {
 		for (let link of links) {
 			const target = link.target;
 			if (target && !(/^\w+:\/\//g.test(target))) {
-				const resolvedTarget = await this.resolveRelativeReference(target, document.uri, documentContext);
+				const resolvedTarget = await this.resolveRelativeReference(target, document.uri, documentContext, link.isRawLink);
 				if (resolvedTarget !== undefined) {
 					link.target = resolvedTarget;
 					resolvedLinks.push(link);
@@ -128,8 +128,8 @@ export class CSSNavigation {
 	}
 
 
-	private findUnresolvedLinks(document: TextDocument, stylesheet: nodes.Stylesheet): DocumentLink[] {
-		const result: DocumentLink[] = [];
+	private findUnresolvedLinks(document: TextDocument, stylesheet: nodes.Stylesheet): (DocumentLink & { isRawLink: boolean })[] {
+		const result: (DocumentLink & { isRawLink: boolean })[] = [];
 
 		const collect = (uriStringNode: nodes.Node) => {
 			let rawUri = uriStringNode.getText();
@@ -142,7 +142,9 @@ export class CSSNavigation {
 			if (startsWith(rawUri, `'`) || startsWith(rawUri, `"`)) {
 				rawUri = rawUri.slice(1, -1);
 			}
-			result.push({ target: rawUri, range });
+
+			const isRawLink = uriStringNode.parent ? this.isRawStringDocumentLinkNode(uriStringNode.parent) : false;
+			result.push({ target: rawUri, range, isRawLink });
 		};
 
 		stylesheet.accept(candidate => {
@@ -275,7 +277,7 @@ export class CSSNavigation {
 		};
 	}
 
-	protected async resolveRelativeReference(ref: string, documentUri: string, documentContext: DocumentContext): Promise<string | undefined> {
+	protected async resolveRelativeReference(ref: string, documentUri: string, documentContext: DocumentContext, isRawLink?: boolean): Promise<string | undefined> {
 		// Following [css-loader](https://github.com/webpack-contrib/css-loader#url)
 		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#imports)
 		// convention, if an import path starts with ~ then use node module resolution

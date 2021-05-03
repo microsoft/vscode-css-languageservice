@@ -23,27 +23,24 @@ export class SCSSNavigation extends CSSNavigation {
 		);
 	}
 
-	protected async resolveRelativeReference(ref: string, documentUri: string, documentContext: DocumentContext): Promise<string | undefined> {
+	protected async resolveRelativeReference(ref: string, documentUri: string, documentContext: DocumentContext, isRawLink?: boolean): Promise<string | undefined> {
 		if (startsWith(ref, 'sass:')) {
 			return undefined; // sass library
 		}
-		const target = await super.resolveRelativeReference(ref, documentUri, documentContext);
-		if (this.fileSystemProvider && target) {
+		const target = await super.resolveRelativeReference(ref, documentUri, documentContext, isRawLink);
+		if (this.fileSystemProvider && target && isRawLink) {
 			const parsedUri = URI.parse(target);
-			if (parsedUri.path && Utils.extname(parsedUri).length === 0) {
-				try {
-					const pathVariations = toPathVariations(parsedUri);
-					if (pathVariations) {
-						for (let j = 0; j < pathVariations.length; j++) {
-							if (await this.fileExists(pathVariations[j])) {
-								return pathVariations[j];
-							}
+			try {
+				const pathVariations = toPathVariations(parsedUri);
+				if (pathVariations) {
+					for (let j = 0; j < pathVariations.length; j++) {
+						if (await this.fileExists(pathVariations[j])) {
+							return pathVariations[j];
 						}
 					}
-					return undefined;
-				} catch (e) {
-					// ignore
 				}
+			} catch (e) {
+				// ignore
 			}
 		}
 		return target;
