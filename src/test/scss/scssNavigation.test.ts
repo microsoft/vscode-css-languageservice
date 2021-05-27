@@ -9,7 +9,7 @@ import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertC
 import { getSCSSLanguageService, DocumentLink, TextDocument } from '../../cssLanguageService';
 import * as assert from 'assert';
 import * as path from 'path';
-import { URI } from 'vscode-uri';
+import { URI, Utils } from 'vscode-uri';
 import { getFsProvider } from '../testUtil/fsProvider';
 import { getDocumentContext } from '../testUtil/documentContext';
 
@@ -27,14 +27,20 @@ async function assertDynamicLinks(docUri: string, input: string, expected: Docum
 	assert.deepEqual(links, expected);
 }
 
-async function assertNoDynamicLinks(docUri: string, input: string) {
+async function assertNoDynamicLinks(docUri: string, input: string, extecedTarget: string | undefined) {
 	const ls = getSCSSLS();
 	const document = TextDocument.create(docUri, 'scss', 0, input);
 
 	const stylesheet = ls.parseStylesheet(document);
 
 	const links = await ls.findDocumentLinks2(document, stylesheet, getDocumentContext(document.uri));
-	assert.deepEqual(links.length, 0, `${docUri.toString()} should have no link`);
+	if (extecedTarget) {
+		assert.deepEqual(links.length, 1, `${docUri.toString()} should only return itself`);
+		assert.deepEqual(links[0].target, extecedTarget, `${docUri.toString()} should only return itself`);
+	} else {
+		assert.deepEqual(links.length, 0, `${docUri.toString()} hould have no link`);
+	}
+
 }
 
 suite('SCSS - Navigation', () => {
@@ -111,13 +117,13 @@ suite('SCSS - Navigation', () => {
 				return URI.file(path.resolve(fixtureRoot, relativePath)).toString();
 			};
 
-			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@import 'foo'`);
+			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@import 'foo'`, getDocumentUri('foo'));
 
-			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@import './foo'`);
+			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@import './foo'`, getDocumentUri('foo'));
 
-			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@import './_foo'`);
+			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@import './_foo'`, getDocumentUri('_foo'));
 
-			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@import './foo-baz'`);
+			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@import './foo-baz'`, getDocumentUri('foo-baz'));
 		});
 
 		test('SCSS partial file dynamic links', async () => {
@@ -185,8 +191,8 @@ suite('SCSS - Navigation', () => {
 				{ range: newRange(9, 16), target: getDocumentUri('./foo.scss') }
 			]);
 
-			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@use 'sass:math'`);
-			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@use './non-existent'`);
+			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@use 'sass:math'`, undefined);
+			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@use './non-existent'`, getDocumentUri('non-existent'));
 		});
 
 		test('SCSS empty path', async () => {

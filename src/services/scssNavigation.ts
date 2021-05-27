@@ -7,7 +7,7 @@
 import { CSSNavigation } from './cssNavigation';
 import { FileSystemProvider, DocumentContext, FileType, DocumentUri } from '../cssLanguageTypes';
 import * as nodes from '../parser/cssNodes';
-import { URI, Utils } from 'vscode-uri';
+import { URI } from 'vscode-uri';
 import { startsWith } from '../utils/strings';
 
 export class SCSSNavigation extends CSSNavigation {
@@ -30,7 +30,7 @@ export class SCSSNavigation extends CSSNavigation {
 		const target = await super.resolveRelativeReference(ref, documentUri, documentContext);
 		if (this.fileSystemProvider && target) {
 			const parsedUri = URI.parse(target);
-			if (parsedUri.path && Utils.extname(parsedUri).length === 0) {
+			if (parsedUri.path) {
 				try {
 					const pathVariations = toPathVariations(parsedUri);
 					if (pathVariations) {
@@ -40,10 +40,10 @@ export class SCSSNavigation extends CSSNavigation {
 							}
 						}
 					}
-					return undefined;
 				} catch (e) {
 					// ignore
 				}
+
 			}
 		}
 		return target;
