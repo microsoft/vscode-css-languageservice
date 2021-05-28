@@ -6,7 +6,7 @@
 
 import {
 	Color, ColorInformation, ColorPresentation, DocumentHighlight, DocumentHighlightKind, DocumentLink, Location,
-	Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit, TextDocument, DocumentContext, FileSystemProvider, DocumentUri, FileType
+	Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit, TextDocument, DocumentContext, FileSystemProvider, FileType
 } from '../cssLanguageTypes';
 import * as nls from 'vscode-nls';
 import * as nodes from '../parser/cssNodes';
@@ -16,6 +16,8 @@ import { startsWith } from '../utils/strings';
 import { dirname, joinPath } from '../utils/resources';
 
 const localize = nls.loadMessageBundle();
+
+type UnresolvedLinkData = { link: DocumentLink, isRawLink: boolean }
 
 export class CSSNavigation {
 
@@ -96,26 +98,30 @@ export class CSSNavigation {
 	}
 
 	public findDocumentLinks(document: TextDocument, stylesheet: nodes.Stylesheet, documentContext: DocumentContext): DocumentLink[] {
-		const links = this.findUnresolvedLinks(document, stylesheet);
-		for (let i = 0; i < links.length; i++) {
-			const target = links[i].target;
+		const linkData = this.findUnresolvedLinks(document, stylesheet);
+		const resolvedLinks: DocumentLink[] = [];
+		for (let data of linkData) {
+			const link = data.link;
+			const target = link.target;
 			if (target && !(/^\w+:\/\//g.test(target))) {
 				const resolved = documentContext.resolveReference(target, document.uri);
 				if (resolved) {
-					links[i].target = resolved;
+					link.target = resolved;
 				}
 			}
+			resolvedLinks.push(link);
 		}
-		return links;
+		return resolvedLinks;
 	}
 
 	public async findDocumentLinks2(document: TextDocument, stylesheet: nodes.Stylesheet, documentContext: DocumentContext): Promise<DocumentLink[]> {
-		const links = this.findUnresolvedLinks(document, stylesheet);
+		const linkData = this.findUnresolvedLinks(document, stylesheet);
 		const resolvedLinks: DocumentLink[] = [];
-		for (let link of links) {
+		for (let data of linkData) {
+			const link = data.link;
 			const target = link.target;
 			if (target && !(/^\w+:\/\//g.test(target))) {
-				const resolvedTarget = await this.resolveRelativeReference(target, document.uri, documentContext);
+				const resolvedTarget = await this.resolveRelativeReference(target, document.uri, documentContext, data.isRawLink);
 				if (resolvedTarget !== undefined) {
 					link.target = resolvedTarget;
 					resolvedLinks.push(link);
@@ -128,8 +134,8 @@ export class CSSNavigation {
 	}
 
 
-	private findUnresolvedLinks(document: TextDocument, stylesheet: nodes.Stylesheet): DocumentLink[] {
-		const result: DocumentLink[] = [];
+	private findUnresolvedLinks(document: TextDocument, stylesheet: nodes.Stylesheet): UnresolvedLinkData[] {
+		const result: UnresolvedLinkData[] = [];
 
 		const collect = (uriStringNode: nodes.Node) => {
 			let rawUri = uriStringNode.getText();
@@ -142,7 +148,9 @@ export class CSSNavigation {
 			if (startsWith(rawUri, `'`) || startsWith(rawUri, `"`)) {
 				rawUri = rawUri.slice(1, -1);
 			}
-			result.push({ target: rawUri, range });
+
+			const isRawLink = uriStringNode.parent ? this.isRawStringDocumentLinkNode(uriStringNode.parent) : false;
+			result.push({ link: { target: rawUri, range }, isRawLink });
 		};
 
 		stylesheet.accept(candidate => {
@@ -275,7 +283,7 @@ export class CSSNavigation {
 		};
 	}
 
-	protected async resolveRelativeReference(ref: string, documentUri: string, documentContext: DocumentContext): Promise<string | undefined> {
+	protected async resolveRelativeReference(ref: string, documentUri: string, documentContext: DocumentContext, isRawLink?: boolean): Promise<string | undefined> {
 		// Following [css-loader](https://github.com/webpack-contrib/css-loader#url)
 		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#imports)
 		// convention, if an import path starts with ~ then use node module resolution
