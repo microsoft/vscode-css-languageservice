@@ -7,7 +7,7 @@
 import { CSSNavigation } from './cssNavigation';
 import { FileSystemProvider, DocumentContext, FileType, DocumentUri } from '../cssLanguageTypes';
 import * as nodes from '../parser/cssNodes';
-import { URI, Utils } from 'vscode-uri';
+import { URI } from 'vscode-uri';
 import { startsWith } from '../utils/strings';
 
 export class SCSSNavigation extends CSSNavigation {
@@ -41,6 +41,7 @@ export class SCSSNavigation extends CSSNavigation {
 				}
 			} catch (e) {
 				// ignore
+
 			}
 		}
 		return target;
