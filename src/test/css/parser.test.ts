@@ -99,6 +99,10 @@ suite('CSS - Parser', () => {
 		assert.equal(unknownAtRule.type, nodes.NodeType.UnknownAtRule);
 		assert.equal(unknownAtRule.offset, 0);
 		assert.equal(node.getChild(0)!.length, 13);
+
+		// microsoft/vscode-css-languageservice#237
+		assertNode('.foo { @apply p-4 bg-neutral-50; min-height: var(--space-14); }', parser, parser._parseStylesheet.bind(parser));
+
 	});
 
 	test('stylesheet /panic/', function () {
