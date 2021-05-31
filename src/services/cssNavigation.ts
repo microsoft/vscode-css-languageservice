@@ -17,7 +17,7 @@ import { dirname, joinPath } from '../utils/resources';
 
 const localize = nls.loadMessageBundle();
 
-type UnresolvedLinkData = { link: DocumentLink, isRawLink: boolean }
+type UnresolvedLinkData = { link: DocumentLink, isRawLink: boolean };
 
 export class CSSNavigation {
 
