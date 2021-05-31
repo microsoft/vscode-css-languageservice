@@ -297,9 +297,6 @@ suite('CSS - Parser', () => {
 		assertNode('boo {--weird-inside-delims: {color: green;;;;;;!important;;}}', parser, parser._parseRuleset.bind(parser));
 		assertNode(`boo {--validValue: , 0 0}`, parser, parser._parseRuleset.bind(parser));
 		assertNode(`boo {--validValue: , 0 0;}`, parser, parser._parseRuleset.bind(parser));
-		assertNode('boo { @apply --custom-prop; }', parser, parser._parseRuleset.bind(parser));
-		assertNode('boo { @apply --custom-prop }', parser, parser._parseRuleset.bind(parser));
-		assertNode('boo { @apply --custom-prop; background-color: red }', parser, parser._parseRuleset.bind(parser));
 		assertError('boo, { }', parser, parser._parseRuleset.bind(parser), ParseError.SelectorExpected);
 	});
 
@@ -319,8 +316,6 @@ suite('CSS - Parser', () => {
 		assertError('boo {--unbalanced-parens: not)()(cool;}', parser, parser._parseRuleset.bind(parser), ParseError.LeftParenthesisExpected);
 		assertError('boo {--unbalanced-brackets: not[[]valid;}', parser, parser._parseRuleset.bind(parser), ParseError.LeftCurlyExpected);
 		assertError('boo {--unbalanced-brackets: not][][valid;}', parser, parser._parseRuleset.bind(parser), ParseError.LeftSquareBracketExpected);
-		assertError('boo { @apply }', parser, parser._parseRuleset.bind(parser), ParseError.IdentifierExpected);
-		assertError('boo { @apply --custom-prop background: red}', parser, parser._parseRuleset.bind(parser), ParseError.SemiColonExpected);
 	});
 
 	test('selector', function () {

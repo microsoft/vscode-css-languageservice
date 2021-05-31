@@ -349,8 +349,7 @@ export class Parser {
 	}
 
 	protected _parseRuleSetDeclarationAtStatement(): nodes.Node | null {
-		return this._parseAtApply()
-			|| this._parseUnknownAtRule();
+		return this._parseUnknownAtRule();
 	}
 
 	public _parseRuleSetDeclaration(): nodes.Node | null {
@@ -359,27 +358,6 @@ export class Parser {
 			return this._parseRuleSetDeclarationAtStatement();
 		}
 		return this._parseDeclaration();
-	}
-
-
-	/**
-	 * Parses declarations like:
-	 *   @apply --my-theme;
-	 *
-	 * Follows https://tabatkins.github.io/specs/css-apply-rule/#using
-	 */
-	public _parseAtApply(): nodes.Node | null {
-		if (!this.peekKeyword('@apply')) {
-			return null;
-		}
-		const node = this.create(nodes.AtApplyRule);
-		this.consumeToken();
-
-		if (!node.setIdentifier(this._parseIdent([nodes.ReferenceType.Variable]))) {
-			return this.finish(node, ParseError.IdentifierExpected);
-		}
-
-		return this.finish(node);
 	}
 
 	public _needsSemicolonAfter(node: nodes.Node): boolean {
