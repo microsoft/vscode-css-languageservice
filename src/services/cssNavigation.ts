@@ -19,6 +19,9 @@ const localize = nls.loadMessageBundle();
 
 type UnresolvedLinkData = { link: DocumentLink, isRawLink: boolean };
 
+const startsWithSchemeRegex = /^\w+:\/\//;
+const startsWithData = /^data:/;
+
 export class CSSNavigation {
 
 	constructor(protected fileSystemProvider: FileSystemProvider | undefined) {
@@ -103,13 +106,17 @@ export class CSSNavigation {
 		for (let data of linkData) {
 			const link = data.link;
 			const target = link.target;
-			if (target && !(/^\w+:\/\//g.test(target))) {
+			if (!target || startsWithData.test(target)) {
+				// no links for data:
+			} else if (startsWithSchemeRegex.test(target)) {
+				resolvedLinks.push(link);
+			} else {
 				const resolved = documentContext.resolveReference(target, document.uri);
 				if (resolved) {
 					link.target = resolved;
 				}
+				resolvedLinks.push(link);
 			}
-			resolvedLinks.push(link);
 		}
 		return resolvedLinks;
 	}
@@ -120,14 +127,16 @@ export class CSSNavigation {
 		for (let data of linkData) {
 			const link = data.link;
 			const target = link.target;
-			if (target && !(/^\w+:\/\//g.test(target))) {
+			if (!target || startsWithData.test(target)) {
+				// no links for data:
+			} else if (startsWithSchemeRegex.test(target)) {
+				resolvedLinks.push(link);
+			} else {
 				const resolvedTarget = await this.resolveRelativeReference(target, document.uri, documentContext, data.isRawLink);
 				if (resolvedTarget !== undefined) {
 					link.target = resolvedTarget;
 					resolvedLinks.push(link);
 				}
-			} else {
-				resolvedLinks.push(link);
 			}
 		}
 		return resolvedLinks;

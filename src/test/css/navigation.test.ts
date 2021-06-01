@@ -349,6 +349,12 @@ suite('CSS - Navigation', () => {
 			await assertLinks(ls, `@import url();`, []);
 		});
 
+		test('No links for data:', async () => {
+			let ls = getCSSLS();
+			await assertLinks(ls, `body { background-image: url(data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOul) }`, []);
+		});
+
+
 		test('url links', async function () {
 			let ls = getCSSLS();
 			let testUri = getTestResource('about.css');
