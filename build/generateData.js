@@ -10,7 +10,9 @@ const os = require('os')
 const customData = require('vscode-web-custom-data/data/browsers.css-data.json');
 
 function toJavaScript(obj) {
-	return JSON.stringify(obj, null, '\t');
+	return JSON.stringify(obj, null, '\t').replace(/\u2028|\u2029/g, str =>
+		str === "\u2029" ? "\\u2029" : "\\u2028"
+	); // invalid in JavaScript source but valid JSON
 }
 
 const DATA_TYPE = 'CSSDataV1';
@@ -23,7 +25,7 @@ const output = [
 	'',
 	`import { ${DATA_TYPE} } from '../cssLanguageTypes';`,
 	'',
-	`export const cssData : ${DATA_TYPE} = ` + toJavaScript(customData) + ';'
+	`export const htmlData = JSON.parse('${toJavaScript(customData).replace(/[\\']/g, "\\$&")}') as ${DATA_TYPE};`
 ];
 
 var outputPath = path.resolve(__dirname, '../src/data/webCustomData.ts');
