@@ -17,13 +17,13 @@
   "devDependencies": {
     "@types/mocha": "^8.2.2",
     "@types/node": "^10.12.21",
-    "@typescript-eslint/eslint-plugin": "^4.26.0",
-    "@typescript-eslint/parser": "^4.26.0",
-    "eslint": "^7.27.0",
+    "@typescript-eslint/eslint-plugin": "^4.31.0",
+    "@typescript-eslint/parser": "^4.31.0",
+    "eslint": "^7.32.0",
     "mocha": "^8.4.0",
     "rimraf": "^3.0.2",
-    "typescript": "^4.3.2",
-    "vscode-web-custom-data": "^0.3.4"
+    "typescript": "^4.4.2",
+    "vscode-web-custom-data": "^0.3.5"
   },
   "dependencies": {
     "vscode-languageserver-textdocument": "^1.0.1",
