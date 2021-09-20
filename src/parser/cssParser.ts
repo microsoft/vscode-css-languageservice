@@ -51,7 +51,7 @@ export class Parser {
 		return type === this.token.type;
 	}
 
-	public peekOne(types: TokenType[]): boolean {
+	public peekOne(...types: TokenType[]): boolean {
 		return types.indexOf(this.token.type) !== -1;
 	}
 
@@ -508,13 +508,15 @@ export class Parser {
 			this.restoreAtMark(mark);
 		}
 
-		// try tp parse as expression
+		// try to parse as expression
 		const expression = this._parseExpr();
 		if (expression && !expression.isErroneous(true)) {
 			this._parsePrio();
-			if (this.peekOne(stopTokens || [TokenType.SemiColon])) {
+			if (this.peekOne(...(stopTokens || []), TokenType.SemiColon, TokenType.EOF)) {
 				node.setValue(expression);
-				node.semicolonPosition = this.token.offset; // not part of the declaration, but useful information for code assist
+				if (this.peek(TokenType.SemiColon)) {
+					node.semicolonPosition = this.token.offset; // not part of the declaration, but useful information for code assist
+				}
 				return this.finish(node);
 			}
 		}

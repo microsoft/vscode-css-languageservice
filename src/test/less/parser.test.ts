@@ -205,8 +205,8 @@ suite('LESS - Parser', () => {
 		assertNode('100: 100', parser, parser._parseDeclaration.bind(parser));
 		assertNode('1prop: 100', parser, parser._parseDeclaration.bind(parser));
 		assertNode('1@{var}prop: 100', parser, parser._parseDeclaration.bind(parser));
-		assertNoNode('--100: 100', parser, parser._parseDeclaration.bind(parser));
-		assertNoNode('--1prop: 100', parser, parser._parseDeclaration.bind(parser));
+		assertNode('--100: 100', parser, parser._parseDeclaration.bind(parser));
+		assertNode('--1prop: 100', parser, parser._parseDeclaration.bind(parser));
 
 		assertNode('color: @base-color + #111', parser, parser._parseDeclaration.bind(parser));
 		assertNode('color: 100% / 2 + @ref', parser, parser._parseDeclaration.bind(parser));

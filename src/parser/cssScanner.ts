@@ -565,8 +565,8 @@ export class Scanner {
 	protected ident(result: string[]): boolean {
 		const pos = this.stream.pos();
 		const hasMinus = this._minus(result);
-		if (hasMinus && this._minus(result) /* -- */) {
-			if (this._identFirstChar(result) || this._escape(result)) {
+		if (hasMinus) {
+			if (this._minus(result) /* -- */ || this._identFirstChar(result) || this._escape(result)) {
 				while (this._identChar(result) || this._escape(result)) {
 					// loop
 				}
