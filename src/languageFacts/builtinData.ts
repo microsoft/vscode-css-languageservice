@@ -55,6 +55,11 @@ export const cssWideKeywords: { [name: string]: string } = {
 	'unset': 'Acts as either `inherit` or `initial`, depending on whether the property is inherited or not.'
 };
 
+export const cssWideFunctions: { [name: string]: string } = {
+	'var()': 'Evaluates the value of a custom variable.',
+	'calc()': 'Evaluates an mathematical expression. The following operators can be used: + - * /.'
+};
+
 export const imageFunctions: { [name: string]: string } = {
 	'url()': 'Reference an image file by URL',
 	'image()': 'Provide image fallbacks and annotations.',

@@ -9,7 +9,7 @@ import { Symbols, Symbol } from '../parser/cssSymbolScope';
 import * as languageFacts from '../languageFacts/facts';
 import * as strings from '../utils/strings';
 import {
-	ICompletionParticipant, LanguageSettings, TextDocument,
+	ICompletionParticipant, LanguageSettings, TextDocument, Command,
 	Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, CompletionItemTag, DocumentContext, LanguageServiceOptions, IPropertyData, CompletionSettings
 } from '../cssLanguageTypes';
 
@@ -20,6 +20,11 @@ import { PathCompletionParticipant } from './pathCompletion';
 
 const localize = nls.loadMessageBundle();
 const SnippetFormat = InsertTextFormat.Snippet;
+
+const retriggerCommand: Command = {
+	title: 'Suggest',
+	command: 'editor.action.triggerSuggest'
+};
 
 enum SortTexts {
 	// char code 32, comes before everything
@@ -246,10 +251,7 @@ export class CSSCompletion {
 				retrigger = false;
 			}
 			if (triggerPropertyValueCompletion && retrigger) {
-				item.command = {
-					title: 'Suggest',
-					command: 'editor.action.triggerSuggest'
-				};
+				item.command = retriggerCommand;
 			}
 			const relevance = typeof entry.relevance === 'number' ? Math.min(Math.max(entry.relevance, 0), 99) : 50;
 			const sortTextSuffix = (255 - relevance).toString(16);
@@ -390,6 +392,17 @@ export class CSSCompletion {
 				documentation: languageFacts.cssWideKeywords[keywords],
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), keywords),
 				kind: CompletionItemKind.Value
+			});
+		}
+		for (const func in languageFacts.cssWideFunctions) {
+			const insertText = moveCursorInsideParenthesis(func);
+			result.items.push({
+				label: func,
+				documentation: languageFacts.cssWideFunctions[func],
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
+				kind: CompletionItemKind.Function,
+				insertTextFormat: SnippetFormat,
+				command: strings.startsWith(func, 'var') ? retriggerCommand : undefined
 			});
 		}
 		return result;
