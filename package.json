@@ -15,12 +15,12 @@
     "url": "https://github.com/Microsoft/vscode-css-languageservice"
   },
   "devDependencies": {
-    "@types/mocha": "^8.2.2",
+    "@types/mocha": "^9.0.0",
     "@types/node": "^10.12.21",
-    "@typescript-eslint/eslint-plugin": "^4.31.0",
-    "@typescript-eslint/parser": "^4.31.0",
+    "@typescript-eslint/eslint-plugin": "^4.32.0",
+    "@typescript-eslint/parser": "^4.32.0",
     "eslint": "^7.32.0",
-    "mocha": "^8.4.0",
+    "mocha": "^9.1.2",
     "rimraf": "^3.0.2",
     "typescript": "^4.4.2",
     "vscode-web-custom-data": "^0.3.5"
