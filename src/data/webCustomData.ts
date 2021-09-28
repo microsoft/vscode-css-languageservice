@@ -53,7 +53,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <baseline-position> | <content-distribution> | <overflow-position>? <content-position>",
-			"relevance": 60,
+			"relevance": 61,
 			"description": "Aligns a flex container’s lines within the flex container when there is extra space in the cross-axis, similar to how 'justify-content' aligns individual items within the main-axis.",
 			"restrictions": [
 				"enum"
@@ -84,7 +84,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | stretch | <baseline-position> | [ <overflow-position>? <self-position> ]",
-			"relevance": 84,
+			"relevance": 85,
 			"description": "Aligns flex items along the cross axis of the current line of the flex container.",
 			"restrictions": [
 				"enum"
@@ -258,7 +258,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | normal | stretch | <baseline-position> | <overflow-position>? <self-position>",
-			"relevance": 71,
+			"relevance": 70,
 			"description": "Allows the default alignment along the cross axis to be overridden for individual flex items.",
 			"restrictions": [
 				"enum"
@@ -347,7 +347,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-animation>#",
-			"relevance": 81,
+			"relevance": 82,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -366,7 +366,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "animation-delay",
 			"syntax": "<time>#",
-			"relevance": 63,
+			"relevance": 62,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -531,7 +531,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "animation-timing-function",
 			"syntax": "<easing-function>#",
-			"relevance": 69,
+			"relevance": 68,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -756,7 +756,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "background-clip",
 			"syntax": "<box>#",
-			"relevance": 68,
+			"relevance": 67,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -979,7 +979,7 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/block-size"
 				}
 			],
-			"description": "Logical 'width'. Mapping depends on the element’s 'writing-mode'.",
+			"description": "Size of an element in the direction opposite that of the direction specified by 'writing-mode'.",
 			"restrictions": [
 				"length",
 				"percentage"
@@ -1208,7 +1208,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-bottom-color",
 			"syntax": "<'border-top-color'>",
-			"relevance": 72,
+			"relevance": 71,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1239,7 +1239,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-bottom-right-radius",
 			"syntax": "<length-percentage>{1,2}",
-			"relevance": 75,
+			"relevance": 74,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1296,7 +1296,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "collapse | separate",
-			"relevance": 76,
+			"relevance": 75,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1360,7 +1360,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'border-image-source'> || <'border-image-slice'> [ / <'border-image-width'> | / <'border-image-width'>? / <'border-image-outset'> ]? || <'border-image-repeat'>",
-			"relevance": 52,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1678,7 +1678,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-left",
 			"syntax": "<line-width> || <line-style> || <color>",
-			"relevance": 83,
+			"relevance": 82,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1711,7 +1711,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-left-style",
 			"syntax": "<line-style>",
-			"relevance": 53,
+			"relevance": 54,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1726,7 +1726,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-left-width",
 			"syntax": "<line-width>",
-			"relevance": 58,
+			"relevance": 59,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1838,7 +1838,7 @@ export const cssData : CSSDataV1 = {
 			"name": "border-style",
 			"values": [],
 			"syntax": "<line-style>{1,4}",
-			"relevance": 81,
+			"relevance": 80,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1918,7 +1918,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-top-style",
 			"syntax": "<line-style>",
-			"relevance": 59,
+			"relevance": 58,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1950,7 +1950,7 @@ export const cssData : CSSDataV1 = {
 			"name": "border-width",
 			"values": [],
 			"syntax": "<line-width>{1,4}",
-			"relevance": 82,
+			"relevance": 81,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1990,7 +1990,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF32",
-				"S6.1",
+				"S7",
 				"C22",
 				"O15"
 			],
@@ -2057,7 +2057,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "content-box | border-box",
-			"relevance": 92,
+			"relevance": 93,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2231,7 +2231,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | <color>",
-			"relevance": 51,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2457,7 +2457,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <length-percentage>",
-			"relevance": 53,
+			"relevance": 54,
 			"description": "Sets the gap between columns. If there is a column rule between columns, it will appear in the middle of the gap.",
 			"restrictions": [
 				"length",
@@ -2637,7 +2637,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | strict | content | [ size || layout || style || paint ]",
-			"relevance": 55,
+			"relevance": 54,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2721,7 +2721,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ <custom-ident> <integer>? ]+ | none",
-			"relevance": 52,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2942,7 +2942,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "ltr | rtl",
-			"relevance": 69,
+			"relevance": 70,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3482,7 +3482,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "flex-shrink",
 			"syntax": "<number>",
-			"relevance": 72,
+			"relevance": 73,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3713,7 +3713,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ [ <'font-style'> || <font-variant-css21> || <'font-weight'> || <'font-stretch'> ]? <'font-size'> [ / <'line-height'> ]? <'font-family'> ] | caption | icon | menu | message-box | small-caption | status-bar",
-			"relevance": 84,
+			"relevance": 83,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4413,7 +4413,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Do not preserve the font’s x-height."
 				}
 			],
-			"syntax": "none | <number>",
+			"syntax": "none | [ ex-height | cap-height | ch-width | ic-width | ic-height ]? [ from-font | <number> ]",
 			"relevance": 50,
 			"references": [
 				{
@@ -4553,7 +4553,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | none | [ <common-lig-values> || <discretionary-lig-values> || <historical-lig-values> || <contextual-alt-values> || stylistic(<feature-value-name>) || historical-forms || styleset(<feature-value-name>#) || character-variant(<feature-value-name>#) || swash(<feature-value-name>) || ornaments(<feature-value-name>) || annotation(<feature-value-name>) || [ small-caps | all-small-caps | petite-caps | all-petite-caps | unicase | titling-caps ] || <numeric-figure-values> || <numeric-spacing-values> || <numeric-fraction-values> || ordinal || slashed-zero || <east-asian-variant-values> || <east-asian-width-values> || ruby ]",
-			"relevance": 64,
+			"relevance": 65,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5305,7 +5305,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "obsolete",
 			"syntax": "<'grid-row-gap'> <'grid-column-gap'>?",
-			"relevance": 2,
+			"relevance": 3,
 			"description": "Shorthand that specifies the gutters between grid columns and grid rows in one declaration. Replaced by 'gap' property.",
 			"restrictions": [
 				"length"
@@ -5546,7 +5546,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <track-list> | <auto-track-list> | subgrid <line-name-list>?",
-			"relevance": 57,
+			"relevance": 58,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5594,7 +5594,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <track-list> | <auto-track-list> | subgrid <line-name-list>?",
-			"relevance": 52,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5825,7 +5825,7 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/inline-size"
 				}
 			],
-			"description": "Logical 'height'. Mapping depends on the element’s 'writing-mode'.",
+			"description": "Size of an element in the direction specified by 'writing-mode'.",
 			"restrictions": [
 				"length",
 				"percentage"
@@ -5932,7 +5932,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <content-distribution> | <overflow-position>? [ <content-position> | left | right ]",
-			"relevance": 84,
+			"relevance": 85,
 			"description": "Aligns flex items along the main axis of the current line of the flex container.",
 			"restrictions": [
 				"enum"
@@ -6293,7 +6293,7 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin"
 				}
 			],
-			"description": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits.",
+			"description": "Shorthand property to set values for the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits.",
 			"restrictions": [
 				"length",
 				"percentage"
@@ -6342,7 +6342,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'margin-left'>",
-			"relevance": 53,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6363,14 +6363,14 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
-			"relevance": 92,
+			"relevance": 91,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-bottom"
 				}
 			],
-			"description": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
+			"description": "Shorthand property to set values for the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
 			"restrictions": [
 				"length",
 				"percentage"
@@ -6447,7 +6447,7 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-left"
 				}
 			],
-			"description": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
+			"description": "Shorthand property to set values for the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
 			"restrictions": [
 				"length",
 				"percentage"
@@ -6468,7 +6468,7 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-right"
 				}
 			],
-			"description": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
+			"description": "Shorthand property to set values for the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
 			"restrictions": [
 				"length",
 				"percentage"
@@ -6489,7 +6489,7 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-top"
 				}
 			],
-			"description": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
+			"description": "Shorthand property to set values for the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
 			"restrictions": [
 				"length",
 				"percentage"
@@ -6570,7 +6570,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "mask-image",
 			"browsers": [
-				"E16",
+				"E79",
 				"FF53",
 				"S4",
 				"C1",
@@ -6661,9 +6661,9 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "mask-position",
 			"browsers": [
-				"E18",
+				"E79",
 				"FF53",
-				"S3.2",
+				"S3.1",
 				"C1",
 				"O15"
 			],
@@ -6685,9 +6685,9 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "mask-repeat",
 			"browsers": [
-				"E18",
+				"E79",
 				"FF53",
-				"S3.2",
+				"S3.1",
 				"C1",
 				"O15"
 			],
@@ -6707,7 +6707,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "mask-size",
 			"browsers": [
-				"E18",
+				"E79",
 				"FF53",
 				"S4",
 				"C4",
@@ -6747,7 +6747,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF35",
-				"S6.1",
+				"S7",
 				"C24",
 				"O15"
 			],
@@ -6797,7 +6797,7 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/max-block-size"
 				}
 			],
-			"description": "Logical 'max-width'. Mapping depends on the element’s 'writing-mode'.",
+			"description": "Maximum size of an element in the direction opposite that of the direction specified by 'writing-mode'.",
 			"restrictions": [
 				"length",
 				"percentage"
@@ -6860,7 +6860,7 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/max-inline-size"
 				}
 			],
-			"description": "Logical 'max-height'. Mapping depends on the element’s 'writing-mode'.",
+			"description": "Maximum size of an element in the direction specified by 'writing-mode'.",
 			"restrictions": [
 				"length",
 				"percentage"
@@ -6917,7 +6917,7 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/min-block-size"
 				}
 			],
-			"description": "Logical 'min-width'. Mapping depends on the element’s 'writing-mode'.",
+			"description": "Minimal size of an element in the direction opposite that of the direction specified by 'writing-mode'.",
 			"restrictions": [
 				"length",
 				"percentage"
@@ -6973,7 +6973,7 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/min-inline-size"
 				}
 			],
-			"description": "Logical 'min-height'. Mapping depends on the element’s 'writing-mode'.",
+			"description": "Minimal size of an element in the direction specified by 'writing-mode'.",
 			"restrictions": [
 				"length",
 				"percentage"
@@ -11145,7 +11145,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "fill | contain | cover | none | scale-down",
-			"relevance": 67,
+			"relevance": 68,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11289,7 +11289,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "order",
 			"syntax": "<integer>",
-			"relevance": 63,
+			"relevance": 64,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11687,7 +11687,7 @@ export const cssData : CSSDataV1 = {
 				"O9.5"
 			],
 			"syntax": "<length>",
-			"relevance": 65,
+			"relevance": 67,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11724,7 +11724,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "outline-width",
 			"syntax": "<line-width>",
-			"relevance": 62,
+			"relevance": 61,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11787,7 +11787,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | break-word | anywhere",
-			"relevance": 65,
+			"relevance": 64,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11891,7 +11891,7 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding"
 				}
 			],
-			"description": "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
+			"description": "Shorthand property to set values for the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 			"restrictions": [
 				"length",
 				"percentage"
@@ -11907,7 +11907,7 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-bottom"
 				}
 			],
-			"description": "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
+			"description": "Shorthand property to set values for the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 			"restrictions": [
 				"length",
 				"percentage"
@@ -12008,14 +12008,14 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "padding-left",
 			"syntax": "<length> | <percentage>",
-			"relevance": 91,
+			"relevance": 90,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-left"
 				}
 			],
-			"description": "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
+			"description": "Shorthand property to set values for the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 			"restrictions": [
 				"length",
 				"percentage"
@@ -12024,14 +12024,14 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "padding-right",
 			"syntax": "<length> | <percentage>",
-			"relevance": 90,
+			"relevance": 89,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-right"
 				}
 			],
-			"description": "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
+			"description": "Shorthand property to set values for the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 			"restrictions": [
 				"length",
 				"percentage"
@@ -12047,7 +12047,7 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-top"
 				}
 			],
-			"description": "Shorthand property to set values the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
+			"description": "Shorthand property to set values for the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 			"restrictions": [
 				"length",
 				"percentage"
@@ -12140,7 +12140,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | avoid",
-			"relevance": 52,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12198,7 +12198,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <length>",
-			"relevance": 56,
+			"relevance": 55,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12253,7 +12253,7 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "visible",
-					"description": "The given element can be the target element for pointer events when the ‘visibility’ property is set to visible and the pointer is over either the interior or the perimete of the element."
+					"description": "The given element can be the target element for pointer events when the ‘visibility’ property is set to visible and the pointer is over either the interior or the perimeter of the element."
 				},
 				{
 					"name": "visibleFill",
@@ -12412,7 +12412,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | both | horizontal | vertical | block | inline",
-			"relevance": 60,
+			"relevance": 59,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12910,7 +12910,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | [ x | y | block | inline | both ] [ mandatory | proximity ]?",
-			"relevance": 51,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13059,7 +13059,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ <url> [ format( <string># ) ]? | local( <family-name> ) ]#",
-			"relevance": 64,
+			"relevance": 66,
 			"description": "@font-face descriptor. Specifies the resource containing font data. It is required, whether the font is downloadable or locally installed.",
 			"restrictions": [
 				"enum",
@@ -13298,8 +13298,8 @@ export const cssData : CSSDataV1 = {
 			"name": "tab-size",
 			"browsers": [
 				"E79",
-				"FF4",
-				"S6.1",
+				"FF91",
+				"S7",
 				"C21",
 				"O15"
 			],
@@ -13592,7 +13592,7 @@ export const cssData : CSSDataV1 = {
 			"name": "text-indent",
 			"values": [],
 			"syntax": "<length-percentage> && hanging? && each-line?",
-			"relevance": 69,
+			"relevance": 68,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13666,7 +13666,7 @@ export const cssData : CSSDataV1 = {
 				"FF41",
 				"S14",
 				"C48",
-				"O15"
+				"O35"
 			],
 			"values": [
 				{
@@ -13676,7 +13676,7 @@ export const cssData : CSSDataV1 = {
 						"FF41",
 						"S14",
 						"C48",
-						"O15"
+						"O35"
 					],
 					"description": "This value is equivalent to 'sideways-right' in 'vertical-rl' writing mode and equivalent to 'sideways-left' in 'vertical-lr' writing mode."
 				},
@@ -13687,7 +13687,7 @@ export const cssData : CSSDataV1 = {
 						"FF41",
 						"S14",
 						"C48",
-						"O15"
+						"O35"
 					],
 					"description": "In vertical writing modes, this causes text to be set as if in a horizontal layout, but rotated 90° clockwise."
 				},
@@ -13783,7 +13783,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <shadow-t>#",
-			"relevance": 75,
+			"relevance": 74,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13916,7 +13916,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | none | [ [ pan-x | pan-left | pan-right ] || [ pan-y | pan-up | pan-down ] || pinch-zoom ] | manipulation",
-			"relevance": 67,
+			"relevance": 68,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -14119,7 +14119,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "transition-delay",
 			"syntax": "<time>#",
-			"relevance": 63,
+			"relevance": 62,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -14159,7 +14159,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <single-transition-property>#",
-			"relevance": 65,
+			"relevance": 63,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -14174,7 +14174,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "transition-timing-function",
 			"syntax": "<easing-function>#",
-			"relevance": 64,
+			"relevance": 63,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -14540,7 +14540,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<unicode-range>#",
-			"relevance": 57,
+			"relevance": 58,
 			"description": "@font-face descriptor. Defines the set of Unicode codepoints that may be supported by the font face for which it is declared.",
 			"restrictions": [
 				"unicode-range"
@@ -14570,7 +14570,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | text | none | contain | all",
-			"relevance": 76,
+			"relevance": 77,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -16333,7 +16333,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"C16",
-				"O≤15"
+				"O15"
 			],
 			"status": "nonstandard",
 			"syntax": "<color>",
@@ -16843,7 +16843,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | pre | nowrap | pre-wrap | pre-line | break-spaces",
-			"relevance": 89,
+			"relevance": 90,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -16935,7 +16935,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | <animateable-feature>#",
-			"relevance": 64,
+			"relevance": 63,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -17012,7 +17012,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | break-word",
-			"relevance": 78,
+			"relevance": 77,
 			"description": "Specifies whether the UA may break within a word to prevent overflow when an otherwise-unbreakable string is too long to fit.",
 			"restrictions": [
 				"enum"
@@ -17431,7 +17431,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E18",
 				"FF53",
-				"S3.2",
+				"S3.1",
 				"C1",
 				"O15"
 			],
@@ -17458,7 +17458,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E18",
 				"FF49",
-				"S3.2",
+				"S3.1",
 				"C1",
 				"O15"
 			],
@@ -17478,7 +17478,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E18",
 				"FF49",
-				"S3.2",
+				"S3.1",
 				"C1",
 				"O15"
 			],
@@ -17529,6 +17529,23 @@ export const cssData : CSSDataV1 = {
 			"description": "The -webkit-mask-repeat-y property specifies whether and how a mask image is repeated (tiled) vertically."
 		},
 		{
+			"name": "accent-color",
+			"syntax": "auto | <color>",
+			"relevance": 50,
+			"browsers": [
+				"E93",
+				"FF92",
+				"C93"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/accent-color"
+				}
+			],
+			"description": "Sets the color of the elements accent"
+		},
+		{
 			"name": "align-tracks",
 			"status": "experimental",
 			"syntax": "[ normal | <baseline-position> | <content-distribution> | <overflow-position>? <content-position> ]#",
@@ -17548,7 +17565,7 @@ export const cssData : CSSDataV1 = {
 			"name": "appearance",
 			"status": "experimental",
 			"syntax": "none | auto | textfield | menulist-button | <compat-auto>",
-			"relevance": 60,
+			"relevance": 61,
 			"browsers": [
 				"E84",
 				"FF80",
@@ -17568,10 +17585,11 @@ export const cssData : CSSDataV1 = {
 			"name": "aspect-ratio",
 			"status": "experimental",
 			"syntax": "auto | <ratio>",
-			"relevance": 51,
+			"relevance": 52,
 			"browsers": [
 				"E88",
 				"FF89",
+				"S15",
 				"C88",
 				"O74"
 			],
@@ -17692,6 +17710,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E89",
 				"FF66",
+				"S15",
 				"C89",
 				"O75"
 			],
@@ -17710,6 +17729,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E89",
 				"FF66",
+				"S15",
 				"C89",
 				"O75"
 			],
@@ -17804,6 +17824,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E89",
 				"FF66",
+				"S15",
 				"C89",
 				"O75"
 			],
@@ -17822,6 +17843,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E89",
 				"FF66",
+				"S15",
 				"C89",
 				"O75"
 			],
@@ -18011,7 +18033,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "color-scheme",
 			"syntax": "normal | [ light | dark | <custom-ident> ]+",
-			"relevance": 50,
+			"relevance": 51,
 			"browsers": [
 				"E81",
 				"S13",
@@ -18123,7 +18145,7 @@ export const cssData : CSSDataV1 = {
 			"name": "forced-color-adjust",
 			"status": "experimental",
 			"syntax": "auto | none",
-			"relevance": 51,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"C89",
@@ -18140,7 +18162,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "gap",
 			"syntax": "<'row-gap'> <'column-gap'>?",
-			"relevance": 50,
+			"relevance": 51,
 			"browsers": [
 				"E84",
 				"FF63",
@@ -18206,7 +18228,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'top'>{1,4}",
 			"relevance": 50,
 			"browsers": [
-				"E79",
+				"E87",
 				"FF66",
 				"S14.1",
 				"C87",
@@ -18225,7 +18247,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'top'>{1,2}",
 			"relevance": 50,
 			"browsers": [
-				"E79",
+				"E87",
 				"FF63",
 				"S14.1",
 				"C87",
@@ -18244,7 +18266,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'top'>",
 			"relevance": 50,
 			"browsers": [
-				"E79",
+				"E87",
 				"FF63",
 				"S14.1",
 				"C87",
@@ -18263,7 +18285,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'top'>",
 			"relevance": 50,
 			"browsers": [
-				"E79",
+				"E87",
 				"FF63",
 				"S14.1",
 				"C87",
@@ -18282,7 +18304,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'top'>{1,2}",
 			"relevance": 50,
 			"browsers": [
-				"E79",
+				"E87",
 				"FF63",
 				"S14.1",
 				"C87",
@@ -18301,7 +18323,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'top'>",
 			"relevance": 50,
 			"browsers": [
-				"E79",
+				"E87",
 				"FF63",
 				"S14.1",
 				"C87",
@@ -18320,7 +18342,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'top'>",
 			"relevance": 50,
 			"browsers": [
-				"E79",
+				"E87",
 				"FF63",
 				"S14.1",
 				"C87",
@@ -18431,9 +18453,9 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<mask-layer>#",
 			"relevance": 50,
 			"browsers": [
-				"E12",
+				"E79",
 				"FF2",
-				"S3.2",
+				"S3.1",
 				"C1",
 				"O15"
 			],
@@ -18788,7 +18810,8 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"E90",
-				"C90"
+				"C90",
+				"O76"
 			],
 			"references": [
 				{
@@ -18927,7 +18950,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'padding-left'>{1,2}",
 			"relevance": 50,
 			"browsers": [
-				"E79",
+				"E87",
 				"FF66",
 				"S14.1",
 				"C87",
@@ -18947,10 +18970,16 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"E79",
-				"FF53",
+				"FF45",
 				"S9",
 				"C59",
 				"O46"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/place-content"
+				}
 			],
 			"description": "The place-content CSS shorthand property sets both the align-content and justify-content properties."
 		},
@@ -18965,6 +18994,12 @@ export const cssData : CSSDataV1 = {
 				"C59",
 				"O46"
 			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/place-items"
+				}
+			],
 			"description": "The CSS place-items shorthand property sets both the align-items and justify-items properties. The first value is the align-items property value, the second the justify-items one. If the second value is not present, the first value is also used for it."
 		},
 		{
@@ -18977,6 +19012,12 @@ export const cssData : CSSDataV1 = {
 				"S11",
 				"C59",
 				"O46"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/place-self"
+				}
 			],
 			"description": "The place-self CSS property is a shorthand property sets both the align-self and justify-self properties. The first value is the align-self property value, the second the justify-self one. If the second value is not present, the first value is also used for it."
 		},
@@ -19034,7 +19075,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "scrollbar-color",
-			"syntax": "auto | dark | light | <color>{2}",
+			"syntax": "auto | <color>{2}",
 			"relevance": 50,
 			"browsers": [
 				"FF64"
@@ -19049,7 +19090,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "scrollbar-gutter",
-			"syntax": "auto | [ stable | always ] && both? && force?",
+			"syntax": "auto | stable && both-edges?",
 			"relevance": 50,
 			"browsers": [
 				"C88"
@@ -19309,6 +19350,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"S15",
 				"C69",
 				"O56"
 			],
@@ -19327,6 +19369,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"S15",
 				"C69",
 				"O56"
 			],
@@ -19345,6 +19388,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"S15",
 				"C69",
 				"O56"
 			],
@@ -19382,6 +19426,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"S15",
 				"C69",
 				"O56"
 			],
@@ -19400,6 +19445,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"S15",
 				"C69",
 				"O56"
 			],
@@ -19418,6 +19464,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"S15",
 				"C69",
 				"O56"
 			],
@@ -19489,7 +19536,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-snap-align",
 			"syntax": "[ none | start | end | center ]{1,2}",
-			"relevance": 51,
+			"relevance": 52,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -19511,6 +19558,7 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"E79",
+				"S15",
 				"C75",
 				"O62"
 			],
@@ -19629,7 +19677,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF46",
-				"S6.1",
+				"S7",
 				"C25",
 				"O15"
 			],
@@ -19648,7 +19696,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF46",
-				"S6.1",
+				"S7",
 				"C25",
 				"O15"
 			],
@@ -19667,7 +19715,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF46",
-				"S6.1",
+				"S7",
 				"C25",
 				"O15"
 			],
@@ -19686,7 +19734,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF46",
-				"S6.1",
+				"S7",
 				"C25",
 				"O15"
 			],
@@ -19702,7 +19750,7 @@ export const cssData : CSSDataV1 = {
 			"name": "text-size-adjust",
 			"status": "experimental",
 			"syntax": "none | auto | <percentage>",
-			"relevance": 57,
+			"relevance": 59,
 			"browsers": [
 				"E79",
 				"C54",
@@ -19777,11 +19825,39 @@ export const cssData : CSSDataV1 = {
 			"description": "The speak-as descriptor specifies how a counter symbol constructed with a given @counter-style will be represented in the spoken form. For example, an author can specify a counter symbol to be either spoken as its numerical value or just represented with an audio cue."
 		},
 		{
+			"name": "ascent-override",
+			"status": "experimental",
+			"syntax": "normal | <percentage>",
+			"relevance": 50,
+			"description": "Describes the ascent metric of a font."
+		},
+		{
+			"name": "descent-override",
+			"status": "experimental",
+			"syntax": "normal | <percentage>",
+			"relevance": 50,
+			"description": "Describes the descent metric of a font."
+		},
+		{
 			"name": "font-display",
 			"status": "experimental",
 			"syntax": "[ auto | block | swap | fallback | optional ]",
-			"relevance": 57,
+			"relevance": 58,
 			"description": "The font-display descriptor determines how a font face is displayed based on whether and when it is downloaded and ready to use."
+		},
+		{
+			"name": "line-gap-override",
+			"status": "experimental",
+			"syntax": "normal | <percentage>",
+			"relevance": 50,
+			"description": "Describes the line-gap metric of a font."
+		},
+		{
+			"name": "size-adjust",
+			"status": "experimental",
+			"syntax": "<percentage>",
+			"relevance": 50,
+			"description": "A multiplier for glyph outlines and metrics of a font."
 		},
 		{
 			"name": "bleed",
@@ -19861,8 +19937,10 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "@counter-style",
 			"browsers": [
+				"E91",
 				"FF33",
-				"C91"
+				"C91",
+				"O77"
 			],
 			"references": [
 				{
@@ -20925,11 +21003,11 @@ export const cssData : CSSDataV1 = {
 			"name": ":is",
 			"status": "experimental",
 			"browsers": [
-				"E79",
+				"E88",
 				"FF78",
 				"S14",
 				"C88",
-				"O55"
+				"O74"
 			],
 			"references": [
 				{
@@ -21052,7 +21130,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "::backdrop",
 			"browsers": [
-				"E12",
+				"E79",
 				"FF47",
 				"C37",
 				"IE11",
@@ -21443,7 +21521,7 @@ export const cssData : CSSDataV1 = {
 			"name": "::-webkit-progress-bar",
 			"browsers": [
 				"E79",
-				"S6.1",
+				"S7",
 				"C25",
 				"O15"
 			],
@@ -21458,7 +21536,7 @@ export const cssData : CSSDataV1 = {
 			"name": "::-webkit-progress-inner-element",
 			"browsers": [
 				"E79",
-				"S6.1",
+				"S7",
 				"C23",
 				"O15"
 			],
@@ -21473,7 +21551,7 @@ export const cssData : CSSDataV1 = {
 			"name": "::-webkit-progress-value",
 			"browsers": [
 				"E79",
-				"S6.1",
+				"S7",
 				"C25",
 				"O15"
 			],
@@ -21817,7 +21895,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "::placeholder",
 			"browsers": [
-				"E12",
+				"E79",
 				"FF51",
 				"S10.1",
 				"C57",
