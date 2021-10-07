@@ -193,6 +193,12 @@ suite('CSS - Parser', () => {
 		assertNode('@media print { body:before { } }', parser, parser._parseMedia.bind(parser));
 		assertNode('@media not (-moz-os-version: windows-win7) { }', parser, parser._parseMedia.bind(parser));
 		assertNode('@media not (not (-moz-os-version: windows-win7)) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media (height > 600px) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media (height < 600px) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media (height <= 600px) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media (400px <= width <= 700px) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media (400px >= width >= 700px) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media screen and (750px <= width < 900px) { }', parser, parser._parseMedia.bind(parser));
 		assertError('@media somename othername2 { }', parser, parser._parseMedia.bind(parser), ParseError.LeftCurlyExpected);
 		assertError('@media not, screen { }', parser, parser._parseMedia.bind(parser), ParseError.MediaQueryExpected);
 		assertError('@media not screen and foo { }', parser, parser._parseMedia.bind(parser), ParseError.LeftParenthesisExpected);

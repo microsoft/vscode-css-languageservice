@@ -45,6 +45,7 @@ export enum NodeType {
 	Function,
 	NumericValue,
 	HexColorValue,
+	RatioValue,
 	MixinDeclaration,
 	MixinReference,
 	VariableName,
@@ -72,6 +73,7 @@ export enum NodeType {
 	ReturnStatement,
 	MediaQuery,
 	MediaCondition,
+	MediaFeature,
 	FunctionParameter,
 	FunctionArgument,
 	KeyframeSelector,
@@ -1191,6 +1193,17 @@ export class MediaCondition extends Node {
 	}
 }
 
+export class MediaFeature extends Node {
+
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.MediaFeature;
+	}
+}
+
 export class SupportsCondition extends Node {
 
 	public lParent?: number;
@@ -1381,6 +1394,18 @@ export class HexColorValue extends Node {
 
 	public get type(): NodeType {
 		return NodeType.HexColorValue;
+	}
+
+}
+
+export class RatioValue extends Node {
+
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.RatioValue;
 	}
 
 }

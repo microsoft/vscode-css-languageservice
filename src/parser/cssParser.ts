@@ -909,22 +909,19 @@ export class Parser {
 
 	public _parseMediaQueryList(): nodes.Medialist {
 		const node = this.create(nodes.Medialist);
-		if (!node.addChild(this._parseMediaQuery([TokenType.CurlyL]))) {
+		if (!node.addChild(this._parseMediaQuery())) {
 			return this.finish(node, ParseError.MediaQueryExpected);
 		}
 		while (this.accept(TokenType.Comma)) {
-			if (!node.addChild(this._parseMediaQuery([TokenType.CurlyL]))) {
+			if (!node.addChild(this._parseMediaQuery())) {
 				return this.finish(node, ParseError.MediaQueryExpected);
 			}
 		}
 		return this.finish(node);
 	}
 
-	public _parseMediaQuery(resyncStopToken: TokenType[]): nodes.Node | null {
+	public _parseMediaQuery(): nodes.Node | null {
 		// <media-query> = <media-condition> | [ not | only ]? <media-type> [ and <media-condition-without-or> ]?
-
-
-
 		const node = this.create(nodes.MediaQuery);
 		const pos = this.mark();
 		this.acceptIdent('not');
@@ -936,17 +933,32 @@ export class Parser {
 				return null;
 			}
 			if (this.acceptIdent('and')) {
-				node.addChild(this._parseMediaCondition(resyncStopToken));
+				node.addChild(this._parseMediaCondition());
 			}
-
 		} else {
 			this.restoreAtMark(pos); // 'not' is part of the MediaCondition
-			node.addChild(this._parseMediaCondition(resyncStopToken));
+			node.addChild(this._parseMediaCondition());
 		}
 		return this.finish(node);
 	}
 
-	public _parseMediaCondition(resyncStopToken: TokenType[]): nodes.Node | null {
+	public _parseRatio(): nodes.Node | null {
+		const pos = this.mark();
+		const node = this.create(nodes.RatioValue);
+		if (!this._parseNumeric()) {
+			return null;
+		}
+		if (!this.acceptDelim('/')) {
+			this.restoreAtMark(pos);
+			return null;
+		}
+		if (!this._parseNumeric()) {
+			return this.finish(node, ParseError.NumberExpected);
+		}
+		return this.finish(node);
+	}
+
+	public _parseMediaCondition(): nodes.Node | null {
 		// <media-condition> = <media-not> | <media-and> | <media-or> | <media-in-parens>
 		// <media-not> = not <media-in-parens>
 		// <media-and> = <media-in-parens> [ and <media-in-parens> ]+
@@ -960,33 +972,86 @@ export class Parser {
 
 		while (parseExpression) {
 			if (!this.accept(TokenType.ParenthesisL)) {
-				return this.finish(node, ParseError.LeftParenthesisExpected, [], resyncStopToken);
+				return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.CurlyL]);
 			}
 			if (this.peek(TokenType.ParenthesisL) || this.peekIdent('not')) {
 				// <media-condition>
-				node.addChild(this._parseMediaCondition(resyncStopToken));
+				node.addChild(this._parseMediaCondition());
 			} else {
-				// <media-feature>
-				if (!node.addChild(this._parseMediaFeatureName())) {
-					return this.finish(node, ParseError.IdentifierExpected, [], resyncStopToken);
-				}
-				if (this.accept(TokenType.Colon)) {
-					if (!node.addChild(this._parseExpr())) {
-						return this.finish(node, ParseError.TermExpected, [], resyncStopToken);
-					}
-				}
-				// todo range
+				node.addChild(this._parseMediaFeature());
 			}
+			// not yet implemented: general enclosed
 			if (!this.accept(TokenType.ParenthesisR)) {
-				return this.finish(node, ParseError.RightParenthesisExpected, [], resyncStopToken);
+				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
 			}
 			parseExpression = this.acceptIdent('and') || this.acceptIdent('or');
 		}
 		return this.finish(node);
 	}
 
+	public _parseMediaFeature(): nodes.Node | null {
+		const resyncStopToken = [TokenType.ParenthesisR];
+
+		const node = this.create(nodes.MediaFeature);
+		// <media-feature> = ( [ <mf-plain> | <mf-boolean> | <mf-range> ] )
+		// <mf-plain> = <mf-name> : <mf-value>
+		// <mf-boolean> = <mf-name>
+		// <mf-range> = <mf-name> [ '<' | '>' ]? '='? <mf-value> | <mf-value> [ '<' | '>' ]? '='? <mf-name> | <mf-value> '<' '='? <mf-name> '<' '='? <mf-value> | <mf-value> '>' '='? <mf-name> '>' '='? <mf-value>
+
+		const parseRangeOperator = () => {
+			if (this.acceptDelim('<') || this.acceptDelim('>')) {
+				if (!this.hasWhitespace()) {
+					this.acceptDelim('=');
+				}
+				return true;
+			} else if (this.acceptDelim('=')) {
+				return true;
+			}
+			return false;
+		};
+
+		if (node.addChild(this._parseMediaFeatureName())) {
+			if (this.accept(TokenType.Colon)) {
+				if (!node.addChild(this._parseMediaFeatureValue())) {
+					return this.finish(node, ParseError.TermExpected, [], resyncStopToken);
+				}
+			} else if (parseRangeOperator()) {
+				if (!node.addChild(this._parseMediaFeatureValue())) {
+					return this.finish(node, ParseError.TermExpected, [], resyncStopToken);
+				}
+				if (parseRangeOperator()) {
+					if (!node.addChild(this._parseMediaFeatureValue())) {
+						return this.finish(node, ParseError.TermExpected, [], resyncStopToken);
+					}
+				}
+			} else {
+				// <mf-boolean> = <mf-name>
+			}
+		} else if (node.addChild(this._parseMediaFeatureValue())) {
+			if (!parseRangeOperator()) {
+				return this.finish(node, ParseError.OperatorExpected, [], resyncStopToken);
+			}
+			if (!node.addChild(this._parseMediaFeatureName())) {
+				return this.finish(node, ParseError.IdentifierExpected, [], resyncStopToken);
+			}
+			if (parseRangeOperator()) {
+				if (!node.addChild(this._parseMediaFeatureValue())) {
+					return this.finish(node, ParseError.TermExpected, [], resyncStopToken);
+				}
+			}
+		} else {
+			return this.finish(node, ParseError.IdentifierExpected, [], resyncStopToken);
+		}
+		return this.finish(node);
+	}
+
+
 	public _parseMediaFeatureName(): nodes.Node | null {
 		return this._parseIdent();
+	}
+
+	public _parseMediaFeatureValue(): nodes.Node | null {
+		return this._parseRatio() || this._parseTermExpression();
 	}
 
 	public _parseMedium(): nodes.Node | null {

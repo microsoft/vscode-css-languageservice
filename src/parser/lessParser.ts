@@ -87,10 +87,10 @@ export class LESSParser extends cssParser.Parser {
 		return this.finish(node);
 	}
 
-	public _parseMediaQuery(resyncStopToken: TokenType[]): nodes.Node | null {
-		const node = <nodes.MediaQuery>super._parseMediaQuery(resyncStopToken);
+	public _parseMediaQuery(): nodes.Node | null {
+		const node = super._parseMediaQuery();
 		if (!node) {
-			const node = <nodes.MediaQuery>this.create(nodes.MediaQuery);
+			const node = this.create(nodes.MediaQuery);
 			if (node.addChild(this._parseVariable())) {
 				return this.finish(node);
 			}
