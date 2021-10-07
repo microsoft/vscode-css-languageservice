@@ -104,8 +104,8 @@ export class SCSSParser extends cssParser.Parser {
 		return this.finish(node);
 	}
 
-	public _parseMediaContentStart(): nodes.Node | null {
-		return this._parseInterpolation();
+	public _parseMediaCondition(resyncStopToken: TokenType[]): nodes.Node | null {
+		return this._parseInterpolation() || super._parseMediaCondition(resyncStopToken);
 	}
 
 	public _parseMediaFeatureName(): nodes.Node | null {

@@ -191,6 +191,8 @@ suite('CSS - Parser', () => {
 		assertNode('@media print and (min-resolution: 118dpcm) { }', parser, parser._parseMedia.bind(parser));
 		assertNode('@media print { @page { margin: 10% } blockquote, pre { page-break-inside: avoid } }', parser, parser._parseMedia.bind(parser));
 		assertNode('@media print { body:before { } }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media not (-moz-os-version: windows-win7) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media not (not (-moz-os-version: windows-win7)) { }', parser, parser._parseMedia.bind(parser));
 		assertError('@media somename othername2 { }', parser, parser._parseMedia.bind(parser), ParseError.LeftCurlyExpected);
 		assertError('@media not, screen { }', parser, parser._parseMedia.bind(parser), ParseError.MediaQueryExpected);
 		assertError('@media not screen and foo { }', parser, parser._parseMedia.bind(parser), ParseError.LeftParenthesisExpected);

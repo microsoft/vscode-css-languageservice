@@ -921,54 +921,68 @@ export class Parser {
 	}
 
 	public _parseMediaQuery(resyncStopToken: TokenType[]): nodes.Node | null {
-		// http://www.w3.org/TR/css3-mediaqueries/
-		// media_query : [ONLY | NOT]? S* IDENT S* [ AND S* expression ]* | expression [ AND S* expression ]*
-		// expression : '(' S* IDENT S* [ ':' S* expr ]? ')' S*
+		// <media-query> = <media-condition> | [ not | only ]? <media-type> [ and <media-condition-without-or> ]?
+
+
 
 		const node = this.create(nodes.MediaQuery);
-
-		let parseExpression = true;
-		let hasContent = false;
+		const pos = this.mark();
+		this.acceptIdent('not');
 		if (!this.peek(TokenType.ParenthesisL)) {
-			if (this.acceptIdent('only') || this.acceptIdent('not')) {
+			if (this.acceptIdent('only')) {
 				// optional
 			}
 			if (!node.addChild(this._parseIdent())) {
 				return null;
 			}
-			hasContent = true;
-			parseExpression = this.acceptIdent('and');
-		}
-		while (parseExpression) {
-			// Allow short-circuting for other language constructs.
-			if (node.addChild(this._parseMediaContentStart())) {
-				parseExpression = this.acceptIdent('and');
-				continue;
+			if (this.acceptIdent('and')) {
+				node.addChild(this._parseMediaCondition(resyncStopToken));
 			}
-			if (!this.accept(TokenType.ParenthesisL)) {
-				if (hasContent) {
-					return this.finish(node, ParseError.LeftParenthesisExpected, [], resyncStopToken);
-				}
-				return null;
-			}
-			if (!node.addChild(this._parseMediaFeatureName())) {
-				return this.finish(node, ParseError.IdentifierExpected, [], resyncStopToken);
-			}
-			if (this.accept(TokenType.Colon)) {
-				if (!node.addChild(this._parseExpr())) {
-					return this.finish(node, ParseError.TermExpected, [], resyncStopToken);
-				}
-			}
-			if (!this.accept(TokenType.ParenthesisR)) {
-				return this.finish(node, ParseError.RightParenthesisExpected, [], resyncStopToken);
-			}
-			parseExpression = this.acceptIdent('and');
+
+		} else {
+			this.restoreAtMark(pos); // 'not' is part of the MediaCondition
+			node.addChild(this._parseMediaCondition(resyncStopToken));
 		}
 		return this.finish(node);
 	}
 
-	public _parseMediaContentStart(): nodes.Node | null {
-		return null;
+	public _parseMediaCondition(resyncStopToken: TokenType[]): nodes.Node | null {
+		// <media-condition> = <media-not> | <media-and> | <media-or> | <media-in-parens>
+		// <media-not> = not <media-in-parens>
+		// <media-and> = <media-in-parens> [ and <media-in-parens> ]+
+		// <media-or> = <media-in-parens> [ or <media-in-parens> ]+
+		// <media-in-parens> = ( <media-condition> ) | <media-feature> | <general-enclosed>
+
+		const node = this.create(nodes.MediaCondition);
+
+		this.acceptIdent('not');
+		let parseExpression = true;
+
+		while (parseExpression) {
+			if (!this.accept(TokenType.ParenthesisL)) {
+				return this.finish(node, ParseError.LeftParenthesisExpected, [], resyncStopToken);
+			}
+			if (this.peek(TokenType.ParenthesisL) || this.peekIdent('not')) {
+				// <media-condition>
+				node.addChild(this._parseMediaCondition(resyncStopToken));
+			} else {
+				// <media-feature>
+				if (!node.addChild(this._parseMediaFeatureName())) {
+					return this.finish(node, ParseError.IdentifierExpected, [], resyncStopToken);
+				}
+				if (this.accept(TokenType.Colon)) {
+					if (!node.addChild(this._parseExpr())) {
+						return this.finish(node, ParseError.TermExpected, [], resyncStopToken);
+					}
+				}
+				// todo range
+			}
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected, [], resyncStopToken);
+			}
+			parseExpression = this.acceptIdent('and') || this.acceptIdent('or');
+		}
+		return this.finish(node);
 	}
 
 	public _parseMediaFeatureName(): nodes.Node | null {

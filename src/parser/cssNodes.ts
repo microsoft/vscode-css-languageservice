@@ -71,6 +71,7 @@ export enum NodeType {
 	FunctionDeclaration,
 	ReturnStatement,
 	MediaQuery,
+	MediaCondition,
 	FunctionParameter,
 	FunctionArgument,
 	KeyframeSelector,
@@ -1176,6 +1177,17 @@ export class MediaQuery extends Node {
 
 	public get type(): NodeType {
 		return NodeType.MediaQuery;
+	}
+}
+
+export class MediaCondition extends Node {
+
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.MediaCondition;
 	}
 }
 
