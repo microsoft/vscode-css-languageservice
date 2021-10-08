@@ -481,6 +481,11 @@ suite('CSS - Completion', () => {
 				{ label: '--bg-color', documentation: 'red', resultText: 'a { color: var(--bg-color) } :root { --bg-color: red; } ' },
 			]
 		});
+		await testCompletionFor('body { border-left: --borderwidth; border-right: var(| ', {
+			items: [
+				{ label: '--borderwidth', documentation: undefined, resultText: 'body { border-left: --borderwidth; border-right: var(--borderwidth ' },
+			]
+		});
 	});
 	test('support', async function () {
 		await testCompletionFor('@supports (display: flex) { |', {

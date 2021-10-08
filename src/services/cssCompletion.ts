@@ -444,23 +444,37 @@ export class CSSCompletion {
 	}
 
 	public getVariableProposalsForCSSVarFunction(result: CompletionList): CompletionList {
+		const allReferencedVariables = new Set();
+		this.styleSheet.acceptVisitor(new VariableCollector(allReferencedVariables, this.offset));
+
+
 		let symbols = this.getSymbolContext().findSymbolsAtOffset(this.offset, nodes.ReferenceType.Variable);
-		symbols = symbols.filter((symbol): boolean => {
-			return strings.startsWith(symbol.name, '--');
-		});
 		for (const symbol of symbols) {
-			const completionItem: CompletionItem = {
-				label: symbol.name,
-				documentation: symbol.value ? strings.getLimitedString(symbol.value) : symbol.value,
-				textEdit: TextEdit.replace(this.getCompletionRange(null), symbol.name),
-				kind: CompletionItemKind.Variable
-			};
+			if (strings.startsWith(symbol.name, '--')) {
+				const completionItem: CompletionItem = {
+					label: symbol.name,
+					documentation: symbol.value ? strings.getLimitedString(symbol.value) : symbol.value,
+					textEdit: TextEdit.replace(this.getCompletionRange(null), symbol.name),
+					kind: CompletionItemKind.Variable
+				};
+				if (typeof completionItem.documentation === 'string' && isColorString(completionItem.documentation)) {
+					completionItem.kind = CompletionItemKind.Color;
+				}
 
-			if (typeof completionItem.documentation === 'string' && isColorString(completionItem.documentation)) {
-				completionItem.kind = CompletionItemKind.Color;
+				result.items.push(completionItem);
 			}
+			allReferencedVariables.remove(symbol.name);
+		}
 
-			result.items.push(completionItem);
+		for (const name of allReferencedVariables.getEntries()) {
+			if (strings.startsWith(name, '--')) {
+				const completionItem: CompletionItem = {
+					label: name,
+					textEdit: TextEdit.replace(this.getCompletionRange(null), name),
+					kind: CompletionItemKind.Variable
+				};
+				result.items.push(completionItem);
+			}
 		}
 		return result;
 	}
@@ -1038,29 +1052,13 @@ function isDeprecated(entry: languageFacts.IEntry2): boolean {
 	return false;
 }
 
-/**
- * Rank number should all be same length strings
- */
-function computeRankNumber(n: Number): string {
-	const nstr = n.toString();
-	switch (nstr.length) {
-		case 4:
-			return nstr;
-		case 3:
-			return '0' + nstr;
-		case 2:
-			return '00' + nstr;
-		case 1:
-			return '000' + nstr;
-		default:
-			return '0000';
-	}
-}
-
 class Set {
 	private entries: { [key: string]: boolean } = {};
 	public add(entry: string): void {
 		this.entries[entry] = true;
+	}
+	public remove(entry: string): void {
+		delete this.entries[entry];
 	}
 	public getEntries(): string[] {
 		return Object.keys(this.entries);
@@ -1111,6 +1109,22 @@ class ColorValueCollector implements nodes.IVisitor {
 
 	public visitNode(node: nodes.Node): boolean {
 		if (node instanceof nodes.HexColorValue || (node instanceof nodes.Function && languageFacts.isColorConstructor(<nodes.Function>node))) {
+			if (this.currentOffset < node.offset || node.end < this.currentOffset) {
+				this.entries.add(node.getText());
+			}
+		}
+		return true;
+	}
+}
+
+class VariableCollector implements nodes.IVisitor {
+
+	constructor(public entries: Set, private currentOffset: number) {
+		// nothing to do
+	}
+
+	public visitNode(node: nodes.Node): boolean {
+		if (node instanceof nodes.Identifier && node.isCustomProperty) {
 			if (this.currentOffset < node.offset || node.end < this.currentOffset) {
 				this.entries.add(node.getText());
 			}
