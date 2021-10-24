@@ -116,7 +116,7 @@ function getEntryMarkdownDescription(entry: IEntry2, settings?: HoverSettings): 
 		}
 	
 		if (typeof entry.description === 'string') {
-			result += textToMarkedString(description);
+			result += textToMarkedString(entry.description);
 		} else {
 			result += entry.type === MarkupKind.Markdown ? entry.description.value : textToMarkedString(entry.description.value);
 		}
