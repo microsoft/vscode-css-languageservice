@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { EntryStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IValueData, MarkupContent, MarkedString, HoverSettings } from '../cssLanguageTypes';
+import { EntryStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IValueData, MarkupContent, MarkupKind, MarkedString, HoverSettings } from '../cssLanguageTypes';
 
 export interface Browsers {
 	E?: string;
@@ -114,10 +114,12 @@ function getEntryMarkdownDescription(entry: IEntry2, settings?: HoverSettings): 
 		if (entry.status) {
 			result += getEntryStatus(entry.status);
 		}
-
-		const description = typeof entry.description === 'string' ? entry.description : entry.description.value;
-
-		result += textToMarkedString(description);
+	
+		if (typeof entry.description === 'string') {
+			result += textToMarkedString(description);
+		} else {
+			result += entry.type === MarkupKind.Markdown ? entry.description.value : textToMarkedString(entry.description.value);
+		}
 
 		const browserLabel = getBrowserLabel(entry.browsers);
 		if (browserLabel) {
