@@ -307,20 +307,20 @@ export class CSSNavigation {
 	}
 
 	protected async resolveRelativeReference(ref: string, documentUri: string, documentContext: DocumentContext, isRawLink?: boolean): Promise<string | undefined> {
-		const RelativeReference = documentContext.resolveReference(ref, documentUri);
+		const relativeReference = documentContext.resolveReference(ref, documentUri);
 		// Following [css-loader](https://github.com/webpack-contrib/css-loader#url)
 		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#imports)
 		// convention, if an import path starts with ~ then use node module resolution
 		// *unless* it starts with "~/" as this refers to the user's home directory.
 		if (ref[0] === '~' && ref[1] !== '/' && this.fileSystemProvider) {
 			ref = ref.substring(1);
-			return await this.resolveModuleReference(ref, documentUri, documentContext) || RelativeReference;
+			return await this.resolveModuleReference(ref, documentUri, documentContext) || relativeReference;
 		}
 
 		// Using ~ is deprecated. The loader will first try to resolve @import as a relative path. If it cannot be resolved, 
 		// then the loader will try to resolve @import inside node_modules.
-		if (RelativeReference) {
-			return RelativeReference;
+		if (relativeReference) {
+			return relativeReference;
 		} else {
 			return await this.resolveModuleReference(ref, documentUri, documentContext)
 		}
