@@ -297,7 +297,7 @@ export class CSSNavigation {
 		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#imports)
 		// convention, if an import path starts with ~ or a package name then use node module resolution
 		// *unless* it starts with "~/" as this refers to the user's home directory.
-		if (/[a-zA-Z0-9~]/.test(ref[0]) && ref[1] !== '/' && this.fileSystemProvider) {
+		if (/[a-zA-Z0-9_~]/.test(ref[0]) && ref[1] !== '/' && this.fileSystemProvider) {
 			ref = ref.substring(1);
 			if (startsWith(documentUri, 'file://')) {
 				const moduleName = getModuleNameFromPath(ref);
