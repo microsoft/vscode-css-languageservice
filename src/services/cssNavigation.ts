@@ -292,26 +292,38 @@ export class CSSNavigation {
 		};
 	}
 
+	protected async resolveModuleReference(ref: string, documentUri: string, documentContext: DocumentContext): Promise<string | undefined> {
+		if (startsWith(documentUri, 'file://')) {
+			const moduleName = getModuleNameFromPath(ref);
+			const rootFolderUri = documentContext.resolveReference('/', documentUri);
+			const documentFolderUri = dirname(documentUri);
+			const modulePath = await this.resolvePathToModule(moduleName, documentFolderUri, rootFolderUri);
+			if (modulePath) {
+				const pathWithinModule = ref.substring(moduleName.length + 1);
+				return joinPath(modulePath, pathWithinModule);
+			}
+		}
+		return undefined;
+	}
+
 	protected async resolveRelativeReference(ref: string, documentUri: string, documentContext: DocumentContext, isRawLink?: boolean): Promise<string | undefined> {
+		const RelativeReference = documentContext.resolveReference(ref, documentUri);
 		// Following [css-loader](https://github.com/webpack-contrib/css-loader#url)
 		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#imports)
-		// convention, if an import path starts with ~ or a package name then use node module resolution
+		// convention, if an import path starts with ~ then use node module resolution
 		// *unless* it starts with "~/" as this refers to the user's home directory.
-		if (/[a-zA-Z0-9_~]/.test(ref[0]) && ref[1] !== '/' && this.fileSystemProvider) {
+		if (ref[0] === '~' && ref[1] !== '/' && this.fileSystemProvider) {
 			ref = ref.substring(1);
-			if (startsWith(documentUri, 'file://')) {
-				const moduleName = getModuleNameFromPath(ref);
-				const rootFolderUri = documentContext.resolveReference('/', documentUri);
-				const documentFolderUri = dirname(documentUri);
-				const modulePath = await this.resolvePathToModule(moduleName, documentFolderUri, rootFolderUri);
-				if (modulePath) {
-					const pathWithinModule = ref.substring(moduleName.length + 1);
-					return joinPath(modulePath, pathWithinModule);
-				}
-			}
-			return documentContext.resolveReference(ref, documentUri);
+			return await this.resolveModuleReference(ref, documentUri, documentContext) || RelativeReference;
 		}
-		return documentContext.resolveReference(ref, documentUri);
+
+		// Using ~ is deprecated. The loader will first try to resolve @import as a relative path. If it cannot be resolved, 
+		// then the loader will try to resolve @import inside node_modules.
+		if (RelativeReference) {
+			return RelativeReference;
+		} else {
+			return await this.resolveModuleReference(ref, documentUri, documentContext)
+		}
 	}
 
 	private async resolvePathToModule(_moduleName: string, documentFolderUri: string, rootFolderUri: string | undefined): Promise<string | undefined> {
