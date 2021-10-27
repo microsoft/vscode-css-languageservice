@@ -295,9 +295,9 @@ export class CSSNavigation {
 	protected async resolveRelativeReference(ref: string, documentUri: string, documentContext: DocumentContext, isRawLink?: boolean): Promise<string | undefined> {
 		// Following [css-loader](https://github.com/webpack-contrib/css-loader#url)
 		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#imports)
-		// convention, if an import path starts with ~ then use node module resolution
+		// convention, if an import path starts with ~ or a package name then use node module resolution
 		// *unless* it starts with "~/" as this refers to the user's home directory.
-		if (ref[0] === '~' && ref[1] !== '/' && this.fileSystemProvider) {
+		if (/[a-zA-Z0-9~]/.test(ref[0]) && ref[1] !== '/' && this.fileSystemProvider) {
 			ref = ref.substring(1);
 			if (startsWith(documentUri, 'file://')) {
 				const moduleName = getModuleNameFromPath(ref);
