@@ -356,7 +356,22 @@ export function getColorValue(node: nodes.Node): Color | null {
 	} else if (node.type === nodes.NodeType.Function) {
 		const functionNode = <nodes.Function>node;
 		const name = functionNode.getName();
-		const colorValues = functionNode.getArguments().getChildren();
+		let colorValues = functionNode.getArguments().getChildren();
+		if (colorValues.length === 1) {
+			const functionArg = colorValues[0].getChildren();
+			if (functionArg.length === 1 && functionArg[0].type === nodes.NodeType.Expression) {
+				colorValues = functionArg[0].getChildren();
+				if (colorValues.length === 3) {
+					const lastValue = colorValues[2];
+					if (lastValue instanceof nodes.BinaryExpression) {
+						const left = lastValue.getLeft(), right = lastValue.getRight(), operator = lastValue.getOperator();
+						if (left && right && operator && operator.matches('/')) {
+							colorValues = [ colorValues[0], colorValues[1], left, right ];
+						}
+					}
+				}
+			}	
+		}
 		if (!name || colorValues.length < 3 || colorValues.length > 4) {
 			return null;
 		}
