@@ -303,7 +303,7 @@ export class CSSNavigation {
 				return joinPath(modulePath, pathWithinModule);
 			}
 		}
-		return undefined;
+		return documentContext.resolveReference(ref, documentUri);
 	}
 
 	protected async resolveRelativeReference(ref: string, documentUri: string, documentContext: DocumentContext, isRawLink?: boolean): Promise<string | undefined> {
