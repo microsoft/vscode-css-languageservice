@@ -303,7 +303,7 @@ export class CSSNavigation {
 				return joinPath(modulePath, pathWithinModule);
 			}
 		}
-		return documentContext.resolveReference(ref, documentUri);
+		return undefined;
 	}
 
 	protected async resolveRelativeReference(ref: string, documentUri: string, documentContext: DocumentContext, isRawLink?: boolean): Promise<string | undefined> {
@@ -322,7 +322,7 @@ export class CSSNavigation {
 		if (relativeReference) {
 			return relativeReference;
 		} else {
-			return await this.resolveModuleReference(ref, documentUri, documentContext)
+			return await this.resolveModuleReference(ref, documentUri, documentContext);
 		}
 	}
 
