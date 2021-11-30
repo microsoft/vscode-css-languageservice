@@ -319,7 +319,7 @@ export class CSSNavigation {
 
 		// Using ~ is deprecated. The loader will first try to resolve @import as a relative path. If it cannot be resolved, 
 		// then the loader will try to resolve @import inside node_modules.
-		if (relativeReference) {
+		if (relativeReference && await this.fileExists(relativeReference)) {
 			return relativeReference;
 		} else {
 			return await this.resolveModuleReference(ref, documentUri, documentContext);
