@@ -317,13 +317,19 @@ export class CSSNavigation {
 			return await this.resolveModuleReference(ref, documentUri, documentContext) || relativeReference;
 		}
 
-		// Using ~ is deprecated. The loader will first try to resolve @import as a relative path. If it cannot be resolved, 
+		// Following [less-loader](https://github.com/webpack-contrib/less-loader#imports)
+		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#resolving-import-at-rules)
+		// new resolving import at-rules (~ is deprecated). The loader will first try to resolve @import as a relative path. If it cannot be resolved, 
 		// then the loader will try to resolve @import inside node_modules.
-		if (relativeReference && await this.fileExists(relativeReference)) {
-			return relativeReference;
-		} else {
-			return await this.resolveModuleReference(ref, documentUri, documentContext);
+		if (documentUri.endsWith('.less') || documentUri.endsWith('.scss') || documentUri.endsWith('.sass')) {
+			if (relativeReference && await this.fileExists(relativeReference)) {
+				return relativeReference;
+			} else {
+				return await this.resolveModuleReference(ref, documentUri, documentContext);
+			}
 		}
+
+		return relativeReference;
 	}
 
 	private async resolvePathToModule(_moduleName: string, documentFolderUri: string, rootFolderUri: string | undefined): Promise<string | undefined> {
