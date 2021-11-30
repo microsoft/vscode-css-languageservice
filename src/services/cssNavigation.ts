@@ -308,6 +308,7 @@ export class CSSNavigation {
 
 	protected async resolveRelativeReference(ref: string, documentUri: string, documentContext: DocumentContext, isRawLink?: boolean): Promise<string | undefined> {
 		const relativeReference = documentContext.resolveReference(ref, documentUri);
+
 		// Following [css-loader](https://github.com/webpack-contrib/css-loader#url)
 		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#imports)
 		// convention, if an import path starts with ~ then use node module resolution
@@ -325,7 +326,7 @@ export class CSSNavigation {
 			if (relativeReference && await this.fileExists(relativeReference)) {
 				return relativeReference;
 			} else {
-				return await this.resolveModuleReference(ref, documentUri, documentContext);
+				return await this.resolveModuleReference(ref, documentUri, documentContext) || relativeReference;
 			}
 		}
 
