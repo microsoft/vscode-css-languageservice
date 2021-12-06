@@ -21937,5 +21937,670 @@ export const cssData : CSSDataV1 = {
 			],
 			"description": "The ::spelling-error CSS pseudo-element represents a text segment which the user agent has flagged as incorrectly spelled."
 		}
+	],
+	"mediaQueries": [
+		{
+			"name": "all",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media#media_types"
+				}
+			],
+			"description": "Suitable for all devices."
+		},
+		{
+			"name": "print",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media#media_types"
+				}
+			],
+			"description": "Intended for paged material and documents viewed on a screen in print preview mode."
+		},
+		{
+			"name": "screen",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media#media_types"
+				}
+			],
+			"description": "Intended primarily for screens."
+		},
+		{
+			"name": "speech",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media#media_types"
+				}
+			],
+			"description": "Intended for speech synthesizers."
+		},
+		{
+			"name": "only",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media#logical_operators"
+				}
+			],
+			"description": "Applies a style only if an entire query matches. It is useful for preventing older browsers from applying selected styles. When not using only, older browsers would interpret the query screen and (max-width: 500px) as screen, ignoring the remainder of the query, and applying its styles on all screens. If you use the only operator, you must also specify a media type."
+		},
+		{
+			"name": "any-hover",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-hover"
+				}
+			],
+			"description": "The any-hover CSS media feature can be used to test whether any available input mechanism can hover over elements.",
+			"values": [
+				{
+					"name": "none",
+					"description": "None of the available input mechanism(s) can hover conveniently, or there is no pointing input mechanism."
+				},
+				{
+					"name": "hover",
+					"description": "One or more available input mechanisms can conveniently hover over elements."
+				}
+			],
+		},
+		{
+			"name": "any-pointer",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-pointer"
+				}
+			],
+			"description": "The any-pointer CSS media feature tests whether the user has any pointing device (such as a mouse), and if so, how accurate it is.",
+			"values": [
+				{
+					"name": "none",
+					"description": "No pointing device is available."
+				},
+				{
+					"name": "coarse",
+					"description": "At least one input mechanism includes a pointing device of limited accuracy."
+				},
+				{
+					"name": "fine",
+					"description": "At least one input mechanism includes an accurate pointing device."
+				}
+			],
+		},
+		{
+			"name": "aspect-ratio",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/aspect-ratio"
+				}
+			],
+			"values":[],
+			"description": "The aspect-ratio CSS media feature can be used to test the aspect ratio of the viewport.",
+		},
+		{
+			"name": "color",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color"
+				}
+			],
+			"description": "The color CSS media feature can be used to test the number of bits per color component (red, green, blue) of the output device.",
+		},
+		{
+			"name": "min-color",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color"
+				}
+			],
+			"values":[],
+			"description": "The color CSS media feature can be used to test the number of bits per color component (red, green, blue) of the output device.",
+		},
+		{
+			"name": "max-color",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color"
+				}
+			],
+			"values":[],
+			"description": "The color CSS media feature can be used to test the number of bits per color component (red, green, blue) of the output device.",
+		},
+		{
+			"name": "color-gamut",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color-gamut"
+				}
+			],
+			"values":[
+				{
+					"name": "srgb",
+					"description": "The output device can support approximately the sRGB gamut or more. This includes the vast majority of color displays."
+				},
+				{
+					"name": "p3",
+					"description": "The output device can support approximately the gamut specified by the DCI P3 Color Space or more. The p3 gamut is larger than and includes the srgb gamut."
+				},
+				{
+					"name": "rec2020",
+					"description": "The output device can support approximately the gamut specified by the ITU-R Recommendation BT.2020 Color Space or more. The rec2020 gamut is larger than and includes the p3 gamut."
+				}
+			],
+			"description": "The color-gamut CSS media feature can be used to test the approximate range of colors that are supported by the user agent and the output device.",
+		},
+		{
+			"name": "color-index",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color-index"
+				}
+			],
+			"description": "The color-index CSS media feature can be used to test the number of entries in the output device's color lookup table.",
+		},
+		{
+			"name": "min-color-index",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color-index"
+				}
+			],
+			"values":[],
+			"description": "The color-index CSS media feature can be used to test the number of entries in the output device's color lookup table.",
+		},
+		{
+			"name": "max-color-index",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color-index"
+				}
+			],
+			"values":[],
+			"description": "The color-index CSS media feature can be used to test the number of entries in the output device's color lookup table.",
+		},
+		{
+			"name": "device-aspect-ratio",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/device-aspect-ratio"
+				}
+			],
+			"values":[],
+			"description": "Deprecated. The device-aspect-ratio CSS media feature can be used to test the width-to-height aspect ratio of an output device.",
+		},
+		{
+			"name": "min-device-aspect-ratio",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/device-aspect-ratio"
+				}
+			],
+			"values":[],
+			"description": "Deprecated. The device-aspect-ratio CSS media feature can be used to test the width-to-height aspect ratio of an output device.",
+		},
+		{
+			"name": "max-device-aspect-ratio",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/device-aspect-ratio"
+				}
+			],
+			"values":[],
+			"description": "Deprecated. The device-aspect-ratio CSS media feature can be used to test the width-to-height aspect ratio of an output device.",
+		},
+		{
+			"name": "device-height",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/device-height"
+				}
+			],
+			"values":[],
+			"description": "Deprecated. The device-height CSS media feature can be used to test the height of an output device's rendering surface.",
+		},
+		{
+			"name": "min-device-height",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/device-height"
+				}
+			],
+			"values":[],
+			"description": "Deprecated. The device-height CSS media feature can be used to test the height of an output device's rendering surface.",
+		},
+		{
+			"name": "max-device-height",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/device-height"
+				}
+			],
+			"values":[],
+			"description": "Deprecated. The device-height CSS media feature can be used to test the height of an output device's rendering surface.",
+		},
+		{
+			"name": "device-width",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/device-width"
+				}
+			],
+			"values":[],
+			"description": "Deprecated. The device-width CSS media feature can be used to test the width of an output device's rendering surface.",
+		},
+		{
+			"name": "min-device-width",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/device-width"
+				}
+			],
+			"values":[],
+			"description": "Deprecated. The device-width CSS media feature can be used to test the width of an output device's rendering surface.",
+		},
+		{
+			"name": "max-device-width",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/device-width"
+				}
+			],
+			"values":[],
+			"description": "Deprecated. The device-width CSS media feature can be used to test the width of an output device's rendering surface.",
+		},
+		{
+			"name": "display-mode",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/display-mode"
+				}
+			],
+			"values":[
+				{
+					"name": "fullscreen",
+					"description": "All of the available display area is used and no user agent chrome is shown."
+				},
+				{
+					"name": "standalone",
+					"description": "The application will look and feel like a standalone application. This can include the application having a different window, its own icon in the application launcher, etc. In this mode, the user agent will exclude UI elements for controlling navigation, but can include other UI elements such as a status bar."
+				},
+				{
+					"name": "minimal-ui",
+					"description": "The application will look and feel like a standalone application, but will have a minimal set of UI elements for controlling navigation. The elements will vary by browser."
+				},
+				{
+					"name": "browser",
+					"description": "The application will look and feel like a standalone application, but will have a minimal set of UI elements for controlling navigation. The elements will vary by browser."
+				}
+			],
+			"description": "The display-mode CSS media feature can be used to test the display mode of an application. You can use it to provide a consistent user experience between launching a site from a URL and launching it from a desktop icon. This feature corresponds to the Web app manifest's display member. Both apply to the top-level browsing context and any child browsing contexts. The feature query applies regardless of whether a web app manifest is present.",
+		},
+		{
+			"name": "forced-colors",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors"
+				}
+			],
+			"values":[
+				{
+					"name": "none",
+					"description": "Forced colors mode is not active; the page’s colors are not being forced into a limited palette."
+				},
+				{
+					"name": "active",
+					"description": "Indicates that forced colors mode is active. The browser provides the color palette to authors through the CSS system color keywords and, if appropriate, triggers the appropriate value of prefers-color-scheme so that authors can adapt the page. The browser selects the value for prefers-color-scheme based on the lightness of the Canvas system color (see the color adjust spec for more details)."
+				},
+				
+			],
+			"description": "The forced-colors CSS media feature is used to detect if the user agent has enabled a forced colors mode where it enforces a user-chosen limited color palette on the page. An example of a forced colors mode is Windows High Contrast mode.",
+		},
+		{
+			"name": "grid",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/grid"
+				}
+			],
+			"values":[],
+			"description": "The grid CSS media feature can be used to test whether the output device uses a grid-based screen. Most modern computers and smartphones have bitmap-based screens. Examples of grid-based devices include text-only terminals and basic phones with only one fixed font."
+		},
+		{
+			"name": "height",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/height"
+				}
+			],
+			"values":[],
+			"description": "The height CSS media feature can be used to apply styles based on the height of the viewport (or the page box, for paged media)."
+		},
+		{
+			"name": "hover",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/hover"
+				}
+			],
+			"values":[
+				{
+					"name": "none",
+					"description": "The primary input mechanism cannot hover at all or cannot conveniently hover (e.g., many mobile devices emulate hovering when the user performs an inconvenient long tap), or there is no primary pointing input mechanism."
+				},
+				{
+					"name": "hover",
+					"description": "The primary input mechanism can conveniently hover over elements."
+				},
+			],
+			"description": "The hover CSS media feature can be used to test whether the user's primary input mechanism can hover over elements."
+		},
+		{
+			"name": "inverted-colors",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/inverted-colors"
+				}
+			],
+			"values":[
+				{
+					"name": "none",
+					"description": "Colors are displayed normally."
+				},
+				{
+					"name": "inverted",
+					"description": "All pixels within the displayed area have been inverted."
+				},
+			],
+			"description": "The inverted-colors CSS media feature can be used to test whether the user agent or underlying OS is inverting colors."
+		},
+		{
+			"name": "monochrome",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/monochrome"
+				}
+			],
+			"description": "The monochrome CSS media feature can be used to test the number of bits per pixel in the monochrome frame buffer of the output device."
+		},
+		{
+			"name": "min-monochrome",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/monochrome"
+				}
+			],
+			"values":[],
+			"description": "The monochrome CSS media feature can be used to test the number of bits per pixel in the monochrome frame buffer of the output device."
+		},
+		{
+			"name": "max-monochrome",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/monochrome"
+				}
+			],
+			"values":[],
+			"description": "The monochrome CSS media feature can be used to test the number of bits per pixel in the monochrome frame buffer of the output device."
+		},
+		{
+			"name": "orientation",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/orientation"
+				}
+			],
+			"values":[
+				{
+					"name": "portrait",
+					"description": "The viewport is in a portrait orientation, i.e.,  the height is greater than or equal to the width."
+				},
+				{
+					"name": "landscape",
+					"description": "The viewport is in a landscape orientation, i.e., the width is greater than the height."
+				},
+
+			],
+			"description": "The orientation CSS media feature can be used to test the orientation of the viewport (or the page box, for paged media)."
+		},
+		{
+			"name": "overflow-block",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/overflow-block"
+				}
+			],
+			"values":[
+				{
+					"name": "none",
+					"description": "Content that overflows the block axis is not displayed."
+				},
+				{
+					"name": "scroll",
+					"description": "Content that overflows the block axis can be seen by scrolling to it."
+				},
+				{
+					"name": "optional-paged",
+					"description": "Content that overflows the block axis can be seen by scrolling to it, but page breaks can be manually triggered (such as via break-inside, etc.) to cause the following content to display on the following page."
+				},
+				{
+					"name": "paged",
+					"description": "Content is broken up into discrete pages; content that overflows one page in the block axis is displayed on the following page."
+				},
+
+			],
+			"description": "The overflow-block CSS media feature can be used to test how the output device handles content that overflows the initial containing block along the block axis."
+		},
+		{
+			"name": "overflow-inline",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/overflow-inline"
+				}
+			],
+			"values":[
+				{
+					"name": "none",
+					"description": "Content that overflows the inline axis is not displayed."
+				},
+				{
+					"name": "scroll",
+					"description": "Content that overflows the inline axis can be seen by scrolling to it."
+				},	
+			],
+			"description": "The overflow-inline CSS media feature can be used to test how the output device handles content that overflows the initial containing block along the inline axis."
+		},
+		{
+			"name": "pointer",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer"
+				}
+			],
+			"values":[
+				{
+					"name": "none",
+					"description": "The primary input mechanism does not include a pointing device."
+				},
+				{
+					"name": "coarse",
+					"description": "The primary input mechanism includes a pointing device of limited accuracy."
+				},	
+				{
+					"name": "fine",
+					"description": "The primary input mechanism includes an accurate pointing device."
+				},	
+			],
+			"description": "The pointer CSS media feature tests whether the user has a pointing device (such as a mouse), and if so, how accurate the primary pointing device is."
+		},
+		{
+			"name": "prefers-color-scheme",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme"
+				}
+			],
+			"values":[
+				{
+					"name": "light",
+					"description": "Indicates that user has notified that they prefer an interface that has a light theme, or has not expressed an active preference."
+				},
+				{
+					"name": "dark",
+					"description": "Indicates that user has notified that they prefer an interface that has a dark theme."
+				},	
+			],
+			"description": "The prefers-color-scheme CSS media feature is used to detect if the user has requested a light or dark color theme. The user might indicate this preference through an operating system setting (e.g. light or dark mode) or a user agent setting."
+		},
+		{
+			"name": "prefers-contrast",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast"
+				}
+			],
+			"values":[
+				{
+					"name": "no-preference",
+					"description": "Indicates that the user has made no preference known to the system. This keyword value evaluates as false in a Boolean context."
+				},
+				{
+					"name": "more",
+					"description": "Indicates that user has notified the system that they prefer an interface that has a higher level of contrast."
+				},	
+				{
+					"name": "less",
+					"description": "Indicates that user has notified the system that they prefer an interface that has a lower level of contrast."
+				},	
+			],
+			"description": "Experimental. The prefers-contrast CSS media feature is used to detect if the user has requested that the web content is presented with a higher (or lower) contrast."
+		},
+		{
+			"name": "prefers-reduced-motion",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion"
+				}
+			],
+			"values":[
+				{
+					"name": "no-preference",
+					"description": "Indicates that the user has made no preference known to the system."
+				},
+				{
+					"name": "reduce",
+					"description": "Indicates that user has notified the system that they prefer an interface that removes or replaces the types of motion-based animation that trigger discomfort for those with vestibular motion disorders."
+				},	
+			],
+			"description": "Warning. The prefers-reduced-motion CSS media feature is used to detect if the user has requested that the system minimize the amount of non-essential motion it uses."
+		},
+		{
+			"name": "resolution",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/resolution"
+				}
+			],
+			"values":[],
+			"description": "The resolution CSS media feature can be used to test the pixel density of the output device."
+		},
+		{
+			"name": "scripting",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/scripting"
+				}
+			],
+			"values":[
+				{
+					"name": "none",
+					"description": "Scripting is completely unavailable on the current document."
+				},
+				{
+					"name": "initial-only",
+					"description": "Scripting is enabled during the initial page load, but not afterwards."
+				},	
+				{
+					"name": "enabled",
+					"description": "Scripting is supported and active on the current document."
+				},	
+			],
+			"description": "The scripting CSS media feature can be used to test whether scripting (such as JavaScript) is available."
+		},
+		{
+			"name": "update",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/update-frequency"
+				}
+			],
+			"values":[
+				{
+					"name": "none",
+					"description": "Once it has been rendered, the layout can no longer be updated. Example: documents printed on paper."
+				},
+				{
+					"name": "slow",
+					"description": "The layout may change dynamically according to the usual rules of CSS, but the output device is not able to render or display changes quickly enough for them to be perceived as a smooth animation. Examples: e-book readers or severely underpowered devices."
+				},	
+				{
+					"name": "fast",
+					"description": "The layout may change dynamically according to the usual rules of CSS, and the output device is not unusually constrained in speed, so regularly-updating things like CSS Animations can be used. Example: computer screens."
+				},	
+			],
+			"description": "The update CSS media feature can be used to test how frequently (if at all) the output device is able to modify the appearance of content."
+		},
+		{
+			"name": "width",
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/width"
+				}
+			],
+			"values":[],
+			"description": "The width CSS media feature can be used to test the width of the viewport (or the page box, for paged media)."
+		},
 	]
 };

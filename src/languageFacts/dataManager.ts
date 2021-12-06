@@ -10,6 +10,7 @@ import {
 	IAtDirectiveData,
 	IPseudoClassData,
 	IPseudoElementData,
+	IMediaQueryData
 } from '../cssLanguageTypes';
 
 import * as objects from '../utils/objects';
@@ -23,11 +24,13 @@ export class CSSDataManager {
 	private _atDirectiveSet: { [k: string]: IAtDirectiveData } = {};
 	private _pseudoClassSet: { [k: string]: IPseudoClassData } = {};
 	private _pseudoElementSet: { [k: string]: IPseudoElementData } = {};
+	private _mediaQuerySet: { [k: string]: IMediaQueryData} = {};
 
 	private _properties: IPropertyData[] = [];
 	private _atDirectives: IAtDirectiveData[] = [];
 	private _pseudoClasses: IPseudoClassData[] = [];
 	private _pseudoElements: IPseudoElementData[] = [];
+	private _mediaQueries: IMediaQueryData[] = [];
 
 	constructor(options?: { useDefaultDataProvider?: boolean, customDataProviders?: ICSSDataProvider[] }) {
 		this.setDataProviders(options?.useDefaultDataProvider !== false, options?.customDataProviders || []);
@@ -50,6 +53,7 @@ export class CSSDataManager {
 		this._atDirectiveSet = {};
 		this._pseudoClassSet = {};
 		this._pseudoElementSet = {};
+		this._mediaQuerySet = {};
 
 		this.dataProviders.forEach(provider => {
 			provider.provideProperties().forEach(p => {
@@ -72,19 +76,30 @@ export class CSSDataManager {
 					this._pseudoElementSet[p.name] = p;
 				}
 			});
+			provider.provideMediaQueries().forEach(p => {
+				if(!this._mediaQuerySet[p.name]){
+					this._mediaQuerySet[p.name] = p;
+				}
+			});
 		});
 
 		this._properties = objects.values(this._propertySet);
 		this._atDirectives = objects.values(this._atDirectiveSet);
 		this._pseudoClasses = objects.values(this._pseudoClassSet);
 		this._pseudoElements = objects.values(this._pseudoElementSet);
+		this._mediaQueries = objects.values(this._mediaQuerySet);
 	}
 
 	getProperty(name: string) : IPropertyData | undefined { return this._propertySet[name]; }
 	getAtDirective(name: string) : IAtDirectiveData | undefined { return this._atDirectiveSet[name]; }
 	getPseudoClass(name: string) : IPseudoClassData | undefined { return this._pseudoClassSet[name]; }
 	getPseudoElement(name: string) : IPseudoElementData | undefined { return this._pseudoElementSet[name]; }
+	getMediaQuery(name: string) : IMediaQueryData | undefined {return this._mediaQuerySet[name]}
 
+	hasMediaQueryValues(name: string){
+		return this._mediaQuerySet[name].values !== undefined
+	}
+	
 	getProperties() : IPropertyData[] {
 		return this._properties;
 	}
@@ -96,6 +111,13 @@ export class CSSDataManager {
 	}
 	getPseudoElements() : IPseudoElementData[] {
 		return this._pseudoElements;
+	}
+	getMediaQueries() : IMediaQueryData[]{
+		return this._mediaQueries;
+	}
+
+	isKnownMediaQuery(name: string): boolean {
+		return name.toLowerCase() in this._mediaQuerySet;
 	}
 
 	isKnownProperty(name: string): boolean {

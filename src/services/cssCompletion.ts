@@ -10,7 +10,7 @@ import * as languageFacts from '../languageFacts/facts';
 import * as strings from '../utils/strings';
 import {
 	ICompletionParticipant, LanguageSettings, TextDocument, Command,
-	Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, CompletionItemTag, DocumentContext, LanguageServiceOptions, IPropertyData, CompletionSettings
+	Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, CompletionItemTag, DocumentContext, LanguageServiceOptions, IPropertyData, CompletionSettings, IMediaQueryData
 } from '../cssLanguageTypes';
 
 import * as nls from 'vscode-nls';
@@ -149,6 +149,8 @@ export class CSSCompletion {
 					this.getCompletionsForSupportsCondition(<nodes.SupportsCondition>node, result);
 				} else if (node instanceof nodes.ExtendsReference) {
 					this.getCompletionsForExtendsReference(<nodes.ExtendsReference>node, null, result);
+				} else if (node instanceof nodes.MediaQuery) {
+					this.getCompletionsForMediaQuery(<nodes.MediaQuery>node, result);
 				} else if (node.type === nodes.NodeType.URILiteral) {
 					this.getCompletionForUriLiteralValue(node, result);
 				} else if (node.parent === null) {
@@ -378,6 +380,28 @@ export class CSSCompletion {
 					sortText,
 					kind: CompletionItemKind.Value,
 					insertTextFormat
+				};
+				result.items.push(item);
+			}
+		}
+		return result;
+	}
+
+	public getMediaQueryEnumProposals(
+		entry: IMediaQueryData,
+		result: CompletionList
+	): CompletionList {
+		if (entry.values) {
+			for (const value of entry.values) {
+				let insertText = value.name;
+				let range = this.getCompletionRange(null);				
+				const item: CompletionItem = {
+					label: value.name,
+					documentation: languageFacts.getEntryDescription(value, this.doesSupportMarkdown()),
+					tags: isDeprecated(entry) ? [CompletionItemTag.Deprecated] : [],
+					textEdit: TextEdit.replace(range, insertText),
+					insertTextFormat: InsertTextFormat.Snippet,
+					kind: CompletionItemKind.Property,
 				};
 				result.items.push(item);
 			}
@@ -981,6 +1005,82 @@ export class CSSCompletion {
 	}
 
 	public getCompletionsForExtendsReference(extendsRef: nodes.ExtendsReference, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
+		return result;
+	}
+
+	public getCompletionsForMediaQuery(mediaQuery: nodes.MediaQuery, result: CompletionList): CompletionList {
+		let getAllMediaQueries = true;
+
+		//Get the values to a media feature
+		if(mediaQuery.hasChildren()){
+			//Get the current mediaCondition in the chain
+			let mediaQueryChildren = mediaQuery.getChildren()
+			let mediaQueryChild = mediaQueryChildren[mediaQueryChildren.length-1]
+			if (mediaQueryChild instanceof nodes.MediaCondition){
+				//Get the current mediafeature being written
+				let mediaConditionChildren = mediaQueryChild.getChildren();
+				let mediaConditionChild = mediaConditionChildren[mediaConditionChildren.length-1];
+				if(mediaConditionChild instanceof nodes.MediaFeature){
+					let mediaFeatureChild = mediaConditionChild.getChild(0)
+					if (mediaFeatureChild){
+						//If the name is known get the corresponding values
+						let mediaFeatureChildName = mediaFeatureChild.getText()
+						if (this.cssDataManager.isKnownMediaQuery(mediaFeatureChildName)){
+							if(this.cssDataManager.hasMediaQueryValues(mediaFeatureChildName)){
+								const entry = this.cssDataManager.getMediaQuery(mediaFeatureChildName);
+								if(entry){
+									this.getMediaQueryEnumProposals(entry,result);
+									getAllMediaQueries = false;
+								}
+							}
+						}	
+					}
+				}
+			}
+		}
+
+		// Otherwise get all media features and types
+		if (getAllMediaQueries){
+			const mediaQueries = this.cssDataManager.getMediaQueries();
+
+			mediaQueries.forEach((entry) => {
+				let range: Range;
+				let insertText: string;
+				let retrigger = false;
+				range = this.getCompletionRange(null);
+				insertText = entry.name;
+
+				if (this.cssDataManager.hasMediaQueryValues(entry.name)){
+					retrigger = true
+					insertText += ": "
+				}
+	
+				const item: CompletionItem = {
+					label: entry.name,
+					documentation: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
+					tags: isDeprecated(entry) ? [CompletionItemTag.Deprecated] : [],
+					textEdit: TextEdit.replace(range, insertText),
+					insertTextFormat: InsertTextFormat.Snippet,
+					kind: CompletionItemKind.Property,
+				};
+				const sortTextSuffix = (255 - 50).toString(16);
+				const sortTextPrefix = strings.startsWith(entry.name, "-") ? SortTexts.VendorPrefixed : SortTexts.Normal;
+				item.sortText = sortTextPrefix + "_" + sortTextSuffix;
+				if(retrigger){
+					item.command = retriggerCommand;
+				}
+				result.items.push(item);
+			});
+		}
+
+		this.completionParticipants.forEach((participant) => {
+			if (participant.onCssProperty) {
+				participant.onCssProperty({
+					propertyName: this.currentWord,
+					range: this.defaultReplaceRange,
+				});
+			}
+		});
 		return result;
 	}
 
