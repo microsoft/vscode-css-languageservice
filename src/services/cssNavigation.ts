@@ -24,7 +24,7 @@ const startsWithData = /^data:/;
 
 export class CSSNavigation {
 
-	constructor(protected fileSystemProvider: FileSystemProvider | undefined) {
+	constructor(protected fileSystemProvider: FileSystemProvider | undefined, private readonly resolveModuleReferences: boolean) {
 	}
 
 	public findDefinition(document: TextDocument, position: Position, stylesheet: nodes.Node): Location | null {
@@ -322,7 +322,7 @@ export class CSSNavigation {
 		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#resolving-import-at-rules)
 		// new resolving import at-rules (~ is deprecated). The loader will first try to resolve @import as a relative path. If it cannot be resolved, 
 		// then the loader will try to resolve @import inside node_modules.
-		if (documentUri.endsWith('.less') || documentUri.endsWith('.scss') || documentUri.endsWith('.sass')) {
+		if (this.resolveModuleReferences) {
 			if (relativeReference && await this.fileExists(relativeReference)) {
 				return relativeReference;
 			} else {
