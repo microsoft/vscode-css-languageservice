@@ -24,7 +24,7 @@ const startsWithData = /^data:/;
 
 export class CSSNavigation {
 
-	constructor(protected fileSystemProvider: FileSystemProvider | undefined) {
+	constructor(protected fileSystemProvider: FileSystemProvider | undefined, private readonly resolveModuleReferences: boolean) {
 	}
 
 	public findDefinition(document: TextDocument, position: Position, stylesheet: nodes.Node): Location | null {
@@ -292,26 +292,45 @@ export class CSSNavigation {
 		};
 	}
 
+	protected async resolveModuleReference(ref: string, documentUri: string, documentContext: DocumentContext): Promise<string | undefined> {
+		if (startsWith(documentUri, 'file://')) {
+			const moduleName = getModuleNameFromPath(ref);
+			const rootFolderUri = documentContext.resolveReference('/', documentUri);
+			const documentFolderUri = dirname(documentUri);
+			const modulePath = await this.resolvePathToModule(moduleName, documentFolderUri, rootFolderUri);
+			if (modulePath) {
+				const pathWithinModule = ref.substring(moduleName.length + 1);
+				return joinPath(modulePath, pathWithinModule);
+			}
+		}
+		return undefined;
+	}
+
 	protected async resolveRelativeReference(ref: string, documentUri: string, documentContext: DocumentContext, isRawLink?: boolean): Promise<string | undefined> {
+		const relativeReference = documentContext.resolveReference(ref, documentUri);
+
 		// Following [css-loader](https://github.com/webpack-contrib/css-loader#url)
 		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#imports)
 		// convention, if an import path starts with ~ then use node module resolution
 		// *unless* it starts with "~/" as this refers to the user's home directory.
 		if (ref[0] === '~' && ref[1] !== '/' && this.fileSystemProvider) {
 			ref = ref.substring(1);
-			if (startsWith(documentUri, 'file://')) {
-				const moduleName = getModuleNameFromPath(ref);
-				const rootFolderUri = documentContext.resolveReference('/', documentUri);
-				const documentFolderUri = dirname(documentUri);
-				const modulePath = await this.resolvePathToModule(moduleName, documentFolderUri, rootFolderUri);
-				if (modulePath) {
-					const pathWithinModule = ref.substring(moduleName.length + 1);
-					return joinPath(modulePath, pathWithinModule);
-				}
-			}
-			return documentContext.resolveReference(ref, documentUri);
+			return await this.resolveModuleReference(ref, documentUri, documentContext) || relativeReference;
 		}
-		return documentContext.resolveReference(ref, documentUri);
+
+		// Following [less-loader](https://github.com/webpack-contrib/less-loader#imports)
+		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#resolving-import-at-rules)
+		// new resolving import at-rules (~ is deprecated). The loader will first try to resolve @import as a relative path. If it cannot be resolved, 
+		// then the loader will try to resolve @import inside node_modules.
+		if (this.resolveModuleReferences) {
+			if (relativeReference && await this.fileExists(relativeReference)) {
+				return relativeReference;
+			} else {
+				return await this.resolveModuleReference(ref, documentUri, documentContext) || relativeReference;
+			}
+		}
+
+		return relativeReference;
 	}
 
 	private async resolvePathToModule(_moduleName: string, documentFolderUri: string, rootFolderUri: string | undefined): Promise<string | undefined> {

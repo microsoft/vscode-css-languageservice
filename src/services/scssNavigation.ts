@@ -12,7 +12,7 @@ import { startsWith } from '../utils/strings';
 
 export class SCSSNavigation extends CSSNavigation {
 	constructor(fileSystemProvider: FileSystemProvider | undefined) {
-		super(fileSystemProvider);
+		super(fileSystemProvider, true);
 	}
 
 	protected isRawStringDocumentLinkNode(node: nodes.Node): boolean {
