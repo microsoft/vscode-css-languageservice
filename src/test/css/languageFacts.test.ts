@@ -104,6 +104,7 @@ suite('CSS - Language Facts', () => {
 		assertColor(parser, '#main { color: hsl(30,20%,30%, 0) }', 'hsl', colorFrom256RGB(92, 77, 61, 0));
 		assertColor(parser, '#main { color: hsla(38deg,89%,89%, 0) }', 'hsl', colorFrom256RGB(252, 234, 202, 0));
 		assertColor(parser, '#main { color: hsl(0.5turn, 100%, 50%) }', 'hsl', colorFrom256RGB(0, 255, 255, 1));
+		assertColor(parser, '#main { color: hsl(1.5turn, 100%, 50%) }', 'hsl', colorFrom256RGB(0, 255, 255, 1));
 		assertColor(parser, '#main { color: hsl(200grad, 100%, 50%) }', 'hsl', colorFrom256RGB(0, 255, 255, 1));
 		assertColor(parser, '#main { color: hsl(3.14159rad, 100%, 50%) }', 'hsl', colorFrom256RGB(0, 255, 255, 1));
 		assertColor(parser, '#main { color: hsl(0.13turn, 97%, 32%) }', 'hsl', colorFrom256RGB(161, 126, 2, 1));

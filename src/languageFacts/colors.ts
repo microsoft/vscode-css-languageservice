@@ -196,11 +196,11 @@ function getAngle(node: nodes.Node) {
 			case 'deg':
 				return parseFloat(val) % 360;
 			case 'rad':
-				return parseFloat(val) * 180 / Math.PI;
+				return (parseFloat(val) * 180 / Math.PI) % 360;
 			case 'grad':
-				return parseFloat(val) * 0.9;
+				return (parseFloat(val) * 0.9) % 360;
 			case 'turn':
-				return parseFloat(val) * 360;
+				return (parseFloat(val) * 360) % 360;
 			default:
 				if ('undefined' === typeof m[2]) {
 					return parseFloat(val) % 360;
