@@ -190,10 +190,24 @@ function getNumericValue(node: nodes.Node, factor: number) {
 
 function getAngle(node: nodes.Node) {
 	const val = node.getText();
-	const m = val.match(/^([-+]?[0-9]*\.?[0-9]+)(deg)?$/);
+	const m = val.match(/^([-+]?[0-9]*\.?[0-9]+)(deg|rad|grad|turn)?$/);
 	if (m) {
-		return parseFloat(val) % 360;
+		switch (m[2]) {
+			case 'deg':
+				return parseFloat(val) % 360;
+			case 'rad':
+				return (parseFloat(val) * 180 / Math.PI) % 360;
+			case 'grad':
+				return (parseFloat(val) * 0.9) % 360;
+			case 'turn':
+				return (parseFloat(val) * 360) % 360;
+			default:
+				if ('undefined' === typeof m[2]) {
+					return parseFloat(val) % 360;
+				}
+		}
 	}
+
 	throw new Error();
 }
 
