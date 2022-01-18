@@ -1387,6 +1387,7 @@ export class Parser {
 		if (node.setOperator(this._parseOperator())) {
 			node.setValue(this._parseBinaryExpr());
 			this.acceptIdent('i'); // case insensitive matching
+			this.acceptIdent('s'); // case sensitive matching
 		}
 
 		if (!this.accept(TokenType.BracketR)) {
