@@ -7,7 +7,7 @@ const fs = require('fs')
 const path = require('path')
 const os = require('os')
 
-const customData = require('vscode-web-custom-data/data/browsers.css-data.json');
+const customData = require('@vscode/web-custom-data/data/browsers.css-data.json');
 
 function toJavaScript(obj) {
 	return JSON.stringify(obj, null, '\t');
