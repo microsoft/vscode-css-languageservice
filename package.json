@@ -19,7 +19,7 @@
     "@types/node": "^10.12.21",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",
-    "@vscode/web-custom-data": "^0.3.6",
+    "@vscode/web-custom-data": "^0.3.7",
     "eslint": "^8.7.0",
     "mocha": "^9.2.0",
     "rimraf": "^3.0.2",

@@ -157,10 +157,10 @@
   resolved "https://registry.yarnpkg.com/@ungap/promise-all-settled/-/promise-all-settled-1.1.2.tgz#aa58042711d6e3275dd37dc597e5d31e8c290a44"
   integrity sha512-sL/cEvJWAnClXw0wHk85/2L0G6Sj8UB0Ctc1TEMbKSsmpRosqhwj9gWgFRZSrBr2f9tiXISwNhCPmlfqUqyb9Q==
 
-"@vscode/web-custom-data@^0.3.6":
-  version "0.3.6"
-  resolved "https://registry.yarnpkg.com/@vscode/web-custom-data/-/web-custom-data-0.3.6.tgz#5851d92297f760f47db0e66ff410e588eb8a8537"
-  integrity sha512-UkiMyqQESnWMun/SnY57EdneSfjNEK9Cg2XLjTr7f7wg5TJlEQ1OV2cXKfXuRAM+W0SgFreLRpxGIy4h6P+bpQ==
+"@vscode/web-custom-data@^0.3.7":
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/@vscode/web-custom-data/-/web-custom-data-0.3.7.tgz#d5e8506d6f134a2733f4d32a1740b226e863a296"
+  integrity sha512-Z1SiemC1op7pH2IwqwWeuwOOBPPP8pkSwc0zjTmue9qMjkJRhxyBSXhuS7uGnWZNtzRq4bIuonq4huV9qblt3g==
 
 acorn-jsx@^5.3.1:
   version "5.3.1"
