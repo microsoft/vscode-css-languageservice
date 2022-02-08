@@ -410,8 +410,8 @@ suite('CSS - Navigation', () => {
 
 		test('color presentations', function () {
 			let ls = getCSSLS();
-			assertColorPresentations(ls, colorFrom256RGB(255, 0, 0), 'rgb(255, 0, 0)', '#ff0000', 'hsl(0, 100%, 50%)');
-			assertColorPresentations(ls, colorFrom256RGB(77, 33, 111, 0.5), 'rgba(77, 33, 111, 0.5)', '#4d216f80', 'hsla(274, 54%, 28%, 0.5)');
+			assertColorPresentations(ls, colorFrom256RGB(255, 0, 0), 'rgb(255, 0, 0)', '#ff0000', 'hsl(0, 100%, 50%)', 'hwb(0 0% 0%)');
+			assertColorPresentations(ls, colorFrom256RGB(77, 33, 111, 0.5), 'rgba(77, 33, 111, 0.5)', '#4d216f80', 'hsla(274, 54%, 28%, 0.5)', 'hwb(274 13% 56% / 0.5)');
 		});
 	});
 });

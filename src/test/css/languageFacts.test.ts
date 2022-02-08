@@ -5,7 +5,7 @@
 'use strict';
 
 import * as assert from 'assert';
-import { isColorValue, getColorValue, getBrowserLabel, colorFrom256RGB, colorFromHex, hexDigit, hslFromColor, HSLA } from '../../languageFacts/facts';
+import { isColorValue, getColorValue, getBrowserLabel, colorFrom256RGB, colorFromHex, hexDigit, hslFromColor, HSLA, hwbFromColor, HWBA } from '../../languageFacts/facts';
 import { Parser } from '../../parser/cssParser';
 import * as nodes from '../../parser/cssNodes';
 import { TextDocument, Color } from '../../cssLanguageTypes';
@@ -50,6 +50,19 @@ function assertHSLValue(actual: HSLA, expected: HSLA) {
 		let lDiff = Math.abs((actual.l - expected.l) * 100);
 		let aDiff = Math.abs((actual.a - expected.a) * 100);
 		if (hDiff < 1 && sDiff < 1 && lDiff < 1 && aDiff < 1) {
+			return;
+		}
+	}
+	assert.deepEqual(actual, expected);
+}
+
+function assertHWBValue(actual: HWBA, expected: HWBA) {
+	if (actual && expected) {
+		let hDiff = actual.h - expected.h;
+		let wDiff = Math.abs((actual.w - expected.w) * 100);
+		let bDiff = Math.abs((actual.b - expected.b) * 100);
+		let aDiff = Math.abs((actual.a - expected.a) * 100);
+		if (hDiff < 1 && wDiff < 1 && bDiff < 1 && aDiff < 1) {
 			return;
 		}
 	}
@@ -117,6 +130,8 @@ suite('CSS - Language Facts', () => {
 		assertColor(parser, '#main { color: rgb(34 89 234 / 0.5) }', 'rgb', colorFrom256RGB(34, 89, 234, 0.5));
 		assertColor(parser, '#main { color: rgb(34 89 234 / 100%) }', 'rgb', colorFrom256RGB(34, 89, 234));
 		assertColor(parser, '#main { color: hsla(240 100% 50% / .05) }', 'hsl', colorFrom256RGB(0, 0, 255, 0.05));
+		assertColor(parser, '#main { color: hwb(120 0% 0% / .05) }', 'hwb', colorFrom256RGB(0, 255, 0, 0.05));
+		assertColor(parser, '#main { color: hwb(36 33% 35%) }', 'hwb', colorFrom256RGB(166, 133, 84));
 	});
 
 	test('hexDigit', function () {
@@ -165,5 +180,29 @@ suite('CSS - Language Facts', () => {
 		assertHSLValue(hslFromColor(colorFrom256RGB(128, 0, 128, 1)), { h: 300, s: 1, l: 0.251, a: 1 });
 		assertHSLValue(hslFromColor(colorFrom256RGB(0, 128, 128, 1)), { h: 180, s: 1, l: 0.251, a: 1 });
 		assertHSLValue(hslFromColor(colorFrom256RGB(0, 0, 128, 1)), { h: 240, s: 1, l: 0.251, a: 1 });
+	});
+
+	test('hwbFromColor', function () {
+		assertHWBValue(hwbFromColor(colorFrom256RGB(0, 0, 0, 0)), { h: 0, w: 0, b: 1, a: 0 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(0, 0, 0, 1)), { h: 0, w: 0, b: 1, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(255, 255, 255, 1)), { h: 0, w: 1, b: 0, a: 1 });
+
+		assertHWBValue(hwbFromColor(colorFrom256RGB(255, 0, 0, 1)), { h: 0, w: 0, b: 0, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(0, 255, 0, 1)), { h: 120, w: 0, b: 0, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(0, 0, 255, 1)), { h: 240, w: 0, b: 0, a: 1 });
+
+		assertHWBValue(hwbFromColor(colorFrom256RGB(255, 255, 0, 1)), { h: 60, w: 0, b: 0, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(0, 255, 255, 1)), { h: 180, w: 0, b: 0, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(255, 0, 255, 1)), { h: 300, w: 0, b: 0, a: 1 });
+
+		assertHWBValue(hwbFromColor(colorFrom256RGB(192, 192, 192, 1)), { h: 0, w: 0.752, b: 0.247, a: 1 });
+
+		assertHWBValue(hwbFromColor(colorFrom256RGB(128, 128, 128, 1)), { h: 0, w: 0.5, b: 0.5, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(128, 0, 0, 1)), { h: 0, w: 0, b: 0.5, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(128, 128, 0, 1)), { h: 60, w: 0, b: 0.5, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(0, 128, 0, 1)), { h: 120, w: 0, b: 0.5, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(128, 0, 128, 1)), { h: 300, w: 0, b: 0.5, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(0, 128, 128, 1)), { h: 180, w: 0, b: 0.5, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(0, 0, 128, 1)), { h: 240, w: 0, b: 0.5, a: 1 });
 	});
 });

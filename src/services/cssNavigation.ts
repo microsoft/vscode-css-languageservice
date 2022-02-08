@@ -11,7 +11,7 @@ import {
 import * as nls from 'vscode-nls';
 import * as nodes from '../parser/cssNodes';
 import { Symbols } from '../parser/cssSymbolScope';
-import { getColorValue, hslFromColor } from '../languageFacts/facts';
+import { getColorValue, hslFromColor, hwbFromColor } from '../languageFacts/facts';
 import { startsWith } from '../utils/strings';
 import { dirname, joinPath } from '../utils/resources';
 
@@ -278,6 +278,14 @@ export class CSSNavigation {
 			label = `hsl(${hsl.h}, ${Math.round(hsl.s * 100)}%, ${Math.round(hsl.l * 100)}%)`;
 		} else {
 			label = `hsla(${hsl.h}, ${Math.round(hsl.s * 100)}%, ${Math.round(hsl.l * 100)}%, ${hsl.a})`;
+		}
+		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
+
+		const hwb = hwbFromColor(color);
+		if (hwb.a === 1) {
+			label = `hwb(${hwb.h} ${Math.round(hwb.w * 100)}% ${Math.round(hwb.b * 100)}%)`;
+		} else {
+			label = `hwb(${hwb.h} ${Math.round(hwb.w * 100)}% ${Math.round(hwb.b * 100)}% / ${hwb.a})`;
 		}
 		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
 
