@@ -400,25 +400,34 @@ export class SelectorPrinting {
 						if (text.match(/^:(not|has|is)/i) && element.getChildren().length > 0) {
 							let mostSpecificListItem = new Specificity();
 
-							for (const element of node.getChildren()) {
-								const itemSpecificity = calculateScore(element);
-								if (itemSpecificity.id > mostSpecificListItem.id) {
-									mostSpecificListItem = itemSpecificity;
-									break;
-								} else if (itemSpecificity.id < mostSpecificListItem.id) {
-									break;
+							for (const containerElement of element.getChildren()) {
+								let list;
+								if (containerElement.type !== nodes.NodeType.Undefined) {
+									list = [containerElement];
+								} else {
+									list = containerElement.getChildren();
 								}
 
-								if (itemSpecificity.attr > mostSpecificListItem.attr) {
-									mostSpecificListItem = itemSpecificity;
-									break;
-								} else if (itemSpecificity.attr < mostSpecificListItem.attr) {
-									break;
-								}
+								for (const childElement of containerElement.getChildren()) {
+									const itemSpecificity = calculateScore(childElement);
+									if (itemSpecificity.id > mostSpecificListItem.id) {
+										mostSpecificListItem = itemSpecificity;
+										continue;
+									} else if (itemSpecificity.id < mostSpecificListItem.id) {
+										continue;
+									}
 
-								if (itemSpecificity.tag > mostSpecificListItem.tag) {
-									mostSpecificListItem = itemSpecificity;
-									break;
+									if (itemSpecificity.attr > mostSpecificListItem.attr) {
+										mostSpecificListItem = itemSpecificity;
+										continue;
+									} else if (itemSpecificity.attr < mostSpecificListItem.attr) {
+										continue;
+									}
+
+									if (itemSpecificity.tag > mostSpecificListItem.tag) {
+										mostSpecificListItem = itemSpecificity;
+										continue;
+									}
 								}
 							}
 
