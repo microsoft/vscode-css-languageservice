@@ -452,7 +452,10 @@ export class Parser {
 			return custonProperty;
 		}
 
-		const node = this.create(nodes.Declaration);
+		let unicodeRange = this.peekIdent('unicode-range');
+
+		const node = this.create(nodes.Declaration);		
+
 		if (!node.setProperty(this._parseProperty())) {
 			return null;
 		}
@@ -464,7 +467,7 @@ export class Parser {
 			node.colonPosition = this.prevToken.offset;
 		}
 
-		if (!node.setValue(this._parseExpr())) {
+		if (!node.setValue(unicodeRange ? this._parseUnicodeRangeExpr() : this._parseExpr())) {
 			return this.finish(node, ParseError.PropertyValueExpected);
 		}
 
@@ -1478,6 +1481,27 @@ export class Parser {
 				if (stopOnComma) {
 					return this.finish(node);
 				}
+				this.consumeToken();
+			}
+			if (!node.addChild(this._parseBinaryExpr())) {
+				break;
+			}
+		}
+
+		return this.finish(node);
+	}
+
+	public _parseUnicodeRangeExpr(): nodes.Expression | null {
+		const node = this.create(nodes.Expression);
+		if (!node.addChild(this._parseBinaryExpr())) {
+			return null;
+		}
+
+		while (true) {
+			while (this.peekDelim('?')) { // skip over wildcard suffix
+				this.consumeToken();
+			}
+			if (this.peek(TokenType.Comma)) { // optional
 				this.consumeToken();
 			}
 			if (!node.addChild(this._parseBinaryExpr())) {

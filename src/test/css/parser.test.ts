@@ -117,6 +117,7 @@ suite('CSS - Parser', () => {
 		assertNode('@font-face {}', parser, parser._parseFontFace.bind(parser));
 		assertNode('@font-face { src: url(http://test) }', parser, parser._parseFontFace.bind(parser));
 		assertNode('@font-face { font-style: normal; font-stretch: normal; }', parser, parser._parseFontFace.bind(parser));
+		assertNode('@font-face { unicode-range: U+0025-00FF, U+4??; }', parser, parser._parseFontFace.bind(parser));
 		assertError('@font-face { font-style: normal font-stretch: normal; }', parser, parser._parseFontFace.bind(parser), ParseError.SemiColonExpected);
 	});
 
