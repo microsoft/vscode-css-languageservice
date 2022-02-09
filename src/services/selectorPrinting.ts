@@ -402,10 +402,10 @@ export class SelectorPrinting {
 
 							for (const containerElement of element.getChildren()) {
 								let list;
-								if (containerElement.type !== nodes.NodeType.Undefined) {
-									list = [containerElement];
-								} else {
+								if (containerElement.type === nodes.NodeType.Undefined) { // containerElement is a list of selectors
 									list = containerElement.getChildren();
+								} else { // containerElement is a selector
+									list = [containerElement];
 								}
 
 								for (const childElement of containerElement.getChildren()) {
