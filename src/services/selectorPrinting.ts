@@ -361,44 +361,98 @@ export class SelectorPrinting {
 
 	private selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
 		//https://www.w3.org/TR/selectors-3/#specificity
-		const calculateScore = (node: nodes.Node) => {
-			for (const element of node.getChildren()) {
+		const calculateScore = (node: nodes.Node): Specificity => {
+			const specificity = new Specificity();
+
+			elementLoop: for (const element of node.getChildren()) {
 				switch (element.type) {
 					case nodes.NodeType.IdentifierSelector:
 						specificity.id++;
 						break;
+
 					case nodes.NodeType.ClassSelector:
 					case nodes.NodeType.AttributeSelector:
 						specificity.attr++;
 						break;
+
 					case nodes.NodeType.ElementNameSelector:
 						//ignore universal selector
 						if (element.matches("*")) {
 							break;
 						}
+
 						specificity.tag++;
 						break;
+
 					case nodes.NodeType.PseudoSelector:
 						const text = element.getText();
 						if (this.isPseudoElementIdentifier(text)) {
 							specificity.tag++;	// pseudo element
-						} else {
-							//ignore psuedo class NOT
-							if (text.match(/^:not/i)) {
-								break;
-							}
-							specificity.attr++;	//pseudo class
+							break;
 						}
+
+						// where and child selectors have zero specificity
+						if (text.match(/^:where/i)) {
+							continue elementLoop;
+						}
+
+						// the most specific child selector
+						if (text.match(/^:(not|has|is)/i) && element.getChildren().length > 0) {
+							let mostSpecificListItem = new Specificity();
+
+							for (const containerElement of element.getChildren()) {
+								let list;
+								if (containerElement.type === nodes.NodeType.Undefined) { // containerElement is a list of selectors
+									list = containerElement.getChildren();
+								} else { // containerElement is a selector
+									list = [containerElement];
+								}
+
+								for (const childElement of containerElement.getChildren()) {
+									const itemSpecificity = calculateScore(childElement);
+									if (itemSpecificity.id > mostSpecificListItem.id) {
+										mostSpecificListItem = itemSpecificity;
+										continue;
+									} else if (itemSpecificity.id < mostSpecificListItem.id) {
+										continue;
+									}
+
+									if (itemSpecificity.attr > mostSpecificListItem.attr) {
+										mostSpecificListItem = itemSpecificity;
+										continue;
+									} else if (itemSpecificity.attr < mostSpecificListItem.attr) {
+										continue;
+									}
+
+									if (itemSpecificity.tag > mostSpecificListItem.tag) {
+										mostSpecificListItem = itemSpecificity;
+										continue;
+									}
+								}
+							}
+
+							specificity.id += mostSpecificListItem.id;
+							specificity.attr += mostSpecificListItem.attr;
+							specificity.tag += mostSpecificListItem.tag;
+							continue elementLoop;
+						}
+
+						specificity.attr++;	//pseudo class
 						break;
 				}
+
 				if (element.getChildren().length > 0) {
-					calculateScore(element);
+					const itemSpecificity = calculateScore(element);
+					specificity.id += itemSpecificity.id;
+					specificity.attr += itemSpecificity.attr;
+					specificity.tag += itemSpecificity.tag;
 				}
 			}
+
+			return specificity;
 		};
 
-		const specificity = new Specificity();
-		calculateScore(node);
+		const specificity = calculateScore(node);;
 		return localize('specificity', "[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): ({0}, {1}, {2})", specificity.id, specificity.attr, specificity.tag);
 	}
 
