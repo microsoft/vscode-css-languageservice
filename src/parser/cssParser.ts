@@ -1493,19 +1493,62 @@ export class Parser {
 
 	public _parseUnicodeRangeExpr(): nodes.Expression | null {
 		const node = this.create(nodes.Expression);
-		if (!node.addChild(this._parseBinaryExpr())) {
+		if (!node.addChild(this._parseUnicodeRange())) {
 			return null;
 		}
 
 		while (true) {
-			while (this.peekDelim('?')) { // skip over wildcard suffix
-				this.consumeToken();
-			}
 			if (this.peek(TokenType.Comma)) { // optional
 				this.consumeToken();
 			}
-			if (!node.addChild(this._parseBinaryExpr())) {
+			if (!node.addChild(this._parseUnicodeRange())) {
 				break;
+			}
+		}
+
+		return this.finish(node);
+	}
+
+	public _parseUnicodeRange(): nodes.UnicodeRange | null {
+		// The Scanner has no contextual knowlege of unicode syntax and will tokenize 'U+0F??' as:
+		// 	'U': Ident, '+': Delim', '0F': Dimension, '?': Delim, '?': Delim
+		const node = this.create(nodes.UnicodeRange);
+
+		if (!this.acceptRegexp(/^u$/i)) {
+			return null;
+		}
+		if (!this.acceptDelim('+')) {
+			return null;
+		}
+
+		if (!node.setRangeStart(this._parseUnicodeValue(true))) {
+			return null;
+		}
+
+		if (this.peekDelim('-')) {
+			this.consumeToken();
+			if (!node.setRangeEnd(this._parseUnicodeValue())) {
+				return null;
+			}
+		}
+
+		return this.finish(node);
+	}
+
+	public _parseUnicodeValue(wildcard: boolean = false): nodes.Node | null {
+		const node = this.create(nodes.Expression);
+
+		// must start with hex or wildcard
+		if (!/^[0-9a-f?]/i.test(this.token.text)) {
+			return null;
+		}
+		while (this.acceptRegexp(/^[0-9a-f]{1,6}$/i)) {
+			// loop
+		}
+
+		if (wildcard) {
+			while(this.peekDelim('?')) {
+				this.consumeToken();
 			}
 		}
 

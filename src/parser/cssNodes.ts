@@ -94,6 +94,7 @@ export enum NodeType {
 	Forward,
 	ForwardVisibility,
 	Module,
+	UnicodeRange,
 }
 
 export enum ReferenceType {
@@ -421,6 +422,35 @@ export class Nodelist extends Node {
 	}
 }
 
+export class UnicodeRange extends Node {
+
+	public rangeStart?: Node;
+	public rangeEnd?: Node;
+
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.UnicodeRange;
+	}
+
+	public setRangeStart(rangeStart: Node | null): rangeStart is Node {
+		return this.setNode('rangeStart', rangeStart);
+	}
+
+	public getRangeStart(): Node | undefined {
+		return this.rangeStart;
+	}
+
+	public setRangeEnd(rangeEnd: Node | null): rangeEnd is Node {
+		return this.setNode('rangeEnd', rangeEnd);
+	}
+
+	public getRangeEnd(): Node | undefined {
+		return this.rangeEnd;
+	}
+}
 
 export class Identifier extends Node {
 
