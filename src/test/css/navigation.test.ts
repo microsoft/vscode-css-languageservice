@@ -8,7 +8,7 @@ import * as assert from 'assert';
 import { join } from 'path';
 import { Scope, GlobalScope, ScopeBuilder } from '../../parser/cssSymbolScope';
 import * as nodes from '../../parser/cssNodes';
-import { colorFrom256RGB, colorFromHSL } from '../../languageFacts/facts';
+import { colorFrom256RGB, colorFromHSL, colorFromHWB } from '../../languageFacts/facts';
 
 import {
 	TextDocument, DocumentHighlightKind, Range, Position, TextEdit, Color,
@@ -406,12 +406,15 @@ suite('CSS - Navigation', () => {
 			assertColorSymbols(ls, 'body { backgroundColor: rgba(1, 40, 1, 0.3); }',
 				{ color: colorFrom256RGB(1, 40, 1, 0.3), range: newRange(24, 43) }
 			);
+			assertColorSymbols(ls, 'body { backgroundColor: hwb(194 0% 0% / .5); }',
+				{ color: colorFromHWB(194, 0, 0, 0.5), range: newRange(24, 43) }
+			);
 		});
 
 		test('color presentations', function () {
 			let ls = getCSSLS();
-			assertColorPresentations(ls, colorFrom256RGB(255, 0, 0), 'rgb(255, 0, 0)', '#ff0000', 'hsl(0, 100%, 50%)');
-			assertColorPresentations(ls, colorFrom256RGB(77, 33, 111, 0.5), 'rgba(77, 33, 111, 0.5)', '#4d216f80', 'hsla(274, 54%, 28%, 0.5)');
+			assertColorPresentations(ls, colorFrom256RGB(255, 0, 0), 'rgb(255, 0, 0)', '#ff0000', 'hsl(0, 100%, 50%)', 'hwb(0 0% 0%)');
+			assertColorPresentations(ls, colorFrom256RGB(77, 33, 111, 0.5), 'rgba(77, 33, 111, 0.5)', '#4d216f80', 'hsla(274, 54%, 28%, 0.5)', 'hwb(274 13% 56% / 0.5)');
 		});
 	});
 });

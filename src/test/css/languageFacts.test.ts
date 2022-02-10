@@ -5,7 +5,7 @@
 'use strict';
 
 import * as assert from 'assert';
-import { isColorValue, getColorValue, getBrowserLabel, colorFrom256RGB, colorFromHex, hexDigit, hslFromColor, HSLA } from '../../languageFacts/facts';
+import { isColorValue, getColorValue, getBrowserLabel, colorFrom256RGB, colorFromHex, hexDigit, hslFromColor, HSLA, hwbFromColor, HWBA, colorFromHWB, colorFromHSL } from '../../languageFacts/facts';
 import { Parser } from '../../parser/cssParser';
 import * as nodes from '../../parser/cssNodes';
 import { TextDocument, Color } from '../../cssLanguageTypes';
@@ -45,11 +45,24 @@ function assertColorValue(actual: Color | null, expected: Color | null, message:
 
 function assertHSLValue(actual: HSLA, expected: HSLA) {
 	if (actual && expected) {
-		let hDiff = actual.h - expected.h;
+		let hDiff = Math.abs(actual.h - expected.h);
 		let sDiff = Math.abs((actual.s - expected.s) * 100);
 		let lDiff = Math.abs((actual.l - expected.l) * 100);
 		let aDiff = Math.abs((actual.a - expected.a) * 100);
 		if (hDiff < 1 && sDiff < 1 && lDiff < 1 && aDiff < 1) {
+			return;
+		}
+	}
+	assert.deepEqual(actual, expected);
+}
+
+function assertHWBValue(actual: HWBA, expected: HWBA) {
+	if (actual && expected) {
+		let hDiff = Math.abs(actual.h - expected.h);
+		let wDiff = Math.abs((actual.w - expected.w) * 100);
+		let bDiff = Math.abs((actual.b - expected.b) * 100);
+		let aDiff = Math.abs((actual.a - expected.a) * 100);
+		if (hDiff < 1 && wDiff < 1 && bDiff < 1 && aDiff < 1) {
 			return;
 		}
 	}
@@ -117,6 +130,8 @@ suite('CSS - Language Facts', () => {
 		assertColor(parser, '#main { color: rgb(34 89 234 / 0.5) }', 'rgb', colorFrom256RGB(34, 89, 234, 0.5));
 		assertColor(parser, '#main { color: rgb(34 89 234 / 100%) }', 'rgb', colorFrom256RGB(34, 89, 234));
 		assertColor(parser, '#main { color: hsla(240 100% 50% / .05) }', 'hsl', colorFrom256RGB(0, 0, 255, 0.05));
+		assertColor(parser, '#main { color: hwb(120 0% 0% / .05) }', 'hwb', colorFrom256RGB(0, 255, 0, 0.05));
+		assertColor(parser, '#main { color: hwb(36 33% 35%) }', 'hwb', colorFrom256RGB(166, 133, 84));
 	});
 
 	test('hexDigit', function () {
@@ -165,5 +180,57 @@ suite('CSS - Language Facts', () => {
 		assertHSLValue(hslFromColor(colorFrom256RGB(128, 0, 128, 1)), { h: 300, s: 1, l: 0.251, a: 1 });
 		assertHSLValue(hslFromColor(colorFrom256RGB(0, 128, 128, 1)), { h: 180, s: 1, l: 0.251, a: 1 });
 		assertHSLValue(hslFromColor(colorFrom256RGB(0, 0, 128, 1)), { h: 240, s: 1, l: 0.251, a: 1 });
+
+		// some random colors, validating against https://www.w3docs.com/tools/color-rgb
+		assertHSLValue(hslFromColor(colorFrom256RGB(0, 195, 255)), { h: 194, s: 1, l: 0.5, a: 1 });
+		assertHSLValue(hslFromColor(colorFrom256RGB(40, 50, 60)), { h: 210, s: 0.2, l: 0.2, a: 1 });
+		assertHSLValue(hslFromColor(colorFrom256RGB(40, 255, 60)), { h: 126, s: 1.0, l: 0.58, a: 1 });
+		assertHSLValue(hslFromColor(colorFrom256RGB(231, 135, 19)), { h: 33, s: 0.85, l: 0.49, a: 1 });
+	});
+
+	test('hwbFromColor', function () {
+		assertHWBValue(hwbFromColor(colorFrom256RGB(0, 0, 0, 0)), { h: 0, w: 0, b: 1, a: 0 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(0, 0, 0, 1)), { h: 0, w: 0, b: 1, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(255, 255, 255, 1)), { h: 0, w: 1, b: 0, a: 1 });
+
+		assertHWBValue(hwbFromColor(colorFrom256RGB(255, 0, 0, 1)), { h: 0, w: 0, b: 0, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(0, 255, 0, 1)), { h: 120, w: 0, b: 0, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(0, 0, 255, 1)), { h: 240, w: 0, b: 0, a: 1 });
+
+		assertHWBValue(hwbFromColor(colorFrom256RGB(255, 255, 0, 1)), { h: 60, w: 0, b: 0, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(0, 255, 255, 1)), { h: 180, w: 0, b: 0, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(255, 0, 255, 1)), { h: 300, w: 0, b: 0, a: 1 });
+
+		assertHWBValue(hwbFromColor(colorFrom256RGB(192, 192, 192, 1)), { h: 0, w: 0.752, b: 0.247, a: 1 });
+
+		assertHWBValue(hwbFromColor(colorFrom256RGB(128, 128, 128, 1)), { h: 0, w: 0.5, b: 0.5, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(128, 0, 0, 1)), { h: 0, w: 0, b: 0.5, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(128, 128, 0, 1)), { h: 60, w: 0, b: 0.5, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(0, 128, 0, 1)), { h: 120, w: 0, b: 0.5, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(128, 0, 128, 1)), { h: 300, w: 0, b: 0.5, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(0, 128, 128, 1)), { h: 180, w: 0, b: 0.5, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(0, 0, 128, 1)), { h: 240, w: 0, b: 0.5, a: 1 });
+
+		// some random colors, validating against https://htmlcolors.com/color-converter
+		assertHWBValue(hwbFromColor(colorFrom256RGB(0, 195, 255)), { h: 194, w: 0, b: 0, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(40, 50, 60)), { h: 210, w: 0.16, b: 0.76, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(40, 255, 60)), { h: 126, w: 0.16, b: 0, a: 1 });
+		assertHWBValue(hwbFromColor(colorFrom256RGB(231, 135, 19)), { h: 33, w: 0.07, b: 0.09, a: 1 });
+	});
+
+	test('hwbToColor', function () {
+		// some random numbers verified with https://www.w3docs.com/tools/color-hwb
+		assertColorValue(colorFromHWB(0, 0.5, 0.5), colorFrom256RGB(128, 128, 128), 'hwb(0, 50%, 50%)');
+		assertColorValue(colorFromHWB(350, 0.09, 0.5), colorFrom256RGB(128, 23, 41), 'hwb(350, 9%, 50%)');
+		assertColorValue(colorFromHWB(118, 0.02, 0.01), colorFrom256RGB(13, 253, 5), 'hwb(118, 2%, 1%)');
+		assertColorValue(colorFromHWB(120, 0.92, 0.01), colorFrom256RGB(235, 252, 235), 'hwb(120, 92%, 1%)');
+	});
+
+	test('hslToColor', function () {
+		// some random numbers verified with https://www.w3docs.com/tools/color-hsl
+		assertColorValue(colorFromHSL(0, 0, 0.5), colorFrom256RGB(128, 128, 128), 'hsl(0, 0%, 50%)');
+		assertColorValue(colorFromHSL(350, 0.7, 0.3), colorFrom256RGB(130, 23, 41), 'hsl(350, 70%, 30%)');
+		assertColorValue(colorFromHSL(118, 0.98, 0.5), colorFrom256RGB(11, 252, 3), 'hsl(118, 98%, 50%)');
+		assertColorValue(colorFromHSL(120, 0.83, 0.95), colorFrom256RGB(232, 253, 232), 'hsl(120, 83%, 95%)');
 	});
 });
