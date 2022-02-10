@@ -8,7 +8,7 @@ import * as assert from 'assert';
 import { join } from 'path';
 import { Scope, GlobalScope, ScopeBuilder } from '../../parser/cssSymbolScope';
 import * as nodes from '../../parser/cssNodes';
-import { colorFrom256RGB, colorFromHSL } from '../../languageFacts/facts';
+import { colorFrom256RGB, colorFromHSL, colorFromHWB } from '../../languageFacts/facts';
 
 import {
 	TextDocument, DocumentHighlightKind, Range, Position, TextEdit, Color,
@@ -405,6 +405,9 @@ suite('CSS - Navigation', () => {
 			);
 			assertColorSymbols(ls, 'body { backgroundColor: rgba(1, 40, 1, 0.3); }',
 				{ color: colorFrom256RGB(1, 40, 1, 0.3), range: newRange(24, 43) }
+			);
+			assertColorSymbols(ls, 'body { backgroundColor: hwb(194 0% 0% / .5); }',
+				{ color: colorFromHWB(194, 0, 0, 0.5), range: newRange(24, 43) }
 			);
 		});
 
