@@ -1545,7 +1545,6 @@ export class Parser {
 		while (this.acceptRegexp(/^[0-9a-f]{1,6}$/i)) {
 			// loop
 		}
-
 		if (wildcard) {
 			while(this.peekDelim('?')) {
 				this.consumeToken();
