@@ -353,7 +353,7 @@ export class Parser {
 	}
 
 	public _parseRuleSetDeclaration(): nodes.Node | null {
-		// https://www.w3.org/TR/css-syntax-3/#consume-a-list-of-declarations0
+		// https://www.w3.org/TR/css-syntax-3/#consume-a-list-of-declarations
 		if (this.peek(TokenType.AtKeyword)) {
 			return this._parseRuleSetDeclarationAtStatement();
 		}
@@ -452,10 +452,7 @@ export class Parser {
 			return custonProperty;
 		}
 
-		let unicodeRange = this.peekIdent('unicode-range');
-
-		const node = this.create(nodes.Declaration);		
-
+		const node = this.create(nodes.Declaration);
 		if (!node.setProperty(this._parseProperty())) {
 			return null;
 		}
@@ -467,7 +464,7 @@ export class Parser {
 			node.colonPosition = this.prevToken.offset;
 		}
 
-		if (!node.setValue(unicodeRange ? this._parseUnicodeRangeExpr() : this._parseExpr())) {
+		if (!node.setValue(this._tryParseUnicodeRangeExpr() || this._parseExpr())) {
 			return this.finish(node, ParseError.PropertyValueExpected);
 		}
 
@@ -1491,9 +1488,18 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseUnicodeRangeExpr(): nodes.Expression | null {
+	public _tryParseUnicodeRangeExpr(): nodes.Expression | null {
+		// https://www.w3.org/TR/css-syntax-3/#urange-syntax
+		// try to parse as unicode-range
+		if (!this.peekRegExp(TokenType.Ident, /^u$/i)) {
+			return null; // fail fast
+		}
+
 		const node = this.create(nodes.Expression);
+		const mark = this.mark();
+
 		if (!node.addChild(this._parseUnicodeRange())) {
+			this.restoreAtMark(mark);
 			return null;
 		}
 
@@ -1527,7 +1533,7 @@ export class Parser {
 
 		if (this.peekDelim('-')) {
 			this.consumeToken();
-			if (!node.setRangeEnd(this._parseUnicodeValue())) {
+			if (!node.setRangeEnd(this._parseUnicodeValue(false))) {
 				return null;
 			}
 		}
@@ -1535,17 +1541,18 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseUnicodeValue(wildcard: boolean = false): nodes.Node | null {
+	public _parseUnicodeValue(acceptWildcard: boolean): nodes.Node | null {
 		const node = this.create(nodes.Expression);
 
 		// must start with hex or wildcard
-		if (!/^[0-9a-f?]/i.test(this.token.text)) {
+		if (!this.peekRegExp(this.token.type, /^[0-9a-f?]/i)) {
 			return null;
 		}
+		// consume all hex-like tokens
 		while (this.acceptRegexp(/^[0-9a-f]{1,6}$/i)) {
 			// loop
 		}
-		if (wildcard) {
+		if (acceptWildcard) {
 			while(this.peekDelim('?')) {
 				this.consumeToken();
 			}

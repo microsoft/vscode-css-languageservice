@@ -641,4 +641,16 @@ suite('SCSS - Parser', () => {
 		assertError('url("http://msft.com"', parser, parser._parseURILiteral.bind(parser), ParseError.RightParenthesisExpected);
 		assertError('url(http://msft.com\')', parser, parser._parseURILiteral.bind(parser), ParseError.RightParenthesisExpected);
 	});
+
+	test('@font-face', function () {
+		let parser = new SCSSParser();
+		assertNode('@font-face {}', parser, parser._parseFontFace.bind(parser));
+		assertNode('@font-face { src: url(http://test) }', parser, parser._parseFontFace.bind(parser));
+		assertNode('@font-face { font-style: normal; font-stretch: normal; }', parser, parser._parseFontFace.bind(parser));
+		assertNode('@font-face { unicode-range: U+0021-007F, u+1f49C, U+4??, U+??????; }', parser, parser._parseFontFace.bind(parser));
+		assertError('@font-face { unicode-range: U+002?-01??; }', parser, parser._parseFontFace.bind(parser), ParseError.SemiColonExpected);
+		assertError('@font-face { unicode-range: U+00?0; }', parser, parser._parseFontFace.bind(parser), ParseError.SemiColonExpected);
+		assertError('@font-face { unicode-range: U+0XFF; }', parser, parser._parseFontFace.bind(parser), ParseError.SemiColonExpected);
+		assertError('@font-face { font-style: normal font-stretch: normal; }', parser, parser._parseFontFace.bind(parser), ParseError.SemiColonExpected);
+	});
 });
