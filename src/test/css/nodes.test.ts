@@ -122,6 +122,6 @@ suite('CSS - Nodes', () => {
 			let node = parser.internalParse(input, parser._parseFontFace)!;
 			return node;
 		}
-		assertNodes(fn, '@font-face { unicode-range: U+0020-01ff, U+1?? }', 'fontface,declarations,declaration,property,identifier,expression,unicoderange,expression,expression,unicoderange,expression');
+		assertNodes(fn, '@font-face { unicode-range: U+0020-01ff, U+1?? }', 'fontface,declarations,declaration,property,identifier,expression,binaryexpression,term,unicoderange');
 	});
 });

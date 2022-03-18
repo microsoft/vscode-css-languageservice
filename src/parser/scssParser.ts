@@ -277,7 +277,7 @@ export class SCSSParser extends cssParser.Parser {
 		}
 
 		let hasContent = false;
-		if (node.setValue(this._tryParseUnicodeRangeExpr() || this._parseExpr())) {
+		if (node.setValue(this._parseExpr())) {
 			hasContent = true;
 			node.addChild(this._parsePrio());
 		}

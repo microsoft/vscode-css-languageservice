@@ -71,6 +71,16 @@ export class Parser {
 		this.token = this.scanner.scan();
 	}
 
+	public acceptUnicodeRange(): boolean {
+		const token = this.scanner.tryScanUnicode();
+		if (token) {
+			this.prevToken = token;
+			this.token = this.scanner.scan();
+			return true;
+		}
+		return false;
+	}
+
 	public mark(): IMark {
 		return {
 			prev: this.prevToken,
@@ -464,7 +474,7 @@ export class Parser {
 			node.colonPosition = this.prevToken.offset;
 		}
 
-		if (!node.setValue(this._tryParseUnicodeRangeExpr() || this._parseExpr())) {
+		if (!node.setValue(this._parseExpr())) {
 			return this.finish(node, ParseError.PropertyValueExpected);
 		}
 
@@ -1479,6 +1489,8 @@ export class Parser {
 					return this.finish(node);
 				}
 				this.consumeToken();
+			} else if (!this.hasWhitespace()) {
+				break;
 			}
 			if (!node.addChild(this._parseBinaryExpr())) {
 				break;
@@ -1488,76 +1500,14 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _tryParseUnicodeRangeExpr(): nodes.Expression | null {
-		// https://www.w3.org/TR/css-syntax-3/#urange-syntax
-		// try to parse as unicode-range
-		if (!this.peekRegExp(TokenType.Ident, /^u$/i)) {
-			return null; // fail fast
-		}
-
-		const node = this.create(nodes.Expression);
-		const mark = this.mark();
-
-		if (!node.addChild(this._parseUnicodeRange())) {
-			this.restoreAtMark(mark);
-			return null;
-		}
-
-		while (true) {
-			if (this.peek(TokenType.Comma)) { // optional
-				this.consumeToken();
-			}
-			if (!node.addChild(this._parseUnicodeRange())) {
-				break;
-			}
-		}
-
-		return this.finish(node);
-	}
-
 	public _parseUnicodeRange(): nodes.UnicodeRange | null {
-		// The Scanner has no contextual knowlege of unicode syntax and will tokenize 'U+0F??' as:
-		// 	'U': Ident, '+': Delim', '0F': Dimension, '?': Delim, '?': Delim
+		if (!this.peekIdent('u')) {
+			return null;
+		}
 		const node = this.create(nodes.UnicodeRange);
-
-		if (!this.acceptRegexp(/^u$/i)) {
+		if (!this.acceptUnicodeRange()) {
 			return null;
 		}
-		if (!this.acceptDelim('+')) {
-			return null;
-		}
-
-		if (!node.setRangeStart(this._parseUnicodeValue(true))) {
-			return null;
-		}
-
-		if (this.peekDelim('-')) {
-			this.consumeToken();
-			if (!node.setRangeEnd(this._parseUnicodeValue(false))) {
-				return null;
-			}
-		}
-
-		return this.finish(node);
-	}
-
-	public _parseUnicodeValue(acceptWildcard: boolean): nodes.Node | null {
-		const node = this.create(nodes.Expression);
-
-		// must start with hex or wildcard
-		if (!this.peekRegExp(this.token.type, /^[0-9a-f?]/i)) {
-			return null;
-		}
-		// consume all hex-like tokens
-		while (this.acceptRegexp(/^[0-9a-f]{1,6}$/i)) {
-			// loop
-		}
-		if (acceptWildcard) {
-			while(this.peekDelim('?')) {
-				this.consumeToken();
-			}
-		}
-
 		return this.finish(node);
 	}
 
@@ -1616,6 +1566,7 @@ export class Parser {
 
 	public _parseTermExpression(): nodes.Node | null {
 		return this._parseURILiteral() || // url before function
+			this._parseUnicodeRange() ||
 			this._parseFunction() || // function before ident
 			this._parseIdent() ||
 			this._parseStringLiteral() ||
