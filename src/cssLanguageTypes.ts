@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { 
+import {
 	Range, Position, DocumentUri, MarkupContent, MarkupKind,
 	Color, ColorInformation, ColorPresentation,
 	FoldingRange, FoldingRangeKind, SelectionRange,
@@ -14,7 +14,7 @@ import {
 	SymbolInformation, SymbolKind, DocumentSymbol, Location, Hover, MarkedString,
 	CodeActionContext, Command, CodeAction,
 	DocumentHighlight, DocumentLink, WorkspaceEdit,
-	TextEdit, CodeActionKind, 
+	TextEdit, CodeActionKind,
 	TextDocumentEdit, VersionedTextDocumentIdentifier, DocumentHighlightKind
 } from 'vscode-languageserver-types';
 
@@ -31,7 +31,7 @@ export {
 	SymbolInformation, SymbolKind, DocumentSymbol, Location, Hover, MarkedString,
 	CodeActionContext, Command, CodeAction,
 	DocumentHighlight, DocumentLink, WorkspaceEdit,
-	TextEdit, CodeActionKind, 
+	TextEdit, CodeActionKind,
 	TextDocumentEdit, VersionedTextDocumentIdentifier, DocumentHighlightKind
 };
 
@@ -279,4 +279,19 @@ export interface FileStat {
 export interface FileSystemProvider {
 	stat(uri: DocumentUri): Promise<FileStat>;
 	readDirectory?(uri: DocumentUri): Promise<[string, FileType][]>;
+}
+
+export interface CSSFormatConfiguration {
+	/** indentation size. Default: 4 */
+	tabSize?: number;
+	/** Whether to use spaces or tabs */
+	insertSpaces?: boolean;
+	/** end with a newline: Default: false */
+	insertFinalNewline?: boolean;
+	/** separate selectors with newline or not (e.g. "a,\nbr" or "a, br"): Default: true */
+	selectorSeparatorNewline?: boolean;
+	/** add a new line after every css rule: Default: true */
+	newlineBetweenRules?: boolean;
+	/** ensure space around selector separators:  '>', '+', '~' (e.g. "a>b" -> "a > b"): Default: false */
+	spaceAroundSelectorSeparator?: boolean;
 }

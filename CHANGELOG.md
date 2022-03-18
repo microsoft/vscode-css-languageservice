@@ -1,4 +1,9 @@
 
+5.2.0 / 2022-03-17
+==================
+  * new API `LanguageService.format`, based on the the css formatter from JS Beautifier (https://github.com/beautify-web/js-beautify)
+  * new API `CSSFormatConfiguration`
+
 5.1.0 / 2021-02-05
 ==================
   * new API `LanguageSettings.hover`

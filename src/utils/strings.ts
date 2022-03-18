@@ -93,3 +93,15 @@ export function trim(str: string, regexp: RegExp): string {
 	}
 	return str;
 }
+
+export function repeat(value: string, count: number) {
+	let s = '';
+	while (count > 0) {
+		if ((count & 1) === 1) {
+			s += value;
+		}
+		value += value;
+		count = count >>> 1;
+	}
+	return s;
+}

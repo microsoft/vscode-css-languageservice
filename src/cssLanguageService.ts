@@ -16,12 +16,14 @@ import { SCSSCompletion } from './services/scssCompletion';
 import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
 import { getFoldingRanges } from './services/cssFolding';
+import { format } from './services/cssFormatter';
 
 import {
 	LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServiceOptions,
 	Diagnostic, Position, CompletionList, Hover, Location, DocumentHighlight, DocumentLink,
 	SymbolInformation, Range, CodeActionContext, Command, CodeAction, ColorInformation,
-	Color, ColorPresentation, WorkspaceEdit, FoldingRange, SelectionRange, TextDocument, ICSSDataProvider, CSSDataV1, HoverSettings, CompletionSettings
+	Color, ColorPresentation, WorkspaceEdit, FoldingRange, SelectionRange, TextDocument,
+	ICSSDataProvider, CSSDataV1, HoverSettings, CompletionSettings, TextEdit, CSSFormatConfiguration
 } from './cssLanguageTypes';
 
 import { CSSDataManager } from './languageFacts/dataManager';
@@ -58,6 +60,8 @@ export interface LanguageService {
 	doRename(document: TextDocument, position: Position, newName: string, stylesheet: Stylesheet): WorkspaceEdit;
 	getFoldingRanges(document: TextDocument, context?: { rangeLimit?: number; }): FoldingRange[];
 	getSelectionRanges(document: TextDocument, positions: Position[], stylesheet: Stylesheet): SelectionRange[];
+	format(document: TextDocument, range: Range | undefined, options: CSSFormatConfiguration): TextEdit[];
+
 }
 
 export function getDefaultCSSDataProvider(): ICSSDataProvider {
@@ -82,6 +86,7 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 		doComplete2: completion.doComplete2.bind(completion),
 		setCompletionParticipants: completion.setCompletionParticipants.bind(completion),
 		doHover: hover.doHover.bind(hover),
+		format,
 		findDefinition: navigation.findDefinition.bind(navigation),
 		findReferences: navigation.findReferences.bind(navigation),
 		findDocumentHighlights: navigation.findDocumentHighlights.bind(navigation),
