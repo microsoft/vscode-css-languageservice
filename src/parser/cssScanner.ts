@@ -139,6 +139,7 @@ export class MultiLineStream {
 const _a = 'a'.charCodeAt(0);
 const _f = 'f'.charCodeAt(0);
 const _z = 'z'.charCodeAt(0);
+const _u = 'u'.charCodeAt(0);
 const _A = 'A'.charCodeAt(0);
 const _F = 'F'.charCodeAt(0);
 const _Z = 'Z'.charCodeAt(0);
@@ -177,6 +178,8 @@ const _BRR = ']'.charCodeAt(0);
 const _CMA = ','.charCodeAt(0);
 const _DOT = '.'.charCodeAt(0);
 const _BNG = '!'.charCodeAt(0);
+const _QSM = '?'.charCodeAt(0);
+const _PLS = '+'.charCodeAt(0);
 
 const staticTokenTable: { [code: number]: TokenType; } = {};
 staticTokenTable[_SEM] = TokenType.SemiColon;
@@ -265,6 +268,20 @@ export class Scanner {
 			return this.finishToken(offset, TokenType.EOF);
 		}
 		return this.scanNext(offset);
+	}
+
+	/**
+	 * Read the range as described in https://www.w3.org/TR/CSS21/syndata.html#tokenization
+	 * Assume the `u` has aleady been consumed
+	 * @returns if reading the unicode was successful
+	 */
+	public tryScanUnicode(): IToken | undefined {
+		const offset = this.stream.pos();
+		if (!this.stream.eos() && this._unicodeRange()) {
+			return this.finishToken(offset, TokenType.UnicodeRange);
+		}
+		this.stream.goBackTo(offset);
+		return undefined;
 	}
 
 	protected scanNext(offset: number): IToken {
@@ -617,6 +634,28 @@ export class Scanner {
 			this.stream.advance(1);
 			result.push(String.fromCharCode(ch));
 			return true;
+		}
+		return false;
+	}
+
+	private _unicodeRange(): boolean {
+		// follow https://www.w3.org/TR/CSS21/syndata.html#tokenization and https://www.w3.org/TR/css-syntax-3/#urange-syntax
+		// assume u has already been parsed
+
+		if (this.stream.advanceIfChar(_PLS)) {
+			const isHexDigit = (ch: number) => (ch >= _0 && ch <= _9 || ch >= _a && ch <= _f || ch >= _A && ch <= _F);
+
+			const codePoints = this.stream.advanceWhileChar(isHexDigit) + this.stream.advanceWhileChar(ch => ch === _QSM);
+			if (codePoints >= 1 && codePoints <= 6) {
+				if (this.stream.advanceIfChar(_MIN)) {
+					const digits = this.stream.advanceWhileChar(isHexDigit);
+					if (digits >= 1 && digits <= 6) {
+						return true;
+					}
+				} else {
+					return true;
+				}
+			}
 		}
 		return false;
 	}

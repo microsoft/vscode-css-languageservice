@@ -115,4 +115,13 @@ suite('CSS - Nodes', () => {
 		}
 		assertNodes(fn, '@keyframes name { from { top: 0px} to { top: 100px } }', 'keyframe,identifier,keyframeselector,declaration,keyframeselector,declaration');
 	});
+
+	test('UnicodeRange', function () {
+		function fn(input: string): nodes.Node {
+			let parser = new Parser();
+			let node = parser.internalParse(input, parser._parseFontFace)!;
+			return node;
+		}
+		assertNodes(fn, '@font-face { unicode-range: U+0020-01ff, U+1?? }', 'fontface,declarations,declaration,property,identifier,expression,binaryexpression,term,unicoderange');
+	});
 });

@@ -71,6 +71,16 @@ export class Parser {
 		this.token = this.scanner.scan();
 	}
 
+	public acceptUnicodeRange(): boolean {
+		const token = this.scanner.tryScanUnicode();
+		if (token) {
+			this.prevToken = token;
+			this.token = this.scanner.scan();
+			return true;
+		}
+		return false;
+	}
+
 	public mark(): IMark {
 		return {
 			prev: this.prevToken,
@@ -353,7 +363,7 @@ export class Parser {
 	}
 
 	public _parseRuleSetDeclaration(): nodes.Node | null {
-		// https://www.w3.org/TR/css-syntax-3/#consume-a-list-of-declarations0
+		// https://www.w3.org/TR/css-syntax-3/#consume-a-list-of-declarations
 		if (this.peek(TokenType.AtKeyword)) {
 			return this._parseRuleSetDeclarationAtStatement();
 		}
@@ -1479,12 +1489,25 @@ export class Parser {
 					return this.finish(node);
 				}
 				this.consumeToken();
+			} else if (!this.hasWhitespace()) {
+				break;
 			}
 			if (!node.addChild(this._parseBinaryExpr())) {
 				break;
 			}
 		}
 
+		return this.finish(node);
+	}
+
+	public _parseUnicodeRange(): nodes.UnicodeRange | null {
+		if (!this.peekIdent('u')) {
+			return null;
+		}
+		const node = this.create(nodes.UnicodeRange);
+		if (!this.acceptUnicodeRange()) {
+			return null;
+		}
 		return this.finish(node);
 	}
 
@@ -1543,6 +1566,7 @@ export class Parser {
 
 	public _parseTermExpression(): nodes.Node | null {
 		return this._parseURILiteral() || // url before function
+			this._parseUnicodeRange() ||
 			this._parseFunction() || // function before ident
 			this._parseIdent() ||
 			this._parseStringLiteral() ||
