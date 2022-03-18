@@ -14,7 +14,8 @@ export const colorFunctions = [
 	{ func: 'rgb($red, $green, $blue)', desc: localize('css.builtin.rgb', 'Creates a Color from red, green, and blue values.') },
 	{ func: 'rgba($red, $green, $blue, $alpha)', desc: localize('css.builtin.rgba', 'Creates a Color from red, green, blue, and alpha values.') },
 	{ func: 'hsl($hue, $saturation, $lightness)', desc: localize('css.builtin.hsl', 'Creates a Color from hue, saturation, and lightness values.') },
-	{ func: 'hsla($hue, $saturation, $lightness, $alpha)', desc: localize('css.builtin.hsla', 'Creates a Color from hue, saturation, lightness, and alpha values.') }
+	{ func: 'hsla($hue, $saturation, $lightness, $alpha)', desc: localize('css.builtin.hsla', 'Creates a Color from hue, saturation, lightness, and alpha values.') },
+	{ func: 'hwb($hue $white $black)', desc: localize('css.builtin.hwb', 'Creates a Color from hue, white and black.') }
 ];
 
 export const colors: { [name: string]: string } = {
@@ -216,7 +217,7 @@ export function isColorConstructor(node: nodes.Function): boolean {
 	if (!name) {
 		return false;
 	}
-	return /^(rgb|rgba|hsl|hsla)$/gi.test(name);
+	return /^(rgb|rgba|hsl|hsla|hwb)$/gi.test(name);
 }
 
 /**
@@ -363,6 +364,48 @@ export function hslFromColor(rgba: Color): HSLA {
 	return { h, s, l, a };
 }
 
+export function colorFromHWB(hue: number, white: number, black: number, alpha: number = 1.0): Color {
+	if (white + black >= 1) {
+		const gray = white / (white + black);
+		return {red: gray, green: gray, blue: gray, alpha};
+	}
+
+	const rgb = colorFromHSL(hue, 1, 0.5, alpha);
+	let red = rgb.red;
+	red *= (1 - white - black);
+	red += white;
+
+	let green = rgb.green;
+	green *= (1 - white - black);
+	green += white;
+
+	let blue = rgb.blue;
+	blue *= (1 - white - black);
+	blue += white;
+
+	return {
+		red: red,
+		green: green,
+		blue: blue,
+		alpha
+	};
+}
+
+export interface HWBA { h: number; w: number; b: number; a: number; }
+
+export function hwbFromColor(rgba: Color): HWBA {
+	const hsl = hslFromColor(rgba);
+	const white = Math.min(rgba.red, rgba.green, rgba.blue);
+	const black = 1 - Math.max(rgba.red, rgba.green, rgba.blue);
+
+	return {
+		h: hsl.h,
+		w: white,
+		b: black,
+		a: hsl.a
+	};
+}
+
 export function getColorValue(node: nodes.Node): Color | null {
 	if (node.type === nodes.NodeType.HexColorValue) {
 		const text = node.getText();
@@ -403,6 +446,11 @@ export function getColorValue(node: nodes.Node): Color | null {
 				const s = getNumericValue(colorValues[1], 100.0);
 				const l = getNumericValue(colorValues[2], 100.0);
 				return colorFromHSL(h, s, l, alpha);
+			} else if (name === 'hwb') {
+				const h = getAngle(colorValues[0]);
+				const w = getNumericValue(colorValues[1], 100.0);
+				const b = getNumericValue(colorValues[2], 100.0);
+				return colorFromHWB(h, w, b, alpha);
 			}
 		} catch (e) {
 			// parse error on numeric value

@@ -245,4 +245,61 @@ suite('CSS - MarkedStringPrinter selectors specificities', () => {
 			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (1, 0, 1)'
 		]);
 	});
+
+	test('where specificity', function () {
+		assertSelectorMarkdown(p, '#s12:where(foo)', '#s12', [
+			{ language: 'html', value: '<element id="s12" :where>' },
+			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (1, 0, 0)'
+		]);
+		assertSelectorMarkdown(p, '#s12:where(foo > foo, .bar > baz)', '#s12', [
+			{ language: 'html', value: '<element id="s12" :where>' },
+			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (1, 0, 0)'
+		]);
+	});
+
+	test('has, not, is specificity', function () {
+		assertSelectorMarkdown(p, '#s12:not(foo)', '#s12', [
+			{ language: 'html', value: '<element id="s12" :not>' },
+			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (1, 0, 1)'
+		]);
+		assertSelectorMarkdown(p, '#s12:not(foo > foo)', '#s12', [
+			{ language: 'html', value: '<element id="s12" :not>' },
+			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (1, 0, 2)'
+		]);
+		assertSelectorMarkdown(p, '#s12:not(foo > foo, .bar > baz)', '#s12', [
+			{ language: 'html', value: '<element id="s12" :not>' },
+			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (1, 1, 1)'
+		]);
+
+		assertSelectorMarkdown(p, '#s12:has(foo)', '#s12', [
+			{ language: 'html', value: '<element id="s12" :has>' },
+			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (1, 0, 1)'
+		]);
+		assertSelectorMarkdown(p, '#s12:has(foo > foo)', '#s12', [
+			{ language: 'html', value: '<element id="s12" :has>' },
+			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (1, 0, 2)'
+		]);
+		assertSelectorMarkdown(p, '#s12:has(foo > foo, .bar > baz)', '#s12', [
+			{ language: 'html', value: '<element id="s12" :has>' },
+			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (1, 1, 1)'
+		]);
+
+		assertSelectorMarkdown(p, '#s12:is(foo)', '#s12', [
+			{ language: 'html', value: '<element id="s12" :is>' },
+			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (1, 0, 1)'
+		]);
+		assertSelectorMarkdown(p, '#s12:is(foo > foo)', '#s12', [
+			{ language: 'html', value: '<element id="s12" :is>' },
+			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (1, 0, 2)'
+		]);
+		assertSelectorMarkdown(p, '#s12:is(foo > foo, .bar > baz)', '#s12', [
+			{ language: 'html', value: '<element id="s12" :is>' },
+			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (1, 1, 1)'
+		]);
+
+		assertSelectorMarkdown(p, '#s12:is(foo > foo, :not(.bar > baz, :has(.bar > .baz)))', '#s12', [
+			{ language: 'html', value: '<element id="s12" :is>' },
+			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (1, 2, 0)'
+		]);
+	});
 });
