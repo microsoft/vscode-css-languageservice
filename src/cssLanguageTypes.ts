@@ -288,10 +288,12 @@ export interface CSSFormatConfiguration {
 	insertSpaces?: boolean;
 	/** end with a newline: Default: false */
 	insertFinalNewline?: boolean;
-	/** separate selectors with newline or not (e.g. "a,\nbr" or "a, br"): Default: true */
-	selectorSeparatorNewline?: boolean;
+	/** separate selectors with newline (e.g. "a,\nbr" or "a, br"): Default: true */
+	newlineBetweenSelectors?: boolean;
 	/** add a new line after every css rule: Default: true */
 	newlineBetweenRules?: boolean;
 	/** ensure space around selector separators:  '>', '+', '~' (e.g. "a>b" -> "a > b"): Default: false */
 	spaceAroundSelectorSeparator?: boolean;
+	/** @deprecated Use newlineBetweenSelectors instead*/
+	selectorSeparatorNewline?: boolean;
 }

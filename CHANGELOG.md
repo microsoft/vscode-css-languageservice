@@ -1,4 +1,8 @@
 
+5.3.0 / 2022-03-23
+==================
+  * renamed `CSSFormatConfiguration.selectorSeparatorNewline` to `CSSFormatConfiguration.newlineBetweenSelectors`
+
 5.2.0 / 2022-03-17
 ==================
   * new API `LanguageService.format`, based on the the css formatter from JS Beautifier (https://github.com/beautify-web/js-beautify)

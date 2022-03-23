@@ -66,7 +66,7 @@ export function format(document: TextDocument, range: Range | undefined, options
 		indent_size: tabSize,
 		indent_char: options.insertSpaces ? ' ' : '\t',
 		end_with_newline: includesEnd && getFormatOption(options, 'insertFinalNewline', false),
-		selector_separator_newline: getFormatOption(options, 'selectorSeparatorNewline', true),
+		selector_separator_newline: getFormatOption(options, 'newlineBetweenSelectors', true),
 		newline_between_rules: getFormatOption(options, 'newlineBetweenRules', true),
 		space_around_selector_separator: getFormatOption(options, 'spaceAroundSelectorSeparator', false)
 	};

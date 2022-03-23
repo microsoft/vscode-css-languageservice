@@ -113,7 +113,7 @@ suite('CSS - Formatter', () => {
 			'}'
 		].join('\n');
 
-		assertFormat(content, expected, { selectorSeparatorNewline: false, insertSpaces: true, tabSize: 2, spaceAroundSelectorSeparator: true });
+		assertFormat(content, expected, { newlineBetweenSelectors: false, insertSpaces: true, tabSize: 2, spaceAroundSelectorSeparator: true });
 	});
 
 	test('insertFinalNewline', () => {
