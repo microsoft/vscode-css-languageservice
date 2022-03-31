@@ -388,7 +388,7 @@ export class SelectorPrinting {
 						const text = element.getText();
 						if (this.isPseudoElementIdentifier(text)) {
 							specificity.tag++;	// pseudo element
-							break;
+							continue elementLoop;
 						}
 
 						// where and child selectors have zero specificity
@@ -438,7 +438,7 @@ export class SelectorPrinting {
 						}
 
 						specificity.attr++;	//pseudo class
-						break;
+						continue elementLoop;
 				}
 
 				if (element.getChildren().length > 0) {
