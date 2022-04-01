@@ -84,7 +84,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | stretch | <baseline-position> | [ <overflow-position>? <self-position> ]",
-			"relevance": 86,
+			"relevance": 85,
 			"description": "Aligns flex items along the cross axis of the current line of the flex container.",
 			"restrictions": [
 				"enum"
@@ -275,7 +275,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"values": [],
 			"syntax": "initial | inherit | unset | revert",
-			"relevance": 52,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -366,7 +366,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "animation-delay",
 			"syntax": "<time>#",
-			"relevance": 63,
+			"relevance": 64,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -399,7 +399,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-animation-direction>#",
-			"relevance": 56,
+			"relevance": 57,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -414,7 +414,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "animation-duration",
 			"syntax": "<time>#",
-			"relevance": 70,
+			"relevance": 68,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -490,7 +490,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ none | <keyframes-name> ]#",
-			"relevance": 70,
+			"relevance": 68,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -531,7 +531,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "animation-timing-function",
 			"syntax": "<easing-function>#",
-			"relevance": 70,
+			"relevance": 71,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -756,7 +756,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "background-clip",
 			"syntax": "<box>#",
-			"relevance": 68,
+			"relevance": 69,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -771,7 +771,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "background-color",
 			"syntax": "<color>",
-			"relevance": 94,
+			"relevance": 95,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -808,7 +808,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "background-origin",
 			"syntax": "<box>#",
-			"relevance": 54,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -903,7 +903,7 @@ export const cssData : CSSDataV1 = {
 			"name": "background-repeat",
 			"values": [],
 			"syntax": "<repeat-style>#",
-			"relevance": 86,
+			"relevance": 85,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -932,7 +932,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<bg-size>#",
-			"relevance": 86,
+			"relevance": 85,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1208,7 +1208,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-bottom-color",
 			"syntax": "<'border-top-color'>",
-			"relevance": 71,
+			"relevance": 72,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1239,7 +1239,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-bottom-right-radius",
 			"syntax": "<length-percentage>{1,2}",
-			"relevance": 74,
+			"relevance": 75,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1255,7 +1255,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-bottom-style",
 			"syntax": "<line-style>",
-			"relevance": 58,
+			"relevance": 59,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1270,7 +1270,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-bottom-width",
 			"syntax": "<line-width>",
-			"relevance": 62,
+			"relevance": 63,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1296,7 +1296,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "collapse | separate",
-			"relevance": 74,
+			"relevance": 75,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1360,7 +1360,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'border-image-source'> || <'border-image-slice'> [ / <'border-image-width'> | / <'border-image-width'>? / <'border-image-outset'> ]? || <'border-image-repeat'>",
-			"relevance": 53,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1726,7 +1726,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-left-width",
 			"syntax": "<line-width>",
-			"relevance": 58,
+			"relevance": 59,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1758,7 +1758,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-right",
 			"syntax": "<line-width> || <line-style> || <color>",
-			"relevance": 81,
+			"relevance": 82,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1776,7 +1776,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-right-color",
 			"syntax": "<color>",
-			"relevance": 64,
+			"relevance": 65,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1886,7 +1886,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-top-left-radius",
 			"syntax": "<length-percentage>{1,2}",
-			"relevance": 75,
+			"relevance": 76,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1918,7 +1918,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-top-style",
 			"syntax": "<line-style>",
-			"relevance": 58,
+			"relevance": 57,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1972,7 +1972,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
-			"relevance": 91,
+			"relevance": 90,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2231,7 +2231,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | <color>",
-			"relevance": 52,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2290,7 +2290,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<shape> | auto",
-			"relevance": 74,
+			"relevance": 75,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2315,7 +2315,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<clip-source> | [ <basic-shape> || <geometry-box> ] | none",
-			"relevance": 57,
+			"relevance": 62,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2457,7 +2457,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <length-percentage>",
-			"relevance": 55,
+			"relevance": 54,
 			"description": "Sets the gap between columns. If there is a column rule between columns, it will appear in the middle of the gap.",
 			"restrictions": [
 				"length",
@@ -2603,6 +2603,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF69",
+				"S15.4",
 				"C52",
 				"O40"
 			],
@@ -2637,7 +2638,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | strict | content | [ size || layout || style || paint ]",
-			"relevance": 58,
+			"relevance": 59,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2942,7 +2943,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "ltr | rtl",
-			"relevance": 70,
+			"relevance": 69,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4281,7 +4282,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <feature-tag-value>#",
-			"relevance": 56,
+			"relevance": 57,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4556,7 +4557,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | none | [ <common-lig-values> || <discretionary-lig-values> || <historical-lig-values> || <contextual-alt-values> || stylistic(<feature-value-name>) || historical-forms || styleset(<feature-value-name>#) || character-variant(<feature-value-name>#) || swash(<feature-value-name>) || ornaments(<feature-value-name>) || annotation(<feature-value-name>) || [ small-caps | all-small-caps | petite-caps | all-petite-caps | unicase | titling-caps ] || <numeric-figure-values> || <numeric-spacing-values> || <numeric-fraction-values> || ordinal || slashed-zero || <east-asian-variant-values> || <east-asian-width-values> || ruby ]",
-			"relevance": 65,
+			"relevance": 64,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -4818,7 +4819,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | none | [ <common-lig-values> || <discretionary-lig-values> || <historical-lig-values> || <contextual-alt-values> ]",
-			"relevance": 52,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5234,7 +5235,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line>",
-			"relevance": 50,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5597,7 +5598,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <track-list> | <auto-track-list> | subgrid <line-name-list>?",
-			"relevance": 53,
+			"relevance": 54,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5750,7 +5751,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | crisp-edges | pixelated",
-			"relevance": 55,
+			"relevance": 54,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5935,7 +5936,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <content-distribution> | <overflow-position>? [ <content-position> | left | right ]",
-			"relevance": 86,
+			"relevance": 85,
 			"description": "Aligns flex items along the main axis of the current line of the flex container.",
 			"restrictions": [
 				"enum"
@@ -5987,7 +5988,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <length>",
-			"relevance": 82,
+			"relevance": 81,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6139,7 +6140,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'list-style-type'> || <'list-style-position'> || <'list-style-image'>",
-			"relevance": 86,
+			"relevance": 85,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6422,7 +6423,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'margin-left'>",
-			"relevance": 51,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6575,7 +6576,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF53",
-				"S4",
+				"S15.4",
 				"C1",
 				"O15"
 			],
@@ -6607,7 +6608,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "mask-mode",
 			"browsers": [
-				"FF53"
+				"FF53",
+				"S15.4"
 			],
 			"values": [
 				{
@@ -6643,7 +6645,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF53",
-				"S4",
+				"S15.4",
 				"C1",
 				"O15"
 			],
@@ -6666,7 +6668,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF53",
-				"S3.1",
+				"S15.4",
 				"C1",
 				"O15"
 			],
@@ -6690,7 +6692,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF53",
-				"S3.1",
+				"S15.4",
 				"C1",
 				"O15"
 			],
@@ -6712,7 +6714,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF53",
-				"S4",
+				"S15.4",
 				"C4",
 				"O15"
 			],
@@ -6827,7 +6829,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<viewport-length>",
-			"relevance": 86,
+			"relevance": 85,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -7002,7 +7004,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<viewport-length>",
-			"relevance": 89,
+			"relevance": 88,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11148,7 +11150,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "fill | contain | cover | none | scale-down",
-			"relevance": 69,
+			"relevance": 68,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11170,7 +11172,7 @@ export const cssData : CSSDataV1 = {
 				"O19"
 			],
 			"syntax": "<position>",
-			"relevance": 54,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11277,7 +11279,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "opacity",
 			"syntax": "<alpha-value>",
-			"relevance": 94,
+			"relevance": 93,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11292,7 +11294,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "order",
 			"syntax": "<integer>",
-			"relevance": 64,
+			"relevance": 63,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11667,7 +11669,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<color> | invert",
-			"relevance": 54,
+			"relevance": 55,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11690,7 +11692,7 @@ export const cssData : CSSDataV1 = {
 				"O9.5"
 			],
 			"syntax": "<length>",
-			"relevance": 68,
+			"relevance": 69,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11790,7 +11792,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | break-word | anywhere",
-			"relevance": 64,
+			"relevance": 66,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11823,7 +11825,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "visible | hidden | clip | scroll | auto",
-			"relevance": 82,
+			"relevance": 81,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11903,7 +11905,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "padding-bottom",
 			"syntax": "<length> | <percentage>",
-			"relevance": 90,
+			"relevance": 89,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11995,7 +11997,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'padding-left'>",
-			"relevance": 51,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12043,7 +12045,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "padding-top",
 			"syntax": "<length> | <percentage>",
-			"relevance": 91,
+			"relevance": 90,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12272,7 +12274,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | none | visiblePainted | visibleFill | visibleStroke | visible | painted | fill | stroke | all | inherit",
-			"relevance": 83,
+			"relevance": 82,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12352,7 +12354,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | auto | [ <string> <string> ]+",
-			"relevance": 54,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12415,7 +12417,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | both | horizontal | vertical | block | inline",
-			"relevance": 60,
+			"relevance": 61,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12436,7 +12438,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
-			"relevance": 92,
+			"relevance": 91,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12760,7 +12762,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF36",
-				"Spreview",
+				"S15.4",
 				"C61",
 				"O48"
 			],
@@ -12775,7 +12777,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | smooth",
-			"relevance": 53,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13098,7 +13100,7 @@ export const cssData : CSSDataV1 = {
 					"description": "No paint is applied in this layer."
 				}
 			],
-			"relevance": 64,
+			"relevance": 65,
 			"description": "Paints along the outline of the given graphical element.",
 			"restrictions": [
 				"color",
@@ -13125,7 +13127,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "stroke-dashoffset",
-			"relevance": 58,
+			"relevance": 59,
 			"description": "Specifies the distance into the dash pattern to start the dash.",
 			"restrictions": [
 				"percentage",
@@ -13178,7 +13180,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "stroke-miterlimit",
-			"relevance": 50,
+			"relevance": 51,
 			"description": "When two line segments meet at a sharp angle and miter joins have been specified for 'stroke-linejoin', it is possible for the miter to extend far beyond the thickness of the line stroking the path.",
 			"restrictions": [
 				"number"
@@ -13531,7 +13533,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | [ underline || overline || line-through || blink ] | spelling-error | grammar-error",
-			"relevance": 51,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13765,7 +13767,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | optimizeSpeed | optimizeLegibility | geometricPrecision",
-			"relevance": 68,
+			"relevance": 70,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13786,7 +13788,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <shadow-t>#",
-			"relevance": 75,
+			"relevance": 74,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13919,7 +13921,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | none | [ [ pan-x | pan-left | pan-right ] || [ pan-y | pan-up | pan-down ] || pinch-zoom ] | manipulation",
-			"relevance": 68,
+			"relevance": 67,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -14023,7 +14025,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <transform-list>",
-			"relevance": 91,
+			"relevance": 90,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -14104,7 +14106,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-transition>#",
-			"relevance": 89,
+			"relevance": 88,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -14122,7 +14124,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "transition-delay",
 			"syntax": "<time>#",
-			"relevance": 63,
+			"relevance": 64,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -14137,7 +14139,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "transition-duration",
 			"syntax": "<time>#",
-			"relevance": 63,
+			"relevance": 64,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -16822,43 +16824,6 @@ export const cssData : CSSDataV1 = {
 			]
 		},
 		{
-			"name": "white-space",
-			"values": [
-				{
-					"name": "normal",
-					"description": "Sets 'white-space-collapsing' to 'collapse' and 'text-wrap' to 'normal'."
-				},
-				{
-					"name": "nowrap",
-					"description": "Sets 'white-space-collapsing' to 'collapse' and 'text-wrap' to 'none'."
-				},
-				{
-					"name": "pre",
-					"description": "Sets 'white-space-collapsing' to 'preserve' and 'text-wrap' to 'none'."
-				},
-				{
-					"name": "pre-line",
-					"description": "Sets 'white-space-collapsing' to 'preserve-breaks' and 'text-wrap' to 'normal'."
-				},
-				{
-					"name": "pre-wrap",
-					"description": "Sets 'white-space-collapsing' to 'preserve' and 'text-wrap' to 'normal'."
-				}
-			],
-			"syntax": "normal | pre | nowrap | pre-wrap | pre-line | break-spaces",
-			"relevance": 90,
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/white-space"
-				}
-			],
-			"description": "Shorthand property for the 'white-space-collapsing' and 'text-wrap' properties.",
-			"restrictions": [
-				"enum"
-			]
-		},
-		{
 			"name": "widows",
 			"browsers": [
 				"E12",
@@ -16938,7 +16903,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | <animateable-feature>#",
-			"relevance": 64,
+			"relevance": 63,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -17094,7 +17059,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | <number> | <percentage>",
-			"relevance": 68,
+			"relevance": 67,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -17538,7 +17503,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E93",
 				"FF92",
-				"Spreview",
+				"S15.4",
 				"C93",
 				"O79"
 			],
@@ -17567,6 +17532,21 @@ export const cssData : CSSDataV1 = {
 			"description": "The align-tracks CSS property sets the alignment in the masonry axis for grid containers that have masonry in their block axis."
 		},
 		{
+			"name": "animation-timeline",
+			"syntax": "<single-animation-timeline>#",
+			"relevance": 50,
+			"browsers": [
+				"FF97"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-timeline"
+				}
+			],
+			"description": "Specifies the names of one or more @scroll-timeline at-rules to describe the element's scroll animations."
+		},
+		{
 			"name": "appearance",
 			"status": "experimental",
 			"syntax": "none | auto | textfield | menulist-button | <compat-auto>",
@@ -17574,7 +17554,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E84",
 				"FF80",
-				"Spreview",
+				"S15.4",
 				"C84",
 				"O70"
 			],
@@ -17590,7 +17570,7 @@ export const cssData : CSSDataV1 = {
 			"name": "aspect-ratio",
 			"status": "experimental",
 			"syntax": "auto | <ratio>",
-			"relevance": 53,
+			"relevance": 52,
 			"browsers": [
 				"E88",
 				"FF89",
@@ -18017,28 +17997,28 @@ export const cssData : CSSDataV1 = {
 			"description": "The -moz-box-pack and -webkit-box-pack CSS properties specify how a -moz-box or -webkit-box packs its contents in the direction of its layout. The effect of this is only visible if there is extra space in the box."
 		},
 		{
-			"name": "color-adjust",
+			"name": "print-color-adjust",
 			"syntax": "economy | exact",
 			"relevance": 50,
 			"browsers": [
 				"E79",
-				"FF48",
-				"S6",
-				"C49",
+				"FF97",
+				"S15.4",
+				"C17",
 				"O15"
 			],
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/color-adjust"
+					"url": "https://developer.mozilla.org/docs/Web/CSS/print-color-adjust"
 				}
 			],
-			"description": "The color-adjust property is a non-standard CSS extension that can be used to force printing of background colors and images in browsers based on the WebKit engine."
+			"description": "Defines what optimization the user agent is allowed to do when adjusting the appearance for an output device."
 		},
 		{
 			"name": "color-scheme",
 			"syntax": "normal | [ light | dark | <custom-ident> ]+ && only?",
-			"relevance": 51,
+			"relevance": 52,
 			"browsers": [
 				"E81",
 				"FF96",
@@ -18057,9 +18037,10 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "content-visibility",
 			"syntax": "visible | auto | hidden",
-			"relevance": 52,
+			"relevance": 51,
 			"browsers": [
 				"E85",
+				"S15.4",
 				"C85",
 				"O71"
 			],
@@ -18151,7 +18132,7 @@ export const cssData : CSSDataV1 = {
 			"name": "forced-color-adjust",
 			"status": "experimental",
 			"syntax": "auto | none",
-			"relevance": 51,
+			"relevance": 52,
 			"browsers": [
 				"E79",
 				"C89",
@@ -18168,7 +18149,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "gap",
 			"syntax": "<'row-gap'> <'column-gap'>?",
-			"relevance": 53,
+			"relevance": 55,
 			"browsers": [
 				"E84",
 				"FF63",
@@ -18197,6 +18178,19 @@ export const cssData : CSSDataV1 = {
 			"name": "hyphenate-character",
 			"syntax": "auto | <string>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF98",
+				"S5.1",
+				"C6",
+				"O15"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/hyphenate-character"
+				}
+			],
 			"description": "A hyphenate character used at the end of a line."
 		},
 		{
@@ -18606,7 +18600,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF53",
-				"S4",
+				"S15.4",
 				"C1",
 				"O15"
 			],
@@ -18624,7 +18618,8 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"E18",
-				"FF53"
+				"FF53",
+				"S15.4"
 			],
 			"references": [
 				{
@@ -18694,9 +18689,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "auto | <position>",
 			"relevance": 50,
 			"browsers": [
-				"E79",
-				"FF72",
-				"C79"
+				"FF72"
 			],
 			"references": [
 				{
@@ -19058,7 +19051,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "row-gap",
 			"syntax": "normal | <length-percentage>",
-			"relevance": 50,
+			"relevance": 51,
 			"browsers": [
 				"E84",
 				"FF63",
@@ -19541,7 +19534,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-padding-top",
 			"syntax": "auto | <length-percentage>",
-			"relevance": 51,
+			"relevance": 50,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -19560,7 +19553,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scroll-snap-align",
 			"syntax": "[ none | start | end | center ]{1,2}",
-			"relevance": 53,
+			"relevance": 52,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -19664,7 +19657,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF70",
-				"Spreview",
+				"S15.4",
 				"C64",
 				"O50"
 			],
@@ -19844,6 +19837,18 @@ export const cssData : CSSDataV1 = {
 			"description": "The translate CSS property allows you to specify translation transforms individually and independently of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value."
 		},
 		{
+			"name": "white-space",
+			"syntax": "normal | pre | nowrap | pre-wrap | pre-line | break-spaces",
+			"relevance": 90,
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/white-space"
+				}
+			],
+			"description": "Specifies how whitespace is handled in an element."
+		},
+		{
 			"name": "speak-as",
 			"syntax": "auto | bullets | numbers | words | spell-out | <counter-style-name>",
 			"relevance": 50,
@@ -19867,7 +19872,7 @@ export const cssData : CSSDataV1 = {
 			"name": "font-display",
 			"status": "experimental",
 			"syntax": "[ auto | block | swap | fallback | optional ]",
-			"relevance": 71,
+			"relevance": 70,
 			"description": "The font-display descriptor determines how a font face is displayed based on whether and when it is downloaded and ready to use."
 		},
 		{
@@ -20985,6 +20990,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E86",
 				"FF85",
+				"S15.4",
 				"C86",
 				"O72"
 			],
@@ -21017,7 +21023,7 @@ export const cssData : CSSDataV1 = {
 			"name": ":has",
 			"status": "experimental",
 			"browsers": [
-				"Spreview"
+				"S15.4"
 			],
 			"references": [
 				{
