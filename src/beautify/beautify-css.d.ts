@@ -15,7 +15,7 @@ export interface IBeautifyCSSOptions {
     max_preserve_newlines?: number; // (32786) - maximum number of line breaks to be preserved in one chunk
     wrap_line_length?: number; // (undefined) - warp lines after a line offset
     indent_empty_lines?: number; // (false) - indent empty lines
-
+    eol?: string; // end of line character to use
 }
 
 export interface IBeautifyCSS {

@@ -11,6 +11,7 @@ export function format(document: TextDocument, range: Range | undefined, options
 	let value = document.getText();
 	let includesEnd = true;
 	let initialIndentLevel = 0;
+	let inRule = false;
 	const tabSize = options.tabSize || 4;
 	if (range) {
 		let startOffset = document.offsetAt(range.start);
@@ -40,24 +41,17 @@ export function format(document: TextDocument, range: Range | undefined, options
 		}
 		range = Range.create(document.positionAt(startOffset), document.positionAt(endOffset));
 
-		// Do not modify if substring starts in inside an element
-		// Ending inside an element is fine as it doesn't cause formatting errors
-		const firstHalf = value.substring(0, startOffset);
-		if (new RegExp(/.*[<][^>]*$/).test(firstHalf)) {
-			//return without modification
-			value = value.substring(startOffset, endOffset);
-			return [{
-				range: range,
-				newText: value
-			}];
-		}
+		// Test if inside a rule
+		inRule = isInRule(value, startOffset);
 
 		includesEnd = endOffset === value.length;
 		value = value.substring(startOffset, endOffset);
-
 		if (startOffset !== 0) {
 			const startOfLineOffset = document.offsetAt(Position.create(range.start.line, 0));
 			initialIndentLevel = computeIndentLevel(document.getText(), startOfLineOffset, options);
+		}
+		if (inRule) {
+			value = `{\n${trimLeft(value)}`;
 		}
 	} else {
 		range = Range.create(Position.create(0, 0), document.positionAt(value.length));
@@ -74,9 +68,13 @@ export function format(document: TextDocument, range: Range | undefined, options
 		max_preserve_newlines: getFormatOption(options, 'maxPreserveNewLines', undefined),
 		preserve_newlines: getFormatOption(options, 'preserveNewLines', true),
 		wrap_line_length: getFormatOption(options, 'wrapLineLength', undefined),
+		eol: '\n'
 	};
 
-	let result = css_beautify(trimLeft(value), cssOptions);
+	let result = css_beautify(value, cssOptions);
+	if (inRule) {
+		result = trimLeft(result.substring(2));
+	}
 	if (initialIndentLevel > 0) {
 		const indent = options.insertSpaces ? repeat(' ', tabSize * initialIndentLevel) : repeat('\t', initialIndentLevel);
 		result = result.split('\n').join('\n' + indent);
@@ -92,6 +90,22 @@ export function format(document: TextDocument, range: Range | undefined, options
 
 function trimLeft(str: string) {
 	return str.replace(/^\s+/, '');
+}
+
+const _CUL = '{'.charCodeAt(0);
+const _CUR = '}'.charCodeAt(0);
+
+function isInRule(str: string, offset: number) {
+	while (offset >= 0) {
+		const ch = str.charCodeAt(offset);
+		if (ch === _CUL) {
+			return true;
+		} else if (ch === _CUR) {
+			return false;
+		}
+		offset--;
+	}
+	return false;
 }
 
 function getFormatOption(options: CSSFormatConfiguration, key: keyof CSSFormatConfiguration, dflt: any): any {

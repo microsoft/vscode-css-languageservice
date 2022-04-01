@@ -65,6 +65,22 @@ suite('CSS - Formatter', () => {
 		assertFormat(content, expected);
 	});
 
+	test('range2', () => {
+		const content = [
+			'div {',
+			'|  color:green|',
+			'}',
+		].join('\n');
+
+		const expected = [
+			'div {',
+			'  color: green',
+			'}',
+		].join('\n');
+
+		assertFormat(content, expected);
+	});
+
 	test('@media', () => {
 		const content = [
 			'@media print { @page { margin: 10% } blockquote, pre { page-break-inside: avoid } }'
