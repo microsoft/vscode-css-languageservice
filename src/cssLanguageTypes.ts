@@ -294,6 +294,18 @@ export interface CSSFormatConfiguration {
 	newlineBetweenRules?: boolean;
 	/** ensure space around selector separators:  '>', '+', '~' (e.g. "a>b" -> "a > b"): Default: false */
 	spaceAroundSelectorSeparator?: boolean;
+	/** put braces on the same line as rules (`collapse`), or put braces on own line, Allman / ANSI style (`expand`). Default `collapse` */
+	braceStyle?: 'collapse' | 'expand';
+	/** whether existing line breaks before elements should be preserved. Default: true */
+	preserveNewLines?: boolean;
+	/** maximum number of line breaks to be preserved in one chunk. Default: unlimited */
+	maxPreserveNewLines?: number;
+    /** maximum amount of characters per line (0/undefined = disabled). Default: disabled. */
+	wrapLineLength?: number;
+	/** add indenting whitespace to empty lines. Default: false */
+	indentEmptyLines?: boolean;
+	
 	/** @deprecated Use newlineBetweenSelectors instead*/
 	selectorSeparatorNewline?: boolean;
+
 }

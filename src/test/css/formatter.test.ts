@@ -16,13 +16,13 @@ export function assertFormat(unformatted: string, expected: string, options: CSS
 	if (rangeStart !== -1 && rangeEnd !== -1) {
 		// remove '|'
 		unformatted = unformatted.substring(0, rangeStart) + unformatted.substring(rangeStart + 1, rangeEnd) + unformatted.substring(rangeEnd + 1);
-		var unformattedDoc = TextDocument.create(uri, 'html', 0, unformatted);
+		const unformattedDoc = TextDocument.create(uri, 'html', 0, unformatted);
 		const startPos = unformattedDoc.positionAt(rangeStart);
 		const endPos = unformattedDoc.positionAt(rangeEnd - 1);
 		range = Range.create(startPos, endPos);
 	}
 
-	var document = TextDocument.create(uri, 'html', 0, unformatted);
+	const document = TextDocument.create(uri, 'html', 0, unformatted);
 	const edits = ls.format(document, range, options);
 	const formatted = TextDocument.applyEdits(document, edits);
 	assert.strictEqual(formatted, expected);
@@ -31,12 +31,12 @@ export function assertFormat(unformatted: string, expected: string, options: CSS
 suite('CSS - Formatter', () => {
 
 	test('full document', () => {
-		var content = [
+		const content = [
 			'@font-face { src: url(http://test) }',
 			'.monaco  .list { background: "#FFF"  ; }',
 		].join('\n');
 
-		var expected = [
+		const expected = [
 			'@font-face {',
 			'  src: url(http://test)',
 			'}',
@@ -50,12 +50,12 @@ suite('CSS - Formatter', () => {
 	});
 
 	test('range', () => {
-		var content = [
+		const content = [
 			'@font-face { src: url(http://test) }',
 			'|.monaco  .list { background: "#FFF"  ; }|',
 		].join('\n');
 
-		var expected = [
+		const expected = [
 			'@font-face { src: url(http://test) }',
 			'.monaco .list {',
 			'  background: "#FFF";',
@@ -66,11 +66,11 @@ suite('CSS - Formatter', () => {
 	});
 
 	test('@media', () => {
-		var content = [
+		const content = [
 			'@media print { @page { margin: 10% } blockquote, pre { page-break-inside: avoid } }'
 		].join('\n');
 
-		var expected = [
+		const expected = [
 			'@media print {',
 			'  @page {',
 			'    margin: 10%',
@@ -87,15 +87,15 @@ suite('CSS - Formatter', () => {
 	});
 
 	test('selectors and functions', () => {
-		var content = [
-			'.foo,.bar,li:first-of-type + li{--widthB:  calc(  var(--widthA)   / 2);}'
+		const content = [
+			'.foo,.bar,li:first-of-type + li{--widthB:  calc(  const(--widthA)   / 2);}'
 		].join('\n');
 
-		var expected = [
+		const expected = [
 			'.foo,',
 			'.bar,',
 			'li:first-of-type+li {',
-			'  --widthB: calc(var(--widthA) / 2);',
+			'  --widthB: calc(const(--widthA) / 2);',
 			'}'
 		].join('\n');
 
@@ -103,13 +103,13 @@ suite('CSS - Formatter', () => {
 	});
 
 	test('selectors and functions, options', () => {
-		var content = [
-			'.foo,.bar,li:first-of-type + li{--widthB:  calc(  var(--widthA)   / 2);}'
+		const content = [
+			'.foo,.bar,li:first-of-type + li{--widthB:  calc(  const(--widthA)   / 2);}'
 		].join('\n');
 
-		var expected = [
+		const expected = [
 			'.foo, .bar, li:first-of-type + li {',
-			'  --widthB: calc(var(--widthA) / 2);',
+			'  --widthB: calc(const(--widthA) / 2);',
 			'}'
 		].join('\n');
 
@@ -117,11 +117,11 @@ suite('CSS - Formatter', () => {
 	});
 
 	test('insertFinalNewline', () => {
-		var content = [
+		const content = [
 			'.emptyMarkdownCell::before { outline:  1px  solid -webkit-focus-ring-color;  }'
 		].join('\n');
 
-		var expected = [
+		const expected = [
 			'.emptyMarkdownCell::before {',
 			'  outline: 1px solid -webkit-focus-ring-color;',
 			'}',
@@ -132,6 +132,58 @@ suite('CSS - Formatter', () => {
 
 	});
 
+	test('braceStyle', () => {
+		const content = [
+			'.foo { display:  node;  }'
+		].join('\n');
+
+		const expected = [
+			'.foo',
+			'{',
+			'  display: node;',
+			'}',
+		].join('\n');
+
+		assertFormat(content, expected, { insertSpaces: true, tabSize: 2, braceStyle: 'expand' });
+
+		const expected2 = [
+			'.foo {',
+			'  display: node;',
+			'}',
+		].join('\n');
+
+		assertFormat(content, expected2, { insertSpaces: true, tabSize: 2, braceStyle: 'collapse' });
+
+	});
+
+	test('preserveNewLines', () => {
+		const content = [
+			'.foo { display: node;',
+			'',
+			'',
+			'',
+			'}'
+		].join('\n');
+
+		const expected = [
+			'.foo {',
+			'  display: node;',
+			'',
+			'',
+			'}'
+		].join('\n');
+
+		assertFormat(content, expected, { insertSpaces: true, tabSize: 2, preserveNewLines: true, maxPreserveNewLines: 3 });
+
+		const expected2 = [
+			'.foo {',
+			'  display: node;',
+			'}'
+		].join('\n');
+
+		assertFormat(content, expected2, { insertSpaces: true, tabSize: 2, preserveNewLines: false });
+
+	});
 
 
 });

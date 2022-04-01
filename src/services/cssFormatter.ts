@@ -68,7 +68,12 @@ export function format(document: TextDocument, range: Range | undefined, options
 		end_with_newline: includesEnd && getFormatOption(options, 'insertFinalNewline', false),
 		selector_separator_newline: getFormatOption(options, 'newlineBetweenSelectors', true),
 		newline_between_rules: getFormatOption(options, 'newlineBetweenRules', true),
-		space_around_selector_separator: getFormatOption(options, 'spaceAroundSelectorSeparator', false)
+		space_around_selector_separator: getFormatOption(options, 'spaceAroundSelectorSeparator', false),
+		brace_style: getFormatOption(options, 'braceStyle', 'collapse'),
+		indent_empty_lines: getFormatOption(options, 'indentEmptyLines', false),
+		max_preserve_newlines: getFormatOption(options, 'maxPreserveNewLines', undefined),
+		preserve_newlines: getFormatOption(options, 'preserveNewLines', true),
+		wrap_line_length: getFormatOption(options, 'wrapLineLength', undefined),
 	};
 
 	let result = css_beautify(trimLeft(value), cssOptions);

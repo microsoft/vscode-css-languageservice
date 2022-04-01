@@ -1,4 +1,9 @@
 
+5.4.0 / 2022-04-01
+==================
+  * new formatter settings: `braceStyle`, `preserveNewLines`, `maxPreserveNewLines`, `wrapLineLength`, `indentEmptyLines`
+
+
 5.3.0 / 2022-03-23
 ==================
   * renamed `CSSFormatConfiguration.selectorSeparatorNewline` to `CSSFormatConfiguration.newlineBetweenSelectors`
