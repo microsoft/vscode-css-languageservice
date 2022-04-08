@@ -16,14 +16,6 @@ function copy(from, to) {
 	}
 }
 
-if (!fs.existsSync(path.join(__dirname, '..', 'lib', 'umd'))) {
-	fs.mkdirSync(path.join(__dirname, '..', 'lib', 'umd'));
-}
-
-if (!fs.existsSync(path.join(__dirname, '..', 'lib', 'esm'))) {
-	fs.mkdirSync(path.join(__dirname, '..', 'lib', 'esm'));
-}
-
 const umdDir = path.join(__dirname, '..', 'lib', 'umd', 'beautify');
 copy(path.join(__dirname, '..', 'src', 'beautify'), umdDir);
 
