@@ -297,6 +297,11 @@ suite('CSS - MarkedStringPrinter selectors specificities', () => {
 			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (1, 1, 1)'
 		]);
 
+		assertSelectorMarkdown(p, '#s12:lang(en, fr)', '#s12', [
+			{ language: 'html', value: '<element id="s12" :lang>' },
+			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (1, 1, 0)'
+		]);
+
 		assertSelectorMarkdown(p, '#s12:is(foo > foo, :not(.bar > baz, :has(.bar > .baz)))', '#s12', [
 			{ language: 'html', value: '<element id="s12" :is>' },
 			'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (1, 2, 0)'
