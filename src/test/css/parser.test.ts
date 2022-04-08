@@ -27,7 +27,7 @@ export function assertFunction(text: string, parser: Parser, f: () => nodes.Node
 
 export function assertNoNode(text: string, parser: Parser, f: () => nodes.Node | null): void {
 	let node = parser.internalParse(text, f)!;
-	assert.ok(node === null);
+	assert.ok(node === null || !parser.accept(TokenType.EOF));
 }
 
 export function assertError(text: string, parser: Parser, f: () => nodes.Node | null, error: nodes.IRule): void {
@@ -118,9 +118,6 @@ suite('CSS - Parser', () => {
 		assertNode('@font-face { src: url(http://test) }', parser, parser._parseFontFace.bind(parser));
 		assertNode('@font-face { font-style: normal; font-stretch: normal; }', parser, parser._parseFontFace.bind(parser));
 		assertNode('@font-face { unicode-range: U+0021-007F }', parser, parser._parseFontFace.bind(parser));
-		assertError('@font-face { unicode-range: U+002?-01??; }', parser, parser._parseFontFace.bind(parser), ParseError.SemiColonExpected);
-		assertError('@font-face { unicode-range: U+00?0; }', parser, parser._parseFontFace.bind(parser), ParseError.SemiColonExpected);
-		assertError('@font-face { unicode-range: U+0XFF; }', parser, parser._parseFontFace.bind(parser), ParseError.SemiColonExpected);
 		assertError('@font-face { font-style: normal font-stretch: normal; }', parser, parser._parseFontFace.bind(parser), ParseError.SemiColonExpected);
 	});
 
@@ -425,9 +422,10 @@ suite('CSS - Parser', () => {
 		assertNode('grid-template-columns: [a] auto [b] minmax(min-content, 1fr) [b c d] repeat(2, [e] 40px)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('grid-template: [foo] 10px / [bar] 10px', parser, parser._parseDeclaration.bind(parser));
 		assertNode(`grid-template: 'left1 footer footer' 1fr [end] / [ini] 1fr [info-start] 2fr 1fr [end]`, parser, parser._parseDeclaration.bind(parser));
+		assertNode(`content: "("counter(foo) ")"`, parser, parser._parseDeclaration.bind(parser));
 	});
 
-	test('term', function () {
+	test.only('term', function () {
 		let parser = new Parser();
 		assertNode('"asdasd"', parser, parser._parseTerm.bind(parser));
 		assertNode('name', parser, parser._parseTerm.bind(parser));
@@ -448,7 +446,12 @@ suite('CSS - Parser', () => {
 		assertNode('calc(50% + (100%/3 - 2*1em - 2*1px))', parser, parser._parseTerm.bind(parser));
 		assertNoNode('%(\'repetitions: %S file: %S\', 1 + 2, "directory/file.less")', parser, parser._parseTerm.bind(parser)); // less syntax
 		assertNoNode('~"ms:alwaysHasItsOwnSyntax.For.Stuff()"', parser, parser._parseTerm.bind(parser)); // less syntax
+		assertNode('U+002?-0199', parser, parser._parseTerm.bind(parser));
+		assertNoNode('U+002?-01??', parser, parser._parseTerm.bind(parser));
+		assertNoNode('U+00?0;', parser, parser._parseTerm.bind(parser));
+		assertNoNode('U+0XFF;', parser, parser._parseTerm.bind(parser));
 	});
+
 
 	test('function', function () {
 		let parser = new Parser();

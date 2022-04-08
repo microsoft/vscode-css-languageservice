@@ -1489,8 +1489,6 @@ export class Parser {
 					return this.finish(node);
 				}
 				this.consumeToken();
-			} else if (!this.hasWhitespace()) {
-				break;
 			}
 			if (!node.addChild(this._parseBinaryExpr())) {
 				break;
