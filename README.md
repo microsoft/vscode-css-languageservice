@@ -52,6 +52,7 @@ How can I run and debug the service?
 How can I run and debug the service inside an instance of VSCode?
 
 - run VSCode out of sources setup as described here: https://github.com/Microsoft/vscode/wiki/How-to-Contribute
+- run `yarn link` in the folder of `vscode-css-languageservice`
 - use `yarn link vscode-css-languageservice` in `vscode/extensions/css-language-features/server` to run VSCode with the latest changes from `vscode-css-languageservice`
 - run VSCode out of source (`vscode/scripts/code.sh|bat`) and open a `.css` file
 - in VSCode window that is open on the `vscode-css-languageservice` sources, run command `Debug: Attach to Node process` and pick the `code-oss` process with the `css-language-features` path
