@@ -425,7 +425,7 @@ suite('CSS - Parser', () => {
 		assertNode(`content: "("counter(foo) ")"`, parser, parser._parseDeclaration.bind(parser));
 	});
 
-	test.only('term', function () {
+	test('term', function () {
 		let parser = new Parser();
 		assertNode('"asdasd"', parser, parser._parseTerm.bind(parser));
 		assertNode('name', parser, parser._parseTerm.bind(parser));
