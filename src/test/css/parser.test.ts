@@ -423,6 +423,7 @@ suite('CSS - Parser', () => {
 		assertNode('grid-template: [foo] 10px / [bar] 10px', parser, parser._parseDeclaration.bind(parser));
 		assertNode(`grid-template: 'left1 footer footer' 1fr [end] / [ini] 1fr [info-start] 2fr 1fr [end]`, parser, parser._parseDeclaration.bind(parser));
 		assertNode(`content: "("counter(foo) ")"`, parser, parser._parseDeclaration.bind(parser));
+		assertNode(`content: 'Hello\\0A''world'`, parser, parser._parseDeclaration.bind(parser));
 	});
 
 	test('term', function () {
