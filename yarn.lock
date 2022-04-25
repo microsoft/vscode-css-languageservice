@@ -332,7 +332,7 @@ concat-map@0.0.1:
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
   integrity sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=
 
-config-chain@^1.1.12:
+config-chain@^1.1.13:
   version "1.1.13"
   resolved "https://registry.yarnpkg.com/config-chain/-/config-chain-1.1.13.tgz#fad0795aa6a6cdaff9ed1b68e9dff94372c232f4"
   integrity sha512-qj+f8APARXHrM0hraqXYb2/bOVSV4PvJQlNZ/DVj0QrmNM2q2euizkeuVckQ57J+W0mRH6Hvi+k50M4Jul2VRQ==
@@ -803,12 +803,12 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
-js-beautify@^1.14.2:
-  version "1.14.2"
-  resolved "https://registry.yarnpkg.com/js-beautify/-/js-beautify-1.14.2.tgz#8180514fd4c7789c4ac4bcc327b6dda634c55666"
-  integrity sha512-H85kX95a53os+q1OCqtYe8AXAmgy3BvtysA/V83S3fdhznm6WlUpGi14DqSPbKFsL3dXZFXYl7YQwW9U1+76ng==
+js-beautify@^1.14.3:
+  version "1.14.3"
+  resolved "https://registry.yarnpkg.com/js-beautify/-/js-beautify-1.14.3.tgz#3dd11c949178de7f3bdf3f6f752778d3bed95150"
+  integrity sha512-f1ra8PHtOEu/70EBnmiUlV8nJePS58y9qKjl4JHfYWlFH6bo7ogZBz//FAZp7jDuXtYnGYKymZPlrg2I/9Zo4g==
   dependencies:
-    config-chain "^1.1.12"
+    config-chain "^1.1.13"
     editorconfig "^0.15.3"
     glob "^7.1.3"
     nopt "^5.0.0"

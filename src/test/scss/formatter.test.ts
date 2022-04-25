@@ -6,7 +6,7 @@
 import { getSCSSLanguageService } from '../../cssLanguageService';
 import { assertFormat } from '../css/formatter.test';
 
-suite('LESS - Formatter', () => {
+suite('SCSS - Formatter', () => {
 
 	const lessLS = getSCSSLanguageService();
 
@@ -21,7 +21,7 @@ suite('LESS - Formatter', () => {
 
 		var expected = [
 			'@mixin themable($theme-name, $theme-map) {',
-			'  @if ($section==container) {',
+			'  @if ($section ==container) {',
 			'    .container {',
 			'      background-color: map-get($map, bg);',
 			'    }',
