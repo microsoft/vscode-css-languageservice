@@ -903,7 +903,7 @@ export const cssData : CSSDataV1 = {
 			"name": "background-repeat",
 			"values": [],
 			"syntax": "<repeat-style>#",
-			"relevance": 85,
+			"relevance": 86,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1223,7 +1223,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-bottom-left-radius",
 			"syntax": "<length-percentage>{1,2}",
-			"relevance": 75,
+			"relevance": 76,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1255,7 +1255,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "border-bottom-style",
 			"syntax": "<line-style>",
-			"relevance": 59,
+			"relevance": 58,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2290,7 +2290,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<shape> | auto",
-			"relevance": 75,
+			"relevance": 76,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3243,7 +3243,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Determines the ‘insideness’ of a point on the canvas by drawing a ray from that point to infinity in any direction and then examining the places where a segment of the shape crosses the ray."
 				}
 			],
-			"relevance": 50,
+			"relevance": 51,
 			"description": "Indicates the algorithm (or winding rule) which is to be used to determine what parts of the canvas are included inside the shape.",
 			"restrictions": [
 				"enum"
@@ -3373,7 +3373,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "content | <'width'>",
-			"relevance": 65,
+			"relevance": 66,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3730,7 +3730,7 @@ export const cssData : CSSDataV1 = {
 			"name": "font-family",
 			"values": [
 				{
-					"name": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"
+					"name": "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"
 				},
 				{
 					"name": "Arial, Helvetica, sans-serif"
@@ -5038,7 +5038,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line> [ / <grid-line> ]{0,3}",
-			"relevance": 53,
+			"relevance": 54,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -5988,7 +5988,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <length>",
-			"relevance": 81,
+			"relevance": 82,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6034,6 +6034,10 @@ export const cssData : CSSDataV1 = {
 				{
 					"name": "strict",
 					"description": "Breaks CJK scripts using a more restrictive set of line-breaking rules than 'normal'."
+				},
+				{
+					"name": "anywhere",
+					"description": "There is a soft wrap opportunity around every typographic character unit, including around any punctuation character or preserved white spaces, or in the middle of words, disregarding any prohibition against line breaks, even those introduced by characters with the GL, WJ, or ZWJ line breaking classes or mandated by the word-break property."
 				}
 			],
 			"syntax": "auto | loose | normal | strict | anywhere",
@@ -6306,11 +6310,11 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "margin-block-end",
 			"browsers": [
-				"E79",
+				"E87",
 				"FF41",
 				"S12.1",
-				"C69",
-				"O56"
+				"C87",
+				"O73"
 			],
 			"values": [
 				{
@@ -6334,11 +6338,11 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "margin-block-start",
 			"browsers": [
-				"E79",
+				"E87",
 				"FF41",
 				"S12.1",
-				"C69",
-				"O56"
+				"C87",
+				"O73"
 			],
 			"values": [
 				{
@@ -6383,11 +6387,11 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "margin-inline-end",
 			"browsers": [
-				"E79",
+				"E87",
 				"FF41",
 				"S12.1",
-				"C69",
-				"O56"
+				"C87",
+				"O73"
 			],
 			"values": [
 				{
@@ -6411,11 +6415,11 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "margin-inline-start",
 			"browsers": [
-				"E79",
+				"E87",
 				"FF41",
 				"S12.1",
-				"C69",
-				"O56"
+				"C87",
+				"O73"
 			],
 			"values": [
 				{
@@ -11150,7 +11154,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "fill | contain | cover | none | scale-down",
-			"relevance": 68,
+			"relevance": 67,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11644,7 +11648,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ <'outline-color'> || <'outline-style'> || <'outline-width'> ]",
-			"relevance": 88,
+			"relevance": 89,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11669,7 +11673,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<color> | invert",
-			"relevance": 55,
+			"relevance": 56,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -11921,11 +11925,11 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "padding-block-end",
 			"browsers": [
-				"E79",
+				"E87",
 				"FF41",
 				"S12.1",
-				"C69",
-				"O56"
+				"C87",
+				"O73"
 			],
 			"syntax": "<'padding-left'>",
 			"relevance": 50,
@@ -11944,11 +11948,11 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "padding-block-start",
 			"browsers": [
-				"E79",
+				"E87",
 				"FF41",
 				"S12.1",
-				"C69",
-				"O56"
+				"C87",
+				"O73"
 			],
 			"syntax": "<'padding-left'>",
 			"relevance": 50,
@@ -11967,11 +11971,11 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "padding-inline-end",
 			"browsers": [
-				"E79",
+				"E87",
 				"FF41",
 				"S12.1",
-				"C69",
-				"O56"
+				"C87",
+				"O73"
 			],
 			"syntax": "<'padding-left'>",
 			"relevance": 51,
@@ -11990,11 +11994,11 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "padding-inline-start",
 			"browsers": [
-				"E79",
+				"E87",
 				"FF41",
 				"S12.1",
-				"C69",
-				"O56"
+				"C87",
+				"O73"
 			],
 			"syntax": "<'padding-left'>",
 			"relevance": 52,
@@ -12045,7 +12049,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "padding-top",
 			"syntax": "<length> | <percentage>",
-			"relevance": 90,
+			"relevance": 91,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12120,7 +12124,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | always | avoid | left | right | recto | verso",
-			"relevance": 50,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12203,7 +12207,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <length>",
-			"relevance": 55,
+			"relevance": 56,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12274,7 +12278,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | none | visiblePainted | visibleFill | visibleStroke | visible | painted | fill | stroke | all | inherit",
-			"relevance": 82,
+			"relevance": 83,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -12777,7 +12781,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | smooth",
-			"relevance": 52,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -13116,7 +13120,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Indicates that no dashing is used."
 				}
 			],
-			"relevance": 58,
+			"relevance": 59,
 			"description": "Controls the pattern of dashes and gaps used to stroke paths.",
 			"restrictions": [
 				"length",
@@ -13172,7 +13176,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Indicates that a round corner is to be used to join path segments."
 				}
 			],
-			"relevance": 50,
+			"relevance": 51,
 			"description": "Specifies the shape to be used at the corners of paths or basic shapes when they are stroked.",
 			"restrictions": [
 				"enum"
@@ -13188,7 +13192,7 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "stroke-opacity",
-			"relevance": 52,
+			"relevance": 51,
 			"description": "Specifies the opacity of the painting operation used to stroke the current object.",
 			"restrictions": [
 				"number(0-1)"
@@ -14025,7 +14029,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <transform-list>",
-			"relevance": 90,
+			"relevance": 91,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -14106,7 +14110,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-transition>#",
-			"relevance": 88,
+			"relevance": 89,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -17102,15 +17106,6 @@ export const cssData : CSSDataV1 = {
 			"status": "nonstandard",
 			"syntax": "none | [ fill | fill-opacity | stroke | stroke-opacity ]#",
 			"relevance": 0,
-			"browsers": [
-				"FF55"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-context-properties"
-				}
-			],
 			"description": "If you reference an SVG image in a webpage (such as with the <img> element or as a background image), the SVG image can coordinate with the embedding element (its context) to have the image adopt property values set on the embedding element. To do this the embedding element needs to list the properties that are to be made available to the image by listing them as values of the -moz-context-properties property, and the image needs to opt in to using those properties by using values such as the context-fill value.\n\nThis feature is available since Firefox 55, but is only currently supported with SVG images loaded via chrome:// or resource:// URLs. To experiment with the feature in SVG on the Web it is necessary to set the svg.context-properties.content.enabled pref to true."
 		},
 		{
@@ -18040,7 +18035,6 @@ export const cssData : CSSDataV1 = {
 			"relevance": 51,
 			"browsers": [
 				"E85",
-				"S15.4",
 				"C85",
 				"O71"
 			],
@@ -18664,7 +18658,7 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "none | <integer>",
 			"relevance": 50,
-			"description": "The max-liens property forces a break after a set number of lines"
+			"description": "The max-lines property forces a break after a set number of lines"
 		},
 		{
 			"name": "offset",
@@ -19693,10 +19687,10 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'text-emphasis-style'> || <'text-emphasis-color'>",
 			"relevance": 50,
 			"browsers": [
-				"E79",
+				"E99",
 				"FF46",
 				"S7",
-				"C25",
+				"C99",
 				"O15"
 			],
 			"references": [
@@ -19712,10 +19706,10 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<color>",
 			"relevance": 50,
 			"browsers": [
-				"E79",
+				"E99",
 				"FF46",
 				"S7",
-				"C25",
+				"C99",
 				"O15"
 			],
 			"references": [
@@ -19731,10 +19725,10 @@ export const cssData : CSSDataV1 = {
 			"syntax": "[ over | under ] && [ right | left ]",
 			"relevance": 50,
 			"browsers": [
-				"E79",
+				"E99",
 				"FF46",
 				"S7",
-				"C25",
+				"C99",
 				"O15"
 			],
 			"references": [
@@ -19750,10 +19744,10 @@ export const cssData : CSSDataV1 = {
 			"syntax": "none | [ [ filled | open ] || [ dot | circle | double-circle | triangle | sesame ] ] | <string>",
 			"relevance": 50,
 			"browsers": [
-				"E79",
+				"E99",
 				"FF46",
 				"S7",
-				"C25",
+				"C99",
 				"O15"
 			],
 			"references": [
