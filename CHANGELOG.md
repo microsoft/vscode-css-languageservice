@@ -1,8 +1,12 @@
 
+
+6.0.0 / 2022-05-18
+================
+ * Update to `vscode-languageserver-types@3.17`
+
 5.4.0 / 2022-04-01
 ==================
   * new formatter settings: `braceStyle`, `preserveNewLines`, `maxPreserveNewLines`, `wrapLineLength`, `indentEmptyLines`
-
 
 5.3.0 / 2022-03-23
 ==================
