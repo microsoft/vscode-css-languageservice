@@ -1193,7 +1193,7 @@ export class Layer extends BodyDeclaration {
 	}
 
 	public get type(): NodeType {
-		return NodeType.Document;
+		return NodeType.Layer;
 	}
 }
 
