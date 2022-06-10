@@ -20019,6 +20019,17 @@ export const cssData : CSSDataV1 = {
 			"description": "Defines set of animation key frames."
 		},
 		{
+			name: "@layer",
+			references: [
+				{
+					name: "MDN Reference",
+					url: "https://developer.mozilla.org/docs/Web/CSS/@layer",
+				},
+			],
+			description:
+				"The @layer CSS at-rule is used to declare a cascade layer and can also be used to define the order of precedence in case of multiple cascade layers.",
+		},
+		{
 			"name": "@media",
 			"references": [
 				{

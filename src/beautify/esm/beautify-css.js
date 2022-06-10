@@ -1079,6 +1079,7 @@ function Beautifier(source_text, options) {
     "@page": true,
     "@font-face": true,
     "@keyframes": true,
+    "@layer": true,
     // also in CONDITIONAL_GROUP_RULE below
     "@media": true,
     "@supports": true,

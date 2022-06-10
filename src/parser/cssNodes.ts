@@ -95,6 +95,7 @@ export enum NodeType {
 	ForwardVisibility,
 	Module,
 	UnicodeRange,
+	Layer
 }
 
 export enum ReferenceType {
@@ -1177,6 +1178,16 @@ export class Supports extends BodyDeclaration {
 
 export class Document extends BodyDeclaration {
 
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.Document;
+	}
+}
+
+export class Layer extends BodyDeclaration {
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
