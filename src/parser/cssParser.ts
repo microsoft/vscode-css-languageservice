@@ -1413,10 +1413,10 @@ export class Parser {
 			if (!this.hasWhitespace() && this.accept(TokenType.ParenthesisL)) {
 				const tryAsSelector = () => {
 					const selectors = this.create(nodes.Node);
-					if (!selectors.addChild(this._parseSelector(false))) {
+					if (!selectors.addChild(this._parseSelector(true))) {
 						return null;
 					}
-					while (this.accept(TokenType.Comma) && selectors.addChild(this._parseSelector(false))) {
+					while (this.accept(TokenType.Comma) && selectors.addChild(this._parseSelector(true))) {
 						// loop
 					}
 					if (this.peek(TokenType.ParenthesisR)) {
