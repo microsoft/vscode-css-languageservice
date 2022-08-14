@@ -220,6 +220,12 @@ suite('SCSS - Navigation', () => {
 			await assertLinks(ls, 'html { background-image: url("foo/hello.html")',
 				[{ range: newRange(29, 45), target: getTestResource('node_modules/foo/hello.html') }], 'scss', testUri, workspaceFolder
 			);
+
+			await assertLinks(ls, `@use '@foo/bar/baz'`, 
+				[{ range: newRange(5, 19), target: getTestResource('node_modules/@foo/bar/baz') }], 'scss', testUri, workspaceFolder);
+
+			await assertLinks(ls, `@use '@foo/bar'`, 
+				[{ range: newRange(5, 15), target: getTestResource('node_modules/@foo/bar') }], 'scss', testUri, workspaceFolder);
 		});
 
 	});
