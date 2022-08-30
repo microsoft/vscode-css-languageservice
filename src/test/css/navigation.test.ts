@@ -129,7 +129,7 @@ export function assertScopeBuilding(ls: LanguageService, input: string, ...scope
 }
 
 export function getTestResource(path: string) {
-	return URI.file(join(__dirname, '../../../../test/linksTestFixtures', path)).toString();
+	return URI.file(join(__dirname, '../../../../test/linksTestFixtures', path)).toString(true);
 }
 
 function scopeToString(scope: Scope): string {

@@ -419,14 +419,19 @@ function toTwoDigitHex(n: number): string {
 }
 
 function getModuleNameFromPath(path: string) {
+	const firstSlash = path.indexOf('/');
+	if (firstSlash === -1) {
+		return '';
+	}
+
 	// If a scoped module (starts with @) then get up until second instance of '/', or to the end of the string for root-level imports.
 	if (path[0] === '@') {
-		const secondSlash = path.indexOf('/', path.indexOf('/') + 1);
+		const secondSlash = path.indexOf('/', firstSlash + 1);
 		if (secondSlash === -1) {
-				return path;
+			return path;
 		}
-		return path.substring(0, path.indexOf('/', path.indexOf('/') + 1));
+		return path.substring(0, secondSlash);
 	}
 	// Otherwise get until first instance of '/'
-	return path.substring(0, path.indexOf('/'));
+	return path.substring(0, firstSlash);
 }

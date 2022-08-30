@@ -801,8 +801,8 @@ suite('CSS - Completion', () => {
 	const testFixturesPath = path.join(__dirname, '../../../../test');
 
 	test('CSS url() Path completion', async function () {
-		const testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString();
-		const workspaceFolderUri = URI.file(path.resolve(testFixturesPath)).toString();
+		const testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString(true);
+		const workspaceFolderUri = URI.file(path.resolve(testFixturesPath)).toString(true);
 
 		await testCompletionFor('html { background-image: url("./|")', {
 			items: [
@@ -860,8 +860,8 @@ suite('CSS - Completion', () => {
 	});
 
 	test('CSS url() Path Completion - Unquoted url', async function () {
-		const testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString();
-		const workspaceFolderUri = URI.file(path.resolve('testFixturesPath')).toString();
+		const testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString(true);
+		const workspaceFolderUri = URI.file(path.resolve('testFixturesPath')).toString(true);
 
 		await testCompletionFor('html { background-image: url(./|)', {
 			items: [
@@ -889,8 +889,8 @@ suite('CSS - Completion', () => {
 	});
 
 	test('CSS @import Path completion', async function () {
-		const testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString();
-		const workspaceFolderUri = URI.file(path.resolve(testFixturesPath)).toString();
+		const testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString(true);
+		const workspaceFolderUri = URI.file(path.resolve(testFixturesPath)).toString(true);
 
 		await testCompletionFor(`@import './|'`, {
 			items: [
@@ -909,8 +909,8 @@ suite('CSS - Completion', () => {
 	});
 
 	test('Completion should ignore files/folders starting with dot', async function () {
-		const testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString();
-		const workspaceFolderUri = URI.file(path.resolve(testFixturesPath)).toString();
+		const testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString(true);
+		const workspaceFolderUri = URI.file(path.resolve(testFixturesPath)).toString(true);
 
 		await testCompletionFor('html { background-image: url("../|")', {
 			count: 4
