@@ -1,5 +1,5 @@
 // copied from js-beautify/js/lib/beautify-css.js
-// version: 1.14.3
+// version: 1.14.6
 /* AUTO-GENERATED. DO NOT MODIFY. */
 /*
 
@@ -1093,6 +1093,7 @@ function Beautifier(source_text, options) {
     "@document": true
   };
   this.NON_SEMICOLON_NEWLINE_PROPERTY = [
+    "grid-template-areas",
     "grid-template"
   ];
 
@@ -1424,7 +1425,8 @@ Beautifier.prototype.beautify = function() {
         }
       }
     } else if (this._ch === '"' || this._ch === '\'') {
-      this.preserveSingleSpace(isAfterSpace);
+      var preserveQuoteSpace = previous_ch === '"' || previous_ch === '\'';
+      this.preserveSingleSpace(preserveQuoteSpace || isAfterSpace);
       this.print_string(this._ch + this.eatString(this._ch));
       this.eatWhitespace(true);
     } else if (this._ch === ';') {
@@ -1468,7 +1470,12 @@ Beautifier.prototype.beautify = function() {
           }
         }
       } else {
-        this.preserveSingleSpace(isAfterSpace);
+        var space_needed = false;
+        if (this._input.lookBack("with")) {
+          // look back is not an accurate solution, we need tokens to confirm without whitespaces
+          space_needed = true;
+        }
+        this.preserveSingleSpace(isAfterSpace || space_needed);
         this.print_string(this._ch);
 
         // handle scss/sass map
@@ -1526,7 +1533,7 @@ Beautifier.prototype.beautify = function() {
         this._ch = '';
       }
     } else if (this._ch === '!' && !this._input.lookBack("\\")) { // !important
-      this.print_string(' ');
+      this._output.space_before_token = true;
       this.print_string(this._ch);
     } else {
       var preserveAfterSpace = previous_ch === '"' || previous_ch === '\'';
