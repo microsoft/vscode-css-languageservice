@@ -361,7 +361,7 @@ export class CSSCompletion {
 				if (strings.endsWith(insertString, ')')) {
 					const from = insertString.lastIndexOf('(');
 					if (from !== -1) {
-						insertString = insertString.substr(0, from) + '($1)';
+						insertString = insertString.substring(0, from + 1) + '$1' + insertString.substring(from + 1);
 						insertTextFormat = SnippetFormat;
 					}
 				}
