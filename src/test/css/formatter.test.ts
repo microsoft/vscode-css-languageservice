@@ -201,5 +201,24 @@ suite('CSS - Formatter', () => {
 
 	});
 
+	test('spaces', () => {
+		// https://github.com/microsoft/vscode/issues/159295
+		const content = [
+			'.body {',
+			' font-size: @fs  !important; // 2 space -> BUG',
+			'}'
+		].join('\n');
+
+		const expected = [
+			'.body {',
+			'  font-size: @fs !important; // 2 space -> BUG',
+			'}'
+		].join('\n');
+
+		assertFormat(content, expected, { insertSpaces: true, tabSize: 2, preserveNewLines: true, maxPreserveNewLines: 3 });
+
+	});
+
+
 
 });
