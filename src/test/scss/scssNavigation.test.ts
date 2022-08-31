@@ -114,7 +114,7 @@ suite('SCSS - Navigation', () => {
 		test('Invalid SCSS partial file links', async () => {
 			const fixtureRoot = path.resolve(__dirname, '../../../../src/test/scss/linkFixture/non-existent');
 			const getDocumentUri = (relativePath: string) => {
-				return URI.file(path.resolve(fixtureRoot, relativePath)).toString();
+				return URI.file(path.resolve(fixtureRoot, relativePath)).toString(true);
 			};
 
 			await assertNoDynamicLinks(getDocumentUri('./index.scss'), `@import 'foo'`, getDocumentUri('foo'));
@@ -129,7 +129,7 @@ suite('SCSS - Navigation', () => {
 		test('SCSS partial file dynamic links', async () => {
 			const fixtureRoot = path.resolve(__dirname, '../../../../src/test/scss/linkFixture');
 			const getDocumentUri = (relativePath: string) => {
-				return URI.file(path.resolve(fixtureRoot, relativePath)).toString();
+				return URI.file(path.resolve(fixtureRoot, relativePath)).toString(true);
 			};
 
 			await assertDynamicLinks(getDocumentUri('./noUnderscore/index.scss'), `@import 'foo'`, [
@@ -180,7 +180,7 @@ suite('SCSS - Navigation', () => {
 		test('SCSS module file links', async () => {
 			const fixtureRoot = path.resolve(__dirname, '../../../../src/test/scss/linkFixture/module');
 			const getDocumentUri = (relativePath: string) => {
-				return URI.file(path.resolve(fixtureRoot, relativePath)).toString();
+				return URI.file(path.resolve(fixtureRoot, relativePath)).toString(true);
 			};
 
 			await assertDynamicLinks(getDocumentUri('./index.scss'), `@use './foo' as f`, [
@@ -220,6 +220,12 @@ suite('SCSS - Navigation', () => {
 			await assertLinks(ls, 'html { background-image: url("foo/hello.html")',
 				[{ range: newRange(29, 45), target: getTestResource('node_modules/foo/hello.html') }], 'scss', testUri, workspaceFolder
 			);
+
+			await assertLinks(ls, `@use '@foo/bar/baz'`,
+				[{ range: newRange(5, 19), target: getTestResource('node_modules/@foo/bar/_baz.scss') }], 'scss', testUri, workspaceFolder);
+
+			await assertLinks(ls, `@use '@foo/bar'`,
+				[{ range: newRange(5, 15), target: getTestResource('node_modules/@foo/bar/_index.scss') }], 'scss', testUri, workspaceFolder);
 		});
 
 	});

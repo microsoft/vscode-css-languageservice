@@ -60,8 +60,8 @@ export class SCSSNavigation extends CSSNavigation {
 			// If a link is like a/, try resolving a/index.scss and a/_index.scss
 			if (uri.path.endsWith('/')) {
 				return [
-					uri.with({ path: uri.path + 'index.scss' }).toString(),
-					uri.with({ path: uri.path + '_index.scss' }).toString()
+					uri.with({ path: uri.path + 'index.scss' }).toString(true),
+					uri.with({ path: uri.path + '_index.scss' }).toString(true)
 				];
 			}
 
@@ -75,14 +75,14 @@ export class SCSSNavigation extends CSSNavigation {
 				if (uri.path.endsWith('.scss')) {
 					return undefined;
 				} else {
-					return [uri.with({ path: uri.path + '.scss' }).toString()];
+					return [uri.with({ path: uri.path + '.scss' }).toString(true)];
 				}
 			}
 
 			const normalizedBasename = basename + '.scss';
 
 			const documentUriWithBasename = (newBasename: string) => {
-				return uri.with({ path: pathWithoutBasename + newBasename }).toString();
+				return uri.with({ path: pathWithoutBasename + newBasename }).toString(true);
 			};
 
 			const normalizedPath = documentUriWithBasename(normalizedBasename);

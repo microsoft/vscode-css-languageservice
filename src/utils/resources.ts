@@ -6,9 +6,9 @@
 import { URI, Utils } from 'vscode-uri';
 
 export function dirname(uriString: string): string {
-	return Utils.dirname(URI.parse(uriString)).toString();
+	return Utils.dirname(URI.parse(uriString)).toString(true);
 }
 
 export function joinPath(uriString: string, ...paths: string[]): string {
-	return Utils.joinPath(URI.parse(uriString), ...paths).toString();
+	return Utils.joinPath(URI.parse(uriString), ...paths).toString(true);
 }
