@@ -56,8 +56,7 @@ suite('LESS - Symbols', () => {
 	test('basic symbols', () => {
 		let ls = getLESSLanguageService();
 		assertSymbols(ls, '.a(@gutter: @gutter-width) { &:extend(.b); }', [
-			{ name: '.a', kind: SymbolKind.Method, location: Location.create('test://test/test.css', newRange(0, 44)) },
-			{ name: '.b', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(29, 41)) }
+			{ name: '.a', kind: SymbolKind.Method, location: Location.create('test://test/test.css', newRange(0, 44)) }
 		]);
 	});
 

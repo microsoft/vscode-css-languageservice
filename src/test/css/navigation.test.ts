@@ -250,6 +250,12 @@ suite('CSS - Navigation', () => {
 			assertSymbols(ls, '.foo {}', [{ name: '.foo', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(0, 7)) }]);
 			assertSymbols(ls, '.foo:not(.selected) {}', [{ name: '.foo:not(.selected)', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(0, 22)) }]);
 
+			// multiple selectors, each range starts with the selector offset
+			assertSymbols(ls, '.voo.doo, .bar {}', [
+				{ name: '.voo.doo', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(0, 17)) },
+				{ name: '.bar', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(10, 17)) },
+			]);
+
 			// Media Query
 			assertSymbols(ls, '@media screen, print {}', [{ name: '@media screen, print', kind: SymbolKind.Module, location: Location.create('test://test/test.css', newRange(0, 23)) }]);
 		});

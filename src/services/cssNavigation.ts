@@ -194,48 +194,43 @@ export class CSSNavigation {
 
 		const result: SymbolInformation[] = [];
 
-		stylesheet.accept((node) => {
-
+		const addSymbolInformation = (name: string, kind: SymbolKind, range: Range) => {
 			const entry: SymbolInformation = {
-				name: null!,
-				kind: SymbolKind.Class, // TODO@Martin: find a good SymbolKind
-				location: null!
+				name,
+				kind,
+				location: Location.create(document.uri, range)
 			};
-			let locationNode: nodes.Node | null = node;
-			if (node instanceof nodes.Selector) {
-				entry.name = node.getText();
-				locationNode = node.findAParent(nodes.NodeType.Ruleset, nodes.NodeType.ExtendsReference);
-				if (locationNode) {
-					entry.location = Location.create(document.uri, getRange(locationNode, document));
-					result.push(entry);
+			result.push(entry);
+		};
+
+		stylesheet.accept(node => {
+			if (node instanceof nodes.RuleSet) {
+				for (const selector of node.getSelectors().getChildren()) {
+					if (selector instanceof nodes.Selector) {
+						const range =  Range.create(document.positionAt(selector.offset), document.positionAt(node.end));
+						addSymbolInformation(selector.getText(), SymbolKind.Class, range);
+					}
 				}
 				return false;
 			} else if (node instanceof nodes.VariableDeclaration) {
-				entry.name = (<nodes.VariableDeclaration>node).getName();
-				entry.kind = SymbolKind.Variable;
+				addSymbolInformation(node.getName(), SymbolKind.Variable, getRange(node, document));
 			} else if (node instanceof nodes.MixinDeclaration) {
-				entry.name = (<nodes.MixinDeclaration>node).getName();
-				entry.kind = SymbolKind.Method;
+				addSymbolInformation(node.getName(), SymbolKind.Method, getRange(node, document));
 			} else if (node instanceof nodes.FunctionDeclaration) {
-				entry.name = (<nodes.FunctionDeclaration>node).getName();
-				entry.kind = SymbolKind.Function;
+				addSymbolInformation(node.getName(), SymbolKind.Function, getRange(node, document));
 			} else if (node instanceof nodes.Keyframe) {
-				entry.name = localize('literal.keyframes', "@keyframes {0}", (<nodes.Keyframe>node).getName());
+				const name = localize('literal.keyframes', "@keyframes {0}", (<nodes.Keyframe>node).getName());
+				addSymbolInformation(name, SymbolKind.Class, getRange(node, document));
 			} else if (node instanceof nodes.FontFace) {
-				entry.name = localize('literal.fontface', "@font-face");
+				const name = localize('literal.fontface', "@font-face");
+				addSymbolInformation(name, SymbolKind.Class, getRange(node, document));
 			} else if (node instanceof nodes.Media) {
 				const mediaList = node.getChild(0);
 				if (mediaList instanceof nodes.Medialist) {
-					entry.name = '@media ' + mediaList.getText();
-					entry.kind = SymbolKind.Module;
+					const name = '@media ' + mediaList.getText();
+					addSymbolInformation(name, SymbolKind.Module, getRange(node, document));
 				}
 			}
-
-			if (entry.name) {
-				entry.location = Location.create(document.uri, getRange(locationNode, document));
-				result.push(entry);
-			}
-
 			return true;
 		});
 
