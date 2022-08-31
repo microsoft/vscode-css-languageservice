@@ -23,7 +23,7 @@ import {
 	Diagnostic, Position, CompletionList, Hover, Location, DocumentHighlight, DocumentLink,
 	SymbolInformation, Range, CodeActionContext, Command, CodeAction, ColorInformation,
 	Color, ColorPresentation, WorkspaceEdit, FoldingRange, SelectionRange, TextDocument,
-	ICSSDataProvider, CSSDataV1, HoverSettings, CompletionSettings, TextEdit, CSSFormatConfiguration
+	ICSSDataProvider, CSSDataV1, HoverSettings, CompletionSettings, TextEdit, CSSFormatConfiguration, DocumentSymbol
 } from './cssLanguageTypes';
 
 import { CSSDataManager } from './languageFacts/dataManager';
@@ -53,6 +53,7 @@ export interface LanguageService {
 	 */
 	findDocumentLinks2(document: TextDocument, stylesheet: Stylesheet, documentContext: DocumentContext): Promise<DocumentLink[]>;
 	findDocumentSymbols(document: TextDocument, stylesheet: Stylesheet): SymbolInformation[];
+	findDocumentSymbols2(document: TextDocument, stylesheet: Stylesheet): DocumentSymbol[];
 	doCodeActions(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: Stylesheet): Command[];
 	doCodeActions2(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: Stylesheet): CodeAction[];
 	findDocumentColors(document: TextDocument, stylesheet: Stylesheet): ColorInformation[];
@@ -92,7 +93,8 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 		findDocumentHighlights: navigation.findDocumentHighlights.bind(navigation),
 		findDocumentLinks: navigation.findDocumentLinks.bind(navigation),
 		findDocumentLinks2: navigation.findDocumentLinks2.bind(navigation),
-		findDocumentSymbols: navigation.findDocumentSymbols.bind(navigation),
+		findDocumentSymbols: navigation.findSymbolInformations.bind(navigation),
+		findDocumentSymbols2: navigation.findDocumentSymbols.bind(navigation),
 		doCodeActions: codeActions.doCodeActions.bind(codeActions),
 		doCodeActions2: codeActions.doCodeActions2.bind(codeActions),
 		findDocumentColors: navigation.findDocumentColors.bind(navigation),

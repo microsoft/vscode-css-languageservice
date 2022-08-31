@@ -12,7 +12,7 @@ import { colorFrom256RGB, colorFromHSL, colorFromHWB } from '../../languageFacts
 
 import {
 	TextDocument, DocumentHighlightKind, Range, Position, TextEdit, Color,
-	ColorInformation, DocumentLink, SymbolKind, SymbolInformation, Location, LanguageService, Stylesheet, getCSSLanguageService,
+	ColorInformation, DocumentLink, SymbolKind, SymbolInformation, Location, LanguageService, Stylesheet, getCSSLanguageService, DocumentSymbol,
 } from '../../cssLanguageService';
 
 import { URI } from 'vscode-uri';
@@ -59,12 +59,21 @@ export async function assertLinks(ls: LanguageService, input: string, expected: 
 	assert.deepEqual(links, expected);
 }
 
-export function assertSymbols(ls: LanguageService, input: string, expected: SymbolInformation[], lang: string = 'css') {
+export function assertSymbolInfos(ls: LanguageService, input: string, expected: SymbolInformation[], lang: string = 'css') {
 	let document = TextDocument.create(`test://test/test.${lang}`, lang, 0, input);
 
 	let stylesheet = ls.parseStylesheet(document);
 
 	let symbols = ls.findDocumentSymbols(document, stylesheet);
+	assert.deepEqual(symbols, expected);
+}
+
+export function assertDocumentSymbols(ls: LanguageService, input: string, expected: DocumentSymbol[], lang: string = 'css') {
+	let document = TextDocument.create(`test://test/test.${lang}`, lang, 0, input);
+
+	let stylesheet = ls.parseStylesheet(document);
+
+	let symbols = ls.findDocumentSymbols2(document, stylesheet);
 	assert.deepEqual(symbols, expected);
 }
 
@@ -245,19 +254,34 @@ suite('CSS - Navigation', () => {
 	});
 
 	suite('Symbols', () => {
-		test('basic symbols', () => {
+		test('basic symbol infos', () => {
 			let ls = getCSSLS();
-			assertSymbols(ls, '.foo {}', [{ name: '.foo', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(0, 7)) }]);
-			assertSymbols(ls, '.foo:not(.selected) {}', [{ name: '.foo:not(.selected)', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(0, 22)) }]);
+			assertSymbolInfos(ls, '.foo {}', [{ name: '.foo', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(0, 7)) }]);
+			assertSymbolInfos(ls, '.foo:not(.selected) {}', [{ name: '.foo:not(.selected)', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(0, 22)) }]);
 
 			// multiple selectors, each range starts with the selector offset
-			assertSymbols(ls, '.voo.doo, .bar {}', [
+			assertSymbolInfos(ls, '.voo.doo, .bar {}', [
 				{ name: '.voo.doo', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(0, 17)) },
 				{ name: '.bar', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(10, 17)) },
 			]);
 
 			// Media Query
-			assertSymbols(ls, '@media screen, print {}', [{ name: '@media screen, print', kind: SymbolKind.Module, location: Location.create('test://test/test.css', newRange(0, 23)) }]);
+			assertSymbolInfos(ls, '@media screen, print {}', [{ name: '@media screen, print', kind: SymbolKind.Module, location: Location.create('test://test/test.css', newRange(0, 23)) }]);
+		});
+
+		test('basic document symbols', () => {
+			let ls = getCSSLS();
+			assertDocumentSymbols(ls, '.foo {}', [{ name: '.foo', kind: SymbolKind.Class, range: newRange(0, 7), selectionRange: newRange(0, 4) }]);
+			assertDocumentSymbols(ls, '.foo:not(.selected) {}', [{ name: '.foo:not(.selected)', kind: SymbolKind.Class, range: newRange(0, 22), selectionRange: newRange(0, 19) }]);
+
+			// multiple selectors, each range starts with the selector offset
+			assertDocumentSymbols(ls, '.voo.doo, .bar {}', [
+				{ name: '.voo.doo', kind: SymbolKind.Class, range: newRange(0, 17), selectionRange: newRange(0, 8) },
+				{ name: '.bar', kind: SymbolKind.Class, range: newRange(10, 17), selectionRange: newRange(10, 14) },
+			]);
+
+			// Media Query
+			assertDocumentSymbols(ls, '@media screen, print {}', [{ name: '@media screen, print', kind: SymbolKind.Module, range: newRange(0, 23), selectionRange: newRange(7, 20) }]);
 		});
 	});
 
