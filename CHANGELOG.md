@@ -1,4 +1,6 @@
-
+6.1.0 / 
+================
+ * new API `LanguageService.findDocumentSymbols2`, returning `DocumentSymbol[]`
 
 6.0.0 / 2022-05-18
 ================

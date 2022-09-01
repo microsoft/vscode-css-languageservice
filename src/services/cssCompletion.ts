@@ -853,7 +853,7 @@ export class CSSCompletion {
 
 	public getCompletionsForVariableDeclaration(declaration: nodes.VariableDeclaration, result: CompletionList): CompletionList {
 		if (this.offset && isDefined(declaration.colonPosition) && this.offset > declaration.colonPosition) {
-			this.getVariableProposals(declaration.getValue(), result);
+			this.getVariableProposals(declaration.getValue() || null, result);
 		}
 		return result;
 	}

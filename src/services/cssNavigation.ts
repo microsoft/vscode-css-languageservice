@@ -6,7 +6,7 @@
 
 import {
 	Color, ColorInformation, ColorPresentation, DocumentHighlight, DocumentHighlightKind, DocumentLink, Location,
-	Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit, TextDocument, DocumentContext, FileSystemProvider, FileType
+	Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit, TextDocument, DocumentContext, FileSystemProvider, FileType, DocumentSymbol
 } from '../cssLanguageTypes';
 import * as nls from 'vscode-nls';
 import * as nodes from '../parser/cssNodes';
@@ -18,6 +18,8 @@ import { dirname, joinPath } from '../utils/resources';
 const localize = nls.loadMessageBundle();
 
 type UnresolvedLinkData = { link: DocumentLink, isRawLink: boolean };
+
+type DocumentSymbolCollector = (name: string, kind: SymbolKind, symbolNodeOrRange: nodes.Node | Range, nameNodeOrRange: nodes.Node | Range | undefined, bodyNode: nodes.Node | undefined) => void;
 
 const startsWithSchemeRegex = /^\w+:\/\//;
 const startsWithData = /^data:/;
@@ -189,57 +191,93 @@ export class CSSNavigation {
 		return result;
 	}
 
-
-	public findDocumentSymbols(document: TextDocument, stylesheet: nodes.Stylesheet): SymbolInformation[] {
+	public findSymbolInformations(document: TextDocument, stylesheet: nodes.Stylesheet): SymbolInformation[] {
 
 		const result: SymbolInformation[] = [];
 
-		stylesheet.accept((node) => {
-
+		const addSymbolInformation = (name: string, kind: SymbolKind, symbolNodeOrRange: nodes.Node | Range) => {
+			const range = symbolNodeOrRange instanceof nodes.Node ? getRange(symbolNodeOrRange, document) : symbolNodeOrRange;
 			const entry: SymbolInformation = {
-				name: null!,
-				kind: SymbolKind.Class, // TODO@Martin: find a good SymbolKind
-				location: null!
+				name,
+				kind,
+				location: Location.create(document.uri, range)
 			};
-			let locationNode: nodes.Node | null = node;
-			if (node instanceof nodes.Selector) {
-				entry.name = node.getText();
-				locationNode = node.findAParent(nodes.NodeType.Ruleset, nodes.NodeType.ExtendsReference);
-				if (locationNode) {
-					entry.location = Location.create(document.uri, getRange(locationNode, document));
-					result.push(entry);
+			result.push(entry);
+		};
+
+		this.collectDocumentSymbols(document, stylesheet, addSymbolInformation);
+
+		return result;
+	}
+
+	public findDocumentSymbols(document: TextDocument, stylesheet: nodes.Stylesheet): DocumentSymbol[] {
+		const result: DocumentSymbol[] = [];
+
+		const parents: [DocumentSymbol, Range][] = [];
+
+		const addDocumentSymbol = (name: string, kind: SymbolKind, symbolNodeOrRange: nodes.Node | Range, nameNodeOrRange: nodes.Node | Range | undefined, bodyNode: nodes.Node | undefined) => {
+			const range = symbolNodeOrRange instanceof nodes.Node ? getRange(symbolNodeOrRange, document) : symbolNodeOrRange;
+			const selectionRange = (nameNodeOrRange instanceof nodes.Node ? getRange(nameNodeOrRange, document) : nameNodeOrRange) ?? Range.create(range.start, range.start);
+			const entry: DocumentSymbol = {
+				name,
+				kind,
+				range,
+				selectionRange
+			};
+			let top = parents.pop();
+			while (top && !containsRange(top[1], range)) {
+				top = parents.pop();
+			}
+			if (top) {
+				const topSymbol = top[0];
+				if (!topSymbol.children) {
+					topSymbol.children = [];
 				}
-				return false;
+				topSymbol.children.push(entry);
+				parents.push(top); // put back top
+			} else {
+				result.push(entry);
+			}
+			if (bodyNode) {
+				parents.push([entry, getRange(bodyNode, document)]);
+			}
+		};
+
+		this.collectDocumentSymbols(document, stylesheet, addDocumentSymbol);
+
+		return result;
+	}
+
+	private collectDocumentSymbols(document: TextDocument, stylesheet: nodes.Stylesheet, collect: DocumentSymbolCollector): void {
+		stylesheet.accept(node => {
+			if (node instanceof nodes.RuleSet) {
+				for (const selector of node.getSelectors().getChildren()) {
+					if (selector instanceof nodes.Selector) {
+						const range = Range.create(document.positionAt(selector.offset), document.positionAt(node.end));
+						collect(selector.getText(), SymbolKind.Class, range, selector, node.getDeclarations());
+					}
+				}
 			} else if (node instanceof nodes.VariableDeclaration) {
-				entry.name = (<nodes.VariableDeclaration>node).getName();
-				entry.kind = SymbolKind.Variable;
+				collect(node.getName(), SymbolKind.Variable, node, node.getVariable(), undefined);
 			} else if (node instanceof nodes.MixinDeclaration) {
-				entry.name = (<nodes.MixinDeclaration>node).getName();
-				entry.kind = SymbolKind.Method;
+				collect(node.getName(), SymbolKind.Method, node, node.getIdentifier(), node.getDeclarations());
 			} else if (node instanceof nodes.FunctionDeclaration) {
-				entry.name = (<nodes.FunctionDeclaration>node).getName();
-				entry.kind = SymbolKind.Function;
+				collect(node.getName(), SymbolKind.Function, node, node.getIdentifier(), node.getDeclarations());
 			} else if (node instanceof nodes.Keyframe) {
-				entry.name = localize('literal.keyframes', "@keyframes {0}", (<nodes.Keyframe>node).getName());
+				const name = localize('literal.keyframes', "@keyframes {0}", node.getName());
+				collect(name, SymbolKind.Class, node, node.getIdentifier(), node.getDeclarations());
 			} else if (node instanceof nodes.FontFace) {
-				entry.name = localize('literal.fontface', "@font-face");
+				const name = localize('literal.fontface', "@font-face");
+				collect(name, SymbolKind.Class, node, undefined, node.getDeclarations());
 			} else if (node instanceof nodes.Media) {
 				const mediaList = node.getChild(0);
 				if (mediaList instanceof nodes.Medialist) {
-					entry.name = '@media ' + mediaList.getText();
-					entry.kind = SymbolKind.Module;
+					const name = '@media ' + mediaList.getText();
+					collect(name, SymbolKind.Module, node, mediaList, node.getDeclarations());
 				}
 			}
-
-			if (entry.name) {
-				entry.location = Location.create(document.uri, getRange(locationNode, document));
-				result.push(entry);
-			}
-
 			return true;
 		});
-
-		return result;
 	}
 
 	public findDocumentColors(document: TextDocument, stylesheet: nodes.Stylesheet): ColorInformation[] {
@@ -383,6 +421,28 @@ function getColorInformation(node: nodes.Node, document: TextDocument): ColorInf
 
 function getRange(node: nodes.Node, document: TextDocument): Range {
 	return Range.create(document.positionAt(node.offset), document.positionAt(node.end));
+}
+
+/**
+ * Test if `otherRange` is in `range`. If the ranges are equal, will return true.
+ */
+function containsRange(range: Range, otherRange: Range): boolean {
+	const otherStartLine = otherRange.start.line, otherEndLine = otherRange.end.line;
+	const rangeStartLine = range.start.line, rangeEndLine = range.end.line;
+
+	if (otherStartLine < rangeStartLine || otherEndLine < rangeStartLine) {
+		return false;
+	}
+	if (otherStartLine > rangeEndLine || otherEndLine > rangeEndLine) {
+		return false;
+	}
+	if (otherStartLine === rangeStartLine && otherRange.start.character < range.start.character) {
+		return false;
+	}
+	if (otherEndLine === rangeEndLine && otherRange.end.character > range.end.character) {
+		return false;
+	}
+	return true;
 }
 
 function getHighlightKind(node: nodes.Node): DocumentHighlightKind {

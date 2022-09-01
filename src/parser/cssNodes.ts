@@ -1187,17 +1187,8 @@ export class Document extends BodyDeclaration {
 }
 
 export class Medialist extends Node {
-	private mediums?: Nodelist;
-
 	constructor(offset: number, length: number) {
 		super(offset, length);
-	}
-
-	public getMediums(): Nodelist {
-		if (!this.mediums) {
-			this.mediums = new Nodelist(this);
-		}
-		return this.mediums;
 	}
 }
 
@@ -1474,8 +1465,8 @@ export class NumericValue extends Node {
 
 export class VariableDeclaration extends AbstractDeclaration {
 
-	private variable: Variable | null = null;
-	private value: Node | null = null;
+	private variable: Variable | undefined;
+	private value: Node | undefined;
 	public needsSemicolon: boolean = true;
 
 	constructor(offset: number, length: number) {
@@ -1486,7 +1477,7 @@ export class VariableDeclaration extends AbstractDeclaration {
 		return NodeType.VariableDeclaration;
 	}
 
-	public setVariable(node: Variable | null): node is Variable {
+	public setVariable(node: Variable | undefined | null): node is Variable {
 		if (node) {
 			node.attachTo(this);
 			this.variable = node;
@@ -1495,7 +1486,7 @@ export class VariableDeclaration extends AbstractDeclaration {
 		return false;
 	}
 
-	public getVariable(): Variable | null {
+	public getVariable(): Variable | undefined {
 		return this.variable;
 	}
 
@@ -1503,7 +1494,7 @@ export class VariableDeclaration extends AbstractDeclaration {
 		return this.variable ? this.variable.getName() : '';
 	}
 
-	public setValue(node: Node | null): node is Node {
+	public setValue(node: Node | undefined | null): node is Node {
 		if (node) {
 			node.attachTo(this);
 			this.value = node;
@@ -1512,7 +1503,7 @@ export class VariableDeclaration extends AbstractDeclaration {
 		return false;
 	}
 
-	public getValue(): Node | null {
+	public getValue(): Node | undefined {
 		return this.value;
 	}
 }
