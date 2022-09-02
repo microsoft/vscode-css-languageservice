@@ -399,6 +399,10 @@ suite('CSS - Parser', () => {
 		assertNode(':global(.output ::selection)', parser, parser._parsePseudo.bind(parser)); // #49010
 		assertNode(':matches(:hover, :focus)', parser, parser._parsePseudo.bind(parser)); // #49010
 		assertNode(':host([foo=bar][bar=foo])', parser, parser._parsePseudo.bind(parser)); // #49589
+		assertNode(':has(> .test)', parser, parser._parsePseudo.bind(parser)); // #250
+		assertNode(':has(~ .test)', parser, parser._parsePseudo.bind(parser)); // #250
+		assertNode(':has(+ .test)', parser, parser._parsePseudo.bind(parser)); // #250
+		assertNode(':has(~ div .test)', parser, parser._parsePseudo.bind(parser)); // #250
 		assertError('::', parser, parser._parsePseudo.bind(parser), ParseError.IdentifierExpected);
 		assertError(':: foo', parser, parser._parsePseudo.bind(parser), ParseError.IdentifierExpected);
 	});
