@@ -345,6 +345,20 @@ export class SCSSParser extends cssParser.Parser {
 		} else if (this.peekKeyword('@at-root')) {
 			const node = this.createNode(nodes.NodeType.SelectorPlaceholder);
 			this.consumeToken();
+			if (this.accept(TokenType.ParenthesisL)) {
+				if (!this.acceptIdent('with') && !this.acceptIdent('without')) {
+					return this.finish(node, ParseError.IdentifierExpected);
+				}
+				if (!this.accept(TokenType.Colon)) {
+					return this.finish(node, ParseError.ColonExpected);
+				}
+				if (!node.addChild(this._parseIdent())) {
+					return this.finish(node, ParseError.IdentifierExpected);
+				}
+				if (!this.accept(TokenType.ParenthesisR)) {
+					return this.finish(node, ParseError.RightParenthesisExpected, [TokenType.CurlyR]);
+				}
+			}
 			return this.finish(node);
 		}
 		return null;
