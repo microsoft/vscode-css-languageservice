@@ -542,6 +542,8 @@ suite('SCSS - Parser', () => {
 		let parser = new SCSSParser();
 		assertNode('@mixin unify-parent($child) { @at-root #{selector.unify(&, $child)} { }}', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@at-root #main2 .some-class {  padding-left: calc( #{$a-variable} + 8px ); }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@media print { .page {  @at-root (without: media) { } } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@media print { .page {  @at-root (with: rule) { } } }', parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('Ruleset', function () {
