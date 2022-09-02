@@ -11,9 +11,9 @@ import * as nodes from '../../parser/cssNodes';
 import { ParseError } from '../../parser/cssErrors';
 
 export function assertNode(text: string, parser: Parser, f: (...args: any[]) => nodes.Node | null): nodes.Node {
-	let node = parser.internalParse(text, f)!;
+	const node = parser.internalParse(text, f)!;
 	assert.ok(node !== null, 'no node returned');
-	let markers = nodes.ParseErrorCollector.entries(node);
+	const markers = nodes.ParseErrorCollector.entries(node);
 	if (markers.length > 0) {
 		assert.ok(false, 'node has errors: ' + markers[0].getMessage() + ', offset: ' + markers[0].getNode().offset + ' when parsing ' + text);
 	}
@@ -26,12 +26,12 @@ export function assertFunction(text: string, parser: Parser, f: () => nodes.Node
 }
 
 export function assertNoNode(text: string, parser: Parser, f: () => nodes.Node | null): void {
-	let node = parser.internalParse(text, f)!;
+	const node = parser.internalParse(text, f)!;
 	assert.ok(node === null || !parser.accept(TokenType.EOF));
 }
 
 export function assertError(text: string, parser: Parser, f: () => nodes.Node | null, error: nodes.IRule): void {
-	let node = parser.internalParse(text, f)!;
+	const node = parser.internalParse(text, f)!;
 	assert.ok(node !== null, 'no node returned');
 	let markers = nodes.ParseErrorCollector.entries(node);
 	if (markers.length === 0) {
@@ -46,7 +46,7 @@ export function assertError(text: string, parser: Parser, f: () => nodes.Node | 
 suite('CSS - Parser', () => {
 
 	test('stylesheet', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('@charset "demo" ;', parser, parser._parseStylesheet.bind(parser));
 		assertNode('body { margin: 0px; padding: 3em, 6em; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('--> <!--', parser, parser._parseStylesheet.bind(parser));
@@ -76,7 +76,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('stylesheet - graceful handling of unknown rules', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('@unknown-rule;', parser, parser._parseStylesheet.bind(parser));
 		assertNode(`@unknown-rule 'foo';`, parser, parser._parseStylesheet.bind(parser));
 		assertNode('@unknown-rule (foo) {}', parser, parser._parseStylesheet.bind(parser));
@@ -92,7 +92,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('stylesheet - unknown rules node ends properly. Microsoft/vscode#53159', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		const node = assertNode('@unknown-rule (foo) {} .foo {}', parser, parser._parseStylesheet.bind(parser));
 
 		const unknownAtRule = node.getChild(0)!;
@@ -106,14 +106,14 @@ suite('CSS - Parser', () => {
 	});
 
 	test('stylesheet /panic/', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertError('#boo, far } \n.far boo {}', parser, parser._parseStylesheet.bind(parser), ParseError.LeftCurlyExpected);
 		assertError('#boo, far { far: 43px; \n.far boo {}', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
 		assertError('- @import "foo";', parser, parser._parseStylesheet.bind(parser), ParseError.RuleOrSelectorExpected);
 	});
 
 	test('@font-face', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('@font-face {}', parser, parser._parseFontFace.bind(parser));
 		assertNode('@font-face { src: url(http://test) }', parser, parser._parseFontFace.bind(parser));
 		assertNode('@font-face { font-style: normal; font-stretch: normal; }', parser, parser._parseFontFace.bind(parser));
@@ -122,7 +122,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('@keyframe selector', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('from {}', parser, parser._parseKeyframeSelector.bind(parser));
 		assertNode('to {}', parser, parser._parseKeyframeSelector.bind(parser));
 		assertNode('0% {}', parser, parser._parseKeyframeSelector.bind(parser));
@@ -133,7 +133,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('@keyframe', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('@keyframes name {}', parser, parser._parseKeyframe.bind(parser));
 		assertNode('@-webkit-keyframes name {}', parser, parser._parseKeyframe.bind(parser));
 		assertNode('@-o-keyframes name {}', parser, parser._parseKeyframe.bind(parser));
@@ -150,7 +150,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('@import', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('@import "asdasdsa"', parser, parser._parseImport.bind(parser));
 		assertNode('@ImPort "asdsadsa"', parser, parser._parseImport.bind(parser));
 		assertNode('@import "asdasd" dsfsdf', parser, parser._parseImport.bind(parser));
@@ -160,11 +160,21 @@ suite('CSS - Parser', () => {
 		assertNode('@import url("/inc/Styles/full.css") (min-width: 940px);', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@import url(style.css) screen and (min-width:600px);', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@import url("./700.css") only screen and (max-width: 700px);', parser, parser._parseStylesheet.bind(parser));
-		assertError('@import', parser, parser._parseImport.bind(parser), ParseError.URIOrStringExpected);
+
+		assertNode('@import url("override.css") layer;', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@import url("tabs.css") layer(framework.component);', parser, parser._parseStylesheet.bind(parser));
+
+		assertNode('@import "mystyle.css" supports(display: flex);', parser, parser._parseStylesheet.bind(parser));
+
+		assertNode('@import url("narrow.css") supports(display: flex) handheld and (max-width: 400px);', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@import url("fallback-layout.css") supports(not (display: flex));', parser, parser._parseStylesheet.bind(parser));
+
+
+		assertError('@import', parser, parser._parseStylesheet.bind(parser), ParseError.URIOrStringExpected);
 	});
 
 	test('@supports', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('@supports ( display: flexbox ) { body { display: flexbox } }', parser, parser._parseSupports.bind(parser));
 		assertNode('@supports not (display: flexbox) { .outline { box-shadow: 2px 2px 2px black; /* unprefixed last */ } }', parser, parser._parseSupports.bind(parser));
 		assertNode('@supports ( box-shadow: 2px 2px 2px black ) or ( -moz-box-shadow: 2px 2px 2px black ) or ( -webkit-box-shadow: 2px 2px 2px black ) { }', parser, parser._parseSupports.bind(parser));
@@ -179,7 +189,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('@media', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('@media asdsa { }', parser, parser._parseMedia.bind(parser));
 		assertNode('@meDia sadd{}  ', parser, parser._parseMedia.bind(parser));
 		assertNode('@media somename, othername2 { }', parser, parser._parseMedia.bind(parser));
@@ -209,21 +219,21 @@ suite('CSS - Parser', () => {
 	});
 
 	test('media_list', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('somename', parser, parser._parseMediaQueryList.bind(parser));
 		assertNode('somename, othername', parser, parser._parseMediaQueryList.bind(parser));
 		assertNode('not all and (monochrome)', parser, parser._parseMediaQueryList.bind(parser));
 	});
 
 	test('medium', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('somename', parser, parser._parseMedium.bind(parser));
 		assertNode('-asdas', parser, parser._parseMedium.bind(parser));
 		assertNode('-asda34s', parser, parser._parseMedium.bind(parser));
 	});
 
 	test('@page', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('@page : name{ }', parser, parser._parsePage.bind(parser));
 		assertNode('@page :left, :right { }', parser, parser._parsePage.bind(parser));
 		assertNode('@page : name{ some : "asdas" }', parser, parser._parsePage.bind(parser));
@@ -240,13 +250,25 @@ suite('CSS - Parser', () => {
 		assertError('@page :left, { }', parser, parser._parsePage.bind(parser), ParseError.IdentifierExpected);
 	});
 
-	test('pseudo page', function () {
-		let parser = new Parser();
-		assertNode(': some ', parser, parser._parsePageSelector.bind(parser));
+	test('@layer', function () {
+		const parser = new Parser();
+		assertNode('@layer utilities { .padding-sm { padding: .5rem; } }', parser, parser._parseLayer.bind(parser));
+		assertNode('@layer utilities;', parser, parser._parseLayer.bind(parser));
+		assertNode('@layer theme, layout, utilities;', parser, parser._parseLayer.bind(parser));
+		assertNode('@layer utilities { p { margin-block: 1rem; } }', parser, parser._parseLayer.bind(parser));
+		assertNode('@layer framework { @layer layout { } }', parser, parser._parseLayer.bind(parser));
+		assertNode('@layer framework.layout { @keyframes slide-left {} }', parser, parser._parseLayer.bind(parser));
+
+		assertNode('@media (min-width: 30em) { @layer layout { } }', parser, parser._parseStylesheet.bind(parser));
+
+		assertError('@layer theme layout {  }', parser, parser._parseLayer.bind(parser), ParseError.SemiColonExpected);
+		assertError('@layer theme, layout {  }', parser, parser._parseLayer.bind(parser), ParseError.SemiColonExpected);
+		assertError('@layer framework .layout {  }', parser, parser._parseLayer.bind(parser), ParseError.SemiColonExpected);
+		assertError('@layer framework. layout {  }', parser, parser._parseLayer.bind(parser), ParseError.IdentifierExpected);
 	});
 
 	test('operator', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('/', parser, parser._parseOperator.bind(parser));
 		assertNode('*', parser, parser._parseOperator.bind(parser));
 		assertNode('+', parser, parser._parseOperator.bind(parser));
@@ -254,7 +276,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('combinator', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('+', parser, parser._parseCombinator.bind(parser));
 		assertNode('+  ', parser, parser._parseCombinator.bind(parser));
 		assertNode('>  ', parser, parser._parseCombinator.bind(parser));
@@ -266,13 +288,13 @@ suite('CSS - Parser', () => {
 	});
 
 	test('unary_operator', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('-', parser, parser._parseUnaryOperator.bind(parser));
 		assertNode('+', parser, parser._parseUnaryOperator.bind(parser));
 	});
 
 	test('property', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('asdsa', parser, parser._parseProperty.bind(parser));
 		assertNode('asdsa334', parser, parser._parseProperty.bind(parser));
 
@@ -285,7 +307,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('ruleset', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('name{ }', parser, parser._parseRuleset.bind(parser));
 		assertNode('	name\n{ some : "asdas" }', parser, parser._parseRuleset.bind(parser));
 		assertNode('		name{ some : "asdas" !important }', parser, parser._parseRuleset.bind(parser));
@@ -314,7 +336,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('ruleset /Panic/', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		//	assertNode('boo { : value }', parser, parser._parseRuleset.bind(parser));
 		assertError('boo { prop: ; }', parser, parser._parseRuleset.bind(parser), ParseError.PropertyValueExpected);
 		assertError('boo { prop }', parser, parser._parseRuleset.bind(parser), ParseError.ColonExpected);
@@ -332,7 +354,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('selector', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('asdsa', parser, parser._parseSelector.bind(parser));
 		assertNode('asdsa + asdas', parser, parser._parseSelector.bind(parser));
 		assertNode('asdsa + asdas + name', parser, parser._parseSelector.bind(parser));
@@ -347,7 +369,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('simple selector', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('name', parser, parser._parseSimpleSelector.bind(parser));
 		assertNode('#id#anotherid', parser, parser._parseSimpleSelector.bind(parser));
 		assertNode('name.far', parser, parser._parseSimpleSelector.bind(parser));
@@ -355,7 +377,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('element name', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('name', parser, parser._parseElementName.bind(parser));
 		assertNode('*', parser, parser._parseElementName.bind(parser));
 		assertNode('foo|h1', parser, parser._parseElementName.bind(parser));
@@ -365,7 +387,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('attrib', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('[name]', parser, parser._parseAttrib.bind(parser));
 		assertNode('[name = name2]', parser, parser._parseAttrib.bind(parser));
 		assertNode('[name ~= name3]', parser, parser._parseAttrib.bind(parser));
@@ -386,7 +408,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('pseudo', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode(':some', parser, parser._parsePseudo.bind(parser));
 		assertNode(':some(thing)', parser, parser._parsePseudo.bind(parser));
 		assertNode(':nth-child(12)', parser, parser._parsePseudo.bind(parser));
@@ -408,7 +430,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('declaration', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('name : "this is a string" !important', parser, parser._parseDeclaration.bind(parser));
 		assertNode('name : "this is a string"', parser, parser._parseDeclaration.bind(parser));
 		assertNode('property:12', parser, parser._parseDeclaration.bind(parser));
@@ -431,7 +453,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('term', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('"asdasd"', parser, parser._parseTerm.bind(parser));
 		assertNode('name', parser, parser._parseTerm.bind(parser));
 		assertNode('#FFFFFF', parser, parser._parseTerm.bind(parser));
@@ -459,7 +481,7 @@ suite('CSS - Parser', () => {
 
 
 	test('function', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('name( "bla" )', parser, parser._parseFunction.bind(parser));
 		assertNode('name( name )', parser, parser._parseFunction.bind(parser));
 		assertNode('name( -500mm )', parser, parser._parseFunction.bind(parser));
@@ -479,7 +501,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('test token prio', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('!important', parser, parser._parsePrio.bind(parser));
 		assertNode('!/*demo*/important', parser, parser._parsePrio.bind(parser));
 		assertNode('! /*demo*/ important', parser, parser._parsePrio.bind(parser));
@@ -487,7 +509,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('hexcolor', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('#FFF', parser, parser._parseHexColor.bind(parser));
 		assertNode('#FFFF', parser, parser._parseHexColor.bind(parser));
 		assertNode('#FFFFFF', parser, parser._parseHexColor.bind(parser));
@@ -495,7 +517,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('test class', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('.faa', parser, parser._parseClass.bind(parser));
 		assertNode('faa', parser, parser._parseElementName.bind(parser));
 		assertNode('*', parser, parser._parseElementName.bind(parser));
@@ -504,12 +526,12 @@ suite('CSS - Parser', () => {
 
 
 	test('prio', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('!important', parser, parser._parsePrio.bind(parser));
 	});
 
 	test('expr', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('45,5px', parser, parser._parseExpr.bind(parser));
 		assertNode(' 45 , 5px ', parser, parser._parseExpr.bind(parser));
 		assertNode('5/6', parser, parser._parseExpr.bind(parser));
@@ -517,7 +539,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('url', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('url(//yourdomain/yourpath.png)', parser, parser._parseURILiteral.bind(parser));
 		assertNode('url(\'http://msft.com\')', parser, parser._parseURILiteral.bind(parser));
 		assertNode('url("http://msft.com")', parser, parser._parseURILiteral.bind(parser));

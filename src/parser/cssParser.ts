@@ -320,6 +320,7 @@ export class Parser {
 			|| this._parseFontFace()
 			|| this._parseKeyframe()
 			|| this._parseSupports(isNested)
+			|| this._parseLayer()
 			|| this._parseViewPort()
 			|| this._parseNamespace()
 			|| this._parseDocument()
@@ -676,6 +677,12 @@ export class Parser {
 
 
 	public _parseImport(): nodes.Node | null {
+		// @import [ <url> | <string> ]
+		//     [ layer | layer(<layer-name>) ]?
+		//     <import-condition> ;
+
+		// <import-conditions> = [ supports( [ <supports-condition> | <declaration> ] ) ]?
+		//                      <media-query-list>?
 		if (!this.peekKeyword('@import')) {
 			return null;
 		}
@@ -685,6 +692,25 @@ export class Parser {
 
 		if (!node.addChild(this._parseURILiteral()) && !node.addChild(this._parseStringLiteral())) {
 			return this.finish(node, ParseError.URIOrStringExpected);
+		}
+
+		if (this.acceptIdent('layer')) {
+			if (this.accept(TokenType.ParenthesisL)) {
+				if (!node.addChild(this._parseLayerName())) {
+					return this.finish(node, ParseError.IdentifierExpected, [TokenType.SemiColon]);
+				}
+				if (!this.accept(TokenType.ParenthesisR)) {
+					return this.finish(node, ParseError.RightParenthesisExpected, [TokenType.ParenthesisR], []);
+				}
+			}
+		}
+		if (this.acceptIdent('supports')) {
+			if (this.accept(TokenType.ParenthesisL)) {
+				node.addChild(this._tryToParseDeclaration() || this._parseSupportsCondition());
+				if (!this.accept(TokenType.ParenthesisR)) {
+					return this.finish(node, ParseError.RightParenthesisExpected, [TokenType.ParenthesisR], []);
+				}
+			}
 		}
 
 		if (!this.peek(TokenType.SemiColon) && !this.peek(TokenType.EOF)) {
@@ -804,6 +830,59 @@ export class Parser {
 		}
 
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
+	}
+
+	public _parseLayer(): nodes.Node | null {
+		// @layer layer-name {rules}
+		// @layer layer-name;
+		// @layer layer-name, layer-name, layer-name;
+		// @layer {rules}
+		if (!this.peekKeyword('@layer')) {
+			return null;
+		}
+
+		const node = this.create(nodes.Layer);
+		this.consumeToken(); // @layer
+
+		const names = this._parseLayerNameList();
+		if (names) {
+			node.setNames(names);
+		}
+		if ((!names || names.getChildren().length === 1) && this.peek(TokenType.CurlyL)) {
+			return this._parseBody(node, this._parseStylesheetStatement.bind(this));
+		}
+		if (!this.accept(TokenType.SemiColon)) {
+			return this.finish(node, ParseError.SemiColonExpected);
+		}
+		return this.finish(node);
+	}
+
+	public _parseLayerNameList(): nodes.Node | null {
+		const node = this.createNode(nodes.NodeType.LayerNameList);
+		if (!node.addChild(this._parseLayerName())) {
+			return null;
+		}
+		while (this.accept(TokenType.Comma)) {
+			if (!node.addChild(this._parseLayerName())) {
+				return this.finish(node, ParseError.IdentifierExpected);
+			}
+		}
+		return this.finish(node);
+	}
+
+	public _parseLayerName(): nodes.Node | null {
+		// <layer-name> = <ident> [ '.' <ident> ]*
+		if (!this.peek(TokenType.Ident)) {
+			return null;
+		}
+		const node = this.createNode(nodes.NodeType.LayerName);
+		node.addChild(this._parseIdent());
+		while (!this.hasWhitespace() && this.acceptDelim('.')) {
+			if (this.hasWhitespace() || !node.addChild(this._parseIdent())) {
+				return this.finish(node, ParseError.IdentifierExpected);
+			}
+		}
+		return this.finish(node);
 	}
 
 	public _parseSupports(isNested = false): nodes.Node | null {

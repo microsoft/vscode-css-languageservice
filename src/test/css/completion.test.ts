@@ -644,7 +644,15 @@ suite('CSS - Completion', () => {
 					documentation: {
 						kind: 'markdown',
 						value:
-							'🚨️ Property is nonstandard. Avoid using it.\n\nThe box\\-ordinal\\-group CSS property assigns the flexbox\'s child elements to an ordinal group\\.\n\n(Edge 12, Firefox 1, Safari 3, Chrome 1, Opera 15)\n\nSyntax: &lt;integer&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/box-ordinal-group)'
+							'🚨️️️ Property is obsolete. Avoid using it.\n\nThe box\\-ordinal\\-group CSS property assigns the flexbox\'s child elements to an ordinal group\\.\n\n(Edge 12, Firefox 49, Safari 3, Chrome 1, Opera 15)\n\nSyntax: &lt;integer&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/box-ordinal-group)'
+					}
+				},
+				{
+					label: '-webkit-mask-image',
+					documentation: {
+						kind: 'markdown',
+						value:
+							'🚨️ Property is nonstandard. Avoid using it.\n\nSets the mask layer image of an element\\.\n\n(Chrome, Opera 15, Safari 4)\n\nSyntax: &lt;mask\\-reference&gt;\\#'
 					}
 				}
 			]
