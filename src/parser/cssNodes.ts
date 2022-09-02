@@ -96,6 +96,7 @@ export enum NodeType {
 	Module,
 	UnicodeRange,
 	Layer,
+	LayerNameList,
 	LayerName
 }
 
@@ -1178,7 +1179,7 @@ export class Supports extends BodyDeclaration {
 
 export class Layer extends BodyDeclaration {
 
-	private names?: Nodelist;
+	public names?: Node;
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
@@ -1188,12 +1189,14 @@ export class Layer extends BodyDeclaration {
 		return NodeType.Layer;
 	}
 
-	public getNames(): Nodelist {
-		if (!this.names) {
-			this.names = new Nodelist(this);
-		}
+	public setNames(names: Node | null): names is Node {
+		return this.setNode('names', names);
+	}
+
+	public getNames(): Node | undefined {
 		return this.names;
 	}
+
 }
 
 

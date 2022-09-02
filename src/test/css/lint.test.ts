@@ -19,7 +19,7 @@ const cssDataManager = new CSSDataManager({ useDefaultDataProvider: true });
 export function assertEntries(node: Node, document: TextDocument, expectedRules: IRule[], expectedMessages: string[] | undefined = undefined, settings = new LintConfigurationSettings()): void {
 
 	const entries = LintVisitor.entries(node, document, settings, cssDataManager, Level.Error | Level.Warning | Level.Ignore);
-	const message = `Did not find all linting error [${expectedRules.map(e => e.id).join(', ')}]`;
+	const message = `Did not find all linting error. expected: [${expectedRules.map(e => e.id).join(', ')}], actual: [${entries.map(e => e.getMessage()).join(', ')}]`;
 
 	assert.equal(entries.length, expectedRules.length, message);
 
@@ -240,7 +240,7 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { transform: none; }');
 		assertRuleSet('selector { -moz-transform: none; transform: none; -o-transform: none; -webkit-transform: none; -ms-transform: none; }');
 		assertRuleSet('selector { --transform: none; }');
-		assertRuleSet('selector { -webkit-appearance: none }');
+		assertRuleSet('selector { -webkit-appearance: none }', Rules.IncludeStandardPropertyWhenUsingVendorPrefix);
 	});
 
 	test('font-face required properties', function () {
