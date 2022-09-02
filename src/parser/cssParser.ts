@@ -806,6 +806,37 @@ export class Parser {
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
 	}
 
+	public _parseLayer(): nodes.Node | null {
+		// @c layer-name {rules}
+		// @layer layer-name;
+		// @layer layer-name, layer-name, layer-name;
+		// @layer {rules}
+		if (!this.peekKeyword('@layer')) {
+			return null;
+		}
+
+		const node = this.create(nodes.Layer);
+		this.consumeToken(); // @layer
+		node.addChild(this._parseSupportsCondition());
+
+		return this._parseBody(node, this._parseSupportsDeclaration.bind(this, isNested));
+	}
+
+	public _parseLayerName(): nodes.Node | null {
+		// <layer-name> = <ident> [ '.' <ident> ]*
+		if (!this.peek(TokenType.Ident)) {
+			return null;
+		}
+		const node = this.createNode(nodes.NodeType.LayerName);
+		node.addChild(this._parseIdent());
+		while (this.accept(TokenType.Comma)) {
+			if (!node.addChild(this._parseIdent())) { // optional ident
+				return this.finish(node, ParseError.IdentifierExpected);
+			}
+		}
+		return this.finish(node);
+	}
+
 	public _parseSupports(isNested = false): nodes.Node | null {
 		// SUPPORTS_SYM S* supports_condition '{' S* ruleset* '}' S*
 		if (!this.peekKeyword('@supports')) {
