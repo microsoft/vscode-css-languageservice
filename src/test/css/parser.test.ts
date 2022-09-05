@@ -152,6 +152,7 @@ suite('CSS - Parser', () => {
 	test('@property', function () {
 		const parser = new Parser();
 		assertNode(`@property --my-color { syntax: '<color>'; inherits: false; initial-value: #c0ffee; }`, parser, parser._parseStylesheet.bind(parser));
+		assertError(`@property  {  }`, parser, parser._parseStylesheet.bind(parser), ParseError.IdentifierExpected);
 	});
 
 	test('@import', function () {
