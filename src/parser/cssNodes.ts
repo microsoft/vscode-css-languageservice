@@ -97,7 +97,8 @@ export enum NodeType {
 	UnicodeRange,
 	Layer,
 	LayerNameList,
-	LayerName
+	LayerName,
+	PropertyAtRule
 }
 
 export enum ReferenceType {
@@ -110,6 +111,7 @@ export enum ReferenceType {
 	Module,
 	Forward,
 	ForwardVisibility,
+	Property
 }
 
 
@@ -1199,6 +1201,32 @@ export class Layer extends BodyDeclaration {
 
 }
 
+export class PropertyAtRule extends BodyDeclaration {
+
+	private name: Identifier | undefined;
+
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.PropertyAtRule;
+	}
+
+	public setName(node: Identifier | undefined | null): node is Identifier {
+		if (node) {
+			node.attachTo(this);
+			this.name = node;
+			return true;
+		}
+		return false;
+	}
+
+	public getName(): Identifier | undefined {
+		return this.name;
+	}
+
+}
 
 export class Document extends BodyDeclaration {
 
