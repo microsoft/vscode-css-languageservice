@@ -876,6 +876,18 @@ export class SCSSParser extends cssParser.Parser {
 			return this.finish(node, ParseError.StringLiteralExpected);
 		}
 
+		if (this.acceptIdent('as')) {
+			const identifier = this._parseIdent([nodes.ReferenceType.Forward]);
+			if (!node.setIdentifier(identifier)) {
+				return this.finish(node, ParseError.IdentifierExpected);
+			}
+
+			// Wildcard must be the next character after the identifier string.
+			if (this.hasWhitespace() || !this.acceptDelim('*')) {
+				return this.finish(node, ParseError.WildcardExpected);
+			}
+		}
+
 		if (this.acceptIdent('with')) {
 			if (!this.accept(TokenType.ParenthesisL)) {
 				return this.finish(node, ParseError.LeftParenthesisExpected, [TokenType.ParenthesisR]);
@@ -899,29 +911,9 @@ export class SCSSParser extends cssParser.Parser {
 				return this.finish(node, ParseError.RightParenthesisExpected);
 			}
 
-		}
-
-		if (!this.peek(TokenType.SemiColon) && !this.peek(TokenType.EOF)) {
-			if (!this.peekRegExp(TokenType.Ident, /as|hide|show/)) {
-				return this.finish(node, ParseError.UnknownKeyword);
-			}
-
-			if (this.acceptIdent('as')) {
-				const identifier = this._parseIdent([nodes.ReferenceType.Forward]);
-				if (!node.setIdentifier(identifier)) {
-					return this.finish(node, ParseError.IdentifierExpected);
-				}
-
-				// Wildcard must be the next character after the identifier string.
-				if (this.hasWhitespace() || !this.acceptDelim('*')) {
-					return this.finish(node, ParseError.WildcardExpected);
-				}
-			}
-
-			if (this.peekIdent('hide') || this.peekIdent('show')) {
-				if (!node.addChild(this._parseForwardVisibility())) {
-					return this.finish(node, ParseError.IdentifierOrVariableExpected);
-				}
+		} else if (this.peekIdent('hide') || this.peekIdent('show')) {
+			if (!node.addChild(this._parseForwardVisibility())) {
+				return this.finish(node, ParseError.IdentifierOrVariableExpected);
 			}
 		}
 
