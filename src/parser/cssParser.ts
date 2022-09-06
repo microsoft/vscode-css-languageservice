@@ -321,6 +321,7 @@ export class Parser {
 			|| this._parseKeyframe()
 			|| this._parseSupports(isNested)
 			|| this._parseLayer()
+			|| this._parsePropertyAtRule()
 			|| this._parseViewPort()
 			|| this._parseNamespace()
 			|| this._parseDocument()
@@ -830,6 +831,23 @@ export class Parser {
 		}
 
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
+	}
+
+	public _parsePropertyAtRule(): nodes.Node | null {
+		// @property <custom-property-name> {
+		// 	<declaration-list>
+		//  }
+		if (!this.peekKeyword('@property')) {
+			return null;
+		}
+		const node = this.create(nodes.PropertyAtRule);
+		this.consumeToken(); // @layer
+
+		if (!this.peekRegExp(TokenType.Ident, /^--/) || !node.setName(this._parseIdent([nodes.ReferenceType.Property]))) {
+			return this.finish(node, ParseError.IdentifierExpected);
+		}
+
+		return this._parseBody(node, this._parseDeclaration.bind(this));
 	}
 
 	public _parseLayer(): nodes.Node | null {

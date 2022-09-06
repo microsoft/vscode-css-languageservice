@@ -149,6 +149,12 @@ suite('CSS - Parser', () => {
 		assertError('@keyframes name { from, #123', parser, parser._parseKeyframe.bind(parser), ParseError.PercentageExpected);
 	});
 
+	test('@property', function () {
+		const parser = new Parser();
+		assertNode(`@property --my-color { syntax: '<color>'; inherits: false; initial-value: #c0ffee; }`, parser, parser._parseStylesheet.bind(parser));
+		assertError(`@property  {  }`, parser, parser._parseStylesheet.bind(parser), ParseError.IdentifierExpected);
+	});
+
 	test('@import', function () {
 		const parser = new Parser();
 		assertNode('@import "asdasdsa"', parser, parser._parseImport.bind(parser));
