@@ -393,6 +393,16 @@ suite('CSS - Navigation', () => {
 			await assertLinks(ls, 'html { background-image: url("hello.html")',
 				[{ range: newRange(29, 41), target: getTestResource('hello.html') }], 'css', testUri, workspaceFolder
 			);
+
+			await assertLinks(ls, '@import "a.css"',
+				[{ range: newRange(8, 15), target: getTestResource('a.css') }], 'css', testUri, workspaceFolder
+			);
+			await assertLinks(ls, '@import "green/c.css"',
+				[{ range: newRange(8, 21), target: getTestResource('green/c.css') }], 'css', testUri, workspaceFolder
+			);
+			await assertLinks(ls, '@import "./green/c.css"',
+				[{ range: newRange(8, 23), target: getTestResource('green/c.css') }], 'css', testUri, workspaceFolder
+			);
 		});
 
 		test('node module resolving', async function () {
@@ -403,6 +413,9 @@ suite('CSS - Navigation', () => {
 			await assertLinks(ls, 'html { background-image: url("~foo/hello.html")',
 				[{ range: newRange(29, 46), target: getTestResource('node_modules/foo/hello.html') }], 'css', testUri, workspaceFolder
 			);
+			await assertLinks(ls, '@import "~green/c.css"',
+				[{ range: newRange(8, 22), target: getTestResource('node_modules/green/c.css') }], 'css', testUri, workspaceFolder
+			);
 		});
 
 		test('node module subfolder resolving', async function () {
@@ -412,6 +425,9 @@ suite('CSS - Navigation', () => {
 
 			await assertLinks(ls, 'html { background-image: url("~foo/hello.html")',
 				[{ range: newRange(29, 46), target: getTestResource('node_modules/foo/hello.html') }], 'css', testUri, workspaceFolder
+			);
+			await assertLinks(ls, '@import "../green/c.css"',
+				[{ range: newRange(8, 24), target: getTestResource('green/c.css') }], 'css', testUri, workspaceFolder
 			);
 		});
 	});
