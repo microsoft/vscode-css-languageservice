@@ -134,7 +134,7 @@ export class CSSNavigation {
 			} else if (startsWithSchemeRegex.test(target)) {
 				resolvedLinks.push(link);
 			} else {
-				const resolvedTarget = await this.resolveRelativeReference(target, document.uri, documentContext, data.isRawLink);
+				const resolvedTarget = await this.resolveReference(target, document.uri, documentContext, data.isRawLink);
 				if (resolvedTarget !== undefined) {
 					link.target = resolvedTarget;
 					resolvedLinks.push(link);
@@ -341,42 +341,52 @@ export class CSSNavigation {
 	protected async resolveModuleReference(ref: string, documentUri: string, documentContext: DocumentContext): Promise<string | undefined> {
 		if (startsWith(documentUri, 'file://')) {
 			const moduleName = getModuleNameFromPath(ref);
-			const rootFolderUri = documentContext.resolveReference('/', documentUri);
-			const documentFolderUri = dirname(documentUri);
-			const modulePath = await this.resolvePathToModule(moduleName, documentFolderUri, rootFolderUri);
-			if (modulePath) {
-				const pathWithinModule = ref.substring(moduleName.length + 1);
-				return joinPath(modulePath, pathWithinModule);
+			if (moduleName && moduleName !== '.' && moduleName !== '..') {
+				const rootFolderUri = documentContext.resolveReference('/', documentUri);
+				const documentFolderUri = dirname(documentUri);
+				const modulePath = await this.resolvePathToModule(moduleName, documentFolderUri, rootFolderUri);
+				if (modulePath) {
+					const pathWithinModule = ref.substring(moduleName.length + 1);
+					return joinPath(modulePath, pathWithinModule);
+				}
 			}
 		}
 		return undefined;
 	}
 
-	protected async resolveRelativeReference(ref: string, documentUri: string, documentContext: DocumentContext, isRawLink?: boolean): Promise<string | undefined> {
-		const relativeReference = documentContext.resolveReference(ref, documentUri);
+	protected async mapReference(target: string | undefined, isRawLink: boolean): Promise<string | undefined> {
+		return target;
+	}
+
+	protected async resolveReference(target: string, documentUri: string, documentContext: DocumentContext, isRawLink = false): Promise<string | undefined> {
 
 		// Following [css-loader](https://github.com/webpack-contrib/css-loader#url)
 		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#imports)
 		// convention, if an import path starts with ~ then use node module resolution
 		// *unless* it starts with "~/" as this refers to the user's home directory.
-		if (ref[0] === '~' && ref[1] !== '/' && this.fileSystemProvider) {
-			ref = ref.substring(1);
-			return await this.resolveModuleReference(ref, documentUri, documentContext) || relativeReference;
+		if (target[0] === '~' && target[1] !== '/' && this.fileSystemProvider) {
+			target = target.substring(1);
+			return this.mapReference(await this.resolveModuleReference(target, documentUri, documentContext), isRawLink);
 		}
+
+		const ref = await this.mapReference(documentContext.resolveReference(target, documentUri), isRawLink);
 
 		// Following [less-loader](https://github.com/webpack-contrib/less-loader#imports)
 		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#resolving-import-at-rules)
-		// new resolving import at-rules (~ is deprecated). The loader will first try to resolve @import as a relative path. If it cannot be resolved, 
+		// new resolving import at-rules (~ is deprecated). The loader will first try to resolve @import as a relative path. If it cannot be resolved,
 		// then the loader will try to resolve @import inside node_modules.
 		if (this.resolveModuleReferences) {
-			if (relativeReference && await this.fileExists(relativeReference)) {
-				return relativeReference;
-			} else {
-				return await this.resolveModuleReference(ref, documentUri, documentContext) || relativeReference;
+			if (ref && await this.fileExists(ref)) {
+				return ref;
+			}
+
+			const moduleReference = await this.mapReference(await this.resolveModuleReference(target, documentUri, documentContext), isRawLink);
+			if (moduleReference) {
+				return moduleReference;
 			}
 		}
-
-		return relativeReference;
+		// fall back. it might not exists
+		return ref;
 	}
 
 	private async resolvePathToModule(_moduleName: string, documentFolderUri: string, rootFolderUri: string | undefined): Promise<string | undefined> {
