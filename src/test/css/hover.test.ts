@@ -61,7 +61,7 @@ suite('CSS Hover', () => {
 		// });
 	});
 
-	test.only('specificity', () => {
+	test('specificity', () => {
 		assertHover('.|foo {}', {
 			contents: [
 				{ language: 'html', value: '<element class="foo">' },
