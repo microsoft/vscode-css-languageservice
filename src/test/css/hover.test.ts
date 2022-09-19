@@ -70,7 +70,7 @@ suite('CSS Hover', () => {
 		});
 		assertHover('[name="something"] { color: blue; }', {
 			contents: [
-				{ language: 'html', value: '<something>\n<element name="something">' },
+				{ language: 'html', value: '<something>|<element name="something">' },
 				'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 1, 0)'
 			]
 		});
