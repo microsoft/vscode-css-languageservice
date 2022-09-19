@@ -170,10 +170,12 @@ class MarkedStringPrinter {
 		}
 
 		// the real deal
+		const content = [];
 		if (name) {
-			this.writeLine(indent, this.prepareElement(name, element.attributes?.filter(x => x.name !== 'name')));
+			content.push(this.prepareElement(name, element.attributes?.filter(x => x.name !== 'name')));
 		}
-		this.writeLine(indent, this.prepareElement('element', element.attributes));
+		content.push(this.prepareElement('element', element.attributes));
+		this.writeLine(indent, content.join('|'));
 	}
 
 	private prepareElement(name: string, attributes?: Element['attributes']): string {
