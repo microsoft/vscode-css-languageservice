@@ -243,6 +243,10 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { -webkit-appearance: none }', Rules.IncludeStandardPropertyWhenUsingVendorPrefix);
 	});
 
+	test('ignore vendor specific prefixes in already stated blocks', function () {
+		assertRuleSet('selector::-webkit-slider-thumb { -webkit-appearance: none; }');
+	});
+
 	test('font-face required properties', function () {
 		assertFontFace('@font-face {  }', Rules.RequiredPropertiesForFontFace);
 		assertFontFace('@font-face { src: url(test.tff) }', Rules.RequiredPropertiesForFontFace);
