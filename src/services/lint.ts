@@ -440,6 +440,24 @@ export class LintVisitor implements nodes.IVisitor {
 						continue; // only the non-vendor specific rule is used, that's fine, no warning
 					}
 
+					/**
+					 * We should ignore missing standard properties, if there's an explicit contextual reference to a
+					 * vendor specific pseudo-element selector with the same vendor (prefix)
+					 *
+					 * (See https://github.com/microsoft/vscode/issues/164350)
+					 */
+					const entriesThatNeedStandard = new Set<nodes.Node>(needsStandard ? entry.nodes : []);
+					if (needsStandard) {
+						const pseudoElements = this.getContextualVendorSpecificPseudoElements(node);
+						for (const node of entry.nodes) {
+							const propertyName = (node as nodes.Property).getName();
+							const prefix = propertyName.substring(0, propertyName.length - suffix.length);
+							if (pseudoElements.some(x => x.startsWith(prefix))) {
+								entriesThatNeedStandard.delete(node);
+							}
+						}
+					}
+
 					const expected: string[] = [];
 					for (let i = 0, len = LintVisitor.prefixes.length; i < len; i++) {
 						const prefix = LintVisitor.prefixes[i];
@@ -451,7 +469,7 @@ export class LintVisitor implements nodes.IVisitor {
 					const missingVendorSpecific = this.getMissingNames(expected, actual);
 					if (missingVendorSpecific || needsStandard) {
 						for (const node of entry.nodes) {
-							if (needsStandard) {
+							if (needsStandard && entriesThatNeedStandard.has(node)) {
 								const message = localize('property.standard.missing', "Also define the standard property '{0}' for compatibility", suffix);
 								this.addEntry(node, Rules.IncludeStandardPropertyWhenUsingVendorPrefix, message);
 							}
@@ -467,6 +485,37 @@ export class LintVisitor implements nodes.IVisitor {
 
 
 		return true;
+	}
+
+	/**
+	 * Walks up the syntax tree (starting from given `node`) and captures vendor
+	 * specific pseudo-element selectors.
+	 * @returns An array of vendor specific pseudo-elements; or empty if none
+	 * was found.
+	 */
+	private getContextualVendorSpecificPseudoElements(node: nodes.Node): string[] {
+		function walkDown(s: Set<string>, n: nodes.Node) {
+			for (const child of n.getChildren()) {
+				if (child.type === nodes.NodeType.PseudoSelector) {
+					const pseudoElement = child.getChildren()[0]?.getText();
+					if (pseudoElement) {
+						s.add(pseudoElement);
+					}
+				}
+				walkDown(s, child);
+			}
+		}
+		function walkUp(s: Set<string>, n: nodes.Node): undefined {
+			if (n.type === nodes.NodeType.Ruleset) {
+				for (const selector of (n as nodes.RuleSet).getSelectors().getChildren()) {
+					walkDown(s, selector);
+				}
+			}
+			return n.parent ? walkUp(s, n.parent) : undefined;
+		}
+		const result = new Set<string>();
+		walkUp(result, node);
+		return Array.from(result);
 	}
 
 	private visitPrio(node: nodes.Node) {
