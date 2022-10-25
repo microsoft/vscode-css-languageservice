@@ -243,8 +243,10 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { -webkit-appearance: none }', Rules.IncludeStandardPropertyWhenUsingVendorPrefix);
 	});
 
-	test('ignore vendor specific prefixes in already stated blocks', function () {
-		assertRuleSet('selector::-webkit-slider-thumb { -webkit-appearance: none; }');
+	test('ignore missing standard properties in contexts with vendor specific pseudo-element', function () {
+		assertRuleSet('input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; }');
+		assertRuleSet('input[type="range"]::-webkit-slider-thumb { color: black; & selector { -webkit-appearance: none; } }');
+		assertRuleSet('input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; -moz-appearance: none; }', Rules.IncludeStandardPropertyWhenUsingVendorPrefix);
 	});
 
 	test('font-face required properties', function () {
