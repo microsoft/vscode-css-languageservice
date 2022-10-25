@@ -244,6 +244,7 @@ suite('CSS - Lint', () => {
 	});
 
 	test('ignore missing standard properties in contexts with vendor specific pseudo-element', function () {
+		// (See https://github.com/microsoft/vscode/issues/164350)
 		assertRuleSet('input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; }');
 		assertRuleSet('input[type="range"]::-webkit-slider-thumb { color: black; & selector { -webkit-appearance: none; } }');
 		assertRuleSet('input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; -moz-appearance: none; }', Rules.IncludeStandardPropertyWhenUsingVendorPrefix);
