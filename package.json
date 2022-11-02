@@ -35,7 +35,6 @@
   },
   "scripts": {
     "prepublishOnly": "npm run clean && npm run compile-esm && npm run test && npm run remove-sourcemap-refs",
-    "postpublish": "node ./build/post-publish.js",
     "compile": "tsc -p ./src && npm run copy-jsbeautify && npm run lint ",
     "compile-esm": "tsc -p ./src/tsconfig.esm.json",
     "clean": "rimraf lib",
