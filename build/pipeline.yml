@@ -26,7 +26,15 @@ extends:
     npmPackages:
       - name: vscode-css-languageservice
 
-        buildPlatforms:
+        buildSteps:
+          - script: yarn --frozen-lockfile
+            displayName: Install dependencies
+
+          # the rest of the build steps are part of the 'prepack' script, automatically run when the pipeline invokes 'yarn pack'
+
+        publishPackage: ${{ parameters.publishPackage }}            
+
+        testPlatforms:
           - name: Linux
             nodeVersions:
               - 16.x
@@ -35,14 +43,10 @@ extends:
               - 16.x
           - name: Windows
             nodeVersions:
-              - 16.x              
-
-        buildSteps:
-          - script: yarn --frozen-lockfile
-            displayName: Install dependencies         
+              - 16.x                   
 
         testSteps:
+          - script: yarn --frozen-lockfile
+            displayName: Install dependencies        
           - script: yarn test
             displayName: Test npm package
-
-        publishPackage: ${{ parameters.publishPackage }}
