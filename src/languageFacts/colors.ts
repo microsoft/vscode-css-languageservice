@@ -16,7 +16,8 @@ export const colorFunctions = [
 	{ func: 'hsl($hue, $saturation, $lightness)', desc: localize('css.builtin.hsl', 'Creates a Color from hue, saturation, and lightness values.') },
 	{ func: 'hsla($hue, $saturation, $lightness, $alpha)', desc: localize('css.builtin.hsla', 'Creates a Color from hue, saturation, lightness, and alpha values.') },
 	{ func: 'hwb($hue $white $black)', desc: localize('css.builtin.hwb', 'Creates a Color from hue, white and black.') },
-	{ func: 'lab($lightness $a $b $alpha)', desc: localize('css.builtin.lab', 'Creates a Color from Lightness, a, b and alpha values.') }
+	{ func: 'lab($lightness $channel_a $channel_b $alpha)', desc: localize('css.builtin.lab', 'Creates a Color from Lightness, Channel a, Channel b and alpha values.') },
+	{ func: 'lch($lightness $chrome $hue $alpha)', desc: localize('css.builtin.lab', 'Creates a Color from Lightness, Chroma, Hue and alpha values.') }
 ];
 
 export const colors: { [name: string]: string } = {
@@ -218,7 +219,7 @@ export function isColorConstructor(node: nodes.Function): boolean {
 	if (!name) {
 		return false;
 	}
-	return /^(rgb|rgba|hsl|hsla|hwb|lab)$/gi.test(name);
+	return /^(rgb|rgba|hsl|hsla|hwb|lab|lch)$/gi.test(name);
 }
 
 /**
@@ -484,8 +485,9 @@ export function colorFromLAB(l: number, a: number, b: number, alpha: number = 1.
 		b,
 		alpha
 	}
-	const xyz = xyzFromLAB(lab)
-	const rgb = xyzToRGB(xyz)
+	console.log(lab, "LABBB");
+	const xyz = xyzFromLAB(lab);
+	const rgb = xyzToRGB(xyz);
 	return {
 		red: (rgb.red >= 0 ? (rgb.red <= 255 ? rgb.red : 255) : 0) / 255.0,
 		green: (rgb.green >= 0 ? (rgb.green <= 255 ? rgb.green : 255) : 0) / 255.0,
@@ -496,6 +498,21 @@ export function colorFromLAB(l: number, a: number, b: number, alpha: number = 1.
 
 export interface LAB { l: number; a: number; b: number; alpha?: number; }
 
+export function labFromLCH(l: number, c: number, h: number, alpha: number = 1.0) : LAB {
+	return {
+		l: l,
+		a: c * Math.cos(h * (Math.PI / 180)),
+		b: c * Math.sin(h * ( Math.PI / 180)),
+		alpha: alpha
+	}
+}
+
+export function colorFromLCH(l: number, c: number, h: number, alpha: number = 1.0): Color {
+	const lab: LAB = labFromLCH(l, c, h, alpha);
+	return colorFromLAB(lab.l, lab.a, lab.b, alpha);
+}
+
+export interface LCH { l: number; c: number; h: number; alpha?: number; }
 
 export function getColorValue(node: nodes.Node): Color | null {
 	if (node.type === nodes.NodeType.HexColorValue) {
@@ -548,6 +565,12 @@ export function getColorValue(node: nodes.Node): Color | null {
 				const a = getNumericValue(colorValues[1], 125.0, -1);
 				const b = getNumericValue(colorValues[2], 125.0, -1);
 				return colorFromLAB(l*100, a*125, b*125, alpha);
+			} else if (name === 'lch') {
+				const l = getNumericValue(colorValues[0], 100.0);
+				const c = getNumericValue(colorValues[1], 230.0);
+				const h = getAngle(colorValues[2]);
+				console.log(l, c, h, "LCCCH")
+				return colorFromLCH(l*100, c * 230, h, alpha);
 			}
 		} catch (e) {
 			// parse error on numeric value
