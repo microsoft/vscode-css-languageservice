@@ -5,7 +5,7 @@
 'use strict';
 
 import * as assert from 'assert';
-import { isColorValue, getColorValue, getBrowserLabel, colorFrom256RGB, colorFromHex, hexDigit, hslFromColor, HSLA, XYZ, xyzToRGB, xyzFromLAB, hwbFromColor, HWBA, colorFromHWB, colorFromHSL, colorFromLAB } from '../../languageFacts/facts';
+import { isColorValue, getColorValue, getBrowserLabel, colorFrom256RGB, colorFromHex, hexDigit, hslFromColor, HSLA, XYZ, LAB, xyzToRGB, xyzFromLAB, hwbFromColor, HWBA, colorFromHWB, colorFromHSL, colorFromLAB, labFromLCH, colorFromLCH } from '../../languageFacts/facts';
 import { Parser } from '../../parser/cssParser';
 import * as nodes from '../../parser/cssNodes';
 import { TextDocument, Color } from '../../cssLanguageTypes';
@@ -71,17 +71,32 @@ function assertHWBValue(actual: HWBA, expected: HWBA) {
 
 function assertXYZValue(actual: XYZ, expected: XYZ) {
 	if (actual && expected) {
-		let hDiff = Math.abs(actual.x - expected.x);
-		let wDiff = Math.abs(actual.y - expected.y);
-		let bDiff = Math.abs(actual.z - expected.z);
+		let xDiff = Math.abs(actual.x - expected.x);
+		let yDiff = Math.abs(actual.y - expected.y);
+		let zDiff = Math.abs(actual.z - expected.z);
 		let aDiff = Math.abs((actual.alpha - expected.alpha) * 100);
-		if (hDiff < 1 && wDiff < 1 && bDiff < 1 && aDiff < 1) {
+		if (xDiff < 1 && yDiff < 1 && zDiff < 1 && aDiff < 1) {
 			return;
 		}
 	}
 	assert.deepEqual(actual, expected);
 }
 
+function assertLABValue(actual: LAB, expected: LAB) {
+	if (actual && expected) {
+		let lDiff = Math.abs(actual.l - expected.l);
+		let aDiff = Math.abs(actual.a - expected.a);
+		let bDiff = Math.abs(actual.b - expected.b);
+		let alphaDiff = 0;
+		if(actual.alpha && expected.alpha) {
+			alphaDiff = Math.abs((actual.alpha - expected.alpha) * 100);
+		}
+		if (lDiff < 1 && aDiff < 1 && bDiff < 1 && alphaDiff < 1) {
+			return;
+		}
+	}
+	assert.deepEqual(actual, expected);
+}
 suite('CSS - Language Facts', () => {
 
 	const cssDataManager = new CSSDataManager({ useDefaultDataProvider: true });
@@ -143,6 +158,7 @@ suite('CSS - Language Facts', () => {
 		assertColor(parser, '#main { color: lab(90 100 100) }', 'lab', colorFrom256RGB(255, 112, 0));
 		assertColor(parser, '#main { color: lab(46.41 39.24 33.51) }', 'lab', colorFrom256RGB(180, 79, 56));
 		assertColor(parser, '#main { color: lab(46.41 -39.24 33.51) }', 'lab', colorFrom256RGB(50, 125, 50));
+		assertColor(parser, '#main { color: lch(46.41, 51.60, 139.50) }', 'lch', colorFrom256RGB(50, 125, 50));
 	});
 
 	test('hexDigit', function () {
@@ -254,5 +270,11 @@ suite('CSS - Language Facts', () => {
 	});
 	test('LABToRGB', function () {
 		assertColorValue(colorFromLAB(46.41, -39.24, 33.51), colorFrom256RGB(50, 125, 50), 'lab(46.41, -39.24, 33.51)');
+	});
+	test('labFromLCH', function () {
+		assertLABValue(labFromLCH(46.41, 51.60, 139.50), {l: 46.41, a: -39.24, b: 33.51, alpha: 1});
+	});
+	test('LCHtoRGB', function () {
+		assertColorValue(colorFromLCH(46.41, 51.60, 139.50), colorFrom256RGB(50, 125, 50), 'lch(46.41, 51.60, 139.50)');
 	});
 });
