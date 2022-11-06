@@ -5,7 +5,7 @@
 'use strict';
 
 import * as assert from 'assert';
-import { isColorValue, getColorValue, getBrowserLabel, colorFrom256RGB, colorFromHex, hexDigit, hslFromColor, HSLA, XYZ, LAB, xyzToRGB, xyzFromLAB, hwbFromColor, HWBA, colorFromHWB, colorFromHSL, colorFromLAB, labFromLCH, colorFromLCH } from '../../languageFacts/facts';
+import { isColorValue, getColorValue, getBrowserLabel, colorFrom256RGB, colorFromHex, hexDigit, hslFromColor, HSLA, XYZ, LAB, xyzToRGB, xyzFromLAB, hwbFromColor, HWBA, colorFromHWB, colorFromHSL, colorFromLAB, labFromLCH, colorFromLCH, labFromColor, RGBtoXYZ, lchFromColor, LCH } from '../../languageFacts/facts';
 import { Parser } from '../../parser/cssParser';
 import * as nodes from '../../parser/cssNodes';
 import { TextDocument, Color } from '../../cssLanguageTypes';
@@ -92,6 +92,22 @@ function assertLABValue(actual: LAB, expected: LAB) {
 			alphaDiff = Math.abs((actual.alpha - expected.alpha) * 100);
 		}
 		if (lDiff < 1 && aDiff < 1 && bDiff < 1 && alphaDiff < 1) {
+			return;
+		}
+	}
+	assert.deepEqual(actual, expected);
+}
+
+function assertLCHValue(actual: LCH, expected: LCH) {
+	if (actual && expected) {
+		let lDiff = Math.abs(actual.l - expected.l);
+		let cDiff = Math.abs(actual.c - expected.c);
+		let hDiff = Math.abs(actual.h - expected.h);
+		let alphaDiff = 0;
+		if(actual.alpha && expected.alpha) {
+			alphaDiff = Math.abs((actual.alpha - expected.alpha) * 100);
+		}
+		if (lDiff < 1 && cDiff < 1 && hDiff < 1 && alphaDiff < 1) {
 			return;
 		}
 	}
@@ -276,5 +292,14 @@ suite('CSS - Language Facts', () => {
 	});
 	test('LCHtoRGB', function () {
 		assertColorValue(colorFromLCH(46.41, 51.60, 139.50), colorFrom256RGB(50, 125, 50), 'lch(46.41, 51.60, 139.50)');
+	});
+	test('labFromColor', function () {
+		assertLABValue(labFromColor(colorFrom256RGB(50, 125, 50)), {l: 46.41, a: -39.24, b: 33.51, alpha: 1});
+	});
+	test('RGBToXYZ', function () {
+		assertXYZValue(RGBtoXYZ(colorFrom256RGB(50, 125, 50)), { x: 9.22, y: 15.58, z: 5.54, alpha: 1 });
+	});
+	test('RGBToLCH', function () {
+		assertLCHValue(lchFromColor(colorFrom256RGB(50, 125, 50)), {l: 46.41, c: 51.60, h: 139.50});
 	});
 });
