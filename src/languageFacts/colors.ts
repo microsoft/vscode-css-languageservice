@@ -418,7 +418,7 @@ export function xyzFromLAB(lab : LAB) : XYZ {
 		y: 0,
 		z: 0,
 		alpha: lab.alpha ?? 1
-	}
+	};
 	xyz["y"] = (lab.l + 16.0) / 116.0;
 	xyz["x"] = (lab.a / 500.0) + xyz["y"];
 	xyz["z"] = xyz["y"] - (lab.b / 200.0);
@@ -452,7 +452,7 @@ export function xyzToRGB(xyz: XYZ) : Color{
 		y: xyz.y / 100,
 		z: xyz.z / 100,
 		alpha: xyz.alpha ?? 1
-	}
+	};
 
 	rgb.r = (new_xyz.x * 3.240479) + (new_xyz.y * -1.537150) + (new_xyz.z * -0.498535);
 	rgb.g = (new_xyz.x * -0.969256) + (new_xyz.y *  1.875992) + (new_xyz.z * 0.041556);
@@ -475,7 +475,98 @@ export function xyzToRGB(xyz: XYZ) : Color{
 		blue: rgb.b,
 		green: rgb.g,
 		alpha: rgb.alpha
+	};
+}
+
+export function RGBtoXYZ(rgba: Color): XYZ {
+	let r: number = rgba.red,
+     	g: number = rgba.green,
+    	b: number = rgba.blue;
+
+    if (r > 0.04045) {
+		r = Math.pow((r + 0.055)/ 1.055, 2.4);
+	} else {
+		r = r / 12.92;
 	}
+    if (g > 0.04045) { 
+		g = Math.pow((g + 0.055) / 1.055 , 2.4);
+	} else {
+		g = g / 12.92;
+	}
+    if (b > 0.04045) {
+		b = Math.pow(( b + 0.055 ) / 1.055, 2.4);
+	} else {
+		b = b / 12.92;
+	}
+    r = r * 100;
+    g = g * 100;
+    b = b * 100;
+
+    //Observer = 2°, Illuminant = D65
+    const x = r * 0.4124 + g * 0.3576 + b * 0.1805;
+    const y = r * 0.2126 + g * 0.7152 + b * 0.0722;
+    const z = r * 0.0193 + g * 0.1192 + b * 0.9505;
+    return {x, y, z, alpha: rgba.alpha};
+}
+
+export function XYZtoLAB(xyz: XYZ, round: Boolean = true): LAB{
+    const ref_X =  95.047, ref_Y = 100.000, ref_Z = 108.883;
+
+    let x: number = xyz.x / ref_X,
+    	y: number = xyz.y / ref_Y,
+    	z: number = xyz.z / ref_Z;
+
+    if (x > 0.008856) { 
+		x = Math.pow(x, 1/3);
+	} else {
+		x = (7.787 * x) + (16/116);
+	}
+    if (y > 0.008856) {
+		y = Math.pow(y, 1/3);
+	} else {
+		y = (7.787 * y) + (16/116);
+	}
+    if (z > 0.008856) {
+		z = Math.pow(z, 1/3);
+	} else {
+		z = (7.787 * z) + (16/116);
+	}
+    const l: number = (116 * y) - 16,
+    	a: number = 500 * (x - y),
+    	b: number = 200 * (y - z);
+	if(round) {
+		return {
+			l: Math.round((l + Number.EPSILON) * 100) / 100, 
+			a: Math.round((a + Number.EPSILON) * 100) / 100, 
+			b: Math.round((b + Number.EPSILON) * 100) / 100, 
+			alpha: xyz.alpha
+		};
+	} else {
+		return {
+			l, a, b, 
+			alpha: xyz.alpha
+		};
+	}
+}
+
+export function labFromColor(rgba: Color, round: Boolean = true): LAB{
+	const xyz: XYZ = RGBtoXYZ(rgba);
+	const lab: LAB = XYZtoLAB(xyz, round);
+	return lab;
+}
+export function lchFromColor(rgba: Color): LCH{
+	const lab: LAB = labFromColor(rgba, false);
+	const c: number = Math.sqrt(Math.pow(lab.a, 2) + Math.pow(lab.b, 2));
+	let h:number = Math.atan2(lab.b, lab.a) * (180 / Math.PI);
+	while(h < 0) {
+		h = h + 360;
+	}
+	return {
+		l: Math.round((lab.l + Number.EPSILON) * 100) / 100,
+		c: Math.round((c + Number.EPSILON) * 100) / 100,
+		h: Math.round((h + Number.EPSILON) * 100) / 100,
+		alpha: lab.alpha
+	};
 }
 
 export function colorFromLAB(l: number, a: number, b: number, alpha: number = 1.0): Color {
@@ -484,7 +575,7 @@ export function colorFromLAB(l: number, a: number, b: number, alpha: number = 1.
 		a,
 		b,
 		alpha
-	}
+	};
 	const xyz = xyzFromLAB(lab);
 	const rgb = xyzToRGB(xyz);
 	return {
@@ -503,7 +594,7 @@ export function labFromLCH(l: number, c: number, h: number, alpha: number = 1.0)
 		a: c * Math.cos(h * (Math.PI / 180)),
 		b: c * Math.sin(h * ( Math.PI / 180)),
 		alpha: alpha
-	}
+	};
 }
 
 export function colorFromLCH(l: number, c: number, h: number, alpha: number = 1.0): Color {
@@ -559,6 +650,7 @@ export function getColorValue(node: nodes.Node): Color | null {
 				const b = getNumericValue(colorValues[2], 100.0);
 				return colorFromHWB(h, w, b, alpha);
 			} else if (name === 'lab') {
+				// Reference: https://mina86.com/2021/srgb-lab-lchab-conversions/
 				const l = getNumericValue(colorValues[0], 100.0);
 				// Since these two values can be negative, a lower limit of -1 has been added
 				const a = getNumericValue(colorValues[1], 125.0, -1);
