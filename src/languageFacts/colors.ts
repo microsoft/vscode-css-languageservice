@@ -15,7 +15,8 @@ export const colorFunctions = [
 	{ func: 'rgba($red, $green, $blue, $alpha)', desc: localize('css.builtin.rgba', 'Creates a Color from red, green, blue, and alpha values.') },
 	{ func: 'hsl($hue, $saturation, $lightness)', desc: localize('css.builtin.hsl', 'Creates a Color from hue, saturation, and lightness values.') },
 	{ func: 'hsla($hue, $saturation, $lightness, $alpha)', desc: localize('css.builtin.hsla', 'Creates a Color from hue, saturation, lightness, and alpha values.') },
-	{ func: 'hwb($hue $white $black)', desc: localize('css.builtin.hwb', 'Creates a Color from hue, white and black.') }
+	{ func: 'hwb($hue $white $black)', desc: localize('css.builtin.hwb', 'Creates a Color from hue, white and black.') },
+	{ func: 'lab($lightness $a $b $alpha)', desc: localize('css.builtin.lab', 'Creates a Color from Lightness, a, b and alpha values.') }
 ];
 
 export const colors: { [name: string]: string } = {
@@ -174,7 +175,7 @@ export const colorKeywords: { [name: string]: string } = {
 	'transparent': 'Fully transparent. This keyword can be considered a shorthand for rgba(0,0,0,0) which is its computed value.',
 };
 
-function getNumericValue(node: nodes.Node, factor: number) {
+function getNumericValue(node: nodes.Node, factor: number, lowerLimit: number = 0, upperLimit: number = 1) {
 	const val = node.getText();
 	const m = val.match(/^([-+]?[0-9]*\.?[0-9]+)(%?)$/);
 	if (m) {
@@ -182,7 +183,7 @@ function getNumericValue(node: nodes.Node, factor: number) {
 			factor = 100.0;
 		}
 		const result = parseFloat(m[1]) / factor;
-		if (result >= 0 && result <= 1) {
+		if (result >= lowerLimit && result <= upperLimit) {
 			return result;
 		}
 	}
@@ -217,7 +218,7 @@ export function isColorConstructor(node: nodes.Function): boolean {
 	if (!name) {
 		return false;
 	}
-	return /^(rgb|rgba|hsl|hsla|hwb)$/gi.test(name);
+	return /^(rgb|rgba|hsl|hsla|hwb|lab)$/gi.test(name);
 }
 
 /**
@@ -406,6 +407,96 @@ export function hwbFromColor(rgba: Color): HWBA {
 	};
 }
 
+export interface XYZ { x: number; y: number; z: number; alpha: number; }
+
+export interface RGB { r: number; g: number; b: number; alpha: number; }
+
+export function xyzFromLAB(lab : LAB) : XYZ {
+	let xyz: XYZ = {
+		x: 0,
+		y: 0,
+		z: 0,
+		alpha: lab.alpha ?? 1
+	}
+	xyz["y"] = (lab.l + 16.0) / 116.0;
+	xyz["x"] = (lab.a / 500.0) + xyz["y"];
+	xyz["z"] = xyz["y"] - (lab.b / 200.0);
+	let key: keyof XYZ;
+
+	for (key in xyz){
+		let pow = xyz[key] * xyz[key] * xyz[key];
+		if (pow > 0.008856){
+			xyz[key] = pow;
+		} else {
+			xyz[key] = (xyz[key]- 16.0 / 116.0) / 7.787;
+		}
+	}
+
+	xyz["x"] = xyz["x"] * 95.047;
+	xyz["y"] = xyz["y"] * 100.0;
+	xyz["z"] = xyz["z"] * 108.883;
+	return xyz;
+}
+
+export function xyzToRGB(xyz: XYZ) : Color{
+	let rgb: RGB = {
+		r: 0,
+		g: 0,
+		b: 0,
+		alpha: xyz.alpha
+	};
+
+	let new_xyz: XYZ = {
+		x: xyz.x / 100,
+		y: xyz.y / 100,
+		z: xyz.z / 100,
+		alpha: xyz.alpha ?? 1
+	}
+
+	rgb.r = (new_xyz.x * 3.240479) + (new_xyz.y * -1.537150) + (new_xyz.z * -0.498535);
+	rgb.g = (new_xyz.x * -0.969256) + (new_xyz.y *  1.875992) + (new_xyz.z * 0.041556);
+	rgb.b = (new_xyz.x * 0.055648) +  (new_xyz.y * -0.204043) + (new_xyz.z * 1.057311);
+	let key: keyof RGB;
+
+	for(key in rgb) {
+		if (rgb[key] > 0.0031308) {
+			rgb[key] = (1.055 * Math.pow(rgb[key], (1.0 / 2.4))) - 0.055;
+		} else {
+			rgb[key] = rgb[key] * 12.92;
+		}
+	}
+	rgb.r = Math.round(rgb.r * 255.0);
+	rgb.g = Math.round(rgb.g * 255.0);
+	rgb.b = Math.round(rgb.b * 255.0);
+	
+	return {
+		red: rgb.r,
+		blue: rgb.b,
+		green: rgb.g,
+		alpha: rgb.alpha
+	}
+}
+
+export function colorFromLAB(l: number, a: number, b: number, alpha: number = 1.0): Color {
+	const lab : LAB = {
+		l,
+		a,
+		b,
+		alpha
+	}
+	const xyz = xyzFromLAB(lab)
+	const rgb = xyzToRGB(xyz)
+	return {
+		red: (rgb.red >= 0 ? (rgb.red <= 255 ? rgb.red : 255) : 0) / 255.0,
+		green: (rgb.green >= 0 ? (rgb.green <= 255 ? rgb.green : 255) : 0) / 255.0,
+		blue: (rgb.blue >= 0 ? (rgb.blue <= 255 ? rgb.blue : 255) : 0) / 255.0,
+		alpha
+	};
+}
+
+export interface LAB { l: number; a: number; b: number; alpha?: number; }
+
+
 export function getColorValue(node: nodes.Node): Color | null {
 	if (node.type === nodes.NodeType.HexColorValue) {
 		const text = node.getText();
@@ -451,6 +542,12 @@ export function getColorValue(node: nodes.Node): Color | null {
 				const w = getNumericValue(colorValues[1], 100.0);
 				const b = getNumericValue(colorValues[2], 100.0);
 				return colorFromHWB(h, w, b, alpha);
+			} else if (name === 'lab') {
+				const l = getNumericValue(colorValues[0], 100.0);
+				// Since these two values can be negative, a lower limit of -1 has been added
+				const a = getNumericValue(colorValues[1], 125.0, -1);
+				const b = getNumericValue(colorValues[2], 125.0, -1);
+				return colorFromLAB(l*100, a*125, b*125, alpha);
 			}
 		} catch (e) {
 			// parse error on numeric value
