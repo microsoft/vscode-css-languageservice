@@ -568,6 +568,10 @@ export function getColorValue(node: nodes.Node): Color | null {
 				const l = getNumericValue(colorValues[0], 100.0);
 				const c = getNumericValue(colorValues[1], 230.0);
 				const h = getAngle(colorValues[2]);
+<<<<<<< HEAD
+=======
+				console.log(l, c, h, "LCCCH")
+>>>>>>> 3b3145a899f9e8ffdb1a99e41890c87b6fa8368c
 				return colorFromLCH(l*100, c * 230, h, alpha);
 			}
 		} catch (e) {
