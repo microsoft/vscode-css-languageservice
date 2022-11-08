@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as nls from 'vscode-nls';
+import * as l10n from '@vscode/l10n';
 import { TextDocument } from '../cssLanguageTypes';
 import { CSSDataManager } from '../languageFacts/dataManager';
 import * as languageFacts from '../languageFacts/facts';
@@ -14,7 +14,6 @@ import { LintConfigurationSettings, Rule, Rules, Settings } from './lintRules';
 import calculateBoxModel, { Element } from './lintUtil';
 
 
-const localize = nls.loadMessageBundle();
 
 class NodesByRootMap {
 	public data: { [name: string]: { nodes: nodes.Node[]; names: string[] } } = {};
@@ -139,9 +138,9 @@ export class LintVisitor implements nodes.IVisitor {
 			const curr = expectedClone[i];
 			if (curr) {
 				if (result === null) {
-					result = localize('namelist.single', "'{0}'", curr);
+					result = l10n.t("'{0}'", curr);
 				} else {
-					result = localize('namelist.concatenated', "{0}, '{1}'", result, curr);
+					result = l10n.t("{0}, '{1}'", result, curr);
 				}
 			}
 		}
@@ -222,11 +221,11 @@ export class LintVisitor implements nodes.IVisitor {
 			if (missingVendorSpecific || needsStandard) {
 				for (const node of this.keyframes.data[name].nodes) {
 					if (needsStandard) {
-						const message = localize('keyframes.standardrule.missing', "Always define standard rule '@keyframes' when defining keyframes.");
+						const message = l10n.t("Always define standard rule '@keyframes' when defining keyframes.");
 						this.addEntry(node, Rules.IncludeStandardPropertyWhenUsingVendorPrefix, message);
 					}
 					if (missingVendorSpecific) {
-						const message = localize('keyframes.vendorspecific.missing', "Always include all vendor specific rules: Missing: {0}", missingVendorSpecific);
+						const message = l10n.t("Always include all vendor specific rules: Missing: {0}", missingVendorSpecific);
 						this.addEntry(node, Rules.AllVendorPrefixes, message);
 					}
 				}
@@ -338,7 +337,7 @@ export class LintVisitor implements nodes.IVisitor {
 				const node = elem[index].node;
 				const value = node.getValue();
 				if (value && !value.matches('none')) {
-					this.addEntry(node, Rules.PropertyIgnoredDueToDisplay, localize('rule.propertyIgnoredDueToDisplayInlineBlock', "inline-block is ignored due to the float. If 'float' has a value other than 'none', the box is floated and 'display' is treated as 'block'"));
+					this.addEntry(node, Rules.PropertyIgnoredDueToDisplay, l10n.t("inline-block is ignored due to the float. If 'float' has a value other than 'none', the box is floated and 'display' is treated as 'block'"));
 				}
 			}
 		}
@@ -348,7 +347,7 @@ export class LintVisitor implements nodes.IVisitor {
 		if (displayElems.length > 0) {
 			const elem = this.fetch(propertyTable, 'vertical-align');
 			for (let index = 0; index < elem.length; index++) {
-				this.addEntry(elem[index].node, Rules.PropertyIgnoredDueToDisplay, localize('rule.propertyIgnoredDueToDisplayBlock', "Property is ignored due to the display. With 'display: block', vertical-align should not be used."));
+				this.addEntry(elem[index].node, Rules.PropertyIgnoredDueToDisplay, l10n.t("Property is ignored due to the display. With 'display: block', vertical-align should not be used."));
 			}
 		}
 
@@ -419,7 +418,7 @@ export class LintVisitor implements nodes.IVisitor {
 						// _property and *property might be contributed via custom data
 						if (!this.cssDataManager.isKnownProperty(fullName) && !this.cssDataManager.isKnownProperty(name)) {
 							if (!this.validProperties[name]) {
-								this.addEntry(decl.getProperty()!, Rules.UnknownProperty, localize('property.unknownproperty.detailed', "Unknown property: '{0}'", decl.getFullPropertyName()));
+								this.addEntry(decl.getProperty()!, Rules.UnknownProperty, l10n.t("Unknown property: '{0}'", decl.getFullPropertyName()));
 							}
 						}
 
@@ -452,11 +451,11 @@ export class LintVisitor implements nodes.IVisitor {
 					if (missingVendorSpecific || needsStandard) {
 						for (const node of entry.nodes) {
 							if (needsStandard) {
-								const message = localize('property.standard.missing', "Also define the standard property '{0}' for compatibility", suffix);
+								const message = l10n.t("Also define the standard property '{0}' for compatibility", suffix);
 								this.addEntry(node, Rules.IncludeStandardPropertyWhenUsingVendorPrefix, message);
 							}
 							if (missingVendorSpecific) {
-								const message = localize('property.vendorspecific.missing', "Always include all vendor specific properties: Missing: {0}", missingVendorSpecific);
+								const message = l10n.t("Always include all vendor specific properties: Missing: {0}", missingVendorSpecific);
 								this.addEntry(node, Rules.AllVendorPrefixes, message);
 							}
 						}
