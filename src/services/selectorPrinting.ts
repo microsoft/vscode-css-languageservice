@@ -220,7 +220,7 @@ class Specificity {
 	public attr = 0;
 	/** Count of tag names (`div`), and pseudo-elements (`::before`) */
 	public tag = 0;
-	public merge(specificity_to_merge: Specificity){
+	public merge(specificity_to_merge: Specificity) {
 		this.id += specificity_to_merge.id;
 		this.attr += specificity_to_merge.attr;
 		this.tag += specificity_to_merge.tag;
@@ -458,36 +458,36 @@ export class SelectorPrinting {
 		let initial: boolean = true;
 		/* 
 			Loop past the first Ruleset. 
-		   	This is to handle the case where the deepest Selector is comma separated
-		   	and the user might hover over just one of them
+				  This is to handle the case where the deepest Selector is comma separated
+				  and the user might hover over just one of them
 		*/
-		let pastInitial: boolean = false; 
-		while(node.parent instanceof nodes.Node){
+		let pastInitial: boolean = false;
+		while (node.parent instanceof nodes.Node) {
 			/*
 				Only Ruleset nodes are useful to calculate the ancestor selectors
 				Exception is the deepest selector which is a Node
 			*/
-			if(!initial && !(node instanceof nodes.RuleSet)){
+			if (!initial && !(node instanceof nodes.RuleSet)) {
 				node = node.parent;
 				continue;
 			}
-			if(!pastInitial && node instanceof nodes.RuleSet){
+			if (!pastInitial && node instanceof nodes.RuleSet) {
 				node = node.parent;
 				pastInitial = true;
 				continue;
 			}
 			let specificity: Specificity = new Specificity();
-			if(initial){
+			if (initial) {
 				specificity = calculateScore(node);
 				initial = false;
-			} else if(node instanceof nodes.RuleSet){
-				specificity = calculateScore(node.getSelectors())
+			} else if (node instanceof nodes.RuleSet) {
+				specificity = calculateScore(node.getSelectors());
 			}
 			total_specificity.merge(specificity);
 			node = node.parent;
 		}
 
-		return l10n.t('specificity', "[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): ({0}, {1}, {2})", total_specificity.id, total_specificity.attr, total_specificity.tag);
+		return l10n.t("[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): ({0}, {1}, {2})", total_specificity.id, total_specificity.attr, total_specificity.tag);
 	}
 
 }
