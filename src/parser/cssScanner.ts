@@ -440,12 +440,12 @@ export class Scanner {
 	}
 
 	private _number(): boolean {
-		let npeek = 0, ch: number, next_ch: number;
+		let npeek = 0, ch: number;
 		if (this.stream.peekChar() === _DOT) {
 			npeek = 1;
 		}
 		ch = this.stream.peekChar(npeek);
-		next_ch = this.stream.peekChar(npeek + 1);
+		const next_ch: number = this.stream.peekChar(npeek + 1);
 		if ((ch >= _0 && ch <= _9) || (ch === _MIN && next_ch >= _0 && next_ch <= _9)) {
 			this.stream.advance(npeek + 1);
 			this.stream.advanceWhileChar((ch) => {

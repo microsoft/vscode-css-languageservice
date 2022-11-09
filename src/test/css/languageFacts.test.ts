@@ -71,10 +71,10 @@ function assertHWBValue(actual: HWBA, expected: HWBA) {
 
 function assertXYZValue(actual: XYZ, expected: XYZ) {
 	if (actual && expected) {
-		let xDiff = Math.abs(actual.x - expected.x);
-		let yDiff = Math.abs(actual.y - expected.y);
-		let zDiff = Math.abs(actual.z - expected.z);
-		let aDiff = Math.abs((actual.alpha - expected.alpha) * 100);
+		const xDiff = Math.abs(actual.x - expected.x);
+		const yDiff = Math.abs(actual.y - expected.y);
+		const zDiff = Math.abs(actual.z - expected.z);
+		const aDiff = Math.abs((actual.alpha - expected.alpha) * 100);
 		if (xDiff < 1 && yDiff < 1 && zDiff < 1 && aDiff < 1) {
 			return;
 		}
@@ -84,11 +84,11 @@ function assertXYZValue(actual: XYZ, expected: XYZ) {
 
 function assertLABValue(actual: LAB, expected: LAB) {
 	if (actual && expected) {
-		let lDiff = Math.abs(actual.l - expected.l);
-		let aDiff = Math.abs(actual.a - expected.a);
-		let bDiff = Math.abs(actual.b - expected.b);
+		const lDiff = Math.abs(actual.l - expected.l);
+		const aDiff = Math.abs(actual.a - expected.a);
+		const bDiff = Math.abs(actual.b - expected.b);
 		let alphaDiff = 0;
-		if(actual.alpha && expected.alpha) {
+		if (actual.alpha && expected.alpha) {
 			alphaDiff = Math.abs((actual.alpha - expected.alpha) * 100);
 		}
 		if (lDiff < 1 && aDiff < 1 && bDiff < 1 && alphaDiff < 1) {
@@ -100,11 +100,11 @@ function assertLABValue(actual: LAB, expected: LAB) {
 
 function assertLCHValue(actual: LCH, expected: LCH) {
 	if (actual && expected) {
-		let lDiff = Math.abs(actual.l - expected.l);
-		let cDiff = Math.abs(actual.c - expected.c);
-		let hDiff = Math.abs(actual.h - expected.h);
+		const lDiff = Math.abs(actual.l - expected.l);
+		const cDiff = Math.abs(actual.c - expected.c);
+		const hDiff = Math.abs(actual.h - expected.h);
 		let alphaDiff = 0;
-		if(actual.alpha && expected.alpha) {
+		if (actual.alpha && expected.alpha) {
 			alphaDiff = Math.abs((actual.alpha - expected.alpha) * 100);
 		}
 		if (lDiff < 1 && cDiff < 1 && hDiff < 1 && alphaDiff < 1) {
@@ -276,9 +276,9 @@ suite('CSS - Language Facts', () => {
 		assertColorValue(colorFromHSL(118, 0.98, 0.5), colorFrom256RGB(11, 252, 3), 'hsl(118, 98%, 50%)');
 		assertColorValue(colorFromHSL(120, 0.83, 0.95), colorFrom256RGB(232, 253, 232), 'hsl(120, 83%, 95%)');
 	});
-	
+
 	test('xyzFromLAB', function () {
-		assertXYZValue(xyzFromLAB({l: 46.41, a: -39.24, b: 33.51}), { x: 9.22, y: 15.58, z: 5.54, alpha: 1 });
+		assertXYZValue(xyzFromLAB({ l: 46.41, a: -39.24, b: 33.51 }), { x: 9.22, y: 15.58, z: 5.54, alpha: 1 });
 	});
 
 	test('xyzToRGB', function () {
@@ -288,18 +288,18 @@ suite('CSS - Language Facts', () => {
 		assertColorValue(colorFromLAB(46.41, -39.24, 33.51), colorFrom256RGB(50, 125, 50), 'lab(46.41, -39.24, 33.51)');
 	});
 	test('labFromLCH', function () {
-		assertLABValue(labFromLCH(46.41, 51.60, 139.50), {l: 46.41, a: -39.24, b: 33.51, alpha: 1});
+		assertLABValue(labFromLCH(46.41, 51.60, 139.50), { l: 46.41, a: -39.24, b: 33.51, alpha: 1 });
 	});
 	test('LCHtoRGB', function () {
 		assertColorValue(colorFromLCH(46.41, 51.60, 139.50), colorFrom256RGB(50, 125, 50), 'lch(46.41, 51.60, 139.50)');
 	});
 	test('labFromColor', function () {
-		assertLABValue(labFromColor(colorFrom256RGB(50, 125, 50)), {l: 46.41, a: -39.24, b: 33.51, alpha: 1});
+		assertLABValue(labFromColor(colorFrom256RGB(50, 125, 50)), { l: 46.41, a: -39.24, b: 33.51, alpha: 1 });
 	});
 	test('RGBToXYZ', function () {
 		assertXYZValue(RGBtoXYZ(colorFrom256RGB(50, 125, 50)), { x: 9.22, y: 15.58, z: 5.54, alpha: 1 });
 	});
 	test('RGBToLCH', function () {
-		assertLCHValue(lchFromColor(colorFrom256RGB(50, 125, 50)), {l: 46.41, c: 51.60, h: 139.50});
+		assertLCHValue(lchFromColor(colorFrom256RGB(50, 125, 50)), { l: 46.41, c: 51.60, h: 139.50 });
 	});
 });
