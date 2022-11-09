@@ -7,10 +7,8 @@
 import * as nodes from '../parser/cssNodes';
 import { MarkedString } from '../cssLanguageTypes';
 import { Scanner } from '../parser/cssScanner';
-import * as nls from 'vscode-nls';
+import * as l10n from '@vscode/l10n';
 import { CSSDataManager } from '../languageFacts/dataManager';
-
-const localize = nls.loadMessageBundle();
 
 export class Element {
 
@@ -489,7 +487,7 @@ export class SelectorPrinting {
 			node = node.parent;
 		}
 
-		return localize('specificity', "[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): ({0}, {1}, {2})", total_specificity.id, total_specificity.attr, total_specificity.tag);
+		return l10n.t('specificity', "[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): ({0}, {1}, {2})", total_specificity.id, total_specificity.attr, total_specificity.tag);
 	}
 
 }
