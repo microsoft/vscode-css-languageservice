@@ -28,14 +28,13 @@
     "typescript": "^4.8.3"
   },
   "dependencies": {
+    "@vscode/l10n": "^0.0.8",
     "vscode-languageserver-textdocument": "^1.0.7",
     "vscode-languageserver-types": "^3.17.2",
-    "vscode-nls": "^5.2.0",
     "vscode-uri": "^3.0.4"
   },
   "scripts": {
-    "prepublishOnly": "npm run clean && npm run compile-esm && npm run test && npm run remove-sourcemap-refs",
-    "postpublish": "node ./build/post-publish.js",
+    "prepack": "npm run clean && npm run compile-esm && npm run test && npm run remove-sourcemap-refs",
     "compile": "tsc -p ./src && npm run copy-jsbeautify && npm run lint ",
     "compile-esm": "tsc -p ./src/tsconfig.esm.json",
     "clean": "rimraf lib",
@@ -49,8 +48,6 @@
     "install-types-next": "yarn add vscode-languageserver-types@next -f -S && yarn add vscode-languageserver-textdocument@next -f -S",
     "copy-jsbeautify": "node ./build/copy-jsbeautify.js",
     "update-jsbeautify": "yarn add js-beautify && node ./build/update-jsbeautify.js",
-    "update-jsbeautify-next": "yarn add js-beautify@next && node ./build/update-jsbeautify.js",
-    "preversion": "npm test",
-    "postversion": "git push && git push --tags"
+    "update-jsbeautify-next": "yarn add js-beautify@next && node ./build/update-jsbeautify.js"
   }
 }

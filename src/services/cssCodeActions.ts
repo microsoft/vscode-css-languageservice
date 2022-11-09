@@ -11,10 +11,8 @@ import {
 	Range, CodeActionContext, Diagnostic, Command, TextEdit, CodeAction, WorkspaceEdit, CodeActionKind,
 	TextDocumentEdit, VersionedTextDocumentIdentifier, TextDocument, ICSSDataProvider
 } from '../cssLanguageTypes';
-import * as nls from 'vscode-nls';
+import * as l10n from '@vscode/l10n';
 import { CSSDataManager } from '../languageFacts/dataManager';
-
-const localize = nls.loadMessageBundle();
 
 export class CSSCodeActions {
 
@@ -63,7 +61,7 @@ export class CSSCodeActions {
 		let maxActions = 3;
 		for (const candidate of candidates) {
 			const propertyName = candidate.property;
-			const title = localize('css.codeaction.rename', "Rename to '{0}'", propertyName);
+			const title = l10n.t("Rename to '{0}'", propertyName);
 			const edit = TextEdit.replace(marker.range, propertyName);
 			const documentIdentifier = VersionedTextDocumentIdentifier.create(document.uri, document.version);
 			const workspaceEdit: WorkspaceEdit = { documentChanges: [TextDocumentEdit.create(documentIdentifier, [edit])] };
