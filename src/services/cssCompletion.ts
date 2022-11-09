@@ -86,6 +86,7 @@ export class CSSCompletion {
 			const pathCompletionResult = await participant.computeCompletions(document, documentContext);
 			return {
 				isIncomplete: result.isIncomplete || pathCompletionResult.isIncomplete,
+				itemDefaults: result.itemDefaults,
 				items: pathCompletionResult.items.concat(result.items)
 			};
 		} finally {
@@ -103,7 +104,16 @@ export class CSSCompletion {
 		this.styleSheet = styleSheet;
 		this.documentSettings = documentSettings;
 		try {
-			const result: CompletionList = { isIncomplete: false, items: [] };
+			const result: CompletionList = {
+				isIncomplete: false,
+				itemDefaults: {
+					editRange: {
+						start: { line: position.line, character: position.character - this.currentWord.length },
+						end: position
+					}
+				},
+				items: []
+			};
 			this.nodePath = nodes.getNodePath(this.styleSheet, this.offset);
 
 			for (let i = this.nodePath.length - 1; i >= 0; i--) {
