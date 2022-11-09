@@ -13,12 +13,11 @@ import {
 	Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, CompletionItemTag, DocumentContext, LanguageServiceOptions, IPropertyData, CompletionSettings
 } from '../cssLanguageTypes';
 
-import * as nls from 'vscode-nls';
+import * as l10n from '@vscode/l10n';
 import { isDefined } from '../utils/objects';
 import { CSSDataManager } from '../languageFacts/dataManager';
 import { PathCompletionParticipant } from './pathCompletion';
 
-const localize = nls.loadMessageBundle();
 const SnippetFormat = InsertTextFormat.Snippet;
 
 const retriggerCommand: Command = {
@@ -444,7 +443,7 @@ export class CSSCompletion {
 			if (symbol.node.type === nodes.NodeType.FunctionParameter) {
 				const mixinNode = <nodes.MixinDeclaration>(symbol.node.getParent());
 				if (mixinNode.type === nodes.NodeType.MixinDeclaration) {
-					completionItem.detail = localize('completion.argument', 'argument from \'{0}\'', mixinNode.getName());
+					completionItem.detail = l10n.t('argument from \'{0}\'', mixinNode.getName());
 				}
 			}
 

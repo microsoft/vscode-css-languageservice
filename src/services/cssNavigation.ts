@@ -8,14 +8,13 @@ import {
 	Color, ColorInformation, ColorPresentation, DocumentHighlight, DocumentHighlightKind, DocumentLink, Location,
 	Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit, TextDocument, DocumentContext, FileSystemProvider, FileType, DocumentSymbol
 } from '../cssLanguageTypes';
-import * as nls from 'vscode-nls';
+import * as l10n from '@vscode/l10n';
 import * as nodes from '../parser/cssNodes';
 import { Symbols } from '../parser/cssSymbolScope';
 import { getColorValue, hslFromColor, hwbFromColor } from '../languageFacts/facts';
 import { startsWith } from '../utils/strings';
 import { dirname, joinPath } from '../utils/resources';
 
-const localize = nls.loadMessageBundle();
 
 type UnresolvedLinkData = { link: DocumentLink, isRawLink: boolean };
 
@@ -264,10 +263,10 @@ export class CSSNavigation {
 			} else if (node instanceof nodes.FunctionDeclaration) {
 				collect(node.getName(), SymbolKind.Function, node, node.getIdentifier(), node.getDeclarations());
 			} else if (node instanceof nodes.Keyframe) {
-				const name = localize('literal.keyframes', "@keyframes {0}", node.getName());
+				const name = l10n.t("@keyframes {0}", node.getName());
 				collect(name, SymbolKind.Class, node, node.getIdentifier(), node.getDeclarations());
 			} else if (node instanceof nodes.FontFace) {
-				const name = localize('literal.fontface', "@font-face");
+				const name = l10n.t("@font-face");
 				collect(name, SymbolKind.Class, node, undefined, node.getDeclarations());
 			} else if (node instanceof nodes.Media) {
 				const mediaList = node.getChild(0);
