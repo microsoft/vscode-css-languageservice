@@ -58,6 +58,7 @@ export interface LanguageService {
 	doCodeActions2(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: Stylesheet): CodeAction[];
 	findDocumentColors(document: TextDocument, stylesheet: Stylesheet): ColorInformation[];
 	getColorPresentations(document: TextDocument, stylesheet: Stylesheet, color: Color, range: Range): ColorPresentation[];
+	prepareRename(document: TextDocument, position: Position, stylesheet: Stylesheet): Range | undefined;
 	doRename(document: TextDocument, position: Position, newName: string, stylesheet: Stylesheet): WorkspaceEdit;
 	getFoldingRanges(document: TextDocument, context?: { rangeLimit?: number; }): FoldingRange[];
 	getSelectionRanges(document: TextDocument, positions: Position[], stylesheet: Stylesheet): SelectionRange[];
@@ -99,6 +100,7 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 		doCodeActions2: codeActions.doCodeActions2.bind(codeActions),
 		findDocumentColors: navigation.findDocumentColors.bind(navigation),
 		getColorPresentations: navigation.getColorPresentations.bind(navigation),
+		prepareRename: navigation.prepareRename.bind(navigation),
 		doRename: navigation.doRename.bind(navigation),
 		getFoldingRanges,
 		getSelectionRanges

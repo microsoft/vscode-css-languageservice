@@ -59,16 +59,24 @@ export class CSSNavigation {
 		});
 	}
 
-	public findDocumentHighlights(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): DocumentHighlight[] {
-		const result: DocumentHighlight[] = [];
-
+	private getHighlightNode(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): nodes.Node | undefined {
 		const offset = document.offsetAt(position);
 		let node = nodes.getNodeAtOffset(stylesheet, offset);
 		if (!node || node.type === nodes.NodeType.Stylesheet || node.type === nodes.NodeType.Declarations) {
-			return result;
+			return;
 		}
 		if (node.type === nodes.NodeType.Identifier && node.parent && node.parent.type === nodes.NodeType.ClassSelector) {
 			node = node.parent;
+		}
+
+		return node;
+	}
+
+	public findDocumentHighlights(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): DocumentHighlight[] {
+		const result: DocumentHighlight[] = [];
+		const node = this.getHighlightNode(document, position, stylesheet);
+		if (!node) {
+			return result;
 		}
 
 		const symbols = new Symbols(stylesheet);
@@ -327,6 +335,13 @@ export class CSSNavigation {
 		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
 
 		return result;
+	}
+
+	public prepareRename(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Range | undefined {
+		const node = this.getHighlightNode(document, position, stylesheet);
+		if (node) {
+			return Range.create(document.positionAt(node.offset), document.positionAt(node.end));
+		}
 	}
 
 	public doRename(document: TextDocument, position: Position, newName: string, stylesheet: nodes.Stylesheet): WorkspaceEdit {
