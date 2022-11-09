@@ -6,8 +6,7 @@
 
 import * as nodes from './cssNodes';
 
-import * as nls from 'vscode-nls';
-const localize = nls.loadMessageBundle();
+import * as l10n from '@vscode/l10n';
 
 export class SCSSIssueType implements nodes.IRule {
 	id: string;
@@ -20,7 +19,7 @@ export class SCSSIssueType implements nodes.IRule {
 }
 
 export const SCSSParseError = {
-	FromExpected: new SCSSIssueType('scss-fromexpected', localize('expected.from', "'from' expected")),
-	ThroughOrToExpected: new SCSSIssueType('scss-throughexpected', localize('expected.through', "'through' or 'to' expected")),
-	InExpected: new SCSSIssueType('scss-fromexpected', localize('expected.in', "'in' expected")),
+	FromExpected: new SCSSIssueType('scss-fromexpected', l10n.t("'from' expected")),
+	ThroughOrToExpected: new SCSSIssueType('scss-throughexpected', l10n.t("'through' or 'to' expected")),
+	InExpected: new SCSSIssueType('scss-fromexpected', l10n.t("'in' expected")),
 };
