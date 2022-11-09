@@ -59,7 +59,7 @@ export class CSSNavigation {
 		});
 	}
 
-	private getNodeForFindDocumentHighlights(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet) {
+	private getHighlightNode(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): nodes.Node | undefined {
 		const offset = document.offsetAt(position);
 		let node = nodes.getNodeAtOffset(stylesheet, offset);
 		if (!node || node.type === nodes.NodeType.Stylesheet || node.type === nodes.NodeType.Declarations) {
@@ -74,7 +74,7 @@ export class CSSNavigation {
 
 	public findDocumentHighlights(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): DocumentHighlight[] {
 		const result: DocumentHighlight[] = [];
-		const node = this.getNodeForFindDocumentHighlights(document, position, stylesheet);
+		const node = this.getHighlightNode(document, position, stylesheet);
 		if (!node) {
 			return result;
 		}
@@ -338,7 +338,7 @@ export class CSSNavigation {
 	}
 
 	public prepareRename(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Range | undefined {
-		const node = this.getNodeForFindDocumentHighlights(document, position, stylesheet);
+		const node = this.getHighlightNode(document, position, stylesheet);
 		if (node) {
 			return Range.create(document.positionAt(node.offset), document.positionAt(node.end));
 		}
