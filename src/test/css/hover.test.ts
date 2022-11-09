@@ -78,7 +78,7 @@ suite('SCSS Hover', () => {
 			{
 				contents: [
 					{ language: 'html', value: '<div>\n  …\n    <div>' },
-					'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 0, 1)'
+					'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 0, 2)'
 				]
 			},
 			'scss'
