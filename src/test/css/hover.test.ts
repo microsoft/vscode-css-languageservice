@@ -84,20 +84,20 @@ suite('SCSS Hover', () => {
 			'scss'
 		);
 		assertHover(
-			'.test-class { p, .test-class { |p {} } }',
+			'.foo { p, .foo { |p {} } }',
 			{
 				contents: [
-					{ language: 'html', value: '<element class="test-class">\n  …\n    <p>\n      …\n        <p>' },
+					{ language: 'html', value: '<element class="foo">\n  …\n    <p>\n      …\n        <p>' },
 					'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 1, 2)'
 				]
 			},
 			'scss'
 		);
 		assertHover(
-			'.test-class { p, .test|-class { |p {} } }',
+			'.foo { p, .fo|o { |p {} } }',
 			{
 				contents: [
-					{ language: 'html', value: '<element class="test-class">\n  …\n    <element class="test-class">' },
+					{ language: 'html', value: '<element class="foo">\n  …\n    <element class="foo">' },
 					'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 2, 0)'
 				]
 			},
