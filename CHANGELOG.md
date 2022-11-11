@@ -1,3 +1,7 @@
+6.2.0 / 2022-11-09
+================
+ * new API `LanguageService.prepareRename`, returning `Range`
+
 6.1.0 / 2022-09-02
 ================
  * new API `LanguageService.findDocumentSymbols2`, returning `DocumentSymbol[]`
