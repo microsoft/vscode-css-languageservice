@@ -481,7 +481,7 @@ export class SelectorPrinting {
 				specificity = calculateScore(node);
 				initial = false;
 			} else if (node instanceof nodes.RuleSet) {
-				specificity = calculateScore(node.getSelectors());
+				specificity = calculateScore(node.getSelectors().getChild(0) ?? node.getSelectors());
 			}
 			total_specificity.merge(specificity);
 			node = node.parent;
