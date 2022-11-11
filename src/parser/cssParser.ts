@@ -9,6 +9,7 @@ import { ParseError, CSSIssueType } from './cssErrors';
 import * as languageFacts from '../languageFacts/facts';
 import { TextDocument } from '../cssLanguageTypes';
 import { isDefined } from '../utils/objects';
+import { SCSSParser } from './scssParser';
 
 export interface IMark {
 	prev?: IToken;
@@ -1106,7 +1107,9 @@ export class Parser {
 		// <mf-range> = <mf-name> [ '<' | '>' ]? '='? <mf-value> | <mf-value> [ '<' | '>' ]? '='? <mf-name> | <mf-value> '<' '='? <mf-name> '<' '='? <mf-value> | <mf-value> '>' '='? <mf-name> '>' '='? <mf-value>
 
 		const parseRangeOperator = () => {
-			if (this.acceptDelim('<') || this.acceptDelim('>')) {
+			if (this instanceof SCSSParser && (this.acceptDelim('<=') || this.acceptDelim('>='))) {
+				return true;
+			} else if (this.acceptDelim('<') || this.acceptDelim('>')) {
 				if (!this.hasWhitespace()) {
 					this.acceptDelim('=');
 				}
