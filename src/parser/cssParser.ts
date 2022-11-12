@@ -1106,7 +1106,6 @@ export class Parser {
 		// <mf-range> = <mf-name> [ '<' | '>' ]? '='? <mf-value> | <mf-value> [ '<' | '>' ]? '='? <mf-name> | <mf-value> '<' '='? <mf-name> '<' '='? <mf-value> | <mf-value> '>' '='? <mf-name> '>' '='? <mf-value>
 
 		const parseRangeOperator = () => {
-			console.log(this.constructor.name);
 			if (this.constructor.name === "SCSSParser" && (this.accept(SmallerEqualsOperator) || this.accept(GreaterEqualsOperator))) {
 				return true;
 			} else if (this.acceptDelim('<') || this.acceptDelim('>')) {
