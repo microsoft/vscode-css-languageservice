@@ -243,6 +243,13 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { -webkit-appearance: none }', Rules.IncludeStandardPropertyWhenUsingVendorPrefix);
 	});
 
+	test('ignore missing standard properties in contexts with vendor specific pseudo-element', function () {
+		// (See https://github.com/microsoft/vscode/issues/164350)
+		assertRuleSet('input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; }');
+		assertRuleSet('input[type="range"]::-webkit-slider-thumb { color: black; & selector { -webkit-appearance: none; } }');
+		assertRuleSet('input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; -moz-appearance: none; }', Rules.IncludeStandardPropertyWhenUsingVendorPrefix);
+	});
+
 	test('font-face required properties', function () {
 		assertFontFace('@font-face {  }', Rules.RequiredPropertiesForFontFace);
 		assertFontFace('@font-face { src: url(test.tff) }', Rules.RequiredPropertiesForFontFace);
