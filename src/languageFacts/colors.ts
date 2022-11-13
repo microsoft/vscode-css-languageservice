@@ -220,6 +220,12 @@ export function isColorConstructor(node: nodes.Function): boolean {
 	return /^(rgb|rgba|hsl|hsla|hwb)$/gi.test(name);
 }
 
+export function isColorString(s: string) {
+	// From https://stackoverflow.com/questions/8027423/how-to-check-if-a-string-is-a-valid-hex-color-representation/8027444
+	return (s.toLowerCase() in colors) || /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(s) || /^(rgb|rgba|hsl|hsla|hwb)/gi.test(s.toLowerCase());
+}
+
+
 /**
  * Returns true if the node is a color value - either
  * defined a hex number, as rgb or rgba function, or
@@ -367,7 +373,7 @@ export function hslFromColor(rgba: Color): HSLA {
 export function colorFromHWB(hue: number, white: number, black: number, alpha: number = 1.0): Color {
 	if (white + black >= 1) {
 		const gray = white / (white + black);
-		return {red: gray, green: gray, blue: gray, alpha};
+		return { red: gray, green: gray, blue: gray, alpha };
 	}
 
 	const rgb = colorFromHSL(hue, 1, 0.5, alpha);
@@ -423,11 +429,11 @@ export function getColorValue(node: nodes.Node): Color | null {
 					if (lastValue instanceof nodes.BinaryExpression) {
 						const left = lastValue.getLeft(), right = lastValue.getRight(), operator = lastValue.getOperator();
 						if (left && right && operator && operator.matches('/')) {
-							colorValues = [ colorValues[0], colorValues[1], left, right ];
+							colorValues = [colorValues[0], colorValues[1], left, right];
 						}
 					}
 				}
-			}	
+			}
 		}
 		if (!name || colorValues.length < 3 || colorValues.length > 4) {
 			return null;
