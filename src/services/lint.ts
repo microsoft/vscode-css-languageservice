@@ -56,7 +56,9 @@ export class LintVisitor implements nodes.IVisitor {
 		this.settings = settings;
 		this.documentText = document.getText();
 		this.keyframes = new NodesByRootMap();
-		this.validProperties = {};
+		this.validProperties = {
+			'aspect-ratio': true,
+		};
 
 		const properties = settings.getSetting(Settings.ValidProperties);
 		if (Array.isArray(properties)) {
