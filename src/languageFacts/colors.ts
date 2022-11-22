@@ -7,15 +7,14 @@ import { Color } from '../cssLanguageService';
 
 import * as nodes from '../parser/cssNodes';
 
-import * as nls from 'vscode-nls';
-const localize = nls.loadMessageBundle();
+import * as l10n from '@vscode/l10n';
 
 export const colorFunctions = [
-	{ func: 'rgb($red, $green, $blue)', desc: localize('css.builtin.rgb', 'Creates a Color from red, green, and blue values.') },
-	{ func: 'rgba($red, $green, $blue, $alpha)', desc: localize('css.builtin.rgba', 'Creates a Color from red, green, blue, and alpha values.') },
-	{ func: 'hsl($hue, $saturation, $lightness)', desc: localize('css.builtin.hsl', 'Creates a Color from hue, saturation, and lightness values.') },
-	{ func: 'hsla($hue, $saturation, $lightness, $alpha)', desc: localize('css.builtin.hsla', 'Creates a Color from hue, saturation, lightness, and alpha values.') },
-	{ func: 'hwb($hue $white $black)', desc: localize('css.builtin.hwb', 'Creates a Color from hue, white and black.') }
+	{ func: 'rgb($red, $green, $blue)', desc: l10n.t('Creates a Color from red, green, and blue values.') },
+	{ func: 'rgba($red, $green, $blue, $alpha)', desc: l10n.t('Creates a Color from red, green, blue, and alpha values.') },
+	{ func: 'hsl($hue, $saturation, $lightness)', desc: l10n.t('Creates a Color from hue, saturation, and lightness values.') },
+	{ func: 'hsla($hue, $saturation, $lightness, $alpha)', desc: l10n.t('Creates a Color from hue, saturation, lightness, and alpha values.') },
+	{ func: 'hwb($hue $white $black)', desc: l10n.t('Creates a Color from hue, white and black.') }
 ];
 
 export const colors: { [name: string]: string } = {

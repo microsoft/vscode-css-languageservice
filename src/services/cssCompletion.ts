@@ -13,12 +13,11 @@ import {
 	Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, CompletionItemTag, DocumentContext, LanguageServiceOptions, IPropertyData, CompletionSettings
 } from '../cssLanguageTypes';
 
-import * as nls from 'vscode-nls';
+import * as l10n from '@vscode/l10n';
 import { isDefined } from '../utils/objects';
 import { CSSDataManager } from '../languageFacts/dataManager';
 import { PathCompletionParticipant } from './pathCompletion';
 
-const localize = nls.loadMessageBundle();
 const SnippetFormat = InsertTextFormat.Snippet;
 
 const retriggerCommand: Command = {
@@ -87,6 +86,7 @@ export class CSSCompletion {
 			const pathCompletionResult = await participant.computeCompletions(document, documentContext);
 			return {
 				isIncomplete: result.isIncomplete || pathCompletionResult.isIncomplete,
+				itemDefaults: result.itemDefaults,
 				items: pathCompletionResult.items.concat(result.items)
 			};
 		} finally {
@@ -104,7 +104,16 @@ export class CSSCompletion {
 		this.styleSheet = styleSheet;
 		this.documentSettings = documentSettings;
 		try {
-			const result: CompletionList = { isIncomplete: false, items: [] };
+			const result: CompletionList = {
+				isIncomplete: false,
+				itemDefaults: {
+					editRange: {
+						start: { line: position.line, character: position.character - this.currentWord.length },
+						end: position
+					}
+				},
+				items: []
+			};
 			this.nodePath = nodes.getNodePath(this.styleSheet, this.offset);
 
 			for (let i = this.nodePath.length - 1; i >= 0; i--) {
@@ -434,7 +443,7 @@ export class CSSCompletion {
 			if (symbol.node.type === nodes.NodeType.FunctionParameter) {
 				const mixinNode = <nodes.MixinDeclaration>(symbol.node.getParent());
 				if (mixinNode.type === nodes.NodeType.MixinDeclaration) {
-					completionItem.detail = localize('completion.argument', 'argument from \'{0}\'', mixinNode.getName());
+					completionItem.detail = l10n.t('argument from \'{0}\'', mixinNode.getName());
 				}
 			}
 
