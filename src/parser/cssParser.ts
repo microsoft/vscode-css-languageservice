@@ -1105,28 +1105,16 @@ export class Parser {
 		// <mf-boolean> = <mf-name>
 		// <mf-range> = <mf-name> [ '<' | '>' ]? '='? <mf-value> | <mf-value> [ '<' | '>' ]? '='? <mf-name> | <mf-value> '<' '='? <mf-name> '<' '='? <mf-value> | <mf-value> '>' '='? <mf-name> '>' '='? <mf-value>
 
-		const parseRangeOperator = () => {
-			if (this.acceptDelim('<') || this.acceptDelim('>')) {
-				if (!this.hasWhitespace()) {
-					this.acceptDelim('=');
-				}
-				return true;
-			} else if (this.acceptDelim('=')) {
-				return true;
-			}
-			return false;
-		};
-
 		if (node.addChild(this._parseMediaFeatureName())) {
 			if (this.accept(TokenType.Colon)) {
 				if (!node.addChild(this._parseMediaFeatureValue())) {
 					return this.finish(node, ParseError.TermExpected, [], resyncStopToken);
 				}
-			} else if (parseRangeOperator()) {
+			} else if (this._parseMediaFeatureRangeOperator()) {
 				if (!node.addChild(this._parseMediaFeatureValue())) {
 					return this.finish(node, ParseError.TermExpected, [], resyncStopToken);
 				}
-				if (parseRangeOperator()) {
+				if (this._parseMediaFeatureRangeOperator()) {
 					if (!node.addChild(this._parseMediaFeatureValue())) {
 						return this.finish(node, ParseError.TermExpected, [], resyncStopToken);
 					}
@@ -1135,13 +1123,13 @@ export class Parser {
 				// <mf-boolean> = <mf-name>
 			}
 		} else if (node.addChild(this._parseMediaFeatureValue())) {
-			if (!parseRangeOperator()) {
+			if (!this._parseMediaFeatureRangeOperator()) {
 				return this.finish(node, ParseError.OperatorExpected, [], resyncStopToken);
 			}
 			if (!node.addChild(this._parseMediaFeatureName())) {
 				return this.finish(node, ParseError.IdentifierExpected, [], resyncStopToken);
 			}
-			if (parseRangeOperator()) {
+			if (this._parseMediaFeatureRangeOperator()) {
 				if (!node.addChild(this._parseMediaFeatureValue())) {
 					return this.finish(node, ParseError.TermExpected, [], resyncStopToken);
 				}
@@ -1152,6 +1140,17 @@ export class Parser {
 		return this.finish(node);
 	}
 
+	public _parseMediaFeatureRangeOperator() : boolean {
+		if (this.acceptDelim('<') || this.acceptDelim('>')) {
+			if (!this.hasWhitespace()) {
+				this.acceptDelim('=');
+			}
+			return true;
+		} else if (this.acceptDelim('=')) {
+			return true;
+		}
+		return false;
+	}
 
 	public _parseMediaFeatureName(): nodes.Node | null {
 		return this._parseIdent();

@@ -108,6 +108,10 @@ export class SCSSParser extends cssParser.Parser {
 		return this._parseInterpolation() || super._parseMediaCondition();
 	}
 
+	public _parseMediaFeatureRangeOperator() : boolean {
+		return this.accept(scssScanner.SmallerEqualsOperator) || this.accept(scssScanner.GreaterEqualsOperator) || super._parseMediaFeatureRangeOperator();
+	}
+
 	public _parseMediaFeatureName(): nodes.Node | null {
 		return this._parseModuleMember()
 			|| this._parseFunction() // function before ident
