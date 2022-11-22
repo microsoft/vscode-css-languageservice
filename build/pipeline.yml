@@ -15,6 +15,13 @@ resources:
       endpoint: Monaco
 
 parameters:
+  - name: quality
+    displayName: Quality
+    type: string
+    default: latest
+    values:
+      - latest
+      - next
   - name: publishPackage
     displayName: 🚀 Publish vscode-css-languageservice
     type: boolean
@@ -32,7 +39,17 @@ extends:
 
           # the rest of the build steps are part of the 'prepack' script, automatically run when the pipeline invokes 'yarn pack'
 
+        tag: ${{ parameters.quality }}
         publishPackage: ${{ parameters.publishPackage }}            
+
+        postPublishSteps:
+          - ${{ if eq(parameters.quality, 'latest') }}:
+            - task: Npm@1
+              inputs:
+                command: custom
+                customCommand: dist-tag add $(SetPackageSpec.PACKAGE_SPEC) next
+                customEndpoint: NPM (vscode-bot)
+              displayName: npm dist-tag
 
         testPlatforms:
           - name: Linux
