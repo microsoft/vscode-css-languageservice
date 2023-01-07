@@ -129,7 +129,7 @@ export const basicShapeFunctions: { [name: string]: string } = {
 };
 
 export const units: { [unitName: string]: string[] } = {
-	'length': ['cap', 'ch', 'cm', 'cqb', 'cqh', 'cqi', 'cqmax', 'cqmin', 'cqw', 'dvb', 'dvh', 'dvi', 'dvw', 'em', 'ex', 'ic', 'in', 'lh', 'lvb', 'lvh', 'lvi', 'lvw', 'mm', 'pc', 'pt', 'px', 'q', 'rcap', 'rch', 'rem', 'rex', 'ric', 'svb', 'svh', 'svi', 'svw', 'vb', 'vh', 'vi', 'vmax', 'vmin', 'vw'],
+	'length': ['cap', 'ch', 'cm', 'cqb', 'cqh', 'cqi', 'cqmax', 'cqmin', 'cqw', 'dvb', 'dvh', 'dvi', 'dvw', 'em', 'ex', 'ic', 'in', 'lh', 'lvb', 'lvh', 'lvi', 'lvw', 'mm', 'pc', 'pt', 'px', 'q', 'rem', 'svb', 'svh', 'svi', 'svw', 'vb', 'vh', 'vi', 'vmax', 'vmin', 'vw'],
 	'angle': ['deg', 'rad', 'grad', 'turn'],
 	'time': ['ms', 's'],
 	'frequency': ['Hz', 'kHz'],
