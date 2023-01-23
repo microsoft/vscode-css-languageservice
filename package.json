@@ -1,6 +1,6 @@
 {
   "name": "vscode-css-languageservice",
-  "version": "6.2.1",
+  "version": "6.2.2",
   "description": "Language service for CSS, LESS and SCSS",
   "main": "./lib/umd/cssLanguageService.js",
   "typings": "./lib/umd/cssLanguageService",
@@ -15,23 +15,23 @@
     "url": "https://github.com/Microsoft/vscode-css-languageservice"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.0",
+    "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
-    "@typescript-eslint/eslint-plugin": "^5.44.0",
-    "@typescript-eslint/parser": "^5.44.0",
-    "@vscode/web-custom-data": "^0.4.4",
-    "eslint": "^8.28.0",
+    "@typescript-eslint/eslint-plugin": "^5.48.2",
+    "@typescript-eslint/parser": "^5.48.2",
+    "@vscode/web-custom-data": "^0.4.5",
+    "eslint": "^8.32.0",
     "js-beautify": "^1.14.7",
-    "mocha": "^10.1.0",
-    "rimraf": "^3.0.2",
+    "mocha": "^10.2.0",
+    "rimraf": "^4.1.1",
     "source-map-support": "^0.5.21",
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@vscode/l10n": "^0.0.10",
-    "vscode-languageserver-textdocument": "^1.0.7",
+    "@vscode/l10n": "^0.0.11",
+    "vscode-languageserver-textdocument": "^1.0.8",
     "vscode-languageserver-types": "^3.17.2",
-    "vscode-uri": "^3.0.6"
+    "vscode-uri": "^3.0.7"
   },
   "scripts": {
     "prepack": "npm run clean && npm run compile-esm && npm run test && npm run remove-sourcemap-refs",
