@@ -330,14 +330,23 @@ export class SelectorPrinting {
 	}
 
 	public selectorToMarkedString(node: nodes.Selector): MarkedString[] {
-		const root = selectorToElement(node);
-		if (root) {
-			const markedStrings = new MarkedStringPrinter('"').print(root);
-			markedStrings.push(this.selectorToSpecificityMarkedString(node));
-			return markedStrings;
-		} else {
-			return [];
+		let hasChild: boolean = true;
+		let markedStrings: Array<Array<MarkedString>> = Array();
+		let childNumber: number = 0;
+		let childCount: number = 0;
+		while(hasChild){
+			const elementObject = selectorToElement(node, childNumber);
+			let root = elementObject.root;
+			hasChild = elementObject.hasChild;
+			childNumber += 1;
+			if ((hasChild || !childCount) && root) {
+				childCount += 1;
+				const markedString = new MarkedStringPrinter('"').print(root);
+				markedString.push(this.selectorToSpecificityMarkedString(node));
+				markedStrings.push(markedString);
+			}
 		}
+		return markedStrings.flat(1);
 	}
 
 	public simpleSelectorToMarkedString(node: nodes.SimpleSelector): MarkedString[] {
@@ -450,7 +459,8 @@ export class SelectorPrinting {
 			return specificity;
 		};
 
-		const specificity = calculateScore(node);;
+
+		const specificity = calculateScore(node);
 		return l10n.t("[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): ({0}, {1}, {2})", specificity.id, specificity.attr, specificity.tag);
 	}
 
@@ -523,10 +533,17 @@ function isNewSelectorContext(node: nodes.Node): boolean {
 	}
 	return false;
 }
+interface ElementObject {
+    root: Element | null,
+	hasChild: boolean  
+}
 
-export function selectorToElement(node: nodes.Selector): Element | null {
+export function selectorToElement(node: nodes.Selector, child: number = 0): ElementObject {
 	if (node.matches('@at-root')) {
-		return null;
+		return {
+			root: null,
+			hasChild: false
+		};
 	}
 	const root: Element = new RootElement();
 	const parentRuleSets: nodes.RuleSet[] = [];
@@ -546,14 +563,20 @@ export function selectorToElement(node: nodes.Selector): Element | null {
 	}
 
 	const builder = new SelectorElementBuilder(root);
-
+	let hasChild: boolean = false;
 	for (let i = parentRuleSets.length - 1; i >= 0; i--) {
-		const selector = <nodes.Selector>parentRuleSets[i].getSelectors().getChild(0);
+		const selector = <nodes.Selector>parentRuleSets[i].getSelectors().getChild(i === 0 ? child : 0);
 		if (selector) {
+			hasChild = true;
 			builder.processSelector(selector);
+		} else {
+			hasChild = false;
 		}
 	}
 
 	builder.processSelector(node);
-	return root;
+	return {
+		root,
+		hasChild
+	};
 }

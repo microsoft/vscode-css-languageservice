@@ -61,7 +61,7 @@ export function assertSelector(p: Parser, input: string, selectorName: string, e
 	let element = selectorPrinting.selectorToElement(selector!);
 	assert(element);
 
-	assert.equal(elementToString(element!), expected);
+	assert.equal(elementToString(element.root!), expected);
 }
 
 function assertElement(p: Parser, input: string, expected: { name: string; value?: string }[]): void {
