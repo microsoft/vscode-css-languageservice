@@ -78,6 +78,66 @@ suite('SCSS Hover', () => {
 			{
 				contents: [
 					{ language: 'html', value: '<div>\n  …\n    <div>' },
+					'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 0, 2)'
+				]
+			},
+			'scss'
+		);
+		assertHover(
+			'.foo { p, .foo { |p {} } }',
+			{
+				contents: [
+					{ language: 'html', value: '<element class="foo">\n  …\n    <p>\n      …\n        <p>' },
+					'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 1, 2)'
+				]
+			},
+			'scss'
+		);
+		assertHover(
+			'.foo { p, .fo|o { |p {} } }',
+			{
+				contents: [
+					{ language: 'html', value: '<element class="foo">\n  …\n    <element class="foo">' },
+					'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 2, 0)'
+				]
+			},
+			'scss'
+		);
+		assertHover(
+			'input { &:hover, &:focus { &::|placeholder {} } }',
+			{
+				contents: [
+					{ language: 'html', value: '<input :hover ::placeholder>' },
+					'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 1, 2)'
+				]
+			},
+			'scss'
+		);
+		assertHover(
+			'input { &:hover, &:fo|cus { &::placeholder {} } }',
+			{
+				contents: [
+					{ language: 'html', value: '<input :focus>' },
+					'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 1, 1)'
+				]
+			},
+			'scss'
+		);
+		assertHover(
+			'input { &:ho|ver, &:focus { &::placeholder {} } }',
+			{
+				contents: [
+					{ language: 'html', value: '<input :hover>' },
+					'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 1, 1)'
+				]
+			},
+			'scss'
+		);
+		assertHover(
+			'in|put { &:hover, &:focus { &::placeholder {} } }',
+			{
+				contents: [
+					{ language: 'html', value: '<input>' },
 					'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 0, 1)'
 				]
 			},

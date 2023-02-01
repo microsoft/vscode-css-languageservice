@@ -220,6 +220,11 @@ class Specificity {
 	public attr = 0;
 	/** Count of tag names (`div`), and pseudo-elements (`::before`) */
 	public tag = 0;
+	public merge(specificity_to_merge: Specificity) {
+		this.id += specificity_to_merge.id;
+		this.attr += specificity_to_merge.attr;
+		this.tag += specificity_to_merge.tag;
+	}
 }
 
 export function toElement(node: nodes.SimpleSelector, parentElement?: Element | null): Element {
@@ -449,9 +454,40 @@ export class SelectorPrinting {
 
 			return specificity;
 		};
+		let total_specificity = new Specificity();
+		let initial: boolean = true;
+		/* 
+			Loop past the first Ruleset. 
+				  This is to handle the case where the deepest Selector is comma separated
+				  and the user might hover over just one of them
+		*/
+		let pastInitial: boolean = false;
+		while (node.parent instanceof nodes.Node) {
+			/*
+				Only Ruleset nodes are useful to calculate the ancestor selectors
+				Exception is the deepest selector which is a Node
+			*/
+			if (!initial && !(node instanceof nodes.RuleSet)) {
+				node = node.parent;
+				continue;
+			}
+			if (!pastInitial && node instanceof nodes.RuleSet) {
+				node = node.parent;
+				pastInitial = true;
+				continue;
+			}
+			let specificity: Specificity = new Specificity();
+			if (initial) {
+				specificity = calculateScore(node);
+				initial = false;
+			} else if (node instanceof nodes.RuleSet) {
+				specificity = calculateScore(node.getSelectors().getChild(0) ?? node.getSelectors());
+			}
+			total_specificity.merge(specificity);
+			node = node.parent;
+		}
 
-		const specificity = calculateScore(node);;
-		return l10n.t("[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): ({0}, {1}, {2})", specificity.id, specificity.attr, specificity.tag);
+		return l10n.t("[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): ({0}, {1}, {2})", total_specificity.id, total_specificity.attr, total_specificity.tag);
 	}
 
 }
