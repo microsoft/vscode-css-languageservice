@@ -450,8 +450,8 @@ export class SelectorPrinting {
 			return specificity;
 		};
 
-		const specificity = calculateScore(node);;
-		return l10n.t("[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): ({0}, {1}, {2})", specificity.id, specificity.attr, specificity.tag);
+		const specificity = calculateScore(node);
+		return `[${l10n.t("Selector Specificity")}](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (${specificity.id}), ${specificity.attr}, ${specificity.tag}`;
 	}
 
 }
