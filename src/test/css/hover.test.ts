@@ -65,7 +65,7 @@ suite('CSS Hover', () => {
 		assertHover('.|foo {}', {
 			contents: [
 				{ language: 'html', value: '<element class="foo">' },
-				'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 1, 0)'
+				'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 0)'
 			]
 		});
 	});
@@ -78,7 +78,7 @@ suite('SCSS Hover', () => {
 			{
 				contents: [
 					{ language: 'html', value: '<div>\n  …\n    <div>' },
-					'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 0, 1)'
+					'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 0, 1)'
 				]
 			},
 			'scss'
