@@ -445,7 +445,8 @@ export class Scanner {
 			npeek = 1;
 		}
 		ch = this.stream.peekChar(npeek);
-		if (ch >= _0 && ch <= _9) {
+		const next_ch: number = this.stream.peekChar(npeek + 1);
+		if ((ch >= _0 && ch <= _9) || (ch === _MIN && next_ch >= _0 && next_ch <= _9)) {
 			this.stream.advance(npeek + 1);
 			this.stream.advanceWhileChar((ch) => {
 				return ch >= _0 && ch <= _9 || npeek === 0 && ch === _DOT;

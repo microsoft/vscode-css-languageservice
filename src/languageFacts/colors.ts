@@ -14,7 +14,9 @@ export const colorFunctions = [
 	{ func: 'rgba($red, $green, $blue, $alpha)', desc: l10n.t('Creates a Color from red, green, blue, and alpha values.') },
 	{ func: 'hsl($hue, $saturation, $lightness)', desc: l10n.t('Creates a Color from hue, saturation, and lightness values.') },
 	{ func: 'hsla($hue, $saturation, $lightness, $alpha)', desc: l10n.t('Creates a Color from hue, saturation, lightness, and alpha values.') },
-	{ func: 'hwb($hue $white $black)', desc: l10n.t('Creates a Color from hue, white and black.') }
+	{ func: 'hwb($hue $white $black)', desc: l10n.t('Creates a Color from hue, white and black.') },
+	{ func: 'lab($lightness $channel_a $channel_b $alpha)', desc: l10n.t('css.builtin.lab', 'Creates a Color from Lightness, Channel a, Channel b and alpha values.') },
+	{ func: 'lch($lightness $chrome $hue $alpha)', desc: l10n.t('css.builtin.lab', 'Creates a Color from Lightness, Chroma, Hue and alpha values.') }
 ];
 
 export const colors: { [name: string]: string } = {
@@ -173,7 +175,7 @@ export const colorKeywords: { [name: string]: string } = {
 	'transparent': 'Fully transparent. This keyword can be considered a shorthand for rgba(0,0,0,0) which is its computed value.',
 };
 
-function getNumericValue(node: nodes.Node, factor: number) {
+function getNumericValue(node: nodes.Node, factor: number, lowerLimit: number = 0, upperLimit: number = 1) {
 	const val = node.getText();
 	const m = val.match(/^([-+]?[0-9]*\.?[0-9]+)(%?)$/);
 	if (m) {
@@ -181,7 +183,7 @@ function getNumericValue(node: nodes.Node, factor: number) {
 			factor = 100.0;
 		}
 		const result = parseFloat(m[1]) / factor;
-		if (result >= 0 && result <= 1) {
+		if (result >= lowerLimit && result <= upperLimit) {
 			return result;
 		}
 	}
@@ -216,7 +218,7 @@ export function isColorConstructor(node: nodes.Function): boolean {
 	if (!name) {
 		return false;
 	}
-	return /^(rgb|rgba|hsl|hsla|hwb)$/gi.test(name);
+	return /^(rgb|rgba|hsl|hsla|hwb|lab|lch)$/gi.test(name);
 }
 
 /**
@@ -366,7 +368,7 @@ export function hslFromColor(rgba: Color): HSLA {
 export function colorFromHWB(hue: number, white: number, black: number, alpha: number = 1.0): Color {
 	if (white + black >= 1) {
 		const gray = white / (white + black);
-		return {red: gray, green: gray, blue: gray, alpha};
+		return { red: gray, green: gray, blue: gray, alpha };
 	}
 
 	const rgb = colorFromHSL(hue, 1, 0.5, alpha);
@@ -405,6 +407,202 @@ export function hwbFromColor(rgba: Color): HWBA {
 	};
 }
 
+export interface XYZ { x: number; y: number; z: number; alpha: number; }
+
+export interface RGB { r: number; g: number; b: number; alpha: number; }
+
+export function xyzFromLAB(lab: LAB): XYZ {
+	const xyz: XYZ = {
+		x: 0,
+		y: 0,
+		z: 0,
+		alpha: lab.alpha ?? 1
+	};
+	xyz["y"] = (lab.l + 16.0) / 116.0;
+	xyz["x"] = (lab.a / 500.0) + xyz["y"];
+	xyz["z"] = xyz["y"] - (lab.b / 200.0);
+	let key: keyof XYZ;
+
+	for (key in xyz) {
+		let pow = xyz[key] * xyz[key] * xyz[key];
+		if (pow > 0.008856) {
+			xyz[key] = pow;
+		} else {
+			xyz[key] = (xyz[key] - 16.0 / 116.0) / 7.787;
+		}
+	}
+
+	xyz["x"] = xyz["x"] * 95.047;
+	xyz["y"] = xyz["y"] * 100.0;
+	xyz["z"] = xyz["z"] * 108.883;
+	return xyz;
+}
+
+export function xyzToRGB(xyz: XYZ): Color {
+	const rgb: RGB = {
+		r: 0,
+		g: 0,
+		b: 0,
+		alpha: xyz.alpha
+	};
+
+	const new_xyz: XYZ = {
+		x: xyz.x / 100,
+		y: xyz.y / 100,
+		z: xyz.z / 100,
+		alpha: xyz.alpha ?? 1
+	};
+
+	rgb.r = (new_xyz.x * 3.240479) + (new_xyz.y * -1.537150) + (new_xyz.z * -0.498535);
+	rgb.g = (new_xyz.x * -0.969256) + (new_xyz.y * 1.875992) + (new_xyz.z * 0.041556);
+	rgb.b = (new_xyz.x * 0.055648) + (new_xyz.y * -0.204043) + (new_xyz.z * 1.057311);
+	let key: keyof RGB;
+
+	for (key in rgb) {
+		if (rgb[key] > 0.0031308) {
+			rgb[key] = (1.055 * Math.pow(rgb[key], (1.0 / 2.4))) - 0.055;
+		} else {
+			rgb[key] = rgb[key] * 12.92;
+		}
+	}
+	rgb.r = Math.round(rgb.r * 255.0);
+	rgb.g = Math.round(rgb.g * 255.0);
+	rgb.b = Math.round(rgb.b * 255.0);
+
+	return {
+		red: rgb.r,
+		blue: rgb.b,
+		green: rgb.g,
+		alpha: rgb.alpha
+	};
+}
+
+export function RGBtoXYZ(rgba: Color): XYZ {
+	let r: number = rgba.red,
+		g: number = rgba.green,
+		b: number = rgba.blue;
+
+	if (r > 0.04045) {
+		r = Math.pow((r + 0.055) / 1.055, 2.4);
+	} else {
+		r = r / 12.92;
+	}
+	if (g > 0.04045) {
+		g = Math.pow((g + 0.055) / 1.055, 2.4);
+	} else {
+		g = g / 12.92;
+	}
+	if (b > 0.04045) {
+		b = Math.pow((b + 0.055) / 1.055, 2.4);
+	} else {
+		b = b / 12.92;
+	}
+	r = r * 100;
+	g = g * 100;
+	b = b * 100;
+
+	//Observer = 2°, Illuminant = D65
+	const x = r * 0.4124 + g * 0.3576 + b * 0.1805;
+	const y = r * 0.2126 + g * 0.7152 + b * 0.0722;
+	const z = r * 0.0193 + g * 0.1192 + b * 0.9505;
+	return { x, y, z, alpha: rgba.alpha };
+}
+
+export function XYZtoLAB(xyz: XYZ, round: Boolean = true): LAB {
+	const ref_X = 95.047, ref_Y = 100.000, ref_Z = 108.883;
+
+	let x: number = xyz.x / ref_X,
+		y: number = xyz.y / ref_Y,
+		z: number = xyz.z / ref_Z;
+
+	if (x > 0.008856) {
+		x = Math.pow(x, 1 / 3);
+	} else {
+		x = (7.787 * x) + (16 / 116);
+	}
+	if (y > 0.008856) {
+		y = Math.pow(y, 1 / 3);
+	} else {
+		y = (7.787 * y) + (16 / 116);
+	}
+	if (z > 0.008856) {
+		z = Math.pow(z, 1 / 3);
+	} else {
+		z = (7.787 * z) + (16 / 116);
+	}
+	const l: number = (116 * y) - 16,
+		a: number = 500 * (x - y),
+		b: number = 200 * (y - z);
+	if (round) {
+		return {
+			l: Math.round((l + Number.EPSILON) * 100) / 100,
+			a: Math.round((a + Number.EPSILON) * 100) / 100,
+			b: Math.round((b + Number.EPSILON) * 100) / 100,
+			alpha: xyz.alpha
+		};
+	} else {
+		return {
+			l, a, b,
+			alpha: xyz.alpha
+		};
+	}
+}
+
+export function labFromColor(rgba: Color, round: Boolean = true): LAB {
+	const xyz: XYZ = RGBtoXYZ(rgba);
+	const lab: LAB = XYZtoLAB(xyz, round);
+	return lab;
+}
+export function lchFromColor(rgba: Color): LCH {
+	const lab: LAB = labFromColor(rgba, false);
+	const c: number = Math.sqrt(Math.pow(lab.a, 2) + Math.pow(lab.b, 2));
+	let h: number = Math.atan2(lab.b, lab.a) * (180 / Math.PI);
+	while (h < 0) {
+		h = h + 360;
+	}
+	return {
+		l: Math.round((lab.l + Number.EPSILON) * 100) / 100,
+		c: Math.round((c + Number.EPSILON) * 100) / 100,
+		h: Math.round((h + Number.EPSILON) * 100) / 100,
+		alpha: lab.alpha
+	};
+}
+
+export function colorFromLAB(l: number, a: number, b: number, alpha: number = 1.0): Color {
+	const lab: LAB = {
+		l,
+		a,
+		b,
+		alpha
+	};
+	const xyz = xyzFromLAB(lab);
+	const rgb = xyzToRGB(xyz);
+	return {
+		red: (rgb.red >= 0 ? (rgb.red <= 255 ? rgb.red : 255) : 0) / 255.0,
+		green: (rgb.green >= 0 ? (rgb.green <= 255 ? rgb.green : 255) : 0) / 255.0,
+		blue: (rgb.blue >= 0 ? (rgb.blue <= 255 ? rgb.blue : 255) : 0) / 255.0,
+		alpha
+	};
+}
+
+export interface LAB { l: number; a: number; b: number; alpha?: number; }
+
+export function labFromLCH(l: number, c: number, h: number, alpha: number = 1.0): LAB {
+	return {
+		l: l,
+		a: c * Math.cos(h * (Math.PI / 180)),
+		b: c * Math.sin(h * (Math.PI / 180)),
+		alpha: alpha
+	};
+}
+
+export function colorFromLCH(l: number, c: number, h: number, alpha: number = 1.0): Color {
+	const lab: LAB = labFromLCH(l, c, h, alpha);
+	return colorFromLAB(lab.l, lab.a, lab.b, alpha);
+}
+
+export interface LCH { l: number; c: number; h: number; alpha?: number; }
+
 export function getColorValue(node: nodes.Node): Color | null {
 	if (node.type === nodes.NodeType.HexColorValue) {
 		const text = node.getText();
@@ -422,11 +620,11 @@ export function getColorValue(node: nodes.Node): Color | null {
 					if (lastValue instanceof nodes.BinaryExpression) {
 						const left = lastValue.getLeft(), right = lastValue.getRight(), operator = lastValue.getOperator();
 						if (left && right && operator && operator.matches('/')) {
-							colorValues = [ colorValues[0], colorValues[1], left, right ];
+							colorValues = [colorValues[0], colorValues[1], left, right];
 						}
 					}
 				}
-			}	
+			}
 		}
 		if (!name || colorValues.length < 3 || colorValues.length > 4) {
 			return null;
@@ -450,6 +648,18 @@ export function getColorValue(node: nodes.Node): Color | null {
 				const w = getNumericValue(colorValues[1], 100.0);
 				const b = getNumericValue(colorValues[2], 100.0);
 				return colorFromHWB(h, w, b, alpha);
+			} else if (name === 'lab') {
+				// Reference: https://mina86.com/2021/srgb-lab-lchab-conversions/
+				const l = getNumericValue(colorValues[0], 100.0);
+				// Since these two values can be negative, a lower limit of -1 has been added
+				const a = getNumericValue(colorValues[1], 125.0, -1);
+				const b = getNumericValue(colorValues[2], 125.0, -1);
+				return colorFromLAB(l * 100, a * 125, b * 125, alpha);
+			} else if (name === 'lch') {
+				const l = getNumericValue(colorValues[0], 100.0);
+				const c = getNumericValue(colorValues[1], 230.0);
+				const h = getAngle(colorValues[2]);
+				return colorFromLCH(l * 100, c * 230, h, alpha);
 			}
 		} catch (e) {
 			// parse error on numeric value
