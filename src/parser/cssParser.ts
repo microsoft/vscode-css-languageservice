@@ -369,7 +369,8 @@ export class Parser {
 		if (this.peek(TokenType.AtKeyword)) {
 			return this._parseRuleSetDeclarationAtStatement();
 		}
-		return this._parseDeclaration();
+		return (!this.peek(TokenType.Ident) && this._tryParseRuleset(true))
+			|| this._parseDeclaration();
 	}
 
 	public _needsSemicolonAfter(node: nodes.Node): boolean {
@@ -1140,7 +1141,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseMediaFeatureRangeOperator() : boolean {
+	public _parseMediaFeatureRangeOperator(): boolean {
 		if (this.acceptDelim('<') || this.acceptDelim('>')) {
 			if (!this.hasWhitespace()) {
 				this.acceptDelim('=');
@@ -1405,13 +1406,22 @@ export class Parser {
 
 		const node = this.create(nodes.SimpleSelector);
 		let c = 0;
-		if (node.addChild(this._parseElementName())) {
+		if (node.addChild(this._parseElementName() || this._parseNestingSelector())) {
 			c++;
 		}
 		while ((c === 0 || !this.hasWhitespace()) && node.addChild(this._parseSimpleSelectorBody())) {
 			c++;
 		}
 		return c > 0 ? this.finish(node) : null;
+	}
+
+	public _parseNestingSelector(): nodes.Node | null {
+		if (this.peekDelim('&')) {
+			const node = this.createNode(nodes.NodeType.SelectorCombinator);
+			this.consumeToken();
+			return this.finish(node);
+		}
+		return null;
 	}
 
 	public _parseSimpleSelectorBody(): nodes.Node | null {

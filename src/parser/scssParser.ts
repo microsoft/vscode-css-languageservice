@@ -194,7 +194,7 @@ export class SCSSParser extends cssParser.Parser {
 	public _parseTermExpression(): nodes.Node | null {
 		return this._parseModuleMember() ||
 			this._parseVariable() ||
-			this._parseSelectorCombinator() ||
+			this._parseNestingSelector() ||
 			//this._tryParsePrio() ||
 			super._parseTermExpression();
 	}
@@ -203,7 +203,7 @@ export class SCSSParser extends cssParser.Parser {
 		if (this.peek(scssScanner.InterpolationFunction)) {
 			const node = this.create(nodes.Interpolation);
 			this.consumeToken();
-			if (!node.addChild(this._parseExpr()) && !this._parseSelectorCombinator()) {
+			if (!node.addChild(this._parseExpr()) && !this._parseNestingSelector()) {
 				if (this.accept(TokenType.CurlyR)) {
 					return this.finish(node);
 				}
@@ -257,11 +257,11 @@ export class SCSSParser extends cssParser.Parser {
 				|| this._parseSupports(true) // @supports
 				|| this._parseLayer() // @layer
 				|| this._parsePropertyAtRule() // @property
-				|| super._parseRuleSetDeclarationAtStatement();
+				|| this._parseRuleSetDeclarationAtStatement();
 		}
 		return this._parseVariableDeclaration() // variable declaration
 			|| this._tryParseRuleset(true) // nested ruleset
-			|| super._parseRuleSetDeclaration(); // try css ruleset declaration as last so in the error case, the ast will contain a declaration
+			|| this._parseDeclaration(); // try css ruleset declaration as last so in the error case, the ast will contain a declaration
 	}
 
 	public _parseDeclaration(stopTokens?: TokenType[]): nodes.Declaration | null {
@@ -326,10 +326,10 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseSimpleSelectorBody(): nodes.Node | null {
-		return this._parseSelectorCombinator() || this._parseSelectorPlaceholder() || super._parseSimpleSelectorBody();
+		return this._parseSelectorPlaceholder() || super._parseSimpleSelectorBody();
 	}
 
-	public _parseSelectorCombinator(): nodes.Node | null {
+	public _parseNestingSelector(): nodes.Node | null {
 		if (this.peekDelim('&')) {
 			const node = this.createNode(nodes.NodeType.SelectorCombinator);
 			this.consumeToken();
