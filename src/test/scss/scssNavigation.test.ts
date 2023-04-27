@@ -5,8 +5,8 @@
 'use strict';
 
 import * as nodes from '../../parser/cssNodes';
-import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertColorSymbols, assertLinks, newRange, getTestResource } from '../css/navigation.test';
-import { getSCSSLanguageService, DocumentLink, TextDocument } from '../../cssLanguageService';
+import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertColorSymbols, assertLinks, newRange, getTestResource, assertDocumentSymbols } from '../css/navigation.test';
+import { getSCSSLanguageService, DocumentLink, TextDocument, SymbolKind } from '../../cssLanguageService';
 import * as assert from 'assert';
 import * as path from 'path';
 import { URI, Utils } from 'vscode-uri';
@@ -216,18 +216,38 @@ suite('SCSS - Navigation', () => {
 			await assertLinks(ls, 'html { background-image: url("~foo/hello.html")',
 				[{ range: newRange(29, 46), target: getTestResource('node_modules/foo/hello.html') }], 'scss', testUri, workspaceFolder
 			);
-
 			await assertLinks(ls, 'html { background-image: url("foo/hello.html")',
 				[{ range: newRange(29, 45), target: getTestResource('node_modules/foo/hello.html') }], 'scss', testUri, workspaceFolder
 			);
-
 			await assertLinks(ls, `@use '@foo/bar/baz'`,
-				[{ range: newRange(5, 19), target: getTestResource('node_modules/@foo/bar/_baz.scss') }], 'scss', testUri, workspaceFolder);
-
+				[{ range: newRange(5, 19), target: getTestResource('node_modules/@foo/bar/_baz.scss') }], 'scss', testUri, workspaceFolder
+			);
 			await assertLinks(ls, `@use '@foo/bar'`,
-				[{ range: newRange(5, 15), target: getTestResource('node_modules/@foo/bar/_index.scss') }], 'scss', testUri, workspaceFolder);
+				[{ range: newRange(5, 15), target: getTestResource('node_modules/@foo/bar/_index.scss') }], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, '@import "green/d"',
+				[{ range: newRange(8, 17), target: getTestResource('green/d.scss') }], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, '@import "./green/d"',
+				[{ range: newRange(8, 19), target: getTestResource('green/d.scss') }], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, '@import "green/e"',
+				[{ range: newRange(8, 17), target: getTestResource('node_modules/green/_e.scss') }], 'scss', testUri, workspaceFolder
+			);
 		});
 
+	});
+
+	suite('Symbols', () => {
+
+		test('scss document symbols', () => {
+			const ls = getSCSSLS();
+
+			// Incomplete Mixin
+			assertDocumentSymbols(ls, '@mixin foo { }', [{ name: 'foo', kind: SymbolKind.Method, range: newRange(0, 14), selectionRange: newRange(7, 10) }]);
+			assertDocumentSymbols(ls, '@mixin {}', [{ name: '<undefined>', kind: SymbolKind.Method, range: newRange(0, 9), selectionRange: newRange(0, 0) }]);
+
+		});
 	});
 
 	suite('Color', () => {

@@ -30,7 +30,7 @@ suite('CSS Hover', () => {
 			contents: {
 				kind: 'markdown',
 				value:
-					"Sets the color of an element's text\n\nSyntax: &lt;color&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/color)"
+					"Sets the color of an element's text\n\n(Edge 12, Firefox 1, Safari 1, Chrome 1, IE 3, Opera 3)\n\nSyntax: &lt;color&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/color)"
 			}
 		});
 		assertHover('.test { |color: blue; }', {
@@ -44,7 +44,7 @@ suite('CSS Hover', () => {
 			contents: {
 				kind: 'markdown',
 				value:
-					"Sets the color of an element's text\n\nSyntax: &lt;color&gt;"
+					"Sets the color of an element's text\n\n(Edge 12, Firefox 1, Safari 1, Chrome 1, IE 3, Opera 3)\n\nSyntax: &lt;color&gt;"
 			}
 		}, undefined, { references: false });
 
@@ -65,7 +65,7 @@ suite('CSS Hover', () => {
 		assertHover('.|foo {}', {
 			contents: [
 				{ language: 'html', value: '<element class="foo">' },
-				'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 1, 0)'
+				'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 0)'
 			]
 		});
 	});
@@ -78,7 +78,7 @@ suite('SCSS Hover', () => {
 			{
 				contents: [
 					{ language: 'html', value: '<div>\n  …\n    <div>' },
-					'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 0, 1)'
+					'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 0, 1)'
 				]
 			},
 			'scss'

@@ -319,7 +319,7 @@ suite('SCSS - Parser', () => {
 		assertNode('@forward "test" as foo-* show this $that', parser, parser._parseForward.bind(parser));
 
 		assertError('@forward', parser, parser._parseForward.bind(parser), ParseError.StringLiteralExpected);
-		assertError('@forward "test" foo', parser, parser._parseForward.bind(parser), ParseError.UnknownKeyword);
+		assertError('@forward "test" foo', parser, parser._parseForward.bind(parser), ParseError.SemiColonExpected);
 		assertError('@forward "test" as', parser, parser._parseForward.bind(parser), ParseError.IdentifierExpected);
 		assertError('@forward "test" as foo-', parser, parser._parseForward.bind(parser), ParseError.WildcardExpected);
 		assertError('@forward "test" as foo- *', parser, parser._parseForward.bind(parser), ParseError.WildcardExpected);
@@ -327,7 +327,7 @@ suite('SCSS - Parser', () => {
 		assertError('@forward "test" hide', parser, parser._parseForward.bind(parser), ParseError.IdentifierOrVariableExpected);
 
 		assertNode('@forward "test" with (  $black: #222 !default,  $border-radius: 0.1rem !default )', parser, parser._parseForward.bind(parser));
-
+		assertNode('@forward "../forms.scss" as components-* with ( $field-border: false )', parser, parser._parseForward.bind(parser)); // #145108
 
 		assertNode('@use "lib"; @forward "test"', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@forward "test"; @forward "lib"', parser, parser._parseStylesheet.bind(parser));
@@ -345,6 +345,8 @@ suite('SCSS - Parser', () => {
 		assertNode('.something { @media (max-width: 760px) { ~ div { display: block; } } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.something { @media (max-width: 760px) { + div { display: block; } } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media (max-width: 760px) { + div { display: block; } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@media (height <= 600px) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media (height >= 600px) { }', parser, parser._parseMedia.bind(parser));
 
 		assertNode('@media #{layout.$media} and ($feature: $value)  {}', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media #{$media} and (layout.$feature: $value)  {}', parser, parser._parseStylesheet.bind(parser));

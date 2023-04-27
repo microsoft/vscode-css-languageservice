@@ -8,14 +8,13 @@ import {
 	Color, ColorInformation, ColorPresentation, DocumentHighlight, DocumentHighlightKind, DocumentLink, Location,
 	Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit, TextDocument, DocumentContext, FileSystemProvider, FileType, DocumentSymbol
 } from '../cssLanguageTypes';
-import * as nls from 'vscode-nls';
+import * as l10n from '@vscode/l10n';
 import * as nodes from '../parser/cssNodes';
 import { Symbols } from '../parser/cssSymbolScope';
 import { getColorValue, hslFromColor, hwbFromColor } from '../languageFacts/facts';
 import { startsWith } from '../utils/strings';
 import { dirname, joinPath } from '../utils/resources';
 
-const localize = nls.loadMessageBundle();
 
 type UnresolvedLinkData = { link: DocumentLink, isRawLink: boolean };
 
@@ -60,16 +59,24 @@ export class CSSNavigation {
 		});
 	}
 
-	public findDocumentHighlights(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): DocumentHighlight[] {
-		const result: DocumentHighlight[] = [];
-
+	private getHighlightNode(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): nodes.Node | undefined {
 		const offset = document.offsetAt(position);
 		let node = nodes.getNodeAtOffset(stylesheet, offset);
 		if (!node || node.type === nodes.NodeType.Stylesheet || node.type === nodes.NodeType.Declarations) {
-			return result;
+			return;
 		}
 		if (node.type === nodes.NodeType.Identifier && node.parent && node.parent.type === nodes.NodeType.ClassSelector) {
 			node = node.parent;
+		}
+
+		return node;
+	}
+
+	public findDocumentHighlights(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): DocumentHighlight[] {
+		const result: DocumentHighlight[] = [];
+		const node = this.getHighlightNode(document, position, stylesheet);
+		if (!node) {
+			return result;
 		}
 
 		const symbols = new Symbols(stylesheet);
@@ -134,7 +141,7 @@ export class CSSNavigation {
 			} else if (startsWithSchemeRegex.test(target)) {
 				resolvedLinks.push(link);
 			} else {
-				const resolvedTarget = await this.resolveRelativeReference(target, document.uri, documentContext, data.isRawLink);
+				const resolvedTarget = await this.resolveReference(target, document.uri, documentContext, data.isRawLink);
 				if (resolvedTarget !== undefined) {
 					link.target = resolvedTarget;
 					resolvedLinks.push(link);
@@ -198,7 +205,7 @@ export class CSSNavigation {
 		const addSymbolInformation = (name: string, kind: SymbolKind, symbolNodeOrRange: nodes.Node | Range) => {
 			const range = symbolNodeOrRange instanceof nodes.Node ? getRange(symbolNodeOrRange, document) : symbolNodeOrRange;
 			const entry: SymbolInformation = {
-				name,
+				name: name || l10n.t('<undefined>'),
 				kind,
 				location: Location.create(document.uri, range)
 			};
@@ -217,9 +224,13 @@ export class CSSNavigation {
 
 		const addDocumentSymbol = (name: string, kind: SymbolKind, symbolNodeOrRange: nodes.Node | Range, nameNodeOrRange: nodes.Node | Range | undefined, bodyNode: nodes.Node | undefined) => {
 			const range = symbolNodeOrRange instanceof nodes.Node ? getRange(symbolNodeOrRange, document) : symbolNodeOrRange;
-			const selectionRange = (nameNodeOrRange instanceof nodes.Node ? getRange(nameNodeOrRange, document) : nameNodeOrRange) ?? Range.create(range.start, range.start);
+			let selectionRange = nameNodeOrRange instanceof nodes.Node ? getRange(nameNodeOrRange, document) : nameNodeOrRange;
+			if (!selectionRange || !containsRange(range, selectionRange)) {
+				selectionRange = Range.create(range.start, range.start);
+			}
+			
 			const entry: DocumentSymbol = {
-				name,
+				name: name || l10n.t('<undefined>'),
 				kind,
 				range,
 				selectionRange
@@ -264,10 +275,10 @@ export class CSSNavigation {
 			} else if (node instanceof nodes.FunctionDeclaration) {
 				collect(node.getName(), SymbolKind.Function, node, node.getIdentifier(), node.getDeclarations());
 			} else if (node instanceof nodes.Keyframe) {
-				const name = localize('literal.keyframes', "@keyframes {0}", node.getName());
+				const name = l10n.t("@keyframes {0}", node.getName());
 				collect(name, SymbolKind.Class, node, node.getIdentifier(), node.getDeclarations());
 			} else if (node instanceof nodes.FontFace) {
-				const name = localize('literal.fontface', "@font-face");
+				const name = l10n.t("@font-face");
 				collect(name, SymbolKind.Class, node, undefined, node.getDeclarations());
 			} else if (node instanceof nodes.Media) {
 				const mediaList = node.getChild(0);
@@ -330,6 +341,13 @@ export class CSSNavigation {
 		return result;
 	}
 
+	public prepareRename(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Range | undefined {
+		const node = this.getHighlightNode(document, position, stylesheet);
+		if (node) {
+			return Range.create(document.positionAt(node.offset), document.positionAt(node.end));
+		}
+	}
+
 	public doRename(document: TextDocument, position: Position, newName: string, stylesheet: nodes.Stylesheet): WorkspaceEdit {
 		const highlights = this.findDocumentHighlights(document, position, stylesheet);
 		const edits = highlights.map(h => TextEdit.replace(h.range, newName));
@@ -341,42 +359,52 @@ export class CSSNavigation {
 	protected async resolveModuleReference(ref: string, documentUri: string, documentContext: DocumentContext): Promise<string | undefined> {
 		if (startsWith(documentUri, 'file://')) {
 			const moduleName = getModuleNameFromPath(ref);
-			const rootFolderUri = documentContext.resolveReference('/', documentUri);
-			const documentFolderUri = dirname(documentUri);
-			const modulePath = await this.resolvePathToModule(moduleName, documentFolderUri, rootFolderUri);
-			if (modulePath) {
-				const pathWithinModule = ref.substring(moduleName.length + 1);
-				return joinPath(modulePath, pathWithinModule);
+			if (moduleName && moduleName !== '.' && moduleName !== '..') {
+				const rootFolderUri = documentContext.resolveReference('/', documentUri);
+				const documentFolderUri = dirname(documentUri);
+				const modulePath = await this.resolvePathToModule(moduleName, documentFolderUri, rootFolderUri);
+				if (modulePath) {
+					const pathWithinModule = ref.substring(moduleName.length + 1);
+					return joinPath(modulePath, pathWithinModule);
+				}
 			}
 		}
 		return undefined;
 	}
 
-	protected async resolveRelativeReference(ref: string, documentUri: string, documentContext: DocumentContext, isRawLink?: boolean): Promise<string | undefined> {
-		const relativeReference = documentContext.resolveReference(ref, documentUri);
+	protected async mapReference(target: string | undefined, isRawLink: boolean): Promise<string | undefined> {
+		return target;
+	}
+
+	protected async resolveReference(target: string, documentUri: string, documentContext: DocumentContext, isRawLink = false): Promise<string | undefined> {
 
 		// Following [css-loader](https://github.com/webpack-contrib/css-loader#url)
 		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#imports)
 		// convention, if an import path starts with ~ then use node module resolution
 		// *unless* it starts with "~/" as this refers to the user's home directory.
-		if (ref[0] === '~' && ref[1] !== '/' && this.fileSystemProvider) {
-			ref = ref.substring(1);
-			return await this.resolveModuleReference(ref, documentUri, documentContext) || relativeReference;
+		if (target[0] === '~' && target[1] !== '/' && this.fileSystemProvider) {
+			target = target.substring(1);
+			return this.mapReference(await this.resolveModuleReference(target, documentUri, documentContext), isRawLink);
 		}
+
+		const ref = await this.mapReference(documentContext.resolveReference(target, documentUri), isRawLink);
 
 		// Following [less-loader](https://github.com/webpack-contrib/less-loader#imports)
 		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#resolving-import-at-rules)
-		// new resolving import at-rules (~ is deprecated). The loader will first try to resolve @import as a relative path. If it cannot be resolved, 
+		// new resolving import at-rules (~ is deprecated). The loader will first try to resolve @import as a relative path. If it cannot be resolved,
 		// then the loader will try to resolve @import inside node_modules.
 		if (this.resolveModuleReferences) {
-			if (relativeReference && await this.fileExists(relativeReference)) {
-				return relativeReference;
-			} else {
-				return await this.resolveModuleReference(ref, documentUri, documentContext) || relativeReference;
+			if (ref && await this.fileExists(ref)) {
+				return ref;
+			}
+
+			const moduleReference = await this.mapReference(await this.resolveModuleReference(target, documentUri, documentContext), isRawLink);
+			if (moduleReference) {
+				return moduleReference;
 			}
 		}
-
-		return relativeReference;
+		// fall back. it might not exists
+		return ref;
 	}
 
 	private async resolvePathToModule(_moduleName: string, documentFolderUri: string, rootFolderUri: string | undefined): Promise<string | undefined> {

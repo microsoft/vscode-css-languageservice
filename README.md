@@ -3,8 +3,8 @@ Language services for CSS, LESS and SCSS
 
 [![npm Package](https://img.shields.io/npm/v/vscode-css-languageservice.svg?style=flat-square)](https://www.npmjs.org/package/vscode-css-languageservice)
 [![NPM Downloads](https://img.shields.io/npm/dm/vscode-css-languageservice.svg)](https://npmjs.org/package/vscode-css-languageservice)
-[![Azure DevOps Build Status](https://img.shields.io/azure-devops/build/vscode/2377f926-a00b-46ed-9fb1-79465b3e998b/20.svg?label=Azure%20DevOps)](https://dev.azure.com/vscode/vscode-css-languageservice/_build?definitionId=20)
-[![Travis Build Status](https://img.shields.io/travis/microsoft/vscode-css-languageservice.svg?label=Travis)](https://travis-ci.org/Microsoft/vscode-css-languageservice)
+[![Build Status](https://github.com/microsoft/vscode-css-languageservice/actions/workflows/node.js.yml/badge.svg)](https://github.com/microsoft/vscode-css-languageservice/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Why?
 ----
@@ -20,7 +20,8 @@ and the Monaco editor.
  - *doCodeActions* evaluates code actions for the given location, typically to fix a problem.
  - *findColorSymbols* evaluates all color symbols in the given document
  - *doRename* renames all symbols connected to the given location.
-  - *getFoldingRanges* returns folding ranges in the given document.
+ - *prepareRename* the range of the node that can be renamed
+ - *getFoldingRanges* returns folding ranges in the given document.
 
 Installation
 ------------
@@ -72,5 +73,5 @@ License
 
 Copyright 2016, 20 Microsoft
 
-With the exceptions of `build/mdn-documentation.js`, which is built upon content from [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web)
+With the exceptions of `build/mdn-documentation.js`, which is built upon content from [Mozilla Developer Network](https://developer.mozilla.org/docs/Web)
 and distributed under CC BY-SA 2.5.

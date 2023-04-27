@@ -149,6 +149,12 @@ suite('CSS - Parser', () => {
 		assertError('@keyframes name { from, #123', parser, parser._parseKeyframe.bind(parser), ParseError.PercentageExpected);
 	});
 
+	test('@property', function () {
+		const parser = new Parser();
+		assertNode(`@property --my-color { syntax: '<color>'; inherits: false; initial-value: #c0ffee; }`, parser, parser._parseStylesheet.bind(parser));
+		assertError(`@property  {  }`, parser, parser._parseStylesheet.bind(parser), ParseError.IdentifierExpected);
+	});
+
 	test('@import', function () {
 		const parser = new Parser();
 		assertNode('@import "asdasdsa"', parser, parser._parseImport.bind(parser));
@@ -351,6 +357,13 @@ suite('CSS - Parser', () => {
 		assertError('boo {--unbalanced-parens: not)()(cool;}', parser, parser._parseRuleset.bind(parser), ParseError.LeftParenthesisExpected);
 		assertError('boo {--unbalanced-brackets: not[[]valid;}', parser, parser._parseRuleset.bind(parser), ParseError.LeftCurlyExpected);
 		assertError('boo {--unbalanced-brackets: not][][valid;}', parser, parser._parseRuleset.bind(parser), ParseError.LeftSquareBracketExpected);
+	});
+
+	test('nested ruleset', function () {
+		let parser = new Parser();
+		//assertNode('.foo { color: red; .bar { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; &:hover { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; + .bar { color: blue; } }', parser, parser._parseRuleset.bind(parser));
 	});
 
 	test('selector', function () {
