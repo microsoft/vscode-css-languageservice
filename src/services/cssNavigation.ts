@@ -205,7 +205,7 @@ export class CSSNavigation {
 		const addSymbolInformation = (name: string, kind: SymbolKind, symbolNodeOrRange: nodes.Node | Range) => {
 			const range = symbolNodeOrRange instanceof nodes.Node ? getRange(symbolNodeOrRange, document) : symbolNodeOrRange;
 			const entry: SymbolInformation = {
-				name,
+				name: name || l10n.t('<undefined>'),
 				kind,
 				location: Location.create(document.uri, range)
 			};
@@ -224,9 +224,13 @@ export class CSSNavigation {
 
 		const addDocumentSymbol = (name: string, kind: SymbolKind, symbolNodeOrRange: nodes.Node | Range, nameNodeOrRange: nodes.Node | Range | undefined, bodyNode: nodes.Node | undefined) => {
 			const range = symbolNodeOrRange instanceof nodes.Node ? getRange(symbolNodeOrRange, document) : symbolNodeOrRange;
-			const selectionRange = (nameNodeOrRange instanceof nodes.Node ? getRange(nameNodeOrRange, document) : nameNodeOrRange) ?? Range.create(range.start, range.start);
+			let selectionRange = nameNodeOrRange instanceof nodes.Node ? getRange(nameNodeOrRange, document) : nameNodeOrRange;
+			if (!selectionRange || !containsRange(range, selectionRange)) {
+				selectionRange = Range.create(range.start, range.start);
+			}
+			
 			const entry: DocumentSymbol = {
-				name,
+				name: name || l10n.t('<undefined>'),
 				kind,
 				range,
 				selectionRange

@@ -5,8 +5,8 @@
 'use strict';
 
 import * as nodes from '../../parser/cssNodes';
-import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertColorSymbols, assertLinks, newRange, getTestResource } from '../css/navigation.test';
-import { getSCSSLanguageService, DocumentLink, TextDocument } from '../../cssLanguageService';
+import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertColorSymbols, assertLinks, newRange, getTestResource, assertDocumentSymbols } from '../css/navigation.test';
+import { getSCSSLanguageService, DocumentLink, TextDocument, SymbolKind } from '../../cssLanguageService';
 import * as assert from 'assert';
 import * as path from 'path';
 import { URI, Utils } from 'vscode-uri';
@@ -236,6 +236,18 @@ suite('SCSS - Navigation', () => {
 			);
 		});
 
+	});
+
+	suite('Symbols', () => {
+
+		test('scss document symbols', () => {
+			const ls = getSCSSLS();
+
+			// Incomplete Mixin
+			assertDocumentSymbols(ls, '@mixin foo { }', [{ name: 'foo', kind: SymbolKind.Method, range: newRange(0, 14), selectionRange: newRange(7, 10) }]);
+			assertDocumentSymbols(ls, '@mixin {}', [{ name: '<undefined>', kind: SymbolKind.Method, range: newRange(0, 9), selectionRange: newRange(0, 0) }]);
+
+		});
 	});
 
 	suite('Color', () => {

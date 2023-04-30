@@ -1,6 +1,7 @@
 name: $(Date:yyyyMMdd)$(Rev:.r)
 
 trigger:
+  batch: true
   branches:
     include:
       - main
@@ -40,16 +41,9 @@ extends:
           # the rest of the build steps are part of the 'prepack' script, automatically run when the pipeline invokes 'yarn pack'
 
         tag: ${{ parameters.quality }}
+        preReleaseTag: next
+        preReleaseTagAddToLatest: true
         publishPackage: ${{ parameters.publishPackage }}            
-
-        postPublishSteps:
-          - ${{ if eq(parameters.quality, 'latest') }}:
-            - task: Npm@1
-              inputs:
-                command: custom
-                customCommand: dist-tag add $(SetPackageSpec.PACKAGE_SPEC) next
-                customEndpoint: NPM (vscode-bot)
-              displayName: npm dist-tag
 
         testPlatforms:
           - name: Linux

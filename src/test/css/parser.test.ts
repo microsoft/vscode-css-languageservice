@@ -359,6 +359,13 @@ suite('CSS - Parser', () => {
 		assertError('boo {--unbalanced-brackets: not][][valid;}', parser, parser._parseRuleset.bind(parser), ParseError.LeftSquareBracketExpected);
 	});
 
+	test('nested ruleset', function () {
+		let parser = new Parser();
+		//assertNode('.foo { color: red; .bar { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; &:hover { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; + .bar { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+	});
+
 	test('selector', function () {
 		const parser = new Parser();
 		assertNode('asdsa', parser, parser._parseSelector.bind(parser));
