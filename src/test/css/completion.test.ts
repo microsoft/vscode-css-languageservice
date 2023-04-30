@@ -486,6 +486,36 @@ suite('CSS - Completion', () => {
 				{ label: '--borderwidth', documentation: undefined, resultText: 'body { border-left: --borderwidth; border-right: var(--borderwidth ' },
 			]
 		});
+		await testCompletionFor('a { color: | } :root { --color-hex3: #f00; --color-hex4: #F007; --color-hex6: #ff0000; --color-hex8: #ff000077; --color-named: black; --color-keyword: currentColor; }', {
+			items: [
+				{ label: '--color-hex3', kind: CompletionItemKind.Color, resultText: 'a { color: var(--color-hex3) } :root { --color-hex3: #f00; --color-hex4: #F007; --color-hex6: #ff0000; --color-hex8: #ff000077; --color-named: black; --color-keyword: currentColor; }' },
+				{ label: '--color-hex4', kind: CompletionItemKind.Color, resultText: 'a { color: var(--color-hex4) } :root { --color-hex3: #f00; --color-hex4: #F007; --color-hex6: #ff0000; --color-hex8: #ff000077; --color-named: black; --color-keyword: currentColor; }' },
+				{ label: '--color-hex6', kind: CompletionItemKind.Color, resultText: 'a { color: var(--color-hex6) } :root { --color-hex3: #f00; --color-hex4: #F007; --color-hex6: #ff0000; --color-hex8: #ff000077; --color-named: black; --color-keyword: currentColor; }' },
+				{ label: '--color-hex8', kind: CompletionItemKind.Color, resultText: 'a { color: var(--color-hex8) } :root { --color-hex3: #f00; --color-hex4: #F007; --color-hex6: #ff0000; --color-hex8: #ff000077; --color-named: black; --color-keyword: currentColor; }' },
+				{ label: '--color-named', kind: CompletionItemKind.Color, resultText: 'a { color: var(--color-named) } :root { --color-hex3: #f00; --color-hex4: #F007; --color-hex6: #ff0000; --color-hex8: #ff000077; --color-named: black; --color-keyword: currentColor; }' },
+				{ label: '--color-keyword', kind: CompletionItemKind.Color, resultText: 'a { color: var(--color-keyword) } :root { --color-hex3: #f00; --color-hex4: #F007; --color-hex6: #ff0000; --color-hex8: #ff000077; --color-named: black; --color-keyword: currentColor; }' },
+			]
+		});
+		await testCompletionFor('a { color: | } :root { --border-hex3: solid #f00 1px; --border-hex4: solid #F007 1px; --border-hex6: 1px #ff0000 solid; --border-hex8: #ff000077 #ff000077; --border-named: solid black 1px; --border-keyword: currentColor wavy; }', {
+			items: [
+				{ label: '--border-hex3', kind: CompletionItemKind.Variable, resultText: 'a { color: var(--border-hex3) } :root { --border-hex3: solid #f00 1px; --border-hex4: solid #F007 1px; --border-hex6: 1px #ff0000 solid; --border-hex8: #ff000077 #ff000077; --border-named: solid black 1px; --border-keyword: currentColor wavy; }' },
+				{ label: '--border-hex4', kind: CompletionItemKind.Variable, resultText: 'a { color: var(--border-hex4) } :root { --border-hex3: solid #f00 1px; --border-hex4: solid #F007 1px; --border-hex6: 1px #ff0000 solid; --border-hex8: #ff000077 #ff000077; --border-named: solid black 1px; --border-keyword: currentColor wavy; }' },
+				{ label: '--border-hex6', kind: CompletionItemKind.Variable, resultText: 'a { color: var(--border-hex6) } :root { --border-hex3: solid #f00 1px; --border-hex4: solid #F007 1px; --border-hex6: 1px #ff0000 solid; --border-hex8: #ff000077 #ff000077; --border-named: solid black 1px; --border-keyword: currentColor wavy; }' },
+				{ label: '--border-hex8', kind: CompletionItemKind.Variable, resultText: 'a { color: var(--border-hex8) } :root { --border-hex3: solid #f00 1px; --border-hex4: solid #F007 1px; --border-hex6: 1px #ff0000 solid; --border-hex8: #ff000077 #ff000077; --border-named: solid black 1px; --border-keyword: currentColor wavy; }' },
+				{ label: '--border-named', kind: CompletionItemKind.Variable, resultText: 'a { color: var(--border-named) } :root { --border-hex3: solid #f00 1px; --border-hex4: solid #F007 1px; --border-hex6: 1px #ff0000 solid; --border-hex8: #ff000077 #ff000077; --border-named: solid black 1px; --border-keyword: currentColor wavy; }' },
+				{ label: '--border-keyword', kind: CompletionItemKind.Variable, resultText: 'a { color: var(--border-keyword) } :root { --border-hex3: solid #f00 1px; --border-hex4: solid #F007 1px; --border-hex6: 1px #ff0000 solid; --border-hex8: #ff000077 #ff000077; --border-named: solid black 1px; --border-keyword: currentColor wavy; }' },
+			]
+		});
+		await testCompletionFor('a { color: | } :root { --color-rgb: rgb(255 0 125 / 50%); }', {
+			items: [
+				{ label: '--color-rgb', kind: CompletionItemKind.Variable, resultText: 'a { color: var(--color-rgb) } :root { --color-rgb: rgb(255 0 125 / 50%); }' },
+			]
+		});
+		await testCompletionFor('a { color: | } :root { --border-rgb: solid rgb(255 0 125 / 50%) 2px; }', {
+			items: [
+				{ label: '--border-rgb', kind: CompletionItemKind.Variable, resultText: 'a { color: var(--border-rgb) } :root { --border-rgb: solid rgb(255 0 125 / 50%) 2px; }' },
+			]
+		});
 	});
 	test('support', async function () {
 		await testCompletionFor('@supports (display: flex) { |', {

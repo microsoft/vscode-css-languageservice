@@ -9,6 +9,8 @@ import * as nodes from '../parser/cssNodes';
 
 import * as l10n from '@vscode/l10n';
 
+const hexColorRegExp = /(^#([0-9A-F]{3}){1,2}$)|(^#([0-9A-F]{4}){1,2}$)/i;
+
 export const colorFunctions = [
 	{ func: 'rgb($red, $green, $blue)', desc: l10n.t('Creates a Color from red, green, and blue values.') },
 	{ func: 'rgba($red, $green, $blue, $alpha)', desc: l10n.t('Creates a Color from red, green, blue, and alpha values.') },
@@ -16,6 +18,8 @@ export const colorFunctions = [
 	{ func: 'hsla($hue, $saturation, $lightness, $alpha)', desc: l10n.t('Creates a Color from hue, saturation, lightness, and alpha values.') },
 	{ func: 'hwb($hue $white $black)', desc: l10n.t('Creates a Color from hue, white and black.') }
 ];
+
+const colorFunctionNameRegExp = /^(rgb|rgba|hsl|hsla|hwb)$/i;
 
 export const colors: { [name: string]: string } = {
 	aliceblue: '#f0f8ff',
@@ -168,10 +172,14 @@ export const colors: { [name: string]: string } = {
 	yellowgreen: '#9acd32'
 };
 
+const colorsRegExp = new RegExp(`^(${Object.keys(colors).join('|')})$`, "i");
+
 export const colorKeywords: { [name: string]: string } = {
 	'currentColor': 'The value of the \'color\' property. The computed value of the \'currentColor\' keyword is the computed value of the \'color\' property. If the \'currentColor\' keyword is set on the \'color\' property itself, it is treated as \'color:inherit\' at parse time.',
 	'transparent': 'Fully transparent. This keyword can be considered a shorthand for rgba(0,0,0,0) which is its computed value.',
 };
+
+const colorKeywordsRegExp = new RegExp(`^(${Object.keys(colorKeywords).join('|')})$`, "i");
 
 function getNumericValue(node: nodes.Node, factor: number) {
 	const val = node.getText();
@@ -216,12 +224,11 @@ export function isColorConstructor(node: nodes.Function): boolean {
 	if (!name) {
 		return false;
 	}
-	return /^(rgb|rgba|hsl|hsla|hwb)$/gi.test(name);
+	return colorFunctionNameRegExp.test(name);
 }
 
 export function isColorString(s: string) {
-	// From https://stackoverflow.com/questions/8027423/how-to-check-if-a-string-is-a-valid-hex-color-representation/8027444
-	return (s.toLowerCase() in colors) || /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(s) || /^(rgb|rgba|hsl|hsla|hwb)/gi.test(s.toLowerCase());
+	return hexColorRegExp.test(s) || colorsRegExp.test(s) || colorKeywordsRegExp.test(s);
 }
 
 
