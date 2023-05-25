@@ -361,9 +361,18 @@ suite('CSS - Parser', () => {
 
 	test('nested ruleset', function () {
 		let parser = new Parser();
-		//assertNode('.foo { color: red; .bar { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; input { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; :focus { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; .bar { color: blue; } }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.foo { color: red; &:hover { color: blue; } }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.foo { color: red; + .bar { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; foo:hover { color: blue }; }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; @media screen { color: blue }; }', parser, parser._parseRuleset.bind(parser));
+
+		// Top level curly braces are allowed in declaration values if they are for a custom property.
+		assertNode('.foo { --foo: {}; }', parser, parser._parseRuleset.bind(parser));
+		// Top level curly braces are not allowed in declaration values.
+		assertError('.foo { foo: {}; }', parser, parser._parseRuleset.bind(parser), ParseError.PropertyValueExpected);
 	});
 
 	test('selector', function () {

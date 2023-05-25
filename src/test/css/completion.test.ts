@@ -261,6 +261,17 @@ suite('CSS - Completion', () => {
 				{ label: '::after', resultText: '.a::after ' }
 			]
 		});
+		await testCompletionFor('.a { .b:| }', {
+			items: [
+				{ label: ':hover', resultText: '.a { .b:hover }' },
+				{ label: '::after', resultText: '.a { .b::after }' }
+			]
+		});
+		await testCompletionFor('.a { div:h| {} }', {
+			items: [
+				{ label: ':hover', resultText: '.a { div:hover {} }' }
+			]
+		});
 	});
 	test('properties', async function () {
 		await testCompletionFor('body {|', {
