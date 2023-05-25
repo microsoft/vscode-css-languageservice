@@ -230,8 +230,9 @@ suite('CSS - Lint', () => {
 	});
 
 	test('IE hacks', function () {
-		assertRuleSet('selector { display: inline-block; *display: inline; }', Rules.IEStarHack);
-		assertRuleSet('selector { background: #00f; /* all browsers including Mac IE */ *background: #f00; /* IE 7 and below */ _background: #f60; /* IE 6 and below */  }', Rules.IEStarHack, Rules.IEStarHack);
+		// IE star hacks are incompatible with CSS nesting.
+		// assertRuleSet('selector { display: inline-block; *display: inline; }', Rules.IEStarHack);
+		// assertRuleSet('selector { background: #00f; /* all browsers including Mac IE */ *background: #f00; /* IE 7 and below */ _background: #f60; /* IE 6 and below */  }', Rules.IEStarHack, Rules.IEStarHack);
 	});
 
 	test('vendor specific prefixes', function () {
