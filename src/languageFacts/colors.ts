@@ -9,6 +9,8 @@ import * as nodes from '../parser/cssNodes';
 
 import * as l10n from '@vscode/l10n';
 
+const hexColorRegExp = /(^#([0-9A-F]{3}){1,2}$)|(^#([0-9A-F]{4}){1,2}$)/i;
+
 export const colorFunctions = [
 	{
 		label: 'rgb',
@@ -131,6 +133,8 @@ export const colorFunctions = [
 		desc: l10n.t('Mix two colors together in a polar color space.')
 	},
 ];
+
+const colorFunctionNameRegExp = /^(rgb|rgba|hsl|hsla|hwb)$/i;
 
 export const colors: { [name: string]: string } = {
 	aliceblue: '#f0f8ff',
@@ -283,10 +287,14 @@ export const colors: { [name: string]: string } = {
 	yellowgreen: '#9acd32'
 };
 
+const colorsRegExp = new RegExp(`^(${Object.keys(colors).join('|')})$`, "i");
+
 export const colorKeywords: { [name: string]: string } = {
 	'currentColor': 'The value of the \'color\' property. The computed value of the \'currentColor\' keyword is the computed value of the \'color\' property. If the \'currentColor\' keyword is set on the \'color\' property itself, it is treated as \'color:inherit\' at parse time.',
 	'transparent': 'Fully transparent. This keyword can be considered a shorthand for rgba(0,0,0,0) which is its computed value.',
 };
+
+const colorKeywordsRegExp = new RegExp(`^(${Object.keys(colorKeywords).join('|')})$`, "i");
 
 function getNumericValue(node: nodes.Node, factor: number) {
 	const val = node.getText();
@@ -331,8 +339,13 @@ export function isColorConstructor(node: nodes.Function): boolean {
 	if (!name) {
 		return false;
 	}
-	return /^(rgb|rgba|hsl|hsla|hwb)$/gi.test(name);
+	return colorFunctionNameRegExp.test(name);
 }
+
+export function isColorString(s: string) {
+	return hexColorRegExp.test(s) || colorsRegExp.test(s) || colorKeywordsRegExp.test(s);
+}
+
 
 /**
  * Returns true if the node is a color value - either
@@ -481,7 +494,7 @@ export function hslFromColor(rgba: Color): HSLA {
 export function colorFromHWB(hue: number, white: number, black: number, alpha: number = 1.0): Color {
 	if (white + black >= 1) {
 		const gray = white / (white + black);
-		return {red: gray, green: gray, blue: gray, alpha};
+		return { red: gray, green: gray, blue: gray, alpha };
 	}
 
 	const rgb = colorFromHSL(hue, 1, 0.5, alpha);
@@ -537,11 +550,11 @@ export function getColorValue(node: nodes.Node): Color | null {
 					if (lastValue instanceof nodes.BinaryExpression) {
 						const left = lastValue.getLeft(), right = lastValue.getRight(), operator = lastValue.getOperator();
 						if (left && right && operator && operator.matches('/')) {
-							colorValues = [ colorValues[0], colorValues[1], left, right ];
+							colorValues = [colorValues[0], colorValues[1], left, right];
 						}
 					}
 				}
-			}	
+			}
 		}
 		if (!name || colorValues.length < 3 || colorValues.length > 4) {
 			return null;
