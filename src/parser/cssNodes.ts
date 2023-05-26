@@ -1639,7 +1639,7 @@ export class MixinContentDeclaration extends BodyDeclaration {
 	}
 
 	public get type(): NodeType {
-		return NodeType.MixinContentReference;
+		return NodeType.MixinContentDeclaration;
 	}
 
 	public getParameters(): Nodelist {

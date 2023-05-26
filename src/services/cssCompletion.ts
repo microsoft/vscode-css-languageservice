@@ -13,12 +13,11 @@ import {
 	Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, CompletionItemTag, DocumentContext, LanguageServiceOptions, IPropertyData, CompletionSettings
 } from '../cssLanguageTypes';
 
-import * as nls from 'vscode-nls';
+import * as l10n from '@vscode/l10n';
 import { isDefined } from '../utils/objects';
 import { CSSDataManager } from '../languageFacts/dataManager';
 import { PathCompletionParticipant } from './pathCompletion';
 
-const localize = nls.loadMessageBundle();
 const SnippetFormat = InsertTextFormat.Snippet;
 
 const retriggerCommand: Command = {
@@ -87,6 +86,7 @@ export class CSSCompletion {
 			const pathCompletionResult = await participant.computeCompletions(document, documentContext);
 			return {
 				isIncomplete: result.isIncomplete || pathCompletionResult.isIncomplete,
+				itemDefaults: result.itemDefaults,
 				items: pathCompletionResult.items.concat(result.items)
 			};
 		} finally {
@@ -104,7 +104,16 @@ export class CSSCompletion {
 		this.styleSheet = styleSheet;
 		this.documentSettings = documentSettings;
 		try {
-			const result: CompletionList = { isIncomplete: false, items: [] };
+			const result: CompletionList = {
+				isIncomplete: false,
+				itemDefaults: {
+					editRange: {
+						start: { line: position.line, character: position.character - this.currentWord.length },
+						end: position
+					}
+				},
+				items: []
+			};
 			this.nodePath = nodes.getNodePath(this.styleSheet, this.offset);
 
 			for (let i = this.nodePath.length - 1; i >= 0; i--) {
@@ -427,14 +436,14 @@ export class CSSCompletion {
 				sortText: SortTexts.Variable
 			};
 
-			if (typeof completionItem.documentation === 'string' && isColorString(completionItem.documentation)) {
+			if (typeof completionItem.documentation === 'string' && languageFacts.isColorString(completionItem.documentation)) {
 				completionItem.kind = CompletionItemKind.Color;
 			}
 
 			if (symbol.node.type === nodes.NodeType.FunctionParameter) {
 				const mixinNode = <nodes.MixinDeclaration>(symbol.node.getParent());
 				if (mixinNode.type === nodes.NodeType.MixinDeclaration) {
-					completionItem.detail = localize('completion.argument', 'argument from \'{0}\'', mixinNode.getName());
+					completionItem.detail = l10n.t('argument from \'{0}\'', mixinNode.getName());
 				}
 			}
 
@@ -457,7 +466,7 @@ export class CSSCompletion {
 					textEdit: TextEdit.replace(this.getCompletionRange(null), symbol.name),
 					kind: CompletionItemKind.Variable
 				};
-				if (typeof completionItem.documentation === 'string' && isColorString(completionItem.documentation)) {
+				if (typeof completionItem.documentation === 'string' && languageFacts.isColorString(completionItem.documentation)) {
 					completionItem.kind = CompletionItemKind.Color;
 				}
 
@@ -549,14 +558,11 @@ export class CSSCompletion {
 			});
 		}
 		for (const p of languageFacts.colorFunctions) {
-			let tabStop = 1;
-			const replaceFunction = (_match: string, p1: string) => '${' + tabStop++ + ':' + p1 + '}';
-			const insertText = p.func.replace(/\[?\$(\w+)\]?/g, replaceFunction);
 			result.items.push({
-				label: p.func.substr(0, p.func.indexOf('(')),
+				label: p.label,
 				detail: p.func,
 				documentation: p.desc,
-				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), p.insertText),
 				insertTextFormat: SnippetFormat,
 				kind: CompletionItemKind.Function
 			});
@@ -1140,9 +1146,4 @@ function getCurrentWord(document: TextDocument, offset: number): string {
 		i--;
 	}
 	return text.substring(i + 1, offset);
-}
-
-function isColorString(s: string) {
-	// From https://stackoverflow.com/questions/8027423/how-to-check-if-a-string-is-a-valid-hex-color-representation/8027444
-	return (s.toLowerCase() in languageFacts.colors) || /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(s);
 }

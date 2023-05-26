@@ -345,6 +345,8 @@ suite('SCSS - Parser', () => {
 		assertNode('.something { @media (max-width: 760px) { ~ div { display: block; } } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.something { @media (max-width: 760px) { + div { display: block; } } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media (max-width: 760px) { + div { display: block; } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@media (height <= 600px) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media (height >= 600px) { }', parser, parser._parseMedia.bind(parser));
 
 		assertNode('@media #{layout.$media} and ($feature: $value)  {}', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media #{$media} and (layout.$feature: $value)  {}', parser, parser._parseStylesheet.bind(parser));

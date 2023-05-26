@@ -230,8 +230,9 @@ suite('CSS - Lint', () => {
 	});
 
 	test('IE hacks', function () {
-		assertRuleSet('selector { display: inline-block; *display: inline; }', Rules.IEStarHack);
-		assertRuleSet('selector { background: #00f; /* all browsers including Mac IE */ *background: #f00; /* IE 7 and below */ _background: #f60; /* IE 6 and below */  }', Rules.IEStarHack, Rules.IEStarHack);
+		// IE star hacks are incompatible with CSS nesting.
+		// assertRuleSet('selector { display: inline-block; *display: inline; }', Rules.IEStarHack);
+		// assertRuleSet('selector { background: #00f; /* all browsers including Mac IE */ *background: #f00; /* IE 7 and below */ _background: #f60; /* IE 6 and below */  }', Rules.IEStarHack, Rules.IEStarHack);
 	});
 
 	test('vendor specific prefixes', function () {
@@ -241,6 +242,13 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { -moz-transform: none; transform: none; -o-transform: none; -webkit-transform: none; -ms-transform: none; }');
 		assertRuleSet('selector { --transform: none; }');
 		assertRuleSet('selector { -webkit-appearance: none }', Rules.IncludeStandardPropertyWhenUsingVendorPrefix);
+	});
+
+	test('ignore missing standard properties in contexts with vendor specific pseudo-element', function () {
+		// (See https://github.com/microsoft/vscode/issues/164350)
+		assertRuleSet('input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; }');
+		assertRuleSet('input[type="range"]::-webkit-slider-thumb { color: black; & selector { -webkit-appearance: none; } }');
+		assertRuleSet('input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; -moz-appearance: none; }', Rules.IncludeStandardPropertyWhenUsingVendorPrefix);
 	});
 
 	test('font-face required properties', function () {
