@@ -12,11 +12,126 @@ import * as l10n from '@vscode/l10n';
 const hexColorRegExp = /(^#([0-9A-F]{3}){1,2}$)|(^#([0-9A-F]{4}){1,2}$)/i;
 
 export const colorFunctions = [
-	{ func: 'rgb($red, $green, $blue)', desc: l10n.t('Creates a Color from red, green, and blue values.') },
-	{ func: 'rgba($red, $green, $blue, $alpha)', desc: l10n.t('Creates a Color from red, green, blue, and alpha values.') },
-	{ func: 'hsl($hue, $saturation, $lightness)', desc: l10n.t('Creates a Color from hue, saturation, and lightness values.') },
-	{ func: 'hsla($hue, $saturation, $lightness, $alpha)', desc: l10n.t('Creates a Color from hue, saturation, lightness, and alpha values.') },
-	{ func: 'hwb($hue $white $black)', desc: l10n.t('Creates a Color from hue, white and black.') }
+	{
+		label: 'rgb',
+		func: 'rgb($red, $green, $blue)',
+		insertText: 'rgb(${1:red}, ${2:green}, ${3:blue})',
+		desc: l10n.t('Creates a Color from red, green, and blue values.')
+	},
+	{
+		label: 'rgba',
+		func: 'rgba($red, $green, $blue, $alpha)',
+		insertText: 'rgba(${1:red}, ${2:green}, ${3:blue}, ${4:alpha})',
+		desc: l10n.t('Creates a Color from red, green, blue, and alpha values.')
+	},
+	{
+		label: 'rgb relative',
+		func: 'rgb(from $color $red $green $blue)',
+		insertText: 'rgb(from ${1:color} ${2:r} ${3:g} ${4:b})',
+		desc: l10n.t('Creates a Color from the red, green, and blue values of another Color.')
+	},
+	{
+		label: 'hsl',
+		func: 'hsl($hue, $saturation, $lightness)',
+		insertText: 'hsl(${1:hue}, ${2:saturation}, ${3:lightness})',
+		desc: l10n.t('Creates a Color from hue, saturation, and lightness values.')
+	},
+	{
+		label: 'hsla',
+		func: 'hsla($hue, $saturation, $lightness, $alpha)',
+		insertText: 'hsla(${1:hue}, ${2:saturation}, ${3:lightness}, ${4:alpha})',
+		desc: l10n.t('Creates a Color from hue, saturation, lightness, and alpha values.')
+	},
+	{
+		label: 'hsl relative',
+		func: 'hsl(from $color $hue $saturation $lightness)',
+		insertText: 'hsl(from ${1:color} ${2:h} ${3:s} ${4:l})',
+		desc: l10n.t('Creates a Color from the hue, saturation, and lightness values of another Color.')
+	},
+	{
+		label: 'hwb',
+		func: 'hwb($hue $white $black)',
+		insertText: 'hwb(${1:hue} ${2:white} ${3:black})',
+		desc: l10n.t('Creates a Color from hue, white, and black values.')
+	},
+	{
+		label: 'hwb relative',
+		func: 'hwb(from $color $hue $white $black)',
+		insertText: 'hwb(from ${1:color} ${2:h} ${3:w} ${4:b})',
+		desc: l10n.t('Creates a Color from the hue, white, and black values of another Color.')
+	},
+	{
+		label: 'lab',
+		func: 'lab($lightness $a $b)',
+		insertText: 'lab(${1:lightness} ${2:a} ${3:b})',
+		desc: l10n.t('Creates a Color from lightness, a, and b values.')
+	},
+	{
+		label: 'lab relative',
+		func: 'lab(from $color $lightness $a $b)',
+		insertText: 'lab(from ${1:color} ${2:l} ${3:a} ${4:b})',
+		desc: l10n.t('Creates a Color from the lightness, a, and b values of another Color.')
+	},
+	{
+		label: 'oklab',
+		func: 'oklab($lightness $a $b)',
+		insertText: 'oklab(${1:lightness} ${2:a} ${3:b})',
+		desc: l10n.t('Creates a Color from lightness, a, and b values.')
+	},
+	{
+		label: 'oklab relative',
+		func: 'oklab(from $color $lightness $a $b)',
+		insertText: 'oklab(from ${1:color} ${2:l} ${3:a} ${4:b})',
+		desc: l10n.t('Creates a Color from the lightness, a, and b values of another Color.')
+	},
+	{
+		label: 'lch',
+		func: 'lch($lightness $chroma $hue)',
+		insertText: 'lch(${1:lightness} ${2:chroma} ${3:hue})',
+		desc: l10n.t('Creates a Color from lightness, chroma, and hue values.')
+	},
+	{
+		label: 'lch relative',
+		func: 'lch(from $color $lightness $chroma $hue)',
+		insertText: 'lch(from ${1:color} ${2:l} ${3:c} ${4:h})',
+		desc: l10n.t('Creates a Color from the lightness, chroma, and hue values of another Color.')
+	},
+	{
+		label: 'oklch',
+		func: 'oklch($lightness $chroma $hue)',
+		insertText: 'oklch(${1:lightness} ${2:chroma} ${3:hue})',
+		desc: l10n.t('Creates a Color from lightness, chroma, and hue values.')
+	},
+	{
+		label: 'oklch relative',
+		func: 'oklch(from $color $lightness $chroma $hue)',
+		insertText: 'oklch(from ${1:color} ${2:l} ${3:c} ${4:h})',
+		desc: l10n.t('Creates a Color from the lightness, chroma, and hue values of another Color.')
+	},
+	{
+		label: 'color',
+		func: 'color($color-space $red $green $blue)',
+		insertText: 'color(${1|srgb,srgb-linear,display-p3,a98-rgb,prophoto-rgb,rec2020,xyx,xyz-d50,xyz-d65|} ${2:red} ${3:green} ${4:blue})',
+		desc: l10n.t('Creates a Color in a specific color space from red, green, and blue values.')
+	},
+	{
+		label: 'color relative',
+		func: 'color(from $color $color-space $red $green $blue)',
+		insertText: 'color(from ${1:color} ${2|srgb,srgb-linear,display-p3,a98-rgb,prophoto-rgb,rec2020,xyx,xyz-d50,xyz-d65|} ${3:r} ${4:g} ${5:b})',
+		desc: l10n.t('Creates a Color in a specific color space from the red, green, and blue values of another Color.')
+	},
+	{
+		label: 'color-mix',
+		func: 'color-mix(in $color-space, $color $percentage, $color $percentage)',
+		insertText: 'color-mix(in ${1|srgb,srgb-linear,lab,oklab,xyz,xyz-d50,xyz-d65|}, ${3:color} ${4:percentage}, ${5:color} ${6:percentage})',
+		desc: l10n.t('Mix two colors together in a rectangular color space.')
+	},
+	{
+		label: 'color-mix hue',
+		func: 'color-mix(in $color-space $interpolation-method hue, $color $percentage, $color $percentage)',
+		insertText: 'color-mix(in ${1|hsl,hwb,lch,oklch|} ${2|shorter hue,longer hue,increasing hue,decreasing hue|}, ${3:color} ${4:percentage}, ${5:color} ${6:percentage})',
+		desc: l10n.t('Mix two colors together in a polar color space.')
+	},
 ];
 
 const colorFunctionNameRegExp = /^(rgb|rgba|hsl|hsla|hwb)$/i;
