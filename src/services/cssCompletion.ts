@@ -558,14 +558,11 @@ export class CSSCompletion {
 			});
 		}
 		for (const p of languageFacts.colorFunctions) {
-			let tabStop = 1;
-			const replaceFunction = (_match: string, p1: string) => '${' + tabStop++ + ':' + p1 + '}';
-			const insertText = p.func.replace(/\[?\$(\w+)\]?/g, replaceFunction);
 			result.items.push({
-				label: p.func.substr(0, p.func.indexOf('(')),
+				label: p.label,
 				detail: p.func,
 				documentation: p.desc,
-				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), p.insertText),
 				insertTextFormat: SnippetFormat,
 				kind: CompletionItemKind.Function
 			});

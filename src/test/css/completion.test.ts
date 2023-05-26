@@ -467,7 +467,8 @@ suite('CSS - Completion', () => {
 			items: [
 				{ label: 'rgb', kind: CompletionItemKind.Function, resultText: '.foo { background-color: rgb(${1:red}, ${2:green}, ${3:blue})' },
 				{ label: 'rgba', kind: CompletionItemKind.Function, resultText: '.foo { background-color: rgba(${1:red}, ${2:green}, ${3:blue}, ${4:alpha})' },
-				{ label: 'red', kind: CompletionItemKind.Color, resultText: '.foo { background-color: red' }
+				{ label: 'rgb relative', kind: CompletionItemKind.Function, resultText: '.foo { background-color: rgb(from ${1:color} ${2:r} ${3:g} ${4:b})' },
+				{ label: 'red', kind: CompletionItemKind.Color, resultText: '.foo { background-color: red' },
 			]
 		});
 	});
