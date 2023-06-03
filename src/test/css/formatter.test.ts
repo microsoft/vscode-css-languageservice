@@ -219,6 +219,22 @@ suite('CSS - Formatter', () => {
 
 	});
 
+	test('Do not insert spaces in tailwind apply preludes', () => {
+		// https://github.com/microsoft/vscode/issues/159295
+		const content = [
+			'.body {',
+			'  @apply flex flex-col lg:flex-row space-y-3 lg:space-x-12 items-start;',
+			'}'
+		].join('\n');
 
+		const expected = [
+			'.body {',
+			'  @apply flex flex-col lg:flex-row space-y-3 lg:space-x-12 items-start;',
+			'}'
+		].join('\n');
+
+		assertFormat(content, expected, { insertSpaces: true, tabSize: 2, preserveNewLines: true, maxPreserveNewLines: 3 });
+
+	});
 
 });
