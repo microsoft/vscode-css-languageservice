@@ -127,9 +127,20 @@ suite('CSS - Parser', () => {
 		assertNode('to {}', parser, parser._parseKeyframeSelector.bind(parser));
 		assertNode('0% {}', parser, parser._parseKeyframeSelector.bind(parser));
 		assertNode('10% {}', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('cover 10% {}', parser, parser._parseKeyframeSelector.bind(parser));
 		assertNode('100000% {}', parser, parser._parseKeyframeSelector.bind(parser));
 		assertNode('from { width: 100% }', parser, parser._parseKeyframeSelector.bind(parser));
 		assertNode('from { width: 100%; to: 10px; }', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('from, to { width: 10px; }', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('10%, to { width: 10px; }', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('from, 20% { width: 10px; }', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('10%, 20% { width: 10px; }', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('cover 10% {}', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('cover 10%, exit 20% {}', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('10%, exit 20% {}', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('from, exit 20% {}', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('cover 10%, to {}', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('cover 10%, 20% {}', parser, parser._parseKeyframeSelector.bind(parser));
 	});
 
 	test('@keyframe', function () {
@@ -143,10 +154,14 @@ suite('CSS - Parser', () => {
 		assertNode('@keyframes name { from { top: 0px; } 80% { top: 100px; } 100% { top: 50px; }}', parser, parser._parseKeyframe.bind(parser));
 		assertNode('@keyframes name { from { top: 0px; } 70%, 80% { top: 100px; } 100% { top: 50px; }}', parser, parser._parseKeyframe.bind(parser));
 		assertNode('@keyframes name { from { top: 0px; left: 1px; right: 2px }}', parser, parser._parseKeyframe.bind(parser));
+		assertNode('@keyframes name { exit 50% { top: 0px; left: 1px; right: 2px }}', parser, parser._parseKeyframe.bind(parser));
 		assertError('@keyframes name { from { top: 0px; left: 1px, right: 2px }}', parser, parser._parseKeyframe.bind(parser), ParseError.SemiColonExpected);
 		assertError('@keyframes )', parser, parser._parseKeyframe.bind(parser), ParseError.IdentifierExpected);
 		assertError('@keyframes name { { top: 0px; } }', parser, parser._parseKeyframe.bind(parser), ParseError.RightCurlyExpected);
 		assertError('@keyframes name { from, #123', parser, parser._parseKeyframe.bind(parser), ParseError.PercentageExpected);
+		assertError('@keyframes name { 10% from { top: 0px; } }', parser, parser._parseKeyframe.bind(parser), ParseError.LeftCurlyExpected);
+		assertError('@keyframes name { 10% 20% { top: 0px; } }', parser, parser._parseKeyframe.bind(parser), ParseError.LeftCurlyExpected);
+		assertError('@keyframes name { from to { top: 0px; } }', parser, parser._parseKeyframe.bind(parser), ParseError.LeftCurlyExpected);
 	});
 
 	test('@property', function () {

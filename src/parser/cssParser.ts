@@ -805,12 +805,30 @@ export class Parser {
 	public _parseKeyframeSelector(): nodes.Node | null {
 		const node = this.create(nodes.KeyframeSelector);
 
-		if (!node.addChild(this._parseIdent()) && !this.accept(TokenType.Percentage)) {
+		let hasContent = false;
+		if (node.addChild(this._parseIdent())) {
+			hasContent = true;
+		}
+
+		if (this.accept(TokenType.Percentage)) {
+			hasContent = true;
+		}
+
+		if (!hasContent) {
 			return null;
 		}
 
 		while (this.accept(TokenType.Comma)) {
-			if (!node.addChild(this._parseIdent()) && !this.accept(TokenType.Percentage)) {
+			hasContent = false;
+			if (node.addChild(this._parseIdent())) {
+				hasContent = true;
+			}
+
+			if (this.accept(TokenType.Percentage)) {
+				hasContent = true;
+			}
+
+			if (!hasContent) {
 				return this.finish(node, ParseError.PercentageExpected);
 			}
 		}
@@ -822,12 +840,30 @@ export class Parser {
 		const node = this.create(nodes.KeyframeSelector);
 		const pos = this.mark();
 
-		if (!node.addChild(this._parseIdent()) && !this.accept(TokenType.Percentage)) {
+		let hasContent = false;
+		if (node.addChild(this._parseIdent())) {
+			hasContent = true;
+		}
+
+		if (this.accept(TokenType.Percentage)) {
+			hasContent = true;
+		}
+
+		if (!hasContent) {
 			return null;
 		}
 
 		while (this.accept(TokenType.Comma)) {
-			if (!node.addChild(this._parseIdent()) && !this.accept(TokenType.Percentage)) {
+			hasContent = false;
+			if (node.addChild(this._parseIdent())) {
+				hasContent = true;
+			}
+
+			if (this.accept(TokenType.Percentage)) {
+				hasContent = true;
+			}
+
+			if (!hasContent) {
 				this.restoreAtMark(pos);
 				return null;
 			}
