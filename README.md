@@ -18,7 +18,7 @@ and the Monaco editor.
  - *findDocumentHighlights* finds all symbols connected to the given location.
  - *findDocumentSymbols* provides all symbols in the given document
  - *doCodeActions* evaluates code actions for the given location, typically to fix a problem.
- - *findColorSymbols* evaluates all color symbols in the given document
+ - *findDocumentColors* evaluates all color symbols in the given document
  - *doRename* renames all symbols connected to the given location.
  - *prepareRename* the range of the node that can be renamed
  - *getFoldingRanges* returns folding ranges in the given document.
