@@ -191,6 +191,7 @@ export interface IPropertyData {
 	values?: IValueData[];
 	references?: IReference[];
 	relevance?: number;
+	atRule?: string;
 }
 export interface IAtDirectiveData {
 	name: string;

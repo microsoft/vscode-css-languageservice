@@ -375,6 +375,18 @@ suite('CSS - Parser', () => {
 		assertError('.foo { foo: {}; }', parser, parser._parseRuleset.bind(parser), ParseError.PropertyValueExpected);
 	});
 
+	test('nested ruleset 2', function () {
+		let parser = new Parser();
+		assertNode('.foo { .parent & { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; & > .bar, > .baz { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { & .bar & .baz & .qux { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; :not(&) { color: blue; }; + .bar + & { color: green; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; & { color: blue; } && { color: green; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { & :is(.bar, &.baz) { color: red; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('figure { > figcaption { background: hsl(0 0% 0% / 50%); > p {  font-size: .9rem; } } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('@layer base { html { & body { min-block-size: 100%; } } }', parser, parser._parseStylesheet.bind(parser));
+	});
+
 	test('selector', function () {
 		const parser = new Parser();
 		assertNode('asdsa', parser, parser._parseSelector.bind(parser));
