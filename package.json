@@ -4,7 +4,12 @@
   "description": "Language service for CSS, LESS and SCSS",
   "main": "./lib/umd/cssLanguageService.js",
   "typings": "./lib/umd/cssLanguageService",
-  "module": "./lib/esm/cssLanguageService.js",
+  "exports": {
+		".": {
+			"import": "./lib/esm/cssLanguageService.js",
+			"default": "./lib/umd/cssLanguageService.js"
+		}
+	},
   "author": "Microsoft Corporation",
   "repository": {
     "type": "git",
@@ -36,7 +41,7 @@
   "scripts": {
     "prepack": "npm run clean && npm run compile-esm && npm run test && npm run remove-sourcemap-refs",
     "compile": "tsc -p ./src && npm run copy-jsbeautify && npm run lint ",
-    "compile-esm": "tsc -p ./src/tsconfig.esm.json",
+    "compile-esm": "tsc -p ./src/tsconfig.esm.json && node ./build/fix-esm.js",
     "clean": "rimraf lib",
     "remove-sourcemap-refs": "node ./build/remove-sourcemap-refs.js",
     "watch": "npm run copy-jsbeautify && tsc -w -p ./src",
