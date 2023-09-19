@@ -446,6 +446,11 @@ suite('CSS - Parser', () => {
 		assertNode(':some', parser, parser._parsePseudo.bind(parser));
 		assertNode(':some(thing)', parser, parser._parsePseudo.bind(parser));
 		assertNode(':nth-child(12)', parser, parser._parsePseudo.bind(parser));
+		assertNode(':nth-child(1n)', parser, parser._parsePseudo.bind(parser));
+		assertNode(':nth-child(-n+3)', parser, parser._parsePseudo.bind(parser));
+		assertNode(':nth-child(2n+1)', parser, parser._parsePseudo.bind(parser));
+		assertNode(':nth-child(2n+1 of .foo)', parser, parser._parsePseudo.bind(parser));
+		assertNode(':nth-child(2n+1 of .foo > bar, :not(*) ~ [other="value"])', parser, parser._parsePseudo.bind(parser));
 		assertNode(':lang(it)', parser, parser._parsePseudo.bind(parser));
 		assertNode(':not(.class)', parser, parser._parsePseudo.bind(parser));
 		assertNode(':not(:disabled)', parser, parser._parsePseudo.bind(parser));
@@ -461,6 +466,7 @@ suite('CSS - Parser', () => {
 		assertNode(':has(~ div .test)', parser, parser._parsePseudo.bind(parser)); // #250
 		assertError('::', parser, parser._parsePseudo.bind(parser), ParseError.IdentifierExpected);
 		assertError(':: foo', parser, parser._parsePseudo.bind(parser), ParseError.IdentifierExpected);
+		assertError(':nth-child(1n of)', parser, parser._parsePseudo.bind(parser), ParseError.SelectorExpected);
 	});
 
 	test('declaration', function () {
