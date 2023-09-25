@@ -1584,7 +1584,18 @@ export class Parser {
 
 					return null;
 				};
-				node.addChild(this.try(tryAsSelector) || this._parseBinaryExpr());
+
+				let hasSelector = node.addChild(this.try(tryAsSelector));
+				if (!hasSelector) {
+					if (
+						node.addChild(this._parseBinaryExpr()) &&
+						this.acceptIdent('of') &&
+						!node.addChild(this.try(tryAsSelector))
+					) {
+						return this.finish(node, ParseError.SelectorExpected);
+					}
+				}
+
 				if (!this.accept(TokenType.ParenthesisR)) {
 					return this.finish(node, ParseError.RightParenthesisExpected);
 				}

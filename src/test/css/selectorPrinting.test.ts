@@ -307,4 +307,35 @@ suite('CSS - MarkedStringPrinter selectors specificities', () => {
 			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 2, 0)'
 		]);
 	});
+
+	test('nth-child, nth-last-child specificity', function () {
+		assertSelectorMarkdown(p, '#foo:nth-child(-n+3 of li.important)', '#foo', [
+			{ language: 'html', value: '<element id="foo" :nth-child>' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 2, 1)'
+		]);
+
+		assertSelectorMarkdown(p, '#foo:nth-last-child(-n+3 of li, .important)', '#foo', [
+			{ language: 'html', value: '<element id="foo" :nth-last-child>' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 2, 0)'
+		]);
+	});
+
+	test('host, host-context specificity', function () {
+		assertSelectorMarkdown(p, '#foo:host(.foo)', '#foo', [
+			{ language: 'html', value: '<element id="foo" :host>' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 2, 0)'
+		]);
+
+		assertSelectorMarkdown(p, '#foo:host-context(foo)', '#foo', [
+			{ language: 'html', value: '<element id="foo" :host-context>' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 1, 1)'
+		]);
+	});
+
+	test('slotted specificity', function () {
+		assertSelectorMarkdown(p, '#foo::slotted(foo)', '#foo', [
+			{ language: 'html', value: '<element id="foo" ::slotted>' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 0, 2)'
+		]);
+	});
 });

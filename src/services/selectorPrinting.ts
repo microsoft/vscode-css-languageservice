@@ -358,6 +358,42 @@ export class SelectorPrinting {
 	}
 
 	private selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
+		const calculateMostSpecificListItem = (childElements: Array<nodes.Node>): Specificity => {
+			const specificity = new Specificity();
+
+			let mostSpecificListItem = new Specificity();
+
+			for (const containerElement of childElements) {
+				for (const childElement of containerElement.getChildren()) {
+					const itemSpecificity = calculateScore(childElement);
+					if (itemSpecificity.id > mostSpecificListItem.id) {
+						mostSpecificListItem = itemSpecificity;
+						continue;
+					} else if (itemSpecificity.id < mostSpecificListItem.id) {
+						continue;
+					}
+
+					if (itemSpecificity.attr > mostSpecificListItem.attr) {
+						mostSpecificListItem = itemSpecificity;
+						continue;
+					} else if (itemSpecificity.attr < mostSpecificListItem.attr) {
+						continue;
+					}
+
+					if (itemSpecificity.tag > mostSpecificListItem.tag) {
+						mostSpecificListItem = itemSpecificity;
+						continue;
+					}
+				}
+			}
+
+			specificity.id += mostSpecificListItem.id;
+			specificity.attr += mostSpecificListItem.attr;
+			specificity.tag += mostSpecificListItem.tag;
+
+			return specificity;
+		};
+
 		//https://www.w3.org/TR/selectors-3/#specificity
 		const calculateScore = (node: nodes.Node): Specificity => {
 			const specificity = new Specificity();
@@ -384,7 +420,23 @@ export class SelectorPrinting {
 
 					case nodes.NodeType.PseudoSelector:
 						const text = element.getText();
+						const childElements = element.getChildren();
+
 						if (this.isPseudoElementIdentifier(text)) {
+							if (text.match(/^::slotted/i) && childElements.length > 0) {
+								// The specificity of ::slotted() is that of a pseudo-element, plus the specificity of its argument.
+								// ::slotted() does not allow a selector list as its argument, but this isn't the right place to give feedback on validity.
+								// Reporting the most specific child will be correct for correct CSS and will be forgiving in case of mistakes.
+								specificity.tag++;
+
+								let mostSpecificListItem = calculateMostSpecificListItem(childElements);
+
+								specificity.id += mostSpecificListItem.id;
+								specificity.attr += mostSpecificListItem.attr;
+								specificity.tag += mostSpecificListItem.tag;
+								continue elementLoop;
+							}
+
 							specificity.tag++;	// pseudo element
 							continue elementLoop;
 						}
@@ -395,39 +447,22 @@ export class SelectorPrinting {
 						}
 
 						// the most specific child selector
-						if (text.match(/^:(not|has|is)/i) && element.getChildren().length > 0) {
-							let mostSpecificListItem = new Specificity();
+						if (text.match(/^:(?:not|has|is)/i) && childElements.length > 0) {
+							let mostSpecificListItem = calculateMostSpecificListItem(childElements);
 
-							for (const containerElement of element.getChildren()) {
-								let list;
-								if (containerElement.type === nodes.NodeType.Undefined) { // containerElement is a list of selectors
-									list = containerElement.getChildren();
-								} else { // containerElement is a selector
-									list = [containerElement];
-								}
+							specificity.id += mostSpecificListItem.id;
+							specificity.attr += mostSpecificListItem.attr;
+							specificity.tag += mostSpecificListItem.tag;
+							continue elementLoop;
+						}
 
-								for (const childElement of containerElement.getChildren()) {
-									const itemSpecificity = calculateScore(childElement);
-									if (itemSpecificity.id > mostSpecificListItem.id) {
-										mostSpecificListItem = itemSpecificity;
-										continue;
-									} else if (itemSpecificity.id < mostSpecificListItem.id) {
-										continue;
-									}
+						if (text.match(/^:(?:nth-child|nth-last-child|host|host-context)/i) && childElements.length > 0) {
+							// The specificity of :host() is that of a pseudo-class, plus the specificity of its argument.
+							// The specificity of :host-context() is that of a pseudo-class, plus the specificity of its argument.
+							// The specificity of an :nth-child() or :nth-last-child() selector is the specificity of the pseudo class itself (counting as one pseudo-class selector) plus the specificity of the most specific complex selector in its selector list argument.
+							specificity.attr++;
 
-									if (itemSpecificity.attr > mostSpecificListItem.attr) {
-										mostSpecificListItem = itemSpecificity;
-										continue;
-									} else if (itemSpecificity.attr < mostSpecificListItem.attr) {
-										continue;
-									}
-
-									if (itemSpecificity.tag > mostSpecificListItem.tag) {
-										mostSpecificListItem = itemSpecificity;
-										continue;
-									}
-								}
-							}
+							let mostSpecificListItem = calculateMostSpecificListItem(childElements);
 
 							specificity.id += mostSpecificListItem.id;
 							specificity.attr += mostSpecificListItem.attr;
