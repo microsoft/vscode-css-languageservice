@@ -177,6 +177,11 @@ suite('CSS - Parser', () => {
 		assertNode(`@container card (inline-size > 30em) { @container style(--responsive: true) {} }`, parser, parser._parseStylesheet.bind(parser));
 	});
 
+	test('@container query length units', function () {
+		const parser = new Parser();
+		assertNode(`@container (min-width: 700px) { .card h2 { font-size: max(1.5em, 1.23em + 2cqi); } }`, parser, parser._parseStylesheet.bind(parser));
+	});
+
 	test('@import', function () {
 		const parser = new Parser();
 		assertNode('@import "asdasdsa"', parser, parser._parseImport.bind(parser));

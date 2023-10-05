@@ -1873,6 +1873,7 @@ export class Parser {
 			this.peek(TokenType.Angle) ||
 			this.peek(TokenType.Time) ||
 			this.peek(TokenType.Dimension) ||
+			this.peek(TokenType.ContainerQueryLength) ||
 			this.peek(TokenType.Freq)) {
 			const node = this.create(nodes.NumericValue);
 			this.consumeToken();
