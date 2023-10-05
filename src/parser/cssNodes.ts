@@ -98,7 +98,8 @@ export enum NodeType {
 	Layer,
 	LayerNameList,
 	LayerName,
-	PropertyAtRule
+	PropertyAtRule,
+	Container
 }
 
 export enum ReferenceType {
@@ -1236,6 +1237,17 @@ export class Document extends BodyDeclaration {
 
 	public get type(): NodeType {
 		return NodeType.Document;
+	}
+}
+
+export class Container extends BodyDeclaration {
+
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.Container;
 	}
 }
 

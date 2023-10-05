@@ -170,6 +170,13 @@ suite('CSS - Parser', () => {
 		assertError(`@property  {  }`, parser, parser._parseStylesheet.bind(parser), ParseError.IdentifierExpected);
 	});
 
+	test('@container', function () {
+		const parser = new Parser();
+		assertNode(`@container (width <= 150px) { #inner { background-color: skyblue; }}`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container card (inline-size > 30em) and style(--responsive: true) { }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container card (inline-size > 30em) { @container style(--responsive: true) {} }`, parser, parser._parseStylesheet.bind(parser));
+	});
+
 	test('@import', function () {
 		const parser = new Parser();
 		assertNode('@import "asdasdsa"', parser, parser._parseImport.bind(parser));
