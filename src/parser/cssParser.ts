@@ -325,6 +325,7 @@ export class Parser {
 			|| this._parseViewPort()
 			|| this._parseNamespace()
 			|| this._parseDocument()
+			|| this._parseContainer()
 			|| this._parseUnknownAtRule();
 	}
 
@@ -1290,6 +1291,110 @@ export class Parser {
 
 		this.resync([], [TokenType.CurlyL]); // ignore all the rules
 		return this._parseBody(node, this._parseStylesheetStatement.bind(this));
+	}
+
+	public _parseContainer(): nodes.Node | null {
+		if (!this.peekKeyword('@container')) {
+			return null;
+		}
+		const node = this.create(nodes.Container);
+		this.consumeToken(); // @container
+
+		node.addChild(this._parseIdent()); // optional container name
+		node.addChild(this._parseContainerQuery());
+
+		return this._parseBody(node, this._parseStylesheetStatement.bind(this));
+	}
+
+	public _parseContainerQuery(): nodes.Node | null {
+		// <container-query>     = not <query-in-parens>
+		//                         | <query-in-parens> [ [ and <query-in-parens> ]* | [ or <query-in-parens> ]* ]
+		const node = this.create(nodes.Node);
+		if (this.acceptIdent('not')) {
+			node.addChild(this._parseContainerQueryInParens());
+		} else {
+			node.addChild(this._parseContainerQueryInParens());
+			if (this.peekIdent('and')) {
+				while (this.acceptIdent('and')) {
+					node.addChild(this._parseContainerQueryInParens());
+				}
+			} else if (this.peekIdent('or')) {
+				while (this.acceptIdent('or')) {
+					node.addChild(this._parseContainerQueryInParens());
+				}
+			}
+		}
+		return this.finish(node);
+	}
+
+	public _parseContainerQueryInParens(): nodes.Node {
+		// <query-in-parens>     = ( <container-query> )
+		// 					  | ( <size-feature> )
+		// 					  | style( <style-query> )
+		// 					  | <general-enclosed>
+		const node = this.create(nodes.Node);
+		if (this.accept(TokenType.ParenthesisL)) {
+			if (this.peekIdent('not') || this.peek(TokenType.ParenthesisL)) {
+				node.addChild(this._parseContainerQuery());
+			} else {
+				node.addChild(this._parseMediaFeature());
+			}
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+		} else if (this.acceptIdent('style')) {
+			if (this.hasWhitespace() || !this.accept(TokenType.ParenthesisL)) {
+				return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+			node.addChild(this._parseStyleQuery());
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+		} else {
+			return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.CurlyL]);
+		}
+		return this.finish(node);
+	}
+
+	public _parseStyleQuery(): nodes.Node {
+		// <style-query>         = not <style-in-parens>
+		// 					  | <style-in-parens> [ [ and <style-in-parens> ]* | [ or <style-in-parens> ]* ]
+		// 					  | <style-feature>
+		// <style-in-parens>     = ( <style-query> )
+		// 					  | ( <style-feature> )
+		// 					  | <general-enclosed>
+		const node = this.create(nodes.Node);
+
+		if (this.acceptIdent('not')) {
+			node.addChild(this._parseStyleInParens());
+		} else if (this.peek(TokenType.ParenthesisL)) {
+			node.addChild(this._parseStyleInParens());
+			if (this.peekIdent('and')) {
+				while (this.acceptIdent('and')) {
+					node.addChild(this._parseStyleInParens());
+				}
+			} else if (this.peekIdent('or')) {
+				while (this.acceptIdent('or')) {
+					node.addChild(this._parseStyleInParens());
+				}
+			}
+		} else {
+			node.addChild(this._parseDeclaration([TokenType.ParenthesisR]));
+		}
+		return this.finish(node);
+	}
+
+	public _parseStyleInParens(): nodes.Node {
+		const node = this.create(nodes.Node);
+		if (this.accept(TokenType.ParenthesisL)) {
+			node.addChild(this._parseStyleQuery());
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+		} else {
+			return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.CurlyL]);
+		}
+		return this.finish(node);
 	}
 
 	// https://www.w3.org/TR/css-syntax-3/#consume-an-at-rule
