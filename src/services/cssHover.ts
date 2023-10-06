@@ -38,7 +38,7 @@ export class CSSHover {
 		 * Build up the hover by appending inner node's information
 		 */
 		let hover: Hover | null = null;
-		let flagOpts;
+		let flagOpts:{text:string;isMedia:boolean};
 
 		for (let i = 0; i < nodepath.length; i++) {
 			const node = nodepath[i];
@@ -48,13 +48,13 @@ export class CSSHover {
 					const matches = node.getText().match(regex);
 					flagOpts = {
 						isMedia:true,
-						text:matches?.[0]
+						text:matches?.[0].toString()!
 					};
 			}
 
 			if (node instanceof nodes.Selector) {
 				hover = {
-					contents: this.selectorPrinting.selectorToMarkedString(<nodes.Selector>node, flagOpts),
+					contents: this.selectorPrinting.selectorToMarkedString(<nodes.Selector>node, flagOpts!),
 					range: getRange(node)
 				};
 				break;
