@@ -130,7 +130,7 @@ class MarkedStringPrinter {
 		// empty
 	}
 
-	public print(element: Element): MarkedString[] {
+	public print(element: Element, flagOpts?:{isMedia: boolean, text: string}): MarkedString[] {
 		this.result = [];
 		if (element instanceof RootElement) {
 			if (element.children) {
@@ -138,9 +138,13 @@ class MarkedStringPrinter {
 			}
 		} else {
 			this.doPrint([element], 0);
+		}		
+		let value ;
+		if(flagOpts){
+			value = `${flagOpts.text}\n … ` + this.result.join('\n');
+		}else{
+			value = this.result.join('\n');
 		}
-
-		const value = this.result.join('\n');
 		return [{ language: 'html', value }];
 	}
 
@@ -325,14 +329,15 @@ function unescape(content: string) {
 
 
 export class SelectorPrinting {
+
 	constructor(private cssDataManager: CSSDataManager) {
 
 	}
 
-	public selectorToMarkedString(node: nodes.Selector): MarkedString[] {
+	public selectorToMarkedString(node: nodes.Selector, flagOpts?:{isMedia: boolean, text: string}): MarkedString[] {
 		const root = selectorToElement(node);
 		if (root) {
-			const markedStrings = new MarkedStringPrinter('"').print(root);
+			const markedStrings = new MarkedStringPrinter('"').print(root, flagOpts);
 			markedStrings.push(this.selectorToSpecificityMarkedString(node));
 			return markedStrings;
 		} else {
