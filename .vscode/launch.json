@@ -4,25 +4,18 @@
     {
       "name": "Unit Tests",
       "type": "node",
+      "runtimeVersion": "18.16.0",
       "request": "launch",
       "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
       "stopOnEntry": false,
-      "args": [
-        "--timeout",
-        "999999",
-        "--colors"
-      ],
+      "args": ["--timeout", "999999", "--colors"], // in .mocharc.js
       "cwd": "${workspaceRoot}",
       "runtimeExecutable": null,
       "runtimeArgs": [],
       "env": {},
       "sourceMaps": true,
-      "outFiles": [
-        "${workspaceRoot}/lib/umd/**"
-      ],
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
+      "outFiles": ["${workspaceRoot}/lib/umd/**"],
+      "skipFiles": ["<node_internals>/**"],
       "smartStep": true,
       "preLaunchTask": "npm: watch"
     }

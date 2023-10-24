@@ -1,0 +1,35 @@
+{
+  "folders": [
+    {
+      "path": "../"
+    }
+  ],
+
+  "settings": {
+    // ESLint looks to <root> for 'import/resolver/' typescript; project.
+    // "eslint.workingDirectories": ["./frontend", "./backend"],
+    "workbench.editor.wrapTabs": false,
+    "workbench.startupEditor": "none",
+    "task.allowAutomaticTasks": "on"
+    // "path-intellisense.mappings": {
+    //   "#Img": "${workspaceFolder}/frontend/src/assets/img",
+    //   "#Sass": "${workspaceFolder}/frontend/src/assets/sass",
+    //   "#Svg": "${workspaceFolder}/frontend/src/assets/svg",
+    //   "#Components": "${workspaceFolder}/frontend/src/components",
+    //   "#Context": "${workspaceFolder}/frontend/src/context",
+    //   "#Data": "${workspaceFolder}/frontend/src/data",
+    //   "#Feature": "${workspaceFolder}/frontend/src/features",
+    //   "#Hooks": "${workspaceFolder}/frontend/src/hooks",
+    //   "#Layouts": "${workspaceFolder}/frontend/src/layouts",
+    //   "#Lib": "${workspaceFolder}/frontend/src/lib",
+    //   "#Pages": "${workspaceFolder}/frontend/src/pages",
+    //   "#Services": "${workspaceFolder}/frontend/src/services",
+    //   "#Types": "${workspaceFolder}/frontend/src/types",
+    //   "#Utils": "${workspaceFolder}/frontend/src/utils"
+    // }
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": []
+  }
+}
