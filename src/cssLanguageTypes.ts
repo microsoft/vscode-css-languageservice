@@ -47,8 +47,14 @@ export interface LanguageSettings {
 	lint?: LintSettings;
 	completion?: CompletionSettings;
 	hover?: HoverSettings;
+	alias?: AliasSettings;
 }
 
+export interface AliasSettings {
+	paths?: { [key: string]: string };
+	configPath?: boolean;
+	baseUrl?: string;
+}
 
 export interface HoverSettings {
 	documentation?: boolean;
