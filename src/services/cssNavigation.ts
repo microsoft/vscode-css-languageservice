@@ -523,13 +523,6 @@ export class CSSNavigation {
 		isRawLink = false,
     settings = this.defaultSettings,
 	): Promise<string | undefined> {
-		// TEST: .
-		if (target.indexOf('#Sass/') !== -1) {
-			console.log('#SASS Target', settings);
-			target = './test2.css';
-			return await this.mapReference(documentContext.resolveReference(target, documentUri), isRawLink);
-		}
-
 		// Following [css-loader](https://github.com/webpack-contrib/css-loader#url)
 		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#imports)
 		// convention, if an import path starts with ~ then use node module resolution
@@ -558,6 +551,33 @@ export class CSSNavigation {
 				return moduleReference;
 			}
 		}
+
+    // TEST: 
+    // Try resolving the reference utilizing aliases defined in settings.json; relative to root working folder 
+    if (ref && !(await this.fileExists(ref))){
+      const rootFolderUri = documentContext.resolveReference('/', documentUri);
+      if (settings?.paths && rootFolderUri) {
+        for (const [alias, path] of Object.entries(settings.paths)) {
+          // Reference folder
+          if (alias[-2] === '/' && alias[-1] === '*'){
+            if (startsWith(target, alias)){
+              // strip /* from alias-path end
+              // STR1: join rootFolderURi + above string
+              // STR2: strip alias (xxx/) from target
+              // join STR1 + STR2, and return
+            }
+            // Do work here
+          }
+          // Specific file reference
+          if (target === alias){
+            return joinPath(rootFolderUri, path);
+          }
+        }
+      }
+
+    }
+    // TEST: .
+
 		// fall back. it might not exists
 		return ref;
 	}
