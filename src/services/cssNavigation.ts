@@ -30,7 +30,7 @@ import { getColorValue, hslFromColor, hwbFromColor } from '../languageFacts/fact
 import * as nodes from '../parser/cssNodes';
 import { Symbols } from '../parser/cssSymbolScope';
 import { dirname, joinPath } from '../utils/resources';
-import { startsWith } from '../utils/strings';
+import { endsWith, startsWith } from '../utils/strings';
 
 type UnresolvedLinkData = { link: DocumentLink; isRawLink: boolean };
 
@@ -557,20 +557,30 @@ export class CSSNavigation {
     if (ref && !(await this.fileExists(ref))){
       const rootFolderUri = documentContext.resolveReference('/', documentUri);
       if (settings?.paths && rootFolderUri) {
-        for (const [alias, path] of Object.entries(settings.paths)) {
-          // Reference folder
-          if (alias[-2] === '/' && alias[-1] === '*'){
-            if (startsWith(target, alias)){
-              // strip /* from alias-path end
-              // STR1: join rootFolderURi + above string
-              // STR2: strip alias (xxx/) from target
-              // join STR1 + STR2, and return
-            }
-            // Do work here
-          }
+        aliasMap: for (const [alias, aliasPath] of Object.entries(settings.paths)) {
+          // Skip erroneous user syntax
+          if (alias === '' || aliasPath === '' || alias[0] === '/' || alias[-1] === '/') {continue aliasMap;}
           // Specific file reference
           if (target === alias){
-            return joinPath(rootFolderUri, path);
+            return joinPath(rootFolderUri, aliasPath);
+          }
+          // Reference folder
+          if (endsWith(alias, '/*') && endsWith(aliasPath, '/*')){
+            if (startsWith(target, alias.slice(0, -1))){
+              let newPath = aliasPath.slice(0, -1);
+              newPath = joinPath(rootFolderUri, newPath);
+              const newTarget = target.slice(alias.length - 1);
+              return newPath = joinPath(newPath, newTarget);
+
+              // NOTE:  Works.
+              // // strip '.' prefix and '*' suffix; concatenate to root folder path
+              // let newPath = aliasPath.slice(1, -1);
+              // newPath = `${rootFolderUri}${newPath}`;
+              // // Strip alias prefix from target and concatenate
+              // const newTarget = target.slice(alias.length - 2);
+              // newPath = `${newPath}${newTarget}`;
+              // return newPath;
+            }
           }
         }
       }
