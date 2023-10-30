@@ -30,7 +30,7 @@ import { getColorValue, hslFromColor, hwbFromColor } from '../languageFacts/fact
 import * as nodes from '../parser/cssNodes';
 import { Symbols } from '../parser/cssSymbolScope';
 import { dirname, joinPath } from '../utils/resources';
-import { endsWith, startsWith } from '../utils/strings';
+import { startsWith } from '../utils/strings';
 
 type UnresolvedLinkData = { link: DocumentLink; isRawLink: boolean };
 
@@ -46,7 +46,7 @@ const startsWithSchemeRegex = /^\w+:\/\//;
 const startsWithData = /^data:/;
 
 export class CSSNavigation {
-  private defaultSettings?: AliasSettings;
+  protected defaultSettings?: AliasSettings;
 
 	constructor(
 		protected fileSystemProvider: FileSystemProvider | undefined,
@@ -552,41 +552,24 @@ export class CSSNavigation {
 			}
 		}
 
-    // TEST: 
-    // Try resolving the reference utilizing aliases defined in settings.json; relative to root working folder 
+    // Try resolving the reference utilizing aliases defined in settings.json
     if (ref && !(await this.fileExists(ref))){
       const rootFolderUri = documentContext.resolveReference('/', documentUri);
       if (settings?.paths && rootFolderUri) {
-        aliasMap: for (const [alias, aliasPath] of Object.entries(settings.paths)) {
-          // Skip erroneous user syntax
-          if (alias === '' || aliasPath === '' || alias[0] === '/' || alias[-1] === '/') {continue aliasMap;}
           // Specific file reference
-          if (target === alias){
-            return joinPath(rootFolderUri, aliasPath);
+          if (target in settings.paths){
+            return this.mapReference(joinPath(rootFolderUri, settings.paths[target]), isRawLink);
           }
           // Reference folder
-          if (endsWith(alias, '/*') && endsWith(aliasPath, '/*')){
-            if (startsWith(target, alias.slice(0, -1))){
-              let newPath = aliasPath.slice(0, -1);
-              newPath = joinPath(rootFolderUri, newPath);
-              const newTarget = target.slice(alias.length - 1);
-              return newPath = joinPath(newPath, newTarget);
-
-              // NOTE:  Works.
-              // // strip '.' prefix and '*' suffix; concatenate to root folder path
-              // let newPath = aliasPath.slice(1, -1);
-              // newPath = `${rootFolderUri}${newPath}`;
-              // // Strip alias prefix from target and concatenate
-              // const newTarget = target.slice(alias.length - 2);
-              // newPath = `${newPath}${newTarget}`;
-              // return newPath;
-            }
+          const firstSlash = target.indexOf('/');
+          const prefix = `${target.substring(0, firstSlash)}/*`;
+          if (prefix in settings.paths){
+            const aliasPath = (settings.paths[prefix]).slice(0, -1);
+            let newPath = joinPath(rootFolderUri, aliasPath);
+            return this.mapReference(newPath = joinPath(newPath, target.substring(prefix.length - 1)), isRawLink);
           }
-        }
       }
-
     }
-    // TEST: .
 
 		// fall back. it might not exists
 		return ref;
