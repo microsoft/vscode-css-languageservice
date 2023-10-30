@@ -52,8 +52,6 @@ export interface LanguageSettings {
 
 export interface AliasSettings {
 	paths?: { [key: string]: string };
-	configPath?: boolean;
-	baseUrl?: string;
 }
 
 export interface HoverSettings {
