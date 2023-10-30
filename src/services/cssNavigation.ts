@@ -552,7 +552,7 @@ export class CSSNavigation {
 			}
 		}
 
-    // Try resolving the reference utilizing aliases defined in settings.json
+    // Try resolving the reference from the language configuration alias settings.
     if (ref && !(await this.fileExists(ref))){
       const rootFolderUri = documentContext.resolveReference('/', documentUri);
       if (settings?.paths && rootFolderUri) {
