@@ -19,14 +19,12 @@ function getSCSSLS() {
 
 function aliasSettings(): LanguageSettings {
 	return {
-		"alias": {
-			"paths": {
+		"importAliases": {
 				"@SassStylesheet": "/src/assets/styles.scss",
-				"@NoUnderscoreDir/*": "/noUnderscore/*",
-				"@UnderscoreDir/*": "/underscore/*",
-				"@BothDir/*": "/both/*",
+				"@NoUnderscoreDir/": "/noUnderscore/",
+				"@UnderscoreDir/": "/underscore/",
+				"@BothDir/": "/both/",
 			}
-		}
 	};
 }
 

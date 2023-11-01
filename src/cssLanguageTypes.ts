@@ -47,11 +47,11 @@ export interface LanguageSettings {
 	lint?: LintSettings;
 	completion?: CompletionSettings;
 	hover?: HoverSettings;
-	alias?: AliasSettings;
+	importAliases?: AliasSettings;
 }
 
 export interface AliasSettings {
-	paths?: { [key: string]: string };
+	[key: string]: string;
 }
 
 export interface HoverSettings {

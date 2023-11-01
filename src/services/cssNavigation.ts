@@ -412,16 +412,16 @@ export class CSSNavigation {
 		// Try resolving the reference from the language configuration alias settings
 		if (ref && !(await this.fileExists(ref))) {
 			const rootFolderUri = documentContext.resolveReference('/', documentUri);
-			if (settings?.paths && rootFolderUri) {
+			if (settings && rootFolderUri) {
 				// Specific file reference
-				if (target in settings.paths) {
-					return this.mapReference(joinPath(rootFolderUri, settings.paths[target]), isRawLink);
+				if (target in settings) {
+					return this.mapReference(joinPath(rootFolderUri, settings[target]), isRawLink);
 				}
 				// Reference folder
 				const firstSlash = target.indexOf('/');
-				const prefix = `${target.substring(0, firstSlash)}/*`;
-				if (prefix in settings.paths) {
-					const aliasPath = (settings.paths[prefix]).slice(0, -1);
+				const prefix = `${target.substring(0, firstSlash)}/`;
+				if (prefix in settings) {
+					const aliasPath = (settings[prefix]).slice(0, -1);
 					let newPath = joinPath(rootFolderUri, aliasPath);
 					return this.mapReference(newPath = joinPath(newPath, target.substring(prefix.length - 1)), isRawLink);
 				}

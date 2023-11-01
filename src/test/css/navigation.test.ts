@@ -186,11 +186,9 @@ function getCSSLS() {
 
 function aliasSettings(): LanguageSettings {
 	return {
-		"alias": {
-			"paths": {
+		"importAliases": {
 				"@SingleStylesheet": "/src/assets/styles.css",
-				"@AssetsDir/*": "/src/assets/*",
-			}
+				"@AssetsDir/": "/src/assets/",
 		}
 	};
 }
