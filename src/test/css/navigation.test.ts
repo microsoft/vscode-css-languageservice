@@ -12,7 +12,7 @@ import { colorFrom256RGB, colorFromHSL, colorFromHWB } from '../../languageFacts
 
 import {
 	TextDocument, DocumentHighlightKind, Range, Position, TextEdit, Color,
-	ColorInformation, DocumentLink, SymbolKind, SymbolInformation, Location, LanguageService, Stylesheet, getCSSLanguageService, DocumentSymbol,
+	ColorInformation, DocumentLink, SymbolKind, SymbolInformation, Location, LanguageService, Stylesheet, getCSSLanguageService, DocumentSymbol, LanguageSettings,
 } from '../../cssLanguageService';
 
 import { URI } from 'vscode-uri';
@@ -182,6 +182,17 @@ function createScope(ls: LanguageService, input: string): Scope {
 
 function getCSSLS() {
 	return getCSSLanguageService({ fileSystemProvider: getFsProvider() });
+}
+
+function aliasSettings(): LanguageSettings {
+	return {
+		"alias": {
+			"paths": {
+				"@SingleStylesheet": "/src/assets/styles.css",
+				"@AssetsDir/*": "/src/assets/*",
+			}
+		}
+	};
 }
 
 suite('CSS - Navigation', () => {
@@ -362,6 +373,16 @@ suite('CSS - Navigation', () => {
 			await assertLinks(ls, `@import url('landscape.css') screen and (orientation:landscape);`, [
 				{ range: newRange(12, 27), target: 'test://test/landscape.css' }
 			]);
+		});
+
+		test('aliased @import links', async function () {
+			const settings = aliasSettings();
+			const ls = getCSSLS();
+			ls.configure(settings);
+
+			await assertLinks(ls, '@import "@SingleStylesheet"', [{ range: newRange(8, 27), target: "test://test/src/assets/styles.css"}]);
+
+			await assertLinks(ls, '@import "@AssetsDir/styles.css"', [{ range: newRange(8, 31), target: "test://test/src/assets/styles.css"}]);
 		});
 
 		test('links in rulesets', async () => {
