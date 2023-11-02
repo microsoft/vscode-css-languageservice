@@ -456,10 +456,9 @@ export class SelectorPrinting {
 							continue elementLoop;
 						}
 
-						if (text.match(/^:(?:nth-child|nth-last-child|host|host-context)/i) && childElements.length > 0) {
+						if (text.match(/^:(?:host|host-context)/i) && childElements.length > 0) {
 							// The specificity of :host() is that of a pseudo-class, plus the specificity of its argument.
 							// The specificity of :host-context() is that of a pseudo-class, plus the specificity of its argument.
-							// The specificity of an :nth-child() or :nth-last-child() selector is the specificity of the pseudo class itself (counting as one pseudo-class selector) plus the specificity of the most specific complex selector in its selector list argument.
 							specificity.attr++;
 
 							let mostSpecificListItem = calculateMostSpecificListItem(childElements);
@@ -469,6 +468,29 @@ export class SelectorPrinting {
 							specificity.tag += mostSpecificListItem.tag;
 							continue elementLoop;
 						}
+
+						if (text.match(/^:(?:nth-child|nth-last-child)/i) && childElements.length > 0) {
+							// The specificity of the :nth-child(An+B [of S]?) pseudo-class is the specificity of a single pseudo-class plus, if S is specified, the specificity of the most specific complex selector in S
+							// https://www.w3.org/TR/selectors-4/#the-nth-child-pseudo
+							specificity.attr++;
+
+							const selectorText = text.slice(text.indexOf('(') + 1, text.length -1);
+
+							// Test for presence of complex-selector-list S; find highest specificity
+							const keyword = text.indexOf(' of ');
+							if (keyword !== -1) {
+								const psuedoSelector = element.getChildren();
+								const complexSelectorList = psuedoSelector[psuedoSelector.length - 1].getChildren();
+								let mostSpecificListItem = calculateMostSpecificListItem(complexSelectorList);
+
+								specificity.id += mostSpecificListItem.id;
+								specificity.attr += mostSpecificListItem.attr;
+								specificity.tag += mostSpecificListItem.tag;
+							}
+							continue elementLoop;
+						}
+
+
 
 						specificity.attr++;	//pseudo class
 						continue elementLoop;
