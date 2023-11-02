@@ -490,8 +490,6 @@ export class SelectorPrinting {
 							continue elementLoop;
 						}
 
-
-
 						specificity.attr++;	//pseudo class
 						continue elementLoop;
 				}
