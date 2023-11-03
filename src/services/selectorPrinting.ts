@@ -470,7 +470,7 @@ export class SelectorPrinting {
 						}
 
 						if (text.match(/^:(?:nth-child|nth-last-child)/i) && childElements.length > 0) {
-							// The specificity of the :nth-child(An+B [of S]?) pseudo-class is the specificity of a single pseudo-class plus, if S is specified, the specificity of the most specific complex selector in S
+							/* The specificity of the :nth-child(An+B [of S]?) pseudo-class is the specificity of a single pseudo-class plus, if S is specified, the specificity of the most specific complex selector in S */
 							// https://www.w3.org/TR/selectors-4/#the-nth-child-pseudo
 							specificity.attr++;
 
