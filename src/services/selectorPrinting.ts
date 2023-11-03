@@ -9,6 +9,7 @@ import { MarkedString } from '../cssLanguageTypes';
 import { Scanner } from '../parser/cssScanner';
 import * as l10n from '@vscode/l10n';
 import { CSSDataManager } from '../languageFacts/dataManager';
+import { Parser } from '../parser/cssParser';
 
 export class Element {
 
@@ -473,20 +474,45 @@ export class SelectorPrinting {
 							/* The specificity of the :nth-child(An+B [of S]?) pseudo-class is the specificity of a single pseudo-class plus, if S is specified, the specificity of the most specific complex selector in S */
 							// https://www.w3.org/TR/selectors-4/#the-nth-child-pseudo
 							specificity.attr++;
-
-							const selectorText = text.slice(text.indexOf('(') + 1, text.length -1);
-
-							// Test for presence of complex-selector-list S; find highest specificity
-							const keyword = text.indexOf(' of ');
-							if (keyword !== -1) {
-								const psuedoSelector = element.getChildren();
-								const complexSelectorList = psuedoSelector[psuedoSelector.length - 1].getChildren();
-								let mostSpecificListItem = calculateMostSpecificListItem(complexSelectorList);
+							
+							// 23 = Binary Expression. 
+							if (childElements.length === 3 && childElements[1].type === 23){
+								let mostSpecificListItem = calculateMostSpecificListItem(childElements[2].getChildren());
 
 								specificity.id += mostSpecificListItem.id;
 								specificity.attr += mostSpecificListItem.attr;
 								specificity.tag += mostSpecificListItem.tag;
+
+								continue elementLoop;
 							}
+							
+							// Edge case: 'n' without integer prefix A, with B integer non-existent, is not regarded as a binary expression token.
+							const scanner = new Scanner();
+							const pseudoSelectorText = childElements[1].getText();
+							scanner.setSource(pseudoSelectorText);
+							const firstToken = scanner.scan();
+							const secondToken = scanner.scan();
+							if (firstToken.text === 'n' || firstToken.text === '-n' && secondToken.text === 'of') {
+								const parser = new Parser();
+								const complexSelectorListNodes: nodes.Node[] = [];
+								const complexSelectorText = pseudoSelectorText.slice(secondToken.offset + 2);
+								const complexSelectorArray = complexSelectorText.split(',');
+								
+								for (const selector of complexSelectorArray) {
+									const node = parser.internalParse(selector, parser._parseSelector);
+									if (node) {
+										complexSelectorListNodes.push(node);
+									} 
+								}
+
+								let mostSpecificListItem = calculateMostSpecificListItem(complexSelectorListNodes);
+
+								specificity.id += mostSpecificListItem.id;
+								specificity.attr += mostSpecificListItem.attr;
+								specificity.tag += mostSpecificListItem.tag;
+								continue elementLoop;
+							}
+
 							continue elementLoop;
 						}
 
