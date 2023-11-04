@@ -487,13 +487,13 @@ export class SelectorPrinting {
 							}
 							
 							// Edge case: 'n' without integer prefix A, with B integer non-existent, is not regarded as a binary expression token.
-							const scanner = new Scanner();
+							const parser = new Parser();
 							const pseudoSelectorText = childElements[1].getText();
-							scanner.setSource(pseudoSelectorText);
-							const firstToken = scanner.scan();
-							const secondToken = scanner.scan();
+							parser.scanner.setSource(pseudoSelectorText);
+							const firstToken = parser.scanner.scan();
+							const secondToken = parser.scanner.scan();
+							
 							if (firstToken.text === 'n' || firstToken.text === '-n' && secondToken.text === 'of') {
-								const parser = new Parser();
 								const complexSelectorListNodes: nodes.Node[] = [];
 								const complexSelectorText = pseudoSelectorText.slice(secondToken.offset + 2);
 								const complexSelectorArray = complexSelectorText.split(',');
