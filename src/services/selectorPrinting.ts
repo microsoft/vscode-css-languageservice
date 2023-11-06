@@ -474,9 +474,9 @@ export class SelectorPrinting {
 							/* The specificity of the :nth-child(An+B [of S]?) pseudo-class is the specificity of a single pseudo-class plus, if S is specified, the specificity of the most specific complex selector in S */
 							// https://www.w3.org/TR/selectors-4/#the-nth-child-pseudo
 							specificity.attr++;
-							
+
 							// 23 = Binary Expression. 
-							if (childElements.length === 3 && childElements[1].type === 23){
+							if (childElements.length === 3 && childElements[1].type === 23) {
 								let mostSpecificListItem = calculateMostSpecificListItem(childElements[2].getChildren());
 
 								specificity.id += mostSpecificListItem.id;
@@ -485,24 +485,24 @@ export class SelectorPrinting {
 
 								continue elementLoop;
 							}
-							
+
 							// Edge case: 'n' without integer prefix A, with B integer non-existent, is not regarded as a binary expression token.
 							const parser = new Parser();
 							const pseudoSelectorText = childElements[1].getText();
 							parser.scanner.setSource(pseudoSelectorText);
 							const firstToken = parser.scanner.scan();
 							const secondToken = parser.scanner.scan();
-							
+
 							if (firstToken.text === 'n' || firstToken.text === '-n' && secondToken.text === 'of') {
 								const complexSelectorListNodes: nodes.Node[] = [];
 								const complexSelectorText = pseudoSelectorText.slice(secondToken.offset + 2);
 								const complexSelectorArray = complexSelectorText.split(',');
-								
+
 								for (const selector of complexSelectorArray) {
 									const node = parser.internalParse(selector, parser._parseSelector);
 									if (node) {
 										complexSelectorListNodes.push(node);
-									} 
+									}
 								}
 
 								let mostSpecificListItem = calculateMostSpecificListItem(complexSelectorListNodes);
