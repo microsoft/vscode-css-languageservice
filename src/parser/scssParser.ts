@@ -55,11 +55,7 @@ export class SCSSParser extends cssParser.Parser {
 			}
 		}
 
-		if (!this.peek(TokenType.SemiColon) && !this.peek(TokenType.EOF)) {
-			node.setMedialist(this._parseMediaQueryList());
-		}
-
-		return this.finish(node);
+		return this._completeParseImport(node);
 	}
 
 	// scss variables: $font-size: 12px;

@@ -704,6 +704,11 @@ export class Parser {
 			return this.finish(node, ParseError.URIOrStringExpected);
 		}
 
+		return this._completeParseImport(node);
+	}
+
+
+	public _completeParseImport(node: nodes.Import): nodes.Node | null {
 		if (this.acceptIdent('layer')) {
 			if (this.accept(TokenType.ParenthesisL)) {
 				if (!node.addChild(this._parseLayerName())) {
