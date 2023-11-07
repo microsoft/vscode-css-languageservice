@@ -452,7 +452,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseSelector(isNested: boolean): nodes.Selector | null {
+	public _parseSelector(isNested?: boolean): nodes.Selector | null {
 		const node = this.create(nodes.Selector);
 
 		let hasContent = false;
