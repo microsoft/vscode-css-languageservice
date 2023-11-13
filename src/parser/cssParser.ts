@@ -950,11 +950,10 @@ export class Parser {
 
 	public _parseLayerName(): nodes.Node | null {
 		// <layer-name> = <ident> [ '.' <ident> ]*
-		if (!this.peek(TokenType.Ident)) {
+		const node = this.createNode(nodes.NodeType.LayerName);
+		if (!node.addChild(this._parseIdent()) ) {
 			return null;
 		}
-		const node = this.createNode(nodes.NodeType.LayerName);
-		node.addChild(this._parseIdent());
 		while (!this.hasWhitespace() && this.acceptDelim('.')) {
 			if (this.hasWhitespace() || !node.addChild(this._parseIdent())) {
 				return this.finish(node, ParseError.IdentifierExpected);

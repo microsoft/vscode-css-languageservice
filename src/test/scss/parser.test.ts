@@ -283,6 +283,16 @@ suite('SCSS - Parser', () => {
 		assertNode('@import url("override.css") layer;', parser, parser._parseStylesheet.bind(parser));
 	});
 
+	test('@layer', function () {
+		const parser = new SCSSParser();
+		assertNode('@layer #{$layer} { }', parser, parser._parseLayer.bind(parser));
+	});
+
+	test('@container', function () {
+		const parser = new SCSSParser();
+		assertNode(`@container (min-width: #{$minWidth}) { .scss-interpolation { line-height: 10cqh; } }`, parser, parser._parseStylesheet.bind(parser));
+	});
+
 	test('@use', function () {
 		const parser = new SCSSParser();
 		assertNode('@use "test"', parser, parser._parseUse.bind(parser));
