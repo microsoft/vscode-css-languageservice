@@ -378,6 +378,7 @@ suite('SCSS - Parser', () => {
 
 		assertNode('@keyframes name { @for $i from 0 through m.$steps { #{$i * (100%/$steps)} { transform: $rotate $translate; } } }', parser, parser._parseKeyframe.bind(parser));
 		assertNode('@keyframes name { @function bar() { } }', parser, parser._parseKeyframe.bind(parser)); // #197742
+		assertNode('@keyframes name { @include keyframe-mixin(); }', parser, parser._parseKeyframe.bind(parser)); // #197742
 	});
 
 	test('@extend', function () {
