@@ -118,6 +118,9 @@ export class SCSSParser extends cssParser.Parser {
 	public _parseKeyframeSelector(): nodes.Node | null {
 		return this._tryParseKeyframeSelector()
 			|| this._parseControlStatement(this._parseKeyframeSelector.bind(this))
+			|| this._parseWarnAndDebug() // @warn, @debug and @error statements
+			|| this._parseMixinReference() // @include
+			|| this._parseFunctionDeclaration() // @function
 			|| this._parseVariableDeclaration()
 			|| this._parseMixinContent();
 	}
