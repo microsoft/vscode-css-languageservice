@@ -54,9 +54,7 @@ function toPathVariations(target: string): DocumentUri[] {
 		return [target + 'index.scss', target + '_index.scss'];
 	}
 
-	const targetWithoutScssExtension = target.replace(/\.scss$/, '');
-
-	const targetUri = URI.parse(targetWithoutScssExtension);
+	const targetUri = URI.parse(target.replace(/\.scss$/, ''));
 	const basename = Utils.basename(targetUri);
 	const dirname = Utils.dirname(targetUri);
 	if (basename.startsWith('_')) {
@@ -67,8 +65,8 @@ function toPathVariations(target: string): DocumentUri[] {
 	return [
 		Utils.joinPath(dirname, basename + '.scss').toString(true),
 		Utils.joinPath(dirname, '_' + basename + '.scss').toString(true),
-		targetWithoutScssExtension + '/index.scss',
-		targetWithoutScssExtension + '/_index.scss',
+		target + '/index.scss',
+		target + '/_index.scss',
 		Utils.joinPath(dirname, basename + '.css').toString(true)
 	];
 }
