@@ -44,8 +44,8 @@ export class SCSSNavigation extends CSSNavigation {
 }
 
 function toPathVariations(target: string): DocumentUri[] {
-	// No variation for links that ends with suffix
-	if (target.endsWith('.scss') || target.endsWith('.css')) {
+	// No variation for links that ends with .css suffix
+	if (target.endsWith('.css')) {
 		return [target];
 	}
 
@@ -54,7 +54,9 @@ function toPathVariations(target: string): DocumentUri[] {
 		return [target + 'index.scss', target + '_index.scss'];
 	}
 
-	const targetUri = URI.parse(target);
+	const targetWithoutScssExtension = target.replace(/\.scss$/, '');
+
+	const targetUri = URI.parse(targetWithoutScssExtension);
 	const basename = Utils.basename(targetUri);
 	const dirname = Utils.dirname(targetUri);
 	if (basename.startsWith('_')) {
@@ -65,8 +67,8 @@ function toPathVariations(target: string): DocumentUri[] {
 	return [
 		Utils.joinPath(dirname, basename + '.scss').toString(true),
 		Utils.joinPath(dirname, '_' + basename + '.scss').toString(true),
-		target + '/index.scss',
-		target + '/_index.scss',
+		targetWithoutScssExtension + '/index.scss',
+		targetWithoutScssExtension + '/_index.scss',
 		Utils.joinPath(dirname, basename + '.css').toString(true)
 	];
 }
