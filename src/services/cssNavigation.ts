@@ -5,7 +5,7 @@
 'use strict';
 
 import {
-	Color, ColorInformation, ColorPresentation, DocumentHighlight, DocumentHighlightKind, DocumentLink, Location,
+	AliasSettings, Color, ColorInformation, ColorPresentation, DocumentHighlight, DocumentHighlightKind, DocumentLink, Location,
 	Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit, TextDocument, DocumentContext, FileSystemProvider, FileType, DocumentSymbol
 } from '../cssLanguageTypes';
 import * as l10n from '@vscode/l10n';
@@ -24,8 +24,13 @@ const startsWithSchemeRegex = /^\w+:\/\//;
 const startsWithData = /^data:/;
 
 export class CSSNavigation {
+	protected defaultSettings?: AliasSettings;
 
 	constructor(protected fileSystemProvider: FileSystemProvider | undefined, private readonly resolveModuleReferences: boolean) {
+	}
+
+	public configure(settings: AliasSettings | undefined) {
+		this.defaultSettings = settings;
 	}
 
 	public findDefinition(document: TextDocument, position: Position, stylesheet: nodes.Node): Location | null {
@@ -228,7 +233,7 @@ export class CSSNavigation {
 			if (!selectionRange || !containsRange(range, selectionRange)) {
 				selectionRange = Range.create(range.start, range.start);
 			}
-			
+
 			const entry: DocumentSymbol = {
 				name: name || l10n.t('<undefined>'),
 				kind,
@@ -376,7 +381,7 @@ export class CSSNavigation {
 		return target;
 	}
 
-	protected async resolveReference(target: string, documentUri: string, documentContext: DocumentContext, isRawLink = false): Promise<string | undefined> {
+	protected async resolveReference(target: string, documentUri: string, documentContext: DocumentContext, isRawLink = false, settings = this.defaultSettings): Promise<string | undefined> {
 
 		// Following [css-loader](https://github.com/webpack-contrib/css-loader#url)
 		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#imports)
@@ -403,6 +408,26 @@ export class CSSNavigation {
 				return moduleReference;
 			}
 		}
+
+		// Try resolving the reference from the language configuration alias settings
+		if (ref && !(await this.fileExists(ref))) {
+			const rootFolderUri = documentContext.resolveReference('/', documentUri);
+			if (settings && rootFolderUri) {
+				// Specific file reference
+				if (target in settings) {
+					return this.mapReference(joinPath(rootFolderUri, settings[target]), isRawLink);
+				}
+				// Reference folder
+				const firstSlash = target.indexOf('/');
+				const prefix = `${target.substring(0, firstSlash)}/`;
+				if (prefix in settings) {
+					const aliasPath = (settings[prefix]).slice(0, -1);
+					let newPath = joinPath(rootFolderUri, aliasPath);
+					return this.mapReference(newPath = joinPath(newPath, target.substring(prefix.length - 1)), isRawLink);
+				}
+			}
+		}
+
 		// fall back. it might not exists
 		return ref;
 	}

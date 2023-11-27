@@ -6,10 +6,10 @@
 
 import * as nodes from '../../parser/cssNodes';
 import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertColorSymbols, assertLinks, newRange, getTestResource, assertDocumentSymbols } from '../css/navigation.test';
-import { getSCSSLanguageService, DocumentLink, TextDocument, SymbolKind } from '../../cssLanguageService';
+import { getSCSSLanguageService, DocumentLink, TextDocument, SymbolKind, LanguageSettings } from '../../cssLanguageService';
 import * as assert from 'assert';
 import * as path from 'path';
-import { URI, Utils } from 'vscode-uri';
+import { URI } from 'vscode-uri';
 import { getFsProvider } from '../testUtil/fsProvider';
 import { getDocumentContext } from '../testUtil/documentContext';
 
@@ -17,8 +17,22 @@ function getSCSSLS() {
 	return getSCSSLanguageService({ fileSystemProvider: getFsProvider() });
 }
 
-async function assertDynamicLinks(docUri: string, input: string, expected: DocumentLink[]) {
+function aliasSettings(): LanguageSettings {
+	return {
+		"importAliases": {
+				"@SassStylesheet": "/src/assets/styles.scss",
+				"@NoUnderscoreDir/": "/noUnderscore/",
+				"@UnderscoreDir/": "/underscore/",
+				"@BothDir/": "/both/",
+			}
+	};
+}
+
+async function assertDynamicLinks(docUri: string, input: string, expected: DocumentLink[], settings?: LanguageSettings) {
 	const ls = getSCSSLS();
+	if (settings) {
+		ls.configure(settings);
+	} 
 	const document = TextDocument.create(docUri, 'scss', 0, input);
 
 	const stylesheet = ls.parseStylesheet(document);
@@ -175,6 +189,35 @@ suite('SCSS - Navigation', () => {
 				{ range: newRange(12, 21), target: 'test://test/foo.css' }
 			]);
 
+		});
+
+		test('SCSS aliased links', async function () {
+			const fixtureRoot = path.resolve(__dirname, '../../../../src/test/scss/linkFixture');
+			const getDocumentUri = (relativePath: string) => {
+				return URI.file(path.resolve(fixtureRoot, relativePath)).toString(true);
+			};
+
+			const settings = aliasSettings();
+			const ls = getSCSSLS();
+			ls.configure(settings);
+
+			await assertLinks(ls, '@import "@SassStylesheet"', [{ range: newRange(8, 25), target: "test://test/src/assets/styles.scss"}]);
+
+			await assertDynamicLinks(getDocumentUri('./'), `@import '@NoUnderscoreDir/foo'`, [
+				{ range: newRange(8, 30), target: getDocumentUri('./noUnderscore/foo.scss') }
+			], settings);
+
+			await assertDynamicLinks(getDocumentUri('./'), `@import '@UnderscoreDir/foo'`, [
+				{ range: newRange(8, 28), target: getDocumentUri('./underscore/_foo.scss') }
+			], settings);
+
+			await assertDynamicLinks(getDocumentUri('./'), `@import '@BothDir/foo'`, [
+				{ range: newRange(8, 22), target: getDocumentUri('./both/foo.scss') }
+			], settings);
+
+			await assertDynamicLinks(getDocumentUri('./'), `@import '@BothDir/_foo'`, [
+				{ range: newRange(8, 23), target: getDocumentUri('./both/_foo.scss') }
+			], settings);
 		});
 
 		test('SCSS module file links', async () => {

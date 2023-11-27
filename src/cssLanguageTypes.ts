@@ -47,8 +47,12 @@ export interface LanguageSettings {
 	lint?: LintSettings;
 	completion?: CompletionSettings;
 	hover?: HoverSettings;
+	importAliases?: AliasSettings;
 }
 
+export interface AliasSettings {
+	[key: string]: string;
+}
 
 export interface HoverSettings {
 	documentation?: boolean;
