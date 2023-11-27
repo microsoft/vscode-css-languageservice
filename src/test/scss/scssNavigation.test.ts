@@ -154,6 +154,10 @@ suite('SCSS - Navigation', () => {
 				{ range: newRange(8, 13), target: getDocumentUri('./underscore/_foo.scss') }
 			]);
 
+			await assertDynamicLinks(getDocumentUri('./underscore/index.scss'), `@import 'foo.scss'`, [
+				{ range: newRange(8, 18), target: getDocumentUri('./underscore/_foo.scss') }
+			]);
+
 			await assertDynamicLinks(getDocumentUri('./both/index.scss'), `@import 'foo'`, [
 				{ range: newRange(8, 13), target: getDocumentUri('./both/foo.scss') }
 			]);
