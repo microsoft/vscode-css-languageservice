@@ -55,11 +55,7 @@ export class SCSSParser extends cssParser.Parser {
 			}
 		}
 
-		if (!this.peek(TokenType.SemiColon) && !this.peek(TokenType.EOF)) {
-			node.setMedialist(this._parseMediaQueryList());
-		}
-
-		return this.finish(node);
+		return this._completeParseImport(node);
 	}
 
 	// scss variables: $font-size: 12px;
@@ -122,6 +118,9 @@ export class SCSSParser extends cssParser.Parser {
 	public _parseKeyframeSelector(): nodes.Node | null {
 		return this._tryParseKeyframeSelector()
 			|| this._parseControlStatement(this._parseKeyframeSelector.bind(this))
+			|| this._parseWarnAndDebug() // @warn, @debug and @error statements
+			|| this._parseMixinReference() // @include
+			|| this._parseFunctionDeclaration() // @function
 			|| this._parseVariableDeclaration()
 			|| this._parseMixinContent();
 	}

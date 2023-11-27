@@ -452,7 +452,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseSelector(isNested: boolean): nodes.Selector | null {
+	public _parseSelector(isNested?: boolean): nodes.Selector | null {
 		const node = this.create(nodes.Selector);
 
 		let hasContent = false;
@@ -704,6 +704,11 @@ export class Parser {
 			return this.finish(node, ParseError.URIOrStringExpected);
 		}
 
+		return this._completeParseImport(node);
+	}
+
+
+	public _completeParseImport(node: nodes.Import): nodes.Node | null {
 		if (this.acceptIdent('layer')) {
 			if (this.accept(TokenType.ParenthesisL)) {
 				if (!node.addChild(this._parseLayerName())) {
@@ -945,11 +950,10 @@ export class Parser {
 
 	public _parseLayerName(): nodes.Node | null {
 		// <layer-name> = <ident> [ '.' <ident> ]*
-		if (!this.peek(TokenType.Ident)) {
+		const node = this.createNode(nodes.NodeType.LayerName);
+		if (!node.addChild(this._parseIdent()) ) {
 			return null;
 		}
-		const node = this.createNode(nodes.NodeType.LayerName);
-		node.addChild(this._parseIdent());
 		while (!this.hasWhitespace() && this.acceptDelim('.')) {
 			if (this.hasWhitespace() || !node.addChild(this._parseIdent())) {
 				return this.finish(node, ParseError.IdentifierExpected);

@@ -65,7 +65,7 @@ export class LESSParser extends cssParser.Parser {
 			node.setMedialist(this._parseMediaQueryList());
 		}
 
-		return this.finish(node);
+		return this._completeParseImport(node);
 	}
 
 	public _parsePlugin(): nodes.Node | null {

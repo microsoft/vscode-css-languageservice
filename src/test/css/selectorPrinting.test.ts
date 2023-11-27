@@ -309,9 +309,49 @@ suite('CSS - MarkedStringPrinter selectors specificities', () => {
 	});
 
 	test('nth-child, nth-last-child specificity', function () {
+		assertSelectorMarkdown(p, '#foo:nth-child(2)', '#foo', [
+			{ language: 'html', value: '<element id="foo" :nth-child>' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 1, 0)'
+		]);
+
+		assertSelectorMarkdown(p, '#foo:nth-child(even)', '#foo', [
+			{ language: 'html', value: '<element id="foo" :nth-child>' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 1, 0)'
+		]);
+
+		assertSelectorMarkdown(p, '#foo:nth-child(-n + 2)', '#foo', [
+			{ language: 'html', value: '<element id="foo" :nth-child>' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 1, 0)'
+		]);
+
+		assertSelectorMarkdown(p, '#foo:nth-child(n of.li)', '#foo', [
+			{ language: 'html', value: '<element id="foo" :nth-child>' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 2, 0)'
+		]);
+
+		assertSelectorMarkdown(p, '#foo:nth-child(n of.li,.li.li)', '#foo', [
+			{ language: 'html', value: '<element id="foo" :nth-child>' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 3, 0)'
+		]);
+
+		assertSelectorMarkdown(p, '#foo:nth-child(n of.li, .li.li)', '#foo', [
+			{ language: 'html', value: '<element id="foo" :nth-child>' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 3, 0)'
+		]);
+
+		assertSelectorMarkdown(p, '#foo:nth-child(n of li)', '#foo', [
+			{ language: 'html', value: '<element id="foo" :nth-child>' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 1, 1)'
+		]);
+
 		assertSelectorMarkdown(p, '#foo:nth-child(-n+3 of li.important)', '#foo', [
 			{ language: 'html', value: '<element id="foo" :nth-child>' },
 			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 2, 1)'
+		]);
+
+		assertSelectorMarkdown(p, '#foo:nth-child(-n+3 of li.important, .class1.class2.class3)', '#foo', [
+			{ language: 'html', value: '<element id="foo" :nth-child>' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 4, 0)'
 		]);
 
 		assertSelectorMarkdown(p, '#foo:nth-last-child(-n+3 of li, .important)', '#foo', [
