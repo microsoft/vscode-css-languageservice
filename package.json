@@ -1,6 +1,6 @@
 {
   "name": "vscode-css-languageservice",
-  "version": "6.2.10",
+  "version": "6.2.11",
   "description": "Language service for CSS, LESS and SCSS",
   "main": "./lib/umd/cssLanguageService.js",
   "typings": "./lib/umd/cssLanguageService",
@@ -15,13 +15,13 @@
     "url": "https://github.com/Microsoft/vscode-css-languageservice"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.2",
+    "@types/mocha": "^10.0.6",
     "@types/node": "16.x",
-    "@typescript-eslint/eslint-plugin": "^6.7.4",
-    "@typescript-eslint/parser": "^6.7.4",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
     "@vscode/web-custom-data": "^0.4.8",
-    "eslint": "^8.50.0",
-    "js-beautify": "^1.14.9",
+    "eslint": "^8.54.0",
+    "js-beautify": "^1.14.11",
     "mocha": "^10.2.0",
     "rimraf": "^5.0.5",
     "source-map-support": "^0.5.21",
@@ -44,10 +44,10 @@
     "mocha": "mocha --require source-map-support/register",
     "coverage": "npm run compile && npx nyc --reporter=html --reporter=text  mocha",
     "lint": "eslint src/**/*.ts",
-    "update-data": "yarn add @vscode/web-custom-data -D && node ./build/generateData.js",
-    "install-types-next": "yarn add vscode-languageserver-types@next -f -S && yarn add vscode-languageserver-textdocument@next -f -S",
+    "update-data": "npm install @vscode/web-custom-data -D && node ./build/generateData.js",
+    "install-types-next": "npm install vscode-languageserver-types@next -f -S && npm install vscode-languageserver-textdocument@next -f -S",
     "copy-jsbeautify": "node ./build/copy-jsbeautify.js",
-    "update-jsbeautify": "yarn add js-beautify && node ./build/update-jsbeautify.js",
-    "update-jsbeautify-next": "yarn add js-beautify@next && node ./build/update-jsbeautify.js"
+    "update-jsbeautify": "npm install js-beautify && node ./build/update-jsbeautify.js",
+    "update-jsbeautify-next": "npm install js-beautify@next && node ./build/update-jsbeautify.js"
   }
 }
