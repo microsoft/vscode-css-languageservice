@@ -1795,7 +1795,6 @@ export class ListEntry extends Node {
 
 export class LessGuard extends Node {
 
-	public isNegated?: boolean;
 	private conditions?: Nodelist;
 
 	public getConditions(): Nodelist {
@@ -1808,6 +1807,7 @@ export class LessGuard extends Node {
 
 export class GuardCondition extends Node {
 
+	public isNegated?: boolean;
 	public variable?: Node;
 	public isEquals?: boolean;
 	public isGreater?: boolean;
