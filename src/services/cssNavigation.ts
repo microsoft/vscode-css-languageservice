@@ -460,6 +460,18 @@ export class CSSNavigation {
 		}
 	}
 
+	protected async getContent(uri: string): Promise<string | null> {
+		if (!this.fileSystemProvider || !this.fileSystemProvider.getContent) {
+			return null;
+		}
+		try {
+			return await this.fileSystemProvider.getContent(uri);
+		} catch (err) {
+			console.error(err);
+			return null;
+		}
+	}
+
 }
 
 function getColorInformation(node: nodes.Node, document: TextDocument): ColorInformation | null {
