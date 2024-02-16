@@ -5,7 +5,7 @@
 
 import { FileSystemProvider, FileType } from "../../cssLanguageTypes";
 import { URI } from 'vscode-uri';
-import { stat as fsStat, readdir } from 'fs';
+import { stat as fsStat, readdir, readFile } from 'fs';
 
 export function getFsProvider(): FileSystemProvider {
 	return {
@@ -70,6 +70,21 @@ export function getFsProvider(): FileSystemProvider {
 							return [stat.name, FileType.Unknown];
 						}
 					}));
+				});
+			});
+		},
+		getContent(locationString, encoding = "utf-8") {
+			return new Promise((c, e) => {
+				const location = URI.parse(locationString);
+				if (location.scheme !== 'file') {
+					e(new Error('Protocol not supported: ' + location.scheme));
+					return;
+				}
+				readFile(location.fsPath, encoding, (err, data) => {
+					if (err) {
+						return e(err);
+					}
+					c(data);
 				});
 			});
 		}
