@@ -35,10 +35,10 @@ extends:
       - name: vscode-css-languageservice
 
         buildSteps:
-          - script: yarn --frozen-lockfile
+          - script: npm ci
             displayName: Install dependencies
 
-          # the rest of the build steps are part of the 'prepack' script, automatically run when the pipeline invokes 'yarn pack'
+          # the rest of the build steps are part of the 'prepack' script, automatically run when the pipeline invokes 'npm run pack'
 
         tag: ${{ parameters.quality }}
         preReleaseTag: next
@@ -57,7 +57,7 @@ extends:
               - 16.x                   
 
         testSteps:
-          - script: yarn --frozen-lockfile
+          - script: npm ci
             displayName: Install dependencies        
-          - script: yarn test
+          - script: npm test
             displayName: Test npm package

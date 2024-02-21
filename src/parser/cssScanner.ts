@@ -47,8 +47,8 @@ export enum TokenType {
 	Comment,
 	SingleLineComment,
 	EOF,
-	CustomToken,
-	ContainerQueryLength
+	ContainerQueryLength,
+	CustomToken // must be last token type
 }
 
 export interface IToken {

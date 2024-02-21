@@ -9,6 +9,7 @@ import { MarkedString } from '../cssLanguageTypes';
 import { Scanner } from '../parser/cssScanner';
 import * as l10n from '@vscode/l10n';
 import { CSSDataManager } from '../languageFacts/dataManager';
+import { Parser } from '../parser/cssParser';
 
 export class Element {
 
@@ -461,10 +462,9 @@ export class SelectorPrinting {
 							continue elementLoop;
 						}
 
-						if (text.match(/^:(?:nth-child|nth-last-child|host|host-context)/i) && childElements.length > 0) {
+						if (text.match(/^:(?:host|host-context)/i) && childElements.length > 0) {
 							// The specificity of :host() is that of a pseudo-class, plus the specificity of its argument.
 							// The specificity of :host-context() is that of a pseudo-class, plus the specificity of its argument.
-							// The specificity of an :nth-child() or :nth-last-child() selector is the specificity of the pseudo class itself (counting as one pseudo-class selector) plus the specificity of the most specific complex selector in its selector list argument.
 							specificity.attr++;
 
 							let mostSpecificListItem = calculateMostSpecificListItem(childElements);
@@ -472,6 +472,52 @@ export class SelectorPrinting {
 							specificity.id += mostSpecificListItem.id;
 							specificity.attr += mostSpecificListItem.attr;
 							specificity.tag += mostSpecificListItem.tag;
+							continue elementLoop;
+						}
+
+						if (text.match(/^:(?:nth-child|nth-last-child)/i) && childElements.length > 0) {
+							/* The specificity of the :nth-child(An+B [of S]?) pseudo-class is the specificity of a single pseudo-class plus, if S is specified, the specificity of the most specific complex selector in S */
+							// https://www.w3.org/TR/selectors-4/#the-nth-child-pseudo
+							specificity.attr++;
+
+							// 23 = Binary Expression. 
+							if (childElements.length === 3 && childElements[1].type === 23) {
+								let mostSpecificListItem = calculateMostSpecificListItem(childElements[2].getChildren());
+
+								specificity.id += mostSpecificListItem.id;
+								specificity.attr += mostSpecificListItem.attr;
+								specificity.tag += mostSpecificListItem.tag;
+
+								continue elementLoop;
+							}
+
+							// Edge case: 'n' without integer prefix A, with B integer non-existent, is not regarded as a binary expression token.
+							const parser = new Parser();
+							const pseudoSelectorText = childElements[1].getText();
+							parser.scanner.setSource(pseudoSelectorText);
+							const firstToken = parser.scanner.scan();
+							const secondToken = parser.scanner.scan();
+
+							if (firstToken.text === 'n' || firstToken.text === '-n' && secondToken.text === 'of') {
+								const complexSelectorListNodes: nodes.Node[] = [];
+								const complexSelectorText = pseudoSelectorText.slice(secondToken.offset + 2);
+								const complexSelectorArray = complexSelectorText.split(',');
+
+								for (const selector of complexSelectorArray) {
+									const node = parser.internalParse(selector, parser._parseSelector);
+									if (node) {
+										complexSelectorListNodes.push(node);
+									}
+								}
+
+								let mostSpecificListItem = calculateMostSpecificListItem(complexSelectorListNodes);
+
+								specificity.id += mostSpecificListItem.id;
+								specificity.attr += mostSpecificListItem.attr;
+								specificity.tag += mostSpecificListItem.tag;
+								continue elementLoop;
+							}
+
 							continue elementLoop;
 						}
 

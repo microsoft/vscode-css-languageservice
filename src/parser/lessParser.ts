@@ -65,7 +65,7 @@ export class LESSParser extends cssParser.Parser {
 			node.setMedialist(this._parseMediaQueryList());
 		}
 
-		return this.finish(node);
+		return this._completeParseImport(node);
 	}
 
 	public _parsePlugin(): nodes.Node | null {
@@ -730,7 +730,6 @@ export class LESSParser extends cssParser.Parser {
 		}
 		const node = <nodes.LessGuard>this.create(nodes.LessGuard);
 		this.consumeToken(); // when
-		node.isNegated = this.acceptIdent('not');
 
 		if (!node.getConditions().addChild(this._parseGuardCondition())) {
 			return <nodes.LessGuard>this.finish(node, ParseError.ConditionExpected);
@@ -745,12 +744,14 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseGuardCondition(): nodes.Node | null {
-
-		if (!this.peek(TokenType.ParenthesisL)) {
+		const node = this.create(nodes.GuardCondition);
+		node.isNegated = this.acceptIdent('not');
+		if (!this.accept(TokenType.ParenthesisL)) {
+			if (node.isNegated) {
+				return this.finish(node, ParseError.LeftParenthesisExpected);
+			}
 			return null;
 		}
-		const node = this.create(nodes.GuardCondition);
-		this.consumeToken(); // ParenthesisL
 
 		if (!node.addChild(this._parseExpr())) {
 			// empty (?)
