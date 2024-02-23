@@ -12,10 +12,9 @@ import { CSSDataManager } from '../languageFacts/dataManager';
 import { Parser } from '../parser/cssParser';
 
 export class Element {
-
 	public parent: Element | null = null;
 	public children: Element[] | null = null;
-	public attributes: { name: string, value: string; }[] | null = null;
+	public attributes: { name: string; value: string }[] | null = null;
 
 	public findAttribute(name: string): string | null {
 		if (this.attributes) {
@@ -111,12 +110,9 @@ export class Element {
 	}
 }
 
-export class RootElement extends Element {
-
-}
+export class RootElement extends Element { }
 
 export class LabelElement extends Element {
-
 	constructor(label: string) {
 		super();
 		this.addAttr('name', label);
@@ -124,14 +120,13 @@ export class LabelElement extends Element {
 }
 
 class MarkedStringPrinter {
-
 	private result: string[] = [];
 
 	constructor(public quote: string) {
 		// empty
 	}
 
-	public print(element: Element, flagOpts?:{isMedia: boolean, text: string}): MarkedString[] {
+	public print(element: Element, flagOpts?: { isMedia: boolean; text: string }): MarkedString[] {
 		this.result = [];
 		if (element instanceof RootElement) {
 			if (element.children) {
@@ -139,11 +134,11 @@ class MarkedStringPrinter {
 			}
 		} else {
 			this.doPrint([element], 0);
-		}		
-		let value ;
-		if(flagOpts){
+		}
+		let value;
+		if (flagOpts) {
 			value = `${flagOpts.text}\n … ` + this.result.join('\n');
-		}else{
+		} else {
 			value = this.result.join('\n');
 		}
 		return [{ language: 'html', value }];
@@ -202,9 +197,7 @@ class MarkedStringPrinter {
 	}
 }
 
-
 namespace quotes {
-
 	export function ensure(value: string, which: string): string {
 		return which + remove(value) + which;
 	}
@@ -228,7 +221,6 @@ class Specificity {
 }
 
 export function toElement(node: nodes.SimpleSelector, parentElement?: Element | null): Element {
-
 	let result = new Element();
 	for (const child of node.getChildren()) {
 		switch (child.type) {
@@ -328,14 +320,10 @@ function unescape(content: string) {
 	return content;
 }
 
-
 export class SelectorPrinting {
+	constructor(private cssDataManager: CSSDataManager) { }
 
-	constructor(private cssDataManager: CSSDataManager) {
-
-	}
-
-	public selectorToMarkedString(node: nodes.Selector, flagOpts?:{isMedia: boolean, text: string}): MarkedString[] {
+	public selectorToMarkedString(node: nodes.Selector, flagOpts?: { isMedia: boolean; text: string }): MarkedString[] {
 		const root = selectorToElement(node);
 		if (root) {
 			const markedStrings = new MarkedStringPrinter('"').print(root, flagOpts);
@@ -360,7 +348,7 @@ export class SelectorPrinting {
 			return false;
 		}
 
-		return !!this.cssDataManager.getPseudoElement("::" + match[1]);
+		return !!this.cssDataManager.getPseudoElement('::' + match[1]);
 	}
 
 	private selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
@@ -417,7 +405,7 @@ export class SelectorPrinting {
 
 					case nodes.NodeType.ElementNameSelector:
 						//ignore universal selector
-						if (element.matches("*")) {
+						if (element.matches('*')) {
 							break;
 						}
 
@@ -443,7 +431,7 @@ export class SelectorPrinting {
 								continue elementLoop;
 							}
 
-							specificity.tag++;	// pseudo element
+							specificity.tag++; // pseudo element
 							continue elementLoop;
 						}
 
@@ -480,7 +468,7 @@ export class SelectorPrinting {
 							// https://www.w3.org/TR/selectors-4/#the-nth-child-pseudo
 							specificity.attr++;
 
-							// 23 = Binary Expression. 
+							// 23 = Binary Expression.
 							if (childElements.length === 3 && childElements[1].type === 23) {
 								let mostSpecificListItem = calculateMostSpecificListItem(childElements[2].getChildren());
 
@@ -498,7 +486,7 @@ export class SelectorPrinting {
 							const firstToken = parser.scanner.scan();
 							const secondToken = parser.scanner.scan();
 
-							if (firstToken.text === 'n' || firstToken.text === '-n' && secondToken.text === 'of') {
+							if (firstToken.text === 'n' || (firstToken.text === '-n' && secondToken.text === 'of')) {
 								const complexSelectorListNodes: nodes.Node[] = [];
 								const complexSelectorText = pseudoSelectorText.slice(secondToken.offset + 2);
 								const complexSelectorArray = complexSelectorText.split(',');
@@ -521,7 +509,7 @@ export class SelectorPrinting {
 							continue elementLoop;
 						}
 
-						specificity.attr++;	//pseudo class
+						specificity.attr++; //pseudo class
 						continue elementLoop;
 				}
 
@@ -537,13 +525,11 @@ export class SelectorPrinting {
 		};
 
 		const specificity = calculateScore(node);
-		return `[${l10n.t("Selector Specificity")}](https://developer.mozilla.org/docs/Web/CSS/Specificity): (${specificity.id}, ${specificity.attr}, ${specificity.tag})`;
+		return `[${l10n.t('Selector Specificity')}](https://developer.mozilla.org/docs/Web/CSS/Specificity): (${specificity.id}, ${specificity.attr}, ${specificity.tag})`;
 	}
-
 }
 
 class SelectorElementBuilder {
-
 	private prev: nodes.Node | null;
 	private element: Element;
 
@@ -569,7 +555,6 @@ class SelectorElementBuilder {
 		}
 
 		for (const selectorChild of selector.getChildren()) {
-
 			if (selectorChild instanceof nodes.SimpleSelector) {
 				if (this.prev instanceof nodes.SimpleSelector) {
 					const labelElement = new LabelElement('\u2026');
@@ -589,12 +574,13 @@ class SelectorElementBuilder {
 				this.element.addChild(root);
 				this.element = thisElement;
 			}
-			if (selectorChild instanceof nodes.SimpleSelector ||
+			if (
+				selectorChild instanceof nodes.SimpleSelector ||
 				selectorChild.type === nodes.NodeType.SelectorCombinatorParent ||
 				selectorChild.type === nodes.NodeType.SelectorCombinatorShadowPiercingDescendant ||
 				selectorChild.type === nodes.NodeType.SelectorCombinatorSibling ||
-				selectorChild.type === nodes.NodeType.SelectorCombinatorAllSiblings) {
-
+				selectorChild.type === nodes.NodeType.SelectorCombinatorAllSiblings
+			) {
 				this.prev = selectorChild;
 			}
 		}
