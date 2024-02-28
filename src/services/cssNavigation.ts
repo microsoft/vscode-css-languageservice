@@ -558,7 +558,6 @@ export class CSSNavigation {
 		try {
 			return await this.fileSystemProvider.getContent(uri);
 		} catch (err) {
-			console.error(err);
 			return null;
 		}
 	}
