@@ -291,6 +291,7 @@ suite('SCSS - Parser', () => {
 	test('@container', function () {
 		const parser = new SCSSParser();
 		assertNode(`@container (min-width: #{$minWidth}) { .scss-interpolation { line-height: 10cqh; } }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`.item-icon { @container (max-height: 100px) { .item-icon { display: none;  } } }`, parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('@use', function () {
