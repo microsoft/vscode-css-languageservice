@@ -348,4 +348,9 @@ suite('LESS - Parser', () => {
 		const parser = new LESSParser();
 		assertNode('@plugin "my-plugin";', parser, parser._parseStylesheet.bind(parser));
 	});
+
+	test('@container', function () {
+		const parser = new LESSParser();
+		assertNode(`.item-icon { @container (max-height: 100px) { .item-icon { display: none;  } } }`, parser, parser._parseStylesheet.bind(parser));
+	});
 });

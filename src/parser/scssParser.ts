@@ -256,6 +256,7 @@ export class SCSSParser extends cssParser.Parser {
 				|| this._parseSupports(true) // @supports
 				|| this._parseLayer() // @layer
 				|| this._parsePropertyAtRule() // @property
+				|| this._parseContainer() // @container
 				|| this._parseRuleSetDeclarationAtStatement();
 		}
 		return this._parseVariableDeclaration() // variable declaration
@@ -939,7 +940,7 @@ export class SCSSParser extends cssParser.Parser {
 			this.accept(TokenType.Comma);
 		}
 
-		// More than just identifier 
+		// More than just identifier
 		return node.getChildren().length > 1 ? node : null;
 	}
 
