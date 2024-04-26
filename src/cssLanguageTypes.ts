@@ -218,6 +218,14 @@ export interface IPseudoElementData {
 	status?: EntryStatus;
 	references?: IReference[];
 }
+export interface IMediaQueryData{
+	name: string;
+	description?: string | MarkupContent;
+	browsers?: string[];
+	status?: EntryStatus;
+	values?: IValueData[];
+	references?: IReference[];
+}
 
 export interface IValueData {
 	name: string;
@@ -233,6 +241,7 @@ export interface CSSDataV1 {
 	atDirectives?: IAtDirectiveData[];
 	pseudoClasses?: IPseudoClassData[];
 	pseudoElements?: IPseudoElementData[];
+	mediaQueries?: IMediaQueryData[];
 }
 
 export interface ICSSDataProvider {
@@ -240,6 +249,7 @@ export interface ICSSDataProvider {
 	provideAtDirectives(): IAtDirectiveData[];
 	providePseudoClasses(): IPseudoClassData[];
 	providePseudoElements(): IPseudoElementData[];
+	provideMediaQueries(): IMediaQueryData[];
 }
 
 export enum FileType {
