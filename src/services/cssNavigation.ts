@@ -432,7 +432,7 @@ export class CSSNavigation {
 		return ref;
 	}
 
-	private async resolvePathToModule(_moduleName: string, documentFolderUri: string, rootFolderUri: string | undefined): Promise<string | undefined> {
+	protected async resolvePathToModule(_moduleName: string, documentFolderUri: string, rootFolderUri: string | undefined): Promise<string | undefined> {
 		// resolve the module relative to the document. We can't use `require` here as the code is webpacked.
 
 		const packPath = joinPath(documentFolderUri, 'node_modules', _moduleName, 'package.json');
@@ -443,6 +443,7 @@ export class CSSNavigation {
 		}
 		return undefined;
 	}
+
 
 	protected async fileExists(uri: string): Promise<boolean> {
 		if (!this.fileSystemProvider) {
@@ -457,6 +458,17 @@ export class CSSNavigation {
 			return true;
 		} catch (err) {
 			return false;
+		}
+	}
+
+	protected async getContent(uri: string): Promise<string | null> {
+		if (!this.fileSystemProvider || !this.fileSystemProvider.getContent) {
+			return null;
+		}
+		try {
+			return await this.fileSystemProvider.getContent(uri);
+		} catch (err) {
+			return null;
 		}
 	}
 
@@ -531,7 +543,7 @@ function toTwoDigitHex(n: number): string {
 	return r.length !== 2 ? '0' + r : r;
 }
 
-function getModuleNameFromPath(path: string) {
+export function getModuleNameFromPath(path: string) {
 	const firstSlash = path.indexOf('/');
 	if (firstSlash === -1) {
 		return '';
