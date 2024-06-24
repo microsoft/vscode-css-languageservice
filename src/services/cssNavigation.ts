@@ -67,7 +67,7 @@ export class CSSNavigation {
 	private getHighlightNode(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): nodes.Node | undefined {
 		const offset = document.offsetAt(position);
 		let node = nodes.getNodeAtOffset(stylesheet, offset);
-		if (!node || node.type === nodes.NodeType.Stylesheet || node.type === nodes.NodeType.Declarations) {
+		if (!node || node.type === nodes.NodeType.Stylesheet || node.type === nodes.NodeType.Declarations || node.type === nodes.NodeType.ModuleConfig) {
 			return;
 		}
 		if (node.type === nodes.NodeType.Identifier && node.parent && node.parent.type === nodes.NodeType.ClassSelector) {
