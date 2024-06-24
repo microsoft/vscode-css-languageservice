@@ -154,7 +154,7 @@ export namespace ClientCapabilities {
 
 export interface LanguageServiceOptions {
 	/**
-	 * Unless set to false, the default CSS data provider will be used 
+	 * Unless set to false, the default CSS data provider will be used
 	 * along with the providers from customDataProviders.
 	 * Defaults to true.
 	 */
@@ -284,7 +284,7 @@ export interface FileStat {
 export interface FileSystemProvider {
 	stat(uri: DocumentUri): Promise<FileStat>;
 	readDirectory?(uri: DocumentUri): Promise<[string, FileType][]>;
-	getContent?(uri: DocumentUri, encoding?: BufferEncoding): Promise<string>;
+	getContent?(uri: DocumentUri, encoding?: string): Promise<string>;
 }
 
 export interface CSSFormatConfiguration {
@@ -306,11 +306,11 @@ export interface CSSFormatConfiguration {
 	preserveNewLines?: boolean;
 	/** maximum number of line breaks to be preserved in one chunk. Default: unlimited */
 	maxPreserveNewLines?: number;
-    /** maximum amount of characters per line (0/undefined = disabled). Default: disabled. */
+	/** maximum amount of characters per line (0/undefined = disabled). Default: disabled. */
 	wrapLineLength?: number;
 	/** add indenting whitespace to empty lines. Default: false */
 	indentEmptyLines?: boolean;
-	
+
 	/** @deprecated Use newlineBetweenSelectors instead*/
 	selectorSeparatorNewline?: boolean;
 

@@ -105,3 +105,8 @@ export function repeat(value: string, count: number) {
 	}
 	return s;
 }
+
+export function convertSimple2RegExpPattern(pattern: string): string {
+	return pattern.replace(/[\-\\\{\}\+\?\|\^\$\.\,\[\]\(\)\#\s]/g, '\\$&').replace(/[\*]/g, '.*');
+}
+

@@ -5,88 +5,68 @@
 
 import { FileSystemProvider, FileType } from "../../cssLanguageTypes";
 import { URI } from 'vscode-uri';
-import { stat as fsStat, readdir, readFile } from 'fs';
+import { promises as fs } from 'fs';
 
 export function getFsProvider(): FileSystemProvider {
 	return {
-		stat(documentUriString: string) {
-			return new Promise((c, e) => {
-				const documentUri = URI.parse(documentUriString);
-				if (documentUri.scheme !== 'file') {
-					e(new Error('Protocol not supported: ' + documentUri.scheme));
-					return;
+		async stat(documentUriString: string) {
+			const documentUri = URI.parse(documentUriString);
+			if (documentUri.scheme !== 'file') {
+				throw new Error('Protocol not supported: ' + documentUri.scheme);
+			}
+			try {
+				const stats = await fs.stat(documentUri.fsPath);
+				let type = FileType.Unknown;
+				if (stats.isFile()) {
+					type = FileType.File;
+				} else if (stats.isDirectory()) {
+					type = FileType.Directory;
+				} else if (stats.isSymbolicLink()) {
+					type = FileType.SymbolicLink;
 				}
-				fsStat(documentUri.fsPath, (err, stats) => {
-					if (err) {
-						if (err.code === 'ENOENT') {
-							return c({
-								type: FileType.Unknown,
-								ctime: -1,
-								mtime: -1,
-								size: -1
-							});
-						} else {
-							return e(err);
-						}
-					}
-
-					let type = FileType.Unknown;
-					if (stats.isFile()) {
-						type = FileType.File;
-					} else if (stats.isDirectory()) {
-						type = FileType.Directory;
-					} else if (stats.isSymbolicLink()) {
-						type = FileType.SymbolicLink;
-					}
-
-					c({
-						type,
-						ctime: stats.ctime.getTime(),
-						mtime: stats.mtime.getTime(),
-						size: stats.size
-					});
-				});
+				return {
+					type,
+					ctime: stats.ctime.getTime(),
+					mtime: stats.mtime.getTime(),
+					size: stats.size
+				};
+			} catch (err: any) {
+				if (err.code === 'ENOENT') {
+					return {
+						type: FileType.Unknown,
+						ctime: -1,
+						mtime: -1,
+						size: -1
+					};
+				} else {
+					throw err;
+				}
+			}
+		},
+		async readDirectory(locationString: string) {
+			const location = URI.parse(locationString);
+			if (location.scheme !== 'file') {
+				throw new Error('Protocol not supported: ' + location.scheme);
+			}
+			const children = await fs.readdir(location.fsPath, { withFileTypes: true });
+			return children.map(stat => {
+				if (stat.isSymbolicLink()) {
+					return [stat.name, FileType.SymbolicLink];
+				} else if (stat.isDirectory()) {
+					return [stat.name, FileType.Directory];
+				} else if (stat.isFile()) {
+					return [stat.name, FileType.File];
+				} else {
+					return [stat.name, FileType.Unknown];
+				}
 			});
 		},
-		readDirectory(locationString: string) {
-			return new Promise((c, e) => {
-				const location = URI.parse(locationString);
-				if (location.scheme !== 'file') {
-					e(new Error('Protocol not supported: ' + location.scheme));
-					return;
-				}
-				readdir(location.fsPath, { withFileTypes: true }, (err, children) => {
-					if (err) {
-						return e(err);
-					}
-					c(children.map(stat => {
-						if (stat.isSymbolicLink()) {
-							return [stat.name, FileType.SymbolicLink];
-						} else if (stat.isDirectory()) {
-							return [stat.name, FileType.Directory];
-						} else if (stat.isFile()) {
-							return [stat.name, FileType.File];
-						} else {
-							return [stat.name, FileType.Unknown];
-						}
-					}));
-				});
-			});
-		},
-		getContent(locationString, encoding = "utf-8") {
-			return new Promise((c, e) => {
-				const location = URI.parse(locationString);
-				if (location.scheme !== 'file') {
-					e(new Error('Protocol not supported: ' + location.scheme));
-					return;
-				}
-				readFile(location.fsPath, encoding, (err, data) => {
-					if (err) {
-						return e(err);
-					}
-					c(data);
-				});
-			});
+		async getContent(locationString, encoding = "utf-8") {
+			const location = URI.parse(locationString);
+			if (location.scheme !== 'file') {
+				throw new Error('Protocol not supported: ' + location.scheme);
+			}
+			return await fs.readFile(location.fsPath, { encoding: encoding as BufferEncoding });
 		}
 	};
 }
