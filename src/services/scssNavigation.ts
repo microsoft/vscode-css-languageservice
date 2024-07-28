@@ -79,10 +79,11 @@ export class SCSSNavigation extends CSSNavigation {
 		const subpath = bareTarget.substring(moduleName.length + 1);
 		if (packageJson.exports) {
 			if (!subpath) {
-				const dotExport = packageJson.exports['.'];
+				// exports may look like { "sass": "./_index.scss" } or { ".": { "sass": "./_index.scss" } }
+				const rootExport = packageJson.exports["."] || packageJson.exports;
 				// look for the default/index export
 				// @ts-expect-error If ['.'] is a string this just produces undefined
-				const entry = dotExport && (dotExport['sass'] || dotExport['style'] || dotExport['default']);
+				const entry = rootExport && (rootExport['sass'] || rootExport['style'] || rootExport['default']);
 				// the 'default' entry can be whatever, typically .js – confirm it looks like `scss`
 				if (entry && entry.endsWith('.scss')) {
 					const entryPath = joinPath(modulePath, entry);
