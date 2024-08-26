@@ -19,7 +19,7 @@
     "@types/node": "16.x",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",
-    "@vscode/web-custom-data": "^0.4.11",
+    "@vscode/web-custom-data": "^0.4.12",
     "eslint": "^8.57.0",
     "js-beautify": "^1.15.1",
     "mocha": "^10.7.3",
