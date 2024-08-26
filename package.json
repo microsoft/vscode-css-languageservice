@@ -1,6 +1,6 @@
 {
   "name": "vscode-css-languageservice",
-  "version": "6.3.0",
+  "version": "6.3.1",
   "description": "Language service for CSS, LESS and SCSS",
   "main": "./lib/umd/cssLanguageService.js",
   "typings": "./lib/umd/cssLanguageService",
@@ -22,14 +22,14 @@
     "@vscode/web-custom-data": "^0.4.11",
     "eslint": "^8.57.0",
     "js-beautify": "^1.15.1",
-    "mocha": "^10.4.0",
-    "rimraf": "^5.0.7",
+    "mocha": "^10.7.3",
+    "rimraf": "^5.0.10",
     "source-map-support": "^0.5.21",
-    "typescript": "^5.4.2"
+    "typescript": "^5.5.4"
   },
   "dependencies": {
     "@vscode/l10n": "^0.0.18",
-    "vscode-languageserver-textdocument": "^1.0.11",
+    "vscode-languageserver-textdocument": "^1.0.12",
     "vscode-languageserver-types": "3.17.5",
     "vscode-uri": "^3.0.8"
   },
