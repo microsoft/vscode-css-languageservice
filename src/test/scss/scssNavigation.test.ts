@@ -326,6 +326,9 @@ suite('SCSS - Navigation', () => {
 			await assertLinks(ls, `@use "pkg:bar-pattern/theme/dark.scss"`,
 				[{ range: newRange(5, 38), target: getTestResource('node_modules/bar-pattern/styles/theme/dark.scss')}], 'scss', testUri, workspaceFolder
 			);
+			await assertLinks(ls, `@use "pkg:conditional"`,
+				[{ range: newRange(5, 22), target: getTestResource('node_modules/conditional/_index.scss')}], 'scss', testUri, workspaceFolder
+			);
 		});
 
 	});
