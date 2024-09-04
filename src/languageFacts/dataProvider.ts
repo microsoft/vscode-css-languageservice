@@ -4,13 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { CSSDataV1, ICSSDataProvider, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData } from '../cssLanguageTypes';
+import { CSSDataV1, ICSSDataProvider, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IMediaQueryData } from '../cssLanguageTypes';
 
 export class CSSDataProvider implements ICSSDataProvider {
 	private _properties: IPropertyData[] = [];
 	private _atDirectives: IAtDirectiveData[] = [];
 	private _pseudoClasses: IPseudoClassData[] = [];
 	private _pseudoElements: IPseudoElementData[] = [];
+	private _mediaQueries: IMediaQueryData[] = [];
 
 	/**
 	 * Currently, unversioned data uses the V1 implementation
@@ -32,6 +33,9 @@ export class CSSDataProvider implements ICSSDataProvider {
 	}
 	providePseudoElements() {
 		return this._pseudoElements;
+	}
+	provideMediaQueries(){
+		return this._mediaQueries;
 	}
 
 	private addData(data: CSSDataV1) {
@@ -63,6 +67,13 @@ export class CSSDataProvider implements ICSSDataProvider {
 				}
 			}
 		}
+		if (Array.isArray(data.mediaQueries)){
+			for (const prop of data.mediaQueries){
+				if (isMediaQueryData(prop)){
+					this._mediaQueries.push(prop);
+				}
+			}
+		}
 	}
 }
 
@@ -79,5 +90,9 @@ function isPseudoClassData(d: any) : d is IPseudoClassData {
 }
 
 function isPseudoElementData(d: any) : d is IPseudoElementData {
+	return typeof d.name === 'string';
+}
+
+function isMediaQueryData(d: any) : d is IMediaQueryData {
 	return typeof d.name === 'string';
 }
