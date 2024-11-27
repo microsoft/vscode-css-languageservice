@@ -42,8 +42,7 @@ extends:
 
         tag: ${{ parameters.quality }}
         preReleaseTag: next
-        preReleaseTagAddToLatest: true
-        publishPackage: ${{ parameters.publishPackage }}            
+        publishPackage: ${{ parameters.publishPackage }}
 
         testPlatforms:
           - name: Linux
@@ -54,10 +53,10 @@ extends:
               - 16.x
           - name: Windows
             nodeVersions:
-              - 16.x                   
+              - 16.x
 
         testSteps:
           - script: npm ci
-            displayName: Install dependencies        
+            displayName: Install dependencies
           - script: npm test
             displayName: Test npm package
