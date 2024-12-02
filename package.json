@@ -1,6 +1,6 @@
 {
   "name": "vscode-css-languageservice",
-  "version": "6.3.1",
+  "version": "6.3.2",
   "description": "Language service for CSS, LESS and SCSS",
   "main": "./lib/umd/cssLanguageService.js",
   "typings": "./lib/umd/cssLanguageService",
@@ -15,17 +15,17 @@
     "url": "https://github.com/Microsoft/vscode-css-languageservice"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.7",
-    "@types/node": "16.x",
-    "@typescript-eslint/eslint-plugin": "^7.13.1",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.13.1",
-    "@vscode/web-custom-data": "^0.4.12",
-    "eslint": "^8.57.0",
+    "@vscode/web-custom-data": "^0.4.13",
+    "eslint": "^8.57.1",
     "js-beautify": "^1.15.1",
-    "mocha": "^10.7.3",
-    "rimraf": "^5.0.10",
+    "mocha": "^10.8.2",
+    "rimraf": "^6.0.1",
     "source-map-support": "^0.5.21",
-    "typescript": "^5.5.4"
+    "typescript": "^5.7.2"
   },
   "dependencies": {
     "@vscode/l10n": "^0.0.18",
