@@ -16,13 +16,6 @@ resources:
       endpoint: Monaco
 
 parameters:
-  - name: quality
-    displayName: Quality
-    type: string
-    default: latest
-    values:
-      - latest
-      - next
   - name: publishPackage
     displayName: 🚀 Publish vscode-css-languageservice
     type: boolean
@@ -37,13 +30,6 @@ extends:
         buildSteps:
           - script: npm ci
             displayName: Install dependencies
-
-          # the rest of the build steps are part of the 'prepack' script, automatically run when the pipeline invokes 'npm run pack'
-
-        tag: ${{ parameters.quality }}
-        preReleaseTag: next
-        publishPackage: ${{ parameters.publishPackage }}
-        publishRequiresApproval: false
 
         testPlatforms:
           - name: Linux
@@ -61,3 +47,15 @@ extends:
             displayName: Install dependencies
           - script: npm test
             displayName: Test npm package
+
+        ${{ if or( and(in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'), eq(variables['Build.SourceBranch'], 'refs/heads/main')), and(parameters.publishPackage, eq(parameters.nextVersion, 'prerelease'))) }}:
+          publishPackage: true
+          publishRequiresApproval: false
+          nextVersion: prerelease
+          tag: next       
+        ${{ else }}:
+          publishPackage: ${{ parameters.publishPackage }}
+          publishRequiresApproval: false      
+
+        ghCreateRelease: true
+        ghReleaseAddChangeLog: true  
