@@ -101,6 +101,7 @@ export enum NodeType {
 	PropertyAtRule,
 	Container,
 	ModuleConfig,
+	StartingStyleAtRule,
 }
 
 export enum ReferenceType {
@@ -1222,6 +1223,17 @@ export class PropertyAtRule extends BodyDeclaration {
 		return this.name;
 	}
 
+}
+
+export class StartingStyleAtRule extends BodyDeclaration {
+
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	get type(): NodeType {
+		return NodeType.StartingStyleAtRule;
+	}
 }
 
 export class Document extends BodyDeclaration {
