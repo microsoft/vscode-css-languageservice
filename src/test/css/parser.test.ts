@@ -177,6 +177,15 @@ suite('CSS - Parser', () => {
 		assertNode(`@container card (inline-size > 30em) { @container style(--responsive: true) {} }`, parser, parser._parseStylesheet.bind(parser));
 	});
 
+	test('@starting-style', function () {
+		const parser = new Parser();
+		// These assertions would still hold if @starting-style blocks were being processed as unknown at-rules
+		// Parsing into the expected AST is instead tested in nodes.test.ts
+		assertNode(`@starting-style { p { background-color: skyblue; } }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`p { @starting-style { background-color: skyblue; } }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`p { @starting-style { @layer {} } }`, parser, parser._parseStylesheet.bind(parser));
+	});
+
 	test('@container query length units', function () {
 		const parser = new Parser();
 		assertNode(`@container (min-width: 700px) { .card h2 { font-size: max(1.5em, 1.23em + 2cqi); } }`, parser, parser._parseStylesheet.bind(parser));
