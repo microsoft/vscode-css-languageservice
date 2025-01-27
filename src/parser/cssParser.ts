@@ -367,7 +367,7 @@ export class Parser {
 			|| this._parseSupports(true)
 			|| this._parseLayer(true)
 			|| this._parseContainer(true)
-	        || this._parseStartingStyleAtRule(true)
+			|| this._parseStartingStyleAtRule(true)
 			|| this._parseUnknownAtRule();
 	}
 
@@ -911,7 +911,7 @@ export class Parser {
 		const node = this.create(nodes.StartingStyleAtRule);
 		this.consumeToken() // @starting-style
 
-		return this._parseBody(node, this._parseContainerDeclaration.bind(this, isNested));
+		return this._parseBody(node, this._parseStartingStyleDeclaration.bind(this, isNested));
 	}
 
 	// this method is the same as ._parseContainerDeclaration()
