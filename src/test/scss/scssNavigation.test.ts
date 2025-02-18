@@ -5,11 +5,11 @@
 'use strict';
 
 import * as nodes from '../../parser/cssNodes';
-import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertColorSymbols, assertLinks, newRange, getTestResource } from '../css/navigation.test';
-import { getSCSSLanguageService, DocumentLink, TextDocument } from '../../cssLanguageService';
+import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertColorSymbols, assertLinks, newRange, getTestResource, assertDocumentSymbols } from '../css/navigation.test';
+import { getSCSSLanguageService, DocumentLink, TextDocument, SymbolKind, LanguageSettings } from '../../cssLanguageService';
 import * as assert from 'assert';
 import * as path from 'path';
-import { URI, Utils } from 'vscode-uri';
+import { URI } from 'vscode-uri';
 import { getFsProvider } from '../testUtil/fsProvider';
 import { getDocumentContext } from '../testUtil/documentContext';
 
@@ -17,8 +17,22 @@ function getSCSSLS() {
 	return getSCSSLanguageService({ fileSystemProvider: getFsProvider() });
 }
 
-async function assertDynamicLinks(docUri: string, input: string, expected: DocumentLink[]) {
+function aliasSettings(): LanguageSettings {
+	return {
+		"importAliases": {
+				"@SassStylesheet": "/src/assets/styles.scss",
+				"@NoUnderscoreDir/": "/noUnderscore/",
+				"@UnderscoreDir/": "/underscore/",
+				"@BothDir/": "/both/",
+			}
+	};
+}
+
+async function assertDynamicLinks(docUri: string, input: string, expected: DocumentLink[], settings?: LanguageSettings) {
 	const ls = getSCSSLS();
+	if (settings) {
+		ls.configure(settings);
+	}
 	const document = TextDocument.create(docUri, 'scss', 0, input);
 
 	const stylesheet = ls.parseStylesheet(document);
@@ -140,6 +154,10 @@ suite('SCSS - Navigation', () => {
 				{ range: newRange(8, 13), target: getDocumentUri('./underscore/_foo.scss') }
 			]);
 
+			await assertDynamicLinks(getDocumentUri('./underscore/index.scss'), `@import 'foo.scss'`, [
+				{ range: newRange(8, 18), target: getDocumentUri('./underscore/_foo.scss') }
+			]);
+
 			await assertDynamicLinks(getDocumentUri('./both/index.scss'), `@import 'foo'`, [
 				{ range: newRange(8, 13), target: getDocumentUri('./both/foo.scss') }
 			]);
@@ -175,6 +193,35 @@ suite('SCSS - Navigation', () => {
 				{ range: newRange(12, 21), target: 'test://test/foo.css' }
 			]);
 
+		});
+
+		test('SCSS aliased links', async function () {
+			const fixtureRoot = path.resolve(__dirname, '../../../../src/test/scss/linkFixture');
+			const getDocumentUri = (relativePath: string) => {
+				return URI.file(path.resolve(fixtureRoot, relativePath)).toString(true);
+			};
+
+			const settings = aliasSettings();
+			const ls = getSCSSLS();
+			ls.configure(settings);
+
+			await assertLinks(ls, '@import "@SassStylesheet"', [{ range: newRange(8, 25), target: "test://test/src/assets/styles.scss"}]);
+
+			await assertDynamicLinks(getDocumentUri('./'), `@import '@NoUnderscoreDir/foo'`, [
+				{ range: newRange(8, 30), target: getDocumentUri('./noUnderscore/foo.scss') }
+			], settings);
+
+			await assertDynamicLinks(getDocumentUri('./'), `@import '@UnderscoreDir/foo'`, [
+				{ range: newRange(8, 28), target: getDocumentUri('./underscore/_foo.scss') }
+			], settings);
+
+			await assertDynamicLinks(getDocumentUri('./'), `@import '@BothDir/foo'`, [
+				{ range: newRange(8, 22), target: getDocumentUri('./both/foo.scss') }
+			], settings);
+
+			await assertDynamicLinks(getDocumentUri('./'), `@import '@BothDir/_foo'`, [
+				{ range: newRange(8, 23), target: getDocumentUri('./both/_foo.scss') }
+			], settings);
 		});
 
 		test('SCSS module file links', async () => {
@@ -236,6 +283,66 @@ suite('SCSS - Navigation', () => {
 			);
 		});
 
+		test('SCSS node package resolving', async () => {
+			let ls = getSCSSLS();
+			let testUri = getTestResource('about.scss');
+			let workspaceFolder = getTestResource('');
+			await assertLinks(ls, `@use "pkg:bar"`,
+				[{ range: newRange(5, 14), target: getTestResource('node_modules/bar/styles/index.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:bar/colors"`,
+				[{ range: newRange(5, 21), target: getTestResource('node_modules/bar/styles/colors.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:bar/colors.scss"`,
+				[{ range: newRange(5, 26), target: getTestResource('node_modules/bar/styles/colors.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:@foo/baz"`,
+				[{ range: newRange(5, 19), target: getTestResource('node_modules/@foo/baz/styles/index.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:@foo/baz/colors"`,
+				[{ range: newRange(5, 26), target: getTestResource('node_modules/@foo/baz/styles/colors.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:@foo/baz/colors.scss"`,
+				[{ range: newRange(5, 31), target: getTestResource('node_modules/@foo/baz/styles/colors.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:@foo/baz/button"`,
+				[{ range: newRange(5, 26), target: getTestResource('node_modules/@foo/baz/styles/button.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:@foo/baz/button.scss"`,
+				[{ range: newRange(5, 31), target: getTestResource('node_modules/@foo/baz/styles/button.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:root-sass"`,
+				[{ range: newRange(5, 20), target: getTestResource('node_modules/root-sass/styles/index.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:root-style"`,
+				[{ range: newRange(5, 21), target: getTestResource('node_modules/root-style/styles/index.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:bar-pattern/anything"`,
+				[{ range: newRange(5, 31), target: getTestResource('node_modules/bar-pattern/styles/anything.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:bar-pattern/anything.scss"`,
+				[{ range: newRange(5, 36), target: getTestResource('node_modules/bar-pattern/styles/anything.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:bar-pattern/theme/dark.scss"`,
+				[{ range: newRange(5, 38), target: getTestResource('node_modules/bar-pattern/styles/theme/dark.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:conditional"`,
+				[{ range: newRange(5, 22), target: getTestResource('node_modules/conditional/_index.scss')}], 'scss', testUri, workspaceFolder
+			);
+		});
+
+	});
+
+	suite('Symbols', () => {
+
+		test('scss document symbols', () => {
+			const ls = getSCSSLS();
+
+			// Incomplete Mixin
+			assertDocumentSymbols(ls, '@mixin foo { }', [{ name: 'foo', kind: SymbolKind.Method, range: newRange(0, 14), selectionRange: newRange(7, 10) }]);
+			assertDocumentSymbols(ls, '@mixin {}', [{ name: '<undefined>', kind: SymbolKind.Method, range: newRange(0, 9), selectionRange: newRange(0, 0) }]);
+
+		});
 	});
 
 	suite('Color', () => {

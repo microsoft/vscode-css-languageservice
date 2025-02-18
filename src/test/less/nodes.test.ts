@@ -17,8 +17,8 @@ suite('LESS - Nodes', () => {
 	}
 
 	test('RuleSet', function () {
-		assertNodes(ruleset, 'selector { prop: value }', 'ruleset,...,selector,...,declaration,...,property,...,expression');
-		assertNodes(ruleset, 'selector { prop; }', 'ruleset,...,selector,...,selector');
-		assertNodes(ruleset, 'selector { prop {} }', 'ruleset,...,ruleset');
+		assertNodes(ruleset, 'selector { prop: value }', 'ruleset,...,selector,...,declaration,property,...,expression,...');
+		assertNodes(ruleset, 'selector { prop; }', 'ruleset,...,selector,...,property,...');
+		assertNodes(ruleset, 'selector { prop {} }', 'ruleset,...,ruleset,...');
 	});
 });

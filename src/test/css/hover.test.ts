@@ -30,23 +30,31 @@ suite('CSS Hover', () => {
 			contents: {
 				kind: 'markdown',
 				value:
-					"Sets the color of an element's text\n\nSyntax: &lt;color&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/color)"
-			}
+					"Sets the color of an element's text\n\n(Edge 12, Firefox 1, Safari 1, Chrome 1, IE 3, Opera 3)\n\nSyntax: &lt;color&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/color)",
+			},
 		});
-		assertHover('.test { |color: blue; }', {
-			contents: {
-				kind: 'markdown',
-				value:
-					"[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/color)"
-			}
-		}, undefined, { documentation: false });
-		assertHover('.test { |color: blue; }', {
-			contents: {
-				kind: 'markdown',
-				value:
-					"Sets the color of an element's text\n\nSyntax: &lt;color&gt;"
-			}
-		}, undefined, { references: false });
+		assertHover(
+			'.test { |color: blue; }',
+			{
+				contents: {
+					kind: 'markdown',
+					value: '[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/color)',
+				},
+			},
+			undefined,
+			{ documentation: false },
+		);
+		assertHover(
+			'.test { |color: blue; }',
+			{
+				contents: {
+					kind: 'markdown',
+					value: "Sets the color of an element's text\n\n(Edge 12, Firefox 1, Safari 1, Chrome 1, IE 3, Opera 3)\n\nSyntax: &lt;color&gt;",
+				},
+			},
+			undefined,
+			{ references: false },
+		);
 
 		/**
 		 * Reenable after converting specificity to use MarkupContent
@@ -63,10 +71,7 @@ suite('CSS Hover', () => {
 
 	test('specificity', () => {
 		assertHover('.|foo {}', {
-			contents: [
-				{ language: 'html', value: '<element class="foo">' },
-				'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 1, 0)'
-			]
+			contents: [{ language: 'html', value: '<element class="foo">' }, '[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 0)'],
 		});
 	});
 });
@@ -76,12 +81,22 @@ suite('SCSS Hover', () => {
 		assertHover(
 			'div { d|iv {} }',
 			{
-				contents: [
-					{ language: 'html', value: '<div>\n  …\n    <div>' },
-					'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 0, 1)'
-				]
+				contents: [{ language: 'html', value: '<div>\n  …\n    <div>' }, '[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 0, 1)'],
 			},
-			'scss'
+			'scss',
+		);
+		assertHover(
+			'.foo{ .bar{ @media only screen{ .|bar{ } } } }',
+			{
+				contents: [
+					{
+						language: 'html',
+						value: '@media only screen\n … <element class="foo">\n  …\n    <element class="bar">\n      …\n        <element class="bar">',
+					},
+					'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 0)',
+				],
+			},
+			'scss',
 		);
 	});
 
@@ -89,9 +104,9 @@ suite('SCSS Hover', () => {
 		assertHover(
 			'.test { @|at-root { }',
 			{
-				contents: []
+				contents: [],
 			},
-			'scss'
+			'scss',
 		);
 	});
 });

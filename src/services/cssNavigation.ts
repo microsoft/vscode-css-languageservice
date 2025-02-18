@@ -5,7 +5,7 @@
 'use strict';
 
 import {
-	Color, ColorInformation, ColorPresentation, DocumentHighlight, DocumentHighlightKind, DocumentLink, Location,
+	AliasSettings, Color, ColorInformation, ColorPresentation, DocumentHighlight, DocumentHighlightKind, DocumentLink, Location,
 	Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit, TextDocument, DocumentContext, FileSystemProvider, FileType, DocumentSymbol
 } from '../cssLanguageTypes';
 import * as l10n from '@vscode/l10n';
@@ -24,8 +24,13 @@ const startsWithSchemeRegex = /^\w+:\/\//;
 const startsWithData = /^data:/;
 
 export class CSSNavigation {
+	protected defaultSettings?: AliasSettings;
 
 	constructor(protected fileSystemProvider: FileSystemProvider | undefined, private readonly resolveModuleReferences: boolean) {
+	}
+
+	public configure(settings: AliasSettings | undefined) {
+		this.defaultSettings = settings;
 	}
 
 	public findDefinition(document: TextDocument, position: Position, stylesheet: nodes.Node): Location | null {
@@ -59,16 +64,24 @@ export class CSSNavigation {
 		});
 	}
 
-	public findDocumentHighlights(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): DocumentHighlight[] {
-		const result: DocumentHighlight[] = [];
-
+	private getHighlightNode(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): nodes.Node | undefined {
 		const offset = document.offsetAt(position);
 		let node = nodes.getNodeAtOffset(stylesheet, offset);
-		if (!node || node.type === nodes.NodeType.Stylesheet || node.type === nodes.NodeType.Declarations) {
-			return result;
+		if (!node || node.type === nodes.NodeType.Stylesheet || node.type === nodes.NodeType.Declarations || node.type === nodes.NodeType.ModuleConfig) {
+			return;
 		}
 		if (node.type === nodes.NodeType.Identifier && node.parent && node.parent.type === nodes.NodeType.ClassSelector) {
 			node = node.parent;
+		}
+
+		return node;
+	}
+
+	public findDocumentHighlights(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): DocumentHighlight[] {
+		const result: DocumentHighlight[] = [];
+		const node = this.getHighlightNode(document, position, stylesheet);
+		if (!node) {
+			return result;
 		}
 
 		const symbols = new Symbols(stylesheet);
@@ -197,7 +210,7 @@ export class CSSNavigation {
 		const addSymbolInformation = (name: string, kind: SymbolKind, symbolNodeOrRange: nodes.Node | Range) => {
 			const range = symbolNodeOrRange instanceof nodes.Node ? getRange(symbolNodeOrRange, document) : symbolNodeOrRange;
 			const entry: SymbolInformation = {
-				name,
+				name: name || l10n.t('<undefined>'),
 				kind,
 				location: Location.create(document.uri, range)
 			};
@@ -216,9 +229,13 @@ export class CSSNavigation {
 
 		const addDocumentSymbol = (name: string, kind: SymbolKind, symbolNodeOrRange: nodes.Node | Range, nameNodeOrRange: nodes.Node | Range | undefined, bodyNode: nodes.Node | undefined) => {
 			const range = symbolNodeOrRange instanceof nodes.Node ? getRange(symbolNodeOrRange, document) : symbolNodeOrRange;
-			const selectionRange = (nameNodeOrRange instanceof nodes.Node ? getRange(nameNodeOrRange, document) : nameNodeOrRange) ?? Range.create(range.start, range.start);
+			let selectionRange = nameNodeOrRange instanceof nodes.Node ? getRange(nameNodeOrRange, document) : nameNodeOrRange;
+			if (!selectionRange || !containsRange(range, selectionRange)) {
+				selectionRange = Range.create(range.start, range.start);
+			}
+
 			const entry: DocumentSymbol = {
-				name,
+				name: name || l10n.t('<undefined>'),
 				kind,
 				range,
 				selectionRange
@@ -344,6 +361,13 @@ export class CSSNavigation {
 		return result;
 	}
 
+	public prepareRename(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Range | undefined {
+		const node = this.getHighlightNode(document, position, stylesheet);
+		if (node) {
+			return Range.create(document.positionAt(node.offset), document.positionAt(node.end));
+		}
+	}
+
 	public doRename(document: TextDocument, position: Position, newName: string, stylesheet: nodes.Stylesheet): WorkspaceEdit {
 		const highlights = this.findDocumentHighlights(document, position, stylesheet);
 		const edits = highlights.map(h => TextEdit.replace(h.range, newName));
@@ -372,7 +396,7 @@ export class CSSNavigation {
 		return target;
 	}
 
-	protected async resolveReference(target: string, documentUri: string, documentContext: DocumentContext, isRawLink = false): Promise<string | undefined> {
+	protected async resolveReference(target: string, documentUri: string, documentContext: DocumentContext, isRawLink = false, settings = this.defaultSettings): Promise<string | undefined> {
 
 		// Following [css-loader](https://github.com/webpack-contrib/css-loader#url)
 		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#imports)
@@ -399,11 +423,31 @@ export class CSSNavigation {
 				return moduleReference;
 			}
 		}
+
+		// Try resolving the reference from the language configuration alias settings
+		if (ref && !(await this.fileExists(ref))) {
+			const rootFolderUri = documentContext.resolveReference('/', documentUri);
+			if (settings && rootFolderUri) {
+				// Specific file reference
+				if (target in settings) {
+					return this.mapReference(joinPath(rootFolderUri, settings[target]), isRawLink);
+				}
+				// Reference folder
+				const firstSlash = target.indexOf('/');
+				const prefix = `${target.substring(0, firstSlash)}/`;
+				if (prefix in settings) {
+					const aliasPath = (settings[prefix]).slice(0, -1);
+					let newPath = joinPath(rootFolderUri, aliasPath);
+					return this.mapReference(newPath = joinPath(newPath, target.substring(prefix.length - 1)), isRawLink);
+				}
+			}
+		}
+
 		// fall back. it might not exists
 		return ref;
 	}
 
-	private async resolvePathToModule(_moduleName: string, documentFolderUri: string, rootFolderUri: string | undefined): Promise<string | undefined> {
+	protected async resolvePathToModule(_moduleName: string, documentFolderUri: string, rootFolderUri: string | undefined): Promise<string | undefined> {
 		// resolve the module relative to the document. We can't use `require` here as the code is webpacked.
 
 		const packPath = joinPath(documentFolderUri, 'node_modules', _moduleName, 'package.json');
@@ -414,6 +458,7 @@ export class CSSNavigation {
 		}
 		return undefined;
 	}
+
 
 	protected async fileExists(uri: string): Promise<boolean> {
 		if (!this.fileSystemProvider) {
@@ -428,6 +473,17 @@ export class CSSNavigation {
 			return true;
 		} catch (err) {
 			return false;
+		}
+	}
+
+	protected async getContent(uri: string): Promise<string | null> {
+		if (!this.fileSystemProvider || !this.fileSystemProvider.getContent) {
+			return null;
+		}
+		try {
+			return await this.fileSystemProvider.getContent(uri);
+		} catch (err) {
+			return null;
 		}
 	}
 
@@ -502,7 +558,7 @@ function toTwoDigitHex(n: number): string {
 	return r.length !== 2 ? '0' + r : r;
 }
 
-function getModuleNameFromPath(path: string) {
+export function getModuleNameFromPath(path: string) {
 	const firstSlash = path.indexOf('/');
 	if (firstSlash === -1) {
 		return '';

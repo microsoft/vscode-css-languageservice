@@ -127,9 +127,20 @@ suite('CSS - Parser', () => {
 		assertNode('to {}', parser, parser._parseKeyframeSelector.bind(parser));
 		assertNode('0% {}', parser, parser._parseKeyframeSelector.bind(parser));
 		assertNode('10% {}', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('cover 10% {}', parser, parser._parseKeyframeSelector.bind(parser));
 		assertNode('100000% {}', parser, parser._parseKeyframeSelector.bind(parser));
 		assertNode('from { width: 100% }', parser, parser._parseKeyframeSelector.bind(parser));
 		assertNode('from { width: 100%; to: 10px; }', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('from, to { width: 10px; }', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('10%, to { width: 10px; }', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('from, 20% { width: 10px; }', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('10%, 20% { width: 10px; }', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('cover 10% {}', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('cover 10%, exit 20% {}', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('10%, exit 20% {}', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('from, exit 20% {}', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('cover 10%, to {}', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('cover 10%, 20% {}', parser, parser._parseKeyframeSelector.bind(parser));
 	});
 
 	test('@keyframe', function () {
@@ -143,16 +154,32 @@ suite('CSS - Parser', () => {
 		assertNode('@keyframes name { from { top: 0px; } 80% { top: 100px; } 100% { top: 50px; }}', parser, parser._parseKeyframe.bind(parser));
 		assertNode('@keyframes name { from { top: 0px; } 70%, 80% { top: 100px; } 100% { top: 50px; }}', parser, parser._parseKeyframe.bind(parser));
 		assertNode('@keyframes name { from { top: 0px; left: 1px; right: 2px }}', parser, parser._parseKeyframe.bind(parser));
+		assertNode('@keyframes name { exit 50% { top: 0px; left: 1px; right: 2px }}', parser, parser._parseKeyframe.bind(parser));
 		assertError('@keyframes name { from { top: 0px; left: 1px, right: 2px }}', parser, parser._parseKeyframe.bind(parser), ParseError.SemiColonExpected);
 		assertError('@keyframes )', parser, parser._parseKeyframe.bind(parser), ParseError.IdentifierExpected);
 		assertError('@keyframes name { { top: 0px; } }', parser, parser._parseKeyframe.bind(parser), ParseError.RightCurlyExpected);
 		assertError('@keyframes name { from, #123', parser, parser._parseKeyframe.bind(parser), ParseError.PercentageExpected);
+		assertError('@keyframes name { 10% from { top: 0px; } }', parser, parser._parseKeyframe.bind(parser), ParseError.LeftCurlyExpected);
+		assertError('@keyframes name { 10% 20% { top: 0px; } }', parser, parser._parseKeyframe.bind(parser), ParseError.LeftCurlyExpected);
+		assertError('@keyframes name { from to { top: 0px; } }', parser, parser._parseKeyframe.bind(parser), ParseError.LeftCurlyExpected);
 	});
 
 	test('@property', function () {
 		const parser = new Parser();
 		assertNode(`@property --my-color { syntax: '<color>'; inherits: false; initial-value: #c0ffee; }`, parser, parser._parseStylesheet.bind(parser));
 		assertError(`@property  {  }`, parser, parser._parseStylesheet.bind(parser), ParseError.IdentifierExpected);
+	});
+
+	test('@container', function () {
+		const parser = new Parser();
+		assertNode(`@container (width <= 150px) { #inner { background-color: skyblue; }}`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container card (inline-size > 30em) and style(--responsive: true) { }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container card (inline-size > 30em) { @container style(--responsive: true) {} }`, parser, parser._parseStylesheet.bind(parser));
+	});
+
+	test('@container query length units', function () {
+		const parser = new Parser();
+		assertNode(`@container (min-width: 700px) { .card h2 { font-size: max(1.5em, 1.23em + 2cqi); } }`, parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('@import', function () {
@@ -359,6 +386,34 @@ suite('CSS - Parser', () => {
 		assertError('boo {--unbalanced-brackets: not][][valid;}', parser, parser._parseRuleset.bind(parser), ParseError.LeftSquareBracketExpected);
 	});
 
+	test('nested ruleset', function () {
+		let parser = new Parser();
+		assertNode('.foo { color: red; input { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; :focus { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; .bar { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; &:hover { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; + .bar { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; foo:hover { color: blue }; }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; @media screen { color: blue }; }', parser, parser._parseRuleset.bind(parser));
+
+		// Top level curly braces are allowed in declaration values if they are for a custom property.
+		assertNode('.foo { --foo: {}; }', parser, parser._parseRuleset.bind(parser));
+		// Top level curly braces are not allowed in declaration values.
+		assertError('.foo { foo: {}; }', parser, parser._parseRuleset.bind(parser), ParseError.PropertyValueExpected);
+	});
+
+	test('nested ruleset 2', function () {
+		let parser = new Parser();
+		assertNode('.foo { .parent & { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; & > .bar, > .baz { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { & .bar & .baz & .qux { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; :not(&) { color: blue; }; + .bar + & { color: green; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; & { color: blue; } && { color: green; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { & :is(.bar, &.baz) { color: red; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('figure { > figcaption { background: hsl(0 0% 0% / 50%); > p {  font-size: .9rem; } } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('@layer base { html { & body { min-block-size: 100%; } } }', parser, parser._parseStylesheet.bind(parser));
+	});
+
 	test('selector', function () {
 		const parser = new Parser();
 		assertNode('asdsa', parser, parser._parseSelector.bind(parser));
@@ -418,6 +473,11 @@ suite('CSS - Parser', () => {
 		assertNode(':some', parser, parser._parsePseudo.bind(parser));
 		assertNode(':some(thing)', parser, parser._parsePseudo.bind(parser));
 		assertNode(':nth-child(12)', parser, parser._parsePseudo.bind(parser));
+		assertNode(':nth-child(1n)', parser, parser._parsePseudo.bind(parser));
+		assertNode(':nth-child(-n+3)', parser, parser._parsePseudo.bind(parser));
+		assertNode(':nth-child(2n+1)', parser, parser._parsePseudo.bind(parser));
+		assertNode(':nth-child(2n+1 of .foo)', parser, parser._parsePseudo.bind(parser));
+		assertNode(':nth-child(2n+1 of .foo > bar, :not(*) ~ [other="value"])', parser, parser._parsePseudo.bind(parser));
 		assertNode(':lang(it)', parser, parser._parsePseudo.bind(parser));
 		assertNode(':not(.class)', parser, parser._parsePseudo.bind(parser));
 		assertNode(':not(:disabled)', parser, parser._parsePseudo.bind(parser));
@@ -433,6 +493,7 @@ suite('CSS - Parser', () => {
 		assertNode(':has(~ div .test)', parser, parser._parsePseudo.bind(parser)); // #250
 		assertError('::', parser, parser._parsePseudo.bind(parser), ParseError.IdentifierExpected);
 		assertError(':: foo', parser, parser._parsePseudo.bind(parser), ParseError.IdentifierExpected);
+		assertError(':nth-child(1n of)', parser, parser._parsePseudo.bind(parser), ParseError.SelectorExpected);
 	});
 
 	test('declaration', function () {

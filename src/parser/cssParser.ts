@@ -320,11 +320,12 @@ export class Parser {
 			|| this._parseFontFace()
 			|| this._parseKeyframe()
 			|| this._parseSupports(isNested)
-			|| this._parseLayer()
+			|| this._parseLayer(isNested)
 			|| this._parsePropertyAtRule()
 			|| this._parseViewPort()
 			|| this._parseNamespace()
 			|| this._parseDocument()
+			|| this._parseContainer(isNested)
 			|| this._parseUnknownAtRule();
 	}
 
@@ -361,7 +362,11 @@ export class Parser {
 	}
 
 	protected _parseRuleSetDeclarationAtStatement(): nodes.Node | null {
-		return this._parseUnknownAtRule();
+		return this._parseMedia(true)
+			|| this._parseSupports(true)
+			|| this._parseLayer(true)
+			|| this._parseContainer(true)
+			|| this._parseUnknownAtRule();
 	}
 
 	public _parseRuleSetDeclaration(): nodes.Node | null {
@@ -369,7 +374,12 @@ export class Parser {
 		if (this.peek(TokenType.AtKeyword)) {
 			return this._parseRuleSetDeclarationAtStatement();
 		}
-		return this._parseDeclaration();
+
+		if (!this.peek(TokenType.Ident)) {
+			return this._parseRuleset(true);
+		}
+
+		return this._tryParseRuleset(true) || this._parseDeclaration();
 	}
 
 	public _needsSemicolonAfter(node: nodes.Node): boolean {
@@ -443,7 +453,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseSelector(isNested: boolean): nodes.Selector | null {
+	public _parseSelector(isNested?: boolean): nodes.Selector | null {
 		const node = this.create(nodes.Selector);
 
 		let hasContent = false;
@@ -459,9 +469,9 @@ export class Parser {
 	}
 
 	public _parseDeclaration(stopTokens?: TokenType[]): nodes.Declaration | null {
-		const custonProperty = this._tryParseCustomPropertyDeclaration(stopTokens);
-		if (custonProperty) {
-			return custonProperty;
+		const customProperty = this._tryParseCustomPropertyDeclaration(stopTokens);
+		if (customProperty) {
+			return customProperty;
 		}
 
 		const node = this.create(nodes.Declaration);
@@ -695,6 +705,11 @@ export class Parser {
 			return this.finish(node, ParseError.URIOrStringExpected);
 		}
 
+		return this._completeParseImport(node);
+	}
+
+
+	public _completeParseImport(node: nodes.Import): nodes.Node | null {
 		if (this.acceptIdent('layer')) {
 			if (this.accept(TokenType.ParenthesisL)) {
 				if (!node.addChild(this._parseLayerName())) {
@@ -797,12 +812,30 @@ export class Parser {
 	public _parseKeyframeSelector(): nodes.Node | null {
 		const node = this.create(nodes.KeyframeSelector);
 
-		if (!node.addChild(this._parseIdent()) && !this.accept(TokenType.Percentage)) {
+		let hasContent = false;
+		if (node.addChild(this._parseIdent())) {
+			hasContent = true;
+		}
+
+		if (this.accept(TokenType.Percentage)) {
+			hasContent = true;
+		}
+
+		if (!hasContent) {
 			return null;
 		}
 
 		while (this.accept(TokenType.Comma)) {
-			if (!node.addChild(this._parseIdent()) && !this.accept(TokenType.Percentage)) {
+			hasContent = false;
+			if (node.addChild(this._parseIdent())) {
+				hasContent = true;
+			}
+
+			if (this.accept(TokenType.Percentage)) {
+				hasContent = true;
+			}
+
+			if (!hasContent) {
 				return this.finish(node, ParseError.PercentageExpected);
 			}
 		}
@@ -814,12 +847,30 @@ export class Parser {
 		const node = this.create(nodes.KeyframeSelector);
 		const pos = this.mark();
 
-		if (!node.addChild(this._parseIdent()) && !this.accept(TokenType.Percentage)) {
+		let hasContent = false;
+		if (node.addChild(this._parseIdent())) {
+			hasContent = true;
+		}
+
+		if (this.accept(TokenType.Percentage)) {
+			hasContent = true;
+		}
+
+		if (!hasContent) {
 			return null;
 		}
 
 		while (this.accept(TokenType.Comma)) {
-			if (!node.addChild(this._parseIdent()) && !this.accept(TokenType.Percentage)) {
+			hasContent = false;
+			if (node.addChild(this._parseIdent())) {
+				hasContent = true;
+			}
+
+			if (this.accept(TokenType.Percentage)) {
+				hasContent = true;
+			}
+
+			if (!hasContent) {
 				this.restoreAtMark(pos);
 				return null;
 			}
@@ -850,7 +901,7 @@ export class Parser {
 		return this._parseBody(node, this._parseDeclaration.bind(this));
 	}
 
-	public _parseLayer(): nodes.Node | null {
+	public _parseLayer(isNested: boolean = false): nodes.Node | null {
 		// @layer layer-name {rules}
 		// @layer layer-name;
 		// @layer layer-name, layer-name, layer-name;
@@ -867,12 +918,22 @@ export class Parser {
 			node.setNames(names);
 		}
 		if ((!names || names.getChildren().length === 1) && this.peek(TokenType.CurlyL)) {
-			return this._parseBody(node, this._parseStylesheetStatement.bind(this));
+			return this._parseBody(node, this._parseLayerDeclaration.bind(this, isNested));
 		}
 		if (!this.accept(TokenType.SemiColon)) {
 			return this.finish(node, ParseError.SemiColonExpected);
 		}
 		return this.finish(node);
+	}
+
+	public _parseLayerDeclaration(isNested = false): nodes.Node | null {
+		if (isNested) {
+			// if nested, the body can contain rulesets, but also declarations
+			return this._tryParseRuleset(true)
+				|| this._tryToParseDeclaration()
+				|| this._parseStylesheetStatement(true);
+		}
+		return this._parseStylesheetStatement(false);
 	}
 
 	public _parseLayerNameList(): nodes.Node | null {
@@ -890,11 +951,10 @@ export class Parser {
 
 	public _parseLayerName(): nodes.Node | null {
 		// <layer-name> = <ident> [ '.' <ident> ]*
-		if (!this.peek(TokenType.Ident)) {
+		const node = this.createNode(nodes.NodeType.LayerName);
+		if (!node.addChild(this._parseIdent()) ) {
 			return null;
 		}
-		const node = this.createNode(nodes.NodeType.LayerName);
-		node.addChild(this._parseIdent());
 		while (!this.hasWhitespace() && this.acceptDelim('.')) {
 			if (this.hasWhitespace() || !node.addChild(this._parseIdent())) {
 				return this.finish(node, ParseError.IdentifierExpected);
@@ -1105,28 +1165,16 @@ export class Parser {
 		// <mf-boolean> = <mf-name>
 		// <mf-range> = <mf-name> [ '<' | '>' ]? '='? <mf-value> | <mf-value> [ '<' | '>' ]? '='? <mf-name> | <mf-value> '<' '='? <mf-name> '<' '='? <mf-value> | <mf-value> '>' '='? <mf-name> '>' '='? <mf-value>
 
-		const parseRangeOperator = () => {
-			if (this.acceptDelim('<') || this.acceptDelim('>')) {
-				if (!this.hasWhitespace()) {
-					this.acceptDelim('=');
-				}
-				return true;
-			} else if (this.acceptDelim('=')) {
-				return true;
-			}
-			return false;
-		};
-
 		if (node.addChild(this._parseMediaFeatureName())) {
 			if (this.accept(TokenType.Colon)) {
 				if (!node.addChild(this._parseMediaFeatureValue())) {
 					return this.finish(node, ParseError.TermExpected, [], resyncStopToken);
 				}
-			} else if (parseRangeOperator()) {
+			} else if (this._parseMediaFeatureRangeOperator()) {
 				if (!node.addChild(this._parseMediaFeatureValue())) {
 					return this.finish(node, ParseError.TermExpected, [], resyncStopToken);
 				}
-				if (parseRangeOperator()) {
+				if (this._parseMediaFeatureRangeOperator()) {
 					if (!node.addChild(this._parseMediaFeatureValue())) {
 						return this.finish(node, ParseError.TermExpected, [], resyncStopToken);
 					}
@@ -1135,13 +1183,13 @@ export class Parser {
 				// <mf-boolean> = <mf-name>
 			}
 		} else if (node.addChild(this._parseMediaFeatureValue())) {
-			if (!parseRangeOperator()) {
+			if (!this._parseMediaFeatureRangeOperator()) {
 				return this.finish(node, ParseError.OperatorExpected, [], resyncStopToken);
 			}
 			if (!node.addChild(this._parseMediaFeatureName())) {
 				return this.finish(node, ParseError.IdentifierExpected, [], resyncStopToken);
 			}
-			if (parseRangeOperator()) {
+			if (this._parseMediaFeatureRangeOperator()) {
 				if (!node.addChild(this._parseMediaFeatureValue())) {
 					return this.finish(node, ParseError.TermExpected, [], resyncStopToken);
 				}
@@ -1152,6 +1200,17 @@ export class Parser {
 		return this.finish(node);
 	}
 
+	public _parseMediaFeatureRangeOperator(): boolean {
+		if (this.acceptDelim('<') || this.acceptDelim('>')) {
+			if (!this.hasWhitespace()) {
+				this.acceptDelim('=');
+			}
+			return true;
+		} else if (this.acceptDelim('=')) {
+			return true;
+		}
+		return false;
+	}
 
 	public _parseMediaFeatureName(): nodes.Node | null {
 		return this._parseIdent();
@@ -1237,6 +1296,117 @@ export class Parser {
 
 		this.resync([], [TokenType.CurlyL]); // ignore all the rules
 		return this._parseBody(node, this._parseStylesheetStatement.bind(this));
+	}
+	public _parseContainerDeclaration(isNested = false): nodes.Node | null {
+		if (isNested) {
+			// if nested, the body can contain rulesets, but also declarations
+			return this._tryParseRuleset(true) || this._tryToParseDeclaration() || this._parseStylesheetStatement(true);
+		}
+		return this._parseStylesheetStatement(false);
+	}
+
+	public _parseContainer(isNested: boolean = false): nodes.Node | null {
+		if (!this.peekKeyword('@container')) {
+			return null;
+		}
+		const node = this.create(nodes.Container);
+		this.consumeToken(); // @container
+
+		node.addChild(this._parseIdent()); // optional container name
+		node.addChild(this._parseContainerQuery());
+
+		return this._parseBody(node, this._parseContainerDeclaration.bind(this, isNested));
+	}
+
+	public _parseContainerQuery(): nodes.Node | null {
+		// <container-query>     = not <query-in-parens>
+		//                         | <query-in-parens> [ [ and <query-in-parens> ]* | [ or <query-in-parens> ]* ]
+		const node = this.create(nodes.Node);
+		if (this.acceptIdent('not')) {
+			node.addChild(this._parseContainerQueryInParens());
+		} else {
+			node.addChild(this._parseContainerQueryInParens());
+			if (this.peekIdent('and')) {
+				while (this.acceptIdent('and')) {
+					node.addChild(this._parseContainerQueryInParens());
+				}
+			} else if (this.peekIdent('or')) {
+				while (this.acceptIdent('or')) {
+					node.addChild(this._parseContainerQueryInParens());
+				}
+			}
+		}
+		return this.finish(node);
+	}
+
+	public _parseContainerQueryInParens(): nodes.Node {
+		// <query-in-parens>     = ( <container-query> )
+		// 					  | ( <size-feature> )
+		// 					  | style( <style-query> )
+		// 					  | <general-enclosed>
+		const node = this.create(nodes.Node);
+		if (this.accept(TokenType.ParenthesisL)) {
+			if (this.peekIdent('not') || this.peek(TokenType.ParenthesisL)) {
+				node.addChild(this._parseContainerQuery());
+			} else {
+				node.addChild(this._parseMediaFeature());
+			}
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+		} else if (this.acceptIdent('style')) {
+			if (this.hasWhitespace() || !this.accept(TokenType.ParenthesisL)) {
+				return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+			node.addChild(this._parseStyleQuery());
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+		} else {
+			return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.CurlyL]);
+		}
+		return this.finish(node);
+	}
+
+	public _parseStyleQuery(): nodes.Node {
+		// <style-query>         = not <style-in-parens>
+		// 					  | <style-in-parens> [ [ and <style-in-parens> ]* | [ or <style-in-parens> ]* ]
+		// 					  | <style-feature>
+		// <style-in-parens>     = ( <style-query> )
+		// 					  | ( <style-feature> )
+		// 					  | <general-enclosed>
+		const node = this.create(nodes.Node);
+
+		if (this.acceptIdent('not')) {
+			node.addChild(this._parseStyleInParens());
+		} else if (this.peek(TokenType.ParenthesisL)) {
+			node.addChild(this._parseStyleInParens());
+			if (this.peekIdent('and')) {
+				while (this.acceptIdent('and')) {
+					node.addChild(this._parseStyleInParens());
+				}
+			} else if (this.peekIdent('or')) {
+				while (this.acceptIdent('or')) {
+					node.addChild(this._parseStyleInParens());
+				}
+			}
+		} else {
+			node.addChild(this._parseDeclaration([TokenType.ParenthesisR]));
+		}
+		return this.finish(node);
+	}
+
+	public _parseStyleInParens(): nodes.Node {
+		const node = this.create(nodes.Node);
+		if (this.accept(TokenType.ParenthesisL)) {
+			node.addChild(this._parseStyleQuery());
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+		} else {
+			return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.CurlyL]);
+		}
+		return this.finish(node);
 	}
 
 	// https://www.w3.org/TR/css-syntax-3/#consume-an-at-rule
@@ -1406,13 +1576,22 @@ export class Parser {
 
 		const node = this.create(nodes.SimpleSelector);
 		let c = 0;
-		if (node.addChild(this._parseElementName())) {
+		if (node.addChild(this._parseElementName() || this._parseNestingSelector())) {
 			c++;
 		}
 		while ((c === 0 || !this.hasWhitespace()) && node.addChild(this._parseSimpleSelectorBody())) {
 			c++;
 		}
 		return c > 0 ? this.finish(node) : null;
+	}
+
+	public _parseNestingSelector(): nodes.Node | null {
+		if (this.peekDelim('&')) {
+			const node = this.createNode(nodes.NodeType.SelectorCombinator);
+			this.consumeToken();
+			return this.finish(node);
+		}
+		return null;
 	}
 
 	public _parseSimpleSelectorBody(): nodes.Node | null {
@@ -1522,7 +1701,18 @@ export class Parser {
 
 					return null;
 				};
-				node.addChild(this.try(tryAsSelector) || this._parseBinaryExpr());
+
+				let hasSelector = node.addChild(this.try(tryAsSelector));
+				if (!hasSelector) {
+					if (
+						node.addChild(this._parseBinaryExpr()) &&
+						this.acceptIdent('of') &&
+						!node.addChild(this.try(tryAsSelector))
+					) {
+						return this.finish(node, ParseError.SelectorExpected);
+					}
+				}
+
 				if (!this.accept(TokenType.ParenthesisR)) {
 					return this.finish(node, ParseError.RightParenthesisExpected);
 				}
@@ -1695,6 +1885,7 @@ export class Parser {
 			this.peek(TokenType.Angle) ||
 			this.peek(TokenType.Time) ||
 			this.peek(TokenType.Dimension) ||
+			this.peek(TokenType.ContainerQueryLength) ||
 			this.peek(TokenType.Freq)) {
 			const node = this.create(nodes.NumericValue);
 			this.consumeToken();

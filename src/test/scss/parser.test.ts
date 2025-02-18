@@ -14,21 +14,21 @@ import { assertNode, assertError } from '../css/parser.test';
 suite('SCSS - Parser', () => {
 
 	test('Comments', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode(' a { b:  /* comment */ c }', parser, parser._parseStylesheet.bind(parser));
 		assertNode(' a { b: /* comment \n * is several\n * lines long\n */ c }', parser, parser._parseStylesheet.bind(parser));
 		assertNode(' a { b: // single line comment\n  c }', parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('Variable', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('$color', parser, parser._parseVariable.bind(parser));
 		assertNode('$co42lor', parser, parser._parseVariable.bind(parser));
 		assertNode('$-co42lor', parser, parser._parseVariable.bind(parser));
 	});
 
 	test('Module variable', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('module.$color', parser, parser._parseModuleMember.bind(parser));
 		assertNode('module.$co42lor', parser, parser._parseModuleMember.bind(parser));
 		assertNode('module.$-co42lor', parser, parser._parseModuleMember.bind(parser));
@@ -38,7 +38,7 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('VariableDeclaration', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('$color: #F5F5F5', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('$color: 0', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('$color: 255', parser, parser._parseVariableDeclaration.bind(parser));
@@ -57,25 +57,25 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('Expr', function () {
-		let parser = new SCSSParser();
-		assertNode('($let + 20)', parser, parser._parseExpr.bind(parser));
-		assertNode('($let - 20)', parser, parser._parseExpr.bind(parser));
-		assertNode('($let * 20)', parser, parser._parseExpr.bind(parser));
-		assertNode('($let / 20)', parser, parser._parseExpr.bind(parser));
-		assertNode('(20 + $let)', parser, parser._parseExpr.bind(parser));
-		assertNode('(20 - $let)', parser, parser._parseExpr.bind(parser));
-		assertNode('(20 * $let)', parser, parser._parseExpr.bind(parser));
-		assertNode('(20 / $let)', parser, parser._parseExpr.bind(parser));
-		assertNode('(20 / 20 + $let)', parser, parser._parseExpr.bind(parser));
-		assertNode('(20 + 20 + $let)', parser, parser._parseExpr.bind(parser));
-		assertNode('(20 + 20 + 20 + $let)', parser, parser._parseExpr.bind(parser));
-		assertNode('(20 + 20 + 20 + 20 + $let)', parser, parser._parseExpr.bind(parser));
-		assertNode('(20 + 20 + $let + 20 + 20 + $let)', parser, parser._parseExpr.bind(parser));
+		const parser = new SCSSParser();
+		assertNode('($const + 20)', parser, parser._parseExpr.bind(parser));
+		assertNode('($const - 20)', parser, parser._parseExpr.bind(parser));
+		assertNode('($const * 20)', parser, parser._parseExpr.bind(parser));
+		assertNode('($const / 20)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 + $const)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 - $const)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 * $const)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 / $const)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 / 20 + $const)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 + 20 + $const)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 + 20 + 20 + $const)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 + 20 + 20 + 20 + $const)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 + 20 + $const + 20 + 20 + $const)', parser, parser._parseExpr.bind(parser));
 		assertNode('(20 + 20)', parser, parser._parseExpr.bind(parser));
 		assertNode('($var1 + $var2)', parser, parser._parseExpr.bind(parser));
-		assertNode('(($let + 5) * 2)', parser, parser._parseExpr.bind(parser));
-		assertNode('(($let + (5 + 2)) * 2)', parser, parser._parseExpr.bind(parser));
-		assertNode('($let + ((5 + 2) * 2))', parser, parser._parseExpr.bind(parser));
+		assertNode('(($const + 5) * 2)', parser, parser._parseExpr.bind(parser));
+		assertNode('(($const + (5 + 2)) * 2)', parser, parser._parseExpr.bind(parser));
+		assertNode('($const + ((5 + 2) * 2))', parser, parser._parseExpr.bind(parser));
 		assertNode('$color', parser, parser._parseExpr.bind(parser));
 		assertNode('$color, $color', parser, parser._parseExpr.bind(parser));
 		assertNode('$color, 42%', parser, parser._parseExpr.bind(parser));
@@ -86,24 +86,24 @@ suite('SCSS - Parser', () => {
 		assertNode('100% / 2 + $filler', parser, parser._parseExpr.bind(parser));
 		assertNode('not ($v and $b) or $c', parser, parser._parseExpr.bind(parser));
 
-		assertNode('(module.$let + 20)', parser, parser._parseExpr.bind(parser));
-		assertNode('(module.$let - 20)', parser, parser._parseExpr.bind(parser));
-		assertNode('(module.$let * 20)', parser, parser._parseExpr.bind(parser));
-		assertNode('(module.$let / 20)', parser, parser._parseExpr.bind(parser));
-		assertNode('(20 + module.$let)', parser, parser._parseExpr.bind(parser));
-		assertNode('(20 - module.$let)', parser, parser._parseExpr.bind(parser));
-		assertNode('(20 * module.$let)', parser, parser._parseExpr.bind(parser));
-		assertNode('(20 / module.$let)', parser, parser._parseExpr.bind(parser));
-		assertNode('(20 + 20 + module.$let)', parser, parser._parseExpr.bind(parser));
-		assertNode('(20 + 20 + 20 + module.$let)', parser, parser._parseExpr.bind(parser));
-		assertNode('(20 + 20 + 20 + 20 + module.$let)', parser, parser._parseExpr.bind(parser));
-		assertNode('(20 + 20 + module.$let + 20 + 20 + module.$let)', parser, parser._parseExpr.bind(parser));
+		assertNode('(module.$const + 20)', parser, parser._parseExpr.bind(parser));
+		assertNode('(module.$const - 20)', parser, parser._parseExpr.bind(parser));
+		assertNode('(module.$const * 20)', parser, parser._parseExpr.bind(parser));
+		assertNode('(module.$const / 20)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 + module.$const)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 - module.$const)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 * module.$const)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 / module.$const)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 + 20 + module.$const)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 + 20 + 20 + module.$const)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 + 20 + 20 + 20 + module.$const)', parser, parser._parseExpr.bind(parser));
+		assertNode('(20 + 20 + module.$const + 20 + 20 + module.$const)', parser, parser._parseExpr.bind(parser));
 		assertNode('($var1 + module.$var2)', parser, parser._parseExpr.bind(parser));
 		assertNode('(module.$var1 + $var2)', parser, parser._parseExpr.bind(parser));
 		assertNode('(module.$var1 + module.$var2)', parser, parser._parseExpr.bind(parser));
-		assertNode('((module.$let + 5) * 2)', parser, parser._parseExpr.bind(parser));
-		assertNode('((module.$let + (5 + 2)) * 2)', parser, parser._parseExpr.bind(parser));
-		assertNode('(module.$let + ((5 + 2) * 2))', parser, parser._parseExpr.bind(parser));
+		assertNode('((module.$const + 5) * 2)', parser, parser._parseExpr.bind(parser));
+		assertNode('((module.$const + (5 + 2)) * 2)', parser, parser._parseExpr.bind(parser));
+		assertNode('(module.$const + ((5 + 2) * 2))', parser, parser._parseExpr.bind(parser));
 		assertNode('module.$color', parser, parser._parseExpr.bind(parser));
 		assertNode('module.$color, $color', parser, parser._parseExpr.bind(parser));
 		assertNode('$color, module.$color', parser, parser._parseExpr.bind(parser));
@@ -133,7 +133,7 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('SCSSOperator', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('>=', parser, parser._parseOperator.bind(parser));
 		assertNode('>', parser, parser._parseOperator.bind(parser));
 		assertNode('<', parser, parser._parseOperator.bind(parser));
@@ -150,7 +150,7 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('Interpolation', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		// assertNode('#{red}', parser, parser._parseIdent.bind(parser));
 		// assertNode('#{$color}', parser, parser._parseIdent.bind(parser));
 		// assertNode('#{3 + 4}', parser, parser._parseIdent.bind(parser));
@@ -187,12 +187,12 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('Declaration', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('border: thin solid 1px', parser, parser._parseDeclaration.bind(parser));
 		assertNode('dummy: $color', parser, parser._parseDeclaration.bind(parser));
 		assertNode('dummy: blue', parser, parser._parseDeclaration.bind(parser));
-		assertNode('dummy: (20 / $let)', parser, parser._parseDeclaration.bind(parser));
-		assertNode('dummy: (20 / 20 + $let)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('dummy: (20 / $const)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('dummy: (20 / 20 + $const)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('dummy: func($red)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('dummy: func($red) !important', parser, parser._parseDeclaration.bind(parser));
 		assertNode('dummy: desaturate($red, 10%)', parser, parser._parseDeclaration.bind(parser));
@@ -213,8 +213,8 @@ suite('SCSS - Parser', () => {
 		assertNode('color: selector-replace(&, 1)', parser, parser._parseDeclaration.bind(parser));
 
 		assertNode('dummy: module.$color', parser, parser._parseDeclaration.bind(parser));
-		assertNode('dummy: (20 / module.$let)', parser, parser._parseDeclaration.bind(parser));
-		assertNode('dummy: (20 / 20 + module.$let)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('dummy: (20 / module.$const)', parser, parser._parseDeclaration.bind(parser));
+		assertNode('dummy: (20 / 20 + module.$const)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('dummy: module.func($red)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('dummy: module.func($red) !important', parser, parser._parseDeclaration.bind(parser));
 		assertNode('dummy: module.desaturate($red, 10%)', parser, parser._parseDeclaration.bind(parser));
@@ -249,7 +249,7 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('Stylesheet', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('$color: #F5F5F5;', parser, parser._parseStylesheet.bind(parser));
 		assertNode('$color: #F5F5F5; $color: #F5F5F5;', parser, parser._parseStylesheet.bind(parser));
 		assertNode('$color: #F5F5F5; $color: #F5F5F5; $color: #F5F5F5;', parser, parser._parseStylesheet.bind(parser));
@@ -270,7 +270,7 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('@import', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('@import "test.css"', parser, parser._parseImport.bind(parser));
 		assertNode('@import url("test.css")', parser, parser._parseImport.bind(parser));
 		assertNode('@import "test.css", "bar.css"', parser, parser._parseImport.bind(parser));
@@ -280,10 +280,23 @@ suite('SCSS - Parser', () => {
 		assertError('@import "test.css" "bar.css"', parser, parser._parseStylesheet.bind(parser), ParseError.MediaQueryExpected);
 		assertError('@import "test.css", screen', parser, parser._parseImport.bind(parser), ParseError.URIOrStringExpected);
 		assertError('@import', parser, parser._parseImport.bind(parser), ParseError.URIOrStringExpected);
+		assertNode('@import url("override.css") layer;', parser, parser._parseStylesheet.bind(parser));
+	});
+
+	test('@layer', function () {
+		const parser = new SCSSParser();
+		assertNode('@layer #{$layer} { }', parser, parser._parseLayer.bind(parser));
+	});
+
+	test('@container', function () {
+		const parser = new SCSSParser();
+		assertNode(`@container (min-width: #{$minWidth}) { .scss-interpolation { line-height: 10cqh; } }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`.item-icon { @container (max-height: 100px) { .item-icon { display: none;  } } }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`:root { @container (max-height: 100px) { display: none;} }`, parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('@use', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('@use "test"', parser, parser._parseUse.bind(parser));
 		assertNode('@use "test" as foo', parser, parser._parseUse.bind(parser));
 		assertNode('@use "test" as *', parser, parser._parseUse.bind(parser));
@@ -305,7 +318,7 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('@forward', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('@forward "test"', parser, parser._parseForward.bind(parser));
 		assertNode('@forward "test" as foo-*', parser, parser._parseForward.bind(parser));
 		assertNode('@forward "test" hide this', parser, parser._parseForward.bind(parser));
@@ -335,7 +348,7 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('@media', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('@media screen { .sidebar { @media (orientation: landscape) { width: 500px; } } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media #{$media} and ($feature: $value)  {}', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media only screen and #{$query} {}', parser, parser._parseStylesheet.bind(parser));
@@ -345,6 +358,8 @@ suite('SCSS - Parser', () => {
 		assertNode('.something { @media (max-width: 760px) { ~ div { display: block; } } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.something { @media (max-width: 760px) { + div { display: block; } } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media (max-width: 760px) { + div { display: block; } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@media (height <= 600px) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media (height >= 600px) { }', parser, parser._parseMedia.bind(parser));
 
 		assertNode('@media #{layout.$media} and ($feature: $value)  {}', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media #{$media} and (layout.$feature: $value)  {}', parser, parser._parseStylesheet.bind(parser));
@@ -368,16 +383,18 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('@keyframe', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('@keyframes name { @content; }', parser, parser._parseKeyframe.bind(parser));
 		assertNode('@keyframes name { @for $i from 0 through $steps { #{$i * (100%/$steps)} { transform: $rotate $translate; } } }', parser, parser._parseKeyframe.bind(parser)); // issue 42086
 		assertNode('@keyframes test-keyframe { @for $i from 1 through 60 { $s: ($i * 100) / 60 + "%"; } }', parser, parser._parseKeyframe.bind(parser));
 
 		assertNode('@keyframes name { @for $i from 0 through m.$steps { #{$i * (100%/$steps)} { transform: $rotate $translate; } } }', parser, parser._parseKeyframe.bind(parser));
+		assertNode('@keyframes name { @function bar() { } }', parser, parser._parseKeyframe.bind(parser)); // #197742
+		assertNode('@keyframes name { @include keyframe-mixin(); }', parser, parser._parseKeyframe.bind(parser)); // #197742
 	});
 
 	test('@extend', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('foo { @extend .error; border-width: 3px; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('a.important { @extend .notice !optional; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.hoverlink { @extend a:hover; }', parser, parser._parseStylesheet.bind(parser));
@@ -393,7 +410,7 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('@debug', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('@debug test;', parser, parser._parseStylesheet.bind(parser));
 		assertNode('foo { @debug 1 + 4; nested { @warn 1 4; } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@if $foo == 1 { @debug 1 + 4 }', parser, parser._parseStylesheet.bind(parser));
@@ -401,11 +418,11 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('@if', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('@if 1 + 1 == 2 { border: 1px solid;  }', parser, parser._parseRuleSetDeclaration.bind(parser));
 		assertNode('@if 5 < 3      { border: 2px dotted; }', parser, parser._parseRuleSetDeclaration.bind(parser));
 		assertNode('@if null       { border: 3px double; }', parser, parser._parseRuleSetDeclaration.bind(parser));
-		assertNode('@if 1 <= $let { border: 3px; } @else { border: 4px; }', parser, parser._parseRuleSetDeclaration.bind(parser));
+		assertNode('@if 1 <= $const { border: 3px; } @else { border: 4px; }', parser, parser._parseRuleSetDeclaration.bind(parser));
 		assertNode('@if 1 >= (1 + $foo) { border: 3px; } @else if 1 + 1 == 2 { border: 4px; }', parser, parser._parseRuleSetDeclaration.bind(parser));
 		assertNode('p { @if $i == 1 { x: 3px; } @else if $i == 1 { x: 4px; } @else { x: 4px; } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@if (index($_RESOURCES, "clean") != null) { @error "sdssd"; }', parser, parser._parseStylesheet.bind(parser));
@@ -413,7 +430,7 @@ suite('SCSS - Parser', () => {
 		assertError('@if { border: 1px solid;  }', parser, parser._parseRuleSetDeclaration.bind(parser), ParseError.ExpressionExpected);
 		assertError('@if 1 }', parser, parser._parseRuleSetDeclaration.bind(parser), ParseError.LeftCurlyExpected);
 
-		assertNode('@if 1 <= m.$let { border: 3px; } @else { border: 4px; }', parser, parser._parseRuleSetDeclaration.bind(parser));
+		assertNode('@if 1 <= m.$const { border: 3px; } @else { border: 4px; }', parser, parser._parseRuleSetDeclaration.bind(parser));
 		assertNode('@if 1 >= (1 + m.$foo) { border: 3px; } @else if 1 + 1 == 2 { border: 4px; }', parser, parser._parseRuleSetDeclaration.bind(parser));
 		assertNode('p { @if m.$i == 1 { x: 3px; } @else if $i == 1 { x: 4px; } @else { x: 4px; } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('p { @if $i == 1 { x: 3px; } @else if m.$i == 1 { x: 4px; } @else { x: 4px; } }', parser, parser._parseStylesheet.bind(parser));
@@ -424,7 +441,7 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('@for', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('@for $i from 1 to 5 { .item-#{$i} { width: 2em * $i; }  }', parser, parser._parseRuleSetDeclaration.bind(parser));
 		assertNode('@for $k from 1 + $x through 5 + $x {  }', parser, parser._parseRuleSetDeclaration.bind(parser));
 		assertError('@for i from 0 to 4 {}', parser, parser._parseRuleSetDeclaration.bind(parser), ParseError.VariableNameExpected);
@@ -440,7 +457,7 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('@each', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('@each $i in 1, 2, 3 { }', parser, parser._parseRuleSetDeclaration.bind(parser));
 		assertNode('@each $i in 1 2 3 { }', parser, parser._parseRuleSetDeclaration.bind(parser));
 		assertNode('@each $animal, $color, $cursor in (puma, black, default), (egret, white, move) {}', parser, parser._parseRuleSetDeclaration.bind(parser));
@@ -451,7 +468,7 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('@while', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('@while $i < 0 { .item-#{$i} { width: 2em * $i; } $i: $i - 2; }', parser, parser._parseRuleSetDeclaration.bind(parser));
 		assertError('@while {}', parser, parser._parseRuleSetDeclaration.bind(parser), ParseError.ExpressionExpected);
 		assertError('@while $i != 4', parser, parser._parseRuleSetDeclaration.bind(parser), ParseError.LeftCurlyExpected);
@@ -459,7 +476,7 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('@mixin', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('@mixin large-text { font: { family: Arial; size: 20px; } color: #ff0000; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@mixin sexy-border($color, $width: 1in) { color: black; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@mixin box-shadow($shadows...) { -moz-box-shadow: $shadows; }', parser, parser._parseStylesheet.bind(parser));
@@ -478,13 +495,13 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('@content', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('@content', parser, parser._parseMixinContent.bind(parser));
 		assertNode('@content($type)', parser, parser._parseMixinContent.bind(parser));
 	});
 
 	test('@include', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('p { @include sexy-border(blue); }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.shadows { @include box-shadow(0px 4px 5px #666, 2px 6px 10px #999); }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('$values: #ff0000, #00ff00, #0000ff; .primary { @include colors($values...); }', parser, parser._parseStylesheet.bind(parser));
@@ -520,7 +537,7 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('@function', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('@function grid-width($n) { @return $n * $grid-width + ($n - 1) * $gutter-width; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@function grid-width($n: 1, $e) { @return 0; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@function foo($total, $a) { @for $i from 0 to $total { } @return $grid; }', parser, parser._parseStylesheet.bind(parser));
@@ -539,7 +556,7 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('@at-root', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('@mixin unify-parent($child) { @at-root #{selector.unify(&, $child)} { }}', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@at-root #main2 .some-class {  padding-left: calc( #{$a-variable} + 8px ); }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media print { .page {  @at-root (without: media) { } } }', parser, parser._parseStylesheet.bind(parser));
@@ -547,9 +564,9 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('Ruleset', function () {
-		let parser = new SCSSParser();
-		assertNode('.selector { prop: erty $let 1px; }', parser, parser._parseRuleset.bind(parser));
-		assertNode('.selector { prop: erty $let 1px m.$foo; }', parser, parser._parseRuleset.bind(parser));
+		const parser = new SCSSParser();
+		assertNode('.selector { prop: erty $const 1px; }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.selector { prop: erty $const 1px m.$foo; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('selector:active { property:value; nested:hover {}}', parser, parser._parseRuleset.bind(parser));
 		assertNode('selector {}', parser, parser._parseRuleset.bind(parser));
 		assertNode('selector { property: declaration }', parser, parser._parseRuleset.bind(parser));
@@ -562,9 +579,9 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('Nested Ruleset', function () {
-		let parser = new SCSSParser();
-		assertNode('.class1 { $let: 1; .class { $let: 2; three: $let; let: 3; } one: $let; }', parser, parser._parseRuleset.bind(parser));
-		assertNode('.class1 { $let: 1; .class { $let: m.$foo; } one: $let; }', parser, parser._parseRuleset.bind(parser));
+		const parser = new SCSSParser();
+		assertNode('.class1 { $const: 1; .class { $const: 2; three: $const; const: 3; } one: $const; }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.class1 { $const: 1; .class { $const: m.$foo; } one: $const; }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.class1 { > .class2 { & > .class4 { rule1: v1; } } }', parser, parser._parseRuleset.bind(parser));
 		assertNode('foo { @at-root { display: none; } }', parser, parser._parseRuleset.bind(parser));
 		assertNode('th, tr { @at-root #{selector-replace(&, "tr")} { border-bottom: 0; } }', parser, parser._parseRuleset.bind(parser));
@@ -574,7 +591,7 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('Selector Interpolation', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('.#{$name} { }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.#{$name}-foo { }', parser, parser._parseRuleset.bind(parser));
 		assertNode('.#{$name}-foo-3 { }', parser, parser._parseRuleset.bind(parser));
@@ -600,7 +617,7 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('Parent Selector', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('&:hover', parser, parser._parseSimpleSelector.bind(parser));
 		assertNode('&.float', parser, parser._parseSimpleSelector.bind(parser));
 		assertNode('&-bar', parser, parser._parseSimpleSelector.bind(parser));
@@ -612,19 +629,19 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('Selector Placeholder', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('%hover', parser, parser._parseSimpleSelector.bind(parser));
 		assertNode('a%float', parser, parser._parseSimpleSelector.bind(parser));
 	});
 
 	test('Map', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('(key1: 1px, key2: solid + px, key3: (2+3))', parser, parser._parseExpr.bind(parser));
 		assertNode('($key1 + 3: 1px)', parser, parser._parseExpr.bind(parser));
 	});
 
 	test('Url', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('url(foo())', parser, parser._parseURILiteral.bind(parser));
 		assertNode('url(\'data:image/svg+xml;utf8,%3Csvg%20fill%3D%22%23\' + $color + \'foo\')', parser, parser._parseURILiteral.bind(parser));
 		assertNode('url(//yourdomain/yourpath.png)', parser, parser._parseURILiteral.bind(parser));
@@ -645,7 +662,7 @@ suite('SCSS - Parser', () => {
 	});
 
 	test('@font-face', function () {
-		let parser = new SCSSParser();
+		const parser = new SCSSParser();
 		assertNode('@font-face {}', parser, parser._parseFontFace.bind(parser));
 		assertNode('@font-face { src: url(http://test) }', parser, parser._parseFontFace.bind(parser));
 		assertNode('@font-face { font-style: normal; font-stretch: normal; }', parser, parser._parseFontFace.bind(parser));

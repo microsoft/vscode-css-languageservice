@@ -65,7 +65,7 @@ export class LESSParser extends cssParser.Parser {
 			node.setMedialist(this._parseMediaQueryList());
 		}
 
-		return this.finish(node);
+		return this._completeParseImport(node);
 	}
 
 	public _parsePlugin(): nodes.Node | null {
@@ -320,16 +320,17 @@ export class LESSParser extends cssParser.Parser {
 				|| this._parseSupports(true) // @supports
 				|| this._parseLayer() // @layer
 				|| this._parsePropertyAtRule() // @property
+				|| this._parseContainer(true) // @container
 				|| this._parseDetachedRuleSetMixin() // less detached ruleset mixin
 				|| this._parseVariableDeclaration() // Variable declarations
-				|| super._parseRuleSetDeclarationAtStatement();
+				|| this._parseRuleSetDeclarationAtStatement();
 		}
 		return this._tryParseMixinDeclaration()
 			|| this._tryParseRuleset(true)  // nested ruleset
 			|| this._tryParseMixinReference() // less mixin reference
 			|| this._parseFunction()
 			|| this._parseExtend() // less extend declaration
-			|| super._parseRuleSetDeclaration(); // try css ruleset declaration as the last option
+			|| this._parseDeclaration(); // try css ruleset declaration as the last option
 	}
 
 	public _parseKeyframeIdent(): nodes.Node | null {
@@ -341,9 +342,9 @@ export class LESSParser extends cssParser.Parser {
 			|| super._parseKeyframeSelector();
 	}
 
-	public _parseSimpleSelectorBody(): nodes.Node | null {
-		return this._parseSelectorCombinator() || super._parseSimpleSelectorBody();
-	}
+	// public _parseSimpleSelectorBody(): nodes.Node | null {
+	// 	return this._parseNestingSelector() || super._parseSimpleSelectorBody();
+	// }
 
 	public _parseSelector(isNested: boolean): nodes.Selector | null {
 		// CSS Guards
@@ -366,7 +367,7 @@ export class LESSParser extends cssParser.Parser {
 		return hasContent ? this.finish(node) : null;
 	}
 
-	public _parseSelectorCombinator(): nodes.Node | null {
+	public _parseNestingSelector(): nodes.Node | null {
 
 		if (this.peekDelim('&')) {
 			const node = this.createNode(nodes.NodeType.SelectorCombinator);
@@ -730,7 +731,6 @@ export class LESSParser extends cssParser.Parser {
 		}
 		const node = <nodes.LessGuard>this.create(nodes.LessGuard);
 		this.consumeToken(); // when
-		node.isNegated = this.acceptIdent('not');
 
 		if (!node.getConditions().addChild(this._parseGuardCondition())) {
 			return <nodes.LessGuard>this.finish(node, ParseError.ConditionExpected);
@@ -745,12 +745,14 @@ export class LESSParser extends cssParser.Parser {
 	}
 
 	public _parseGuardCondition(): nodes.Node | null {
-
-		if (!this.peek(TokenType.ParenthesisL)) {
+		const node = this.create(nodes.GuardCondition);
+		node.isNegated = this.acceptIdent('not');
+		if (!this.accept(TokenType.ParenthesisL)) {
+			if (node.isNegated) {
+				return this.finish(node, ParseError.LeftParenthesisExpected);
+			}
 			return null;
 		}
-		const node = this.create(nodes.GuardCondition);
-		this.consumeToken(); // ParenthesisL
 
 		if (!node.addChild(this._parseExpr())) {
 			// empty (?)

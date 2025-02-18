@@ -47,7 +47,8 @@ export enum TokenType {
 	Comment,
 	SingleLineComment,
 	EOF,
-	CustomToken
+	ContainerQueryLength,
+	CustomToken // must be last token type
 }
 
 export interface IToken {
@@ -212,6 +213,12 @@ staticUnitTable['%'] = TokenType.Percentage;
 staticUnitTable['fr'] = TokenType.Percentage;
 staticUnitTable['dpi'] = TokenType.Resolution;
 staticUnitTable['dpcm'] = TokenType.Resolution;
+staticUnitTable['cqw'] = TokenType.ContainerQueryLength;
+staticUnitTable['cqh'] = TokenType.ContainerQueryLength;
+staticUnitTable['cqi'] = TokenType.ContainerQueryLength;
+staticUnitTable['cqb'] = TokenType.ContainerQueryLength;
+staticUnitTable['cqmin'] = TokenType.ContainerQueryLength;
+staticUnitTable['cqmax'] = TokenType.ContainerQueryLength;
 
 export class Scanner {
 

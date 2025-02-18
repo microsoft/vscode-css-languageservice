@@ -98,7 +98,9 @@ export enum NodeType {
 	Layer,
 	LayerNameList,
 	LayerName,
-	PropertyAtRule
+	PropertyAtRule,
+	Container,
+	ModuleConfig,
 }
 
 export enum ReferenceType {
@@ -1041,16 +1043,17 @@ export class Import extends Node {
 export class Use extends Node {
 
 	public identifier?: Identifier;
-	public parameters?: Nodelist;
+	public parameters?: Node;
 
 	public get type(): NodeType {
 		return NodeType.Use;
 	}
 
-	public getParameters(): Nodelist {
-		if (!this.parameters) {
-			this.parameters = new Nodelist(this);
-		}
+	public setParameters(value: Node | null): value is Node{
+		return this.setNode('parameters', value);
+	}
+
+	public getParameters(): Node | undefined {
 		return this.parameters;
 	}
 
@@ -1096,8 +1099,7 @@ export class ModuleConfiguration extends Node {
 export class Forward extends Node {
 
 	public identifier?: Node;
-	public members?: Nodelist;
-	public parameters?: Nodelist;
+	public parameters?: Node;
 
 	public get type(): NodeType {
 		return NodeType.Forward;
@@ -1111,17 +1113,11 @@ export class Forward extends Node {
 		return this.identifier;
 	}
 
-	public getMembers(): Nodelist {
-		if (!this.members) {
-			this.members = new Nodelist(this);
-		}
-		return this.members;
+	public setParameters(value: Node | null): value is Node{
+		return this.setNode('parameters', value);
 	}
 
-	public getParameters(): Nodelist {
-		if (!this.parameters) {
-			this.parameters = new Nodelist(this);
-		}
+	public getParameters(): Node | undefined {
 		return this.parameters;
 	}
 
@@ -1236,6 +1232,17 @@ export class Document extends BodyDeclaration {
 
 	public get type(): NodeType {
 		return NodeType.Document;
+	}
+}
+
+export class Container extends BodyDeclaration {
+
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.Container;
 	}
 }
 
@@ -1639,7 +1646,7 @@ export class MixinContentDeclaration extends BodyDeclaration {
 	}
 
 	public get type(): NodeType {
-		return NodeType.MixinContentReference;
+		return NodeType.MixinContentDeclaration;
 	}
 
 	public getParameters(): Nodelist {
@@ -1783,7 +1790,6 @@ export class ListEntry extends Node {
 
 export class LessGuard extends Node {
 
-	public isNegated?: boolean;
 	private conditions?: Nodelist;
 
 	public getConditions(): Nodelist {
@@ -1796,6 +1802,7 @@ export class LessGuard extends Node {
 
 export class GuardCondition extends Node {
 
+	public isNegated?: boolean;
 	public variable?: Node;
 	public isEquals?: boolean;
 	public isGreater?: boolean;

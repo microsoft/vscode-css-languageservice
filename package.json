@@ -1,6 +1,6 @@
 {
   "name": "vscode-css-languageservice",
-  "version": "6.1.1",
+  "version": "6.3.2",
   "description": "Language service for CSS, LESS and SCSS",
   "main": "./lib/umd/cssLanguageService.js",
   "typings": "./lib/umd/cssLanguageService",
@@ -15,23 +15,23 @@
     "url": "https://github.com/Microsoft/vscode-css-languageservice"
   },
   "devDependencies": {
-    "@types/mocha": "^9.1.1",
-    "@types/node": "16.x",
-    "@typescript-eslint/eslint-plugin": "^5.37.0",
-    "@typescript-eslint/parser": "^5.37.0",
-    "@vscode/web-custom-data": "^0.4.2",
-    "eslint": "^8.23.1",
-    "js-beautify": "^1.14.6",
-    "mocha": "^10.0.0",
-    "rimraf": "^3.0.2",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.13.1",
+    "@vscode/web-custom-data": "^0.4.13",
+    "eslint": "^8.57.1",
+    "js-beautify": "^1.15.1",
+    "mocha": "^10.8.2",
+    "rimraf": "^6.0.1",
     "source-map-support": "^0.5.21",
-    "typescript": "^4.8.3"
+    "typescript": "^5.7.2"
   },
   "dependencies": {
-    "@vscode/l10n": "^0.0.8",
-    "vscode-languageserver-textdocument": "^1.0.7",
-    "vscode-languageserver-types": "^3.17.2",
-    "vscode-uri": "^3.0.4"
+    "@vscode/l10n": "^0.0.18",
+    "vscode-languageserver-textdocument": "^1.0.12",
+    "vscode-languageserver-types": "3.17.5",
+    "vscode-uri": "^3.0.8"
   },
   "scripts": {
     "prepack": "npm run clean && npm run compile-esm && npm run test && npm run remove-sourcemap-refs",
@@ -44,10 +44,10 @@
     "mocha": "mocha --require source-map-support/register",
     "coverage": "npm run compile && npx nyc --reporter=html --reporter=text  mocha",
     "lint": "eslint src/**/*.ts",
-    "update-data": "yarn add @vscode/web-custom-data -D && node ./build/generateData.js",
-    "install-types-next": "yarn add vscode-languageserver-types@next -f -S && yarn add vscode-languageserver-textdocument@next -f -S",
+    "update-data": "npm install @vscode/web-custom-data -D && node ./build/generateData.js",
+    "install-types-next": "npm install vscode-languageserver-types@next -f -S && npm install vscode-languageserver-textdocument@next -f -S",
     "copy-jsbeautify": "node ./build/copy-jsbeautify.js",
-    "update-jsbeautify": "yarn add js-beautify && node ./build/update-jsbeautify.js",
-    "update-jsbeautify-next": "yarn add js-beautify@next && node ./build/update-jsbeautify.js"
+    "update-jsbeautify": "npm install js-beautify && node ./build/update-jsbeautify.js",
+    "update-jsbeautify-next": "npm install js-beautify@next && node ./build/update-jsbeautify.js"
   }
 }
