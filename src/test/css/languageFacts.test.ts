@@ -172,6 +172,7 @@ suite('CSS - Language Facts', () => {
 		assertColor(parser, '#main { color: hwb(120 0% 0% / .05) }', 'hwb', colorFrom256RGB(0, 255, 0, 0.05));
 		assertColor(parser, '#main { color: hwb(36 33% 35%) }', 'hwb', colorFrom256RGB(166, 133, 84));
 		assertColor(parser, '#main { color: lab(90 100 100) }', 'lab', colorFrom256RGB(255, 112, 0));
+		assertColor(parser, '#main { color: lab(90% 50 -50) }', 'lab', colorFrom256RGB(255, 195, 255));
 		assertColor(parser, '#main { color: lab(46.41 39.24 33.51) }', 'lab', colorFrom256RGB(180, 79, 56));
 		assertColor(parser, '#main { color: lab(46.41 -39.24 33.51) }', 'lab', colorFrom256RGB(50, 125, 50));
 		assertColor(parser, '#main { color: lch(46.41, 51.60, 139.50) }', 'lch', colorFrom256RGB(50, 125, 50));
@@ -278,11 +279,18 @@ suite('CSS - Language Facts', () => {
 	});
 
 	test('xyzFromLAB', function () {
+		// verified with https://www.colorspaceconverter.com/converter/lab-to-xyz
 		assertXYZValue(xyzFromLAB({ l: 46.41, a: -39.24, b: 33.51 }), { x: 9.22, y: 15.58, z: 5.54, alpha: 1 });
+		assertXYZValue(xyzFromLAB({ l: 50, a: -50, b: 50 }), { x: 9.8, y: 18.42, z: 3.53, alpha: 1 });
+		assertXYZValue(xyzFromLAB({ l: 90, a: 50, b: -50 }), { x: 99.03, y: 76.3, z: 171.63, alpha: 1 });
 	});
 
 	test('xyzToRGB', function () {
+		// verified with https://www.colorspaceconverter.com/converter/xyz-to-rgb
 		assertColorValue(xyzToRGB({ x: 9.22, y: 15.58, z: 5.54, alpha: 1 }), { red: 50, green: 125, blue: 50, alpha: 1 }, 'xyz(9.22, 15.58, 5.54)');
+		assertColorValue(xyzToRGB({ x: 9.8, y: 18.42, z: 3.53, alpha: 1 }), { red: 35, green: 137, blue: 16, alpha: 1 }, '2');
+		assertColorValue(xyzToRGB({ x: 99, y: 76, z: 71, alpha: 1 }), { red: 255, green: 187, blue: 211, alpha: 1 }, '3');
+
 	});
 	test('LABToRGB', function () {
 		assertColorValue(colorFromLAB(46.41, -39.24, 33.51), colorFrom256RGB(50, 125, 50), 'lab(46.41, -39.24, 33.51)');

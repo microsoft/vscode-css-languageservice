@@ -569,9 +569,9 @@ export function xyzFromLAB(lab: LAB): XYZ {
 		z: 0,
 		alpha: lab.alpha ?? 1
 	};
-	xyz["y"] = (lab.l + 16.0) / 116.0;
-	xyz["x"] = (lab.a / 500.0) + xyz["y"];
-	xyz["z"] = xyz["y"] - (lab.b / 200.0);
+	xyz.y = (lab.l + 16.0) / 116.0;
+	xyz.x = (lab.a / 500.0) + xyz.y;
+	xyz.z = xyz.y - (lab.b / 200.0);
 	let key: keyof XYZ;
 
 	for (key in xyz) {
@@ -583,48 +583,32 @@ export function xyzFromLAB(lab: LAB): XYZ {
 		}
 	}
 
-	xyz["x"] = xyz["x"] * 95.047;
-	xyz["y"] = xyz["y"] * 100.0;
-	xyz["z"] = xyz["z"] * 108.883;
+	xyz.x = xyz.x * 95.047;
+	xyz.y = xyz.y * 100.0;
+	xyz.z = xyz.z * 108.883;
 	return xyz;
 }
 
 export function xyzToRGB(xyz: XYZ): Color {
-	const rgb: RGB = {
-		r: 0,
-		g: 0,
-		b: 0,
-		alpha: xyz.alpha
-	};
+	const x = xyz.x / 100;
+	const y = xyz.y / 100;
+	const z = xyz.z / 100;
 
-	const new_xyz: XYZ = {
-		x: xyz.x / 100,
-		y: xyz.y / 100,
-		z: xyz.z / 100,
-		alpha: xyz.alpha ?? 1
-	};
+	const r = 3.2406254773200533 * x - 1.5372079722103187 * y - 0.4986285986982479 * z;
+	const g = -0.9689307147293197 * x + 1.8757560608852415 * y + 0.041517523842953964 * z;
+	const b = 0.055710120445510616 * x + -0.2040210505984867 * y + 1.0569959422543882 * z;
 
-	rgb.r = (new_xyz.x * 3.240479) + (new_xyz.y * -1.537150) + (new_xyz.z * -0.498535);
-	rgb.g = (new_xyz.x * -0.969256) + (new_xyz.y * 1.875992) + (new_xyz.z * 0.041556);
-	rgb.b = (new_xyz.x * 0.055648) + (new_xyz.y * -0.204043) + (new_xyz.z * 1.057311);
-	let key: keyof RGB;
-
-	for (key in rgb) {
-		if (rgb[key] > 0.0031308) {
-			rgb[key] = (1.055 * Math.pow(rgb[key], (1.0 / 2.4))) - 0.055;
-		} else {
-			rgb[key] = rgb[key] * 12.92;
-		}
+	const compand = (c: number) => {
+		return c <= 0.0031308 ?
+			12.92 * c :
+			Math.min(1.055 * Math.pow(c, 1 / 2.4) - 0.055, 1);
 	}
-	rgb.r = Math.round(rgb.r * 255.0);
-	rgb.g = Math.round(rgb.g * 255.0);
-	rgb.b = Math.round(rgb.b * 255.0);
 
 	return {
-		red: rgb.r,
-		blue: rgb.b,
-		green: rgb.g,
-		alpha: rgb.alpha
+		red: Math.round(compand(r) * 255.0),
+		blue: Math.round(compand(b) * 255.0),
+		green: Math.round(compand(g) * 255.0),
+		alpha: xyz.alpha
 	};
 }
 
