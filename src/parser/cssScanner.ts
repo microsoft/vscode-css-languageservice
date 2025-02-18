@@ -447,16 +447,21 @@ export class Scanner {
 	}
 
 	private _number(): boolean {
-		let npeek = 0, ch: number;
-		if (this.stream.peekChar() === _DOT) {
-			npeek = 1;
+		let npeek = 0;
+		let hasDot = false;
+		const peekFirst = this.stream.peekChar();
+		if (peekFirst === _PLS || peekFirst === _MIN) {
+			npeek++;
 		}
-		ch = this.stream.peekChar(npeek);
-		const next_ch: number = this.stream.peekChar(npeek + 1);
-		if ((ch >= _0 && ch <= _9) || (ch === _MIN && next_ch >= _0 && next_ch <= _9)) {
+		if (this.stream.peekChar(npeek) === _DOT) {
+			npeek++;
+			hasDot = true;
+		}
+		const ch = this.stream.peekChar(npeek);
+		if (ch >= _0 && ch <= _9) {
 			this.stream.advance(npeek + 1);
 			this.stream.advanceWhileChar((ch) => {
-				return ch >= _0 && ch <= _9 || npeek === 0 && ch === _DOT;
+				return ch >= _0 && ch <= _9 || !hasDot && ch === _DOT;
 			});
 			return true;
 		}

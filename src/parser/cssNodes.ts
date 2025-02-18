@@ -101,6 +101,7 @@ export enum NodeType {
 	PropertyAtRule,
 	Container,
 	ModuleConfig,
+	SelectorList
 }
 
 export enum ReferenceType {
