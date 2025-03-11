@@ -102,6 +102,7 @@ export enum NodeType {
 	Container,
 	ModuleConfig,
 	StartingStyleAtRule,
+	SelectorList
 }
 
 export enum ReferenceType {

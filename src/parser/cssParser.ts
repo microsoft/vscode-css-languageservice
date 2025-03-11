@@ -1714,7 +1714,7 @@ export class Parser {
 		if (node) {
 			if (!this.hasWhitespace() && this.accept(TokenType.ParenthesisL)) {
 				const tryAsSelector = () => {
-					const selectors = this.create(nodes.Node);
+					const selectors = this.createNode(nodes.NodeType.SelectorList);
 					if (!selectors.addChild(this._parseSelector(true))) {
 						return null;
 					}
@@ -1730,9 +1730,11 @@ export class Parser {
 
 				let hasSelector = node.addChild(this.try(tryAsSelector));
 				if (!hasSelector) {
-					if (
-						node.addChild(this._parseBinaryExpr()) &&
-						this.acceptIdent('of') &&
+					// accept the <an+b> syntax (not a proper expression) https://drafts.csswg.org/css-syntax/#anb
+					while (!this.peekIdent('of') && (node.addChild(this._parseTerm()) || node.addChild(this._parseOperator()))) {
+						// loop
+					}
+					if (this.acceptIdent('of') &&
 						!node.addChild(this.try(tryAsSelector))
 					) {
 						return this.finish(node, ParseError.SelectorExpected);

@@ -468,9 +468,10 @@ export class SelectorPrinting {
 							// https://www.w3.org/TR/selectors-4/#the-nth-child-pseudo
 							specificity.attr++;
 
-							// 23 = Binary Expression.
-							if (childElements.length === 3 && childElements[1].type === 23) {
-								let mostSpecificListItem = calculateMostSpecificListItem(childElements[2].getChildren());
+							const lastChild = childElements[childElements.length - 1];
+							if (childElements.length > 2 && lastChild.type === nodes.NodeType.SelectorList) {
+								// e.g :nth-child(-n+3 of li.important)
+								let mostSpecificListItem = calculateMostSpecificListItem(lastChild.getChildren());
 
 								specificity.id += mostSpecificListItem.id;
 								specificity.attr += mostSpecificListItem.attr;
