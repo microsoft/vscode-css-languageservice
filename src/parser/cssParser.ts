@@ -326,6 +326,7 @@ export class Parser {
 			|| this._parseNamespace()
 			|| this._parseDocument()
 			|| this._parseContainer(isNested)
+			|| this._parseStartingStyleAtRule(isNested)
 			|| this._parseUnknownAtRule();
 	}
 
@@ -366,6 +367,7 @@ export class Parser {
 			|| this._parseSupports(true)
 			|| this._parseLayer(true)
 			|| this._parseContainer(true)
+			|| this._parseStartingStyleAtRule(true)
 			|| this._parseUnknownAtRule();
 	}
 
@@ -899,6 +901,30 @@ export class Parser {
 		}
 
 		return this._parseBody(node, this._parseDeclaration.bind(this));
+	}
+
+	_parseStartingStyleAtRule(isNested = false) {
+		if (!this.peekKeyword("@starting-style")) {
+			return null;
+		}
+
+		const node = this.create(nodes.StartingStyleAtRule);
+		this.consumeToken() // @starting-style
+
+		return this._parseBody(node, this._parseStartingStyleDeclaration.bind(this, isNested));
+	}
+
+	// this method is the same as ._parseContainerDeclaration()
+	// which is the same as ._parseMediaDeclaration(),
+	// _parseSupportsDeclaration, and ._parseLayerDeclaration()
+	_parseStartingStyleDeclaration(isNested = false) {
+		if (isNested) {
+			// if nested, the body can contain rulesets, but also declarations
+			return this._tryParseRuleset(true)
+				|| this._tryToParseDeclaration()
+				|| this._parseStylesheetStatement(true);
+		}
+		return this._parseStylesheetStatement(false);
 	}
 
 	public _parseLayer(isNested: boolean = false): nodes.Node | null {
