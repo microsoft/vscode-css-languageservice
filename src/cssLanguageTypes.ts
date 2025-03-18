@@ -202,6 +202,7 @@ export interface IAtDirectiveData {
 	name: string;
 	description?: string | MarkupContent;
 	browsers?: string[];
+	baselineStatus?: BaselineStatus;
 	status?: EntryStatus;
 	references?: IReference[];
 }
@@ -209,6 +210,7 @@ export interface IPseudoClassData {
 	name: string;
 	description?: string | MarkupContent;
 	browsers?: string[];
+	baselineStatus?: BaselineStatus;
 	status?: EntryStatus;
 	references?: IReference[];
 }
@@ -216,6 +218,7 @@ export interface IPseudoElementData {
 	name: string;
 	description?: string | MarkupContent;
 	browsers?: string[];
+	baselineStatus?: BaselineStatus;
 	status?: EntryStatus;
 	references?: IReference[];
 }
@@ -224,6 +227,7 @@ export interface IValueData {
 	name: string;
 	description?: string | MarkupContent;
 	browsers?: string[];
+	baselineStatus?: BaselineStatus;
 	status?: EntryStatus;
 	references?: IReference[];
 }
@@ -244,10 +248,12 @@ export interface ICSSDataProvider {
 }
 
 export interface BaselineStatus {
-	baseline: string;
+	baseline: Baseline;
 	baseline_low_date?: string;
 	baseline_high_date?: string;
 }
+
+export type Baseline = false | 'low' | 'high';
 
 export enum FileType {
 	/**

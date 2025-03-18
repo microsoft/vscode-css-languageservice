@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { EntryStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IValueData, MarkupContent, MarkupKind, MarkedString, HoverSettings } from '../cssLanguageTypes';
+import { EntryStatus, BaselineStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IValueData, MarkupContent, MarkupKind, MarkedString, HoverSettings } from '../cssLanguageTypes';
 
 export interface Browsers {
 	E?: string;
@@ -38,6 +38,32 @@ function getEntryStatus(status: EntryStatus) {
 		default:
 			return '';
 	}
+}
+
+function getEntryBaselineStatus(baselineStatus: BaselineStatus) {
+	switch (baselineStatus.baseline) {
+		case 'low':
+			return `Baseline Newly available since ${baselineStatus.baseline_low_date}`;
+		case 'high':
+			return `Baseline Widely available since ${baselineStatus.baseline_high_date}`;
+		default:
+			return 'Limited availability across major browsers.';
+	}
+}
+
+function getEntryBaselineImage(baselineStatus: BaselineStatus) {
+	let baselineImg: string;
+	switch (baselineStatus.baseline) {
+		case 'low':
+			baselineImg = 'baseline-newly-icon.png';
+			break;
+		case 'high':
+			baselineImg = 'baseline-widely-icon.png';
+			break;
+		default:
+			baselineImg = 'baseline-limited-icon.png';
+	}
+	return `<img src="https://web-platform-dx.github.io/web-features/assets/img/${baselineImg}" alt="Baseline icon" width="25" height="14" />`;
 }
 
 export function getEntryDescription(entry: IEntry2, doesSupportMarkdown: boolean, settings?: HoverSettings): MarkupContent | undefined {
@@ -84,6 +110,10 @@ function getEntryStringDescription(entry: IEntry2, settings?: HoverSettings): st
 		}
 		result += entry.description;
 
+		if (entry.baselineStatus) {
+			result += '\n\n' + getEntryBaselineStatus(entry.baselineStatus);
+		}
+
 		const browserLabel = getBrowserLabel(entry.browsers);
 		if (browserLabel) {
 			result += '\n(' + browserLabel + ')';
@@ -119,6 +149,10 @@ function getEntryMarkdownDescription(entry: IEntry2, settings?: HoverSettings): 
 			result += textToMarkedString(entry.description);
 		} else {
 			result += entry.description.kind === MarkupKind.Markdown ? entry.description.value : textToMarkedString(entry.description.value);
+		}
+
+		if (entry.baselineStatus) {
+			result += `\n\n${getEntryBaselineImage(entry.baselineStatus)} ${getEntryBaselineStatus(entry.baselineStatus)}`;
 		}
 
 		const browserLabel = getBrowserLabel(entry.browsers);
