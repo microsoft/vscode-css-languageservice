@@ -98,13 +98,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <baseline-position> | <content-distribution> | <overflow-position>? <content-position>",
-			"relevance": 66,
+			"relevance": 68,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/align-content"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Aligns a flex container's lines within the flex container when there is extra space in the cross-axis, similar to how 'justify-content' aligns individual items within the main-axis.",
 			"restrictions": [
 				"enum"
@@ -173,13 +178,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | stretch | <baseline-position> | [ <overflow-position>? <self-position> ]",
-			"relevance": 87,
+			"relevance": 89,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/align-items"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Aligns flex items along the cross axis of the current line of the flex container.",
 			"restrictions": [
 				"enum"
@@ -258,13 +268,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | stretch | <baseline-position> | <overflow-position>? [ <self-position> | left | right ] | legacy | legacy && [ left | right | center ]",
-			"relevance": 56,
+			"relevance": 57,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/justify-items"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2016-07-27",
+				"baseline_high_date": "2019-01-27"
+			},
 			"description": "Defines the default justify-self for all items of the box, giving them the default way of justifying each box along the appropriate axis",
 			"restrictions": [
 				"enum"
@@ -340,13 +355,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | normal | stretch | <baseline-position> | <overflow-position>? [ <self-position> | left | right ]",
-			"relevance": 55,
+			"relevance": 56,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/justify-self"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-10-17",
+				"baseline_high_date": "2020-04-17"
+			},
 			"description": "Defines the way of justifying a box inside its container along the appropriate axis.",
 			"restrictions": [
 				"enum"
@@ -413,13 +433,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | normal | stretch | <baseline-position> | <overflow-position>? <self-position>",
-			"relevance": 74,
+			"relevance": 75,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/align-self"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Allows the default alignment along the cross axis to be overridden for individual flex items.",
 			"restrictions": [
 				"enum"
@@ -436,13 +461,18 @@ export const cssData : CSSDataV1 = {
 			],
 			"values": [],
 			"syntax": "initial | inherit | unset | revert | revert-layer",
-			"relevance": 54,
+			"relevance": 55,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/all"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Shorthand that resets all properties except 'direction' and 'unicode-bidi'.",
 			"restrictions": [
 				"enum"
@@ -455,6 +485,9 @@ export const cssData : CSSDataV1 = {
 			],
 			"values": [],
 			"relevance": 50,
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Provides alternative text for assistive technology to replace the generated content of a ::before or ::after element.",
 			"restrictions": [
 				"string",
@@ -510,13 +543,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-animation>#",
-			"relevance": 82,
+			"relevance": 83,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Shorthand property combines six of the animation properties into a single property.",
 			"restrictions": [
 				"time",
@@ -544,6 +582,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-delay"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Defines when the animation will start.",
 			"restrictions": [
 				"time"
@@ -585,6 +628,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-direction"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Defines whether or not the animation should play in reverse on alternate cycles.",
 			"restrictions": [
 				"enum"
@@ -608,6 +656,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-duration"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Defines the length of time that an animation takes to complete one cycle.",
 			"restrictions": [
 				"time"
@@ -642,13 +695,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-animation-fill-mode>#",
-			"relevance": 64,
+			"relevance": 65,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-fill-mode"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Defines what values are applied by the animation outside the time it is executing.",
 			"restrictions": [
 				"enum"
@@ -678,6 +736,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-iteration-count"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Defines the number of times an animation cycle is played. The default value is one, meaning the animation will play from beginning to end once.",
 			"restrictions": [
 				"number",
@@ -701,13 +764,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ none | <keyframes-name> ]#",
-			"relevance": 70,
+			"relevance": 71,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-name"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Defines a list of animations that apply. Each name is used to select the keyframe at-rule that provides the property values for the animation.",
 			"restrictions": [
 				"identifier",
@@ -742,6 +810,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-play-state"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Defines whether the animation is running or paused.",
 			"restrictions": [
 				"enum"
@@ -758,13 +831,18 @@ export const cssData : CSSDataV1 = {
 				"O30"
 			],
 			"syntax": "<easing-function>#",
-			"relevance": 72,
+			"relevance": 73,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-timing-function"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Describes how the animation will progress over one cycle of its duration.",
 			"restrictions": [
 				"timing-function"
@@ -791,13 +869,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "visible | hidden",
-			"relevance": 59,
+			"relevance": 60,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/backface-visibility"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-03-14",
+				"baseline_high_date": "2024-09-14"
+			},
 			"description": "Determines whether or not the 'back' side of a transformed element is visible when facing the viewer. With an identity transform, the front side of an element faces the viewer.",
 			"restrictions": [
 				"enum"
@@ -839,6 +922,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand property for setting most background properties at the same place in the style sheet.",
 			"restrictions": [
 				"enum",
@@ -891,6 +979,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-attachment"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies whether the background images are fixed with regard to the viewport ('fixed') or scroll along with the element ('scroll') or its contents ('local').",
 			"restrictions": [
 				"enum"
@@ -1000,13 +1093,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<blend-mode>#",
-			"relevance": 53,
+			"relevance": 54,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-blend-mode"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Defines the blending mode of each background layer.",
 			"restrictions": [
 				"enum"
@@ -1022,7 +1120,7 @@ export const cssData : CSSDataV1 = {
 				"IE9",
 				"O10.5"
 			],
-			"syntax": "<box>#",
+			"syntax": "<bg-clip>#",
 			"relevance": 69,
 			"references": [
 				{
@@ -1030,6 +1128,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-clip"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Determines the background painting area.",
 			"restrictions": [
 				"box"
@@ -1046,13 +1149,18 @@ export const cssData : CSSDataV1 = {
 				"O3.5"
 			],
 			"syntax": "<color>",
-			"relevance": 94,
+			"relevance": 95,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Sets the background color of an element.",
 			"restrictions": [
 				"color"
@@ -1075,13 +1183,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<bg-image>#",
-			"relevance": 87,
+			"relevance": 89,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-image"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Sets the background image(s) of an element.",
 			"restrictions": [
 				"image",
@@ -1098,7 +1211,7 @@ export const cssData : CSSDataV1 = {
 				"IE9",
 				"O10.5"
 			],
-			"syntax": "<box>#",
+			"syntax": "<visual-box>#",
 			"relevance": 53,
 			"references": [
 				{
@@ -1106,6 +1219,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-origin"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "For elements rendered as a single box, specifies the background positioning area. For elements rendered as multiple boxes (e.g., inline boxes on several lines, boxes on several pages) specifies which boxes 'box-decoration-break' operates on to determine the background positioning area(s).",
 			"restrictions": [
 				"box"
@@ -1122,13 +1240,18 @@ export const cssData : CSSDataV1 = {
 				"O3.5"
 			],
 			"syntax": "<bg-position>#",
-			"relevance": 86,
+			"relevance": 88,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-position"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies the initial position of the background image(s) (after any resizing) within their corresponding background positioning area.",
 			"restrictions": [
 				"position",
@@ -1168,6 +1291,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-position-x"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2016-09-20",
+				"baseline_high_date": "2019-03-20"
+			},
 			"description": "If background images have been specified, this property specifies their initial position (after any resizing) within their corresponding background positioning area.",
 			"restrictions": [
 				"length",
@@ -1199,13 +1327,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ center | [ [ top | bottom | y-start | y-end ]? <length-percentage>? ]! ]#",
-			"relevance": 53,
+			"relevance": 54,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-position-y"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2016-09-20",
+				"baseline_high_date": "2019-03-20"
+			},
 			"description": "If background images have been specified, this property specifies their initial position (after any resizing) within their corresponding background positioning area.",
 			"restrictions": [
 				"length",
@@ -1224,13 +1357,18 @@ export const cssData : CSSDataV1 = {
 			],
 			"values": [],
 			"syntax": "<repeat-style>#",
-			"relevance": 84,
+			"relevance": 86,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-repeat"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies how background images are tiled after they have been sized and positioned.",
 			"restrictions": [
 				"repeat"
@@ -1261,13 +1399,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<bg-size>#",
-			"relevance": 84,
+			"relevance": 87,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-size"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies the size of the background images.",
 			"restrictions": [
 				"length",
@@ -1308,6 +1451,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/block-size"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Size of an element in the direction opposite that of the direction specified by 'writing-mode'.",
 			"restrictions": [
 				"length",
@@ -1332,6 +1480,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand property for setting border width, style, and color.",
 			"restrictions": [
 				"length",
@@ -1357,6 +1510,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-end"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'border-bottom'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -1375,13 +1533,18 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
-			"relevance": 50,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-start"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'border-top'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -1400,13 +1563,18 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-color'>",
-			"relevance": 53,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-end-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'border-bottom-color'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"color"
@@ -1429,6 +1597,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-start-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'border-top-color'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"color"
@@ -1451,6 +1624,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-end-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'border-bottom-style'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"line-style"
@@ -1473,6 +1651,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-start-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'border-top-style'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"line-style"
@@ -1488,13 +1671,18 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-width'>",
-			"relevance": 53,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-end-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'border-bottom-width'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -1518,6 +1706,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-start-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'border-top-width'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -1535,13 +1728,18 @@ export const cssData : CSSDataV1 = {
 				"O3.5"
 			],
 			"syntax": "<line-width> || <line-style> || <color>",
-			"relevance": 87,
+			"relevance": 88,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand property for setting border width, style and color.",
 			"restrictions": [
 				"length",
@@ -1568,6 +1766,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Sets the color of the bottom border.",
 			"restrictions": [
 				"color"
@@ -1584,13 +1787,18 @@ export const cssData : CSSDataV1 = {
 				"O10.5"
 			],
 			"syntax": "<length-percentage>{1,2}",
-			"relevance": 74,
+			"relevance": 75,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom-left-radius"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Defines the radii of the bottom left outer border edge.",
 			"restrictions": [
 				"length",
@@ -1615,6 +1823,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom-right-radius"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Defines the radii of the bottom right outer border edge.",
 			"restrictions": [
 				"length",
@@ -1639,6 +1852,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Sets the style of the bottom border.",
 			"restrictions": [
 				"line-style"
@@ -1662,6 +1880,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Sets the thickness of the bottom border.",
 			"restrictions": [
 				"length",
@@ -1689,13 +1912,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "collapse | separate",
-			"relevance": 74,
+			"relevance": 73,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-collapse"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Selects a table's border model.",
 			"restrictions": [
 				"enum"
@@ -1713,13 +1941,18 @@ export const cssData : CSSDataV1 = {
 			],
 			"values": [],
 			"syntax": "<color>{1,4}",
-			"relevance": 87,
+			"relevance": 88,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "The color of the border around all four edges of an element.",
 			"restrictions": [
 				"color"
@@ -1776,6 +2009,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand property for setting 'border-image-source', 'border-image-slice', 'border-image-width', 'border-image-outset' and 'border-image-repeat'. Omitted values are set to their initial values.",
 			"restrictions": [
 				"length",
@@ -1803,6 +2041,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image-outset"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "The values specify the amount by which the border image area extends beyond the border box on the top, right, bottom, and left sides respectively. If the fourth value is absent, it is the same as the second. If the third one is also absent, it is the same as the first. If the second one is also absent, it is the same as the first. Numbers represent multiples of the corresponding border-width.",
 			"restrictions": [
 				"length",
@@ -1845,6 +2088,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image-repeat"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2016-03-21",
+				"baseline_high_date": "2018-09-21"
+			},
 			"description": "Specifies how the images for the sides and the middle part of the border image are scaled and tiled. If the second keyword is absent, it is assumed to be the same as the first.",
 			"restrictions": [
 				"enum"
@@ -1874,6 +2122,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image-slice"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies inward offsets from the top, right, bottom, and left edges of the image, dividing it into nine regions: four corners, four edges and a middle.",
 			"restrictions": [
 				"number",
@@ -1904,6 +2157,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image-source"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies an image to use instead of the border styles given by the 'border-style' properties and as an additional background layer for the element. If the value is 'none' or if the image cannot be displayed, the border styles will be used.",
 			"restrictions": [
 				"image"
@@ -1915,7 +2173,7 @@ export const cssData : CSSDataV1 = {
 				"E12",
 				"FF13",
 				"S6",
-				"C15",
+				"C16",
 				"IE11",
 				"O15"
 			],
@@ -1933,6 +2191,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "The four values of 'border-image-width' specify offsets that are used to divide the border image area into nine parts. They represent inward distances from the top, right, bottom, and left sides of the area, respectively.",
 			"restrictions": [
 				"length",
@@ -1950,13 +2213,18 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
-			"relevance": 51,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-end"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'border-right'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -1975,13 +2243,18 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
-			"relevance": 51,
+			"relevance": 54,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-start"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'border-left'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -2007,6 +2280,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-end-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'border-right-color'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"color"
@@ -2029,6 +2307,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-start-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'border-left-color'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"color"
@@ -2051,6 +2334,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-end-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'border-right-style'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"line-style"
@@ -2073,6 +2361,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-start-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'border-left-style'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"line-style"
@@ -2095,6 +2388,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-end-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'border-right-width'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -2111,13 +2409,18 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-width'>",
-			"relevance": 51,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-start-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'border-left-width'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -2135,13 +2438,18 @@ export const cssData : CSSDataV1 = {
 				"O3.5"
 			],
 			"syntax": "<line-width> || <line-style> || <color>",
-			"relevance": 81,
+			"relevance": 82,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-left"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand property for setting border width, style and color",
 			"restrictions": [
 				"length",
@@ -2168,6 +2476,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-left-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Sets the color of the left border.",
 			"restrictions": [
 				"color"
@@ -2191,6 +2504,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-left-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Sets the style of the left border.",
 			"restrictions": [
 				"line-style"
@@ -2207,13 +2525,18 @@ export const cssData : CSSDataV1 = {
 				"O3.5"
 			],
 			"syntax": "<line-width>",
-			"relevance": 62,
+			"relevance": 64,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-left-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Sets the thickness of the left border.",
 			"restrictions": [
 				"length",
@@ -2231,13 +2554,18 @@ export const cssData : CSSDataV1 = {
 				"O10.5"
 			],
 			"syntax": "<length-percentage>{1,4} [ / <length-percentage>{1,4} ]?",
-			"relevance": 92,
+			"relevance": 93,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-radius"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Defines the radii of the outer border edge.",
 			"restrictions": [
 				"length",
@@ -2255,13 +2583,18 @@ export const cssData : CSSDataV1 = {
 				"O9.2"
 			],
 			"syntax": "<line-width> || <line-style> || <color>",
-			"relevance": 80,
+			"relevance": 81,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-right"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand property for setting border width, style and color",
 			"restrictions": [
 				"length",
@@ -2288,6 +2621,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-right-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Sets the color of the right border.",
 			"restrictions": [
 				"color"
@@ -2304,13 +2642,18 @@ export const cssData : CSSDataV1 = {
 				"O9.2"
 			],
 			"syntax": "<line-style>",
-			"relevance": 54,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-right-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Sets the style of the right border.",
 			"restrictions": [
 				"line-style"
@@ -2327,13 +2670,18 @@ export const cssData : CSSDataV1 = {
 				"O3.5"
 			],
 			"syntax": "<line-width>",
-			"relevance": 62,
+			"relevance": 64,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-right-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Sets the thickness of the right border.",
 			"restrictions": [
 				"length",
@@ -2358,6 +2706,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-spacing"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "The lengths specify the distance that separates adjoining cell borders. If one length is specified, it gives both the horizontal and vertical spacing. If two are specified, the first gives the horizontal spacing and the second the vertical spacing. Lengths may not be negative.",
 			"restrictions": [
 				"length"
@@ -2382,6 +2735,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "The style of the border around edges of an element.",
 			"restrictions": [
 				"line-style"
@@ -2405,6 +2763,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand property for setting border width, style and color",
 			"restrictions": [
 				"length",
@@ -2424,13 +2787,18 @@ export const cssData : CSSDataV1 = {
 				"O3.5"
 			],
 			"syntax": "<color>",
-			"relevance": 71,
+			"relevance": 70,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Sets the color of the top border.",
 			"restrictions": [
 				"color"
@@ -2447,13 +2815,18 @@ export const cssData : CSSDataV1 = {
 				"O10.5"
 			],
 			"syntax": "<length-percentage>{1,2}",
-			"relevance": 76,
+			"relevance": 75,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top-left-radius"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Defines the radii of the top left outer border edge.",
 			"restrictions": [
 				"length",
@@ -2471,13 +2844,18 @@ export const cssData : CSSDataV1 = {
 				"O10.5"
 			],
 			"syntax": "<length-percentage>{1,2}",
-			"relevance": 76,
+			"relevance": 75,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top-right-radius"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Defines the radii of the top right outer border edge.",
 			"restrictions": [
 				"length",
@@ -2502,6 +2880,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Sets the style of the top border.",
 			"restrictions": [
 				"line-style"
@@ -2525,6 +2908,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Sets the thickness of the top border.",
 			"restrictions": [
 				"length",
@@ -2543,13 +2931,18 @@ export const cssData : CSSDataV1 = {
 			],
 			"values": [],
 			"syntax": "<line-width>{1,4}",
-			"relevance": 82,
+			"relevance": 83,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand that sets the four 'border-*-width' properties. If it has four values, they set top, right, bottom and left in that order. If left is missing, it is the same as right; if bottom is missing, it is the same as top; if right is missing, it is the same as top.",
 			"restrictions": [
 				"length",
@@ -2573,13 +2966,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
-			"relevance": 90,
+			"relevance": 91,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/bottom"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies how far an absolutely positioned box's bottom margin edge is offset above the bottom edge of the box's 'containing block'.",
 			"restrictions": [
 				"length",
@@ -2593,7 +2991,7 @@ export const cssData : CSSDataV1 = {
 				"FF32",
 				"S7",
 				"C130",
-				"O15"
+				"O115"
 			],
 			"values": [
 				{
@@ -2613,6 +3011,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-decoration-break"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Specifies whether individual boxes are treated as broken pieces of one continuous box, or whether each box is individually wrapped with the border and padding.",
 			"restrictions": [
 				"enum"
@@ -2646,6 +3047,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-shadow"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Attaches one or more drop-shadows to the box. The property is a comma-separated list of shadows, each specified by 2-4 length values, an optional color, and an optional 'inset' keyword. Omitted lengths are 0; omitted colors are a user agent chosen color.",
 			"restrictions": [
 				"length",
@@ -2674,13 +3080,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "content-box | border-box",
-			"relevance": 92,
+			"relevance": 93,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-sizing"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies the behavior of the 'width' and 'height' properties.",
 			"restrictions": [
 				"enum"
@@ -2742,6 +3153,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/break-after"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2019-01-29",
+				"baseline_high_date": "2021-07-29"
+			},
 			"description": "Describes the page/column/region break behavior after the generated box.",
 			"restrictions": [
 				"enum"
@@ -2803,6 +3219,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/break-before"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2019-01-29",
+				"baseline_high_date": "2021-07-29"
+			},
 			"description": "Describes the page/column/region break behavior before the generated box.",
 			"restrictions": [
 				"enum"
@@ -2844,6 +3265,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/break-inside"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2019-01-29",
+				"baseline_high_date": "2021-07-29"
+			},
 			"description": "Describes the page/column/region break behavior inside the principal box.",
 			"restrictions": [
 				"enum"
@@ -2869,7 +3295,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Positions the caption box above the table box."
 				}
 			],
-			"syntax": "top | bottom | block-start | block-end | inline-start | inline-end",
+			"syntax": "top | bottom",
 			"relevance": 52,
 			"references": [
 				{
@@ -2877,6 +3303,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/caption-side"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies the position of the caption box with respect to the table box.",
 			"restrictions": [
 				"enum"
@@ -2905,6 +3336,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/caret-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Controls the color of the text insertion indicator.",
 			"restrictions": [
 				"color",
@@ -2947,6 +3383,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/clear"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Indicates which sides of an element's box(es) may not be adjacent to an earlier floating box. The 'clear' property does not consider floats inside the element itself or in other block formatting contexts.",
 			"restrictions": [
 				"enum"
@@ -2972,14 +3413,18 @@ export const cssData : CSSDataV1 = {
 					"description": "Specifies offsets from the edges of the border box."
 				}
 			],
+			"status": "obsolete",
 			"syntax": "<shape> | auto",
-			"relevance": 74,
+			"relevance": 25,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/clip"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Deprecated. Use the 'clip-path' property when support allows. Defines the visible portion of an element's box.",
 			"restrictions": [
 				"enum"
@@ -3013,6 +3458,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/clip-path"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Specifies a clipping path where everything inside the path is visible and everything outside is clipped out.",
 			"restrictions": [
 				"url",
@@ -3024,11 +3474,11 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "clip-rule",
 			"browsers": [
-				"E80",
-				"FF72",
-				"S13.1",
-				"C80",
-				"O67"
+				"E79",
+				"FF3.5",
+				"S5",
+				"C15",
+				"O15"
 			],
 			"values": [
 				{
@@ -3048,6 +3498,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/clip-rule"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Indicates the algorithm which is to be used to determine what parts of the canvas are included inside the shape.",
 			"restrictions": [
 				"enum"
@@ -3071,6 +3526,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Sets the color of an element's text",
 			"restrictions": [
 				"color"
@@ -3079,11 +3539,11 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "color-interpolation-filters",
 			"browsers": [
-				"E80",
-				"FF72",
-				"S13.1",
-				"C80",
-				"O67"
+				"E79",
+				"FF3",
+				"S3",
+				"C1",
+				"O15"
 			],
 			"values": [
 				{
@@ -3107,6 +3567,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/color-interpolation-filters"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Specifies the color space for imaging operations performed via filter effects.",
 			"restrictions": [
 				"enum"
@@ -3129,13 +3594,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<integer> | auto",
-			"relevance": 52,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/column-count"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-03-07",
+				"baseline_high_date": "2019-09-07"
+			},
 			"description": "Describes the optimal number of columns into which the content of the element will be flowed.",
 			"restrictions": [
 				"integer",
@@ -3170,6 +3640,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/column-fill"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-03-07",
+				"baseline_high_date": "2019-09-07"
+			},
 			"description": "In continuous media, this property will only be consulted if the length of columns has been constrained. Otherwise, columns will automatically be balanced.",
 			"restrictions": [
 				"enum"
@@ -3192,13 +3667,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <length-percentage>",
-			"relevance": 63,
+			"relevance": 65,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/column-gap"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Sets the gap between columns. If there is a column rule between columns, it will appear in the middle of the gap.",
 			"restrictions": [
 				"length",
@@ -3223,6 +3703,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/column-rule"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-03-07",
+				"baseline_high_date": "2019-09-07"
+			},
 			"description": "Shorthand for setting 'column-rule-width', 'column-rule-style', and 'column-rule-color' at the same place in the style sheet. Omitted values are set to their initial values.",
 			"restrictions": [
 				"length",
@@ -3249,6 +3734,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/column-rule-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-03-07",
+				"baseline_high_date": "2019-09-07"
+			},
 			"description": "Sets the color of the column rule",
 			"restrictions": [
 				"color"
@@ -3272,6 +3762,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/column-rule-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-03-07",
+				"baseline_high_date": "2019-09-07"
+			},
 			"description": "Sets the style of the rule between columns of an element.",
 			"restrictions": [
 				"line-style"
@@ -3295,6 +3790,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/column-rule-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-03-07",
+				"baseline_high_date": "2019-09-07"
+			},
 			"description": "Sets the width of the rule between columns. Negative values are not allowed.",
 			"restrictions": [
 				"length",
@@ -3325,6 +3825,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/columns"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-03-07",
+				"baseline_high_date": "2019-09-07"
+			},
 			"description": "A shorthand property which sets both 'column-width' and 'column-count'.",
 			"restrictions": [
 				"length",
@@ -3360,6 +3865,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/column-span"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "Describes the page/column break behavior after the generated box.",
 			"restrictions": [
 				"enum"
@@ -3389,6 +3899,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/column-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2016-11-15",
+				"baseline_high_date": "2019-05-15"
+			},
 			"description": "Describes the width of columns in multicol elements.",
 			"restrictions": [
 				"length",
@@ -3442,6 +3957,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/contain"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-03-14",
+				"baseline_high_date": "2024-09-14"
+			},
 			"description": "Indicates that an element and its contents are, as much as possible, independent of the rest of the document tree.",
 			"restrictions": [
 				"enum"
@@ -3483,13 +4003,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | none | [ <content-replacement> | <content-list> ] [/ [ <string> | <counter> ]+ ]?",
-			"relevance": 89,
+			"relevance": 91,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/content"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Determines which page-based occurrence of a given element is applied to a counter or string value.",
 			"restrictions": [
 				"string",
@@ -3520,6 +4045,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/counter-increment"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Manipulate the value of existing counters.",
 			"restrictions": [
 				"identifier",
@@ -3550,6 +4080,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/counter-reset"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Property accepts one or more names of counters (identifiers), each one optionally followed by an integer. The integer gives the value that the counter is set to on each occurrence of the element.",
 			"restrictions": [
 				"identifier",
@@ -3841,13 +4376,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ [ <url> [ <x> <y> ]? , ]* [ auto | default | none | context-menu | help | pointer | progress | wait | cell | crosshair | text | vertical-text | alias | copy | move | no-drop | not-allowed | e-resize | n-resize | ne-resize | nw-resize | s-resize | se-resize | sw-resize | w-resize | ew-resize | ns-resize | nesw-resize | nwse-resize | col-resize | row-resize | all-scroll | zoom-in | zoom-out | grab | grabbing ] ]",
-			"relevance": 91,
+			"relevance": 92,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/cursor"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-12-07",
+				"baseline_high_date": "2024-06-07"
+			},
 			"description": "Allows control over cursor appearance in an element",
 			"restrictions": [
 				"url",
@@ -3876,13 +4416,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "ltr | rtl",
-			"relevance": 70,
+			"relevance": 72,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/direction"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies the inline base direction or directionality of any bidi paragraph, embedding, isolate, or override established by the box. Note: for HTML content use the 'dir' attribute and 'bdo' element rather than this property.",
 			"restrictions": [
 				"enum"
@@ -4302,6 +4847,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/display"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "In combination with 'float' and 'position', determines the type of box or boxes that are generated for an element.",
 			"restrictions": [
 				"enum"
@@ -4346,6 +4896,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/empty-cells"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "In the separated borders model, this property controls the rendering of borders and backgrounds around cells that have no visible content.",
 			"restrictions": [
 				"enum"
@@ -4404,7 +4959,7 @@ export const cssData : CSSDataV1 = {
 					"description": "No paint is applied in this layer."
 				}
 			],
-			"syntax": "none | <color> | <url> [none | <color>]? | context-fill | context-stroke",
+			"syntax": "<paint>",
 			"relevance": 80,
 			"references": [
 				{
@@ -4412,6 +4967,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/fill"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "Paints the interior of the given graphical element.",
 			"restrictions": [
 				"color",
@@ -4423,12 +4983,12 @@ export const cssData : CSSDataV1 = {
 			"name": "fill-opacity",
 			"browsers": [
 				"E80",
-				"FF72",
+				"FF1",
 				"S13.1",
 				"C80",
 				"O67"
 			],
-			"syntax": "<alpha-value>",
+			"syntax": "<'opacity'>",
 			"relevance": 55,
 			"references": [
 				{
@@ -4436,6 +4996,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/fill-opacity"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-03-24",
+				"baseline_high_date": "2022-09-24"
+			},
 			"description": "Specifies the opacity of the painting operation used to paint the interior the current object.",
 			"restrictions": [
 				"number(0-1)"
@@ -4468,6 +5033,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/fill-rule"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "Indicates the algorithm (or winding rule) which is to be used to determine what parts of the canvas are included inside the shape.",
 			"restrictions": [
 				"enum"
@@ -4539,14 +5109,19 @@ export const cssData : CSSDataV1 = {
 					"description": "A filter reference to a <filter> element."
 				}
 			],
-			"syntax": "none | <filter-function-list>",
-			"relevance": 70,
+			"syntax": "none | <filter-value-list>",
+			"relevance": 72,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/filter"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2016-09-07",
+				"baseline_high_date": "2019-03-07"
+			},
 			"description": "Processes an element's rendering before it is displayed in the document, by applying one or more filter effects.",
 			"restrictions": [
 				"enum",
@@ -4586,13 +5161,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]",
-			"relevance": 82,
+			"relevance": 83,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/flex"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Specifies the components of a flexible length: the flex grow factor and flex shrink factor, and the flex basis.",
 			"restrictions": [
 				"length",
@@ -4636,6 +5216,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-basis"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Sets the flex basis.",
 			"restrictions": [
 				"length",
@@ -4672,13 +5257,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "row | row-reverse | column | column-reverse",
-			"relevance": 85,
+			"relevance": 86,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-direction"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Specifies how flex items are placed in the flex container, by setting the direction of the flex container's main axis.",
 			"restrictions": [
 				"enum"
@@ -4725,13 +5315,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'flex-direction'> || <'flex-wrap'>",
-			"relevance": 64,
+			"relevance": 65,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-flow"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Specifies how flexbox items are placed in the flexbox.",
 			"restrictions": [
 				"enum"
@@ -4748,13 +5343,18 @@ export const cssData : CSSDataV1 = {
 				"O12.1"
 			],
 			"syntax": "<number>",
-			"relevance": 77,
+			"relevance": 78,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-grow"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Sets the flex grow factor. Negative numbers are invalid.",
 			"restrictions": [
 				"number"
@@ -4771,13 +5371,18 @@ export const cssData : CSSDataV1 = {
 				"O12.1"
 			],
 			"syntax": "<number>",
-			"relevance": 77,
+			"relevance": 78,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-shrink"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Sets the flex shrink factor. Negative numbers are invalid.",
 			"restrictions": [
 				"number"
@@ -4808,13 +5413,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "nowrap | wrap | wrap-reverse",
-			"relevance": 82,
+			"relevance": 84,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-wrap"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Controls whether the flex container is single-line or multi-line, and the direction of the cross-axis, which determines the direction new lines are stacked in.",
 			"restrictions": [
 				"enum"
@@ -4876,6 +5486,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/float"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies how a box should be floated. It may be set for any element, but only applies to elements that generate boxes that are not absolutely positioned.",
 			"restrictions": [
 				"enum"
@@ -4891,7 +5506,19 @@ export const cssData : CSSDataV1 = {
 				"IE11",
 				"O15"
 			],
+			"syntax": "<color>",
 			"relevance": 50,
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/flood-color"
+				}
+			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Indicates what color to use to flood the current filter primitive subregion.",
 			"restrictions": [
 				"color"
@@ -4907,7 +5534,19 @@ export const cssData : CSSDataV1 = {
 				"IE11",
 				"O15"
 			],
+			"syntax": "<'opacity'>",
 			"relevance": 50,
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/flood-opacity"
+				}
+			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Indicates what opacity to use to flood the current filter primitive subregion.",
 			"restrictions": [
 				"number(0-1)",
@@ -5049,6 +5688,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand property for setting 'font-style', 'font-variant', 'font-weight', 'font-size', 'line-height', and 'font-family', at the same place in the style sheet. The syntax of this property is based on a traditional typographical shorthand notation to set multiple properties related to fonts.",
 			"restrictions": [
 				"font"
@@ -5120,8 +5764,8 @@ export const cssData : CSSDataV1 = {
 					"name": "Verdana, Geneva, Tahoma, sans-serif"
 				}
 			],
-			"atRule": "@font-face",
-			"syntax": "<family-name>",
+			"atRule": "@font-palette-values",
+			"syntax": "<family-name>#",
 			"relevance": 94,
 			"references": [
 				{
@@ -5129,6 +5773,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-family"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies a prioritized list of font family names or generic family names. A user agent iterates through the list of family names until it matches an available font that contains a glyph for the character to be rendered.",
 			"restrictions": [
 				"font"
@@ -5635,6 +6284,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-feature-settings"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-04-05",
+				"baseline_high_date": "2019-10-05"
+			},
 			"description": "Provides low-level control over OpenType font features. It is intended as a way of providing access to font features that are not widely used but are needed for a particular use case.",
 			"restrictions": [
 				"string",
@@ -5672,6 +6326,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-kerning"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Kerning is the contextual adjustment of inter-glyph spacing. This property controls metric kerning, kerning that utilizes adjustment data contained in the font.",
 			"restrictions": [
 				"enum"
@@ -5696,6 +6355,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-language-override"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The value of 'normal' implies that when rendering with OpenType fonts the language of the document is used to infer the OpenType language system, used to select language specific features when rendering.",
 			"restrictions": [
 				"string"
@@ -5741,13 +6403,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<absolute-size> | <relative-size> | <length-percentage>",
-			"relevance": 94,
+			"relevance": 95,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-size"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Indicates the desired height of glyphs from the font. For scalable fonts, the font-size is a scale factor applied to the EM unit of the font. (Note that certain glyphs may bleed outside their EM box.) For non-scalable fonts, the font-size is converted into absolute units and matched against the declared font-size of the font, using the same absolute coordinate space for both of the matched values.",
 			"restrictions": [
 				"length",
@@ -5777,6 +6444,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-size-adjust"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2024-07-25"
+			},
 			"description": "Preserves the readability of text when font fallback occurs by adjusting the font-size so that the x-height is the same regardless of the font used.",
 			"restrictions": [
 				"number"
@@ -5847,13 +6518,16 @@ export const cssData : CSSDataV1 = {
 			],
 			"atRule": "@font-face",
 			"syntax": "<font-stretch-absolute>{1,2}",
-			"relevance": 57,
+			"relevance": 59,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-stretch"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Selects a normal, condensed, or expanded face from a font family.",
 			"restrictions": [
 				"enum"
@@ -5892,6 +6566,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Allows italic or oblique faces to be selected. Italic forms are generally cursive in nature while oblique faces are typically sloped versions of the regular face.",
 			"restrictions": [
 				"enum"
@@ -5928,6 +6607,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-synthesis"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-01-06",
+				"baseline_high_date": "2024-07-06"
+			},
 			"description": "Controls whether user agents are allowed to synthesize bold or oblique font faces when a font family lacks bold or italic faces.",
 			"restrictions": [
 				"enum"
@@ -5961,6 +6645,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies variant representations of the font",
 			"restrictions": [
 				"enum"
@@ -6017,6 +6706,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-alternates"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-03-13"
+			},
 			"description": "For any given character, fonts can provide a variety of alternate glyphs in addition to the default glyph for that character. This property provides control over the selection of these alternate glyphs.",
 			"restrictions": [
 				"enum"
@@ -6069,6 +6762,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-caps"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Specifies control over capitalized forms.",
 			"restrictions": [
 				"enum"
@@ -6133,6 +6831,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-east-asian"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Allows control of glyph substitute and positioning in East Asian text.",
 			"restrictions": [
 				"enum"
@@ -6219,13 +6922,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | none | [ <common-lig-values> || <discretionary-lig-values> || <historical-lig-values> || <contextual-alt-values> ]",
-			"relevance": 53,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-ligatures"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Specifies control over which ligatures are enabled or disabled. A value of 'normal' implies that the defaults set by the font are used.",
 			"restrictions": [
 				"enum"
@@ -6279,13 +6987,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | [ <numeric-figure-values> || <numeric-spacing-values> || <numeric-fraction-values> || ordinal || slashed-zero ]",
-			"relevance": 51,
+			"relevance": 52,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-numeric"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Specifies control over numerical forms.",
 			"restrictions": [
 				"enum"
@@ -6319,6 +7032,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-position"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Specifies the vertical position",
 			"restrictions": [
 				"enum"
@@ -6390,13 +7106,18 @@ export const cssData : CSSDataV1 = {
 			],
 			"atRule": "@font-face",
 			"syntax": "<font-weight-absolute>{1,2}",
-			"relevance": 93,
+			"relevance": 94,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-weight"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies weight of glyphs in the font, their degree of blackness or stroke thickness.",
 			"restrictions": [
 				"enum"
@@ -6423,6 +7144,9 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Controls glyph orientation when the inline-progression-direction is vertical.",
 			"restrictions": [
 				"angle",
@@ -6450,13 +7174,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line> [ / <grid-line> ]{0,3}",
-			"relevance": 58,
+			"relevance": 59,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-area"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-10-17",
+				"baseline_high_date": "2020-04-17"
+			},
 			"description": "Determine a grid item's size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement. Shorthand for 'grid-row-start', 'grid-column-start', 'grid-row-end', and 'grid-column-end'.",
 			"restrictions": [
 				"identifier",
@@ -6480,6 +7209,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-10-17",
+				"baseline_high_date": "2020-04-17"
+			},
 			"description": "The grid CSS property is a shorthand property that sets all of the explicit grid properties ('grid-template-rows', 'grid-template-columns', and 'grid-template-areas'), and all the implicit grid properties ('grid-auto-rows', 'grid-auto-columns', and 'grid-auto-flow'), in a single declaration.",
 			"restrictions": [
 				"identifier",
@@ -6525,6 +7259,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-auto-columns"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "Specifies the size of implicitly created columns.",
 			"restrictions": [
 				"length",
@@ -6555,13 +7294,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ row | column ] || dense",
-			"relevance": 54,
+			"relevance": 55,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-auto-flow"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-10-17",
+				"baseline_high_date": "2020-04-17"
+			},
 			"description": "Controls how the auto-placement algorithm works, specifying exactly how auto-placed items get flowed into the grid.",
 			"restrictions": [
 				"enum"
@@ -6596,13 +7340,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<track-size>+",
-			"relevance": 52,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-auto-rows"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "Specifies the size of implicitly created rows.",
 			"restrictions": [
 				"length",
@@ -6629,13 +7378,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line> [ / <grid-line> ]?",
-			"relevance": 58,
+			"relevance": 61,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-column"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-10-17",
+				"baseline_high_date": "2020-04-17"
+			},
 			"description": "Shorthand for 'grid-column-start' and 'grid-column-end'.",
 			"restrictions": [
 				"identifier",
@@ -6670,6 +7424,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-column-end"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-10-17",
+				"baseline_high_date": "2020-04-17"
+			},
 			"description": "Determine a grid item's size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.",
 			"restrictions": [
 				"identifier",
@@ -6687,7 +7446,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "obsolete",
 			"syntax": "<length-percentage>",
-			"relevance": 4,
+			"relevance": 5,
 			"description": "Specifies the gutters between grid columns. Replaced by 'column-gap' property.",
 			"restrictions": [
 				"length"
@@ -6713,13 +7472,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line>",
-			"relevance": 52,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-column-start"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-10-17",
+				"baseline_high_date": "2020-04-17"
+			},
 			"description": "Determine a grid item's size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.",
 			"restrictions": [
 				"identifier",
@@ -6737,7 +7501,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"status": "obsolete",
 			"syntax": "<'grid-row-gap'> <'grid-column-gap'>?",
-			"relevance": 8,
+			"relevance": 9,
 			"description": "Shorthand that specifies the gutters between grid columns and grid rows in one declaration. Replaced by 'gap' property.",
 			"restrictions": [
 				"length"
@@ -6763,13 +7527,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line> [ / <grid-line> ]?",
-			"relevance": 56,
+			"relevance": 57,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-row"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-10-17",
+				"baseline_high_date": "2020-04-17"
+			},
 			"description": "Shorthand for 'grid-row-start' and 'grid-row-end'.",
 			"restrictions": [
 				"identifier",
@@ -6804,6 +7573,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-row-end"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-10-17",
+				"baseline_high_date": "2020-04-17"
+			},
 			"description": "Determine a grid item's size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.",
 			"restrictions": [
 				"identifier",
@@ -6847,13 +7621,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line>",
-			"relevance": 52,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-row-start"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-10-17",
+				"baseline_high_date": "2020-04-17"
+			},
 			"description": "Determine a grid item's size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.",
 			"restrictions": [
 				"identifier",
@@ -6908,6 +7687,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-template"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-10-17",
+				"baseline_high_date": "2020-04-17"
+			},
 			"description": "Shorthand for setting grid-template-columns, grid-template-rows, and grid-template-areas in a single declaration.",
 			"restrictions": [
 				"identifier",
@@ -6940,6 +7724,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-template-areas"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-10-17",
+				"baseline_high_date": "2020-04-17"
+			},
 			"description": "Specifies named grid areas, which are not associated with any particular grid item, but can be referenced from the grid-placement properties.",
 			"restrictions": [
 				"string"
@@ -6986,13 +7775,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <track-list> | <auto-track-list> | subgrid <line-name-list>?",
-			"relevance": 66,
+			"relevance": 70,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-template-columns"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-10-17",
+				"baseline_high_date": "2020-04-17"
+			},
 			"description": "specifies, as a space-separated track list, the line names and track sizing functions of the grid.",
 			"restrictions": [
 				"identifier",
@@ -7042,13 +7836,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <track-list> | <auto-track-list> | subgrid <line-name-list>?",
-			"relevance": 59,
+			"relevance": 61,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-template-rows"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-10-17",
+				"baseline_high_date": "2020-04-17"
+			},
 			"description": "specifies, as a space-separated track list, the line names and track sizing functions of the grid.",
 			"restrictions": [
 				"identifier",
@@ -7110,7 +7909,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Use the min-content inline size or min-content block size, as appropriate to the writing mode."
 				}
 			],
-			"syntax": "auto | <length> | <percentage> | min-content | max-content | fit-content | fit-content(<length-percentage>)",
+			"syntax": "auto | <length-percentage [0,∞]> | min-content | max-content | fit-content | fit-content(<length-percentage [0,∞]>) | <calc-size()> | <anchor-size()>",
 			"relevance": 96,
 			"references": [
 				{
@@ -7118,6 +7917,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/height"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies the height of the content area, padding area or border area (depending on 'box-sizing') of certain boxes.",
 			"restrictions": [
 				"length",
@@ -7149,13 +7953,17 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | manual | auto",
-			"relevance": 54,
+			"relevance": 55,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/hyphens"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-09-18"
+			},
 			"description": "Controls whether hyphenation is allowed to create more break opportunities within a line of text.",
 			"restrictions": [
 				"enum"
@@ -7188,6 +7996,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/image-orientation"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-04-13",
+				"baseline_high_date": "2022-10-13"
+			},
 			"description": "Specifies an orthogonal rotation to be applied to an image before it is laid out.",
 			"restrictions": [
 				"angle"
@@ -7234,7 +8047,7 @@ export const cssData : CSSDataV1 = {
 					"description": "When scaling the image up, the 'nearest neighbor' or similar algorithm must be used, so that the image appears to be simply composed of very large pixels."
 				}
 			],
-			"syntax": "auto | crisp-edges | pixelated",
+			"syntax": "auto | crisp-edges | pixelated | smooth",
 			"relevance": 53,
 			"references": [
 				{
@@ -7242,6 +8055,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/image-rendering"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Provides a hint to the user-agent about what aspects of an image are most important to preserve when the image is scaled, to aid the user-agent in the choice of an appropriate scaling algorithm.",
 			"restrictions": [
 				"enum"
@@ -7279,6 +8097,9 @@ export const cssData : CSSDataV1 = {
 			"status": "obsolete",
 			"syntax": "auto | normal | active | inactive | disabled",
 			"relevance": 0,
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Controls the state of the input method editor for text fields.",
 			"restrictions": [
 				"enum"
@@ -7307,6 +8128,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/inline-size"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Size of an element in the direction specified by 'writing-mode'.",
 			"restrictions": [
 				"length",
@@ -7340,6 +8166,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/isolation"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "In CSS setting to 'isolate' will turn the element into a stacking context. In SVG, it defines whether an element is isolated or not.",
 			"restrictions": [
 				"enum"
@@ -7422,13 +8253,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <content-distribution> | <overflow-position>? [ <content-position> | left | right ]",
-			"relevance": 87,
+			"relevance": 89,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/justify-content"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Aligns flex items along the main axis of the current line of the flex container.",
 			"restrictions": [
 				"enum"
@@ -7466,13 +8302,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
-			"relevance": 94,
+			"relevance": 95,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/left"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies how far an absolutely positioned box's left margin edge is offset to the right of the left edge of the box's 'containing block'.",
 			"restrictions": [
 				"length",
@@ -7496,13 +8337,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <length>",
-			"relevance": 81,
+			"relevance": 83,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/letter-spacing"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies the minimum, maximum, and optimal spacing between grapheme clusters.",
 			"restrictions": [
 				"length"
@@ -7518,7 +8364,19 @@ export const cssData : CSSDataV1 = {
 				"IE11",
 				"O15"
 			],
+			"syntax": "<color>",
 			"relevance": 50,
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/lighting-color"
+				}
+			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Defines the color of the light source for filter primitives 'feDiffuseLighting' and 'feSpecularLighting'.",
 			"restrictions": [
 				"color"
@@ -7564,6 +8422,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/line-break"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "Specifies what set of line breaking restrictions are in effect within the element.",
 			"restrictions": [
 				"enum"
@@ -7586,13 +8449,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <number> | <length> | <percentage>",
-			"relevance": 92,
+			"relevance": 93,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/line-height"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Determines the block-progression dimension of the text content area of an inline box.",
 			"restrictions": [
 				"number",
@@ -7684,13 +8552,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'list-style-type'> || <'list-style-position'> || <'list-style-image'>",
-			"relevance": 83,
+			"relevance": 84,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/list-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand for setting 'list-style-type', 'list-style-position' and 'list-style-image'",
 			"restrictions": [
 				"image",
@@ -7722,6 +8595,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/list-style-image"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Sets the image that will be used as the list item marker. When the image is available, it will replace the marker set with the 'list-style-type' marker.",
 			"restrictions": [
 				"image"
@@ -7748,13 +8626,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "inside | outside",
-			"relevance": 54,
+			"relevance": 55,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/list-style-position"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies the position of the '::marker' pseudo-element's box in the list item.",
 			"restrictions": [
 				"enum"
@@ -7852,6 +8735,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/list-style-type"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Used to construct the default contents of a list item's marker",
 			"restrictions": [
 				"enum",
@@ -7873,7 +8761,7 @@ export const cssData : CSSDataV1 = {
 					"name": "auto"
 				}
 			],
-			"syntax": "[ <length> | <percentage> | auto ]{1,4}",
+			"syntax": "<'margin-top'>{1,4}",
 			"relevance": 95,
 			"references": [
 				{
@@ -7881,6 +8769,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand property to set values for the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits.",
 			"restrictions": [
 				"length",
@@ -7901,14 +8794,19 @@ export const cssData : CSSDataV1 = {
 					"name": "auto"
 				}
 			],
-			"syntax": "<'margin-left'>",
-			"relevance": 55,
+			"syntax": "<'margin-top'>",
+			"relevance": 56,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-block-end"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'margin-bottom'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -7929,7 +8827,7 @@ export const cssData : CSSDataV1 = {
 					"name": "auto"
 				}
 			],
-			"syntax": "<'margin-left'>",
+			"syntax": "<'margin-top'>",
 			"relevance": 56,
 			"references": [
 				{
@@ -7937,6 +8835,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-block-start"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'margin-top'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -7958,14 +8861,19 @@ export const cssData : CSSDataV1 = {
 					"name": "auto"
 				}
 			],
-			"syntax": "<length> | <percentage> | auto",
-			"relevance": 91,
+			"syntax": "<length-percentage> | auto",
+			"relevance": 92,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-bottom"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand property to set values for the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
 			"restrictions": [
 				"length",
@@ -7986,7 +8894,7 @@ export const cssData : CSSDataV1 = {
 					"name": "auto"
 				}
 			],
-			"syntax": "<'margin-left'>",
+			"syntax": "<'margin-top'>",
 			"relevance": 58,
 			"references": [
 				{
@@ -7994,6 +8902,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-inline-end"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'margin-right'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -8014,7 +8927,7 @@ export const cssData : CSSDataV1 = {
 					"name": "auto"
 				}
 			],
-			"syntax": "<'margin-left'>",
+			"syntax": "<'margin-top'>",
 			"relevance": 59,
 			"references": [
 				{
@@ -8022,6 +8935,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-inline-start"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'margin-left'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -8043,14 +8961,19 @@ export const cssData : CSSDataV1 = {
 					"name": "auto"
 				}
 			],
-			"syntax": "<length> | <percentage> | auto",
-			"relevance": 91,
+			"syntax": "<length-percentage> | auto",
+			"relevance": 92,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-left"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand property to set values for the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
 			"restrictions": [
 				"length",
@@ -8072,7 +8995,7 @@ export const cssData : CSSDataV1 = {
 					"name": "auto"
 				}
 			],
-			"syntax": "<length> | <percentage> | auto",
+			"syntax": "<length-percentage> | auto",
 			"relevance": 91,
 			"references": [
 				{
@@ -8080,6 +9003,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-right"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand property to set values for the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
 			"restrictions": [
 				"length",
@@ -8101,7 +9029,7 @@ export const cssData : CSSDataV1 = {
 					"name": "auto"
 				}
 			],
-			"syntax": "<length> | <percentage> | auto",
+			"syntax": "<length-percentage> | auto",
 			"relevance": 94,
 			"references": [
 				{
@@ -8109,6 +9037,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-top"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand property to set values for the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
 			"restrictions": [
 				"length",
@@ -8142,6 +9075,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/marker"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "Specifies the marker symbol that shall be used for all points on the sets the value for all vertices on the given 'path' element or basic shape.",
 			"restrictions": [
 				"url"
@@ -8174,6 +9112,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/marker-end"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "Specifies the marker that will be drawn at the last vertices of the given markable element.",
 			"restrictions": [
 				"url"
@@ -8206,6 +9149,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/marker-mid"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "Specifies the marker that will be drawn at all vertices except the first and last.",
 			"restrictions": [
 				"url"
@@ -8238,6 +9186,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/marker-start"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "Specifies the marker that will be drawn at the first vertices of the given markable element.",
 			"restrictions": [
 				"url"
@@ -8263,13 +9216,17 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<mask-reference>#",
-			"relevance": 57,
+			"relevance": 58,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-image"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-12-07"
+			},
 			"description": "Sets the mask layer image of an element.",
 			"restrictions": [
 				"url",
@@ -8301,13 +9258,17 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<masking-mode>#",
-			"relevance": 50,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-mode"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-12-07"
+			},
 			"description": "Indicates whether the mask layer image is treated as luminance mask or alpha mask.",
 			"restrictions": [
 				"url",
@@ -8324,7 +9285,7 @@ export const cssData : CSSDataV1 = {
 				"C120",
 				"O106"
 			],
-			"syntax": "<geometry-box>#",
+			"syntax": "<coord-box>#",
 			"relevance": 50,
 			"references": [
 				{
@@ -8332,6 +9293,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-origin"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-12-07"
+			},
 			"description": "Specifies the mask positioning area.",
 			"restrictions": [
 				"geometry-box",
@@ -8348,13 +9313,17 @@ export const cssData : CSSDataV1 = {
 				"O106"
 			],
 			"syntax": "<position>#",
-			"relevance": 53,
+			"relevance": 55,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-position"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-12-07"
+			},
 			"description": "Specifies how mask layer images are positioned.",
 			"restrictions": [
 				"position",
@@ -8372,13 +9341,17 @@ export const cssData : CSSDataV1 = {
 				"O106"
 			],
 			"syntax": "<repeat-style>#",
-			"relevance": 53,
+			"relevance": 54,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-repeat"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-12-07"
+			},
 			"description": "Specifies how mask layer images are tiled after they have been sized and positioned.",
 			"restrictions": [
 				"repeat"
@@ -8415,6 +9388,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-size"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-12-07"
+			},
 			"description": "Specifies the size of the mask layer images.",
 			"restrictions": [
 				"length",
@@ -8449,6 +9426,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-type"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Defines whether the content of the <mask> element is treated as as luminance mask or alpha mask.",
 			"restrictions": [
 				"enum"
@@ -8477,6 +9459,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/max-block-size"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Maximum size of an element in the direction opposite that of the direction specified by 'writing-mode'.",
 			"restrictions": [
 				"length",
@@ -8489,7 +9476,7 @@ export const cssData : CSSDataV1 = {
 				"E12",
 				"FF1",
 				"S1.3",
-				"C18",
+				"C1",
 				"IE7",
 				"O7"
 			],
@@ -8504,7 +9491,7 @@ export const cssData : CSSDataV1 = {
 						"E12",
 						"FF1",
 						"S1.3",
-						"C18",
+						"C1",
 						"IE7",
 						"O7"
 					],
@@ -8516,7 +9503,7 @@ export const cssData : CSSDataV1 = {
 						"E12",
 						"FF1",
 						"S1.3",
-						"C18",
+						"C1",
 						"IE7",
 						"O7"
 					],
@@ -8528,21 +9515,26 @@ export const cssData : CSSDataV1 = {
 						"E12",
 						"FF1",
 						"S1.3",
-						"C18",
+						"C1",
 						"IE7",
 						"O7"
 					],
 					"description": "Use the min-content inline size or min-content block size, as appropriate to the writing mode."
 				}
 			],
-			"syntax": "none | <length-percentage> | min-content | max-content | fit-content | fit-content(<length-percentage>)",
-			"relevance": 85,
+			"syntax": "none | <length-percentage [0,∞]> | min-content | max-content | fit-content | fit-content(<length-percentage [0,∞]>) | <calc-size()> | <anchor-size()>",
+			"relevance": 86,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/max-height"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Allows authors to constrain content height to a certain range.",
 			"restrictions": [
 				"length",
@@ -8572,6 +9564,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/max-inline-size"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Maximum size of an element in the direction specified by 'writing-mode'.",
 			"restrictions": [
 				"length",
@@ -8630,14 +9627,19 @@ export const cssData : CSSDataV1 = {
 					"description": "Use the min-content inline size or min-content block size, as appropriate to the writing mode."
 				}
 			],
-			"syntax": "none | <length-percentage> | min-content | max-content | fit-content | fit-content(<length-percentage>)",
-			"relevance": 90,
+			"syntax": "none | <length-percentage [0,∞]> | min-content | max-content | fit-content | fit-content(<length-percentage [0,∞]>) | <calc-size()> | <anchor-size()>",
+			"relevance": 91,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/max-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Allows authors to constrain content width to a certain range.",
 			"restrictions": [
 				"length",
@@ -8661,6 +9663,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/min-block-size"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Minimal size of an element in the direction opposite that of the direction specified by 'writing-mode'.",
 			"restrictions": [
 				"length",
@@ -8726,14 +9733,19 @@ export const cssData : CSSDataV1 = {
 					"description": "Use the min-content inline size or min-content block size, as appropriate to the writing mode."
 				}
 			],
-			"syntax": "auto | <length> | <percentage> | min-content | max-content | fit-content | fit-content(<length-percentage>)",
-			"relevance": 89,
+			"syntax": "auto | <length-percentage [0,∞]> | min-content | max-content | fit-content | fit-content(<length-percentage [0,∞]>) | <calc-size()> | <anchor-size()>",
+			"relevance": 90,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/min-height"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Allows authors to constrain content height to a certain range.",
 			"restrictions": [
 				"length",
@@ -8757,6 +9769,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/min-inline-size"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Minimal size of an element in the direction specified by 'writing-mode'.",
 			"restrictions": [
 				"length",
@@ -8822,14 +9839,19 @@ export const cssData : CSSDataV1 = {
 					"description": "Use the min-content inline size or min-content block size, as appropriate to the writing mode."
 				}
 			],
-			"syntax": "auto | <length> | <percentage> | min-content | max-content | fit-content | fit-content(<length-percentage>)",
-			"relevance": 88,
+			"syntax": "auto | <length-percentage [0,∞]> | min-content | max-content | fit-content | fit-content(<length-percentage [0,∞]>) | <calc-size()> | <anchor-size()>",
+			"relevance": 89,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/min-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Allows authors to constrain content width to a certain range.",
 			"restrictions": [
 				"length",
@@ -8940,13 +9962,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<blend-mode> | plus-lighter",
-			"relevance": 53,
+			"relevance": 54,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mix-blend-mode"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Defines the formula that must be used to mix the colors with the backdrop.",
 			"restrictions": [
 				"enum"
@@ -10350,6 +11377,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-user-focus"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Used to indicate whether the element can have focus."
 		},
 		{
@@ -12964,13 +13994,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "fill | contain | cover | none | scale-down",
-			"relevance": 71,
+			"relevance": 75,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/object-fit"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Specifies how the contents of a replaced element should be scaled relative to the box established by its used height and width.",
 			"restrictions": [
 				"enum"
@@ -12986,13 +14021,18 @@ export const cssData : CSSDataV1 = {
 				"O19"
 			],
 			"syntax": "<position>",
-			"relevance": 57,
+			"relevance": 59,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/object-position"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Determines the alignment of the replaced element inside its box.",
 			"restrictions": [
 				"position",
@@ -13100,7 +14140,7 @@ export const cssData : CSSDataV1 = {
 				"IE9",
 				"O9"
 			],
-			"syntax": "<alpha-value>",
+			"syntax": "<opacity-value>",
 			"relevance": 93,
 			"references": [
 				{
@@ -13108,6 +14148,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/opacity"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Opacity of an element's text, where 1 is opaque and 0 is entirely transparent.",
 			"restrictions": [
 				"number(0-1)"
@@ -13124,13 +14169,18 @@ export const cssData : CSSDataV1 = {
 				"O12.1"
 			],
 			"syntax": "<integer>",
-			"relevance": 67,
+			"relevance": 69,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/order"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Controls the order in which children of a flex container appear within the flex container, by assigning them to ordinal groups.",
 			"restrictions": [
 				"integer"
@@ -13153,6 +14203,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/orphans"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Specifies the minimum number of line boxes in a block container that must be left in a fragment before a fragmentation break.",
 			"restrictions": [
 				"integer"
@@ -13489,7 +14542,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Performs a color inversion on the pixels on the screen."
 				}
 			],
-			"syntax": "[ <'outline-width'> || <'outline-style'> || <'outline-color'> ]",
+			"syntax": "<'outline-width'> || <'outline-style'> || <'outline-color'>",
 			"relevance": 88,
 			"references": [
 				{
@@ -13497,6 +14550,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/outline"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-03-27"
+			},
 			"description": "Shorthand property for 'outline-style', 'outline-width', and 'outline-color'.",
 			"restrictions": [
 				"length",
@@ -13538,6 +14595,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/outline-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "The color of the outline.",
 			"restrictions": [
 				"enum",
@@ -13561,6 +14623,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/outline-offset"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-04-05",
+				"baseline_high_date": "2019-10-05"
+			},
 			"description": "Offset the outline and draw it beyond the border edge.",
 			"restrictions": [
 				"length"
@@ -13582,14 +14649,19 @@ export const cssData : CSSDataV1 = {
 					"description": "Permits the user agent to render a custom outline style, typically the default platform style."
 				}
 			],
-			"syntax": "auto | <'border-style'>",
-			"relevance": 59,
+			"syntax": "auto | <outline-line-style>",
+			"relevance": 61,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/outline-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Style of the outline.",
 			"restrictions": [
 				"line-style",
@@ -13614,6 +14686,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/outline-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Width of the outline.",
 			"restrictions": [
 				"length",
@@ -13668,6 +14745,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand for setting 'overflow-x' and 'overflow-y'.",
 			"restrictions": [
 				"enum"
@@ -13705,6 +14787,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-wrap"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2018-10-02",
+				"baseline_high_date": "2021-04-02"
+			},
 			"description": "Specifies whether the UA may break within a word to prevent overflow when an otherwise-unbreakable string is too long to fit within the line box.",
 			"restrictions": [
 				"enum"
@@ -13739,13 +14826,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "visible | hidden | clip | scroll | auto",
-			"relevance": 81,
+			"relevance": 82,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-x"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies the handling of overflow in the horizontal direction.",
 			"restrictions": [
 				"enum"
@@ -13787,6 +14879,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-y"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies the handling of overflow in the vertical direction.",
 			"restrictions": [
 				"enum"
@@ -13819,14 +14916,19 @@ export const cssData : CSSDataV1 = {
 				"O3.5"
 			],
 			"values": [],
-			"syntax": "[ <length> | <percentage> ]{1,4}",
-			"relevance": 95,
+			"syntax": "<'padding-top'>{1,4}",
+			"relevance": 96,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand property to set values for the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 			"restrictions": [
 				"length",
@@ -13843,14 +14945,19 @@ export const cssData : CSSDataV1 = {
 				"IE4",
 				"O3.5"
 			],
-			"syntax": "<length> | <percentage>",
-			"relevance": 88,
+			"syntax": "<length-percentage [0,∞]>",
+			"relevance": 89,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-bottom"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand property to set values for the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 			"restrictions": [
 				"length",
@@ -13866,7 +14973,7 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
-			"syntax": "<'padding-left'>",
+			"syntax": "<'padding-top'>",
 			"relevance": 54,
 			"references": [
 				{
@@ -13874,6 +14981,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-block-end"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'padding-bottom'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -13889,7 +15001,7 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
-			"syntax": "<'padding-left'>",
+			"syntax": "<'padding-top'>",
 			"relevance": 54,
 			"references": [
 				{
@@ -13897,6 +15009,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-block-start"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'padding-top'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -13912,7 +15029,7 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
-			"syntax": "<'padding-left'>",
+			"syntax": "<'padding-top'>",
 			"relevance": 56,
 			"references": [
 				{
@@ -13920,6 +15037,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-inline-end"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'padding-right'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -13935,14 +15057,19 @@ export const cssData : CSSDataV1 = {
 				"C69",
 				"O56"
 			],
-			"syntax": "<'padding-left'>",
-			"relevance": 57,
+			"syntax": "<'padding-top'>",
+			"relevance": 58,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-inline-start"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Logical 'padding-left'. Mapping depends on the parent element's 'writing-mode', 'direction', and 'text-orientation'.",
 			"restrictions": [
 				"length",
@@ -13959,7 +15086,7 @@ export const cssData : CSSDataV1 = {
 				"IE4",
 				"O3.5"
 			],
-			"syntax": "<length> | <percentage>",
+			"syntax": "<length-percentage [0,∞]>",
 			"relevance": 90,
 			"references": [
 				{
@@ -13967,6 +15094,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-left"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand property to set values for the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 			"restrictions": [
 				"length",
@@ -13983,7 +15115,7 @@ export const cssData : CSSDataV1 = {
 				"IE4",
 				"O3.5"
 			],
-			"syntax": "<length> | <percentage>",
+			"syntax": "<length-percentage [0,∞]>",
 			"relevance": 89,
 			"references": [
 				{
@@ -13991,6 +15123,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-right"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand property to set values for the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 			"restrictions": [
 				"length",
@@ -14007,14 +15144,19 @@ export const cssData : CSSDataV1 = {
 				"IE4",
 				"O3.5"
 			],
-			"syntax": "<length> | <percentage>",
-			"relevance": 89,
+			"syntax": "<length-percentage [0,∞]>",
+			"relevance": 90,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-top"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Shorthand property to set values for the thickness of the padding area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
 			"restrictions": [
 				"length",
@@ -14053,14 +15195,18 @@ export const cssData : CSSDataV1 = {
 					"description": "Force one or two page breaks after the generated box so that the next page is formatted as a right page."
 				}
 			],
+			"status": "obsolete",
 			"syntax": "auto | always | avoid | left | right | recto | verso",
-			"relevance": 51,
+			"relevance": 1,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/page-break-after"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Defines rules for page breaks after an element.",
 			"restrictions": [
 				"enum"
@@ -14098,14 +15244,18 @@ export const cssData : CSSDataV1 = {
 					"description": "Force one or two page breaks before the generated box so that the next page is formatted as a right page."
 				}
 			],
+			"status": "obsolete",
 			"syntax": "auto | always | avoid | left | right | recto | verso",
-			"relevance": 50,
+			"relevance": 0,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/page-break-before"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Defines rules for page breaks before an element.",
 			"restrictions": [
 				"enum"
@@ -14131,14 +15281,18 @@ export const cssData : CSSDataV1 = {
 					"description": "Avoid a page break inside the generated box."
 				}
 			],
+			"status": "obsolete",
 			"syntax": "auto | avoid",
-			"relevance": 52,
+			"relevance": 2,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/page-break-inside"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Defines rules for page breaks inside an element.",
 			"restrictions": [
 				"enum"
@@ -14176,6 +15330,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/paint-order"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2024-03-22"
+			},
 			"description": "Controls the order that the three paint operations that shapes and text are rendered with: their fill, their stroke and any markers they might have.",
 			"restrictions": [
 				"enum"
@@ -14198,13 +15356,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <length>",
-			"relevance": 54,
+			"relevance": 55,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/perspective"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Applies the same transform as the perspective(<number>) transform function, except that it applies only to the positioned or transformed children of the element, not to the transform on the element itself.",
 			"restrictions": [
 				"length",
@@ -14229,6 +15392,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/perspective-origin"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Establishes the origin for the perspective property. It effectively sets the X and Y position at which the viewer appears to be looking at the children of the element.",
 			"restrictions": [
 				"position",
@@ -14285,13 +15453,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | none | visiblePainted | visibleFill | visibleStroke | visible | painted | fill | stroke | all | inherit",
-			"relevance": 82,
+			"relevance": 84,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/pointer-events"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies under what circumstances a given element can be the target element for a pointer event.",
 			"restrictions": [
 				"enum"
@@ -14369,6 +15542,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/position"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "The position CSS property sets how an element is positioned in a document. The top, right, bottom, and left properties determine the final location of positioned elements.",
 			"restrictions": [
 				"enum"
@@ -14406,13 +15584,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | auto | [ <string> <string> ]+",
-			"relevance": 53,
+			"relevance": 54,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/quotes"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Specifies quotation marks for any number of embedded quotations.",
 			"restrictions": [
 				"string"
@@ -14477,6 +15660,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/resize"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Specifies whether or not an element is resizable by the user, and if so, along which axis/axes.",
 			"restrictions": [
 				"enum"
@@ -14506,6 +15692,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/right"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies how far an absolutely positioned box's right margin edge is offset to the left of the right edge of the box's 'containing block'.",
 			"restrictions": [
 				"length",
@@ -14627,6 +15818,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/ruby-align"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2024-12-11"
+			},
 			"description": "Specifies how text is distributed within the various ruby boxes when their contents do not exactly fill their respective boxes.",
 			"restrictions": [
 				"enum"
@@ -14656,6 +15851,9 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Determines whether, and on which side, ruby text is allowed to partially overhang any adjacent text in addition to its own base, when the ruby text is wider than the ruby base.",
 			"restrictions": [
 				"enum"
@@ -14695,6 +15893,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/ruby-position"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2024-12-11"
+			},
 			"description": "Used by the parent of elements with display: ruby-text to control the position of the ruby text with respect to its base.",
 			"restrictions": [
 				"enum"
@@ -14829,13 +16031,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | smooth",
-			"relevance": 56,
+			"relevance": 57,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-behavior"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-03-14",
+				"baseline_high_date": "2024-09-14"
+			},
 			"description": "Specifies the scrolling behavior for a scrolling box, when scrolling happens due to navigation or CSSOM scrolling APIs.",
 			"restrictions": [
 				"enum"
@@ -14949,13 +16156,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | [ x | y | block | inline | both ] [ mandatory | proximity ]?",
-			"relevance": 55,
+			"relevance": 57,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-type"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-04-05",
+				"baseline_high_date": "2024-10-05"
+			},
 			"description": "Defines how strictly snap points are enforced on the scroll container.",
 			"restrictions": [
 				"enum"
@@ -14970,7 +16182,7 @@ export const cssData : CSSDataV1 = {
 				"C37",
 				"O24"
 			],
-			"syntax": "<alpha-value>",
+			"syntax": "<opacity-value>",
 			"relevance": 50,
 			"references": [
 				{
@@ -14978,6 +16190,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/shape-image-threshold"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Defines the alpha channel threshold used to extract the shape using an image. A value of 0.5 means that the shape will enclose all the pixels that are more than 50% opaque.",
 			"restrictions": [
 				"number"
@@ -15000,6 +16217,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/shape-margin"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Adds a margin to a 'shape-outside'. This defines a new shape that is the smallest contour that includes all the points that are the 'shape-margin' distance outward in the perpendicular direction from a point on the underlying shape.",
 			"restrictions": [
 				"url",
@@ -15034,6 +16256,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/shape-outside"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Specifies an orthogonal rotation to be applied to an image before it is laid out.",
 			"restrictions": [
 				"image",
@@ -15077,6 +16304,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/shape-rendering"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "Provides hints about what tradeoffs to make as it renders vector graphics elements such as <path> elements and basic shapes such as circles and rectangles.",
 			"restrictions": [
 				"enum"
@@ -15131,13 +16363,19 @@ export const cssData : CSSDataV1 = {
 				"C80",
 				"O67"
 			],
-			"relevance": 50,
+			"syntax": "<'color'>",
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/stop-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "Indicates what color to use at that gradient stop.",
 			"restrictions": [
 				"color"
@@ -15152,6 +16390,7 @@ export const cssData : CSSDataV1 = {
 				"C80",
 				"O67"
 			],
+			"syntax": "<'opacity'>",
 			"relevance": 52,
 			"references": [
 				{
@@ -15159,6 +16398,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/stop-opacity"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "Defines the opacity of a given gradient stop.",
 			"restrictions": [
 				"number(0-1)"
@@ -15183,7 +16427,7 @@ export const cssData : CSSDataV1 = {
 					"description": "No paint is applied in this layer."
 				}
 			],
-			"syntax": "",
+			"syntax": "<paint>",
 			"relevance": 69,
 			"references": [
 				{
@@ -15191,6 +16435,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "Paints along the outline of the given graphical element.",
 			"restrictions": [
 				"color",
@@ -15202,7 +16451,7 @@ export const cssData : CSSDataV1 = {
 			"name": "stroke-dasharray",
 			"browsers": [
 				"E80",
-				"FF72",
+				"FF1",
 				"S13.1",
 				"C80",
 				"O67"
@@ -15221,6 +16470,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-dasharray"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-03-24",
+				"baseline_high_date": "2022-09-24"
+			},
 			"description": "Controls the pattern of dashes and gaps used to stroke paths.",
 			"restrictions": [
 				"length",
@@ -15233,7 +16487,7 @@ export const cssData : CSSDataV1 = {
 			"name": "stroke-dashoffset",
 			"browsers": [
 				"E80",
-				"FF72",
+				"FF1",
 				"S13.1",
 				"C80",
 				"O67"
@@ -15246,6 +16500,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-dashoffset"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-03-24",
+				"baseline_high_date": "2022-09-24"
+			},
 			"description": "Specifies the distance into the dash pattern to start the dash.",
 			"restrictions": [
 				"percentage",
@@ -15256,7 +16515,7 @@ export const cssData : CSSDataV1 = {
 			"name": "stroke-linecap",
 			"browsers": [
 				"E80",
-				"FF72",
+				"FF1",
 				"S13.1",
 				"C80",
 				"O67"
@@ -15283,6 +16542,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-linecap"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-03-24",
+				"baseline_high_date": "2022-09-24"
+			},
 			"description": "Specifies the shape to be used at the end of open subpaths when they are stroked.",
 			"restrictions": [
 				"enum"
@@ -15292,7 +16556,7 @@ export const cssData : CSSDataV1 = {
 			"name": "stroke-linejoin",
 			"browsers": [
 				"E80",
-				"FF72",
+				"FF1",
 				"S13.1",
 				"C80",
 				"O67"
@@ -15319,6 +16583,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-linejoin"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-03-24",
+				"baseline_high_date": "2022-09-24"
+			},
 			"description": "Specifies the shape to be used at the corners of paths or basic shapes when they are stroked.",
 			"restrictions": [
 				"enum"
@@ -15328,19 +16597,24 @@ export const cssData : CSSDataV1 = {
 			"name": "stroke-miterlimit",
 			"browsers": [
 				"E80",
-				"FF72",
+				"FF1",
 				"S13.1",
 				"C80",
 				"O67"
 			],
 			"syntax": "<number>",
-			"relevance": 53,
+			"relevance": 54,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-miterlimit"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-03-24",
+				"baseline_high_date": "2022-09-24"
+			},
 			"description": "When two line segments meet at a sharp angle and miter joins have been specified for 'stroke-linejoin', it is possible for the miter to extend far beyond the thickness of the line stroking the path.",
 			"restrictions": [
 				"number"
@@ -15350,7 +16624,7 @@ export const cssData : CSSDataV1 = {
 			"name": "stroke-opacity",
 			"browsers": [
 				"E80",
-				"FF72",
+				"FF1",
 				"S13.1",
 				"C80",
 				"O67"
@@ -15363,6 +16637,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-opacity"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-03-24",
+				"baseline_high_date": "2022-09-24"
+			},
 			"description": "Specifies the opacity of the painting operation used to stroke the current object.",
 			"restrictions": [
 				"number(0-1)"
@@ -15372,7 +16651,7 @@ export const cssData : CSSDataV1 = {
 			"name": "stroke-width",
 			"browsers": [
 				"E80",
-				"FF72",
+				"FF1",
 				"S13.1",
 				"C80",
 				"O67"
@@ -15385,6 +16664,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-03-24",
+				"baseline_high_date": "2022-09-24"
+			},
 			"description": "Specifies the width of the stroke on the current object.",
 			"restrictions": [
 				"percentage",
@@ -15493,6 +16777,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/table-layout"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Controls the algorithm used to lay out the table cells, rows, and columns.",
 			"restrictions": [
 				"enum"
@@ -15508,13 +16797,18 @@ export const cssData : CSSDataV1 = {
 				"O15"
 			],
 			"syntax": "<integer> | <length>",
-			"relevance": 53,
+			"relevance": 54,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/tab-size"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-08-10",
+				"baseline_high_date": "2024-02-10"
+			},
 			"description": "Determines the width of the tab character (U+0009), in space characters (U+0020), when rendered.",
 			"restrictions": [
 				"integer",
@@ -15574,13 +16868,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "start | end | left | right | center | justify | match-parent",
-			"relevance": 93,
+			"relevance": 94,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-align"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Describes how inline contents of a block are horizontally aligned if the contents do not completely fill the line box.",
 			"restrictions": [
 				"string"
@@ -15626,6 +16925,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-align-last"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-09-12",
+				"baseline_high_date": "2025-03-12"
+			},
 			"description": "Describes how the last line of a block or a line right before a forced line break is aligned when 'text-align' is set to 'justify'.",
 			"restrictions": [
 				"enum"
@@ -15662,6 +16966,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-anchor"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "Used to align (start-, middle- or end-alignment) a string of text relative to a given point.",
 			"restrictions": [
 				"enum"
@@ -15716,13 +17025,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'text-decoration-line'> || <'text-decoration-style'> || <'text-decoration-color'> || <'text-decoration-thickness'>",
-			"relevance": 91,
+			"relevance": 92,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Decorations applied to font used for an element's text.",
 			"restrictions": [
 				"enum",
@@ -15739,13 +17053,18 @@ export const cssData : CSSDataV1 = {
 				"O44"
 			],
 			"syntax": "<color>",
-			"relevance": 55,
+			"relevance": 56,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Specifies the color of text decoration (underlines overlines, and line-throughs) set on the element with text-decoration-line.",
 			"restrictions": [
 				"color"
@@ -15786,6 +17105,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-line"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Specifies what line decorations, if any, are added to the element.",
 			"restrictions": [
 				"enum"
@@ -15834,6 +17158,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Specifies the line style for underline, line-through and overline text decoration.",
 			"restrictions": [
 				"enum"
@@ -15851,13 +17180,18 @@ export const cssData : CSSDataV1 = {
 			],
 			"values": [],
 			"syntax": "<length-percentage> && hanging? && each-line?",
-			"relevance": 67,
+			"relevance": 69,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-indent"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies the indentation applied to lines of inline content in a block. The indentation only affects the first line of inline content in the block unless the 'hanging' keyword is specified, in which case it affects all lines except the first.",
 			"restrictions": [
 				"percentage",
@@ -15913,6 +17247,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-justify"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Selects the justification algorithm used when 'text-align' is set to 'justify'. The property applies to block containers, but the UA may (but is not required to) also support it on inline elements.",
 			"restrictions": [
 				"enum"
@@ -15963,6 +17300,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-orientation"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-09-16",
+				"baseline_high_date": "2023-03-16"
+			},
 			"description": "Specifies the orientation of text within a line.",
 			"restrictions": [
 				"enum"
@@ -15989,13 +17331,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "[ clip | ellipsis | <string> ]{1,2}",
-			"relevance": 81,
+			"relevance": 82,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-overflow"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Text can overflow for example when it is prevented from wrapping.",
 			"restrictions": [
 				"enum",
@@ -16036,6 +17383,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-rendering"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "The creator of SVG content might want to provide a hint to the implementation about what tradeoffs to make as it renders text. The 'text-rendering' property provides these hints.",
 			"restrictions": [
 				"enum"
@@ -16058,13 +17410,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <shadow-t>#",
-			"relevance": 71,
+			"relevance": 73,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-shadow"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Enables shadow effects to be applied to the text of the element.",
 			"restrictions": [
 				"length",
@@ -16099,14 +17456,19 @@ export const cssData : CSSDataV1 = {
 					"description": "Puts all letters in uppercase."
 				}
 			],
-			"syntax": "none | capitalize | uppercase | lowercase | full-width | full-size-kana",
-			"relevance": 85,
+			"syntax": "none | [ capitalize | uppercase | lowercase ] || full-width || full-size-kana | math-auto",
+			"relevance": 86,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-transform"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Controls capitalization effects of an element's text.",
 			"restrictions": [
 				"enum"
@@ -16143,6 +17505,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-underline-position"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "Sets the position of an underline specified on the same element: it does not affect underlines specified by ancestor elements. This property is typically used in vertical writing contexts such as in Japanese documents where it often desired to have the underline appear 'over' (to the right of) the affected run of text",
 			"restrictions": [
 				"enum"
@@ -16172,6 +17539,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/top"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies how far an absolutely positioned box's top margin edge is offset below the top edge of the box's 'containing block'.",
 			"restrictions": [
 				"length",
@@ -16255,13 +17627,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | none | [ [ pan-x | pan-left | pan-right ] || [ pan-y | pan-up | pan-down ] || pinch-zoom ] | manipulation",
-			"relevance": 69,
+			"relevance": 70,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/touch-action"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2019-09-19",
+				"baseline_high_date": "2022-03-19"
+			},
 			"description": "Determines whether touch input may trigger default behavior supplied by user agent.",
 			"restrictions": [
 				"enum"
@@ -16374,6 +17751,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/transform"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "A two-dimensional transformation is applied to an element through the 'transform' property. This property contains a list of transform functions similar to those allowed by SVG.",
 			"restrictions": [
 				"enum"
@@ -16390,13 +17772,18 @@ export const cssData : CSSDataV1 = {
 				"O23"
 			],
 			"syntax": "[ <length-percentage> | left | center | right | top | bottom ] | [ [ <length-percentage> | left | center | right ] && [ <length-percentage> | top | center | bottom ] ] <length>?",
-			"relevance": 75,
+			"relevance": 76,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Establishes the origin of transformation for an element.",
 			"restrictions": [
 				"position",
@@ -16431,13 +17818,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "flat | preserve-3d",
-			"relevance": 55,
+			"relevance": 56,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/transform-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Defines how nested elements are rendered in 3D space.",
 			"restrictions": [
 				"enum"
@@ -16464,13 +17856,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-transition>#",
-			"relevance": 89,
+			"relevance": 90,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/transition"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Shorthand property combines four of the transition properties into a single property.",
 			"restrictions": [
 				"time",
@@ -16497,6 +17894,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/transition-delay"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Defines when the transition will start. It allows a transition to begin execution some period of time from when it is applied.",
 			"restrictions": [
 				"time"
@@ -16513,13 +17915,18 @@ export const cssData : CSSDataV1 = {
 				"O12.1"
 			],
 			"syntax": "<time>#",
-			"relevance": 69,
+			"relevance": 70,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/transition-duration"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Specifies how long the transition from the old value to the new value should take.",
 			"restrictions": [
 				"time"
@@ -16546,13 +17953,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <single-transition-property>#",
-			"relevance": 68,
+			"relevance": 69,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/transition-property"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Specifies the name of the CSS property to which the transition is applied.",
 			"restrictions": [
 				"property"
@@ -16569,13 +17981,18 @@ export const cssData : CSSDataV1 = {
 				"O12.1"
 			],
 			"syntax": "<easing-function>#",
-			"relevance": 67,
+			"relevance": 68,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/transition-timing-function"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Describes how the intermediate values used during a transition will be calculated.",
 			"restrictions": [
 				"timing-function"
@@ -16649,6 +18066,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/unicode-bidi"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "The level of embedding with respect to the bidirectional algorithm.",
 			"restrictions": [
 				"enum"
@@ -16967,7 +18389,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"atRule": "@font-face",
-			"syntax": "<unicode-range>#",
+			"syntax": "<unicode-range-token>#",
 			"relevance": 72,
 			"description": "@font-face descriptor. Defines the set of Unicode codepoints that may be supported by the font face for which it is declared.",
 			"restrictions": [
@@ -17005,14 +18427,17 @@ export const cssData : CSSDataV1 = {
 					"description": "The element imposes no constraint on the selection."
 				}
 			],
-			"syntax": "auto | text | none | contain | all",
-			"relevance": 82,
+			"syntax": "auto | text | none | all",
+			"relevance": 83,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/user-select"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Controls the appearance of selection.",
 			"restrictions": [
 				"enum"
@@ -17078,13 +18503,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "baseline | sub | super | text-top | text-bottom | middle | top | bottom | <percentage> | <length>",
-			"relevance": 90,
+			"relevance": 91,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/vertical-align"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Affects the vertical positioning of the inline boxes generated by an inline-level element inside a line box.",
 			"restrictions": [
 				"percentage",
@@ -17116,13 +18546,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "visible | hidden | collapse",
-			"relevance": 87,
+			"relevance": 88,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/visibility"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies whether the boxes generated by an element are rendered. Invisible boxes still affect layout (set the 'display' property to 'none' to suppress box generation altogether).",
 			"restrictions": [
 				"enum"
@@ -17846,6 +19281,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-box-reflect"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Defines a reflection of a border box."
 		},
 		{
@@ -18015,10 +19453,10 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "-webkit-column-break-after",
 			"browsers": [
-				"E80",
-				"S13.1",
-				"C80",
-				"O67"
+				"E79",
+				"S4",
+				"C1",
+				"O15"
 			],
 			"values": [
 				{
@@ -18065,6 +19503,9 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Describes the page/column break behavior before the generated box.",
 			"restrictions": [
 				"enum"
@@ -18073,10 +19514,10 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "-webkit-column-break-before",
 			"browsers": [
-				"E80",
-				"S13.1",
-				"C80",
-				"O67"
+				"E79",
+				"S4",
+				"C1",
+				"O15"
 			],
 			"values": [
 				{
@@ -18123,6 +19564,9 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Describes the page/column break behavior before the generated box.",
 			"restrictions": [
 				"enum"
@@ -18131,10 +19575,10 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "-webkit-column-break-inside",
 			"browsers": [
-				"E80",
-				"S13.1",
-				"C80",
-				"O67"
+				"E79",
+				"S4",
+				"C1",
+				"O15"
 			],
 			"values": [
 				{
@@ -18158,6 +19602,9 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Describes the page/column break behavior inside the generated box.",
 			"restrictions": [
 				"enum"
@@ -18592,7 +20039,7 @@ export const cssData : CSSDataV1 = {
 				"S4"
 			],
 			"status": "nonstandard",
-			"syntax": "[ <box> | border | padding | content | text ]#",
+			"syntax": "[ <coord-box> | no-clip | border | padding | content | text ]#",
 			"relevance": 0,
 			"description": "Determines the mask painting area, which determines the area that is affected by the mask.",
 			"restrictions": [
@@ -18634,7 +20081,7 @@ export const cssData : CSSDataV1 = {
 				"S4"
 			],
 			"status": "nonstandard",
-			"syntax": "[ <box> | border | padding | content ]#",
+			"syntax": "[ <coord-box> | border | padding | content ]#",
 			"relevance": 0,
 			"description": "Specifies the mask positioning area.",
 			"restrictions": [
@@ -18690,7 +20137,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "-webkit-nbsp-mode",
 			"browsers": [
-				"S13.1"
+				"S4",
+				"C1"
 			],
 			"values": [
 				{
@@ -18701,6 +20149,9 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Defines the behavior of nonbreaking spaces within text."
 		},
 		{
@@ -18803,6 +20254,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-tap-highlight-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"restrictions": [
 				"color"
 			]
@@ -18824,6 +20278,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-fill-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2016-09-20",
+				"baseline_high_date": "2019-03-20"
+			},
 			"restrictions": [
 				"color"
 			]
@@ -18868,6 +20327,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-04-05",
+				"baseline_high_date": "2019-10-05"
+			},
 			"restrictions": [
 				"length",
 				"line-width",
@@ -18892,6 +20356,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-04-05",
+				"baseline_high_date": "2019-10-05"
+			},
 			"restrictions": [
 				"color"
 			]
@@ -18913,6 +20382,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-04-05",
+				"baseline_high_date": "2019-10-05"
+			},
 			"restrictions": [
 				"length",
 				"line-width",
@@ -18938,6 +20412,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-touch-callout"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"restrictions": [
 				"enum"
 			]
@@ -19062,12 +20539,15 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "-webkit-transform-origin-x",
 			"browsers": [
-				"E80",
-				"S13.1",
-				"C80",
-				"O67"
+				"E79",
+				"S4",
+				"C1",
+				"O15"
 			],
 			"relevance": 50,
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The x coordinate of the origin for transforms applied to an element with respect to its border box.",
 			"restrictions": [
 				"length",
@@ -19077,12 +20557,15 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "-webkit-transform-origin-y",
 			"browsers": [
-				"E80",
-				"S13.1",
-				"C80",
-				"O67"
+				"E79",
+				"S4",
+				"C1",
+				"O15"
 			],
 			"relevance": 50,
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The y coordinate of the origin for transforms applied to an element with respect to its border box.",
 			"restrictions": [
 				"length",
@@ -19092,12 +20575,15 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "-webkit-transform-origin-z",
 			"browsers": [
-				"E80",
-				"S13.1",
-				"C80",
-				"O67"
+				"E79",
+				"S4",
+				"C2",
+				"O15"
 			],
 			"relevance": 50,
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The z coordinate of the origin for transforms applied to an element with respect to its border box.",
 			"restrictions": [
 				"length",
@@ -19213,10 +20699,10 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "-webkit-user-drag",
 			"browsers": [
-				"E80",
-				"S13.1",
-				"C80",
-				"O67"
+				"E79",
+				"S4",
+				"C1",
+				"O15"
 			],
 			"values": [
 				{
@@ -19230,6 +20716,9 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"baselineStatus": {
+				"baseline": false
+			},
 			"restrictions": [
 				"enum"
 			]
@@ -19276,7 +20765,9 @@ export const cssData : CSSDataV1 = {
 					"name": "text"
 				}
 			],
-			"relevance": 50,
+			"status": "nonstandard",
+			"syntax": "auto | text | none | all",
+			"relevance": 0,
 			"description": "Controls the appearance of selection.",
 			"restrictions": [
 				"enum"
@@ -19299,6 +20790,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/widows"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Specifies the minimum number of line boxes of a block container that must be left in a fragment after a break.",
 			"restrictions": [
 				"integer"
@@ -19356,7 +20850,7 @@ export const cssData : CSSDataV1 = {
 					"description": "Use the min-content inline size or min-content block size, as appropriate to the writing mode."
 				}
 			],
-			"syntax": "auto | <length> | <percentage> | min-content | max-content | fit-content | fit-content(<length-percentage>)",
+			"syntax": "auto | <length-percentage [0,∞]> | min-content | max-content | fit-content | fit-content(<length-percentage [0,∞]>) | <calc-size()> | <anchor-size()>",
 			"relevance": 96,
 			"references": [
 				{
@@ -19364,6 +20858,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies the width of the content area, padding area or border area (depending on 'box-sizing') of certain boxes.",
 			"restrictions": [
 				"length",
@@ -19394,13 +20893,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | <animateable-feature>#",
-			"relevance": 66,
+			"relevance": 67,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/will-change"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Provides a rendering hint to the user agent, stating what kinds of changes the author expects to perform on the element.",
 			"restrictions": [
 				"enum",
@@ -19431,14 +20935,19 @@ export const cssData : CSSDataV1 = {
 					"description": "Breaks non-CJK scripts according to their own rules."
 				}
 			],
-			"syntax": "normal | break-all | keep-all | break-word",
-			"relevance": 76,
+			"syntax": "normal | break-all | keep-all | break-word | auto-phrase",
+			"relevance": 78,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/word-break"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies line break opportunities for non-CJK scripts.",
 			"restrictions": [
 				"enum"
@@ -19468,6 +20977,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/word-spacing"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies additional spacing between \"words\".",
 			"restrictions": [
 				"length",
@@ -19476,13 +20990,6 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "word-wrap",
-			"browsers": [
-				"E80",
-				"FF72",
-				"S13.1",
-				"C80",
-				"O67"
-			],
 			"values": [
 				{
 					"name": "break-word",
@@ -19494,7 +21001,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | break-word",
-			"relevance": 77,
+			"relevance": 78,
 			"description": "Specifies whether the UA may break within a word to prevent overflow when an otherwise-unbreakable string is too long to fit.",
 			"restrictions": [
 				"enum"
@@ -19549,13 +21056,18 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "horizontal-tb | vertical-rl | vertical-lr | sideways-rl | sideways-lr",
-			"relevance": 50,
+			"relevance": 51,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/writing-mode"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-03-27",
+				"baseline_high_date": "2019-09-27"
+			},
 			"description": "This is a shorthand property for both 'direction' and 'block-progression'.",
 			"restrictions": [
 				"enum"
@@ -19585,6 +21097,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/z-index"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "For a positioned box, the 'z-index' property specifies the stack level of the box in the current stacking context and whether the box establishes a local stacking context.",
 			"restrictions": [
 				"integer"
@@ -19605,14 +21122,18 @@ export const cssData : CSSDataV1 = {
 					"name": "normal"
 				}
 			],
-			"syntax": "normal | reset | <number> | <percentage>",
-			"relevance": 63,
+			"syntax": "normal | reset | <number [0,∞]> || <percentage [0,∞]>",
+			"relevance": 66,
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/zoom"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2024-05-14"
+			},
 			"description": "Non-standard. Specifies the magnification scale of the object. See 'transform: scale()' for a standards-based alternative.",
 			"restrictions": [
 				"enum",
@@ -19678,6 +21199,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-float-edge"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The non-standard -moz-float-edge CSS property specifies whether the height and width properties of the element include the margin, border, or padding thickness."
 		},
 		{
@@ -19702,6 +21226,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-force-broken-image-icon"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The -moz-force-broken-image-icon extended CSS property can be used to force the broken image icon to be shown even when a broken image has an alt attribute."
 		},
 		{
@@ -19718,6 +21245,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-image-region"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "For certain XUL elements and pseudo-elements that use an image from the list-style-image property, this property specifies a region of the image that is used in place of the whole image. This allows elements to use different pieces of the same image to improve performance."
 		},
 		{
@@ -19748,6 +21278,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-orient"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The -moz-orient CSS property specifies the orientation of the element to which it's applied."
 		},
 		{
@@ -19843,6 +21376,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-user-input"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "In Mozilla applications, -moz-user-input determines if an element will accept user input."
 		},
 		{
@@ -19919,6 +21455,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-border-before"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The -webkit-border-before CSS property is a shorthand property for setting the individual logical block start border property values in a single place in the style sheet."
 		},
 		{
@@ -19951,7 +21490,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "-webkit-mask",
 			"status": "nonstandard",
-			"syntax": "[ <mask-reference> || <position> [ / <bg-size> ]? || <repeat-style> || [ <box> | border | padding | content | text ] || [ <box> | border | padding | content ] ]#",
+			"syntax": "[ <mask-reference> || <position> [ / <bg-size> ]? || <repeat-style> || [ <visual-box> | border | padding | content | text ] || [ <visual-box> | border | padding | content ] ]#",
 			"relevance": 0,
 			"description": "The mask CSS property alters the visibility of an element by either partially or fully hiding it. This is accomplished by either masking or clipping the image at specific points."
 		},
@@ -19979,6 +21518,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-composite"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The -webkit-mask-composite property specifies the manner in which multiple mask images applied to the same element are composited with one another. Mask images are composited in the opposite order that they are declared with the -webkit-mask-image property."
 		},
 		{
@@ -20006,6 +21548,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-position-x"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2018-10-02",
+				"baseline_high_date": "2021-04-02"
+			},
 			"description": "The -webkit-mask-position-x CSS property sets the initial horizontal position of a mask image."
 		},
 		{
@@ -20026,6 +21573,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-position-y"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2018-10-02",
+				"baseline_high_date": "2021-04-02"
+			},
 			"description": "The -webkit-mask-position-y CSS property sets the initial vertical position of a mask image."
 		},
 		{
@@ -20059,6 +21611,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-repeat-x"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The -webkit-mask-repeat-x property specifies whether and how a mask image is repeated (tiled) horizontally."
 		},
 		{
@@ -20092,6 +21647,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-repeat-y"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The -webkit-mask-repeat-y property specifies whether and how a mask image is repeated (tiled) vertically."
 		},
 		{
@@ -20111,13 +21669,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/accent-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Sets the color of the elements accent"
 		},
 		{
 			"name": "align-tracks",
-			"status": "experimental",
+			"status": "nonstandard",
 			"syntax": "[ normal | <baseline-position> | <content-distribution> | <overflow-position>? <content-position> ]#",
-			"relevance": 50,
+			"relevance": 0,
 			"description": "The align-tracks CSS property sets the alignment in the masonry axis for grid containers that have masonry in their block axis."
 		},
 		{
@@ -20136,6 +21697,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/anchor-name"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The anchor-name property declares that an element is an anchor element, and gives it a list of anchor names to be targeted by."
 		},
 		{
@@ -20144,8 +21708,13 @@ export const cssData : CSSDataV1 = {
 			"syntax": "none | all | <dashed-ident>#",
 			"relevance": 50,
 			"browsers": [
-				"C131"
+				"E131",
+				"C131",
+				"O116"
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "This property scopes the specified anchor names, and lookups for these anchor names, to this element’s subtree"
 		},
 		{
@@ -20165,6 +21734,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-composition"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-07-04"
+			},
 			"description": "The composite operation to use when multiple animations affect the same property."
 		},
 		{
@@ -20183,6 +21756,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-range"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The animation-range CSS shorthand property is used to set the start and end of an animation's attachment range along its timeline, i.e. where along the timeline an animation will start and end."
 		},
 		{
@@ -20201,6 +21777,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-range-end"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The animation-range-end CSS property is used to set the end of an animation's attachment range along its timeline, i.e. where along the timeline an animation will end."
 		},
 		{
@@ -20219,6 +21798,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-range-start"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The animation-range-start CSS property is used to set the start of an animation's attachment range along its timeline, i.e. where along the timeline an animation will start."
 		},
 		{
@@ -20238,12 +21820,15 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-timeline"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Specifies the names of one or more @scroll-timeline at-rules to describe the element's scroll animations."
 		},
 		{
 			"name": "appearance",
 			"syntax": "none | auto | textfield | menulist-button | <compat-auto>",
-			"relevance": 71,
+			"relevance": 73,
 			"browsers": [
 				"E84",
 				"FF80",
@@ -20257,12 +21842,17 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/appearance"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-03-14",
+				"baseline_high_date": "2024-09-14"
+			},
 			"description": "Changes the appearance of buttons and other controls to resemble native controls."
 		},
 		{
 			"name": "aspect-ratio",
 			"syntax": "auto || <ratio>",
-			"relevance": 60,
+			"relevance": 64,
 			"browsers": [
 				"E88",
 				"FF89",
@@ -20276,19 +21866,17 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/aspect-ratio"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-09-20",
+				"baseline_high_date": "2024-03-20"
+			},
 			"description": "The aspect-ratio   CSS property sets a preferred aspect ratio for the box, which will be used in the calculation of auto sizes and some other layout functions."
 		},
 		{
-			"name": "azimuth",
-			"status": "obsolete",
-			"syntax": "<angle> | [ [ left-side | far-left | left | center-left | center | center-right | right | far-right | right-side ] || behind ] | leftwards | rightwards",
-			"relevance": 0,
-			"description": "In combination with elevation, the azimuth CSS property enables different audio sources to be positioned spatially for aural presentation. This is important in that it provides a natural way to tell several voices apart, as each can be positioned to originate at a different location on the sound stage. Stereo output produce a lateral sound stage, while binaural headphones and multi-speaker setups allow for a fully three-dimensional stage."
-		},
-		{
 			"name": "backdrop-filter",
-			"syntax": "none | <filter-function-list>",
-			"relevance": 60,
+			"syntax": "none | <filter-value-list>",
+			"relevance": 63,
 			"browsers": [
 				"E79",
 				"FF103",
@@ -20302,11 +21890,15 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/backdrop-filter"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2024-09-16"
+			},
 			"description": "The backdrop-filter CSS property lets you apply graphical effects such as blurring or color shifting to the area behind an element. Because it applies to everything behind the element, to see the effect you must make the element or its background at least partially transparent."
 		},
 		{
 			"name": "border-block",
-			"syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
+			"syntax": "<'border-block-start'>",
 			"relevance": 50,
 			"browsers": [
 				"E87",
@@ -20321,6 +21913,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The border-block CSS property is a shorthand property for setting the individual logical block border property values in a single place in the style sheet."
 		},
 		{
@@ -20340,11 +21937,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The border-block-color CSS property defines the color of the logical block borders of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color and border-bottom-color, or border-right-color and border-left-color property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			"name": "border-block-style",
-			"syntax": "<'border-top-style'>",
+			"syntax": "<'border-top-style'>{1,2}",
 			"relevance": 50,
 			"browsers": [
 				"E87",
@@ -20359,11 +21961,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The border-block-style CSS property defines the style of the logical block borders of an element, which maps to a physical border style depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-style and border-bottom-style, or border-left-style and border-right-style properties depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			"name": "border-block-width",
-			"syntax": "<'border-top-width'>",
+			"syntax": "<'border-top-width'>{1,2}",
 			"relevance": 50,
 			"browsers": [
 				"E87",
@@ -20378,11 +21985,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The border-block-width CSS property defines the width of the logical block borders of an element, which maps to a physical border width depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-width and border-bottom-width, or border-left-width, and border-right-width property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			"name": "border-end-end-radius",
-			"syntax": "<length-percentage>{1,2}",
+			"syntax": "<'border-top-left-radius'>",
 			"relevance": 54,
 			"browsers": [
 				"E89",
@@ -20397,11 +22009,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-end-end-radius"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-09-20",
+				"baseline_high_date": "2024-03-20"
+			},
 			"description": "The border-end-end-radius CSS property defines a logical border radius on an element, which maps to a physical border radius that depends on on the element's writing-mode, direction, and text-orientation."
 		},
 		{
 			"name": "border-end-start-radius",
-			"syntax": "<length-percentage>{1,2}",
+			"syntax": "<'border-top-left-radius'>",
 			"relevance": 54,
 			"browsers": [
 				"E89",
@@ -20416,11 +22033,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-end-start-radius"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-09-20",
+				"baseline_high_date": "2024-03-20"
+			},
 			"description": "The border-end-start-radius CSS property defines a logical border radius on an element, which maps to a physical border radius depending on the element's writing-mode, direction, and text-orientation."
 		},
 		{
 			"name": "border-inline",
-			"syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
+			"syntax": "<'border-block-start'>",
 			"relevance": 50,
 			"browsers": [
 				"E87",
@@ -20435,6 +22057,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The border-inline CSS property is a shorthand property for setting the individual logical inline border property values in a single place in the style sheet."
 		},
 		{
@@ -20454,11 +22081,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The border-inline-color CSS property defines the color of the logical inline borders of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color and border-bottom-color, or border-right-color and border-left-color property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			"name": "border-inline-style",
-			"syntax": "<'border-top-style'>",
+			"syntax": "<'border-top-style'>{1,2}",
 			"relevance": 50,
 			"browsers": [
 				"E87",
@@ -20473,11 +22105,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The border-inline-style CSS property defines the style of the logical inline borders of an element, which maps to a physical border style depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-style and border-bottom-style, or border-left-style and border-right-style properties depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			"name": "border-inline-width",
-			"syntax": "<'border-top-width'>",
+			"syntax": "<'border-top-width'>{1,2}",
 			"relevance": 50,
 			"browsers": [
 				"E87",
@@ -20492,11 +22129,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The border-inline-width CSS property defines the width of the logical inline borders of an element, which maps to a physical border width depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-width and border-bottom-width, or border-left-width, and border-right-width property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			"name": "border-start-end-radius",
-			"syntax": "<length-percentage>{1,2}",
+			"syntax": "<'border-top-left-radius'>",
 			"relevance": 54,
 			"browsers": [
 				"E89",
@@ -20511,11 +22153,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-start-end-radius"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-09-20",
+				"baseline_high_date": "2024-03-20"
+			},
 			"description": "The border-start-end-radius CSS property defines a logical border radius on an element, which maps to a physical border radius depending on the element's writing-mode, direction, and text-orientation."
 		},
 		{
 			"name": "border-start-start-radius",
-			"syntax": "<length-percentage>{1,2}",
+			"syntax": "<'border-top-left-radius'>",
 			"relevance": 54,
 			"browsers": [
 				"E89",
@@ -20530,6 +22177,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-start-start-radius"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-09-20",
+				"baseline_high_date": "2024-03-20"
+			},
 			"description": "The border-start-start-radius CSS property defines a logical border radius on an element, which maps to a physical border radius that depends on the element's writing-mode, direction, and text-orientation."
 		},
 		{
@@ -20567,6 +22219,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-align"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The box-align CSS property specifies how an element aligns its contents across its layout in a perpendicular direction. The effect of the property is only visible if there is extra space in the box."
 		},
 		{
@@ -20598,6 +22253,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-direction"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The box-direction CSS property specifies whether a box lays out its contents normally (from the top or left edge), or in reverse (from the bottom or right edge)."
 		},
 		{
@@ -20618,6 +22276,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-flex"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The -moz-box-flex and -webkit-box-flex CSS properties specify how a -moz-box or -webkit-box grows to fill the box that contains it, in the direction of the containing box's layout."
 		},
 		{
@@ -20636,6 +22297,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-flex-group"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The box-flex-group CSS property assigns the flexbox's child elements to a flex group."
 		},
 		{
@@ -20662,6 +22326,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-lines"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The box-lines CSS property determines whether the box may have a single or multiple lines (rows for horizontally oriented boxes, columns for vertically oriented boxes)."
 		},
 		{
@@ -20682,6 +22349,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-ordinal-group"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The box-ordinal-group CSS property assigns the flexbox's child elements to an ordinal group."
 		},
 		{
@@ -20719,6 +22389,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-orient"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The box-orient CSS property specifies whether an element lays out its contents horizontally or vertically."
 		},
 		{
@@ -20753,6 +22426,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-pack"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The -moz-box-pack and -webkit-box-pack CSS properties specify how a -moz-box or -webkit-box packs its contents in the direction of its layout. The effect of this is only visible if there is extra space in the box."
 		},
 		{
@@ -20784,7 +22460,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "color-scheme",
 			"syntax": "normal | [ light | dark | <custom-ident> ]+ && only?",
-			"relevance": 57,
+			"relevance": 58,
 			"browsers": [
 				"E81",
 				"FF96",
@@ -20798,26 +22474,12 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/color-scheme"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-01-11",
+				"baseline_high_date": "2024-07-11"
+			},
 			"description": "The color-scheme CSS property allows an element to indicate which color schemes it can comfortably be rendered in."
-		},
-		{
-			"name": "contain-intrinsic-size",
-			"syntax": "[ auto? [ none | <length> ] ]{1,2}",
-			"relevance": 50,
-			"browsers": [
-				"E83",
-				"FF107",
-				"S17",
-				"C83",
-				"O69"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-size"
-				}
-			],
-			"description": "Size of an element when the element is subject to size containment."
 		},
 		{
 			"name": "contain-intrinsic-block-size",
@@ -20836,6 +22498,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-block-size"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-09-18"
+			},
 			"description": "Block size of an element when the element is subject to size containment."
 		},
 		{
@@ -20855,6 +22521,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-height"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-09-18"
+			},
 			"description": "Height of an element when the element is subject to size containment."
 		},
 		{
@@ -20874,7 +22544,34 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-inline-size"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-09-18"
+			},
 			"description": "Inline size of an element when the element is subject to size containment."
+		},
+		{
+			"name": "contain-intrinsic-size",
+			"syntax": "[ auto? [ none | <length> ] ]{1,2}",
+			"relevance": 50,
+			"browsers": [
+				"E83",
+				"FF107",
+				"S17",
+				"C83",
+				"O69"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-size"
+				}
+			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-09-18"
+			},
+			"description": "Size of an element when the element is subject to size containment."
 		},
 		{
 			"name": "contain-intrinsic-width",
@@ -20893,6 +22590,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-09-18"
+			},
 			"description": "Width of an element when the element is subject to size containment."
 		},
 		{
@@ -20912,6 +22613,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/container"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-02-14"
+			},
 			"description": "The container shorthand CSS property establishes the element as a query container and specifies the name or name for the containment context used in a container query."
 		},
 		{
@@ -20931,6 +22636,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/container-name"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-02-14"
+			},
 			"description": "The container-name CSS property specifies a list of query container names used by the @container at-rule in a container query."
 		},
 		{
@@ -20961,6 +22670,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/container-type"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-02-14"
+			},
 			"description": "The container-type CSS property is used to define the type of containment used in a container query."
 		},
 		{
@@ -20991,6 +22704,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/content-visibility"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2024-09-16"
+			},
 			"description": "Controls whether or not an element renders its contents at all, along with forcing a strong set of containments, allowing user agents to potentially omit large swathes of layout and rendering work until it becomes needed."
 		},
 		{
@@ -21010,30 +22727,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/counter-set"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-12-11"
+			},
 			"description": "The counter-set CSS property sets a CSS counter to a given value. It manipulates the value of existing counters, and will only create new counters if there isn't already a counter of the given name on the element."
-		},
-		{
-			"name": "d",
-			"syntax": "none | path(<string>)",
-			"relevance": 50,
-			"browsers": [
-				"E80",
-				"FF97",
-				"C80",
-				"O67"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/d"
-				}
-			],
-			"description": "The d CSS property defines a path to be drawn by the SVG path element. If present, it overrides the element's d attribute."
 		},
 		{
 			"name": "cx",
 			"syntax": "<length> | <percentage>",
-			"relevance": 51,
+			"relevance": 52,
 			"browsers": [
 				"E80",
 				"FF72",
@@ -21047,6 +22750,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/cx"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "The cx CSS property defines the x-axis center point of an SVG circle or ellipse element. If present, it overrides the element's cx attribute."
 		},
 		{
@@ -21066,7 +22774,33 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/cy"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "The cy CSS property defines the y-axis center point of an SVG circle or ellipse elements. If present, it overrides the element's cy attribute."
+		},
+		{
+			"name": "d",
+			"syntax": "none | path(<string>)",
+			"relevance": 50,
+			"browsers": [
+				"E80",
+				"FF97",
+				"C80",
+				"O67"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/d"
+				}
+			],
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": "The d CSS property defines a path to be drawn by the SVG path element. If present, it overrides the element's d attribute."
 		},
 		{
 			"name": "dominant-baseline",
@@ -21103,7 +22837,7 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"E80",
-				"FF72",
+				"FF1",
 				"S13.1",
 				"C80",
 				"O67"
@@ -21114,10 +22848,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/dominant-baseline"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-03-24",
+				"baseline_high_date": "2022-09-24"
+			},
 			"description": "The dominant-baseline CSS property specifies the specific baseline used to align the box's text and inline-level contents. It also indicates the default alignment baseline of any boxes participating in baseline alignment in the box's alignment context. If present, it overrides the shape's dominant-baseline attribute."
 		},
 		{
 			"name": "field-sizing",
+			"status": "experimental",
 			"syntax": "content | fixed",
 			"values": [
 				{
@@ -21139,6 +22879,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/field-sizing"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The field-sizing CSS property enables you to control the sizing behavior of elements that are given a default preferred size, such as form control elements. This property enables you to override the default sizing behavior, allowing form controls to adjust in size to fit their contents."
 		},
 		{
@@ -21166,11 +22909,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-optical-sizing"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-03-24",
+				"baseline_high_date": "2022-09-24"
+			},
 			"description": "The font-optical-sizing CSS property allows developers to control whether browsers render text with slightly differing visual representations to optimize viewing at different sizes, or not. This only works for fonts that have an optical size variation axis."
 		},
 		{
 			"name": "font-palette",
-			"syntax": "normal | light | dark | <palette-identifier>",
+			"syntax": "normal | light | dark | <palette-identifier> | <palette-mix()>",
 			"relevance": 50,
 			"browsers": [
 				"E101",
@@ -21185,27 +22933,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-palette"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2022-11-15"
+			},
 			"description": "The font-palette CSS property allows specifying one of the many palettes contained in a font that a user agent should use for the font. Users can also override the values in a palette or create a new palette by using the @font-palette-values at-rule."
-		},
-		{
-			"name": "font-variation-settings",
-			"atRule": "@font-face",
-			"syntax": "normal | [ <string> <number> ]#",
-			"relevance": 55,
-			"browsers": [
-				"E17",
-				"FF62",
-				"S11",
-				"C62",
-				"O49"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variation-settings"
-				}
-			],
-			"description": "The font-variation-settings CSS property provides low-level control over OpenType or TrueType font variations, by specifying the four letter axis names of the features you want to vary, along with their variation values."
 		},
 		{
 			"name": "font-smooth",
@@ -21225,10 +22957,14 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-smooth"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The font-smooth CSS property controls the application of anti-aliasing when fonts are rendered."
 		},
 		{
 			"name": "font-synthesis-position",
+			"status": "experimental",
 			"syntax": "auto | none",
 			"values": [
 				{
@@ -21248,6 +22984,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-synthesis-position"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The font-synthesis-position CSS property lets you specify whether or not a browser may synthesize the subscript and superscript \"position\" typefaces when they are missing in a font family, while using font-variant-position to set the positions."
 		},
 		{
@@ -21275,6 +23014,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-synthesis-small-caps"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-03-27"
+			},
 			"description": "The font-synthesis-small-caps CSS property lets you specify whether or not the browser may synthesize small-caps typeface when it is missing in a font family. Small-caps glyphs typically use the form of uppercase letters but are reduced to the size of lowercase letters."
 		},
 		{
@@ -21302,6 +23045,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-synthesis-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-03-27"
+			},
 			"description": "The font-synthesis-style CSS property lets you specify whether or not the browser may synthesize the oblique typeface when it is missing in a font family."
 		},
 		{
@@ -21329,6 +23076,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-synthesis-weight"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-03-27"
+			},
 			"description": "The font-synthesis-weight CSS property lets you specify whether or not the browser may synthesize the bold typeface when it is missing in a font family."
 		},
 		{
@@ -21353,7 +23104,8 @@ export const cssData : CSSDataV1 = {
 				"E131",
 				"FF108",
 				"S17.5",
-				"C131"
+				"C131",
+				"O116"
 			],
 			"references": [
 				{
@@ -21361,7 +23113,35 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-emoji"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The font-variant-emoji CSS property specifies the default presentation style for displaying emojis."
+		},
+		{
+			"name": "font-variation-settings",
+			"atRule": "@font-face",
+			"syntax": "normal | [ <string> <number> ]#",
+			"relevance": 57,
+			"browsers": [
+				"E17",
+				"FF62",
+				"S11",
+				"C62",
+				"O49"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variation-settings"
+				}
+			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2018-09-05",
+				"baseline_high_date": "2021-03-05"
+			},
+			"description": "The font-variation-settings CSS property provides low-level control over OpenType or TrueType font variations, by specifying the four letter axis names of the features you want to vary, along with their variation values."
 		},
 		{
 			"name": "forced-color-adjust",
@@ -21391,12 +23171,15 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/forced-color-adjust"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Allows authors to opt certain elements out of forced colors mode. This then restores the control of those values to CSS"
 		},
 		{
 			"name": "gap",
 			"syntax": "<'row-gap'> <'column-gap'>?",
-			"relevance": 73,
+			"relevance": 76,
 			"browsers": [
 				"E16",
 				"FF52",
@@ -21410,6 +23193,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/gap"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-10-17",
+				"baseline_high_date": "2020-04-17"
+			},
 			"description": "The gap CSS property is a shorthand property for row-gap and column-gap specifying the gutters between grid rows and columns."
 		},
 		{
@@ -21425,6 +23213,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/hanging-punctuation"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The hanging-punctuation CSS property specifies whether a punctuation mark should hang at the start or end of a line of text. Hanging punctuation may be placed outside the line box."
 		},
 		{
@@ -21444,6 +23235,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/hyphenate-character"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-09-18"
+			},
 			"description": "A hyphenate character used at the end of a line."
 		},
 		{
@@ -21452,6 +23247,7 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"E109",
+				"FF137",
 				"C109",
 				"O95"
 			],
@@ -21461,6 +23257,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/hyphenate-limit-chars"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The hyphenate-limit-chars CSS property specifies the minimum word length to allow hyphenation of words as well as the minimum number of characters before and after the hyphen."
 		},
 		{
@@ -21486,6 +23285,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/initial-letter"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The initial-letter CSS property specifies styling for dropped, raised, and sunken initial letters."
 		},
 		{
@@ -21496,23 +23298,9 @@ export const cssData : CSSDataV1 = {
 			"description": "The initial-letter-align CSS property specifies the alignment of initial letters within a paragraph."
 		},
 		{
-			"name": "input-security",
-			"syntax": "auto | none",
-			"values": [
-				{
-					"name": "auto"
-				},
-				{
-					"name": "none"
-				}
-			],
-			"relevance": 50,
-			"description": "Enables or disables the obscuring a sensitive test input."
-		},
-		{
 			"name": "inset",
 			"syntax": "<'top'>{1,4}",
-			"relevance": 62,
+			"relevance": 63,
 			"browsers": [
 				"E87",
 				"FF66",
@@ -21526,6 +23314,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/inset"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The inset CSS property defines the logical block and inline start and end offsets of an element, which map to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
@@ -21545,12 +23338,17 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-block"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The inset-block CSS property defines the logical block start and end offsets of an element, which maps to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			"name": "inset-block-end",
 			"syntax": "<'top'>",
-			"relevance": 50,
+			"relevance": 53,
 			"browsers": [
 				"E87",
 				"FF63",
@@ -21564,6 +23362,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-block-end"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The inset-block-end CSS property defines the logical block end offset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
@@ -21583,6 +23386,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-block-start"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The inset-block-start CSS property defines the logical block start offset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
@@ -21602,12 +23410,17 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-inline"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The inset-inline CSS property defines the logical block start and end offsets of an element, which maps to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			"name": "inset-inline-end",
 			"syntax": "<'top'>",
-			"relevance": 54,
+			"relevance": 55,
 			"browsers": [
 				"E87",
 				"FF63",
@@ -21621,6 +23434,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-inline-end"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The inset-inline-end CSS property defines the logical inline end inset of an element, which maps to a physical inset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
@@ -21640,10 +23458,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-inline-start"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The inset-inline-start CSS property defines the logical inline start inset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation."
 		},
 		{
 			"name": "interpolate-size",
+			"status": "experimental",
 			"syntax": "numeric-only | allow-keywords",
 			"values": [
 				{
@@ -21655,6 +23479,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 50,
 			"browsers": [
+				"E129",
 				"C129",
 				"O115"
 			],
@@ -21664,13 +23489,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/interpolate-size"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The interpolate-size CSS property allows you to enable animations and transitions between a <length-percentage> value and an intrinsic size value such as auto, fit-content, or max-content."
 		},
 		{
 			"name": "justify-tracks",
-			"status": "experimental",
+			"status": "nonstandard",
 			"syntax": "[ normal | <content-distribution> | <overflow-position>? [ <content-position> | left | right ] ]#",
-			"relevance": 50,
+			"relevance": 0,
 			"description": "The justify-tracks CSS property sets the alignment in the masonry axis for grid containers that have masonry in their inline axis"
 		},
 		{
@@ -21687,9 +23515,12 @@ export const cssData : CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-line-clamp"
+					"url": "https://developer.mozilla.org/docs/Web/CSS/line-clamp"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The line-clamp property allows limiting the contents of a block container to the specified number of lines; remaining content is fragmented away and neither rendered nor measured. Optionally, it also allows inserting content into the last line box to indicate the continuity of truncated/interrupted content."
 		},
 		{
@@ -21708,12 +23539,15 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/line-height-step"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The line-height-step CSS property defines the step units for line box heights. When the step unit is positive, line box heights are rounded up to the closest multiple of the unit. Negative values are invalid."
 		},
 		{
 			"name": "margin-block",
-			"syntax": "<'margin-left'>{1,2}",
-			"relevance": 54,
+			"syntax": "<'margin-top'>{1,2}",
+			"relevance": 55,
 			"browsers": [
 				"E87",
 				"FF66",
@@ -21727,11 +23561,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-block"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The margin-block CSS property defines the logical block start and end margins of an element, which maps to physical margins depending on the element's writing mode, directionality, and text orientation."
 		},
 		{
 			"name": "margin-inline",
-			"syntax": "<'margin-left'>{1,2}",
+			"syntax": "<'margin-top'>{1,2}",
 			"relevance": 55,
 			"browsers": [
 				"E87",
@@ -21746,6 +23585,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-inline"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The margin-inline CSS property defines the logical inline start and end margins of an element, which maps to physical margins depending on the element's writing mode, directionality, and text orientation."
 		},
 		{
@@ -21773,12 +23617,15 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-trim"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The margin-trim property allows the container to trim the margins of its children where they adjoin the container’s edges."
 		},
 		{
 			"name": "mask",
 			"syntax": "<mask-layer>#",
-			"relevance": 57,
+			"relevance": 58,
 			"browsers": [
 				"E120",
 				"FF53",
@@ -21792,6 +23639,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-12-07"
+			},
 			"description": "The mask CSS property alters the visibility of an element by either partially or fully hiding it. This is accomplished by either masking or clipping the image at specific points."
 		},
 		{
@@ -21810,6 +23661,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-border"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The mask-border CSS property lets you create a mask along the edge of an element's border.\n\nThis property is a shorthand for mask-border-source, mask-border-slice, mask-border-width, mask-border-outset, mask-border-repeat, and mask-border-mode. As with all shorthand properties, any omitted sub-values will be set to their initial value."
 		},
 		{
@@ -21842,6 +23696,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-outset"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The mask-border-outset CSS property specifies the distance by which an element's mask border is set out from its border box."
 		},
 		{
@@ -21860,6 +23717,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-repeat"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The mask-border-repeat CSS property defines how the edge regions of a source image are adjusted to fit the dimensions of an element's mask border."
 		},
 		{
@@ -21878,6 +23738,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-slice"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The mask-border-slice CSS property divides the image specified by mask-border-source into regions. These regions are used to form the components of an element's mask border."
 		},
 		{
@@ -21896,6 +23759,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-source"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The mask-border-source CSS property specifies the source image used to create an element's mask border.\n\nThe mask-border-slice property is used to divide the source image into regions, which are then dynamically applied to the final mask border."
 		},
 		{
@@ -21914,11 +23780,14 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-width"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The mask-border-width CSS property specifies the width of an element's mask border."
 		},
 		{
 			"name": "mask-clip",
-			"syntax": "[ <geometry-box> | no-clip ]#",
+			"syntax": "[ <coord-box> | no-clip ]#",
 			"relevance": 50,
 			"browsers": [
 				"E120",
@@ -21933,12 +23802,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-clip"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-12-07"
+			},
 			"description": "The mask-clip CSS property determines the area, which is affected by a mask. The painted content of an element must be restricted to this area."
 		},
 		{
 			"name": "mask-composite",
 			"syntax": "<compositing-operator>#",
-			"relevance": 52,
+			"relevance": 54,
 			"browsers": [
 				"E120",
 				"FF53",
@@ -21952,13 +23825,17 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-composite"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-12-07"
+			},
 			"description": "The mask-composite CSS property represents a compositing operation used on the current mask layer with the mask layers below it."
 		},
 		{
 			"name": "masonry-auto-flow",
-			"status": "experimental",
+			"status": "nonstandard",
 			"syntax": "[ pack | next ] || [ definite-first | ordered ]",
-			"relevance": 50,
+			"relevance": 0,
 			"description": "The masonry-auto-flow CSS property modifies how items are placed when using masonry in CSS Grid Layout."
 		},
 		{
@@ -21977,10 +23854,14 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/math-depth"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Describe a notion of \"depth\" for each element of a mathematical formula, with respect to the top-level container of that formula."
 		},
 		{
 			"name": "math-shift",
+			"status": "experimental",
 			"syntax": "normal | compact",
 			"values": [
 				{
@@ -22002,6 +23883,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/math-shift"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Used for positioning superscript during the layout of MathML scripted elements."
 		},
 		{
@@ -22029,6 +23913,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/math-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-08-29"
+			},
 			"description": "The math-style property indicates whether MathML equations should render with normal or compact height."
 		},
 		{
@@ -22055,6 +23943,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/offset"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-09-12",
+				"baseline_high_date": "2025-03-12"
+			},
 			"description": "The offset CSS property is a shorthand property for animating an element along a defined path."
 		},
 		{
@@ -22074,6 +23967,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/offset-anchor"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-08-21"
+			},
 			"description": "Defines an anchor point of the box positioned along the path. The anchor point specifies the point of the box which is to be considered as the point that is moved along the path."
 		},
 		{
@@ -22093,6 +23990,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/offset-distance"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-09-12",
+				"baseline_high_date": "2025-03-12"
+			},
 			"description": "The offset-distance CSS property specifies a position along an offset-path."
 		},
 		{
@@ -22112,6 +24014,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/offset-path"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-03-14",
+				"baseline_high_date": "2024-09-14"
+			},
 			"description": "The offset-path CSS property specifies the offset path where the element gets positioned. The exact element’s position on the offset path is determined by the offset-distance property. An offset path is either a specified path with one or multiple sub-paths or the geometry of a not-styled basic shape. Each shape or path must define an initial position for the computed value of \"0\" for offset-distance and an initial direction which specifies the rotation of the object to the initial position.\n\nIn this specification, a direction (or rotation) of 0 degrees is equivalent to the direction of the positive x-axis in the object’s local coordinate system. In other words, a rotation of 0 degree points to the right side of the UA if the object and its ancestors have no transformation applied."
 		},
 		{
@@ -22131,6 +24038,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/offset-position"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2024-01-23"
+			},
 			"description": "Specifies the initial position of the offset path. If position is specified with static, offset-position would be ignored."
 		},
 		{
@@ -22150,6 +24061,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/offset-rotate"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-09-12",
+				"baseline_high_date": "2025-03-12"
+			},
 			"description": "The offset-rotate CSS property defines the direction of the element while positioning along the offset path."
 		},
 		{
@@ -22177,6 +24093,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-anchor"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The overflow-anchor CSS property provides a way to opt out browser scroll anchoring behavior which adjusts scroll position to minimize content shifts."
 		},
 		{
@@ -22201,7 +24120,9 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 50,
 			"browsers": [
-				"FF69"
+				"E135",
+				"FF69",
+				"C135"
 			],
 			"references": [
 				{
@@ -22209,6 +24130,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-block"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The overflow-block CSS media feature can be used to test how the output device handles content that overflows the initial containing block along the block axis."
 		},
 		{
@@ -22242,6 +24166,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-clip-margin"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The overflow-clip-margin CSS property determines how far outside its bounds an element with overflow: clip may be painted before being clipped."
 		},
 		{
@@ -22266,7 +24193,9 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 50,
 			"browsers": [
-				"FF69"
+				"E135",
+				"FF69",
+				"C135"
 			],
 			"references": [
 				{
@@ -22274,6 +24203,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-inline"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The overflow-inline CSS media feature can be used to test how the output device handles content that overflows the initial containing block along the inline axis."
 		},
 		{
@@ -22300,6 +24232,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overlay"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The overlay CSS property specifies whether an element appearing in the top layer (for example, a shown popover or modal {{htmlelement(\"dialog\")}} element) is actually rendered in the top layer. This property is only relevant within a list of transition-property values, and only if allow-discrete is set as the transition-behavior."
 		},
 		{
@@ -22319,6 +24254,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-09-12",
+				"baseline_high_date": "2025-03-12"
+			},
 			"description": "The overscroll-behavior CSS property is shorthand for the overscroll-behavior-x and overscroll-behavior-y properties, which allow you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached."
 		},
 		{
@@ -22349,6 +24289,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-block"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-09-12",
+				"baseline_high_date": "2025-03-12"
+			},
 			"description": "The overscroll-behavior-block CSS property sets the browser's behavior when the block direction boundary of a scrolling area is reached."
 		},
 		{
@@ -22365,7 +24310,7 @@ export const cssData : CSSDataV1 = {
 					"name": "auto"
 				}
 			],
-			"relevance": 50,
+			"relevance": 51,
 			"browsers": [
 				"E79",
 				"FF73",
@@ -22379,6 +24324,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-inline"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-09-12",
+				"baseline_high_date": "2025-03-12"
+			},
 			"description": "The overscroll-behavior-inline CSS property sets the browser's behavior when the inline direction boundary of a scrolling area is reached."
 		},
 		{
@@ -22409,6 +24359,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-x"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-09-12",
+				"baseline_high_date": "2025-03-12"
+			},
 			"description": "The overscroll-behavior-x CSS property is allows you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached — in the x axis direction."
 		},
 		{
@@ -22439,11 +24394,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-y"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-09-12",
+				"baseline_high_date": "2025-03-12"
+			},
 			"description": "The overscroll-behavior-y CSS property is allows you to control the browser's scroll overflow behavior — what happens when the boundary of a scrolling area is reached — in the y axis direction."
 		},
 		{
 			"name": "padding-block",
-			"syntax": "<'padding-left'>{1,2}",
+			"syntax": "<'padding-top'>{1,2}",
 			"relevance": 56,
 			"browsers": [
 				"E87",
@@ -22458,11 +24418,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-block"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The padding-block CSS property defines the logical block start and end padding of an element, which maps to physical padding properties depending on the element's writing mode, directionality, and text orientation."
 		},
 		{
 			"name": "padding-inline",
-			"syntax": "<'padding-left'>{1,2}",
+			"syntax": "<'padding-top'>{1,2}",
 			"relevance": 57,
 			"browsers": [
 				"E87",
@@ -22477,6 +24442,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-inline"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The padding-inline CSS property defines the logical inline start and end padding of an element, which maps to physical padding properties depending on the element's writing mode, directionality, and text orientation."
 		},
 		{
@@ -22496,12 +24466,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/page"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-02-14"
+			},
 			"description": "The page CSS property is used to specify the named page, a specific type of page defined by the @page at-rule."
 		},
 		{
 			"name": "place-content",
 			"syntax": "<'align-content'> <'justify-content'>?",
-			"relevance": 53,
+			"relevance": 56,
 			"browsers": [
 				"E79",
 				"FF45",
@@ -22515,12 +24489,17 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/place-content"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "The place-content CSS shorthand property sets both the align-content and justify-content properties."
 		},
 		{
 			"name": "place-items",
 			"syntax": "<'align-items'> <'justify-items'>?",
-			"relevance": 52,
+			"relevance": 56,
 			"browsers": [
 				"E79",
 				"FF45",
@@ -22534,12 +24513,17 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/place-items"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "The CSS place-items shorthand property sets both the align-items and justify-items properties. The first value is the align-items property value, the second the justify-items one. If the second value is not present, the first value is also used for it."
 		},
 		{
 			"name": "place-self",
 			"syntax": "<'align-self'> <'justify-self'>?",
-			"relevance": 53,
+			"relevance": 51,
 			"browsers": [
 				"E79",
 				"FF45",
@@ -22553,6 +24537,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/place-self"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "The place-self CSS property is a shorthand property sets both the align-self and justify-self properties. The first value is the align-self property value, the second the justify-self one. If the second value is not present, the first value is also used for it."
 		},
 		{
@@ -22571,15 +24560,18 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/position-anchor"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The position-anchor property defines the default anchor specifier for all anchor functions on the element, allowing multiple elements to use the same set of anchor functions (and position options lists!) while changing which anchor element each is referring to."
 		},
 		{
 			"name": "position-area",
+			"status": "experimental",
 			"syntax": "none | <position-area>",
 			"relevance": 50,
 			"browsers": [
 				"E129",
-				"FF131",
 				"C129",
 				"O115"
 			],
@@ -22589,6 +24581,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/position-area"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The position-area CSS property enables an anchor-positioned element to be positioned relative to the edges of its associated anchor element by placing the positioned element on one or more tiles of an implicit 3x3 grid, where the anchoring element is the center cell."
 		},
 		{
@@ -22607,6 +24602,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/position-try"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "This shorthand sets both position-try-options and position-try-order. If <'position-try-order'> is omitted, it’s set to the property’s initial value."
 		},
 		{
@@ -22625,6 +24623,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/position-try-fallbacks"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The position-try-fallbacks CSS property enables you to specify a list of one or more alternative position try fallback options for anchor-positioned elements to be placed relative to their associated anchor elements. When the element would otherwise overflow its inset-modified containing block, the browser will try placing the positioned element in these different fallback positions, in the order provided, until it finds a value that stops it from overflowing its container or the viewport."
 		},
 		{
@@ -22643,6 +24644,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/position-try-order"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "This property specifies the order in which the position options list will be tried."
 		},
 		{
@@ -22661,6 +24665,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/position-visibility"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "There are times when an element’s anchors are not appropriate for positioning the element with, and it would be better to simply not display the element at all. position-visibility provides several conditions where this could be the case."
 		},
 		{
@@ -22688,6 +24695,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/print-color-adjust"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Defines what optimization the user agent is allowed to do when adjusting the appearance for an output device."
 		},
 		{
@@ -22707,12 +24717,17 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/r"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "The r CSS property defines the radius of a circle. It can only be used with the SVG circle element. If present, it overrides the circle's r attribute."
 		},
 		{
 			"name": "rotate",
 			"syntax": "none | <angle> | [ x | y | z | <number>{3} ] && <angle>",
-			"relevance": 51,
+			"relevance": 52,
 			"browsers": [
 				"E104",
 				"FF72",
@@ -22726,12 +24741,17 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/rotate"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-08-05",
+				"baseline_high_date": "2025-02-05"
+			},
 			"description": "The rotate CSS property allows you to specify rotation transforms individually and independently of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value."
 		},
 		{
 			"name": "row-gap",
 			"syntax": "normal | <length-percentage>",
-			"relevance": 59,
+			"relevance": 61,
 			"browsers": [
 				"E16",
 				"FF52",
@@ -22745,6 +24765,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/row-gap"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2017-10-17",
+				"baseline_high_date": "2020-04-17"
+			},
 			"description": "The row-gap CSS property specifies the gutter between grid rows."
 		},
 		{
@@ -22781,6 +24806,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/rx"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The rx CSS property defines the x-axis, or horizontal, radius of an SVG ellipse and the horizontal curve of the corners of an SVG rect rectangle. If present, it overrides the shape's rx attribute."
 		},
 		{
@@ -22799,6 +24827,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/ry"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The ry CSS property defines the y-axis, or vertical, radius of an SVG ellipse and the vertical curve of the corners of an SVG rect rectangle. If present, it overrides the shape's ry attribute."
 		},
 		{
@@ -22818,74 +24849,12 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scale"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-08-05",
+				"baseline_high_date": "2025-02-05"
+			},
 			"description": "The scale CSS property allows you to specify scale transforms individually and independently of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value."
-		},
-		{
-			"name": "scrollbar-color",
-			"syntax": "auto | <color>{2}",
-			"relevance": 54,
-			"browsers": [
-				"E121",
-				"FF64",
-				"C121",
-				"O107"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-color"
-				}
-			],
-			"description": "The scrollbar-color CSS property sets the color of the scrollbar track and thumb."
-		},
-		{
-			"name": "scrollbar-gutter",
-			"syntax": "auto | stable && both-edges?",
-			"relevance": 52,
-			"browsers": [
-				"E94",
-				"FF97",
-				"S18.2",
-				"C94",
-				"O80"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-gutter"
-				}
-			],
-			"description": "The scrollbar-gutter CSS property allows authors to reserve space for the scrollbar, preventing unwanted layout changes as the content grows while also avoiding unnecessary visuals when scrolling isn't needed."
-		},
-		{
-			"name": "scrollbar-width",
-			"syntax": "auto | thin | none",
-			"values": [
-				{
-					"name": "auto"
-				},
-				{
-					"name": "thin"
-				},
-				{
-					"name": "none"
-				}
-			],
-			"relevance": 66,
-			"browsers": [
-				"E121",
-				"FF64",
-				"S18.2",
-				"C121",
-				"O107"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-width"
-				}
-			],
-			"description": "The scrollbar-width property allows the author to set the maximum thickness of an element’s scrollbars when they are shown. "
 		},
 		{
 			"name": "scroll-margin",
@@ -22904,6 +24873,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-07-13",
+				"baseline_high_date": "2024-01-13"
+			},
 			"description": "The scroll-margin property is a shorthand property which sets all of the scroll-margin longhands, assigning values much like the margin property does for the margin-* longhands."
 		},
 		{
@@ -22923,26 +24897,12 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-09-20",
+				"baseline_high_date": "2024-03-20"
+			},
 			"description": "The scroll-margin-block property is a shorthand property which sets the scroll-margin longhands in the block dimension."
-		},
-		{
-			"name": "scroll-margin-block-start",
-			"syntax": "<length>",
-			"relevance": 50,
-			"browsers": [
-				"E79",
-				"FF68",
-				"S15",
-				"C69",
-				"O56"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block-start"
-				}
-			],
-			"description": "The scroll-margin-block-start property defines the margin of the scroll snap area at the start of the block dimension that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
 			"name": "scroll-margin-block-end",
@@ -22961,7 +24921,36 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block-end"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-09-20",
+				"baseline_high_date": "2024-03-20"
+			},
 			"description": "The scroll-margin-block-end property defines the margin of the scroll snap area at the end of the block dimension that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
+		},
+		{
+			"name": "scroll-margin-block-start",
+			"syntax": "<length>",
+			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S15",
+				"C69",
+				"O56"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block-start"
+				}
+			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-09-20",
+				"baseline_high_date": "2024-03-20"
+			},
+			"description": "The scroll-margin-block-start property defines the margin of the scroll snap area at the start of the block dimension that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
 			"name": "scroll-margin-bottom",
@@ -22980,6 +24969,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-bottom"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The scroll-margin-bottom property defines the bottom margin of the scroll snap area that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
@@ -22999,26 +24993,12 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-09-20",
+				"baseline_high_date": "2024-03-20"
+			},
 			"description": "The scroll-margin-inline property is a shorthand property which sets the scroll-margin longhands in the inline dimension."
-		},
-		{
-			"name": "scroll-margin-inline-start",
-			"syntax": "<length>",
-			"relevance": 50,
-			"browsers": [
-				"E79",
-				"FF68",
-				"S15",
-				"C69",
-				"O56"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline-start"
-				}
-			],
-			"description": "The scroll-margin-inline-start property defines the margin of the scroll snap area at the start of the inline dimension that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
 			"name": "scroll-margin-inline-end",
@@ -23037,7 +25017,36 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline-end"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-09-20",
+				"baseline_high_date": "2024-03-20"
+			},
 			"description": "The scroll-margin-inline-end property defines the margin of the scroll snap area at the end of the inline dimension that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
+		},
+		{
+			"name": "scroll-margin-inline-start",
+			"syntax": "<length>",
+			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S15",
+				"C69",
+				"O56"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline-start"
+				}
+			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-09-20",
+				"baseline_high_date": "2024-03-20"
+			},
+			"description": "The scroll-margin-inline-start property defines the margin of the scroll snap area at the start of the inline dimension that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
 			"name": "scroll-margin-left",
@@ -23056,6 +25065,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-left"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The scroll-margin-left property defines the left margin of the scroll snap area that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
@@ -23075,6 +25089,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-right"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The scroll-margin-right property defines the right margin of the scroll snap area that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
@@ -23094,12 +25113,17 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-top"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The scroll-margin-top property defines the top margin of the scroll snap area that is used for snapping this box to the snapport. The scroll snap area is determined by taking the transformed border box, finding its rectangular bounding box (axis-aligned in the scroll container’s coordinate space), then adding the specified outsets."
 		},
 		{
 			"name": "scroll-padding",
 			"syntax": "[ auto | <length-percentage> ]{1,4}",
-			"relevance": 52,
+			"relevance": 53,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -23113,6 +25137,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The scroll-padding property is a shorthand property which sets all of the scroll-padding longhands, assigning values much like the padding property does for the padding-* longhands."
 		},
 		{
@@ -23132,26 +25161,12 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-09-20",
+				"baseline_high_date": "2024-03-20"
+			},
 			"description": "The scroll-padding-block property is a shorthand property which sets the scroll-padding longhands for the block dimension."
-		},
-		{
-			"name": "scroll-padding-block-start",
-			"syntax": "auto | <length-percentage>",
-			"relevance": 50,
-			"browsers": [
-				"E79",
-				"FF68",
-				"S15",
-				"C69",
-				"O56"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block-start"
-				}
-			],
-			"description": "The scroll-padding-block-start property defines offsets for the start edge in the block dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
 			"name": "scroll-padding-block-end",
@@ -23170,7 +25185,36 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block-end"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-09-20",
+				"baseline_high_date": "2024-03-20"
+			},
 			"description": "The scroll-padding-block-end property defines offsets for the end edge in the block dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
+		},
+		{
+			"name": "scroll-padding-block-start",
+			"syntax": "auto | <length-percentage>",
+			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S15",
+				"C69",
+				"O56"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block-start"
+				}
+			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-09-20",
+				"baseline_high_date": "2024-03-20"
+			},
+			"description": "The scroll-padding-block-start property defines offsets for the start edge in the block dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
 			"name": "scroll-padding-bottom",
@@ -23189,6 +25233,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-bottom"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The scroll-padding-bottom property defines offsets for the bottom of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
@@ -23208,26 +25257,12 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-09-20",
+				"baseline_high_date": "2024-03-20"
+			},
 			"description": "The scroll-padding-inline property is a shorthand property which sets the scroll-padding longhands for the inline dimension."
-		},
-		{
-			"name": "scroll-padding-inline-start",
-			"syntax": "auto | <length-percentage>",
-			"relevance": 50,
-			"browsers": [
-				"E79",
-				"FF68",
-				"S15",
-				"C69",
-				"O56"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline-start"
-				}
-			],
-			"description": "The scroll-padding-inline-start property defines offsets for the start edge in the inline dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
 			"name": "scroll-padding-inline-end",
@@ -23246,7 +25281,36 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline-end"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-09-20",
+				"baseline_high_date": "2024-03-20"
+			},
 			"description": "The scroll-padding-inline-end property defines offsets for the end edge in the inline dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
+		},
+		{
+			"name": "scroll-padding-inline-start",
+			"syntax": "auto | <length-percentage>",
+			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S15",
+				"C69",
+				"O56"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline-start"
+				}
+			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-09-20",
+				"baseline_high_date": "2024-03-20"
+			},
+			"description": "The scroll-padding-inline-start property defines offsets for the start edge in the inline dimension of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
 			"name": "scroll-padding-left",
@@ -23265,6 +25329,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-left"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The scroll-padding-left property defines offsets for the left of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
@@ -23284,12 +25353,17 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-right"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The scroll-padding-right property defines offsets for the right of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
 			"name": "scroll-padding-top",
 			"syntax": "auto | <length-percentage>",
-			"relevance": 50,
+			"relevance": 51,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -23303,12 +25377,17 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-top"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
 			"description": "The scroll-padding-top property defines offsets for the top of the optimal viewing region of the scrollport: the region used as the target region for placing things in view of the user. This allows the author to exclude regions of the scrollport that are obscured by other content (such as fixed-positioned toolbars or sidebars) or simply to put more breathing room between a targeted element and the edges of the scrollport."
 		},
 		{
 			"name": "scroll-snap-align",
 			"syntax": "[ none | start | end | center ]{1,2}",
-			"relevance": 53,
+			"relevance": 54,
 			"browsers": [
 				"E79",
 				"FF68",
@@ -23322,6 +25401,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-align"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "The scroll-snap-align property specifies the box’s snap position as an alignment of its snap area (as the alignment subject) within its snap container’s snapport (as the alignment container). The two values specify the snapping alignment in the block axis and inline axis, respectively. If only one value is specified, the second value defaults to the same value."
 		},
 		{
@@ -23335,7 +25419,7 @@ export const cssData : CSSDataV1 = {
 					"name": "always"
 				}
 			],
-			"relevance": 51,
+			"relevance": 52,
 			"browsers": [
 				"E79",
 				"FF103",
@@ -23349,6 +25433,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-stop"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-07-26",
+				"baseline_high_date": "2025-01-26"
+			},
 			"description": "The scroll-snap-stop CSS property defines whether the scroll container is allowed to \"pass over\" possible snap positions."
 		},
 		{
@@ -23404,6 +25493,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-timeline"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Defines a name that can be used to identify the source element of a scroll timeline, along with the scrollbar axis that should provide the timeline."
 		},
 		{
@@ -23423,12 +25515,15 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-timeline-axis"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Specifies the scrollbar that will be used to provide the timeline for a scroll-timeline animation"
 		},
 		{
 			"name": "scroll-timeline-name",
 			"status": "experimental",
-			"syntax": "none | <dashed-ident>#",
+			"syntax": "[ none | <dashed-ident> ]#",
 			"relevance": 50,
 			"browsers": [
 				"E115",
@@ -23442,7 +25537,184 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-timeline-name"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Defines a name that can be used to identify an element as the source of a scroll-timeline."
+		},
+		{
+			"name": "scrollbar-color",
+			"syntax": "auto | <color>{2}",
+			"relevance": 55,
+			"browsers": [
+				"E121",
+				"FF64",
+				"C121",
+				"O107"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-color"
+				}
+			],
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": "The scrollbar-color CSS property sets the color of the scrollbar track and thumb."
+		},
+		{
+			"name": "scrollbar-gutter",
+			"syntax": "auto | stable && both-edges?",
+			"relevance": 52,
+			"browsers": [
+				"E94",
+				"FF97",
+				"S18.2",
+				"C94",
+				"O80"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-gutter"
+				}
+			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2024-12-11"
+			},
+			"description": "The scrollbar-gutter CSS property allows authors to reserve space for the scrollbar, preventing unwanted layout changes as the content grows while also avoiding unnecessary visuals when scrolling isn't needed."
+		},
+		{
+			"name": "scrollbar-width",
+			"syntax": "auto | thin | none",
+			"values": [
+				{
+					"name": "auto"
+				},
+				{
+					"name": "thin"
+				},
+				{
+					"name": "none"
+				}
+			],
+			"relevance": 68,
+			"browsers": [
+				"E121",
+				"FF64",
+				"S18.2",
+				"C121",
+				"O107"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-width"
+				}
+			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2024-12-11"
+			},
+			"description": "The scrollbar-width property allows the author to set the maximum thickness of an element’s scrollbars when they are shown. "
+		},
+		{
+			"name": "speak-as",
+			"atRule": "@counter-style",
+			"syntax": "auto | bullets | numbers | words | spell-out | <counter-style-name>",
+			"relevance": 50,
+			"browsers": [
+				"S11.1"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/speak-as"
+				}
+			],
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": "The speak-as descriptor specifies how a counter symbol constructed with a given @counter-style will be represented in the spoken form. For example, an author can specify a counter symbol to be either spoken as its numerical value or just represented with an audio cue."
+		},
+		{
+			"name": "text-box",
+			"syntax": "normal | <'text-box-trim'> || <'text-box-edge'>",
+			"relevance": 50,
+			"browsers": [
+				"E133",
+				"S18.2",
+				"C133",
+				"O118"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-box"
+				}
+			],
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
+		},
+		{
+			"name": "text-box-edge",
+			"syntax": "auto | <text-edge>",
+			"relevance": 50,
+			"browsers": [
+				"E133",
+				"S18.2",
+				"C133",
+				"O118"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-box-edge"
+				}
+			],
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
+		},
+		{
+			"name": "text-box-trim",
+			"syntax": "none | trim-start | trim-end | trim-both",
+			"values": [
+				{
+					"name": "none"
+				},
+				{
+					"name": "trim-start"
+				},
+				{
+					"name": "trim-end"
+				},
+				{
+					"name": "trim-both"
+				}
+			],
+			"relevance": 50,
+			"browsers": [
+				"E133",
+				"S18.2",
+				"C133",
+				"O118"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/text-box-trim"
+				}
+			],
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
 		},
 		{
 			"name": "text-combine-upright",
@@ -23462,13 +25734,18 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-combine-upright"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-03-14",
+				"baseline_high_date": "2024-09-14"
+			},
 			"description": "The text-combine-upright CSS property specifies the combination of multiple characters into the space of a single character. If the combined text is wider than 1em, the user agent must fit the contents within 1em. The resulting composition is treated as a single upright glyph for layout and decoration. This property only has an effect in vertical writing modes.\n\nThis is used to produce an effect that is known as tate-chū-yoko (縦中横) in Japanese, or as 直書橫向 in Chinese."
 		},
 		{
 			"name": "text-decoration-skip",
 			"status": "experimental",
 			"syntax": "none | [ objects || [ spaces | [ leading-spaces || trailing-spaces ] ] || edges || box-decoration ]",
-			"relevance": 52,
+			"relevance": 50,
 			"browsers": [
 				"S12.1",
 				"C57",
@@ -23480,6 +25757,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-skip"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The text-decoration-skip CSS property specifies what parts of the element’s content any text decoration affecting the element must skip over. It controls all text decoration lines drawn by the element and also any text decoration lines drawn by its ancestors."
 		},
 		{
@@ -23510,12 +25790,17 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-skip-ink"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-03-14",
+				"baseline_high_date": "2024-09-14"
+			},
 			"description": "The text-decoration-skip-ink CSS property specifies how overlines and underlines are drawn when they pass over glyph ascenders and descenders."
 		},
 		{
 			"name": "text-decoration-thickness",
 			"syntax": "auto | from-font | <length> | <percentage> ",
-			"relevance": 51,
+			"relevance": 52,
 			"browsers": [
 				"E89",
 				"FF70",
@@ -23529,6 +25814,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-thickness"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-03-04",
+				"baseline_high_date": "2023-09-04"
+			},
 			"description": "The text-decoration-thickness CSS property sets the thickness, or width, of the decoration line that is used on text in an element, such as a line-through, underline, or overline."
 		},
 		{
@@ -23548,6 +25838,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-03-03",
+				"baseline_high_date": "2024-09-03"
+			},
 			"description": "The text-emphasis CSS property is a shorthand property for setting text-emphasis-style and text-emphasis-color in one declaration. This property will apply the specified emphasis mark to each character of the element's text, except separator characters, like spaces,  and control characters."
 		},
 		{
@@ -23567,6 +25862,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis-color"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-03-03",
+				"baseline_high_date": "2024-09-03"
+			},
 			"description": "The text-emphasis-color CSS property defines the color used to draw emphasis marks on text being rendered in the HTML document. This value can also be set and reset using the text-emphasis shorthand."
 		},
 		{
@@ -23586,6 +25886,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis-position"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-03-03",
+				"baseline_high_date": "2024-09-03"
+			},
 			"description": "The text-emphasis-position CSS property describes where emphasis marks are drawn at. The effect of emphasis marks on the line height is the same as for ruby text: if there isn't enough place, the line height is increased."
 		},
 		{
@@ -23605,13 +25910,18 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-03-03",
+				"baseline_high_date": "2024-09-03"
+			},
 			"description": "The text-emphasis-style CSS property defines the type of emphasis used. It can also be set, and reset, using the text-emphasis shorthand."
 		},
 		{
 			"name": "text-size-adjust",
 			"status": "experimental",
 			"syntax": "none | auto | <percentage>",
-			"relevance": 59,
+			"relevance": 61,
 			"browsers": [
 				"E79",
 				"C54",
@@ -23623,12 +25933,15 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-size-adjust"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The text-size-adjust CSS property controls the text inflation algorithm used on some smartphones and tablets. Other browsers will ignore this property."
 		},
 		{
 			"name": "text-spacing-trim",
 			"status": "experimental",
-			"syntax": "space-all | normal | space-first | trim-start | trim-both | trim-all | auto",
+			"syntax": "space-all | normal | space-first | trim-start",
 			"values": [
 				{
 					"name": "space-all"
@@ -23641,18 +25954,9 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "trim-start"
-				},
-				{
-					"name": "trim-both"
-				},
-				{
-					"name": "trim-all"
-				},
-				{
-					"name": "auto"
 				}
 			],
-			"relevance": 51,
+			"relevance": 50,
 			"browsers": [
 				"E123",
 				"C123",
@@ -23664,6 +25968,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-spacing-trim"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The text-spacing-trim CSS property controls the internal spacing set on Chinese/Japanese/Korean (CJK) punctuation characters between adjacent characters (kerning) and at the start or end of text lines."
 		},
 		{
@@ -23683,12 +25990,17 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-underline-offset"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-11-19",
+				"baseline_high_date": "2023-05-19"
+			},
 			"description": "The text-underline-offset CSS property sets the offset distance of an underline text decoration line (applied using text-decoration) from its original position."
 		},
 		{
 			"name": "text-wrap",
-			"syntax": "<'text-wrap-mode> || <'text-wrap-style'>",
-			"relevance": 56,
+			"syntax": "<'text-wrap-mode'> || <'text-wrap-style'>",
+			"relevance": 58,
 			"browsers": [
 				"E114",
 				"FF121",
@@ -23702,15 +26014,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-wrap"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2024-03-05"
+			},
 			"description": "The text-wrap CSS property controls how text inside an element is wrapped."
 		},
 		{
 			"name": "text-wrap-mode",
-			"syntax": "auto | wrap | nowrap",
+			"syntax": "wrap | nowrap",
 			"values": [
-				{
-					"name": "auto"
-				},
 				{
 					"name": "wrap"
 				},
@@ -23720,8 +26033,11 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 50,
 			"browsers": [
+				"E130",
 				"FF124",
-				"S17.4"
+				"S17.4",
+				"C130",
+				"O115"
 			],
 			"references": [
 				{
@@ -23729,6 +26045,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-wrap-mode"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2024-10-17"
+			},
 			"description": "The text-wrap-mode CSS property controls whether the text inside an element is wrapped. The different values provide alternate ways of wrapping the content of a block element. It can also be set, and reset, using the {{CSSXRef(\"text-wrap\")}} shorthand."
 		},
 		{
@@ -23753,7 +26073,8 @@ export const cssData : CSSDataV1 = {
 				"E130",
 				"FF124",
 				"S17.5",
-				"C130"
+				"C130",
+				"O115"
 			],
 			"references": [
 				{
@@ -23761,6 +26082,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-wrap-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2024-10-17"
+			},
 			"description": "The text-wrap-style CSS property controls how text inside an element is wrapped. The different values provide alternate ways of wrapping the content of a block element. It can also be set, and reset, using the {{CSSXRef(\"text-wrap\")}} shorthand."
 		},
 		{
@@ -23779,6 +26104,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/timeline-scope"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The timeline-scope CSS property modifies the scope of a named animation timeline."
 		},
 		{
@@ -23815,6 +26143,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/transform-box"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "The transform-box CSS property defines the layout box to which the transform and transform-origin properties relate."
 		},
 		{
@@ -23834,12 +26167,16 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/transition-behavior"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2024-08-06"
+			},
 			"description": "The transition-behavior CSS property specifies whether transitions will be started for properties whose animation behavior is discrete."
 		},
 		{
 			"name": "translate",
 			"syntax": "none | <length-percentage> [ <length-percentage> <length>? ]?",
-			"relevance": 50,
+			"relevance": 51,
 			"browsers": [
 				"E104",
 				"FF72",
@@ -23853,6 +26190,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/translate"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-08-05",
+				"baseline_high_date": "2025-02-05"
+			},
 			"description": "The translate CSS property allows you to specify translation transforms individually and independently of the transform property. This maps better to typical user interface usage, and saves having to remember the exact order of transform functions to specify in the transform value."
 		},
 		{
@@ -23889,6 +26231,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/vector-effect"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "The vector-effect CSS property suppresses specific transformation effects in SVG, thus permitting effects like a road on a map staying the same width no matter how the map is zoomed, or allowing a diagram key to retain its position and size regardless of other transforms. It can only be used with SVG elements that accept the vector-effect attribute. When used, the CSS value overrides any values of the element's vector-effect attribute."
 		},
 		{
@@ -23908,6 +26255,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/view-timeline"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The view-timeline CSS shorthand property is used to define a named view progress timeline, which is progressed through based on the change in visibility of an element (known as the subject) inside a scrollable element (scroller). view-timeline is set on the subject."
 		},
 		{
@@ -23927,6 +26277,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/view-timeline-axis"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The view-timeline-axis CSS property is used to specify the scrollbar direction that will be used to provide the timeline for a named view progress timeline animation, which is progressed through based on the change in visibility of an element (known as the subject) inside a scrollable element (scroller). view-timeline-axis is set on the subject. See CSS scroll-driven animations for more details."
 		},
 		{
@@ -23945,6 +26298,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/view-timeline-inset"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The view-timeline-inset CSS property is used to specify one or two values representing an adjustment to the position of the scrollport (see Scroll container for more details) in which the subject element of a named view progress timeline animation is deemed to be visible. Put another way, this allows you to specify start and/or end inset (or outset) values that offset the position of the timeline."
 		},
 		{
@@ -23964,7 +26320,25 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/view-timeline-name"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The view-timeline-name CSS property is used to define the name of a named view progress timeline, which is progressed through based on the change in visibility of an element (known as the subject) inside a scrollable element (scroller). view-timeline is set on the subject."
+		},
+		{
+			"name": "view-transition-class",
+			"syntax": "none | <custom-ident>+",
+			"relevance": 50,
+			"browsers": [
+				"E125",
+				"S18.2",
+				"C125",
+				"O111"
+			],
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
 		},
 		{
 			"name": "view-transition-name",
@@ -23982,12 +26356,15 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/view-transition-name"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The view-transition-name CSS property provides the selected element with a distinct identifying name (a custom-ident) and causes it to participate in a separate view transition from the root view transition — or no view transition if the none value is specified."
 		},
 		{
 			"name": "white-space",
-			"syntax": "normal | pre | nowrap | pre-wrap | pre-line | break-spaces | [ <'white-space-collapse'> || <'text-wrap'> || <'white-space-trim'> ]",
-			"relevance": 89,
+			"syntax": "normal | pre | pre-wrap | pre-line | <'white-space-collapse'> || <'text-wrap-mode'>",
+			"relevance": 90,
 			"browsers": [
 				"E12",
 				"FF1",
@@ -24002,17 +26379,19 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/white-space"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Specifies how whitespace is handled in an element."
 		},
 		{
 			"name": "white-space-collapse",
-			"syntax": "collapse | discard | preserve | preserve-breaks | preserve-spaces | break-spaces",
+			"syntax": "collapse | preserve | preserve-breaks | preserve-spaces | break-spaces",
 			"values": [
 				{
 					"name": "collapse"
-				},
-				{
-					"name": "discard"
 				},
 				{
 					"name": "preserve"
@@ -24041,6 +26420,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/white-space-collapse"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2024-03-19"
+			},
 			"description": "The white-space-collapse CSS property controls how white space inside an element is collapsed."
 		},
 		{
@@ -24060,6 +26443,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/x"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "The x CSS property defines the x-axis coordinate of the top left corner of the SVG rect shape, image image, foreignObject viewport or nested svg viewport relative to the nearest <svg> ancestor's user coordinate system. If present, it overrides the element's x attribute."
 		},
 		{
@@ -24079,17 +26467,64 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/y"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "The y CSS property defines the y-axis coordinate of the top left corner of the SVG rect shape, image image, foreignObject viewport and nested svg viewport relative to the nearest <svg> ancestor's user coordinate system. If present, it overrides the element's y attribute."
 		},
 		{
-			"name": "speak-as",
-			"atRule": "@counter-style",
-			"syntax": "auto | bullets | numbers | words | spell-out | <counter-style-name>",
+			"name": "ascent-override",
+			"atRule": "@font-face",
+			"syntax": "normal | <percentage>",
 			"relevance": 50,
-			"browsers": [
-				"S11.1"
+			"description": "Describes the ascent metric of a font."
+		},
+		{
+			"name": "descent-override",
+			"atRule": "@font-face",
+			"syntax": "normal | <percentage>",
+			"relevance": 50,
+			"description": "Describes the descent metric of a font."
+		},
+		{
+			"name": "font-display",
+			"atRule": "@font-face",
+			"syntax": "auto | block | swap | fallback | optional",
+			"values": [
+				{
+					"name": "auto"
+				},
+				{
+					"name": "block"
+				},
+				{
+					"name": "swap"
+				},
+				{
+					"name": "fallback"
+				},
+				{
+					"name": "optional"
+				}
 			],
-			"description": "The speak-as descriptor specifies how a counter symbol constructed with a given @counter-style will be represented in the spoken form. For example, an author can specify a counter symbol to be either spoken as its numerical value or just represented with an audio cue."
+			"relevance": 75,
+			"description": "The font-display descriptor determines how a font face is displayed based on whether and when it is downloaded and ready to use."
+		},
+		{
+			"name": "line-gap-override",
+			"atRule": "@font-face",
+			"syntax": "normal | <percentage>",
+			"relevance": 50,
+			"description": "Describes the line-gap metric of a font."
+		},
+		{
+			"name": "size-adjust",
+			"atRule": "@font-face",
+			"syntax": "<percentage>",
+			"relevance": 50,
+			"description": "A multiplier for glyph outlines and metrics of a font."
 		},
 		{
 			"name": "base-palette",
@@ -24101,49 +26536,9 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "override-colors",
 			"atRule": "@font-palette-values",
-			"syntax": "[ <integer [0,∞]> <absolute-color-base> ]#",
+			"syntax": "[ <integer [0,∞]> <color> ]#",
 			"relevance": 50,
 			"description": "The override-colors CSS descriptor is used to override colors in the chosen base-palette for a color font."
-		},
-		{
-			"name": "ascent-override",
-			"atRule": "@font-face",
-			"status": "experimental",
-			"syntax": "normal | <percentage>",
-			"relevance": 50,
-			"description": "Describes the ascent metric of a font."
-		},
-		{
-			"name": "descent-override",
-			"atRule": "@font-face",
-			"status": "experimental",
-			"syntax": "normal | <percentage>",
-			"relevance": 50,
-			"description": "Describes the descent metric of a font."
-		},
-		{
-			"name": "font-display",
-			"atRule": "@font-face",
-			"status": "experimental",
-			"syntax": "[ auto | block | swap | fallback | optional ]",
-			"relevance": 74,
-			"description": "The font-display descriptor determines how a font face is displayed based on whether and when it is downloaded and ready to use."
-		},
-		{
-			"name": "line-gap-override",
-			"atRule": "@font-face",
-			"status": "experimental",
-			"syntax": "normal | <percentage>",
-			"relevance": 50,
-			"description": "Describes the line-gap metric of a font."
-		},
-		{
-			"name": "size-adjust",
-			"atRule": "@font-face",
-			"status": "experimental",
-			"syntax": "<percentage>",
-			"relevance": 50,
-			"description": "A multiplier for glyph outlines and metrics of a font."
 		},
 		{
 			"name": "bleed",
@@ -24163,21 +26558,12 @@ export const cssData : CSSDataV1 = {
 			"name": "page-orientation",
 			"atRule": "@page",
 			"syntax": "upright | rotate-left | rotate-right ",
-			"relevance": 51,
-			"description": "The page-orientation CSS descriptor for the @page at-rule controls the rotation of a printed page. It handles the flow of content across pages when the orientation of a page is changed. This behavior differs from the size descriptor in that a user can define the direction in which to rotate the page."
-		},
-		{
-			"name": "syntax",
-			"atRule": "@property",
-			"status": "experimental",
-			"syntax": "<string>",
 			"relevance": 50,
-			"description": "Specifies the syntax of the custom property registration represented by the @property rule, controlling how the property’s value is parsed at computed value time."
+			"description": "The page-orientation CSS descriptor for the @page at-rule controls the rotation of a printed page. It handles the flow of content across pages when the orientation of a page is changed. This behavior differs from the size descriptor in that a user can define the direction in which to rotate the page."
 		},
 		{
 			"name": "inherits",
 			"atRule": "@property",
-			"status": "experimental",
 			"syntax": "true | false",
 			"values": [
 				{
@@ -24193,10 +26579,38 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "initial-value",
 			"atRule": "@property",
-			"status": "experimental",
 			"syntax": "<declaration-value>?",
 			"relevance": 50,
 			"description": "Specifies the initial value of the custom property registration represented by the @property rule, controlling the property’s initial value."
+		},
+		{
+			"name": "syntax",
+			"atRule": "@property",
+			"syntax": "<string>",
+			"relevance": 51,
+			"description": "Specifies the syntax of the custom property registration represented by the @property rule, controlling how the property’s value is parsed at computed value time."
+		},
+		{
+			"name": "navigation",
+			"atRule": "@view-transition",
+			"syntax": "auto | none",
+			"values": [
+				{
+					"name": "auto"
+				},
+				{
+					"name": "none"
+				}
+			],
+			"relevance": 50,
+			"description": ""
+		},
+		{
+			"name": "types",
+			"atRule": "@view-transition",
+			"syntax": "none | <custom-ident>+",
+			"relevance": 50,
+			"description": ""
 		}
 	],
 	"atDirectives": [
@@ -24216,6 +26630,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@charset"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Defines character set of the document."
 		},
 		{
@@ -24233,6 +26652,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@counter-style"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-09-18"
+			},
 			"description": "Defines a custom counter style."
 		},
 		{
@@ -24251,6 +26674,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@font-face"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Allows for linking to fonts that are automatically activated when needed. This permits authors to work around the limitation of 'web-safe' fonts, allowing for consistent rendering independent of the fonts available in a given user's environment."
 		},
 		{
@@ -24268,6 +26696,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@font-feature-values"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-03-13"
+			},
 			"description": "Defines named values for the indices used to select alternate glyphs for a given font family."
 		},
 		{
@@ -24286,6 +26718,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@import"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Includes content of another file."
 		},
 		{
@@ -24304,6 +26741,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@keyframes"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "Defines set of animation key frames."
 		},
 		{
@@ -24321,6 +26763,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@layer"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-03-14",
+				"baseline_high_date": "2024-09-14"
+			},
 			"description": "Declare a cascade layer and the order of precedence in case of multiple cascade layers."
 		},
 		{
@@ -24339,6 +26786,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@media"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Defines a stylesheet for a particular media type."
 		},
 		{
@@ -24379,6 +26831,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@namespace"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Declares a prefix and associates it with a namespace name."
 		},
 		{
@@ -24400,6 +26857,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF19",
+				"S18.2",
 				"C2",
 				"IE8",
 				"O6"
@@ -24410,6 +26868,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@page"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2024-12-11"
+			},
 			"description": "Directive defines various page parameters."
 		},
 		{
@@ -24427,6 +26889,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@property"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2024-07-09"
+			},
 			"description": "Describes the aspect of custom properties and variables."
 		},
 		{
@@ -24444,6 +26910,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@supports"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-09-30",
+				"baseline_high_date": "2018-03-30"
+			},
 			"description": "A conditional group rule whose condition tests whether the user agent supports CSS property:value pairs."
 		},
 		{
@@ -24472,6 +26943,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:active"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Applies while an element is being activated by the user. For example, between the times the user presses the mouse button and releases it."
 		},
 		{
@@ -24489,6 +26965,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:any-link"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Represents an element that acts as the source anchor of a hyperlink. Applies to both visited and unvisited links."
 		},
 		{
@@ -24507,6 +26988,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:checked"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Radio and checkbox elements can be toggled by the user. Some menu items are 'checked' when the user selects them. When such elements are toggled 'on' the :checked pseudo-class applies."
 		},
 		{
@@ -24540,6 +27026,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:default"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Applies to the one or more UI elements that are the default among a set of similar elements. Typically applies to context menu items, buttons, and select lists/menus."
 		},
 		{
@@ -24558,6 +27049,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:disabled"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Represents user interface elements that are in a disabled state; such elements have a corresponding enabled state."
 		},
 		{
@@ -24584,6 +27080,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:empty"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Represents an element that has no children at all."
 		},
 		{
@@ -24602,6 +27103,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:enabled"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Represents user interface elements that are in an enabled state; such elements have a corresponding disabled state."
 		},
 		{
@@ -24628,6 +27134,10 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:first"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-08-01"
+			},
 			"description": "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context."
 		},
 		{
@@ -24646,6 +27156,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:first-child"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Same as :nth-child(1). Represents an element that is the first child of some other element."
 		},
 		{
@@ -24664,6 +27179,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:first-of-type"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Same as :nth-of-type(1). Represents an element that is the first sibling of its type in the list of children of its parent element."
 		},
 		{
@@ -24682,6 +27202,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:focus"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Applies while an element has the focus (accepts keyboard or mouse events, or other forms of input)."
 		},
 		{
@@ -24700,6 +27225,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:fullscreen"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Matches any element that has its fullscreen flag set."
 		},
 		{
@@ -24716,6 +27244,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:future"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Represents any element that is defined to occur entirely after a :current element."
 		},
 		{
@@ -24741,22 +27272,39 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:host"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "When evaluated in the context of a shadow tree, matches the shadow tree's host element."
 		},
 		{
 			"name": ":host()",
 			"browsers": [
-				"C35",
-				"O22"
+				"E79",
+				"FF63",
+				"S10",
+				"C54",
+				"O41"
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "When evaluated in the context of a shadow tree, it matches the shadow tree's host element if the host element, in its normal context, matches the selector argument."
 		},
 		{
 			"name": ":host-context()",
 			"browsers": [
-				"C35",
-				"O22"
+				"E79",
+				"C54",
+				"O41"
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Tests whether there is an ancestor, outside the shadow tree, which matches a particular selector."
 		},
 		{
@@ -24775,6 +27323,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:hover"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Applies while the user designates an element with a pointing device, but does not necessarily activate it. For example, a visual user agent could apply this pseudo-class when the cursor (mouse pointer) hovers over a box generated by the element."
 		},
 		{
@@ -24801,6 +27354,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:indeterminate"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Applies to UI elements whose value is in an indeterminate state."
 		},
 		{
@@ -24818,6 +27376,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:in-range"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-11-12",
+				"baseline_high_date": "2018-05-12"
+			},
 			"description": "Used in conjunction with the min and max attributes, whether on a range input, a number field, or any other types that accept those attributes."
 		},
 		{
@@ -24836,18 +27399,28 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:invalid"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "An element is :valid or :invalid when it is, respectively, valid or invalid with respect to data validity semantics defined by a different specification."
 		},
 		{
 			"name": ":lang()",
 			"browsers": [
-				"E",
-				"C",
+				"E12",
 				"FF1",
+				"S3.1",
+				"C1",
 				"IE8",
-				"O8",
-				"S3"
+				"O8"
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Represents an element that is in language specified."
 		},
 		{
@@ -24866,6 +27439,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:last-child"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Same as :nth-last-child(1). Represents an element that is the last child of some other element."
 		},
 		{
@@ -24884,6 +27462,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:last-of-type"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Same as :nth-last-of-type(1). Represents an element that is the last sibling of its type in the list of children of its parent element."
 		},
 		{
@@ -24901,6 +27484,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:left"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context."
 		},
 		{
@@ -24919,6 +27505,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:link"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Applies to links that have not yet been visited."
 		},
 		{
@@ -24953,6 +27544,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-broken"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Non-standard. Matches elements representing broken images."
 		},
 		{
@@ -24973,6 +27567,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-first-node"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Non-standard. Represents an element that is the first child node of some other element."
 		},
 		{
@@ -25000,6 +27597,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-last-node"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Non-standard. Represents an element that is the last child node of some other element."
 		},
 		{
@@ -25020,6 +27620,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-only-whitespace"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The same as :empty, except that it additionally matches elements that only contain code points affected by whitespace processing. Standardized as :blank."
 		},
 		{
@@ -25040,6 +27643,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-submit-invalid"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Non-standard. Represents any submit button when the contents of the associated form are not valid."
 		},
 		{
@@ -25081,6 +27687,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-window-inactive"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Non-standard. Matches elements in an inactive window."
 		},
 		{
@@ -25123,61 +27732,86 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": ":not()",
 			"browsers": [
-				"E",
-				"C",
+				"E12",
 				"FF1",
+				"S3.1",
+				"C1",
 				"IE9",
-				"O9.5",
-				"S2"
+				"O9.5"
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "The negation pseudo-class, :not(X), is a functional notation taking a simple selector (excluding the negation pseudo-class itself) as an argument. It represents an element that is not represented by its argument."
 		},
 		{
 			"name": ":nth-child()",
 			"browsers": [
-				"E",
-				"C",
+				"E12",
 				"FF3.5",
+				"S3.1",
+				"C1",
 				"IE9",
-				"O9.5",
-				"S3.1"
+				"O9.5"
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Represents an element that has an+b-1 siblings before it in the document tree, for any positive integer or zero value of n, and has a parent element."
 		},
 		{
 			"name": ":nth-last-child()",
 			"browsers": [
-				"E",
-				"C",
+				"E12",
 				"FF3.5",
+				"S3.1",
+				"C4",
 				"IE9",
-				"O9.5",
-				"S3.1"
+				"O9"
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Represents an element that has an+b-1 siblings after it in the document tree, for any positive integer or zero value of n, and has a parent element."
 		},
 		{
 			"name": ":nth-last-of-type()",
 			"browsers": [
-				"E",
-				"C",
+				"E12",
 				"FF3.5",
+				"S3.1",
+				"C4",
 				"IE9",
-				"O9.5",
-				"S3.1"
+				"O9.5"
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Represents an element that has an+b-1 siblings with the same expanded element name after it in the document tree, for any zero or positive integer value of n, and has a parent element."
 		},
 		{
 			"name": ":nth-of-type()",
 			"browsers": [
-				"E",
-				"C",
+				"E12",
 				"FF3.5",
+				"S3.1",
+				"C1",
 				"IE9",
-				"O9.5",
-				"S3.1"
+				"O9.5"
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Represents an element that has an+b-1 siblings with the same expanded element name before it in the document tree, for any zero or positive integer value of n, and has a parent element."
 		},
 		{
@@ -25196,6 +27830,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:only-child"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Represents an element that has a parent element and whose parent element has no other element children. Same as :first-child:last-child or :nth-child(1):nth-last-child(1), but with a lower specificity."
 		},
 		{
@@ -25214,6 +27853,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:only-of-type"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Matches every element that is the only child of its type, of its parent. Same as :first-of-type:last-of-type or :nth-of-type(1):nth-last-of-type(1), but with a lower specificity."
 		},
 		{
@@ -25232,6 +27876,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:optional"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "A form element is :required or :optional if a value for it is, respectively, required or optional before the form it belongs to is submitted. Elements that are not form elements are neither required nor optional."
 		},
 		{
@@ -25249,6 +27898,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:out-of-range"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-11-12",
+				"baseline_high_date": "2018-05-12"
+			},
 			"description": "Used in conjunction with the min and max attributes, whether on a range input, a number field, or any other types that accept those attributes."
 		},
 		{
@@ -25265,6 +27919,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:past"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Represents any element that is defined to occur entirely prior to a :current element."
 		},
 		{
@@ -25282,6 +27939,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:read-only"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "An element whose contents are not user-alterable is :read-only. However, elements whose contents are user-alterable (such as text input fields) are considered to be in a :read-write state. In typical documents, most elements are :read-only."
 		},
 		{
@@ -25299,6 +27961,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:read-write"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
 			"description": "An element whose contents are not user-alterable is :read-only. However, elements whose contents are user-alterable (such as text input fields) are considered to be in a :read-write state. In typical documents, most elements are :read-only."
 		},
 		{
@@ -25317,6 +27984,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:required"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "A form element is :required or :optional if a value for it is, respectively, required or optional before the form it belongs to is submitted. Elements that are not form elements are neither required nor optional."
 		},
 		{
@@ -25334,6 +28006,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:right"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context."
 		},
 		{
@@ -25352,6 +28027,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:root"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Represents an element that is the root of the document. In HTML 4, this is always the HTML element."
 		},
 		{
@@ -25369,6 +28049,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:scope"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "Represents any element that is in the contextual reference element set."
 		},
 		{
@@ -25403,6 +28088,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:target"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Some URIs refer to a location within a resource. This kind of URI ends with a 'number sign' (#) followed by an anchor identifier (called the fragment identifier)."
 		},
 		{
@@ -25421,6 +28111,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:valid"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "An element is :valid or :invalid when it is, respectively, valid or invalid with respect to data validity semantics defined by a different specification."
 		},
 		{
@@ -25447,6 +28142,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:visited"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Applies once the link has been visited by the user."
 		},
 		{
@@ -25474,24 +28174,80 @@ export const cssData : CSSDataV1 = {
 			"description": "Non-standard. Applies to all scrollbar pieces. Indicates whether or not the window containing the scrollbar is currently active."
 		},
 		{
+			"name": ":active-view-transition",
+			"browsers": [
+				"E125",
+				"S18",
+				"C125",
+				"O111"
+			],
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
+		},
+		{
+			"name": ":active-view-transition-type()",
+			"browsers": [
+				"E125",
+				"Spreview",
+				"C125",
+				"O111"
+			],
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
+		},
+		{
+			"name": ":autofill",
+			"browsers": [
+				"E110",
+				"FF86",
+				"S15",
+				"C110",
+				"O96"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:autofill"
+				}
+			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-02-09"
+			},
+			"description": ""
+		},
+		{
+			"name": ":blank",
+			"status": "experimental",
+			"description": "The :blank CSS pseudo-class selects empty user input elements (eg. <input> or <textarea>)."
+		},
+		{
+			"name": ":buffering",
+			"browsers": [
+				"S15.4"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:buffering"
+				}
+			],
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
+		},
+		{
 			"name": ":current",
 			"status": "experimental",
 			"description": "The :current CSS pseudo-class selector is a time-dimensional pseudo-class that represents the element, or an ancestor of the element, that is currently being displayed"
 		},
 		{
-			"name": ":blank",
-			"status": "experimental",
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:blank"
-				}
-			],
-			"description": "The :blank CSS pseudo-class selects empty user input elements (eg. <input> or <textarea>)."
-		},
-		{
 			"name": ":defined",
-			"status": "experimental",
 			"browsers": [
 				"E79",
 				"FF63",
@@ -25505,10 +28261,15 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:defined"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "The :defined CSS pseudo-class represents any element that has been defined. This includes any standard element built in to the browser, and custom elements that have been successfully defined (i.e. with the CustomElementRegistry.define() method)."
 		},
 		{
-			"name": ":dir",
+			"name": ":dir()",
 			"browsers": [
 				"E120",
 				"FF49",
@@ -25516,13 +28277,11 @@ export const cssData : CSSDataV1 = {
 				"C120",
 				"O106"
 			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:dir"
-				}
-			],
-			"description": "The :dir() CSS pseudo-class matches elements based on the directionality of the text contained in them."
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-12-07"
+			},
+			"description": ""
 		},
 		{
 			"name": ":focus-visible",
@@ -25539,6 +28298,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:focus-visible"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-03-14",
+				"baseline_high_date": "2024-09-14"
+			},
 			"description": "The :focus-visible pseudo-class applies while an element matches the :focus pseudo-class and the UA determines via heuristics that the focus should be made evident on the element."
 		},
 		{
@@ -25556,11 +28320,15 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:focus-within"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "The :focus-within pseudo-class applies to any element for which the :focus pseudo class applies as well as to an element whose descendant in the flat tree (including non-element nodes, such as text nodes) matches the conditions for matching :focus."
 		},
 		{
-			"name": ":has",
-			"status": "experimental",
+			"name": ":has()",
 			"browsers": [
 				"E105",
 				"FF121",
@@ -25568,17 +28336,32 @@ export const cssData : CSSDataV1 = {
 				"C105",
 				"O91"
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-12-19"
+			},
+			"description": ""
+		},
+		{
+			"name": ":has-slotted",
+			"browsers": [
+				"E134",
+				"FF136",
+				"C134"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:has"
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:has-slotted"
 				}
 			],
-			"description": ":The :has() CSS pseudo-class represents an element if any of the selectors passed as parameters (relative to the :scope of the given element), match at least one element."
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
 		},
 		{
-			"name": ":is",
-			"status": "experimental",
+			"name": ":is()",
 			"browsers": [
 				"E88",
 				"FF78",
@@ -25586,13 +28369,12 @@ export const cssData : CSSDataV1 = {
 				"C88",
 				"O74"
 			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:is"
-				}
-			],
-			"description": "The :is() CSS pseudo-class function takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list. This is useful for writing large selectors in a more compact form."
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-01-21",
+				"baseline_high_date": "2023-07-21"
+			},
+			"description": ""
 		},
 		{
 			"name": ":local-link",
@@ -25600,8 +28382,45 @@ export const cssData : CSSDataV1 = {
 			"description": "The :local-link CSS pseudo-class represents an link to the same document"
 		},
 		{
+			"name": ":modal",
+			"browsers": [
+				"E105",
+				"FF103",
+				"S15.6",
+				"C105",
+				"O91"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:modal"
+				}
+			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-09-02",
+				"baseline_high_date": "2025-03-02"
+			},
+			"description": ""
+		},
+		{
+			"name": ":muted",
+			"browsers": [
+				"S15.4"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:muted"
+				}
+			],
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
+		},
+		{
 			"name": ":paused",
-			"status": "experimental",
 			"browsers": [
 				"S15.4"
 			],
@@ -25611,11 +28430,32 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:paused"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The :paused CSS pseudo-class selector is a resource state pseudo-class that will match an audio, video, or similar resource that is capable of being “played” or “paused”, when that element is “paused”."
 		},
 		{
+			"name": ":picture-in-picture",
+			"browsers": [
+				"E110",
+				"S13.1",
+				"C110",
+				"O96"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:picture-in-picture"
+				}
+			],
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": "The :picture-in-picture CSS pseudo-class matches the element which is currently in picture-in-picture mode."
+		},
+		{
 			"name": ":placeholder-shown",
-			"status": "experimental",
 			"browsers": [
 				"E79",
 				"FF51",
@@ -25630,11 +28470,15 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:placeholder-shown"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "The :placeholder-shown CSS pseudo-class represents any <input> or <textarea> element that is currently displaying placeholder text."
 		},
 		{
 			"name": ":playing",
-			"status": "experimental",
 			"browsers": [
 				"S15.4"
 			],
@@ -25644,22 +28488,98 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:playing"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The :playing CSS pseudo-class selector is a resource state pseudo-class that will match an audio, video, or similar resource that is capable of being “played” or “paused”, when that element is “playing”. "
+		},
+		{
+			"name": ":popover-open",
+			"browsers": [
+				"E114",
+				"FF125",
+				"S17",
+				"C114",
+				"O100"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:popover-open"
+				}
+			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2024-04-16"
+			},
+			"description": ""
+		},
+		{
+			"name": ":seeking",
+			"browsers": [
+				"S15.4"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:seeking"
+				}
+			],
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
+		},
+		{
+			"name": ":stalled",
+			"browsers": [
+				"S15.4"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:stalled"
+				}
+			],
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
+		},
+		{
+			"name": ":state()",
+			"browsers": [
+				"E125",
+				"FF126",
+				"S17.4",
+				"C125",
+				"O111"
+			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2024-05-17"
+			},
+			"description": ""
+		},
+		{
+			"name": ":target-current",
+			"status": "experimental",
+			"browsers": [
+				"E135",
+				"C135"
+			],
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
 		},
 		{
 			"name": ":target-within",
 			"status": "experimental",
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:target-within"
-				}
-			],
 			"description": "The :target-within CSS pseudo-class represents an element that is a target element or contains an element that is a target. A target element is a unique element with an id matching the URL's fragment."
 		},
 		{
 			"name": ":user-invalid",
-			"status": "experimental",
 			"browsers": [
 				"E119",
 				"FF88",
@@ -25673,11 +28593,14 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:user-invalid"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-11-02"
+			},
 			"description": "The :user-invalid CSS pseudo-class represents any validated form element whose value isn't valid based on their validation constraints, after the user has interacted with it."
 		},
 		{
 			"name": ":user-valid",
-			"status": "experimental",
 			"browsers": [
 				"E119",
 				"FF88",
@@ -25691,11 +28614,30 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:user-valid"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2023-11-02"
+			},
 			"description": "The :user-valid CSS pseudo-class represents any validated form element whose value validates correctly based on its validation constraints. However, unlike :valid it only matches once the user has interacted with it."
 		},
 		{
-			"name": ":where",
-			"status": "experimental",
+			"name": ":volume-locked",
+			"browsers": [
+				"S15.4"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:volume-locked"
+				}
+			],
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
+		},
+		{
+			"name": ":where()",
 			"browsers": [
 				"E88",
 				"FF78",
@@ -25703,30 +28645,25 @@ export const cssData : CSSDataV1 = {
 				"C88",
 				"O74"
 			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:where"
-				}
-			],
-			"description": "The :where() CSS pseudo-class function takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list."
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-01-21",
+				"baseline_high_date": "2023-07-21"
+			},
+			"description": ""
 		},
 		{
-			"name": ":picture-in-picture",
+			"name": ":xr-overlay",
 			"status": "experimental",
 			"browsers": [
-				"E110",
-				"S13.1",
-				"C110",
-				"O96"
+				"E83",
+				"C83",
+				"O69"
 			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:picture-in-picture"
-				}
-			],
-			"description": "The :picture-in-picture CSS pseudo-class matches the element which is currently in picture-in-picture mode."
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
 		}
 	],
 	"pseudoElements": [
@@ -25746,6 +28683,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::after"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Represents a styleable child pseudo-element immediately after the originating element's actual content."
 		},
 		{
@@ -25764,6 +28706,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::backdrop"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2022-03-14",
+				"baseline_high_date": "2024-09-14"
+			},
 			"description": "Used to create a backdrop that hides the underlying document for an element in a top layer (such as an element that is displayed fullscreen)."
 		},
 		{
@@ -25782,6 +28729,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::before"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Represents a styleable child pseudo-element immediately before the originating element's actual content."
 		},
 		{
@@ -25806,15 +28758,27 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::cue"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			}
 		},
 		{
 			"name": "::cue()",
 			"browsers": [
-				"C",
-				"O16",
-				"S6"
-			]
+				"E79",
+				"FF55",
+				"S7",
+				"C26",
+				"O15"
+			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			}
 		},
 		{
 			"name": "::cue-region",
@@ -25848,6 +28812,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::first-letter"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Represents the first letter of an element, if it is not preceded by any other content (such as images or inline tables) on its line."
 		},
 		{
@@ -25866,6 +28835,11 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::first-line"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2015-07-29",
+				"baseline_high_date": "2018-01-29"
+			},
 			"description": "Describes the contents of the first formatted line of its originating element."
 		},
 		{
@@ -25878,7 +28852,10 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-focus-inner"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": false
+			}
 		},
 		{
 			"name": "::-moz-focus-outer",
@@ -25897,6 +28874,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-list-bullet"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Used to style the bullet of a list element. Similar to the standardized ::marker."
 		},
 		{
@@ -25910,6 +28890,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-list-number"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Used to style the numbers of a list element. Similar to the standardized ::marker."
 		},
 		{
@@ -25930,6 +28913,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-progress-bar"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Represents the bar portion of a progress bar."
 		},
 		{
@@ -26074,6 +29060,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::selection"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "Represents the portion of a document that has been highlighted by the user."
 		},
 		{
@@ -26105,7 +29094,10 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-inner-spin-button"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": false
+			}
 		},
 		{
 			"name": "::-webkit-input-placeholder",
@@ -26135,7 +29127,10 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-meter-bar"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": false
+			}
 		},
 		{
 			"name": "::-webkit-meter-even-less-good-value",
@@ -26150,7 +29145,10 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-meter-even-less-good-value"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": false
+			}
 		},
 		{
 			"name": "::-webkit-meter-optimum-value",
@@ -26165,7 +29163,10 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-meter-optimum-value"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": false
+			}
 		},
 		{
 			"name": "::-webkit-meter-suboptimum-value",
@@ -26180,7 +29181,10 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-meter-suboptimum-value"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": false
+			}
 		},
 		{
 			"name": "::-webkit-outer-spin-button",
@@ -26203,7 +29207,10 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-progress-bar"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": false
+			}
 		},
 		{
 			"name": "::-webkit-progress-inner-element",
@@ -26218,7 +29225,10 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-progress-inner-element"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": false
+			}
 		},
 		{
 			"name": "::-webkit-progress-value",
@@ -26233,7 +29243,10 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-progress-value"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": false
+			}
 		},
 		{
 			"name": "::-webkit-resizer",
@@ -26248,7 +29261,10 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": false
+			}
 		},
 		{
 			"name": "::-webkit-scrollbar",
@@ -26263,7 +29279,10 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": false
+			}
 		},
 		{
 			"name": "::-webkit-scrollbar-button",
@@ -26278,7 +29297,10 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": false
+			}
 		},
 		{
 			"name": "::-webkit-scrollbar-corner",
@@ -26293,7 +29315,10 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": false
+			}
 		},
 		{
 			"name": "::-webkit-scrollbar-thumb",
@@ -26308,7 +29333,10 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": false
+			}
 		},
 		{
 			"name": "::-webkit-scrollbar-track",
@@ -26323,7 +29351,10 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": false
+			}
 		},
 		{
 			"name": "::-webkit-scrollbar-track-piece",
@@ -26338,7 +29369,10 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": false
+			}
 		},
 		{
 			"name": "::-webkit-search-cancel-button",
@@ -26353,7 +29387,10 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-search-cancel-button"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": false
+			}
 		},
 		{
 			"name": "::-webkit-search-decoration",
@@ -26375,7 +29412,10 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-search-results-button"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": false
+			}
 		},
 		{
 			"name": "::-webkit-search-results-decoration",
@@ -26388,6 +29428,7 @@ export const cssData : CSSDataV1 = {
 			"name": "::-webkit-slider-runnable-track",
 			"browsers": [
 				"E83",
+				"S18",
 				"C83",
 				"O69"
 			],
@@ -26396,12 +29437,16 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-slider-runnable-track"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": false
+			}
 		},
 		{
 			"name": "::-webkit-slider-thumb",
 			"browsers": [
 				"E83",
+				"S18",
 				"C83",
 				"O69"
 			],
@@ -26410,7 +29455,10 @@ export const cssData : CSSDataV1 = {
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-slider-thumb"
 				}
-			]
+			],
+			"baselineStatus": {
+				"baseline": false
+			}
 		},
 		{
 			"name": "::-webkit-textfield-decoration-container",
@@ -26469,24 +29517,6 @@ export const cssData : CSSDataV1 = {
 			]
 		},
 		{
-			"name": "::target-text",
-			"status": "experimental",
-			"browsers": [
-				"E89",
-				"FF131",
-				"S18.2",
-				"C89",
-				"O75"
-			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::target-text"
-				}
-			],
-			"description": "The ::target-text CSS pseudo-element represents the text that has been scrolled to if the browser supports scroll-to-text fragments. It allows authors to choose how to highlight that section of text."
-		},
-		{
 			"name": "::-moz-range-progress",
 			"status": "nonstandard",
 			"browsers": [
@@ -26498,6 +29528,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-range-progress"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The ::-moz-range-progress CSS pseudo-element is a Mozilla extension that represents the lower portion of the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\". This portion corresponds to values lower than the value currently selected by the thumb (i.e., virtual knob)."
 		},
 		{
@@ -26512,6 +29545,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-range-thumb"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The ::-moz-range-thumb CSS pseudo-element is a Mozilla extension that represents the thumb (i.e., virtual knob) of an <input> of type=\"range\". The user can move the thumb along the input's track to alter its numerical value."
 		},
 		{
@@ -26526,6 +29562,9 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-range-track"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The ::-moz-range-track CSS pseudo-element is a Mozilla extension that represents the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\"."
 		},
 		{
@@ -26534,8 +29573,50 @@ export const cssData : CSSDataV1 = {
 			"description": "The ::-webkit-progress-value CSS pseudo-element represents the filled-in portion of the bar of a <progress> element. It is a child of the ::-webkit-progress-bar pseudo-element.\n\nIn order to let ::-webkit-progress-value take effect, -webkit-appearance needs to be set to none on the <progress> element."
 		},
 		{
-			"name": "::grammar-error",
+			"name": "::details-content",
 			"status": "experimental",
+			"browsers": [
+				"E131",
+				"S18.4",
+				"C131",
+				"O116"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::details-content"
+				}
+			],
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
+		},
+		{
+			"name": "::file-selector-button",
+			"browsers": [
+				"E89",
+				"FF82",
+				"S14.1",
+				"C89",
+				"IE10",
+				"O75"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::file-selector-button"
+				}
+			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2021-04-26",
+				"baseline_high_date": "2023-10-26"
+			},
+			"description": ""
+		},
+		{
+			"name": "::grammar-error",
 			"browsers": [
 				"E121",
 				"S17.4",
@@ -26548,7 +29629,24 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::grammar-error"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The ::grammar-error CSS pseudo-element represents a text segment which the user agent has flagged as grammatically incorrect."
+		},
+		{
+			"name": "::highlight()",
+			"browsers": [
+				"E105",
+				"FFpreview",
+				"S17.2",
+				"C105",
+				"O91"
+			],
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
 		},
 		{
 			"name": "::marker",
@@ -26565,11 +29663,13 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::marker"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The ::marker CSS pseudo-element selects the marker box of a list item, which typically contains a bullet or number. It works on any element or pseudo-element set to display: list-item, such as the <li> and <summary> elements."
 		},
 		{
-			"name": "::part",
-			"status": "experimental",
+			"name": "::part()",
 			"browsers": [
 				"E79",
 				"FF72",
@@ -26577,13 +29677,12 @@ export const cssData : CSSDataV1 = {
 				"C73",
 				"O60"
 			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::part"
-				}
-			],
-			"description": "The ::part CSS pseudo-element represents any element within a shadow tree that has a matching part attribute."
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-07-28",
+				"baseline_high_date": "2023-01-28"
+			},
+			"description": ""
 		},
 		{
 			"name": "::placeholder",
@@ -26600,10 +29699,39 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::placeholder"
 				}
 			],
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
 			"description": "The ::placeholder CSS pseudo-element represents the placeholder text of a form element."
 		},
 		{
-			"name": "::slotted",
+			"name": "::scroll-marker",
+			"status": "experimental",
+			"browsers": [
+				"E135",
+				"C135"
+			],
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
+		},
+		{
+			"name": "::scroll-marker-group",
+			"status": "experimental",
+			"browsers": [
+				"E135",
+				"C135"
+			],
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
+		},
+		{
+			"name": "::slotted()",
 			"browsers": [
 				"E79",
 				"FF63",
@@ -26611,17 +29739,15 @@ export const cssData : CSSDataV1 = {
 				"C50",
 				"O37"
 			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::slotted"
-				}
-			],
-			"description": "The :slotted() CSS pseudo-element represents any element that has been placed into a slot inside an HTML template."
+			"baselineStatus": {
+				"baseline": "high",
+				"baseline_low_date": "2020-01-15",
+				"baseline_high_date": "2022-07-15"
+			},
+			"description": ""
 		},
 		{
 			"name": "::spelling-error",
-			"status": "experimental",
 			"browsers": [
 				"E121",
 				"S17.4",
@@ -26634,11 +29760,34 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::spelling-error"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The ::spelling-error CSS pseudo-element represents a text segment which the user agent has flagged as incorrectly spelled."
 		},
 		{
+			"name": "::target-text",
+			"browsers": [
+				"E89",
+				"FF131",
+				"S18.2",
+				"C89",
+				"O75"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::target-text"
+				}
+			],
+			"baselineStatus": {
+				"baseline": "low",
+				"baseline_low_date": "2024-12-11"
+			},
+			"description": "The ::target-text CSS pseudo-element represents the text that has been scrolled to if the browser supports scroll-to-text fragments. It allows authors to choose how to highlight that section of text."
+		},
+		{
 			"name": "::view-transition",
-			"status": "experimental",
 			"browsers": [
 				"E109",
 				"S18",
@@ -26651,75 +29800,62 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::view-transition"
 				}
 			],
+			"baselineStatus": {
+				"baseline": false
+			},
 			"description": "The ::view-transition CSS pseudo-element represents the root of the view transitions overlay, which contains all view transitions and sits over the top of all other page content."
 		},
 		{
-			"name": "::view-transition-group",
-			"status": "experimental",
+			"name": "::view-transition-group()",
 			"browsers": [
 				"E109",
 				"S18",
 				"C109",
 				"O95"
 			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::view-transition-group"
-				}
-			],
-			"description": "The ::view-transition-group CSS pseudo-element represents a single view transition group."
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
 		},
 		{
-			"name": "::view-transition-image-pair",
-			"status": "experimental",
+			"name": "::view-transition-image-pair()",
 			"browsers": [
 				"E109",
 				"S18",
 				"C109",
 				"O95"
 			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::view-transition-image-pair"
-				}
-			],
-			"description": "The ::view-transition-image-pair CSS pseudo-element represents a container for a view transition's \"old\" and \"new\" view states — before and after the transition."
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
 		},
 		{
-			"name": "::view-transition-new",
-			"status": "experimental",
+			"name": "::view-transition-new()",
 			"browsers": [
 				"E109",
 				"S18",
 				"C109",
 				"O95"
 			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::view-transition-new"
-				}
-			],
-			"description": "The ::view-transition-new CSS pseudo-element represents the \"new\" view state of a view transition — a live representation of the new view, after the transition."
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
 		},
 		{
-			"name": "::view-transition-old",
-			"status": "experimental",
+			"name": "::view-transition-old()",
 			"browsers": [
 				"E109",
 				"S18",
 				"C109",
 				"O95"
 			],
-			"references": [
-				{
-					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::view-transition-old"
-				}
-			],
-			"description": "The ::view-transition-old CSS pseudo-element represents the \"old\" view state of a view transition — a static screenshot of the old view, before the transition."
+			"baselineStatus": {
+				"baseline": false
+			},
+			"description": ""
 		}
 	]
 };

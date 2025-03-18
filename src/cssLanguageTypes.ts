@@ -189,6 +189,7 @@ export interface IPropertyData {
 	name: string;
 	description?: string | MarkupContent;
 	browsers?: string[];
+	baselineStatus?: BaselineStatus;
 	restrictions?: string[];
 	status?: EntryStatus;
 	syntax?: string;
@@ -240,6 +241,12 @@ export interface ICSSDataProvider {
 	provideAtDirectives(): IAtDirectiveData[];
 	providePseudoClasses(): IPseudoClassData[];
 	providePseudoElements(): IPseudoElementData[];
+}
+
+export interface BaselineStatus {
+	baseline: string;
+	baseline_low_date?: string;
+	baseline_high_date?: string;
 }
 
 export enum FileType {
