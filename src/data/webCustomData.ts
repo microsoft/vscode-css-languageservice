@@ -27280,13 +27280,19 @@ export const cssData : CSSDataV1 = {
 			"description": "When evaluated in the context of a shadow tree, matches the shadow tree's host element."
 		},
 		{
-			"name": ":host()",
+			"name": ":host",
 			"browsers": [
 				"E79",
 				"FF63",
 				"S10",
 				"C54",
 				"O41"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:host"
+				}
 			],
 			"baselineStatus": {
 				"baseline": "high",
@@ -27296,11 +27302,17 @@ export const cssData : CSSDataV1 = {
 			"description": "When evaluated in the context of a shadow tree, it matches the shadow tree's host element if the host element, in its normal context, matches the selector argument."
 		},
 		{
-			"name": ":host-context()",
+			"name": ":host-context",
 			"browsers": [
 				"E79",
 				"C54",
 				"O41"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:host-context"
+				}
 			],
 			"baselineStatus": {
 				"baseline": false
@@ -27407,7 +27419,7 @@ export const cssData : CSSDataV1 = {
 			"description": "An element is :valid or :invalid when it is, respectively, valid or invalid with respect to data validity semantics defined by a different specification."
 		},
 		{
-			"name": ":lang()",
+			"name": ":lang",
 			"browsers": [
 				"E12",
 				"FF1",
@@ -27415,6 +27427,12 @@ export const cssData : CSSDataV1 = {
 				"C1",
 				"IE8",
 				"O8"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:lang"
+				}
 			],
 			"baselineStatus": {
 				"baseline": "high",
@@ -27513,14 +27531,14 @@ export const cssData : CSSDataV1 = {
 			"description": "Applies to links that have not yet been visited."
 		},
 		{
-			"name": ":matches()",
+			"name": ":matches",
 			"browsers": [
 				"S9"
 			],
 			"description": "Takes a selector list as its argument. It represents an element that is represented by its argument."
 		},
 		{
-			"name": ":-moz-any()",
+			"name": ":-moz-any",
 			"browsers": [
 				"FF4"
 			],
@@ -27714,7 +27732,7 @@ export const cssData : CSSDataV1 = {
 			"description": "Windows Store apps only. Applies one or more styles to an element when it has focus and the user presses the space bar."
 		},
 		{
-			"name": ":-ms-lang()",
+			"name": ":-ms-lang",
 			"browsers": [
 				"E",
 				"IE10"
@@ -27730,7 +27748,7 @@ export const cssData : CSSDataV1 = {
 			"description": "Non-standard. Applies to track pieces. Applies when there is no button at that end of the track."
 		},
 		{
-			"name": ":not()",
+			"name": ":not",
 			"browsers": [
 				"E12",
 				"FF1",
@@ -27738,6 +27756,12 @@ export const cssData : CSSDataV1 = {
 				"C1",
 				"IE9",
 				"O9.5"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:not"
+				}
 			],
 			"baselineStatus": {
 				"baseline": "high",
@@ -27747,7 +27771,7 @@ export const cssData : CSSDataV1 = {
 			"description": "The negation pseudo-class, :not(X), is a functional notation taking a simple selector (excluding the negation pseudo-class itself) as an argument. It represents an element that is not represented by its argument."
 		},
 		{
-			"name": ":nth-child()",
+			"name": ":nth-child",
 			"browsers": [
 				"E12",
 				"FF3.5",
@@ -27755,6 +27779,12 @@ export const cssData : CSSDataV1 = {
 				"C1",
 				"IE9",
 				"O9.5"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:nth-child"
+				}
 			],
 			"baselineStatus": {
 				"baseline": "high",
@@ -27764,7 +27794,7 @@ export const cssData : CSSDataV1 = {
 			"description": "Represents an element that has an+b-1 siblings before it in the document tree, for any positive integer or zero value of n, and has a parent element."
 		},
 		{
-			"name": ":nth-last-child()",
+			"name": ":nth-last-child",
 			"browsers": [
 				"E12",
 				"FF3.5",
@@ -27772,6 +27802,12 @@ export const cssData : CSSDataV1 = {
 				"C4",
 				"IE9",
 				"O9"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:nth-last-child"
+				}
 			],
 			"baselineStatus": {
 				"baseline": "high",
@@ -27781,7 +27817,7 @@ export const cssData : CSSDataV1 = {
 			"description": "Represents an element that has an+b-1 siblings after it in the document tree, for any positive integer or zero value of n, and has a parent element."
 		},
 		{
-			"name": ":nth-last-of-type()",
+			"name": ":nth-last-of-type",
 			"browsers": [
 				"E12",
 				"FF3.5",
@@ -27789,6 +27825,12 @@ export const cssData : CSSDataV1 = {
 				"C4",
 				"IE9",
 				"O9.5"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:nth-last-of-type"
+				}
 			],
 			"baselineStatus": {
 				"baseline": "high",
@@ -27798,7 +27840,7 @@ export const cssData : CSSDataV1 = {
 			"description": "Represents an element that has an+b-1 siblings with the same expanded element name after it in the document tree, for any zero or positive integer value of n, and has a parent element."
 		},
 		{
-			"name": ":nth-of-type()",
+			"name": ":nth-of-type",
 			"browsers": [
 				"E12",
 				"FF3.5",
@@ -27806,6 +27848,12 @@ export const cssData : CSSDataV1 = {
 				"C1",
 				"IE9",
 				"O9.5"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:nth-of-type"
+				}
 			],
 			"baselineStatus": {
 				"baseline": "high",
@@ -28150,7 +28198,7 @@ export const cssData : CSSDataV1 = {
 			"description": "Applies once the link has been visited by the user."
 		},
 		{
-			"name": ":-webkit-any()",
+			"name": ":-webkit-any",
 			"browsers": [
 				"C",
 				"S5"
@@ -28187,7 +28235,7 @@ export const cssData : CSSDataV1 = {
 			"description": ""
 		},
 		{
-			"name": ":active-view-transition-type()",
+			"name": ":active-view-transition-type",
 			"browsers": [
 				"E125",
 				"Spreview",
@@ -28269,13 +28317,19 @@ export const cssData : CSSDataV1 = {
 			"description": "The :defined CSS pseudo-class represents any element that has been defined. This includes any standard element built in to the browser, and custom elements that have been successfully defined (i.e. with the CustomElementRegistry.define() method)."
 		},
 		{
-			"name": ":dir()",
+			"name": ":dir",
 			"browsers": [
 				"E120",
 				"FF49",
 				"S16.4",
 				"C120",
 				"O106"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:dir"
+				}
 			],
 			"baselineStatus": {
 				"baseline": "low",
@@ -28328,13 +28382,19 @@ export const cssData : CSSDataV1 = {
 			"description": "The :focus-within pseudo-class applies to any element for which the :focus pseudo class applies as well as to an element whose descendant in the flat tree (including non-element nodes, such as text nodes) matches the conditions for matching :focus."
 		},
 		{
-			"name": ":has()",
+			"name": ":has",
 			"browsers": [
 				"E105",
 				"FF121",
 				"S15.4",
 				"C105",
 				"O91"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:has"
+				}
 			],
 			"baselineStatus": {
 				"baseline": "low",
@@ -28361,13 +28421,19 @@ export const cssData : CSSDataV1 = {
 			"description": ""
 		},
 		{
-			"name": ":is()",
+			"name": ":is",
 			"browsers": [
 				"E88",
 				"FF78",
 				"S14",
 				"C88",
 				"O74"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:is"
+				}
 			],
 			"baselineStatus": {
 				"baseline": "high",
@@ -28547,13 +28613,19 @@ export const cssData : CSSDataV1 = {
 			"description": ""
 		},
 		{
-			"name": ":state()",
+			"name": ":state",
 			"browsers": [
 				"E125",
 				"FF126",
 				"S17.4",
 				"C125",
 				"O111"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:state"
+				}
 			],
 			"baselineStatus": {
 				"baseline": "low",
@@ -28637,13 +28709,19 @@ export const cssData : CSSDataV1 = {
 			"description": ""
 		},
 		{
-			"name": ":where()",
+			"name": ":where",
 			"browsers": [
 				"E88",
 				"FF78",
 				"S14",
 				"C88",
 				"O74"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/:where"
+				}
 			],
 			"baselineStatus": {
 				"baseline": "high",
@@ -28766,13 +28844,19 @@ export const cssData : CSSDataV1 = {
 			}
 		},
 		{
-			"name": "::cue()",
+			"name": "::cue",
 			"browsers": [
 				"E79",
 				"FF55",
 				"S7",
 				"C26",
 				"O15"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::cue"
+				}
 			],
 			"baselineStatus": {
 				"baseline": "high",
@@ -28789,7 +28873,7 @@ export const cssData : CSSDataV1 = {
 			]
 		},
 		{
-			"name": "::cue-region()",
+			"name": "::cue-region",
 			"browsers": [
 				"C",
 				"O16",
@@ -29635,13 +29719,19 @@ export const cssData : CSSDataV1 = {
 			"description": "The ::grammar-error CSS pseudo-element represents a text segment which the user agent has flagged as grammatically incorrect."
 		},
 		{
-			"name": "::highlight()",
+			"name": "::highlight",
 			"browsers": [
 				"E105",
 				"FFpreview",
 				"S17.2",
 				"C105",
 				"O91"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::highlight"
+				}
 			],
 			"baselineStatus": {
 				"baseline": false
@@ -29669,13 +29759,19 @@ export const cssData : CSSDataV1 = {
 			"description": "The ::marker CSS pseudo-element selects the marker box of a list item, which typically contains a bullet or number. It works on any element or pseudo-element set to display: list-item, such as the <li> and <summary> elements."
 		},
 		{
-			"name": "::part()",
+			"name": "::part",
 			"browsers": [
 				"E79",
 				"FF72",
 				"S13.1",
 				"C73",
 				"O60"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::part"
+				}
 			],
 			"baselineStatus": {
 				"baseline": "high",
@@ -29731,13 +29827,19 @@ export const cssData : CSSDataV1 = {
 			"description": ""
 		},
 		{
-			"name": "::slotted()",
+			"name": "::slotted",
 			"browsers": [
 				"E79",
 				"FF63",
 				"S10",
 				"C50",
 				"O37"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::slotted"
+				}
 			],
 			"baselineStatus": {
 				"baseline": "high",
@@ -29806,12 +29908,18 @@ export const cssData : CSSDataV1 = {
 			"description": "The ::view-transition CSS pseudo-element represents the root of the view transitions overlay, which contains all view transitions and sits over the top of all other page content."
 		},
 		{
-			"name": "::view-transition-group()",
+			"name": "::view-transition-group",
 			"browsers": [
 				"E109",
 				"S18",
 				"C109",
 				"O95"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::view-transition-group"
+				}
 			],
 			"baselineStatus": {
 				"baseline": false
@@ -29819,12 +29927,18 @@ export const cssData : CSSDataV1 = {
 			"description": ""
 		},
 		{
-			"name": "::view-transition-image-pair()",
+			"name": "::view-transition-image-pair",
 			"browsers": [
 				"E109",
 				"S18",
 				"C109",
 				"O95"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::view-transition-image-pair"
+				}
 			],
 			"baselineStatus": {
 				"baseline": false
@@ -29832,12 +29946,18 @@ export const cssData : CSSDataV1 = {
 			"description": ""
 		},
 		{
-			"name": "::view-transition-new()",
+			"name": "::view-transition-new",
 			"browsers": [
 				"E109",
 				"S18",
 				"C109",
 				"O95"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::view-transition-new"
+				}
 			],
 			"baselineStatus": {
 				"baseline": false
@@ -29845,12 +29965,18 @@ export const cssData : CSSDataV1 = {
 			"description": ""
 		},
 		{
-			"name": "::view-transition-old()",
+			"name": "::view-transition-old",
 			"browsers": [
 				"E109",
 				"S18",
 				"C109",
 				"O95"
+			],
+			"references": [
+				{
+					"name": "MDN Reference",
+					"url": "https://developer.mozilla.org/docs/Web/CSS/::view-transition-old"
+				}
 			],
 			"baselineStatus": {
 				"baseline": false
