@@ -188,7 +188,6 @@ export interface IReference {
 export interface IPropertyData {
 	name: string;
 	description?: string | MarkupContent;
-	browsers?: string[];
 	baselineStatus?: BaselineStatus;
 	restrictions?: string[];
 	status?: EntryStatus;
@@ -201,7 +200,6 @@ export interface IPropertyData {
 export interface IAtDirectiveData {
 	name: string;
 	description?: string | MarkupContent;
-	browsers?: string[];
 	baselineStatus?: BaselineStatus;
 	status?: EntryStatus;
 	references?: IReference[];
@@ -209,7 +207,6 @@ export interface IAtDirectiveData {
 export interface IPseudoClassData {
 	name: string;
 	description?: string | MarkupContent;
-	browsers?: string[];
 	baselineStatus?: BaselineStatus;
 	status?: EntryStatus;
 	references?: IReference[];
@@ -217,7 +214,6 @@ export interface IPseudoClassData {
 export interface IPseudoElementData {
 	name: string;
 	description?: string | MarkupContent;
-	browsers?: string[];
 	baselineStatus?: BaselineStatus;
 	status?: EntryStatus;
 	references?: IReference[];
@@ -226,7 +222,6 @@ export interface IPseudoElementData {
 export interface IValueData {
 	name: string;
 	description?: string | MarkupContent;
-	browsers?: string[];
 	baselineStatus?: BaselineStatus;
 	status?: EntryStatus;
 	references?: IReference[];
@@ -249,11 +244,22 @@ export interface ICSSDataProvider {
 
 export interface BaselineStatus {
 	baseline: Baseline;
+	support?: BaselineSupport;
 	baseline_low_date?: string;
 	baseline_high_date?: string;
 }
 
 export type Baseline = false | 'low' | 'high';
+
+export interface BaselineSupport {
+	'chrome'?: string;
+	'chrome_android'?: string;
+	'edge'?: string;
+	'firefox'?: string;
+	'firefox_android'?: string;
+	'safari'?: string;
+	'safari_ios'?: string;
+}
 
 export enum FileType {
 	/**

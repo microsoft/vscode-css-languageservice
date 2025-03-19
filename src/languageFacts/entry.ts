@@ -4,27 +4,37 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { EntryStatus, BaselineStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IValueData, MarkupContent, MarkupKind, MarkedString, HoverSettings } from '../cssLanguageTypes';
-
-export interface Browsers {
-	E?: string;
-	FF?: string;
-	IE?: string;
-	O?: string;
-	C?: string;
-	S?: string;
-	count: number;
-	all: boolean;
-	onCodeComplete: boolean;
-}
+import { EntryStatus, BaselineStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IValueData, MarkupContent, MarkupKind, MarkedString, HoverSettings, BaselineSupport } from '../cssLanguageTypes';
 
 export const browserNames = {
-	E: 'Edge',
-	FF: 'Firefox',
-	S: 'Safari',
-	C: 'Chrome',
-	IE: 'IE',
-	O: 'Opera'
+	'chrome': {
+		name: 'Chrome',
+		platform: 'desktop'
+	},
+	'chrome_android': {
+		name: 'Chrome',
+		platform: 'Android'
+	},
+	'edge': {
+		name: 'Edge',
+		platform: 'desktop'
+	},
+	'firefox': {
+		name: 'Firefox',
+		platform: 'desktop'
+	},
+	'firefox_android': {
+		name: 'Firefox',
+		platform: 'Android'
+	},
+	'safari': {
+		name: 'Safari',
+		platform: 'macOS'
+	},
+	'safari_ios': {
+		name: 'Safari',
+		platform: 'iOS'
+	}
 };
 
 function getEntryStatus(status: EntryStatus) {
@@ -38,9 +48,14 @@ function getEntryStatus(status: EntryStatus) {
 	}
 }
 
-function getEntryBaselineStatus(baselineStatus: BaselineStatus) {
+function getEntryBaselineStatus(baselineStatus: BaselineStatus): string {
 	if (baselineStatus.baseline === false) {
-		return 'Limited availability across major browsers';
+		const missingBrowsers = getMissingBaselineBrowsers(baselineStatus.support);
+		let status = `Limited availability across major browsers`;
+		if (missingBrowsers) {
+			status += ` (Not fully implemented in ${missingBrowsers})`;
+		}
+		return status;
 	}
 
 	const baselineYear = baselineStatus.baseline_low_date?.split('-')[0];
@@ -115,10 +130,6 @@ function getEntryStringDescription(entry: IEntry2, settings?: HoverSettings): st
 
 		result += entry.description;
 
-		const browserLabel = getBrowserLabel(entry.browsers);
-		if (!entry.baselineStatus && browserLabel) {
-			result += '\n(' + browserLabel + ')';
-		}
 		if ('syntax' in entry) {
 			result += `\n\nSyntax: ${entry.syntax}`;
 		}
@@ -163,10 +174,6 @@ function getEntryMarkdownDescription(entry: IEntry2, settings?: HoverSettings): 
 			result += entry.description.kind === MarkupKind.Markdown ? entry.description.value : textToMarkedString(entry.description.value);
 		}
 
-		const browserLabel = getBrowserLabel(entry.browsers);
-		if (!entry.baselineStatus && browserLabel) {
-			result += '\n(' + browserLabel + ')';
-		}
 		if ('syntax' in entry && entry.syntax) {
 			result += `\n\nSyntax: ${textToMarkedString(entry.syntax)}`;
 		}
@@ -183,32 +190,33 @@ function getEntryMarkdownDescription(entry: IEntry2, settings?: HoverSettings): 
 	return result;
 }
 
+const missingBaselineBrowserFormatter = new Intl.ListFormat("en", {
+	style: "long",
+	type: "disjunction",
+});
+
 /**
- * Input is like `["E12","FF49","C47","IE","O"]`
- * Output is like `Edge 12, Firefox 49, Chrome 47, IE, Opera`
+ * Input is like {'chrome': '93', 'edge': '93', 'firefox': '92'}
+ * Output is like `Safari`
  */
-export function getBrowserLabel(browsers: string[] = []): string | null {
-	if (browsers.length === 0) {
-		return null;
+export function getMissingBaselineBrowsers(support?: BaselineSupport): string {
+	if (!support) {
+		return '';
+	}
+	const missingBrowsers = new Map(Object.entries(browserNames));
+	for (const browser in support) {
+		missingBrowsers.delete(browser);
 	}
 
-	return browsers
-		.map(b => {
-			let result = '';
-			const matches = b.match(/([A-Z]+)(\d+)?/)!;
-
-			const name = matches[1];
-			const version = matches[2];
-
-			if (name in browserNames) {
-				result += browserNames[name as keyof typeof browserNames];
-			}
-			if (version) {
-				result += ' ' + version;
-			}
-			return result;
-		})
-		.join(', ');
+	return missingBaselineBrowserFormatter.format(Object.values(Array.from(missingBrowsers.entries()).reduce((browsers: Record<string, string>, [browserId, browser]) => {
+		if (browser.name in browsers || browserId == 'edge') {
+			browsers[browser.name] = browser.name;
+			return browsers;
+		}
+		// distinguish between platforms when applicable 
+		browsers[browser.name] = `${browser.name} on ${browser.platform}`;
+		return browsers;
+	}, {})));
 }
 
 export type IEntry2 = IPropertyData | IAtDirectiveData | IPseudoClassData | IPseudoElementData | IValueData;
