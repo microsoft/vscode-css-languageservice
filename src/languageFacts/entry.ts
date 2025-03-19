@@ -29,8 +29,6 @@ export const browserNames = {
 
 function getEntryStatus(status: EntryStatus) {
 	switch (status) {
-		case 'experimental':
-			return '⚠️ Property is experimental. Be cautious when using it.️\n\n';
 		case 'nonstandard':
 			return '🚨️ Property is nonstandard. Avoid using it.\n\n';
 		case 'obsolete':
@@ -41,29 +39,27 @@ function getEntryStatus(status: EntryStatus) {
 }
 
 function getEntryBaselineStatus(baselineStatus: BaselineStatus) {
-	switch (baselineStatus.baseline) {
-		case 'low':
-			return `Baseline Newly available since ${baselineStatus.baseline_low_date}`;
-		case 'high':
-			return `Baseline Widely available since ${baselineStatus.baseline_high_date}`;
-		default:
-			return 'Limited availability across major browsers.';
+	if (baselineStatus.baseline === false) {
+		return 'Limited availability across major browsers';
 	}
+
+	const baselineYear = baselineStatus.baseline_low_date?.split('-')[0];
+	return `${baselineStatus.baseline === 'low' ? 'Newly' : 'Widely'} available across major browsers (Baseline since ${baselineYear})`;
 }
 
-function getEntryBaselineImage(baselineStatus: BaselineStatus) {
+function getEntryBaselineImage(baselineStatus?: BaselineStatus) {
 	let baselineImg: string;
-	switch (baselineStatus.baseline) {
+	switch (baselineStatus?.baseline) {
 		case 'low':
-			baselineImg = 'baseline-newly-icon.png';
+			baselineImg = 'new-sq-14.png';
 			break;
 		case 'high':
-			baselineImg = 'baseline-widely-icon.png';
+			baselineImg = 'wide-sq-14.png';
 			break;
 		default:
-			baselineImg = 'baseline-limited-icon.png';
+			baselineImg = 'limited-sq-14.png';
 	}
-	return `<img src="https://web-platform-dx.github.io/web-features/assets/img/${baselineImg}" alt="Baseline icon" width="25" height="14" />`;
+	return `![Baseline icon](https://rviscomi.github.io/web-features/gh-pages/src/assets/img/${baselineImg})`;
 }
 
 export function getEntryDescription(entry: IEntry2, doesSupportMarkdown: boolean, settings?: HoverSettings): MarkupContent | undefined {
@@ -108,14 +104,15 @@ function getEntryStringDescription(entry: IEntry2, settings?: HoverSettings): st
 		if (entry.status) {
 			result += getEntryStatus(entry.status);
 		}
-		result += entry.description;
 
 		if (entry.baselineStatus) {
-			result += '\n\n' + getEntryBaselineStatus(entry.baselineStatus);
+			result += `_${getEntryBaselineStatus(entry.baselineStatus)}_\n\n`;
 		}
 
+		result += entry.description;
+
 		const browserLabel = getBrowserLabel(entry.browsers);
-		if (browserLabel) {
+		if (!entry.baselineStatus && browserLabel) {
 			result += '\n(' + browserLabel + ')';
 		}
 		if ('syntax' in entry) {
@@ -139,7 +136,11 @@ function getEntryMarkdownDescription(entry: IEntry2, settings?: HoverSettings): 
 		return '';
 	}
 
-	let result: string = '';
+	let result: string = `### ${getEntryBaselineImage(entry.baselineStatus)} ${entry.name}\n`;
+	if (entry.baselineStatus) {
+		result += `_${getEntryBaselineStatus(entry.baselineStatus)}_\n\n`;
+	}
+
 	if (settings?.documentation !== false) {
 		if (entry.status) {
 			result += getEntryStatus(entry.status);
@@ -151,13 +152,9 @@ function getEntryMarkdownDescription(entry: IEntry2, settings?: HoverSettings): 
 			result += entry.description.kind === MarkupKind.Markdown ? entry.description.value : textToMarkedString(entry.description.value);
 		}
 
-		if (entry.baselineStatus) {
-			result += `\n\n${getEntryBaselineImage(entry.baselineStatus)} ${getEntryBaselineStatus(entry.baselineStatus)}`;
-		}
-
 		const browserLabel = getBrowserLabel(entry.browsers);
-		if (browserLabel) {
-			result += '\n\n(' + textToMarkedString(browserLabel) + ')';
+		if (!entry.baselineStatus && browserLabel) {
+			result += '\n(' + browserLabel + ')';
 		}
 		if ('syntax' in entry && entry.syntax) {
 			result += `\n\nSyntax: ${textToMarkedString(entry.syntax)}`;
