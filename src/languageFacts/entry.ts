@@ -101,12 +101,12 @@ function getEntryStringDescription(entry: IEntry2, settings?: HoverSettings): st
 	let result: string = '';
 
 	if (settings?.documentation !== false) {
-		if (entry.status) {
-			result += getEntryStatus(entry.status);
-		}
-
 		if (entry.baselineStatus) {
 			result += `_${getEntryBaselineStatus(entry.baselineStatus)}_\n\n`;
+		}
+
+		if (entry.status) {
+			result += getEntryStatus(entry.status);
 		}
 
 		result += entry.description;
@@ -136,12 +136,15 @@ function getEntryMarkdownDescription(entry: IEntry2, settings?: HoverSettings): 
 		return '';
 	}
 
-	let result: string = `### ${getEntryBaselineImage(entry.baselineStatus)} ${entry.name}\n`;
-	if (entry.baselineStatus) {
-		result += `_${getEntryBaselineStatus(entry.baselineStatus)}_\n\n`;
-	}
+	let result: string = '';
 
 	if (settings?.documentation !== false) {
+		result += `### ${getEntryBaselineImage(entry.baselineStatus)} ${entry.name}\n`;
+
+		if (entry.baselineStatus) {
+			result += `_${getEntryBaselineStatus(entry.baselineStatus)}_\n\n`;
+		}
+
 		if (entry.status) {
 			result += getEntryStatus(entry.status);
 		}
