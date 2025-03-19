@@ -48,6 +48,10 @@ function getEntryBaselineStatus(baselineStatus: BaselineStatus) {
 }
 
 function getEntryBaselineImage(baselineStatus?: BaselineStatus) {
+	if (!baselineStatus) {
+		return '';
+	}
+	
 	let baselineImg: string;
 	switch (baselineStatus?.baseline) {
 		case 'low':
@@ -139,7 +143,11 @@ function getEntryMarkdownDescription(entry: IEntry2, settings?: HoverSettings): 
 	let result: string = '';
 
 	if (settings?.documentation !== false) {
-		result += `### ${getEntryBaselineImage(entry.baselineStatus)} ${entry.name}\n`;
+		result += `### `;
+		if (entry.baselineStatus) {
+			result += `${getEntryBaselineImage(entry.baselineStatus)} `;
+		}
+		result += `${entry.name}\n`;
 
 		if (entry.baselineStatus) {
 			result += `_${getEntryBaselineStatus(entry.baselineStatus)}_\n\n`;
