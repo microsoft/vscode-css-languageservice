@@ -8,6 +8,7 @@
 import * as assert from 'assert';
 import { Hover, TextDocument, getCSSLanguageService, getLESSLanguageService, getSCSSLanguageService } from '../../cssLanguageService';
 import { HoverSettings } from '../../cssLanguageTypes';
+import { BaselineImages } from '../../languageFacts/facts';
 
 function assertHover(value: string, expected: Hover, languageId = 'css', hoverSettings?: HoverSettings): void {
 	let offset = value.indexOf('|');
@@ -30,7 +31,7 @@ suite('CSS Hover', () => {
 			contents: {
 				kind: 'markdown',
 				value:
-					"### ![Baseline icon](https://rviscomi.github.io/web-features/gh-pages/src/assets/img/wide-sq-14.png) color\n_Widely available across major browsers (Baseline since 2015)_\n\nSets the color of an element's text\n\nSyntax: &lt;color&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/color)",
+					`### ![Baseline icon](${BaselineImages.BASELINE_HIGH}) color\n_Widely available across major browsers (Baseline since 2015)_\n\nSets the color of an element's text\n\nSyntax: &lt;color&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/color)`,
 			},
 		});
 		assertHover(
@@ -49,7 +50,7 @@ suite('CSS Hover', () => {
 			{
 				contents: {
 					kind: 'markdown',
-					value: "### ![Baseline icon](https://rviscomi.github.io/web-features/gh-pages/src/assets/img/wide-sq-14.png) color\n_Widely available across major browsers (Baseline since 2015)_\n\nSets the color of an element's text\n\nSyntax: &lt;color&gt;",
+					value: `### ![Baseline icon](${BaselineImages.BASELINE_HIGH}) color\n_Widely available across major browsers (Baseline since 2015)_\n\nSets the color of an element's text\n\nSyntax: &lt;color&gt;`,
 				},
 			},
 			undefined,
