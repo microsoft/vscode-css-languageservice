@@ -58,7 +58,7 @@ All top-level properties share two basic properties, `name` and `description`. F
 }
 ```
 
-You can also specify 4 additional properties for them:
+You can also specify 5 additional properties for them:
 
 ```jsonc
 {
@@ -73,6 +73,20 @@ You can also specify 4 additional properties for them:
         "IE10",
         "O37"
       ],
+      "baseline": {
+        "status": "high",
+        "support": {
+          "chrome": "50",
+          "chrome_android": "50",
+          "edge": "12",
+          "firefox": "28",
+          "firefox_android": "28",
+          "safari": "10",
+          "safari_ios": "10"
+        },
+        "baseline_low_date": "2015-09-30",
+        "baseline_high_date": "2018-03-30"
+      },
       "status": "standard",
       "references": [
         {
@@ -98,6 +112,16 @@ You can also specify 4 additional properties for them:
   };
   ```
   The browser compatibility will be rendered at completion and hover. Items that is supported in only one browser are dropped from completion.
+
+- `baseline`: An object containing [Baseline](https://web-platform-dx.github.io/web-features/) information about the feature's browser compatibility, as defined by the [WebDX Community Group](https://web-platform-dx.github.io/web-features/webdx-cg/).
+
+  - `status`: The Baseline status is either `"false"` (limited availability across major browsers), `"low"` (newly available across major browsers), or `"high"` (widely available across major browsers).
+
+  - `support`: An object mapping browser IDs to the minimum version that supports the feature. The major browsers included here are: `chrome`, `chrome_android`, `edge`, `firefox`, `firefox_android`, `safari`, and `safari_ios`.
+
+  - `baseline_low_date`: A date in the format `YYYY-MM-DD` representing when the feature became newly available, or undefined if it hasn't yet reached that status.
+
+  - `baseline_high_date`: A date in the format `YYYY-MM-DD` representing when the feature became widely available, or undefined if it hasn't yet reached that status. The widely available date is always 30 months after the newly available date.
 
 - `status`: The status of the item. The format is:
   ```
