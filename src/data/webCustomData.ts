@@ -11,6 +11,9 @@ export const cssData : CSSDataV1 = {
 	"properties": [
 		{
 			"name": "additive-symbols",
+			"browsers": [
+				"FF33"
+			],
 			"atRule": "@counter-style",
 			"syntax": "[ <integer> && <symbol> ]#",
 			"relevance": 50,
@@ -24,6 +27,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "align-content",
+			"browsers": [
+				"E12",
+				"FF28",
+				"S9",
+				"C29",
+				"IE11",
+				"O16"
+			],
 			"values": [
 				{
 					"name": "center",
@@ -94,8 +105,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/align-content"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "29",
 					"chrome_android": "29",
@@ -115,6 +126,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "align-items",
+			"browsers": [
+				"E12",
+				"FF20",
+				"S9",
+				"C29",
+				"IE11",
+				"O16"
+			],
 			"values": [
 				{
 					"name": "baseline",
@@ -175,8 +194,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/align-items"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "29",
 					"chrome_android": "29",
@@ -196,6 +215,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "justify-items",
+			"browsers": [
+				"E12",
+				"FF20",
+				"S9",
+				"C52",
+				"IE11",
+				"O12.1"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -266,8 +293,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/justify-items"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "52",
 					"chrome_android": "52",
@@ -287,6 +314,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "justify-self",
+			"browsers": [
+				"E16",
+				"FF45",
+				"S10.1",
+				"C57",
+				"IE10",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -354,8 +389,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/justify-self"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -375,6 +410,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "align-self",
+			"browsers": [
+				"E12",
+				"FF20",
+				"S9",
+				"C29",
+				"IE10",
+				"O12.1"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -433,8 +476,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/align-self"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "29",
 					"chrome_android": "29",
@@ -454,6 +497,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "all",
+			"browsers": [
+				"E79",
+				"FF27",
+				"S9.1",
+				"C37",
+				"O24"
+			],
 			"values": [],
 			"syntax": "initial | inherit | unset | revert | revert-layer",
 			"relevance": 55,
@@ -463,8 +513,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/all"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "37",
 					"chrome_android": "37",
@@ -484,10 +534,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "alt",
+			"browsers": [
+				"S9"
+			],
 			"values": [],
 			"relevance": 50,
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": "Provides alternative text for assistive technology to replace the generated content of a ::before or ::after element.",
@@ -498,6 +551,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "animation",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S9",
+				"C43",
+				"IE10",
+				"O30"
+			],
 			"values": [
 				{
 					"name": "alternate",
@@ -544,8 +605,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "43",
 					"chrome_android": "43",
@@ -569,6 +630,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "animation-delay",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S9",
+				"C43",
+				"IE10",
+				"O30"
+			],
 			"syntax": "<time>#",
 			"relevance": 67,
 			"references": [
@@ -577,8 +646,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-delay"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "43",
 					"chrome_android": "43",
@@ -598,6 +667,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "animation-direction",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S9",
+				"C43",
+				"IE10",
+				"O30"
+			],
 			"values": [
 				{
 					"name": "alternate",
@@ -624,8 +701,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-direction"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "43",
 					"chrome_android": "43",
@@ -645,6 +722,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "animation-duration",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S9",
+				"C43",
+				"IE10",
+				"O30"
+			],
 			"syntax": "<time>#",
 			"relevance": 71,
 			"references": [
@@ -653,8 +738,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-duration"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "43",
 					"chrome_android": "43",
@@ -674,6 +759,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "animation-fill-mode",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S9",
+				"C43",
+				"IE10",
+				"O30"
+			],
 			"values": [
 				{
 					"name": "backwards",
@@ -700,8 +793,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-fill-mode"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "43",
 					"chrome_android": "43",
@@ -721,6 +814,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "animation-iteration-count",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S9",
+				"C43",
+				"IE10",
+				"O30"
+			],
 			"values": [
 				{
 					"name": "infinite",
@@ -735,8 +836,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-iteration-count"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "43",
 					"chrome_android": "43",
@@ -757,6 +858,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "animation-name",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S9",
+				"C43",
+				"IE10",
+				"O30"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -771,8 +880,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-name"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "43",
 					"chrome_android": "43",
@@ -793,6 +902,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "animation-play-state",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S9",
+				"C43",
+				"IE10",
+				"O30"
+			],
 			"values": [
 				{
 					"name": "paused",
@@ -811,8 +928,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-play-state"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "43",
 					"chrome_android": "43",
@@ -832,6 +949,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "animation-timing-function",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S9",
+				"C43",
+				"IE10",
+				"O30"
+			],
 			"syntax": "<easing-function>#",
 			"relevance": 73,
 			"references": [
@@ -840,8 +965,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-timing-function"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "43",
 					"chrome_android": "43",
@@ -861,6 +986,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "backface-visibility",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S15.4",
+				"C36",
+				"IE10",
+				"O23"
+			],
 			"values": [
 				{
 					"name": "hidden",
@@ -879,8 +1012,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/backface-visibility"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "36",
 					"chrome_android": "36",
@@ -900,6 +1033,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "background",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"values": [
 				{
 					"name": "fixed",
@@ -926,8 +1067,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -954,6 +1095,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "background-attachment",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"values": [
 				{
 					"name": "fixed",
@@ -961,6 +1110,14 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "local",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O3.5"
+					],
 					"description": "The background is fixed with regard to the element's contents: if the element has a scrolling mechanism, the background scrolls with the element's contents."
 				},
 				{
@@ -976,8 +1133,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-attachment"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -997,6 +1154,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "background-blend-mode",
+			"browsers": [
+				"E79",
+				"FF30",
+				"S8",
+				"C35",
+				"O22"
+			],
 			"values": [
 				{
 					"name": "normal",
@@ -1048,18 +1212,46 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "hue",
+					"browsers": [
+						"E79",
+						"FF30",
+						"S8",
+						"C35",
+						"O22"
+					],
 					"description": "Creates a color with the hue of the source color and the saturation and luminosity of the backdrop color."
 				},
 				{
 					"name": "saturation",
+					"browsers": [
+						"E79",
+						"FF30",
+						"S8",
+						"C35",
+						"O22"
+					],
 					"description": "Creates a color with the saturation of the source color and the hue and luminosity of the backdrop color."
 				},
 				{
 					"name": "color",
+					"browsers": [
+						"E79",
+						"FF30",
+						"S8",
+						"C35",
+						"O22"
+					],
 					"description": "Creates a color with the hue and saturation of the source color and the luminosity of the backdrop color."
 				},
 				{
 					"name": "luminosity",
+					"browsers": [
+						"E79",
+						"FF30",
+						"S8",
+						"C35",
+						"O22"
+					],
 					"description": "Creates a color with the luminosity of the source color and the hue and saturation of the backdrop color."
 				}
 			],
@@ -1071,8 +1263,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-blend-mode"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "35",
 					"chrome_android": "35",
@@ -1092,6 +1284,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "background-clip",
+			"browsers": [
+				"E12",
+				"FF4",
+				"S5",
+				"C1",
+				"IE9",
+				"O10.5"
+			],
 			"syntax": "<bg-clip>#",
 			"relevance": 69,
 			"references": [
@@ -1100,8 +1300,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-clip"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -1121,6 +1321,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "background-color",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"syntax": "<color>",
 			"relevance": 95,
 			"references": [
@@ -1129,8 +1337,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -1150,6 +1358,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "background-image",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -1164,8 +1380,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-image"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -1186,6 +1402,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "background-origin",
+			"browsers": [
+				"E12",
+				"FF4",
+				"S3",
+				"C1",
+				"IE9",
+				"O10.5"
+			],
 			"syntax": "<visual-box>#",
 			"relevance": 53,
 			"references": [
@@ -1194,8 +1418,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-origin"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -1215,6 +1439,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "background-position",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"syntax": "<bg-position>#",
 			"relevance": 88,
 			"references": [
@@ -1223,8 +1455,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-position"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -1246,6 +1478,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "background-position-x",
+			"browsers": [
+				"E12",
+				"FF49",
+				"S1",
+				"C1",
+				"IE6",
+				"O15"
+			],
 			"values": [
 				{
 					"name": "center",
@@ -1268,8 +1508,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-position-x"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -1290,6 +1530,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "background-position-y",
+			"browsers": [
+				"E12",
+				"FF49",
+				"S1",
+				"C1",
+				"IE6",
+				"O15"
+			],
 			"values": [
 				{
 					"name": "bottom",
@@ -1312,8 +1560,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-position-y"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -1334,6 +1582,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "background-repeat",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"values": [],
 			"syntax": "<repeat-style>#",
 			"relevance": 86,
@@ -1343,8 +1599,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-repeat"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -1364,6 +1620,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "background-size",
+			"browsers": [
+				"E12",
+				"FF4",
+				"S5",
+				"C3",
+				"IE9",
+				"O10"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -1386,8 +1650,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/background-size"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "3",
 					"chrome_android": "18",
@@ -1408,6 +1672,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "behavior",
+			"browsers": [
+				"IE6"
+			],
 			"relevance": 50,
 			"description": "IE only. Used to extend behaviors of the browser.",
 			"restrictions": [
@@ -1416,6 +1683,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "block-size",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C57",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -1430,8 +1704,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/block-size"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -1452,6 +1726,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"syntax": "<line-width> || <line-style> || <color>",
 			"relevance": 95,
 			"references": [
@@ -1460,8 +1742,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -1484,6 +1766,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-block-end",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
 			"relevance": 53,
 			"references": [
@@ -1492,8 +1781,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-end"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -1516,6 +1805,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-block-start",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
 			"relevance": 53,
 			"references": [
@@ -1524,8 +1820,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-start"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -1548,6 +1844,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-block-end-color",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"syntax": "<'border-top-color'>",
 			"relevance": 50,
 			"references": [
@@ -1556,8 +1859,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-end-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -1577,6 +1880,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-block-start-color",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"syntax": "<'border-top-color'>",
 			"relevance": 50,
 			"references": [
@@ -1585,8 +1895,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-start-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -1606,6 +1916,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-block-end-style",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"syntax": "<'border-top-style'>",
 			"relevance": 50,
 			"references": [
@@ -1614,8 +1931,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-end-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -1635,6 +1952,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-block-start-style",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"syntax": "<'border-top-style'>",
 			"relevance": 50,
 			"references": [
@@ -1643,8 +1967,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-start-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -1664,6 +1988,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-block-end-width",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"syntax": "<'border-top-width'>",
 			"relevance": 50,
 			"references": [
@@ -1672,8 +2003,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-end-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -1694,6 +2025,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-block-start-width",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"syntax": "<'border-top-width'>",
 			"relevance": 50,
 			"references": [
@@ -1702,8 +2040,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-start-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -1724,6 +2062,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-bottom",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"syntax": "<line-width> || <line-style> || <color>",
 			"relevance": 88,
 			"references": [
@@ -1732,8 +2078,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -1756,6 +2102,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-bottom-color",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"syntax": "<'border-top-color'>",
 			"relevance": 70,
 			"references": [
@@ -1764,8 +2118,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -1785,6 +2139,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-bottom-left-radius",
+			"browsers": [
+				"E12",
+				"FF4",
+				"S5",
+				"C4",
+				"IE9",
+				"O10.5"
+			],
 			"syntax": "<length-percentage>{1,2}",
 			"relevance": 75,
 			"references": [
@@ -1793,8 +2155,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom-left-radius"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "4",
 					"chrome_android": "18",
@@ -1815,6 +2177,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-bottom-right-radius",
+			"browsers": [
+				"E12",
+				"FF4",
+				"S5",
+				"C4",
+				"IE9",
+				"O10.5"
+			],
 			"syntax": "<length-percentage>{1,2}",
 			"relevance": 75,
 			"references": [
@@ -1823,8 +2193,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom-right-radius"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "4",
 					"chrome_android": "18",
@@ -1845,6 +2215,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-bottom-style",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE5.5",
+				"O9.2"
+			],
 			"syntax": "<line-style>",
 			"relevance": 58,
 			"references": [
@@ -1853,8 +2231,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -1874,6 +2252,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-bottom-width",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"syntax": "<line-width>",
 			"relevance": 63,
 			"references": [
@@ -1882,8 +2268,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -1904,6 +2290,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-collapse",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1.2",
+				"C1",
+				"IE5",
+				"O4"
+			],
 			"values": [
 				{
 					"name": "collapse",
@@ -1922,8 +2316,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-collapse"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -1943,6 +2337,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-color",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"values": [],
 			"syntax": "<color>{1,4}",
 			"relevance": 88,
@@ -1952,8 +2354,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -1973,6 +2375,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-image",
+			"browsers": [
+				"E12",
+				"FF15",
+				"S6",
+				"C16",
+				"IE11",
+				"O11"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -2014,8 +2424,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "16",
 					"chrome_android": "18",
@@ -2039,6 +2449,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-image-outset",
+			"browsers": [
+				"E12",
+				"FF15",
+				"S6",
+				"C15",
+				"IE11",
+				"O15"
+			],
 			"syntax": "[ <length> | <number> ]{1,4}",
 			"relevance": 50,
 			"references": [
@@ -2047,8 +2465,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image-outset"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "15",
 					"chrome_android": "18",
@@ -2069,6 +2487,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-image-repeat",
+			"browsers": [
+				"E12",
+				"FF15",
+				"S6",
+				"C15",
+				"IE11",
+				"O15"
+			],
 			"values": [
 				{
 					"name": "repeat",
@@ -2095,8 +2521,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image-repeat"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "15",
 					"chrome_android": "18",
@@ -2116,6 +2542,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-image-slice",
+			"browsers": [
+				"E12",
+				"FF15",
+				"S6",
+				"C15",
+				"IE11",
+				"O15"
+			],
 			"values": [
 				{
 					"name": "fill",
@@ -2130,8 +2564,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image-slice"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "15",
 					"chrome_android": "18",
@@ -2152,6 +2586,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-image-source",
+			"browsers": [
+				"E12",
+				"FF15",
+				"S6",
+				"C15",
+				"IE11",
+				"O15"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -2166,8 +2608,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image-source"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "15",
 					"chrome_android": "18",
@@ -2187,6 +2629,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-image-width",
+			"browsers": [
+				"E12",
+				"FF13",
+				"S6",
+				"C16",
+				"IE11",
+				"O15"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -2201,8 +2651,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "16",
 					"chrome_android": "18",
@@ -2224,6 +2674,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-inline-end",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
 			"relevance": 53,
 			"references": [
@@ -2232,8 +2689,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-end"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -2256,6 +2713,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-inline-start",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
 			"relevance": 54,
 			"references": [
@@ -2264,8 +2728,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-start"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -2288,6 +2752,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-inline-end-color",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"syntax": "<'border-top-color'>",
 			"relevance": 50,
 			"references": [
@@ -2296,8 +2767,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-end-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -2317,6 +2788,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-inline-start-color",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"syntax": "<'border-top-color'>",
 			"relevance": 50,
 			"references": [
@@ -2325,8 +2803,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-start-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -2346,6 +2824,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-inline-end-style",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"syntax": "<'border-top-style'>",
 			"relevance": 50,
 			"references": [
@@ -2354,8 +2839,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-end-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -2375,6 +2860,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-inline-start-style",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"syntax": "<'border-top-style'>",
 			"relevance": 50,
 			"references": [
@@ -2383,8 +2875,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-start-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -2404,6 +2896,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-inline-end-width",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"syntax": "<'border-top-width'>",
 			"relevance": 51,
 			"references": [
@@ -2412,8 +2911,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-end-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -2434,6 +2933,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-inline-start-width",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"syntax": "<'border-top-width'>",
 			"relevance": 50,
 			"references": [
@@ -2442,8 +2948,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-start-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -2464,6 +2970,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-left",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"syntax": "<line-width> || <line-style> || <color>",
 			"relevance": 82,
 			"references": [
@@ -2472,8 +2986,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-left"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -2496,6 +3010,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-left-color",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"syntax": "<color>",
 			"relevance": 67,
 			"references": [
@@ -2504,8 +3026,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-left-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -2525,6 +3047,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-left-style",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE5.5",
+				"O9.2"
+			],
 			"syntax": "<line-style>",
 			"relevance": 54,
 			"references": [
@@ -2533,8 +3063,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-left-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -2554,6 +3084,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-left-width",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"syntax": "<line-width>",
 			"relevance": 64,
 			"references": [
@@ -2562,8 +3100,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-left-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -2584,6 +3122,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-radius",
+			"browsers": [
+				"E12",
+				"FF4",
+				"S5",
+				"C4",
+				"IE9",
+				"O10.5"
+			],
 			"syntax": "<length-percentage>{1,4} [ / <length-percentage>{1,4} ]?",
 			"relevance": 93,
 			"references": [
@@ -2592,8 +3138,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-radius"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "4",
 					"chrome_android": "18",
@@ -2614,6 +3160,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-right",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE5.5",
+				"O9.2"
+			],
 			"syntax": "<line-width> || <line-style> || <color>",
 			"relevance": 81,
 			"references": [
@@ -2622,8 +3176,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-right"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -2646,6 +3200,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-right-color",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"syntax": "<color>",
 			"relevance": 66,
 			"references": [
@@ -2654,8 +3216,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-right-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -2675,6 +3237,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-right-style",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE5.5",
+				"O9.2"
+			],
 			"syntax": "<line-style>",
 			"relevance": 53,
 			"references": [
@@ -2683,8 +3253,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-right-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -2704,6 +3274,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-right-width",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"syntax": "<line-width>",
 			"relevance": 64,
 			"references": [
@@ -2712,8 +3290,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-right-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -2734,6 +3312,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-spacing",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE8",
+				"O4"
+			],
 			"syntax": "<length> <length>?",
 			"relevance": 66,
 			"references": [
@@ -2742,8 +3328,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-spacing"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -2763,6 +3349,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-style",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"values": [],
 			"syntax": "<line-style>{1,4}",
 			"relevance": 80,
@@ -2772,8 +3366,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -2793,6 +3387,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-top",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"syntax": "<line-width> || <line-style> || <color>",
 			"relevance": 86,
 			"references": [
@@ -2801,8 +3403,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -2825,6 +3427,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-top-color",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"syntax": "<color>",
 			"relevance": 70,
 			"references": [
@@ -2833,8 +3443,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -2854,6 +3464,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-top-left-radius",
+			"browsers": [
+				"E12",
+				"FF4",
+				"S5",
+				"C4",
+				"IE9",
+				"O10.5"
+			],
 			"syntax": "<length-percentage>{1,2}",
 			"relevance": 75,
 			"references": [
@@ -2862,8 +3480,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top-left-radius"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "4",
 					"chrome_android": "18",
@@ -2884,6 +3502,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-top-right-radius",
+			"browsers": [
+				"E12",
+				"FF4",
+				"S5",
+				"C4",
+				"IE9",
+				"O10.5"
+			],
 			"syntax": "<length-percentage>{1,2}",
 			"relevance": 75,
 			"references": [
@@ -2892,8 +3518,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top-right-radius"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "4",
 					"chrome_android": "18",
@@ -2914,6 +3540,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-top-style",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE5.5",
+				"O9.2"
+			],
 			"syntax": "<line-style>",
 			"relevance": 56,
 			"references": [
@@ -2922,8 +3556,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -2943,6 +3577,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-top-width",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"syntax": "<line-width>",
 			"relevance": 62,
 			"references": [
@@ -2951,8 +3593,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -2973,6 +3615,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "border-width",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"values": [],
 			"syntax": "<line-width>{1,4}",
 			"relevance": 83,
@@ -2982,8 +3632,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -3004,6 +3654,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "bottom",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE5",
+				"O6"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -3018,8 +3676,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/bottom"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -3040,6 +3698,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "box-decoration-break",
+			"browsers": [
+				"E130",
+				"FF32",
+				"S7",
+				"C130",
+				"O115"
+			],
 			"values": [
 				{
 					"name": "clone",
@@ -3058,8 +3723,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-decoration-break"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "130",
 					"chrome_android": "130",
@@ -3075,6 +3740,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "box-shadow",
+			"browsers": [
+				"E12",
+				"FF4",
+				"S5.1",
+				"C10",
+				"IE9",
+				"O10.5"
+			],
 			"values": [
 				{
 					"name": "inset",
@@ -3093,8 +3766,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-shadow"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "10",
 					"chrome_android": "18",
@@ -3116,6 +3789,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "box-sizing",
+			"browsers": [
+				"E12",
+				"FF29",
+				"S5.1",
+				"C10",
+				"IE8",
+				"O7"
+			],
 			"values": [
 				{
 					"name": "border-box",
@@ -3134,8 +3815,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-sizing"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "10",
 					"chrome_android": "18",
@@ -3155,6 +3836,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "break-after",
+			"browsers": [
+				"E12",
+				"FF65",
+				"S10",
+				"C50",
+				"IE10",
+				"O37"
+			],
 			"values": [
 				{
 					"name": "always",
@@ -3201,8 +3890,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/break-after"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "50",
 					"chrome_android": "50",
@@ -3222,6 +3911,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "break-before",
+			"browsers": [
+				"E12",
+				"FF65",
+				"S10",
+				"C50",
+				"IE10",
+				"O37"
+			],
 			"values": [
 				{
 					"name": "always",
@@ -3268,8 +3965,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/break-before"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "50",
 					"chrome_android": "50",
@@ -3289,6 +3986,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "break-inside",
+			"browsers": [
+				"E12",
+				"FF65",
+				"S10",
+				"C50",
+				"IE10",
+				"O37"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -3315,8 +4020,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/break-inside"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "50",
 					"chrome_android": "50",
@@ -3336,6 +4041,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "caption-side",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE8",
+				"O4"
+			],
 			"values": [
 				{
 					"name": "bottom",
@@ -3354,8 +4067,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/caption-side"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -3375,6 +4088,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "caret-color",
+			"browsers": [
+				"E79",
+				"FF53",
+				"S11.1",
+				"C57",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -3389,8 +4109,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/caret-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -3411,6 +4131,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "clear",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"values": [
 				{
 					"name": "both",
@@ -3437,8 +4165,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/clear"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -3458,6 +4186,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "clip",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O7"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -3477,8 +4213,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/clip"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -3496,6 +4232,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "clip-path",
+			"browsers": [
+				"E79",
+				"FF3.5",
+				"S9.1",
+				"C55",
+				"IE10",
+				"O42"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -3514,8 +4258,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/clip-path"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "55",
 					"chrome_android": "55",
@@ -3538,6 +4282,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "clip-rule",
+			"browsers": [
+				"E79",
+				"FF3.5",
+				"S5",
+				"C15",
+				"O15"
+			],
 			"values": [
 				{
 					"name": "evenodd",
@@ -3556,8 +4307,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/clip-rule"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤15",
 					"chrome_android": "18",
@@ -3577,6 +4328,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "color",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE3",
+				"O3.5"
+			],
 			"syntax": "<color>",
 			"relevance": 95,
 			"references": [
@@ -3585,8 +4344,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -3606,6 +4365,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "color-interpolation-filters",
+			"browsers": [
+				"E79",
+				"FF3",
+				"S3",
+				"C1",
+				"O15"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -3628,8 +4394,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/color-interpolation-filters"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -3649,6 +4415,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "column-count",
+			"browsers": [
+				"E12",
+				"FF52",
+				"S9",
+				"C50",
+				"IE10",
+				"O37"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -3663,8 +4437,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/column-count"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "50",
 					"chrome_android": "50",
@@ -3685,6 +4459,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "column-fill",
+			"browsers": [
+				"E12",
+				"FF52",
+				"S9",
+				"C50",
+				"IE10",
+				"O37"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -3703,8 +4485,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/column-fill"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "50",
 					"chrome_android": "50",
@@ -3724,6 +4506,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "column-gap",
+			"browsers": [
+				"E12",
+				"FF1.5",
+				"S3",
+				"C1",
+				"IE10",
+				"O11.1"
+			],
 			"values": [
 				{
 					"name": "normal",
@@ -3738,8 +4528,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/column-gap"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -3760,6 +4550,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "column-rule",
+			"browsers": [
+				"E12",
+				"FF52",
+				"S9",
+				"C50",
+				"IE10",
+				"O11.1"
+			],
 			"syntax": "<'column-rule-width'> || <'column-rule-style'> || <'column-rule-color'>",
 			"relevance": 51,
 			"references": [
@@ -3768,8 +4566,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/column-rule"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "50",
 					"chrome_android": "50",
@@ -3792,6 +4590,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "column-rule-color",
+			"browsers": [
+				"E12",
+				"FF52",
+				"S9",
+				"C50",
+				"IE10",
+				"O11.1"
+			],
 			"syntax": "<color>",
 			"relevance": 50,
 			"references": [
@@ -3800,8 +4606,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/column-rule-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "50",
 					"chrome_android": "50",
@@ -3821,6 +4627,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "column-rule-style",
+			"browsers": [
+				"E12",
+				"FF52",
+				"S9",
+				"C50",
+				"IE10",
+				"O11.1"
+			],
 			"syntax": "<'border-style'>",
 			"relevance": 50,
 			"references": [
@@ -3829,8 +4643,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/column-rule-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "50",
 					"chrome_android": "50",
@@ -3850,6 +4664,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "column-rule-width",
+			"browsers": [
+				"E12",
+				"FF52",
+				"S9",
+				"C50",
+				"IE10",
+				"O11.1"
+			],
 			"syntax": "<'border-width'>",
 			"relevance": 50,
 			"references": [
@@ -3858,8 +4680,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/column-rule-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "50",
 					"chrome_android": "50",
@@ -3880,6 +4702,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "columns",
+			"browsers": [
+				"E12",
+				"FF52",
+				"S9",
+				"C50",
+				"IE10",
+				"O11.1"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -3894,8 +4724,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/columns"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "50",
 					"chrome_android": "50",
@@ -3917,6 +4747,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "column-span",
+			"browsers": [
+				"E12",
+				"FF71",
+				"S9",
+				"C50",
+				"IE10",
+				"O37"
+			],
 			"values": [
 				{
 					"name": "all",
@@ -3935,8 +4773,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/column-span"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "50",
 					"chrome_android": "50",
@@ -3956,6 +4794,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "column-width",
+			"browsers": [
+				"E12",
+				"FF50",
+				"S9",
+				"C50",
+				"IE10",
+				"O11.1"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -3970,8 +4816,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/column-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "50",
 					"chrome_android": "50",
@@ -3992,6 +4838,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "contain",
+			"browsers": [
+				"E79",
+				"FF69",
+				"S15.4",
+				"C52",
+				"O39"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -4030,8 +4883,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/contain"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "52",
 					"chrome_android": "52",
@@ -4051,6 +4904,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "content",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE8",
+				"O4"
+			],
 			"values": [
 				{
 					"name": "attr()",
@@ -4084,8 +4945,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/content"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -4106,6 +4967,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "counter-increment",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S3",
+				"C2",
+				"IE8",
+				"O9.2"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -4120,8 +4989,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/counter-increment"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "2",
 					"chrome_android": "18",
@@ -4142,6 +5011,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "counter-reset",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S3",
+				"C2",
+				"IE8",
+				"O9.2"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -4156,8 +5033,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/counter-reset"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "2",
 					"chrome_android": "18",
@@ -4178,6 +5055,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "cursor",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1.2",
+				"C1",
+				"IE4",
+				"O7"
+			],
 			"values": [
 				{
 					"name": "alias",
@@ -4225,10 +5110,26 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "grab",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1.2",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Indicates that something can be grabbed."
 				},
 				{
 					"name": "grabbing",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1.2",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Indicates that something is being grabbed."
 				},
 				{
@@ -4241,18 +5142,50 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "-moz-grab",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1.2",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Indicates that something can be grabbed."
 				},
 				{
 					"name": "-moz-grabbing",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1.2",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Indicates that something is being grabbed."
 				},
 				{
 					"name": "-moz-zoom-in",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1.2",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Indicates that something can be zoomed (magnified) in."
 				},
 				{
 					"name": "-moz-zoom-out",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1.2",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Indicates that something can be zoomed (magnified) out."
 				},
 				{
@@ -4329,18 +5262,50 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "-webkit-grab",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1.2",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Indicates that something can be grabbed."
 				},
 				{
 					"name": "-webkit-grabbing",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1.2",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Indicates that something is being grabbed."
 				},
 				{
 					"name": "-webkit-zoom-in",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1.2",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Indicates that something can be zoomed (magnified) in."
 				},
 				{
 					"name": "-webkit-zoom-out",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1.2",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Indicates that something can be zoomed (magnified) out."
 				},
 				{
@@ -4349,10 +5314,26 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "zoom-in",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1.2",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Indicates that something can be zoomed (magnified) in."
 				},
 				{
 					"name": "zoom-out",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1.2",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Indicates that something can be zoomed (magnified) out."
 				}
 			],
@@ -4364,8 +5345,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/cursor"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -4387,6 +5368,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "direction",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C2",
+				"IE5.5",
+				"O9.2"
+			],
 			"values": [
 				{
 					"name": "ltr",
@@ -4405,8 +5394,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/direction"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "2",
 					"chrome_android": "18",
@@ -4426,6 +5415,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "display",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O7"
+			],
 			"values": [
 				{
 					"name": "block",
@@ -4433,22 +5430,62 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "contents",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "The element itself does not generate any boxes, but its children and pseudo-elements still generate boxes as normal."
 				},
 				{
 					"name": "flex",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "The element generates a principal flex container box and establishes a flex formatting context."
 				},
 				{
 					"name": "flexbox",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "The element lays out its contents using flow layout (block-and-inline layout). Standardized as 'flex'."
 				},
 				{
 					"name": "flow-root",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "The element generates a block container box, and lays out its contents using flow layout."
 				},
 				{
 					"name": "grid",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "The element generates a principal grid container box, and establishes a grid formatting context."
 				},
 				{
@@ -4461,10 +5498,26 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "inline-flex",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Inline-level flex container."
 				},
 				{
 					"name": "inline-flexbox",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Inline-level flex container. Standardized as 'inline-flex'"
 				},
 				{
@@ -4477,56 +5530,184 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "-moz-box",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "The element lays out its contents using flow layout (block-and-inline layout). Standardized as 'flex'."
 				},
 				{
-					"name": "-moz-deck"
+					"name": "-moz-deck",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					]
 				},
 				{
-					"name": "-moz-grid"
+					"name": "-moz-grid",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					]
 				},
 				{
-					"name": "-moz-grid-group"
+					"name": "-moz-grid-group",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					]
 				},
 				{
-					"name": "-moz-grid-line"
+					"name": "-moz-grid-line",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					]
 				},
 				{
-					"name": "-moz-groupbox"
+					"name": "-moz-groupbox",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					]
 				},
 				{
 					"name": "-moz-inline-box",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Inline-level flex container. Standardized as 'inline-flex'"
 				},
 				{
-					"name": "-moz-inline-grid"
+					"name": "-moz-inline-grid",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					]
 				},
 				{
-					"name": "-moz-inline-stack"
+					"name": "-moz-inline-stack",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					]
 				},
 				{
-					"name": "-moz-marker"
+					"name": "-moz-marker",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					]
 				},
 				{
-					"name": "-moz-popup"
+					"name": "-moz-popup",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					]
 				},
 				{
-					"name": "-moz-stack"
+					"name": "-moz-stack",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					]
 				},
 				{
 					"name": "-ms-flexbox",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "The element lays out its contents using flow layout (block-and-inline layout). Standardized as 'flex'."
 				},
 				{
 					"name": "-ms-grid",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "The element generates a principal grid container box, and establishes a grid formatting context."
 				},
 				{
 					"name": "-ms-inline-flexbox",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Inline-level flex container. Standardized as 'inline-flex'"
 				},
 				{
 					"name": "-ms-inline-grid",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Inline-level grid container."
 				},
 				{
@@ -4551,6 +5732,14 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "run-in",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "The element generates a run-in box. Run-in elements act like inlines or blocks, depending on the surrounding elements."
 				},
 				{
@@ -4583,18 +5772,50 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "-webkit-box",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "The element lays out its contents using flow layout (block-and-inline layout). Standardized as 'flex'."
 				},
 				{
 					"name": "-webkit-flex",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "The element lays out its contents using flow layout (block-and-inline layout)."
 				},
 				{
 					"name": "-webkit-inline-box",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Inline-level flex container. Standardized as 'inline-flex'"
 				},
 				{
 					"name": "-webkit-inline-flex",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Inline-level flex container."
 				}
 			],
@@ -4606,8 +5827,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/display"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -4627,13 +5848,29 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "empty-cells",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1.2",
+				"C1",
+				"IE8",
+				"O4"
+			],
 			"values": [
 				{
 					"name": "hide",
 					"description": "No borders or backgrounds are drawn around/behind empty cells."
 				},
 				{
-					"name": "-moz-show-background"
+					"name": "-moz-show-background",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1.2",
+						"C1",
+						"IE8",
+						"O4"
+					]
 				},
 				{
 					"name": "show",
@@ -4648,8 +5885,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/empty-cells"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -4690,6 +5927,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "fallback",
+			"browsers": [
+				"FF33"
+			],
 			"atRule": "@counter-style",
 			"syntax": "<counter-style-name>",
 			"relevance": 50,
@@ -4700,6 +5940,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "fill",
+			"browsers": [
+				"E80",
+				"FF72",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"values": [
 				{
 					"name": "url()",
@@ -4718,8 +5965,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/fill"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -4741,6 +5988,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "fill-opacity",
+			"browsers": [
+				"E80",
+				"FF1",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"syntax": "<'opacity'>",
 			"relevance": 55,
 			"references": [
@@ -4749,8 +6003,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/fill-opacity"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -4770,6 +6024,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "fill-rule",
+			"browsers": [
+				"E80",
+				"FF72",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"values": [
 				{
 					"name": "evenodd",
@@ -4788,8 +6049,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/fill-rule"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -4809,6 +6070,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "filter",
+			"browsers": [
+				"E12",
+				"FF35",
+				"S9.1",
+				"C53",
+				"O40"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -4856,6 +6124,13 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "url()",
+					"browsers": [
+						"E12",
+						"FF35",
+						"S9.1",
+						"C53",
+						"O40"
+					],
 					"description": "A filter reference to a <filter> element."
 				}
 			],
@@ -4867,8 +6142,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/filter"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "53",
 					"chrome_android": "53",
@@ -4889,6 +6164,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "flex",
+			"browsers": [
+				"E12",
+				"FF20",
+				"S9",
+				"C29",
+				"IE11",
+				"O12.1"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -4896,6 +6179,14 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "content",
+					"browsers": [
+						"E12",
+						"FF20",
+						"S9",
+						"C29",
+						"IE11",
+						"O12.1"
+					],
 					"description": "Indicates automatic sizing, based on the flex item's content."
 				},
 				{
@@ -4911,8 +6202,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/flex"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "29",
 					"chrome_android": "29",
@@ -4934,6 +6225,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "flex-basis",
+			"browsers": [
+				"E12",
+				"FF22",
+				"S9",
+				"C29",
+				"IE11",
+				"O12.1"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -4941,6 +6240,14 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "content",
+					"browsers": [
+						"E12",
+						"FF22",
+						"S9",
+						"C29",
+						"IE11",
+						"O12.1"
+					],
 					"description": "Indicates automatic sizing, based on the flex item's content."
 				}
 			],
@@ -4952,8 +6259,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-basis"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "29",
 					"chrome_android": "29",
@@ -4975,6 +6282,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "flex-direction",
+			"browsers": [
+				"E12",
+				"FF20",
+				"S9",
+				"C29",
+				"IE11",
+				"O12.1"
+			],
 			"values": [
 				{
 					"name": "column",
@@ -5001,8 +6316,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-direction"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "29",
 					"chrome_android": "29",
@@ -5022,6 +6337,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "flex-flow",
+			"browsers": [
+				"E12",
+				"FF28",
+				"S9",
+				"C29",
+				"IE11",
+				"O12.1"
+			],
 			"values": [
 				{
 					"name": "column",
@@ -5060,8 +6383,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-flow"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "29",
 					"chrome_android": "29",
@@ -5081,6 +6404,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "flex-grow",
+			"browsers": [
+				"E12",
+				"FF20",
+				"S9",
+				"C29",
+				"IE11",
+				"O12.1"
+			],
 			"syntax": "<number>",
 			"relevance": 78,
 			"references": [
@@ -5089,8 +6420,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-grow"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "29",
 					"chrome_android": "29",
@@ -5110,6 +6441,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "flex-shrink",
+			"browsers": [
+				"E12",
+				"FF20",
+				"S9",
+				"C29",
+				"IE10",
+				"O12.1"
+			],
 			"syntax": "<number>",
 			"relevance": 78,
 			"references": [
@@ -5118,8 +6457,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-shrink"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "29",
 					"chrome_android": "29",
@@ -5139,6 +6478,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "flex-wrap",
+			"browsers": [
+				"E12",
+				"FF28",
+				"S9",
+				"C29",
+				"IE11",
+				"O16"
+			],
 			"values": [
 				{
 					"name": "nowrap",
@@ -5161,8 +6508,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-wrap"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "29",
 					"chrome_android": "29",
@@ -5182,13 +6529,37 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "float",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O7"
+			],
 			"values": [
 				{
 					"name": "inline-end",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "A keyword indicating that the element must float on the end side of its containing block. That is the right side with ltr scripts, and the left side with rtl scripts."
 				},
 				{
 					"name": "inline-start",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "A keyword indicating that the element must float on the start side of its containing block. That is the left side with ltr scripts, and the right side with rtl scripts."
 				},
 				{
@@ -5212,8 +6583,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/float"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -5233,6 +6604,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "flood-color",
+			"browsers": [
+				"E12",
+				"FF3",
+				"S6",
+				"C5",
+				"IE11",
+				"O15"
+			],
 			"syntax": "<color>",
 			"relevance": 50,
 			"references": [
@@ -5241,8 +6620,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/flood-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "5",
 					"chrome_android": "18",
@@ -5262,6 +6641,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "flood-opacity",
+			"browsers": [
+				"E12",
+				"FF3",
+				"S6",
+				"C5",
+				"IE11",
+				"O15"
+			],
 			"syntax": "<'opacity'>",
 			"relevance": 50,
 			"references": [
@@ -5270,8 +6657,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/flood-opacity"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "5",
 					"chrome_android": "18",
@@ -5292,6 +6679,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "font",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE3",
+				"O3.5"
+			],
 			"values": [
 				{
 					"name": "100",
@@ -5417,8 +6812,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -5438,6 +6833,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "font-family",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE3",
+				"O3.5"
+			],
 			"values": [
 				{
 					"name": "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"
@@ -5503,8 +6906,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-family"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -5524,6 +6927,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "font-feature-settings",
+			"browsers": [
+				"E15",
+				"FF34",
+				"S9.1",
+				"C48",
+				"IE10",
+				"O35"
+			],
 			"values": [
 				{
 					"name": "\"aalt\"",
@@ -6015,8 +7426,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-feature-settings"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "48",
 					"chrome_android": "48",
@@ -6037,6 +7448,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "font-kerning",
+			"browsers": [
+				"E79",
+				"FF32",
+				"S9",
+				"C33",
+				"O20"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -6059,8 +7477,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-kerning"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "33",
 					"chrome_android": "33",
@@ -6080,6 +7498,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "font-language-override",
+			"browsers": [
+				"FF34"
+			],
 			"values": [
 				{
 					"name": "normal",
@@ -6094,8 +7515,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-language-override"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "34",
 					"firefox_android": "34"
@@ -6108,6 +7529,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "font-size",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE5.5",
+				"O7"
+			],
 			"values": [
 				{
 					"name": "large"
@@ -6145,8 +7574,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-size"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -6167,6 +7596,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "font-size-adjust",
+			"browsers": [
+				"E127",
+				"FF3",
+				"S16.4",
+				"C127",
+				"O113"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -6181,8 +7617,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-size-adjust"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "127",
 					"chrome_android": "127",
@@ -6201,6 +7637,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "font-stretch",
+			"browsers": [
+				"E12",
+				"FF9",
+				"S11",
+				"C60",
+				"IE9",
+				"O47"
+			],
 			"values": [
 				{
 					"name": "condensed"
@@ -6216,6 +7660,14 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "narrower",
+					"browsers": [
+						"E12",
+						"FF9",
+						"S11",
+						"C60",
+						"IE9",
+						"O47"
+					],
 					"description": "Indicates a narrower value relative to the width of the parent element."
 				},
 				{
@@ -6235,6 +7687,14 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "wider",
+					"browsers": [
+						"E12",
+						"FF9",
+						"S11",
+						"C60",
+						"IE9",
+						"O47"
+					],
 					"description": "Indicates a wider value relative to the width of the parent element."
 				}
 			],
@@ -6247,8 +7707,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-stretch"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "60",
 					"chrome_android": "60",
@@ -6266,6 +7726,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "font-style",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O7"
+			],
 			"values": [
 				{
 					"name": "italic",
@@ -6289,8 +7757,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -6310,6 +7778,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "font-synthesis",
+			"browsers": [
+				"E97",
+				"FF34",
+				"S9",
+				"C97",
+				"O83"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -6332,8 +7807,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-synthesis"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "97",
 					"chrome_android": "97",
@@ -6353,6 +7828,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "font-variant",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"values": [
 				{
 					"name": "normal",
@@ -6371,8 +7854,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -6392,6 +7875,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "font-variant-alternates",
+			"browsers": [
+				"E111",
+				"FF34",
+				"S9.1",
+				"C111",
+				"O97"
+			],
 			"values": [
 				{
 					"name": "annotation()",
@@ -6434,8 +7924,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-alternates"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "111",
 					"chrome_android": "111",
@@ -6454,6 +7944,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "font-variant-caps",
+			"browsers": [
+				"E79",
+				"FF34",
+				"S9.1",
+				"C52",
+				"O39"
+			],
 			"values": [
 				{
 					"name": "all-petite-caps",
@@ -6492,8 +7989,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-caps"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "52",
 					"chrome_android": "52",
@@ -6513,6 +8010,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "font-variant-east-asian",
+			"browsers": [
+				"E79",
+				"FF34",
+				"S9.1",
+				"C63",
+				"O50"
+			],
 			"values": [
 				{
 					"name": "full-width",
@@ -6563,8 +8067,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-east-asian"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "63",
 					"chrome_android": "63",
@@ -6584,6 +8088,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "font-variant-ligatures",
+			"browsers": [
+				"E79",
+				"FF34",
+				"S9.1",
+				"C34",
+				"O21"
+			],
 			"values": [
 				{
 					"name": "additional-ligatures",
@@ -6595,6 +8106,13 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "contextual",
+					"browsers": [
+						"E79",
+						"FF34",
+						"S9.1",
+						"C34",
+						"O21"
+					],
 					"description": "Enables display of contextual alternates."
 				},
 				{
@@ -6615,6 +8133,13 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "no-contextual",
+					"browsers": [
+						"E79",
+						"FF34",
+						"S9.1",
+						"C34",
+						"O21"
+					],
 					"description": "Disables display of contextual alternates."
 				},
 				{
@@ -6627,6 +8152,13 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "none",
+					"browsers": [
+						"E79",
+						"FF34",
+						"S9.1",
+						"C34",
+						"O21"
+					],
 					"description": "Disables all ligatures."
 				},
 				{
@@ -6642,8 +8174,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-ligatures"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "34",
 					"chrome_android": "34",
@@ -6663,6 +8195,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "font-variant-numeric",
+			"browsers": [
+				"E79",
+				"FF34",
+				"S9.1",
+				"C52",
+				"O39"
+			],
 			"values": [
 				{
 					"name": "diagonal-fractions",
@@ -6709,8 +8248,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-numeric"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "52",
 					"chrome_android": "52",
@@ -6730,6 +8269,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "font-variant-position",
+			"browsers": [
+				"FF34",
+				"S9.1"
+			],
 			"values": [
 				{
 					"name": "normal",
@@ -6752,8 +8295,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-position"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "34",
 					"firefox_android": "34",
@@ -6768,6 +8311,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "font-weight",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C2",
+				"IE3",
+				"O3.5"
+			],
 			"values": [
 				{
 					"name": "100",
@@ -6831,8 +8382,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-weight"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "2",
 					"chrome_android": "18",
@@ -6861,6 +8412,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "glyph-orientation-vertical",
+			"browsers": [
+				"S13.1"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -6868,8 +8422,8 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari": "≤13.1",
 					"safari_ios": "≤13.4"
@@ -6884,6 +8438,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "grid-area",
+			"browsers": [
+				"E16",
+				"FF52",
+				"S10.1",
+				"C57",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -6902,8 +8463,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-area"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -6924,6 +8485,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "grid",
+			"browsers": [
+				"E16",
+				"FF52",
+				"S10.1",
+				"C57",
+				"O44"
+			],
 			"syntax": "<'grid-template'> | <'grid-template-rows'> / [ auto-flow && dense? ] <'grid-auto-columns'>? | [ auto-flow && dense? ] <'grid-auto-rows'>? / <'grid-template-columns'>",
 			"relevance": 50,
 			"references": [
@@ -6932,8 +8500,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -6957,6 +8525,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "grid-auto-columns",
+			"browsers": [
+				"E16",
+				"FF70",
+				"S10.1",
+				"C57",
+				"IE10",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "min-content",
@@ -6983,8 +8559,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-auto-columns"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -7005,6 +8581,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "grid-auto-flow",
+			"browsers": [
+				"E16",
+				"FF52",
+				"S10.1",
+				"C57",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "row",
@@ -7027,8 +8610,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-auto-flow"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -7048,6 +8631,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "grid-auto-rows",
+			"browsers": [
+				"E16",
+				"FF70",
+				"S10.1",
+				"C57",
+				"IE10",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "min-content",
@@ -7074,8 +8665,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-auto-rows"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -7096,6 +8687,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "grid-column",
+			"browsers": [
+				"E16",
+				"FF52",
+				"S10.1",
+				"C57",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -7114,8 +8712,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-column"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -7137,6 +8735,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "grid-column-end",
+			"browsers": [
+				"E16",
+				"FF52",
+				"S10.1",
+				"C57",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -7155,8 +8760,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-column-end"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -7178,6 +8783,12 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "grid-column-gap",
+			"browsers": [
+				"FF52",
+				"C57",
+				"S10.1",
+				"O44"
+			],
 			"status": "obsolete",
 			"syntax": "<length-percentage>",
 			"relevance": 5,
@@ -7188,6 +8799,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "grid-column-start",
+			"browsers": [
+				"E16",
+				"FF52",
+				"S10.1",
+				"C57",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -7206,8 +8824,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-column-start"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -7229,6 +8847,12 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "grid-gap",
+			"browsers": [
+				"FF52",
+				"C57",
+				"S10.1",
+				"O44"
+			],
 			"status": "obsolete",
 			"syntax": "<'grid-row-gap'> <'grid-column-gap'>?",
 			"relevance": 9,
@@ -7239,6 +8863,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "grid-row",
+			"browsers": [
+				"E16",
+				"FF52",
+				"S10.1",
+				"C57",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -7257,8 +8888,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-row"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -7280,6 +8911,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "grid-row-end",
+			"browsers": [
+				"E16",
+				"FF52",
+				"S10.1",
+				"C57",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -7298,8 +8936,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-row-end"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -7321,6 +8959,12 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "grid-row-gap",
+			"browsers": [
+				"FF52",
+				"C57",
+				"S10.1",
+				"O44"
+			],
 			"status": "obsolete",
 			"syntax": "<length-percentage>",
 			"relevance": 2,
@@ -7331,6 +8975,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "grid-row-start",
+			"browsers": [
+				"E16",
+				"FF52",
+				"S10.1",
+				"C57",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -7349,8 +9000,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-row-start"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -7372,6 +9023,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "grid-template",
+			"browsers": [
+				"E16",
+				"FF52",
+				"S10.1",
+				"C57",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -7410,8 +9068,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-template"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -7435,6 +9093,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "grid-template-areas",
+			"browsers": [
+				"E16",
+				"FF52",
+				"S10.1",
+				"C57",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -7449,8 +9114,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-template-areas"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -7470,6 +9135,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "grid-template-columns",
+			"browsers": [
+				"E16",
+				"FF52",
+				"S10.1",
+				"C57",
+				"IE10",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -7508,8 +9181,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-template-columns"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -7532,6 +9205,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "grid-template-rows",
+			"browsers": [
+				"E16",
+				"FF52",
+				"S10.1",
+				"C57",
+				"IE10",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -7570,8 +9251,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-template-rows"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -7595,6 +9276,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "height",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O7"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -7602,14 +9291,38 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "fit-content",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Use the fit-content inline size or fit-content block size, as appropriate to the writing mode."
 				},
 				{
 					"name": "max-content",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Use the max-content inline size or max-content block size, as appropriate to the writing mode."
 				},
 				{
 					"name": "min-content",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Use the min-content inline size or min-content block size, as appropriate to the writing mode."
 				}
 			],
@@ -7621,8 +9334,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/height"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -7643,6 +9356,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "hyphens",
+			"browsers": [
+				"E79",
+				"FF43",
+				"S17",
+				"C55",
+				"IE10",
+				"O42"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -7665,8 +9386,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/hyphens"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "55",
 					"chrome_android": "55",
@@ -7685,6 +9406,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "image-orientation",
+			"browsers": [
+				"E81",
+				"FF26",
+				"S13.1",
+				"C81",
+				"O67"
+			],
 			"values": [
 				{
 					"name": "flip",
@@ -7703,8 +9431,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/image-orientation"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "81",
 					"chrome_android": "81",
@@ -7724,6 +9452,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "image-rendering",
+			"browsers": [
+				"E79",
+				"FF3.6",
+				"S6",
+				"C13",
+				"O15"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -7734,7 +9469,14 @@ export const cssData : CSSDataV1 = {
 					"description": "The image must be scaled with an algorithm that preserves contrast and edges in the image, and which does not smooth colors or introduce blur to the image in the process."
 				},
 				{
-					"name": "-moz-crisp-edges"
+					"name": "-moz-crisp-edges",
+					"browsers": [
+						"E79",
+						"FF3.6",
+						"S6",
+						"C13",
+						"O15"
+					]
 				},
 				{
 					"name": "optimizeQuality",
@@ -7757,8 +9499,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/image-rendering"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "13",
 					"chrome_android": "18",
@@ -7778,6 +9520,11 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "ime-mode",
+			"browsers": [
+				"E12",
+				"FF3",
+				"IE5"
+			],
 			"values": [
 				{
 					"name": "active",
@@ -7803,8 +9550,8 @@ export const cssData : CSSDataV1 = {
 			"status": "obsolete",
 			"syntax": "auto | normal | active | inactive | disabled",
 			"relevance": 0,
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "3",
 					"firefox_android": "4"
@@ -7817,6 +9564,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "inline-size",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C57",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -7831,8 +9585,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/inline-size"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -7853,6 +9607,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "isolation",
+			"browsers": [
+				"E79",
+				"FF36",
+				"S8",
+				"C41",
+				"O30"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -7871,8 +9632,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/isolation"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "41",
 					"chrome_android": "41",
@@ -7892,6 +9653,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "justify-content",
+			"browsers": [
+				"E12",
+				"FF20",
+				"S9",
+				"C29",
+				"IE11",
+				"O12.1"
+			],
 			"values": [
 				{
 					"name": "center",
@@ -7966,8 +9735,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/justify-content"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "29",
 					"chrome_android": "29",
@@ -8002,6 +9771,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "left",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE5.5",
+				"O5"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -8016,8 +9793,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/left"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -8038,6 +9815,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "letter-spacing",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"values": [
 				{
 					"name": "normal",
@@ -8052,8 +9837,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/letter-spacing"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -8073,6 +9858,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "lighting-color",
+			"browsers": [
+				"E12",
+				"FF3",
+				"S6",
+				"C5",
+				"IE11",
+				"O15"
+			],
 			"syntax": "<color>",
 			"relevance": 50,
 			"references": [
@@ -8081,8 +9874,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/lighting-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "5",
 					"chrome_android": "18",
@@ -8102,6 +9895,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "line-break",
+			"browsers": [
+				"E14",
+				"FF69",
+				"S11",
+				"C58",
+				"IE5.5",
+				"O45"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -8132,8 +9933,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/line-break"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "58",
 					"chrome_android": "58",
@@ -8153,6 +9954,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "line-height",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O7"
+			],
 			"values": [
 				{
 					"name": "normal",
@@ -8167,8 +9976,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/line-height"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -8190,6 +9999,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "list-style",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O7"
+			],
 			"values": [
 				{
 					"name": "armenian"
@@ -8240,6 +10057,14 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "symbols()",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Allows a counter style to be defined inline."
 				},
 				{
@@ -8263,8 +10088,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/list-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -8286,6 +10111,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "list-style-image",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O7"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -8300,8 +10133,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/list-style-image"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -8321,6 +10154,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "list-style-position",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"values": [
 				{
 					"name": "inside",
@@ -8339,8 +10180,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/list-style-position"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -8360,6 +10201,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "list-style-type",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"values": [
 				{
 					"name": "armenian",
@@ -8411,6 +10260,14 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "symbols()",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O3.5"
+					],
 					"description": "Allows a counter style to be defined inline."
 				},
 				{
@@ -8434,8 +10291,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/list-style-type"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -8456,6 +10313,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "margin",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE3",
+				"O3.5"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -8469,8 +10334,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -8491,6 +10356,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "margin-block-end",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -8504,8 +10376,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-block-end"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -8526,6 +10398,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "margin-block-start",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -8539,8 +10418,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-block-start"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -8561,6 +10440,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "margin-bottom",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE3",
+				"O3.5"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -8574,8 +10461,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-bottom"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -8596,6 +10483,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "margin-inline-end",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -8609,8 +10503,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-inline-end"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -8631,6 +10525,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "margin-inline-start",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -8644,8 +10545,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-inline-start"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -8666,6 +10567,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "margin-left",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE3",
+				"O3.5"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -8679,8 +10588,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-left"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -8701,6 +10610,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "margin-right",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE3",
+				"O3.5"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -8714,8 +10631,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-right"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -8736,6 +10653,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "margin-top",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE3",
+				"O3.5"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -8749,8 +10674,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-top"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -8771,6 +10696,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "marker",
+			"browsers": [
+				"E80",
+				"FF72",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -8789,8 +10721,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/marker"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -8810,6 +10742,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "marker-end",
+			"browsers": [
+				"E80",
+				"FF72",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -8828,8 +10767,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/marker-end"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -8849,6 +10788,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "marker-mid",
+			"browsers": [
+				"E80",
+				"FF72",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -8867,8 +10813,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/marker-mid"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -8888,6 +10834,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "marker-start",
+			"browsers": [
+				"E80",
+				"FF72",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -8906,8 +10859,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/marker-start"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -8927,6 +10880,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "mask-image",
+			"browsers": [
+				"E120",
+				"FF53",
+				"S15.4",
+				"C120",
+				"O15"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -8945,8 +10905,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-image"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "120",
 					"chrome_android": "120",
@@ -8967,6 +10927,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "mask-mode",
+			"browsers": [
+				"E120",
+				"FF53",
+				"S15.4",
+				"C120",
+				"O106"
+			],
 			"values": [
 				{
 					"name": "alpha",
@@ -8989,8 +10956,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-mode"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "120",
 					"chrome_android": "120",
@@ -9011,6 +10978,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "mask-origin",
+			"browsers": [
+				"E120",
+				"FF53",
+				"S15.4",
+				"C120",
+				"O106"
+			],
 			"syntax": "<coord-box>#",
 			"relevance": 50,
 			"references": [
@@ -9019,8 +10993,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-origin"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "120",
 					"chrome_android": "120",
@@ -9040,6 +11014,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "mask-position",
+			"browsers": [
+				"E120",
+				"FF53",
+				"S15.4",
+				"C120",
+				"O106"
+			],
 			"syntax": "<position>#",
 			"relevance": 55,
 			"references": [
@@ -9048,8 +11029,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-position"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "120",
 					"chrome_android": "120",
@@ -9070,6 +11051,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "mask-repeat",
+			"browsers": [
+				"E120",
+				"FF53",
+				"S15.4",
+				"C120",
+				"O106"
+			],
 			"syntax": "<repeat-style>#",
 			"relevance": 54,
 			"references": [
@@ -9078,8 +11066,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-repeat"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "120",
 					"chrome_android": "120",
@@ -9098,6 +11086,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "mask-size",
+			"browsers": [
+				"E120",
+				"FF53",
+				"S15.4",
+				"C120",
+				"O106"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -9120,8 +11115,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-size"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "120",
 					"chrome_android": "120",
@@ -9142,6 +11137,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "mask-type",
+			"browsers": [
+				"E79",
+				"FF35",
+				"S7",
+				"C24",
+				"O15"
+			],
 			"values": [
 				{
 					"name": "alpha",
@@ -9160,8 +11162,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-type"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "24",
 					"chrome_android": "25",
@@ -9181,6 +11183,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "max-block-size",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C57",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -9195,8 +11204,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/max-block-size"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -9217,6 +11226,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "max-height",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1.3",
+				"C1",
+				"IE7",
+				"O7"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -9224,14 +11241,38 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "fit-content",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1.3",
+						"C1",
+						"IE7",
+						"O7"
+					],
 					"description": "Use the fit-content inline size or fit-content block size, as appropriate to the writing mode."
 				},
 				{
 					"name": "max-content",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1.3",
+						"C1",
+						"IE7",
+						"O7"
+					],
 					"description": "Use the max-content inline size or max-content block size, as appropriate to the writing mode."
 				},
 				{
 					"name": "min-content",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1.3",
+						"C1",
+						"IE7",
+						"O7"
+					],
 					"description": "Use the min-content inline size or min-content block size, as appropriate to the writing mode."
 				}
 			],
@@ -9243,8 +11284,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/max-height"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -9265,6 +11306,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "max-inline-size",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C57",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -9279,8 +11327,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/max-inline-size"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -9301,6 +11349,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "max-width",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE7",
+				"O4"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -9308,14 +11364,38 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "fit-content",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE7",
+						"O4"
+					],
 					"description": "Use the fit-content inline size or fit-content block size, as appropriate to the writing mode."
 				},
 				{
 					"name": "max-content",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE7",
+						"O4"
+					],
 					"description": "Use the max-content inline size or max-content block size, as appropriate to the writing mode."
 				},
 				{
 					"name": "min-content",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE7",
+						"O4"
+					],
 					"description": "Use the min-content inline size or min-content block size, as appropriate to the writing mode."
 				}
 			],
@@ -9327,8 +11407,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/max-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -9349,6 +11429,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "min-block-size",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C57",
+				"O44"
+			],
 			"syntax": "<'min-width'>",
 			"relevance": 54,
 			"references": [
@@ -9357,8 +11444,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/min-block-size"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -9379,20 +11466,60 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "min-height",
+			"browsers": [
+				"E12",
+				"FF3",
+				"S1.3",
+				"C1",
+				"IE7",
+				"O4"
+			],
 			"values": [
 				{
-					"name": "auto"
+					"name": "auto",
+					"browsers": [
+						"E12",
+						"FF3",
+						"S1.3",
+						"C1",
+						"IE7",
+						"O4"
+					]
 				},
 				{
 					"name": "fit-content",
+					"browsers": [
+						"E12",
+						"FF3",
+						"S1.3",
+						"C1",
+						"IE7",
+						"O4"
+					],
 					"description": "Use the fit-content inline size or fit-content block size, as appropriate to the writing mode."
 				},
 				{
 					"name": "max-content",
+					"browsers": [
+						"E12",
+						"FF3",
+						"S1.3",
+						"C1",
+						"IE7",
+						"O4"
+					],
 					"description": "Use the max-content inline size or max-content block size, as appropriate to the writing mode."
 				},
 				{
 					"name": "min-content",
+					"browsers": [
+						"E12",
+						"FF3",
+						"S1.3",
+						"C1",
+						"IE7",
+						"O4"
+					],
 					"description": "Use the min-content inline size or min-content block size, as appropriate to the writing mode."
 				}
 			],
@@ -9404,8 +11531,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/min-height"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -9426,6 +11553,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "min-inline-size",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C57",
+				"O44"
+			],
 			"syntax": "<'min-width'>",
 			"relevance": 54,
 			"references": [
@@ -9434,8 +11568,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/min-inline-size"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -9456,20 +11590,60 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "min-width",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE7",
+				"O4"
+			],
 			"values": [
 				{
-					"name": "auto"
+					"name": "auto",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE7",
+						"O4"
+					]
 				},
 				{
 					"name": "fit-content",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE7",
+						"O4"
+					],
 					"description": "Use the fit-content inline size or fit-content block size, as appropriate to the writing mode."
 				},
 				{
 					"name": "max-content",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE7",
+						"O4"
+					],
 					"description": "Use the max-content inline size or max-content block size, as appropriate to the writing mode."
 				},
 				{
 					"name": "min-content",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE7",
+						"O4"
+					],
 					"description": "Use the min-content inline size or min-content block size, as appropriate to the writing mode."
 				}
 			],
@@ -9481,8 +11655,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/min-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -9503,6 +11677,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "mix-blend-mode",
+			"browsers": [
+				"E79",
+				"FF32",
+				"S8",
+				"C41",
+				"O28"
+			],
 			"values": [
 				{
 					"name": "normal",
@@ -9554,18 +11735,46 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "hue",
+					"browsers": [
+						"E79",
+						"FF32",
+						"S8",
+						"C41",
+						"O28"
+					],
 					"description": "Creates a color with the hue of the source color and the saturation and luminosity of the backdrop color."
 				},
 				{
 					"name": "saturation",
+					"browsers": [
+						"E79",
+						"FF32",
+						"S8",
+						"C41",
+						"O28"
+					],
 					"description": "Creates a color with the saturation of the source color and the hue and luminosity of the backdrop color."
 				},
 				{
 					"name": "color",
+					"browsers": [
+						"E79",
+						"FF32",
+						"S8",
+						"C41",
+						"O28"
+					],
 					"description": "Creates a color with the hue and saturation of the source color and the luminosity of the backdrop color."
 				},
 				{
 					"name": "luminosity",
+					"browsers": [
+						"E79",
+						"FF32",
+						"S8",
+						"C41",
+						"O28"
+					],
 					"description": "Creates a color with the luminosity of the source color and the hue and saturation of the backdrop color."
 				}
 			],
@@ -9577,8 +11786,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mix-blend-mode"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "41",
 					"chrome_android": "41",
@@ -9598,6 +11807,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "motion",
+			"browsers": [
+				"C46",
+				"O33"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -9630,6 +11843,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "motion-offset",
+			"browsers": [
+				"C46",
+				"O33"
+			],
 			"relevance": 50,
 			"description": "A distance that describes the position along the specified motion path.",
 			"restrictions": [
@@ -9639,6 +11856,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "motion-path",
+			"browsers": [
+				"C46",
+				"O33"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -9660,6 +11881,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "motion-rotation",
+			"browsers": [
+				"C46",
+				"O33"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -9678,6 +11903,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-animation",
+			"browsers": [
+				"FF9"
+			],
 			"values": [
 				{
 					"name": "alternate",
@@ -9728,6 +11956,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-animation-delay",
+			"browsers": [
+				"FF9"
+			],
 			"relevance": 50,
 			"description": "Defines when the animation will start.",
 			"restrictions": [
@@ -9736,6 +11967,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-animation-direction",
+			"browsers": [
+				"FF9"
+			],
 			"values": [
 				{
 					"name": "alternate",
@@ -9762,6 +11996,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-animation-duration",
+			"browsers": [
+				"FF9"
+			],
 			"relevance": 50,
 			"description": "Defines the length of time that an animation takes to complete one cycle.",
 			"restrictions": [
@@ -9770,6 +12007,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-animation-iteration-count",
+			"browsers": [
+				"FF9"
+			],
 			"values": [
 				{
 					"name": "infinite",
@@ -9785,6 +12025,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-animation-name",
+			"browsers": [
+				"FF9"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -9800,6 +12043,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-animation-play-state",
+			"browsers": [
+				"FF9"
+			],
 			"values": [
 				{
 					"name": "paused",
@@ -9818,6 +12064,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-animation-timing-function",
+			"browsers": [
+				"FF9"
+			],
 			"relevance": 50,
 			"description": "Describes how the animation will progress over one cycle of its duration. See the 'transition-timing-function'.",
 			"restrictions": [
@@ -9826,6 +12075,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-appearance",
+			"browsers": [
+				"FF1"
+			],
 			"values": [
 				{
 					"name": "button"
@@ -10042,6 +12294,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-backface-visibility",
+			"browsers": [
+				"FF10"
+			],
 			"values": [
 				{
 					"name": "hidden"
@@ -10058,6 +12313,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-background-clip",
+			"browsers": [
+				"FF1-3.6"
+			],
 			"values": [
 				{
 					"name": "padding"
@@ -10072,6 +12330,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-background-inline-policy",
+			"browsers": [
+				"FF1"
+			],
 			"values": [
 				{
 					"name": "bounding-box"
@@ -10091,6 +12352,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-background-origin",
+			"browsers": [
+				"FF1"
+			],
 			"relevance": 50,
 			"description": "For elements rendered as a single box, specifies the background positioning area. For elements rendered as multiple boxes (e.g., inline boxes on several lines, boxes on several pages) specifies which boxes 'box-decoration-break' operates on to determine the background positioning area(s).",
 			"restrictions": [
@@ -10099,6 +12363,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-border-bottom-colors",
+			"browsers": [
+				"FF1"
+			],
 			"status": "nonstandard",
 			"syntax": "<color>+ | none",
 			"relevance": 0,
@@ -10109,6 +12376,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-border-image",
+			"browsers": [
+				"FF3.6"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -10153,6 +12423,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-border-left-colors",
+			"browsers": [
+				"FF1"
+			],
 			"status": "nonstandard",
 			"syntax": "<color>+ | none",
 			"relevance": 0,
@@ -10163,6 +12436,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-border-right-colors",
+			"browsers": [
+				"FF1"
+			],
 			"status": "nonstandard",
 			"syntax": "<color>+ | none",
 			"relevance": 0,
@@ -10173,6 +12449,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-border-top-colors",
+			"browsers": [
+				"FF1"
+			],
 			"status": "nonstandard",
 			"syntax": "<color>+ | none",
 			"relevance": 0,
@@ -10183,6 +12462,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-box-align",
+			"browsers": [
+				"FF1"
+			],
 			"values": [
 				{
 					"name": "baseline",
@@ -10213,6 +12495,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-box-direction",
+			"browsers": [
+				"FF1"
+			],
 			"values": [
 				{
 					"name": "normal",
@@ -10231,6 +12516,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-box-flex",
+			"browsers": [
+				"FF1"
+			],
 			"relevance": 50,
 			"description": "Specifies how a box grows to fill the box that contains it, in the direction of the containing box's layout.",
 			"restrictions": [
@@ -10239,6 +12527,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-box-flexgroup",
+			"browsers": [
+				"FF1"
+			],
 			"relevance": 50,
 			"description": "Flexible elements can be assigned to flex groups using the 'box-flex-group' property.",
 			"restrictions": [
@@ -10247,6 +12538,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-box-ordinal-group",
+			"browsers": [
+				"FF1"
+			],
 			"relevance": 50,
 			"description": "Indicates the ordinal group the element belongs to. Elements with a lower ordinal group are displayed before those with a higher ordinal group.",
 			"restrictions": [
@@ -10255,6 +12549,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-box-orient",
+			"browsers": [
+				"FF1"
+			],
 			"values": [
 				{
 					"name": "block-axis",
@@ -10281,6 +12578,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-box-pack",
+			"browsers": [
+				"FF1"
+			],
 			"values": [
 				{
 					"name": "center",
@@ -10307,6 +12607,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-box-sizing",
+			"browsers": [
+				"FF1"
+			],
 			"values": [
 				{
 					"name": "border-box",
@@ -10329,6 +12632,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-column-count",
+			"browsers": [
+				"FF3.5"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -10343,6 +12649,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-column-gap",
+			"browsers": [
+				"FF3.5"
+			],
 			"values": [
 				{
 					"name": "normal",
@@ -10357,6 +12666,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-column-rule",
+			"browsers": [
+				"FF3.5"
+			],
 			"relevance": 50,
 			"description": "Shorthand for setting 'column-rule-width', 'column-rule-style', and 'column-rule-color' at the same place in the style sheet. Omitted values are set to their initial values.",
 			"restrictions": [
@@ -10368,6 +12680,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-column-rule-color",
+			"browsers": [
+				"FF3.5"
+			],
 			"relevance": 50,
 			"description": "Sets the color of the column rule",
 			"restrictions": [
@@ -10376,6 +12691,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-column-rule-style",
+			"browsers": [
+				"FF3.5"
+			],
 			"relevance": 50,
 			"description": "Sets the style of the rule between columns of an element.",
 			"restrictions": [
@@ -10384,6 +12702,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-column-rule-width",
+			"browsers": [
+				"FF3.5"
+			],
 			"relevance": 50,
 			"description": "Sets the width of the rule between columns. Negative values are not allowed.",
 			"restrictions": [
@@ -10393,6 +12714,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-columns",
+			"browsers": [
+				"FF9"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -10408,6 +12732,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-column-width",
+			"browsers": [
+				"FF3.5"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -10422,6 +12749,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-font-feature-settings",
+			"browsers": [
+				"FF4"
+			],
 			"values": [
 				{
 					"name": "\"c2cs\""
@@ -10455,10 +12785,16 @@ export const cssData : CSSDataV1 = {
 					"description": "No change in glyph substitution or positioning occurs."
 				},
 				{
-					"name": "off"
+					"name": "off",
+					"browsers": [
+						"FF4"
+					]
 				},
 				{
-					"name": "on"
+					"name": "on",
+					"browsers": [
+						"FF4"
+					]
 				}
 			],
 			"relevance": 50,
@@ -10470,6 +12806,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-hyphens",
+			"browsers": [
+				"FF9"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -10492,6 +12831,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-perspective",
+			"browsers": [
+				"FF10"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -10506,6 +12848,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-perspective-origin",
+			"browsers": [
+				"FF10"
+			],
 			"relevance": 50,
 			"description": "Establishes the origin for the perspective property. It effectively sets the X and Y position at which the viewer appears to be looking at the children of the element.",
 			"restrictions": [
@@ -10516,6 +12861,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-text-align-last",
+			"browsers": [
+				"FF12"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -10545,6 +12893,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-text-decoration-color",
+			"browsers": [
+				"FF6"
+			],
 			"relevance": 50,
 			"description": "Specifies the color of text decoration (underlines overlines, and line-throughs) set on the element with text-decoration-line.",
 			"restrictions": [
@@ -10553,6 +12904,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-text-decoration-line",
+			"browsers": [
+				"FF6"
+			],
 			"values": [
 				{
 					"name": "line-through",
@@ -10579,6 +12933,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-text-decoration-style",
+			"browsers": [
+				"FF6"
+			],
 			"values": [
 				{
 					"name": "dashed",
@@ -10613,6 +12970,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-text-size-adjust",
+			"browsers": [
+				"FF"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -10632,6 +12992,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-transform",
+			"browsers": [
+				"FF3.5"
+			],
 			"values": [
 				{
 					"name": "matrix()",
@@ -10729,6 +13092,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-transform-origin",
+			"browsers": [
+				"FF3.5"
+			],
 			"relevance": 50,
 			"description": "Establishes the origin of transformation for an element.",
 			"restrictions": [
@@ -10739,6 +13105,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-transition",
+			"browsers": [
+				"FF4"
+			],
 			"values": [
 				{
 					"name": "all",
@@ -10760,6 +13129,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-transition-delay",
+			"browsers": [
+				"FF4"
+			],
 			"relevance": 50,
 			"description": "Defines when the transition will start. It allows a transition to begin execution some period of time from when it is applied.",
 			"restrictions": [
@@ -10768,6 +13140,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-transition-duration",
+			"browsers": [
+				"FF4"
+			],
 			"relevance": 50,
 			"description": "Specifies how long the transition from the old value to the new value should take.",
 			"restrictions": [
@@ -10776,6 +13151,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-transition-property",
+			"browsers": [
+				"FF4"
+			],
 			"values": [
 				{
 					"name": "all",
@@ -10794,6 +13172,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-transition-timing-function",
+			"browsers": [
+				"FF4"
+			],
 			"relevance": 50,
 			"description": "Describes how the intermediate values used during a transition will be calculated.",
 			"restrictions": [
@@ -10802,6 +13183,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-user-focus",
+			"browsers": [
+				"FF1"
+			],
 			"values": [
 				{
 					"name": "ignore"
@@ -10819,14 +13203,17 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-user-focus"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": "Used to indicate whether the element can have focus."
 		},
 		{
 			"name": "-moz-user-select",
+			"browsers": [
+				"FF1.5"
+			],
 			"values": [
 				{
 					"name": "all"
@@ -10861,6 +13248,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-accelerator",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "false",
@@ -10881,6 +13272,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-behavior",
+			"browsers": [
+				"IE8"
+			],
 			"relevance": 50,
 			"description": "IE only. Used to extend behaviors of the browser",
 			"restrictions": [
@@ -10889,6 +13283,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-block-progression",
+			"browsers": [
+				"IE8"
+			],
 			"values": [
 				{
 					"name": "bt",
@@ -10917,6 +13314,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-content-zoom-chaining",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "chained",
@@ -10934,6 +13335,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-content-zooming",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -10954,6 +13359,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-content-zoom-limit",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"status": "nonstandard",
 			"syntax": "<'-ms-content-zoom-limit-min'> <'-ms-content-zoom-limit-max'>",
 			"relevance": 0,
@@ -10964,6 +13373,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-content-zoom-limit-max",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"status": "nonstandard",
 			"syntax": "<percentage>",
 			"relevance": 0,
@@ -10974,6 +13387,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-content-zoom-limit-min",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"status": "nonstandard",
 			"syntax": "<percentage>",
 			"relevance": 0,
@@ -10984,6 +13401,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-content-zoom-snap",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "mandatory",
@@ -11013,6 +13434,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-content-zoom-snap-points",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "snapInterval(100%, 100%)",
@@ -11030,6 +13455,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-content-zoom-snap-type",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "mandatory",
@@ -11054,6 +13483,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-filter",
+			"browsers": [
+				"IE8-9"
+			],
 			"status": "nonstandard",
 			"syntax": "<string>",
 			"relevance": 0,
@@ -11064,6 +13496,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-flex",
+			"browsers": [
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -11084,6 +13519,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-flex-align",
+			"browsers": [
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "baseline",
@@ -11114,6 +13552,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-flex-direction",
+			"browsers": [
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "column",
@@ -11140,6 +13581,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-flex-flow",
+			"browsers": [
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "column",
@@ -11174,6 +13618,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-flex-item-align",
+			"browsers": [
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -11208,6 +13655,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-flex-line-pack",
+			"browsers": [
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "center",
@@ -11242,6 +13692,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-flex-order",
+			"browsers": [
+				"IE10"
+			],
 			"relevance": 50,
 			"description": "Controls the order in which children of a flex container appear within the flex container, by assigning them to ordinal groups.",
 			"restrictions": [
@@ -11250,6 +13703,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-flex-pack",
+			"browsers": [
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "center",
@@ -11280,6 +13736,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-flex-wrap",
+			"browsers": [
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "nowrap",
@@ -11302,6 +13761,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-flow-from",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -11318,6 +13781,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-flow-into",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -11334,6 +13801,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-grid-column",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -11355,6 +13826,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-grid-column-align",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "center",
@@ -11381,6 +13856,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-grid-columns",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"status": "nonstandard",
 			"syntax": "none | <track-list> | <auto-track-list>",
 			"relevance": 0,
@@ -11388,6 +13867,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-grid-column-span",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"relevance": 50,
 			"description": "Specifies the number of columns to span.",
 			"restrictions": [
@@ -11396,6 +13879,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-grid-layer",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"relevance": 50,
 			"description": "Grid-layer is similar in concept to z-index, but avoids overloading the meaning of the z-index property, which is applicable only to positioned elements.",
 			"restrictions": [
@@ -11404,6 +13891,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-grid-row",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -11425,6 +13916,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-grid-row-align",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "center",
@@ -11451,6 +13946,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-grid-rows",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"status": "nonstandard",
 			"syntax": "none | <track-list> | <auto-track-list>",
 			"relevance": 0,
@@ -11458,6 +13957,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-grid-row-span",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"relevance": 50,
 			"description": "Specifies the number of rows to span.",
 			"restrictions": [
@@ -11466,6 +13969,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-high-contrast-adjust",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -11486,6 +13993,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-hyphenate-limit-chars",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -11502,6 +14013,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-hyphenate-limit-lines",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "no-limit",
@@ -11518,6 +14033,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-hyphenate-limit-zone",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"status": "nonstandard",
 			"syntax": "<percentage> | <length>",
 			"relevance": 0,
@@ -11529,6 +14048,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-hyphens",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -11551,6 +14074,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-ime-mode",
+			"browsers": [
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "active",
@@ -11581,6 +14107,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-interpolation-mode",
+			"browsers": [
+				"IE7"
+			],
 			"values": [
 				{
 					"name": "bicubic"
@@ -11597,6 +14126,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-layout-grid",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "char",
@@ -11620,6 +14153,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-layout-grid-char",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -11640,6 +14177,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-layout-grid-line",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -11658,6 +14199,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-layout-grid-mode",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "both",
@@ -11684,6 +14229,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-layout-grid-type",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "fixed",
@@ -11706,6 +14255,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-line-break",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -11736,6 +14289,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-overflow-style",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -11764,6 +14321,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-perspective",
+			"browsers": [
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -11778,6 +14338,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-perspective-origin",
+			"browsers": [
+				"IE10"
+			],
 			"relevance": 50,
 			"description": "Establishes the origin for the perspective property. It effectively sets the X and Y position at which the viewer appears to be looking at the children of the element.",
 			"restrictions": [
@@ -11788,6 +14351,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-perspective-origin-x",
+			"browsers": [
+				"IE10"
+			],
 			"relevance": 50,
 			"description": "Establishes the origin for the perspective property. It effectively sets the X  position at which the viewer appears to be looking at the children of the element.",
 			"restrictions": [
@@ -11798,6 +14364,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-perspective-origin-y",
+			"browsers": [
+				"IE10"
+			],
 			"relevance": 50,
 			"description": "Establishes the origin for the perspective property. It effectively sets the Y position at which the viewer appears to be looking at the children of the element.",
 			"restrictions": [
@@ -11808,6 +14377,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-progress-appearance",
+			"browsers": [
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "bar"
@@ -11824,6 +14396,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scrollbar-3dlight-color",
+			"browsers": [
+				"IE8"
+			],
 			"status": "nonstandard",
 			"syntax": "<color>",
 			"relevance": 0,
@@ -11834,6 +14409,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scrollbar-arrow-color",
+			"browsers": [
+				"IE8"
+			],
 			"status": "nonstandard",
 			"syntax": "<color>",
 			"relevance": 0,
@@ -11844,6 +14422,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scrollbar-base-color",
+			"browsers": [
+				"IE8"
+			],
 			"status": "nonstandard",
 			"syntax": "<color>",
 			"relevance": 0,
@@ -11854,6 +14435,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scrollbar-darkshadow-color",
+			"browsers": [
+				"IE8"
+			],
 			"status": "nonstandard",
 			"syntax": "<color>",
 			"relevance": 0,
@@ -11864,6 +14448,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scrollbar-face-color",
+			"browsers": [
+				"IE8"
+			],
 			"status": "nonstandard",
 			"syntax": "<color>",
 			"relevance": 0,
@@ -11874,6 +14461,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scrollbar-highlight-color",
+			"browsers": [
+				"IE8"
+			],
 			"status": "nonstandard",
 			"syntax": "<color>",
 			"relevance": 0,
@@ -11884,6 +14474,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scrollbar-shadow-color",
+			"browsers": [
+				"IE8"
+			],
 			"status": "nonstandard",
 			"syntax": "<color>",
 			"relevance": 0,
@@ -11894,6 +14487,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scrollbar-track-color",
+			"browsers": [
+				"IE8"
+			],
 			"status": "nonstandard",
 			"syntax": "<color>",
 			"relevance": 0,
@@ -11904,6 +14500,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scroll-chaining",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "chained"
@@ -11923,6 +14523,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scroll-limit",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -11938,6 +14542,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scroll-limit-x-max",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -11953,6 +14561,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scroll-limit-x-min",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"status": "nonstandard",
 			"syntax": "<length>",
 			"relevance": 0,
@@ -11963,6 +14575,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scroll-limit-y-max",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -11978,6 +14594,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scroll-limit-y-min",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"status": "nonstandard",
 			"syntax": "<length>",
 			"relevance": 0,
@@ -11988,6 +14608,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scroll-rails",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "none"
@@ -12007,6 +14631,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scroll-snap-points-x",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "snapInterval(100%, 100%)"
@@ -12025,6 +14653,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scroll-snap-points-y",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "snapInterval(100%, 100%)"
@@ -12043,6 +14675,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scroll-snap-type",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -12067,6 +14703,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scroll-snap-x",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "mandatory"
@@ -12094,6 +14734,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scroll-snap-y",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "mandatory"
@@ -12121,6 +14765,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-scroll-translation",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "none"
@@ -12139,6 +14787,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-text-align-last",
+			"browsers": [
+				"E",
+				"IE8"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -12168,6 +14820,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-text-autospace",
+			"browsers": [
+				"E",
+				"IE8"
+			],
 			"values": [
 				{
 					"name": "ideograph-alpha",
@@ -12204,6 +14860,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-text-combine-horizontal",
+			"browsers": [
+				"E",
+				"IE11"
+			],
 			"values": [
 				{
 					"name": "all",
@@ -12227,6 +14887,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-text-justify",
+			"browsers": [
+				"E",
+				"IE8"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -12261,6 +14925,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-text-kashida-space",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"relevance": 50,
 			"description": "Sets or retrieves the ratio of kashida expansion to white space expansion when justifying lines of text in the object.",
 			"restrictions": [
@@ -12269,6 +14937,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-text-overflow",
+			"browsers": [
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "clip",
@@ -12287,6 +14958,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-text-size-adjust",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -12306,6 +14981,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-text-underline-position",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "alphabetic",
@@ -12332,6 +15011,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-touch-action",
+			"browsers": [
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -12370,6 +15052,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-touch-select",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "grippers",
@@ -12390,6 +15076,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-transform",
+			"browsers": [
+				"IE9-9"
+			],
 			"values": [
 				{
 					"name": "matrix()",
@@ -12483,6 +15172,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-transform-origin",
+			"browsers": [
+				"IE9-9"
+			],
 			"relevance": 50,
 			"description": "Establishes the origin of transformation for an element.",
 			"restrictions": [
@@ -12493,6 +15185,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-transform-origin-x",
+			"browsers": [
+				"IE10"
+			],
 			"relevance": 50,
 			"description": "The x coordinate of the origin for transforms applied to an element with respect to its border box.",
 			"restrictions": [
@@ -12502,6 +15197,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-transform-origin-y",
+			"browsers": [
+				"IE10"
+			],
 			"relevance": 50,
 			"description": "The y coordinate of the origin for transforms applied to an element with respect to its border box.",
 			"restrictions": [
@@ -12511,6 +15209,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-transform-origin-z",
+			"browsers": [
+				"IE10"
+			],
 			"relevance": 50,
 			"description": "The z coordinate of the origin for transforms applied to an element with respect to its border box.",
 			"restrictions": [
@@ -12520,6 +15221,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-user-select",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "element"
@@ -12541,6 +15246,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-word-break",
+			"browsers": [
+				"IE8"
+			],
 			"values": [
 				{
 					"name": "break-all",
@@ -12563,6 +15271,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-word-wrap",
+			"browsers": [
+				"IE8"
+			],
 			"values": [
 				{
 					"name": "break-word",
@@ -12581,6 +15292,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-wrap-flow",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -12621,6 +15336,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-wrap-margin",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"status": "nonstandard",
 			"syntax": "<length>",
 			"relevance": 0,
@@ -12632,6 +15351,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-wrap-through",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -12652,6 +15375,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-writing-mode",
+			"browsers": [
+				"IE8"
+			],
 			"values": [
 				{
 					"name": "bt-lr"
@@ -12686,6 +15412,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-zoom",
+			"browsers": [
+				"IE8"
+			],
 			"values": [
 				{
 					"name": "normal"
@@ -12702,6 +15431,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-ms-zoom-animation",
+			"browsers": [
+				"IE10"
+			],
 			"values": [
 				{
 					"name": "default"
@@ -12718,6 +15450,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "nav-down",
+			"browsers": [
+				"O9.5"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -12742,6 +15477,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "nav-index",
+			"browsers": [
+				"O9.5"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -12756,6 +15494,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "nav-left",
+			"browsers": [
+				"O9.5"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -12780,6 +15521,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "nav-right",
+			"browsers": [
+				"O9.5"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -12804,6 +15548,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "nav-up",
+			"browsers": [
+				"O9.5"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -12828,6 +15575,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "negative",
+			"browsers": [
+				"FF33"
+			],
 			"atRule": "@counter-style",
 			"syntax": "<symbol> <symbol>?",
 			"relevance": 50,
@@ -12840,6 +15590,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-animation",
+			"browsers": [
+				"O12"
+			],
 			"values": [
 				{
 					"name": "alternate",
@@ -12890,6 +15643,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-animation-delay",
+			"browsers": [
+				"O12"
+			],
 			"relevance": 50,
 			"description": "Defines when the animation will start.",
 			"restrictions": [
@@ -12898,6 +15654,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-animation-direction",
+			"browsers": [
+				"O12"
+			],
 			"values": [
 				{
 					"name": "alternate",
@@ -12924,6 +15683,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-animation-duration",
+			"browsers": [
+				"O12"
+			],
 			"relevance": 50,
 			"description": "Defines the length of time that an animation takes to complete one cycle.",
 			"restrictions": [
@@ -12932,6 +15694,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-animation-fill-mode",
+			"browsers": [
+				"O12"
+			],
 			"values": [
 				{
 					"name": "backwards",
@@ -12958,6 +15723,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-animation-iteration-count",
+			"browsers": [
+				"O12"
+			],
 			"values": [
 				{
 					"name": "infinite",
@@ -12973,6 +15741,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-animation-name",
+			"browsers": [
+				"O12"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -12988,6 +15759,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-animation-play-state",
+			"browsers": [
+				"O12"
+			],
 			"values": [
 				{
 					"name": "paused",
@@ -13006,6 +15780,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-animation-timing-function",
+			"browsers": [
+				"O12"
+			],
 			"relevance": 50,
 			"description": "Describes how the animation will progress over one cycle of its duration. See the 'transition-timing-function'.",
 			"restrictions": [
@@ -13014,6 +15791,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "object-fit",
+			"browsers": [
+				"E79",
+				"FF36",
+				"S10",
+				"C32",
+				"O19"
+			],
 			"values": [
 				{
 					"name": "contain",
@@ -13044,8 +15828,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/object-fit"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "32",
 					"chrome_android": "32",
@@ -13065,6 +15849,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "object-position",
+			"browsers": [
+				"E79",
+				"FF36",
+				"S10",
+				"C32",
+				"O19"
+			],
 			"syntax": "<position>",
 			"relevance": 59,
 			"references": [
@@ -13073,8 +15864,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/object-position"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "32",
 					"chrome_android": "32",
@@ -13096,6 +15887,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-border-image",
+			"browsers": [
+				"O11.6"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -13137,6 +15931,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-object-fit",
+			"browsers": [
+				"O10.6"
+			],
 			"values": [
 				{
 					"name": "contain",
@@ -13167,6 +15964,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-object-position",
+			"browsers": [
+				"O10.6"
+			],
 			"relevance": 50,
 			"description": "Determines the alignment of the replaced element inside its box.",
 			"restrictions": [
@@ -13177,6 +15977,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "opacity",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S2",
+				"C1",
+				"IE9",
+				"O9"
+			],
 			"syntax": "<opacity-value>",
 			"relevance": 93,
 			"references": [
@@ -13185,8 +15993,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/opacity"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -13206,6 +16014,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "order",
+			"browsers": [
+				"E12",
+				"FF20",
+				"S9",
+				"C29",
+				"IE11",
+				"O12.1"
+			],
 			"syntax": "<integer>",
 			"relevance": 69,
 			"references": [
@@ -13214,8 +16030,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/order"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "29",
 					"chrome_android": "29",
@@ -13235,6 +16051,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "orphans",
+			"browsers": [
+				"E12",
+				"S1.3",
+				"C25",
+				"IE8",
+				"O9.2"
+			],
 			"syntax": "<integer>",
 			"relevance": 51,
 			"references": [
@@ -13243,8 +16066,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/orphans"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "25",
 					"chrome_android": "25",
@@ -13260,6 +16083,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-table-baseline",
+			"browsers": [
+				"O9.6"
+			],
 			"relevance": 50,
 			"description": "Determines which row of a inline-table should be used as baseline of inline-table.",
 			"restrictions": [
@@ -13268,6 +16094,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-tab-size",
+			"browsers": [
+				"O10.6"
+			],
 			"relevance": 50,
 			"description": "This property determines the width of the tab character (U+0009), in space characters (U+0020), when rendered.",
 			"restrictions": [
@@ -13277,6 +16106,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-text-overflow",
+			"browsers": [
+				"O10"
+			],
 			"values": [
 				{
 					"name": "clip",
@@ -13295,6 +16127,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-transform",
+			"browsers": [
+				"O10.5"
+			],
 			"values": [
 				{
 					"name": "matrix()",
@@ -13388,6 +16223,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-transform-origin",
+			"browsers": [
+				"O10.5"
+			],
 			"relevance": 50,
 			"description": "Establishes the origin of transformation for an element.",
 			"restrictions": [
@@ -13398,6 +16236,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-transition",
+			"browsers": [
+				"O11.5"
+			],
 			"values": [
 				{
 					"name": "all",
@@ -13419,6 +16260,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-transition-delay",
+			"browsers": [
+				"O11.5"
+			],
 			"relevance": 50,
 			"description": "Defines when the transition will start. It allows a transition to begin execution some period of time from when it is applied.",
 			"restrictions": [
@@ -13427,6 +16271,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-transition-duration",
+			"browsers": [
+				"O11.5"
+			],
 			"relevance": 50,
 			"description": "Specifies how long the transition from the old value to the new value should take.",
 			"restrictions": [
@@ -13435,6 +16282,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-transition-property",
+			"browsers": [
+				"O11.5"
+			],
 			"values": [
 				{
 					"name": "all",
@@ -13453,6 +16303,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-o-transition-timing-function",
+			"browsers": [
+				"O11.5"
+			],
 			"relevance": 50,
 			"description": "Describes how the intermediate values used during a transition will be calculated.",
 			"restrictions": [
@@ -13461,6 +16314,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "offset-block-end",
+			"browsers": [
+				"FF41"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -13476,6 +16332,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "offset-block-start",
+			"browsers": [
+				"FF41"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -13491,6 +16350,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "offset-inline-end",
+			"browsers": [
+				"FF41"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -13506,6 +16368,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "offset-inline-start",
+			"browsers": [
+				"FF41"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -13521,6 +16386,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "outline",
+			"browsers": [
+				"E94",
+				"FF88",
+				"S16.4",
+				"C94",
+				"IE8",
+				"O80"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -13528,6 +16401,14 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "invert",
+					"browsers": [
+						"E94",
+						"FF88",
+						"S16.4",
+						"C94",
+						"IE8",
+						"O80"
+					],
 					"description": "Performs a color inversion on the pixels on the screen."
 				}
 			],
@@ -13539,8 +16420,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/outline"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "94",
 					"chrome_android": "94",
@@ -13563,9 +16444,25 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "outline-color",
+			"browsers": [
+				"E12",
+				"FF1.5",
+				"S1.2",
+				"C1",
+				"IE8",
+				"O7"
+			],
 			"values": [
 				{
 					"name": "invert",
+					"browsers": [
+						"E12",
+						"FF1.5",
+						"S1.2",
+						"C1",
+						"IE8",
+						"O7"
+					],
 					"description": "Performs a color inversion on the pixels on the screen."
 				}
 			],
@@ -13577,8 +16474,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/outline-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -13599,6 +16496,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "outline-offset",
+			"browsers": [
+				"E15",
+				"FF1.5",
+				"S1.2",
+				"C1",
+				"O9.5"
+			],
 			"syntax": "<length>",
 			"relevance": 70,
 			"references": [
@@ -13607,8 +16511,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/outline-offset"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -13628,6 +16532,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "outline-style",
+			"browsers": [
+				"E12",
+				"FF1.5",
+				"S1.2",
+				"C1",
+				"IE8",
+				"O7"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -13642,8 +16554,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/outline-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -13664,6 +16576,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "outline-width",
+			"browsers": [
+				"E12",
+				"FF1.5",
+				"S1.2",
+				"C1",
+				"IE8",
+				"O7"
+			],
 			"syntax": "<line-width>",
 			"relevance": 63,
 			"references": [
@@ -13672,8 +16592,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/outline-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -13694,6 +16614,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "overflow",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O7"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -13705,6 +16633,14 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "-moz-hidden-unscrollable",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O7"
+					],
 					"description": "Same as the standardized 'clip', except doesn't establish a block formatting context."
 				},
 				{
@@ -13724,8 +16660,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -13745,6 +16681,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "overflow-wrap",
+			"browsers": [
+				"E18",
+				"FF49",
+				"S7",
+				"C23",
+				"IE5.5",
+				"O12.1"
+			],
 			"values": [
 				{
 					"name": "break-word",
@@ -13767,8 +16711,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-wrap"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "23",
 					"chrome_android": "25",
@@ -13788,6 +16732,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "overflow-x",
+			"browsers": [
+				"E12",
+				"FF3.5",
+				"S3",
+				"C1",
+				"IE5",
+				"O9.5"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -13814,8 +16766,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-x"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -13835,6 +16787,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "overflow-y",
+			"browsers": [
+				"E12",
+				"FF3.5",
+				"S3",
+				"C1",
+				"IE5",
+				"O9.5"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -13861,8 +16821,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-y"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -13882,6 +16842,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "pad",
+			"browsers": [
+				"FF33"
+			],
 			"atRule": "@counter-style",
 			"syntax": "<integer> && <symbol>",
 			"relevance": 50,
@@ -13895,6 +16858,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "padding",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"values": [],
 			"syntax": "<'padding-top'>{1,4}",
 			"relevance": 96,
@@ -13904,8 +16875,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -13926,6 +16897,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "padding-bottom",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"syntax": "<length-percentage [0,∞]>",
 			"relevance": 89,
 			"references": [
@@ -13934,8 +16913,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-bottom"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -13956,6 +16935,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "padding-block-end",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"syntax": "<'padding-top'>",
 			"relevance": 54,
 			"references": [
@@ -13964,8 +16950,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-block-end"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -13986,6 +16972,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "padding-block-start",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"syntax": "<'padding-top'>",
 			"relevance": 54,
 			"references": [
@@ -13994,8 +16987,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-block-start"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -14016,6 +17009,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "padding-inline-end",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"syntax": "<'padding-top'>",
 			"relevance": 56,
 			"references": [
@@ -14024,8 +17024,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-inline-end"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -14046,6 +17046,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "padding-inline-start",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S12.1",
+				"C69",
+				"O56"
+			],
 			"syntax": "<'padding-top'>",
 			"relevance": 58,
 			"references": [
@@ -14054,8 +17061,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-inline-start"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -14076,6 +17083,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "padding-left",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"syntax": "<length-percentage [0,∞]>",
 			"relevance": 90,
 			"references": [
@@ -14084,8 +17099,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-left"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -14106,6 +17121,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "padding-right",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"syntax": "<length-percentage [0,∞]>",
 			"relevance": 89,
 			"references": [
@@ -14114,8 +17137,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-right"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -14136,6 +17159,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "padding-top",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"syntax": "<length-percentage [0,∞]>",
 			"relevance": 90,
 			"references": [
@@ -14144,8 +17175,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-top"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -14166,6 +17197,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "page-break-after",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1.2",
+				"C1",
+				"IE4",
+				"O7"
+			],
 			"values": [
 				{
 					"name": "always",
@@ -14197,8 +17236,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/page-break-after"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -14216,6 +17255,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "page-break-before",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1.2",
+				"C1",
+				"IE4",
+				"O7"
+			],
 			"values": [
 				{
 					"name": "always",
@@ -14247,8 +17294,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/page-break-before"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -14266,6 +17313,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "page-break-inside",
+			"browsers": [
+				"E12",
+				"FF19",
+				"S1.3",
+				"C1",
+				"IE8",
+				"O7"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -14285,8 +17340,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/page-break-inside"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -14304,6 +17359,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "paint-order",
+			"browsers": [
+				"E123",
+				"FF60",
+				"S11",
+				"C123",
+				"O109"
+			],
 			"values": [
 				{
 					"name": "fill"
@@ -14327,8 +17389,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/paint-order"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "123",
 					"chrome_android": "123",
@@ -14347,6 +17409,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "perspective",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S9",
+				"C36",
+				"IE10",
+				"O23"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -14361,8 +17431,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/perspective"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "36",
 					"chrome_android": "36",
@@ -14383,6 +17453,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "perspective-origin",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S9",
+				"C36",
+				"IE10",
+				"O23"
+			],
 			"syntax": "<position>",
 			"relevance": 51,
 			"references": [
@@ -14391,8 +17469,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/perspective-origin"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "36",
 					"chrome_android": "36",
@@ -14414,6 +17492,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "pointer-events",
+			"browsers": [
+				"E12",
+				"FF1.5",
+				"S4",
+				"C1",
+				"IE11",
+				"O9"
+			],
 			"values": [
 				{
 					"name": "all",
@@ -14460,8 +17546,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/pointer-events"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -14481,6 +17567,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "position",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O4"
+			],
 			"values": [
 				{
 					"name": "absolute",
@@ -14492,6 +17586,14 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "-ms-page",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O4"
+					],
 					"description": "The box's position is calculated according to the 'absolute' model."
 				},
 				{
@@ -14504,10 +17606,26 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "sticky",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O4"
+					],
 					"description": "The box's position is calculated according to the normal flow. Then the box is offset relative to its flow root and containing block and in all cases, including table elements, does not affect the position of any following boxes."
 				},
 				{
 					"name": "-webkit-sticky",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O4"
+					],
 					"description": "The box's position is calculated according to the normal flow. Then the box is offset relative to its flow root and containing block and in all cases, including table elements, does not affect the position of any following boxes."
 				}
 			],
@@ -14519,8 +17637,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/position"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -14540,6 +17658,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "prefix",
+			"browsers": [
+				"FF33"
+			],
 			"atRule": "@counter-style",
 			"syntax": "<symbol>",
 			"relevance": 50,
@@ -14552,6 +17673,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "quotes",
+			"browsers": [
+				"E12",
+				"FF1.5",
+				"S9",
+				"C11",
+				"IE8",
+				"O4"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -14566,8 +17695,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/quotes"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "11",
 					"chrome_android": "18",
@@ -14587,6 +17716,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "range",
+			"browsers": [
+				"FF33"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -14608,6 +17740,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "resize",
+			"browsers": [
+				"E79",
+				"FF4",
+				"S3",
+				"C1",
+				"O12.1"
+			],
 			"values": [
 				{
 					"name": "both",
@@ -14634,8 +17773,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/resize"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -14652,6 +17791,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "right",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE5.5",
+				"O5"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -14666,8 +17813,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/right"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -14688,9 +17835,23 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "ruby-align",
+			"browsers": [
+				"E128",
+				"FF38",
+				"S18.2",
+				"C128",
+				"O114"
+			],
 			"values": [
 				{
 					"name": "auto",
+					"browsers": [
+						"E128",
+						"FF38",
+						"S18.2",
+						"C128",
+						"O114"
+					],
 					"description": "The user agent determines how the ruby contents are aligned. This is the initial value."
 				},
 				{
@@ -14699,10 +17860,24 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "distribute-letter",
+					"browsers": [
+						"E128",
+						"FF38",
+						"S18.2",
+						"C128",
+						"O114"
+					],
 					"description": "If the width of the ruby text is smaller than that of the base, then the ruby text contents are evenly distributed across the width of the base, with the first and last ruby text glyphs lining up with the corresponding first and last base glyphs. If the width of the ruby text is at least the width of the base, then the letters of the base are evenly distributed across the width of the ruby text."
 				},
 				{
 					"name": "distribute-space",
+					"browsers": [
+						"E128",
+						"FF38",
+						"S18.2",
+						"C128",
+						"O114"
+					],
 					"description": "If the width of the ruby text is smaller than that of the base, then the ruby text contents are evenly distributed across the width of the base, with a certain amount of white space preceding the first and following the last character in the ruby text. That amount of white space is normally equal to half the amount of inter-character space of the ruby text."
 				},
 				{
@@ -14711,22 +17886,57 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "line-edge",
+					"browsers": [
+						"E128",
+						"FF38",
+						"S18.2",
+						"C128",
+						"O114"
+					],
 					"description": "If the ruby text is not adjacent to a line edge, it is aligned as in 'auto'. If it is adjacent to a line edge, then it is still aligned as in auto, but the side of the ruby text that touches the end of the line is lined up with the corresponding edge of the base."
 				},
 				{
 					"name": "right",
+					"browsers": [
+						"E128",
+						"FF38",
+						"S18.2",
+						"C128",
+						"O114"
+					],
 					"description": "The ruby text content is aligned with the end edge of the base."
 				},
 				{
 					"name": "start",
+					"browsers": [
+						"E128",
+						"FF38",
+						"S18.2",
+						"C128",
+						"O114"
+					],
 					"description": "The ruby text content is aligned with the start edge of the base."
 				},
 				{
 					"name": "space-between",
+					"browsers": [
+						"E128",
+						"FF38",
+						"S18.2",
+						"C128",
+						"O114"
+					],
 					"description": "The ruby content expands as defined for normal text justification (as defined by 'text-justify'),"
 				},
 				{
 					"name": "space-around",
+					"browsers": [
+						"E128",
+						"FF38",
+						"S18.2",
+						"C128",
+						"O114"
+					],
 					"description": "As for 'space-between' except that there exists an extra justification opportunities whose space is distributed half before and half after the ruby content."
 				}
 			],
@@ -14738,8 +17948,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/ruby-align"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "128",
 					"chrome_android": "128",
@@ -14758,6 +17968,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "ruby-overhang",
+			"browsers": [
+				"S18.2"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -14777,8 +17990,8 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari": "18.2",
 					"safari_ios": "18.2"
@@ -14791,6 +18004,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "ruby-position",
+			"browsers": [
+				"E84",
+				"FF38",
+				"S18.2",
+				"C84",
+				"O70"
+			],
 			"values": [
 				{
 					"name": "after",
@@ -14816,8 +18036,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/ruby-position"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "84",
 					"chrome_android": "84",
@@ -14836,6 +18056,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "ruby-span",
+			"browsers": [
+				"FF10"
+			],
 			"values": [
 				{
 					"name": "attr(x)",
@@ -14854,6 +18077,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "scrollbar-3dlight-color",
+			"browsers": [
+				"IE6"
+			],
 			"relevance": 50,
 			"description": "Determines the color of the top and left edges of the scroll box and scroll arrows of a scroll bar.",
 			"restrictions": [
@@ -14862,6 +18088,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "scrollbar-arrow-color",
+			"browsers": [
+				"IE6"
+			],
 			"relevance": 50,
 			"description": "Determines the color of the arrow elements of a scroll arrow.",
 			"restrictions": [
@@ -14870,6 +18099,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "scrollbar-base-color",
+			"browsers": [
+				"IE6"
+			],
 			"relevance": 50,
 			"description": "Determines the color of the main elements of a scroll bar, which include the scroll box, track, and scroll arrows.",
 			"restrictions": [
@@ -14878,6 +18110,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "scrollbar-darkshadow-color",
+			"browsers": [
+				"IE6"
+			],
 			"relevance": 50,
 			"description": "Determines the color of the gutter of a scroll bar.",
 			"restrictions": [
@@ -14886,6 +18121,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "scrollbar-face-color",
+			"browsers": [
+				"IE6"
+			],
 			"relevance": 50,
 			"description": "Determines the color of the scroll box and scroll arrows of a scroll bar.",
 			"restrictions": [
@@ -14894,6 +18132,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "scrollbar-highlight-color",
+			"browsers": [
+				"IE6"
+			],
 			"relevance": 50,
 			"description": "Determines the color of the top and left edges of the scroll box and scroll arrows of a scroll bar.",
 			"restrictions": [
@@ -14902,6 +18143,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "scrollbar-shadow-color",
+			"browsers": [
+				"IE6"
+			],
 			"relevance": 50,
 			"description": "Determines the color of the bottom and right edges of the scroll box and scroll arrows of a scroll bar.",
 			"restrictions": [
@@ -14910,6 +18154,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "scrollbar-track-color",
+			"browsers": [
+				"IE6"
+			],
 			"relevance": 50,
 			"description": "Determines the color of the track element of a scroll bar.",
 			"restrictions": [
@@ -14918,6 +18165,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "scroll-behavior",
+			"browsers": [
+				"E79",
+				"FF36",
+				"S15.4",
+				"C61",
+				"O48"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -14936,8 +18190,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-behavior"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "61",
 					"chrome_android": "61",
@@ -14957,6 +18211,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "scroll-snap-coordinate",
+			"browsers": [
+				"FF39"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -14976,6 +18233,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "scroll-snap-destination",
+			"browsers": [
+				"FF39"
+			],
 			"status": "obsolete",
 			"syntax": "<position>",
 			"relevance": 0,
@@ -14988,6 +18248,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "scroll-snap-points-x",
+			"browsers": [
+				"FF39"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -15008,6 +18271,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "scroll-snap-points-y",
+			"browsers": [
+				"FF39"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -15028,6 +18294,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "scroll-snap-type",
+			"browsers": [
+				"E79",
+				"FF99",
+				"S11",
+				"C69",
+				"IE10",
+				"O56"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -15050,8 +18324,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-type"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -15071,6 +18345,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "shape-image-threshold",
+			"browsers": [
+				"E79",
+				"FF62",
+				"S10.1",
+				"C37",
+				"O24"
+			],
 			"syntax": "<opacity-value>",
 			"relevance": 50,
 			"references": [
@@ -15079,8 +18360,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/shape-image-threshold"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "37",
 					"chrome_android": "37",
@@ -15100,6 +18381,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "shape-margin",
+			"browsers": [
+				"E79",
+				"FF62",
+				"S10.1",
+				"C37",
+				"O24"
+			],
 			"syntax": "<length-percentage>",
 			"relevance": 50,
 			"references": [
@@ -15108,8 +18396,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/shape-margin"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "37",
 					"chrome_android": "37",
@@ -15131,6 +18419,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "shape-outside",
+			"browsers": [
+				"E79",
+				"FF62",
+				"S10.1",
+				"C37",
+				"O24"
+			],
 			"values": [
 				{
 					"name": "margin-box",
@@ -15149,8 +18444,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/shape-outside"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "37",
 					"chrome_android": "37",
@@ -15173,6 +18468,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "shape-rendering",
+			"browsers": [
+				"E80",
+				"FF72",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -15199,8 +18501,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/shape-rendering"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -15220,6 +18522,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "size",
+			"browsers": [
+				"C",
+				"O8"
+			],
 			"atRule": "@page",
 			"syntax": "<length>{1,2} | auto | [ <page-size> || [ portrait | landscape ] ]",
 			"relevance": 53,
@@ -15256,6 +18562,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "stop-color",
+			"browsers": [
+				"E80",
+				"FF72",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"syntax": "<'color'>",
 			"relevance": 51,
 			"references": [
@@ -15264,8 +18577,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/stop-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -15285,6 +18598,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "stop-opacity",
+			"browsers": [
+				"E80",
+				"FF72",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"syntax": "<'opacity'>",
 			"relevance": 52,
 			"references": [
@@ -15293,8 +18613,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/stop-opacity"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -15314,6 +18634,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "stroke",
+			"browsers": [
+				"E80",
+				"FF72",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"values": [
 				{
 					"name": "url()",
@@ -15332,8 +18659,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -15355,6 +18682,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "stroke-dasharray",
+			"browsers": [
+				"E80",
+				"FF1",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -15369,8 +18703,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-dasharray"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -15393,6 +18727,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "stroke-dashoffset",
+			"browsers": [
+				"E80",
+				"FF1",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"syntax": "<length-percentage> | <number>",
 			"relevance": 63,
 			"references": [
@@ -15401,8 +18742,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-dashoffset"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -15423,6 +18764,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "stroke-linecap",
+			"browsers": [
+				"E80",
+				"FF1",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"values": [
 				{
 					"name": "butt",
@@ -15445,8 +18793,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-linecap"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -15466,6 +18814,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "stroke-linejoin",
+			"browsers": [
+				"E80",
+				"FF1",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"values": [
 				{
 					"name": "bevel",
@@ -15488,8 +18843,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-linejoin"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -15509,6 +18864,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "stroke-miterlimit",
+			"browsers": [
+				"E80",
+				"FF1",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"syntax": "<number>",
 			"relevance": 54,
 			"references": [
@@ -15517,8 +18879,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-miterlimit"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -15538,6 +18900,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "stroke-opacity",
+			"browsers": [
+				"E80",
+				"FF1",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"syntax": "<'opacity'>",
 			"relevance": 53,
 			"references": [
@@ -15546,8 +18915,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-opacity"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -15567,6 +18936,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "stroke-width",
+			"browsers": [
+				"E80",
+				"FF1",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"syntax": "<length-percentage> | <number>",
 			"relevance": 70,
 			"references": [
@@ -15575,8 +18951,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -15597,6 +18973,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "suffix",
+			"browsers": [
+				"FF33"
+			],
 			"atRule": "@counter-style",
 			"syntax": "<symbol>",
 			"relevance": 50,
@@ -15609,6 +18988,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "system",
+			"browsers": [
+				"FF33"
+			],
 			"values": [
 				{
 					"name": "additive",
@@ -15650,6 +19032,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "symbols",
+			"browsers": [
+				"FF33"
+			],
 			"atRule": "@counter-style",
 			"syntax": "<symbol>+",
 			"relevance": 50,
@@ -15662,6 +19047,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "table-layout",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C14",
+				"IE5",
+				"O7"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -15680,8 +19073,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/table-layout"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "14",
 					"chrome_android": "18",
@@ -15701,6 +19094,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "tab-size",
+			"browsers": [
+				"E79",
+				"FF91",
+				"S7",
+				"C21",
+				"O15"
+			],
 			"syntax": "<integer> | <length>",
 			"relevance": 54,
 			"references": [
@@ -15709,8 +19109,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/tab-size"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "21",
 					"chrome_android": "25",
@@ -15731,6 +19131,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "text-align",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE3",
+				"O3.5"
+			],
 			"values": [
 				{
 					"name": "center",
@@ -15738,6 +19146,14 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "end",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE3",
+						"O3.5"
+					],
 					"description": "The inline contents are aligned to the end edge of the line box."
 				},
 				{
@@ -15754,6 +19170,14 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "start",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE3",
+						"O3.5"
+					],
 					"description": "The inline contents are aligned to the start edge of the line box."
 				}
 			],
@@ -15765,8 +19189,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-align"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -15786,6 +19210,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "text-align-last",
+			"browsers": [
+				"E12",
+				"FF49",
+				"S16",
+				"C47",
+				"IE5.5",
+				"O34"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -15816,8 +19248,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-align-last"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "47",
 					"chrome_android": "47",
@@ -15837,6 +19269,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "text-anchor",
+			"browsers": [
+				"E80",
+				"FF72",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"values": [
 				{
 					"name": "end",
@@ -15859,8 +19298,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-anchor"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -15880,6 +19319,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "text-decoration",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE3",
+				"O3.5"
+			],
 			"values": [
 				{
 					"name": "dashed",
@@ -15926,8 +19373,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -15948,6 +19395,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "text-decoration-color",
+			"browsers": [
+				"E79",
+				"FF36",
+				"S12.1",
+				"C57",
+				"O44"
+			],
 			"syntax": "<color>",
 			"relevance": 56,
 			"references": [
@@ -15956,8 +19410,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -15977,6 +19431,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "text-decoration-line",
+			"browsers": [
+				"E79",
+				"FF36",
+				"S12.1",
+				"C57",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "line-through",
@@ -16003,8 +19464,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-line"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -16024,6 +19485,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "text-decoration-style",
+			"browsers": [
+				"E79",
+				"FF36",
+				"S12.1",
+				"C57",
+				"O44"
+			],
 			"values": [
 				{
 					"name": "dashed",
@@ -16058,8 +19526,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -16079,6 +19547,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "text-indent",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE3",
+				"O3.5"
+			],
 			"values": [],
 			"syntax": "<length-percentage> && hanging? && each-line?",
 			"relevance": 69,
@@ -16088,8 +19564,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-indent"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -16110,6 +19586,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "text-justify",
+			"browsers": [
+				"E79",
+				"FF55",
+				"C32",
+				"IE11",
+				"O19"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -16150,8 +19633,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-justify"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "55",
 					"firefox_android": "55"
@@ -16164,13 +19647,34 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "text-orientation",
+			"browsers": [
+				"E79",
+				"FF41",
+				"S14",
+				"C48",
+				"O35"
+			],
 			"values": [
 				{
 					"name": "sideways",
+					"browsers": [
+						"E79",
+						"FF41",
+						"S14",
+						"C48",
+						"O35"
+					],
 					"description": "This value is equivalent to 'sideways-right' in 'vertical-rl' writing mode and equivalent to 'sideways-left' in 'vertical-lr' writing mode."
 				},
 				{
 					"name": "sideways-right",
+					"browsers": [
+						"E79",
+						"FF41",
+						"S14",
+						"C48",
+						"O35"
+					],
 					"description": "In vertical writing modes, this causes text to be set as if in a horizontal layout, but rotated 90° clockwise."
 				},
 				{
@@ -16186,8 +19690,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-orientation"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "48",
 					"chrome_android": "48",
@@ -16207,6 +19711,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "text-overflow",
+			"browsers": [
+				"E12",
+				"FF7",
+				"S1.3",
+				"C1",
+				"IE6",
+				"O11"
+			],
 			"values": [
 				{
 					"name": "clip",
@@ -16225,8 +19737,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-overflow"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -16247,6 +19759,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "text-rendering",
+			"browsers": [
+				"E79",
+				"FF1",
+				"S5",
+				"C4",
+				"O15"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -16272,8 +19791,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-rendering"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "4",
 					"chrome_android": "18",
@@ -16293,6 +19812,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "text-shadow",
+			"browsers": [
+				"E12",
+				"FF3.5",
+				"S1.1",
+				"C2",
+				"IE10",
+				"O9.5"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -16307,8 +19834,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-shadow"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "2",
 					"chrome_android": "18",
@@ -16329,6 +19856,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "text-transform",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O7"
+			],
 			"values": [
 				{
 					"name": "capitalize",
@@ -16355,8 +19890,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-transform"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -16376,6 +19911,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "text-underline-position",
+			"browsers": [
+				"E12",
+				"FF74",
+				"S12.1",
+				"C33",
+				"IE6",
+				"O20"
+			],
 			"values": [
 				{
 					"name": "above"
@@ -16397,8 +19940,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-underline-position"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "33",
 					"chrome_android": "33",
@@ -16418,6 +19961,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "top",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE5",
+				"O6"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -16432,8 +19983,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/top"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -16454,19 +20005,51 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "touch-action",
+			"browsers": [
+				"E12",
+				"FF52",
+				"S13",
+				"C36",
+				"IE11",
+				"O23"
+			],
 			"values": [
 				{
 					"name": "auto",
 					"description": "The user agent may determine any permitted touch behaviors for touches that begin on the element."
 				},
 				{
-					"name": "cross-slide-x"
+					"name": "cross-slide-x",
+					"browsers": [
+						"E12",
+						"FF52",
+						"S13",
+						"C36",
+						"IE11",
+						"O23"
+					]
 				},
 				{
-					"name": "cross-slide-y"
+					"name": "cross-slide-y",
+					"browsers": [
+						"E12",
+						"FF52",
+						"S13",
+						"C36",
+						"IE11",
+						"O23"
+					]
 				},
 				{
-					"name": "double-tap-zoom"
+					"name": "double-tap-zoom",
+					"browsers": [
+						"E12",
+						"FF52",
+						"S13",
+						"C36",
+						"IE11",
+						"O23"
+					]
 				},
 				{
 					"name": "manipulation",
@@ -16485,7 +20068,15 @@ export const cssData : CSSDataV1 = {
 					"description": "The user agent may consider touches that begin on the element only for the purposes of vertically scrolling the element's nearest ancestor with vertically scrollable content."
 				},
 				{
-					"name": "pinch-zoom"
+					"name": "pinch-zoom",
+					"browsers": [
+						"E12",
+						"FF52",
+						"S13",
+						"C36",
+						"IE11",
+						"O23"
+					]
 				}
 			],
 			"syntax": "auto | none | [ [ pan-x | pan-left | pan-right ] || [ pan-y | pan-up | pan-down ] || pinch-zoom ] | manipulation",
@@ -16496,8 +20087,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/touch-action"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "36",
 					"chrome_android": "36",
@@ -16517,6 +20108,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "transform",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S9",
+				"C36",
+				"IE10",
+				"O23"
+			],
 			"values": [
 				{
 					"name": "matrix()",
@@ -16614,8 +20213,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/transform"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "36",
 					"chrome_android": "36",
@@ -16635,6 +20234,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "transform-origin",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S9",
+				"C36",
+				"IE10",
+				"O23"
+			],
 			"syntax": "[ <length-percentage> | left | center | right | top | bottom ] | [ [ <length-percentage> | left | center | right ] && [ <length-percentage> | top | center | bottom ] ] <length>?",
 			"relevance": 76,
 			"references": [
@@ -16643,8 +20250,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "36",
 					"chrome_android": "36",
@@ -16666,6 +20273,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "transform-style",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S9",
+				"C36",
+				"O23"
+			],
 			"values": [
 				{
 					"name": "flat",
@@ -16673,6 +20287,13 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "preserve-3d",
+					"browsers": [
+						"E12",
+						"FF16",
+						"S9",
+						"C36",
+						"O23"
+					],
 					"description": "Flattening is not performed, so children maintain their position in 3D space."
 				}
 			],
@@ -16684,8 +20305,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/transform-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "36",
 					"chrome_android": "36",
@@ -16705,6 +20326,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "transition",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S9",
+				"C26",
+				"IE10",
+				"O12.1"
+			],
 			"values": [
 				{
 					"name": "all",
@@ -16723,8 +20352,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/transition"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "26",
 					"chrome_android": "26",
@@ -16747,6 +20376,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "transition-delay",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S9",
+				"C26",
+				"IE10",
+				"O12.1"
+			],
 			"syntax": "<time>#",
 			"relevance": 64,
 			"references": [
@@ -16755,8 +20392,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/transition-delay"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "26",
 					"chrome_android": "26",
@@ -16776,6 +20413,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "transition-duration",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S9",
+				"C26",
+				"IE10",
+				"O12.1"
+			],
 			"syntax": "<time>#",
 			"relevance": 70,
 			"references": [
@@ -16784,8 +20429,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/transition-duration"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "26",
 					"chrome_android": "26",
@@ -16805,6 +20450,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "transition-property",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S9",
+				"C26",
+				"IE10",
+				"O12.1"
+			],
 			"values": [
 				{
 					"name": "all",
@@ -16823,8 +20476,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/transition-property"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "26",
 					"chrome_android": "26",
@@ -16844,6 +20497,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "transition-timing-function",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S9",
+				"C26",
+				"IE10",
+				"O12.1"
+			],
 			"syntax": "<easing-function>#",
 			"relevance": 68,
 			"references": [
@@ -16852,8 +20513,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/transition-timing-function"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "26",
 					"chrome_android": "26",
@@ -16873,6 +20534,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "unicode-bidi",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1.3",
+				"C2",
+				"IE5.5",
+				"O9.2"
+			],
 			"values": [
 				{
 					"name": "bidi-override",
@@ -16884,10 +20553,26 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "isolate",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1.3",
+						"C2",
+						"IE5.5",
+						"O9.2"
+					],
 					"description": "The contents of the element are considered to be inside a separate, independent paragraph."
 				},
 				{
 					"name": "isolate-override",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1.3",
+						"C2",
+						"IE5.5",
+						"O9.2"
+					],
 					"description": "This combines the isolation behavior of 'isolate' with the directional override behavior of 'bidi-override'"
 				},
 				{
@@ -16896,6 +20581,14 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "plaintext",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1.3",
+						"C2",
+						"IE5.5",
+						"O9.2"
+					],
 					"description": "For the purposes of the Unicode bidirectional algorithm, the base directionality of each bidi paragraph for which the element forms the containing block is determined not by the element's computed 'direction'."
 				}
 			],
@@ -16907,8 +20600,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/unicode-bidi"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "2",
 					"chrome_android": "18",
@@ -17248,6 +20941,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "user-select",
+			"browsers": [
+				"E79",
+				"FF69",
+				"S3",
+				"C54",
+				"IE10",
+				"O41"
+			],
 			"values": [
 				{
 					"name": "all",
@@ -17277,8 +20978,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/user-select"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "54",
 					"chrome_android": "54",
@@ -17294,6 +20995,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "vertical-align",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O4"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -17332,7 +21041,15 @@ export const cssData : CSSDataV1 = {
 					"description": "Align the before edge of the extended inline box with the before-edge of the line box."
 				},
 				{
-					"name": "-webkit-baseline-middle"
+					"name": "-webkit-baseline-middle",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O4"
+					]
 				}
 			],
 			"syntax": "baseline | sub | super | text-top | text-bottom | middle | top | bottom | <percentage> | <length>",
@@ -17343,8 +21060,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/vertical-align"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -17365,6 +21082,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "visibility",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O4"
+			],
 			"values": [
 				{
 					"name": "collapse",
@@ -17387,8 +21112,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/visibility"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -17408,6 +21133,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-animation",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"values": [
 				{
 					"name": "alternate",
@@ -17458,6 +21187,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-animation-delay",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"relevance": 50,
 			"description": "Defines when the animation will start.",
 			"restrictions": [
@@ -17466,6 +21199,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-animation-direction",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"values": [
 				{
 					"name": "alternate",
@@ -17492,6 +21229,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-animation-duration",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"relevance": 50,
 			"description": "Defines the length of time that an animation takes to complete one cycle.",
 			"restrictions": [
@@ -17500,6 +21241,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-animation-fill-mode",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"values": [
 				{
 					"name": "backwards",
@@ -17526,6 +21271,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-animation-iteration-count",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"values": [
 				{
 					"name": "infinite",
@@ -17541,6 +21290,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-animation-name",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -17556,6 +21309,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-animation-play-state",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"values": [
 				{
 					"name": "paused",
@@ -17574,6 +21331,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-animation-timing-function",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"relevance": 50,
 			"description": "Describes how the animation will progress over one cycle of its duration. See the 'transition-timing-function'.",
 			"restrictions": [
@@ -17582,6 +21343,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-appearance",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"values": [
 				{
 					"name": "button"
@@ -17726,6 +21491,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-backdrop-filter",
+			"browsers": [
+				"S9"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -17785,6 +21553,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-backface-visibility",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"values": [
 				{
 					"name": "hidden"
@@ -17801,6 +21573,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-background-clip",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"relevance": 50,
 			"description": "Determines the background painting area.",
 			"restrictions": [
@@ -17809,6 +21585,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-background-composite",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"values": [
 				{
 					"name": "border"
@@ -17824,6 +21604,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-background-origin",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"relevance": 50,
 			"description": "For elements rendered as a single box, specifies the background positioning area. For elements rendered as multiple boxes (e.g., inline boxes on several lines, boxes on several pages) specifies which boxes 'box-decoration-break' operates on to determine the background positioning area(s).",
 			"restrictions": [
@@ -17832,6 +21616,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-border-image",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -17876,6 +21664,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-box-align",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"values": [
 				{
 					"name": "baseline",
@@ -17906,6 +21698,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-box-direction",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"values": [
 				{
 					"name": "normal",
@@ -17924,6 +21720,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-box-flex",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"relevance": 50,
 			"description": "Specifies an element's flexibility.",
 			"restrictions": [
@@ -17932,6 +21732,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-box-flex-group",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"relevance": 50,
 			"description": "Flexible elements can be assigned to flex groups using the 'box-flex-group' property.",
 			"restrictions": [
@@ -17940,6 +21744,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-box-ordinal-group",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"relevance": 50,
 			"description": "Indicates the ordinal group the element belongs to. Elements with a lower ordinal group are displayed before those with a higher ordinal group.",
 			"restrictions": [
@@ -17948,6 +21756,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-box-orient",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"values": [
 				{
 					"name": "block-axis",
@@ -17974,6 +21786,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-box-pack",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"values": [
 				{
 					"name": "center",
@@ -18000,6 +21816,12 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-box-reflect",
+			"browsers": [
+				"E79",
+				"S4",
+				"C4",
+				"O15"
+			],
 			"values": [
 				{
 					"name": "above",
@@ -18027,8 +21849,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-box-reflect"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "4",
 					"chrome_android": "18",
@@ -18041,6 +21863,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-box-sizing",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"values": [
 				{
 					"name": "border-box",
@@ -18059,6 +21885,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-break-after",
+			"browsers": [
+				"S7"
+			],
 			"values": [
 				{
 					"name": "always",
@@ -18111,6 +21940,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-break-before",
+			"browsers": [
+				"S7"
+			],
 			"values": [
 				{
 					"name": "always",
@@ -18163,6 +21995,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-break-inside",
+			"browsers": [
+				"S7"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -18192,6 +22027,12 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-column-break-after",
+			"browsers": [
+				"E79",
+				"S4",
+				"C1",
+				"O15"
+			],
 			"values": [
 				{
 					"name": "always",
@@ -18237,8 +22078,8 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -18254,6 +22095,12 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-column-break-before",
+			"browsers": [
+				"E79",
+				"S4",
+				"C1",
+				"O15"
+			],
 			"values": [
 				{
 					"name": "always",
@@ -18299,8 +22146,8 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -18316,6 +22163,12 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-column-break-inside",
+			"browsers": [
+				"E79",
+				"S4",
+				"C1",
+				"O15"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -18338,8 +22191,8 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -18355,6 +22208,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-column-count",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -18369,6 +22226,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-column-gap",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"values": [
 				{
 					"name": "normal",
@@ -18383,6 +22244,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-column-rule",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"relevance": 50,
 			"description": "This property is a shorthand for setting 'column-rule-width', 'column-rule-style', and 'column-rule-color' at the same place in the style sheet. Omitted values are set to their initial values.",
 			"restrictions": [
@@ -18394,6 +22259,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-column-rule-color",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"relevance": 50,
 			"description": "Sets the color of the column rule",
 			"restrictions": [
@@ -18402,6 +22271,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-column-rule-style",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"relevance": 50,
 			"description": "Sets the style of the rule between columns of an element.",
 			"restrictions": [
@@ -18410,6 +22283,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-column-rule-width",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"relevance": 50,
 			"description": "Sets the width of the rule between columns. Negative values are not allowed.",
 			"restrictions": [
@@ -18419,6 +22296,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-columns",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -18434,6 +22315,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-column-span",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"values": [
 				{
 					"name": "all",
@@ -18452,6 +22337,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-column-width",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -18466,6 +22355,11 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-filter",
+			"browsers": [
+				"C18",
+				"O15",
+				"S6"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -18525,6 +22419,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-flow-from",
+			"browsers": [
+				"S6.1"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -18539,6 +22436,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-flow-into",
+			"browsers": [
+				"S6.1"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -18553,6 +22453,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-font-feature-settings",
+			"browsers": [
+				"C16"
+			],
 			"values": [
 				{
 					"name": "\"c2cs\""
@@ -18601,6 +22504,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-hyphens",
+			"browsers": [
+				"S5.1"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -18623,6 +22529,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-line-break",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"values": [
 				{
 					"name": "after-white-space"
@@ -18636,6 +22546,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-margin-bottom-collapse",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"values": [
 				{
 					"name": "collapse"
@@ -18654,6 +22568,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-margin-collapse",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"values": [
 				{
 					"name": "collapse"
@@ -18672,6 +22590,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-margin-start",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -18685,6 +22607,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-margin-top-collapse",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"values": [
 				{
 					"name": "collapse"
@@ -18703,6 +22629,11 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-mask-clip",
+			"browsers": [
+				"C",
+				"O15",
+				"S4"
+			],
 			"status": "nonstandard",
 			"syntax": "[ <coord-box> | no-clip | border | padding | content | text ]#",
 			"relevance": 0,
@@ -18713,6 +22644,11 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-mask-image",
+			"browsers": [
+				"C",
+				"O15",
+				"S4"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -18735,6 +22671,11 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-mask-origin",
+			"browsers": [
+				"C",
+				"O15",
+				"S4"
+			],
 			"status": "nonstandard",
 			"syntax": "[ <coord-box> | border | padding | content ]#",
 			"relevance": 0,
@@ -18745,6 +22686,11 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-mask-repeat",
+			"browsers": [
+				"C",
+				"O15",
+				"S4"
+			],
 			"status": "nonstandard",
 			"syntax": "<repeat-style>#",
 			"relevance": 0,
@@ -18755,6 +22701,11 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-mask-size",
+			"browsers": [
+				"C",
+				"O15",
+				"S4"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -18781,6 +22732,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-nbsp-mode",
+			"browsers": [
+				"S4",
+				"C1"
+			],
 			"values": [
 				{
 					"name": "normal"
@@ -18790,8 +22745,8 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari": "≤4",
 					"safari_ios": "≤3.2"
@@ -18801,6 +22756,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-overflow-scrolling",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -18816,6 +22775,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-padding-start",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"relevance": 50,
 			"restrictions": [
 				"percentage",
@@ -18824,6 +22787,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-perspective",
+			"browsers": [
+				"C",
+				"S4"
+			],
 			"values": [
 				{
 					"name": "none",
@@ -18838,6 +22805,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-perspective-origin",
+			"browsers": [
+				"C",
+				"S4"
+			],
 			"relevance": 50,
 			"description": "Establishes the origin for the perspective property. It effectively sets the X and Y position at which the viewer appears to be looking at the children of the element.",
 			"restrictions": [
@@ -18848,6 +22819,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-region-fragment",
+			"browsers": [
+				"S7"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -18866,6 +22840,11 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-tap-highlight-color",
+			"browsers": [
+				"E12",
+				"C16",
+				"O15"
+			],
 			"status": "nonstandard",
 			"syntax": "<color>",
 			"relevance": 0,
@@ -18875,8 +22854,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-tap-highlight-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "16",
 					"chrome_android": "18",
@@ -18890,6 +22869,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-text-fill-color",
+			"browsers": [
+				"E12",
+				"FF49",
+				"S3",
+				"C1",
+				"O15"
+			],
 			"syntax": "<color>",
 			"relevance": 50,
 			"references": [
@@ -18898,8 +22884,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-fill-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -18918,6 +22904,11 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-text-size-adjust",
+			"browsers": [
+				"E",
+				"C",
+				"S3"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -18936,6 +22927,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-text-stroke",
+			"browsers": [
+				"E15",
+				"FF49",
+				"S3",
+				"C4",
+				"O15"
+			],
 			"syntax": "<length> || <color>",
 			"relevance": 50,
 			"references": [
@@ -18944,8 +22942,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "4",
 					"chrome_android": "18",
@@ -18967,6 +22965,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-text-stroke-color",
+			"browsers": [
+				"E15",
+				"FF49",
+				"S3",
+				"C1",
+				"O15"
+			],
 			"syntax": "<color>",
 			"relevance": 50,
 			"references": [
@@ -18975,8 +22980,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -18995,6 +23000,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-text-stroke-width",
+			"browsers": [
+				"E15",
+				"FF49",
+				"S3",
+				"C1",
+				"O15"
+			],
 			"syntax": "<length>",
 			"relevance": 50,
 			"references": [
@@ -19003,8 +23015,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -19025,6 +23037,9 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-touch-callout",
+			"browsers": [
+				"S3"
+			],
 			"values": [
 				{
 					"name": "none"
@@ -19039,8 +23054,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-touch-callout"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari_ios": "2"
 				}
@@ -19051,6 +23066,11 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-transform",
+			"browsers": [
+				"C",
+				"O12",
+				"S3.1"
+			],
 			"values": [
 				{
 					"name": "matrix()",
@@ -19148,6 +23168,11 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-transform-origin",
+			"browsers": [
+				"C",
+				"O15",
+				"S3.1"
+			],
 			"relevance": 50,
 			"description": "Establishes the origin of transformation for an element.",
 			"restrictions": [
@@ -19158,9 +23183,15 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-transform-origin-x",
+			"browsers": [
+				"E79",
+				"S4",
+				"C1",
+				"O15"
+			],
 			"relevance": 50,
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -19177,9 +23208,15 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-transform-origin-y",
+			"browsers": [
+				"E79",
+				"S4",
+				"C1",
+				"O15"
+			],
 			"relevance": 50,
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -19196,9 +23233,15 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-transform-origin-z",
+			"browsers": [
+				"E79",
+				"S4",
+				"C2",
+				"O15"
+			],
 			"relevance": 50,
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "2",
 					"chrome_android": "18",
@@ -19215,6 +23258,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-transform-style",
+			"browsers": [
+				"C",
+				"S4"
+			],
 			"values": [
 				{
 					"name": "flat",
@@ -19229,6 +23276,11 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-transition",
+			"browsers": [
+				"C",
+				"O12",
+				"S5"
+			],
 			"values": [
 				{
 					"name": "all",
@@ -19250,6 +23302,11 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-transition-delay",
+			"browsers": [
+				"C",
+				"O12",
+				"S5"
+			],
 			"relevance": 50,
 			"description": "Defines when the transition will start. It allows a transition to begin execution some period of time from when it is applied.",
 			"restrictions": [
@@ -19258,6 +23315,11 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-transition-duration",
+			"browsers": [
+				"C",
+				"O12",
+				"S5"
+			],
 			"relevance": 50,
 			"description": "Specifies how long the transition from the old value to the new value should take.",
 			"restrictions": [
@@ -19266,6 +23328,11 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-transition-property",
+			"browsers": [
+				"C",
+				"O12",
+				"S5"
+			],
 			"values": [
 				{
 					"name": "all",
@@ -19284,6 +23351,11 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-transition-timing-function",
+			"browsers": [
+				"C",
+				"O12",
+				"S5"
+			],
 			"relevance": 50,
 			"description": "Describes how the intermediate values used during a transition will be calculated.",
 			"restrictions": [
@@ -19292,6 +23364,12 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-user-drag",
+			"browsers": [
+				"E79",
+				"S4",
+				"C1",
+				"O15"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -19304,8 +23382,8 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -19320,6 +23398,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-user-modify",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"values": [
 				{
 					"name": "read-only"
@@ -19341,6 +23423,10 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-webkit-user-select",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"values": [
 				{
 					"name": "auto"
@@ -19362,6 +23448,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "widows",
+			"browsers": [
+				"E12",
+				"S1.3",
+				"C25",
+				"IE8",
+				"O9.2"
+			],
 			"syntax": "<integer>",
 			"relevance": 51,
 			"references": [
@@ -19370,8 +23463,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/widows"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "25",
 					"chrome_android": "25",
@@ -19387,6 +23480,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "width",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -19394,14 +23495,38 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "fit-content",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O3.5"
+					],
 					"description": "Use the fit-content inline size or fit-content block size, as appropriate to the writing mode."
 				},
 				{
 					"name": "max-content",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O3.5"
+					],
 					"description": "Use the max-content inline size or max-content block size, as appropriate to the writing mode."
 				},
 				{
 					"name": "min-content",
+					"browsers": [
+						"E12",
+						"FF1",
+						"S1",
+						"C1",
+						"IE4",
+						"O3.5"
+					],
 					"description": "Use the min-content inline size or min-content block size, as appropriate to the writing mode."
 				}
 			],
@@ -19413,8 +23538,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -19435,6 +23560,13 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "will-change",
+			"browsers": [
+				"E79",
+				"FF36",
+				"S9.1",
+				"C36",
+				"O23"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -19457,8 +23589,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/will-change"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "36",
 					"chrome_android": "36",
@@ -19479,6 +23611,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "word-break",
+			"browsers": [
+				"E12",
+				"FF15",
+				"S3",
+				"C1",
+				"IE5.5",
+				"O15"
+			],
 			"values": [
 				{
 					"name": "break-all",
@@ -19501,8 +23641,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/word-break"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -19522,6 +23662,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "word-spacing",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE6",
+				"O3.5"
+			],
 			"values": [
 				{
 					"name": "normal",
@@ -19536,8 +23684,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/word-spacing"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -19577,6 +23725,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "writing-mode",
+			"browsers": [
+				"E12",
+				"FF41",
+				"S10.1",
+				"C48",
+				"IE9",
+				"O35"
+			],
 			"values": [
 				{
 					"name": "horizontal-tb",
@@ -19584,10 +23740,26 @@ export const cssData : CSSDataV1 = {
 				},
 				{
 					"name": "sideways-lr",
+					"browsers": [
+						"E12",
+						"FF41",
+						"S10.1",
+						"C48",
+						"IE9",
+						"O35"
+					],
 					"description": "Left-to-right block flow direction. The writing mode is vertical, while the typographic mode is horizontal."
 				},
 				{
 					"name": "sideways-rl",
+					"browsers": [
+						"E12",
+						"FF41",
+						"S10.1",
+						"C48",
+						"IE9",
+						"O35"
+					],
 					"description": "Right-to-left block flow direction. The writing mode is vertical, while the typographic mode is horizontal."
 				},
 				{
@@ -19607,8 +23779,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/writing-mode"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "48",
 					"chrome_android": "48",
@@ -19628,6 +23800,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "z-index",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O4"
+			],
 			"values": [
 				{
 					"name": "auto",
@@ -19642,8 +23822,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/z-index"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -19663,6 +23843,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "zoom",
+			"browsers": [
+				"E12",
+				"FF126",
+				"S3.1",
+				"C1",
+				"IE5.5",
+				"O15"
+			],
 			"values": [
 				{
 					"name": "normal"
@@ -19676,8 +23864,8 @@ export const cssData : CSSDataV1 = {
 					"url": "https://developer.mozilla.org/docs/Web/CSS/zoom"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -19745,14 +23933,17 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 0,
+			"browsers": [
+				"FF1"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-float-edge"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "1",
 					"firefox_android": "4"
@@ -19773,14 +23964,17 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 0,
+			"browsers": [
+				"FF1"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-force-broken-image-icon"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "1",
 					"firefox_android": "4"
@@ -19793,14 +23987,17 @@ export const cssData : CSSDataV1 = {
 			"status": "nonstandard",
 			"syntax": "<shape> | auto",
 			"relevance": 0,
+			"browsers": [
+				"FF1"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-image-region"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": "For certain XUL elements and pseudo-elements that use an image from the list-style-image property, this property specifies a region of the image that is used in place of the whole image. This allows elements to use different pieces of the same image to improve performance."
@@ -19824,14 +24021,17 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 0,
+			"browsers": [
+				"FF6"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-orient"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "6",
 					"firefox_android": "6"
@@ -19923,14 +24123,17 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 0,
+			"browsers": [
+				"FF1"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-user-input"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": "In Mozilla applications, -moz-user-input determines if an element will accept user input."
@@ -19997,14 +24200,20 @@ export const cssData : CSSDataV1 = {
 			"status": "nonstandard",
 			"syntax": "<'border-width'> || <'border-style'> || <color>",
 			"relevance": 0,
+			"browsers": [
+				"E79",
+				"S5.1",
+				"C8",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-border-before"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "8",
 					"chrome_android": "18",
@@ -20061,14 +24270,20 @@ export const cssData : CSSDataV1 = {
 			"status": "nonstandard",
 			"syntax": "<composite-style>#",
 			"relevance": 0,
+			"browsers": [
+				"E18",
+				"S3.1",
+				"C1",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-composite"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -20091,14 +24306,21 @@ export const cssData : CSSDataV1 = {
 			"status": "nonstandard",
 			"syntax": "[ <length-percentage> | left | center | right ]#",
 			"relevance": 0,
+			"browsers": [
+				"E18",
+				"FF49",
+				"S3.1",
+				"C1",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-position-x"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -20118,14 +24340,21 @@ export const cssData : CSSDataV1 = {
 			"status": "nonstandard",
 			"syntax": "[ <length-percentage> | top | center | bottom ]#",
 			"relevance": 0,
+			"browsers": [
+				"E18",
+				"FF49",
+				"S3.1",
+				"C1",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-position-y"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -20159,14 +24388,20 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 0,
+			"browsers": [
+				"E79",
+				"S5",
+				"C3",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-repeat-x"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": "The -webkit-mask-repeat-x property specifies whether and how a mask image is repeated (tiled) horizontally."
@@ -20190,14 +24425,20 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 0,
+			"browsers": [
+				"E79",
+				"S5",
+				"C3",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-repeat-y"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": "The -webkit-mask-repeat-y property specifies whether and how a mask image is repeated (tiled) vertically."
@@ -20206,14 +24447,21 @@ export const cssData : CSSDataV1 = {
 			"name": "accent-color",
 			"syntax": "auto | <color>",
 			"relevance": 50,
+			"browsers": [
+				"E93",
+				"FF92",
+				"S15.4",
+				"C93",
+				"O79"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/accent-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "93",
 					"chrome_android": "93",
@@ -20236,14 +24484,19 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "none | <dashed-ident>#",
 			"relevance": 50,
+			"browsers": [
+				"E125",
+				"C125",
+				"O111"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/anchor-name"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "125",
 					"chrome_android": "125",
@@ -20257,8 +24510,13 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "none | all | <dashed-ident>#",
 			"relevance": 50,
-			"baselineStatus": {
-				"baseline": false,
+			"browsers": [
+				"E131",
+				"C131",
+				"O116"
+			],
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "131",
 					"chrome_android": "131",
@@ -20271,14 +24529,21 @@ export const cssData : CSSDataV1 = {
 			"name": "animation-composition",
 			"syntax": "<single-animation-composition>#",
 			"relevance": 50,
+			"browsers": [
+				"E112",
+				"FF115",
+				"S16",
+				"C112",
+				"O98"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-composition"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "112",
 					"chrome_android": "112",
@@ -20297,14 +24562,19 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "[ <'animation-range-start'> <'animation-range-end'>? ]#",
 			"relevance": 50,
+			"browsers": [
+				"E115",
+				"C115",
+				"O101"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-range"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "115",
 					"chrome_android": "115",
@@ -20318,14 +24588,19 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "[ normal | <length-percentage> | <timeline-range-name> <length-percentage>? ]#",
 			"relevance": 50,
+			"browsers": [
+				"E115",
+				"C115",
+				"O101"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-range-end"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "115",
 					"chrome_android": "115",
@@ -20339,14 +24614,19 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "[ normal | <length-percentage> | <timeline-range-name> <length-percentage>? ]#",
 			"relevance": 50,
+			"browsers": [
+				"E115",
+				"C115",
+				"O101"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-range-start"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "115",
 					"chrome_android": "115",
@@ -20360,14 +24640,20 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "<single-animation-timeline>#",
 			"relevance": 50,
+			"browsers": [
+				"E115",
+				"FF110",
+				"C115",
+				"O101"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-timeline"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "115",
 					"chrome_android": "115",
@@ -20380,14 +24666,21 @@ export const cssData : CSSDataV1 = {
 			"name": "appearance",
 			"syntax": "none | auto | textfield | menulist-button | <compat-auto>",
 			"relevance": 73,
+			"browsers": [
+				"E84",
+				"FF80",
+				"S15.4",
+				"C84",
+				"O70"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/appearance"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "84",
 					"chrome_android": "84",
@@ -20406,14 +24699,21 @@ export const cssData : CSSDataV1 = {
 			"name": "aspect-ratio",
 			"syntax": "auto || <ratio>",
 			"relevance": 64,
+			"browsers": [
+				"E88",
+				"FF89",
+				"S15",
+				"C88",
+				"O74"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/aspect-ratio"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "88",
 					"chrome_android": "88",
@@ -20432,14 +24732,21 @@ export const cssData : CSSDataV1 = {
 			"name": "backdrop-filter",
 			"syntax": "none | <filter-value-list>",
 			"relevance": 63,
+			"browsers": [
+				"E79",
+				"FF103",
+				"S18",
+				"C76",
+				"O63"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/backdrop-filter"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "76",
 					"chrome_android": "76",
@@ -20457,14 +24764,21 @@ export const cssData : CSSDataV1 = {
 			"name": "border-block",
 			"syntax": "<'border-block-start'>",
 			"relevance": 50,
+			"browsers": [
+				"E87",
+				"FF66",
+				"S14.1",
+				"C87",
+				"O73"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "87",
 					"chrome_android": "87",
@@ -20483,14 +24797,21 @@ export const cssData : CSSDataV1 = {
 			"name": "border-block-color",
 			"syntax": "<'border-top-color'>{1,2}",
 			"relevance": 50,
+			"browsers": [
+				"E87",
+				"FF66",
+				"S14.1",
+				"C87",
+				"O73"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "87",
 					"chrome_android": "87",
@@ -20509,14 +24830,21 @@ export const cssData : CSSDataV1 = {
 			"name": "border-block-style",
 			"syntax": "<'border-top-style'>{1,2}",
 			"relevance": 50,
+			"browsers": [
+				"E87",
+				"FF66",
+				"S14.1",
+				"C87",
+				"O73"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "87",
 					"chrome_android": "87",
@@ -20535,14 +24863,21 @@ export const cssData : CSSDataV1 = {
 			"name": "border-block-width",
 			"syntax": "<'border-top-width'>{1,2}",
 			"relevance": 50,
+			"browsers": [
+				"E87",
+				"FF66",
+				"S14.1",
+				"C87",
+				"O73"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "87",
 					"chrome_android": "87",
@@ -20561,14 +24896,21 @@ export const cssData : CSSDataV1 = {
 			"name": "border-end-end-radius",
 			"syntax": "<'border-top-left-radius'>",
 			"relevance": 54,
+			"browsers": [
+				"E89",
+				"FF66",
+				"S15",
+				"C89",
+				"O75"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-end-end-radius"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "89",
 					"chrome_android": "89",
@@ -20587,14 +24929,21 @@ export const cssData : CSSDataV1 = {
 			"name": "border-end-start-radius",
 			"syntax": "<'border-top-left-radius'>",
 			"relevance": 54,
+			"browsers": [
+				"E89",
+				"FF66",
+				"S15",
+				"C89",
+				"O75"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-end-start-radius"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "89",
 					"chrome_android": "89",
@@ -20613,14 +24962,21 @@ export const cssData : CSSDataV1 = {
 			"name": "border-inline",
 			"syntax": "<'border-block-start'>",
 			"relevance": 50,
+			"browsers": [
+				"E87",
+				"FF66",
+				"S14.1",
+				"C87",
+				"O73"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "87",
 					"chrome_android": "87",
@@ -20639,14 +24995,21 @@ export const cssData : CSSDataV1 = {
 			"name": "border-inline-color",
 			"syntax": "<'border-top-color'>{1,2}",
 			"relevance": 50,
+			"browsers": [
+				"E87",
+				"FF66",
+				"S14.1",
+				"C87",
+				"O73"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "87",
 					"chrome_android": "87",
@@ -20665,14 +25028,21 @@ export const cssData : CSSDataV1 = {
 			"name": "border-inline-style",
 			"syntax": "<'border-top-style'>{1,2}",
 			"relevance": 50,
+			"browsers": [
+				"E87",
+				"FF66",
+				"S14.1",
+				"C87",
+				"O73"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "87",
 					"chrome_android": "87",
@@ -20691,14 +25061,21 @@ export const cssData : CSSDataV1 = {
 			"name": "border-inline-width",
 			"syntax": "<'border-top-width'>{1,2}",
 			"relevance": 50,
+			"browsers": [
+				"E87",
+				"FF66",
+				"S14.1",
+				"C87",
+				"O73"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "87",
 					"chrome_android": "87",
@@ -20717,14 +25094,21 @@ export const cssData : CSSDataV1 = {
 			"name": "border-start-end-radius",
 			"syntax": "<'border-top-left-radius'>",
 			"relevance": 54,
+			"browsers": [
+				"E89",
+				"FF66",
+				"S15",
+				"C89",
+				"O75"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-start-end-radius"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "89",
 					"chrome_android": "89",
@@ -20743,14 +25127,21 @@ export const cssData : CSSDataV1 = {
 			"name": "border-start-start-radius",
 			"syntax": "<'border-top-left-radius'>",
 			"relevance": 54,
+			"browsers": [
+				"E89",
+				"FF66",
+				"S15",
+				"C89",
+				"O75"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/border-start-start-radius"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "89",
 					"chrome_android": "89",
@@ -20787,14 +25178,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 0,
+			"browsers": [
+				"E12",
+				"FF49",
+				"S3",
+				"C1",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-align"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": "The box-align CSS property specifies how an element aligns its contents across its layout in a perpendicular direction. The effect of the property is only visible if there is extra space in the box."
@@ -20815,14 +25213,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 0,
+			"browsers": [
+				"E12",
+				"FF49",
+				"S3",
+				"C1",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-direction"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": "The box-direction CSS property specifies whether a box lays out its contents normally (from the top or left edge), or in reverse (from the bottom or right edge)."
@@ -20832,14 +25237,21 @@ export const cssData : CSSDataV1 = {
 			"status": "obsolete",
 			"syntax": "<number>",
 			"relevance": 0,
+			"browsers": [
+				"E12",
+				"FF49",
+				"S3",
+				"C1",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-flex"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": "The -moz-box-flex and -webkit-box-flex CSS properties specify how a -moz-box or -webkit-box grows to fill the box that contains it, in the direction of the containing box's layout."
@@ -20849,14 +25261,19 @@ export const cssData : CSSDataV1 = {
 			"status": "obsolete",
 			"syntax": "<integer>",
 			"relevance": 0,
+			"browsers": [
+				"S3",
+				"C1",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-flex-group"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": "The box-flex-group CSS property assigns the flexbox's child elements to a flex group."
@@ -20874,14 +25291,19 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 0,
+			"browsers": [
+				"S3",
+				"C1",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-lines"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": "The box-lines CSS property determines whether the box may have a single or multiple lines (rows for horizontally oriented boxes, columns for vertically oriented boxes)."
@@ -20891,14 +25313,21 @@ export const cssData : CSSDataV1 = {
 			"status": "obsolete",
 			"syntax": "<integer>",
 			"relevance": 0,
+			"browsers": [
+				"E12",
+				"FF49",
+				"S3",
+				"C1",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-ordinal-group"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": "The box-ordinal-group CSS property assigns the flexbox's child elements to an ordinal group."
@@ -20925,14 +25354,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 0,
+			"browsers": [
+				"E12",
+				"FF49",
+				"S3",
+				"C1",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-orient"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": "The box-orient CSS property specifies whether an element lays out its contents horizontally or vertically."
@@ -20956,14 +25392,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 0,
+			"browsers": [
+				"E12",
+				"FF49",
+				"S3",
+				"C1",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/box-pack"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": "The -moz-box-pack and -webkit-box-pack CSS properties specify how a -moz-box or -webkit-box packs its contents in the direction of its layout. The effect of this is only visible if there is extra space in the box."
@@ -20998,14 +25441,21 @@ export const cssData : CSSDataV1 = {
 			"name": "color-scheme",
 			"syntax": "normal | [ light | dark | <custom-ident> ]+ && only?",
 			"relevance": 58,
+			"browsers": [
+				"E81",
+				"FF96",
+				"S13",
+				"C81",
+				"O68"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/color-scheme"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "81",
 					"chrome_android": "81",
@@ -21024,14 +25474,21 @@ export const cssData : CSSDataV1 = {
 			"name": "contain-intrinsic-block-size",
 			"syntax": "auto? [ none | <length> ]",
 			"relevance": 50,
+			"browsers": [
+				"E95",
+				"FF107",
+				"S17",
+				"C95",
+				"O81"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-block-size"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "95",
 					"chrome_android": "95",
@@ -21049,14 +25506,21 @@ export const cssData : CSSDataV1 = {
 			"name": "contain-intrinsic-height",
 			"syntax": "auto? [ none | <length> ]",
 			"relevance": 50,
+			"browsers": [
+				"E95",
+				"FF107",
+				"S17",
+				"C95",
+				"O81"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-height"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "95",
 					"chrome_android": "95",
@@ -21074,14 +25538,21 @@ export const cssData : CSSDataV1 = {
 			"name": "contain-intrinsic-inline-size",
 			"syntax": "auto? [ none | <length> ]",
 			"relevance": 50,
+			"browsers": [
+				"E95",
+				"FF107",
+				"S17",
+				"C95",
+				"O81"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-inline-size"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "95",
 					"chrome_android": "95",
@@ -21099,14 +25570,21 @@ export const cssData : CSSDataV1 = {
 			"name": "contain-intrinsic-size",
 			"syntax": "[ auto? [ none | <length> ] ]{1,2}",
 			"relevance": 50,
+			"browsers": [
+				"E83",
+				"FF107",
+				"S17",
+				"C83",
+				"O69"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-size"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "83",
 					"chrome_android": "83",
@@ -21124,14 +25602,21 @@ export const cssData : CSSDataV1 = {
 			"name": "contain-intrinsic-width",
 			"syntax": "auto? [ none | <length> ]",
 			"relevance": 50,
+			"browsers": [
+				"E95",
+				"FF107",
+				"S17",
+				"C95",
+				"O81"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "95",
 					"chrome_android": "95",
@@ -21149,14 +25634,21 @@ export const cssData : CSSDataV1 = {
 			"name": "container",
 			"syntax": "<'container-name'> [ / <'container-type'> ]?",
 			"relevance": 53,
+			"browsers": [
+				"E105",
+				"FF110",
+				"S16",
+				"C105",
+				"O91"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/container"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "105",
 					"chrome_android": "105",
@@ -21174,14 +25666,21 @@ export const cssData : CSSDataV1 = {
 			"name": "container-name",
 			"syntax": "none | <custom-ident>+",
 			"relevance": 50,
+			"browsers": [
+				"E105",
+				"FF110",
+				"S16",
+				"C105",
+				"O91"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/container-name"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "105",
 					"chrome_android": "105",
@@ -21210,14 +25709,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 52,
+			"browsers": [
+				"E105",
+				"FF110",
+				"S16",
+				"C105",
+				"O91"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/container-type"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "105",
 					"chrome_android": "105",
@@ -21246,14 +25752,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 52,
+			"browsers": [
+				"E85",
+				"FF125",
+				"S18",
+				"C85",
+				"O71"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/content-visibility"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "85",
 					"chrome_android": "85",
@@ -21271,14 +25784,21 @@ export const cssData : CSSDataV1 = {
 			"name": "counter-set",
 			"syntax": "[ <counter-name> <integer>? ]+ | none",
 			"relevance": 50,
+			"browsers": [
+				"E85",
+				"FF68",
+				"S17.2",
+				"C85",
+				"O71"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/counter-set"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "85",
 					"chrome_android": "85",
@@ -21296,14 +25816,21 @@ export const cssData : CSSDataV1 = {
 			"name": "cx",
 			"syntax": "<length> | <percentage>",
 			"relevance": 52,
+			"browsers": [
+				"E80",
+				"FF72",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/cx"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -21322,14 +25849,21 @@ export const cssData : CSSDataV1 = {
 			"name": "cy",
 			"syntax": "<length> | <percentage>",
 			"relevance": 51,
+			"browsers": [
+				"E80",
+				"FF72",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/cy"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -21348,14 +25882,20 @@ export const cssData : CSSDataV1 = {
 			"name": "d",
 			"syntax": "none | path(<string>)",
 			"relevance": 50,
+			"browsers": [
+				"E80",
+				"FF97",
+				"C80",
+				"O67"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/d"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -21399,14 +25939,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E80",
+				"FF1",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/dominant-baseline"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -21434,14 +25981,19 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E123",
+				"C123",
+				"O109"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/field-sizing"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "123",
 					"chrome_android": "123",
@@ -21462,14 +26014,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E17",
+				"FF62",
+				"S13.1",
+				"C79",
+				"O66"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-optical-sizing"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "79",
 					"chrome_android": "79",
@@ -21488,14 +26047,21 @@ export const cssData : CSSDataV1 = {
 			"name": "font-palette",
 			"syntax": "normal | light | dark | <palette-identifier> | <palette-mix()>",
 			"relevance": 50,
+			"browsers": [
+				"E101",
+				"FF107",
+				"S15.4",
+				"C101",
+				"O87"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-palette"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "101",
 					"chrome_android": "101",
@@ -21514,14 +26080,21 @@ export const cssData : CSSDataV1 = {
 			"status": "nonstandard",
 			"syntax": "auto | never | always | <absolute-size> | <length>",
 			"relevance": 0,
+			"browsers": [
+				"E79",
+				"FF25",
+				"S4",
+				"C5",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-smooth"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": "The font-smooth CSS property controls the application of anti-aliasing when fonts are rendered."
@@ -21539,14 +26112,17 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"FF118"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-synthesis-position"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "118",
 					"firefox_android": "118"
@@ -21566,14 +26142,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E97",
+				"FF111",
+				"S16.4",
+				"C97",
+				"O83"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-synthesis-small-caps"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "97",
 					"chrome_android": "97",
@@ -21599,14 +26182,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E97",
+				"FF111",
+				"S16.4",
+				"C97",
+				"O83"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-synthesis-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "97",
 					"chrome_android": "97",
@@ -21632,14 +26222,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E97",
+				"FF111",
+				"S16.4",
+				"C97",
+				"O83"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-synthesis-weight"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "97",
 					"chrome_android": "97",
@@ -21671,14 +26268,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E131",
+				"FF108",
+				"S17.5",
+				"C131",
+				"O116"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-emoji"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "131",
 					"chrome_android": "131",
@@ -21692,14 +26296,21 @@ export const cssData : CSSDataV1 = {
 			"atRule": "@font-face",
 			"syntax": "normal | [ <string> <number> ]#",
 			"relevance": 57,
+			"browsers": [
+				"E17",
+				"FF62",
+				"S11",
+				"C62",
+				"O49"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variation-settings"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "62",
 					"chrome_android": "62",
@@ -21729,14 +26340,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 58,
+			"browsers": [
+				"E79",
+				"FF113",
+				"C89",
+				"IE10",
+				"O75"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/forced-color-adjust"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "89",
 					"chrome_android": "89",
@@ -21751,14 +26369,21 @@ export const cssData : CSSDataV1 = {
 			"name": "gap",
 			"syntax": "<'row-gap'> <'column-gap'>?",
 			"relevance": 76,
+			"browsers": [
+				"E16",
+				"FF52",
+				"S10.1",
+				"C57",
+				"O44"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/gap"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -21777,14 +26402,17 @@ export const cssData : CSSDataV1 = {
 			"name": "hanging-punctuation",
 			"syntax": "none | [ first || [ force-end | allow-end ] || last ]",
 			"relevance": 50,
+			"browsers": [
+				"S10"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/hanging-punctuation"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": "The hanging-punctuation CSS property specifies whether a punctuation mark should hang at the start or end of a line of text. Hanging punctuation may be placed outside the line box."
@@ -21793,14 +26421,21 @@ export const cssData : CSSDataV1 = {
 			"name": "hyphenate-character",
 			"syntax": "auto | <string>",
 			"relevance": 50,
+			"browsers": [
+				"E106",
+				"FF98",
+				"S17",
+				"C106",
+				"O92"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/hyphenate-character"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "106",
 					"chrome_android": "106",
@@ -21818,14 +26453,20 @@ export const cssData : CSSDataV1 = {
 			"name": "hyphenate-limit-chars",
 			"syntax": "[ auto | <integer> ]{1,3}",
 			"relevance": 50,
+			"browsers": [
+				"E109",
+				"FF137",
+				"C109",
+				"O95"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/hyphenate-limit-chars"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "109",
 					"chrome_android": "109",
@@ -21845,14 +26486,20 @@ export const cssData : CSSDataV1 = {
 			"name": "initial-letter",
 			"syntax": "normal | [ <number> <integer>? ]",
 			"relevance": 50,
+			"browsers": [
+				"E110",
+				"S9",
+				"C110",
+				"O96"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/initial-letter"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "110",
 					"chrome_android": "110",
@@ -21872,14 +26519,21 @@ export const cssData : CSSDataV1 = {
 			"name": "inset",
 			"syntax": "<'top'>{1,4}",
 			"relevance": 63,
+			"browsers": [
+				"E87",
+				"FF66",
+				"S14.1",
+				"C87",
+				"O73"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/inset"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "87",
 					"chrome_android": "87",
@@ -21898,14 +26552,21 @@ export const cssData : CSSDataV1 = {
 			"name": "inset-block",
 			"syntax": "<'top'>{1,2}",
 			"relevance": 53,
+			"browsers": [
+				"E87",
+				"FF63",
+				"S14.1",
+				"C87",
+				"O73"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-block"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "87",
 					"chrome_android": "87",
@@ -21924,14 +26585,21 @@ export const cssData : CSSDataV1 = {
 			"name": "inset-block-end",
 			"syntax": "<'top'>",
 			"relevance": 53,
+			"browsers": [
+				"E87",
+				"FF63",
+				"S14.1",
+				"C87",
+				"O73"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-block-end"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "87",
 					"chrome_android": "87",
@@ -21950,14 +26618,21 @@ export const cssData : CSSDataV1 = {
 			"name": "inset-block-start",
 			"syntax": "<'top'>",
 			"relevance": 54,
+			"browsers": [
+				"E87",
+				"FF63",
+				"S14.1",
+				"C87",
+				"O73"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-block-start"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "87",
 					"chrome_android": "87",
@@ -21976,14 +26651,21 @@ export const cssData : CSSDataV1 = {
 			"name": "inset-inline",
 			"syntax": "<'top'>{1,2}",
 			"relevance": 53,
+			"browsers": [
+				"E87",
+				"FF63",
+				"S14.1",
+				"C87",
+				"O73"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-inline"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "87",
 					"chrome_android": "87",
@@ -22002,14 +26684,21 @@ export const cssData : CSSDataV1 = {
 			"name": "inset-inline-end",
 			"syntax": "<'top'>",
 			"relevance": 55,
+			"browsers": [
+				"E87",
+				"FF63",
+				"S14.1",
+				"C87",
+				"O73"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-inline-end"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "87",
 					"chrome_android": "87",
@@ -22028,14 +26717,21 @@ export const cssData : CSSDataV1 = {
 			"name": "inset-inline-start",
 			"syntax": "<'top'>",
 			"relevance": 55,
+			"browsers": [
+				"E87",
+				"FF63",
+				"S14.1",
+				"C87",
+				"O73"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-inline-start"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "87",
 					"chrome_android": "87",
@@ -22063,14 +26759,19 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E129",
+				"C129",
+				"O115"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/interpolate-size"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "129",
 					"chrome_android": "129",
@@ -22090,14 +26791,21 @@ export const cssData : CSSDataV1 = {
 			"name": "line-clamp",
 			"syntax": "none | <integer>",
 			"relevance": 50,
+			"browsers": [
+				"E17",
+				"FF68",
+				"S18.2",
+				"C6",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/line-clamp"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari": "18.2",
 					"safari_ios": "18.2"
@@ -22110,14 +26818,19 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "<length>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"C60",
+				"O47"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/line-height-step"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": "The line-height-step CSS property defines the step units for line box heights. When the step unit is positive, line box heights are rounded up to the closest multiple of the unit. Negative values are invalid."
@@ -22126,14 +26839,21 @@ export const cssData : CSSDataV1 = {
 			"name": "margin-block",
 			"syntax": "<'margin-top'>{1,2}",
 			"relevance": 55,
+			"browsers": [
+				"E87",
+				"FF66",
+				"S14.1",
+				"C87",
+				"O73"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-block"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "87",
 					"chrome_android": "87",
@@ -22152,14 +26872,21 @@ export const cssData : CSSDataV1 = {
 			"name": "margin-inline",
 			"syntax": "<'margin-top'>{1,2}",
 			"relevance": 55,
+			"browsers": [
+				"E87",
+				"FF66",
+				"S14.1",
+				"C87",
+				"O73"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-inline"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "87",
 					"chrome_android": "87",
@@ -22190,14 +26917,17 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"S16.4"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-trim"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari": "16.4",
 					"safari_ios": "16.4"
@@ -22209,14 +26939,21 @@ export const cssData : CSSDataV1 = {
 			"name": "mask",
 			"syntax": "<mask-layer>#",
 			"relevance": 58,
+			"browsers": [
+				"E120",
+				"FF53",
+				"S15.4",
+				"C120",
+				"O106"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "120",
 					"chrome_android": "120",
@@ -22234,14 +26971,20 @@ export const cssData : CSSDataV1 = {
 			"name": "mask-border",
 			"syntax": "<'mask-border-source'> || <'mask-border-slice'> [ / <'mask-border-width'>? [ / <'mask-border-outset'> ]? ]? || <'mask-border-repeat'> || <'mask-border-mode'>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"S17.2",
+				"C1",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-border"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari": "17.2",
 					"safari_ios": "17.2"
@@ -22267,14 +27010,20 @@ export const cssData : CSSDataV1 = {
 			"name": "mask-border-outset",
 			"syntax": "[ <length> | <number> ]{1,4}",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"S17.2",
+				"C1",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-outset"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari": "17.2",
 					"safari_ios": "17.2"
@@ -22286,14 +27035,20 @@ export const cssData : CSSDataV1 = {
 			"name": "mask-border-repeat",
 			"syntax": "[ stretch | repeat | round | space ]{1,2}",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"S17.2",
+				"C1",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-repeat"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari": "17.2",
 					"safari_ios": "17.2"
@@ -22305,14 +27060,20 @@ export const cssData : CSSDataV1 = {
 			"name": "mask-border-slice",
 			"syntax": "<number-percentage>{1,4} fill?",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"S17.2",
+				"C1",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-slice"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari": "17.2",
 					"safari_ios": "17.2"
@@ -22324,14 +27085,20 @@ export const cssData : CSSDataV1 = {
 			"name": "mask-border-source",
 			"syntax": "none | <image>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"S17.2",
+				"C1",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-source"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari": "17.2",
 					"safari_ios": "17.2"
@@ -22343,14 +27110,20 @@ export const cssData : CSSDataV1 = {
 			"name": "mask-border-width",
 			"syntax": "[ <length-percentage> | <number> | auto ]{1,4}",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"S17.2",
+				"C1",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari": "17.2",
 					"safari_ios": "17.2"
@@ -22362,14 +27135,21 @@ export const cssData : CSSDataV1 = {
 			"name": "mask-clip",
 			"syntax": "[ <coord-box> | no-clip ]#",
 			"relevance": 50,
+			"browsers": [
+				"E120",
+				"FF53",
+				"S15.4",
+				"C120",
+				"O106"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-clip"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "120",
 					"chrome_android": "120",
@@ -22387,14 +27167,21 @@ export const cssData : CSSDataV1 = {
 			"name": "mask-composite",
 			"syntax": "<compositing-operator>#",
 			"relevance": 54,
+			"browsers": [
+				"E120",
+				"FF53",
+				"S15.4",
+				"C120",
+				"O106"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-composite"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "120",
 					"chrome_android": "120",
@@ -22419,14 +27206,20 @@ export const cssData : CSSDataV1 = {
 			"name": "math-depth",
 			"syntax": "auto-add | add(<integer>) | <integer>",
 			"relevance": 50,
+			"browsers": [
+				"E109",
+				"FF117",
+				"C109",
+				"O95"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/math-depth"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "109",
 					"chrome_android": "109",
@@ -22450,14 +27243,19 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E109",
+				"C109",
+				"O95"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/math-shift"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "109",
 					"chrome_android": "109",
@@ -22478,14 +27276,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E109",
+				"FF117",
+				"S14.1",
+				"C109",
+				"O95"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/math-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "109",
 					"chrome_android": "109",
@@ -22510,14 +27315,21 @@ export const cssData : CSSDataV1 = {
 			"name": "offset",
 			"syntax": "[ <'offset-position'>? [ <'offset-path'> [ <'offset-distance'> || <'offset-rotate'> ]? ]? ]! [ / <'offset-anchor'> ]?",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF72",
+				"S16",
+				"C55",
+				"O42"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/offset"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "55",
 					"chrome_android": "55",
@@ -22536,14 +27348,21 @@ export const cssData : CSSDataV1 = {
 			"name": "offset-anchor",
 			"syntax": "auto | <position>",
 			"relevance": 50,
+			"browsers": [
+				"E116",
+				"FF72",
+				"S16",
+				"C116",
+				"O102"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/offset-anchor"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "116",
 					"chrome_android": "116",
@@ -22561,14 +27380,21 @@ export const cssData : CSSDataV1 = {
 			"name": "offset-distance",
 			"syntax": "<length-percentage>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF72",
+				"S16",
+				"C55",
+				"O42"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/offset-distance"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "55",
 					"chrome_android": "55",
@@ -22587,14 +27413,21 @@ export const cssData : CSSDataV1 = {
 			"name": "offset-path",
 			"syntax": "none | <offset-path> || <coord-box>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF72",
+				"S15.4",
+				"C55",
+				"O45"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/offset-path"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "55",
 					"chrome_android": "55",
@@ -22613,14 +27446,21 @@ export const cssData : CSSDataV1 = {
 			"name": "offset-position",
 			"syntax": "normal | auto | <position>",
 			"relevance": 50,
+			"browsers": [
+				"E116",
+				"FF122",
+				"S16",
+				"C116",
+				"O102"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/offset-position"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "116",
 					"chrome_android": "116",
@@ -22638,14 +27478,21 @@ export const cssData : CSSDataV1 = {
 			"name": "offset-rotate",
 			"syntax": "[ auto | reverse ] || <angle>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF72",
+				"S16",
+				"C56",
+				"O43"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/offset-rotate"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "56",
 					"chrome_android": "56",
@@ -22672,14 +27519,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 52,
+			"browsers": [
+				"E79",
+				"FF66",
+				"Spreview",
+				"C56",
+				"O43"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-anchor"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "56",
 					"chrome_android": "56",
@@ -22711,14 +27565,19 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E135",
+				"FF69",
+				"C135"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-block"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "69",
 					"firefox_android": "79"
@@ -22745,14 +27604,20 @@ export const cssData : CSSDataV1 = {
 			"name": "overflow-clip-margin",
 			"syntax": "<visual-box> || <length [0,∞]>",
 			"relevance": 50,
+			"browsers": [
+				"E90",
+				"FF102",
+				"C90",
+				"O76"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-clip-margin"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": "The overflow-clip-margin CSS property determines how far outside its bounds an element with overflow: clip may be painted before being clipped."
@@ -22778,14 +27643,19 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E135",
+				"FF69",
+				"C135"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-inline"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "69",
 					"firefox_android": "79"
@@ -22806,14 +27676,19 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E117",
+				"C117",
+				"O103"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overlay"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "117",
 					"chrome_android": "117",
@@ -22826,14 +27701,21 @@ export const cssData : CSSDataV1 = {
 			"name": "overscroll-behavior",
 			"syntax": "[ contain | none | auto ]{1,2}",
 			"relevance": 50,
+			"browsers": [
+				"E18",
+				"FF59",
+				"S16",
+				"C63",
+				"O50"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "63",
 					"chrome_android": "63",
@@ -22863,14 +27745,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF73",
+				"S16",
+				"C77",
+				"O64"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-block"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "77",
 					"chrome_android": "77",
@@ -22900,14 +27789,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 51,
+			"browsers": [
+				"E79",
+				"FF73",
+				"S16",
+				"C77",
+				"O64"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-inline"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "77",
 					"chrome_android": "77",
@@ -22937,14 +27833,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E18",
+				"FF59",
+				"S16",
+				"C63",
+				"O50"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-x"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "63",
 					"chrome_android": "63",
@@ -22974,14 +27877,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E18",
+				"FF59",
+				"S16",
+				"C63",
+				"O50"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-y"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "63",
 					"chrome_android": "63",
@@ -23000,14 +27910,21 @@ export const cssData : CSSDataV1 = {
 			"name": "padding-block",
 			"syntax": "<'padding-top'>{1,2}",
 			"relevance": 56,
+			"browsers": [
+				"E87",
+				"FF66",
+				"S14.1",
+				"C87",
+				"O73"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-block"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "87",
 					"chrome_android": "87",
@@ -23026,14 +27943,21 @@ export const cssData : CSSDataV1 = {
 			"name": "padding-inline",
 			"syntax": "<'padding-top'>{1,2}",
 			"relevance": 57,
+			"browsers": [
+				"E87",
+				"FF66",
+				"S14.1",
+				"C87",
+				"O73"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-inline"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "87",
 					"chrome_android": "87",
@@ -23052,14 +27976,21 @@ export const cssData : CSSDataV1 = {
 			"name": "page",
 			"syntax": "auto | <custom-ident>",
 			"relevance": 50,
+			"browsers": [
+				"E85",
+				"FF110",
+				"S13.1",
+				"C85",
+				"O71"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/page"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "85",
 					"chrome_android": "85",
@@ -23077,14 +28008,21 @@ export const cssData : CSSDataV1 = {
 			"name": "place-content",
 			"syntax": "<'align-content'> <'justify-content'>?",
 			"relevance": 56,
+			"browsers": [
+				"E79",
+				"FF45",
+				"S9",
+				"C59",
+				"O46"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/place-content"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "59",
 					"chrome_android": "59",
@@ -23103,14 +28041,21 @@ export const cssData : CSSDataV1 = {
 			"name": "place-items",
 			"syntax": "<'align-items'> <'justify-items'>?",
 			"relevance": 56,
+			"browsers": [
+				"E79",
+				"FF45",
+				"S11",
+				"C59",
+				"O46"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/place-items"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "59",
 					"chrome_android": "59",
@@ -23129,14 +28074,21 @@ export const cssData : CSSDataV1 = {
 			"name": "place-self",
 			"syntax": "<'align-self'> <'justify-self'>?",
 			"relevance": 51,
+			"browsers": [
+				"E79",
+				"FF45",
+				"S11",
+				"C59",
+				"O46"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/place-self"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "59",
 					"chrome_android": "59",
@@ -23156,14 +28108,19 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "auto | <anchor-name>",
 			"relevance": 50,
+			"browsers": [
+				"E125",
+				"C125",
+				"O111"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/position-anchor"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "125",
 					"chrome_android": "125",
@@ -23177,14 +28134,19 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "none | <position-area>",
 			"relevance": 50,
+			"browsers": [
+				"E129",
+				"C129",
+				"O115"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/position-area"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "129",
 					"chrome_android": "129",
@@ -23198,14 +28160,19 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "<'position-try-order'>? <'position-try-fallbacks'>",
 			"relevance": 50,
+			"browsers": [
+				"E125",
+				"C125",
+				"O111"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/position-try"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "125",
 					"chrome_android": "125",
@@ -23219,14 +28186,19 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "none | [ [<dashed-ident> || <try-tactic>] | <'position-area'> ]#",
 			"relevance": 50,
+			"browsers": [
+				"E128",
+				"C128",
+				"O114"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/position-try-fallbacks"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "128",
 					"chrome_android": "128",
@@ -23240,14 +28212,19 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "normal | <try-size>",
 			"relevance": 50,
+			"browsers": [
+				"E125",
+				"C125",
+				"O111"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/position-try-order"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "125",
 					"chrome_android": "125",
@@ -23261,14 +28238,19 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "always | [ anchors-valid || anchors-visible || no-overflow ]",
 			"relevance": 50,
+			"browsers": [
+				"E125",
+				"C125",
+				"O111"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/position-visibility"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "125",
 					"chrome_android": "125",
@@ -23289,14 +28271,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF97",
+				"S15.4",
+				"C17",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/print-color-adjust"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "97",
 					"firefox_android": "97",
@@ -23310,14 +28299,21 @@ export const cssData : CSSDataV1 = {
 			"name": "r",
 			"syntax": "<length> | <percentage>",
 			"relevance": 52,
+			"browsers": [
+				"E80",
+				"FF72",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/r"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -23336,14 +28332,21 @@ export const cssData : CSSDataV1 = {
 			"name": "rotate",
 			"syntax": "none | <angle> | [ x | y | z | <number>{3} ] && <angle>",
 			"relevance": 52,
+			"browsers": [
+				"E104",
+				"FF72",
+				"S14.1",
+				"C104",
+				"O90"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/rotate"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "104",
 					"chrome_android": "104",
@@ -23362,14 +28365,21 @@ export const cssData : CSSDataV1 = {
 			"name": "row-gap",
 			"syntax": "normal | <length-percentage>",
 			"relevance": 61,
+			"browsers": [
+				"E16",
+				"FF52",
+				"S10.1",
+				"C47",
+				"O34"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/row-gap"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "47",
 					"chrome_android": "47",
@@ -23406,14 +28416,20 @@ export const cssData : CSSDataV1 = {
 			"name": "rx",
 			"syntax": "<length> | <percentage>",
 			"relevance": 50,
+			"browsers": [
+				"E80",
+				"FF72",
+				"C80",
+				"O67"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/rx"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -23428,14 +28444,20 @@ export const cssData : CSSDataV1 = {
 			"name": "ry",
 			"syntax": "<length> | <percentage>",
 			"relevance": 50,
+			"browsers": [
+				"E80",
+				"FF72",
+				"C80",
+				"O67"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/ry"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -23450,14 +28472,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scale",
 			"syntax": "none | [ <number> | <percentage> ]{1,3}",
 			"relevance": 52,
+			"browsers": [
+				"E104",
+				"FF72",
+				"S14.1",
+				"C104",
+				"O90"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scale"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "104",
 					"chrome_android": "104",
@@ -23476,14 +28505,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-margin",
 			"syntax": "<length>{1,4}",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF90",
+				"S14.1",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -23502,14 +28538,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-margin-block",
 			"syntax": "<length>{1,2}",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S15",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -23528,14 +28571,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-margin-block-end",
 			"syntax": "<length>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S15",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block-end"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -23554,14 +28604,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-margin-block-start",
 			"syntax": "<length>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S15",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block-start"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -23580,14 +28637,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-margin-bottom",
 			"syntax": "<length>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S14.1",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-bottom"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -23606,14 +28670,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-margin-inline",
 			"syntax": "<length>{1,2}",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S15",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -23632,14 +28703,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-margin-inline-end",
 			"syntax": "<length>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S15",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline-end"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -23658,14 +28736,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-margin-inline-start",
 			"syntax": "<length>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S15",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline-start"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -23684,14 +28769,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-margin-left",
 			"syntax": "<length>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S14.1",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-left"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -23710,14 +28802,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-margin-right",
 			"syntax": "<length>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S14.1",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-right"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -23736,14 +28835,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-margin-top",
 			"syntax": "<length>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S14.1",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-top"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -23762,14 +28868,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-padding",
 			"syntax": "[ auto | <length-percentage> ]{1,4}",
 			"relevance": 53,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S14.1",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -23788,14 +28901,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-padding-block",
 			"syntax": "[ auto | <length-percentage> ]{1,2}",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S15",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -23814,14 +28934,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-padding-block-end",
 			"syntax": "auto | <length-percentage>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S15",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block-end"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -23840,14 +28967,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-padding-block-start",
 			"syntax": "auto | <length-percentage>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S15",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block-start"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -23866,14 +29000,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-padding-bottom",
 			"syntax": "auto | <length-percentage>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S14.1",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-bottom"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -23892,14 +29033,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-padding-inline",
 			"syntax": "[ auto | <length-percentage> ]{1,2}",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S15",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -23918,14 +29066,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-padding-inline-end",
 			"syntax": "auto | <length-percentage>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S15",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline-end"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -23944,14 +29099,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-padding-inline-start",
 			"syntax": "auto | <length-percentage>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S15",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline-start"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -23970,14 +29132,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-padding-left",
 			"syntax": "auto | <length-percentage>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S14.1",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-left"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -23996,14 +29165,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-padding-right",
 			"syntax": "auto | <length-percentage>",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S14.1",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-right"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -24022,14 +29198,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-padding-top",
 			"syntax": "auto | <length-percentage>",
 			"relevance": 51,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S14.1",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-top"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -24048,14 +29231,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scroll-snap-align",
 			"syntax": "[ none | start | end | center ]{1,2}",
 			"relevance": 54,
+			"browsers": [
+				"E79",
+				"FF68",
+				"S11",
+				"C69",
+				"O56"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-align"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "69",
 					"chrome_android": "69",
@@ -24082,14 +29272,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 52,
+			"browsers": [
+				"E79",
+				"FF103",
+				"S15",
+				"C75",
+				"O62"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-stop"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "75",
 					"chrome_android": "75",
@@ -24145,14 +29342,20 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "[ <'scroll-timeline-name'> <'scroll-timeline-axis'>? ]#",
 			"relevance": 50,
+			"browsers": [
+				"E115",
+				"FF111",
+				"C115",
+				"O101"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-timeline"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "115",
 					"chrome_android": "115",
@@ -24166,14 +29369,20 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "[ block | inline | x | y ]#",
 			"relevance": 50,
+			"browsers": [
+				"E115",
+				"FF111",
+				"C115",
+				"O101"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-timeline-axis"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "115",
 					"chrome_android": "115",
@@ -24187,14 +29396,20 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "[ none | <dashed-ident> ]#",
 			"relevance": 50,
+			"browsers": [
+				"E115",
+				"FF111",
+				"C115",
+				"O101"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-timeline-name"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "115",
 					"chrome_android": "115",
@@ -24207,14 +29422,20 @@ export const cssData : CSSDataV1 = {
 			"name": "scrollbar-color",
 			"syntax": "auto | <color>{2}",
 			"relevance": 55,
+			"browsers": [
+				"E121",
+				"FF64",
+				"C121",
+				"O107"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "121",
 					"chrome_android": "121",
@@ -24229,14 +29450,21 @@ export const cssData : CSSDataV1 = {
 			"name": "scrollbar-gutter",
 			"syntax": "auto | stable && both-edges?",
 			"relevance": 52,
+			"browsers": [
+				"E94",
+				"FF97",
+				"S18.2",
+				"C94",
+				"O80"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-gutter"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "94",
 					"chrome_android": "94",
@@ -24265,14 +29493,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 68,
+			"browsers": [
+				"E121",
+				"FF64",
+				"S18.2",
+				"C121",
+				"O107"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-width"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "121",
 					"chrome_android": "121",
@@ -24291,14 +29526,17 @@ export const cssData : CSSDataV1 = {
 			"atRule": "@counter-style",
 			"syntax": "auto | bullets | numbers | words | spell-out | <counter-style-name>",
 			"relevance": 50,
+			"browsers": [
+				"S11.1"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/speak-as"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari": "11.1",
 					"safari_ios": "11.3"
@@ -24310,14 +29548,20 @@ export const cssData : CSSDataV1 = {
 			"name": "text-box",
 			"syntax": "normal | <'text-box-trim'> || <'text-box-edge'>",
 			"relevance": 50,
+			"browsers": [
+				"E133",
+				"S18.2",
+				"C133",
+				"O118"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-box"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "133",
 					"chrome_android": "133",
@@ -24332,14 +29576,20 @@ export const cssData : CSSDataV1 = {
 			"name": "text-box-edge",
 			"syntax": "auto | <text-edge>",
 			"relevance": 50,
+			"browsers": [
+				"E133",
+				"S18.2",
+				"C133",
+				"O118"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-box-edge"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "133",
 					"chrome_android": "133",
@@ -24368,14 +29618,20 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E133",
+				"S18.2",
+				"C133",
+				"O118"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-box-trim"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "133",
 					"chrome_android": "133",
@@ -24390,14 +29646,22 @@ export const cssData : CSSDataV1 = {
 			"name": "text-combine-upright",
 			"syntax": "none | all | [ digits <integer>? ]",
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF48",
+				"S15.4",
+				"C48",
+				"IE11",
+				"O35"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-combine-upright"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "48",
 					"chrome_android": "48",
@@ -24417,14 +29681,19 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "none | [ objects || [ spaces | [ leading-spaces || trailing-spaces ] ] || edges || box-decoration ]",
 			"relevance": 50,
+			"browsers": [
+				"S12.1",
+				"C57",
+				"O44"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-skip"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari": "12.1",
 					"safari_ios": "12.2"
@@ -24447,14 +29716,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 51,
+			"browsers": [
+				"E79",
+				"FF70",
+				"S15.4",
+				"C64",
+				"O50"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-skip-ink"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "64",
 					"chrome_android": "64",
@@ -24473,14 +29749,21 @@ export const cssData : CSSDataV1 = {
 			"name": "text-decoration-thickness",
 			"syntax": "auto | from-font | <length> | <percentage> ",
 			"relevance": 52,
+			"browsers": [
+				"E89",
+				"FF70",
+				"S12.1",
+				"C89",
+				"O75"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-thickness"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "89",
 					"chrome_android": "89",
@@ -24499,14 +29782,21 @@ export const cssData : CSSDataV1 = {
 			"name": "text-emphasis",
 			"syntax": "<'text-emphasis-style'> || <'text-emphasis-color'>",
 			"relevance": 50,
+			"browsers": [
+				"E99",
+				"FF46",
+				"S7",
+				"C99",
+				"O85"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "99",
 					"chrome_android": "99",
@@ -24525,14 +29815,21 @@ export const cssData : CSSDataV1 = {
 			"name": "text-emphasis-color",
 			"syntax": "<color>",
 			"relevance": 50,
+			"browsers": [
+				"E99",
+				"FF46",
+				"S7",
+				"C99",
+				"O85"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis-color"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "99",
 					"chrome_android": "99",
@@ -24551,14 +29848,21 @@ export const cssData : CSSDataV1 = {
 			"name": "text-emphasis-position",
 			"syntax": "auto | [ over | under ] && [ right | left ]?",
 			"relevance": 50,
+			"browsers": [
+				"E99",
+				"FF46",
+				"S7",
+				"C99",
+				"O85"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis-position"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "99",
 					"chrome_android": "99",
@@ -24577,14 +29881,21 @@ export const cssData : CSSDataV1 = {
 			"name": "text-emphasis-style",
 			"syntax": "none | [ [ filled | open ] || [ dot | circle | double-circle | triangle | sesame ] ] | <string>",
 			"relevance": 50,
+			"browsers": [
+				"E99",
+				"FF46",
+				"S7",
+				"C99",
+				"O85"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "99",
 					"chrome_android": "99",
@@ -24604,14 +29915,19 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "none | auto | <percentage>",
 			"relevance": 61,
+			"browsers": [
+				"E79",
+				"C54",
+				"O41"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-size-adjust"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "54",
 					"chrome_android": "54",
@@ -24639,14 +29955,19 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E123",
+				"C123",
+				"O109"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-spacing-trim"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "123",
 					"chrome_android": "123",
@@ -24659,14 +29980,21 @@ export const cssData : CSSDataV1 = {
 			"name": "text-underline-offset",
 			"syntax": "auto | <length> | <percentage> ",
 			"relevance": 52,
+			"browsers": [
+				"E87",
+				"FF70",
+				"S12.1",
+				"C87",
+				"O73"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-underline-offset"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "87",
 					"chrome_android": "87",
@@ -24685,14 +30013,21 @@ export const cssData : CSSDataV1 = {
 			"name": "text-wrap",
 			"syntax": "<'text-wrap-mode'> || <'text-wrap-style'>",
 			"relevance": 58,
+			"browsers": [
+				"E114",
+				"FF121",
+				"S17.4",
+				"C114",
+				"O100"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-wrap"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "114",
 					"chrome_android": "114",
@@ -24718,14 +30053,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E130",
+				"FF124",
+				"S17.4",
+				"C130",
+				"O115"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-wrap-mode"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "130",
 					"chrome_android": "130",
@@ -24757,14 +30099,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E130",
+				"FF124",
+				"S17.5",
+				"C130",
+				"O115"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/text-wrap-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "130",
 					"chrome_android": "130",
@@ -24783,14 +30132,19 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "none | <dashed-ident>#",
 			"relevance": 50,
+			"browsers": [
+				"E116",
+				"C116",
+				"O102"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/timeline-scope"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "116",
 					"chrome_android": "116",
@@ -24820,14 +30174,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E79",
+				"FF55",
+				"S11",
+				"C64",
+				"O51"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/transform-box"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "64",
 					"chrome_android": "64",
@@ -24846,14 +30207,21 @@ export const cssData : CSSDataV1 = {
 			"name": "transition-behavior",
 			"syntax": "<transition-behavior-value>#",
 			"relevance": 50,
+			"browsers": [
+				"E117",
+				"FF129",
+				"S17.4",
+				"C117",
+				"O103"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/transition-behavior"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "117",
 					"chrome_android": "117",
@@ -24871,14 +30239,21 @@ export const cssData : CSSDataV1 = {
 			"name": "translate",
 			"syntax": "none | <length-percentage> [ <length-percentage> <length>? ]?",
 			"relevance": 51,
+			"browsers": [
+				"E104",
+				"FF72",
+				"S14.1",
+				"C104",
+				"O90"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/translate"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "104",
 					"chrome_android": "104",
@@ -24914,14 +30289,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E80",
+				"FF72",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/vector-effect"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -24941,14 +30323,20 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "[ <'view-timeline-name'> <'view-timeline-axis'>? ]#",
 			"relevance": 50,
+			"browsers": [
+				"E115",
+				"FF114",
+				"C115",
+				"O101"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/view-timeline"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "115",
 					"chrome_android": "115",
@@ -24962,14 +30350,20 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "[ block | inline | x | y ]#",
 			"relevance": 50,
+			"browsers": [
+				"E115",
+				"FF114",
+				"C115",
+				"O101"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/view-timeline-axis"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "115",
 					"chrome_android": "115",
@@ -24983,14 +30377,19 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "[ [ auto | <length-percentage> ]{1,2} ]#",
 			"relevance": 50,
+			"browsers": [
+				"E115",
+				"C115",
+				"O101"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/view-timeline-inset"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "115",
 					"chrome_android": "115",
@@ -25004,14 +30403,20 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"syntax": "none | <dashed-ident>#",
 			"relevance": 50,
+			"browsers": [
+				"E115",
+				"FF111",
+				"C115",
+				"O101"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/view-timeline-name"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "115",
 					"chrome_android": "115",
@@ -25024,8 +30429,14 @@ export const cssData : CSSDataV1 = {
 			"name": "view-transition-class",
 			"syntax": "none | <custom-ident>+",
 			"relevance": 50,
-			"baselineStatus": {
-				"baseline": false,
+			"browsers": [
+				"E125",
+				"S18.2",
+				"C125",
+				"O111"
+			],
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "125",
 					"chrome_android": "125",
@@ -25040,14 +30451,20 @@ export const cssData : CSSDataV1 = {
 			"name": "view-transition-name",
 			"syntax": "none | <custom-ident>",
 			"relevance": 50,
+			"browsers": [
+				"E111",
+				"S18",
+				"C111",
+				"O97"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/view-transition-name"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "111",
 					"chrome_android": "111",
@@ -25062,14 +30479,22 @@ export const cssData : CSSDataV1 = {
 			"name": "white-space",
 			"syntax": "normal | pre | pre-wrap | pre-line | <'white-space-collapse'> || <'text-wrap-mode'>",
 			"relevance": 90,
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE5.5",
+				"O4"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/white-space"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -25105,14 +30530,21 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 50,
+			"browsers": [
+				"E114",
+				"FF124",
+				"S17.4",
+				"C114",
+				"O100"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/white-space-collapse"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "114",
 					"chrome_android": "114",
@@ -25130,14 +30562,21 @@ export const cssData : CSSDataV1 = {
 			"name": "x",
 			"syntax": "<length> | <percentage>",
 			"relevance": 51,
+			"browsers": [
+				"E80",
+				"FF72",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/x"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -25156,14 +30595,21 @@ export const cssData : CSSDataV1 = {
 			"name": "y",
 			"syntax": "<length> | <percentage>",
 			"relevance": 51,
+			"browsers": [
+				"E80",
+				"FF72",
+				"S13.1",
+				"C80",
+				"O67"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/y"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "≤80",
 					"chrome_android": "≤80",
@@ -25320,14 +30766,22 @@ export const cssData : CSSDataV1 = {
 	"atDirectives": [
 		{
 			"name": "@charset",
+			"browsers": [
+				"E12",
+				"FF1.5",
+				"S4",
+				"C2",
+				"IE5.5",
+				"O9"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@charset"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "2",
 					"chrome_android": "18",
@@ -25344,14 +30798,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "@counter-style",
+			"browsers": [
+				"E91",
+				"FF33",
+				"S17",
+				"C91",
+				"O77"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@counter-style"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "91",
 					"chrome_android": "91",
@@ -25367,14 +30828,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "@font-face",
+			"browsers": [
+				"E12",
+				"FF3.5",
+				"S3.1",
+				"C1",
+				"IE4",
+				"O10"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@font-face"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -25391,14 +30860,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "@font-feature-values",
+			"browsers": [
+				"E111",
+				"FF34",
+				"S9.1",
+				"C111",
+				"O97"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@font-feature-values"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "111",
 					"chrome_android": "111",
@@ -25414,14 +30890,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "@import",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE5.5",
+				"O3.5"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@import"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -25438,14 +30922,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "@keyframes",
+			"browsers": [
+				"E12",
+				"FF16",
+				"S9",
+				"C43",
+				"IE10",
+				"O30"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@keyframes"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "43",
 					"chrome_android": "43",
@@ -25462,14 +30954,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "@layer",
+			"browsers": [
+				"E99",
+				"FF97",
+				"S15.4",
+				"C99",
+				"O85"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@layer"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "99",
 					"chrome_android": "99",
@@ -25486,14 +30985,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "@media",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S3",
+				"C1",
+				"IE6",
+				"O9.2"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@media"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -25510,26 +31017,44 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "@-moz-document",
+			"browsers": [
+				"FF1.8"
+			],
 			"description": "Gecko-specific at-rule that restricts the style rules contained within it based on the URL of the document."
 		},
 		{
 			"name": "@-moz-keyframes",
+			"browsers": [
+				"FF5"
+			],
 			"description": "Defines set of animation key frames."
 		},
 		{
 			"name": "@-ms-viewport",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"description": "Specifies the size, zoom factor, and orientation of the viewport."
 		},
 		{
 			"name": "@namespace",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE9",
+				"O8"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@namespace"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -25546,22 +31071,36 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "@-o-keyframes",
+			"browsers": [
+				"O12"
+			],
 			"description": "Defines set of animation key frames."
 		},
 		{
 			"name": "@-o-viewport",
+			"browsers": [
+				"O11"
+			],
 			"description": "Specifies the size, zoom factor, and orientation of the viewport."
 		},
 		{
 			"name": "@page",
+			"browsers": [
+				"E12",
+				"FF19",
+				"S18.2",
+				"C2",
+				"IE8",
+				"O6"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@page"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "2",
 					"chrome_android": "18",
@@ -25577,14 +31116,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "@property",
+			"browsers": [
+				"E85",
+				"FF128",
+				"S16.4",
+				"C85",
+				"O71"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@property"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "85",
 					"chrome_android": "85",
@@ -25600,14 +31146,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "@supports",
+			"browsers": [
+				"E12",
+				"FF22",
+				"S9",
+				"C28",
+				"O12.1"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/@supports"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "28",
 					"chrome_android": "28",
@@ -25624,20 +31177,32 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "@-webkit-keyframes",
+			"browsers": [
+				"C",
+				"S4"
+			],
 			"description": "Defines set of animation key frames."
 		}
 	],
 	"pseudoClasses": [
 		{
 			"name": ":active",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O5"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:active"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -25654,14 +31219,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":any-link",
+			"browsers": [
+				"E79",
+				"FF50",
+				"S9",
+				"C65",
+				"O52"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:any-link"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "65",
 					"chrome_android": "65",
@@ -25678,14 +31250,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":checked",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S3.1",
+				"C1",
+				"IE9",
+				"O9"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:checked"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -25702,22 +31282,37 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":corner-present",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"description": "Non-standard. Indicates whether or not a scrollbar corner is present."
 		},
 		{
 			"name": ":decrement",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"description": "Non-standard. Applies to buttons and track pieces. Indicates whether or not the button or track piece will decrement the view's position when used."
 		},
 		{
 			"name": ":default",
+			"browsers": [
+				"E79",
+				"FF4",
+				"S5",
+				"C10",
+				"O10"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:default"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "10",
 					"chrome_android": "18",
@@ -25734,14 +31329,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":disabled",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S3.1",
+				"C1",
+				"IE9",
+				"O9"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:disabled"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -25758,18 +31361,30 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":double-button",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"description": "Non-standard. Applies to buttons and track pieces. Applies when both buttons are displayed together at the same end of the scrollbar."
 		},
 		{
 			"name": ":empty",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S3.1",
+				"C1",
+				"IE9",
+				"O9.5"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:empty"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -25786,14 +31401,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":enabled",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S3.1",
+				"C1",
+				"IE9",
+				"O9"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:enabled"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -25810,18 +31433,30 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":end",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"description": "Non-standard. Applies to buttons and track pieces. Indicates whether the object is placed after the thumb."
 		},
 		{
 			"name": ":first",
+			"browsers": [
+				"E12",
+				"FF116",
+				"S6",
+				"C18",
+				"IE8",
+				"O9.2"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:first"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "18",
 					"chrome_android": "18",
@@ -25837,14 +31472,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":first-child",
+			"browsers": [
+				"E12",
+				"FF3",
+				"S3.1",
+				"C4",
+				"IE7",
+				"O9.5"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:first-child"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "4",
 					"chrome_android": "18",
@@ -25861,14 +31504,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":first-of-type",
+			"browsers": [
+				"E12",
+				"FF3.5",
+				"S3.1",
+				"C1",
+				"IE9",
+				"O9.5"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:first-of-type"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -25885,14 +31536,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":focus",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE8",
+				"O7"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:focus"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -25909,14 +31568,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":fullscreen",
+			"browsers": [
+				"E12",
+				"FF64",
+				"S16.4",
+				"C71",
+				"IE11",
+				"O58"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:fullscreen"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "71",
 					"chrome_android": "71",
@@ -25930,14 +31597,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":future",
+			"browsers": [
+				"E79",
+				"S7",
+				"C23",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:future"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "23",
 					"chrome_android": "25",
@@ -25950,18 +31623,29 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":horizontal",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"description": "Non-standard. Applies to any scrollbar pieces that have a horizontal orientation."
 		},
 		{
 			"name": ":host",
+			"browsers": [
+				"E79",
+				"FF63",
+				"S10",
+				"C54",
+				"O41"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:host"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "54",
 					"chrome_android": "54",
@@ -25978,14 +31662,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":host",
+			"browsers": [
+				"E79",
+				"FF63",
+				"S10",
+				"C54",
+				"O41"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:host"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "54",
 					"chrome_android": "54",
@@ -26002,14 +31693,19 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":host-context",
+			"browsers": [
+				"E79",
+				"C54",
+				"O41"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:host-context"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "54",
 					"chrome_android": "54",
@@ -26020,14 +31716,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":hover",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S2",
+				"C1",
+				"IE4",
+				"O4"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:hover"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -26044,18 +31748,30 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":increment",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"description": "Non-standard. Applies to buttons and track pieces. Indicates whether or not the button or track piece will increment the view's position when used."
 		},
 		{
 			"name": ":indeterminate",
+			"browsers": [
+				"E12",
+				"FF2",
+				"S3",
+				"C1",
+				"IE10",
+				"O9"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:indeterminate"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -26072,14 +31788,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":in-range",
+			"browsers": [
+				"E13",
+				"FF29",
+				"S5.1",
+				"C10",
+				"O11"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:in-range"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "10",
 					"chrome_android": "18",
@@ -26096,14 +31819,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":invalid",
+			"browsers": [
+				"E12",
+				"FF4",
+				"S5",
+				"C10",
+				"IE10",
+				"O10"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:invalid"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "10",
 					"chrome_android": "18",
@@ -26120,14 +31851,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":lang",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S3.1",
+				"C1",
+				"IE8",
+				"O8"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:lang"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -26144,14 +31883,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":last-child",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S3.1",
+				"C1",
+				"IE9",
+				"O9.5"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:last-child"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -26168,14 +31915,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":last-of-type",
+			"browsers": [
+				"E12",
+				"FF3.5",
+				"S3.1",
+				"C1",
+				"IE9",
+				"O9.5"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:last-of-type"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -26192,14 +31947,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":left",
+			"browsers": [
+				"E12",
+				"S5",
+				"C6",
+				"IE8",
+				"O9.2"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:left"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "6",
 					"chrome_android": "18",
@@ -26212,14 +31974,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":link",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE3",
+				"O3.5"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:link"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -26236,44 +32006,62 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":matches",
+			"browsers": [
+				"S9"
+			],
 			"description": "Takes a selector list as its argument. It represents an element that is represented by its argument."
 		},
 		{
 			"name": ":-moz-any",
+			"browsers": [
+				"FF4"
+			],
 			"description": "Represents an element that is represented by the selector list passed as its argument. Standardized as :matches()."
 		},
 		{
 			"name": ":-moz-any-link",
+			"browsers": [
+				"FF1"
+			],
 			"description": "Represents an element that acts as the source anchor of a hyperlink. Applies to both visited and unvisited links."
 		},
 		{
 			"name": ":-moz-broken",
+			"browsers": [
+				"FF3"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-broken"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": "Non-standard. Matches elements representing broken images."
 		},
 		{
 			"name": ":-moz-drag-over",
+			"browsers": [
+				"FF1"
+			],
 			"description": "Non-standard. Matches elements when a drag-over event applies to it."
 		},
 		{
 			"name": ":-moz-first-node",
+			"browsers": [
+				"FF72"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-first-node"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "≤72",
 					"firefox_android": "≤79"
@@ -26283,22 +32071,31 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":-moz-focusring",
+			"browsers": [
+				"FF4"
+			],
 			"description": "Non-standard. Matches an element that has focus and focus ring drawing is enabled in the browser."
 		},
 		{
 			"name": ":-moz-full-screen",
+			"browsers": [
+				"FF9"
+			],
 			"description": "Matches any element that has its fullscreen flag set. Standardized as :fullscreen."
 		},
 		{
 			"name": ":-moz-last-node",
+			"browsers": [
+				"FF72"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-last-node"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "≤72",
 					"firefox_android": "≤79"
@@ -26308,18 +32105,24 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":-moz-loading",
+			"browsers": [
+				"FF3"
+			],
 			"description": "Non-standard. Matches elements, such as images, that haven't started loading yet."
 		},
 		{
 			"name": ":-moz-only-whitespace",
+			"browsers": [
+				"FF1"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-only-whitespace"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "1",
 					"firefox_android": "4"
@@ -26329,48 +32132,69 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":-moz-placeholder",
+			"browsers": [
+				"FF4"
+			],
 			"description": "Deprecated. Represents placeholder text in an input field. Use ::-moz-placeholder for Firefox 19+."
 		},
 		{
 			"name": ":-moz-submit-invalid",
+			"browsers": [
+				"FF88"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-submit-invalid"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": "Non-standard. Represents any submit button when the contents of the associated form are not valid."
 		},
 		{
 			"name": ":-moz-suppressed",
+			"browsers": [
+				"FF3"
+			],
 			"description": "Non-standard. Matches elements representing images that have been blocked from loading."
 		},
 		{
 			"name": ":-moz-ui-invalid",
+			"browsers": [
+				"FF4"
+			],
 			"description": "Non-standard. Represents any validated form element whose value isn't valid "
 		},
 		{
 			"name": ":-moz-ui-valid",
+			"browsers": [
+				"FF4"
+			],
 			"description": "Non-standard. Represents any validated form element whose value is valid "
 		},
 		{
 			"name": ":-moz-user-disabled",
+			"browsers": [
+				"FF3"
+			],
 			"description": "Non-standard. Matches elements representing images that have been disabled due to the user's preferences."
 		},
 		{
 			"name": ":-moz-window-inactive",
+			"browsers": [
+				"FF4"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-window-inactive"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "4"
 				}
@@ -26379,34 +32203,59 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":-ms-fullscreen",
+			"browsers": [
+				"IE11"
+			],
 			"description": "Matches any element that has its fullscreen flag set."
 		},
 		{
 			"name": ":-ms-input-placeholder",
+			"browsers": [
+				"IE10"
+			],
 			"description": "Represents placeholder text in an input field. Note: for Edge use the pseudo-element ::-ms-input-placeholder. Standardized as ::placeholder."
 		},
 		{
 			"name": ":-ms-keyboard-active",
+			"browsers": [
+				"IE10"
+			],
 			"description": "Windows Store apps only. Applies one or more styles to an element when it has focus and the user presses the space bar."
 		},
 		{
 			"name": ":-ms-lang",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"description": "Represents an element that is in the language specified. Accepts a comma separated list of language tokens."
 		},
 		{
 			"name": ":no-button",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"description": "Non-standard. Applies to track pieces. Applies when there is no button at that end of the track."
 		},
 		{
 			"name": ":not",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S3.1",
+				"C1",
+				"IE9",
+				"O9.5"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:not"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -26423,14 +32272,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":nth-child",
+			"browsers": [
+				"E12",
+				"FF3.5",
+				"S3.1",
+				"C1",
+				"IE9",
+				"O9.5"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:nth-child"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -26447,14 +32304,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":nth-last-child",
+			"browsers": [
+				"E12",
+				"FF3.5",
+				"S3.1",
+				"C4",
+				"IE9",
+				"O9"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:nth-last-child"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "4",
 					"chrome_android": "18",
@@ -26471,14 +32336,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":nth-last-of-type",
+			"browsers": [
+				"E12",
+				"FF3.5",
+				"S3.1",
+				"C4",
+				"IE9",
+				"O9.5"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:nth-last-of-type"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "4",
 					"chrome_android": "18",
@@ -26495,14 +32368,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":nth-of-type",
+			"browsers": [
+				"E12",
+				"FF3.5",
+				"S3.1",
+				"C1",
+				"IE9",
+				"O9.5"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:nth-of-type"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -26519,14 +32400,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":only-child",
+			"browsers": [
+				"E12",
+				"FF1.5",
+				"S3.1",
+				"C2",
+				"IE9",
+				"O9.5"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:only-child"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "2",
 					"chrome_android": "18",
@@ -26543,14 +32432,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":only-of-type",
+			"browsers": [
+				"E12",
+				"FF3.5",
+				"S3.1",
+				"C1",
+				"IE9",
+				"O9.5"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:only-of-type"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -26567,14 +32464,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":optional",
+			"browsers": [
+				"E12",
+				"FF4",
+				"S5",
+				"C10",
+				"IE10",
+				"O10"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:optional"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "10",
 					"chrome_android": "18",
@@ -26591,14 +32496,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":out-of-range",
+			"browsers": [
+				"E13",
+				"FF29",
+				"S5.1",
+				"C10",
+				"O11"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:out-of-range"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "10",
 					"chrome_android": "18",
@@ -26615,14 +32527,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":past",
+			"browsers": [
+				"E79",
+				"S7",
+				"C23",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:past"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "23",
 					"chrome_android": "25",
@@ -26635,14 +32553,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":read-only",
+			"browsers": [
+				"E13",
+				"FF78",
+				"S4",
+				"C1",
+				"O9"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:read-only"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -26659,14 +32584,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":read-write",
+			"browsers": [
+				"E13",
+				"FF78",
+				"S4",
+				"C1",
+				"O9"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:read-write"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -26683,14 +32615,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":required",
+			"browsers": [
+				"E12",
+				"FF4",
+				"S5",
+				"C10",
+				"IE10",
+				"O10"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:required"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "10",
 					"chrome_android": "18",
@@ -26707,14 +32647,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":right",
+			"browsers": [
+				"E12",
+				"S5",
+				"C6",
+				"IE8",
+				"O9.2"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:right"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "6",
 					"chrome_android": "18",
@@ -26727,14 +32674,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":root",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE9",
+				"O9.5"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:root"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -26751,14 +32706,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":scope",
+			"browsers": [
+				"E79",
+				"FF32",
+				"S7",
+				"C27",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:scope"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "27",
 					"chrome_android": "27",
@@ -26775,22 +32737,38 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":single-button",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"description": "Non-standard. Applies to buttons and track pieces. Applies when both buttons are displayed separately at either end of the scrollbar."
 		},
 		{
 			"name": ":start",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"description": "Non-standard. Applies to buttons and track pieces. Indicates whether the object is placed before the thumb."
 		},
 		{
 			"name": ":target",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1.3",
+				"C1",
+				"IE9",
+				"O9.5"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:target"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -26807,14 +32785,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":valid",
+			"browsers": [
+				"E12",
+				"FF4",
+				"S5",
+				"C10",
+				"IE10",
+				"O10"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:valid"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "10",
 					"chrome_android": "18",
@@ -26831,18 +32817,30 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":vertical",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"description": "Non-standard. Applies to any scrollbar pieces that have a vertical orientation."
 		},
 		{
 			"name": ":visited",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE4",
+				"O3.5"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:visited"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -26859,20 +32857,38 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":-webkit-any",
+			"browsers": [
+				"C",
+				"S5"
+			],
 			"description": "Represents an element that is represented by the selector list passed as its argument. Standardized as :matches()."
 		},
 		{
 			"name": ":-webkit-full-screen",
+			"browsers": [
+				"C",
+				"S6"
+			],
 			"description": "Matches any element that has its fullscreen flag set. Standardized as :fullscreen."
 		},
 		{
 			"name": ":window-inactive",
+			"browsers": [
+				"C",
+				"S3"
+			],
 			"description": "Non-standard. Applies to all scrollbar pieces. Indicates whether or not the window containing the scrollbar is currently active."
 		},
 		{
 			"name": ":active-view-transition",
-			"baselineStatus": {
-				"baseline": false,
+			"browsers": [
+				"E125",
+				"S18",
+				"C125",
+				"O111"
+			],
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "125",
 					"chrome_android": "125",
@@ -26885,8 +32901,14 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":active-view-transition-type",
-			"baselineStatus": {
-				"baseline": false,
+			"browsers": [
+				"E125",
+				"Spreview",
+				"C125",
+				"O111"
+			],
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "125",
 					"chrome_android": "125",
@@ -26897,14 +32919,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":autofill",
+			"browsers": [
+				"E110",
+				"FF86",
+				"S15",
+				"C110",
+				"O96"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:autofill"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "110",
 					"chrome_android": "110",
@@ -26925,14 +32954,17 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":buffering",
+			"browsers": [
+				"S15.4"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:buffering"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari": "15.4",
 					"safari_ios": "15.4"
@@ -26947,14 +32979,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":defined",
+			"browsers": [
+				"E79",
+				"FF63",
+				"S10",
+				"C54",
+				"O41"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:defined"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "54",
 					"chrome_android": "54",
@@ -26971,14 +33010,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":dir",
+			"browsers": [
+				"E120",
+				"FF49",
+				"S16.4",
+				"C120",
+				"O106"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:dir"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "120",
 					"chrome_android": "120",
@@ -26994,14 +33040,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":focus-visible",
+			"browsers": [
+				"E86",
+				"FF85",
+				"S15.4",
+				"C86",
+				"O72"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:focus-visible"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "86",
 					"chrome_android": "86",
@@ -27018,14 +33071,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":focus-within",
+			"browsers": [
+				"E79",
+				"FF52",
+				"S10.1",
+				"C60",
+				"O47"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:focus-within"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "60",
 					"chrome_android": "60",
@@ -27042,14 +33102,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":has",
+			"browsers": [
+				"E105",
+				"FF121",
+				"S15.4",
+				"C105",
+				"O91"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:has"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "105",
 					"chrome_android": "105",
@@ -27065,14 +33132,19 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":has-slotted",
+			"browsers": [
+				"E134",
+				"FF136",
+				"C134"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:has-slotted"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "134",
 					"chrome_android": "134",
@@ -27085,14 +33157,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":is",
+			"browsers": [
+				"E88",
+				"FF78",
+				"S14",
+				"C88",
+				"O74"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:is"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "88",
 					"chrome_android": "88",
@@ -27114,14 +33193,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":modal",
+			"browsers": [
+				"E105",
+				"FF103",
+				"S15.6",
+				"C105",
+				"O91"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:modal"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "105",
 					"chrome_android": "105",
@@ -27138,14 +33224,17 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":muted",
+			"browsers": [
+				"S15.4"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:muted"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari": "15.4",
 					"safari_ios": "15.4"
@@ -27155,14 +33244,17 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":paused",
+			"browsers": [
+				"S15.4"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:paused"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari": "15.4",
 					"safari_ios": "15.4"
@@ -27172,14 +33264,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":picture-in-picture",
+			"browsers": [
+				"E110",
+				"S13.1",
+				"C110",
+				"O96"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:picture-in-picture"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "110",
 					"chrome_android": "110",
@@ -27192,14 +33290,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":placeholder-shown",
+			"browsers": [
+				"E79",
+				"FF51",
+				"S9",
+				"C47",
+				"IE10",
+				"O34"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:placeholder-shown"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "47",
 					"chrome_android": "47",
@@ -27216,14 +33322,17 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":playing",
+			"browsers": [
+				"S15.4"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:playing"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari": "15.4",
 					"safari_ios": "15.4"
@@ -27233,14 +33342,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":popover-open",
+			"browsers": [
+				"E114",
+				"FF125",
+				"S17",
+				"C114",
+				"O100"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:popover-open"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "114",
 					"chrome_android": "114",
@@ -27256,14 +33372,17 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":seeking",
+			"browsers": [
+				"S15.4"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:seeking"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari": "15.4",
 					"safari_ios": "15.4"
@@ -27273,14 +33392,17 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":stalled",
+			"browsers": [
+				"S15.4"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:stalled"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari": "15.4",
 					"safari_ios": "15.4"
@@ -27290,14 +33412,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":state",
+			"browsers": [
+				"E125",
+				"FF126",
+				"S17.4",
+				"C125",
+				"O111"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:state"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "125",
 					"chrome_android": "125",
@@ -27314,8 +33443,12 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": ":target-current",
 			"status": "experimental",
-			"baselineStatus": {
-				"baseline": false,
+			"browsers": [
+				"E135",
+				"C135"
+			],
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": ""
@@ -27327,14 +33460,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":user-invalid",
+			"browsers": [
+				"E119",
+				"FF88",
+				"S16.5",
+				"C119",
+				"O105"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:user-invalid"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "119",
 					"chrome_android": "119",
@@ -27350,14 +33490,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":user-valid",
+			"browsers": [
+				"E119",
+				"FF88",
+				"S16.5",
+				"C119",
+				"O105"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:user-valid"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "119",
 					"chrome_android": "119",
@@ -27373,14 +33520,17 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":volume-locked",
+			"browsers": [
+				"S15.4"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:volume-locked"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"safari": "15.4",
 					"safari_ios": "15.4"
@@ -27390,14 +33540,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":where",
+			"browsers": [
+				"E88",
+				"FF78",
+				"S14",
+				"C88",
+				"O74"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/:where"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "88",
 					"chrome_android": "88",
@@ -27415,8 +33572,13 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": ":xr-overlay",
 			"status": "experimental",
-			"baselineStatus": {
-				"baseline": false,
+			"browsers": [
+				"E83",
+				"C83",
+				"O69"
+			],
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "83",
 					"chrome_android": "83",
@@ -27429,14 +33591,22 @@ export const cssData : CSSDataV1 = {
 	"pseudoElements": [
 		{
 			"name": "::after",
+			"browsers": [
+				"E12",
+				"FF1.5",
+				"S4",
+				"C1",
+				"IE9",
+				"O7"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::after"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -27453,14 +33623,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::backdrop",
+			"browsers": [
+				"E79",
+				"FF47",
+				"S15.4",
+				"C37",
+				"IE11",
+				"O24"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::backdrop"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "37",
 					"chrome_android": "37",
@@ -27477,14 +33655,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::before",
+			"browsers": [
+				"E12",
+				"FF1.5",
+				"S4",
+				"C1",
+				"IE9",
+				"O7"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::before"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -27501,18 +33687,29 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::content",
+			"browsers": [
+				"C35",
+				"O22"
+			],
 			"description": "Deprecated. Matches the distribution list itself, on elements that have one. Use ::slotted for forward compatibility."
 		},
 		{
 			"name": "::cue",
+			"browsers": [
+				"E79",
+				"FF55",
+				"S7",
+				"C26",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::cue"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "26",
 					"chrome_android": "26",
@@ -27528,14 +33725,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::cue",
+			"browsers": [
+				"E79",
+				"FF55",
+				"S7",
+				"C26",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::cue"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "26",
 					"chrome_android": "26",
@@ -27550,21 +33754,39 @@ export const cssData : CSSDataV1 = {
 			}
 		},
 		{
-			"name": "::cue-region"
+			"name": "::cue-region",
+			"browsers": [
+				"C",
+				"O16",
+				"S6"
+			]
 		},
 		{
-			"name": "::cue-region"
+			"name": "::cue-region",
+			"browsers": [
+				"C",
+				"O16",
+				"S6"
+			]
 		},
 		{
 			"name": "::first-letter",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE9",
+				"O7"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::first-letter"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -27581,14 +33803,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::first-line",
+			"browsers": [
+				"E12",
+				"FF1",
+				"S1",
+				"C1",
+				"IE9",
+				"O7"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::first-line"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -27605,14 +33835,17 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::-moz-focus-inner",
+			"browsers": [
+				"FF72"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-focus-inner"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "≤72",
 					"firefox_android": "≤79"
@@ -27620,18 +33853,24 @@ export const cssData : CSSDataV1 = {
 			}
 		},
 		{
-			"name": "::-moz-focus-outer"
+			"name": "::-moz-focus-outer",
+			"browsers": [
+				"FF4"
+			]
 		},
 		{
 			"name": "::-moz-list-bullet",
+			"browsers": [
+				"FF72"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-list-bullet"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "≤72",
 					"firefox_android": "≤79"
@@ -27641,14 +33880,17 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::-moz-list-number",
+			"browsers": [
+				"FF72"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-list-number"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "≤72",
 					"firefox_android": "≤79"
@@ -27658,18 +33900,24 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::-moz-placeholder",
+			"browsers": [
+				"FF19"
+			],
 			"description": "Represents placeholder text in an input field"
 		},
 		{
 			"name": "::-moz-progress-bar",
+			"browsers": [
+				"FF72"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-progress-bar"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "≤72",
 					"firefox_android": "≤79"
@@ -27679,78 +33927,148 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::-moz-selection",
+			"browsers": [
+				"FF1"
+			],
 			"description": "Represents the portion of a document that has been highlighted by the user."
 		},
 		{
 			"name": "::-ms-backdrop",
+			"browsers": [
+				"IE11"
+			],
 			"description": "Used to create a backdrop that hides the underlying document for an element in a top layer (such as an element that is displayed fullscreen)."
 		},
 		{
 			"name": "::-ms-browse",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"description": "Represents the browse button of an input type=file control."
 		},
 		{
 			"name": "::-ms-check",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"description": "Represents the check of a checkbox or radio button input control."
 		},
 		{
 			"name": "::-ms-clear",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"description": "Represents the clear button of a text input control"
 		},
 		{
 			"name": "::-ms-expand",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"description": "Represents the drop-down button of a select control."
 		},
 		{
 			"name": "::-ms-fill",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"description": "Represents the bar portion of a progress bar."
 		},
 		{
 			"name": "::-ms-fill-lower",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"description": "Represents the portion of the slider track from its smallest value up to the value currently selected by the thumb. In a left-to-right layout, this is the portion of the slider track to the left of the thumb."
 		},
 		{
 			"name": "::-ms-fill-upper",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"description": "Represents the portion of the slider track from the value currently selected by the thumb up to the slider's largest value. In a left-to-right layout, this is the portion of the slider track to the right of the thumb."
 		},
 		{
 			"name": "::-ms-reveal",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"description": "Represents the password reveal button of an input type=password control."
 		},
 		{
 			"name": "::-ms-thumb",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"description": "Represents the portion of range input control (also known as a slider control) that the user drags."
 		},
 		{
 			"name": "::-ms-ticks-after",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"description": "Represents the tick marks of a slider that begin just after the thumb and continue up to the slider's largest value. In a left-to-right layout, these are the ticks to the right of the thumb."
 		},
 		{
 			"name": "::-ms-ticks-before",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"description": "Represents the tick marks of a slider that represent its smallest values up to the value currently selected by the thumb. In a left-to-right layout, these are the ticks to the left of the thumb."
 		},
 		{
 			"name": "::-ms-tooltip",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"description": "Represents the tooltip of a slider (input type=range)."
 		},
 		{
 			"name": "::-ms-track",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"description": "Represents the track of a slider."
 		},
 		{
 			"name": "::-ms-value",
+			"browsers": [
+				"E",
+				"IE10"
+			],
 			"description": "Represents the content of a text or password input control, or a select control."
 		},
 		{
 			"name": "::selection",
+			"browsers": [
+				"E12",
+				"FF62",
+				"S1.1",
+				"C1",
+				"IE9",
+				"O9.5"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::selection"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -27764,21 +34082,36 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::shadow",
+			"browsers": [
+				"C35",
+				"O22"
+			],
 			"description": "Matches the shadow root if an element has a shadow tree."
 		},
 		{
-			"name": "::-webkit-file-upload-button"
+			"name": "::-webkit-file-upload-button",
+			"browsers": [
+				"C",
+				"O",
+				"S6"
+			]
 		},
 		{
 			"name": "::-webkit-inner-spin-button",
+			"browsers": [
+				"E79",
+				"S5",
+				"C6",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-inner-spin-button"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "6",
 					"chrome_android": "18",
@@ -27789,21 +34122,36 @@ export const cssData : CSSDataV1 = {
 			}
 		},
 		{
-			"name": "::-webkit-input-placeholder"
+			"name": "::-webkit-input-placeholder",
+			"browsers": [
+				"C",
+				"S4"
+			]
 		},
 		{
-			"name": "::-webkit-keygen-select"
+			"name": "::-webkit-keygen-select",
+			"browsers": [
+				"C",
+				"O",
+				"S6"
+			]
 		},
 		{
 			"name": "::-webkit-meter-bar",
+			"browsers": [
+				"E79",
+				"S5.1",
+				"C12",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-meter-bar"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "12",
 					"chrome_android": "18",
@@ -27815,14 +34163,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::-webkit-meter-even-less-good-value",
+			"browsers": [
+				"E79",
+				"S5.1",
+				"C12",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-meter-even-less-good-value"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "12",
 					"chrome_android": "18",
@@ -27834,14 +34188,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::-webkit-meter-optimum-value",
+			"browsers": [
+				"E79",
+				"S5.1",
+				"C12",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-meter-optimum-value"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "12",
 					"chrome_android": "18",
@@ -27853,14 +34213,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::-webkit-meter-suboptimum-value",
+			"browsers": [
+				"E79",
+				"S5.1",
+				"C12",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-meter-suboptimum-value"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "12",
 					"chrome_android": "18",
@@ -27871,18 +34237,29 @@ export const cssData : CSSDataV1 = {
 			}
 		},
 		{
-			"name": "::-webkit-outer-spin-button"
+			"name": "::-webkit-outer-spin-button",
+			"browsers": [
+				"C",
+				"O",
+				"S6"
+			]
 		},
 		{
 			"name": "::-webkit-progress-bar",
+			"browsers": [
+				"E79",
+				"S7",
+				"C25",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-progress-bar"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "25",
 					"chrome_android": "25",
@@ -27894,14 +34271,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::-webkit-progress-inner-element",
+			"browsers": [
+				"E79",
+				"S7",
+				"C23",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-progress-inner-element"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "23",
 					"chrome_android": "25",
@@ -27913,14 +34296,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::-webkit-progress-value",
+			"browsers": [
+				"E79",
+				"S7",
+				"C25",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-progress-value"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "25",
 					"chrome_android": "25",
@@ -27932,14 +34321,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::-webkit-resizer",
+			"browsers": [
+				"E79",
+				"S4",
+				"C2",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "2",
 					"chrome_android": "18",
@@ -27951,14 +34346,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::-webkit-scrollbar",
+			"browsers": [
+				"E79",
+				"S4",
+				"C2",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "2",
 					"chrome_android": "18",
@@ -27970,14 +34371,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::-webkit-scrollbar-button",
+			"browsers": [
+				"E79",
+				"S4",
+				"C2",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "2",
 					"chrome_android": "18",
@@ -27988,14 +34395,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::-webkit-scrollbar-corner",
+			"browsers": [
+				"E79",
+				"S4",
+				"C2",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "2",
 					"chrome_android": "18",
@@ -28006,14 +34419,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::-webkit-scrollbar-thumb",
+			"browsers": [
+				"E79",
+				"S4",
+				"C2",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "2",
 					"chrome_android": "18",
@@ -28024,14 +34443,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::-webkit-scrollbar-track",
+			"browsers": [
+				"E79",
+				"S4",
+				"C2",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "2",
 					"chrome_android": "18",
@@ -28042,14 +34467,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::-webkit-scrollbar-track-piece",
+			"browsers": [
+				"E79",
+				"S4",
+				"C2",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "2",
 					"chrome_android": "18",
@@ -28060,14 +34491,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::-webkit-search-cancel-button",
+			"browsers": [
+				"E79",
+				"S3",
+				"C1",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-search-cancel-button"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -28078,18 +34515,28 @@ export const cssData : CSSDataV1 = {
 			}
 		},
 		{
-			"name": "::-webkit-search-decoration"
+			"name": "::-webkit-search-decoration",
+			"browsers": [
+				"C",
+				"S4"
+			]
 		},
 		{
 			"name": "::-webkit-search-results-button",
+			"browsers": [
+				"E79",
+				"S3",
+				"C1",
+				"O15"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-search-results-button"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "1",
 					"chrome_android": "18",
@@ -28100,18 +34547,28 @@ export const cssData : CSSDataV1 = {
 			}
 		},
 		{
-			"name": "::-webkit-search-results-decoration"
+			"name": "::-webkit-search-results-decoration",
+			"browsers": [
+				"C",
+				"S4"
+			]
 		},
 		{
 			"name": "::-webkit-slider-runnable-track",
+			"browsers": [
+				"E83",
+				"S18",
+				"C83",
+				"O69"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-slider-runnable-track"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "≤83",
 					"chrome_android": "≤83",
@@ -28123,14 +34580,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::-webkit-slider-thumb",
+			"browsers": [
+				"E83",
+				"S18",
+				"C83",
+				"O69"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-slider-thumb"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "≤83",
 					"chrome_android": "≤83",
@@ -28141,37 +34604,75 @@ export const cssData : CSSDataV1 = {
 			}
 		},
 		{
-			"name": "::-webkit-textfield-decoration-container"
+			"name": "::-webkit-textfield-decoration-container",
+			"browsers": [
+				"C",
+				"O",
+				"S6"
+			]
 		},
 		{
-			"name": "::-webkit-validation-bubble"
+			"name": "::-webkit-validation-bubble",
+			"browsers": [
+				"C",
+				"O",
+				"S6"
+			]
 		},
 		{
-			"name": "::-webkit-validation-bubble-arrow"
+			"name": "::-webkit-validation-bubble-arrow",
+			"browsers": [
+				"C",
+				"O",
+				"S6"
+			]
 		},
 		{
-			"name": "::-webkit-validation-bubble-arrow-clipper"
+			"name": "::-webkit-validation-bubble-arrow-clipper",
+			"browsers": [
+				"C",
+				"O",
+				"S6"
+			]
 		},
 		{
-			"name": "::-webkit-validation-bubble-heading"
+			"name": "::-webkit-validation-bubble-heading",
+			"browsers": [
+				"C",
+				"O",
+				"S6"
+			]
 		},
 		{
-			"name": "::-webkit-validation-bubble-message"
+			"name": "::-webkit-validation-bubble-message",
+			"browsers": [
+				"C",
+				"O",
+				"S6"
+			]
 		},
 		{
-			"name": "::-webkit-validation-bubble-text-block"
+			"name": "::-webkit-validation-bubble-text-block",
+			"browsers": [
+				"C",
+				"O",
+				"S6"
+			]
 		},
 		{
 			"name": "::-moz-range-progress",
 			"status": "nonstandard",
+			"browsers": [
+				"FF22"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-range-progress"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "22",
 					"firefox_android": "22"
@@ -28182,14 +34683,17 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "::-moz-range-thumb",
 			"status": "nonstandard",
+			"browsers": [
+				"FF21"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-range-thumb"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "21",
 					"firefox_android": "21"
@@ -28200,14 +34704,17 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "::-moz-range-track",
 			"status": "nonstandard",
+			"browsers": [
+				"FF21"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-range-track"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"firefox": "21",
 					"firefox_android": "21"
@@ -28223,14 +34730,20 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "::details-content",
 			"status": "experimental",
+			"browsers": [
+				"E131",
+				"S18.4",
+				"C131",
+				"O116"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::details-content"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "131",
 					"chrome_android": "131",
@@ -28241,14 +34754,22 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::file-selector-button",
+			"browsers": [
+				"E89",
+				"FF82",
+				"S14.1",
+				"C89",
+				"IE10",
+				"O75"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::file-selector-button"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "89",
 					"chrome_android": "89",
@@ -28265,14 +34786,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::grammar-error",
+			"browsers": [
+				"E121",
+				"S17.4",
+				"C121",
+				"O107"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::grammar-error"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "121",
 					"chrome_android": "121",
@@ -28285,14 +34812,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::highlight",
+			"browsers": [
+				"E105",
+				"FFpreview",
+				"S17.2",
+				"C105",
+				"O91"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::highlight"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "105",
 					"chrome_android": "105",
@@ -28305,14 +34839,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::marker",
+			"browsers": [
+				"E86",
+				"FF68",
+				"S11.1",
+				"C86",
+				"O72"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::marker"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "86",
 					"chrome_android": "86",
@@ -28325,14 +34866,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::part",
+			"browsers": [
+				"E79",
+				"FF72",
+				"S13.1",
+				"C73",
+				"O60"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::part"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "73",
 					"chrome_android": "73",
@@ -28349,14 +34897,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::placeholder",
+			"browsers": [
+				"E79",
+				"FF51",
+				"S10.1",
+				"C57",
+				"O44"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::placeholder"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "57",
 					"chrome_android": "57",
@@ -28374,8 +34929,12 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "::scroll-marker",
 			"status": "experimental",
-			"baselineStatus": {
-				"baseline": false,
+			"browsers": [
+				"E135",
+				"C135"
+			],
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": ""
@@ -28383,22 +34942,33 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "::scroll-marker-group",
 			"status": "experimental",
-			"baselineStatus": {
-				"baseline": false,
+			"browsers": [
+				"E135",
+				"C135"
+			],
+			"baseline": {
+				"status": "false",
 				"support": {}
 			},
 			"description": ""
 		},
 		{
 			"name": "::slotted",
+			"browsers": [
+				"E79",
+				"FF63",
+				"S10",
+				"C50",
+				"O37"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::slotted"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "high",
+			"baseline": {
+				"status": "high",
 				"support": {
 					"chrome": "50",
 					"chrome_android": "50",
@@ -28415,14 +34985,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::spelling-error",
+			"browsers": [
+				"E121",
+				"S17.4",
+				"C121",
+				"O107"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::spelling-error"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "121",
 					"chrome_android": "121",
@@ -28435,14 +35011,21 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::target-text",
+			"browsers": [
+				"E89",
+				"FF131",
+				"S18.2",
+				"C89",
+				"O75"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::target-text"
 				}
 			],
-			"baselineStatus": {
-				"baseline": "low",
+			"baseline": {
+				"status": "low",
 				"support": {
 					"chrome": "89",
 					"chrome_android": "89",
@@ -28458,14 +35041,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::view-transition",
+			"browsers": [
+				"E109",
+				"S18",
+				"C109",
+				"O95"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::view-transition"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "109",
 					"chrome_android": "109",
@@ -28478,14 +35067,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::view-transition-group",
+			"browsers": [
+				"E109",
+				"S18",
+				"C109",
+				"O95"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::view-transition-group"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "109",
 					"chrome_android": "109",
@@ -28498,14 +35093,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::view-transition-image-pair",
+			"browsers": [
+				"E109",
+				"S18",
+				"C109",
+				"O95"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::view-transition-image-pair"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "109",
 					"chrome_android": "109",
@@ -28518,14 +35119,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::view-transition-new",
+			"browsers": [
+				"E109",
+				"S18",
+				"C109",
+				"O95"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::view-transition-new"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "109",
 					"chrome_android": "109",
@@ -28538,14 +35145,20 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "::view-transition-old",
+			"browsers": [
+				"E109",
+				"S18",
+				"C109",
+				"O95"
+			],
 			"references": [
 				{
 					"name": "MDN Reference",
 					"url": "https://developer.mozilla.org/docs/Web/CSS/::view-transition-old"
 				}
 			],
-			"baselineStatus": {
-				"baseline": false,
+			"baseline": {
+				"status": "false",
 				"support": {
 					"chrome": "109",
 					"chrome_android": "109",

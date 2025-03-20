@@ -188,7 +188,8 @@ export interface IReference {
 export interface IPropertyData {
 	name: string;
 	description?: string | MarkupContent;
-	baselineStatus?: BaselineStatus;
+	browsers?: string[];
+	baseline?: BaselineStatus;
 	restrictions?: string[];
 	status?: EntryStatus;
 	syntax?: string;
@@ -200,21 +201,24 @@ export interface IPropertyData {
 export interface IAtDirectiveData {
 	name: string;
 	description?: string | MarkupContent;
-	baselineStatus?: BaselineStatus;
+	browsers?: string[];
+	baseline?: BaselineStatus;
 	status?: EntryStatus;
 	references?: IReference[];
 }
 export interface IPseudoClassData {
 	name: string;
 	description?: string | MarkupContent;
-	baselineStatus?: BaselineStatus;
+	browsers?: string[];
+	baseline?: BaselineStatus;
 	status?: EntryStatus;
 	references?: IReference[];
 }
 export interface IPseudoElementData {
 	name: string;
 	description?: string | MarkupContent;
-	baselineStatus?: BaselineStatus;
+	browsers?: string[];
+	baseline?: BaselineStatus;
 	status?: EntryStatus;
 	references?: IReference[];
 }
@@ -222,7 +226,8 @@ export interface IPseudoElementData {
 export interface IValueData {
 	name: string;
 	description?: string | MarkupContent;
-	baselineStatus?: BaselineStatus;
+	browsers?: string[];
+	baseline?: BaselineStatus;
 	status?: EntryStatus;
 	references?: IReference[];
 }
@@ -243,13 +248,13 @@ export interface ICSSDataProvider {
 }
 
 export interface BaselineStatus {
-	baseline: Baseline;
+	status: Baseline;
 	support?: BaselineSupport;
 	baseline_low_date?: string;
 	baseline_high_date?: string;
 }
 
-export type Baseline = false | 'low' | 'high';
+export type Baseline = 'false' | 'low' | 'high';
 
 export interface BaselineSupport {
 	'chrome'?: string;

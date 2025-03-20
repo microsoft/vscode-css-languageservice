@@ -87,6 +87,63 @@
               "patternErrorMessage": "Browser item must follow the format of `${browser}${version}`. `browser` is one of:\n- E: Edge\n- FF: Firefox\n- S: Safari\n- C: Chrome\n- IE: Internet Explorer\n- O: Opera"
             }
           },
+          "baseline": {
+            "type": "object",
+            "description": "Baseline information for the feature",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "Baseline status",
+                "enum": ["high", "low", "false"]
+              },
+              "support": {
+                "type": "object",
+                "description": "Supported browsers",
+                "properties": {
+                  "chrome": {
+                    "type": "string",
+                    "description": "Chrome version"
+                  },
+                  "chrome_android": {
+                    "type": "string",
+                    "description": "Chrome Android version"
+                  },
+                  "edge": {
+                    "type": "string",
+                    "description": "Edge version"
+                  },
+                  "safari": {
+                    "type": "string",
+                    "description": "Safari version"
+                  },
+                  "safari_ios": {
+                    "type": "string",
+                    "description": "Safari iOS version"
+                  },
+                  "firefox": {
+                    "type": "string",
+                    "description": "Firefox version"
+                  },
+                  "firefox_android": {
+                    "type": "string",
+                    "description": "Firefox Android version"
+                  }
+                }
+              },
+              "baseline_low_date": {
+                "type": "string",
+                "description": "Date when the feature became newly supported in all major browsers",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "patternErrorMessage": "Date must be in the format of `YYYY-MM-DD`"
+              },
+              "baseline_high_date": {
+                "type": "string",
+                "description": "Date when the feature became widely supported in all major browsers",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "patternErrorMessage": "Date must be in the format of `YYYY-MM-DD`"
+              }
+            }
+          },
           "references": {
             "type": "array",
             "description": "A list of references for the property shown in completion and hover",

@@ -125,13 +125,13 @@ suite('CSS - Language Facts', () => {
 		}
 		assert.equal(textDecorationColor.name, 'text-decoration-color');
 
-		assert.ok(textDecorationColor.baselineStatus!.baseline! === 'high');
-		assert.ok(textDecorationColor.baselineStatus!.support!['chrome'] === '57');
-		assert.ok(textDecorationColor.baselineStatus!.support!['edge'] === '79');
-		assert.ok(textDecorationColor.baselineStatus!.support!['firefox'] === '36');
-		assert.ok(textDecorationColor.baselineStatus!.support!['safari'] === '12.1');
+		assert.ok(textDecorationColor.baseline!.status! === 'high');
+		assert.ok(textDecorationColor.baseline!.support!['chrome'] === '57');
+		assert.ok(textDecorationColor.baseline!.support!['edge'] === '79');
+		assert.ok(textDecorationColor.baseline!.support!['firefox'] === '36');
+		assert.ok(textDecorationColor.baseline!.support!['safari'] === '12.1');
 
-		assert.equal(getMissingBaselineBrowsers(textDecorationColor.baselineStatus!.support!), '');
+		assert.equal(getMissingBaselineBrowsers(textDecorationColor.baseline!.support!), '');
 
 		let r = textDecorationColor.restrictions;
 

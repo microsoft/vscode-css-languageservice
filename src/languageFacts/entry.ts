@@ -54,9 +54,9 @@ function getEntryStatus(status: EntryStatus) {
 	}
 }
 
-function getEntryBaselineStatus(baselineStatus: BaselineStatus): string {
-	if (baselineStatus.baseline === false) {
-		const missingBrowsers = getMissingBaselineBrowsers(baselineStatus.support);
+function getEntryBaselineStatus(baseline: BaselineStatus): string {
+	if (baseline.status === "false") {
+		const missingBrowsers = getMissingBaselineBrowsers(baseline.support);
 		let status = `Limited availability across major browsers`;
 		if (missingBrowsers) {
 			status += ` (Not fully implemented in ${missingBrowsers})`;
@@ -64,17 +64,17 @@ function getEntryBaselineStatus(baselineStatus: BaselineStatus): string {
 		return status;
 	}
 
-	const baselineYear = baselineStatus.baseline_low_date?.split('-')[0];
-	return `${baselineStatus.baseline === 'low' ? 'Newly' : 'Widely'} available across major browsers (Baseline since ${baselineYear})`;
+	const baselineYear = baseline.baseline_low_date?.split('-')[0];
+	return `${baseline.status === 'low' ? 'Newly' : 'Widely'} available across major browsers (Baseline since ${baselineYear})`;
 }
 
-function getEntryBaselineImage(baselineStatus?: BaselineStatus) {
-	if (!baselineStatus) {
+function getEntryBaselineImage(baseline?: BaselineStatus) {
+	if (!baseline) {
 		return '';
 	}
 	
 	let baselineImg: string;
-	switch (baselineStatus?.baseline) {
+	switch (baseline?.status) {
 		case 'low':
 			baselineImg = BaselineImages.BASELINE_LOW;
 			break;
@@ -126,8 +126,8 @@ function getEntryStringDescription(entry: IEntry2, settings?: HoverSettings): st
 	let result: string = '';
 
 	if (settings?.documentation !== false) {
-		if (entry.baselineStatus) {
-			result += `_${getEntryBaselineStatus(entry.baselineStatus)}_\n\n`;
+		if (entry.baseline) {
+			result += `_${getEntryBaselineStatus(entry.baseline)}_\n\n`;
 		}
 
 		if (entry.status) {
@@ -161,13 +161,13 @@ function getEntryMarkdownDescription(entry: IEntry2, settings?: HoverSettings): 
 
 	if (settings?.documentation !== false) {
 		result += `### `;
-		if (entry.baselineStatus) {
-			result += `${getEntryBaselineImage(entry.baselineStatus)} `;
+		if (entry.baseline) {
+			result += `${getEntryBaselineImage(entry.baseline)} `;
 		}
 		result += `${entry.name}\n`;
 
-		if (entry.baselineStatus) {
-			result += `_${getEntryBaselineStatus(entry.baselineStatus)}_\n\n`;
+		if (entry.baseline) {
+			result += `_${getEntryBaselineStatus(entry.baseline)}_\n\n`;
 		}
 
 		if (entry.status) {
@@ -216,7 +216,7 @@ export function getMissingBaselineBrowsers(support?: BaselineSupport): string {
 	}
 
 	return missingBaselineBrowserFormatter.format(Object.values(Array.from(missingBrowsers.entries()).reduce((browsers: Record<string, string>, [browserId, browser]) => {
-		if (browser.name in browsers || browserId == 'edge') {
+		if (browser.name in browsers || browserId === 'edge') {
 			browsers[browser.name] = browser.name;
 			return browsers;
 		}
