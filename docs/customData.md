@@ -75,15 +75,6 @@ You can also specify 5 additional properties for them:
       ],
       "baseline": {
         "status": "high",
-        "support": {
-          "chrome": "50",
-          "chrome_android": "50",
-          "edge": "12",
-          "firefox": "28",
-          "firefox_android": "28",
-          "safari": "10",
-          "safari_ios": "10"
-        },
         "baseline_low_date": "2015-09-30",
         "baseline_high_date": "2018-03-30"
       },
