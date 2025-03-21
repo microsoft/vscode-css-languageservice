@@ -498,10 +498,6 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "alt",
-			"browsers": [
-				"S9",
-				"SM9"
-			],
 			"values": [],
 			"relevance": 50,
 			"baseline": {
@@ -3243,8 +3239,6 @@ export const cssData : CSSDataV1 = {
 				"E130",
 				"FF32",
 				"FM32",
-				"S7",
-				"SM7",
 				"C130",
 				"CM130",
 				"O115"
@@ -8733,7 +8727,6 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "ime-mode",
 			"browsers": [
-				"E12",
 				"FF3",
 				"FM4",
 				"IE5"
@@ -12206,10 +12199,6 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": "-moz-user-focus",
-			"browsers": [
-				"FF1",
-				"FM4"
-			],
 			"values": [
 				{
 					"name": "ignore"
@@ -18284,11 +18273,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "text-justify",
 			"browsers": [
-				"E79",
 				"FF55",
 				"FM55",
-				"C32",
-				"CM32",
 				"IE11",
 				"O19"
 			],
@@ -19568,8 +19554,6 @@ export const cssData : CSSDataV1 = {
 				"E79",
 				"FF69",
 				"FM79",
-				"S3",
-				"SM3",
 				"C54",
 				"CM54",
 				"IE10",
@@ -21324,9 +21308,7 @@ export const cssData : CSSDataV1 = {
 			"name": "-webkit-nbsp-mode",
 			"browsers": [
 				"S4",
-				"SM3.2",
-				"C1",
-				"CM18"
+				"SM3.2"
 			],
 			"values": [
 				{
@@ -22486,10 +22468,6 @@ export const cssData : CSSDataV1 = {
 			"status": "nonstandard",
 			"syntax": "<shape> | auto",
 			"relevance": 0,
-			"browsers": [
-				"FF1",
-				"FM4"
-			],
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -22619,10 +22597,6 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"relevance": 0,
-			"browsers": [
-				"FF1",
-				"FM4"
-			],
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -22863,11 +22837,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 0,
 			"browsers": [
-				"E79",
-				"S5",
-				"SM5",
-				"C3",
-				"CM18",
 				"O15"
 			],
 			"references": [
@@ -22901,11 +22870,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 0,
 			"browsers": [
-				"E79",
-				"S5",
-				"SM5",
-				"C3",
-				"CM18",
 				"O15"
 			],
 			"references": [
@@ -22927,8 +22891,6 @@ export const cssData : CSSDataV1 = {
 				"E93",
 				"FF92",
 				"FM92",
-				"S15.4",
-				"SM15.4",
 				"C93",
 				"CM93",
 				"O79"
@@ -23088,7 +23050,6 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"E115",
-				"FF110",
 				"C115",
 				"CM115",
 				"O101"
@@ -23531,13 +23492,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 0,
 			"browsers": [
-				"E12",
-				"FF49",
-				"FM49",
-				"S3",
-				"SM1",
-				"C1",
-				"CM18",
 				"O15"
 			],
 			"references": [
@@ -23568,13 +23522,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 0,
 			"browsers": [
-				"E12",
-				"FF49",
-				"FM49",
-				"S3",
-				"SM1",
-				"C1",
-				"CM18",
 				"O15"
 			],
 			"references": [
@@ -23594,13 +23541,6 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<number>",
 			"relevance": 0,
 			"browsers": [
-				"E12",
-				"FF49",
-				"FM49",
-				"S3",
-				"SM1",
-				"C1",
-				"CM18",
 				"O15"
 			],
 			"references": [
@@ -23620,10 +23560,6 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<integer>",
 			"relevance": 0,
 			"browsers": [
-				"S3",
-				"SM1",
-				"C1",
-				"CM18",
 				"O15"
 			],
 			"references": [
@@ -23651,10 +23587,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 0,
 			"browsers": [
-				"S3",
-				"SM1",
-				"C1",
-				"CM18",
 				"O15"
 			],
 			"references": [
@@ -23674,13 +23606,6 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<integer>",
 			"relevance": 0,
 			"browsers": [
-				"E12",
-				"FF49",
-				"FM49",
-				"S3",
-				"SM1",
-				"C1",
-				"CM18",
 				"O15"
 			],
 			"references": [
@@ -23717,13 +23642,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 0,
 			"browsers": [
-				"E12",
-				"FF49",
-				"FM49",
-				"S3",
-				"SM1",
-				"C1",
-				"CM18",
 				"O15"
 			],
 			"references": [
@@ -23757,13 +23675,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 0,
 			"browsers": [
-				"E12",
-				"FF49",
-				"FM49",
-				"S3",
-				"SM1",
-				"C1",
-				"CM18",
 				"O15"
 			],
 			"references": [
@@ -24342,12 +24253,6 @@ export const cssData : CSSDataV1 = {
 			"syntax": "auto | never | always | <absolute-size> | <length>",
 			"relevance": 0,
 			"browsers": [
-				"E79",
-				"FF25",
-				"S4",
-				"SM3.2",
-				"C5",
-				"CM18",
 				"O15"
 			],
 			"references": [
@@ -24511,9 +24416,6 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"E131",
-				"FF108",
-				"S17.5",
-				"SM17.5",
 				"C131",
 				"CM131",
 				"O116"
@@ -24623,10 +24525,6 @@ export const cssData : CSSDataV1 = {
 			"name": "hanging-punctuation",
 			"syntax": "none | [ first || [ force-end | allow-end ] || last ]",
 			"relevance": 50,
-			"browsers": [
-				"S10",
-				"SM10"
-			],
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -24670,8 +24568,6 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"E109",
-				"FF137",
-				"FM137",
 				"C109",
 				"CM109",
 				"O95"
@@ -24700,8 +24596,6 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"E110",
-				"S9",
-				"SM9",
 				"C110",
 				"CM110",
 				"O96"
@@ -24955,13 +24849,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "none | <integer>",
 			"relevance": 50,
 			"browsers": [
-				"E17",
-				"FF68",
-				"FM68",
 				"S18.2",
 				"SM18.2",
-				"C6",
-				"CM18",
 				"O15"
 			],
 			"references": [
@@ -24981,9 +24870,6 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<length>",
 			"relevance": 50,
 			"browsers": [
-				"E79",
-				"C60",
-				"CM60",
 				"O47"
 			],
 			"references": [
@@ -25113,11 +24999,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<'mask-border-source'> || <'mask-border-slice'> [ / <'mask-border-width'>? [ / <'mask-border-outset'> ]? ]? || <'mask-border-repeat'> || <'mask-border-mode'>",
 			"relevance": 50,
 			"browsers": [
-				"E79",
 				"S17.2",
 				"SM17.2",
-				"C1",
-				"CM18",
 				"O15"
 			],
 			"references": [
@@ -25150,11 +25033,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "[ <length> | <number> ]{1,4}",
 			"relevance": 50,
 			"browsers": [
-				"E79",
 				"S17.2",
 				"SM17.2",
-				"C1",
-				"CM18",
 				"O15"
 			],
 			"references": [
@@ -25173,11 +25053,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "[ stretch | repeat | round | space ]{1,2}",
 			"relevance": 50,
 			"browsers": [
-				"E79",
 				"S17.2",
 				"SM17.2",
-				"C1",
-				"CM18",
 				"O15"
 			],
 			"references": [
@@ -25196,11 +25073,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<number-percentage>{1,4} fill?",
 			"relevance": 50,
 			"browsers": [
-				"E79",
 				"S17.2",
 				"SM17.2",
-				"C1",
-				"CM18",
 				"O15"
 			],
 			"references": [
@@ -25219,11 +25093,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "none | <image>",
 			"relevance": 50,
 			"browsers": [
-				"E79",
 				"S17.2",
 				"SM17.2",
-				"C1",
-				"CM18",
 				"O15"
 			],
 			"references": [
@@ -25242,11 +25113,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "[ <length-percentage> | <number> | auto ]{1,4}",
 			"relevance": 50,
 			"browsers": [
-				"E79",
 				"S17.2",
 				"SM17.2",
-				"C1",
-				"CM18",
 				"O15"
 			],
 			"references": [
@@ -25627,11 +25495,8 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 50,
 			"browsers": [
-				"E135",
 				"FF69",
-				"FM79",
-				"C135",
-				"CM135"
+				"FM79"
 			],
 			"references": [
 				{
@@ -25664,11 +25529,6 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<visual-box> || <length [0,∞]>",
 			"relevance": 50,
 			"browsers": [
-				"E90",
-				"FF102",
-				"FM102",
-				"C90",
-				"CM90",
 				"O76"
 			],
 			"references": [
@@ -25704,11 +25564,8 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 50,
 			"browsers": [
-				"E135",
 				"FF69",
-				"FM79",
-				"C135",
-				"CM135"
+				"FM79"
 			],
 			"references": [
 				{
@@ -26236,13 +26093,10 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 50,
 			"browsers": [
-				"E79",
 				"FF97",
 				"FM97",
 				"S15.4",
 				"SM15.4",
-				"C17",
-				"CM18",
 				"O15"
 			],
 			"references": [
@@ -27127,7 +26981,6 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"E115",
-				"FF111",
 				"C115",
 				"CM115",
 				"O101"
@@ -27150,7 +27003,6 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"E115",
-				"FF111",
 				"C115",
 				"CM115",
 				"O101"
@@ -27173,7 +27025,6 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"E115",
-				"FF111",
 				"C115",
 				"CM115",
 				"O101"
@@ -27414,8 +27265,6 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"S12.1",
 				"SM12.2",
-				"C57",
-				"CM57",
 				"O44"
 			],
 			"references": [
@@ -27609,8 +27458,6 @@ export const cssData : CSSDataV1 = {
 			"relevance": 61,
 			"browsers": [
 				"E79",
-				"FM49",
-				"SM1",
 				"C54",
 				"CM54",
 				"O41"
@@ -27959,7 +27806,6 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"E115",
-				"FF114",
 				"C115",
 				"CM115",
 				"O101"
@@ -27982,7 +27828,6 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"E115",
-				"FF114",
 				"C115",
 				"CM115",
 				"O101"
@@ -28027,7 +27872,6 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"E115",
-				"FF111",
 				"C115",
 				"CM115",
 				"O101"
@@ -29019,7 +28863,6 @@ export const cssData : CSSDataV1 = {
 				"FF64",
 				"FM64",
 				"S16.4",
-				"SM16.4",
 				"C71",
 				"CM71",
 				"IE11",
@@ -29394,10 +29237,6 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":-moz-broken",
-			"browsers": [
-				"FF3",
-				"FM4"
-			],
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -29497,10 +29336,6 @@ export const cssData : CSSDataV1 = {
 		},
 		{
 			"name": ":-moz-submit-invalid",
-			"browsers": [
-				"FF88",
-				"FM4"
-			],
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -30583,10 +30418,6 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": ":target-current",
 			"status": "experimental",
-			"browsers": [
-				"E135",
-				"C135"
-			],
 			"baseline": {
 				"status": "false"
 			},
@@ -31378,7 +31209,6 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S4",
-				"SM3",
 				"C2",
 				"CM18",
 				"O15"
@@ -31398,7 +31228,6 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S4",
-				"SM3",
 				"C2",
 				"CM18",
 				"O15"
@@ -31418,7 +31247,6 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S4",
-				"SM3",
 				"C2",
 				"CM18",
 				"O15"
@@ -31438,7 +31266,6 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S4",
-				"SM3",
 				"C2",
 				"CM18",
 				"O15"
@@ -31458,7 +31285,6 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S4",
-				"SM3",
 				"C2",
 				"CM18",
 				"O15"
@@ -31687,8 +31513,6 @@ export const cssData : CSSDataV1 = {
 			"status": "experimental",
 			"browsers": [
 				"E131",
-				"S18.4",
-				"SM18.4",
 				"C131",
 				"CM131",
 				"O116"
@@ -31779,8 +31603,6 @@ export const cssData : CSSDataV1 = {
 				"E86",
 				"FF68",
 				"FM68",
-				"S11.1",
-				"SM11.3",
 				"C86",
 				"CM86",
 				"O72"
@@ -31849,10 +31671,6 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "::scroll-marker",
 			"status": "experimental",
-			"browsers": [
-				"E135",
-				"C135"
-			],
 			"baseline": {
 				"status": "false"
 			},
@@ -31861,10 +31679,6 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "::scroll-marker-group",
 			"status": "experimental",
-			"browsers": [
-				"E135",
-				"C135"
-			],
 			"baseline": {
 				"status": "false"
 			},
