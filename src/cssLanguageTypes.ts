@@ -249,22 +249,11 @@ export interface ICSSDataProvider {
 
 export interface BaselineStatus {
 	status: Baseline;
-	support?: BaselineSupport;
 	baseline_low_date?: string;
 	baseline_high_date?: string;
 }
 
 export type Baseline = 'false' | 'low' | 'high';
-
-export interface BaselineSupport {
-	'chrome'?: string;
-	'chrome_android'?: string;
-	'edge'?: string;
-	'firefox'?: string;
-	'firefox_android'?: string;
-	'safari'?: string;
-	'safari_ios'?: string;
-}
 
 export enum FileType {
 	/**

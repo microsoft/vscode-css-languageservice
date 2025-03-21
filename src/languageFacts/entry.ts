@@ -4,38 +4,40 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { EntryStatus, BaselineStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IValueData, MarkupContent, MarkupKind, MarkedString, HoverSettings, BaselineSupport } from '../cssLanguageTypes';
+import { EntryStatus, BaselineStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IValueData, MarkupContent, MarkupKind, MarkedString, HoverSettings } from '../cssLanguageTypes';
 
 export const browserNames = {
-	'chrome': {
+	'C': {
 		name: 'Chrome',
 		platform: 'desktop'
 	},
-	'chrome_android': {
+	'CM': {
 		name: 'Chrome',
 		platform: 'Android'
 	},
-	'edge': {
+	'E': {
 		name: 'Edge',
 		platform: 'desktop'
 	},
-	'firefox': {
+	'FF': {
 		name: 'Firefox',
 		platform: 'desktop'
 	},
-	'firefox_android': {
+	'FM': {
 		name: 'Firefox',
 		platform: 'Android'
 	},
-	'safari': {
+	'S': {
 		name: 'Safari',
 		platform: 'macOS'
 	},
-	'safari_ios': {
+	'SM': {
 		name: 'Safari',
 		platform: 'iOS'
 	}
 };
+
+const shortCompatPattern = /(E|FM|FF|SM|S|CM|C|IE|O)([\d|\.]+)?/;
 
 export const BaselineImages = {
 	BASELINE_LIMITED: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMTMuODg5IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxzdHlsZT4uZ3JheS1zaGFwZSB7CiAgICAgIGZpbGw6ICNDNkM2QzY7IC8qIExpZ2h0IG1vZGUgKi8KICAgIH0KCiAgICBAbWVkaWEgKHByZWZlcnMtY29sb3Itc2NoZW1lOiBkYXJrKSB7CiAgICAgIC5ncmF5LXNoYXBlIHsKICAgICAgICBmaWxsOiAjNTY1NjU2OyAvKiBEYXJrIG1vZGUgKi8KICAgICAgfQogICAgfTwvc3R5bGU+PHBhdGggZD0ibTYuOTQ0IDAgNC4xNjcgNC4xNjctMS4zODkgMS4zODktNC4xNjctNC4xNjd6IiBmaWxsPSIjRjA5NDA5Ii8+PHBhdGggZD0iTTE5LjQ0NCAxLjM4OSAyNSA2Ljk0NWwtNS41NTYgNS41NTYtMS4zODktMS4zODkgNC4xNjctNC4xNjctNC4xNjctNC4xNjd6IiBjbGFzcz0iZ3JheS1zaGFwZSIvPjxwYXRoIGQ9Im0xNS4yNzggOC4zMzMtMS4zODkgMS4zODkgNC4xNjcgNC4xNjcgMS4zODktMS4zODl6IiBmaWxsPSIjRjA5NDA5Ii8+PHBhdGggZD0ibTUuNTU2IDEuMzg5IDEuMzg5IDEuMzg5LTQuMTY3IDQuMTY3IDQuMTY3IDQuMTY3LTEuMzg5IDEuMzg5TDAgNi45NDR6IiBjbGFzcz0iZ3JheS1zaGFwZSIvPjxwYXRoIGQ9Im0xOC4wNTYgMCAxLjM4OSAxLjM4OS0xMi41IDEyLjVMNS41NTYgMTIuNXoiIGZpbGw9IiNGMDk0MDkiLz48L3N2Zz4=',
@@ -54,9 +56,9 @@ function getEntryStatus(status: EntryStatus) {
 	}
 }
 
-function getEntryBaselineStatus(baseline: BaselineStatus): string {
+function getEntryBaselineStatus(baseline: BaselineStatus, browsers?: string[]): string {
 	if (baseline.status === "false") {
-		const missingBrowsers = getMissingBaselineBrowsers(baseline.support);
+		const missingBrowsers = getMissingBaselineBrowsers(browsers);
 		let status = `Limited availability across major browsers`;
 		if (missingBrowsers) {
 			status += ` (Not fully implemented in ${missingBrowsers})`;
@@ -126,8 +128,8 @@ function getEntryStringDescription(entry: IEntry2, settings?: HoverSettings): st
 	let result: string = '';
 
 	if (settings?.documentation !== false) {
-		if (entry.baseline) {
-			result += `_${getEntryBaselineStatus(entry.baseline)}_\n\n`;
+		if (entry.baseline) { 
+			result += `_${getEntryBaselineStatus(entry.baseline, entry.browsers)}_\n\n`;
 		}
 
 		if (entry.status) {
@@ -167,7 +169,7 @@ function getEntryMarkdownDescription(entry: IEntry2, settings?: HoverSettings): 
 		result += `${entry.name}\n`;
 
 		if (entry.baseline) {
-			result += `_${getEntryBaselineStatus(entry.baseline)}_\n\n`;
+			result += `_${getEntryBaselineStatus(entry.baseline, entry.browsers)}_\n\n`;
 		}
 
 		if (entry.status) {
@@ -203,20 +205,25 @@ const missingBaselineBrowserFormatter = new (Intl as any).ListFormat("en", {
 });
 
 /**
- * Input is like {'chrome': '93', 'edge': '93', 'firefox': '92'}
+ * Input is like [E12, FF28, FM28, C29, CM29, IE11, O16]
  * Output is like `Safari`
  */
-export function getMissingBaselineBrowsers(support?: BaselineSupport): string {
-	if (!support) {
+export function getMissingBaselineBrowsers(browsers?: string[]): string {
+	if (!browsers) {
 		return '';
 	}
 	const missingBrowsers = new Map(Object.entries(browserNames));
-	for (const browser in support) {
+	for (const shortCompatString of browsers) {
+		const match = shortCompatPattern.exec(shortCompatString);
+		if (!match) {
+			continue;
+		}
+		const browser = match[1];
 		missingBrowsers.delete(browser);
 	}
 
 	return missingBaselineBrowserFormatter.format(Object.values(Array.from(missingBrowsers.entries()).reduce((browsers: Record<string, string>, [browserId, browser]) => {
-		if (browser.name in browsers || browserId === 'edge') {
+		if (browser.name in browsers || browserId === 'E') {
 			browsers[browser.name] = browser.name;
 			return browsers;
 		}

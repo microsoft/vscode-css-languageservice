@@ -105,8 +105,11 @@ You can also specify 5 additional properties for them:
   export let browserNames = {
     E: 'Edge',
     FF: 'Firefox',
+    FM: 'Firefox on Android',
     S: 'Safari',
+    SM: 'Safari on iOS',
     C: 'Chrome',
+    CM: 'Chrome on Android',
     IE: 'IE',
     O: 'Opera'
   };
@@ -116,8 +119,6 @@ You can also specify 5 additional properties for them:
 - `baseline`: An object containing [Baseline](https://web-platform-dx.github.io/web-features/) information about the feature's browser compatibility, as defined by the [WebDX Community Group](https://web-platform-dx.github.io/web-features/webdx-cg/).
 
   - `status`: The Baseline status is either `"false"` (limited availability across major browsers), `"low"` (newly available across major browsers), or `"high"` (widely available across major browsers).
-
-  - `support`: An object mapping browser IDs to the minimum version that supports the feature. The major browsers included here are: `chrome`, `chrome_android`, `edge`, `firefox`, `firefox_android`, `safari`, and `safari_ios`.
 
   - `baseline_low_date`: A date in the format `YYYY-MM-DD` representing when the feature became newly available, or undefined if it hasn't yet reached that status.
 

@@ -30,8 +30,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF28",
+				"FM28",
 				"S9",
+				"SM9",
 				"C29",
+				"CM29",
 				"IE11",
 				"O16"
 			],
@@ -107,15 +110,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "29",
-					"chrome_android": "29",
-					"edge": "12",
-					"firefox": "28",
-					"firefox_android": "28",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -129,8 +123,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF20",
+				"FM20",
 				"S9",
+				"SM9",
 				"C29",
+				"CM29",
 				"IE11",
 				"O16"
 			],
@@ -196,15 +193,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "29",
-					"chrome_android": "29",
-					"edge": "12",
-					"firefox": "20",
-					"firefox_android": "20",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -218,8 +206,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF20",
+				"FM20",
 				"S9",
+				"SM9",
 				"C52",
+				"CM52",
 				"IE11",
 				"O12.1"
 			],
@@ -295,15 +286,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "52",
-					"chrome_android": "52",
-					"edge": "12",
-					"firefox": "20",
-					"firefox_android": "20",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2016-07-27",
 				"baseline_high_date": "2019-01-27"
 			},
@@ -317,8 +299,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF45",
+				"FM45",
 				"S10.1",
+				"SM10.3",
 				"C57",
+				"CM57",
 				"IE10",
 				"O44"
 			],
@@ -391,15 +376,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "16",
-					"firefox": "45",
-					"firefox_android": "45",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2017-10-17",
 				"baseline_high_date": "2020-04-17"
 			},
@@ -413,8 +389,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF20",
+				"FM20",
 				"S9",
+				"SM9",
 				"C29",
+				"CM29",
 				"IE10",
 				"O12.1"
 			],
@@ -478,15 +457,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "29",
-					"chrome_android": "29",
-					"edge": "12",
-					"firefox": "20",
-					"firefox_android": "20",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -500,8 +470,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF27",
+				"FM27",
 				"S9.1",
+				"SM9.3",
 				"C37",
+				"CM37",
 				"O24"
 			],
 			"values": [],
@@ -515,15 +488,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "37",
-					"chrome_android": "37",
-					"edge": "79",
-					"firefox": "27",
-					"firefox_android": "27",
-					"safari": "9.1",
-					"safari_ios": "9.3"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -535,13 +499,13 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "alt",
 			"browsers": [
-				"S9"
+				"S9",
+				"SM9"
 			],
 			"values": [],
 			"relevance": 50,
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": "Provides alternative text for assistive technology to replace the generated content of a ::before or ::after element.",
 			"restrictions": [
@@ -554,8 +518,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S9",
+				"SM9",
 				"C43",
+				"CM43",
 				"IE10",
 				"O30"
 			],
@@ -607,15 +574,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "43",
-					"chrome_android": "43",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -633,8 +591,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S9",
+				"SM9",
 				"C43",
+				"CM43",
 				"IE10",
 				"O30"
 			],
@@ -648,15 +609,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "43",
-					"chrome_android": "43",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -670,8 +622,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S9",
+				"SM9",
 				"C43",
+				"CM43",
 				"IE10",
 				"O30"
 			],
@@ -703,15 +658,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "43",
-					"chrome_android": "43",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -725,8 +671,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S9",
+				"SM9",
 				"C43",
+				"CM43",
 				"IE10",
 				"O30"
 			],
@@ -740,15 +689,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "43",
-					"chrome_android": "43",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -762,8 +702,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S9",
+				"SM9",
 				"C43",
+				"CM43",
 				"IE10",
 				"O30"
 			],
@@ -795,15 +738,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "43",
-					"chrome_android": "43",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -817,8 +751,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S9",
+				"SM9",
 				"C43",
+				"CM43",
 				"IE10",
 				"O30"
 			],
@@ -838,15 +775,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "43",
-					"chrome_android": "43",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -861,8 +789,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S9",
+				"SM9",
 				"C43",
+				"CM43",
 				"IE10",
 				"O30"
 			],
@@ -882,15 +813,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "43",
-					"chrome_android": "43",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -905,8 +827,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S9",
+				"SM9",
 				"C43",
+				"CM43",
 				"IE10",
 				"O30"
 			],
@@ -930,15 +855,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "43",
-					"chrome_android": "43",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -952,8 +868,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S9",
+				"SM9",
 				"C43",
+				"CM43",
 				"IE10",
 				"O30"
 			],
@@ -967,15 +886,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "43",
-					"chrome_android": "43",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -989,8 +899,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S15.4",
+				"SM15.4",
 				"C36",
+				"CM36",
 				"IE10",
 				"O23"
 			],
@@ -1014,15 +927,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "36",
-					"chrome_android": "36",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2022-03-14",
 				"baseline_high_date": "2024-09-14"
 			},
@@ -1036,8 +940,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -1069,15 +976,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -1098,8 +996,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM3.2",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -1113,8 +1014,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM3.2",
 						"C1",
+						"CM18",
 						"IE4",
 						"O3.5"
 					],
@@ -1135,15 +1039,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "3.2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -1157,8 +1052,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF30",
+				"FM30",
 				"S8",
+				"SM8",
 				"C35",
+				"CM35",
 				"O22"
 			],
 			"values": [
@@ -1215,8 +1113,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF30",
+						"FM30",
 						"S8",
+						"SM8",
 						"C35",
+						"CM35",
 						"O22"
 					],
 					"description": "Creates a color with the hue of the source color and the saturation and luminosity of the backdrop color."
@@ -1226,8 +1127,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF30",
+						"FM30",
 						"S8",
+						"SM8",
 						"C35",
+						"CM35",
 						"O22"
 					],
 					"description": "Creates a color with the saturation of the source color and the hue and luminosity of the backdrop color."
@@ -1237,8 +1141,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF30",
+						"FM30",
 						"S8",
+						"SM8",
 						"C35",
+						"CM35",
 						"O22"
 					],
 					"description": "Creates a color with the hue and saturation of the source color and the luminosity of the backdrop color."
@@ -1248,8 +1155,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF30",
+						"FM30",
 						"S8",
+						"SM8",
 						"C35",
+						"CM35",
 						"O22"
 					],
 					"description": "Creates a color with the luminosity of the source color and the hue and saturation of the backdrop color."
@@ -1265,15 +1175,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "35",
-					"chrome_android": "35",
-					"edge": "79",
-					"firefox": "30",
-					"firefox_android": "30",
-					"safari": "8",
-					"safari_ios": "8"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -1287,8 +1188,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
+				"FM4",
 				"S5",
+				"SM5",
 				"C1",
+				"CM18",
 				"IE9",
 				"O10.5"
 			],
@@ -1302,15 +1206,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "4",
-					"firefox_android": "4",
-					"safari": "5",
-					"safari_ios": "5"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -1324,8 +1219,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -1339,15 +1237,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -1361,8 +1250,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -1382,15 +1274,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -1405,8 +1288,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
+				"FM4",
 				"S3",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE9",
 				"O10.5"
 			],
@@ -1420,15 +1306,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "4",
-					"firefox_android": "4",
-					"safari": "3",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -1442,8 +1319,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -1457,15 +1337,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -1481,8 +1352,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF49",
+				"FM49",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE6",
 				"O15"
 			],
@@ -1510,15 +1384,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "49",
-					"firefox_android": "49",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2016-09-20",
 				"baseline_high_date": "2019-03-20"
 			},
@@ -1533,8 +1398,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF49",
+				"FM49",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE6",
 				"O15"
 			],
@@ -1562,15 +1430,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "49",
-					"firefox_android": "49",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2016-09-20",
 				"baseline_high_date": "2019-03-20"
 			},
@@ -1585,8 +1444,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -1601,15 +1463,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -1623,8 +1476,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
+				"FM4",
 				"S5",
+				"SM4.2",
 				"C3",
+				"CM18",
 				"IE9",
 				"O10"
 			],
@@ -1652,15 +1508,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "3",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "4",
-					"firefox_android": "4",
-					"safari": "5",
-					"safari_ios": "4.2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -1686,8 +1533,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"values": [
@@ -1706,15 +1556,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -1729,8 +1570,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -1744,15 +1588,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -1769,8 +1604,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
@@ -1783,15 +1621,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -1808,8 +1637,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
@@ -1822,15 +1654,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -1847,8 +1670,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"syntax": "<'border-top-color'>",
@@ -1861,15 +1687,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -1883,8 +1700,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"syntax": "<'border-top-color'>",
@@ -1897,15 +1717,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -1919,8 +1730,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"syntax": "<'border-top-style'>",
@@ -1933,15 +1747,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -1955,8 +1760,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"syntax": "<'border-top-style'>",
@@ -1969,15 +1777,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -1991,8 +1790,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"syntax": "<'border-top-width'>",
@@ -2005,15 +1807,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -2028,8 +1821,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"syntax": "<'border-top-width'>",
@@ -2042,15 +1838,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -2065,8 +1852,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -2080,15 +1870,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -2105,8 +1886,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -2120,15 +1904,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -2142,8 +1917,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
+				"FM4",
 				"S5",
+				"SM4.2",
 				"C4",
+				"CM18",
 				"IE9",
 				"O10.5"
 			],
@@ -2157,15 +1935,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "4",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "4",
-					"firefox_android": "4",
-					"safari": "5",
-					"safari_ios": "4.2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -2180,8 +1949,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
+				"FM4",
 				"S5",
+				"SM4.2",
 				"C4",
+				"CM18",
 				"IE9",
 				"O10.5"
 			],
@@ -2195,15 +1967,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "4",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "4",
-					"firefox_android": "4",
-					"safari": "5",
-					"safari_ios": "4.2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -2218,8 +1981,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE5.5",
 				"O9.2"
 			],
@@ -2233,15 +1999,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -2255,8 +2012,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -2270,15 +2030,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -2293,8 +2044,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1.2",
+				"SM3",
 				"C1",
+				"CM18",
 				"IE5",
 				"O4"
 			],
@@ -2318,15 +2072,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1.2",
-					"safari_ios": "3"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -2340,8 +2085,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -2356,15 +2104,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -2378,8 +2117,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF15",
+				"FM15",
 				"S6",
+				"SM6",
 				"C16",
+				"CM18",
 				"IE11",
 				"O11"
 			],
@@ -2426,15 +2168,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "16",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "15",
-					"firefox_android": "15",
-					"safari": "6",
-					"safari_ios": "6"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -2452,8 +2185,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF15",
+				"FM15",
 				"S6",
+				"SM6",
 				"C15",
+				"CM18",
 				"IE11",
 				"O15"
 			],
@@ -2467,15 +2203,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "15",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "15",
-					"firefox_android": "15",
-					"safari": "6",
-					"safari_ios": "6"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -2490,8 +2217,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF15",
+				"FM15",
 				"S6",
+				"SM9.3",
 				"C15",
+				"CM18",
 				"IE11",
 				"O15"
 			],
@@ -2523,15 +2253,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "15",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "15",
-					"firefox_android": "15",
-					"safari": "6",
-					"safari_ios": "9.3"
-				},
 				"baseline_low_date": "2016-03-21",
 				"baseline_high_date": "2018-09-21"
 			},
@@ -2545,8 +2266,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF15",
+				"FM15",
 				"S6",
+				"SM6",
 				"C15",
+				"CM18",
 				"IE11",
 				"O15"
 			],
@@ -2566,15 +2290,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "15",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "15",
-					"firefox_android": "15",
-					"safari": "6",
-					"safari_ios": "6"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -2589,8 +2304,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF15",
+				"FM15",
 				"S6",
+				"SM6",
 				"C15",
+				"CM18",
 				"IE11",
 				"O15"
 			],
@@ -2610,15 +2328,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "15",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "15",
-					"firefox_android": "15",
-					"safari": "6",
-					"safari_ios": "6"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -2632,8 +2341,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF13",
+				"FM14",
 				"S6",
+				"SM6",
 				"C16",
+				"CM18",
 				"IE11",
 				"O15"
 			],
@@ -2653,15 +2365,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "16",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "13",
-					"firefox_android": "14",
-					"safari": "6",
-					"safari_ios": "6"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -2677,8 +2380,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
@@ -2691,15 +2397,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -2716,8 +2413,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
@@ -2730,15 +2430,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -2755,8 +2446,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"syntax": "<'border-top-color'>",
@@ -2769,15 +2463,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -2791,8 +2476,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"syntax": "<'border-top-color'>",
@@ -2805,15 +2493,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -2827,8 +2506,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"syntax": "<'border-top-style'>",
@@ -2841,15 +2523,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -2863,8 +2536,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"syntax": "<'border-top-style'>",
@@ -2877,15 +2553,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -2899,8 +2566,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"syntax": "<'border-top-width'>",
@@ -2913,15 +2583,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -2936,8 +2597,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"syntax": "<'border-top-width'>",
@@ -2950,15 +2614,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -2973,8 +2628,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -2988,15 +2646,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3013,8 +2662,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -3028,15 +2680,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3050,8 +2693,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM14",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE5.5",
 				"O9.2"
 			],
@@ -3065,15 +2711,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "14",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3087,8 +2724,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -3102,15 +2742,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3125,8 +2756,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
+				"FM4",
 				"S5",
+				"SM4.2",
 				"C4",
+				"CM18",
 				"IE9",
 				"O10.5"
 			],
@@ -3140,15 +2774,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "4",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "4",
-					"firefox_android": "4",
-					"safari": "5",
-					"safari_ios": "4.2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3163,8 +2788,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM14",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE5.5",
 				"O9.2"
 			],
@@ -3178,15 +2806,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "14",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3203,8 +2822,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -3218,15 +2840,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3240,8 +2853,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM14",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE5.5",
 				"O9.2"
 			],
@@ -3255,15 +2871,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "14",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3277,8 +2884,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -3292,15 +2902,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3315,8 +2916,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE8",
 				"O4"
 			],
@@ -3330,15 +2934,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3352,8 +2947,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -3368,15 +2966,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3390,8 +2979,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -3405,15 +2997,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3430,8 +3013,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -3445,15 +3031,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3467,8 +3044,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
+				"FM4",
 				"S5",
+				"SM4.2",
 				"C4",
+				"CM18",
 				"IE9",
 				"O10.5"
 			],
@@ -3482,15 +3062,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "4",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "4",
-					"firefox_android": "4",
-					"safari": "5",
-					"safari_ios": "4.2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3505,8 +3076,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
+				"FM4",
 				"S5",
+				"SM4.2",
 				"C4",
+				"CM18",
 				"IE9",
 				"O10.5"
 			],
@@ -3520,15 +3094,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "4",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "4",
-					"firefox_android": "4",
-					"safari": "5",
-					"safari_ios": "4.2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3543,8 +3108,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE5.5",
 				"O9.2"
 			],
@@ -3558,15 +3126,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3580,8 +3139,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -3595,15 +3157,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3618,8 +3171,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM3",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -3634,15 +3190,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "3"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3657,8 +3204,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE5",
 				"O6"
 			],
@@ -3678,15 +3228,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3701,8 +3242,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E130",
 				"FF32",
+				"FM32",
 				"S7",
+				"SM7",
 				"C130",
+				"CM130",
 				"O115"
 			],
 			"values": [
@@ -3724,14 +3268,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "130",
-					"chrome_android": "130",
-					"edge": "130",
-					"firefox": "32",
-					"firefox_android": "32"
-				}
+				"status": "false"
 			},
 			"description": "Specifies whether individual boxes are treated as broken pieces of one continuous box, or whether each box is individually wrapped with the border and padding.",
 			"restrictions": [
@@ -3743,8 +3280,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
+				"FM4",
 				"S5.1",
+				"SM5",
 				"C10",
+				"CM18",
 				"IE9",
 				"O10.5"
 			],
@@ -3768,15 +3308,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "10",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "4",
-					"firefox_android": "4",
-					"safari": "5.1",
-					"safari_ios": "5"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3792,8 +3323,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF29",
+				"FM29",
 				"S5.1",
+				"SM6",
 				"C10",
+				"CM18",
 				"IE8",
 				"O7"
 			],
@@ -3817,15 +3351,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "10",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "29",
-					"firefox_android": "29",
-					"safari": "5.1",
-					"safari_ios": "6"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -3839,8 +3364,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF65",
+				"FM65",
 				"S10",
+				"SM10",
 				"C50",
+				"CM50",
 				"IE10",
 				"O37"
 			],
@@ -3892,15 +3420,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "50",
-					"chrome_android": "50",
-					"edge": "12",
-					"firefox": "65",
-					"firefox_android": "65",
-					"safari": "10",
-					"safari_ios": "10"
-				},
 				"baseline_low_date": "2019-01-29",
 				"baseline_high_date": "2021-07-29"
 			},
@@ -3914,8 +3433,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF65",
+				"FM65",
 				"S10",
+				"SM10",
 				"C50",
+				"CM50",
 				"IE10",
 				"O37"
 			],
@@ -3967,15 +3489,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "50",
-					"chrome_android": "50",
-					"edge": "12",
-					"firefox": "65",
-					"firefox_android": "65",
-					"safari": "10",
-					"safari_ios": "10"
-				},
 				"baseline_low_date": "2019-01-29",
 				"baseline_high_date": "2021-07-29"
 			},
@@ -3989,8 +3502,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF65",
+				"FM65",
 				"S10",
+				"SM10",
 				"C50",
+				"CM50",
 				"IE10",
 				"O37"
 			],
@@ -4022,15 +3538,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "50",
-					"chrome_android": "50",
-					"edge": "12",
-					"firefox": "65",
-					"firefox_android": "65",
-					"safari": "10",
-					"safari_ios": "10"
-				},
 				"baseline_low_date": "2019-01-29",
 				"baseline_high_date": "2021-07-29"
 			},
@@ -4044,8 +3551,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE8",
 				"O4"
 			],
@@ -4069,15 +3579,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -4091,8 +3592,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF53",
+				"FM53",
 				"S11.1",
+				"SM11.3",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"values": [
@@ -4111,15 +3615,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "79",
-					"firefox": "53",
-					"firefox_android": "53",
-					"safari": "11.1",
-					"safari_ios": "11.3"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -4134,8 +3629,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -4167,15 +3665,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -4189,8 +3678,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O7"
 			],
@@ -4214,16 +3706,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				}
+				"status": "false"
 			},
 			"description": "Deprecated. Use the 'clip-path' property when support allows. Defines the visible portion of an element's box.",
 			"restrictions": [
@@ -4235,8 +3718,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF3.5",
+				"FM4",
 				"S9.1",
+				"SM9.3",
 				"C55",
+				"CM55",
 				"IE10",
 				"O42"
 			],
@@ -4260,15 +3746,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "55",
-					"chrome_android": "55",
-					"edge": "79",
-					"firefox": "3.5",
-					"firefox_android": "4",
-					"safari": "9.1",
-					"safari_ios": "9.3"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -4285,8 +3762,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF3.5",
+				"FM4",
 				"S5",
+				"SM4.2",
 				"C15",
+				"CM18",
 				"O15"
 			],
 			"values": [
@@ -4309,15 +3789,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤15",
-					"chrome_android": "18",
-					"edge": "79",
-					"firefox": "3.5",
-					"firefox_android": "4",
-					"safari": "≤5",
-					"safari_ios": "≤4.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -4331,8 +3802,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE3",
 				"O3.5"
 			],
@@ -4346,15 +3820,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -4368,8 +3833,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF3",
+				"FM4",
 				"S3",
+				"SM2",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"values": [
@@ -4396,15 +3864,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "79",
-					"firefox": "3",
-					"firefox_android": "4",
-					"safari": "3",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -4418,8 +3877,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF52",
+				"FM52",
 				"S9",
+				"SM9",
 				"C50",
+				"CM50",
 				"IE10",
 				"O37"
 			],
@@ -4439,15 +3901,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "50",
-					"chrome_android": "50",
-					"edge": "12",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2017-03-07",
 				"baseline_high_date": "2019-09-07"
 			},
@@ -4462,8 +3915,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF52",
+				"FM52",
 				"S9",
+				"SM9",
 				"C50",
+				"CM50",
 				"IE10",
 				"O37"
 			],
@@ -4487,15 +3943,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "50",
-					"chrome_android": "50",
-					"edge": "12",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2017-03-07",
 				"baseline_high_date": "2019-09-07"
 			},
@@ -4509,8 +3956,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1.5",
+				"FM4",
 				"S3",
+				"SM2",
 				"C1",
+				"CM18",
 				"IE10",
 				"O11.1"
 			],
@@ -4530,15 +3980,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1.5",
-					"firefox_android": "4",
-					"safari": "3",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -4553,8 +3994,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF52",
+				"FM52",
 				"S9",
+				"SM9",
 				"C50",
+				"CM50",
 				"IE10",
 				"O11.1"
 			],
@@ -4568,15 +4012,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "50",
-					"chrome_android": "50",
-					"edge": "12",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2017-03-07",
 				"baseline_high_date": "2019-09-07"
 			},
@@ -4593,8 +4028,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF52",
+				"FM52",
 				"S9",
+				"SM9",
 				"C50",
+				"CM50",
 				"IE10",
 				"O11.1"
 			],
@@ -4608,15 +4046,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "50",
-					"chrome_android": "50",
-					"edge": "12",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2017-03-07",
 				"baseline_high_date": "2019-09-07"
 			},
@@ -4630,8 +4059,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF52",
+				"FM52",
 				"S9",
+				"SM9",
 				"C50",
+				"CM50",
 				"IE10",
 				"O11.1"
 			],
@@ -4645,15 +4077,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "50",
-					"chrome_android": "50",
-					"edge": "12",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2017-03-07",
 				"baseline_high_date": "2019-09-07"
 			},
@@ -4667,8 +4090,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF52",
+				"FM52",
 				"S9",
+				"SM9",
 				"C50",
+				"CM50",
 				"IE10",
 				"O11.1"
 			],
@@ -4682,15 +4108,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "50",
-					"chrome_android": "50",
-					"edge": "12",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2017-03-07",
 				"baseline_high_date": "2019-09-07"
 			},
@@ -4705,8 +4122,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF52",
+				"FM52",
 				"S9",
+				"SM9",
 				"C50",
+				"CM50",
 				"IE10",
 				"O11.1"
 			],
@@ -4726,15 +4146,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "50",
-					"chrome_android": "50",
-					"edge": "12",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2017-03-07",
 				"baseline_high_date": "2019-09-07"
 			},
@@ -4750,8 +4161,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF71",
+				"FM79",
 				"S9",
+				"SM9",
 				"C50",
+				"CM50",
 				"IE10",
 				"O37"
 			],
@@ -4775,15 +4189,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "50",
-					"chrome_android": "50",
-					"edge": "12",
-					"firefox": "71",
-					"firefox_android": "79",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -4797,8 +4202,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF50",
+				"FM50",
 				"S9",
+				"SM9",
 				"C50",
+				"CM50",
 				"IE10",
 				"O11.1"
 			],
@@ -4818,15 +4226,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "50",
-					"chrome_android": "50",
-					"edge": "12",
-					"firefox": "50",
-					"firefox_android": "50",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2016-11-15",
 				"baseline_high_date": "2019-05-15"
 			},
@@ -4841,8 +4240,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF69",
+				"FM79",
 				"S15.4",
+				"SM15.4",
 				"C52",
+				"CM52",
 				"O39"
 			],
 			"values": [
@@ -4885,15 +4287,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "52",
-					"chrome_android": "52",
-					"edge": "79",
-					"firefox": "69",
-					"firefox_android": "79",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2022-03-14",
 				"baseline_high_date": "2024-09-14"
 			},
@@ -4907,8 +4300,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE8",
 				"O4"
 			],
@@ -4947,15 +4343,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -4970,8 +4357,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM25",
 				"S3",
+				"SM1",
 				"C2",
+				"CM18",
 				"IE8",
 				"O9.2"
 			],
@@ -4991,15 +4381,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "2",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "25",
-					"safari": "3",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -5014,8 +4395,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM25",
 				"S3",
+				"SM1",
 				"C2",
+				"CM18",
 				"IE8",
 				"O9.2"
 			],
@@ -5035,15 +4419,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "2",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "25",
-					"safari": "3",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -5058,8 +4433,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM95",
 				"S1.2",
+				"SM13.4",
 				"C1",
+				"CM18",
 				"IE4",
 				"O7"
 			],
@@ -5113,8 +4491,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM95",
 						"S1.2",
+						"SM13.4",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5125,8 +4506,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM95",
 						"S1.2",
+						"SM13.4",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5145,8 +4529,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM95",
 						"S1.2",
+						"SM13.4",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5157,8 +4544,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM95",
 						"S1.2",
+						"SM13.4",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5169,8 +4559,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM95",
 						"S1.2",
+						"SM13.4",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5181,8 +4574,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM95",
 						"S1.2",
+						"SM13.4",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5265,8 +4661,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM95",
 						"S1.2",
+						"SM13.4",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5277,8 +4676,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM95",
 						"S1.2",
+						"SM13.4",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5289,8 +4691,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM95",
 						"S1.2",
+						"SM13.4",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5301,8 +4706,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM95",
 						"S1.2",
+						"SM13.4",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5317,8 +4725,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM95",
 						"S1.2",
+						"SM13.4",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5329,8 +4740,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM95",
 						"S1.2",
+						"SM13.4",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5347,15 +4761,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "95",
-					"safari": "1.2",
-					"safari_ios": "13.4"
-				},
 				"baseline_low_date": "2021-12-07",
 				"baseline_high_date": "2024-06-07"
 			},
@@ -5371,8 +4776,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C2",
+				"CM18",
 				"IE5.5",
 				"O9.2"
 			],
@@ -5396,15 +4804,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "2",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -5418,8 +4817,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O7"
 			],
@@ -5433,8 +4835,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5445,8 +4850,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5457,8 +4865,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5469,8 +4880,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5481,8 +4895,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5501,8 +4918,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5513,8 +4933,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5533,8 +4956,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5545,8 +4971,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					]
@@ -5556,8 +4985,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					]
@@ -5567,8 +4999,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					]
@@ -5578,8 +5013,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					]
@@ -5589,8 +5027,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					]
@@ -5600,8 +5041,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5612,8 +5056,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					]
@@ -5623,8 +5070,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					]
@@ -5634,8 +5084,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					]
@@ -5645,8 +5098,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					]
@@ -5656,8 +5112,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					]
@@ -5667,8 +5126,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5679,8 +5141,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5691,8 +5156,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5703,8 +5171,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5735,8 +5206,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5775,8 +5249,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5787,8 +5264,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5799,8 +5279,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5811,8 +5294,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -5829,15 +5315,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -5851,8 +5328,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1.2",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE8",
 				"O4"
 			],
@@ -5866,8 +5346,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1.2",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE8",
 						"O4"
 					]
@@ -5887,15 +5370,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1.2",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -5943,8 +5417,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
+				"FM79",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"values": [
@@ -5967,15 +5444,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "≤72",
-					"firefox_android": "≤79",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -5991,8 +5459,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF1",
+				"FM4",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"syntax": "<'opacity'>",
@@ -6005,15 +5476,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-03-24",
 				"baseline_high_date": "2022-09-24"
 			},
@@ -6027,8 +5489,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
+				"FM79",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"values": [
@@ -6051,15 +5516,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "≤72",
-					"firefox_android": "≤79",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -6073,8 +5529,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF35",
+				"FM35",
 				"S9.1",
+				"SM9.3",
 				"C53",
+				"CM53",
 				"O40"
 			],
 			"values": [
@@ -6127,8 +5586,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF35",
+						"FM35",
 						"S9.1",
+						"SM9.3",
 						"C53",
+						"CM53",
 						"O40"
 					],
 					"description": "A filter reference to a <filter> element."
@@ -6144,15 +5606,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "53",
-					"chrome_android": "53",
-					"edge": "12",
-					"firefox": "35",
-					"firefox_android": "35",
-					"safari": "9.1",
-					"safari_ios": "9.3"
-				},
 				"baseline_low_date": "2016-09-07",
 				"baseline_high_date": "2019-03-07"
 			},
@@ -6167,8 +5620,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF20",
+				"FM20",
 				"S9",
+				"SM9",
 				"C29",
+				"CM29",
 				"IE11",
 				"O12.1"
 			],
@@ -6182,8 +5638,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF20",
+						"FM20",
 						"S9",
+						"SM9",
 						"C29",
+						"CM29",
 						"IE11",
 						"O12.1"
 					],
@@ -6204,15 +5663,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "29",
-					"chrome_android": "29",
-					"edge": "12",
-					"firefox": "20",
-					"firefox_android": "20",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -6228,8 +5678,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF22",
+				"FM22",
 				"S9",
+				"SM9",
 				"C29",
+				"CM29",
 				"IE11",
 				"O12.1"
 			],
@@ -6243,8 +5696,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF22",
+						"FM22",
 						"S9",
+						"SM9",
 						"C29",
+						"CM29",
 						"IE11",
 						"O12.1"
 					],
@@ -6261,15 +5717,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "29",
-					"chrome_android": "29",
-					"edge": "12",
-					"firefox": "22",
-					"firefox_android": "22",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -6285,8 +5732,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF20",
+				"FM20",
 				"S9",
+				"SM9",
 				"C29",
+				"CM29",
 				"IE11",
 				"O12.1"
 			],
@@ -6318,15 +5768,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "29",
-					"chrome_android": "29",
-					"edge": "12",
-					"firefox": "20",
-					"firefox_android": "20",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -6340,8 +5781,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF28",
+				"FM28",
 				"S9",
+				"SM9",
 				"C29",
+				"CM29",
 				"IE11",
 				"O12.1"
 			],
@@ -6385,15 +5829,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "29",
-					"chrome_android": "29",
-					"edge": "12",
-					"firefox": "28",
-					"firefox_android": "28",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -6407,8 +5842,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF20",
+				"FM20",
 				"S9",
+				"SM9",
 				"C29",
+				"CM29",
 				"IE11",
 				"O12.1"
 			],
@@ -6422,15 +5860,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "29",
-					"chrome_android": "29",
-					"edge": "12",
-					"firefox": "20",
-					"firefox_android": "20",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -6444,8 +5873,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF20",
+				"FM20",
 				"S9",
+				"SM9",
 				"C29",
+				"CM29",
 				"IE10",
 				"O12.1"
 			],
@@ -6459,15 +5891,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "29",
-					"chrome_android": "29",
-					"edge": "12",
-					"firefox": "20",
-					"firefox_android": "20",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -6481,8 +5904,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF28",
+				"FM28",
 				"S9",
+				"SM9",
 				"C29",
+				"CM29",
 				"IE11",
 				"O16"
 			],
@@ -6510,15 +5936,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "29",
-					"chrome_android": "29",
-					"edge": "12",
-					"firefox": "28",
-					"firefox_android": "28",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -6532,8 +5949,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O7"
 			],
@@ -6543,8 +5963,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -6555,8 +5978,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -6585,15 +6011,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -6607,8 +6024,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3",
+				"FM4",
 				"S6",
+				"SM6",
 				"C5",
+				"CM18",
 				"IE11",
 				"O15"
 			],
@@ -6622,15 +6042,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "5",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "3",
-					"firefox_android": "4",
-					"safari": "6",
-					"safari_ios": "6"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -6644,8 +6055,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3",
+				"FM4",
 				"S6",
+				"SM6",
 				"C5",
+				"CM18",
 				"IE11",
 				"O15"
 			],
@@ -6659,15 +6073,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "5",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "3",
-					"firefox_android": "4",
-					"safari": "6",
-					"safari_ios": "6"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -6682,8 +6087,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE3",
 				"O3.5"
 			],
@@ -6814,15 +6222,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -6836,8 +6235,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE3",
 				"O3.5"
 			],
@@ -6908,15 +6310,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -6930,8 +6323,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E15",
 				"FF34",
+				"FM34",
 				"S9.1",
+				"SM9.3",
 				"C48",
+				"CM48",
 				"IE10",
 				"O35"
 			],
@@ -7428,15 +6824,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "48",
-					"chrome_android": "48",
-					"edge": "15",
-					"firefox": "34",
-					"firefox_android": "34",
-					"safari": "9.1",
-					"safari_ios": "9.3"
-				},
 				"baseline_low_date": "2017-04-05",
 				"baseline_high_date": "2019-10-05"
 			},
@@ -7451,8 +6838,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF32",
+				"FM32",
 				"S9",
+				"SM9",
 				"C33",
+				"CM33",
 				"O20"
 			],
 			"values": [
@@ -7479,15 +6869,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "33",
-					"chrome_android": "33",
-					"edge": "79",
-					"firefox": "32",
-					"firefox_android": "32",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -7499,7 +6880,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "font-language-override",
 			"browsers": [
-				"FF34"
+				"FF34",
+				"FM34"
 			],
 			"values": [
 				{
@@ -7516,11 +6898,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "34",
-					"firefox_android": "34"
-				}
+				"status": "false"
 			},
 			"description": "The value of 'normal' implies that when rendering with OpenType fonts the language of the document is used to infer the OpenType language system, used to select language specific features when rendering.",
 			"restrictions": [
@@ -7532,8 +6910,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE5.5",
 				"O7"
 			],
@@ -7576,15 +6957,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -7599,8 +6971,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E127",
 				"FF3",
+				"FM4",
 				"S16.4",
+				"SM16.4",
 				"C127",
+				"CM127",
 				"O113"
 			],
 			"values": [
@@ -7619,15 +6994,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "127",
-					"chrome_android": "127",
-					"edge": "127",
-					"firefox": "3",
-					"firefox_android": "4",
-					"safari": "16.4",
-					"safari_ios": "16.4"
-				},
 				"baseline_low_date": "2024-07-25"
 			},
 			"description": "Preserves the readability of text when font fallback occurs by adjusting the font-size so that the x-height is the same regardless of the font used.",
@@ -7640,8 +7006,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF9",
+				"FM9",
 				"S11",
+				"SM11",
 				"C60",
+				"CM60",
 				"IE9",
 				"O47"
 			],
@@ -7663,8 +7032,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF9",
+						"FM9",
 						"S11",
+						"SM11",
 						"C60",
+						"CM60",
 						"IE9",
 						"O47"
 					],
@@ -7690,8 +7062,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF9",
+						"FM9",
 						"S11",
+						"SM11",
 						"C60",
+						"CM60",
 						"IE9",
 						"O47"
 					],
@@ -7708,16 +7083,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "60",
-					"chrome_android": "60",
-					"edge": "12",
-					"firefox": "9",
-					"firefox_android": "9",
-					"safari": "11",
-					"safari_ios": "11"
-				}
+				"status": "false"
 			},
 			"description": "Selects a normal, condensed, or expanded face from a font family.",
 			"restrictions": [
@@ -7729,8 +7095,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O7"
 			],
@@ -7759,15 +7128,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -7781,8 +7141,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E97",
 				"FF34",
+				"FM34",
 				"S9",
+				"SM9",
 				"C97",
+				"CM97",
 				"O83"
 			],
 			"values": [
@@ -7809,15 +7172,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "97",
-					"chrome_android": "97",
-					"edge": "97",
-					"firefox": "34",
-					"firefox_android": "34",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2022-01-06",
 				"baseline_high_date": "2024-07-06"
 			},
@@ -7831,8 +7185,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -7856,15 +7213,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -7878,8 +7226,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E111",
 				"FF34",
+				"FM34",
 				"S9.1",
+				"SM9.3",
 				"C111",
+				"CM111",
 				"O97"
 			],
 			"values": [
@@ -7926,15 +7277,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "111",
-					"chrome_android": "111",
-					"edge": "111",
-					"firefox": "34",
-					"firefox_android": "34",
-					"safari": "9.1",
-					"safari_ios": "9.3"
-				},
 				"baseline_low_date": "2023-03-13"
 			},
 			"description": "For any given character, fonts can provide a variety of alternate glyphs in addition to the default glyph for that character. This property provides control over the selection of these alternate glyphs.",
@@ -7947,8 +7289,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF34",
+				"FM34",
 				"S9.1",
+				"SM9.3",
 				"C52",
+				"CM52",
 				"O39"
 			],
 			"values": [
@@ -7991,15 +7336,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "52",
-					"chrome_android": "52",
-					"edge": "79",
-					"firefox": "34",
-					"firefox_android": "34",
-					"safari": "9.1",
-					"safari_ios": "9.3"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -8013,8 +7349,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF34",
+				"FM34",
 				"S9.1",
+				"SM9.3",
 				"C63",
+				"CM63",
 				"O50"
 			],
 			"values": [
@@ -8069,15 +7408,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "63",
-					"chrome_android": "63",
-					"edge": "79",
-					"firefox": "34",
-					"firefox_android": "34",
-					"safari": "9.1",
-					"safari_ios": "9.3"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -8091,8 +7421,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF34",
+				"FM34",
 				"S9.1",
+				"SM9.3",
 				"C34",
+				"CM34",
 				"O21"
 			],
 			"values": [
@@ -8109,8 +7442,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF34",
+						"FM34",
 						"S9.1",
+						"SM9.3",
 						"C34",
+						"CM34",
 						"O21"
 					],
 					"description": "Enables display of contextual alternates."
@@ -8136,8 +7472,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF34",
+						"FM34",
 						"S9.1",
+						"SM9.3",
 						"C34",
+						"CM34",
 						"O21"
 					],
 					"description": "Disables display of contextual alternates."
@@ -8155,8 +7494,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF34",
+						"FM34",
 						"S9.1",
+						"SM9.3",
 						"C34",
+						"CM34",
 						"O21"
 					],
 					"description": "Disables all ligatures."
@@ -8176,15 +7518,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "34",
-					"chrome_android": "34",
-					"edge": "79",
-					"firefox": "34",
-					"firefox_android": "34",
-					"safari": "9.1",
-					"safari_ios": "9.3"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -8198,8 +7531,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF34",
+				"FM34",
 				"S9.1",
+				"SM9.3",
 				"C52",
+				"CM52",
 				"O39"
 			],
 			"values": [
@@ -8250,15 +7586,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "52",
-					"chrome_android": "52",
-					"edge": "79",
-					"firefox": "34",
-					"firefox_android": "34",
-					"safari": "9.1",
-					"safari_ios": "9.3"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -8271,7 +7598,9 @@ export const cssData : CSSDataV1 = {
 			"name": "font-variant-position",
 			"browsers": [
 				"FF34",
-				"S9.1"
+				"FM34",
+				"S9.1",
+				"SM9.3"
 			],
 			"values": [
 				{
@@ -8296,13 +7625,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "34",
-					"firefox_android": "34",
-					"safari": "9.1",
-					"safari_ios": "9.3"
-				}
+				"status": "false"
 			},
 			"description": "Specifies the vertical position",
 			"restrictions": [
@@ -8314,8 +7637,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C2",
+				"CM18",
 				"IE3",
 				"O3.5"
 			],
@@ -8384,15 +7710,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "2",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -8413,7 +7730,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "glyph-orientation-vertical",
 			"browsers": [
-				"S13.1"
+				"S13.1",
+				"SM13.4"
 			],
 			"values": [
 				{
@@ -8423,11 +7741,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 50,
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				}
+				"status": "false"
 			},
 			"description": "Controls glyph orientation when the inline-progression-direction is vertical.",
 			"restrictions": [
@@ -8441,8 +7755,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
+				"FM52",
 				"S10.1",
+				"SM10.3",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"values": [
@@ -8465,15 +7782,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "16",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2017-10-17",
 				"baseline_high_date": "2020-04-17"
 			},
@@ -8488,8 +7796,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
+				"FM52",
 				"S10.1",
+				"SM10.3",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"syntax": "<'grid-template'> | <'grid-template-rows'> / [ auto-flow && dense? ] <'grid-auto-columns'>? | [ auto-flow && dense? ] <'grid-auto-rows'>? / <'grid-template-columns'>",
@@ -8502,15 +7813,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "16",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2017-10-17",
 				"baseline_high_date": "2020-04-17"
 			},
@@ -8528,8 +7830,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF70",
+				"FM79",
 				"S10.1",
+				"SM10.3",
 				"C57",
+				"CM57",
 				"IE10",
 				"O44"
 			],
@@ -8561,15 +7866,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "16",
-					"firefox": "70",
-					"firefox_android": "79",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -8584,8 +7880,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
+				"FM52",
 				"S10.1",
+				"SM10.3",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"values": [
@@ -8612,15 +7911,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "16",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2017-10-17",
 				"baseline_high_date": "2020-04-17"
 			},
@@ -8634,8 +7924,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF70",
+				"FM79",
 				"S10.1",
+				"SM10.3",
 				"C57",
+				"CM57",
 				"IE10",
 				"O44"
 			],
@@ -8667,15 +7960,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "16",
-					"firefox": "70",
-					"firefox_android": "79",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -8690,8 +7974,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
+				"FM52",
 				"S10.1",
+				"SM10.3",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"values": [
@@ -8714,15 +8001,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "16",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2017-10-17",
 				"baseline_high_date": "2020-04-17"
 			},
@@ -8738,8 +8016,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
+				"FM52",
 				"S10.1",
+				"SM10.3",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"values": [
@@ -8762,15 +8043,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "16",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2017-10-17",
 				"baseline_high_date": "2020-04-17"
 			},
@@ -8802,8 +8074,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
+				"FM52",
 				"S10.1",
+				"SM10.3",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"values": [
@@ -8826,15 +8101,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "16",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2017-10-17",
 				"baseline_high_date": "2020-04-17"
 			},
@@ -8866,8 +8132,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
+				"FM52",
 				"S10.1",
+				"SM10.3",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"values": [
@@ -8890,15 +8159,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "16",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2017-10-17",
 				"baseline_high_date": "2020-04-17"
 			},
@@ -8914,8 +8174,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
+				"FM52",
 				"S10.1",
+				"SM10.3",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"values": [
@@ -8938,15 +8201,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "16",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2017-10-17",
 				"baseline_high_date": "2020-04-17"
 			},
@@ -8978,8 +8232,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
+				"FM52",
 				"S10.1",
+				"SM10.3",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"values": [
@@ -9002,15 +8259,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "16",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2017-10-17",
 				"baseline_high_date": "2020-04-17"
 			},
@@ -9026,8 +8274,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
+				"FM52",
 				"S10.1",
+				"SM10.3",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"values": [
@@ -9070,15 +8321,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "16",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2017-10-17",
 				"baseline_high_date": "2020-04-17"
 			},
@@ -9096,8 +8338,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
+				"FM52",
 				"S10.1",
+				"SM10.3",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"values": [
@@ -9116,15 +8361,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "16",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2017-10-17",
 				"baseline_high_date": "2020-04-17"
 			},
@@ -9138,8 +8374,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
+				"FM52",
 				"S10.1",
+				"SM10.3",
 				"C57",
+				"CM57",
 				"IE10",
 				"O44"
 			],
@@ -9183,15 +8422,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "16",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2017-10-17",
 				"baseline_high_date": "2020-04-17"
 			},
@@ -9208,8 +8438,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
+				"FM52",
 				"S10.1",
+				"SM10.3",
 				"C57",
+				"CM57",
 				"IE10",
 				"O44"
 			],
@@ -9253,15 +8486,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "16",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2017-10-17",
 				"baseline_high_date": "2020-04-17"
 			},
@@ -9279,8 +8503,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O7"
 			],
@@ -9294,8 +8521,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -9306,8 +8536,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -9318,8 +8551,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -9336,15 +8572,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -9359,8 +8586,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF43",
+				"FM43",
 				"S17",
+				"SM17",
 				"C55",
+				"CM55",
 				"IE10",
 				"O42"
 			],
@@ -9388,15 +8618,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "55",
-					"chrome_android": "55",
-					"edge": "79",
-					"firefox": "43",
-					"firefox_android": "43",
-					"safari": "17",
-					"safari_ios": "17"
-				},
 				"baseline_low_date": "2023-09-18"
 			},
 			"description": "Controls whether hyphenation is allowed to create more break opportunities within a line of text.",
@@ -9409,8 +8630,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E81",
 				"FF26",
+				"FM26",
 				"S13.1",
+				"SM13.4",
 				"C81",
+				"CM81",
 				"O67"
 			],
 			"values": [
@@ -9433,15 +8657,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "81",
-					"chrome_android": "81",
-					"edge": "81",
-					"firefox": "26",
-					"firefox_android": "26",
-					"safari": "13.1",
-					"safari_ios": "13.4"
-				},
 				"baseline_low_date": "2020-04-13",
 				"baseline_high_date": "2022-10-13"
 			},
@@ -9455,8 +8670,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF3.6",
+				"FM4",
 				"S6",
+				"SM6",
 				"C13",
+				"CM18",
 				"O15"
 			],
 			"values": [
@@ -9473,8 +8691,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF3.6",
+						"FM4",
 						"S6",
+						"SM6",
 						"C13",
+						"CM18",
 						"O15"
 					]
 				},
@@ -9501,15 +8722,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "13",
-					"chrome_android": "18",
-					"edge": "79",
-					"firefox": "3.6",
-					"firefox_android": "4",
-					"safari": "6",
-					"safari_ios": "6"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -9523,6 +8735,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3",
+				"FM4",
 				"IE5"
 			],
 			"values": [
@@ -9551,11 +8764,7 @@ export const cssData : CSSDataV1 = {
 			"syntax": "auto | normal | active | inactive | disabled",
 			"relevance": 0,
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "3",
-					"firefox_android": "4"
-				}
+				"status": "false"
 			},
 			"description": "Controls the state of the input method editor for text fields.",
 			"restrictions": [
@@ -9567,8 +8776,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"values": [
@@ -9587,15 +8799,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -9610,8 +8813,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF36",
+				"FM36",
 				"S8",
+				"SM8",
 				"C41",
+				"CM41",
 				"O30"
 			],
 			"values": [
@@ -9634,15 +8840,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "41",
-					"chrome_android": "41",
-					"edge": "79",
-					"firefox": "36",
-					"firefox_android": "36",
-					"safari": "8",
-					"safari_ios": "8"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -9656,8 +8853,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF20",
+				"FM20",
 				"S9",
+				"SM9",
 				"C29",
+				"CM29",
 				"IE11",
 				"O12.1"
 			],
@@ -9737,15 +8937,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "29",
-					"chrome_android": "29",
-					"edge": "12",
-					"firefox": "20",
-					"firefox_android": "20",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -9774,8 +8965,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE5.5",
 				"O5"
 			],
@@ -9795,15 +8989,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -9818,8 +9003,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -9839,15 +9027,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -9861,8 +9040,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3",
+				"FM4",
 				"S6",
+				"SM6",
 				"C5",
+				"CM18",
 				"IE11",
 				"O15"
 			],
@@ -9876,15 +9058,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "5",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "3",
-					"firefox_android": "4",
-					"safari": "6",
-					"safari_ios": "6"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -9898,8 +9071,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E14",
 				"FF69",
+				"FM79",
 				"S11",
+				"SM11",
 				"C58",
+				"CM58",
 				"IE5.5",
 				"O45"
 			],
@@ -9935,15 +9111,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "58",
-					"chrome_android": "58",
-					"edge": "14",
-					"firefox": "69",
-					"firefox_android": "79",
-					"safari": "11",
-					"safari_ios": "11"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -9957,8 +9124,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O7"
 			],
@@ -9978,15 +9148,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -10002,8 +9163,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O7"
 			],
@@ -10060,8 +9224,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -10090,15 +9257,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -10114,8 +9272,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O7"
 			],
@@ -10135,15 +9296,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -10157,8 +9309,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -10182,15 +9337,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -10204,8 +9350,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -10263,8 +9412,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O3.5"
 					],
@@ -10293,15 +9445,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -10316,8 +9459,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE3",
 				"O3.5"
 			],
@@ -10336,15 +9482,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -10359,8 +9496,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"values": [
@@ -10378,15 +9518,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -10401,8 +9532,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"values": [
@@ -10420,15 +9554,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -10443,8 +9568,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE3",
 				"O3.5"
 			],
@@ -10463,15 +9591,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -10486,8 +9605,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"values": [
@@ -10505,15 +9627,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -10528,8 +9641,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"values": [
@@ -10547,15 +9663,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -10570,8 +9677,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE3",
 				"O3.5"
 			],
@@ -10590,15 +9700,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -10613,8 +9714,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE3",
 				"O3.5"
 			],
@@ -10633,15 +9737,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -10656,8 +9751,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE3",
 				"O3.5"
 			],
@@ -10676,15 +9774,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -10699,8 +9788,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
+				"FM79",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"values": [
@@ -10723,15 +9815,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "≤72",
-					"firefox_android": "≤79",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -10745,8 +9828,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
+				"FM79",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"values": [
@@ -10769,15 +9855,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "≤72",
-					"firefox_android": "≤79",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -10791,8 +9868,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
+				"FM79",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"values": [
@@ -10815,15 +9895,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "≤72",
-					"firefox_android": "≤79",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -10837,8 +9908,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
+				"FM79",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"values": [
@@ -10861,15 +9935,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "≤72",
-					"firefox_android": "≤79",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -10883,8 +9948,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E120",
 				"FF53",
+				"FM53",
 				"S15.4",
+				"SM15.4",
 				"C120",
+				"CM120",
 				"O15"
 			],
 			"values": [
@@ -10907,15 +9975,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "120",
-					"chrome_android": "120",
-					"edge": "120",
-					"firefox": "53",
-					"firefox_android": "53",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2023-12-07"
 			},
 			"description": "Sets the mask layer image of an element.",
@@ -10930,8 +9989,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E120",
 				"FF53",
+				"FM53",
 				"S15.4",
+				"SM15.4",
 				"C120",
+				"CM120",
 				"O106"
 			],
 			"values": [
@@ -10958,15 +10020,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "120",
-					"chrome_android": "120",
-					"edge": "120",
-					"firefox": "53",
-					"firefox_android": "53",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2023-12-07"
 			},
 			"description": "Indicates whether the mask layer image is treated as luminance mask or alpha mask.",
@@ -10981,8 +10034,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E120",
 				"FF53",
+				"FM53",
 				"S15.4",
+				"SM15.4",
 				"C120",
+				"CM120",
 				"O106"
 			],
 			"syntax": "<coord-box>#",
@@ -10995,15 +10051,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "120",
-					"chrome_android": "120",
-					"edge": "120",
-					"firefox": "53",
-					"firefox_android": "53",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2023-12-07"
 			},
 			"description": "Specifies the mask positioning area.",
@@ -11017,8 +10064,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E120",
 				"FF53",
+				"FM53",
 				"S15.4",
+				"SM15.4",
 				"C120",
+				"CM120",
 				"O106"
 			],
 			"syntax": "<position>#",
@@ -11031,15 +10081,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "120",
-					"chrome_android": "120",
-					"edge": "120",
-					"firefox": "53",
-					"firefox_android": "53",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2023-12-07"
 			},
 			"description": "Specifies how mask layer images are positioned.",
@@ -11054,8 +10095,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E120",
 				"FF53",
+				"FM53",
 				"S15.4",
+				"SM15.4",
 				"C120",
+				"CM120",
 				"O106"
 			],
 			"syntax": "<repeat-style>#",
@@ -11068,15 +10112,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "120",
-					"chrome_android": "120",
-					"edge": "120",
-					"firefox": "53",
-					"firefox_android": "53",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2023-12-07"
 			},
 			"description": "Specifies how mask layer images are tiled after they have been sized and positioned.",
@@ -11089,8 +10124,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E120",
 				"FF53",
+				"FM53",
 				"S15.4",
+				"SM15.4",
 				"C120",
+				"CM120",
 				"O106"
 			],
 			"values": [
@@ -11117,15 +10155,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "120",
-					"chrome_android": "120",
-					"edge": "120",
-					"firefox": "53",
-					"firefox_android": "53",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2023-12-07"
 			},
 			"description": "Specifies the size of the mask layer images.",
@@ -11140,8 +10169,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF35",
+				"FM35",
 				"S7",
+				"SM7",
 				"C24",
+				"CM25",
 				"O15"
 			],
 			"values": [
@@ -11164,15 +10196,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "24",
-					"chrome_android": "25",
-					"edge": "79",
-					"firefox": "35",
-					"firefox_android": "35",
-					"safari": "7",
-					"safari_ios": "7"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -11186,8 +10209,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"values": [
@@ -11206,15 +10232,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -11229,8 +10246,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1.3",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE7",
 				"O7"
 			],
@@ -11244,8 +10264,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1.3",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE7",
 						"O7"
 					],
@@ -11256,8 +10279,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1.3",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE7",
 						"O7"
 					],
@@ -11268,8 +10294,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1.3",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE7",
 						"O7"
 					],
@@ -11286,15 +10315,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1.3",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -11309,8 +10329,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"values": [
@@ -11329,15 +10352,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -11352,8 +10366,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE7",
 				"O4"
 			],
@@ -11367,8 +10384,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE7",
 						"O4"
 					],
@@ -11379,8 +10399,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE7",
 						"O4"
 					],
@@ -11391,8 +10414,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE7",
 						"O4"
 					],
@@ -11409,15 +10435,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -11432,8 +10449,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"syntax": "<'min-width'>",
@@ -11446,15 +10466,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -11469,8 +10480,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3",
+				"FM4",
 				"S1.3",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE7",
 				"O4"
 			],
@@ -11480,8 +10494,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF3",
+						"FM4",
 						"S1.3",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE7",
 						"O4"
 					]
@@ -11491,8 +10508,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF3",
+						"FM4",
 						"S1.3",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE7",
 						"O4"
 					],
@@ -11503,8 +10523,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF3",
+						"FM4",
 						"S1.3",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE7",
 						"O4"
 					],
@@ -11515,8 +10538,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF3",
+						"FM4",
 						"S1.3",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE7",
 						"O4"
 					],
@@ -11533,15 +10559,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "3",
-					"firefox_android": "4",
-					"safari": "1.3",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -11556,8 +10573,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"syntax": "<'min-width'>",
@@ -11570,15 +10590,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -11593,8 +10604,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE7",
 				"O4"
 			],
@@ -11604,8 +10618,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE7",
 						"O4"
 					]
@@ -11615,8 +10632,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE7",
 						"O4"
 					],
@@ -11627,8 +10647,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE7",
 						"O4"
 					],
@@ -11639,8 +10662,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE7",
 						"O4"
 					],
@@ -11657,15 +10683,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -11680,8 +10697,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF32",
+				"FM32",
 				"S8",
+				"SM8",
 				"C41",
+				"CM41",
 				"O28"
 			],
 			"values": [
@@ -11738,8 +10758,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF32",
+						"FM32",
 						"S8",
+						"SM8",
 						"C41",
+						"CM41",
 						"O28"
 					],
 					"description": "Creates a color with the hue of the source color and the saturation and luminosity of the backdrop color."
@@ -11749,8 +10772,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF32",
+						"FM32",
 						"S8",
+						"SM8",
 						"C41",
+						"CM41",
 						"O28"
 					],
 					"description": "Creates a color with the saturation of the source color and the hue and luminosity of the backdrop color."
@@ -11760,8 +10786,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF32",
+						"FM32",
 						"S8",
+						"SM8",
 						"C41",
+						"CM41",
 						"O28"
 					],
 					"description": "Creates a color with the hue and saturation of the source color and the luminosity of the backdrop color."
@@ -11771,8 +10800,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF32",
+						"FM32",
 						"S8",
+						"SM8",
 						"C41",
+						"CM41",
 						"O28"
 					],
 					"description": "Creates a color with the luminosity of the source color and the hue and saturation of the backdrop color."
@@ -11788,15 +10820,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "41",
-					"chrome_android": "41",
-					"edge": "79",
-					"firefox": "32",
-					"firefox_android": "32",
-					"safari": "8",
-					"safari_ios": "8"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -13184,7 +12207,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "-moz-user-focus",
 			"browsers": [
-				"FF1"
+				"FF1",
+				"FM4"
 			],
 			"values": [
 				{
@@ -13204,8 +12228,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": "Used to indicate whether the element can have focus."
 		},
@@ -15794,8 +14817,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF36",
+				"FM36",
 				"S10",
+				"SM10",
 				"C32",
+				"CM32",
 				"O19"
 			],
 			"values": [
@@ -15830,15 +14856,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "32",
-					"chrome_android": "32",
-					"edge": "79",
-					"firefox": "36",
-					"firefox_android": "36",
-					"safari": "10",
-					"safari_ios": "10"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -15852,8 +14869,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF36",
+				"FM36",
 				"S10",
+				"SM10",
 				"C32",
+				"CM32",
 				"O19"
 			],
 			"syntax": "<position>",
@@ -15866,15 +14886,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "32",
-					"chrome_android": "32",
-					"edge": "79",
-					"firefox": "36",
-					"firefox_android": "36",
-					"safari": "10",
-					"safari_ios": "10"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -15980,8 +14991,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S2",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE9",
 				"O9"
 			],
@@ -15995,15 +15009,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "2",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -16017,8 +15022,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF20",
+				"FM20",
 				"S9",
+				"SM9",
 				"C29",
+				"CM29",
 				"IE11",
 				"O12.1"
 			],
@@ -16032,15 +15040,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "29",
-					"chrome_android": "29",
-					"edge": "12",
-					"firefox": "20",
-					"firefox_android": "20",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -16054,7 +15053,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"S1.3",
+				"SM1",
 				"C25",
+				"CM25",
 				"IE8",
 				"O9.2"
 			],
@@ -16067,14 +15068,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "25",
-					"chrome_android": "25",
-					"edge": "12",
-					"safari": "1.3",
-					"safari_ios": "1"
-				}
+				"status": "false"
 			},
 			"description": "Specifies the minimum number of line boxes in a block container that must be left in a fragment before a fragmentation break.",
 			"restrictions": [
@@ -16389,8 +15383,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E94",
 				"FF88",
+				"FM88",
 				"S16.4",
+				"SM16.4",
 				"C94",
+				"CM94",
 				"IE8",
 				"O80"
 			],
@@ -16404,8 +15401,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E94",
 						"FF88",
+						"FM88",
 						"S16.4",
+						"SM16.4",
 						"C94",
+						"CM94",
 						"IE8",
 						"O80"
 					],
@@ -16422,15 +15422,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "94",
-					"chrome_android": "94",
-					"edge": "94",
-					"firefox": "88",
-					"firefox_android": "88",
-					"safari": "16.4",
-					"safari_ios": "16.4"
-				},
 				"baseline_low_date": "2023-03-27"
 			},
 			"description": "Shorthand property for 'outline-style', 'outline-width', and 'outline-color'.",
@@ -16447,8 +15438,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1.5",
+				"FM4",
 				"S1.2",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE8",
 				"O7"
 			],
@@ -16458,8 +15452,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1.5",
+						"FM4",
 						"S1.2",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE8",
 						"O7"
 					],
@@ -16476,15 +15473,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1.5",
-					"firefox_android": "4",
-					"safari": "1.2",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -16499,8 +15487,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E15",
 				"FF1.5",
+				"FM4",
 				"S1.2",
+				"SM1",
 				"C1",
+				"CM18",
 				"O9.5"
 			],
 			"syntax": "<length>",
@@ -16513,15 +15504,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "15",
-					"firefox": "1.5",
-					"firefox_android": "4",
-					"safari": "1.2",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2017-04-05",
 				"baseline_high_date": "2019-10-05"
 			},
@@ -16535,8 +15517,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1.5",
+				"FM4",
 				"S1.2",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE8",
 				"O7"
 			],
@@ -16556,15 +15541,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1.5",
-					"firefox_android": "4",
-					"safari": "1.2",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -16579,8 +15555,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1.5",
+				"FM4",
 				"S1.2",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE8",
 				"O7"
 			],
@@ -16594,15 +15573,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1.5",
-					"firefox_android": "4",
-					"safari": "1.2",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -16617,8 +15587,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O7"
 			],
@@ -16636,8 +15609,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O7"
 					],
@@ -16662,15 +15638,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -16684,8 +15651,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E18",
 				"FF49",
+				"FM49",
 				"S7",
+				"SM7",
 				"C23",
+				"CM25",
 				"IE5.5",
 				"O12.1"
 			],
@@ -16713,15 +15683,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "23",
-					"chrome_android": "25",
-					"edge": "18",
-					"firefox": "49",
-					"firefox_android": "49",
-					"safari": "7",
-					"safari_ios": "7"
-				},
 				"baseline_low_date": "2018-10-02",
 				"baseline_high_date": "2021-04-02"
 			},
@@ -16735,8 +15696,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
+				"FM4",
 				"S3",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE5",
 				"O9.5"
 			],
@@ -16768,15 +15732,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "3.5",
-					"firefox_android": "4",
-					"safari": "3",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -16790,8 +15745,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
+				"FM4",
 				"S3",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE5",
 				"O9.5"
 			],
@@ -16823,15 +15781,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "3.5",
-					"firefox_android": "4",
-					"safari": "3",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -16861,8 +15810,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -16877,15 +15829,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -16900,8 +15843,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -16915,15 +15861,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -16938,8 +15875,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"syntax": "<'padding-top'>",
@@ -16952,15 +15892,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -16975,8 +15906,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"syntax": "<'padding-top'>",
@@ -16989,15 +15923,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -17012,8 +15937,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"syntax": "<'padding-top'>",
@@ -17026,15 +15954,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -17049,8 +15968,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S12.1",
+				"SM12.2",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"syntax": "<'padding-top'>",
@@ -17063,15 +15985,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -17086,8 +15999,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -17101,15 +16017,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -17124,8 +16031,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -17139,15 +16049,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -17162,8 +16063,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -17177,15 +16081,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -17200,8 +16095,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1.2",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O7"
 			],
@@ -17237,16 +16135,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1.2",
-					"safari_ios": "1"
-				}
+				"status": "false"
 			},
 			"description": "Defines rules for page breaks after an element.",
 			"restrictions": [
@@ -17258,8 +16147,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1.2",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O7"
 			],
@@ -17295,16 +16187,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1.2",
-					"safari_ios": "1"
-				}
+				"status": "false"
 			},
 			"description": "Defines rules for page breaks before an element.",
 			"restrictions": [
@@ -17316,8 +16199,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF19",
+				"FM19",
 				"S1.3",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE8",
 				"O7"
 			],
@@ -17341,16 +16227,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "19",
-					"firefox_android": "19",
-					"safari": "1.3",
-					"safari_ios": "1"
-				}
+				"status": "false"
 			},
 			"description": "Defines rules for page breaks inside an element.",
 			"restrictions": [
@@ -17362,8 +16239,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E123",
 				"FF60",
+				"FM60",
 				"S11",
+				"SM11",
 				"C123",
+				"CM123",
 				"O109"
 			],
 			"values": [
@@ -17391,15 +16271,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "123",
-					"chrome_android": "123",
-					"edge": "123",
-					"firefox": "60",
-					"firefox_android": "60",
-					"safari": "11",
-					"safari_ios": "11"
-				},
 				"baseline_low_date": "2024-03-22"
 			},
 			"description": "Controls the order that the three paint operations that shapes and text are rendered with: their fill, their stroke and any markers they might have.",
@@ -17412,8 +16283,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S9",
+				"SM9",
 				"C36",
+				"CM36",
 				"IE10",
 				"O23"
 			],
@@ -17433,15 +16307,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "36",
-					"chrome_android": "36",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -17456,8 +16321,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S9",
+				"SM9",
 				"C36",
+				"CM36",
 				"IE10",
 				"O23"
 			],
@@ -17471,15 +16339,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "36",
-					"chrome_android": "36",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -17495,8 +16354,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1.5",
+				"FM4",
 				"S4",
+				"SM3.2",
 				"C1",
+				"CM18",
 				"IE11",
 				"O9"
 			],
@@ -17548,15 +16410,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1.5",
-					"firefox_android": "4",
-					"safari": "4",
-					"safari_ios": "3.2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -17570,8 +16423,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O4"
 			],
@@ -17589,8 +16445,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O4"
 					],
@@ -17609,8 +16468,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O4"
 					],
@@ -17621,8 +16483,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O4"
 					],
@@ -17639,15 +16504,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -17676,8 +16532,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1.5",
+				"FM4",
 				"S9",
+				"SM9",
 				"C11",
+				"CM18",
 				"IE8",
 				"O4"
 			],
@@ -17697,15 +16556,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "11",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1.5",
-					"firefox_android": "4",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -17743,8 +16593,10 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF4",
+				"FM4",
 				"S3",
 				"C1",
+				"CM18",
 				"O12.1"
 			],
 			"values": [
@@ -17774,15 +16626,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "79",
-					"firefox": "4",
-					"firefox_android": "4",
-					"safari": "3"
-				}
+				"status": "false"
 			},
 			"description": "Specifies whether or not an element is resizable by the user, and if so, along which axis/axes.",
 			"restrictions": [
@@ -17794,8 +16638,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE5.5",
 				"O5"
 			],
@@ -17815,15 +16662,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -17838,8 +16676,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E128",
 				"FF38",
+				"FM38",
 				"S18.2",
+				"SM18.2",
 				"C128",
+				"CM128",
 				"O114"
 			],
 			"values": [
@@ -17848,8 +16689,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E128",
 						"FF38",
+						"FM38",
 						"S18.2",
+						"SM18.2",
 						"C128",
+						"CM128",
 						"O114"
 					],
 					"description": "The user agent determines how the ruby contents are aligned. This is the initial value."
@@ -17863,8 +16707,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E128",
 						"FF38",
+						"FM38",
 						"S18.2",
+						"SM18.2",
 						"C128",
+						"CM128",
 						"O114"
 					],
 					"description": "If the width of the ruby text is smaller than that of the base, then the ruby text contents are evenly distributed across the width of the base, with the first and last ruby text glyphs lining up with the corresponding first and last base glyphs. If the width of the ruby text is at least the width of the base, then the letters of the base are evenly distributed across the width of the ruby text."
@@ -17874,8 +16721,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E128",
 						"FF38",
+						"FM38",
 						"S18.2",
+						"SM18.2",
 						"C128",
+						"CM128",
 						"O114"
 					],
 					"description": "If the width of the ruby text is smaller than that of the base, then the ruby text contents are evenly distributed across the width of the base, with a certain amount of white space preceding the first and following the last character in the ruby text. That amount of white space is normally equal to half the amount of inter-character space of the ruby text."
@@ -17889,8 +16739,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E128",
 						"FF38",
+						"FM38",
 						"S18.2",
+						"SM18.2",
 						"C128",
+						"CM128",
 						"O114"
 					],
 					"description": "If the ruby text is not adjacent to a line edge, it is aligned as in 'auto'. If it is adjacent to a line edge, then it is still aligned as in auto, but the side of the ruby text that touches the end of the line is lined up with the corresponding edge of the base."
@@ -17900,8 +16753,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E128",
 						"FF38",
+						"FM38",
 						"S18.2",
+						"SM18.2",
 						"C128",
+						"CM128",
 						"O114"
 					],
 					"description": "The ruby text content is aligned with the end edge of the base."
@@ -17911,8 +16767,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E128",
 						"FF38",
+						"FM38",
 						"S18.2",
+						"SM18.2",
 						"C128",
+						"CM128",
 						"O114"
 					],
 					"description": "The ruby text content is aligned with the start edge of the base."
@@ -17922,8 +16781,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E128",
 						"FF38",
+						"FM38",
 						"S18.2",
+						"SM18.2",
 						"C128",
+						"CM128",
 						"O114"
 					],
 					"description": "The ruby content expands as defined for normal text justification (as defined by 'text-justify'),"
@@ -17933,8 +16795,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E128",
 						"FF38",
+						"FM38",
 						"S18.2",
+						"SM18.2",
 						"C128",
+						"CM128",
 						"O114"
 					],
 					"description": "As for 'space-between' except that there exists an extra justification opportunities whose space is distributed half before and half after the ruby content."
@@ -17950,15 +16815,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "128",
-					"chrome_android": "128",
-					"edge": "128",
-					"firefox": "38",
-					"firefox_android": "38",
-					"safari": "18.2",
-					"safari_ios": "18.2"
-				},
 				"baseline_low_date": "2024-12-11"
 			},
 			"description": "Specifies how text is distributed within the various ruby boxes when their contents do not exactly fill their respective boxes.",
@@ -17969,7 +16825,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "ruby-overhang",
 			"browsers": [
-				"S18.2"
+				"S18.2",
+				"SM18.2"
 			],
 			"values": [
 				{
@@ -17991,11 +16848,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 50,
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari": "18.2",
-					"safari_ios": "18.2"
-				}
+				"status": "false"
 			},
 			"description": "Determines whether, and on which side, ruby text is allowed to partially overhang any adjacent text in addition to its own base, when the ruby text is wider than the ruby base.",
 			"restrictions": [
@@ -18007,8 +16860,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E84",
 				"FF38",
+				"FM38",
 				"S18.2",
+				"SM18.2",
 				"C84",
+				"CM84",
 				"O70"
 			],
 			"values": [
@@ -18038,15 +16894,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "84",
-					"chrome_android": "84",
-					"edge": "84",
-					"firefox": "38",
-					"firefox_android": "38",
-					"safari": "18.2",
-					"safari_ios": "18.2"
-				},
 				"baseline_low_date": "2024-12-11"
 			},
 			"description": "Used by the parent of elements with display: ruby-text to control the position of the ruby text with respect to its base.",
@@ -18168,8 +17015,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF36",
+				"FM36",
 				"S15.4",
+				"SM15.4",
 				"C61",
+				"CM61",
 				"O48"
 			],
 			"values": [
@@ -18192,15 +17042,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "61",
-					"chrome_android": "61",
-					"edge": "79",
-					"firefox": "36",
-					"firefox_android": "36",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2022-03-14",
 				"baseline_high_date": "2024-09-14"
 			},
@@ -18297,8 +17138,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF99",
+				"FM68",
 				"S11",
+				"SM11",
 				"C69",
+				"CM69",
 				"IE10",
 				"O56"
 			],
@@ -18326,15 +17170,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "99",
-					"firefox_android": "39",
-					"safari": "11",
-					"safari_ios": "11"
-				},
 				"baseline_low_date": "2022-04-05",
 				"baseline_high_date": "2024-10-05"
 			},
@@ -18348,8 +17183,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF62",
+				"FM62",
 				"S10.1",
+				"SM10.3",
 				"C37",
+				"CM37",
 				"O24"
 			],
 			"syntax": "<opacity-value>",
@@ -18362,15 +17200,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "37",
-					"chrome_android": "37",
-					"edge": "79",
-					"firefox": "62",
-					"firefox_android": "62",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -18384,8 +17213,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF62",
+				"FM62",
 				"S10.1",
+				"SM10.3",
 				"C37",
+				"CM37",
 				"O24"
 			],
 			"syntax": "<length-percentage>",
@@ -18398,15 +17230,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "37",
-					"chrome_android": "37",
-					"edge": "79",
-					"firefox": "62",
-					"firefox_android": "62",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -18422,8 +17245,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF62",
+				"FM62",
 				"S10.1",
+				"SM10.3",
 				"C37",
+				"CM37",
 				"O24"
 			],
 			"values": [
@@ -18446,15 +17272,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "37",
-					"chrome_android": "37",
-					"edge": "79",
-					"firefox": "62",
-					"firefox_android": "62",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -18471,8 +17288,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
+				"FM79",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"values": [
@@ -18503,15 +17323,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "≤72",
-					"firefox_android": "≤79",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -18565,8 +17376,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
+				"FM79",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"syntax": "<'color'>",
@@ -18579,15 +17393,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "≤72",
-					"firefox_android": "≤79",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -18601,8 +17406,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
+				"FM79",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"syntax": "<'opacity'>",
@@ -18615,15 +17423,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "≤72",
-					"firefox_android": "≤79",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -18637,8 +17436,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
+				"FM79",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"values": [
@@ -18661,15 +17463,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "≤72",
-					"firefox_android": "≤79",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -18685,8 +17478,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF1",
+				"FM4",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"values": [
@@ -18705,15 +17501,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-03-24",
 				"baseline_high_date": "2022-09-24"
 			},
@@ -18730,8 +17517,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF1",
+				"FM4",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"syntax": "<length-percentage> | <number>",
@@ -18744,15 +17534,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-03-24",
 				"baseline_high_date": "2022-09-24"
 			},
@@ -18767,8 +17548,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF1",
+				"FM4",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"values": [
@@ -18795,15 +17579,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-03-24",
 				"baseline_high_date": "2022-09-24"
 			},
@@ -18817,8 +17592,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF1",
+				"FM4",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"values": [
@@ -18845,15 +17623,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-03-24",
 				"baseline_high_date": "2022-09-24"
 			},
@@ -18867,8 +17636,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF1",
+				"FM4",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"syntax": "<number>",
@@ -18881,15 +17653,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-03-24",
 				"baseline_high_date": "2022-09-24"
 			},
@@ -18903,8 +17666,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF1",
+				"FM4",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"syntax": "<'opacity'>",
@@ -18917,15 +17683,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-03-24",
 				"baseline_high_date": "2022-09-24"
 			},
@@ -18939,8 +17696,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF1",
+				"FM4",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"syntax": "<length-percentage> | <number>",
@@ -18953,15 +17713,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-03-24",
 				"baseline_high_date": "2022-09-24"
 			},
@@ -19050,8 +17801,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM3",
 				"C14",
+				"CM18",
 				"IE5",
 				"O7"
 			],
@@ -19075,15 +17829,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "14",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "3"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -19097,8 +17842,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF91",
+				"FM91",
 				"S7",
+				"SM7",
 				"C21",
+				"CM25",
 				"O15"
 			],
 			"syntax": "<integer> | <length>",
@@ -19111,15 +17859,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "21",
-					"chrome_android": "25",
-					"edge": "79",
-					"firefox": "91",
-					"firefox_android": "91",
-					"safari": "7",
-					"safari_ios": "7"
-				},
 				"baseline_low_date": "2021-08-10",
 				"baseline_high_date": "2024-02-10"
 			},
@@ -19134,8 +17873,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE3",
 				"O3.5"
 			],
@@ -19149,8 +17891,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE3",
 						"O3.5"
 					],
@@ -19173,8 +17918,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE3",
 						"O3.5"
 					],
@@ -19191,15 +17939,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -19213,8 +17952,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF49",
+				"FM49",
 				"S16",
+				"SM16",
 				"C47",
+				"CM47",
 				"IE5.5",
 				"O34"
 			],
@@ -19250,15 +17992,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "47",
-					"chrome_android": "47",
-					"edge": "12",
-					"firefox": "49",
-					"firefox_android": "49",
-					"safari": "16",
-					"safari_ios": "16"
-				},
 				"baseline_low_date": "2022-09-12",
 				"baseline_high_date": "2025-03-12"
 			},
@@ -19272,8 +18005,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
+				"FM79",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"values": [
@@ -19300,15 +18036,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "≤72",
-					"firefox_android": "≤79",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -19322,8 +18049,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE3",
 				"O3.5"
 			],
@@ -19375,15 +18105,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -19398,8 +18119,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF36",
+				"FM36",
 				"S12.1",
+				"SM12.2",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"syntax": "<color>",
@@ -19412,15 +18136,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "79",
-					"firefox": "36",
-					"firefox_android": "36",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -19434,8 +18149,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF36",
+				"FM36",
 				"S12.1",
+				"SM12.2",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"values": [
@@ -19466,15 +18184,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "79",
-					"firefox": "36",
-					"firefox_android": "36",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -19488,8 +18197,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF36",
+				"FM36",
 				"S12.1",
+				"SM12.2",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"values": [
@@ -19528,15 +18240,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "79",
-					"firefox": "36",
-					"firefox_android": "36",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -19550,8 +18253,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE3",
 				"O3.5"
 			],
@@ -19566,15 +18272,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -19589,7 +18286,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF55",
+				"FM55",
 				"C32",
+				"CM32",
 				"IE11",
 				"O19"
 			],
@@ -19634,11 +18333,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "55",
-					"firefox_android": "55"
-				}
+				"status": "false"
 			},
 			"description": "Selects the justification algorithm used when 'text-align' is set to 'justify'. The property applies to block containers, but the UA may (but is not required to) also support it on inline elements.",
 			"restrictions": [
@@ -19650,8 +18345,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
+				"FM41",
 				"S14",
+				"SM14",
 				"C48",
+				"CM48",
 				"O35"
 			],
 			"values": [
@@ -19660,8 +18358,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF41",
+						"FM41",
 						"S14",
+						"SM14",
 						"C48",
+						"CM48",
 						"O35"
 					],
 					"description": "This value is equivalent to 'sideways-right' in 'vertical-rl' writing mode and equivalent to 'sideways-left' in 'vertical-lr' writing mode."
@@ -19671,8 +18372,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF41",
+						"FM41",
 						"S14",
+						"SM14",
 						"C48",
+						"CM48",
 						"O35"
 					],
 					"description": "In vertical writing modes, this causes text to be set as if in a horizontal layout, but rotated 90° clockwise."
@@ -19692,15 +18396,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "48",
-					"chrome_android": "48",
-					"edge": "79",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "14",
-					"safari_ios": "14"
-				},
 				"baseline_low_date": "2020-09-16",
 				"baseline_high_date": "2023-03-16"
 			},
@@ -19714,8 +18409,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF7",
+				"FM7",
 				"S1.3",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE6",
 				"O11"
 			],
@@ -19739,15 +18437,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "7",
-					"firefox_android": "7",
-					"safari": "1.3",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -19762,8 +18451,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF1",
+				"FM46",
 				"S5",
+				"SM4.2",
 				"C4",
+				"CM18",
 				"O15"
 			],
 			"values": [
@@ -19793,15 +18485,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "4",
-					"chrome_android": "18",
-					"edge": "79",
-					"firefox": "1",
-					"firefox_android": "46",
-					"safari": "5",
-					"safari_ios": "4.2"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -19815,8 +18498,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
+				"FM4",
 				"S1.1",
+				"SM1",
 				"C2",
+				"CM18",
 				"IE10",
 				"O9.5"
 			],
@@ -19836,15 +18522,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "2",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "3.5",
-					"firefox_android": "4",
-					"safari": "1.1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -19859,8 +18536,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O7"
 			],
@@ -19892,15 +18572,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -19914,8 +18585,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF74",
+				"FM79",
 				"S12.1",
+				"SM12.2",
 				"C33",
+				"CM33",
 				"IE6",
 				"O20"
 			],
@@ -19942,15 +18616,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "33",
-					"chrome_android": "33",
-					"edge": "12",
-					"firefox": "74",
-					"firefox_android": "79",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -19964,8 +18629,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE5",
 				"O6"
 			],
@@ -19985,15 +18653,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -20008,8 +18667,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF52",
+				"FM52",
 				"S13",
+				"SM9.3",
 				"C36",
+				"CM36",
 				"IE11",
 				"O23"
 			],
@@ -20023,8 +18685,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF52",
+						"FM52",
 						"S13",
+						"SM9.3",
 						"C36",
+						"CM36",
 						"IE11",
 						"O23"
 					]
@@ -20034,8 +18699,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF52",
+						"FM52",
 						"S13",
+						"SM9.3",
 						"C36",
+						"CM36",
 						"IE11",
 						"O23"
 					]
@@ -20045,8 +18713,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF52",
+						"FM52",
 						"S13",
+						"SM9.3",
 						"C36",
+						"CM36",
 						"IE11",
 						"O23"
 					]
@@ -20072,8 +18743,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF52",
+						"FM52",
 						"S13",
+						"SM9.3",
 						"C36",
+						"CM36",
 						"IE11",
 						"O23"
 					]
@@ -20089,15 +18763,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "36",
-					"chrome_android": "36",
-					"edge": "12",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "13",
-					"safari_ios": "9.3"
-				},
 				"baseline_low_date": "2019-09-19",
 				"baseline_high_date": "2022-03-19"
 			},
@@ -20111,8 +18776,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S9",
+				"SM9",
 				"C36",
+				"CM36",
 				"IE10",
 				"O23"
 			],
@@ -20215,15 +18883,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "36",
-					"chrome_android": "36",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -20237,8 +18896,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S9",
+				"SM9",
 				"C36",
+				"CM36",
 				"IE10",
 				"O23"
 			],
@@ -20252,15 +18914,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "36",
-					"chrome_android": "36",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -20276,8 +18929,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S9",
+				"SM9",
 				"C36",
+				"CM36",
 				"O23"
 			],
 			"values": [
@@ -20290,8 +18946,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF16",
+						"FM16",
 						"S9",
+						"SM9",
 						"C36",
+						"CM36",
 						"O23"
 					],
 					"description": "Flattening is not performed, so children maintain their position in 3D space."
@@ -20307,15 +18966,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "36",
-					"chrome_android": "36",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -20329,8 +18979,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S9",
+				"SM9",
 				"C26",
+				"CM26",
 				"IE10",
 				"O12.1"
 			],
@@ -20354,15 +19007,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "26",
-					"chrome_android": "26",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -20379,8 +19023,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S9",
+				"SM9",
 				"C26",
+				"CM26",
 				"IE10",
 				"O12.1"
 			],
@@ -20394,15 +19041,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "26",
-					"chrome_android": "26",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -20416,8 +19054,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S9",
+				"SM9",
 				"C26",
+				"CM26",
 				"IE10",
 				"O12.1"
 			],
@@ -20431,15 +19072,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "26",
-					"chrome_android": "26",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -20453,8 +19085,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S9",
+				"SM9",
 				"C26",
+				"CM26",
 				"IE10",
 				"O12.1"
 			],
@@ -20478,15 +19113,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "26",
-					"chrome_android": "26",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -20500,8 +19126,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S9",
+				"SM9",
 				"C26",
+				"CM26",
 				"IE10",
 				"O12.1"
 			],
@@ -20515,15 +19144,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "26",
-					"chrome_android": "26",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -20537,8 +19157,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1.3",
+				"SM1",
 				"C2",
+				"CM18",
 				"IE5.5",
 				"O9.2"
 			],
@@ -20556,8 +19179,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1.3",
+						"SM1",
 						"C2",
+						"CM18",
 						"IE5.5",
 						"O9.2"
 					],
@@ -20568,8 +19194,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1.3",
+						"SM1",
 						"C2",
+						"CM18",
 						"IE5.5",
 						"O9.2"
 					],
@@ -20584,8 +19213,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1.3",
+						"SM1",
 						"C2",
+						"CM18",
 						"IE5.5",
 						"O9.2"
 					],
@@ -20602,15 +19234,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "2",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1.3",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -20944,8 +19567,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF69",
+				"FM79",
 				"S3",
+				"SM3",
 				"C54",
+				"CM54",
 				"IE10",
 				"O41"
 			],
@@ -20979,14 +19605,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "54",
-					"chrome_android": "54",
-					"edge": "79",
-					"firefox": "69",
-					"firefox_android": "79"
-				}
+				"status": "false"
 			},
 			"description": "Controls the appearance of selection.",
 			"restrictions": [
@@ -20998,8 +19617,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O4"
 			],
@@ -21045,8 +19667,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O4"
 					]
@@ -21062,15 +19687,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -21085,8 +19701,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O4"
 			],
@@ -21114,15 +19733,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -21819,7 +20429,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S4",
+				"SM3.2",
 				"C4",
+				"CM18",
 				"O15"
 			],
 			"values": [
@@ -21850,14 +20462,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "4",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "4",
-					"safari_ios": "3.2"
-				}
+				"status": "false"
 			},
 			"description": "Defines a reflection of a border box."
 		},
@@ -22030,7 +20635,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S4",
+				"SM3.2",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"values": [
@@ -22079,14 +20686,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 50,
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "≤4",
-					"safari_ios": "≤3.2"
-				}
+				"status": "false"
 			},
 			"description": "Describes the page/column break behavior before the generated box.",
 			"restrictions": [
@@ -22098,7 +20698,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S4",
+				"SM3.2",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"values": [
@@ -22147,14 +20749,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 50,
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "≤4",
-					"safari_ios": "≤3.2"
-				}
+				"status": "false"
 			},
 			"description": "Describes the page/column break behavior before the generated box.",
 			"restrictions": [
@@ -22166,7 +20761,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S4",
+				"SM3.2",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"values": [
@@ -22192,14 +20789,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 50,
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "≤4",
-					"safari_ios": "≤3.2"
-				}
+				"status": "false"
 			},
 			"description": "Describes the page/column break behavior inside the generated box.",
 			"restrictions": [
@@ -22734,7 +21324,9 @@ export const cssData : CSSDataV1 = {
 			"name": "-webkit-nbsp-mode",
 			"browsers": [
 				"S4",
-				"C1"
+				"SM3.2",
+				"C1",
+				"CM18"
 			],
 			"values": [
 				{
@@ -22746,11 +21338,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 50,
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari": "≤4",
-					"safari_ios": "≤3.2"
-				}
+				"status": "false"
 			},
 			"description": "Defines the behavior of nonbreaking spaces within text."
 		},
@@ -22842,7 +21430,9 @@ export const cssData : CSSDataV1 = {
 			"name": "-webkit-tap-highlight-color",
 			"browsers": [
 				"E12",
+				"SM4",
 				"C16",
+				"CM18",
 				"O15"
 			],
 			"status": "nonstandard",
@@ -22855,13 +21445,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "16",
-					"chrome_android": "18",
-					"edge": "12",
-					"safari_ios": "4"
-				}
+				"status": "false"
 			},
 			"restrictions": [
 				"color"
@@ -22872,8 +21456,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF49",
+				"FM49",
 				"S3",
+				"SM2",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"syntax": "<color>",
@@ -22886,15 +21473,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "49",
-					"firefox_android": "49",
-					"safari": "3",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2016-09-20",
 				"baseline_high_date": "2019-03-20"
 			},
@@ -22930,8 +21508,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E15",
 				"FF49",
+				"FM49",
 				"S3",
+				"SM2",
 				"C4",
+				"CM18",
 				"O15"
 			],
 			"syntax": "<length> || <color>",
@@ -22944,15 +21525,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "4",
-					"chrome_android": "18",
-					"edge": "15",
-					"firefox": "49",
-					"firefox_android": "49",
-					"safari": "3",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2017-04-05",
 				"baseline_high_date": "2019-10-05"
 			},
@@ -22968,8 +21540,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E15",
 				"FF49",
+				"FM49",
 				"S3",
+				"SM2",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"syntax": "<color>",
@@ -22982,15 +21557,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "15",
-					"firefox": "49",
-					"firefox_android": "49",
-					"safari": "3",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2017-04-05",
 				"baseline_high_date": "2019-10-05"
 			},
@@ -23003,8 +21569,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E15",
 				"FF49",
+				"FM49",
 				"S3",
+				"SM2",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"syntax": "<length>",
@@ -23017,15 +21586,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "15",
-					"firefox": "49",
-					"firefox_android": "49",
-					"safari": "3",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2017-04-05",
 				"baseline_high_date": "2019-10-05"
 			},
@@ -23038,7 +21598,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "-webkit-touch-callout",
 			"browsers": [
-				"S3"
+				"SM2"
 			],
 			"values": [
 				{
@@ -23055,10 +21615,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari_ios": "2"
-				}
+				"status": "false"
 			},
 			"restrictions": [
 				"enum"
@@ -23186,19 +21743,14 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S4",
+				"SM3.2",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"relevance": 50,
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "≤4",
-					"safari_ios": "≤3.2"
-				}
+				"status": "false"
 			},
 			"description": "The x coordinate of the origin for transforms applied to an element with respect to its border box.",
 			"restrictions": [
@@ -23211,19 +21763,14 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S4",
+				"SM3.2",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"relevance": 50,
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "≤4",
-					"safari_ios": "≤3.2"
-				}
+				"status": "false"
 			},
 			"description": "The y coordinate of the origin for transforms applied to an element with respect to its border box.",
 			"restrictions": [
@@ -23236,19 +21783,14 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S4",
+				"SM3.2",
 				"C2",
+				"CM18",
 				"O15"
 			],
 			"relevance": 50,
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "2",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "≤4",
-					"safari_ios": "≤3.2"
-				}
+				"status": "false"
 			},
 			"description": "The z coordinate of the origin for transforms applied to an element with respect to its border box.",
 			"restrictions": [
@@ -23367,7 +21909,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S4",
+				"SM3.2",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"values": [
@@ -23383,14 +21927,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 50,
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "≤4",
-					"safari_ios": "≤3.2"
-				}
+				"status": "false"
 			},
 			"restrictions": [
 				"enum"
@@ -23451,7 +21988,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"S1.3",
+				"SM1",
 				"C25",
+				"CM25",
 				"IE8",
 				"O9.2"
 			],
@@ -23464,14 +22003,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "25",
-					"chrome_android": "25",
-					"edge": "12",
-					"safari": "1.3",
-					"safari_ios": "1"
-				}
+				"status": "false"
 			},
 			"description": "Specifies the minimum number of line boxes of a block container that must be left in a fragment after a break.",
 			"restrictions": [
@@ -23483,8 +22015,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -23498,8 +22033,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O3.5"
 					],
@@ -23510,8 +22048,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O3.5"
 					],
@@ -23522,8 +22063,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
+						"FM4",
 						"S1",
+						"SM1",
 						"C1",
+						"CM18",
 						"IE4",
 						"O3.5"
 					],
@@ -23540,15 +22084,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -23563,8 +22098,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF36",
+				"FM36",
 				"S9.1",
+				"SM9.3",
 				"C36",
+				"CM36",
 				"O23"
 			],
 			"values": [
@@ -23591,15 +22129,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "36",
-					"chrome_android": "36",
-					"edge": "79",
-					"firefox": "36",
-					"firefox_android": "36",
-					"safari": "9.1",
-					"safari_ios": "9.3"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -23614,8 +22143,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF15",
+				"FM15",
 				"S3",
+				"SM2",
 				"C1",
+				"CM18",
 				"IE5.5",
 				"O15"
 			],
@@ -23643,15 +22175,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "15",
-					"firefox_android": "15",
-					"safari": "3",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -23665,8 +22188,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE6",
 				"O3.5"
 			],
@@ -23686,15 +22212,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -23728,8 +22245,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF41",
+				"FM41",
 				"S10.1",
+				"SM10.3",
 				"C48",
+				"CM48",
 				"IE9",
 				"O35"
 			],
@@ -23743,8 +22263,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF41",
+						"FM41",
 						"S10.1",
+						"SM10.3",
 						"C48",
+						"CM48",
 						"IE9",
 						"O35"
 					],
@@ -23755,8 +22278,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF41",
+						"FM41",
 						"S10.1",
+						"SM10.3",
 						"C48",
+						"CM48",
 						"IE9",
 						"O35"
 					],
@@ -23781,15 +22307,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "48",
-					"chrome_android": "48",
-					"edge": "12",
-					"firefox": "41",
-					"firefox_android": "41",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2017-03-27",
 				"baseline_high_date": "2019-09-27"
 			},
@@ -23803,8 +22320,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O4"
 			],
@@ -23824,15 +22344,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -23846,8 +22357,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF126",
+				"FM126",
 				"S3.1",
+				"SM3",
 				"C1",
+				"CM18",
 				"IE5.5",
 				"O15"
 			],
@@ -23866,15 +22380,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "126",
-					"firefox_android": "126",
-					"safari": "3.1",
-					"safari_ios": "3"
-				},
 				"baseline_low_date": "2024-05-14"
 			},
 			"description": "Non-standard. Specifies the magnification scale of the object. See 'transform: scale()' for a standards-based alternative.",
@@ -23934,7 +22439,8 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 0,
 			"browsers": [
-				"FF1"
+				"FF1",
+				"FM4"
 			],
 			"references": [
 				{
@@ -23943,11 +22449,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "1",
-					"firefox_android": "4"
-				}
+				"status": "false"
 			},
 			"description": "The non-standard -moz-float-edge CSS property specifies whether the height and width properties of the element include the margin, border, or padding thickness."
 		},
@@ -23965,7 +22467,8 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 0,
 			"browsers": [
-				"FF1"
+				"FF1",
+				"FM4"
 			],
 			"references": [
 				{
@@ -23974,11 +22477,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "1",
-					"firefox_android": "4"
-				}
+				"status": "false"
 			},
 			"description": "The -moz-force-broken-image-icon extended CSS property can be used to force the broken image icon to be shown even when a broken image has an alt attribute."
 		},
@@ -23988,7 +22487,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "<shape> | auto",
 			"relevance": 0,
 			"browsers": [
-				"FF1"
+				"FF1",
+				"FM4"
 			],
 			"references": [
 				{
@@ -23997,8 +22497,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": "For certain XUL elements and pseudo-elements that use an image from the list-style-image property, this property specifies a region of the image that is used in place of the whole image. This allows elements to use different pieces of the same image to improve performance."
 		},
@@ -24022,7 +22521,8 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 0,
 			"browsers": [
-				"FF6"
+				"FF6",
+				"FM6"
 			],
 			"references": [
 				{
@@ -24031,11 +22531,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "6",
-					"firefox_android": "6"
-				}
+				"status": "false"
 			},
 			"description": "The -moz-orient CSS property specifies the orientation of the element to which it's applied."
 		},
@@ -24124,7 +22620,8 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 0,
 			"browsers": [
-				"FF1"
+				"FF1",
+				"FM4"
 			],
 			"references": [
 				{
@@ -24133,8 +22630,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": "In Mozilla applications, -moz-user-input determines if an element will accept user input."
 		},
@@ -24203,7 +22699,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S5.1",
+				"SM5",
 				"C8",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -24213,14 +22711,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "8",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "5.1",
-					"safari_ios": "5"
-				}
+				"status": "false"
 			},
 			"description": "The -webkit-border-before CSS property is a shorthand property for setting the individual logical block start border property values in a single place in the style sheet."
 		},
@@ -24273,7 +22764,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E18",
 				"S3.1",
+				"SM2",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -24283,14 +22776,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "18",
-					"safari": "3.1",
-					"safari_ios": "2"
-				}
+				"status": "false"
 			},
 			"description": "The -webkit-mask-composite property specifies the manner in which multiple mask images applied to the same element are composited with one another. Mask images are composited in the opposite order that they are declared with the -webkit-mask-image property."
 		},
@@ -24309,8 +22795,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E18",
 				"FF49",
+				"FM49",
 				"S3.1",
+				"SM2",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -24321,15 +22810,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "18",
-					"firefox": "49",
-					"firefox_android": "49",
-					"safari": "3.1",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2018-10-02",
 				"baseline_high_date": "2021-04-02"
 			},
@@ -24343,8 +22823,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E18",
 				"FF49",
+				"FM49",
 				"S3.1",
+				"SM2",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -24355,15 +22838,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "18",
-					"firefox": "49",
-					"firefox_android": "49",
-					"safari": "3.1",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2018-10-02",
 				"baseline_high_date": "2021-04-02"
 			},
@@ -24391,7 +22865,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S5",
+				"SM5",
 				"C3",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -24401,8 +22877,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": "The -webkit-mask-repeat-x property specifies whether and how a mask image is repeated (tiled) horizontally."
 		},
@@ -24428,7 +22903,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S5",
+				"SM5",
 				"C3",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -24438,8 +22915,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": "The -webkit-mask-repeat-y property specifies whether and how a mask image is repeated (tiled) vertically."
 		},
@@ -24450,8 +22926,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E93",
 				"FF92",
+				"FM92",
 				"S15.4",
+				"SM15.4",
 				"C93",
+				"CM93",
 				"O79"
 			],
 			"references": [
@@ -24461,14 +22940,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "93",
-					"chrome_android": "93",
-					"edge": "93",
-					"firefox": "92",
-					"firefox_android": "92"
-				}
+				"status": "false"
 			},
 			"description": "Sets the color of the elements accent"
 		},
@@ -24487,6 +22959,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E125",
 				"C125",
+				"CM125",
 				"O111"
 			],
 			"references": [
@@ -24496,12 +22969,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "125",
-					"chrome_android": "125",
-					"edge": "125"
-				}
+				"status": "false"
 			},
 			"description": "The anchor-name property declares that an element is an anchor element, and gives it a list of anchor names to be targeted by."
 		},
@@ -24513,15 +22981,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E131",
 				"C131",
+				"CM131",
 				"O116"
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "131",
-					"chrome_android": "131",
-					"edge": "131"
-				}
+				"status": "false"
 			},
 			"description": "This property scopes the specified anchor names, and lookups for these anchor names, to this element’s subtree"
 		},
@@ -24532,8 +22996,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E112",
 				"FF115",
+				"FM115",
 				"S16",
+				"SM16",
 				"C112",
+				"CM112",
 				"O98"
 			],
 			"references": [
@@ -24544,15 +23011,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "112",
-					"chrome_android": "112",
-					"edge": "112",
-					"firefox": "115",
-					"firefox_android": "115",
-					"safari": "16",
-					"safari_ios": "16"
-				},
 				"baseline_low_date": "2023-07-04"
 			},
 			"description": "The composite operation to use when multiple animations affect the same property."
@@ -24565,6 +23023,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E115",
 				"C115",
+				"CM115",
 				"O101"
 			],
 			"references": [
@@ -24574,12 +23033,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "115",
-					"chrome_android": "115",
-					"edge": "115"
-				}
+				"status": "false"
 			},
 			"description": "The animation-range CSS shorthand property is used to set the start and end of an animation's attachment range along its timeline, i.e. where along the timeline an animation will start and end."
 		},
@@ -24591,6 +23045,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E115",
 				"C115",
+				"CM115",
 				"O101"
 			],
 			"references": [
@@ -24600,12 +23055,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "115",
-					"chrome_android": "115",
-					"edge": "115"
-				}
+				"status": "false"
 			},
 			"description": "The animation-range-end CSS property is used to set the end of an animation's attachment range along its timeline, i.e. where along the timeline an animation will end."
 		},
@@ -24617,6 +23067,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E115",
 				"C115",
+				"CM115",
 				"O101"
 			],
 			"references": [
@@ -24626,12 +23077,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "115",
-					"chrome_android": "115",
-					"edge": "115"
-				}
+				"status": "false"
 			},
 			"description": "The animation-range-start CSS property is used to set the start of an animation's attachment range along its timeline, i.e. where along the timeline an animation will start."
 		},
@@ -24644,6 +23090,7 @@ export const cssData : CSSDataV1 = {
 				"E115",
 				"FF110",
 				"C115",
+				"CM115",
 				"O101"
 			],
 			"references": [
@@ -24653,12 +23100,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "115",
-					"chrome_android": "115",
-					"edge": "115"
-				}
+				"status": "false"
 			},
 			"description": "Specifies the names of one or more @scroll-timeline at-rules to describe the element's scroll animations."
 		},
@@ -24669,8 +23111,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E84",
 				"FF80",
+				"FM80",
 				"S15.4",
+				"SM15.4",
 				"C84",
+				"CM84",
 				"O70"
 			],
 			"references": [
@@ -24681,15 +23126,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "84",
-					"chrome_android": "84",
-					"edge": "84",
-					"firefox": "80",
-					"firefox_android": "80",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2022-03-14",
 				"baseline_high_date": "2024-09-14"
 			},
@@ -24702,8 +23138,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E88",
 				"FF89",
+				"FM89",
 				"S15",
+				"SM15",
 				"C88",
+				"CM88",
 				"O74"
 			],
 			"references": [
@@ -24714,15 +23153,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "88",
-					"chrome_android": "88",
-					"edge": "88",
-					"firefox": "89",
-					"firefox_android": "89",
-					"safari": "15",
-					"safari_ios": "15"
-				},
 				"baseline_low_date": "2021-09-20",
 				"baseline_high_date": "2024-03-20"
 			},
@@ -24735,8 +23165,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF103",
+				"FM103",
 				"S18",
+				"SM18",
 				"C76",
+				"CM76",
 				"O63"
 			],
 			"references": [
@@ -24747,15 +23180,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "76",
-					"chrome_android": "76",
-					"edge": "79",
-					"firefox": "103",
-					"firefox_android": "103",
-					"safari": "18",
-					"safari_ios": "18"
-				},
 				"baseline_low_date": "2024-09-16"
 			},
 			"description": "The backdrop-filter CSS property lets you apply graphical effects such as blurring or color shifting to the area behind an element. Because it applies to everything behind the element, to see the effect you must make the element or its background at least partially transparent."
@@ -24767,8 +23191,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
+				"FM66",
 				"S14.1",
+				"SM14.5",
 				"C87",
+				"CM87",
 				"O73"
 			],
 			"references": [
@@ -24779,15 +23206,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "87",
-					"chrome_android": "87",
-					"edge": "87",
-					"firefox": "66",
-					"firefox_android": "66",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -24800,8 +23218,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
+				"FM66",
 				"S14.1",
+				"SM14.5",
 				"C87",
+				"CM87",
 				"O73"
 			],
 			"references": [
@@ -24812,15 +23233,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "87",
-					"chrome_android": "87",
-					"edge": "87",
-					"firefox": "66",
-					"firefox_android": "66",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -24833,8 +23245,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
+				"FM66",
 				"S14.1",
+				"SM14.5",
 				"C87",
+				"CM87",
 				"O73"
 			],
 			"references": [
@@ -24845,15 +23260,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "87",
-					"chrome_android": "87",
-					"edge": "87",
-					"firefox": "66",
-					"firefox_android": "66",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -24866,8 +23272,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
+				"FM66",
 				"S14.1",
+				"SM14.5",
 				"C87",
+				"CM87",
 				"O73"
 			],
 			"references": [
@@ -24878,15 +23287,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "87",
-					"chrome_android": "87",
-					"edge": "87",
-					"firefox": "66",
-					"firefox_android": "66",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -24899,8 +23299,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E89",
 				"FF66",
+				"FM66",
 				"S15",
+				"SM15",
 				"C89",
+				"CM89",
 				"O75"
 			],
 			"references": [
@@ -24911,15 +23314,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "89",
-					"chrome_android": "89",
-					"edge": "89",
-					"firefox": "66",
-					"firefox_android": "66",
-					"safari": "15",
-					"safari_ios": "15"
-				},
 				"baseline_low_date": "2021-09-20",
 				"baseline_high_date": "2024-03-20"
 			},
@@ -24932,8 +23326,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E89",
 				"FF66",
+				"FM66",
 				"S15",
+				"SM15",
 				"C89",
+				"CM89",
 				"O75"
 			],
 			"references": [
@@ -24944,15 +23341,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "89",
-					"chrome_android": "89",
-					"edge": "89",
-					"firefox": "66",
-					"firefox_android": "66",
-					"safari": "15",
-					"safari_ios": "15"
-				},
 				"baseline_low_date": "2021-09-20",
 				"baseline_high_date": "2024-03-20"
 			},
@@ -24965,8 +23353,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
+				"FM66",
 				"S14.1",
+				"SM14.5",
 				"C87",
+				"CM87",
 				"O73"
 			],
 			"references": [
@@ -24977,15 +23368,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "87",
-					"chrome_android": "87",
-					"edge": "87",
-					"firefox": "66",
-					"firefox_android": "66",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -24998,8 +23380,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
+				"FM66",
 				"S14.1",
+				"SM14.5",
 				"C87",
+				"CM87",
 				"O73"
 			],
 			"references": [
@@ -25010,15 +23395,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "87",
-					"chrome_android": "87",
-					"edge": "87",
-					"firefox": "66",
-					"firefox_android": "66",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -25031,8 +23407,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
+				"FM66",
 				"S14.1",
+				"SM14.5",
 				"C87",
+				"CM87",
 				"O73"
 			],
 			"references": [
@@ -25043,15 +23422,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "87",
-					"chrome_android": "87",
-					"edge": "87",
-					"firefox": "66",
-					"firefox_android": "66",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -25064,8 +23434,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
+				"FM66",
 				"S14.1",
+				"SM14.5",
 				"C87",
+				"CM87",
 				"O73"
 			],
 			"references": [
@@ -25076,15 +23449,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "87",
-					"chrome_android": "87",
-					"edge": "87",
-					"firefox": "66",
-					"firefox_android": "66",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -25097,8 +23461,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E89",
 				"FF66",
+				"FM66",
 				"S15",
+				"SM15",
 				"C89",
+				"CM89",
 				"O75"
 			],
 			"references": [
@@ -25109,15 +23476,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "89",
-					"chrome_android": "89",
-					"edge": "89",
-					"firefox": "66",
-					"firefox_android": "66",
-					"safari": "15",
-					"safari_ios": "15"
-				},
 				"baseline_low_date": "2021-09-20",
 				"baseline_high_date": "2024-03-20"
 			},
@@ -25130,8 +23488,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E89",
 				"FF66",
+				"FM66",
 				"S15",
+				"SM15",
 				"C89",
+				"CM89",
 				"O75"
 			],
 			"references": [
@@ -25142,15 +23503,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "89",
-					"chrome_android": "89",
-					"edge": "89",
-					"firefox": "66",
-					"firefox_android": "66",
-					"safari": "15",
-					"safari_ios": "15"
-				},
 				"baseline_low_date": "2021-09-20",
 				"baseline_high_date": "2024-03-20"
 			},
@@ -25181,8 +23533,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF49",
+				"FM49",
 				"S3",
+				"SM1",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -25192,8 +23547,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": "The box-align CSS property specifies how an element aligns its contents across its layout in a perpendicular direction. The effect of the property is only visible if there is extra space in the box."
 		},
@@ -25216,8 +23570,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF49",
+				"FM49",
 				"S3",
+				"SM1",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -25227,8 +23584,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": "The box-direction CSS property specifies whether a box lays out its contents normally (from the top or left edge), or in reverse (from the bottom or right edge)."
 		},
@@ -25240,8 +23596,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF49",
+				"FM49",
 				"S3",
+				"SM1",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -25251,8 +23610,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": "The -moz-box-flex and -webkit-box-flex CSS properties specify how a -moz-box or -webkit-box grows to fill the box that contains it, in the direction of the containing box's layout."
 		},
@@ -25263,7 +23621,9 @@ export const cssData : CSSDataV1 = {
 			"relevance": 0,
 			"browsers": [
 				"S3",
+				"SM1",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -25273,8 +23633,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": "The box-flex-group CSS property assigns the flexbox's child elements to a flex group."
 		},
@@ -25293,7 +23652,9 @@ export const cssData : CSSDataV1 = {
 			"relevance": 0,
 			"browsers": [
 				"S3",
+				"SM1",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -25303,8 +23664,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": "The box-lines CSS property determines whether the box may have a single or multiple lines (rows for horizontally oriented boxes, columns for vertically oriented boxes)."
 		},
@@ -25316,8 +23676,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF49",
+				"FM49",
 				"S3",
+				"SM1",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -25327,8 +23690,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": "The box-ordinal-group CSS property assigns the flexbox's child elements to an ordinal group."
 		},
@@ -25357,8 +23719,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF49",
+				"FM49",
 				"S3",
+				"SM1",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -25368,8 +23733,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": "The box-orient CSS property specifies whether an element lays out its contents horizontally or vertically."
 		},
@@ -25395,8 +23759,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF49",
+				"FM49",
 				"S3",
+				"SM1",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -25406,8 +23773,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": "The -moz-box-pack and -webkit-box-pack CSS properties specify how a -moz-box or -webkit-box packs its contents in the direction of its layout. The effect of this is only visible if there is extra space in the box."
 		},
@@ -25444,8 +23810,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E81",
 				"FF96",
+				"FM96",
 				"S13",
+				"SM13",
 				"C81",
+				"CM81",
 				"O68"
 			],
 			"references": [
@@ -25456,15 +23825,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "81",
-					"chrome_android": "81",
-					"edge": "81",
-					"firefox": "96",
-					"firefox_android": "96",
-					"safari": "13",
-					"safari_ios": "13"
-				},
 				"baseline_low_date": "2022-01-11",
 				"baseline_high_date": "2024-07-11"
 			},
@@ -25477,8 +23837,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E95",
 				"FF107",
+				"FM107",
 				"S17",
+				"SM17",
 				"C95",
+				"CM95",
 				"O81"
 			],
 			"references": [
@@ -25489,15 +23852,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "95",
-					"chrome_android": "95",
-					"edge": "95",
-					"firefox": "107",
-					"firefox_android": "107",
-					"safari": "17",
-					"safari_ios": "17"
-				},
 				"baseline_low_date": "2023-09-18"
 			},
 			"description": "Block size of an element when the element is subject to size containment."
@@ -25509,8 +23863,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E95",
 				"FF107",
+				"FM107",
 				"S17",
+				"SM17",
 				"C95",
+				"CM95",
 				"O81"
 			],
 			"references": [
@@ -25521,15 +23878,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "95",
-					"chrome_android": "95",
-					"edge": "95",
-					"firefox": "107",
-					"firefox_android": "107",
-					"safari": "17",
-					"safari_ios": "17"
-				},
 				"baseline_low_date": "2023-09-18"
 			},
 			"description": "Height of an element when the element is subject to size containment."
@@ -25541,8 +23889,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E95",
 				"FF107",
+				"FM107",
 				"S17",
+				"SM17",
 				"C95",
+				"CM95",
 				"O81"
 			],
 			"references": [
@@ -25553,15 +23904,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "95",
-					"chrome_android": "95",
-					"edge": "95",
-					"firefox": "107",
-					"firefox_android": "107",
-					"safari": "17",
-					"safari_ios": "17"
-				},
 				"baseline_low_date": "2023-09-18"
 			},
 			"description": "Inline size of an element when the element is subject to size containment."
@@ -25573,8 +23915,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E83",
 				"FF107",
+				"FM107",
 				"S17",
+				"SM17",
 				"C83",
+				"CM83",
 				"O69"
 			],
 			"references": [
@@ -25585,15 +23930,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "83",
-					"chrome_android": "83",
-					"edge": "83",
-					"firefox": "107",
-					"firefox_android": "107",
-					"safari": "17",
-					"safari_ios": "17"
-				},
 				"baseline_low_date": "2023-09-18"
 			},
 			"description": "Size of an element when the element is subject to size containment."
@@ -25605,8 +23941,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E95",
 				"FF107",
+				"FM107",
 				"S17",
+				"SM17",
 				"C95",
+				"CM95",
 				"O81"
 			],
 			"references": [
@@ -25617,15 +23956,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "95",
-					"chrome_android": "95",
-					"edge": "95",
-					"firefox": "107",
-					"firefox_android": "107",
-					"safari": "17",
-					"safari_ios": "17"
-				},
 				"baseline_low_date": "2023-09-18"
 			},
 			"description": "Width of an element when the element is subject to size containment."
@@ -25637,8 +23967,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E105",
 				"FF110",
+				"FM110",
 				"S16",
+				"SM16",
 				"C105",
+				"CM105",
 				"O91"
 			],
 			"references": [
@@ -25649,15 +23982,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "105",
-					"chrome_android": "105",
-					"edge": "105",
-					"firefox": "110",
-					"firefox_android": "110",
-					"safari": "16",
-					"safari_ios": "16"
-				},
 				"baseline_low_date": "2023-02-14"
 			},
 			"description": "The container shorthand CSS property establishes the element as a query container and specifies the name or name for the containment context used in a container query."
@@ -25669,8 +23993,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E105",
 				"FF110",
+				"FM110",
 				"S16",
+				"SM16",
 				"C105",
+				"CM105",
 				"O91"
 			],
 			"references": [
@@ -25681,15 +24008,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "105",
-					"chrome_android": "105",
-					"edge": "105",
-					"firefox": "110",
-					"firefox_android": "110",
-					"safari": "16",
-					"safari_ios": "16"
-				},
 				"baseline_low_date": "2023-02-14"
 			},
 			"description": "The container-name CSS property specifies a list of query container names used by the @container at-rule in a container query."
@@ -25712,8 +24030,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E105",
 				"FF110",
+				"FM110",
 				"S16",
+				"SM16",
 				"C105",
+				"CM105",
 				"O91"
 			],
 			"references": [
@@ -25724,15 +24045,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "105",
-					"chrome_android": "105",
-					"edge": "105",
-					"firefox": "110",
-					"firefox_android": "110",
-					"safari": "16",
-					"safari_ios": "16"
-				},
 				"baseline_low_date": "2023-02-14"
 			},
 			"description": "The container-type CSS property is used to define the type of containment used in a container query."
@@ -25755,8 +24067,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E85",
 				"FF125",
+				"FM125",
 				"S18",
+				"SM18",
 				"C85",
+				"CM85",
 				"O71"
 			],
 			"references": [
@@ -25767,15 +24082,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "85",
-					"chrome_android": "85",
-					"edge": "85",
-					"firefox": "125",
-					"firefox_android": "125",
-					"safari": "18",
-					"safari_ios": "18"
-				},
 				"baseline_low_date": "2024-09-16"
 			},
 			"description": "Controls whether or not an element renders its contents at all, along with forcing a strong set of containments, allowing user agents to potentially omit large swathes of layout and rendering work until it becomes needed."
@@ -25787,8 +24093,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E85",
 				"FF68",
+				"FM68",
 				"S17.2",
+				"SM17.2",
 				"C85",
+				"CM85",
 				"O71"
 			],
 			"references": [
@@ -25799,15 +24108,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "85",
-					"chrome_android": "85",
-					"edge": "85",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "17.2",
-					"safari_ios": "17.2"
-				},
 				"baseline_low_date": "2023-12-11"
 			},
 			"description": "The counter-set CSS property sets a CSS counter to a given value. It manipulates the value of existing counters, and will only create new counters if there isn't already a counter of the given name on the element."
@@ -25819,8 +24119,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
+				"FM79",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"references": [
@@ -25831,15 +24134,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "≤72",
-					"firefox_android": "≤79",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -25852,8 +24146,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
+				"FM79",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"references": [
@@ -25864,15 +24161,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "≤72",
-					"firefox_android": "≤79",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -25885,7 +24173,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF97",
+				"FM97",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"references": [
@@ -25895,14 +24185,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "97",
-					"firefox_android": "97"
-				}
+				"status": "false"
 			},
 			"description": "The d CSS property defines a path to be drawn by the SVG path element. If present, it overrides the element's d attribute."
 		},
@@ -25942,8 +24225,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF1",
+				"FM4",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"references": [
@@ -25954,15 +24240,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-03-24",
 				"baseline_high_date": "2022-09-24"
 			},
@@ -25984,6 +24261,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E123",
 				"C123",
+				"CM123",
 				"O109"
 			],
 			"references": [
@@ -25993,12 +24271,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "123",
-					"chrome_android": "123",
-					"edge": "123"
-				}
+				"status": "false"
 			},
 			"description": "The field-sizing CSS property enables you to control the sizing behavior of elements that are given a default preferred size, such as form control elements. This property enables you to override the default sizing behavior, allowing form controls to adjust in size to fit their contents."
 		},
@@ -26017,8 +24290,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E17",
 				"FF62",
+				"FM62",
 				"S13.1",
+				"SM13.4",
 				"C79",
+				"CM79",
 				"O66"
 			],
 			"references": [
@@ -26029,15 +24305,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "79",
-					"chrome_android": "79",
-					"edge": "17",
-					"firefox": "62",
-					"firefox_android": "62",
-					"safari": "13.1",
-					"safari_ios": "13.4"
-				},
 				"baseline_low_date": "2020-03-24",
 				"baseline_high_date": "2022-09-24"
 			},
@@ -26050,8 +24317,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E101",
 				"FF107",
+				"FM107",
 				"S15.4",
+				"SM15.4",
 				"C101",
+				"CM101",
 				"O87"
 			],
 			"references": [
@@ -26062,15 +24332,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "101",
-					"chrome_android": "101",
-					"edge": "101",
-					"firefox": "107",
-					"firefox_android": "107",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2022-11-15"
 			},
 			"description": "The font-palette CSS property allows specifying one of the many palettes contained in a font that a user agent should use for the font. Users can also override the values in a palette or create a new palette by using the @font-palette-values at-rule."
@@ -26084,7 +24345,9 @@ export const cssData : CSSDataV1 = {
 				"E79",
 				"FF25",
 				"S4",
+				"SM3.2",
 				"C5",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -26094,8 +24357,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": "The font-smooth CSS property controls the application of anti-aliasing when fonts are rendered."
 		},
@@ -26113,7 +24375,8 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 50,
 			"browsers": [
-				"FF118"
+				"FF118",
+				"FM118"
 			],
 			"references": [
 				{
@@ -26122,11 +24385,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "118",
-					"firefox_android": "118"
-				}
+				"status": "false"
 			},
 			"description": "The font-synthesis-position CSS property lets you specify whether or not a browser may synthesize the subscript and superscript \"position\" typefaces when they are missing in a font family, while using font-variant-position to set the positions."
 		},
@@ -26145,8 +24404,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E97",
 				"FF111",
+				"FM111",
 				"S16.4",
+				"SM16.4",
 				"C97",
+				"CM97",
 				"O83"
 			],
 			"references": [
@@ -26157,15 +24419,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "97",
-					"chrome_android": "97",
-					"edge": "97",
-					"firefox": "111",
-					"firefox_android": "111",
-					"safari": "16.4",
-					"safari_ios": "16.4"
-				},
 				"baseline_low_date": "2023-03-27"
 			},
 			"description": "The font-synthesis-small-caps CSS property lets you specify whether or not the browser may synthesize small-caps typeface when it is missing in a font family. Small-caps glyphs typically use the form of uppercase letters but are reduced to the size of lowercase letters."
@@ -26185,8 +24438,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E97",
 				"FF111",
+				"FM111",
 				"S16.4",
+				"SM16.4",
 				"C97",
+				"CM97",
 				"O83"
 			],
 			"references": [
@@ -26197,15 +24453,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "97",
-					"chrome_android": "97",
-					"edge": "97",
-					"firefox": "111",
-					"firefox_android": "111",
-					"safari": "16.4",
-					"safari_ios": "16.4"
-				},
 				"baseline_low_date": "2023-03-27"
 			},
 			"description": "The font-synthesis-style CSS property lets you specify whether or not the browser may synthesize the oblique typeface when it is missing in a font family."
@@ -26225,8 +24472,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E97",
 				"FF111",
+				"FM111",
 				"S16.4",
+				"SM16.4",
 				"C97",
+				"CM97",
 				"O83"
 			],
 			"references": [
@@ -26237,15 +24487,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "97",
-					"chrome_android": "97",
-					"edge": "97",
-					"firefox": "111",
-					"firefox_android": "111",
-					"safari": "16.4",
-					"safari_ios": "16.4"
-				},
 				"baseline_low_date": "2023-03-27"
 			},
 			"description": "The font-synthesis-weight CSS property lets you specify whether or not the browser may synthesize the bold typeface when it is missing in a font family."
@@ -26272,7 +24513,9 @@ export const cssData : CSSDataV1 = {
 				"E131",
 				"FF108",
 				"S17.5",
+				"SM17.5",
 				"C131",
+				"CM131",
 				"O116"
 			],
 			"references": [
@@ -26282,12 +24525,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "131",
-					"chrome_android": "131",
-					"edge": "131"
-				}
+				"status": "false"
 			},
 			"description": "The font-variant-emoji CSS property specifies the default presentation style for displaying emojis."
 		},
@@ -26299,8 +24537,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E17",
 				"FF62",
+				"FM62",
 				"S11",
+				"SM11",
 				"C62",
+				"CM62",
 				"O49"
 			],
 			"references": [
@@ -26311,15 +24552,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "62",
-					"chrome_android": "62",
-					"edge": "17",
-					"firefox": "62",
-					"firefox_android": "62",
-					"safari": "11",
-					"safari_ios": "11"
-				},
 				"baseline_low_date": "2018-09-05",
 				"baseline_high_date": "2021-03-05"
 			},
@@ -26343,7 +24575,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF113",
+				"FM113",
 				"C89",
+				"CM89",
 				"IE10",
 				"O75"
 			],
@@ -26354,14 +24588,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "89",
-					"chrome_android": "89",
-					"edge": "79",
-					"firefox": "113",
-					"firefox_android": "113"
-				}
+				"status": "false"
 			},
 			"description": "Allows authors to opt certain elements out of forced colors mode. This then restores the control of those values to CSS"
 		},
@@ -26372,8 +24599,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
+				"FM52",
 				"S10.1",
+				"SM10.3",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"references": [
@@ -26384,15 +24614,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "16",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2017-10-17",
 				"baseline_high_date": "2020-04-17"
 			},
@@ -26403,7 +24624,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "none | [ first || [ force-end | allow-end ] || last ]",
 			"relevance": 50,
 			"browsers": [
-				"S10"
+				"S10",
+				"SM10"
 			],
 			"references": [
 				{
@@ -26412,8 +24634,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": "The hanging-punctuation CSS property specifies whether a punctuation mark should hang at the start or end of a line of text. Hanging punctuation may be placed outside the line box."
 		},
@@ -26424,8 +24645,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E106",
 				"FF98",
+				"FM98",
 				"S17",
+				"SM17",
 				"C106",
+				"CM106",
 				"O92"
 			],
 			"references": [
@@ -26436,15 +24660,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "106",
-					"chrome_android": "106",
-					"edge": "106",
-					"firefox": "98",
-					"firefox_android": "98",
-					"safari": "17",
-					"safari_ios": "17"
-				},
 				"baseline_low_date": "2023-09-18"
 			},
 			"description": "A hyphenate character used at the end of a line."
@@ -26456,7 +24671,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E109",
 				"FF137",
+				"FM137",
 				"C109",
+				"CM109",
 				"O95"
 			],
 			"references": [
@@ -26466,12 +24683,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "109",
-					"chrome_android": "109",
-					"edge": "109"
-				}
+				"status": "false"
 			},
 			"description": "The hyphenate-limit-chars CSS property specifies the minimum word length to allow hyphenation of words as well as the minimum number of characters before and after the hyphen."
 		},
@@ -26489,7 +24701,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E110",
 				"S9",
+				"SM9",
 				"C110",
+				"CM110",
 				"O96"
 			],
 			"references": [
@@ -26499,12 +24713,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "110",
-					"chrome_android": "110",
-					"edge": "110"
-				}
+				"status": "false"
 			},
 			"description": "The initial-letter CSS property specifies styling for dropped, raised, and sunken initial letters."
 		},
@@ -26522,8 +24731,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
+				"FM66",
 				"S14.1",
+				"SM14.5",
 				"C87",
+				"CM87",
 				"O73"
 			],
 			"references": [
@@ -26534,15 +24746,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "87",
-					"chrome_android": "87",
-					"edge": "87",
-					"firefox": "66",
-					"firefox_android": "66",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -26555,8 +24758,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF63",
+				"FM63",
 				"S14.1",
+				"SM14.5",
 				"C87",
+				"CM87",
 				"O73"
 			],
 			"references": [
@@ -26567,15 +24773,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "87",
-					"chrome_android": "87",
-					"edge": "87",
-					"firefox": "63",
-					"firefox_android": "63",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -26588,8 +24785,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF63",
+				"FM63",
 				"S14.1",
+				"SM14.5",
 				"C87",
+				"CM87",
 				"O73"
 			],
 			"references": [
@@ -26600,15 +24800,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "87",
-					"chrome_android": "87",
-					"edge": "87",
-					"firefox": "63",
-					"firefox_android": "63",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -26621,8 +24812,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF63",
+				"FM63",
 				"S14.1",
+				"SM14.5",
 				"C87",
+				"CM87",
 				"O73"
 			],
 			"references": [
@@ -26633,15 +24827,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "87",
-					"chrome_android": "87",
-					"edge": "87",
-					"firefox": "63",
-					"firefox_android": "63",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -26654,8 +24839,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF63",
+				"FM63",
 				"S14.1",
+				"SM14.5",
 				"C87",
+				"CM87",
 				"O73"
 			],
 			"references": [
@@ -26666,15 +24854,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "87",
-					"chrome_android": "87",
-					"edge": "87",
-					"firefox": "63",
-					"firefox_android": "63",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -26687,8 +24866,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF63",
+				"FM63",
 				"S14.1",
+				"SM14.5",
 				"C87",
+				"CM87",
 				"O73"
 			],
 			"references": [
@@ -26699,15 +24881,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "87",
-					"chrome_android": "87",
-					"edge": "87",
-					"firefox": "63",
-					"firefox_android": "63",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -26720,8 +24893,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF63",
+				"FM63",
 				"S14.1",
+				"SM14.5",
 				"C87",
+				"CM87",
 				"O73"
 			],
 			"references": [
@@ -26732,15 +24908,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "87",
-					"chrome_android": "87",
-					"edge": "87",
-					"firefox": "63",
-					"firefox_android": "63",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -26762,6 +24929,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E129",
 				"C129",
+				"CM129",
 				"O115"
 			],
 			"references": [
@@ -26771,12 +24939,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "129",
-					"chrome_android": "129",
-					"edge": "129"
-				}
+				"status": "false"
 			},
 			"description": "The interpolate-size CSS property allows you to enable animations and transitions between a <length-percentage> value and an intrinsic size value such as auto, fit-content, or max-content."
 		},
@@ -26794,8 +24957,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E17",
 				"FF68",
+				"FM68",
 				"S18.2",
+				"SM18.2",
 				"C6",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -26805,11 +24971,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari": "18.2",
-					"safari_ios": "18.2"
-				}
+				"status": "false"
 			},
 			"description": "The line-clamp property allows limiting the contents of a block container to the specified number of lines; remaining content is fragmented away and neither rendered nor measured. Optionally, it also allows inserting content into the last line box to indicate the continuity of truncated/interrupted content."
 		},
@@ -26821,6 +24983,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"C60",
+				"CM60",
 				"O47"
 			],
 			"references": [
@@ -26830,8 +24993,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": "The line-height-step CSS property defines the step units for line box heights. When the step unit is positive, line box heights are rounded up to the closest multiple of the unit. Negative values are invalid."
 		},
@@ -26842,8 +25004,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
+				"FM66",
 				"S14.1",
+				"SM14.5",
 				"C87",
+				"CM87",
 				"O73"
 			],
 			"references": [
@@ -26854,15 +25019,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "87",
-					"chrome_android": "87",
-					"edge": "87",
-					"firefox": "66",
-					"firefox_android": "66",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -26875,8 +25031,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
+				"FM66",
 				"S14.1",
+				"SM14.5",
 				"C87",
+				"CM87",
 				"O73"
 			],
 			"references": [
@@ -26887,15 +25046,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "87",
-					"chrome_android": "87",
-					"edge": "87",
-					"firefox": "66",
-					"firefox_android": "66",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -26918,7 +25068,8 @@ export const cssData : CSSDataV1 = {
 			],
 			"relevance": 50,
 			"browsers": [
-				"S16.4"
+				"S16.4",
+				"SM16.4"
 			],
 			"references": [
 				{
@@ -26927,11 +25078,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari": "16.4",
-					"safari_ios": "16.4"
-				}
+				"status": "false"
 			},
 			"description": "The margin-trim property allows the container to trim the margins of its children where they adjoin the container’s edges."
 		},
@@ -26942,8 +25089,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E120",
 				"FF53",
+				"FM53",
 				"S15.4",
+				"SM15.4",
 				"C120",
+				"CM120",
 				"O106"
 			],
 			"references": [
@@ -26954,15 +25104,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "120",
-					"chrome_android": "120",
-					"edge": "120",
-					"firefox": "53",
-					"firefox_android": "53",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2023-12-07"
 			},
 			"description": "The mask CSS property alters the visibility of an element by either partially or fully hiding it. This is accomplished by either masking or clipping the image at specific points."
@@ -26974,7 +25115,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S17.2",
+				"SM17.2",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -26984,11 +25127,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari": "17.2",
-					"safari_ios": "17.2"
-				}
+				"status": "false"
 			},
 			"description": "The mask-border CSS property lets you create a mask along the edge of an element's border.\n\nThis property is a shorthand for mask-border-source, mask-border-slice, mask-border-width, mask-border-outset, mask-border-repeat, and mask-border-mode. As with all shorthand properties, any omitted sub-values will be set to their initial value."
 		},
@@ -27013,7 +25152,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S17.2",
+				"SM17.2",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -27023,11 +25164,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari": "17.2",
-					"safari_ios": "17.2"
-				}
+				"status": "false"
 			},
 			"description": "The mask-border-outset CSS property specifies the distance by which an element's mask border is set out from its border box."
 		},
@@ -27038,7 +25175,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S17.2",
+				"SM17.2",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -27048,11 +25187,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari": "17.2",
-					"safari_ios": "17.2"
-				}
+				"status": "false"
 			},
 			"description": "The mask-border-repeat CSS property defines how the edge regions of a source image are adjusted to fit the dimensions of an element's mask border."
 		},
@@ -27063,7 +25198,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S17.2",
+				"SM17.2",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -27073,11 +25210,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari": "17.2",
-					"safari_ios": "17.2"
-				}
+				"status": "false"
 			},
 			"description": "The mask-border-slice CSS property divides the image specified by mask-border-source into regions. These regions are used to form the components of an element's mask border."
 		},
@@ -27088,7 +25221,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S17.2",
+				"SM17.2",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -27098,11 +25233,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari": "17.2",
-					"safari_ios": "17.2"
-				}
+				"status": "false"
 			},
 			"description": "The mask-border-source CSS property specifies the source image used to create an element's mask border.\n\nThe mask-border-slice property is used to divide the source image into regions, which are then dynamically applied to the final mask border."
 		},
@@ -27113,7 +25244,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S17.2",
+				"SM17.2",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -27123,11 +25256,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari": "17.2",
-					"safari_ios": "17.2"
-				}
+				"status": "false"
 			},
 			"description": "The mask-border-width CSS property specifies the width of an element's mask border."
 		},
@@ -27138,8 +25267,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E120",
 				"FF53",
+				"FM53",
 				"S15.4",
+				"SM15.4",
 				"C120",
+				"CM120",
 				"O106"
 			],
 			"references": [
@@ -27150,15 +25282,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "120",
-					"chrome_android": "120",
-					"edge": "120",
-					"firefox": "53",
-					"firefox_android": "53",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2023-12-07"
 			},
 			"description": "The mask-clip CSS property determines the area, which is affected by a mask. The painted content of an element must be restricted to this area."
@@ -27170,8 +25293,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E120",
 				"FF53",
+				"FM53",
 				"S15.4",
+				"SM15.4",
 				"C120",
+				"CM120",
 				"O106"
 			],
 			"references": [
@@ -27182,15 +25308,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "120",
-					"chrome_android": "120",
-					"edge": "120",
-					"firefox": "53",
-					"firefox_android": "53",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2023-12-07"
 			},
 			"description": "The mask-composite CSS property represents a compositing operation used on the current mask layer with the mask layers below it."
@@ -27209,7 +25326,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E109",
 				"FF117",
+				"FM117",
 				"C109",
+				"CM109",
 				"O95"
 			],
 			"references": [
@@ -27219,14 +25338,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "109",
-					"chrome_android": "109",
-					"edge": "109",
-					"firefox": "117",
-					"firefox_android": "117"
-				}
+				"status": "false"
 			},
 			"description": "Describe a notion of \"depth\" for each element of a mathematical formula, with respect to the top-level container of that formula."
 		},
@@ -27246,6 +25358,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E109",
 				"C109",
+				"CM109",
 				"O95"
 			],
 			"references": [
@@ -27255,12 +25368,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "109",
-					"chrome_android": "109",
-					"edge": "109"
-				}
+				"status": "false"
 			},
 			"description": "Used for positioning superscript during the layout of MathML scripted elements."
 		},
@@ -27279,8 +25387,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E109",
 				"FF117",
+				"FM117",
 				"S14.1",
+				"SM14.5",
 				"C109",
+				"CM109",
 				"O95"
 			],
 			"references": [
@@ -27291,15 +25402,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "109",
-					"chrome_android": "109",
-					"edge": "109",
-					"firefox": "117",
-					"firefox_android": "117",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2023-08-29"
 			},
 			"description": "The math-style property indicates whether MathML equations should render with normal or compact height."
@@ -27318,8 +25420,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF72",
+				"FM79",
 				"S16",
+				"SM16",
 				"C55",
+				"CM55",
 				"O42"
 			],
 			"references": [
@@ -27330,15 +25435,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "55",
-					"chrome_android": "55",
-					"edge": "79",
-					"firefox": "72",
-					"firefox_android": "79",
-					"safari": "16",
-					"safari_ios": "16"
-				},
 				"baseline_low_date": "2022-09-12",
 				"baseline_high_date": "2025-03-12"
 			},
@@ -27351,8 +25447,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E116",
 				"FF72",
+				"FM79",
 				"S16",
+				"SM16",
 				"C116",
+				"CM116",
 				"O102"
 			],
 			"references": [
@@ -27363,15 +25462,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "116",
-					"chrome_android": "116",
-					"edge": "116",
-					"firefox": "72",
-					"firefox_android": "79",
-					"safari": "16",
-					"safari_ios": "16"
-				},
 				"baseline_low_date": "2023-08-21"
 			},
 			"description": "Defines an anchor point of the box positioned along the path. The anchor point specifies the point of the box which is to be considered as the point that is moved along the path."
@@ -27383,8 +25473,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF72",
+				"FM79",
 				"S16",
+				"SM16",
 				"C55",
+				"CM55",
 				"O42"
 			],
 			"references": [
@@ -27395,15 +25488,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "55",
-					"chrome_android": "55",
-					"edge": "79",
-					"firefox": "72",
-					"firefox_android": "79",
-					"safari": "16",
-					"safari_ios": "16"
-				},
 				"baseline_low_date": "2022-09-12",
 				"baseline_high_date": "2025-03-12"
 			},
@@ -27416,8 +25500,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF72",
+				"FM79",
 				"S15.4",
+				"SM15.4",
 				"C55",
+				"CM55",
 				"O45"
 			],
 			"references": [
@@ -27428,15 +25515,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "55",
-					"chrome_android": "55",
-					"edge": "79",
-					"firefox": "72",
-					"firefox_android": "79",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2022-03-14",
 				"baseline_high_date": "2024-09-14"
 			},
@@ -27449,8 +25527,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E116",
 				"FF122",
+				"FM122",
 				"S16",
+				"SM16",
 				"C116",
+				"CM116",
 				"O102"
 			],
 			"references": [
@@ -27461,15 +25542,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "116",
-					"chrome_android": "116",
-					"edge": "116",
-					"firefox": "122",
-					"firefox_android": "122",
-					"safari": "16",
-					"safari_ios": "16"
-				},
 				"baseline_low_date": "2024-01-23"
 			},
 			"description": "Specifies the initial position of the offset path. If position is specified with static, offset-position would be ignored."
@@ -27481,8 +25553,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF72",
+				"FM79",
 				"S16",
+				"SM16",
 				"C56",
+				"CM56",
 				"O43"
 			],
 			"references": [
@@ -27493,15 +25568,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "56",
-					"chrome_android": "56",
-					"edge": "79",
-					"firefox": "72",
-					"firefox_android": "79",
-					"safari": "16",
-					"safari_ios": "16"
-				},
 				"baseline_low_date": "2022-09-12",
 				"baseline_high_date": "2025-03-12"
 			},
@@ -27522,8 +25588,10 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF66",
+				"FM66",
 				"Spreview",
 				"C56",
+				"CM56",
 				"O43"
 			],
 			"references": [
@@ -27533,14 +25601,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "56",
-					"chrome_android": "56",
-					"edge": "79",
-					"firefox": "66",
-					"firefox_android": "66"
-				}
+				"status": "false"
 			},
 			"description": "The overflow-anchor CSS property provides a way to opt out browser scroll anchoring behavior which adjusts scroll position to minimize content shifts."
 		},
@@ -27568,7 +25629,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E135",
 				"FF69",
-				"C135"
+				"FM79",
+				"C135",
+				"CM135"
 			],
 			"references": [
 				{
@@ -27577,11 +25640,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "69",
-					"firefox_android": "79"
-				}
+				"status": "false"
 			},
 			"description": "The overflow-block CSS media feature can be used to test how the output device handles content that overflows the initial containing block along the block axis."
 		},
@@ -27607,7 +25666,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E90",
 				"FF102",
+				"FM102",
 				"C90",
+				"CM90",
 				"O76"
 			],
 			"references": [
@@ -27617,8 +25678,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": "The overflow-clip-margin CSS property determines how far outside its bounds an element with overflow: clip may be painted before being clipped."
 		},
@@ -27646,7 +25706,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E135",
 				"FF69",
-				"C135"
+				"FM79",
+				"C135",
+				"CM135"
 			],
 			"references": [
 				{
@@ -27655,11 +25717,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "69",
-					"firefox_android": "79"
-				}
+				"status": "false"
 			},
 			"description": "The overflow-inline CSS media feature can be used to test how the output device handles content that overflows the initial containing block along the inline axis."
 		},
@@ -27679,6 +25737,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E117",
 				"C117",
+				"CM117",
 				"O103"
 			],
 			"references": [
@@ -27688,12 +25747,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "117",
-					"chrome_android": "117",
-					"edge": "117"
-				}
+				"status": "false"
 			},
 			"description": "The overlay CSS property specifies whether an element appearing in the top layer (for example, a shown popover or modal {{htmlelement(\"dialog\")}} element) is actually rendered in the top layer. This property is only relevant within a list of transition-property values, and only if allow-discrete is set as the transition-behavior."
 		},
@@ -27704,8 +25758,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E18",
 				"FF59",
+				"FM59",
 				"S16",
+				"SM16",
 				"C63",
+				"CM63",
 				"O50"
 			],
 			"references": [
@@ -27716,15 +25773,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "63",
-					"chrome_android": "63",
-					"edge": "18",
-					"firefox": "59",
-					"firefox_android": "59",
-					"safari": "16",
-					"safari_ios": "16"
-				},
 				"baseline_low_date": "2022-09-12",
 				"baseline_high_date": "2025-03-12"
 			},
@@ -27748,8 +25796,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF73",
+				"FM79",
 				"S16",
+				"SM16",
 				"C77",
+				"CM77",
 				"O64"
 			],
 			"references": [
@@ -27760,15 +25811,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "77",
-					"chrome_android": "77",
-					"edge": "79",
-					"firefox": "73",
-					"firefox_android": "79",
-					"safari": "16",
-					"safari_ios": "16"
-				},
 				"baseline_low_date": "2022-09-12",
 				"baseline_high_date": "2025-03-12"
 			},
@@ -27792,8 +25834,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF73",
+				"FM79",
 				"S16",
+				"SM16",
 				"C77",
+				"CM77",
 				"O64"
 			],
 			"references": [
@@ -27804,15 +25849,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "77",
-					"chrome_android": "77",
-					"edge": "79",
-					"firefox": "73",
-					"firefox_android": "79",
-					"safari": "16",
-					"safari_ios": "16"
-				},
 				"baseline_low_date": "2022-09-12",
 				"baseline_high_date": "2025-03-12"
 			},
@@ -27836,8 +25872,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E18",
 				"FF59",
+				"FM59",
 				"S16",
+				"SM16",
 				"C63",
+				"CM63",
 				"O50"
 			],
 			"references": [
@@ -27848,15 +25887,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "63",
-					"chrome_android": "63",
-					"edge": "18",
-					"firefox": "59",
-					"firefox_android": "59",
-					"safari": "16",
-					"safari_ios": "16"
-				},
 				"baseline_low_date": "2022-09-12",
 				"baseline_high_date": "2025-03-12"
 			},
@@ -27880,8 +25910,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E18",
 				"FF59",
+				"FM59",
 				"S16",
+				"SM16",
 				"C63",
+				"CM63",
 				"O50"
 			],
 			"references": [
@@ -27892,15 +25925,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "63",
-					"chrome_android": "63",
-					"edge": "18",
-					"firefox": "59",
-					"firefox_android": "59",
-					"safari": "16",
-					"safari_ios": "16"
-				},
 				"baseline_low_date": "2022-09-12",
 				"baseline_high_date": "2025-03-12"
 			},
@@ -27913,8 +25937,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
+				"FM66",
 				"S14.1",
+				"SM14.5",
 				"C87",
+				"CM87",
 				"O73"
 			],
 			"references": [
@@ -27925,15 +25952,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "87",
-					"chrome_android": "87",
-					"edge": "87",
-					"firefox": "66",
-					"firefox_android": "66",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -27946,8 +25964,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
+				"FM66",
 				"S14.1",
+				"SM14.5",
 				"C87",
+				"CM87",
 				"O73"
 			],
 			"references": [
@@ -27958,15 +25979,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "87",
-					"chrome_android": "87",
-					"edge": "87",
-					"firefox": "66",
-					"firefox_android": "66",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -27979,8 +25991,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E85",
 				"FF110",
+				"FM110",
 				"S13.1",
+				"SM13.4",
 				"C85",
+				"CM85",
 				"O71"
 			],
 			"references": [
@@ -27991,15 +26006,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "85",
-					"chrome_android": "85",
-					"edge": "85",
-					"firefox": "110",
-					"firefox_android": "110",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2023-02-14"
 			},
 			"description": "The page CSS property is used to specify the named page, a specific type of page defined by the @page at-rule."
@@ -28011,8 +26017,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF45",
+				"FM45",
 				"S9",
+				"SM9",
 				"C59",
+				"CM59",
 				"O46"
 			],
 			"references": [
@@ -28023,15 +26032,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "59",
-					"chrome_android": "59",
-					"edge": "79",
-					"firefox": "45",
-					"firefox_android": "45",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -28044,8 +26044,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF45",
+				"FM45",
 				"S11",
+				"SM11",
 				"C59",
+				"CM59",
 				"O46"
 			],
 			"references": [
@@ -28056,15 +26059,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "59",
-					"chrome_android": "59",
-					"edge": "79",
-					"firefox": "45",
-					"firefox_android": "45",
-					"safari": "11",
-					"safari_ios": "11"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -28077,8 +26071,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF45",
+				"FM45",
 				"S11",
+				"SM11",
 				"C59",
+				"CM59",
 				"O46"
 			],
 			"references": [
@@ -28089,15 +26086,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "59",
-					"chrome_android": "59",
-					"edge": "79",
-					"firefox": "45",
-					"firefox_android": "45",
-					"safari": "11",
-					"safari_ios": "11"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -28111,6 +26099,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E125",
 				"C125",
+				"CM125",
 				"O111"
 			],
 			"references": [
@@ -28120,12 +26109,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "125",
-					"chrome_android": "125",
-					"edge": "125"
-				}
+				"status": "false"
 			},
 			"description": "The position-anchor property defines the default anchor specifier for all anchor functions on the element, allowing multiple elements to use the same set of anchor functions (and position options lists!) while changing which anchor element each is referring to."
 		},
@@ -28137,6 +26121,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E129",
 				"C129",
+				"CM129",
 				"O115"
 			],
 			"references": [
@@ -28146,12 +26131,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "129",
-					"chrome_android": "129",
-					"edge": "129"
-				}
+				"status": "false"
 			},
 			"description": "The position-area CSS property enables an anchor-positioned element to be positioned relative to the edges of its associated anchor element by placing the positioned element on one or more tiles of an implicit 3x3 grid, where the anchoring element is the center cell."
 		},
@@ -28163,6 +26143,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E125",
 				"C125",
+				"CM125",
 				"O111"
 			],
 			"references": [
@@ -28172,12 +26153,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "125",
-					"chrome_android": "125",
-					"edge": "125"
-				}
+				"status": "false"
 			},
 			"description": "This shorthand sets both position-try-options and position-try-order. If <'position-try-order'> is omitted, it’s set to the property’s initial value."
 		},
@@ -28189,6 +26165,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E128",
 				"C128",
+				"CM128",
 				"O114"
 			],
 			"references": [
@@ -28198,12 +26175,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "128",
-					"chrome_android": "128",
-					"edge": "128"
-				}
+				"status": "false"
 			},
 			"description": "The position-try-fallbacks CSS property enables you to specify a list of one or more alternative position try fallback options for anchor-positioned elements to be placed relative to their associated anchor elements. When the element would otherwise overflow its inset-modified containing block, the browser will try placing the positioned element in these different fallback positions, in the order provided, until it finds a value that stops it from overflowing its container or the viewport."
 		},
@@ -28215,6 +26187,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E125",
 				"C125",
+				"CM125",
 				"O111"
 			],
 			"references": [
@@ -28224,12 +26197,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "125",
-					"chrome_android": "125",
-					"edge": "125"
-				}
+				"status": "false"
 			},
 			"description": "This property specifies the order in which the position options list will be tried."
 		},
@@ -28241,6 +26209,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E125",
 				"C125",
+				"CM125",
 				"O111"
 			],
 			"references": [
@@ -28250,12 +26219,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "125",
-					"chrome_android": "125",
-					"edge": "125"
-				}
+				"status": "false"
 			},
 			"description": "There are times when an element’s anchors are not appropriate for positioning the element with, and it would be better to simply not display the element at all. position-visibility provides several conditions where this could be the case."
 		},
@@ -28274,8 +26238,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF97",
+				"FM97",
 				"S15.4",
+				"SM15.4",
 				"C17",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -28285,13 +26252,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "97",
-					"firefox_android": "97",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				}
+				"status": "false"
 			},
 			"description": "Defines what optimization the user agent is allowed to do when adjusting the appearance for an output device."
 		},
@@ -28302,8 +26263,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
+				"FM79",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"references": [
@@ -28314,15 +26278,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "≤72",
-					"firefox_android": "≤79",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -28335,8 +26290,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E104",
 				"FF72",
+				"FM79",
 				"S14.1",
+				"SM14.5",
 				"C104",
+				"CM104",
 				"O90"
 			],
 			"references": [
@@ -28347,15 +26305,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "104",
-					"chrome_android": "104",
-					"edge": "104",
-					"firefox": "72",
-					"firefox_android": "79",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2022-08-05",
 				"baseline_high_date": "2025-02-05"
 			},
@@ -28368,8 +26317,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
+				"FM52",
 				"S10.1",
+				"SM10.3",
 				"C47",
+				"CM47",
 				"O34"
 			],
 			"references": [
@@ -28380,15 +26332,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "47",
-					"chrome_android": "47",
-					"edge": "16",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2017-10-17",
 				"baseline_high_date": "2020-04-17"
 			},
@@ -28419,7 +26362,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
+				"FM79",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"references": [
@@ -28429,14 +26374,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "≤72",
-					"firefox_android": "≤79"
-				}
+				"status": "false"
 			},
 			"description": "The rx CSS property defines the x-axis, or horizontal, radius of an SVG ellipse and the horizontal curve of the corners of an SVG rect rectangle. If present, it overrides the shape's rx attribute."
 		},
@@ -28447,7 +26385,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
+				"FM79",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"references": [
@@ -28457,14 +26397,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "≤72",
-					"firefox_android": "≤79"
-				}
+				"status": "false"
 			},
 			"description": "The ry CSS property defines the y-axis, or vertical, radius of an SVG ellipse and the vertical curve of the corners of an SVG rect rectangle. If present, it overrides the shape's ry attribute."
 		},
@@ -28475,8 +26408,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E104",
 				"FF72",
+				"FM79",
 				"S14.1",
+				"SM14.5",
 				"C104",
+				"CM104",
 				"O90"
 			],
 			"references": [
@@ -28487,15 +26423,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "104",
-					"chrome_android": "104",
-					"edge": "104",
-					"firefox": "72",
-					"firefox_android": "79",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2022-08-05",
 				"baseline_high_date": "2025-02-05"
 			},
@@ -28508,8 +26435,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF90",
+				"FM90",
 				"S14.1",
+				"SM14.5",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -28520,15 +26450,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "90",
-					"firefox_android": "90",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-07-13",
 				"baseline_high_date": "2024-01-13"
 			},
@@ -28541,8 +26462,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S15",
+				"SM15",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -28553,15 +26477,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "15",
-					"safari_ios": "15"
-				},
 				"baseline_low_date": "2021-09-20",
 				"baseline_high_date": "2024-03-20"
 			},
@@ -28574,8 +26489,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S15",
+				"SM15",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -28586,15 +26504,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "15",
-					"safari_ios": "15"
-				},
 				"baseline_low_date": "2021-09-20",
 				"baseline_high_date": "2024-03-20"
 			},
@@ -28607,8 +26516,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S15",
+				"SM15",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -28619,15 +26531,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "15",
-					"safari_ios": "15"
-				},
 				"baseline_low_date": "2021-09-20",
 				"baseline_high_date": "2024-03-20"
 			},
@@ -28640,8 +26543,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S14.1",
+				"SM14.5",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -28652,15 +26558,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -28673,8 +26570,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S15",
+				"SM15",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -28685,15 +26585,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "15",
-					"safari_ios": "15"
-				},
 				"baseline_low_date": "2021-09-20",
 				"baseline_high_date": "2024-03-20"
 			},
@@ -28706,8 +26597,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S15",
+				"SM15",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -28718,15 +26612,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "15",
-					"safari_ios": "15"
-				},
 				"baseline_low_date": "2021-09-20",
 				"baseline_high_date": "2024-03-20"
 			},
@@ -28739,8 +26624,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S15",
+				"SM15",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -28751,15 +26639,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "15",
-					"safari_ios": "15"
-				},
 				"baseline_low_date": "2021-09-20",
 				"baseline_high_date": "2024-03-20"
 			},
@@ -28772,8 +26651,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S14.1",
+				"SM14.5",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -28784,15 +26666,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -28805,8 +26678,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S14.1",
+				"SM14.5",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -28817,15 +26693,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -28838,8 +26705,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S14.1",
+				"SM14.5",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -28850,15 +26720,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -28871,8 +26732,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S14.1",
+				"SM14.5",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -28883,15 +26747,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -28904,8 +26759,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S15",
+				"SM15",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -28916,15 +26774,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "15",
-					"safari_ios": "15"
-				},
 				"baseline_low_date": "2021-09-20",
 				"baseline_high_date": "2024-03-20"
 			},
@@ -28937,8 +26786,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S15",
+				"SM15",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -28949,15 +26801,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "15",
-					"safari_ios": "15"
-				},
 				"baseline_low_date": "2021-09-20",
 				"baseline_high_date": "2024-03-20"
 			},
@@ -28970,8 +26813,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S15",
+				"SM15",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -28982,15 +26828,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "15",
-					"safari_ios": "15"
-				},
 				"baseline_low_date": "2021-09-20",
 				"baseline_high_date": "2024-03-20"
 			},
@@ -29003,8 +26840,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S14.1",
+				"SM14.5",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -29015,15 +26855,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -29036,8 +26867,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S15",
+				"SM15",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -29048,15 +26882,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "15",
-					"safari_ios": "15"
-				},
 				"baseline_low_date": "2021-09-20",
 				"baseline_high_date": "2024-03-20"
 			},
@@ -29069,8 +26894,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S15",
+				"SM15",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -29081,15 +26909,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "15",
-					"safari_ios": "15"
-				},
 				"baseline_low_date": "2021-09-20",
 				"baseline_high_date": "2024-03-20"
 			},
@@ -29102,8 +26921,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S15",
+				"SM15",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -29114,15 +26936,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "15",
-					"safari_ios": "15"
-				},
 				"baseline_low_date": "2021-09-20",
 				"baseline_high_date": "2024-03-20"
 			},
@@ -29135,8 +26948,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S14.1",
+				"SM14.5",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -29147,15 +26963,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -29168,8 +26975,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S14.1",
+				"SM14.5",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -29180,15 +26990,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -29201,8 +27002,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S14.1",
+				"SM14.5",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -29213,15 +27017,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -29234,8 +27029,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
+				"FM68",
 				"S11",
+				"SM11",
 				"C69",
+				"CM69",
 				"O56"
 			],
 			"references": [
@@ -29246,15 +27044,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "69",
-					"chrome_android": "69",
-					"edge": "79",
-					"firefox": "68",
-					"firefox_android": "68",
-					"safari": "11",
-					"safari_ios": "11"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -29275,8 +27064,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF103",
+				"FM103",
 				"S15",
+				"SM15",
 				"C75",
+				"CM75",
 				"O62"
 			],
 			"references": [
@@ -29287,15 +27079,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "75",
-					"chrome_android": "75",
-					"edge": "79",
-					"firefox": "103",
-					"firefox_android": "103",
-					"safari": "15",
-					"safari_ios": "15"
-				},
 				"baseline_low_date": "2022-07-26",
 				"baseline_high_date": "2025-01-26"
 			},
@@ -29346,6 +27129,7 @@ export const cssData : CSSDataV1 = {
 				"E115",
 				"FF111",
 				"C115",
+				"CM115",
 				"O101"
 			],
 			"references": [
@@ -29355,12 +27139,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "115",
-					"chrome_android": "115",
-					"edge": "115"
-				}
+				"status": "false"
 			},
 			"description": "Defines a name that can be used to identify the source element of a scroll timeline, along with the scrollbar axis that should provide the timeline."
 		},
@@ -29373,6 +27152,7 @@ export const cssData : CSSDataV1 = {
 				"E115",
 				"FF111",
 				"C115",
+				"CM115",
 				"O101"
 			],
 			"references": [
@@ -29382,12 +27162,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "115",
-					"chrome_android": "115",
-					"edge": "115"
-				}
+				"status": "false"
 			},
 			"description": "Specifies the scrollbar that will be used to provide the timeline for a scroll-timeline animation"
 		},
@@ -29400,6 +27175,7 @@ export const cssData : CSSDataV1 = {
 				"E115",
 				"FF111",
 				"C115",
+				"CM115",
 				"O101"
 			],
 			"references": [
@@ -29409,12 +27185,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "115",
-					"chrome_android": "115",
-					"edge": "115"
-				}
+				"status": "false"
 			},
 			"description": "Defines a name that can be used to identify an element as the source of a scroll-timeline."
 		},
@@ -29425,7 +27196,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E121",
 				"FF64",
+				"FM64",
 				"C121",
+				"CM121",
 				"O107"
 			],
 			"references": [
@@ -29435,14 +27208,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "121",
-					"chrome_android": "121",
-					"edge": "121",
-					"firefox": "64",
-					"firefox_android": "64"
-				}
+				"status": "false"
 			},
 			"description": "The scrollbar-color CSS property sets the color of the scrollbar track and thumb."
 		},
@@ -29453,8 +27219,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E94",
 				"FF97",
+				"FM97",
 				"S18.2",
+				"SM18.2",
 				"C94",
+				"CM94",
 				"O80"
 			],
 			"references": [
@@ -29465,15 +27234,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "94",
-					"chrome_android": "94",
-					"edge": "94",
-					"firefox": "97",
-					"firefox_android": "97",
-					"safari": "18.2",
-					"safari_ios": "18.2"
-				},
 				"baseline_low_date": "2024-12-11"
 			},
 			"description": "The scrollbar-gutter CSS property allows authors to reserve space for the scrollbar, preventing unwanted layout changes as the content grows while also avoiding unnecessary visuals when scrolling isn't needed."
@@ -29496,8 +27256,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E121",
 				"FF64",
+				"FM64",
 				"S18.2",
+				"SM18.2",
 				"C121",
+				"CM121",
 				"O107"
 			],
 			"references": [
@@ -29508,15 +27271,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "121",
-					"chrome_android": "121",
-					"edge": "121",
-					"firefox": "64",
-					"firefox_android": "64",
-					"safari": "18.2",
-					"safari_ios": "18.2"
-				},
 				"baseline_low_date": "2024-12-11"
 			},
 			"description": "The scrollbar-width property allows the author to set the maximum thickness of an element’s scrollbars when they are shown. "
@@ -29527,7 +27281,8 @@ export const cssData : CSSDataV1 = {
 			"syntax": "auto | bullets | numbers | words | spell-out | <counter-style-name>",
 			"relevance": 50,
 			"browsers": [
-				"S11.1"
+				"S11.1",
+				"SM11.3"
 			],
 			"references": [
 				{
@@ -29536,11 +27291,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari": "11.1",
-					"safari_ios": "11.3"
-				}
+				"status": "false"
 			},
 			"description": "The speak-as descriptor specifies how a counter symbol constructed with a given @counter-style will be represented in the spoken form. For example, an author can specify a counter symbol to be either spoken as its numerical value or just represented with an audio cue."
 		},
@@ -29551,7 +27302,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E133",
 				"S18.2",
+				"SM18.2",
 				"C133",
+				"CM133",
 				"O118"
 			],
 			"references": [
@@ -29561,14 +27314,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "133",
-					"chrome_android": "133",
-					"edge": "133",
-					"safari": "18.2",
-					"safari_ios": "18.2"
-				}
+				"status": "false"
 			},
 			"description": ""
 		},
@@ -29579,7 +27325,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E133",
 				"S18.2",
+				"SM18.2",
 				"C133",
+				"CM133",
 				"O118"
 			],
 			"references": [
@@ -29589,14 +27337,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "133",
-					"chrome_android": "133",
-					"edge": "133",
-					"safari": "18.2",
-					"safari_ios": "18.2"
-				}
+				"status": "false"
 			},
 			"description": ""
 		},
@@ -29621,7 +27362,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E133",
 				"S18.2",
+				"SM18.2",
 				"C133",
+				"CM133",
 				"O118"
 			],
 			"references": [
@@ -29631,14 +27374,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "133",
-					"chrome_android": "133",
-					"edge": "133",
-					"safari": "18.2",
-					"safari_ios": "18.2"
-				}
+				"status": "false"
 			},
 			"description": ""
 		},
@@ -29649,8 +27385,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF48",
+				"FM48",
 				"S15.4",
+				"SM15.4",
 				"C48",
+				"CM48",
 				"IE11",
 				"O35"
 			],
@@ -29662,15 +27401,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "48",
-					"chrome_android": "48",
-					"edge": "79",
-					"firefox": "48",
-					"firefox_android": "48",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2022-03-14",
 				"baseline_high_date": "2024-09-14"
 			},
@@ -29683,7 +27413,9 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"S12.1",
+				"SM12.2",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"references": [
@@ -29693,11 +27425,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				}
+				"status": "false"
 			},
 			"description": "The text-decoration-skip CSS property specifies what parts of the element’s content any text decoration affecting the element must skip over. It controls all text decoration lines drawn by the element and also any text decoration lines drawn by its ancestors."
 		},
@@ -29719,8 +27447,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF70",
+				"FM79",
 				"S15.4",
+				"SM15.4",
 				"C64",
+				"CM64",
 				"O50"
 			],
 			"references": [
@@ -29731,15 +27462,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "64",
-					"chrome_android": "64",
-					"edge": "79",
-					"firefox": "70",
-					"firefox_android": "79",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2022-03-14",
 				"baseline_high_date": "2024-09-14"
 			},
@@ -29752,8 +27474,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E89",
 				"FF70",
+				"FM79",
 				"S12.1",
+				"SM12.2",
 				"C89",
+				"CM89",
 				"O75"
 			],
 			"references": [
@@ -29764,15 +27489,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "89",
-					"chrome_android": "89",
-					"edge": "89",
-					"firefox": "70",
-					"firefox_android": "79",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2021-03-04",
 				"baseline_high_date": "2023-09-04"
 			},
@@ -29785,8 +27501,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E99",
 				"FF46",
+				"FM46",
 				"S7",
+				"SM7",
 				"C99",
+				"CM99",
 				"O85"
 			],
 			"references": [
@@ -29797,15 +27516,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "99",
-					"chrome_android": "99",
-					"edge": "99",
-					"firefox": "46",
-					"firefox_android": "46",
-					"safari": "7",
-					"safari_ios": "7"
-				},
 				"baseline_low_date": "2022-03-03",
 				"baseline_high_date": "2024-09-03"
 			},
@@ -29818,8 +27528,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E99",
 				"FF46",
+				"FM46",
 				"S7",
+				"SM7",
 				"C99",
+				"CM99",
 				"O85"
 			],
 			"references": [
@@ -29830,15 +27543,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "99",
-					"chrome_android": "99",
-					"edge": "99",
-					"firefox": "46",
-					"firefox_android": "46",
-					"safari": "7",
-					"safari_ios": "7"
-				},
 				"baseline_low_date": "2022-03-03",
 				"baseline_high_date": "2024-09-03"
 			},
@@ -29851,8 +27555,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E99",
 				"FF46",
+				"FM46",
 				"S7",
+				"SM7",
 				"C99",
+				"CM99",
 				"O85"
 			],
 			"references": [
@@ -29863,15 +27570,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "99",
-					"chrome_android": "99",
-					"edge": "99",
-					"firefox": "46",
-					"firefox_android": "46",
-					"safari": "7",
-					"safari_ios": "7"
-				},
 				"baseline_low_date": "2022-03-03",
 				"baseline_high_date": "2024-09-03"
 			},
@@ -29884,8 +27582,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E99",
 				"FF46",
+				"FM46",
 				"S7",
+				"SM7",
 				"C99",
+				"CM99",
 				"O85"
 			],
 			"references": [
@@ -29896,15 +27597,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "99",
-					"chrome_android": "99",
-					"edge": "99",
-					"firefox": "46",
-					"firefox_android": "46",
-					"safari": "7",
-					"safari_ios": "7"
-				},
 				"baseline_low_date": "2022-03-03",
 				"baseline_high_date": "2024-09-03"
 			},
@@ -29917,7 +27609,10 @@ export const cssData : CSSDataV1 = {
 			"relevance": 61,
 			"browsers": [
 				"E79",
+				"FM49",
+				"SM1",
 				"C54",
+				"CM54",
 				"O41"
 			],
 			"references": [
@@ -29927,12 +27622,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "54",
-					"chrome_android": "54",
-					"edge": "79"
-				}
+				"status": "false"
 			},
 			"description": "The text-size-adjust CSS property controls the text inflation algorithm used on some smartphones and tablets. Other browsers will ignore this property."
 		},
@@ -29958,6 +27648,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E123",
 				"C123",
+				"CM123",
 				"O109"
 			],
 			"references": [
@@ -29967,12 +27658,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "123",
-					"chrome_android": "123",
-					"edge": "123"
-				}
+				"status": "false"
 			},
 			"description": "The text-spacing-trim CSS property controls the internal spacing set on Chinese/Japanese/Korean (CJK) punctuation characters between adjacent characters (kerning) and at the start or end of text lines."
 		},
@@ -29983,8 +27669,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF70",
+				"FM79",
 				"S12.1",
+				"SM12.2",
 				"C87",
+				"CM87",
 				"O73"
 			],
 			"references": [
@@ -29995,15 +27684,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "87",
-					"chrome_android": "87",
-					"edge": "87",
-					"firefox": "70",
-					"firefox_android": "79",
-					"safari": "12.1",
-					"safari_ios": "12.2"
-				},
 				"baseline_low_date": "2020-11-19",
 				"baseline_high_date": "2023-05-19"
 			},
@@ -30016,8 +27696,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E114",
 				"FF121",
+				"FM121",
 				"S17.4",
+				"SM17.4",
 				"C114",
+				"CM114",
 				"O100"
 			],
 			"references": [
@@ -30028,15 +27711,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "114",
-					"chrome_android": "114",
-					"edge": "114",
-					"firefox": "121",
-					"firefox_android": "121",
-					"safari": "17.4",
-					"safari_ios": "17.4"
-				},
 				"baseline_low_date": "2024-03-05"
 			},
 			"description": "The text-wrap CSS property controls how text inside an element is wrapped."
@@ -30056,8 +27730,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E130",
 				"FF124",
+				"FM124",
 				"S17.4",
+				"SM17.4",
 				"C130",
+				"CM130",
 				"O115"
 			],
 			"references": [
@@ -30068,15 +27745,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "130",
-					"chrome_android": "130",
-					"edge": "130",
-					"firefox": "124",
-					"firefox_android": "124",
-					"safari": "17.4",
-					"safari_ios": "17.4"
-				},
 				"baseline_low_date": "2024-10-17"
 			},
 			"description": "The text-wrap-mode CSS property controls whether the text inside an element is wrapped. The different values provide alternate ways of wrapping the content of a block element. It can also be set, and reset, using the {{CSSXRef(\"text-wrap\")}} shorthand."
@@ -30102,8 +27770,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E130",
 				"FF124",
+				"FM124",
 				"S17.5",
+				"SM17.5",
 				"C130",
+				"CM130",
 				"O115"
 			],
 			"references": [
@@ -30114,15 +27785,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "130",
-					"chrome_android": "130",
-					"edge": "130",
-					"firefox": "124",
-					"firefox_android": "124",
-					"safari": "17.5",
-					"safari_ios": "17.5"
-				},
 				"baseline_low_date": "2024-10-17"
 			},
 			"description": "The text-wrap-style CSS property controls how text inside an element is wrapped. The different values provide alternate ways of wrapping the content of a block element. It can also be set, and reset, using the {{CSSXRef(\"text-wrap\")}} shorthand."
@@ -30135,6 +27797,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E116",
 				"C116",
+				"CM116",
 				"O102"
 			],
 			"references": [
@@ -30144,12 +27807,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "116",
-					"chrome_android": "116",
-					"edge": "116"
-				}
+				"status": "false"
 			},
 			"description": "The timeline-scope CSS property modifies the scope of a named animation timeline."
 		},
@@ -30177,8 +27835,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF55",
+				"FM55",
 				"S11",
+				"SM11",
 				"C64",
+				"CM64",
 				"O51"
 			],
 			"references": [
@@ -30189,15 +27850,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "64",
-					"chrome_android": "64",
-					"edge": "79",
-					"firefox": "55",
-					"firefox_android": "55",
-					"safari": "11",
-					"safari_ios": "11"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -30210,8 +27862,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E117",
 				"FF129",
+				"FM129",
 				"S17.4",
+				"SM17.4",
 				"C117",
+				"CM117",
 				"O103"
 			],
 			"references": [
@@ -30222,15 +27877,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "117",
-					"chrome_android": "117",
-					"edge": "117",
-					"firefox": "129",
-					"firefox_android": "129",
-					"safari": "17.4",
-					"safari_ios": "17.4"
-				},
 				"baseline_low_date": "2024-08-06"
 			},
 			"description": "The transition-behavior CSS property specifies whether transitions will be started for properties whose animation behavior is discrete."
@@ -30242,8 +27888,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E104",
 				"FF72",
+				"FM79",
 				"S14.1",
+				"SM14.5",
 				"C104",
+				"CM104",
 				"O90"
 			],
 			"references": [
@@ -30254,15 +27903,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "104",
-					"chrome_android": "104",
-					"edge": "104",
-					"firefox": "72",
-					"firefox_android": "79",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2022-08-05",
 				"baseline_high_date": "2025-02-05"
 			},
@@ -30292,8 +27932,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
+				"FM79",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"references": [
@@ -30304,15 +27947,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "≤72",
-					"firefox_android": "≤79",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -30327,6 +27961,7 @@ export const cssData : CSSDataV1 = {
 				"E115",
 				"FF114",
 				"C115",
+				"CM115",
 				"O101"
 			],
 			"references": [
@@ -30336,12 +27971,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "115",
-					"chrome_android": "115",
-					"edge": "115"
-				}
+				"status": "false"
 			},
 			"description": "The view-timeline CSS shorthand property is used to define a named view progress timeline, which is progressed through based on the change in visibility of an element (known as the subject) inside a scrollable element (scroller). view-timeline is set on the subject."
 		},
@@ -30354,6 +27984,7 @@ export const cssData : CSSDataV1 = {
 				"E115",
 				"FF114",
 				"C115",
+				"CM115",
 				"O101"
 			],
 			"references": [
@@ -30363,12 +27994,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "115",
-					"chrome_android": "115",
-					"edge": "115"
-				}
+				"status": "false"
 			},
 			"description": "The view-timeline-axis CSS property is used to specify the scrollbar direction that will be used to provide the timeline for a named view progress timeline animation, which is progressed through based on the change in visibility of an element (known as the subject) inside a scrollable element (scroller). view-timeline-axis is set on the subject. See CSS scroll-driven animations for more details."
 		},
@@ -30380,6 +28006,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E115",
 				"C115",
+				"CM115",
 				"O101"
 			],
 			"references": [
@@ -30389,12 +28016,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "115",
-					"chrome_android": "115",
-					"edge": "115"
-				}
+				"status": "false"
 			},
 			"description": "The view-timeline-inset CSS property is used to specify one or two values representing an adjustment to the position of the scrollport (see Scroll container for more details) in which the subject element of a named view progress timeline animation is deemed to be visible. Put another way, this allows you to specify start and/or end inset (or outset) values that offset the position of the timeline."
 		},
@@ -30407,6 +28029,7 @@ export const cssData : CSSDataV1 = {
 				"E115",
 				"FF111",
 				"C115",
+				"CM115",
 				"O101"
 			],
 			"references": [
@@ -30416,12 +28039,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "115",
-					"chrome_android": "115",
-					"edge": "115"
-				}
+				"status": "false"
 			},
 			"description": "The view-timeline-name CSS property is used to define the name of a named view progress timeline, which is progressed through based on the change in visibility of an element (known as the subject) inside a scrollable element (scroller). view-timeline is set on the subject."
 		},
@@ -30432,18 +28050,13 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E125",
 				"S18.2",
+				"SM18.2",
 				"C125",
+				"CM125",
 				"O111"
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "125",
-					"chrome_android": "125",
-					"edge": "125",
-					"safari": "18.2",
-					"safari_ios": "18.2"
-				}
+				"status": "false"
 			},
 			"description": ""
 		},
@@ -30454,7 +28067,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E111",
 				"S18",
+				"SM18",
 				"C111",
+				"CM111",
 				"O97"
 			],
 			"references": [
@@ -30464,14 +28079,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "111",
-					"chrome_android": "111",
-					"edge": "111",
-					"safari": "18",
-					"safari_ios": "18"
-				}
+				"status": "false"
 			},
 			"description": "The view-transition-name CSS property provides the selected element with a distinct identifying name (a custom-ident) and causes it to participate in a separate view transition from the root view transition — or no view transition if the none value is specified."
 		},
@@ -30482,8 +28090,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE5.5",
 				"O4"
 			],
@@ -30495,15 +28106,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -30533,8 +28135,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E114",
 				"FF124",
+				"FM124",
 				"S17.4",
+				"SM17.4",
 				"C114",
+				"CM114",
 				"O100"
 			],
 			"references": [
@@ -30545,15 +28150,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "114",
-					"chrome_android": "114",
-					"edge": "114",
-					"firefox": "124",
-					"firefox_android": "124",
-					"safari": "17.4",
-					"safari_ios": "17.4"
-				},
 				"baseline_low_date": "2024-03-19"
 			},
 			"description": "The white-space-collapse CSS property controls how white space inside an element is collapsed."
@@ -30565,8 +28161,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
+				"FM79",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"references": [
@@ -30577,15 +28176,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "≤72",
-					"firefox_android": "≤79",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -30598,8 +28188,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
+				"FM79",
 				"S13.1",
+				"SM13.4",
 				"C80",
+				"CM80",
 				"O67"
 			],
 			"references": [
@@ -30610,15 +28203,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "≤80",
-					"chrome_android": "≤80",
-					"edge": "≤80",
-					"firefox": "≤72",
-					"firefox_android": "≤79",
-					"safari": "≤13.1",
-					"safari_ios": "≤13.4"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -30769,8 +28353,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1.5",
+				"FM4",
 				"S4",
+				"SM4",
 				"C2",
+				"CM18",
 				"IE5.5",
 				"O9"
 			],
@@ -30782,15 +28369,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "2",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1.5",
-					"firefox_android": "4",
-					"safari": "4",
-					"safari_ios": "4"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -30801,8 +28379,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E91",
 				"FF33",
+				"FM33",
 				"S17",
+				"SM17",
 				"C91",
+				"CM91",
 				"O77"
 			],
 			"references": [
@@ -30813,15 +28394,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "91",
-					"chrome_android": "91",
-					"edge": "91",
-					"firefox": "33",
-					"firefox_android": "33",
-					"safari": "17",
-					"safari_ios": "17"
-				},
 				"baseline_low_date": "2023-09-18"
 			},
 			"description": "Defines a custom counter style."
@@ -30831,8 +28403,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
+				"FM4",
 				"S3.1",
+				"SM2",
 				"C1",
+				"CM18",
 				"IE4",
 				"O10"
 			],
@@ -30844,15 +28419,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "3.5",
-					"firefox_android": "4",
-					"safari": "3.1",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -30863,8 +28429,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E111",
 				"FF34",
+				"FM34",
 				"S9.1",
+				"SM9.3",
 				"C111",
+				"CM111",
 				"O97"
 			],
 			"references": [
@@ -30875,15 +28444,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "111",
-					"chrome_android": "111",
-					"edge": "111",
-					"firefox": "34",
-					"firefox_android": "34",
-					"safari": "9.1",
-					"safari_ios": "9.3"
-				},
 				"baseline_low_date": "2023-03-13"
 			},
 			"description": "Defines named values for the indices used to select alternate glyphs for a given font family."
@@ -30893,8 +28453,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE5.5",
 				"O3.5"
 			],
@@ -30906,15 +28469,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -30925,8 +28479,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
+				"FM16",
 				"S9",
+				"SM9",
 				"C43",
+				"CM43",
 				"IE10",
 				"O30"
 			],
@@ -30938,15 +28495,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "43",
-					"chrome_android": "43",
-					"edge": "12",
-					"firefox": "16",
-					"firefox_android": "16",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -30957,8 +28505,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E99",
 				"FF97",
+				"FM97",
 				"S15.4",
+				"SM15.4",
 				"C99",
+				"CM99",
 				"O85"
 			],
 			"references": [
@@ -30969,15 +28520,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "99",
-					"chrome_android": "99",
-					"edge": "99",
-					"firefox": "97",
-					"firefox_android": "97",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2022-03-14",
 				"baseline_high_date": "2024-09-14"
 			},
@@ -30988,8 +28530,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S3",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE6",
 				"O9.2"
 			],
@@ -31001,15 +28546,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "3",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -31042,8 +28578,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE9",
 				"O8"
 			],
@@ -31055,15 +28594,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -31088,8 +28618,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF19",
+				"FM19",
 				"S18.2",
+				"SM18.2",
 				"C2",
+				"CM18",
 				"IE8",
 				"O6"
 			],
@@ -31101,15 +28634,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "2",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "19",
-					"firefox_android": "19",
-					"safari": "18.2",
-					"safari_ios": "18.2"
-				},
 				"baseline_low_date": "2024-12-11"
 			},
 			"description": "Directive defines various page parameters."
@@ -31119,8 +28643,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E85",
 				"FF128",
+				"FM128",
 				"S16.4",
+				"SM16.4",
 				"C85",
+				"CM85",
 				"O71"
 			],
 			"references": [
@@ -31131,15 +28658,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "85",
-					"chrome_android": "85",
-					"edge": "85",
-					"firefox": "128",
-					"firefox_android": "128",
-					"safari": "16.4",
-					"safari_ios": "16.4"
-				},
 				"baseline_low_date": "2024-07-09"
 			},
 			"description": "Describes the aspect of custom properties and variables."
@@ -31149,8 +28667,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF22",
+				"FM22",
 				"S9",
+				"SM9",
 				"C28",
+				"CM28",
 				"O12.1"
 			],
 			"references": [
@@ -31161,15 +28682,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "28",
-					"chrome_android": "28",
-					"edge": "12",
-					"firefox": "22",
-					"firefox_android": "22",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2015-09-30",
 				"baseline_high_date": "2018-03-30"
 			},
@@ -31190,8 +28702,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O5"
 			],
@@ -31203,15 +28718,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -31222,8 +28728,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF50",
+				"FM50",
 				"S9",
+				"SM9",
 				"C65",
+				"CM65",
 				"O52"
 			],
 			"references": [
@@ -31234,15 +28743,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "65",
-					"chrome_android": "65",
-					"edge": "79",
-					"firefox": "50",
-					"firefox_android": "50",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -31253,8 +28753,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S3.1",
+				"SM2",
 				"C1",
+				"CM18",
 				"IE9",
 				"O9"
 			],
@@ -31266,15 +28769,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "3.1",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -31301,8 +28795,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF4",
+				"FM4",
 				"S5",
+				"SM5",
 				"C10",
+				"CM18",
 				"O10"
 			],
 			"references": [
@@ -31313,15 +28810,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "10",
-					"chrome_android": "18",
-					"edge": "79",
-					"firefox": "4",
-					"firefox_android": "4",
-					"safari": "5",
-					"safari_ios": "5"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -31332,8 +28820,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S3.1",
+				"SM2",
 				"C1",
+				"CM18",
 				"IE9",
 				"O9"
 			],
@@ -31345,15 +28836,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "3.1",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -31372,8 +28854,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S3.1",
+				"SM2",
 				"C1",
+				"CM18",
 				"IE9",
 				"O9.5"
 			],
@@ -31385,15 +28870,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "3.1",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -31404,8 +28880,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S3.1",
+				"SM2",
 				"C1",
+				"CM18",
 				"IE9",
 				"O9"
 			],
@@ -31417,15 +28896,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "3.1",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -31444,8 +28914,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF116",
+				"FM116",
 				"S6",
+				"SM6",
 				"C18",
+				"CM18",
 				"IE8",
 				"O9.2"
 			],
@@ -31457,15 +28930,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "18",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "116",
-					"firefox_android": "116",
-					"safari": "6",
-					"safari_ios": "6"
-				},
 				"baseline_low_date": "2023-08-01"
 			},
 			"description": "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context."
@@ -31475,8 +28939,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3",
+				"FM4",
 				"S3.1",
+				"SM4",
 				"C4",
+				"CM18",
 				"IE7",
 				"O9.5"
 			],
@@ -31488,15 +28955,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "4",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "3",
-					"firefox_android": "4",
-					"safari": "3.1",
-					"safari_ios": "4"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -31507,8 +28965,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
+				"FM4",
 				"S3.1",
+				"SM2",
 				"C1",
+				"CM18",
 				"IE9",
 				"O9.5"
 			],
@@ -31520,15 +28981,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "3.5",
-					"firefox_android": "4",
-					"safari": "3.1",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -31539,8 +28991,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE8",
 				"O7"
 			],
@@ -31552,15 +29007,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -31571,8 +29017,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF64",
+				"FM64",
 				"S16.4",
+				"SM16.4",
 				"C71",
+				"CM71",
 				"IE11",
 				"O58"
 			],
@@ -31583,15 +29032,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "71",
-					"chrome_android": "71",
-					"edge": "12",
-					"firefox": "64",
-					"firefox_android": "64",
-					"safari": "16.4"
-				}
+				"status": "false"
 			},
 			"description": "Matches any element that has its fullscreen flag set."
 		},
@@ -31600,7 +29041,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S7",
+				"SM7",
 				"C23",
+				"CM25",
 				"O15"
 			],
 			"references": [
@@ -31610,14 +29053,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "23",
-					"chrome_android": "25",
-					"edge": "79",
-					"safari": "7",
-					"safari_ios": "7"
-				}
+				"status": "false"
 			},
 			"description": "Represents any element that is defined to occur entirely after a :current element."
 		},
@@ -31634,8 +29070,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF63",
+				"FM63",
 				"S10",
+				"SM10",
 				"C54",
+				"CM54",
 				"O41"
 			],
 			"references": [
@@ -31646,15 +29085,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "54",
-					"chrome_android": "54",
-					"edge": "79",
-					"firefox": "63",
-					"firefox_android": "63",
-					"safari": "10",
-					"safari_ios": "10"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -31665,8 +29095,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF63",
+				"FM63",
 				"S10",
+				"SM10",
 				"C54",
+				"CM54",
 				"O41"
 			],
 			"references": [
@@ -31677,15 +29110,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "54",
-					"chrome_android": "54",
-					"edge": "79",
-					"firefox": "63",
-					"firefox_android": "63",
-					"safari": "10",
-					"safari_ios": "10"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -31696,6 +29120,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"C54",
+				"CM54",
 				"O41"
 			],
 			"references": [
@@ -31705,12 +29130,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "54",
-					"chrome_android": "54",
-					"edge": "79"
-				}
+				"status": "false"
 			},
 			"description": "Tests whether there is an ancestor, outside the shadow tree, which matches a particular selector."
 		},
@@ -31719,8 +29139,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S2",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O4"
 			],
@@ -31732,15 +29155,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "2",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -31759,8 +29173,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF2",
+				"FM4",
 				"S3",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE10",
 				"O9"
 			],
@@ -31772,15 +29189,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "2",
-					"firefox_android": "4",
-					"safari": "3",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -31791,8 +29199,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E13",
 				"FF29",
+				"FM16",
 				"S5.1",
+				"SM5",
 				"C10",
+				"CM18",
 				"O11"
 			],
 			"references": [
@@ -31803,15 +29214,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "10",
-					"chrome_android": "18",
-					"edge": "13",
-					"firefox": "29",
-					"firefox_android": "16",
-					"safari": "5.1",
-					"safari_ios": "5"
-				},
 				"baseline_low_date": "2015-11-12",
 				"baseline_high_date": "2018-05-12"
 			},
@@ -31822,8 +29224,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
+				"FM4",
 				"S5",
+				"SM5",
 				"C10",
+				"CM18",
 				"IE10",
 				"O10"
 			],
@@ -31835,15 +29240,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "10",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "4",
-					"firefox_android": "4",
-					"safari": "5",
-					"safari_ios": "5"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -31854,8 +29250,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S3.1",
+				"SM2",
 				"C1",
+				"CM18",
 				"IE8",
 				"O8"
 			],
@@ -31867,15 +29266,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "3.1",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -31886,8 +29276,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S3.1",
+				"SM2",
 				"C1",
+				"CM18",
 				"IE9",
 				"O9.5"
 			],
@@ -31899,15 +29292,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "3.1",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -31918,8 +29302,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
+				"FM4",
 				"S3.1",
+				"SM2",
 				"C1",
+				"CM18",
 				"IE9",
 				"O9.5"
 			],
@@ -31931,15 +29318,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "3.5",
-					"firefox_android": "4",
-					"safari": "3.1",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -31950,7 +29328,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"S5",
+				"SM4.2",
 				"C6",
+				"CM18",
 				"IE8",
 				"O9.2"
 			],
@@ -31961,14 +29341,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "6",
-					"chrome_android": "18",
-					"edge": "12",
-					"safari": "5",
-					"safari_ios": "4.2"
-				}
+				"status": "false"
 			},
 			"description": "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context."
 		},
@@ -31977,8 +29350,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM3.2",
 				"C1",
+				"CM18",
 				"IE3",
 				"O3.5"
 			],
@@ -31990,15 +29366,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "3.2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -32028,7 +29395,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": ":-moz-broken",
 			"browsers": [
-				"FF3"
+				"FF3",
+				"FM4"
 			],
 			"references": [
 				{
@@ -32037,8 +29405,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": "Non-standard. Matches elements representing broken images."
 		},
@@ -32052,7 +29419,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": ":-moz-first-node",
 			"browsers": [
-				"FF72"
+				"FF72",
+				"FM79"
 			],
 			"references": [
 				{
@@ -32061,11 +29429,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "≤72",
-					"firefox_android": "≤79"
-				}
+				"status": "false"
 			},
 			"description": "Non-standard. Represents an element that is the first child node of some other element."
 		},
@@ -32086,7 +29450,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": ":-moz-last-node",
 			"browsers": [
-				"FF72"
+				"FF72",
+				"FM79"
 			],
 			"references": [
 				{
@@ -32095,11 +29460,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "≤72",
-					"firefox_android": "≤79"
-				}
+				"status": "false"
 			},
 			"description": "Non-standard. Represents an element that is the last child node of some other element."
 		},
@@ -32113,7 +29474,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": ":-moz-only-whitespace",
 			"browsers": [
-				"FF1"
+				"FF1",
+				"FM4"
 			],
 			"references": [
 				{
@@ -32122,11 +29484,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "1",
-					"firefox_android": "4"
-				}
+				"status": "false"
 			},
 			"description": "The same as :empty, except that it additionally matches elements that only contain code points affected by whitespace processing. Standardized as :blank."
 		},
@@ -32140,7 +29498,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": ":-moz-submit-invalid",
 			"browsers": [
-				"FF88"
+				"FF88",
+				"FM4"
 			],
 			"references": [
 				{
@@ -32149,8 +29508,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": "Non-standard. Represents any submit button when the contents of the associated form are not valid."
 		},
@@ -32194,10 +29552,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "4"
-				}
+				"status": "false"
 			},
 			"description": "Non-standard. Matches elements in an inactive window."
 		},
@@ -32243,8 +29598,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S3.1",
+				"SM2",
 				"C1",
+				"CM18",
 				"IE9",
 				"O9.5"
 			],
@@ -32256,15 +29614,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "3.1",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -32275,8 +29624,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
+				"FM4",
 				"S3.1",
+				"SM2",
 				"C1",
+				"CM18",
 				"IE9",
 				"O9.5"
 			],
@@ -32288,15 +29640,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "3.5",
-					"firefox_android": "4",
-					"safari": "3.1",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -32307,8 +29650,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
+				"FM4",
 				"S3.1",
+				"SM2",
 				"C4",
+				"CM18",
 				"IE9",
 				"O9"
 			],
@@ -32320,15 +29666,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "4",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "3.5",
-					"firefox_android": "4",
-					"safari": "3.1",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -32339,8 +29676,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
+				"FM4",
 				"S3.1",
+				"SM2",
 				"C4",
+				"CM18",
 				"IE9",
 				"O9.5"
 			],
@@ -32352,15 +29692,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "4",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "3.5",
-					"firefox_android": "4",
-					"safari": "3.1",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -32371,8 +29702,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
+				"FM4",
 				"S3.1",
+				"SM2",
 				"C1",
+				"CM18",
 				"IE9",
 				"O9.5"
 			],
@@ -32384,15 +29718,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "3.5",
-					"firefox_android": "4",
-					"safari": "3.1",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -32403,8 +29728,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1.5",
+				"FM4",
 				"S3.1",
+				"SM2",
 				"C2",
+				"CM18",
 				"IE9",
 				"O9.5"
 			],
@@ -32416,15 +29744,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "2",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1.5",
-					"firefox_android": "4",
-					"safari": "3.1",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -32435,8 +29754,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
+				"FM4",
 				"S3.1",
+				"SM2",
 				"C1",
+				"CM18",
 				"IE9",
 				"O9.5"
 			],
@@ -32448,15 +29770,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "3.5",
-					"firefox_android": "4",
-					"safari": "3.1",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -32467,8 +29780,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
+				"FM4",
 				"S5",
+				"SM5",
 				"C10",
+				"CM18",
 				"IE10",
 				"O10"
 			],
@@ -32480,15 +29796,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "10",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "4",
-					"firefox_android": "4",
-					"safari": "5",
-					"safari_ios": "5"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -32499,8 +29806,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E13",
 				"FF29",
+				"FM16",
 				"S5.1",
+				"SM5",
 				"C10",
+				"CM18",
 				"O11"
 			],
 			"references": [
@@ -32511,15 +29821,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "10",
-					"chrome_android": "18",
-					"edge": "13",
-					"firefox": "29",
-					"firefox_android": "16",
-					"safari": "5.1",
-					"safari_ios": "5"
-				},
 				"baseline_low_date": "2015-11-12",
 				"baseline_high_date": "2018-05-12"
 			},
@@ -32530,7 +29831,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S7",
+				"SM7",
 				"C23",
+				"CM25",
 				"O15"
 			],
 			"references": [
@@ -32540,14 +29843,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "23",
-					"chrome_android": "25",
-					"edge": "79",
-					"safari": "7",
-					"safari_ios": "7"
-				}
+				"status": "false"
 			},
 			"description": "Represents any element that is defined to occur entirely prior to a :current element."
 		},
@@ -32556,8 +29852,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E13",
 				"FF78",
+				"FM79",
 				"S4",
+				"SM3.2",
 				"C1",
+				"CM18",
 				"O9"
 			],
 			"references": [
@@ -32568,15 +29867,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "13",
-					"firefox": "78",
-					"firefox_android": "79",
-					"safari": "4",
-					"safari_ios": "3.2"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -32587,8 +29877,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E13",
 				"FF78",
+				"FM79",
 				"S4",
+				"SM3.2",
 				"C1",
+				"CM18",
 				"O9"
 			],
 			"references": [
@@ -32599,15 +29892,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "13",
-					"firefox": "78",
-					"firefox_android": "79",
-					"safari": "4",
-					"safari_ios": "3.2"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -32618,8 +29902,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
+				"FM4",
 				"S5",
+				"SM5",
 				"C10",
+				"CM18",
 				"IE10",
 				"O10"
 			],
@@ -32631,15 +29918,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "10",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "4",
-					"firefox_android": "4",
-					"safari": "5",
-					"safari_ios": "5"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -32650,7 +29928,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"S5",
+				"SM4.2",
 				"C6",
+				"CM18",
 				"IE8",
 				"O9.2"
 			],
@@ -32661,14 +29941,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "6",
-					"chrome_android": "18",
-					"edge": "12",
-					"safari": "5",
-					"safari_ios": "4.2"
-				}
+				"status": "false"
 			},
 			"description": "When printing double-sided documents, the page boxes on left and right pages may be different. This can be expressed through CSS pseudo-classes defined in the  page context."
 		},
@@ -32677,8 +29950,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE9",
 				"O9.5"
 			],
@@ -32690,15 +29966,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -32709,8 +29976,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF32",
+				"FM32",
 				"S7",
+				"SM7",
 				"C27",
+				"CM27",
 				"O15"
 			],
 			"references": [
@@ -32721,15 +29991,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "27",
-					"chrome_android": "27",
-					"edge": "79",
-					"firefox": "32",
-					"firefox_android": "32",
-					"safari": "7",
-					"safari_ios": "7"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -32756,8 +30017,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1.3",
+				"SM2",
 				"C1",
+				"CM18",
 				"IE9",
 				"O9.5"
 			],
@@ -32769,15 +30033,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1.3",
-					"safari_ios": "2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -32788,8 +30043,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
+				"FM4",
 				"S5",
+				"SM5",
 				"C10",
+				"CM18",
 				"IE10",
 				"O10"
 			],
@@ -32801,15 +30059,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "10",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "4",
-					"firefox_android": "4",
-					"safari": "5",
-					"safari_ios": "5"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -32828,8 +30077,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE4",
 				"O3.5"
 			],
@@ -32841,15 +30093,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -32884,18 +30127,13 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E125",
 				"S18",
+				"SM18",
 				"C125",
+				"CM125",
 				"O111"
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "125",
-					"chrome_android": "125",
-					"edge": "125",
-					"safari": "18",
-					"safari_ios": "18"
-				}
+				"status": "false"
 			},
 			"description": ""
 		},
@@ -32905,15 +30143,11 @@ export const cssData : CSSDataV1 = {
 				"E125",
 				"Spreview",
 				"C125",
+				"CM125",
 				"O111"
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "125",
-					"chrome_android": "125",
-					"edge": "125"
-				}
+				"status": "false"
 			},
 			"description": ""
 		},
@@ -32922,8 +30156,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E110",
 				"FF86",
+				"FM86",
 				"S15",
+				"SM15",
 				"C110",
+				"CM110",
 				"O96"
 			],
 			"references": [
@@ -32934,15 +30171,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "110",
-					"chrome_android": "110",
-					"edge": "110",
-					"firefox": "86",
-					"firefox_android": "86",
-					"safari": "15",
-					"safari_ios": "15"
-				},
 				"baseline_low_date": "2023-02-09"
 			},
 			"description": ""
@@ -32955,7 +30183,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": ":buffering",
 			"browsers": [
-				"S15.4"
+				"S15.4",
+				"SM15.4"
 			],
 			"references": [
 				{
@@ -32964,11 +30193,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				}
+				"status": "false"
 			},
 			"description": ""
 		},
@@ -32982,8 +30207,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF63",
+				"FM63",
 				"S10",
+				"SM10",
 				"C54",
+				"CM54",
 				"O41"
 			],
 			"references": [
@@ -32994,15 +30222,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "54",
-					"chrome_android": "54",
-					"edge": "79",
-					"firefox": "63",
-					"firefox_android": "63",
-					"safari": "10",
-					"safari_ios": "10"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -33013,8 +30232,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E120",
 				"FF49",
+				"FM49",
 				"S16.4",
+				"SM16.4",
 				"C120",
+				"CM120",
 				"O106"
 			],
 			"references": [
@@ -33025,15 +30247,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "120",
-					"chrome_android": "120",
-					"edge": "120",
-					"firefox": "49",
-					"firefox_android": "49",
-					"safari": "16.4",
-					"safari_ios": "16.4"
-				},
 				"baseline_low_date": "2023-12-07"
 			},
 			"description": ""
@@ -33043,8 +30256,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E86",
 				"FF85",
+				"FM85",
 				"S15.4",
+				"SM15.4",
 				"C86",
+				"CM86",
 				"O72"
 			],
 			"references": [
@@ -33055,15 +30271,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "86",
-					"chrome_android": "86",
-					"edge": "86",
-					"firefox": "85",
-					"firefox_android": "85",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2022-03-14",
 				"baseline_high_date": "2024-09-14"
 			},
@@ -33074,8 +30281,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF52",
+				"FM52",
 				"S10.1",
+				"SM10.3",
 				"C60",
+				"CM60",
 				"O47"
 			],
 			"references": [
@@ -33086,15 +30296,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "60",
-					"chrome_android": "60",
-					"edge": "79",
-					"firefox": "52",
-					"firefox_android": "52",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -33105,8 +30306,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E105",
 				"FF121",
+				"FM121",
 				"S15.4",
+				"SM15.4",
 				"C105",
+				"CM105",
 				"O91"
 			],
 			"references": [
@@ -33117,15 +30321,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "105",
-					"chrome_android": "105",
-					"edge": "105",
-					"firefox": "121",
-					"firefox_android": "121",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2023-12-19"
 			},
 			"description": ""
@@ -33135,7 +30330,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E134",
 				"FF136",
-				"C134"
+				"FM136",
+				"C134",
+				"CM134"
 			],
 			"references": [
 				{
@@ -33144,14 +30341,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "134",
-					"chrome_android": "134",
-					"edge": "134",
-					"firefox": "136",
-					"firefox_android": "136"
-				}
+				"status": "false"
 			},
 			"description": ""
 		},
@@ -33160,8 +30350,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E88",
 				"FF78",
+				"FM79",
 				"S14",
+				"SM14",
 				"C88",
+				"CM88",
 				"O74"
 			],
 			"references": [
@@ -33172,15 +30365,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "88",
-					"chrome_android": "88",
-					"edge": "88",
-					"firefox": "78",
-					"firefox_android": "79",
-					"safari": "14",
-					"safari_ios": "14"
-				},
 				"baseline_low_date": "2021-01-21",
 				"baseline_high_date": "2023-07-21"
 			},
@@ -33196,8 +30380,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E105",
 				"FF103",
+				"FM103",
 				"S15.6",
+				"SM15.6",
 				"C105",
+				"CM105",
 				"O91"
 			],
 			"references": [
@@ -33208,15 +30395,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "105",
-					"chrome_android": "105",
-					"edge": "105",
-					"firefox": "103",
-					"firefox_android": "103",
-					"safari": "15.6",
-					"safari_ios": "15.6"
-				},
 				"baseline_low_date": "2022-09-02",
 				"baseline_high_date": "2025-03-02"
 			},
@@ -33225,7 +30403,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": ":muted",
 			"browsers": [
-				"S15.4"
+				"S15.4",
+				"SM15.4"
 			],
 			"references": [
 				{
@@ -33234,18 +30413,15 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				}
+				"status": "false"
 			},
 			"description": ""
 		},
 		{
 			"name": ":paused",
 			"browsers": [
-				"S15.4"
+				"S15.4",
+				"SM15.4"
 			],
 			"references": [
 				{
@@ -33254,11 +30430,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				}
+				"status": "false"
 			},
 			"description": "The :paused CSS pseudo-class selector is a resource state pseudo-class that will match an audio, video, or similar resource that is capable of being “played” or “paused”, when that element is “paused”."
 		},
@@ -33267,7 +30439,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E110",
 				"S13.1",
+				"SM13.4",
 				"C110",
+				"CM110",
 				"O96"
 			],
 			"references": [
@@ -33277,14 +30451,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "110",
-					"chrome_android": "110",
-					"edge": "110",
-					"safari": "13.1",
-					"safari_ios": "13.4"
-				}
+				"status": "false"
 			},
 			"description": "The :picture-in-picture CSS pseudo-class matches the element which is currently in picture-in-picture mode."
 		},
@@ -33293,8 +30460,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF51",
+				"FM51",
 				"S9",
+				"SM9",
 				"C47",
+				"CM47",
 				"IE10",
 				"O34"
 			],
@@ -33306,15 +30476,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "47",
-					"chrome_android": "47",
-					"edge": "79",
-					"firefox": "51",
-					"firefox_android": "51",
-					"safari": "9",
-					"safari_ios": "9"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -33323,7 +30484,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": ":playing",
 			"browsers": [
-				"S15.4"
+				"S15.4",
+				"SM15.4"
 			],
 			"references": [
 				{
@@ -33332,11 +30494,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				}
+				"status": "false"
 			},
 			"description": "The :playing CSS pseudo-class selector is a resource state pseudo-class that will match an audio, video, or similar resource that is capable of being “played” or “paused”, when that element is “playing”. "
 		},
@@ -33345,8 +30503,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E114",
 				"FF125",
+				"FM125",
 				"S17",
+				"SM17",
 				"C114",
+				"CM114",
 				"O100"
 			],
 			"references": [
@@ -33357,15 +30518,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "114",
-					"chrome_android": "114",
-					"edge": "114",
-					"firefox": "125",
-					"firefox_android": "125",
-					"safari": "17",
-					"safari_ios": "17"
-				},
 				"baseline_low_date": "2024-04-16"
 			},
 			"description": ""
@@ -33373,7 +30525,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": ":seeking",
 			"browsers": [
-				"S15.4"
+				"S15.4",
+				"SM15.4"
 			],
 			"references": [
 				{
@@ -33382,18 +30535,15 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				}
+				"status": "false"
 			},
 			"description": ""
 		},
 		{
 			"name": ":stalled",
 			"browsers": [
-				"S15.4"
+				"S15.4",
+				"SM15.4"
 			],
 			"references": [
 				{
@@ -33402,11 +30552,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				}
+				"status": "false"
 			},
 			"description": ""
 		},
@@ -33415,8 +30561,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E125",
 				"FF126",
+				"FM126",
 				"S17.4",
+				"SM17.4",
 				"C125",
+				"CM125",
 				"O111"
 			],
 			"references": [
@@ -33427,15 +30576,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "125",
-					"chrome_android": "125",
-					"edge": "125",
-					"firefox": "126",
-					"firefox_android": "126",
-					"safari": "17.4",
-					"safari_ios": "17.4"
-				},
 				"baseline_low_date": "2024-05-17"
 			},
 			"description": ""
@@ -33448,8 +30588,7 @@ export const cssData : CSSDataV1 = {
 				"C135"
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": ""
 		},
@@ -33463,8 +30602,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E119",
 				"FF88",
+				"FM88",
 				"S16.5",
+				"SM16.5",
 				"C119",
+				"CM119",
 				"O105"
 			],
 			"references": [
@@ -33475,15 +30617,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "119",
-					"chrome_android": "119",
-					"edge": "119",
-					"firefox": "88",
-					"firefox_android": "88",
-					"safari": "16.5",
-					"safari_ios": "16.5"
-				},
 				"baseline_low_date": "2023-11-02"
 			},
 			"description": "The :user-invalid CSS pseudo-class represents any validated form element whose value isn't valid based on their validation constraints, after the user has interacted with it."
@@ -33493,8 +30626,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E119",
 				"FF88",
+				"FM88",
 				"S16.5",
+				"SM16.5",
 				"C119",
+				"CM119",
 				"O105"
 			],
 			"references": [
@@ -33505,15 +30641,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "119",
-					"chrome_android": "119",
-					"edge": "119",
-					"firefox": "88",
-					"firefox_android": "88",
-					"safari": "16.5",
-					"safari_ios": "16.5"
-				},
 				"baseline_low_date": "2023-11-02"
 			},
 			"description": "The :user-valid CSS pseudo-class represents any validated form element whose value validates correctly based on its validation constraints. However, unlike :valid it only matches once the user has interacted with it."
@@ -33521,7 +30648,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": ":volume-locked",
 			"browsers": [
-				"S15.4"
+				"S15.4",
+				"SM15.4"
 			],
 			"references": [
 				{
@@ -33530,11 +30658,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				}
+				"status": "false"
 			},
 			"description": ""
 		},
@@ -33543,8 +30667,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E88",
 				"FF78",
+				"FM79",
 				"S14",
+				"SM14",
 				"C88",
+				"CM88",
 				"O74"
 			],
 			"references": [
@@ -33555,15 +30682,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "88",
-					"chrome_android": "88",
-					"edge": "88",
-					"firefox": "78",
-					"firefox_android": "79",
-					"safari": "14",
-					"safari_ios": "14"
-				},
 				"baseline_low_date": "2021-01-21",
 				"baseline_high_date": "2023-07-21"
 			},
@@ -33575,15 +30693,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E83",
 				"C83",
+				"CM83",
 				"O69"
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "83",
-					"chrome_android": "83",
-					"edge": "83"
-				}
+				"status": "false"
 			},
 			"description": ""
 		}
@@ -33594,8 +30708,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1.5",
+				"FM4",
 				"S4",
+				"SM3.2",
 				"C1",
+				"CM18",
 				"IE9",
 				"O7"
 			],
@@ -33607,15 +30724,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1.5",
-					"firefox_android": "4",
-					"safari": "4",
-					"safari_ios": "3.2"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -33626,8 +30734,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF47",
+				"FM47",
 				"S15.4",
+				"SM15.4",
 				"C37",
+				"CM37",
 				"IE11",
 				"O24"
 			],
@@ -33639,15 +30750,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "37",
-					"chrome_android": "37",
-					"edge": "79",
-					"firefox": "47",
-					"firefox_android": "47",
-					"safari": "15.4",
-					"safari_ios": "15.4"
-				},
 				"baseline_low_date": "2022-03-14",
 				"baseline_high_date": "2024-09-14"
 			},
@@ -33658,8 +30760,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1.5",
+				"FM4",
 				"S4",
+				"SM3",
 				"C1",
+				"CM18",
 				"IE9",
 				"O7"
 			],
@@ -33671,15 +30776,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1.5",
-					"firefox_android": "4",
-					"safari": "4",
-					"safari_ios": "3"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -33698,8 +30794,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF55",
+				"FM55",
 				"S7",
+				"SM7",
 				"C26",
+				"CM26",
 				"O15"
 			],
 			"references": [
@@ -33710,15 +30809,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "26",
-					"chrome_android": "26",
-					"edge": "79",
-					"firefox": "55",
-					"firefox_android": "55",
-					"safari": "7",
-					"safari_ios": "7"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			}
@@ -33728,8 +30818,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF55",
+				"FM55",
 				"S7",
+				"SM7",
 				"C26",
+				"CM26",
 				"O15"
 			],
 			"references": [
@@ -33740,15 +30833,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "26",
-					"chrome_android": "26",
-					"edge": "79",
-					"firefox": "55",
-					"firefox_android": "55",
-					"safari": "7",
-					"safari_ios": "7"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			}
@@ -33774,8 +30858,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE9",
 				"O7"
 			],
@@ -33787,15 +30874,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -33806,8 +30884,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
+				"FM4",
 				"S1",
+				"SM1",
 				"C1",
+				"CM18",
 				"IE9",
 				"O7"
 			],
@@ -33819,15 +30900,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "1",
-					"firefox_android": "4",
-					"safari": "1",
-					"safari_ios": "1"
-				},
 				"baseline_low_date": "2015-07-29",
 				"baseline_high_date": "2018-01-29"
 			},
@@ -33836,7 +30908,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "::-moz-focus-inner",
 			"browsers": [
-				"FF72"
+				"FF72",
+				"FM79"
 			],
 			"references": [
 				{
@@ -33845,11 +30918,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "≤72",
-					"firefox_android": "≤79"
-				}
+				"status": "false"
 			}
 		},
 		{
@@ -33861,7 +30930,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "::-moz-list-bullet",
 			"browsers": [
-				"FF72"
+				"FF72",
+				"FM79"
 			],
 			"references": [
 				{
@@ -33870,18 +30940,15 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "≤72",
-					"firefox_android": "≤79"
-				}
+				"status": "false"
 			},
 			"description": "Used to style the bullet of a list element. Similar to the standardized ::marker."
 		},
 		{
 			"name": "::-moz-list-number",
 			"browsers": [
-				"FF72"
+				"FF72",
+				"FM79"
 			],
 			"references": [
 				{
@@ -33890,11 +30957,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "≤72",
-					"firefox_android": "≤79"
-				}
+				"status": "false"
 			},
 			"description": "Used to style the numbers of a list element. Similar to the standardized ::marker."
 		},
@@ -33908,7 +30971,8 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "::-moz-progress-bar",
 			"browsers": [
-				"FF72"
+				"FF72",
+				"FM79"
 			],
 			"references": [
 				{
@@ -33917,11 +30981,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "≤72",
-					"firefox_android": "≤79"
-				}
+				"status": "false"
 			},
 			"description": "Represents the bar portion of a progress bar."
 		},
@@ -34056,8 +31116,10 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF62",
+				"FM62",
 				"S1.1",
 				"C1",
+				"CM18",
 				"IE9",
 				"O9.5"
 			],
@@ -34068,15 +31130,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "12",
-					"firefox": "62",
-					"firefox_android": "62",
-					"safari": "1.1"
-				}
+				"status": "false"
 			},
 			"description": "Represents the portion of a document that has been highlighted by the user."
 		},
@@ -34101,7 +31155,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S5",
+				"SM4.2",
 				"C6",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -34111,14 +31167,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "6",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "5",
-					"safari_ios": "4.2"
-				}
+				"status": "false"
 			}
 		},
 		{
@@ -34141,7 +31190,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S5.1",
+				"SM5",
 				"C12",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -34151,14 +31202,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "12",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "5.1",
-					"safari_ios": "5"
-				}
+				"status": "false"
 			}
 		},
 		{
@@ -34166,7 +31210,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S5.1",
+				"SM5",
 				"C12",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -34176,14 +31222,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "12",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "5.1",
-					"safari_ios": "5"
-				}
+				"status": "false"
 			}
 		},
 		{
@@ -34191,7 +31230,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S5.1",
+				"SM5",
 				"C12",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -34201,14 +31242,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "12",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "5.1",
-					"safari_ios": "5"
-				}
+				"status": "false"
 			}
 		},
 		{
@@ -34216,7 +31250,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S5.1",
+				"SM5",
 				"C12",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -34226,14 +31262,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "12",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "5.1",
-					"safari_ios": "5"
-				}
+				"status": "false"
 			}
 		},
 		{
@@ -34249,7 +31278,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S7",
+				"SM7",
 				"C25",
+				"CM25",
 				"O15"
 			],
 			"references": [
@@ -34259,14 +31290,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "25",
-					"chrome_android": "25",
-					"edge": "79",
-					"safari": "7",
-					"safari_ios": "7"
-				}
+				"status": "false"
 			}
 		},
 		{
@@ -34274,7 +31298,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S7",
+				"SM7",
 				"C23",
+				"CM25",
 				"O15"
 			],
 			"references": [
@@ -34284,14 +31310,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "23",
-					"chrome_android": "25",
-					"edge": "79",
-					"safari": "7",
-					"safari_ios": "7"
-				}
+				"status": "false"
 			}
 		},
 		{
@@ -34299,7 +31318,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S7",
+				"SM7",
 				"C25",
+				"CM25",
 				"O15"
 			],
 			"references": [
@@ -34309,14 +31330,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "25",
-					"chrome_android": "25",
-					"edge": "79",
-					"safari": "7",
-					"safari_ios": "7"
-				}
+				"status": "false"
 			}
 		},
 		{
@@ -34324,7 +31338,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S4",
+				"SM3.2",
 				"C2",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -34334,14 +31350,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "2",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "4",
-					"safari_ios": "3.2"
-				}
+				"status": "false"
 			}
 		},
 		{
@@ -34349,7 +31358,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S4",
+				"SM3",
 				"C2",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -34359,14 +31370,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "2",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "4",
-					"safari_ios": "3"
-				}
+				"status": "false"
 			}
 		},
 		{
@@ -34374,7 +31378,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S4",
+				"SM3",
 				"C2",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -34384,13 +31390,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "2",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "4"
-				}
+				"status": "false"
 			}
 		},
 		{
@@ -34398,7 +31398,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S4",
+				"SM3",
 				"C2",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -34408,13 +31410,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "2",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "4"
-				}
+				"status": "false"
 			}
 		},
 		{
@@ -34422,7 +31418,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S4",
+				"SM3",
 				"C2",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -34432,13 +31430,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "2",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "4"
-				}
+				"status": "false"
 			}
 		},
 		{
@@ -34446,7 +31438,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S4",
+				"SM3",
 				"C2",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -34456,13 +31450,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "2",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "4"
-				}
+				"status": "false"
 			}
 		},
 		{
@@ -34470,7 +31458,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S4",
+				"SM3",
 				"C2",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -34480,13 +31470,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "2",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "4"
-				}
+				"status": "false"
 			}
 		},
 		{
@@ -34494,7 +31478,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S3",
+				"SM1",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -34504,14 +31490,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "3",
-					"safari_ios": "1"
-				}
+				"status": "false"
 			}
 		},
 		{
@@ -34526,7 +31505,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"S3",
+				"SM1",
 				"C1",
+				"CM18",
 				"O15"
 			],
 			"references": [
@@ -34536,14 +31517,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "1",
-					"chrome_android": "18",
-					"edge": "79",
-					"safari": "3",
-					"safari_ios": "1"
-				}
+				"status": "false"
 			}
 		},
 		{
@@ -34558,7 +31532,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E83",
 				"S18",
+				"SM18",
 				"C83",
+				"CM83",
 				"O69"
 			],
 			"references": [
@@ -34568,14 +31544,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "≤83",
-					"chrome_android": "≤83",
-					"edge": "≤83",
-					"safari": "18",
-					"safari_ios": "18"
-				}
+				"status": "false"
 			}
 		},
 		{
@@ -34583,7 +31552,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E83",
 				"S18",
+				"SM18",
 				"C83",
+				"CM83",
 				"O69"
 			],
 			"references": [
@@ -34593,14 +31564,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "≤83",
-					"chrome_android": "≤83",
-					"edge": "≤83",
-					"safari": "18",
-					"safari_ios": "18"
-				}
+				"status": "false"
 			}
 		},
 		{
@@ -34663,7 +31627,8 @@ export const cssData : CSSDataV1 = {
 			"name": "::-moz-range-progress",
 			"status": "nonstandard",
 			"browsers": [
-				"FF22"
+				"FF22",
+				"FM22"
 			],
 			"references": [
 				{
@@ -34672,11 +31637,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "22",
-					"firefox_android": "22"
-				}
+				"status": "false"
 			},
 			"description": "The ::-moz-range-progress CSS pseudo-element is a Mozilla extension that represents the lower portion of the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\". This portion corresponds to values lower than the value currently selected by the thumb (i.e., virtual knob)."
 		},
@@ -34684,7 +31645,8 @@ export const cssData : CSSDataV1 = {
 			"name": "::-moz-range-thumb",
 			"status": "nonstandard",
 			"browsers": [
-				"FF21"
+				"FF21",
+				"FM21"
 			],
 			"references": [
 				{
@@ -34693,11 +31655,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "21",
-					"firefox_android": "21"
-				}
+				"status": "false"
 			},
 			"description": "The ::-moz-range-thumb CSS pseudo-element is a Mozilla extension that represents the thumb (i.e., virtual knob) of an <input> of type=\"range\". The user can move the thumb along the input's track to alter its numerical value."
 		},
@@ -34705,7 +31663,8 @@ export const cssData : CSSDataV1 = {
 			"name": "::-moz-range-track",
 			"status": "nonstandard",
 			"browsers": [
-				"FF21"
+				"FF21",
+				"FM21"
 			],
 			"references": [
 				{
@@ -34714,11 +31673,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"firefox": "21",
-					"firefox_android": "21"
-				}
+				"status": "false"
 			},
 			"description": "The ::-moz-range-track CSS pseudo-element is a Mozilla extension that represents the track (i.e., groove) in which the indicator slides in an <input> of type=\"range\"."
 		},
@@ -34733,7 +31688,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E131",
 				"S18.4",
+				"SM18.4",
 				"C131",
+				"CM131",
 				"O116"
 			],
 			"references": [
@@ -34743,12 +31700,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "131",
-					"chrome_android": "131",
-					"edge": "131"
-				}
+				"status": "false"
 			},
 			"description": ""
 		},
@@ -34757,8 +31709,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E89",
 				"FF82",
+				"FM82",
 				"S14.1",
+				"SM14.5",
 				"C89",
+				"CM89",
 				"IE10",
 				"O75"
 			],
@@ -34770,15 +31725,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "89",
-					"chrome_android": "89",
-					"edge": "89",
-					"firefox": "82",
-					"firefox_android": "82",
-					"safari": "14.1",
-					"safari_ios": "14.5"
-				},
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
@@ -34789,7 +31735,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E121",
 				"S17.4",
+				"SM17.4",
 				"C121",
+				"CM121",
 				"O107"
 			],
 			"references": [
@@ -34799,14 +31747,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "121",
-					"chrome_android": "121",
-					"edge": "121",
-					"safari": "17.4",
-					"safari_ios": "17.4"
-				}
+				"status": "false"
 			},
 			"description": "The ::grammar-error CSS pseudo-element represents a text segment which the user agent has flagged as grammatically incorrect."
 		},
@@ -34816,7 +31757,9 @@ export const cssData : CSSDataV1 = {
 				"E105",
 				"FFpreview",
 				"S17.2",
+				"SM17.2",
 				"C105",
+				"CM105",
 				"O91"
 			],
 			"references": [
@@ -34826,14 +31769,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "105",
-					"chrome_android": "105",
-					"edge": "105",
-					"safari": "17.2",
-					"safari_ios": "17.2"
-				}
+				"status": "false"
 			},
 			"description": ""
 		},
@@ -34842,8 +31778,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E86",
 				"FF68",
+				"FM68",
 				"S11.1",
+				"SM11.3",
 				"C86",
+				"CM86",
 				"O72"
 			],
 			"references": [
@@ -34853,14 +31792,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "86",
-					"chrome_android": "86",
-					"edge": "86",
-					"firefox": "68",
-					"firefox_android": "68"
-				}
+				"status": "false"
 			},
 			"description": "The ::marker CSS pseudo-element selects the marker box of a list item, which typically contains a bullet or number. It works on any element or pseudo-element set to display: list-item, such as the <li> and <summary> elements."
 		},
@@ -34869,8 +31801,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF72",
+				"FM79",
 				"S13.1",
+				"SM13.4",
 				"C73",
+				"CM73",
 				"O60"
 			],
 			"references": [
@@ -34881,15 +31816,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "73",
-					"chrome_android": "73",
-					"edge": "79",
-					"firefox": "72",
-					"firefox_android": "79",
-					"safari": "13.1",
-					"safari_ios": "13.4"
-				},
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
@@ -34900,8 +31826,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF51",
+				"FM51",
 				"S10.1",
+				"SM10.3",
 				"C57",
+				"CM57",
 				"O44"
 			],
 			"references": [
@@ -34912,15 +31841,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "57",
-					"chrome_android": "57",
-					"edge": "79",
-					"firefox": "51",
-					"firefox_android": "51",
-					"safari": "10.1",
-					"safari_ios": "10.3"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -34934,8 +31854,7 @@ export const cssData : CSSDataV1 = {
 				"C135"
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": ""
 		},
@@ -34947,8 +31866,7 @@ export const cssData : CSSDataV1 = {
 				"C135"
 			],
 			"baseline": {
-				"status": "false",
-				"support": {}
+				"status": "false"
 			},
 			"description": ""
 		},
@@ -34957,8 +31875,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF63",
+				"FM63",
 				"S10",
+				"SM10",
 				"C50",
+				"CM50",
 				"O37"
 			],
 			"references": [
@@ -34969,15 +31890,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "high",
-				"support": {
-					"chrome": "50",
-					"chrome_android": "50",
-					"edge": "79",
-					"firefox": "63",
-					"firefox_android": "63",
-					"safari": "10",
-					"safari_ios": "10"
-				},
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
@@ -34988,7 +31900,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E121",
 				"S17.4",
+				"SM17.4",
 				"C121",
+				"CM121",
 				"O107"
 			],
 			"references": [
@@ -34998,14 +31912,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "121",
-					"chrome_android": "121",
-					"edge": "121",
-					"safari": "17.4",
-					"safari_ios": "17.4"
-				}
+				"status": "false"
 			},
 			"description": "The ::spelling-error CSS pseudo-element represents a text segment which the user agent has flagged as incorrectly spelled."
 		},
@@ -35014,8 +31921,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E89",
 				"FF131",
+				"FM131",
 				"S18.2",
+				"SM18.2",
 				"C89",
+				"CM89",
 				"O75"
 			],
 			"references": [
@@ -35026,15 +31936,6 @@ export const cssData : CSSDataV1 = {
 			],
 			"baseline": {
 				"status": "low",
-				"support": {
-					"chrome": "89",
-					"chrome_android": "89",
-					"edge": "89",
-					"firefox": "131",
-					"firefox_android": "131",
-					"safari": "18.2",
-					"safari_ios": "18.2"
-				},
 				"baseline_low_date": "2024-12-11"
 			},
 			"description": "The ::target-text CSS pseudo-element represents the text that has been scrolled to if the browser supports scroll-to-text fragments. It allows authors to choose how to highlight that section of text."
@@ -35044,7 +31945,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E109",
 				"S18",
+				"SM18",
 				"C109",
+				"CM109",
 				"O95"
 			],
 			"references": [
@@ -35054,14 +31957,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "109",
-					"chrome_android": "109",
-					"edge": "109",
-					"safari": "18",
-					"safari_ios": "18"
-				}
+				"status": "false"
 			},
 			"description": "The ::view-transition CSS pseudo-element represents the root of the view transitions overlay, which contains all view transitions and sits over the top of all other page content."
 		},
@@ -35070,7 +31966,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E109",
 				"S18",
+				"SM18",
 				"C109",
+				"CM109",
 				"O95"
 			],
 			"references": [
@@ -35080,14 +31978,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "109",
-					"chrome_android": "109",
-					"edge": "109",
-					"safari": "18",
-					"safari_ios": "18"
-				}
+				"status": "false"
 			},
 			"description": ""
 		},
@@ -35096,7 +31987,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E109",
 				"S18",
+				"SM18",
 				"C109",
+				"CM109",
 				"O95"
 			],
 			"references": [
@@ -35106,14 +31999,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "109",
-					"chrome_android": "109",
-					"edge": "109",
-					"safari": "18",
-					"safari_ios": "18"
-				}
+				"status": "false"
 			},
 			"description": ""
 		},
@@ -35122,7 +32008,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E109",
 				"S18",
+				"SM18",
 				"C109",
+				"CM109",
 				"O95"
 			],
 			"references": [
@@ -35132,14 +32020,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "109",
-					"chrome_android": "109",
-					"edge": "109",
-					"safari": "18",
-					"safari_ios": "18"
-				}
+				"status": "false"
 			},
 			"description": ""
 		},
@@ -35148,7 +32029,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E109",
 				"S18",
+				"SM18",
 				"C109",
+				"CM109",
 				"O95"
 			],
 			"references": [
@@ -35158,14 +32041,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"baseline": {
-				"status": "false",
-				"support": {
-					"chrome": "109",
-					"chrome_android": "109",
-					"edge": "109",
-					"safari": "18",
-					"safari_ios": "18"
-				}
+				"status": "false"
 			},
 			"description": ""
 		}

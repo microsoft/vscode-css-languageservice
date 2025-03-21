@@ -83,8 +83,8 @@
             "description": "Supported browsers",
             "items": {
               "type": "string",
-              "pattern": "(E|FF|S|C|IE|O)([\\d|\\.]+)?",
-              "patternErrorMessage": "Browser item must follow the format of `${browser}${version}`. `browser` is one of:\n- E: Edge\n- FF: Firefox\n- S: Safari\n- C: Chrome\n- IE: Internet Explorer\n- O: Opera"
+              "pattern": "(E|FM|FF|SM|S|CM|C|IE|O)([\\d|\\.]+)?",
+              "patternErrorMessage": "Browser item must follow the format of `${browser}${version}`. `browser` is one of:\n- E: Edge\n- FF: Firefox\n- FM: Firefox Android\n- S: Safari\n- SM: Safari on iOS\n- C: Chrome\n- CM: Chrome on Android\n- IE: Internet Explorer\n- O: Opera"
             }
           },
           "baseline": {
@@ -95,40 +95,6 @@
                 "type": "string",
                 "description": "Baseline status",
                 "enum": ["high", "low", "false"]
-              },
-              "support": {
-                "type": "object",
-                "description": "Supported browsers",
-                "properties": {
-                  "chrome": {
-                    "type": "string",
-                    "description": "Chrome version"
-                  },
-                  "chrome_android": {
-                    "type": "string",
-                    "description": "Chrome Android version"
-                  },
-                  "edge": {
-                    "type": "string",
-                    "description": "Edge version"
-                  },
-                  "safari": {
-                    "type": "string",
-                    "description": "Safari version"
-                  },
-                  "safari_ios": {
-                    "type": "string",
-                    "description": "Safari iOS version"
-                  },
-                  "firefox": {
-                    "type": "string",
-                    "description": "Firefox version"
-                  },
-                  "firefox_android": {
-                    "type": "string",
-                    "description": "Firefox Android version"
-                  }
-                }
               },
               "baseline_low_date": {
                 "type": "string",
