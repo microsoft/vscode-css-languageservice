@@ -96,11 +96,11 @@ You can also specify 5 additional properties for them:
   export let browserNames = {
     E: 'Edge',
     FF: 'Firefox',
-    FM: 'Firefox on Android',
+    FFA: 'Firefox on Android',
     S: 'Safari',
     SM: 'Safari on iOS',
     C: 'Chrome',
-    CM: 'Chrome on Android',
+    CA: 'Chrome on Android',
     IE: 'IE',
     O: 'Opera'
   };

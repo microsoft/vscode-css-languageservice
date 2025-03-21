@@ -30,11 +30,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF28",
-				"FM28",
+				"FFA28",
 				"S9",
 				"SM9",
 				"C29",
-				"CM29",
+				"CA29",
 				"IE11",
 				"O16"
 			],
@@ -123,11 +123,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF20",
-				"FM20",
+				"FFA20",
 				"S9",
 				"SM9",
 				"C29",
-				"CM29",
+				"CA29",
 				"IE11",
 				"O16"
 			],
@@ -206,11 +206,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF20",
-				"FM20",
+				"FFA20",
 				"S9",
 				"SM9",
 				"C52",
-				"CM52",
+				"CA52",
 				"IE11",
 				"O12.1"
 			],
@@ -299,11 +299,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF45",
-				"FM45",
+				"FFA45",
 				"S10.1",
 				"SM10.3",
 				"C57",
-				"CM57",
+				"CA57",
 				"IE10",
 				"O44"
 			],
@@ -389,11 +389,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF20",
-				"FM20",
+				"FFA20",
 				"S9",
 				"SM9",
 				"C29",
-				"CM29",
+				"CA29",
 				"IE10",
 				"O12.1"
 			],
@@ -470,11 +470,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF27",
-				"FM27",
+				"FFA27",
 				"S9.1",
 				"SM9.3",
 				"C37",
-				"CM37",
+				"CA37",
 				"O24"
 			],
 			"values": [],
@@ -514,11 +514,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S9",
 				"SM9",
 				"C43",
-				"CM43",
+				"CA43",
 				"IE10",
 				"O30"
 			],
@@ -587,11 +587,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S9",
 				"SM9",
 				"C43",
-				"CM43",
+				"CA43",
 				"IE10",
 				"O30"
 			],
@@ -618,11 +618,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S9",
 				"SM9",
 				"C43",
-				"CM43",
+				"CA43",
 				"IE10",
 				"O30"
 			],
@@ -667,11 +667,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S9",
 				"SM9",
 				"C43",
-				"CM43",
+				"CA43",
 				"IE10",
 				"O30"
 			],
@@ -698,11 +698,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S9",
 				"SM9",
 				"C43",
-				"CM43",
+				"CA43",
 				"IE10",
 				"O30"
 			],
@@ -747,11 +747,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S9",
 				"SM9",
 				"C43",
-				"CM43",
+				"CA43",
 				"IE10",
 				"O30"
 			],
@@ -785,11 +785,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S9",
 				"SM9",
 				"C43",
-				"CM43",
+				"CA43",
 				"IE10",
 				"O30"
 			],
@@ -823,11 +823,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S9",
 				"SM9",
 				"C43",
-				"CM43",
+				"CA43",
 				"IE10",
 				"O30"
 			],
@@ -864,11 +864,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S9",
 				"SM9",
 				"C43",
-				"CM43",
+				"CA43",
 				"IE10",
 				"O30"
 			],
@@ -895,11 +895,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S15.4",
 				"SM15.4",
 				"C36",
-				"CM36",
+				"CA36",
 				"IE10",
 				"O23"
 			],
@@ -936,11 +936,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -992,11 +992,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM3.2",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -1010,11 +1010,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM3.2",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O3.5"
 					],
@@ -1048,11 +1048,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF30",
-				"FM30",
+				"FFA30",
 				"S8",
 				"SM8",
 				"C35",
-				"CM35",
+				"CA35",
 				"O22"
 			],
 			"values": [
@@ -1109,11 +1109,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF30",
-						"FM30",
+						"FFA30",
 						"S8",
 						"SM8",
 						"C35",
-						"CM35",
+						"CA35",
 						"O22"
 					],
 					"description": "Creates a color with the hue of the source color and the saturation and luminosity of the backdrop color."
@@ -1123,11 +1123,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF30",
-						"FM30",
+						"FFA30",
 						"S8",
 						"SM8",
 						"C35",
-						"CM35",
+						"CA35",
 						"O22"
 					],
 					"description": "Creates a color with the saturation of the source color and the hue and luminosity of the backdrop color."
@@ -1137,11 +1137,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF30",
-						"FM30",
+						"FFA30",
 						"S8",
 						"SM8",
 						"C35",
-						"CM35",
+						"CA35",
 						"O22"
 					],
 					"description": "Creates a color with the hue and saturation of the source color and the luminosity of the backdrop color."
@@ -1151,11 +1151,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF30",
-						"FM30",
+						"FFA30",
 						"S8",
 						"SM8",
 						"C35",
-						"CM35",
+						"CA35",
 						"O22"
 					],
 					"description": "Creates a color with the luminosity of the source color and the hue and saturation of the backdrop color."
@@ -1184,11 +1184,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
-				"FM4",
+				"FFA4",
 				"S5",
 				"SM5",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O10.5"
 			],
@@ -1215,11 +1215,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -1246,11 +1246,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -1284,11 +1284,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
-				"FM4",
+				"FFA4",
 				"S3",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O10.5"
 			],
@@ -1315,11 +1315,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -1348,11 +1348,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF49",
-				"FM49",
+				"FFA49",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE6",
 				"O15"
 			],
@@ -1394,11 +1394,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF49",
-				"FM49",
+				"FFA49",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE6",
 				"O15"
 			],
@@ -1440,11 +1440,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -1472,11 +1472,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
-				"FM4",
+				"FFA4",
 				"S5",
 				"SM4.2",
 				"C3",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O10"
 			],
@@ -1529,11 +1529,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"values": [
@@ -1566,11 +1566,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -1600,11 +1600,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
@@ -1633,11 +1633,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
@@ -1666,11 +1666,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"syntax": "<'border-top-color'>",
@@ -1696,11 +1696,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"syntax": "<'border-top-color'>",
@@ -1726,11 +1726,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"syntax": "<'border-top-style'>",
@@ -1756,11 +1756,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"syntax": "<'border-top-style'>",
@@ -1786,11 +1786,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"syntax": "<'border-top-width'>",
@@ -1817,11 +1817,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"syntax": "<'border-top-width'>",
@@ -1848,11 +1848,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -1882,11 +1882,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -1913,11 +1913,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
-				"FM4",
+				"FFA4",
 				"S5",
 				"SM4.2",
 				"C4",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O10.5"
 			],
@@ -1945,11 +1945,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
-				"FM4",
+				"FFA4",
 				"S5",
 				"SM4.2",
 				"C4",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O10.5"
 			],
@@ -1977,11 +1977,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE5.5",
 				"O9.2"
 			],
@@ -2008,11 +2008,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -2040,11 +2040,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1.2",
 				"SM3",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE5",
 				"O4"
 			],
@@ -2081,11 +2081,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -2113,11 +2113,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF15",
-				"FM15",
+				"FFA15",
 				"S6",
 				"SM6",
 				"C16",
-				"CM18",
+				"CA18",
 				"IE11",
 				"O11"
 			],
@@ -2181,11 +2181,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF15",
-				"FM15",
+				"FFA15",
 				"S6",
 				"SM6",
 				"C15",
-				"CM18",
+				"CA18",
 				"IE11",
 				"O15"
 			],
@@ -2213,11 +2213,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF15",
-				"FM15",
+				"FFA15",
 				"S6",
 				"SM9.3",
 				"C15",
-				"CM18",
+				"CA18",
 				"IE11",
 				"O15"
 			],
@@ -2262,11 +2262,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF15",
-				"FM15",
+				"FFA15",
 				"S6",
 				"SM6",
 				"C15",
-				"CM18",
+				"CA18",
 				"IE11",
 				"O15"
 			],
@@ -2300,11 +2300,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF15",
-				"FM15",
+				"FFA15",
 				"S6",
 				"SM6",
 				"C15",
-				"CM18",
+				"CA18",
 				"IE11",
 				"O15"
 			],
@@ -2337,11 +2337,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF13",
-				"FM14",
+				"FFA14",
 				"S6",
 				"SM6",
 				"C16",
-				"CM18",
+				"CA18",
 				"IE11",
 				"O15"
 			],
@@ -2376,11 +2376,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
@@ -2409,11 +2409,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
@@ -2442,11 +2442,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"syntax": "<'border-top-color'>",
@@ -2472,11 +2472,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"syntax": "<'border-top-color'>",
@@ -2502,11 +2502,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"syntax": "<'border-top-style'>",
@@ -2532,11 +2532,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"syntax": "<'border-top-style'>",
@@ -2562,11 +2562,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"syntax": "<'border-top-width'>",
@@ -2593,11 +2593,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"syntax": "<'border-top-width'>",
@@ -2624,11 +2624,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -2658,11 +2658,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -2689,11 +2689,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM14",
+				"FFA14",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE5.5",
 				"O9.2"
 			],
@@ -2720,11 +2720,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -2752,11 +2752,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
-				"FM4",
+				"FFA4",
 				"S5",
 				"SM4.2",
 				"C4",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O10.5"
 			],
@@ -2784,11 +2784,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM14",
+				"FFA14",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE5.5",
 				"O9.2"
 			],
@@ -2818,11 +2818,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -2849,11 +2849,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM14",
+				"FFA14",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE5.5",
 				"O9.2"
 			],
@@ -2880,11 +2880,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -2912,11 +2912,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE8",
 				"O4"
 			],
@@ -2943,11 +2943,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -2975,11 +2975,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -3009,11 +3009,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -3040,11 +3040,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
-				"FM4",
+				"FFA4",
 				"S5",
 				"SM4.2",
 				"C4",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O10.5"
 			],
@@ -3072,11 +3072,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
-				"FM4",
+				"FFA4",
 				"S5",
 				"SM4.2",
 				"C4",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O10.5"
 			],
@@ -3104,11 +3104,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE5.5",
 				"O9.2"
 			],
@@ -3135,11 +3135,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -3167,11 +3167,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM3",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -3200,11 +3200,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE5",
 				"O6"
 			],
@@ -3238,9 +3238,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E130",
 				"FF32",
-				"FM32",
+				"FFA32",
 				"C130",
-				"CM130",
+				"CA130",
 				"O115"
 			],
 			"values": [
@@ -3274,11 +3274,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
-				"FM4",
+				"FFA4",
 				"S5.1",
 				"SM5",
 				"C10",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O10.5"
 			],
@@ -3317,11 +3317,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF29",
-				"FM29",
+				"FFA29",
 				"S5.1",
 				"SM6",
 				"C10",
-				"CM18",
+				"CA18",
 				"IE8",
 				"O7"
 			],
@@ -3358,11 +3358,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF65",
-				"FM65",
+				"FFA65",
 				"S10",
 				"SM10",
 				"C50",
-				"CM50",
+				"CA50",
 				"IE10",
 				"O37"
 			],
@@ -3427,11 +3427,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF65",
-				"FM65",
+				"FFA65",
 				"S10",
 				"SM10",
 				"C50",
-				"CM50",
+				"CA50",
 				"IE10",
 				"O37"
 			],
@@ -3496,11 +3496,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF65",
-				"FM65",
+				"FFA65",
 				"S10",
 				"SM10",
 				"C50",
-				"CM50",
+				"CA50",
 				"IE10",
 				"O37"
 			],
@@ -3545,11 +3545,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE8",
 				"O4"
 			],
@@ -3586,11 +3586,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF53",
-				"FM53",
+				"FFA53",
 				"S11.1",
 				"SM11.3",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"values": [
@@ -3623,11 +3623,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -3672,11 +3672,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O7"
 			],
@@ -3712,11 +3712,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF3.5",
-				"FM4",
+				"FFA4",
 				"S9.1",
 				"SM9.3",
 				"C55",
-				"CM55",
+				"CA55",
 				"IE10",
 				"O42"
 			],
@@ -3756,11 +3756,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF3.5",
-				"FM4",
+				"FFA4",
 				"S5",
 				"SM4.2",
 				"C15",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"values": [
@@ -3796,11 +3796,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE3",
 				"O3.5"
 			],
@@ -3827,11 +3827,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF3",
-				"FM4",
+				"FFA4",
 				"S3",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"values": [
@@ -3871,11 +3871,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S9",
 				"SM9",
 				"C50",
-				"CM50",
+				"CA50",
 				"IE10",
 				"O37"
 			],
@@ -3909,11 +3909,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S9",
 				"SM9",
 				"C50",
-				"CM50",
+				"CA50",
 				"IE10",
 				"O37"
 			],
@@ -3950,11 +3950,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1.5",
-				"FM4",
+				"FFA4",
 				"S3",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE10",
 				"O11.1"
 			],
@@ -3988,11 +3988,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S9",
 				"SM9",
 				"C50",
-				"CM50",
+				"CA50",
 				"IE10",
 				"O11.1"
 			],
@@ -4022,11 +4022,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S9",
 				"SM9",
 				"C50",
-				"CM50",
+				"CA50",
 				"IE10",
 				"O11.1"
 			],
@@ -4053,11 +4053,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S9",
 				"SM9",
 				"C50",
-				"CM50",
+				"CA50",
 				"IE10",
 				"O11.1"
 			],
@@ -4084,11 +4084,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S9",
 				"SM9",
 				"C50",
-				"CM50",
+				"CA50",
 				"IE10",
 				"O11.1"
 			],
@@ -4116,11 +4116,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S9",
 				"SM9",
 				"C50",
-				"CM50",
+				"CA50",
 				"IE10",
 				"O11.1"
 			],
@@ -4155,11 +4155,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF71",
-				"FM79",
+				"FFA79",
 				"S9",
 				"SM9",
 				"C50",
-				"CM50",
+				"CA50",
 				"IE10",
 				"O37"
 			],
@@ -4196,11 +4196,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF50",
-				"FM50",
+				"FFA50",
 				"S9",
 				"SM9",
 				"C50",
-				"CM50",
+				"CA50",
 				"IE10",
 				"O11.1"
 			],
@@ -4234,11 +4234,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF69",
-				"FM79",
+				"FFA79",
 				"S15.4",
 				"SM15.4",
 				"C52",
-				"CM52",
+				"CA52",
 				"O39"
 			],
 			"values": [
@@ -4294,11 +4294,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE8",
 				"O4"
 			],
@@ -4351,11 +4351,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM25",
+				"FFA25",
 				"S3",
 				"SM1",
 				"C2",
-				"CM18",
+				"CA18",
 				"IE8",
 				"O9.2"
 			],
@@ -4389,11 +4389,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM25",
+				"FFA25",
 				"S3",
 				"SM1",
 				"C2",
-				"CM18",
+				"CA18",
 				"IE8",
 				"O9.2"
 			],
@@ -4427,11 +4427,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM95",
+				"FFA95",
 				"S1.2",
 				"SM13.4",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O7"
 			],
@@ -4485,11 +4485,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM95",
+						"FFA95",
 						"S1.2",
 						"SM13.4",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -4500,11 +4500,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM95",
+						"FFA95",
 						"S1.2",
 						"SM13.4",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -4523,11 +4523,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM95",
+						"FFA95",
 						"S1.2",
 						"SM13.4",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -4538,11 +4538,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM95",
+						"FFA95",
 						"S1.2",
 						"SM13.4",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -4553,11 +4553,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM95",
+						"FFA95",
 						"S1.2",
 						"SM13.4",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -4568,11 +4568,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM95",
+						"FFA95",
 						"S1.2",
 						"SM13.4",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -4655,11 +4655,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM95",
+						"FFA95",
 						"S1.2",
 						"SM13.4",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -4670,11 +4670,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM95",
+						"FFA95",
 						"S1.2",
 						"SM13.4",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -4685,11 +4685,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM95",
+						"FFA95",
 						"S1.2",
 						"SM13.4",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -4700,11 +4700,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM95",
+						"FFA95",
 						"S1.2",
 						"SM13.4",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -4719,11 +4719,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM95",
+						"FFA95",
 						"S1.2",
 						"SM13.4",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -4734,11 +4734,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM95",
+						"FFA95",
 						"S1.2",
 						"SM13.4",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -4770,11 +4770,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C2",
-				"CM18",
+				"CA18",
 				"IE5.5",
 				"O9.2"
 			],
@@ -4811,11 +4811,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O7"
 			],
@@ -4829,11 +4829,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -4844,11 +4844,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -4859,11 +4859,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -4874,11 +4874,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -4889,11 +4889,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -4912,11 +4912,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -4927,11 +4927,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -4950,11 +4950,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -4965,11 +4965,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					]
@@ -4979,11 +4979,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					]
@@ -4993,11 +4993,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					]
@@ -5007,11 +5007,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					]
@@ -5021,11 +5021,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					]
@@ -5035,11 +5035,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -5050,11 +5050,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					]
@@ -5064,11 +5064,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					]
@@ -5078,11 +5078,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					]
@@ -5092,11 +5092,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					]
@@ -5106,11 +5106,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					]
@@ -5120,11 +5120,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -5135,11 +5135,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -5150,11 +5150,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -5165,11 +5165,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -5200,11 +5200,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -5243,11 +5243,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -5258,11 +5258,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -5273,11 +5273,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -5288,11 +5288,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -5322,11 +5322,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1.2",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE8",
 				"O4"
 			],
@@ -5340,11 +5340,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1.2",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE8",
 						"O4"
 					]
@@ -5411,11 +5411,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"values": [
@@ -5453,11 +5453,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"syntax": "<'opacity'>",
@@ -5483,11 +5483,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"values": [
@@ -5523,11 +5523,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF35",
-				"FM35",
+				"FFA35",
 				"S9.1",
 				"SM9.3",
 				"C53",
-				"CM53",
+				"CA53",
 				"O40"
 			],
 			"values": [
@@ -5580,11 +5580,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF35",
-						"FM35",
+						"FFA35",
 						"S9.1",
 						"SM9.3",
 						"C53",
-						"CM53",
+						"CA53",
 						"O40"
 					],
 					"description": "A filter reference to a <filter> element."
@@ -5614,11 +5614,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF20",
-				"FM20",
+				"FFA20",
 				"S9",
 				"SM9",
 				"C29",
-				"CM29",
+				"CA29",
 				"IE11",
 				"O12.1"
 			],
@@ -5632,11 +5632,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF20",
-						"FM20",
+						"FFA20",
 						"S9",
 						"SM9",
 						"C29",
-						"CM29",
+						"CA29",
 						"IE11",
 						"O12.1"
 					],
@@ -5672,11 +5672,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF22",
-				"FM22",
+				"FFA22",
 				"S9",
 				"SM9",
 				"C29",
-				"CM29",
+				"CA29",
 				"IE11",
 				"O12.1"
 			],
@@ -5690,11 +5690,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF22",
-						"FM22",
+						"FFA22",
 						"S9",
 						"SM9",
 						"C29",
-						"CM29",
+						"CA29",
 						"IE11",
 						"O12.1"
 					],
@@ -5726,11 +5726,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF20",
-				"FM20",
+				"FFA20",
 				"S9",
 				"SM9",
 				"C29",
-				"CM29",
+				"CA29",
 				"IE11",
 				"O12.1"
 			],
@@ -5775,11 +5775,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF28",
-				"FM28",
+				"FFA28",
 				"S9",
 				"SM9",
 				"C29",
-				"CM29",
+				"CA29",
 				"IE11",
 				"O12.1"
 			],
@@ -5836,11 +5836,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF20",
-				"FM20",
+				"FFA20",
 				"S9",
 				"SM9",
 				"C29",
-				"CM29",
+				"CA29",
 				"IE11",
 				"O12.1"
 			],
@@ -5867,11 +5867,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF20",
-				"FM20",
+				"FFA20",
 				"S9",
 				"SM9",
 				"C29",
-				"CM29",
+				"CA29",
 				"IE10",
 				"O12.1"
 			],
@@ -5898,11 +5898,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF28",
-				"FM28",
+				"FFA28",
 				"S9",
 				"SM9",
 				"C29",
-				"CM29",
+				"CA29",
 				"IE11",
 				"O16"
 			],
@@ -5943,11 +5943,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O7"
 			],
@@ -5957,11 +5957,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -5972,11 +5972,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -6018,11 +6018,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3",
-				"FM4",
+				"FFA4",
 				"S6",
 				"SM6",
 				"C5",
-				"CM18",
+				"CA18",
 				"IE11",
 				"O15"
 			],
@@ -6049,11 +6049,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3",
-				"FM4",
+				"FFA4",
 				"S6",
 				"SM6",
 				"C5",
-				"CM18",
+				"CA18",
 				"IE11",
 				"O15"
 			],
@@ -6081,11 +6081,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE3",
 				"O3.5"
 			],
@@ -6229,11 +6229,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE3",
 				"O3.5"
 			],
@@ -6317,11 +6317,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E15",
 				"FF34",
-				"FM34",
+				"FFA34",
 				"S9.1",
 				"SM9.3",
 				"C48",
-				"CM48",
+				"CA48",
 				"IE10",
 				"O35"
 			],
@@ -6832,11 +6832,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF32",
-				"FM32",
+				"FFA32",
 				"S9",
 				"SM9",
 				"C33",
-				"CM33",
+				"CA33",
 				"O20"
 			],
 			"values": [
@@ -6875,7 +6875,7 @@ export const cssData : CSSDataV1 = {
 			"name": "font-language-override",
 			"browsers": [
 				"FF34",
-				"FM34"
+				"FFA34"
 			],
 			"values": [
 				{
@@ -6904,11 +6904,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE5.5",
 				"O7"
 			],
@@ -6965,11 +6965,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E127",
 				"FF3",
-				"FM4",
+				"FFA4",
 				"S16.4",
 				"SM16.4",
 				"C127",
-				"CM127",
+				"CA127",
 				"O113"
 			],
 			"values": [
@@ -7000,11 +7000,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF9",
-				"FM9",
+				"FFA9",
 				"S11",
 				"SM11",
 				"C60",
-				"CM60",
+				"CA60",
 				"IE9",
 				"O47"
 			],
@@ -7026,11 +7026,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF9",
-						"FM9",
+						"FFA9",
 						"S11",
 						"SM11",
 						"C60",
-						"CM60",
+						"CA60",
 						"IE9",
 						"O47"
 					],
@@ -7056,11 +7056,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF9",
-						"FM9",
+						"FFA9",
 						"S11",
 						"SM11",
 						"C60",
-						"CM60",
+						"CA60",
 						"IE9",
 						"O47"
 					],
@@ -7089,11 +7089,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O7"
 			],
@@ -7135,11 +7135,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E97",
 				"FF34",
-				"FM34",
+				"FFA34",
 				"S9",
 				"SM9",
 				"C97",
-				"CM97",
+				"CA97",
 				"O83"
 			],
 			"values": [
@@ -7179,11 +7179,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -7220,11 +7220,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E111",
 				"FF34",
-				"FM34",
+				"FFA34",
 				"S9.1",
 				"SM9.3",
 				"C111",
-				"CM111",
+				"CA111",
 				"O97"
 			],
 			"values": [
@@ -7283,11 +7283,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF34",
-				"FM34",
+				"FFA34",
 				"S9.1",
 				"SM9.3",
 				"C52",
-				"CM52",
+				"CA52",
 				"O39"
 			],
 			"values": [
@@ -7343,11 +7343,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF34",
-				"FM34",
+				"FFA34",
 				"S9.1",
 				"SM9.3",
 				"C63",
-				"CM63",
+				"CA63",
 				"O50"
 			],
 			"values": [
@@ -7415,11 +7415,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF34",
-				"FM34",
+				"FFA34",
 				"S9.1",
 				"SM9.3",
 				"C34",
-				"CM34",
+				"CA34",
 				"O21"
 			],
 			"values": [
@@ -7436,11 +7436,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF34",
-						"FM34",
+						"FFA34",
 						"S9.1",
 						"SM9.3",
 						"C34",
-						"CM34",
+						"CA34",
 						"O21"
 					],
 					"description": "Enables display of contextual alternates."
@@ -7466,11 +7466,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF34",
-						"FM34",
+						"FFA34",
 						"S9.1",
 						"SM9.3",
 						"C34",
-						"CM34",
+						"CA34",
 						"O21"
 					],
 					"description": "Disables display of contextual alternates."
@@ -7488,11 +7488,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF34",
-						"FM34",
+						"FFA34",
 						"S9.1",
 						"SM9.3",
 						"C34",
-						"CM34",
+						"CA34",
 						"O21"
 					],
 					"description": "Disables all ligatures."
@@ -7525,11 +7525,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF34",
-				"FM34",
+				"FFA34",
 				"S9.1",
 				"SM9.3",
 				"C52",
-				"CM52",
+				"CA52",
 				"O39"
 			],
 			"values": [
@@ -7592,7 +7592,7 @@ export const cssData : CSSDataV1 = {
 			"name": "font-variant-position",
 			"browsers": [
 				"FF34",
-				"FM34",
+				"FFA34",
 				"S9.1",
 				"SM9.3"
 			],
@@ -7631,11 +7631,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C2",
-				"CM18",
+				"CA18",
 				"IE3",
 				"O3.5"
 			],
@@ -7749,11 +7749,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S10.1",
 				"SM10.3",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"values": [
@@ -7790,11 +7790,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S10.1",
 				"SM10.3",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"syntax": "<'grid-template'> | <'grid-template-rows'> / [ auto-flow && dense? ] <'grid-auto-columns'>? | [ auto-flow && dense? ] <'grid-auto-rows'>? / <'grid-template-columns'>",
@@ -7824,11 +7824,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF70",
-				"FM79",
+				"FFA79",
 				"S10.1",
 				"SM10.3",
 				"C57",
-				"CM57",
+				"CA57",
 				"IE10",
 				"O44"
 			],
@@ -7874,11 +7874,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S10.1",
 				"SM10.3",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"values": [
@@ -7918,11 +7918,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF70",
-				"FM79",
+				"FFA79",
 				"S10.1",
 				"SM10.3",
 				"C57",
-				"CM57",
+				"CA57",
 				"IE10",
 				"O44"
 			],
@@ -7968,11 +7968,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S10.1",
 				"SM10.3",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"values": [
@@ -8010,11 +8010,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S10.1",
 				"SM10.3",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"values": [
@@ -8068,11 +8068,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S10.1",
 				"SM10.3",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"values": [
@@ -8126,11 +8126,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S10.1",
 				"SM10.3",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"values": [
@@ -8168,11 +8168,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S10.1",
 				"SM10.3",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"values": [
@@ -8226,11 +8226,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S10.1",
 				"SM10.3",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"values": [
@@ -8268,11 +8268,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S10.1",
 				"SM10.3",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"values": [
@@ -8332,11 +8332,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S10.1",
 				"SM10.3",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"values": [
@@ -8368,11 +8368,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S10.1",
 				"SM10.3",
 				"C57",
-				"CM57",
+				"CA57",
 				"IE10",
 				"O44"
 			],
@@ -8432,11 +8432,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S10.1",
 				"SM10.3",
 				"C57",
-				"CM57",
+				"CA57",
 				"IE10",
 				"O44"
 			],
@@ -8497,11 +8497,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O7"
 			],
@@ -8515,11 +8515,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -8530,11 +8530,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -8545,11 +8545,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -8580,11 +8580,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF43",
-				"FM43",
+				"FFA43",
 				"S17",
 				"SM17",
 				"C55",
-				"CM55",
+				"CA55",
 				"IE10",
 				"O42"
 			],
@@ -8624,11 +8624,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E81",
 				"FF26",
-				"FM26",
+				"FFA26",
 				"S13.1",
 				"SM13.4",
 				"C81",
-				"CM81",
+				"CA81",
 				"O67"
 			],
 			"values": [
@@ -8664,11 +8664,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF3.6",
-				"FM4",
+				"FFA4",
 				"S6",
 				"SM6",
 				"C13",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"values": [
@@ -8685,11 +8685,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF3.6",
-						"FM4",
+						"FFA4",
 						"S6",
 						"SM6",
 						"C13",
-						"CM18",
+						"CA18",
 						"O15"
 					]
 				},
@@ -8728,7 +8728,7 @@ export const cssData : CSSDataV1 = {
 			"name": "ime-mode",
 			"browsers": [
 				"FF3",
-				"FM4",
+				"FFA4",
 				"IE5"
 			],
 			"values": [
@@ -8769,11 +8769,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"values": [
@@ -8806,11 +8806,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF36",
-				"FM36",
+				"FFA36",
 				"S8",
 				"SM8",
 				"C41",
-				"CM41",
+				"CA41",
 				"O30"
 			],
 			"values": [
@@ -8846,11 +8846,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF20",
-				"FM20",
+				"FFA20",
 				"S9",
 				"SM9",
 				"C29",
-				"CM29",
+				"CA29",
 				"IE11",
 				"O12.1"
 			],
@@ -8958,11 +8958,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE5.5",
 				"O5"
 			],
@@ -8996,11 +8996,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -9033,11 +9033,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3",
-				"FM4",
+				"FFA4",
 				"S6",
 				"SM6",
 				"C5",
-				"CM18",
+				"CA18",
 				"IE11",
 				"O15"
 			],
@@ -9064,11 +9064,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E14",
 				"FF69",
-				"FM79",
+				"FFA79",
 				"S11",
 				"SM11",
 				"C58",
-				"CM58",
+				"CA58",
 				"IE5.5",
 				"O45"
 			],
@@ -9117,11 +9117,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O7"
 			],
@@ -9156,11 +9156,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O7"
 			],
@@ -9217,11 +9217,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -9265,11 +9265,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O7"
 			],
@@ -9302,11 +9302,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -9343,11 +9343,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -9405,11 +9405,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O3.5"
 					],
@@ -9452,11 +9452,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE3",
 				"O3.5"
 			],
@@ -9489,11 +9489,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"values": [
@@ -9525,11 +9525,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"values": [
@@ -9561,11 +9561,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE3",
 				"O3.5"
 			],
@@ -9598,11 +9598,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"values": [
@@ -9634,11 +9634,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"values": [
@@ -9670,11 +9670,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE3",
 				"O3.5"
 			],
@@ -9707,11 +9707,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE3",
 				"O3.5"
 			],
@@ -9744,11 +9744,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE3",
 				"O3.5"
 			],
@@ -9781,11 +9781,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"values": [
@@ -9821,11 +9821,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"values": [
@@ -9861,11 +9861,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"values": [
@@ -9901,11 +9901,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"values": [
@@ -9941,11 +9941,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E120",
 				"FF53",
-				"FM53",
+				"FFA53",
 				"S15.4",
 				"SM15.4",
 				"C120",
-				"CM120",
+				"CA120",
 				"O15"
 			],
 			"values": [
@@ -9982,11 +9982,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E120",
 				"FF53",
-				"FM53",
+				"FFA53",
 				"S15.4",
 				"SM15.4",
 				"C120",
-				"CM120",
+				"CA120",
 				"O106"
 			],
 			"values": [
@@ -10027,11 +10027,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E120",
 				"FF53",
-				"FM53",
+				"FFA53",
 				"S15.4",
 				"SM15.4",
 				"C120",
-				"CM120",
+				"CA120",
 				"O106"
 			],
 			"syntax": "<coord-box>#",
@@ -10057,11 +10057,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E120",
 				"FF53",
-				"FM53",
+				"FFA53",
 				"S15.4",
 				"SM15.4",
 				"C120",
-				"CM120",
+				"CA120",
 				"O106"
 			],
 			"syntax": "<position>#",
@@ -10088,11 +10088,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E120",
 				"FF53",
-				"FM53",
+				"FFA53",
 				"S15.4",
 				"SM15.4",
 				"C120",
-				"CM120",
+				"CA120",
 				"O106"
 			],
 			"syntax": "<repeat-style>#",
@@ -10117,11 +10117,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E120",
 				"FF53",
-				"FM53",
+				"FFA53",
 				"S15.4",
 				"SM15.4",
 				"C120",
-				"CM120",
+				"CA120",
 				"O106"
 			],
 			"values": [
@@ -10162,11 +10162,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF35",
-				"FM35",
+				"FFA35",
 				"S7",
 				"SM7",
 				"C24",
-				"CM25",
+				"CA25",
 				"O15"
 			],
 			"values": [
@@ -10202,11 +10202,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"values": [
@@ -10239,11 +10239,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1.3",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE7",
 				"O7"
 			],
@@ -10257,11 +10257,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1.3",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE7",
 						"O7"
 					],
@@ -10272,11 +10272,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1.3",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE7",
 						"O7"
 					],
@@ -10287,11 +10287,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1.3",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE7",
 						"O7"
 					],
@@ -10322,11 +10322,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"values": [
@@ -10359,11 +10359,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE7",
 				"O4"
 			],
@@ -10377,11 +10377,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE7",
 						"O4"
 					],
@@ -10392,11 +10392,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE7",
 						"O4"
 					],
@@ -10407,11 +10407,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE7",
 						"O4"
 					],
@@ -10442,11 +10442,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"syntax": "<'min-width'>",
@@ -10473,11 +10473,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3",
-				"FM4",
+				"FFA4",
 				"S1.3",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE7",
 				"O4"
 			],
@@ -10487,11 +10487,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF3",
-						"FM4",
+						"FFA4",
 						"S1.3",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE7",
 						"O4"
 					]
@@ -10501,11 +10501,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF3",
-						"FM4",
+						"FFA4",
 						"S1.3",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE7",
 						"O4"
 					],
@@ -10516,11 +10516,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF3",
-						"FM4",
+						"FFA4",
 						"S1.3",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE7",
 						"O4"
 					],
@@ -10531,11 +10531,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF3",
-						"FM4",
+						"FFA4",
 						"S1.3",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE7",
 						"O4"
 					],
@@ -10566,11 +10566,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"syntax": "<'min-width'>",
@@ -10597,11 +10597,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE7",
 				"O4"
 			],
@@ -10611,11 +10611,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE7",
 						"O4"
 					]
@@ -10625,11 +10625,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE7",
 						"O4"
 					],
@@ -10640,11 +10640,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE7",
 						"O4"
 					],
@@ -10655,11 +10655,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE7",
 						"O4"
 					],
@@ -10690,11 +10690,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF32",
-				"FM32",
+				"FFA32",
 				"S8",
 				"SM8",
 				"C41",
-				"CM41",
+				"CA41",
 				"O28"
 			],
 			"values": [
@@ -10751,11 +10751,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF32",
-						"FM32",
+						"FFA32",
 						"S8",
 						"SM8",
 						"C41",
-						"CM41",
+						"CA41",
 						"O28"
 					],
 					"description": "Creates a color with the hue of the source color and the saturation and luminosity of the backdrop color."
@@ -10765,11 +10765,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF32",
-						"FM32",
+						"FFA32",
 						"S8",
 						"SM8",
 						"C41",
-						"CM41",
+						"CA41",
 						"O28"
 					],
 					"description": "Creates a color with the saturation of the source color and the hue and luminosity of the backdrop color."
@@ -10779,11 +10779,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF32",
-						"FM32",
+						"FFA32",
 						"S8",
 						"SM8",
 						"C41",
-						"CM41",
+						"CA41",
 						"O28"
 					],
 					"description": "Creates a color with the hue and saturation of the source color and the luminosity of the backdrop color."
@@ -10793,11 +10793,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF32",
-						"FM32",
+						"FFA32",
 						"S8",
 						"SM8",
 						"C41",
-						"CM41",
+						"CA41",
 						"O28"
 					],
 					"description": "Creates a color with the luminosity of the source color and the hue and saturation of the backdrop color."
@@ -14806,11 +14806,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF36",
-				"FM36",
+				"FFA36",
 				"S10",
 				"SM10",
 				"C32",
-				"CM32",
+				"CA32",
 				"O19"
 			],
 			"values": [
@@ -14858,11 +14858,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF36",
-				"FM36",
+				"FFA36",
 				"S10",
 				"SM10",
 				"C32",
-				"CM32",
+				"CA32",
 				"O19"
 			],
 			"syntax": "<position>",
@@ -14980,11 +14980,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S2",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O9"
 			],
@@ -15011,11 +15011,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF20",
-				"FM20",
+				"FFA20",
 				"S9",
 				"SM9",
 				"C29",
-				"CM29",
+				"CA29",
 				"IE11",
 				"O12.1"
 			],
@@ -15044,7 +15044,7 @@ export const cssData : CSSDataV1 = {
 				"S1.3",
 				"SM1",
 				"C25",
-				"CM25",
+				"CA25",
 				"IE8",
 				"O9.2"
 			],
@@ -15372,11 +15372,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E94",
 				"FF88",
-				"FM88",
+				"FFA88",
 				"S16.4",
 				"SM16.4",
 				"C94",
-				"CM94",
+				"CA94",
 				"IE8",
 				"O80"
 			],
@@ -15390,11 +15390,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E94",
 						"FF88",
-						"FM88",
+						"FFA88",
 						"S16.4",
 						"SM16.4",
 						"C94",
-						"CM94",
+						"CA94",
 						"IE8",
 						"O80"
 					],
@@ -15427,11 +15427,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1.5",
-				"FM4",
+				"FFA4",
 				"S1.2",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE8",
 				"O7"
 			],
@@ -15441,11 +15441,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1.5",
-						"FM4",
+						"FFA4",
 						"S1.2",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE8",
 						"O7"
 					],
@@ -15476,11 +15476,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E15",
 				"FF1.5",
-				"FM4",
+				"FFA4",
 				"S1.2",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"O9.5"
 			],
 			"syntax": "<length>",
@@ -15506,11 +15506,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1.5",
-				"FM4",
+				"FFA4",
 				"S1.2",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE8",
 				"O7"
 			],
@@ -15544,11 +15544,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1.5",
-				"FM4",
+				"FFA4",
 				"S1.2",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE8",
 				"O7"
 			],
@@ -15576,11 +15576,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O7"
 			],
@@ -15598,11 +15598,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O7"
 					],
@@ -15640,11 +15640,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E18",
 				"FF49",
-				"FM49",
+				"FFA49",
 				"S7",
 				"SM7",
 				"C23",
-				"CM25",
+				"CA25",
 				"IE5.5",
 				"O12.1"
 			],
@@ -15685,11 +15685,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
-				"FM4",
+				"FFA4",
 				"S3",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE5",
 				"O9.5"
 			],
@@ -15734,11 +15734,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
-				"FM4",
+				"FFA4",
 				"S3",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE5",
 				"O9.5"
 			],
@@ -15799,11 +15799,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -15832,11 +15832,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -15864,11 +15864,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"syntax": "<'padding-top'>",
@@ -15895,11 +15895,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"syntax": "<'padding-top'>",
@@ -15926,11 +15926,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"syntax": "<'padding-top'>",
@@ -15957,11 +15957,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S12.1",
 				"SM12.2",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"syntax": "<'padding-top'>",
@@ -15988,11 +15988,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -16020,11 +16020,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -16052,11 +16052,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -16084,11 +16084,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1.2",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O7"
 			],
@@ -16136,11 +16136,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1.2",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O7"
 			],
@@ -16188,11 +16188,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF19",
-				"FM19",
+				"FFA19",
 				"S1.3",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE8",
 				"O7"
 			],
@@ -16228,11 +16228,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E123",
 				"FF60",
-				"FM60",
+				"FFA60",
 				"S11",
 				"SM11",
 				"C123",
-				"CM123",
+				"CA123",
 				"O109"
 			],
 			"values": [
@@ -16272,11 +16272,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S9",
 				"SM9",
 				"C36",
-				"CM36",
+				"CA36",
 				"IE10",
 				"O23"
 			],
@@ -16310,11 +16310,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S9",
 				"SM9",
 				"C36",
-				"CM36",
+				"CA36",
 				"IE10",
 				"O23"
 			],
@@ -16343,11 +16343,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1.5",
-				"FM4",
+				"FFA4",
 				"S4",
 				"SM3.2",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE11",
 				"O9"
 			],
@@ -16412,11 +16412,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O4"
 			],
@@ -16434,11 +16434,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O4"
 					],
@@ -16457,11 +16457,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O4"
 					],
@@ -16472,11 +16472,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O4"
 					],
@@ -16521,11 +16521,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1.5",
-				"FM4",
+				"FFA4",
 				"S9",
 				"SM9",
 				"C11",
-				"CM18",
+				"CA18",
 				"IE8",
 				"O4"
 			],
@@ -16582,10 +16582,10 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF4",
-				"FM4",
+				"FFA4",
 				"S3",
 				"C1",
-				"CM18",
+				"CA18",
 				"O12.1"
 			],
 			"values": [
@@ -16627,11 +16627,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE5.5",
 				"O5"
 			],
@@ -16665,11 +16665,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E128",
 				"FF38",
-				"FM38",
+				"FFA38",
 				"S18.2",
 				"SM18.2",
 				"C128",
-				"CM128",
+				"CA128",
 				"O114"
 			],
 			"values": [
@@ -16678,11 +16678,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E128",
 						"FF38",
-						"FM38",
+						"FFA38",
 						"S18.2",
 						"SM18.2",
 						"C128",
-						"CM128",
+						"CA128",
 						"O114"
 					],
 					"description": "The user agent determines how the ruby contents are aligned. This is the initial value."
@@ -16696,11 +16696,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E128",
 						"FF38",
-						"FM38",
+						"FFA38",
 						"S18.2",
 						"SM18.2",
 						"C128",
-						"CM128",
+						"CA128",
 						"O114"
 					],
 					"description": "If the width of the ruby text is smaller than that of the base, then the ruby text contents are evenly distributed across the width of the base, with the first and last ruby text glyphs lining up with the corresponding first and last base glyphs. If the width of the ruby text is at least the width of the base, then the letters of the base are evenly distributed across the width of the ruby text."
@@ -16710,11 +16710,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E128",
 						"FF38",
-						"FM38",
+						"FFA38",
 						"S18.2",
 						"SM18.2",
 						"C128",
-						"CM128",
+						"CA128",
 						"O114"
 					],
 					"description": "If the width of the ruby text is smaller than that of the base, then the ruby text contents are evenly distributed across the width of the base, with a certain amount of white space preceding the first and following the last character in the ruby text. That amount of white space is normally equal to half the amount of inter-character space of the ruby text."
@@ -16728,11 +16728,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E128",
 						"FF38",
-						"FM38",
+						"FFA38",
 						"S18.2",
 						"SM18.2",
 						"C128",
-						"CM128",
+						"CA128",
 						"O114"
 					],
 					"description": "If the ruby text is not adjacent to a line edge, it is aligned as in 'auto'. If it is adjacent to a line edge, then it is still aligned as in auto, but the side of the ruby text that touches the end of the line is lined up with the corresponding edge of the base."
@@ -16742,11 +16742,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E128",
 						"FF38",
-						"FM38",
+						"FFA38",
 						"S18.2",
 						"SM18.2",
 						"C128",
-						"CM128",
+						"CA128",
 						"O114"
 					],
 					"description": "The ruby text content is aligned with the end edge of the base."
@@ -16756,11 +16756,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E128",
 						"FF38",
-						"FM38",
+						"FFA38",
 						"S18.2",
 						"SM18.2",
 						"C128",
-						"CM128",
+						"CA128",
 						"O114"
 					],
 					"description": "The ruby text content is aligned with the start edge of the base."
@@ -16770,11 +16770,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E128",
 						"FF38",
-						"FM38",
+						"FFA38",
 						"S18.2",
 						"SM18.2",
 						"C128",
-						"CM128",
+						"CA128",
 						"O114"
 					],
 					"description": "The ruby content expands as defined for normal text justification (as defined by 'text-justify'),"
@@ -16784,11 +16784,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E128",
 						"FF38",
-						"FM38",
+						"FFA38",
 						"S18.2",
 						"SM18.2",
 						"C128",
-						"CM128",
+						"CA128",
 						"O114"
 					],
 					"description": "As for 'space-between' except that there exists an extra justification opportunities whose space is distributed half before and half after the ruby content."
@@ -16849,11 +16849,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E84",
 				"FF38",
-				"FM38",
+				"FFA38",
 				"S18.2",
 				"SM18.2",
 				"C84",
-				"CM84",
+				"CA84",
 				"O70"
 			],
 			"values": [
@@ -17004,11 +17004,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF36",
-				"FM36",
+				"FFA36",
 				"S15.4",
 				"SM15.4",
 				"C61",
-				"CM61",
+				"CA61",
 				"O48"
 			],
 			"values": [
@@ -17127,11 +17127,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF99",
-				"FM68",
+				"FFA68",
 				"S11",
 				"SM11",
 				"C69",
-				"CM69",
+				"CA69",
 				"IE10",
 				"O56"
 			],
@@ -17172,11 +17172,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF62",
-				"FM62",
+				"FFA62",
 				"S10.1",
 				"SM10.3",
 				"C37",
-				"CM37",
+				"CA37",
 				"O24"
 			],
 			"syntax": "<opacity-value>",
@@ -17202,11 +17202,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF62",
-				"FM62",
+				"FFA62",
 				"S10.1",
 				"SM10.3",
 				"C37",
-				"CM37",
+				"CA37",
 				"O24"
 			],
 			"syntax": "<length-percentage>",
@@ -17234,11 +17234,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF62",
-				"FM62",
+				"FFA62",
 				"S10.1",
 				"SM10.3",
 				"C37",
-				"CM37",
+				"CA37",
 				"O24"
 			],
 			"values": [
@@ -17277,11 +17277,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"values": [
@@ -17365,11 +17365,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"syntax": "<'color'>",
@@ -17395,11 +17395,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"syntax": "<'opacity'>",
@@ -17425,11 +17425,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"values": [
@@ -17467,11 +17467,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"values": [
@@ -17506,11 +17506,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"syntax": "<length-percentage> | <number>",
@@ -17537,11 +17537,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"values": [
@@ -17581,11 +17581,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"values": [
@@ -17625,11 +17625,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"syntax": "<number>",
@@ -17655,11 +17655,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"syntax": "<'opacity'>",
@@ -17685,11 +17685,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"syntax": "<length-percentage> | <number>",
@@ -17790,11 +17790,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM3",
 				"C14",
-				"CM18",
+				"CA18",
 				"IE5",
 				"O7"
 			],
@@ -17831,11 +17831,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF91",
-				"FM91",
+				"FFA91",
 				"S7",
 				"SM7",
 				"C21",
-				"CM25",
+				"CA25",
 				"O15"
 			],
 			"syntax": "<integer> | <length>",
@@ -17862,11 +17862,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE3",
 				"O3.5"
 			],
@@ -17880,11 +17880,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE3",
 						"O3.5"
 					],
@@ -17907,11 +17907,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE3",
 						"O3.5"
 					],
@@ -17941,11 +17941,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF49",
-				"FM49",
+				"FFA49",
 				"S16",
 				"SM16",
 				"C47",
-				"CM47",
+				"CA47",
 				"IE5.5",
 				"O34"
 			],
@@ -17994,11 +17994,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"values": [
@@ -18038,11 +18038,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE3",
 				"O3.5"
 			],
@@ -18108,11 +18108,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF36",
-				"FM36",
+				"FFA36",
 				"S12.1",
 				"SM12.2",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"syntax": "<color>",
@@ -18138,11 +18138,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF36",
-				"FM36",
+				"FFA36",
 				"S12.1",
 				"SM12.2",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"values": [
@@ -18186,11 +18186,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF36",
-				"FM36",
+				"FFA36",
 				"S12.1",
 				"SM12.2",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"values": [
@@ -18242,11 +18242,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE3",
 				"O3.5"
 			],
@@ -18274,7 +18274,7 @@ export const cssData : CSSDataV1 = {
 			"name": "text-justify",
 			"browsers": [
 				"FF55",
-				"FM55",
+				"FFA55",
 				"IE11",
 				"O19"
 			],
@@ -18331,11 +18331,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S14",
 				"SM14",
 				"C48",
-				"CM48",
+				"CA48",
 				"O35"
 			],
 			"values": [
@@ -18344,11 +18344,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF41",
-						"FM41",
+						"FFA41",
 						"S14",
 						"SM14",
 						"C48",
-						"CM48",
+						"CA48",
 						"O35"
 					],
 					"description": "This value is equivalent to 'sideways-right' in 'vertical-rl' writing mode and equivalent to 'sideways-left' in 'vertical-lr' writing mode."
@@ -18358,11 +18358,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E79",
 						"FF41",
-						"FM41",
+						"FFA41",
 						"S14",
 						"SM14",
 						"C48",
-						"CM48",
+						"CA48",
 						"O35"
 					],
 					"description": "In vertical writing modes, this causes text to be set as if in a horizontal layout, but rotated 90° clockwise."
@@ -18395,11 +18395,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF7",
-				"FM7",
+				"FFA7",
 				"S1.3",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE6",
 				"O11"
 			],
@@ -18437,11 +18437,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF1",
-				"FM46",
+				"FFA46",
 				"S5",
 				"SM4.2",
 				"C4",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"values": [
@@ -18484,11 +18484,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
-				"FM4",
+				"FFA4",
 				"S1.1",
 				"SM1",
 				"C2",
-				"CM18",
+				"CA18",
 				"IE10",
 				"O9.5"
 			],
@@ -18522,11 +18522,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O7"
 			],
@@ -18571,11 +18571,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF74",
-				"FM79",
+				"FFA79",
 				"S12.1",
 				"SM12.2",
 				"C33",
-				"CM33",
+				"CA33",
 				"IE6",
 				"O20"
 			],
@@ -18615,11 +18615,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE5",
 				"O6"
 			],
@@ -18653,11 +18653,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S13",
 				"SM9.3",
 				"C36",
-				"CM36",
+				"CA36",
 				"IE11",
 				"O23"
 			],
@@ -18671,11 +18671,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF52",
-						"FM52",
+						"FFA52",
 						"S13",
 						"SM9.3",
 						"C36",
-						"CM36",
+						"CA36",
 						"IE11",
 						"O23"
 					]
@@ -18685,11 +18685,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF52",
-						"FM52",
+						"FFA52",
 						"S13",
 						"SM9.3",
 						"C36",
-						"CM36",
+						"CA36",
 						"IE11",
 						"O23"
 					]
@@ -18699,11 +18699,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF52",
-						"FM52",
+						"FFA52",
 						"S13",
 						"SM9.3",
 						"C36",
-						"CM36",
+						"CA36",
 						"IE11",
 						"O23"
 					]
@@ -18729,11 +18729,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF52",
-						"FM52",
+						"FFA52",
 						"S13",
 						"SM9.3",
 						"C36",
-						"CM36",
+						"CA36",
 						"IE11",
 						"O23"
 					]
@@ -18762,11 +18762,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S9",
 				"SM9",
 				"C36",
-				"CM36",
+				"CA36",
 				"IE10",
 				"O23"
 			],
@@ -18882,11 +18882,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S9",
 				"SM9",
 				"C36",
-				"CM36",
+				"CA36",
 				"IE10",
 				"O23"
 			],
@@ -18915,11 +18915,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S9",
 				"SM9",
 				"C36",
-				"CM36",
+				"CA36",
 				"O23"
 			],
 			"values": [
@@ -18932,11 +18932,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF16",
-						"FM16",
+						"FFA16",
 						"S9",
 						"SM9",
 						"C36",
-						"CM36",
+						"CA36",
 						"O23"
 					],
 					"description": "Flattening is not performed, so children maintain their position in 3D space."
@@ -18965,11 +18965,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S9",
 				"SM9",
 				"C26",
-				"CM26",
+				"CA26",
 				"IE10",
 				"O12.1"
 			],
@@ -19009,11 +19009,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S9",
 				"SM9",
 				"C26",
-				"CM26",
+				"CA26",
 				"IE10",
 				"O12.1"
 			],
@@ -19040,11 +19040,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S9",
 				"SM9",
 				"C26",
-				"CM26",
+				"CA26",
 				"IE10",
 				"O12.1"
 			],
@@ -19071,11 +19071,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S9",
 				"SM9",
 				"C26",
-				"CM26",
+				"CA26",
 				"IE10",
 				"O12.1"
 			],
@@ -19112,11 +19112,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S9",
 				"SM9",
 				"C26",
-				"CM26",
+				"CA26",
 				"IE10",
 				"O12.1"
 			],
@@ -19143,11 +19143,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1.3",
 				"SM1",
 				"C2",
-				"CM18",
+				"CA18",
 				"IE5.5",
 				"O9.2"
 			],
@@ -19165,11 +19165,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1.3",
 						"SM1",
 						"C2",
-						"CM18",
+						"CA18",
 						"IE5.5",
 						"O9.2"
 					],
@@ -19180,11 +19180,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1.3",
 						"SM1",
 						"C2",
-						"CM18",
+						"CA18",
 						"IE5.5",
 						"O9.2"
 					],
@@ -19199,11 +19199,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1.3",
 						"SM1",
 						"C2",
-						"CM18",
+						"CA18",
 						"IE5.5",
 						"O9.2"
 					],
@@ -19553,9 +19553,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF69",
-				"FM79",
+				"FFA79",
 				"C54",
-				"CM54",
+				"CA54",
 				"IE10",
 				"O41"
 			],
@@ -19601,11 +19601,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O4"
 			],
@@ -19651,11 +19651,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O4"
 					]
@@ -19685,11 +19685,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O4"
 			],
@@ -20415,7 +20415,7 @@ export const cssData : CSSDataV1 = {
 				"S4",
 				"SM3.2",
 				"C4",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"values": [
@@ -20621,7 +20621,7 @@ export const cssData : CSSDataV1 = {
 				"S4",
 				"SM3.2",
 				"C1",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"values": [
@@ -20684,7 +20684,7 @@ export const cssData : CSSDataV1 = {
 				"S4",
 				"SM3.2",
 				"C1",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"values": [
@@ -20747,7 +20747,7 @@ export const cssData : CSSDataV1 = {
 				"S4",
 				"SM3.2",
 				"C1",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"values": [
@@ -21414,7 +21414,7 @@ export const cssData : CSSDataV1 = {
 				"E12",
 				"SM4",
 				"C16",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"status": "nonstandard",
@@ -21438,11 +21438,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF49",
-				"FM49",
+				"FFA49",
 				"S3",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"syntax": "<color>",
@@ -21490,11 +21490,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E15",
 				"FF49",
-				"FM49",
+				"FFA49",
 				"S3",
 				"SM2",
 				"C4",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"syntax": "<length> || <color>",
@@ -21522,11 +21522,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E15",
 				"FF49",
-				"FM49",
+				"FFA49",
 				"S3",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"syntax": "<color>",
@@ -21551,11 +21551,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E15",
 				"FF49",
-				"FM49",
+				"FFA49",
 				"S3",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"syntax": "<length>",
@@ -21727,7 +21727,7 @@ export const cssData : CSSDataV1 = {
 				"S4",
 				"SM3.2",
 				"C1",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"relevance": 50,
@@ -21747,7 +21747,7 @@ export const cssData : CSSDataV1 = {
 				"S4",
 				"SM3.2",
 				"C1",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"relevance": 50,
@@ -21767,7 +21767,7 @@ export const cssData : CSSDataV1 = {
 				"S4",
 				"SM3.2",
 				"C2",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"relevance": 50,
@@ -21893,7 +21893,7 @@ export const cssData : CSSDataV1 = {
 				"S4",
 				"SM3.2",
 				"C1",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"values": [
@@ -21972,7 +21972,7 @@ export const cssData : CSSDataV1 = {
 				"S1.3",
 				"SM1",
 				"C25",
-				"CM25",
+				"CA25",
 				"IE8",
 				"O9.2"
 			],
@@ -21997,11 +21997,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -22015,11 +22015,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O3.5"
 					],
@@ -22030,11 +22030,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O3.5"
 					],
@@ -22045,11 +22045,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF1",
-						"FM4",
+						"FFA4",
 						"S1",
 						"SM1",
 						"C1",
-						"CM18",
+						"CA18",
 						"IE4",
 						"O3.5"
 					],
@@ -22080,11 +22080,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF36",
-				"FM36",
+				"FFA36",
 				"S9.1",
 				"SM9.3",
 				"C36",
-				"CM36",
+				"CA36",
 				"O23"
 			],
 			"values": [
@@ -22125,11 +22125,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF15",
-				"FM15",
+				"FFA15",
 				"S3",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE5.5",
 				"O15"
 			],
@@ -22170,11 +22170,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE6",
 				"O3.5"
 			],
@@ -22227,11 +22227,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF41",
-				"FM41",
+				"FFA41",
 				"S10.1",
 				"SM10.3",
 				"C48",
-				"CM48",
+				"CA48",
 				"IE9",
 				"O35"
 			],
@@ -22245,11 +22245,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF41",
-						"FM41",
+						"FFA41",
 						"S10.1",
 						"SM10.3",
 						"C48",
-						"CM48",
+						"CA48",
 						"IE9",
 						"O35"
 					],
@@ -22260,11 +22260,11 @@ export const cssData : CSSDataV1 = {
 					"browsers": [
 						"E12",
 						"FF41",
-						"FM41",
+						"FFA41",
 						"S10.1",
 						"SM10.3",
 						"C48",
-						"CM48",
+						"CA48",
 						"IE9",
 						"O35"
 					],
@@ -22302,11 +22302,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O4"
 			],
@@ -22339,11 +22339,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF126",
-				"FM126",
+				"FFA126",
 				"S3.1",
 				"SM3",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE5.5",
 				"O15"
 			],
@@ -22422,7 +22422,7 @@ export const cssData : CSSDataV1 = {
 			"relevance": 0,
 			"browsers": [
 				"FF1",
-				"FM4"
+				"FFA4"
 			],
 			"references": [
 				{
@@ -22450,7 +22450,7 @@ export const cssData : CSSDataV1 = {
 			"relevance": 0,
 			"browsers": [
 				"FF1",
-				"FM4"
+				"FFA4"
 			],
 			"references": [
 				{
@@ -22500,7 +22500,7 @@ export const cssData : CSSDataV1 = {
 			"relevance": 0,
 			"browsers": [
 				"FF6",
-				"FM6"
+				"FFA6"
 			],
 			"references": [
 				{
@@ -22675,7 +22675,7 @@ export const cssData : CSSDataV1 = {
 				"S5.1",
 				"SM5",
 				"C8",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"references": [
@@ -22740,7 +22740,7 @@ export const cssData : CSSDataV1 = {
 				"S3.1",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"references": [
@@ -22769,11 +22769,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E18",
 				"FF49",
-				"FM49",
+				"FFA49",
 				"S3.1",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"references": [
@@ -22797,11 +22797,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E18",
 				"FF49",
-				"FM49",
+				"FFA49",
 				"S3.1",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"references": [
@@ -22890,9 +22890,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E93",
 				"FF92",
-				"FM92",
+				"FFA92",
 				"C93",
-				"CM93",
+				"CA93",
 				"O79"
 			],
 			"references": [
@@ -22921,7 +22921,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E125",
 				"C125",
-				"CM125",
+				"CA125",
 				"O111"
 			],
 			"references": [
@@ -22943,7 +22943,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E131",
 				"C131",
-				"CM131",
+				"CA131",
 				"O116"
 			],
 			"baseline": {
@@ -22958,11 +22958,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E112",
 				"FF115",
-				"FM115",
+				"FFA115",
 				"S16",
 				"SM16",
 				"C112",
-				"CM112",
+				"CA112",
 				"O98"
 			],
 			"references": [
@@ -22985,7 +22985,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E115",
 				"C115",
-				"CM115",
+				"CA115",
 				"O101"
 			],
 			"references": [
@@ -23007,7 +23007,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E115",
 				"C115",
-				"CM115",
+				"CA115",
 				"O101"
 			],
 			"references": [
@@ -23029,7 +23029,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E115",
 				"C115",
-				"CM115",
+				"CA115",
 				"O101"
 			],
 			"references": [
@@ -23051,7 +23051,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E115",
 				"C115",
-				"CM115",
+				"CA115",
 				"O101"
 			],
 			"references": [
@@ -23072,11 +23072,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E84",
 				"FF80",
-				"FM80",
+				"FFA80",
 				"S15.4",
 				"SM15.4",
 				"C84",
-				"CM84",
+				"CA84",
 				"O70"
 			],
 			"references": [
@@ -23099,11 +23099,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E88",
 				"FF89",
-				"FM89",
+				"FFA89",
 				"S15",
 				"SM15",
 				"C88",
-				"CM88",
+				"CA88",
 				"O74"
 			],
 			"references": [
@@ -23126,11 +23126,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF103",
-				"FM103",
+				"FFA103",
 				"S18",
 				"SM18",
 				"C76",
-				"CM76",
+				"CA76",
 				"O63"
 			],
 			"references": [
@@ -23152,11 +23152,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
-				"FM66",
+				"FFA66",
 				"S14.1",
 				"SM14.5",
 				"C87",
-				"CM87",
+				"CA87",
 				"O73"
 			],
 			"references": [
@@ -23179,11 +23179,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
-				"FM66",
+				"FFA66",
 				"S14.1",
 				"SM14.5",
 				"C87",
-				"CM87",
+				"CA87",
 				"O73"
 			],
 			"references": [
@@ -23206,11 +23206,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
-				"FM66",
+				"FFA66",
 				"S14.1",
 				"SM14.5",
 				"C87",
-				"CM87",
+				"CA87",
 				"O73"
 			],
 			"references": [
@@ -23233,11 +23233,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
-				"FM66",
+				"FFA66",
 				"S14.1",
 				"SM14.5",
 				"C87",
-				"CM87",
+				"CA87",
 				"O73"
 			],
 			"references": [
@@ -23260,11 +23260,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E89",
 				"FF66",
-				"FM66",
+				"FFA66",
 				"S15",
 				"SM15",
 				"C89",
-				"CM89",
+				"CA89",
 				"O75"
 			],
 			"references": [
@@ -23287,11 +23287,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E89",
 				"FF66",
-				"FM66",
+				"FFA66",
 				"S15",
 				"SM15",
 				"C89",
-				"CM89",
+				"CA89",
 				"O75"
 			],
 			"references": [
@@ -23314,11 +23314,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
-				"FM66",
+				"FFA66",
 				"S14.1",
 				"SM14.5",
 				"C87",
-				"CM87",
+				"CA87",
 				"O73"
 			],
 			"references": [
@@ -23341,11 +23341,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
-				"FM66",
+				"FFA66",
 				"S14.1",
 				"SM14.5",
 				"C87",
-				"CM87",
+				"CA87",
 				"O73"
 			],
 			"references": [
@@ -23368,11 +23368,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
-				"FM66",
+				"FFA66",
 				"S14.1",
 				"SM14.5",
 				"C87",
-				"CM87",
+				"CA87",
 				"O73"
 			],
 			"references": [
@@ -23395,11 +23395,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
-				"FM66",
+				"FFA66",
 				"S14.1",
 				"SM14.5",
 				"C87",
-				"CM87",
+				"CA87",
 				"O73"
 			],
 			"references": [
@@ -23422,11 +23422,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E89",
 				"FF66",
-				"FM66",
+				"FFA66",
 				"S15",
 				"SM15",
 				"C89",
-				"CM89",
+				"CA89",
 				"O75"
 			],
 			"references": [
@@ -23449,11 +23449,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E89",
 				"FF66",
-				"FM66",
+				"FFA66",
 				"S15",
 				"SM15",
 				"C89",
-				"CM89",
+				"CA89",
 				"O75"
 			],
 			"references": [
@@ -23721,11 +23721,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E81",
 				"FF96",
-				"FM96",
+				"FFA96",
 				"S13",
 				"SM13",
 				"C81",
-				"CM81",
+				"CA81",
 				"O68"
 			],
 			"references": [
@@ -23748,11 +23748,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E95",
 				"FF107",
-				"FM107",
+				"FFA107",
 				"S17",
 				"SM17",
 				"C95",
-				"CM95",
+				"CA95",
 				"O81"
 			],
 			"references": [
@@ -23774,11 +23774,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E95",
 				"FF107",
-				"FM107",
+				"FFA107",
 				"S17",
 				"SM17",
 				"C95",
-				"CM95",
+				"CA95",
 				"O81"
 			],
 			"references": [
@@ -23800,11 +23800,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E95",
 				"FF107",
-				"FM107",
+				"FFA107",
 				"S17",
 				"SM17",
 				"C95",
-				"CM95",
+				"CA95",
 				"O81"
 			],
 			"references": [
@@ -23826,11 +23826,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E83",
 				"FF107",
-				"FM107",
+				"FFA107",
 				"S17",
 				"SM17",
 				"C83",
-				"CM83",
+				"CA83",
 				"O69"
 			],
 			"references": [
@@ -23852,11 +23852,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E95",
 				"FF107",
-				"FM107",
+				"FFA107",
 				"S17",
 				"SM17",
 				"C95",
-				"CM95",
+				"CA95",
 				"O81"
 			],
 			"references": [
@@ -23878,11 +23878,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E105",
 				"FF110",
-				"FM110",
+				"FFA110",
 				"S16",
 				"SM16",
 				"C105",
-				"CM105",
+				"CA105",
 				"O91"
 			],
 			"references": [
@@ -23904,11 +23904,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E105",
 				"FF110",
-				"FM110",
+				"FFA110",
 				"S16",
 				"SM16",
 				"C105",
-				"CM105",
+				"CA105",
 				"O91"
 			],
 			"references": [
@@ -23941,11 +23941,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E105",
 				"FF110",
-				"FM110",
+				"FFA110",
 				"S16",
 				"SM16",
 				"C105",
-				"CM105",
+				"CA105",
 				"O91"
 			],
 			"references": [
@@ -23978,11 +23978,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E85",
 				"FF125",
-				"FM125",
+				"FFA125",
 				"S18",
 				"SM18",
 				"C85",
-				"CM85",
+				"CA85",
 				"O71"
 			],
 			"references": [
@@ -24004,11 +24004,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E85",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S17.2",
 				"SM17.2",
 				"C85",
-				"CM85",
+				"CA85",
 				"O71"
 			],
 			"references": [
@@ -24030,11 +24030,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"references": [
@@ -24057,11 +24057,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"references": [
@@ -24084,9 +24084,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF97",
-				"FM97",
+				"FFA97",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"references": [
@@ -24136,11 +24136,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"references": [
@@ -24172,7 +24172,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E123",
 				"C123",
-				"CM123",
+				"CA123",
 				"O109"
 			],
 			"references": [
@@ -24201,11 +24201,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E17",
 				"FF62",
-				"FM62",
+				"FFA62",
 				"S13.1",
 				"SM13.4",
 				"C79",
-				"CM79",
+				"CA79",
 				"O66"
 			],
 			"references": [
@@ -24228,11 +24228,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E101",
 				"FF107",
-				"FM107",
+				"FFA107",
 				"S15.4",
 				"SM15.4",
 				"C101",
-				"CM101",
+				"CA101",
 				"O87"
 			],
 			"references": [
@@ -24281,7 +24281,7 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"FF118",
-				"FM118"
+				"FFA118"
 			],
 			"references": [
 				{
@@ -24309,11 +24309,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E97",
 				"FF111",
-				"FM111",
+				"FFA111",
 				"S16.4",
 				"SM16.4",
 				"C97",
-				"CM97",
+				"CA97",
 				"O83"
 			],
 			"references": [
@@ -24343,11 +24343,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E97",
 				"FF111",
-				"FM111",
+				"FFA111",
 				"S16.4",
 				"SM16.4",
 				"C97",
-				"CM97",
+				"CA97",
 				"O83"
 			],
 			"references": [
@@ -24377,11 +24377,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E97",
 				"FF111",
-				"FM111",
+				"FFA111",
 				"S16.4",
 				"SM16.4",
 				"C97",
-				"CM97",
+				"CA97",
 				"O83"
 			],
 			"references": [
@@ -24417,7 +24417,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E131",
 				"C131",
-				"CM131",
+				"CA131",
 				"O116"
 			],
 			"references": [
@@ -24439,11 +24439,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E17",
 				"FF62",
-				"FM62",
+				"FFA62",
 				"S11",
 				"SM11",
 				"C62",
-				"CM62",
+				"CA62",
 				"O49"
 			],
 			"references": [
@@ -24477,9 +24477,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF113",
-				"FM113",
+				"FFA113",
 				"C89",
-				"CM89",
+				"CA89",
 				"IE10",
 				"O75"
 			],
@@ -24501,11 +24501,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S10.1",
 				"SM10.3",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"references": [
@@ -24543,11 +24543,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E106",
 				"FF98",
-				"FM98",
+				"FFA98",
 				"S17",
 				"SM17",
 				"C106",
-				"CM106",
+				"CA106",
 				"O92"
 			],
 			"references": [
@@ -24569,7 +24569,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E109",
 				"C109",
-				"CM109",
+				"CA109",
 				"O95"
 			],
 			"references": [
@@ -24597,7 +24597,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E110",
 				"C110",
-				"CM110",
+				"CA110",
 				"O96"
 			],
 			"references": [
@@ -24625,11 +24625,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
-				"FM66",
+				"FFA66",
 				"S14.1",
 				"SM14.5",
 				"C87",
-				"CM87",
+				"CA87",
 				"O73"
 			],
 			"references": [
@@ -24652,11 +24652,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF63",
-				"FM63",
+				"FFA63",
 				"S14.1",
 				"SM14.5",
 				"C87",
-				"CM87",
+				"CA87",
 				"O73"
 			],
 			"references": [
@@ -24679,11 +24679,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF63",
-				"FM63",
+				"FFA63",
 				"S14.1",
 				"SM14.5",
 				"C87",
-				"CM87",
+				"CA87",
 				"O73"
 			],
 			"references": [
@@ -24706,11 +24706,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF63",
-				"FM63",
+				"FFA63",
 				"S14.1",
 				"SM14.5",
 				"C87",
-				"CM87",
+				"CA87",
 				"O73"
 			],
 			"references": [
@@ -24733,11 +24733,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF63",
-				"FM63",
+				"FFA63",
 				"S14.1",
 				"SM14.5",
 				"C87",
-				"CM87",
+				"CA87",
 				"O73"
 			],
 			"references": [
@@ -24760,11 +24760,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF63",
-				"FM63",
+				"FFA63",
 				"S14.1",
 				"SM14.5",
 				"C87",
-				"CM87",
+				"CA87",
 				"O73"
 			],
 			"references": [
@@ -24787,11 +24787,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF63",
-				"FM63",
+				"FFA63",
 				"S14.1",
 				"SM14.5",
 				"C87",
-				"CM87",
+				"CA87",
 				"O73"
 			],
 			"references": [
@@ -24823,7 +24823,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E129",
 				"C129",
-				"CM129",
+				"CA129",
 				"O115"
 			],
 			"references": [
@@ -24890,11 +24890,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
-				"FM66",
+				"FFA66",
 				"S14.1",
 				"SM14.5",
 				"C87",
-				"CM87",
+				"CA87",
 				"O73"
 			],
 			"references": [
@@ -24917,11 +24917,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
-				"FM66",
+				"FFA66",
 				"S14.1",
 				"SM14.5",
 				"C87",
-				"CM87",
+				"CA87",
 				"O73"
 			],
 			"references": [
@@ -24975,11 +24975,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E120",
 				"FF53",
-				"FM53",
+				"FFA53",
 				"S15.4",
 				"SM15.4",
 				"C120",
-				"CM120",
+				"CA120",
 				"O106"
 			],
 			"references": [
@@ -25135,11 +25135,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E120",
 				"FF53",
-				"FM53",
+				"FFA53",
 				"S15.4",
 				"SM15.4",
 				"C120",
-				"CM120",
+				"CA120",
 				"O106"
 			],
 			"references": [
@@ -25161,11 +25161,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E120",
 				"FF53",
-				"FM53",
+				"FFA53",
 				"S15.4",
 				"SM15.4",
 				"C120",
-				"CM120",
+				"CA120",
 				"O106"
 			],
 			"references": [
@@ -25194,9 +25194,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E109",
 				"FF117",
-				"FM117",
+				"FFA117",
 				"C109",
-				"CM109",
+				"CA109",
 				"O95"
 			],
 			"references": [
@@ -25226,7 +25226,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E109",
 				"C109",
-				"CM109",
+				"CA109",
 				"O95"
 			],
 			"references": [
@@ -25255,11 +25255,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E109",
 				"FF117",
-				"FM117",
+				"FFA117",
 				"S14.1",
 				"SM14.5",
 				"C109",
-				"CM109",
+				"CA109",
 				"O95"
 			],
 			"references": [
@@ -25288,11 +25288,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S16",
 				"SM16",
 				"C55",
-				"CM55",
+				"CA55",
 				"O42"
 			],
 			"references": [
@@ -25315,11 +25315,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E116",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S16",
 				"SM16",
 				"C116",
-				"CM116",
+				"CA116",
 				"O102"
 			],
 			"references": [
@@ -25341,11 +25341,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S16",
 				"SM16",
 				"C55",
-				"CM55",
+				"CA55",
 				"O42"
 			],
 			"references": [
@@ -25368,11 +25368,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S15.4",
 				"SM15.4",
 				"C55",
-				"CM55",
+				"CA55",
 				"O45"
 			],
 			"references": [
@@ -25395,11 +25395,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E116",
 				"FF122",
-				"FM122",
+				"FFA122",
 				"S16",
 				"SM16",
 				"C116",
-				"CM116",
+				"CA116",
 				"O102"
 			],
 			"references": [
@@ -25421,11 +25421,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S16",
 				"SM16",
 				"C56",
-				"CM56",
+				"CA56",
 				"O43"
 			],
 			"references": [
@@ -25456,10 +25456,10 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF66",
-				"FM66",
+				"FFA66",
 				"Spreview",
 				"C56",
-				"CM56",
+				"CA56",
 				"O43"
 			],
 			"references": [
@@ -25496,7 +25496,7 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"FF69",
-				"FM79"
+				"FFA79"
 			],
 			"references": [
 				{
@@ -25565,7 +25565,7 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"FF69",
-				"FM79"
+				"FFA79"
 			],
 			"references": [
 				{
@@ -25594,7 +25594,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E117",
 				"C117",
-				"CM117",
+				"CA117",
 				"O103"
 			],
 			"references": [
@@ -25615,11 +25615,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E18",
 				"FF59",
-				"FM59",
+				"FFA59",
 				"S16",
 				"SM16",
 				"C63",
-				"CM63",
+				"CA63",
 				"O50"
 			],
 			"references": [
@@ -25653,11 +25653,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF73",
-				"FM79",
+				"FFA79",
 				"S16",
 				"SM16",
 				"C77",
-				"CM77",
+				"CA77",
 				"O64"
 			],
 			"references": [
@@ -25691,11 +25691,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF73",
-				"FM79",
+				"FFA79",
 				"S16",
 				"SM16",
 				"C77",
-				"CM77",
+				"CA77",
 				"O64"
 			],
 			"references": [
@@ -25729,11 +25729,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E18",
 				"FF59",
-				"FM59",
+				"FFA59",
 				"S16",
 				"SM16",
 				"C63",
-				"CM63",
+				"CA63",
 				"O50"
 			],
 			"references": [
@@ -25767,11 +25767,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E18",
 				"FF59",
-				"FM59",
+				"FFA59",
 				"S16",
 				"SM16",
 				"C63",
-				"CM63",
+				"CA63",
 				"O50"
 			],
 			"references": [
@@ -25794,11 +25794,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
-				"FM66",
+				"FFA66",
 				"S14.1",
 				"SM14.5",
 				"C87",
-				"CM87",
+				"CA87",
 				"O73"
 			],
 			"references": [
@@ -25821,11 +25821,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF66",
-				"FM66",
+				"FFA66",
 				"S14.1",
 				"SM14.5",
 				"C87",
-				"CM87",
+				"CA87",
 				"O73"
 			],
 			"references": [
@@ -25848,11 +25848,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E85",
 				"FF110",
-				"FM110",
+				"FFA110",
 				"S13.1",
 				"SM13.4",
 				"C85",
-				"CM85",
+				"CA85",
 				"O71"
 			],
 			"references": [
@@ -25874,11 +25874,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF45",
-				"FM45",
+				"FFA45",
 				"S9",
 				"SM9",
 				"C59",
-				"CM59",
+				"CA59",
 				"O46"
 			],
 			"references": [
@@ -25901,11 +25901,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF45",
-				"FM45",
+				"FFA45",
 				"S11",
 				"SM11",
 				"C59",
-				"CM59",
+				"CA59",
 				"O46"
 			],
 			"references": [
@@ -25928,11 +25928,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF45",
-				"FM45",
+				"FFA45",
 				"S11",
 				"SM11",
 				"C59",
-				"CM59",
+				"CA59",
 				"O46"
 			],
 			"references": [
@@ -25956,7 +25956,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E125",
 				"C125",
-				"CM125",
+				"CA125",
 				"O111"
 			],
 			"references": [
@@ -25978,7 +25978,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E129",
 				"C129",
-				"CM129",
+				"CA129",
 				"O115"
 			],
 			"references": [
@@ -26000,7 +26000,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E125",
 				"C125",
-				"CM125",
+				"CA125",
 				"O111"
 			],
 			"references": [
@@ -26022,7 +26022,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E128",
 				"C128",
-				"CM128",
+				"CA128",
 				"O114"
 			],
 			"references": [
@@ -26044,7 +26044,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E125",
 				"C125",
-				"CM125",
+				"CA125",
 				"O111"
 			],
 			"references": [
@@ -26066,7 +26066,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E125",
 				"C125",
-				"CM125",
+				"CA125",
 				"O111"
 			],
 			"references": [
@@ -26094,7 +26094,7 @@ export const cssData : CSSDataV1 = {
 			"relevance": 50,
 			"browsers": [
 				"FF97",
-				"FM97",
+				"FFA97",
 				"S15.4",
 				"SM15.4",
 				"O15"
@@ -26117,11 +26117,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"references": [
@@ -26144,11 +26144,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E104",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S14.1",
 				"SM14.5",
 				"C104",
-				"CM104",
+				"CA104",
 				"O90"
 			],
 			"references": [
@@ -26171,11 +26171,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E16",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S10.1",
 				"SM10.3",
 				"C47",
-				"CM47",
+				"CA47",
 				"O34"
 			],
 			"references": [
@@ -26216,9 +26216,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"references": [
@@ -26239,9 +26239,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"references": [
@@ -26262,11 +26262,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E104",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S14.1",
 				"SM14.5",
 				"C104",
-				"CM104",
+				"CA104",
 				"O90"
 			],
 			"references": [
@@ -26289,11 +26289,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF90",
-				"FM90",
+				"FFA90",
 				"S14.1",
 				"SM14.5",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26316,11 +26316,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S15",
 				"SM15",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26343,11 +26343,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S15",
 				"SM15",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26370,11 +26370,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S15",
 				"SM15",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26397,11 +26397,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S14.1",
 				"SM14.5",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26424,11 +26424,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S15",
 				"SM15",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26451,11 +26451,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S15",
 				"SM15",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26478,11 +26478,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S15",
 				"SM15",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26505,11 +26505,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S14.1",
 				"SM14.5",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26532,11 +26532,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S14.1",
 				"SM14.5",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26559,11 +26559,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S14.1",
 				"SM14.5",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26586,11 +26586,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S14.1",
 				"SM14.5",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26613,11 +26613,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S15",
 				"SM15",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26640,11 +26640,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S15",
 				"SM15",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26667,11 +26667,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S15",
 				"SM15",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26694,11 +26694,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S14.1",
 				"SM14.5",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26721,11 +26721,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S15",
 				"SM15",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26748,11 +26748,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S15",
 				"SM15",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26775,11 +26775,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S15",
 				"SM15",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26802,11 +26802,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S14.1",
 				"SM14.5",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26829,11 +26829,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S14.1",
 				"SM14.5",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26856,11 +26856,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S14.1",
 				"SM14.5",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26883,11 +26883,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"S11",
 				"SM11",
 				"C69",
-				"CM69",
+				"CA69",
 				"O56"
 			],
 			"references": [
@@ -26918,11 +26918,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF103",
-				"FM103",
+				"FFA103",
 				"S15",
 				"SM15",
 				"C75",
-				"CM75",
+				"CA75",
 				"O62"
 			],
 			"references": [
@@ -26982,7 +26982,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E115",
 				"C115",
-				"CM115",
+				"CA115",
 				"O101"
 			],
 			"references": [
@@ -27004,7 +27004,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E115",
 				"C115",
-				"CM115",
+				"CA115",
 				"O101"
 			],
 			"references": [
@@ -27026,7 +27026,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E115",
 				"C115",
-				"CM115",
+				"CA115",
 				"O101"
 			],
 			"references": [
@@ -27047,9 +27047,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E121",
 				"FF64",
-				"FM64",
+				"FFA64",
 				"C121",
-				"CM121",
+				"CA121",
 				"O107"
 			],
 			"references": [
@@ -27070,11 +27070,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E94",
 				"FF97",
-				"FM97",
+				"FFA97",
 				"S18.2",
 				"SM18.2",
 				"C94",
-				"CM94",
+				"CA94",
 				"O80"
 			],
 			"references": [
@@ -27107,11 +27107,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E121",
 				"FF64",
-				"FM64",
+				"FFA64",
 				"S18.2",
 				"SM18.2",
 				"C121",
-				"CM121",
+				"CA121",
 				"O107"
 			],
 			"references": [
@@ -27155,7 +27155,7 @@ export const cssData : CSSDataV1 = {
 				"S18.2",
 				"SM18.2",
 				"C133",
-				"CM133",
+				"CA133",
 				"O118"
 			],
 			"references": [
@@ -27178,7 +27178,7 @@ export const cssData : CSSDataV1 = {
 				"S18.2",
 				"SM18.2",
 				"C133",
-				"CM133",
+				"CA133",
 				"O118"
 			],
 			"references": [
@@ -27215,7 +27215,7 @@ export const cssData : CSSDataV1 = {
 				"S18.2",
 				"SM18.2",
 				"C133",
-				"CM133",
+				"CA133",
 				"O118"
 			],
 			"references": [
@@ -27236,11 +27236,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF48",
-				"FM48",
+				"FFA48",
 				"S15.4",
 				"SM15.4",
 				"C48",
-				"CM48",
+				"CA48",
 				"IE11",
 				"O35"
 			],
@@ -27296,11 +27296,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF70",
-				"FM79",
+				"FFA79",
 				"S15.4",
 				"SM15.4",
 				"C64",
-				"CM64",
+				"CA64",
 				"O50"
 			],
 			"references": [
@@ -27323,11 +27323,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E89",
 				"FF70",
-				"FM79",
+				"FFA79",
 				"S12.1",
 				"SM12.2",
 				"C89",
-				"CM89",
+				"CA89",
 				"O75"
 			],
 			"references": [
@@ -27350,11 +27350,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E99",
 				"FF46",
-				"FM46",
+				"FFA46",
 				"S7",
 				"SM7",
 				"C99",
-				"CM99",
+				"CA99",
 				"O85"
 			],
 			"references": [
@@ -27377,11 +27377,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E99",
 				"FF46",
-				"FM46",
+				"FFA46",
 				"S7",
 				"SM7",
 				"C99",
-				"CM99",
+				"CA99",
 				"O85"
 			],
 			"references": [
@@ -27404,11 +27404,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E99",
 				"FF46",
-				"FM46",
+				"FFA46",
 				"S7",
 				"SM7",
 				"C99",
-				"CM99",
+				"CA99",
 				"O85"
 			],
 			"references": [
@@ -27431,11 +27431,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E99",
 				"FF46",
-				"FM46",
+				"FFA46",
 				"S7",
 				"SM7",
 				"C99",
-				"CM99",
+				"CA99",
 				"O85"
 			],
 			"references": [
@@ -27459,7 +27459,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"C54",
-				"CM54",
+				"CA54",
 				"O41"
 			],
 			"references": [
@@ -27495,7 +27495,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E123",
 				"C123",
-				"CM123",
+				"CA123",
 				"O109"
 			],
 			"references": [
@@ -27516,11 +27516,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E87",
 				"FF70",
-				"FM79",
+				"FFA79",
 				"S12.1",
 				"SM12.2",
 				"C87",
-				"CM87",
+				"CA87",
 				"O73"
 			],
 			"references": [
@@ -27543,11 +27543,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E114",
 				"FF121",
-				"FM121",
+				"FFA121",
 				"S17.4",
 				"SM17.4",
 				"C114",
-				"CM114",
+				"CA114",
 				"O100"
 			],
 			"references": [
@@ -27577,11 +27577,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E130",
 				"FF124",
-				"FM124",
+				"FFA124",
 				"S17.4",
 				"SM17.4",
 				"C130",
-				"CM130",
+				"CA130",
 				"O115"
 			],
 			"references": [
@@ -27617,11 +27617,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E130",
 				"FF124",
-				"FM124",
+				"FFA124",
 				"S17.5",
 				"SM17.5",
 				"C130",
-				"CM130",
+				"CA130",
 				"O115"
 			],
 			"references": [
@@ -27644,7 +27644,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E116",
 				"C116",
-				"CM116",
+				"CA116",
 				"O102"
 			],
 			"references": [
@@ -27682,11 +27682,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF55",
-				"FM55",
+				"FFA55",
 				"S11",
 				"SM11",
 				"C64",
-				"CM64",
+				"CA64",
 				"O51"
 			],
 			"references": [
@@ -27709,11 +27709,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E117",
 				"FF129",
-				"FM129",
+				"FFA129",
 				"S17.4",
 				"SM17.4",
 				"C117",
-				"CM117",
+				"CA117",
 				"O103"
 			],
 			"references": [
@@ -27735,11 +27735,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E104",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S14.1",
 				"SM14.5",
 				"C104",
-				"CM104",
+				"CA104",
 				"O90"
 			],
 			"references": [
@@ -27779,11 +27779,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"references": [
@@ -27807,7 +27807,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E115",
 				"C115",
-				"CM115",
+				"CA115",
 				"O101"
 			],
 			"references": [
@@ -27829,7 +27829,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E115",
 				"C115",
-				"CM115",
+				"CA115",
 				"O101"
 			],
 			"references": [
@@ -27851,7 +27851,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E115",
 				"C115",
-				"CM115",
+				"CA115",
 				"O101"
 			],
 			"references": [
@@ -27873,7 +27873,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E115",
 				"C115",
-				"CM115",
+				"CA115",
 				"O101"
 			],
 			"references": [
@@ -27896,7 +27896,7 @@ export const cssData : CSSDataV1 = {
 				"S18.2",
 				"SM18.2",
 				"C125",
-				"CM125",
+				"CA125",
 				"O111"
 			],
 			"baseline": {
@@ -27913,7 +27913,7 @@ export const cssData : CSSDataV1 = {
 				"S18",
 				"SM18",
 				"C111",
-				"CM111",
+				"CA111",
 				"O97"
 			],
 			"references": [
@@ -27934,11 +27934,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE5.5",
 				"O4"
 			],
@@ -27979,11 +27979,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E114",
 				"FF124",
-				"FM124",
+				"FFA124",
 				"S17.4",
 				"SM17.4",
 				"C114",
-				"CM114",
+				"CA114",
 				"O100"
 			],
 			"references": [
@@ -28005,11 +28005,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"references": [
@@ -28032,11 +28032,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E80",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S13.1",
 				"SM13.4",
 				"C80",
-				"CM80",
+				"CA80",
 				"O67"
 			],
 			"references": [
@@ -28197,11 +28197,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1.5",
-				"FM4",
+				"FFA4",
 				"S4",
 				"SM4",
 				"C2",
-				"CM18",
+				"CA18",
 				"IE5.5",
 				"O9"
 			],
@@ -28223,11 +28223,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E91",
 				"FF33",
-				"FM33",
+				"FFA33",
 				"S17",
 				"SM17",
 				"C91",
-				"CM91",
+				"CA91",
 				"O77"
 			],
 			"references": [
@@ -28247,11 +28247,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
-				"FM4",
+				"FFA4",
 				"S3.1",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O10"
 			],
@@ -28273,11 +28273,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E111",
 				"FF34",
-				"FM34",
+				"FFA34",
 				"S9.1",
 				"SM9.3",
 				"C111",
-				"CM111",
+				"CA111",
 				"O97"
 			],
 			"references": [
@@ -28297,11 +28297,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE5.5",
 				"O3.5"
 			],
@@ -28323,11 +28323,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF16",
-				"FM16",
+				"FFA16",
 				"S9",
 				"SM9",
 				"C43",
-				"CM43",
+				"CA43",
 				"IE10",
 				"O30"
 			],
@@ -28349,11 +28349,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E99",
 				"FF97",
-				"FM97",
+				"FFA97",
 				"S15.4",
 				"SM15.4",
 				"C99",
-				"CM99",
+				"CA99",
 				"O85"
 			],
 			"references": [
@@ -28374,11 +28374,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S3",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE6",
 				"O9.2"
 			],
@@ -28422,11 +28422,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O8"
 			],
@@ -28462,11 +28462,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF19",
-				"FM19",
+				"FFA19",
 				"S18.2",
 				"SM18.2",
 				"C2",
-				"CM18",
+				"CA18",
 				"IE8",
 				"O6"
 			],
@@ -28487,11 +28487,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E85",
 				"FF128",
-				"FM128",
+				"FFA128",
 				"S16.4",
 				"SM16.4",
 				"C85",
-				"CM85",
+				"CA85",
 				"O71"
 			],
 			"references": [
@@ -28511,11 +28511,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF22",
-				"FM22",
+				"FFA22",
 				"S9",
 				"SM9",
 				"C28",
-				"CM28",
+				"CA28",
 				"O12.1"
 			],
 			"references": [
@@ -28546,11 +28546,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O5"
 			],
@@ -28572,11 +28572,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF50",
-				"FM50",
+				"FFA50",
 				"S9",
 				"SM9",
 				"C65",
-				"CM65",
+				"CA65",
 				"O52"
 			],
 			"references": [
@@ -28597,11 +28597,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S3.1",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O9"
 			],
@@ -28639,11 +28639,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF4",
-				"FM4",
+				"FFA4",
 				"S5",
 				"SM5",
 				"C10",
-				"CM18",
+				"CA18",
 				"O10"
 			],
 			"references": [
@@ -28664,11 +28664,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S3.1",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O9"
 			],
@@ -28698,11 +28698,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S3.1",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O9.5"
 			],
@@ -28724,11 +28724,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S3.1",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O9"
 			],
@@ -28758,11 +28758,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF116",
-				"FM116",
+				"FFA116",
 				"S6",
 				"SM6",
 				"C18",
-				"CM18",
+				"CA18",
 				"IE8",
 				"O9.2"
 			],
@@ -28783,11 +28783,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3",
-				"FM4",
+				"FFA4",
 				"S3.1",
 				"SM4",
 				"C4",
-				"CM18",
+				"CA18",
 				"IE7",
 				"O9.5"
 			],
@@ -28809,11 +28809,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
-				"FM4",
+				"FFA4",
 				"S3.1",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O9.5"
 			],
@@ -28835,11 +28835,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE8",
 				"O7"
 			],
@@ -28861,10 +28861,10 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF64",
-				"FM64",
+				"FFA64",
 				"S16.4",
 				"C71",
-				"CM71",
+				"CA71",
 				"IE11",
 				"O58"
 			],
@@ -28886,7 +28886,7 @@ export const cssData : CSSDataV1 = {
 				"S7",
 				"SM7",
 				"C23",
-				"CM25",
+				"CA25",
 				"O15"
 			],
 			"references": [
@@ -28913,11 +28913,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF63",
-				"FM63",
+				"FFA63",
 				"S10",
 				"SM10",
 				"C54",
-				"CM54",
+				"CA54",
 				"O41"
 			],
 			"references": [
@@ -28938,11 +28938,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF63",
-				"FM63",
+				"FFA63",
 				"S10",
 				"SM10",
 				"C54",
-				"CM54",
+				"CA54",
 				"O41"
 			],
 			"references": [
@@ -28963,7 +28963,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"C54",
-				"CM54",
+				"CA54",
 				"O41"
 			],
 			"references": [
@@ -28982,11 +28982,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S2",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O4"
 			],
@@ -29016,11 +29016,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF2",
-				"FM4",
+				"FFA4",
 				"S3",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE10",
 				"O9"
 			],
@@ -29042,11 +29042,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E13",
 				"FF29",
-				"FM16",
+				"FFA16",
 				"S5.1",
 				"SM5",
 				"C10",
-				"CM18",
+				"CA18",
 				"O11"
 			],
 			"references": [
@@ -29067,11 +29067,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
-				"FM4",
+				"FFA4",
 				"S5",
 				"SM5",
 				"C10",
-				"CM18",
+				"CA18",
 				"IE10",
 				"O10"
 			],
@@ -29093,11 +29093,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S3.1",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE8",
 				"O8"
 			],
@@ -29119,11 +29119,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S3.1",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O9.5"
 			],
@@ -29145,11 +29145,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
-				"FM4",
+				"FFA4",
 				"S3.1",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O9.5"
 			],
@@ -29173,7 +29173,7 @@ export const cssData : CSSDataV1 = {
 				"S5",
 				"SM4.2",
 				"C6",
-				"CM18",
+				"CA18",
 				"IE8",
 				"O9.2"
 			],
@@ -29193,11 +29193,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM3.2",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE3",
 				"O3.5"
 			],
@@ -29259,7 +29259,7 @@ export const cssData : CSSDataV1 = {
 			"name": ":-moz-first-node",
 			"browsers": [
 				"FF72",
-				"FM79"
+				"FFA79"
 			],
 			"references": [
 				{
@@ -29290,7 +29290,7 @@ export const cssData : CSSDataV1 = {
 			"name": ":-moz-last-node",
 			"browsers": [
 				"FF72",
-				"FM79"
+				"FFA79"
 			],
 			"references": [
 				{
@@ -29314,7 +29314,7 @@ export const cssData : CSSDataV1 = {
 			"name": ":-moz-only-whitespace",
 			"browsers": [
 				"FF1",
-				"FM4"
+				"FFA4"
 			],
 			"references": [
 				{
@@ -29433,11 +29433,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S3.1",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O9.5"
 			],
@@ -29459,11 +29459,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
-				"FM4",
+				"FFA4",
 				"S3.1",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O9.5"
 			],
@@ -29485,11 +29485,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
-				"FM4",
+				"FFA4",
 				"S3.1",
 				"SM2",
 				"C4",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O9"
 			],
@@ -29511,11 +29511,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
-				"FM4",
+				"FFA4",
 				"S3.1",
 				"SM2",
 				"C4",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O9.5"
 			],
@@ -29537,11 +29537,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
-				"FM4",
+				"FFA4",
 				"S3.1",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O9.5"
 			],
@@ -29563,11 +29563,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1.5",
-				"FM4",
+				"FFA4",
 				"S3.1",
 				"SM2",
 				"C2",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O9.5"
 			],
@@ -29589,11 +29589,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF3.5",
-				"FM4",
+				"FFA4",
 				"S3.1",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O9.5"
 			],
@@ -29615,11 +29615,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
-				"FM4",
+				"FFA4",
 				"S5",
 				"SM5",
 				"C10",
-				"CM18",
+				"CA18",
 				"IE10",
 				"O10"
 			],
@@ -29641,11 +29641,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E13",
 				"FF29",
-				"FM16",
+				"FFA16",
 				"S5.1",
 				"SM5",
 				"C10",
-				"CM18",
+				"CA18",
 				"O11"
 			],
 			"references": [
@@ -29668,7 +29668,7 @@ export const cssData : CSSDataV1 = {
 				"S7",
 				"SM7",
 				"C23",
-				"CM25",
+				"CA25",
 				"O15"
 			],
 			"references": [
@@ -29687,11 +29687,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E13",
 				"FF78",
-				"FM79",
+				"FFA79",
 				"S4",
 				"SM3.2",
 				"C1",
-				"CM18",
+				"CA18",
 				"O9"
 			],
 			"references": [
@@ -29712,11 +29712,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E13",
 				"FF78",
-				"FM79",
+				"FFA79",
 				"S4",
 				"SM3.2",
 				"C1",
-				"CM18",
+				"CA18",
 				"O9"
 			],
 			"references": [
@@ -29737,11 +29737,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
-				"FM4",
+				"FFA4",
 				"S5",
 				"SM5",
 				"C10",
-				"CM18",
+				"CA18",
 				"IE10",
 				"O10"
 			],
@@ -29765,7 +29765,7 @@ export const cssData : CSSDataV1 = {
 				"S5",
 				"SM4.2",
 				"C6",
-				"CM18",
+				"CA18",
 				"IE8",
 				"O9.2"
 			],
@@ -29785,11 +29785,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O9.5"
 			],
@@ -29811,11 +29811,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF32",
-				"FM32",
+				"FFA32",
 				"S7",
 				"SM7",
 				"C27",
-				"CM27",
+				"CA27",
 				"O15"
 			],
 			"references": [
@@ -29852,11 +29852,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1.3",
 				"SM2",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O9.5"
 			],
@@ -29878,11 +29878,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF4",
-				"FM4",
+				"FFA4",
 				"S5",
 				"SM5",
 				"C10",
-				"CM18",
+				"CA18",
 				"IE10",
 				"O10"
 			],
@@ -29912,11 +29912,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE4",
 				"O3.5"
 			],
@@ -29964,7 +29964,7 @@ export const cssData : CSSDataV1 = {
 				"S18",
 				"SM18",
 				"C125",
-				"CM125",
+				"CA125",
 				"O111"
 			],
 			"baseline": {
@@ -29978,7 +29978,7 @@ export const cssData : CSSDataV1 = {
 				"E125",
 				"Spreview",
 				"C125",
-				"CM125",
+				"CA125",
 				"O111"
 			],
 			"baseline": {
@@ -29991,11 +29991,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E110",
 				"FF86",
-				"FM86",
+				"FFA86",
 				"S15",
 				"SM15",
 				"C110",
-				"CM110",
+				"CA110",
 				"O96"
 			],
 			"references": [
@@ -30042,11 +30042,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF63",
-				"FM63",
+				"FFA63",
 				"S10",
 				"SM10",
 				"C54",
-				"CM54",
+				"CA54",
 				"O41"
 			],
 			"references": [
@@ -30067,11 +30067,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E120",
 				"FF49",
-				"FM49",
+				"FFA49",
 				"S16.4",
 				"SM16.4",
 				"C120",
-				"CM120",
+				"CA120",
 				"O106"
 			],
 			"references": [
@@ -30091,11 +30091,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E86",
 				"FF85",
-				"FM85",
+				"FFA85",
 				"S15.4",
 				"SM15.4",
 				"C86",
-				"CM86",
+				"CA86",
 				"O72"
 			],
 			"references": [
@@ -30116,11 +30116,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF52",
-				"FM52",
+				"FFA52",
 				"S10.1",
 				"SM10.3",
 				"C60",
-				"CM60",
+				"CA60",
 				"O47"
 			],
 			"references": [
@@ -30141,11 +30141,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E105",
 				"FF121",
-				"FM121",
+				"FFA121",
 				"S15.4",
 				"SM15.4",
 				"C105",
-				"CM105",
+				"CA105",
 				"O91"
 			],
 			"references": [
@@ -30165,9 +30165,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E134",
 				"FF136",
-				"FM136",
+				"FFA136",
 				"C134",
-				"CM134"
+				"CA134"
 			],
 			"references": [
 				{
@@ -30185,11 +30185,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E88",
 				"FF78",
-				"FM79",
+				"FFA79",
 				"S14",
 				"SM14",
 				"C88",
-				"CM88",
+				"CA88",
 				"O74"
 			],
 			"references": [
@@ -30215,11 +30215,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E105",
 				"FF103",
-				"FM103",
+				"FFA103",
 				"S15.6",
 				"SM15.6",
 				"C105",
-				"CM105",
+				"CA105",
 				"O91"
 			],
 			"references": [
@@ -30276,7 +30276,7 @@ export const cssData : CSSDataV1 = {
 				"S13.1",
 				"SM13.4",
 				"C110",
-				"CM110",
+				"CA110",
 				"O96"
 			],
 			"references": [
@@ -30295,11 +30295,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF51",
-				"FM51",
+				"FFA51",
 				"S9",
 				"SM9",
 				"C47",
-				"CM47",
+				"CA47",
 				"IE10",
 				"O34"
 			],
@@ -30338,11 +30338,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E114",
 				"FF125",
-				"FM125",
+				"FFA125",
 				"S17",
 				"SM17",
 				"C114",
-				"CM114",
+				"CA114",
 				"O100"
 			],
 			"references": [
@@ -30396,11 +30396,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E125",
 				"FF126",
-				"FM126",
+				"FFA126",
 				"S17.4",
 				"SM17.4",
 				"C125",
-				"CM125",
+				"CA125",
 				"O111"
 			],
 			"references": [
@@ -30433,11 +30433,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E119",
 				"FF88",
-				"FM88",
+				"FFA88",
 				"S16.5",
 				"SM16.5",
 				"C119",
-				"CM119",
+				"CA119",
 				"O105"
 			],
 			"references": [
@@ -30457,11 +30457,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E119",
 				"FF88",
-				"FM88",
+				"FFA88",
 				"S16.5",
 				"SM16.5",
 				"C119",
-				"CM119",
+				"CA119",
 				"O105"
 			],
 			"references": [
@@ -30498,11 +30498,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E88",
 				"FF78",
-				"FM79",
+				"FFA79",
 				"S14",
 				"SM14",
 				"C88",
-				"CM88",
+				"CA88",
 				"O74"
 			],
 			"references": [
@@ -30524,7 +30524,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E83",
 				"C83",
-				"CM83",
+				"CA83",
 				"O69"
 			],
 			"baseline": {
@@ -30539,11 +30539,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1.5",
-				"FM4",
+				"FFA4",
 				"S4",
 				"SM3.2",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O7"
 			],
@@ -30565,11 +30565,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF47",
-				"FM47",
+				"FFA47",
 				"S15.4",
 				"SM15.4",
 				"C37",
-				"CM37",
+				"CA37",
 				"IE11",
 				"O24"
 			],
@@ -30591,11 +30591,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1.5",
-				"FM4",
+				"FFA4",
 				"S4",
 				"SM3",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O7"
 			],
@@ -30625,11 +30625,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF55",
-				"FM55",
+				"FFA55",
 				"S7",
 				"SM7",
 				"C26",
-				"CM26",
+				"CA26",
 				"O15"
 			],
 			"references": [
@@ -30649,11 +30649,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF55",
-				"FM55",
+				"FFA55",
 				"S7",
 				"SM7",
 				"C26",
-				"CM26",
+				"CA26",
 				"O15"
 			],
 			"references": [
@@ -30689,11 +30689,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O7"
 			],
@@ -30715,11 +30715,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF1",
-				"FM4",
+				"FFA4",
 				"S1",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O7"
 			],
@@ -30740,7 +30740,7 @@ export const cssData : CSSDataV1 = {
 			"name": "::-moz-focus-inner",
 			"browsers": [
 				"FF72",
-				"FM79"
+				"FFA79"
 			],
 			"references": [
 				{
@@ -30762,7 +30762,7 @@ export const cssData : CSSDataV1 = {
 			"name": "::-moz-list-bullet",
 			"browsers": [
 				"FF72",
-				"FM79"
+				"FFA79"
 			],
 			"references": [
 				{
@@ -30779,7 +30779,7 @@ export const cssData : CSSDataV1 = {
 			"name": "::-moz-list-number",
 			"browsers": [
 				"FF72",
-				"FM79"
+				"FFA79"
 			],
 			"references": [
 				{
@@ -30803,7 +30803,7 @@ export const cssData : CSSDataV1 = {
 			"name": "::-moz-progress-bar",
 			"browsers": [
 				"FF72",
-				"FM79"
+				"FFA79"
 			],
 			"references": [
 				{
@@ -30947,10 +30947,10 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E12",
 				"FF62",
-				"FM62",
+				"FFA62",
 				"S1.1",
 				"C1",
-				"CM18",
+				"CA18",
 				"IE9",
 				"O9.5"
 			],
@@ -30988,7 +30988,7 @@ export const cssData : CSSDataV1 = {
 				"S5",
 				"SM4.2",
 				"C6",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"references": [
@@ -31023,7 +31023,7 @@ export const cssData : CSSDataV1 = {
 				"S5.1",
 				"SM5",
 				"C12",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"references": [
@@ -31043,7 +31043,7 @@ export const cssData : CSSDataV1 = {
 				"S5.1",
 				"SM5",
 				"C12",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"references": [
@@ -31063,7 +31063,7 @@ export const cssData : CSSDataV1 = {
 				"S5.1",
 				"SM5",
 				"C12",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"references": [
@@ -31083,7 +31083,7 @@ export const cssData : CSSDataV1 = {
 				"S5.1",
 				"SM5",
 				"C12",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"references": [
@@ -31111,7 +31111,7 @@ export const cssData : CSSDataV1 = {
 				"S7",
 				"SM7",
 				"C25",
-				"CM25",
+				"CA25",
 				"O15"
 			],
 			"references": [
@@ -31131,7 +31131,7 @@ export const cssData : CSSDataV1 = {
 				"S7",
 				"SM7",
 				"C23",
-				"CM25",
+				"CA25",
 				"O15"
 			],
 			"references": [
@@ -31151,7 +31151,7 @@ export const cssData : CSSDataV1 = {
 				"S7",
 				"SM7",
 				"C25",
-				"CM25",
+				"CA25",
 				"O15"
 			],
 			"references": [
@@ -31171,7 +31171,7 @@ export const cssData : CSSDataV1 = {
 				"S4",
 				"SM3.2",
 				"C2",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"references": [
@@ -31191,7 +31191,7 @@ export const cssData : CSSDataV1 = {
 				"S4",
 				"SM3",
 				"C2",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"references": [
@@ -31210,7 +31210,7 @@ export const cssData : CSSDataV1 = {
 				"E79",
 				"S4",
 				"C2",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"references": [
@@ -31229,7 +31229,7 @@ export const cssData : CSSDataV1 = {
 				"E79",
 				"S4",
 				"C2",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"references": [
@@ -31248,7 +31248,7 @@ export const cssData : CSSDataV1 = {
 				"E79",
 				"S4",
 				"C2",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"references": [
@@ -31267,7 +31267,7 @@ export const cssData : CSSDataV1 = {
 				"E79",
 				"S4",
 				"C2",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"references": [
@@ -31286,7 +31286,7 @@ export const cssData : CSSDataV1 = {
 				"E79",
 				"S4",
 				"C2",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"references": [
@@ -31306,7 +31306,7 @@ export const cssData : CSSDataV1 = {
 				"S3",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"references": [
@@ -31333,7 +31333,7 @@ export const cssData : CSSDataV1 = {
 				"S3",
 				"SM1",
 				"C1",
-				"CM18",
+				"CA18",
 				"O15"
 			],
 			"references": [
@@ -31360,7 +31360,7 @@ export const cssData : CSSDataV1 = {
 				"S18",
 				"SM18",
 				"C83",
-				"CM83",
+				"CA83",
 				"O69"
 			],
 			"references": [
@@ -31380,7 +31380,7 @@ export const cssData : CSSDataV1 = {
 				"S18",
 				"SM18",
 				"C83",
-				"CM83",
+				"CA83",
 				"O69"
 			],
 			"references": [
@@ -31454,7 +31454,7 @@ export const cssData : CSSDataV1 = {
 			"status": "nonstandard",
 			"browsers": [
 				"FF22",
-				"FM22"
+				"FFA22"
 			],
 			"references": [
 				{
@@ -31472,7 +31472,7 @@ export const cssData : CSSDataV1 = {
 			"status": "nonstandard",
 			"browsers": [
 				"FF21",
-				"FM21"
+				"FFA21"
 			],
 			"references": [
 				{
@@ -31490,7 +31490,7 @@ export const cssData : CSSDataV1 = {
 			"status": "nonstandard",
 			"browsers": [
 				"FF21",
-				"FM21"
+				"FFA21"
 			],
 			"references": [
 				{
@@ -31514,7 +31514,7 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E131",
 				"C131",
-				"CM131",
+				"CA131",
 				"O116"
 			],
 			"references": [
@@ -31533,11 +31533,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E89",
 				"FF82",
-				"FM82",
+				"FFA82",
 				"S14.1",
 				"SM14.5",
 				"C89",
-				"CM89",
+				"CA89",
 				"IE10",
 				"O75"
 			],
@@ -31561,7 +31561,7 @@ export const cssData : CSSDataV1 = {
 				"S17.4",
 				"SM17.4",
 				"C121",
-				"CM121",
+				"CA121",
 				"O107"
 			],
 			"references": [
@@ -31583,7 +31583,7 @@ export const cssData : CSSDataV1 = {
 				"S17.2",
 				"SM17.2",
 				"C105",
-				"CM105",
+				"CA105",
 				"O91"
 			],
 			"references": [
@@ -31602,9 +31602,9 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E86",
 				"FF68",
-				"FM68",
+				"FFA68",
 				"C86",
-				"CM86",
+				"CA86",
 				"O72"
 			],
 			"references": [
@@ -31623,11 +31623,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF72",
-				"FM79",
+				"FFA79",
 				"S13.1",
 				"SM13.4",
 				"C73",
-				"CM73",
+				"CA73",
 				"O60"
 			],
 			"references": [
@@ -31648,11 +31648,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF51",
-				"FM51",
+				"FFA51",
 				"S10.1",
 				"SM10.3",
 				"C57",
-				"CM57",
+				"CA57",
 				"O44"
 			],
 			"references": [
@@ -31689,11 +31689,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E79",
 				"FF63",
-				"FM63",
+				"FFA63",
 				"S10",
 				"SM10",
 				"C50",
-				"CM50",
+				"CA50",
 				"O37"
 			],
 			"references": [
@@ -31716,7 +31716,7 @@ export const cssData : CSSDataV1 = {
 				"S17.4",
 				"SM17.4",
 				"C121",
-				"CM121",
+				"CA121",
 				"O107"
 			],
 			"references": [
@@ -31735,11 +31735,11 @@ export const cssData : CSSDataV1 = {
 			"browsers": [
 				"E89",
 				"FF131",
-				"FM131",
+				"FFA131",
 				"S18.2",
 				"SM18.2",
 				"C89",
-				"CM89",
+				"CA89",
 				"O75"
 			],
 			"references": [
@@ -31761,7 +31761,7 @@ export const cssData : CSSDataV1 = {
 				"S18",
 				"SM18",
 				"C109",
-				"CM109",
+				"CA109",
 				"O95"
 			],
 			"references": [
@@ -31782,7 +31782,7 @@ export const cssData : CSSDataV1 = {
 				"S18",
 				"SM18",
 				"C109",
-				"CM109",
+				"CA109",
 				"O95"
 			],
 			"references": [
@@ -31803,7 +31803,7 @@ export const cssData : CSSDataV1 = {
 				"S18",
 				"SM18",
 				"C109",
-				"CM109",
+				"CA109",
 				"O95"
 			],
 			"references": [
@@ -31824,7 +31824,7 @@ export const cssData : CSSDataV1 = {
 				"S18",
 				"SM18",
 				"C109",
-				"CM109",
+				"CA109",
 				"O95"
 			],
 			"references": [
@@ -31845,7 +31845,7 @@ export const cssData : CSSDataV1 = {
 				"S18",
 				"SM18",
 				"C109",
-				"CM109",
+				"CA109",
 				"O95"
 			],
 			"references": [
