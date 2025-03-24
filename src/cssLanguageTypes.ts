@@ -240,6 +240,14 @@ export interface CSSDataV1 {
 	pseudoElements?: IPseudoElementData[];
 }
 
+export interface BaselineStatus {
+	status: Baseline;
+	baseline_low_date?: string;
+	baseline_high_date?: string;
+}
+
+export type Baseline = 'false' | 'low' | 'high';
+
 export interface ICSSDataProvider {
 	provideProperties(): IPropertyData[];
 	provideAtDirectives(): IAtDirectiveData[];

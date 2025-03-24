@@ -561,7 +561,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-animation>#",
-			"relevance": 83,
+			"relevance": 84,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -762,7 +762,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-animation-iteration-count>#",
-			"relevance": 65,
+			"relevance": 66,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -1891,7 +1891,7 @@ export const cssData : CSSDataV1 = {
 				"O3.5"
 			],
 			"syntax": "<'border-top-color'>",
-			"relevance": 70,
+			"relevance": 69,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2417,7 +2417,7 @@ export const cssData : CSSDataV1 = {
 				"O56"
 			],
 			"syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
-			"relevance": 54,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2667,7 +2667,7 @@ export const cssData : CSSDataV1 = {
 				"O3.5"
 			],
 			"syntax": "<color>",
-			"relevance": 67,
+			"relevance": 66,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2827,7 +2827,7 @@ export const cssData : CSSDataV1 = {
 				"O3.5"
 			],
 			"syntax": "<color>",
-			"relevance": 66,
+			"relevance": 65,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2889,7 +2889,7 @@ export const cssData : CSSDataV1 = {
 				"O3.5"
 			],
 			"syntax": "<line-width>",
-			"relevance": 64,
+			"relevance": 63,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -9011,7 +9011,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | <length>",
-			"relevance": 83,
+			"relevance": 82,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -9502,7 +9502,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'margin-top'>",
-			"relevance": 56,
+			"relevance": 55,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -10216,7 +10216,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'max-width'>",
-			"relevance": 54,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -10336,7 +10336,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<'max-width'>",
-			"relevance": 54,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -10543,7 +10543,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | <length-percentage [0,∞]> | min-content | max-content | fit-content | fit-content(<length-percentage [0,∞]>) | <calc-size()> | <anchor-size()>",
-			"relevance": 90,
+			"relevance": 89,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -10667,7 +10667,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | <length-percentage [0,∞]> | min-content | max-content | fit-content | fit-content(<length-percentage [0,∞]>) | <calc-size()> | <anchor-size()>",
-			"relevance": 89,
+			"relevance": 88,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -15521,7 +15521,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | <outline-line-style>",
-			"relevance": 61,
+			"relevance": 60,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -15809,7 +15809,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"values": [],
 			"syntax": "<'padding-top'>{1,4}",
-			"relevance": 96,
+			"relevance": 95,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -17373,7 +17373,7 @@ export const cssData : CSSDataV1 = {
 				"O67"
 			],
 			"syntax": "<'color'>",
-			"relevance": 51,
+			"relevance": 50,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -17809,7 +17809,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | fixed",
-			"relevance": 59,
+			"relevance": 58,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -18116,7 +18116,7 @@ export const cssData : CSSDataV1 = {
 				"O44"
 			],
 			"syntax": "<color>",
-			"relevance": 56,
+			"relevance": 57,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -18252,7 +18252,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"values": [],
 			"syntax": "<length-percentage> && hanging? && each-line?",
-			"relevance": 69,
+			"relevance": 68,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -18462,7 +18462,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | optimizeSpeed | optimizeLegibility | geometricPrecision",
-			"relevance": 67,
+			"relevance": 66,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -19542,7 +19542,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"atRule": "@font-face",
 			"syntax": "<unicode-range-token>#",
-			"relevance": 72,
+			"relevance": 71,
 			"description": "@font-face descriptor. Defines the set of Unicode codepoints that may be supported by the font face for which it is declared.",
 			"restrictions": [
 				"unicode-range"
@@ -22148,7 +22148,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | break-all | keep-all | break-word | auto-phrase",
-			"relevance": 78,
+			"relevance": 77,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -23068,7 +23068,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "appearance",
 			"syntax": "none | auto | textfield | menulist-button | <compat-auto>",
-			"relevance": 73,
+			"relevance": 72,
 			"browsers": [
 				"E84",
 				"FF80",
@@ -24053,7 +24053,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "cy",
 			"syntax": "<length> | <percentage>",
-			"relevance": 51,
+			"relevance": 52,
 			"browsers": [
 				"E80",
 				"FF72",
@@ -24435,7 +24435,7 @@ export const cssData : CSSDataV1 = {
 			"name": "font-variation-settings",
 			"atRule": "@font-face",
 			"syntax": "normal | [ <string> <number> ]#",
-			"relevance": 57,
+			"relevance": 56,
 			"browsers": [
 				"E17",
 				"FF62",
@@ -26167,7 +26167,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "row-gap",
 			"syntax": "normal | <length-percentage>",
-			"relevance": 61,
+			"relevance": 60,
 			"browsers": [
 				"E16",
 				"FF52",
@@ -27043,7 +27043,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "scrollbar-color",
 			"syntax": "auto | <color>{2}",
-			"relevance": 55,
+			"relevance": 54,
 			"browsers": [
 				"E121",
 				"FF64",
@@ -27167,7 +27167,7 @@ export const cssData : CSSDataV1 = {
 			"baseline": {
 				"status": "false"
 			},
-			"description": ""
+			"description": "The text-box CSS property is a shorthand that corresponds to the text-box-trim and text-box-edge properties, which together specify the amount of space to trim from the block-start edge and block-end edge of a text element's block container."
 		},
 		{
 			"name": "text-box-edge",
@@ -27190,7 +27190,7 @@ export const cssData : CSSDataV1 = {
 			"baseline": {
 				"status": "false"
 			},
-			"description": ""
+			"description": "The text-box-edge CSS property specifies an amount of space to trim from a text element's block container."
 		},
 		{
 			"name": "text-box-trim",
@@ -27227,7 +27227,7 @@ export const cssData : CSSDataV1 = {
 			"baseline": {
 				"status": "false"
 			},
-			"description": ""
+			"description": "The text-box-trim CSS property specifies which of the over and under edges of text content to trim from a text element's block container."
 		},
 		{
 			"name": "text-combine-upright",
@@ -30008,7 +30008,7 @@ export const cssData : CSSDataV1 = {
 				"status": "low",
 				"baseline_low_date": "2023-02-09"
 			},
-			"description": ""
+			"description": "The :autofill CSS pseudo-class matches when an input element has its value autofilled by the browser. The class stops matching if the user edits the field."
 		},
 		{
 			"name": ":blank",
@@ -30030,7 +30030,7 @@ export const cssData : CSSDataV1 = {
 			"baseline": {
 				"status": "false"
 			},
-			"description": ""
+			"description": "The :buffering CSS pseudo-class selector represents an element that is playable, such as audio or video, when the playable element is buffering a media resource."
 		},
 		{
 			"name": ":current",
@@ -30084,7 +30084,7 @@ export const cssData : CSSDataV1 = {
 				"status": "low",
 				"baseline_low_date": "2023-12-07"
 			},
-			"description": ""
+			"description": "The :dir() CSS pseudo-class matches elements based on the directionality of the text contained in them."
 		},
 		{
 			"name": ":focus-visible",
@@ -30158,7 +30158,7 @@ export const cssData : CSSDataV1 = {
 				"status": "low",
 				"baseline_low_date": "2023-12-19"
 			},
-			"description": ""
+			"description": "The functional :has() CSS pseudo-class represents an element if any of the relative selectors that are passed as an argument match at least one element when anchored against this element. "
 		},
 		{
 			"name": ":has-slotted",
@@ -30178,7 +30178,7 @@ export const cssData : CSSDataV1 = {
 			"baseline": {
 				"status": "false"
 			},
-			"description": ""
+			"description": "The :has-slotted CSS pseudo-class matches when the content of a slot element is not empty or not using the default value (see Using templates and slots for more information)."
 		},
 		{
 			"name": ":is",
@@ -30203,7 +30203,7 @@ export const cssData : CSSDataV1 = {
 				"baseline_low_date": "2021-01-21",
 				"baseline_high_date": "2023-07-21"
 			},
-			"description": ""
+			"description": "The :is() CSS pseudo-class function takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list. This is useful for writing large selectors in a more compact form."
 		},
 		{
 			"name": ":local-link",
@@ -30233,7 +30233,7 @@ export const cssData : CSSDataV1 = {
 				"baseline_low_date": "2022-09-02",
 				"baseline_high_date": "2025-03-02"
 			},
-			"description": ""
+			"description": "The :modal CSS pseudo-class matches an element that is in a state in which it excludes all interaction with elements outside it until the interaction has been dismissed. Multiple elements can be selected by the :modal pseudo-class at the same time, but only one of them will be active and able to receive input."
 		},
 		{
 			"name": ":muted",
@@ -30250,7 +30250,7 @@ export const cssData : CSSDataV1 = {
 			"baseline": {
 				"status": "false"
 			},
-			"description": ""
+			"description": "The :muted CSS pseudo-class selector represents an element that is capable of making sound, such as audio or video, but is muted (forced silent)."
 		},
 		{
 			"name": ":paused",
@@ -30355,7 +30355,7 @@ export const cssData : CSSDataV1 = {
 				"status": "low",
 				"baseline_low_date": "2024-04-16"
 			},
-			"description": ""
+			"description": "The :popover-open CSS pseudo-class represents a {{domxref(\"Popover API\", \"popover\", \"\", \"nocode\")}} element (i.e. one with a popover attribute) that is in the showing state. You can use this to apply style to popover elements only when they are shown."
 		},
 		{
 			"name": ":seeking",
@@ -30372,7 +30372,7 @@ export const cssData : CSSDataV1 = {
 			"baseline": {
 				"status": "false"
 			},
-			"description": ""
+			"description": "The :seeking CSS pseudo-class selector represents an element that is playable, such as audio or video, when the playable element is seeking a playback position in the media resource."
 		},
 		{
 			"name": ":stalled",
@@ -30389,7 +30389,7 @@ export const cssData : CSSDataV1 = {
 			"baseline": {
 				"status": "false"
 			},
-			"description": ""
+			"description": "The :stalled CSS pseudo-class selector represents an element that is playable, such as audio or video, when playback is stalled."
 		},
 		{
 			"name": ":state",
@@ -30413,7 +30413,7 @@ export const cssData : CSSDataV1 = {
 				"status": "low",
 				"baseline_low_date": "2024-05-17"
 			},
-			"description": ""
+			"description": "The :state() CSS pseudo-class matches custom elements that have the specified custom state."
 		},
 		{
 			"name": ":target-current",
@@ -30491,7 +30491,7 @@ export const cssData : CSSDataV1 = {
 			"baseline": {
 				"status": "false"
 			},
-			"description": ""
+			"description": "The :volume-locked CSS pseudo-class selector represents an element that is capable of making sound, such as audio or video, but the audio volume of the media element is currently \"locked\" by the user."
 		},
 		{
 			"name": ":where",
@@ -30516,7 +30516,7 @@ export const cssData : CSSDataV1 = {
 				"baseline_low_date": "2021-01-21",
 				"baseline_high_date": "2023-07-21"
 			},
-			"description": ""
+			"description": "The :where() CSS pseudo-class function takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list."
 		},
 		{
 			"name": ":xr-overlay",
@@ -31526,7 +31526,7 @@ export const cssData : CSSDataV1 = {
 			"baseline": {
 				"status": "false"
 			},
-			"description": ""
+			"description": "The ::details-content CSS pseudo-element represents the expandable/collapsible contents of a details element."
 		},
 		{
 			"name": "::file-selector-button",
@@ -31552,7 +31552,7 @@ export const cssData : CSSDataV1 = {
 				"baseline_low_date": "2021-04-26",
 				"baseline_high_date": "2023-10-26"
 			},
-			"description": ""
+			"description": "The ::file-selector-button CSS pseudo-element represents the button of an input of type=\"file\"."
 		},
 		{
 			"name": "::grammar-error",
@@ -31595,7 +31595,7 @@ export const cssData : CSSDataV1 = {
 			"baseline": {
 				"status": "false"
 			},
-			"description": ""
+			"description": "The ::highlight() CSS pseudo-element applies styles to a custom highlight."
 		},
 		{
 			"name": "::marker",
@@ -31641,7 +31641,7 @@ export const cssData : CSSDataV1 = {
 				"baseline_low_date": "2020-07-28",
 				"baseline_high_date": "2023-01-28"
 			},
-			"description": ""
+			"description": "The ::part CSS pseudo-element represents any element within a shadow tree that has a matching part attribute."
 		},
 		{
 			"name": "::placeholder",
@@ -31707,7 +31707,7 @@ export const cssData : CSSDataV1 = {
 				"baseline_low_date": "2020-01-15",
 				"baseline_high_date": "2022-07-15"
 			},
-			"description": ""
+			"description": "The ::slotted() CSS pseudo-element represents any element that has been placed into a slot inside an HTML template (see Using templates and slots for more information)."
 		},
 		{
 			"name": "::spelling-error",
@@ -31794,7 +31794,7 @@ export const cssData : CSSDataV1 = {
 			"baseline": {
 				"status": "false"
 			},
-			"description": ""
+			"description": "The ::view-transition-group CSS pseudo-element represents a single view transition snapshot group."
 		},
 		{
 			"name": "::view-transition-image-pair",
@@ -31815,7 +31815,7 @@ export const cssData : CSSDataV1 = {
 			"baseline": {
 				"status": "false"
 			},
-			"description": ""
+			"description": "The ::view-transition-image-pair CSS pseudo-element represents a container for a view transition's \"old\" and \"new\" view states — before and after the transition."
 		},
 		{
 			"name": "::view-transition-new",
@@ -31836,7 +31836,7 @@ export const cssData : CSSDataV1 = {
 			"baseline": {
 				"status": "false"
 			},
-			"description": ""
+			"description": "The ::view-transition-new CSS pseudo-element represents the \"new\" view state of a view transition — a snapshot live representation of the state after the transition."
 		},
 		{
 			"name": "::view-transition-old",
@@ -31857,7 +31857,7 @@ export const cssData : CSSDataV1 = {
 			"baseline": {
 				"status": "false"
 			},
-			"description": ""
+			"description": "The ::view-transition-old CSS pseudo-element represents the \"old\" view state of a view transition — a static snapshot of the old view, before the transition."
 		}
 	]
 };
