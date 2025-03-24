@@ -150,23 +150,22 @@ export function getBrowserLabel(browsers: string[] = []): string | null {
 		return null;
 	}
 
-	return browsers
-		.map(b => {
-			let result = '';
-			const matches = b.match(/([A-Z]+)(\d+)?/)!;
+	const entries: string[] = [];
+	for (const b of browsers) {
+		const matches = b.match(/([A-Z]+)(\d+)?/)!;
 
-			const name = matches[1];
-			const version = matches[2];
+		const name = matches[1];
+		const version = matches[2];
 
-			if (name in browserNames) {
-				result += browserNames[name as keyof typeof browserNames];
-			}
+		if (name in browserNames) {
+			let result = browserNames[name as keyof typeof browserNames];
 			if (version) {
 				result += ' ' + version;
 			}
-			return result;
-		})
-		.join(', ');
+			entries.push(result);
+		}
+	}
+	return entries.join(', ');
 }
 
 export type IEntry2 = IPropertyData | IAtDirectiveData | IPseudoClassData | IPseudoElementData | IValueData;
