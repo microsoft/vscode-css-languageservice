@@ -255,14 +255,6 @@ export interface ICSSDataProvider {
 	providePseudoElements(): IPseudoElementData[];
 }
 
-export interface BaselineStatus {
-	status: Baseline;
-	baseline_low_date?: string;
-	baseline_high_date?: string;
-}
-
-export type Baseline = 'false' | 'low' | 'high';
-
 export enum FileType {
 	/**
 	 * The file type is unknown.
