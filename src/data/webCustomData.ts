@@ -448,7 +448,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "auto | normal | stretch | <baseline-position> | <overflow-position>? <self-position>",
-			"relevance": 74,
+			"relevance": 75,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -725,7 +725,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<single-animation-fill-mode>#",
-			"relevance": 64,
+			"relevance": 65,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -873,7 +873,7 @@ export const cssData : CSSDataV1 = {
 				"O30"
 			],
 			"syntax": "<easing-function>#",
-			"relevance": 72,
+			"relevance": 73,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2633,7 +2633,7 @@ export const cssData : CSSDataV1 = {
 				"O3.5"
 			],
 			"syntax": "<line-width> || <line-style> || <color>",
-			"relevance": 81,
+			"relevance": 82,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -2793,7 +2793,7 @@ export const cssData : CSSDataV1 = {
 				"O9.2"
 			],
 			"syntax": "<line-width> || <line-style> || <color>",
-			"relevance": 80,
+			"relevance": 81,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3081,7 +3081,7 @@ export const cssData : CSSDataV1 = {
 				"O10.5"
 			],
 			"syntax": "<length-percentage>{1,2}",
-			"relevance": 76,
+			"relevance": 75,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3177,7 +3177,7 @@ export const cssData : CSSDataV1 = {
 			],
 			"values": [],
 			"syntax": "<line-width>{1,4}",
-			"relevance": 82,
+			"relevance": 83,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3215,7 +3215,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
-			"relevance": 90,
+			"relevance": 91,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -3336,7 +3336,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "content-box | border-box",
-			"relevance": 92,
+			"relevance": 93,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -6942,7 +6942,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<absolute-size> | <relative-size> | <length-percentage>",
-			"relevance": 94,
+			"relevance": 95,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -8086,7 +8086,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<grid-line>",
-			"relevance": 52,
+			"relevance": 53,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -8973,7 +8973,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "<length> | <percentage> | auto",
-			"relevance": 94,
+			"relevance": 95,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -16287,7 +16287,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "none | <length>",
-			"relevance": 54,
+			"relevance": 55,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -17633,7 +17633,7 @@ export const cssData : CSSDataV1 = {
 				"O67"
 			],
 			"syntax": "<number>",
-			"relevance": 53,
+			"relevance": 54,
 			"references": [
 				{
 					"name": "MDN Reference",
@@ -22216,7 +22216,7 @@ export const cssData : CSSDataV1 = {
 				}
 			],
 			"syntax": "normal | break-word",
-			"relevance": 77,
+			"relevance": 78,
 			"description": "Specifies whether the UA may break within a word to prevent overflow when an otherwise-unbreakable string is too long to fit.",
 			"restrictions": [
 				"enum"
@@ -24756,7 +24756,7 @@ export const cssData : CSSDataV1 = {
 		{
 			"name": "inset-inline-end",
 			"syntax": "<'top'>",
-			"relevance": 54,
+			"relevance": 55,
 			"browsers": [
 				"E87",
 				"FF63",

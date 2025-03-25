@@ -8,6 +8,7 @@
 import * as assert from 'assert';
 import { Hover, TextDocument, getCSSLanguageService, getLESSLanguageService, getSCSSLanguageService } from '../../cssLanguageService';
 import { HoverSettings } from '../../cssLanguageTypes';
+import { BaselineImages } from '../../languageFacts/facts';
 
 function assertHover(value: string, expected: Hover, languageId = 'css', hoverSettings?: HoverSettings): void {
 	let offset = value.indexOf('|');
@@ -30,7 +31,7 @@ suite('CSS Hover', () => {
 			contents: {
 				kind: 'markdown',
 				value:
-					"Sets the color of an element's text\n\n(Edge 12, Firefox 1, Safari 1, Chrome 1, IE 3, Opera 3)\n\nSyntax: &lt;color&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/color)",
+					`Sets the color of an element's text\n\n![Baseline icon](${BaselineImages.BASELINE_HIGH}) _Widely available across major browsers (Baseline since 2015)_\n\nSyntax: &lt;color&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/color)`,
 			},
 		});
 		assertHover(
@@ -49,7 +50,7 @@ suite('CSS Hover', () => {
 			{
 				contents: {
 					kind: 'markdown',
-					value: "Sets the color of an element's text\n\n(Edge 12, Firefox 1, Safari 1, Chrome 1, IE 3, Opera 3)\n\nSyntax: &lt;color&gt;",
+					value: `Sets the color of an element's text\n\n![Baseline icon](${BaselineImages.BASELINE_HIGH}) _Widely available across major browsers (Baseline since 2015)_\n\nSyntax: &lt;color&gt;`,
 				},
 			},
 			undefined,
