@@ -64,7 +64,7 @@ suite('CSS - Custom Data', async () => {
 					resultText: 'body { foo: $0; }',
 					documentation: {
 						kind: 'markdown',
-						value: '### foo\nFoo property. See link on [MDN](https://developer.mozilla.org/).\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/foo)'
+						value: 'Foo property. See link on [MDN](https://developer.mozilla.org/).\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/foo)'
 					}
 				}
 			]

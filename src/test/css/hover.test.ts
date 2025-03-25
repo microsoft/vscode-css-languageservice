@@ -31,7 +31,7 @@ suite('CSS Hover', () => {
 			contents: {
 				kind: 'markdown',
 				value:
-					`### ![Baseline icon](${BaselineImages.BASELINE_HIGH}) color\n_Widely available across major browsers (Baseline since 2015)_\n\nSets the color of an element's text\n\nSyntax: &lt;color&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/color)`,
+					`Sets the color of an element's text\n\n![Baseline icon](${BaselineImages.BASELINE_HIGH}) _Widely available across major browsers (Baseline since 2015)_\n\nSyntax: &lt;color&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/color)`,
 			},
 		});
 		assertHover(
@@ -50,7 +50,7 @@ suite('CSS Hover', () => {
 			{
 				contents: {
 					kind: 'markdown',
-					value: `### ![Baseline icon](${BaselineImages.BASELINE_HIGH}) color\n_Widely available across major browsers (Baseline since 2015)_\n\nSets the color of an element's text\n\nSyntax: &lt;color&gt;`,
+					value: `Sets the color of an element's text\n\n![Baseline icon](${BaselineImages.BASELINE_HIGH}) _Widely available across major browsers (Baseline since 2015)_\n\nSyntax: &lt;color&gt;`,
 				},
 			},
 			undefined,
