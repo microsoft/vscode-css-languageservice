@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { EntryStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IValueData, MarkupContent, MarkupKind, MarkedString, HoverSettings } from '../cssLanguageTypes';
+import { EntryStatus, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData, IMediaQueryData, IValueData, MarkupKind, MarkupContent, MarkedString, HoverSettings } from '../cssLanguageTypes';
 
 export interface Browsers {
 	E?: string;
@@ -168,7 +168,7 @@ export function getBrowserLabel(browsers: string[] = []): string | null {
 	return entries.join(', ');
 }
 
-export type IEntry2 = IPropertyData | IAtDirectiveData | IPseudoClassData | IPseudoElementData | IValueData;
+export type IEntry2 = IPropertyData | IAtDirectiveData | IPseudoClassData | IPseudoElementData | IMediaQueryData | IValueData;
 
 /**
  * Todo@Pine: Drop these two types and use IEntry2
