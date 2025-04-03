@@ -83,8 +83,31 @@
             "description": "Supported browsers",
             "items": {
               "type": "string",
-              "pattern": "(E|FF|S|C|IE|O)([\\d|\\.]+)?",
-              "patternErrorMessage": "Browser item must follow the format of `${browser}${version}`. `browser` is one of:\n- E: Edge\n- FF: Firefox\n- S: Safari\n- C: Chrome\n- IE: Internet Explorer\n- O: Opera"
+              "pattern": "(E|FFA|FF|SM|S|CA|C|IE|O)([\\d|\\.]+)?",
+              "patternErrorMessage": "Browser item must follow the format of `${browser}${version}`. `browser` is one of:\n- E: Edge\n- FF: Firefox\n- FM: Firefox Android\n- S: Safari\n- SM: Safari on iOS\n- C: Chrome\n- CM: Chrome on Android\n- IE: Internet Explorer\n- O: Opera"
+            }
+          },
+          "baseline": {
+            "type": "object",
+            "description": "Baseline information for the feature",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "Baseline status",
+                "enum": ["high", "low", "false"]
+              },
+              "baseline_low_date": {
+                "type": "string",
+                "description": "Date when the feature became newly supported in all major browsers",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "patternErrorMessage": "Date must be in the format of `YYYY-MM-DD`"
+              },
+              "baseline_high_date": {
+                "type": "string",
+                "description": "Date when the feature became widely supported in all major browsers",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "patternErrorMessage": "Date must be in the format of `YYYY-MM-DD`"
+              }
             }
           },
           "references": {

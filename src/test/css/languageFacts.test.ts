@@ -5,7 +5,7 @@
 'use strict';
 
 import * as assert from 'assert';
-import { isColorValue, getColorValue, getBrowserLabel, colorFrom256RGB, colorFromHex, hexDigit, hslFromColor, HSLA, XYZ, LAB, xyzToRGB, xyzFromLAB, hwbFromColor, HWBA, colorFromHWB, colorFromHSL, colorFromLAB, labFromLCH, colorFromLCH, labFromColor, RGBtoXYZ, lchFromColor, LCH } from '../../languageFacts/facts';
+import { isColorValue, getColorValue, colorFrom256RGB, colorFromHex, hexDigit, hslFromColor, HSLA, XYZ, LAB, xyzToRGB, xyzFromLAB, hwbFromColor, HWBA, colorFromHWB, colorFromHSL, colorFromLAB, labFromLCH, colorFromLCH, labFromColor, RGBtoXYZ, lchFromColor, LCH, getMissingBaselineBrowsers } from '../../languageFacts/facts';
 import { Parser } from '../../parser/cssParser';
 import * as nodes from '../../parser/cssNodes';
 import { TextDocument, Color } from '../../cssLanguageTypes';
@@ -118,22 +118,23 @@ suite('CSS - Language Facts', () => {
 	const cssDataManager = new CSSDataManager({ useDefaultDataProvider: true });
 
 	test('properties', function () {
-		let alignLast = cssDataManager.getProperty('text-decoration-color');
-		if (!alignLast) {
-			assert.ok(alignLast);
+		let textDecorationColor = cssDataManager.getProperty('text-decoration-color');
+		if (!textDecorationColor) {
+			assert.ok(textDecorationColor);
 			return;
 		}
-		assert.equal(alignLast.name, 'text-decoration-color');
+		assert.equal(textDecorationColor.name, 'text-decoration-color');
 
-		assert.ok(alignLast.browsers!.indexOf("E79") !== -1);
-		assert.ok(alignLast.browsers!.indexOf("FF36") !== -1);
-		assert.ok(alignLast.browsers!.indexOf("C57") !== -1);
-		assert.ok(alignLast.browsers!.indexOf("S12.1") !== -1);
-		assert.ok(alignLast.browsers!.indexOf("O44") !== -1);
+		assert.ok(textDecorationColor.baseline!.status! === 'high');
+		assert.ok(textDecorationColor.browsers!.indexOf("E79") !== -1);
+		assert.ok(textDecorationColor.browsers!.indexOf("FF36") !== -1);
+		assert.ok(textDecorationColor.browsers!.indexOf("C57") !== -1);
+		assert.ok(textDecorationColor.browsers!.indexOf("S12.1") !== -1);
+		assert.ok(textDecorationColor.browsers!.indexOf("O44") !== -1);
 
-		assert.equal(getBrowserLabel(alignLast.browsers!), 'Edge 79, Firefox 36, Safari 12, Chrome 57, Opera 44');
+		assert.equal(getMissingBaselineBrowsers(textDecorationColor.browsers!), '');
 
-		let r = alignLast.restrictions;
+		let r = textDecorationColor.restrictions;
 
 		assert.equal(r!.length, 1);
 		assert.equal(r![0], 'color');
