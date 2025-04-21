@@ -1246,6 +1246,10 @@ export class Parser {
 		return this._parseRatio() || this._parseTermExpression();
 	}
 
+	public _parseScope(): nodes.Node | null {
+		return null
+	}
+
 	public _parseMedium(): nodes.Node | null {
 		const node = this.create(nodes.Node);
 		if (node.addChild(this._parseIdent())) {
