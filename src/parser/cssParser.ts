@@ -316,6 +316,7 @@ export class Parser {
 	public _parseStylesheetAtStatement(isNested: boolean = false): nodes.Node | null {
 		return this._parseImport()
 			|| this._parseMedia(isNested)
+			|| this._parseScope()
 			|| this._parsePage()
 			|| this._parseFontFace()
 			|| this._parseKeyframe()
@@ -364,6 +365,7 @@ export class Parser {
 
 	protected _parseRuleSetDeclarationAtStatement(): nodes.Node | null {
 		return this._parseMedia(true)
+			|| this._parseScope()
 			|| this._parseSupports(true)
 			|| this._parseLayer(true)
 			|| this._parseContainer(true)
@@ -398,6 +400,7 @@ export class Parser {
 			case nodes.NodeType.MixinDeclaration:
 			case nodes.NodeType.FunctionDeclaration:
 			case nodes.NodeType.MixinContentDeclaration:
+			case nodes.NodeType.Scope:
 				return false;
 			case nodes.NodeType.ExtendsReference:
 			case nodes.NodeType.MixinContentReference:
@@ -1244,6 +1247,68 @@ export class Parser {
 
 	public _parseMediaFeatureValue(): nodes.Node | null {
 		return this._parseRatio() || this._parseTermExpression();
+	}
+
+	public _parseScope(): nodes.Node | null {
+		// @scope [<scope-limits>]? { <block-contents> }
+		if (!this.peekKeyword('@scope')) {
+			return null;
+		}
+
+		const node = this.create(nodes.Scope);
+		// @scope
+		this.consumeToken();
+
+		node.addChild(this._parseScopeLimits())
+
+		return this._parseBody(node, this._parseScopeDeclaration.bind(this));
+	}
+
+	public _parseScopeDeclaration(): nodes.Node | null {
+		// Treat as nested as regular declarations are implicity wrapped with :where(:scope)
+		// https://github.com/w3c/csswg-drafts/issues/10389
+		// pseudo-selectors implicitly target :scope
+		// https://drafts.csswg.org/css-cascade-6/#scoped-rules
+		const isNested = true
+		return this._tryParseRuleset(isNested)
+			|| this._tryToParseDeclaration()
+			|| this._parseStylesheetStatement(isNested);
+	}
+
+	public _parseScopeLimits(): nodes.Node | null {
+		// [(<scope-start>)]? [to (<scope-end>)]?
+		const node = this.create(nodes.ScopeLimits);
+
+		// [(<scope-start>)]?
+		if (this.accept(TokenType.ParenthesisL)) {
+			// scope-start selector can start with a combinator as it defaults to :scope
+			// Treat as nested
+			if (!node.setScopeStart(this._parseSelector(true))) {
+				return this.finish(node, ParseError.SelectorExpected, [], [TokenType.ParenthesisR])
+			}
+			
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+		}
+
+		// [to (<scope-end>)]?
+		if (this.acceptIdent('to')) {
+			if (!this.accept(TokenType.ParenthesisL)) {
+				return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+			// 'to' selector can start with a combinator as it defaults to :scope
+			// Treat as nested
+			if (!node.setScopeEnd(this._parseSelector(true))) {
+				return this.finish(node, ParseError.SelectorExpected, [], [TokenType.ParenthesisR])
+			}
+			
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+		}
+
+		return this.finish(node)
 	}
 
 	public _parseMedium(): nodes.Node | null {
