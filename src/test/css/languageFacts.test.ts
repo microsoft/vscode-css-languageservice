@@ -5,7 +5,38 @@
 'use strict';
 
 import * as assert from 'assert';
-import { isColorValue, getColorValue, colorFrom256RGB, colorFromHex, hexDigit, hslFromColor, HSLA, XYZ, LAB, xyzToRGB, xyzFromLAB, hwbFromColor, HWBA, colorFromHWB, colorFromHSL, colorFromLAB, labFromLCH, colorFromLCH, labFromColor, RGBtoXYZ, lchFromColor, LCH, getMissingBaselineBrowsers } from '../../languageFacts/facts';
+import {
+    colorFrom256RGB,
+    colorFromHex,
+    colorFromHSL,
+    colorFromHWB,
+    colorFromLAB,
+    colorFromLCH,
+    colorFromOKLAB,
+    colorFromOKLCH,
+    getColorValue,
+    getMissingBaselineBrowsers,
+    hexDigit,
+    hslFromColor,
+    hwbFromColor,
+    isColorValue,
+    labFromColor,
+    labFromLCH,
+    lchFromColor,
+    oklabFromColor,
+    RGBtoXYZ,
+    xyzFromLAB,
+    xyzFromOKLAB,
+    XYZtoOKLAB,
+    xyzToRGB,
+} from '../../languageFacts/facts';
+import type {
+    HSLA,
+    HWBA,
+    LAB,
+    LCH,
+    XYZ,
+} from '../../languageFacts/facts';
 import { Parser } from '../../parser/cssParser';
 import * as nodes from '../../parser/cssNodes';
 import { TextDocument, Color } from '../../cssLanguageTypes';
@@ -141,7 +172,7 @@ suite('CSS - Language Facts', () => {
 	});
 
 	test('is color', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertColor(parser, '#main { color: red }', 'red', colorFrom256RGB(0xFF, 0, 0));
 		assertColor(parser, '#main { color: slateblue }', 'slateblue', colorFrom256RGB(106, 90, 205));
 		assertColor(parser, '#main { color: #231 }', '#231', colorFrom256RGB(0x22, 0x33, 0x11));
@@ -177,6 +208,13 @@ suite('CSS - Language Facts', () => {
 		assertColor(parser, '#main { color: lab(46.41 39.24 33.51) }', 'lab', colorFrom256RGB(180, 79, 56));
 		assertColor(parser, '#main { color: lab(46.41 -39.24 33.51) }', 'lab', colorFrom256RGB(50, 125, 50));
 		assertColor(parser, '#main { color: lch(46.41, 51.60, 139.50) }', 'lch', colorFrom256RGB(50, 125, 50));
+		assertColor(parser, '#main { color: oklab(62.8% 56.25% 31.5%) }', 'oklab', colorFrom256RGB(255, 0, 0));
+		assertColor(parser, '#main { color: oklab(62.796% 0.22486 0.12585) }', 'oklab', colorFrom256RGB(255, 0, 0));
+		assertColor(parser, '#main { color: oklab(.53376 .13032 -.21371) }', 'oklab', colorFrom256RGB(138, 43, 226));
+		assertColor(parser, '#main { color: oklch(62.7955% 0.257683 29.2339) }', 'oklch', colorFrom256RGB(255, 0, 0));
+		assertColor(parser, '#main { color: oklch(0.70167 0.32249 328.36deg) }', 'oklch', colorFrom256RGB(255, 0, 255));
+		assertColor(parser, '#main { color: oklch(.8241 26.5225% 0.84891) }', 'oklch', colorFrom256RGB(255, 168, 193));
+		assertColor(parser, '#main { color: oklch(0% 0 none) }', 'oklch', colorFrom256RGB(0, 0, 0));
 	});
 
 	test('hexDigit', function () {
@@ -286,6 +324,13 @@ suite('CSS - Language Facts', () => {
 		assertXYZValue(xyzFromLAB({ l: 90, a: 50, b: -50 }), { x: 99.03, y: 76.3, z: 171.63, alpha: 1 });
 	});
 
+	test('xyzFromOKLAB', function () {
+	    // Verified with https://www.colorspaceconverter.com/converter/oklab-to-xyz
+	    assertXYZValue(xyzFromOKLAB({ l: 0.52, a: -0.11, b: 0.08 }), { x: 8.8, y: 15.19, z: 5.24, alpha: 1 });
+	    assertXYZValue(xyzFromOKLAB({ l: 0.55, a: -0.14, b: 0.11 }), { x: 9.49, y: 18.2, z: 3.42, alpha: 1 });
+	    assertXYZValue(xyzFromOKLAB({ l: 0.86, a: 0.08, b: -0.01 }), { x: 70.1, y: 61.33, z: 71.52, alpha: 1 });
+	});
+
 	test('xyzToRGB', function () {
 		// verified with https://www.colorspaceconverter.com/converter/xyz-to-rgb
 		assertColorValue(xyzToRGB({ x: 9.22, y: 15.58, z: 5.54, alpha: 1 }), { red: 50, green: 125, blue: 50, alpha: 1 }, 'xyz(9.22, 15.58, 5.54)');
@@ -293,18 +338,43 @@ suite('CSS - Language Facts', () => {
 		assertColorValue(xyzToRGB({ x: 99, y: 76, z: 71, alpha: 1 }), { red: 255, green: 187, blue: 211, alpha: 1 }, '3');
 
 	});
+
+	test('XYZtoOKLAB', function () {
+	    // Verified with https://www.colorspaceconverter.com/converter/oklab-to-xyz
+	    assertLABValue(XYZtoOKLAB({ x: 8.8, y: 15.19, z: 5.24, alpha: 1 }), { l: 0.52, a: -0.110_09, b: 0.079_98, alpha: 1 });
+	    assertLABValue(XYZtoOKLAB({ x: 9.49, y: 18.2, z: 3.42, alpha: 1 }), { l: 0.549_98, a: -0.14, b: 0.109_94, alpha: 1 });
+	    assertLABValue(XYZtoOKLAB({ x: 70.1, y: 61.33, z: 71.52, alpha: 1 }), { l: 0.860_01, a: 0.079_99, b: -0.010_11, alpha: 1 });
+	});
+
 	test('LABToRGB', function () {
 		assertColorValue(colorFromLAB(46.41, -39.24, 33.51), colorFrom256RGB(50, 125, 50), 'lab(46.41, -39.24, 33.51)');
 	});
+
+	test('OKLABToRGB', function () {
+	    // Verified with https://www.colorspaceconverter.com/converter/oklab-to-rgb
+	    assertColorValue(colorFromOKLAB(0.86, 0.08, -0.01), colorFrom256RGB(251.88, 187.65, 213.63), 'oklab(86%, 0.08, -0.01)');
+	});
+
 	test('labFromLCH', function () {
 		assertLABValue(labFromLCH(46.41, 51.60, 139.50), { l: 46.41, a: -39.24, b: 33.51, alpha: 1 });
 	});
 	test('LCHtoRGB', function () {
 		assertColorValue(colorFromLCH(46.41, 51.60, 139.50), colorFrom256RGB(50, 125, 50), 'lch(46.41, 51.60, 139.50)');
 	});
+
+	test('OKLCHtoRGB', function () {
+	    // Verified with https://www.colorspaceconverter.com/converter/oklch-to-rgb
+	    assertColorValue(colorFromOKLCH(0.52, 0.13, 143.39), colorFrom256RGB(50.32, 123.2, 50.17), 'oklch(52%, .13, 143.39)');
+	});
+
 	test('labFromColor', function () {
 		assertLABValue(labFromColor(colorFrom256RGB(50, 125, 50)), { l: 46.41, a: -39.24, b: 33.51, alpha: 1 });
 	});
+
+	test('oklabFromColor', function () {
+	    assertLABValue(oklabFromColor(colorFrom256RGB(50, 125, 50)), { l: 52.488, a: -0.106_65, b: 0.079_16, alpha: 1 });
+	});
+
 	test('RGBToXYZ', function () {
 		assertXYZValue(RGBtoXYZ(colorFrom256RGB(50, 125, 50)), { x: 9.22, y: 15.58, z: 5.54, alpha: 1 });
 	});
