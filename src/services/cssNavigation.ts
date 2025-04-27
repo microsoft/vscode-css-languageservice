@@ -291,6 +291,21 @@ export class CSSNavigation {
 					const name = '@media ' + mediaList.getText();
 					collect(name, SymbolKind.Module, node, mediaList, node.getDeclarations());
 				}
+			} else if (node instanceof nodes.Scope) {
+				let scopeName = ''
+
+				const scopeLimits = node.getChild(0)
+				if (scopeLimits instanceof nodes.ScopeLimits) {
+					scopeName = `${scopeLimits.getName()}`
+				}
+
+				collect(
+					`@scope${scopeName ? ` ${scopeName}` : ''}`,
+					SymbolKind.Module,
+					node,
+					scopeLimits ?? undefined,
+					node.getDeclarations()
+				)
 			}
 			return true;
 		});

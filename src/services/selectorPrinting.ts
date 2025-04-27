@@ -126,7 +126,7 @@ class MarkedStringPrinter {
 		// empty
 	}
 
-	public print(element: Element, flagOpts?: { isMedia: boolean; text: string }): MarkedString[] {
+	public print(element: Element, selectorContexts?: string[] ): MarkedString[] {
 		this.result = [];
 		if (element instanceof RootElement) {
 			if (element.children) {
@@ -136,8 +136,8 @@ class MarkedStringPrinter {
 			this.doPrint([element], 0);
 		}
 		let value;
-		if (flagOpts) {
-			value = `${flagOpts.text}\n … ` + this.result.join('\n');
+		if (selectorContexts) {
+			value = [...selectorContexts, ...this.result].join('\n')
 		} else {
 			value = this.result.join('\n');
 		}
@@ -323,10 +323,10 @@ function unescape(content: string) {
 export class SelectorPrinting {
 	constructor(private cssDataManager: CSSDataManager) { }
 
-	public selectorToMarkedString(node: nodes.Selector, flagOpts?: { isMedia: boolean; text: string }): MarkedString[] {
+	public selectorToMarkedString(node: nodes.Selector, selectorContexts?: string[] ): MarkedString[] {
 		const root = selectorToElement(node);
 		if (root) {
-			const markedStrings = new MarkedStringPrinter('"').print(root, flagOpts);
+			const markedStrings = new MarkedStringPrinter('"').print(root, selectorContexts);
 			markedStrings.push(this.selectorToSpecificityMarkedString(node));
 			return markedStrings;
 		} else {

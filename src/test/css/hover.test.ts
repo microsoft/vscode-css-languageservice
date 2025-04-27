@@ -75,16 +75,14 @@ suite('CSS Hover', () => {
 			contents: [{ language: 'html', value: '<element class="foo">' }, '[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 0)'],
 		});
 	});
-});
 
-suite('SCSS Hover', () => {
 	test('nested', () => {
 		assertHover(
 			'div { d|iv {} }',
 			{
 				contents: [{ language: 'html', value: '<div>\n  …\n    <div>' }, '[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 0, 1)'],
 			},
-			'scss',
+			'css',
 		);
 		assertHover(
 			'.foo{ .bar{ @media only screen{ .|bar{ } } } }',
@@ -92,15 +90,45 @@ suite('SCSS Hover', () => {
 				contents: [
 					{
 						language: 'html',
-						value: '@media only screen\n … <element class="foo">\n  …\n    <element class="bar">\n      …\n        <element class="bar">',
+						value: '@media only screen\n<element class="foo">\n  …\n    <element class="bar">\n      …\n        <element class="bar">',
 					},
 					'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 0)',
 				],
 			},
-			'scss',
+			'css',
+		);
+
+		assertHover(
+			'@scope (.foo) to (.bar) { .|baz{ } }',
+			{
+				contents: [
+					{
+						language: 'html',
+						value: '@scope .foo → .bar\n<element class="baz">',
+					},
+					'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 0)',
+				],
+			},
+			'css',
+		);
+
+		assertHover(
+			'@scope (.from) to (.to) { .foo { @media print { .bar { @media only screen{ .|bar{ } } } } } }',
+			{
+				contents: [
+					{
+						language: 'html',
+						value: '@scope .from → .to\n@media print\n@media only screen\n<element class="foo">\n  …\n    <element class="bar">\n      …\n        <element class="bar">',
+					},
+					'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 0)',
+				],
+			},
+			'css',
 		);
 	});
+});
 
+suite('SCSS Hover', () => {
 	test('@at-root', () => {
 		assertHover(
 			'.test { @|at-root { }',
