@@ -64,6 +64,7 @@ export enum NodeType {
 	MixinContentReference,
 	MixinContentDeclaration,
 	Media,
+	Scope,
 	Keyframe,
 	FontFace,
 	Import,
@@ -1163,6 +1164,58 @@ export class Media extends BodyDeclaration {
 
 	public get type(): NodeType {
 		return NodeType.Media;
+	}
+}
+
+export class Scope extends BodyDeclaration {
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.Scope;
+	}
+}
+
+export class ScopeLimits extends Node {
+	public scopeStart?: Node;
+	public scopeEnd?: Node;
+
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.Scope;
+	}
+
+	public getScopeStart(): Node | undefined {
+		return this.scopeStart;
+	}
+
+	public setScopeStart(right: Node | null): right is Node {
+		return this.setNode('scopeStart', right);
+	}
+
+	public getScopeEnd(): Node | undefined {
+		return this.scopeEnd;
+	}
+
+	public setScopeEnd(right: Node | null): right is Node {
+		return this.setNode('scopeEnd', right);
+	}
+
+	public getName(): string {
+		let name = ''
+
+		if (this.scopeStart) {
+			name += this.scopeStart.getText()
+		}
+		if (this.scopeEnd) {
+			name += `${this.scopeStart ? ' ' : ''}→ ${this.scopeEnd.getText()}`
+		}
+
+		return name
 	}
 }
 
