@@ -40,23 +40,32 @@ export class CSSHover {
 		 * Build up the hover by appending inner node's information
 		 */
 		let hover: Hover | null = null;
-		let flagOpts: { text: string; isMedia: boolean };
+		let selectorContexts: string[] = [];
 
 		for (let i = 0; i < nodepath.length; i++) {
 			const node = nodepath[i];
 
+			if (node instanceof nodes.Scope) {
+				const scopeLimits = node.getChild(0)
+
+				if (scopeLimits instanceof nodes.ScopeLimits) {
+					const scopeName = `${scopeLimits.getName()}`
+					selectorContexts.push(`@scope${scopeName ? ` ${scopeName}` : ''}`);
+				}
+			}
+
 			if (node instanceof nodes.Media) {
-				const regex = /@media[^\{]+/g;
-				const matches = node.getText().match(regex);
-				flagOpts = {
-					isMedia: true,
-					text: matches?.[0]!,
-				};
+				const mediaList = node.getChild(0);
+				
+				if (mediaList instanceof nodes.Medialist) {
+					const name = '@media ' + mediaList.getText();
+					selectorContexts.push(name)
+				}
 			}
 
 			if (node instanceof nodes.Selector) {
 				hover = {
-					contents: this.selectorPrinting.selectorToMarkedString(<nodes.Selector>node, flagOpts!),
+					contents: this.selectorPrinting.selectorToMarkedString(<nodes.Selector>node, selectorContexts),
 					range: getRange(node),
 				};
 				break;
