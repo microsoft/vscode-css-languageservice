@@ -423,9 +423,11 @@ export class CSSNavigation {
 		}
 
 		// Treat bare module names (“bootstrap/...”) like sass-loader does
-		const isBareImport = !target.startsWith('.')             // not ./ or ../
-		                 && !target.startsWith('/')              // not workspace-absolute
-		                 && target.indexOf(':') === -1;          // not a scheme (file://)
+		const startsWithSchemeRegex = /^\w[\w\d+.-]:/;
+		
+		const isBareImport = !target.startsWith('.')              // not ./ or ../
+		                  && !target.startsWith('/')              // not workspace-absolute
+		                  && !startsWithSchemeRegex.test(target); // not a scheme (file://, http://, etc.)
 		
 		if (isBareImport) {
 		  const moduleRef = await this.mapReference(
