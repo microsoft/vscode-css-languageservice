@@ -35,7 +35,7 @@
   },
   "scripts": {
     "prepack": "npm run clean && npm run compile-esm && npm run test && npm run remove-sourcemap-refs",
-    "compile": "tsc -p ./src && npm run copy-jsbeautify && npm run lint ",
+    "compile": "tsc -p ./src && npm run copy-jsbeautify && npm run lint",
     "compile-esm": "tsc -p ./src/tsconfig.esm.json",
     "clean": "rimraf lib",
     "remove-sourcemap-refs": "node ./build/remove-sourcemap-refs.js",
