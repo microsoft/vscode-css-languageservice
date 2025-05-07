@@ -1,15 +1,7 @@
 {
+	"extends": "./tsconfig.json",
 	"compilerOptions": {
-		"target": "es2020",
 		"module": "es6",
-		"moduleResolution": "node",
-		"sourceMap": true,
-		"declaration": true,
-		"strict": true,
-		"stripInternal": true,
-		"outDir": "../lib/esm",
-		"lib": [
-			"es2020"
-		]
+		"outDir": "../lib/esm"
 	}
 }
