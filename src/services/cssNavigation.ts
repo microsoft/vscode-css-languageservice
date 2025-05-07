@@ -11,7 +11,15 @@ import {
 import * as l10n from '@vscode/l10n';
 import * as nodes from '../parser/cssNodes';
 import { Symbols } from '../parser/cssSymbolScope';
-import { getColorValue, hslFromColor, hwbFromColor, labFromColor, lchFromColor } from '../languageFacts/facts';
+import {
+	getColorValue,
+	hslFromColor,
+	hwbFromColor,
+	labFromColor,
+	lchFromColor,
+	oklabFromColor,
+	oklchFromColor,
+} from '../languageFacts/facts';
 import { startsWith } from '../utils/strings';
 import { dirname, joinPath } from '../utils/resources';
 
@@ -367,12 +375,21 @@ export class CSSNavigation {
 		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
 
 		const lch = lchFromColor(color);
-		if (lab.alpha === 1) {
+		if (lch.alpha === 1) {
 			label = `lch(${lch.l}% ${lch.c} ${lch.h})`;
 		} else {
 			label = `lch(${lch.l}% ${lch.c} ${lch.h} / ${lch.alpha})`;
 		}
 		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
+
+		const oklab = oklabFromColor(color);
+		label = (oklab.alpha === 1) ? `oklab(${oklab.l}% ${oklab.a} ${oklab.b})` : `oklab(${oklab.l}% ${oklab.a} ${oklab.b} / ${oklab.alpha})`;
+		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
+
+		const oklch = oklchFromColor(color);
+		label = (oklch.alpha === 1) ? `oklch(${oklch.l}% ${oklch.c} ${oklch.h})` : `oklch(${oklch.l}% ${oklch.c} ${oklch.h} / ${oklch.alpha})`;
+		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
+
 		return result;
 	}
 
