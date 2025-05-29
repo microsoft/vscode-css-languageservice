@@ -207,6 +207,7 @@ export interface IDescriptorData {
 	values?: IValueData[]
 	browsers?: string[];
 	baseline?: BaselineStatus;
+	status?: EntryStatus;
 }
 export interface IAtDirectiveData {
 	name: string;

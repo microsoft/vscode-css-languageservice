@@ -29725,6 +29725,7 @@ export const cssData : CSSDataV1 = {
 						}
 					],
 					"description": "The prefers-reduced-transparency CSS media feature is used to detect if a user has enabled a setting on their device to reduce the transparent or translucent layer effects used on the device. Switching on such a setting can help improve contrast and readability for some users.",
+					"status": "experimental",
 					"browsers": [
 						"E118",
 						"C118",
@@ -29951,6 +29952,7 @@ export const cssData : CSSDataV1 = {
 						}
 					],
 					"description": "The prefers-reduced-data CSS media feature is used to detect if the user has requested the web content that consumes less internet traffic.",
+					"status": "experimental",
 					"browsers": [
 						"O71"
 					],
@@ -29973,6 +29975,7 @@ export const cssData : CSSDataV1 = {
 					"type": "range",
 					"syntax": "<length>",
 					"description": "The device-width CSS media feature can be used to test the width of an output device's rendering surface.",
+					"status": "obsolete",
 					"browsers": [
 						"E12",
 						"FF2",
@@ -30003,6 +30006,7 @@ export const cssData : CSSDataV1 = {
 					"type": "range",
 					"syntax": "<length>",
 					"description": "The device-height CSS media feature can be used to test the height of an output device's rendering surface.",
+					"status": "obsolete",
 					"browsers": [
 						"E12",
 						"FF2",
@@ -30033,6 +30037,7 @@ export const cssData : CSSDataV1 = {
 					"type": "range",
 					"syntax": "<ratio>",
 					"description": "The device-aspect-ratio CSS media feature can be used to test the width-to-height aspect ratio of an output device.",
+					"status": "obsolete",
 					"browsers": [
 						"E12",
 						"FF2",
