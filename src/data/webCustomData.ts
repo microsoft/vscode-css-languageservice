@@ -29671,7 +29671,7 @@ export const cssData : CSSDataV1 = {
 							]
 						}
 					],
-					"description": "> [!WARNING]",
+					"description": "The prefers-reduced-motion CSS media feature is used to detect if a user has enabled a setting on their device to minimize the amount of non-essential motion. The setting is used to convey to the browser on the device that the user prefers an interface that removes, reduces, or replaces motion-based animations.",
 					"browsers": [
 						"E79",
 						"FF63",
@@ -29950,7 +29950,7 @@ export const cssData : CSSDataV1 = {
 							]
 						}
 					],
-					"description": "> [!NOTE]",
+					"description": "The prefers-reduced-data CSS media feature is used to detect if the user has requested the web content that consumes less internet traffic.",
 					"browsers": [
 						"O71"
 					],
@@ -29972,7 +29972,7 @@ export const cssData : CSSDataV1 = {
 					],
 					"type": "range",
 					"syntax": "<length>",
-					"description": "> [!NOTE]",
+					"description": "The device-width CSS media feature can be used to test the width of an output device's rendering surface.",
 					"browsers": [
 						"E12",
 						"FF2",
@@ -30002,7 +30002,7 @@ export const cssData : CSSDataV1 = {
 					],
 					"type": "range",
 					"syntax": "<length>",
-					"description": "> [!NOTE]",
+					"description": "The device-height CSS media feature can be used to test the height of an output device's rendering surface.",
 					"browsers": [
 						"E12",
 						"FF2",
@@ -30032,7 +30032,7 @@ export const cssData : CSSDataV1 = {
 					],
 					"type": "range",
 					"syntax": "<ratio>",
-					"description": "> [!NOTE]",
+					"description": "The device-aspect-ratio CSS media feature can be used to test the width-to-height aspect ratio of an output device.",
 					"browsers": [
 						"E12",
 						"FF2",
