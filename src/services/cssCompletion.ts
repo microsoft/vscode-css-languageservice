@@ -10,7 +10,8 @@ import * as languageFacts from '../languageFacts/facts';
 import * as strings from '../utils/strings';
 import {
 	ICompletionParticipant, LanguageSettings, TextDocument, Command,
-	Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, CompletionItemTag, DocumentContext, LanguageServiceOptions, IPropertyData, CompletionSettings
+	Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, CompletionItemTag, DocumentContext, LanguageServiceOptions, IPropertyData, CompletionSettings,
+	IDescriptorData
 } from '../cssLanguageTypes';
 
 import * as l10n from '@vscode/l10n';
@@ -156,6 +157,8 @@ export class CSSCompletion {
 					this.getCompletionsForSupports(<nodes.Supports>node, result);
 				} else if (node instanceof nodes.SupportsCondition) {
 					this.getCompletionsForSupportsCondition(<nodes.SupportsCondition>node, result);
+				} else if (node instanceof nodes.MediaCondition) {
+					this.getCompletionsForMediaCondition(node, result);
 				} else if (node instanceof nodes.ExtendsReference) {
 					this.getCompletionsForExtendsReference(<nodes.ExtendsReference>node, null, result);
 				} else if (node.type === nodes.NodeType.URILiteral) {
@@ -362,7 +365,7 @@ export class CSSCompletion {
 		return result;
 	}
 
-	public getValueEnumProposals(entry: IPropertyData, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
+	public getValueEnumProposals(entry: IPropertyData | IDescriptorData, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
 		if (entry.values) {
 			for (const value of entry.values) {
 				let insertString = value.name;
@@ -984,6 +987,33 @@ export class CSSCompletion {
 			return result;
 		}
 		return this.getCompletionForTopLevel(result);
+	}
+
+	public getCompletionsForMediaCondition(mediaCondition: nodes.MediaCondition, result: CompletionList): CompletionList {
+		const child = mediaCondition.findFirstChildBeforeOffset(this.offset);
+		if (child) {
+			if (child instanceof nodes.MediaFeature) {
+				const name = child.getChild(0)?.getText()
+				const media = name && this.cssDataManager.getAtDirective('@media')?.descriptors?.find((descriptor) => descriptor.name === name);
+				if (media) {
+					return this.getValueEnumProposals(media, null, result);
+				}
+			} else if (child instanceof nodes.MediaCondition) {
+				return this.getCompletionsForMediaCondition(child, result);
+			}
+		}
+		// Return all media descriptors
+		const media = this.cssDataManager.getAtDirective('@media')
+		for (const descriptor of media?.descriptors || []) {
+			result.items.push({
+				label: descriptor.name,
+				textEdit: TextEdit.replace(this.getCompletionRange(null), descriptor.name),
+				documentation: languageFacts.getEntryDescription(descriptor, this.doesSupportMarkdown()),
+				tags: isDeprecated(descriptor) ? [CompletionItemTag.Deprecated] : [],
+				kind: CompletionItemKind.Keyword
+			});
+		}
+		return result;
 	}
 
 	public getCompletionsForExtendsReference(extendsRef: nodes.ExtendsReference, existingNode: nodes.Node | null, result: CompletionList): CompletionList {

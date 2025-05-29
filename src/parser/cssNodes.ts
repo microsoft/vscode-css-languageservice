@@ -1318,7 +1318,7 @@ export class Medialist extends Node {
 	}
 }
 
-export class MediaQuery extends Node {
+export class MediaQuery extends BodyDeclaration {
 
 	constructor(offset: number, length: number) {
 		super(offset, length);
