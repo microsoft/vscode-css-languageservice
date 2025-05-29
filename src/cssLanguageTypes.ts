@@ -201,9 +201,9 @@ export interface IPropertyData {
 export interface IDescriptorData {
 	name: string,
 	description?: string,
-	references: IReference[],
-	syntax: string,
-	type: string,
+	references?: IReference[],
+	syntax?: string,
+	type?: string,
 	values?: IValueData[]
 	browsers?: string[];
 	baseline?: BaselineStatus;
