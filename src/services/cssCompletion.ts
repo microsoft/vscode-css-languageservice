@@ -1005,12 +1005,22 @@ export class CSSCompletion {
 		// Return all media descriptors
 		const media = this.cssDataManager.getAtDirective('@media')
 		for (const descriptor of media?.descriptors || []) {
+			let command = undefined
+			let text = descriptor.name
+			if (descriptor.type === 'discrete') {
+				// Change this check when we support auto completes for other types
+				if (descriptor.values) {
+					command = retriggerCommand
+				}
+				text = `${descriptor.name}: `
+			}
 			result.items.push({
 				label: descriptor.name,
-				textEdit: TextEdit.replace(this.getCompletionRange(null), descriptor.name),
+				textEdit: TextEdit.replace(this.getCompletionRange(null), text),
 				documentation: languageFacts.getEntryDescription(descriptor, this.doesSupportMarkdown()),
 				tags: isDeprecated(descriptor) ? [CompletionItemTag.Deprecated] : [],
-				kind: CompletionItemKind.Keyword
+				kind: CompletionItemKind.Keyword,
+				command,
 			});
 		}
 		return result;
