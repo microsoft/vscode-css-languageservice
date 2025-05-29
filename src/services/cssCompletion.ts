@@ -993,10 +993,13 @@ export class CSSCompletion {
 		const child = mediaCondition.findFirstChildBeforeOffset(this.offset);
 		if (child) {
 			if (child instanceof nodes.MediaFeature) {
-				const name = child.getChild(0)?.getText()
-				const media = name && this.cssDataManager.getAtDirective('@media')?.descriptors?.find((descriptor) => descriptor.name === name);
-				if (media) {
-					return this.getValueEnumProposals(media, null, result);
+				const featureName = child.getChild(0)
+				if (featureName && this.offset > featureName.end) {
+					const name = featureName.getText();
+					const media = this.cssDataManager.getAtDirective('@media')?.descriptors?.find((descriptor) => descriptor.name === name);
+					if (media) {
+						return this.getValueEnumProposals(media, null, result);
+					}
 				}
 			} else if (child instanceof nodes.MediaCondition) {
 				return this.getCompletionsForMediaCondition(child, result);
