@@ -37,6 +37,38 @@
           "description": "Description shown in completion and hover"
         }
       }
+    },
+    "descriptor": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the descriptor."
+        },
+        "description": {
+          "description": "Description of at descriptor shown in completion and hover",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            { "$ref": "#/definitions/markupDescription" }
+          ]
+        },
+        "status": {
+          "$ref": "#/properties/properties/items/properties/status"
+        },
+        "browsers": {
+          "$ref": "#/properties/properties/items/properties/browsers"
+        },
+        "references": {
+          "type": "array",
+          "description": "A list of references for the descriptor shown in completion and hover",
+          "items": {
+            "$ref": "#/definitions/references"
+          }
+        }
+      }
     }
   },
   "properties": {
@@ -167,6 +199,13 @@
             "description": "A list of references for the at-directive shown in completion and hover",
             "items": {
               "$ref": "#/definitions/references"
+            }
+          },
+          "descriptors": {
+            "type": "array",
+            "description": "A list of descriptors for the at-directive, for example prefers-reduced-motion for @media",
+            "items": {
+              "$ref": "#/definitions/descriptor"
             }
           }
         }
