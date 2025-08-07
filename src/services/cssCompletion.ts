@@ -259,9 +259,6 @@ export class CSSCompletion {
 				insertTextFormat: InsertTextFormat.Snippet,
 				kind: CompletionItemKind.Property
 			};
-			if (!entry.restrictions) {
-				retrigger = false;
-			}
 			if (triggerPropertyValueCompletion && retrigger) {
 				item.command = retriggerCommand;
 			}
