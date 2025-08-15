@@ -168,32 +168,29 @@ class MarkedStringPrinter {
 		}
 
 		// the real deal
-		const content = ['<'];
-
-		// element name
+		const content = [];
 		if (name) {
-			content.push(name);
-		} else {
-			content.push('element');
+			content.push(this.prepareElement(name, element.attributes?.filter(x => x.name !== 'name')));
 		}
+		content.push(this.prepareElement('element', element.attributes));
+		this.writeLine(indent, content.join('|'));
+	}
 
-		// attributes
-		if (element.attributes) {
-			for (const attr of element.attributes) {
-				if (attr.name !== 'name') {
-					content.push(' ');
-					content.push(attr.name);
-					const value = attr.value;
-					if (value) {
-						content.push('=');
-						content.push(quotes.ensure(value, this.quote));
-					}
+	private prepareElement(name: string, attributes?: Element['attributes']): string {
+		const content = [`<${name}`];
+		if (attributes) {
+			for (const attr of attributes) {
+				content.push(' ');
+				content.push(attr.name);
+				const value = attr.value;
+				if (value) {
+					content.push('=');
+					content.push(quotes.ensure(value, this.quote));
 				}
 			}
 		}
 		content.push('>');
-
-		this.writeLine(indent, content.join(''));
+		return content.join('');
 	}
 }
 
