@@ -423,19 +423,15 @@ export class CSSNavigation {
 		}
 
 		// Treat bare module names (“bootstrap/...”) like sass-loader does
-		const startsWithSchemeRegex = /^\w[\w\d+.-]:/;
-		
-		const isBareImport = !target.startsWith('.')              // not ./ or ../
-		                  && !target.startsWith('/')              // not workspace-absolute
-		                  && !startsWithSchemeRegex.test(target); // not a scheme (file://, http://, etc.)
-		
-		if (isBareImport) {
-		  const moduleRef = await this.mapReference(
-		        await this.resolveModuleReference(target, documentUri, documentContext),
-		        isRawLink);
-		  if (moduleRef) { return moduleRef; }
+		if (this.resolveModuleReferences && importIsBare(target)) {
+			const resolvedModuleRef = await this.resolveModuleReference(target, documentUri, documentContext);
+			const moduleRef = await this.mapReference(resolvedModuleRef, isRawLink);
+
+			if (moduleRef != null) {
+				return moduleRef;
+			}
 		}
-		
+
 		const ref = await this.mapReference(
 		        documentContext.resolveReference(target, documentUri), isRawLink);
 
@@ -586,6 +582,12 @@ function getHighlightKind(node: nodes.Node): DocumentHighlightKind {
 function toTwoDigitHex(n: number): string {
 	const r = n.toString(16);
 	return r.length !== 2 ? '0' + r : r;
+}
+
+function importIsBare(target: string): boolean {
+	return !target.startsWith('.')              // not ./ or ../
+		&& !target.startsWith('/')              // not workspace-absolute
+		&& !startsWithSchemeRegex.test(target); // not a scheme (file://, http://, etc.)
 }
 
 export function getModuleNameFromPath(path: string) {
