@@ -9,7 +9,7 @@
 		"stripInternal": true,
 		"outDir": "../lib/umd",
 		"lib": [
-			"es2020"
+			"ES2024"
 		]
 	}
 }
