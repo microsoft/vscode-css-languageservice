@@ -27,19 +27,19 @@ Installation
 ------------
 
     npm install --save vscode-css-languageservice
-    
-    
+
+
 API
 ---
 
-For the complete API see [cssLanguageService.ts](./src/cssLanguageService.ts) and [cssLanguageTypes.ts](./src/cssLanguageTypes.ts) 
+For the complete API see [cssLanguageService.ts](./src/cssLanguageService.ts) and [cssLanguageTypes.ts](./src/cssLanguageTypes.ts)
 
 
 Development
 -----------
 
 
-- clone this repo, run `npm install``
+- clone this repo, run `npm install`
 - `npm test` to compile and run tests
 
 How can I run and debug the service?
