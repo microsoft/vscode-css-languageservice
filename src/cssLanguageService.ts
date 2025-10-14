@@ -63,7 +63,7 @@ export interface LanguageService {
 	getFoldingRanges(document: TextDocument, context?: { rangeLimit?: number; }): FoldingRange[];
 	getSelectionRanges(document: TextDocument, positions: Position[], stylesheet: Stylesheet): SelectionRange[];
 	format(document: TextDocument, range: Range | undefined, options: CSSFormatConfiguration): TextEdit[];
-
+	clearCache(): void,
 }
 
 export function getDefaultCSSDataProvider(): ICSSDataProvider {
@@ -104,7 +104,8 @@ function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover
 		prepareRename: navigation.prepareRename.bind(navigation),
 		doRename: navigation.doRename.bind(navigation),
 		getFoldingRanges,
-		getSelectionRanges
+		getSelectionRanges,
+		clearCache: navigation.clearCache.bind(navigation),
 	};
 }
 
