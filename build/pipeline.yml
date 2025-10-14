@@ -35,29 +35,29 @@ extends:
       - name: vscode-css-languageservice
 
         buildSteps:
-          - script: yarn --frozen-lockfile
+          - script: npm ci
             displayName: Install dependencies
 
-          # the rest of the build steps are part of the 'prepack' script, automatically run when the pipeline invokes 'yarn pack'
+          # the rest of the build steps are part of the 'prepack' script, automatically run when the pipeline invokes 'npm run pack'
 
         tag: ${{ parameters.quality }}
         preReleaseTag: next
-        preReleaseTagAddToLatest: true
-        publishPackage: ${{ parameters.publishPackage }}            
+        publishPackage: ${{ parameters.publishPackage }}
+        publishRequiresApproval: false
 
         testPlatforms:
           - name: Linux
             nodeVersions:
-              - 16.x
+              - 22.x
           - name: MacOS
             nodeVersions:
-              - 16.x
+              - 22.x
           - name: Windows
             nodeVersions:
-              - 16.x                   
+              - 22.x
 
         testSteps:
-          - script: yarn --frozen-lockfile
-            displayName: Install dependencies        
-          - script: yarn test
+          - script: npm ci
+            displayName: Install dependencies
+          - script: npm test
             displayName: Test npm package

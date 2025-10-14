@@ -154,7 +154,7 @@ export namespace ClientCapabilities {
 
 export interface LanguageServiceOptions {
 	/**
-	 * Unless set to false, the default CSS data provider will be used 
+	 * Unless set to false, the default CSS data provider will be used
 	 * along with the providers from customDataProviders.
 	 * Defaults to true.
 	 */
@@ -189,6 +189,7 @@ export interface IPropertyData {
 	name: string;
 	description?: string | MarkupContent;
 	browsers?: string[];
+	baseline?: BaselineStatus;
 	restrictions?: string[];
 	status?: EntryStatus;
 	syntax?: string;
@@ -197,17 +198,31 @@ export interface IPropertyData {
 	relevance?: number;
 	atRule?: string;
 }
+export interface IDescriptorData {
+	name: string,
+	description?: string,
+	references?: IReference[],
+	syntax?: string,
+	type?: string,
+	values?: IValueData[]
+	browsers?: string[];
+	baseline?: BaselineStatus;
+	status?: EntryStatus;
+}
 export interface IAtDirectiveData {
 	name: string;
 	description?: string | MarkupContent;
 	browsers?: string[];
+	baseline?: BaselineStatus;
 	status?: EntryStatus;
 	references?: IReference[];
+	descriptors?: IDescriptorData[];
 }
 export interface IPseudoClassData {
 	name: string;
 	description?: string | MarkupContent;
 	browsers?: string[];
+	baseline?: BaselineStatus;
 	status?: EntryStatus;
 	references?: IReference[];
 }
@@ -215,6 +230,7 @@ export interface IPseudoElementData {
 	name: string;
 	description?: string | MarkupContent;
 	browsers?: string[];
+	baseline?: BaselineStatus;
 	status?: EntryStatus;
 	references?: IReference[];
 }
@@ -223,6 +239,7 @@ export interface IValueData {
 	name: string;
 	description?: string | MarkupContent;
 	browsers?: string[];
+	baseline?: BaselineStatus;
 	status?: EntryStatus;
 	references?: IReference[];
 }
@@ -234,6 +251,14 @@ export interface CSSDataV1 {
 	pseudoClasses?: IPseudoClassData[];
 	pseudoElements?: IPseudoElementData[];
 }
+
+export interface BaselineStatus {
+	status: Baseline;
+	baseline_low_date?: string;
+	baseline_high_date?: string;
+}
+
+export type Baseline = 'false' | 'low' | 'high';
 
 export interface ICSSDataProvider {
 	provideProperties(): IPropertyData[];
@@ -284,6 +309,7 @@ export interface FileStat {
 export interface FileSystemProvider {
 	stat(uri: DocumentUri): Promise<FileStat>;
 	readDirectory?(uri: DocumentUri): Promise<[string, FileType][]>;
+	getContent?(uri: DocumentUri, encoding?: string): Promise<string>;
 }
 
 export interface CSSFormatConfiguration {
@@ -305,11 +331,11 @@ export interface CSSFormatConfiguration {
 	preserveNewLines?: boolean;
 	/** maximum number of line breaks to be preserved in one chunk. Default: unlimited */
 	maxPreserveNewLines?: number;
-    /** maximum amount of characters per line (0/undefined = disabled). Default: disabled. */
+	/** maximum amount of characters per line (0/undefined = disabled). Default: disabled. */
 	wrapLineLength?: number;
 	/** add indenting whitespace to empty lines. Default: false */
 	indentEmptyLines?: boolean;
-	
+
 	/** @deprecated Use newlineBetweenSelectors instead*/
 	selectorSeparatorNewline?: boolean;
 

@@ -55,6 +55,10 @@ suite('CSS - Parser', () => {
 		assertNode('@media asdsa { } <!-- --> <!-- -->', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media screen, projection { }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media screen and (max-width: 400px) {  @-ms-viewport { width: 320px; }}', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@scope {}', parser, parser._parseStylesheet.bind(parser))
+		assertNode('@scope (.foo) {}', parser, parser._parseStylesheet.bind(parser))
+		assertNode('@scope to (.bar) {}', parser, parser._parseStylesheet.bind(parser))
+		assertNode('@scope (.foo) to (.bar) {}', parser, parser._parseStylesheet.bind(parser))
 		assertNode('@-ms-viewport { width: 320px; height: 768px; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('#boo, far {} \n.far boo {}', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@-moz-keyframes darkWordHighlight { from { background-color: inherit; } to { background-color: rgba(83, 83, 83, 0.7); } }', parser, parser._parseStylesheet.bind(parser));
@@ -177,6 +181,15 @@ suite('CSS - Parser', () => {
 		assertNode(`@container card (inline-size > 30em) { @container style(--responsive: true) {} }`, parser, parser._parseStylesheet.bind(parser));
 	});
 
+	test('@starting-style', function () {
+		const parser = new Parser();
+		// These assertions would still hold if @starting-style blocks were being processed as unknown at-rules
+		// Parsing into the expected AST is instead tested in nodes.test.ts
+		assertNode(`@starting-style { p { background-color: skyblue; } }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`p { @starting-style { background-color: skyblue; } }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`p { @starting-style { @layer {} } }`, parser, parser._parseStylesheet.bind(parser));
+	});
+
 	test('@container query length units', function () {
 		const parser = new Parser();
 		assertNode(`@container (min-width: 700px) { .card h2 { font-size: max(1.5em, 1.23em + 2cqi); } }`, parser, parser._parseStylesheet.bind(parser));
@@ -257,6 +270,39 @@ suite('CSS - Parser', () => {
 		assertNode('somename, othername', parser, parser._parseMediaQueryList.bind(parser));
 		assertNode('not all and (monochrome)', parser, parser._parseMediaQueryList.bind(parser));
 	});
+
+	
+	test('@scope', function () {
+		const parser = new Parser();
+		assertNode('@scope { }', parser, parser._parseScope.bind(parser))
+		assertNode('@scope (.foo) { }', parser, parser._parseScope.bind(parser))
+		assertNode('@scope to (.bar) { }', parser, parser._parseScope.bind(parser))
+		assertNode('@scope (.foo) to (.bar) { }', parser, parser._parseScope.bind(parser))
+		assertNode('@scope (#foo) to (:has(> link)) {}', parser, parser._parseScope.bind(parser))
+
+		assertError('@scope ( { }', parser, parser._parseScope.bind(parser), ParseError.SelectorExpected)
+		assertError('@scope () { }', parser, parser._parseScope.bind(parser), ParseError.SelectorExpected)
+		assertError('@scope () to (.bar) { }', parser, parser._parseScope.bind(parser), ParseError.SelectorExpected)
+		assertError('@scope to () { }', parser, parser._parseScope.bind(parser), ParseError.SelectorExpected)
+		assertError('@scope (.foo) to () { }', parser, parser._parseScope.bind(parser), ParseError.SelectorExpected)
+
+		assertError('@scope to (.bar { }', parser, parser._parseScope.bind(parser), ParseError.RightParenthesisExpected)
+		assertError('@scope (.foo to (.bar) { }', parser, parser._parseScope.bind(parser), ParseError.RightParenthesisExpected)
+		assertError('@scope (.foo) to (.bar { }', parser, parser._parseScope.bind(parser), ParseError.RightParenthesisExpected)
+
+		assertError('@scope (.foo) to { }', parser, parser._parseScope.bind(parser), ParseError.LeftParenthesisExpected)
+		
+		assertError('@scope ', parser, parser._parseScope.bind(parser), ParseError.LeftCurlyExpected)
+		assertError('@scope .foo { }', parser, parser._parseScope.bind(parser), ParseError.LeftCurlyExpected)
+		assertError('@scope (.foo)', parser, parser._parseScope.bind(parser), ParseError.LeftCurlyExpected)
+		assertError('@scope to (.bar)', parser, parser._parseScope.bind(parser), ParseError.LeftCurlyExpected)
+		assertError('@scope (.foo) to (.bar)', parser, parser._parseScope.bind(parser), ParseError.LeftCurlyExpected)
+		
+		assertError('@scope {', parser, parser._parseScope.bind(parser), ParseError.RightCurlyExpected)
+		assertError('@scope (.foo) {', parser, parser._parseScope.bind(parser), ParseError.RightCurlyExpected)
+		assertError('@scope to (.bar) {', parser, parser._parseScope.bind(parser), ParseError.RightCurlyExpected)
+		assertError('@scope (.foo) to (.bar) {', parser, parser._parseScope.bind(parser), ParseError.RightCurlyExpected)
+	})
 
 	test('medium', function () {
 		const parser = new Parser();

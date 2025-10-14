@@ -11,6 +11,7 @@ import {
 	LanguageSettings, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext,
 	TextDocument, CompletionList, Position, CompletionItemKind, InsertTextFormat, Range, Command, MarkupContent, MixinReferenceCompletionContext, getSCSSLanguageService, getLESSLanguageService, ICSSDataProvider, newCSSDataProvider
 } from '../../cssLanguageService';
+import { BaselineImages } from '../../languageFacts/facts';
 import { getDocumentContext } from '../testUtil/documentContext';
 import { URI } from 'vscode-uri';
 import { getFsProvider } from '../testUtil/fsProvider';
@@ -678,7 +679,7 @@ suite('CSS - Completion', () => {
 					documentation: {
 						kind: 'markdown',
 						value:
-							'⚠️ Property is experimental. Be cautious when using it.️\n\nThe text\\-decoration\\-skip CSS property specifies what parts of the element’s content any text decoration affecting the element must skip over\\. It controls all text decoration lines drawn by the element and also any text decoration lines drawn by its ancestors\\.\n\n(Safari 12, Chrome 57, Opera 44)\n\nSyntax: none | \\[ objects || \\[ spaces | \\[ leading\\-spaces || trailing\\-spaces \\] \\] || edges || box\\-decoration \\]\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/text-decoration-skip)'
+							`The text\\-decoration\\-skip CSS property specifies what parts of the element’s content any text decoration affecting the element must skip over\\. It controls all text decoration lines drawn by the element and also any text decoration lines drawn by its ancestors\\.\n\n![Baseline icon](${BaselineImages.BASELINE_LIMITED}) _Limited availability across major browsers (Not fully implemented in Chrome, Edge, or Firefox)_\n\nSyntax: none | \\[ objects || \\[ spaces | \\[ leading\\-spaces || trailing\\-spaces \\] \\] || edges || box\\-decoration \\]\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/text-decoration-skip)`
 					}
 				},
 				{
@@ -686,7 +687,7 @@ suite('CSS - Completion', () => {
 					documentation: {
 						kind: 'markdown',
 						value:
-							'🚨️️️ Property is obsolete. Avoid using it.\n\nThe box\\-ordinal\\-group CSS property assigns the flexbox\'s child elements to an ordinal group\\.\n\n(Edge 12, Firefox 49, Safari 3, Chrome 1, Opera 15)\n\nSyntax: &lt;integer&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/box-ordinal-group)'
+							`🚨️️️ Property is obsolete. Avoid using it.\n\nThe box\\-ordinal\\-group CSS property assigns the flexbox\'s child elements to an ordinal group\\.\n\nSyntax: &lt;integer&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/box-ordinal-group)`
 					}
 				},
 				{
@@ -694,7 +695,7 @@ suite('CSS - Completion', () => {
 					documentation: {
 						kind: 'markdown',
 						value:
-							'🚨️ Property is nonstandard. Avoid using it.\n\nSets the mask layer image of an element\\.\n\n(Chrome, Opera 15, Safari 4)\n\nSyntax: &lt;mask\\-reference&gt;\\#'
+							'🚨️ Property is nonstandard. Avoid using it.\n\nSets the mask layer image of an element\\.\n\nSyntax: &lt;mask\\-reference&gt;\\#'
 					}
 				}
 			]
@@ -967,6 +968,39 @@ suite('CSS - Completion', () => {
 		}, undefined, testUri, workspaceFolderUri);
 
 	});
+
+	test('@scope selector completion', async function () {
+		await testCompletionFor(`@scope (|) {`, {
+			items: [
+				{ label: 'html', resultText: '@scope (html) {' },
+				{ label: ':has', resultText: '@scope (:has) {' }
+			]
+		});
+
+		await testCompletionFor(`@scope to (|) {`, {
+			items: [
+				{ label: 'html', resultText: '@scope to (html) {' },
+				{ label: ':has', resultText: '@scope to (:has) {' }
+			]
+		});
+	})
+
+	test('@media at rule completion', async function () {
+		await testCompletionFor(`@media (|) {`, {
+			items: [
+				{ label: 'prefers-color-scheme', resultText: '@media (prefers-color-scheme: ) {' },
+				{ label: 'hover', resultText: '@media (hover: ) {' },
+				{ label: 'color', resultText: '@media (color) {' },
+			]
+		});
+
+		await testCompletionFor(`@media (prefers-color-scheme: |) {`, {
+			items: [
+				{ label: 'light', resultText: '@media (prefers-color-scheme: light) {' },
+				{ label: 'dark', resultText: '@media (prefers-color-scheme: dark) {' }
+			]
+		});
+	})
 
 });
 

@@ -13,7 +13,15 @@ import * as l10n from '@vscode/l10n';
 import * as nodes from '../parser/cssNodes';
 import { Utils, URI } from 'vscode-uri';
 import { Symbols } from '../parser/cssSymbolScope';
-import { getColorValue, hslFromColor, hwbFromColor } from '../languageFacts/facts';
+import {
+	getColorValue,
+	hslFromColor,
+	hwbFromColor,
+	labFromColor,
+	lchFromColor,
+	oklabFromColor,
+	oklchFromColor,
+} from '../languageFacts/facts';
 import { startsWith } from '../utils/strings';
 import { dirname, joinPath } from '../utils/resources';
 import { readFile } from 'node:fs/promises';
@@ -79,7 +87,7 @@ export class CSSNavigation {
 	private getHighlightNode(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): nodes.Node | undefined {
 		const offset = document.offsetAt(position);
 		let node = nodes.getNodeAtOffset(stylesheet, offset);
-		if (!node || node.type === nodes.NodeType.Stylesheet || node.type === nodes.NodeType.Declarations) {
+		if (!node || node.type === nodes.NodeType.Stylesheet || node.type === nodes.NodeType.Declarations || node.type === nodes.NodeType.ModuleConfig) {
 			return;
 		}
 		if (node.type === nodes.NodeType.Identifier && node.parent && node.parent.type === nodes.NodeType.ClassSelector) {
@@ -303,6 +311,21 @@ export class CSSNavigation {
 					const name = '@media ' + mediaList.getText();
 					collect(name, SymbolKind.Module, node, mediaList, node.getDeclarations());
 				}
+			} else if (node instanceof nodes.Scope) {
+				let scopeName = ''
+
+				const scopeLimits = node.getChild(0)
+				if (scopeLimits instanceof nodes.ScopeLimits) {
+					scopeName = `${scopeLimits.getName()}`
+				}
+
+				collect(
+					`@scope${scopeName ? ` ${scopeName}` : ''}`,
+					SymbolKind.Module,
+					node,
+					scopeLimits ?? undefined,
+					node.getDeclarations()
+				)
 			}
 			return true;
 		});
@@ -353,6 +376,30 @@ export class CSSNavigation {
 		} else {
 			label = `hwb(${hwb.h} ${Math.round(hwb.w * 100)}% ${Math.round(hwb.b * 100)}% / ${hwb.a})`;
 		}
+		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
+
+		const lab = labFromColor(color);
+		if (lab.alpha === 1) {
+			label = `lab(${lab.l}% ${lab.a} ${lab.b})`;
+		} else {
+			label = `lab(${lab.l}% ${lab.a} ${lab.b} / ${lab.alpha})`;
+		}
+		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
+
+		const lch = lchFromColor(color);
+		if (lch.alpha === 1) {
+			label = `lch(${lch.l}% ${lch.c} ${lch.h})`;
+		} else {
+			label = `lch(${lch.l}% ${lch.c} ${lch.h} / ${lch.alpha})`;
+		}
+		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
+
+		const oklab = oklabFromColor(color);
+		label = (oklab.alpha === 1) ? `oklab(${oklab.l}% ${oklab.a} ${oklab.b})` : `oklab(${oklab.l}% ${oklab.a} ${oklab.b} / ${oklab.alpha})`;
+		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
+
+		const oklch = oklchFromColor(color);
+		label = (oklch.alpha === 1) ? `oklch(${oklch.l}% ${oklch.c} ${oklch.h})` : `oklch(${oklch.l}% ${oklch.c} ${oklch.h} / ${oklch.alpha})`;
 		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
 
 		return result;
@@ -543,6 +590,7 @@ export class CSSNavigation {
 		return undefined;
 	}
 
+
 	protected async fileExists(uri: string): Promise<boolean> {
 		if (!this.fileSystemProvider) {
 			return false;
@@ -556,6 +604,17 @@ export class CSSNavigation {
 			return true;
 		} catch (err) {
 			return false;
+		}
+	}
+
+	protected async getContent(uri: string): Promise<string | null> {
+		if (!this.fileSystemProvider || !this.fileSystemProvider.getContent) {
+			return null;
+		}
+		try {
+			return await this.fileSystemProvider.getContent(uri);
+		} catch (err) {
+			return null;
 		}
 	}
 
@@ -630,7 +689,7 @@ function toTwoDigitHex(n: number): string {
 	return r.length !== 2 ? '0' + r : r;
 }
 
-function getModuleNameFromPath(path: string) {
+export function getModuleNameFromPath(path: string) {
 	const firstSlash = path.indexOf('/');
 	if (firstSlash === -1) {
 		return '';

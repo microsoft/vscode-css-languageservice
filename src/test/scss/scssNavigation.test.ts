@@ -154,6 +154,10 @@ suite('SCSS - Navigation', () => {
 				{ range: newRange(8, 13), target: getDocumentUri('./underscore/_foo.scss') }
 			]);
 
+			await assertDynamicLinks(getDocumentUri('./underscore/index.scss'), `@import 'foo.scss'`, [
+				{ range: newRange(8, 18), target: getDocumentUri('./underscore/_foo.scss') }
+			]);
+
 			await assertDynamicLinks(getDocumentUri('./both/index.scss'), `@import 'foo'`, [
 				{ range: newRange(8, 13), target: getDocumentUri('./both/foo.scss') }
 			]);
@@ -276,6 +280,54 @@ suite('SCSS - Navigation', () => {
 			);
 			await assertLinks(ls, '@import "green/e"',
 				[{ range: newRange(8, 17), target: getTestResource('node_modules/green/_e.scss') }], 'scss', testUri, workspaceFolder
+			);
+		});
+
+		test('SCSS node package resolving', async () => {
+			let ls = getSCSSLS();
+			let testUri = getTestResource('about.scss');
+			let workspaceFolder = getTestResource('');
+			await assertLinks(ls, `@use "pkg:bar"`,
+				[{ range: newRange(5, 14), target: getTestResource('node_modules/bar/styles/index.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:bar/colors"`,
+				[{ range: newRange(5, 21), target: getTestResource('node_modules/bar/styles/colors.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:bar/colors.scss"`,
+				[{ range: newRange(5, 26), target: getTestResource('node_modules/bar/styles/colors.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:@foo/baz"`,
+				[{ range: newRange(5, 19), target: getTestResource('node_modules/@foo/baz/styles/index.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:@foo/baz/colors"`,
+				[{ range: newRange(5, 26), target: getTestResource('node_modules/@foo/baz/styles/colors.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:@foo/baz/colors.scss"`,
+				[{ range: newRange(5, 31), target: getTestResource('node_modules/@foo/baz/styles/colors.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:@foo/baz/button"`,
+				[{ range: newRange(5, 26), target: getTestResource('node_modules/@foo/baz/styles/button.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:@foo/baz/button.scss"`,
+				[{ range: newRange(5, 31), target: getTestResource('node_modules/@foo/baz/styles/button.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:root-sass"`,
+				[{ range: newRange(5, 20), target: getTestResource('node_modules/root-sass/styles/index.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:root-style"`,
+				[{ range: newRange(5, 21), target: getTestResource('node_modules/root-style/styles/index.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:bar-pattern/anything"`,
+				[{ range: newRange(5, 31), target: getTestResource('node_modules/bar-pattern/styles/anything.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:bar-pattern/anything.scss"`,
+				[{ range: newRange(5, 36), target: getTestResource('node_modules/bar-pattern/styles/anything.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:bar-pattern/theme/dark.scss"`,
+				[{ range: newRange(5, 38), target: getTestResource('node_modules/bar-pattern/styles/theme/dark.scss')}], 'scss', testUri, workspaceFolder
+			);
+			await assertLinks(ls, `@use "pkg:conditional"`,
+				[{ range: newRange(5, 22), target: getTestResource('node_modules/conditional/_index.scss')}], 'scss', testUri, workspaceFolder
 			);
 		});
 

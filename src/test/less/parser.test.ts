@@ -313,6 +313,7 @@ suite('LESS - Parser', () => {
 
 	test('CSS Guards', function () {
 		const parser = new LESSParser();
+		assertNode('.selector when not ( @testCondition = 2) and not ( @testCondition = 3 ) { }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('button when (@my-option = true) { color: white; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('.something .other when (@my-option = true) { color: white; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('& when (@my-option = true) { button { color: white; } }', parser, parser._parseStylesheet.bind(parser));
@@ -346,5 +347,11 @@ suite('LESS - Parser', () => {
 	test('@plugin', function () {
 		const parser = new LESSParser();
 		assertNode('@plugin "my-plugin";', parser, parser._parseStylesheet.bind(parser));
+	});
+
+	test('@container', function () {
+		const parser = new LESSParser();
+		assertNode(`.item-icon { @container (max-height: 100px) { .item-icon { display: none;  } } }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`:root { @container (max-height: 100px) { display: none;} }`, parser, parser._parseStylesheet.bind(parser));
 	});
 });

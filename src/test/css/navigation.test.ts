@@ -184,6 +184,15 @@ function getCSSLS() {
 	return getCSSLanguageService({ fileSystemProvider: getFsProvider() });
 }
 
+function aliasSettings(): LanguageSettings {
+	return {
+		"importAliases": {
+				"@SingleStylesheet": "/src/assets/styles.css",
+				"@AssetsDir/": "/src/assets/",
+		}
+	};
+}
+
 suite('CSS - Navigation', () => {
 
 	suite('Scope', () => {
@@ -228,6 +237,7 @@ suite('CSS - Navigation', () => {
 			assertScopesAndSymbols(ls, '@keyframes animation {}; .class {}', 'animation,.class,[],[]');
 			assertScopesAndSymbols(ls, '@page :pseudo-class { margin:2in; }', '[]');
 			assertScopesAndSymbols(ls, '@media print { body { font-size: 10pt } }', '[body,[]]');
+			assertScopesAndSymbols(ls, '@scope (.foo) to (.bar) { body { font-size: 10pt } }', '[body,[]]')
 			assertScopesAndSymbols(ls, '@-moz-keyframes identifier { 0% { top: 0; } 50% { top: 30px; left: 20px; }}', 'identifier,[[],[]]');
 			assertScopesAndSymbols(ls, '@font-face { font-family: "Bitstream Vera Serif Bold"; }', '[]');
 		});
@@ -267,6 +277,9 @@ suite('CSS - Navigation', () => {
 
 			// Media Query
 			assertSymbolInfos(ls, '@media screen, print {}', [{ name: '@media screen, print', kind: SymbolKind.Module, location: Location.create('test://test/test.css', newRange(0, 23)) }]);
+			
+			// Scope
+			assertSymbolInfos(ls, '@scope (.foo) to (.bar) {}', [{ name: '@scope .foo → .bar', kind: SymbolKind.Module, location: Location.create('test://test/test.css', newRange(0, 26)) }]);
 		});
 
 		test('basic document symbols', () => {
@@ -282,8 +295,9 @@ suite('CSS - Navigation', () => {
 
 			// Media Query
 			assertDocumentSymbols(ls, '@media screen, print {}', [{ name: '@media screen, print', kind: SymbolKind.Module, range: newRange(0, 23), selectionRange: newRange(7, 20) }]);
-			assertDocumentSymbols(ls, '@media screen, print {}', [{ name: '@media screen, print', kind: SymbolKind.Module, range: newRange(0, 23), selectionRange: newRange(7, 20) }]);
-
+			
+			// Scope
+			assertDocumentSymbols(ls, '@scope (.foo) to (.bar) {}', [{ name: '@scope .foo → .bar', kind: SymbolKind.Module, range: newRange(0, 26), selectionRange: newRange(7, 23) }]);
 		});
 	});
 
@@ -561,8 +575,30 @@ suite('CSS - Navigation', () => {
 
 		test('color presentations', function () {
 			const ls = getCSSLS();
-			assertColorPresentations(ls, colorFrom256RGB(255, 0, 0), 'rgb(255, 0, 0)', '#ff0000', 'hsl(0, 100%, 50%)', 'hwb(0 0% 0%)');
-			assertColorPresentations(ls, colorFrom256RGB(77, 33, 111, 0.5), 'rgba(77, 33, 111, 0.5)', '#4d216f80', 'hsla(274, 54%, 28%, 0.5)', 'hwb(274 13% 56% / 0.5)');
+			assertColorPresentations(
+				ls,
+				colorFrom256RGB(255, 0, 0),
+				'rgb(255, 0, 0)',
+				'#ff0000',
+				'hsl(0, 100%, 50%)',
+				'hwb(0 0% 0%)',
+				'lab(53.23% 80.11 67.22)',
+				'lch(53.23% 104.58 40)',
+				'oklab(62.793% 0.22489 0.1258)',
+				'oklch(62.793% 0.25768 29.223)',
+			);
+			assertColorPresentations(
+				ls,
+				colorFrom256RGB(77, 33, 111, 0.5),
+				'rgba(77, 33, 111, 0.5)',
+				'#4d216f80',
+				'hsla(274, 54%, 28%, 0.5)',
+				'hwb(274 13% 56% / 0.5)',
+				'lab(23.04% 35.9 -36.96 / 0.5)',
+				'lch(23.04% 51.53 314.16 / 0.5)',
+				'oklab(35.231% 0.0782 -0.10478 / 0.5)',
+				'oklch(35.231% 0.13074 306.734 / 0.5)',
+			);
 		});
 	});
 });
