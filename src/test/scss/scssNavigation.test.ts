@@ -32,7 +32,7 @@ async function assertDynamicLinks(docUri: string, input: string, expected: Docum
 	const ls = getSCSSLS();
 	if (settings) {
 		ls.configure(settings);
-	}
+	} 
 	const document = TextDocument.create(docUri, 'scss', 0, input);
 
 	const stylesheet = ls.parseStylesheet(document);
