@@ -74,6 +74,18 @@ suite('CSS Hover', () => {
 		assertHover('.|foo {}', {
 			contents: [{ language: 'html', value: '<element class="foo">' }, '[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 0)'],
 		});
+		assertHover('[name="something"] { color: blue; }', {
+			contents: [
+				{ language: 'html', value: '<something>|<element name="something">' },
+				'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 1, 0)'
+			]
+		});
+		assertHover('[attr="something"] { color: blue; }', {
+			contents: [
+				{ language: 'html', value: '<element attr="something">' },
+				'[Selector Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity): (0, 1, 0)'
+			]
+		});
 	});
 
 	test('nested', () => {
