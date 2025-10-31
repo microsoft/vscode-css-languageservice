@@ -21,21 +21,18 @@ export class SCSSParser extends cssParser.Parser {
 		super(new scssScanner.SCSSScanner());
 	}
 
-	public _parseStylesheetStart(): nodes.Node | null {
-		return this._parseForward()
-			|| this._parseUse()
-			|| super._parseStylesheetStart();
-	}
-
-	public _parseStylesheetStatement(): nodes.Node | null {
+	public _parseStylesheetStatement(isNested: boolean = false): nodes.Node | null {
 		if (this.peek(TokenType.AtKeyword)) {
-			return this._parseWarnAndDebug()
-				|| this._parseControlStatement()
-				|| this._parseMixinDeclaration()
-				|| this._parseMixinContent()
+			return this._parseWarnAndDebug() // @warn, @debug and @error statements
+				|| this._parseControlStatement() // @if, @while, @for, @each
+				|| this._parseMixinDeclaration() // @mixin
+				|| this._parseMixinContent() // @content
 				|| this._parseMixinReference() // @include
-				|| this._parseFunctionDeclaration()
-				|| super._parseStylesheetAtStatement();
+				|| this._parseFunctionDeclaration() // @function
+				|| this._parseForward() // @forward
+				|| this._parseUse() // @use
+				|| this._parseRuleset(isNested) // @at-rule
+				|| super._parseStylesheetAtStatement(isNested);
 		}
 		return this._parseRuleset(true) || this._parseVariableDeclaration();
 	}
@@ -58,11 +55,7 @@ export class SCSSParser extends cssParser.Parser {
 			}
 		}
 
-		if (!this.peek(TokenType.SemiColon) && !this.peek(TokenType.EOF)) {
-			node.setMedialist(this._parseMediaQueryList());
-		}
-
-		return this.finish(node);
+		return this._completeParseImport(node);
 	}
 
 	// scss variables: $font-size: 12px;
@@ -88,11 +81,16 @@ export class SCSSParser extends cssParser.Parser {
 			return this.finish(node, ParseError.VariableValueExpected, [], panic);
 		}
 
-		while (this.accept(TokenType.Exclamation)) {
-			if (!this.peekRegExp(TokenType.Ident, /^(default|global)$/)) {
-				return this.finish(node, ParseError.UnknownKeyword);
+		while (this.peek(TokenType.Exclamation)) {
+			if (node.addChild(this._tryParsePrio())) {
+				// !important
+			} else {
+				this.consumeToken();
+				if (!this.peekRegExp(TokenType.Ident, /^(default|global)$/)) {
+					return this.finish(node, ParseError.UnknownKeyword);
+				}
+				this.consumeToken();
 			}
-			this.consumeToken();
 		}
 
 		if (this.peek(TokenType.SemiColon)) {
@@ -102,8 +100,12 @@ export class SCSSParser extends cssParser.Parser {
 		return this.finish(node);
 	}
 
-	public _parseMediaContentStart(): nodes.Node | null {
-		return this._parseInterpolation();
+	public _parseMediaCondition(): nodes.Node | null {
+		return this._parseInterpolation() || super._parseMediaCondition();
+	}
+
+	public _parseMediaFeatureRangeOperator(): boolean {
+		return this.accept(scssScanner.SmallerEqualsOperator) || this.accept(scssScanner.GreaterEqualsOperator) || super._parseMediaFeatureRangeOperator();
 	}
 
 	public _parseMediaFeatureName(): nodes.Node | null {
@@ -116,6 +118,9 @@ export class SCSSParser extends cssParser.Parser {
 	public _parseKeyframeSelector(): nodes.Node | null {
 		return this._tryParseKeyframeSelector()
 			|| this._parseControlStatement(this._parseKeyframeSelector.bind(this))
+			|| this._parseWarnAndDebug() // @warn, @debug and @error statements
+			|| this._parseMixinReference() // @include
+			|| this._parseFunctionDeclaration() // @function
 			|| this._parseVariableDeclaration()
 			|| this._parseMixinContent();
 	}
@@ -176,7 +181,7 @@ export class SCSSParser extends cssParser.Parser {
 			return this._parseInterpolation();
 		};
 
-		while (this.accept(TokenType.Ident) || node.addChild(indentInterpolation()) || (hasContent && (this.acceptDelim('-') || this.accept(TokenType.Num)))) {
+		while (this.accept(TokenType.Ident) || node.addChild(indentInterpolation()) || (hasContent && this.acceptRegexp(/^[\w-]/))) {
 			hasContent = true;
 			if (this.hasWhitespace()) {
 				break;
@@ -185,29 +190,19 @@ export class SCSSParser extends cssParser.Parser {
 		return hasContent ? this.finish(node) : null;
 	}
 
-	public _parseTerm(): nodes.Term | null {
-		let term = <nodes.Term>this.create(nodes.Term);
-		if (term.setExpression(this._parseModuleMember())) {
-			return this.finish(term);
-		}
-
-		const superTerm = super._parseTerm();
-		if (superTerm) { return superTerm; }
-
-		if (term.setExpression(this._parseVariable())
-			|| term.setExpression(this._parseSelectorCombinator())
-			|| term.setExpression(this._tryParsePrio())) {
-			return <nodes.Term>this.finish(term);
-		}
-
-		return null;
+	public _parseTermExpression(): nodes.Node | null {
+		return this._parseModuleMember() ||
+			this._parseVariable() ||
+			this._parseNestingSelector() ||
+			//this._tryParsePrio() ||
+			super._parseTermExpression();
 	}
 
 	public _parseInterpolation(): nodes.Node | null {
 		if (this.peek(scssScanner.InterpolationFunction)) {
 			const node = this.create(nodes.Interpolation);
 			this.consumeToken();
-			if (!node.addChild(this._parseExpr()) && !this._parseSelectorCombinator()) {
+			if (!node.addChild(this._parseExpr()) && !this._parseNestingSelector()) {
 				if (this.accept(TokenType.CurlyR)) {
 					return this.finish(node);
 				}
@@ -258,21 +253,30 @@ export class SCSSParser extends cssParser.Parser {
 				|| this._parseMixinContent() // @content
 				|| this._parseMixinDeclaration() // nested @mixin
 				|| this._parseRuleset(true) // @at-rule
-				|| this._parseSupports(true); // @supports
+				|| this._parseSupports(true) // @supports
+				|| this._parseLayer() // @layer
+				|| this._parsePropertyAtRule() // @property
+				|| this._parseContainer(true) // nested @container
+				|| this._parseRuleSetDeclarationAtStatement();
 		}
 		return this._parseVariableDeclaration() // variable declaration
 			|| this._tryParseRuleset(true) // nested ruleset
-			|| super._parseRuleSetDeclaration(); // try css ruleset declaration as last so in the error case, the ast will contain a declaration
+			|| this._parseDeclaration(); // try css ruleset declaration as last so in the error case, the ast will contain a declaration
 	}
 
-	public _parseDeclaration(resyncStopTokens?: TokenType[]): nodes.Declaration | null {
+	public _parseDeclaration(stopTokens?: TokenType[]): nodes.Declaration | null {
+		const custonProperty = this._tryParseCustomPropertyDeclaration(stopTokens);
+		if (custonProperty) {
+			return custonProperty;
+		}
+
 		const node = <nodes.Declaration>this.create(nodes.Declaration);
 		if (!node.setProperty(this._parseProperty())) {
 			return null;
 		}
 
 		if (!this.accept(TokenType.Colon)) {
-			return this.finish(node, ParseError.ColonExpected, [TokenType.Colon], resyncStopTokens);
+			return this.finish(node, ParseError.ColonExpected, [TokenType.Colon], stopTokens || [TokenType.SemiColon]);
 		}
 		if (this.prevToken) {
 			node.colonPosition = this.prevToken.offset;
@@ -322,10 +326,10 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseSimpleSelectorBody(): nodes.Node | null {
-		return this._parseSelectorCombinator() || this._parseSelectorPlaceholder() || super._parseSimpleSelectorBody();
+		return this._parseSelectorPlaceholder() || super._parseSimpleSelectorBody();
 	}
 
-	public _parseSelectorCombinator(): nodes.Node | null {
+	public _parseNestingSelector(): nodes.Node | null {
 		if (this.peekDelim('&')) {
 			const node = this.createNode(nodes.NodeType.SelectorCombinator);
 			this.consumeToken();
@@ -346,6 +350,20 @@ export class SCSSParser extends cssParser.Parser {
 		} else if (this.peekKeyword('@at-root')) {
 			const node = this.createNode(nodes.NodeType.SelectorPlaceholder);
 			this.consumeToken();
+			if (this.accept(TokenType.ParenthesisL)) {
+				if (!this.acceptIdent('with') && !this.acceptIdent('without')) {
+					return this.finish(node, ParseError.IdentifierExpected);
+				}
+				if (!this.accept(TokenType.Colon)) {
+					return this.finish(node, ParseError.ColonExpected);
+				}
+				if (!node.addChild(this._parseIdent())) {
+					return this.finish(node, ParseError.IdentifierExpected);
+				}
+				if (!this.accept(TokenType.ParenthesisR)) {
+					return this.finish(node, ParseError.RightParenthesisExpected, [TokenType.CurlyR]);
+				}
+			}
 			return this.finish(node);
 		}
 		return null;
@@ -587,8 +605,24 @@ export class SCSSParser extends cssParser.Parser {
 		if (!this.peekKeyword('@content')) {
 			return null;
 		}
-		const node = this.createNode(nodes.NodeType.MixinContent);
+		const node = this.create(nodes.MixinContentReference);
 		this.consumeToken();
+		if (this.accept(TokenType.ParenthesisL)) {
+			if (node.getArguments().addChild(this._parseFunctionArgument())) {
+				while (this.accept(TokenType.Comma)) {
+					if (this.peek(TokenType.ParenthesisR)) {
+						break;
+					}
+					if (!node.getArguments().addChild(this._parseFunctionArgument())) {
+						return this.finish(node, ParseError.ExpressionExpected);
+					}
+				}
+			}
+
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected);
+			}
+		}
 		return this.finish(node);
 	}
 
@@ -642,11 +676,38 @@ export class SCSSParser extends cssParser.Parser {
 			}
 		}
 
-		if (this.peek(TokenType.CurlyL)) {
-			const content = <nodes.BodyDeclaration>this.create(nodes.BodyDeclaration);
-			this._parseBody(content, this._parseMixinReferenceBodyStatement.bind(this));
-			node.setContent(content);
+		if (this.peekIdent('using') || this.peek(TokenType.CurlyL)) {
+			node.setContent(this._parseMixinContentDeclaration());
 		}
+		return this.finish(node);
+	}
+
+	public _parseMixinContentDeclaration() {
+		const node = <nodes.MixinContentDeclaration>this.create(nodes.MixinContentDeclaration);
+		if (this.acceptIdent('using')) {
+			if (!this.accept(TokenType.ParenthesisL)) {
+				return this.finish(node, ParseError.LeftParenthesisExpected, [TokenType.CurlyL]);
+			}
+			if (node.getParameters().addChild(this._parseParameterDeclaration())) {
+				while (this.accept(TokenType.Comma)) {
+					if (this.peek(TokenType.ParenthesisR)) {
+						break;
+					}
+					if (!node.getParameters().addChild(this._parseParameterDeclaration())) {
+						return this.finish(node, ParseError.VariableNameExpected);
+					}
+				}
+			}
+
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected, [TokenType.CurlyL]);
+			}
+		}
+
+		if (this.peek(TokenType.CurlyL)) {
+			this._parseBody(node, this._parseMixinReferenceBodyStatement.bind(this));
+		}
+
 		return this.finish(node);
 	}
 
@@ -676,6 +737,8 @@ export class SCSSParser extends cssParser.Parser {
 		if (node.setValue(this._parseExpr(true))) {
 			this.accept(scssScanner.Ellipsis); // #43746
 			node.addChild(this._parsePrio()); // #9859
+			return this.finish(node);
+		} else if (node.setValue(this._tryParsePrio())) {
 			return this.finish(node);
 		}
 
@@ -729,12 +792,12 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	public _parseUse(): nodes.Node | null {
-		if (!this.peek(scssScanner.Use)) {
+		if (!this.peekKeyword('@use')) {
 			return null;
 		}
 
 		const node = <nodes.Use>this.create(nodes.Use);
-		this.consumeToken();
+		this.consumeToken(); // @use
 
 		if (!node.addChild(this._parseStringLiteral())) {
 			return this.finish(node, ParseError.StringLiteralExpected);
@@ -753,33 +816,41 @@ export class SCSSParser extends cssParser.Parser {
 			}
 
 			if (this.acceptIdent('with')) {
-				if (!this.accept(TokenType.ParenthesisL)) {
+				if (!node.setParameters(this._parseModuleConfig())) {
 					return this.finish(node, ParseError.LeftParenthesisExpected, [TokenType.ParenthesisR]);
 				}
-
-				// First variable statement, no comma.
-				if (!node.getParameters().addChild(this._parseModuleConfigDeclaration())) {
-					return this.finish(node, ParseError.VariableNameExpected);
-				}
-
-				while (this.accept(TokenType.Comma)) {
-					if (this.peek(TokenType.ParenthesisR)) {
-						break;
-					}
-					if (!node.getParameters().addChild(this._parseModuleConfigDeclaration())) {
-						return this.finish(node, ParseError.VariableNameExpected);
-					}
-				}
-
-				if (!this.accept(TokenType.ParenthesisR)) {
-					return this.finish(node, ParseError.RightParenthesisExpected);
-				}
-
 			}
 		}
 
 		if (!this.accept(TokenType.SemiColon) && !this.accept(TokenType.EOF)) {
 			return this.finish(node, ParseError.SemiColonExpected);
+		}
+
+		return this.finish(node);
+	}
+
+	public _parseModuleConfig(): nodes.Node | null {
+		const node = this.createNode(nodes.NodeType.ModuleConfig);
+		if (!this.accept(TokenType.ParenthesisL)) {
+			return null;
+		}
+
+		// First variable statement, no comma.
+		if (!node.addChild(this._parseModuleConfigDeclaration())) {
+			return this.finish(node, ParseError.VariableNameExpected);
+		}
+
+		while (this.accept(TokenType.Comma)) {
+			if (this.peek(TokenType.ParenthesisR)) {
+				break;
+			}
+			if (!node.addChild(this._parseModuleConfigDeclaration())) {
+				return this.finish(node, ParseError.VariableNameExpected);
+			}
+		}
+
+		if (!this.accept(TokenType.ParenthesisR)) {
+			return this.finish(node, ParseError.RightParenthesisExpected);
 		}
 
 		return this.finish(node);
@@ -797,11 +868,17 @@ export class SCSSParser extends cssParser.Parser {
 			return this.finish(node, ParseError.VariableValueExpected, [], [TokenType.Comma, TokenType.ParenthesisR]);
 		}
 
+		if (this.accept(TokenType.Exclamation)) {
+			if (this.hasWhitespace() || !this.acceptIdent('default')) {
+				return this.finish(node, ParseError.UnknownKeyword);
+			}
+		}
+
 		return this.finish(node);
 	}
 
 	public _parseForward(): nodes.Node | null {
-		if (!this.peek(scssScanner.Forward)) {
+		if (!this.peekKeyword('@forward')) {
 			return null;
 		}
 
@@ -812,27 +889,26 @@ export class SCSSParser extends cssParser.Parser {
 			return this.finish(node, ParseError.StringLiteralExpected);
 		}
 
-		if (!this.peek(TokenType.SemiColon) && !this.peek(TokenType.EOF)) {
-			if (!this.peekRegExp(TokenType.Ident, /as|hide|show/)) {
-				return this.finish(node, ParseError.UnknownKeyword);
+		if (this.acceptIdent('as')) {
+			const identifier = this._parseIdent([nodes.ReferenceType.Forward]);
+			if (!node.setIdentifier(identifier)) {
+				return this.finish(node, ParseError.IdentifierExpected);
 			}
 
-			if (this.acceptIdent('as')) {
-				const identifier = this._parseIdent([nodes.ReferenceType.Forward]);
-				if (!node.setIdentifier(identifier)) {
-					return this.finish(node, ParseError.IdentifierExpected);
-				}
+			// Wildcard must be the next character after the identifier string.
+			if (this.hasWhitespace() || !this.acceptDelim('*')) {
+				return this.finish(node, ParseError.WildcardExpected);
+			}
+		}
 
-				// Wildcard must be the next character after the identifier string.
-				if (this.hasWhitespace() || !this.acceptDelim('*')) {
-					return this.finish(node, ParseError.WildcardExpected);
-				}
+		if (this.acceptIdent('with')) {
+			if (!node.setParameters(this._parseModuleConfig())) {
+				return this.finish(node, ParseError.LeftParenthesisExpected, [TokenType.ParenthesisR]);
 			}
 
-			if (this.peekIdent('hide') || this.peekIdent('show')) {
-				if (!node.addChild(this._parseForwardVisibility())) {
-					return this.finish(node, ParseError.IdentifierOrVariableExpected);
-				}
+		} else if (this.peekIdent('hide') || this.peekIdent('show')) {
+			if (!node.addChild(this._parseForwardVisibility())) {
+				return this.finish(node, ParseError.IdentifierOrVariableExpected);
 			}
 		}
 
@@ -851,10 +927,15 @@ export class SCSSParser extends cssParser.Parser {
 
 		while (node.addChild(this._parseVariable() || this._parseIdent())) {
 			// Consume all variables and idents ahead.
+			this.accept(TokenType.Comma);
 		}
 
-		// More than just identifier 
+		// More than just identifier
 		return node.getChildren().length > 1 ? node : null;
+	}
+
+	protected _parseSupportsCondition(): nodes.Node {
+		return this._parseInterpolation() || super._parseSupportsCondition();
 	}
 
 }

@@ -49,8 +49,9 @@ suite('CSS - Scanner', () => {
 		assertSingleToken(scanner, 'red--', 5, 0, 'red--', TokenType.Ident);
 		assertSingleToken(scanner, 'red-->', 5, 0, 'red--', TokenType.Ident, TokenType.Delim);
 		assertSingleToken(scanner, '--red', 5, 0, '--red', TokenType.Ident);
-		assertSingleToken(scanner, '---red', 1, 0, '-', TokenType.Delim, TokenType.Ident);
-		assertSingleToken(scanner, '---', 1, 0, '-', TokenType.Delim, TokenType.Delim, TokenType.Delim);
+		assertSingleToken(scanner, '--100', 5, 0, '--100', TokenType.Ident);
+		assertSingleToken(scanner, '---red', 6, 0, '---red', TokenType.Ident);
+		assertSingleToken(scanner, '---', 3, 0, '---', TokenType.Ident);
 		assertSingleToken(scanner, 'a\\.b', 4, 0, 'a\.b', TokenType.Ident);
 		assertSingleToken(scanner, '\\E9motion', 9, 0, 'émotion', TokenType.Ident);
 		assertSingleToken(scanner, '\\E9 dition', 10, 0, 'édition', TokenType.Ident);
@@ -164,7 +165,7 @@ suite('CSS - Scanner', () => {
 		let scanner = new Scanner();
 		assertSingleToken(scanner, '-->', 3, 0, '-->', TokenType.CDC);
 		assertSingleToken(scanner, '--y>', 3, 0, '--y', TokenType.Ident, TokenType.Delim);
-		assertSingleToken(scanner, '--<', 1, 0, '-', TokenType.Delim, TokenType.Delim, TokenType.Delim);
+		assertSingleToken(scanner, '--<', 2, 0, '--', TokenType.Ident, TokenType.Delim);
 	});
 
 	test('Token singletokens ;:{}[]()', function () {

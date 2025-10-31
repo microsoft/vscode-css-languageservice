@@ -12,46 +12,53 @@ import { Rule, Rules, LintConfigurationSettings } from '../../services/lintRules
 import { TextDocument } from '../../cssLanguageTypes';
 import { SCSSParser } from '../../parser/scssParser';
 import { LESSParser } from '../../parser/lessParser';
+import { CSSDataManager } from '../../languageFacts/dataManager';
 
-export function assertEntries(node: Node, document: TextDocument, rules: IRule[], settings = new LintConfigurationSettings()): void {
+const cssDataManager = new CSSDataManager({ useDefaultDataProvider: true });
 
-	let entries = LintVisitor.entries(node, document, settings, Level.Error | Level.Warning | Level.Ignore);
-	const message = `Did not find all linting error [${rules.map(e => e.id).join(', ')}]`;
+export function assertEntries(node: Node, document: TextDocument, expectedRules: IRule[], expectedMessages: string[] | undefined = undefined, settings = new LintConfigurationSettings()): void {
 
-	assert.equal(entries.length, rules.length, message);
+	const entries = LintVisitor.entries(node, document, settings, cssDataManager, Level.Error | Level.Warning | Level.Ignore);
+	const message = `Did not find all linting error. expected: [${expectedRules.map(e => e.id).join(', ')}], actual: [${entries.map(e => e.getMessage()).join(', ')}]`;
 
-	for (let entry of entries) {
-		assert.ok(rules.indexOf(entry.getRule()) !== -1, `${entry.getRule().id} found but not expected (${rules.map(r => r.id).join(', ')})`);
+	assert.equal(entries.length, expectedRules.length, message);
+
+	for (const entry of entries) {
+		const index = expectedRules.indexOf(entry.getRule());
+		assert.ok(index !== -1, `${entry.getRule().id} found but not expected (${expectedRules.map(r => r.id).join(', ')})`);
+		if (expectedMessages) {
+			assert.equal(entry.getMessage(), expectedMessages[index]);
+		}
 	}
 }
-let parsers = [new Parser(), new LESSParser(), new SCSSParser()];
+const parsers = [new Parser(), new LESSParser(), new SCSSParser()];
 
 function assertStyleSheet(input: string, ...rules: Rule[]): void {
-	for (let p of parsers) {
-		let document = TextDocument.create('test://test/test.css', 'css', 0, input);
-		let node = p.parseStylesheet(document);
+	for (const p of parsers) {
+		const document = TextDocument.create('test://test/test.css', 'css', 0, input);
+		const node = p.parseStylesheet(document);
 
 		assertEntries(node, document, rules);
 	}
 }
 
 function assertRuleSet(input: string, ...rules: Rule[]): void {
-	assertRuleSetWithSettings(input, rules);
+	assertRuleSet2(input, rules);
 }
 
-function assertRuleSetWithSettings(input: string, rules: Rule[], settings = new LintConfigurationSettings()): void {
-	for (let p of parsers) {
-		let document = TextDocument.create('test://test/test.css', 'css', 0, input);
-		let node = p.internalParse(input, p._parseRuleset)!;
-		assertEntries(node, document, rules, settings);
+function assertRuleSet2(input: string, rules: Rule[], messages?: string[], settings?: LintConfigurationSettings): void {
+	for (const p of parsers) {
+		const document = TextDocument.create('test://test/test.css', 'css', 0, input);
+		const node = p.internalParse(input, p._parseRuleset)!;
+		assertEntries(node, document, rules, messages, settings);
 	}
 }
 
 
 function assertFontFace(input: string, ...rules: Rule[]): void {
-	for (let p of parsers) {
-		let document = TextDocument.create('test://test/test.css', 'css', 0, input);
-		let node = p.internalParse(input, p._parseFontFace)!;
+	for (const p of parsers) {
+		const document = TextDocument.create('test://test/test.css', 'css', 0, input);
+		const node = p.internalParse(input, p._parseFontFace)!;
 		assertEntries(node, document, rules);
 	}
 }
@@ -71,15 +78,12 @@ suite('CSS - Lint', () => {
 	});
 
 	test('properies ignored due to inline ', function () {
-		assertRuleSet('selector { display: inline; height: 100px; }', Rules.PropertyIgnoredDueToDisplay);
-		assertRuleSet('selector { display: inline; width: 100px; }', Rules.PropertyIgnoredDueToDisplay);
-		assertRuleSet('selector { display: inline; margin-top: 1em; }', Rules.PropertyIgnoredDueToDisplay);
-		assertRuleSet('selector { display: inline; margin-bottom: 1em; }', Rules.PropertyIgnoredDueToDisplay);
-		assertRuleSet('selector { display: inline; float: right; }', Rules.PropertyIgnoredDueToDisplay, Rules.AvoidFloat);
+		assertRuleSet('selector { display: inline; float: right; }', Rules.AvoidFloat);
 		assertRuleSet('selector { display: inline; float: none; }', Rules.AvoidFloat);
 		assertRuleSet('selector { display: inline-block; float: right; }', Rules.PropertyIgnoredDueToDisplay, Rules.AvoidFloat);
 		assertRuleSet('selector { display: inline-block; float: none; }', Rules.AvoidFloat);
 		assertRuleSet('selector { display: block; vertical-align: center; }', Rules.PropertyIgnoredDueToDisplay);
+		assertRuleSet('selector { display: inline-block; float: none !important; }', Rules.AvoidFloat, Rules.AvoidImportant);
 	});
 
 	test('avoid !important', function () {
@@ -116,9 +120,10 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { box-shadow: none }'); // no error
 		assertRuleSet('selector { box-property: "rest is missing" }', Rules.UnknownProperty);
 		assertRuleSet(':export { prop: "some" }'); // no error for properties inside :export
-		assertRuleSetWithSettings('selector { foo: "some"; bar: 0px }', [], new LintConfigurationSettings({ validProperties: ['foo', 'bar'] }));
-		assertRuleSetWithSettings('selector { foo: "some"; }', [], new LintConfigurationSettings({ validProperties: ['foo', null] }));
-		assertRuleSetWithSettings('selector { bar: "some"; }', [Rules.UnknownProperty], new LintConfigurationSettings({ validProperties: ['foo'] }));
+		assertRuleSet2('selector { foo: "some"; bar: 0px }', [], undefined, new LintConfigurationSettings({ validProperties: ['foo', 'bar'] }));
+		assertRuleSet2('selector { foo: "some"; }', [], undefined, new LintConfigurationSettings({ validProperties: ['foo', null] }));
+		assertRuleSet2('selector { bar: "some"; }', [Rules.UnknownProperty], undefined, new LintConfigurationSettings({ validProperties: ['foo'] }));
+		assertRuleSet2('selector { Box-Property: "rest is missing" }', [Rules.UnknownProperty], ["Unknown property: 'Box-Property'"]);
 	});
 
 	test('box model', function () {
@@ -225,8 +230,9 @@ suite('CSS - Lint', () => {
 	});
 
 	test('IE hacks', function () {
-		assertRuleSet('selector { display: inline-block; *display: inline; }', Rules.IEStarHack);
-		assertRuleSet('selector { background: #00f; /* all browsers including Mac IE */ *background: #f00; /* IE 7 and below */ _background: #f60; /* IE 6 and below */  }', Rules.IEStarHack, Rules.IEStarHack);
+		// IE star hacks are incompatible with CSS nesting.
+		// assertRuleSet('selector { display: inline-block; *display: inline; }', Rules.IEStarHack);
+		// assertRuleSet('selector { background: #00f; /* all browsers including Mac IE */ *background: #f00; /* IE 7 and below */ _background: #f60; /* IE 6 and below */  }', Rules.IEStarHack, Rules.IEStarHack);
 	});
 
 	test('vendor specific prefixes', function () {
@@ -235,7 +241,14 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { transform: none; }');
 		assertRuleSet('selector { -moz-transform: none; transform: none; -o-transform: none; -webkit-transform: none; -ms-transform: none; }');
 		assertRuleSet('selector { --transform: none; }');
-		assertRuleSet('selector { -webkit-appearance: none }');
+		assertRuleSet('selector { -webkit-appearance: none }', Rules.IncludeStandardPropertyWhenUsingVendorPrefix);
+	});
+
+	test('ignore missing standard properties in contexts with vendor specific pseudo-element', function () {
+		// (See https://github.com/microsoft/vscode/issues/164350)
+		assertRuleSet('input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; }');
+		assertRuleSet('input[type="range"]::-webkit-slider-thumb { color: black; & selector { -webkit-appearance: none; } }');
+		assertRuleSet('input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; -moz-appearance: none; }', Rules.IncludeStandardPropertyWhenUsingVendorPrefix);
 	});
 
 	test('font-face required properties', function () {

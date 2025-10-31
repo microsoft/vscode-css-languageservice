@@ -5,119 +5,125 @@
 'use strict';
 
 import * as assert from 'assert';
-import * as url from 'url';
+import { join } from 'path';
 import { Scope, GlobalScope, ScopeBuilder } from '../../parser/cssSymbolScope';
 import * as nodes from '../../parser/cssNodes';
-import { colorFrom256RGB, colorFromHSL } from '../../languageFacts/facts';
+import { colorFrom256RGB, colorFromHSL, colorFromHWB } from '../../languageFacts/facts';
 
 import {
-	DocumentContext, TextDocument, DocumentHighlightKind, Range, Position, TextEdit, Color,
-	ColorInformation, DocumentLink, SymbolKind, SymbolInformation, Location,
-	getCSSLanguageService, LanguageService, Diagnostic, Stylesheet
+	TextDocument, DocumentHighlightKind, Range, Position, TextEdit, Color,
+	ColorInformation, DocumentLink, SymbolKind, SymbolInformation, Location, LanguageService, Stylesheet, getCSSLanguageService, DocumentSymbol, LanguageSettings,
 } from '../../cssLanguageService';
 
+import { URI } from 'vscode-uri';
+import { getFsProvider } from '../testUtil/fsProvider';
+import { getDocumentContext } from '../testUtil/documentContext';
+
 export function assertScopesAndSymbols(ls: LanguageService, input: string, expected: string): void {
-	let global = createScope(ls, input);
+	const global = createScope(ls, input);
 	assert.equal(scopeToString(global), expected);
 }
 
 export function assertHighlights(ls: LanguageService, input: string, marker: string, expectedMatches: number, expectedWrites: number, elementName?: string) {
-	let document = TextDocument.create('test://test/test.css', 'css', 0, input);
+	const document = TextDocument.create('test://test/test.css', 'css', 0, input);
 
-	let stylesheet = ls.parseStylesheet(document);
+	const stylesheet = ls.parseStylesheet(document);
 	assertNoErrors(stylesheet);
 
-	let index = input.indexOf(marker) + marker.length;
-	let position = document.positionAt(index);
+	const index = input.indexOf(marker) + marker.length;
+	const position = document.positionAt(index);
 
-	let highlights = ls.findDocumentHighlights(document, position, stylesheet);
+	const highlights = ls.findDocumentHighlights(document, position, stylesheet);
 	assert.equal(highlights.length, expectedMatches, input);
 
 	let nWrites = 0;
-	for (let highlight of highlights) {
+	for (const highlight of highlights) {
 		if (highlight.kind === DocumentHighlightKind.Write) {
 			nWrites++;
 		}
-		let range = highlight.range;
-		let start = document.offsetAt(range.start), end = document.offsetAt(range.end);
+		const range = highlight.range;
+		const start = document.offsetAt(range.start), end = document.offsetAt(range.end);
 		assert.equal(document.getText().substring(start, end), elementName || marker);
 	}
 	assert.equal(nWrites, expectedWrites, input);
 }
 
-export function getDocumentContext(documentUrl: string): DocumentContext {
-	return {
-		resolveReference: (ref, base = documentUrl) => {
-			return url.resolve(base, ref);
-		}
-	};
-}
 
-export async function assertLinks(ls: LanguageService, input: string, expected: DocumentLink[], lang: string = 'css') {
-	let document = TextDocument.create(`test://test/test.${lang}`, lang, 0, input);
 
-	let stylesheet = ls.parseStylesheet(document);
+export async function assertLinks(ls: LanguageService, input: string, expected: DocumentLink[], lang: string = 'css', testUri?: string, workspaceFolder?: string) {
+	const document = TextDocument.create(testUri || `test://test/test.${lang}`, lang, 0, input);
 
-	let links = await ls.findDocumentLinks2(document, stylesheet, getDocumentContext(document.uri));
+	const stylesheet = ls.parseStylesheet(document);
+
+	const links = await ls.findDocumentLinks2(document, stylesheet, getDocumentContext(workspaceFolder || 'test://test'));
 	assert.deepEqual(links, expected);
 }
 
-export function assertSymbols(ls: LanguageService, input: string, expected: SymbolInformation[], lang: string = 'css') {
-	let document = TextDocument.create(`test://test/test.${lang}`, lang, 0, input);
+export function assertSymbolInfos(ls: LanguageService, input: string, expected: SymbolInformation[], lang: string = 'css') {
+	const document = TextDocument.create(`test://test/test.${lang}`, lang, 0, input);
 
-	let stylesheet = ls.parseStylesheet(document);
+	const stylesheet = ls.parseStylesheet(document);
 
-	let symbols = ls.findDocumentSymbols(document, stylesheet);
+	const symbols = ls.findDocumentSymbols(document, stylesheet);
+	assert.deepEqual(symbols, expected);
+}
+
+export function assertDocumentSymbols(ls: LanguageService, input: string, expected: DocumentSymbol[], lang: string = 'css') {
+	const document = TextDocument.create(`test://test/test.${lang}`, lang, 0, input);
+
+	const stylesheet = ls.parseStylesheet(document);
+
+	const symbols = ls.findDocumentSymbols2(document, stylesheet);
 	assert.deepEqual(symbols, expected);
 }
 
 export function assertColorSymbols(ls: LanguageService, input: string, ...expected: ColorInformation[]) {
-	let document = TextDocument.create('test://test/test.css', 'css', 0, input);
+	const document = TextDocument.create('test://test/test.css', 'css', 0, input);
 
-	let stylesheet = ls.parseStylesheet(document);
-	let result = ls.findDocumentColors(document, stylesheet);
+	const stylesheet = ls.parseStylesheet(document);
+	const result = ls.findDocumentColors(document, stylesheet);
 	assert.deepEqual(result, expected);
 }
 
 export function assertColorPresentations(ls: LanguageService, color: Color, ...expected: string[]) {
-	let document = TextDocument.create('test://test/test.css', 'css', 0, '');
+	const document = TextDocument.create('test://test/test.css', 'css', 0, '');
 
-	let stylesheet = ls.parseStylesheet(document);
-	let range = newRange(1, 2);
-	let result = ls.getColorPresentations(document, stylesheet, color, range);
+	const stylesheet = ls.parseStylesheet(document);
+	const range = newRange(1, 2);
+	const result = ls.getColorPresentations(document, stylesheet, color, range);
 	assert.deepEqual(result.map(r => r.label), expected);
 	assert.deepEqual(result.map(r => r.textEdit), expected.map(l => TextEdit.replace(range, l)));
 }
 
 export function assertSymbolsInScope(ls: LanguageService, input: string, offset: number, ...selections: { name: string; type: nodes.ReferenceType }[]): void {
 
-	let global = createScope(ls, input);
+	const global = createScope(ls, input);
 
-	let scope = global.findScope(offset)!;
+	const scope = global.findScope(offset)!;
 
-	let getErrorMessage = function (name: string) {
+	const getErrorMessage = function (name: string) {
 		let all = 'symbol ' + name + ' not found. In scope: ';
 		scope.getSymbols().forEach((sym) => { all += (sym.name + ' '); });
 		return all;
 	};
 
 	for (let i = 0; i < selections.length; i++) {
-		let selection = selections[i];
-		let sym = scope.getSymbol(selection.name, selection.type) || global.getSymbol(selection.name, selection.type);
+		const selection = selections[i];
+		const sym = scope.getSymbol(selection.name, selection.type) || global.getSymbol(selection.name, selection.type);
 		assert.ok(!!sym, getErrorMessage(selection.name));
 	}
 }
 
 export function assertScopeBuilding(ls: LanguageService, input: string, ...scopes: { offset: number; length: number; }[]): void {
 
-	let global = createScope(ls, input);
+	const global = createScope(ls, input);
 
 	function assertChildren(scope: Scope): void {
 
 		scope.children.forEach((scope) => {
 
 			// check bounds
-			let expected = scopes.shift()!;
+			const expected = scopes.shift()!;
 			assert.equal(scope.offset, expected.offset);
 			assert.equal(scope.length, expected.length);
 
@@ -131,16 +137,20 @@ export function assertScopeBuilding(ls: LanguageService, input: string, ...scope
 	assert.equal(scopes.length, 0, 'remaining scopes: ' + scopes.join());
 }
 
+export function getTestResource(path: string) {
+	return URI.file(join(__dirname, '../../../../test/linksTestFixtures', path)).toString(true);
+}
+
 function scopeToString(scope: Scope): string {
 	let str = '';
-	let symbols = scope.getSymbols();
+	const symbols = scope.getSymbols();
 	for (let index = 0; index < symbols.length; index++) {
 		if (str.length > 0) {
 			str += ',';
 		}
 		str += symbols[index].name;
 	}
-	let scopes = scope.children;
+	const scopes = scope.children;
 	for (let index = 0; index < scopes.length; index++) {
 		if (str.length > 0) {
 			str += ',';
@@ -158,9 +168,9 @@ function assertNoErrors(stylesheet: Stylesheet): void {
 }
 
 function createScope(ls: LanguageService, input: string): Scope {
-	let document = TextDocument.create('test://test/test.css', 'css', 0, input);
+	const document = TextDocument.create('test://test/test.css', 'css', 0, input);
 
-	let styleSheet = ls.parseStylesheet(document),
+	const styleSheet = ls.parseStylesheet(document),
 		global = new GlobalScope(),
 		builder = new ScopeBuilder(global);
 
@@ -170,12 +180,25 @@ function createScope(ls: LanguageService, input: string): Scope {
 	return global;
 }
 
+function getCSSLS() {
+	return getCSSLanguageService({ fileSystemProvider: getFsProvider() });
+}
+
+function aliasSettings(): LanguageSettings {
+	return {
+		"importAliases": {
+				"@SingleStylesheet": "/src/assets/styles.css",
+				"@AssetsDir/": "/src/assets/",
+		}
+	};
+}
+
 suite('CSS - Navigation', () => {
 
 	suite('Scope', () => {
 
 		test('scope creation', function () {
-			let global = new GlobalScope(),
+			const global = new GlobalScope(),
 				child1 = new Scope(10, 5),
 				child2 = new Scope(15, 5);
 
@@ -197,99 +220,127 @@ suite('CSS - Navigation', () => {
 		});
 
 		test('scope building', function () {
-			let ls = getCSSLanguageService();
+			const ls = getCSSLS();
 			assertScopeBuilding(ls, '.class {}', { offset: 7, length: 2 });
 			assertScopeBuilding(ls, '.class {} .class {}', { offset: 7, length: 2 }, { offset: 17, length: 2 });
 		});
 
 		test('symbols in scopes', function () {
-			let ls = getCSSLanguageService();
+			const ls = getCSSLS();
 			assertSymbolsInScope(ls, '@keyframes animation {};', 0, { name: 'animation', type: nodes.ReferenceType.Keyframe });
 			assertSymbolsInScope(ls, ' .class1 {} .class2 {}', 0, { name: '.class1', type: nodes.ReferenceType.Rule }, { name: '.class2', type: nodes.ReferenceType.Rule });
 		});
 
 		test('scopes and symbols', function () {
-			let ls = getCSSLanguageService();
+			const ls = getCSSLS();
 			assertScopesAndSymbols(ls, '.class {}', '.class,[]');
 			assertScopesAndSymbols(ls, '@keyframes animation {}; .class {}', 'animation,.class,[],[]');
 			assertScopesAndSymbols(ls, '@page :pseudo-class { margin:2in; }', '[]');
 			assertScopesAndSymbols(ls, '@media print { body { font-size: 10pt } }', '[body,[]]');
+			assertScopesAndSymbols(ls, '@scope (.foo) to (.bar) { body { font-size: 10pt } }', '[body,[]]')
 			assertScopesAndSymbols(ls, '@-moz-keyframes identifier { 0% { top: 0; } 50% { top: 30px; left: 20px; }}', 'identifier,[[],[]]');
 			assertScopesAndSymbols(ls, '@font-face { font-family: "Bitstream Vera Serif Bold"; }', '[]');
 		});
 
 		test('test variables in root scope', function () {
-			let ls = getCSSLanguageService();
+			const ls = getCSSLS();
 			assertSymbolsInScope(ls, ':root{ --var1: abc; --var2: def; }', 0, { name: '--var1', type: nodes.ReferenceType.Variable }, { name: '--var2', type: nodes.ReferenceType.Variable });
 		});
 
 		test('test variables in local scope', function () {
-			let ls = getCSSLanguageService();
+			const ls = getCSSLS();
 			assertSymbolsInScope(ls, '.a{ --var1: abc; --var2: def; }', 2, { name: '--var1', type: nodes.ReferenceType.Variable }, { name: '--var2', type: nodes.ReferenceType.Variable });
 		});
 
 		test('test variables in local scope get root variables too', function () {
-			let ls = getCSSLanguageService();
+			const ls = getCSSLS();
 			assertSymbolsInScope(ls, '.a{ --var1: abc; } :root{ --var2: abc;}', 2, { name: '--var1', type: nodes.ReferenceType.Variable }, { name: '--var2', type: nodes.ReferenceType.Variable });
 		});
 
 		test('test variables in local scope get root variables and other local variables too', function () {
-			let ls = getCSSLanguageService();
+			const ls = getCSSLS();
 			assertSymbolsInScope(ls, '.a{ --var1: abc; } .b{ --var2: abc; } :root{ --var3: abc;}', 2, { name: '--var1', type: nodes.ReferenceType.Variable }, { name: '--var2', type: nodes.ReferenceType.Variable }, { name: '--var3', type: nodes.ReferenceType.Variable });
 		});
 	});
 
 	suite('Symbols', () => {
-		test('basic symbols', () => {
-			let ls = getCSSLanguageService();
-			assertSymbols(ls, '.foo {}', [{ name: '.foo', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(0, 7)) }]);
-			assertSymbols(ls, '.foo:not(.selected) {}', [{ name: '.foo:not(.selected)', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(0, 22)) }]);
+		test('basic symbol infos', () => {
+			const ls = getCSSLS();
+			assertSymbolInfos(ls, '.foo {}', [{ name: '.foo', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(0, 7)) }]);
+			assertSymbolInfos(ls, '.foo:not(.selected) {}', [{ name: '.foo:not(.selected)', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(0, 22)) }]);
+
+			// multiple selectors, each range starts with the selector offset
+			assertSymbolInfos(ls, '.voo.doo, .bar {}', [
+				{ name: '.voo.doo', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(0, 17)) },
+				{ name: '.bar', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(10, 17)) },
+			]);
 
 			// Media Query
-			assertSymbols(ls, '@media screen, print {}', [{ name: '@media screen, print', kind: SymbolKind.Module, location: Location.create('test://test/test.css', newRange(0, 23)) }]);
+			assertSymbolInfos(ls, '@media screen, print {}', [{ name: '@media screen, print', kind: SymbolKind.Module, location: Location.create('test://test/test.css', newRange(0, 23)) }]);
+			
+			// Scope
+			assertSymbolInfos(ls, '@scope (.foo) to (.bar) {}', [{ name: '@scope .foo → .bar', kind: SymbolKind.Module, location: Location.create('test://test/test.css', newRange(0, 26)) }]);
+		});
+
+		test('basic document symbols', () => {
+			const ls = getCSSLS();
+			assertDocumentSymbols(ls, '.foo {}', [{ name: '.foo', kind: SymbolKind.Class, range: newRange(0, 7), selectionRange: newRange(0, 4) }]);
+			assertDocumentSymbols(ls, '.foo:not(.selected) {}', [{ name: '.foo:not(.selected)', kind: SymbolKind.Class, range: newRange(0, 22), selectionRange: newRange(0, 19) }]);
+
+			// multiple selectors, each range starts with the selector offset
+			assertDocumentSymbols(ls, '.voo.doo, .bar {}', [
+				{ name: '.voo.doo', kind: SymbolKind.Class, range: newRange(0, 17), selectionRange: newRange(0, 8) },
+				{ name: '.bar', kind: SymbolKind.Class, range: newRange(10, 17), selectionRange: newRange(10, 14) },
+			]);
+
+			// Media Query
+			assertDocumentSymbols(ls, '@media screen, print {}', [{ name: '@media screen, print', kind: SymbolKind.Module, range: newRange(0, 23), selectionRange: newRange(7, 20) }]);
+			
+			// Scope
+			assertDocumentSymbols(ls, '@scope (.foo) to (.bar) {}', [{ name: '@scope .foo → .bar', kind: SymbolKind.Module, range: newRange(0, 26), selectionRange: newRange(7, 23) }]);
 		});
 	});
 
 	suite('Highlights', () => {
 
 		test('mark highlights', function () {
-			let ls = getCSSLanguageService();
+			const ls = getCSSLS();
 			assertHighlights(ls, '@keyframes id {}; #main { animation: id 4s linear 0s infinite alternate; }', 'id', 2, 1);
 			assertHighlights(ls, '@keyframes id {}; #main { animation-name: id; foo: id;}', 'id', 2, 1);
 		});
 
 		test('mark occurrences for variable defined in root and used in a rule', function () {
-			let ls = getCSSLanguageService();
-			assertHighlights(ls, '.a{ background: let(--var1); } :root{ --var1: abc;}', '--var1', 2, 1);
+			const ls = getCSSLS();
+			assertHighlights(ls, '.a{ background: const(--var1); } :root{ --var1: abc;}', '--var1', 2, 1);
 		});
 
 		test('mark occurrences for variable defined in a rule and used in a different rule', function () {
-			let ls = getCSSLanguageService();
-			assertHighlights(ls, '.a{ background: let(--var1); } :b{ --var1: abc;}', '--var1', 2, 1);
+			const ls = getCSSLS();
+			assertHighlights(ls, '.a{ background: const(--var1); } :b{ --var1: abc;}', '--var1', 2, 1);
 		});
 
 		test('mark occurrences for property', function () {
-			let ls = getCSSLanguageService();
+			const ls = getCSSLS();
 			assertHighlights(ls, 'body { display: inline } #foo { display: inline }', 'display', 2, 0);
 		});
 
 		test('mark occurrences for value', function () {
-			let ls = getCSSLanguageService();
+			const ls = getCSSLS();
 			assertHighlights(ls, 'body { display: inline } #foo { display: inline }', 'inline', 2, 0);
 		});
 
 		test('mark occurrences for selector', function () {
-			let ls = getCSSLanguageService();
+			const ls = getCSSLS();
 			assertHighlights(ls, 'body { display: inline } #foo { display: inline }', 'body', 1, 1);
 		});
 
 		test('mark occurrences for comment', function () {
-			let ls = getCSSLanguageService();
+			const ls = getCSSLS();
 			assertHighlights(ls, '/* comment */body { display: inline } ', 'comment', 0, 0);
 		});
 
 		test('mark occurrences for whole classname instead of only class identifier', () => {
-			let ls = getCSSLanguageService();
+			const ls = getCSSLS();
 			assertHighlights(ls, '.foo { }', '.foo', 1, 1);
 			assertHighlights(ls, '.body { } body { }', '.body', 1, 1);
 		});
@@ -298,7 +349,7 @@ suite('CSS - Navigation', () => {
 	suite('Links', () => {
 
 		test('basic @import links', async () => {
-			let ls = getCSSLanguageService();
+			const ls = getCSSLS();
 			await assertLinks(ls, `@import 'foo.css';`, [
 				{ range: newRange(8, 17), target: 'test://test/foo.css' }
 			]);
@@ -313,7 +364,7 @@ suite('CSS - Navigation', () => {
 		});
 
 		test('complex @import links', async () => {
-			let ls = getCSSLanguageService();
+			const ls = getCSSLS();
 			await assertLinks(ls, `@import url("foo.css") print;`, [
 				{ range: newRange(12, 21), target: 'test://test/foo.css' }
 			]);
@@ -327,8 +378,18 @@ suite('CSS - Navigation', () => {
 			]);
 		});
 
+		test('aliased @import links', async function () {
+			const settings = aliasSettings();
+			const ls = getCSSLS();
+			ls.configure(settings);
+
+			await assertLinks(ls, '@import "@SingleStylesheet"', [{ range: newRange(8, 27), target: "test://test/src/assets/styles.css"}]);
+
+			await assertLinks(ls, '@import "@AssetsDir/styles.css"', [{ range: newRange(8, 31), target: "test://test/src/assets/styles.css"}]);
+		});
+
 		test('links in rulesets', async () => {
-			let ls = getCSSLanguageService();
+			const ls = getCSSLS();
 			await assertLinks(ls, `body { background-image: url(./foo.jpg)`, [
 				{ range: newRange(29, 38), target: 'test://test/foo.jpg' }
 			]);
@@ -339,17 +400,68 @@ suite('CSS - Navigation', () => {
 		});
 
 		test('No links with empty range', async () => {
-			let ls = getCSSLanguageService();
+			const ls = getCSSLS();
 			await assertLinks(ls, `body { background-image: url()`, []);
 			await assertLinks(ls, `@import url();`, []);
 		});
 
+		test('No links for data:', async () => {
+			const ls = getCSSLS();
+			await assertLinks(ls, `body { background-image: url(data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOul) }`, []);
+		});
+
+
+		test('url links', async function () {
+			const ls = getCSSLS();
+			const testUri = getTestResource('about.css');
+			const workspaceFolder = getTestResource('');
+
+			await assertLinks(ls, 'html { background-image: url("hello.html")',
+				[{ range: newRange(29, 41), target: getTestResource('hello.html') }], 'css', testUri, workspaceFolder
+			);
+
+			await assertLinks(ls, '@import "a.css"',
+				[{ range: newRange(8, 15), target: getTestResource('a.css') }], 'css', testUri, workspaceFolder
+			);
+			await assertLinks(ls, '@import "green/c.css"',
+				[{ range: newRange(8, 21), target: getTestResource('green/c.css') }], 'css', testUri, workspaceFolder
+			);
+			await assertLinks(ls, '@import "./green/c.css"',
+				[{ range: newRange(8, 23), target: getTestResource('green/c.css') }], 'css', testUri, workspaceFolder
+			);
+		});
+
+		test('node module resolving', async function () {
+			const ls = getCSSLS();
+			const testUri = getTestResource('about.css');
+			const workspaceFolder = getTestResource('');
+
+			await assertLinks(ls, 'html { background-image: url("~foo/hello.html")',
+				[{ range: newRange(29, 46), target: getTestResource('node_modules/foo/hello.html') }], 'css', testUri, workspaceFolder
+			);
+			await assertLinks(ls, '@import "~green/c.css"',
+				[{ range: newRange(8, 22), target: getTestResource('node_modules/green/c.css') }], 'css', testUri, workspaceFolder
+			);
+		});
+
+		test('node module subfolder resolving', async function () {
+			const ls = getCSSLS();
+			const testUri = getTestResource('subdir/about.css');
+			const workspaceFolder = getTestResource('');
+
+			await assertLinks(ls, 'html { background-image: url("~foo/hello.html")',
+				[{ range: newRange(29, 46), target: getTestResource('node_modules/foo/hello.html') }], 'css', testUri, workspaceFolder
+			);
+			await assertLinks(ls, '@import "../green/c.css"',
+				[{ range: newRange(8, 24), target: getTestResource('green/c.css') }], 'css', testUri, workspaceFolder
+			);
+		});
 	});
 
 	suite('Color', () => {
 
 		test('color symbols', function () {
-			let ls = getCSSLanguageService();
+			const ls = getCSSLS();
 			assertColorSymbols(ls, 'body { backgroundColor: #ff9977; }',
 				{ color: colorFrom256RGB(0xff, 0x99, 0x77), range: newRange(24, 31) }
 			);
@@ -363,12 +475,40 @@ suite('CSS - Navigation', () => {
 				{ color: colorFrom256RGB(1, 40, 1), range: newRange(13, 24) },
 				{ color: colorFromHSL(120, 0.75, 0.85), range: newRange(39, 57) }
 			);
+			assertColorSymbols(ls, 'body { backgroundColor: rgba(1, 40, 1, 0.3); }',
+				{ color: colorFrom256RGB(1, 40, 1, 0.3), range: newRange(24, 43) }
+			);
+			assertColorSymbols(ls, 'body { backgroundColor: hwb(194 0% 0% / .5); }',
+				{ color: colorFromHWB(194, 0, 0, 0.5), range: newRange(24, 43) }
+			);
 		});
 
 		test('color presentations', function () {
-			let ls = getCSSLanguageService();
-			assertColorPresentations(ls, colorFrom256RGB(255, 0, 0), 'rgb(255, 0, 0)', '#ff0000', 'hsl(0, 100%, 50%)');
-			assertColorPresentations(ls, colorFrom256RGB(77, 33, 111, 0.5), 'rgba(77, 33, 111, 0.5)', '#4d216f80', 'hsla(274, 54%, 28%, 0.5)');
+			const ls = getCSSLS();
+			assertColorPresentations(
+				ls,
+				colorFrom256RGB(255, 0, 0),
+				'rgb(255, 0, 0)',
+				'#ff0000',
+				'hsl(0, 100%, 50%)',
+				'hwb(0 0% 0%)',
+				'lab(53.23% 80.11 67.22)',
+				'lch(53.23% 104.58 40)',
+				'oklab(62.793% 0.22489 0.1258)',
+				'oklch(62.793% 0.25768 29.223)',
+			);
+			assertColorPresentations(
+				ls,
+				colorFrom256RGB(77, 33, 111, 0.5),
+				'rgba(77, 33, 111, 0.5)',
+				'#4d216f80',
+				'hsla(274, 54%, 28%, 0.5)',
+				'hwb(274 13% 56% / 0.5)',
+				'lab(23.04% 35.9 -36.96 / 0.5)',
+				'lch(23.04% 51.53 314.16 / 0.5)',
+				'oklab(35.231% 0.0782 -0.10478 / 0.5)',
+				'oklch(35.231% 0.13074 306.734 / 0.5)',
+			);
 		});
 	});
 });

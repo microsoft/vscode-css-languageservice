@@ -35,17 +35,49 @@ export class CSSDataProvider implements ICSSDataProvider {
 	}
 
 	private addData(data: CSSDataV1) {
-		if (data.properties) {
-			this._properties = this._properties.concat(data.properties);
+		if (Array.isArray(data.properties)) {
+			for (const prop of data.properties) {
+				if (isPropertyData(prop)) {
+					this._properties.push(prop);
+				}
+			}
 		}
-		if (data.atDirectives) {
-			this._atDirectives = this._atDirectives.concat(data.atDirectives);
+		if (Array.isArray(data.atDirectives)) {
+			for (const prop of data.atDirectives) {
+				if (isAtDirective(prop)) {
+					this._atDirectives.push(prop);
+				}
+			}
 		}
-		if (data.pseudoClasses) {
-			this._pseudoClasses = this._pseudoClasses.concat(data.pseudoClasses);
+		if (Array.isArray(data.pseudoClasses)) {
+			for (const prop of data.pseudoClasses) {
+				if (isPseudoClassData(prop)) {
+					this._pseudoClasses.push(prop);
+				}
+			}
 		}
-		if (data.pseudoElements) {
-			this._pseudoElements = this._pseudoElements.concat(data.pseudoElements);
+		if (Array.isArray(data.pseudoElements)) {
+			for (const prop of data.pseudoElements) {
+				if (isPseudoElementData(prop)) {
+					this._pseudoElements.push(prop);
+				}
+			}
 		}
 	}
+}
+
+function isPropertyData(d: any) : d is IPropertyData {
+	return typeof d.name === 'string';
+}
+
+function isAtDirective(d: any) : d is IAtDirectiveData {
+	return typeof d.name === 'string';
+}
+
+function isPseudoClassData(d: any) : d is IPseudoClassData {
+	return typeof d.name === 'string';
+}
+
+function isPseudoElementData(d: any) : d is IPseudoElementData {
+	return typeof d.name === 'string';
 }

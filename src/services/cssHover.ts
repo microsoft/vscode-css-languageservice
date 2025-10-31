@@ -6,21 +6,32 @@
 
 import * as nodes from '../parser/cssNodes';
 import * as languageFacts from '../languageFacts/facts';
-import { selectorToMarkedString, simpleSelectorToMarkedString } from './selectorPrinting';
+import { SelectorPrinting } from './selectorPrinting';
 import { startsWith } from '../utils/strings';
-import { TextDocument, Range, Position, Hover, MarkedString, MarkupContent, MarkupKind, ClientCapabilities } from '../cssLanguageTypes';
+import { TextDocument, Range, Position, Hover, MarkedString, MarkupContent, MarkupKind, ClientCapabilities, HoverSettings } from '../cssLanguageTypes';
 import { isDefined } from '../utils/objects';
+import { CSSDataManager } from '../languageFacts/dataManager';
 
 export class CSSHover {
 	private supportsMarkdown: boolean | undefined;
+	private readonly selectorPrinting: SelectorPrinting;
+	private defaultSettings?: HoverSettings;
 
-	constructor(private clientCapabilities: ClientCapabilities | undefined) { }
+	constructor(
+		private readonly clientCapabilities: ClientCapabilities | undefined,
+		private readonly cssDataManager: CSSDataManager,
+	) {
+		this.selectorPrinting = new SelectorPrinting(cssDataManager);
+	}
 
-	public doHover(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Hover | null {
+	public configure(settings: HoverSettings | undefined) {
+		this.defaultSettings = settings;
+	}
+
+	public doHover(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet, settings = this.defaultSettings): Hover | null {
 		function getRange(node: nodes.Node) {
 			return Range.create(document.positionAt(node.offset), document.positionAt(node.end));
 		}
-
 		const offset = document.offsetAt(position);
 		const nodepath = nodes.getNodePath(stylesheet, offset);
 
@@ -29,14 +40,33 @@ export class CSSHover {
 		 * Build up the hover by appending inner node's information
 		 */
 		let hover: Hover | null = null;
+		let selectorContexts: string[] = [];
 
 		for (let i = 0; i < nodepath.length; i++) {
 			const node = nodepath[i];
 
+			if (node instanceof nodes.Scope) {
+				const scopeLimits = node.getChild(0)
+
+				if (scopeLimits instanceof nodes.ScopeLimits) {
+					const scopeName = `${scopeLimits.getName()}`
+					selectorContexts.push(`@scope${scopeName ? ` ${scopeName}` : ''}`);
+				}
+			}
+
+			if (node instanceof nodes.Media) {
+				const mediaList = node.getChild(0);
+				
+				if (mediaList instanceof nodes.Medialist) {
+					const name = '@media ' + mediaList.getText();
+					selectorContexts.push(name)
+				}
+			}
+
 			if (node instanceof nodes.Selector) {
 				hover = {
-					contents: selectorToMarkedString(<nodes.Selector>node),
-					range: getRange(node)
+					contents: this.selectorPrinting.selectorToMarkedString(<nodes.Selector>node, selectorContexts),
+					range: getRange(node),
 				};
 				break;
 			}
@@ -47,8 +77,8 @@ export class CSSHover {
 				 */
 				if (!startsWith(node.getText(), '@')) {
 					hover = {
-						contents: simpleSelectorToMarkedString(<nodes.SimpleSelector>node),
-						range: getRange(node)
+						contents: this.selectorPrinting.simpleSelectorToMarkedString(<nodes.SimpleSelector>node),
+						range: getRange(node),
 					};
 				}
 				break;
@@ -56,44 +86,55 @@ export class CSSHover {
 
 			if (node instanceof nodes.Declaration) {
 				const propertyName = node.getFullPropertyName();
-				const entry = languageFacts.cssDataManager.getProperty(propertyName);
+				const entry = this.cssDataManager.getProperty(propertyName);
 				if (entry) {
-					hover = {
-						contents: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
-						range: getRange(node)
-					};
+					const contents = languageFacts.getEntryDescription(entry, this.doesSupportMarkdown(), settings);
+					if (contents) {
+						hover = {
+							contents,
+							range: getRange(node),
+						};
+					} else {
+						hover = null;
+					}
 				}
 				continue;
 			}
 
 			if (node instanceof nodes.UnknownAtRule) {
 				const atRuleName = node.getText();
-				const entry = languageFacts.cssDataManager.getAtDirective(atRuleName);
+				const entry = this.cssDataManager.getAtDirective(atRuleName);
 				if (entry) {
-					hover = {
-						contents: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
-						range: getRange(node)
-					};
+					const contents = languageFacts.getEntryDescription(entry, this.doesSupportMarkdown(), settings);
+					if (contents) {
+						hover = {
+							contents,
+							range: getRange(node),
+						};
+					} else {
+						hover = null;
+					}
 				}
 				continue;
 			}
 
 			if (node instanceof nodes.Node && node.type === nodes.NodeType.PseudoSelector) {
 				const selectorName = node.getText();
-				const entry =
-					selectorName.slice(0, 2) === '::'
-						? languageFacts.cssDataManager.getPseudoElement(selectorName)
-						: languageFacts.cssDataManager.getPseudoClass(selectorName);
+				const entry = selectorName.slice(0, 2) === '::' ? this.cssDataManager.getPseudoElement(selectorName) : this.cssDataManager.getPseudoClass(selectorName);
 				if (entry) {
-					hover = {
-						contents: languageFacts.getEntryDescription(entry, this.doesSupportMarkdown()),
-						range: getRange(node)
-					};
+					const contents = languageFacts.getEntryDescription(entry, this.doesSupportMarkdown(), settings);
+					if (contents) {
+						hover = {
+							contents,
+							range: getRange(node),
+						};
+					} else {
+						hover = null;
+					}
 				}
 				continue;
 			}
 		}
-
 
 		if (hover) {
 			hover.contents = this.convertContents(hover.contents);
@@ -111,12 +152,12 @@ export class CSSHover {
 			else if ('kind' in contents) {
 				return {
 					kind: 'plaintext',
-					value: contents.value
+					value: contents.value,
 				};
 			}
 			// MarkedString[]
 			else if (Array.isArray(contents)) {
-				return contents.map(c => {
+				return contents.map((c) => {
 					return typeof c === 'string' ? c : c.value;
 				});
 			}

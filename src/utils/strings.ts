@@ -82,3 +82,31 @@ export function getLimitedString(str: string, ellipsis = true): string {
 	}
 	return str.slice(0, 140) + (ellipsis ? '\u2026' : '');
 }
+
+/**
+ * Limit of string length.
+ */
+export function trim(str: string, regexp: RegExp): string {
+	const m = regexp.exec(str);
+	if (m && m[0].length) {
+		return str.substr(0, str.length - m[0].length);
+	}
+	return str;
+}
+
+export function repeat(value: string, count: number) {
+	let s = '';
+	while (count > 0) {
+		if ((count & 1) === 1) {
+			s += value;
+		}
+		value += value;
+		count = count >>> 1;
+	}
+	return s;
+}
+
+export function convertSimple2RegExpPattern(pattern: string): string {
+	return pattern.replace(/[\-\\\{\}\+\?\|\^\$\.\,\[\]\(\)\#\s]/g, '\\$&').replace(/[\*]/g, '.*');
+}
+

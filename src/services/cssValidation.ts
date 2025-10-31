@@ -8,12 +8,13 @@ import * as nodes from '../parser/cssNodes';
 import { LintConfigurationSettings, Rules } from './lintRules';
 import { LintVisitor } from './lint';
 import { TextDocument, Range, Diagnostic, DiagnosticSeverity, LanguageSettings } from '../cssLanguageTypes';
+import { CSSDataManager } from '../languageFacts/dataManager';
 
 export class CSSValidation {
 
 	private settings?: LanguageSettings;
 
-	constructor() {
+	constructor(private cssDataManager: CSSDataManager) {
 	}
 
 	public configure(settings?: LanguageSettings) {
@@ -27,7 +28,7 @@ export class CSSValidation {
 
 		const entries: nodes.IMarker[] = [];
 		entries.push.apply(entries, nodes.ParseErrorCollector.entries(stylesheet));
-		entries.push.apply(entries, LintVisitor.entries(stylesheet, document, new LintConfigurationSettings(settings && settings.lint)));
+		entries.push.apply(entries, LintVisitor.entries(stylesheet, document, new LintConfigurationSettings(settings && settings.lint), this.cssDataManager));
 
 		const ruleIds: string[] = [];
 		for (const r in Rules) {

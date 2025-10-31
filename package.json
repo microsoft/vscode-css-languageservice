@@ -1,6 +1,6 @@
 {
   "name": "vscode-css-languageservice",
-  "version": "4.0.3-next.25",
+  "version": "6.3.8",
   "description": "Language service for CSS, LESS and SCSS",
   "main": "./lib/umd/cssLanguageService.js",
   "typings": "./lib/umd/cssLanguageService",
@@ -15,37 +15,39 @@
     "url": "https://github.com/Microsoft/vscode-css-languageservice"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.7",
-    "@types/node": "^10.12.21",
-    "mkdirp": "^0.5.1",
-    "mocha": "^6.2.2",
-    "nyc": "^14.1.1",
-    "rimraf": "^3.0.0",
-    "tslint": "^5.20.0",
-    "typescript": "^3.6.4",
-    "vscode-web-custom-data": "^0.1.2"
+    "@types/mocha": "^10.0.10",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^8.44.1",
+    "@typescript-eslint/parser": "^8.44.1",
+    "@vscode/web-custom-data": "^0.6.0",
+    "eslint": "^9.36.0",
+    "js-beautify": "^1.15.4",
+    "mocha": "^11.7.2",
+    "rimraf": "^6.0.1",
+    "source-map-support": "^0.5.21",
+    "typescript": "^5.9.2"
   },
   "dependencies": {
-    "vscode-languageserver-textdocument": "^1.0.0-next.4",
-    "vscode-languageserver-types": "^3.15.0-next.6",
-    "vscode-nls": "^4.1.1",
-    "vscode-uri": "^2.1.1"
+    "@vscode/l10n": "^0.0.18",
+    "vscode-languageserver-textdocument": "^1.0.12",
+    "vscode-languageserver-types": "3.17.5",
+    "vscode-uri": "^3.1.0"
   },
   "scripts": {
-    "prepublishOnly": "npm run clean && npm run compile-esm && npm run test && npm run remove-sourcemap-refs",
-    "postpublish": "node ./build/post-publish.js",
-    "compile": "tsc -p ./src && npm run lint",
+    "prepack": "npm run clean && npm run compile-esm && npm run test && npm run remove-sourcemap-refs",
+    "compile": "tsc -p ./src && npm run copy-jsbeautify && npm run lint",
     "compile-esm": "tsc -p ./src/tsconfig.esm.json",
     "clean": "rimraf lib",
     "remove-sourcemap-refs": "node ./build/remove-sourcemap-refs.js",
-    "watch": "tsc -w -p ./src",
-    "test": "npm run compile && mocha",
-    "mocha": "mocha",
-    "coverage": "nyc --reporter=html --reporter=text  mocha",
-    "lint": "tslint src/**/*.ts",
-    "update-data": "node ./build/generateData.js",
-    "install-types-next": "yarn add vscode-languageserver-types@next -f -S && yarn add vscode-languageserver-textdocument@next -f -S",
-    "preversion": "npm test",
-    "postversion": "git push && git push --tags"
+    "watch": "npm run copy-jsbeautify && tsc -w -p ./src",
+    "test": "npm run compile && npm run mocha",
+    "mocha": "mocha --require source-map-support/register",
+    "coverage": "npm run compile && npx nyc --reporter=html --reporter=text  mocha",
+    "lint": "eslint src/**/*.ts",
+    "update-data": "npm install @vscode/web-custom-data -D && node ./build/generateData.js",
+    "install-types-next": "npm install vscode-languageserver-types@next -f -S && npm install vscode-languageserver-textdocument@next -f -S",
+    "copy-jsbeautify": "node ./build/copy-jsbeautify.js",
+    "update-jsbeautify": "npm install js-beautify && node ./build/update-jsbeautify.js",
+    "update-jsbeautify-next": "npm install js-beautify@next && node ./build/update-jsbeautify.js"
   }
 }

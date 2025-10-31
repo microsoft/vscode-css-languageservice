@@ -5,19 +5,18 @@
 'use strict';
 
 import * as nodes from '../parser/cssNodes';
-import * as languageFacts from '../languageFacts/facts';
 import { difference } from '../utils/strings';
 import { Rules } from '../services/lintRules';
 import {
 	Range, CodeActionContext, Diagnostic, Command, TextEdit, CodeAction, WorkspaceEdit, CodeActionKind,
-	TextDocumentEdit, VersionedTextDocumentIdentifier, TextDocument
+	TextDocumentEdit, VersionedTextDocumentIdentifier, TextDocument, ICSSDataProvider
 } from '../cssLanguageTypes';
-import * as nls from 'vscode-nls';
-const localize = nls.loadMessageBundle();
+import * as l10n from '@vscode/l10n';
+import { CSSDataManager } from '../languageFacts/dataManager';
 
 export class CSSCodeActions {
 
-	constructor() {
+	constructor(private readonly cssDataManager: CSSDataManager) {
 	}
 
 	public doCodeActions(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: nodes.Stylesheet): Command[] {
@@ -47,7 +46,7 @@ export class CSSCodeActions {
 		const propertyName = property.getName();
 		const candidates: RankedProperty[] = [];
 
-		languageFacts.cssDataManager.getProperties().forEach(p => {
+		this.cssDataManager.getProperties().forEach(p => {
 			const score = difference(propertyName, p.name);
 			if (score >= propertyName.length / 2 /*score_lim*/) {
 				candidates.push({ property: p.name, score });
@@ -55,14 +54,14 @@ export class CSSCodeActions {
 		});
 
 		// Sort in descending order.
-		candidates.sort((a, b) => {
-			return b.score - a.score;
+		candidates.sort((a: RankedProperty, b: RankedProperty) => {
+			return b.score - a.score || a.property.localeCompare(b.property);
 		});
 
 		let maxActions = 3;
 		for (const candidate of candidates) {
 			const propertyName = candidate.property;
-			const title = localize('css.codeaction.rename', "Rename to '{0}'", propertyName);
+			const title = l10n.t("Rename to '{0}'", propertyName);
 			const edit = TextEdit.replace(marker.range, propertyName);
 			const documentIdentifier = VersionedTextDocumentIdentifier.create(document.uri, document.version);
 			const workspaceEdit: WorkspaceEdit = { documentChanges: [TextDocumentEdit.create(documentIdentifier, [edit])] };

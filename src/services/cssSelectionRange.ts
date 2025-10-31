@@ -25,7 +25,8 @@ export function getSelectionRanges(document: TextDocument, positions: Position[]
 	return positions.map(getSelectionRange);
 
 	function getApplicableRanges(position: Position): number[][] {
-		let currNode = stylesheet.findChildAtOffset(document.offsetAt(position), true);
+		const offset = document.offsetAt(position);
+		let currNode = stylesheet.findChildAtOffset(offset, true);
 
 		if (!currNode) {
 			return [];
@@ -43,11 +44,15 @@ export function getSelectionRanges(document: TextDocument, positions: Position[]
 				continue;
 			}
 
+			// The `{ }` part of `.a { }`
 			if (currNode.type === NodeType.Declarations) {
-				result.push([currNode.offset + 1, currNode.end - 1]);
-			} else {
-				result.push([currNode.offset, currNode.end]);
+				if (offset > currNode.offset && offset < currNode.end) {
+					// Return `{ }` and the range inside `{` and `}`
+					result.push([currNode.offset + 1, currNode.end - 1]);
+				}
 			}
+
+			result.push([currNode.offset, currNode.end]);
 
 			currNode = currNode.parent;
 		}

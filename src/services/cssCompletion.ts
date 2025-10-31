@@ -9,14 +9,22 @@ import { Symbols, Symbol } from '../parser/cssSymbolScope';
 import * as languageFacts from '../languageFacts/facts';
 import * as strings from '../utils/strings';
 import {
-	ICompletionParticipant, LanguageSettings, ClientCapabilities, TextDocument,
-	Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, MarkupContent, CompletionItemTag
+	ICompletionParticipant, LanguageSettings, TextDocument, Command,
+	Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, CompletionItemTag, DocumentContext, LanguageServiceOptions, IPropertyData, CompletionSettings,
+	IDescriptorData
 } from '../cssLanguageTypes';
 
-import * as nls from 'vscode-nls';
+import * as l10n from '@vscode/l10n';
 import { isDefined } from '../utils/objects';
-const localize = nls.loadMessageBundle();
+import { CSSDataManager } from '../languageFacts/dataManager';
+import { PathCompletionParticipant } from './pathCompletion';
+
 const SnippetFormat = InsertTextFormat.Snippet;
+
+const retriggerCommand: Command = {
+	title: 'Suggest',
+	command: 'editor.action.triggerSuggest'
+};
 
 enum SortTexts {
 	// char code 32, comes before everything
@@ -31,7 +39,7 @@ enum SortTexts {
 
 export class CSSCompletion {
 
-	private settings?: LanguageSettings;
+	private defaultSettings?: CompletionSettings;
 
 	private supportsMarkdown: boolean | undefined;
 
@@ -44,12 +52,14 @@ export class CSSCompletion {
 	defaultReplaceRange!: Range;
 	nodePath!: nodes.Node[];
 	completionParticipants: ICompletionParticipant[] = [];
+	documentSettings?: CompletionSettings;
 
-	constructor(public variablePrefix: string | null = null, private clientCapabilities: ClientCapabilities | undefined) {
+
+	constructor(public variablePrefix: string | null = null, private lsOptions: LanguageServiceOptions, private cssDataManager: CSSDataManager) {
 	}
 
-	public configure(settings?: LanguageSettings) {
-		this.settings = settings;
+	public configure(settings?: CompletionSettings) {
+		this.defaultSettings = settings;
 	}
 
 	protected getSymbolContext(): Symbols {
@@ -63,15 +73,48 @@ export class CSSCompletion {
 		this.completionParticipants = registeredCompletionParticipants || [];
 	}
 
-	public doComplete(document: TextDocument, position: Position, styleSheet: nodes.Stylesheet): CompletionList {
+	public async doComplete2(document: TextDocument, position: Position, styleSheet: nodes.Stylesheet, documentContext: DocumentContext, completionSettings = this.defaultSettings): Promise<CompletionList> {
+		if (!this.lsOptions.fileSystemProvider || !this.lsOptions.fileSystemProvider.readDirectory) {
+			return this.doComplete(document, position, styleSheet, completionSettings);
+		}
+
+		const participant: PathCompletionParticipant = new PathCompletionParticipant(this.lsOptions.fileSystemProvider.readDirectory);
+		const contributedParticipants = this.completionParticipants;
+		this.completionParticipants = [participant as ICompletionParticipant].concat(contributedParticipants);
+
+		const result = this.doComplete(document, position, styleSheet, completionSettings);
+		try {
+			const pathCompletionResult = await participant.computeCompletions(document, documentContext);
+			return {
+				isIncomplete: result.isIncomplete || pathCompletionResult.isIncomplete,
+				itemDefaults: result.itemDefaults,
+				items: pathCompletionResult.items.concat(result.items)
+			};
+		} finally {
+			this.completionParticipants = contributedParticipants;
+		}
+	}
+
+
+	public doComplete(document: TextDocument, position: Position, styleSheet: nodes.Stylesheet, documentSettings: CompletionSettings | undefined): CompletionList {
 		this.offset = document.offsetAt(position);
 		this.position = position;
 		this.currentWord = getCurrentWord(document, this.offset);
 		this.defaultReplaceRange = Range.create(Position.create(this.position.line, this.position.character - this.currentWord.length), this.position);
 		this.textDocument = document;
 		this.styleSheet = styleSheet;
+		this.documentSettings = documentSettings;
 		try {
-			const result: CompletionList = { isIncomplete: false, items: [] };
+			const result: CompletionList = {
+				isIncomplete: false,
+				itemDefaults: {
+					editRange: {
+						start: { line: position.line, character: position.character - this.currentWord.length },
+						end: position
+					}
+				},
+				items: []
+			};
 			this.nodePath = nodes.getNodePath(this.styleSheet, this.offset);
 
 			for (let i = this.nodePath.length - 1; i >= 0; i--) {
@@ -114,6 +157,8 @@ export class CSSCompletion {
 					this.getCompletionsForSupports(<nodes.Supports>node, result);
 				} else if (node instanceof nodes.SupportsCondition) {
 					this.getCompletionsForSupportsCondition(<nodes.SupportsCondition>node, result);
+				} else if (node instanceof nodes.MediaCondition) {
+					this.getCompletionsForMediaCondition(node, result);
 				} else if (node instanceof nodes.ExtendsReference) {
 					this.getCompletionsForExtendsReference(<nodes.ExtendsReference>node, null, result);
 				} else if (node.type === nodes.NodeType.URILiteral) {
@@ -156,24 +201,6 @@ export class CSSCompletion {
 	}
 
 	private finalize(result: CompletionList): CompletionList {
-		const needsSortText = result.items.some(i => !!i.sortText || i.label[0] === '-');
-		if (needsSortText) {
-			result.items.forEach((item, index) => {
-				if (!item.sortText) {
-					if (item.label[0] === '-') {
-						item.sortText = SortTexts.VendorPrefixed + '_' + computeRankNumber(index);
-					} else {
-						item.sortText = SortTexts.Normal + '_' + computeRankNumber(index);
-					}
-				} else {
-					if (item.label[0] === '-') {
-						item.sortText += SortTexts.VendorPrefixed + '_' + computeRankNumber(index);
-					} else {
-						item.sortText += SortTexts.Normal + '_' + computeRankNumber(index);
-					}
-				}
-			});
-		}
 		return result;
 	}
 
@@ -194,7 +221,7 @@ export class CSSCompletion {
 	private getPropertyProposals(declaration: nodes.Declaration | null, result: CompletionList): CompletionList {
 		const triggerPropertyValueCompletion = this.isTriggerPropertyValueCompletionEnabled;
 		const completePropertyWithSemicolon = this.isCompletePropertyWithSemicolonEnabled;
-		const properties = languageFacts.cssDataManager.getProperties();
+		const properties = this.cssDataManager.getProperties();
 
 		properties.forEach(entry => {
 			let range: Range;
@@ -232,18 +259,13 @@ export class CSSCompletion {
 				insertTextFormat: InsertTextFormat.Snippet,
 				kind: CompletionItemKind.Property
 			};
-			if (!entry.restrictions) {
-				retrigger = false;
-			}
 			if (triggerPropertyValueCompletion && retrigger) {
-				item.command = {
-					title: 'Suggest',
-					command: 'editor.action.triggerSuggest'
-				};
+				item.command = retriggerCommand;
 			}
-			if (strings.startsWith(entry.name, '-')) {
-				item.sortText = SortTexts.VendorPrefixed;
-			}
+			const relevance = typeof entry.relevance === 'number' ? Math.min(Math.max(entry.relevance, 0), 99) : 50;
+			const sortTextSuffix = (255 - relevance).toString(16);
+			const sortTextPrefix = strings.startsWith(entry.name, '-') ? SortTexts.VendorPrefixed : SortTexts.Normal;
+			item.sortText = sortTextPrefix + '_' + sortTextSuffix;
 			result.items.push(item);
 		});
 
@@ -259,36 +281,16 @@ export class CSSCompletion {
 	}
 
 	private get isTriggerPropertyValueCompletionEnabled(): boolean {
-		if (
-			!this.settings ||
-			!this.settings.completion ||
-			this.settings.completion.triggerPropertyValueCompletion === undefined
-		) {
-			return true;
-		}
-		return this.settings.completion.triggerPropertyValueCompletion;
+		return this.documentSettings?.triggerPropertyValueCompletion ?? true;
 	}
 
 	private get isCompletePropertyWithSemicolonEnabled(): boolean {
-		if (
-			!this.settings ||
-			!this.settings.completion ||
-			this.settings.completion.completePropertyWithSemicolon === undefined
-		) {
-			return true;
-		}
-		return this.settings.completion.completePropertyWithSemicolon;
+		return this.documentSettings?.completePropertyWithSemicolon ?? true;
 	}
-
-
-	private valueTypes = [
-		nodes.NodeType.Identifier, nodes.NodeType.Value, nodes.NodeType.StringLiteral, nodes.NodeType.URILiteral, nodes.NodeType.NumericValue,
-		nodes.NodeType.HexColorValue, nodes.NodeType.VariableName, nodes.NodeType.Prio
-	];
 
 	public getCompletionsForDeclarationValue(node: nodes.Declaration, result: CompletionList): CompletionList {
 		const propertyName = node.getFullPropertyName();
-		const entry = languageFacts.cssDataManager.getProperty(propertyName);
+		const entry = this.cssDataManager.getProperty(propertyName);
 		let existingNode: nodes.Node | null = node.getValue() || null;
 
 		while (existingNode && existingNode.hasChildren()) {
@@ -360,7 +362,7 @@ export class CSSCompletion {
 		return result;
 	}
 
-	public getValueEnumProposals(entry: languageFacts.IEntry, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
+	public getValueEnumProposals(entry: IPropertyData | IDescriptorData, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
 		if (entry.values) {
 			for (const value of entry.values) {
 				let insertString = value.name;
@@ -368,16 +370,21 @@ export class CSSCompletion {
 				if (strings.endsWith(insertString, ')')) {
 					const from = insertString.lastIndexOf('(');
 					if (from !== -1) {
-						insertString = insertString.substr(0, from) + '($1)';
+						insertString = insertString.substring(0, from + 1) + '$1' + insertString.substring(from + 1);
 						insertTextFormat = SnippetFormat;
 					}
 				}
+				let sortText: string = SortTexts.Enums;
+				if (strings.startsWith(value.name, '-')) {
+					sortText += SortTexts.VendorPrefixed;
+				}
+
 				const item: CompletionItem = {
 					label: value.name,
 					documentation: languageFacts.getEntryDescription(value, this.doesSupportMarkdown()),
 					tags: isDeprecated(entry) ? [CompletionItemTag.Deprecated] : [],
 					textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertString),
-					sortText: SortTexts.Enums,
+					sortText,
 					kind: CompletionItemKind.Value,
 					insertTextFormat
 				};
@@ -387,13 +394,24 @@ export class CSSCompletion {
 		return result;
 	}
 
-	public getCSSWideKeywordProposals(entry: languageFacts.IEntry, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
+	public getCSSWideKeywordProposals(entry: IPropertyData, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
 		for (const keywords in languageFacts.cssWideKeywords) {
 			result.items.push({
 				label: keywords,
 				documentation: languageFacts.cssWideKeywords[keywords],
 				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), keywords),
 				kind: CompletionItemKind.Value
+			});
+		}
+		for (const func in languageFacts.cssWideFunctions) {
+			const insertText = moveCursorInsideParenthesis(func);
+			result.items.push({
+				label: func,
+				documentation: languageFacts.cssWideFunctions[func],
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
+				kind: CompletionItemKind.Function,
+				insertTextFormat: SnippetFormat,
+				command: strings.startsWith(func, 'var') ? retriggerCommand : undefined
 			});
 		}
 		return result;
@@ -418,14 +436,14 @@ export class CSSCompletion {
 				sortText: SortTexts.Variable
 			};
 
-			if (typeof completionItem.documentation === 'string' && isColorString(completionItem.documentation)) {
+			if (typeof completionItem.documentation === 'string' && languageFacts.isColorString(completionItem.documentation)) {
 				completionItem.kind = CompletionItemKind.Color;
 			}
 
 			if (symbol.node.type === nodes.NodeType.FunctionParameter) {
 				const mixinNode = <nodes.MixinDeclaration>(symbol.node.getParent());
 				if (mixinNode.type === nodes.NodeType.MixinDeclaration) {
-					completionItem.detail = localize('completion.argument', 'argument from \'{0}\'', mixinNode.getName());
+					completionItem.detail = l10n.t('argument from \'{0}\'', mixinNode.getName());
 				}
 			}
 
@@ -435,28 +453,42 @@ export class CSSCompletion {
 	}
 
 	public getVariableProposalsForCSSVarFunction(result: CompletionList): CompletionList {
+		const allReferencedVariables = new Set();
+		this.styleSheet.acceptVisitor(new VariableCollector(allReferencedVariables, this.offset));
+
+
 		let symbols = this.getSymbolContext().findSymbolsAtOffset(this.offset, nodes.ReferenceType.Variable);
-		symbols = symbols.filter((symbol): boolean => {
-			return strings.startsWith(symbol.name, '--');
-		});
 		for (const symbol of symbols) {
-			const completionItem: CompletionItem = {
-				label: symbol.name,
-				documentation: symbol.value ? strings.getLimitedString(symbol.value) : symbol.value,
-				textEdit: TextEdit.replace(this.getCompletionRange(null), symbol.name),
-				kind: CompletionItemKind.Variable
-			};
+			if (strings.startsWith(symbol.name, '--')) {
+				const completionItem: CompletionItem = {
+					label: symbol.name,
+					documentation: symbol.value ? strings.getLimitedString(symbol.value) : symbol.value,
+					textEdit: TextEdit.replace(this.getCompletionRange(null), symbol.name),
+					kind: CompletionItemKind.Variable
+				};
+				if (typeof completionItem.documentation === 'string' && languageFacts.isColorString(completionItem.documentation)) {
+					completionItem.kind = CompletionItemKind.Color;
+				}
 
-			if (typeof completionItem.documentation === 'string' && isColorString(completionItem.documentation)) {
-				completionItem.kind = CompletionItemKind.Color;
+				result.items.push(completionItem);
 			}
+			allReferencedVariables.remove(symbol.name);
+		}
 
-			result.items.push(completionItem);
+		for (const name of allReferencedVariables.getEntries()) {
+			if (strings.startsWith(name, '--')) {
+				const completionItem: CompletionItem = {
+					label: name,
+					textEdit: TextEdit.replace(this.getCompletionRange(null), name),
+					kind: CompletionItemKind.Variable
+				};
+				result.items.push(completionItem);
+			}
 		}
 		return result;
 	}
 
-	public getUnitProposals(entry: languageFacts.IEntry, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
+	public getUnitProposals(entry: IPropertyData, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
 		let currentWord = '0';
 		if (this.currentWord.length > 0) {
 			const numMatch = this.currentWord.match(/^-?\d[\.\d+]*/);
@@ -499,7 +531,7 @@ export class CSSCompletion {
 		return this.defaultReplaceRange;
 	}
 
-	protected getColorProposals(entry: languageFacts.IEntry, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
+	protected getColorProposals(entry: IPropertyData, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
 		for (const color in languageFacts.colors) {
 			result.items.push({
 				label: color,
@@ -526,14 +558,11 @@ export class CSSCompletion {
 			});
 		}
 		for (const p of languageFacts.colorFunctions) {
-			let tabStop = 1;
-			const replaceFunction = (_match: string, p1: string) => '${' + tabStop++ + ':' + p1 + '}';
-			const insertText = p.func.replace(/\[?\$(\w+)\]?/g, replaceFunction);
 			result.items.push({
-				label: p.func.substr(0, p.func.indexOf('(')),
+				label: p.label,
 				detail: p.func,
 				documentation: p.desc,
-				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), insertText),
+				textEdit: TextEdit.replace(this.getCompletionRange(existingNode), p.insertText),
 				insertTextFormat: SnippetFormat,
 				kind: CompletionItemKind.Function
 			});
@@ -541,7 +570,7 @@ export class CSSCompletion {
 		return result;
 	}
 
-	protected getPositionProposals(entry: languageFacts.IEntry, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
+	protected getPositionProposals(entry: IPropertyData, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
 		for (const position in languageFacts.positionKeywords) {
 			result.items.push({
 				label: position,
@@ -553,7 +582,7 @@ export class CSSCompletion {
 		return result;
 	}
 
-	protected getRepeatStyleProposals(entry: languageFacts.IEntry, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
+	protected getRepeatStyleProposals(entry: IPropertyData, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
 		for (const repeat in languageFacts.repeatStyleKeywords) {
 			result.items.push({
 				label: repeat,
@@ -565,7 +594,7 @@ export class CSSCompletion {
 		return result;
 	}
 
-	protected getLineStyleProposals(entry: languageFacts.IEntry, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
+	protected getLineStyleProposals(entry: IPropertyData, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
 		for (const lineStyle in languageFacts.lineStyleKeywords) {
 			result.items.push({
 				label: lineStyle,
@@ -577,7 +606,7 @@ export class CSSCompletion {
 		return result;
 	}
 
-	protected getLineWidthProposals(entry: languageFacts.IEntry, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
+	protected getLineWidthProposals(entry: IPropertyData, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
 		for (const lineWidth of languageFacts.lineWidthKeywords) {
 			result.items.push({
 				label: lineWidth,
@@ -588,7 +617,7 @@ export class CSSCompletion {
 		return result;
 	}
 
-	protected getGeometryBoxProposals(entry: languageFacts.IEntry, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
+	protected getGeometryBoxProposals(entry: IPropertyData, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
 		for (const box in languageFacts.geometryBoxKeywords) {
 			result.items.push({
 				label: box,
@@ -600,7 +629,7 @@ export class CSSCompletion {
 		return result;
 	}
 
-	protected getBoxProposals(entry: languageFacts.IEntry, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
+	protected getBoxProposals(entry: IPropertyData, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
 		for (const box in languageFacts.boxKeywords) {
 			result.items.push({
 				label: box,
@@ -612,7 +641,7 @@ export class CSSCompletion {
 		return result;
 	}
 
-	protected getImageProposals(entry: languageFacts.IEntry, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
+	protected getImageProposals(entry: IPropertyData, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
 		for (const image in languageFacts.imageFunctions) {
 			const insertText = moveCursorInsideParenthesis(image);
 			result.items.push({
@@ -626,7 +655,7 @@ export class CSSCompletion {
 		return result;
 	}
 
-	protected getTimingFunctionProposals(entry: languageFacts.IEntry, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
+	protected getTimingFunctionProposals(entry: IPropertyData, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
 		for (const timing in languageFacts.transitionTimingFunctions) {
 			const insertText = moveCursorInsideParenthesis(timing);
 			result.items.push({
@@ -640,7 +669,7 @@ export class CSSCompletion {
 		return result;
 	}
 
-	protected getBasicShapeProposals(entry: languageFacts.IEntry, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
+	protected getBasicShapeProposals(entry: IPropertyData, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
 		for (const shape in languageFacts.basicShapeFunctions) {
 			const insertText = moveCursorInsideParenthesis(shape);
 			result.items.push({
@@ -669,7 +698,7 @@ export class CSSCompletion {
 	}
 
 	public getCompletionForTopLevel(result: CompletionList): CompletionList {
-		languageFacts.cssDataManager.getAtDirectives().forEach(entry => {
+		this.cssDataManager.getAtDirectives().forEach(entry => {
 			result.items.push({
 				label: entry.name,
 				textEdit: TextEdit.replace(this.getCompletionRange(null), entry.name),
@@ -700,13 +729,16 @@ export class CSSCompletion {
 
 	public getCompletionsForSelector(ruleSet: nodes.RuleSet | null, isNested: boolean, result: CompletionList): CompletionList {
 		const existingNode = this.findInNodePath(nodes.NodeType.PseudoSelector, nodes.NodeType.IdentifierSelector, nodes.NodeType.ClassSelector, nodes.NodeType.ElementNameSelector);
-		if (!existingNode && this.offset - this.currentWord.length > 0 && this.textDocument.getText()[this.offset - this.currentWord.length - 1] === ':') {
+		if (!existingNode && this.hasCharacterAtPosition(this.offset - this.currentWord.length - 1, ':')) {
 			// after the ':' of a pseudo selector, no node generated for just ':'
 			this.currentWord = ':' + this.currentWord;
+			if (this.hasCharacterAtPosition(this.offset - this.currentWord.length - 1, ':')) {
+				this.currentWord = ':' + this.currentWord; // for '::'
+			}
 			this.defaultReplaceRange = Range.create(Position.create(this.position.line, this.position.character - this.currentWord.length), this.position);
 		}
 
-		const pseudoClasses = languageFacts.cssDataManager.getPseudoClasses();
+		const pseudoClasses = this.cssDataManager.getPseudoClasses();
 		pseudoClasses.forEach(entry => {
 			const insertText = moveCursorInsideParenthesis(entry.name);
 			const item: CompletionItem = {
@@ -723,7 +755,7 @@ export class CSSCompletion {
 			result.items.push(item);
 		});
 
-		const pseudoElements = languageFacts.cssDataManager.getPseudoElements();
+		const pseudoElements = this.cssDataManager.getPseudoElements();
 		pseudoElements.forEach(entry => {
 			const insertText = moveCursorInsideParenthesis(entry.name);
 			const item: CompletionItem = {
@@ -818,6 +850,8 @@ export class CSSCompletion {
 			this.getCompletionsForExtendsReference(node, null, result);
 		} else if (this.currentWord && this.currentWord[0] === '@') {
 			this.getCompletionsForDeclarationProperty(null, result);
+		} else if (node instanceof nodes.RuleSet) {
+			this.getCompletionsForDeclarationProperty(null, result);
 		}
 
 		return result;
@@ -825,7 +859,7 @@ export class CSSCompletion {
 
 	public getCompletionsForVariableDeclaration(declaration: nodes.VariableDeclaration, result: CompletionList): CompletionList {
 		if (this.offset && isDefined(declaration.colonPosition) && this.offset > declaration.colonPosition) {
-			this.getVariableProposals(declaration.getValue(), result);
+			this.getVariableProposals(declaration.getValue() || null, result);
 		}
 		return result;
 	}
@@ -839,7 +873,7 @@ export class CSSCompletion {
 
 		const declaration = <nodes.Declaration>expression.findParent(nodes.NodeType.Declaration);
 		if (!declaration) {
-			this.getTermProposals(null, null, result);
+			this.getTermProposals(undefined, null, result);
 			return result;
 		}
 
@@ -866,7 +900,7 @@ export class CSSCompletion {
 	public getCompletionsForFunctionDeclaration(decl: nodes.FunctionDeclaration, result: CompletionList): CompletionList {
 		const declarations = decl.getDeclarations();
 		if (declarations && this.offset > declarations.offset && this.offset < declarations.end) {
-			this.getTermProposals(null, null, result);
+			this.getTermProposals(undefined, null, result);
 		}
 		return result;
 	}
@@ -878,10 +912,22 @@ export class CSSCompletion {
 				result.items.push(this.makeTermProposal(mixinSymbol, mixinSymbol.node.getParameters(), null));
 			}
 		}
+
+		const identifierNode: nodes.Node | null = ref.getIdentifier() || null;
+
+		this.completionParticipants.forEach(participant => {
+			if (participant.onCssMixinReference) {
+				participant.onCssMixinReference({
+					mixinName: this.currentWord,
+					range: this.getCompletionRange(identifierNode)
+				});
+			}
+		});
+
 		return result;
 	}
 
-	public getTermProposals(entry: languageFacts.IEntry | null, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
+	public getTermProposals(entry: IPropertyData | undefined, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
 		const allFunctions = this.getSymbolContext().findSymbolsAtOffset(this.offset, nodes.ReferenceType.Function);
 		for (const functionSymbol of allFunctions) {
 			if (functionSymbol.node instanceof nodes.FunctionDeclaration) {
@@ -940,6 +986,46 @@ export class CSSCompletion {
 		return this.getCompletionForTopLevel(result);
 	}
 
+	public getCompletionsForMediaCondition(mediaCondition: nodes.MediaCondition, result: CompletionList): CompletionList {
+		const child = mediaCondition.findFirstChildBeforeOffset(this.offset);
+		if (child) {
+			if (child instanceof nodes.MediaFeature) {
+				const featureName = child.getChild(0)
+				if (featureName && this.offset > featureName.end) {
+					const name = featureName.getText();
+					const media = this.cssDataManager.getAtDirective('@media')?.descriptors?.find((descriptor) => descriptor.name === name);
+					if (media) {
+						return this.getValueEnumProposals(media, null, result);
+					}
+				}
+			} else if (child instanceof nodes.MediaCondition) {
+				return this.getCompletionsForMediaCondition(child, result);
+			}
+		}
+		// Return all media descriptors
+		const media = this.cssDataManager.getAtDirective('@media')
+		for (const descriptor of media?.descriptors || []) {
+			let command = undefined
+			let text = descriptor.name
+			if (descriptor.type === 'discrete') {
+				// Change this check when we support auto completes for other types
+				if (descriptor.values) {
+					command = retriggerCommand
+				}
+				text = `${descriptor.name}: `
+			}
+			result.items.push({
+				label: descriptor.name,
+				textEdit: TextEdit.replace(this.getCompletionRange(null), text),
+				documentation: languageFacts.getEntryDescription(descriptor, this.doesSupportMarkdown()),
+				tags: isDeprecated(descriptor) ? [CompletionItemTag.Deprecated] : [],
+				kind: CompletionItemKind.Keyword,
+				command,
+			});
+		}
+		return result;
+	}
+
 	public getCompletionsForExtendsReference(extendsRef: nodes.ExtendsReference, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
 		return result;
 	}
@@ -986,15 +1072,19 @@ export class CSSCompletion {
 		return result;
 	}
 
+	private hasCharacterAtPosition(offset: number, char: string) {
+		const text = this.textDocument.getText();
+		return (offset >= 0 && offset < text.length) && text.charAt(offset) === char;
+	}
+
 	private doesSupportMarkdown() {
 		if (!isDefined(this.supportsMarkdown)) {
-			if (!isDefined(this.clientCapabilities)) {
+			if (!isDefined(this.lsOptions.clientCapabilities)) {
 				this.supportsMarkdown = true;
 				return this.supportsMarkdown;
 			}
-
-			const completion = this.clientCapabilities.textDocument && this.clientCapabilities.textDocument.completion;
-			this.supportsMarkdown = completion && completion.completionItem && Array.isArray(completion.completionItem.documentationFormat) && completion.completionItem.documentationFormat.indexOf(MarkupKind.Markdown) !== -1;
+			const documentationFormat = this.lsOptions.clientCapabilities.textDocument?.completion?.completionItem?.documentationFormat;
+			this.supportsMarkdown = Array.isArray(documentationFormat) && documentationFormat.indexOf(MarkupKind.Markdown) !== -1;
 		}
 		return <boolean>this.supportsMarkdown;
 	}
@@ -1008,29 +1098,13 @@ function isDeprecated(entry: languageFacts.IEntry2): boolean {
 	return false;
 }
 
-/**
- * Rank number should all be same length strings
- */
-function computeRankNumber(n: Number): string {
-	const nstr = n.toString();
-	switch (nstr.length) {
-		case 4:
-			return nstr;
-		case 3:
-			return '0' + nstr;
-		case 2:
-			return '00' + nstr;
-		case 1:
-			return '000' + nstr;
-		default:
-			return '0000';
-	}
-}
-
 class Set {
 	private entries: { [key: string]: boolean } = {};
 	public add(entry: string): void {
 		this.entries[entry] = true;
+	}
+	public remove(entry: string): void {
+		delete this.entries[entry];
 	}
 	public getEntries(): string[] {
 		return Object.keys(this.entries);
@@ -1089,6 +1163,22 @@ class ColorValueCollector implements nodes.IVisitor {
 	}
 }
 
+class VariableCollector implements nodes.IVisitor {
+
+	constructor(public entries: Set, private currentOffset: number) {
+		// nothing to do
+	}
+
+	public visitNode(node: nodes.Node): boolean {
+		if (node instanceof nodes.Identifier && node.isCustomProperty) {
+			if (this.currentOffset < node.offset || node.end < this.currentOffset) {
+				this.entries.add(node.getText());
+			}
+		}
+		return true;
+	}
+}
+
 function getCurrentWord(document: TextDocument, offset: number): string {
 	let i = offset - 1;
 	const text = document.getText();
@@ -1096,9 +1186,4 @@ function getCurrentWord(document: TextDocument, offset: number): string {
 		i--;
 	}
 	return text.substring(i + 1, offset);
-}
-
-function isColorString(s: string) {
-	// From https://stackoverflow.com/questions/8027423/how-to-check-if-a-string-is-a-valid-hex-color-representation/8027444
-	return (s.toLowerCase() in languageFacts.colors) || /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(s);
 }

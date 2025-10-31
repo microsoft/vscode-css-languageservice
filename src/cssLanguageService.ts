@@ -16,30 +16,34 @@ import { SCSSCompletion } from './services/scssCompletion';
 import { LESSParser } from './parser/lessParser';
 import { LESSCompletion } from './services/lessCompletion';
 import { getFoldingRanges } from './services/cssFolding';
+import { format } from './services/cssFormatter';
 
 import {
 	LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServiceOptions,
 	Diagnostic, Position, CompletionList, Hover, Location, DocumentHighlight, DocumentLink,
 	SymbolInformation, Range, CodeActionContext, Command, CodeAction, ColorInformation,
-	Color, ColorPresentation, WorkspaceEdit, FoldingRange, SelectionRange, TextDocument
-
+	Color, ColorPresentation, WorkspaceEdit, FoldingRange, SelectionRange, TextDocument,
+	ICSSDataProvider, CSSDataV1, HoverSettings, CompletionSettings, TextEdit, CSSFormatConfiguration, DocumentSymbol
 } from './cssLanguageTypes';
 
-import { cssDataManager } from './languageFacts/facts';
+import { CSSDataManager } from './languageFacts/dataManager';
+import { CSSDataProvider } from './languageFacts/dataProvider';
 import { getSelectionRanges } from './services/cssSelectionRange';
 import { SCSSNavigation } from './services/scssNavigation';
-import { Stylesheet as StyleSheetImpl } from './parser/cssNodes';
+import { cssData } from './data/webCustomData';
 
 export type Stylesheet = {};
 export * from './cssLanguageTypes';
 
 export interface LanguageService {
 	configure(raw?: LanguageSettings): void;
+	setDataProviders(useDefaultDataProvider: boolean, customDataProviders: ICSSDataProvider[]): void;
 	doValidation(document: TextDocument, stylesheet: Stylesheet, documentSettings?: LanguageSettings): Diagnostic[];
 	parseStylesheet(document: TextDocument): Stylesheet;
-	doComplete(document: TextDocument, position: Position, stylesheet: Stylesheet): CompletionList;
+	doComplete(document: TextDocument, position: Position, stylesheet: Stylesheet, settings?: CompletionSettings): CompletionList;
+	doComplete2(document: TextDocument, position: Position, stylesheet: Stylesheet, documentContext: DocumentContext, settings?: CompletionSettings): Promise<CompletionList>;
 	setCompletionParticipants(registeredCompletionParticipants: ICompletionParticipant[]): void;
-	doHover(document: TextDocument, position: Position, stylesheet: Stylesheet): Hover | null;
+	doHover(document: TextDocument, position: Position, stylesheet: Stylesheet, settings?: HoverSettings): Hover | null;
 	findDefinition(document: TextDocument, position: Position, stylesheet: Stylesheet): Location | null;
 	findReferences(document: TextDocument, position: Position, stylesheet: Stylesheet): Location[];
 	findDocumentHighlights(document: TextDocument, position: Position, stylesheet: Stylesheet): DocumentHighlight[];
@@ -49,85 +53,98 @@ export interface LanguageService {
 	 */
 	findDocumentLinks2(document: TextDocument, stylesheet: Stylesheet, documentContext: DocumentContext): Promise<DocumentLink[]>;
 	findDocumentSymbols(document: TextDocument, stylesheet: Stylesheet): SymbolInformation[];
+	findDocumentSymbols2(document: TextDocument, stylesheet: Stylesheet): DocumentSymbol[];
 	doCodeActions(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: Stylesheet): Command[];
 	doCodeActions2(document: TextDocument, range: Range, context: CodeActionContext, stylesheet: Stylesheet): CodeAction[];
-	/**
-	 * @deprecated use findDocumentColors instead
-	 */
-	findColorSymbols(document: TextDocument, stylesheet: Stylesheet): Range[];
 	findDocumentColors(document: TextDocument, stylesheet: Stylesheet): ColorInformation[];
 	getColorPresentations(document: TextDocument, stylesheet: Stylesheet, color: Color, range: Range): ColorPresentation[];
+	prepareRename(document: TextDocument, position: Position, stylesheet: Stylesheet): Range | undefined;
 	doRename(document: TextDocument, position: Position, newName: string, stylesheet: Stylesheet): WorkspaceEdit;
 	getFoldingRanges(document: TextDocument, context?: { rangeLimit?: number; }): FoldingRange[];
 	getSelectionRanges(document: TextDocument, positions: Position[], stylesheet: Stylesheet): SelectionRange[];
+	format(document: TextDocument, range: Range | undefined, options: CSSFormatConfiguration): TextEdit[];
+
 }
 
-function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover, navigation: CSSNavigation, codeActions: CSSCodeActions, validation: CSSValidation): LanguageService {
+export function getDefaultCSSDataProvider(): ICSSDataProvider {
+	return newCSSDataProvider(cssData);
+}
+
+export function newCSSDataProvider(data: CSSDataV1): ICSSDataProvider {
+	return new CSSDataProvider(data);
+}
+
+function createFacade(parser: Parser, completion: CSSCompletion, hover: CSSHover, navigation: CSSNavigation, codeActions: CSSCodeActions, validation: CSSValidation, cssDataManager: CSSDataManager): LanguageService {
 	return {
 		configure: (settings) => {
 			validation.configure(settings);
-			completion.configure(settings);
+			completion.configure(settings?.completion);
+			hover.configure(settings?.hover);
+			navigation.configure(settings?.importAliases);
 		},
+		setDataProviders: cssDataManager.setDataProviders.bind(cssDataManager),
 		doValidation: validation.doValidation.bind(validation),
 		parseStylesheet: parser.parseStylesheet.bind(parser),
 		doComplete: completion.doComplete.bind(completion),
+		doComplete2: completion.doComplete2.bind(completion),
 		setCompletionParticipants: completion.setCompletionParticipants.bind(completion),
 		doHover: hover.doHover.bind(hover),
+		format,
 		findDefinition: navigation.findDefinition.bind(navigation),
 		findReferences: navigation.findReferences.bind(navigation),
 		findDocumentHighlights: navigation.findDocumentHighlights.bind(navigation),
 		findDocumentLinks: navigation.findDocumentLinks.bind(navigation),
 		findDocumentLinks2: navigation.findDocumentLinks2.bind(navigation),
-		findDocumentSymbols: navigation.findDocumentSymbols.bind(navigation),
+		findDocumentSymbols: navigation.findSymbolInformations.bind(navigation),
+		findDocumentSymbols2: navigation.findDocumentSymbols.bind(navigation),
 		doCodeActions: codeActions.doCodeActions.bind(codeActions),
 		doCodeActions2: codeActions.doCodeActions2.bind(codeActions),
-		findColorSymbols: (d, s: StyleSheetImpl) => navigation.findDocumentColors(d, s).map(s => s.range),
 		findDocumentColors: navigation.findDocumentColors.bind(navigation),
 		getColorPresentations: navigation.getColorPresentations.bind(navigation),
+		prepareRename: navigation.prepareRename.bind(navigation),
 		doRename: navigation.doRename.bind(navigation),
 		getFoldingRanges,
 		getSelectionRanges
 	};
 }
 
-function handleCustomData(options?: LanguageServiceOptions) {
-	if (options && options.customDataProviders) {
-		cssDataManager.addDataProviders(options.customDataProviders);
-	}
-}
+const defaultLanguageServiceOptions = {};
 
-export function getCSSLanguageService(options?: LanguageServiceOptions): LanguageService {
-	handleCustomData(options);
+export function getCSSLanguageService(options: LanguageServiceOptions = defaultLanguageServiceOptions): LanguageService {
+	const cssDataManager = new CSSDataManager(options);
 	return createFacade(
 		new Parser(),
-		new CSSCompletion(null, options && options.clientCapabilities),
-		new CSSHover(options && options.clientCapabilities),
-		new CSSNavigation(),
-		new CSSCodeActions(),
-		new CSSValidation()
+		new CSSCompletion(null, options, cssDataManager),
+		new CSSHover(options && options.clientCapabilities, cssDataManager),
+		new CSSNavigation(options && options.fileSystemProvider, false),
+		new CSSCodeActions(cssDataManager),
+		new CSSValidation(cssDataManager),
+		cssDataManager
 	);
 }
 
-export function getSCSSLanguageService(options?: LanguageServiceOptions): LanguageService {
-	handleCustomData(options);
+export function getSCSSLanguageService(options: LanguageServiceOptions = defaultLanguageServiceOptions): LanguageService {
+	const cssDataManager = new CSSDataManager(options);
 	return createFacade(
 		new SCSSParser(),
-		new SCSSCompletion(options && options.clientCapabilities),
-		new CSSHover(options && options.clientCapabilities),
+		new SCSSCompletion(options, cssDataManager),
+		new CSSHover(options && options.clientCapabilities, cssDataManager),
 		new SCSSNavigation(options && options.fileSystemProvider),
-		new CSSCodeActions(),
-		new CSSValidation()
+		new CSSCodeActions(cssDataManager),
+		new CSSValidation(cssDataManager),
+		cssDataManager
 	);
 }
 
-export function getLESSLanguageService(options?: LanguageServiceOptions): LanguageService {
-	handleCustomData(options);
+export function getLESSLanguageService(options: LanguageServiceOptions = defaultLanguageServiceOptions): LanguageService {
+	const cssDataManager = new CSSDataManager(options);
 	return createFacade(
 		new LESSParser(),
-		new LESSCompletion(options && options.clientCapabilities),
-		new CSSHover(options && options.clientCapabilities),
-		new CSSNavigation(),
-		new CSSCodeActions(),
-		new CSSValidation()
+		new LESSCompletion(options, cssDataManager),
+		new CSSHover(options && options.clientCapabilities, cssDataManager),
+		new CSSNavigation(options && options.fileSystemProvider, true),
+		new CSSCodeActions(cssDataManager),
+		new CSSValidation(cssDataManager),
+		cssDataManager
 	);
 }

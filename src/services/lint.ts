@@ -4,16 +4,16 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as languageFacts from '../languageFacts/facts';
-import { Rules, LintConfigurationSettings, Rule, Settings } from './lintRules';
-import * as nodes from '../parser/cssNodes';
-import calculateBoxModel, { Element } from './lintUtil';
-import { union } from '../utils/arrays';
-
-import * as nls from 'vscode-nls';
+import * as l10n from '@vscode/l10n';
 import { TextDocument } from '../cssLanguageTypes';
+import { CSSDataManager } from '../languageFacts/dataManager';
+import * as languageFacts from '../languageFacts/facts';
+import * as nodes from '../parser/cssNodes';
+import { union } from '../utils/arrays';
+import { LintConfigurationSettings, Rule, Rules, Settings } from './lintRules';
+import calculateBoxModel, { Element } from './lintUtil';
 
-const localize = nls.loadMessageBundle();
+
 
 class NodesByRootMap {
 	public data: { [name: string]: { nodes: nodes.Node[]; names: string[] } } = {};
@@ -33,8 +33,8 @@ class NodesByRootMap {
 
 export class LintVisitor implements nodes.IVisitor {
 
-	static entries(node: nodes.Node, document: TextDocument, settings: LintConfigurationSettings, entryFilter?: number): nodes.IMarker[] {
-		const visitor = new LintVisitor(document, settings);
+	static entries(node: nodes.Node, document: TextDocument, settings: LintConfigurationSettings, cssDataManager: CSSDataManager, entryFilter?: number): nodes.IMarker[] {
+		const visitor = new LintVisitor(document, settings, cssDataManager);
 		node.acceptVisitor(visitor);
 		visitor.completeValidations();
 		return visitor.getEntries(entryFilter);
@@ -52,7 +52,7 @@ export class LintVisitor implements nodes.IVisitor {
 
 	private validProperties: { [name: string]: boolean };
 
-	private constructor(document: TextDocument, settings: LintConfigurationSettings) {
+	private constructor(document: TextDocument, settings: LintConfigurationSettings, private cssDataManager: CSSDataManager) {
 		this.settings = settings;
 		this.documentText = document.getText();
 		this.keyframes = new NodesByRootMap();
@@ -138,9 +138,9 @@ export class LintVisitor implements nodes.IVisitor {
 			const curr = expectedClone[i];
 			if (curr) {
 				if (result === null) {
-					result = localize('namelist.single', "'{0}'", curr);
+					result = l10n.t("'{0}'", curr);
 				} else {
-					result = localize('namelist.concatenated', "{0}, '{1}'", result, curr);
+					result = l10n.t("{0}, '{1}'", result, curr);
 				}
 			}
 		}
@@ -169,6 +169,8 @@ export class LintVisitor implements nodes.IVisitor {
 				return this.visitHexColorValue(<nodes.HexColorValue>node);
 			case nodes.NodeType.Prio:
 				return this.visitPrio(node);
+			case nodes.NodeType.IdentifierSelector:
+				return this.visitIdentifierSelector(node);
 		}
 		return true;
 	}
@@ -183,7 +185,7 @@ export class LintVisitor implements nodes.IVisitor {
 			return false;
 		}
 
-		const atDirective = languageFacts.cssDataManager.getAtDirective(atRuleName.getText());
+		const atDirective = this.cssDataManager.getAtDirective(atRuleName.getText());
 		if (atDirective) {
 			return false;
 		}
@@ -219,11 +221,11 @@ export class LintVisitor implements nodes.IVisitor {
 			if (missingVendorSpecific || needsStandard) {
 				for (const node of this.keyframes.data[name].nodes) {
 					if (needsStandard) {
-						const message = localize('keyframes.standardrule.missing', "Always define standard rule '@keyframes' when defining keyframes.");
+						const message = l10n.t("Always define standard rule '@keyframes' when defining keyframes.");
 						this.addEntry(node, Rules.IncludeStandardPropertyWhenUsingVendorPrefix, message);
 					}
 					if (missingVendorSpecific) {
-						const message = localize('keyframes.vendorspecific.missing', "Always include all vendor specific rules: Missing: {0}", missingVendorSpecific);
+						const message = l10n.t("Always include all vendor specific rules: Missing: {0}", missingVendorSpecific);
 						this.addEntry(node, Rules.AllVendorPrefixes, message);
 					}
 				}
@@ -234,22 +236,23 @@ export class LintVisitor implements nodes.IVisitor {
 	}
 
 	private visitSimpleSelector(node: nodes.SimpleSelector): boolean {
-
-		const firstChar = this.documentText.charAt(node.offset);
-
 		/////////////////////////////////////////////////////////////
 		//	Lint - The universal selector (*) is known to be slow.
 		/////////////////////////////////////////////////////////////
+		const firstChar = this.documentText.charAt(node.offset);
+
 		if (node.length === 1 && firstChar === '*') {
 			this.addEntry(node, Rules.UniversalSelector);
 		}
 
+		return true;
+	}
+
+	private visitIdentifierSelector(node: nodes.Node): boolean {
 		/////////////////////////////////////////////////////////////
 		//	Lint - Avoid id selectors
 		/////////////////////////////////////////////////////////////
-		if (firstChar === '#') {
-			this.addEntry(node, Rules.AvoidIdSelector);
-		}
+		this.addEntry(node, Rules.AvoidIdSelector);
 		return true;
 	}
 
@@ -326,31 +329,15 @@ export class LintVisitor implements nodes.IVisitor {
 		//	Properties ignored due to display
 		/////////////////////////////////////////////////////////////
 
-		// With 'display: inline', the width, height, margin-top, margin-bottom, and float properties have no effect
-		let displayElems = this.fetchWithValue(propertyTable, 'display', 'inline');
-		if (displayElems.length > 0) {
-			for (const prop of ['width', 'height', 'margin-top', 'margin-bottom', 'float']) {
-				const elem = this.fetch(propertyTable, prop);
-				for (let index = 0; index < elem.length; index++) {
-					const node = elem[index].node;
-					const value = node.getValue();
-					if (prop === 'float' && (!value || value.matches('none'))) {
-						continue;
-					}
-					this.addEntry(node, Rules.PropertyIgnoredDueToDisplay, localize('rule.propertyIgnoredDueToDisplayInline', "Property is ignored due to the display. With 'display: inline', the width, height, margin-top, margin-bottom, and float properties have no effect."));
-				}
-			}
-		}
-
 		// With 'display: inline-block', 'float' has no effect
-		displayElems = this.fetchWithValue(propertyTable, 'display', 'inline-block');
+		let displayElems = this.fetchWithValue(propertyTable, 'display', 'inline-block');
 		if (displayElems.length > 0) {
 			const elem = this.fetch(propertyTable, 'float');
 			for (let index = 0; index < elem.length; index++) {
 				const node = elem[index].node;
 				const value = node.getValue();
 				if (value && !value.matches('none')) {
-					this.addEntry(node, Rules.PropertyIgnoredDueToDisplay, localize('rule.propertyIgnoredDueToDisplayInlineBlock', "inline-block is ignored due to the float. If 'float' has a value other than 'none', the box is floated and 'display' is treated as 'block'"));
+					this.addEntry(node, Rules.PropertyIgnoredDueToDisplay, l10n.t("inline-block is ignored due to the float. If 'float' has a value other than 'none', the box is floated and 'display' is treated as 'block'"));
 				}
 			}
 		}
@@ -360,7 +347,7 @@ export class LintVisitor implements nodes.IVisitor {
 		if (displayElems.length > 0) {
 			const elem = this.fetch(propertyTable, 'vertical-align');
 			for (let index = 0; index < elem.length; index++) {
-				this.addEntry(elem[index].node, Rules.PropertyIgnoredDueToDisplay, localize('rule.propertyIgnoredDueToDisplayBlock', "Property is ignored due to the display. With 'display: block', vertical-align should not be used."));
+				this.addEntry(elem[index].node, Rules.PropertyIgnoredDueToDisplay, l10n.t("Property is ignored due to the display. With 'display: block', vertical-align should not be used."));
 			}
 		}
 
@@ -415,7 +402,7 @@ export class LintVisitor implements nodes.IVisitor {
 
 					if (firstChar === '-') {
 						if (name.charAt(1) !== '-') { // avoid css variables
-							if (!languageFacts.cssDataManager.isKnownProperty(name) && !this.validProperties[name]) {
+							if (!this.cssDataManager.isKnownProperty(name) && !this.validProperties[name]) {
 								this.addEntry(decl.getProperty()!, Rules.UnknownVendorSpecificProperty);
 							}
 							const nonPrefixedName = decl.getNonPrefixedPropertyName();
@@ -429,9 +416,9 @@ export class LintVisitor implements nodes.IVisitor {
 						}
 
 						// _property and *property might be contributed via custom data
-						if (!languageFacts.cssDataManager.isKnownProperty(fullName) && !languageFacts.cssDataManager.isKnownProperty(name)) {
+						if (!this.cssDataManager.isKnownProperty(fullName) && !this.cssDataManager.isKnownProperty(name)) {
 							if (!this.validProperties[name]) {
-								this.addEntry(decl.getProperty()!, Rules.UnknownProperty, localize('property.unknownproperty.detailed', "Unknown property: '{0}'", name));
+								this.addEntry(decl.getProperty()!, Rules.UnknownProperty, l10n.t("Unknown property: '{0}'", decl.getFullPropertyName()));
 							}
 						}
 
@@ -447,15 +434,33 @@ export class LintVisitor implements nodes.IVisitor {
 					const entry = propertiesBySuffix.data[suffix];
 					const actual = entry.names;
 
-					const needsStandard = languageFacts.cssDataManager.isStandardProperty(suffix) && (actual.indexOf(suffix) === -1);
+					const needsStandard = this.cssDataManager.isStandardProperty(suffix) && (actual.indexOf(suffix) === -1);
 					if (!needsStandard && actual.length === 1) {
 						continue; // only the non-vendor specific rule is used, that's fine, no warning
+					}
+
+					/**
+					 * We should ignore missing standard properties, if there's an explicit contextual reference to a
+					 * vendor specific pseudo-element selector with the same vendor (prefix)
+					 *
+					 * (See https://github.com/microsoft/vscode/issues/164350)
+					 */
+					const entriesThatNeedStandard = new Set<nodes.Node>(needsStandard ? entry.nodes : []);
+					if (needsStandard) {
+						const pseudoElements = this.getContextualVendorSpecificPseudoElements(node);
+						for (const node of entry.nodes) {
+							const propertyName = (node as nodes.Property).getName();
+							const prefix = propertyName.substring(0, propertyName.length - suffix.length);
+							if (pseudoElements.some(x => x.startsWith(prefix))) {
+								entriesThatNeedStandard.delete(node);
+							}
+						}
 					}
 
 					const expected: string[] = [];
 					for (let i = 0, len = LintVisitor.prefixes.length; i < len; i++) {
 						const prefix = LintVisitor.prefixes[i];
-						if (languageFacts.cssDataManager.isStandardProperty(prefix + suffix)) {
+						if (this.cssDataManager.isStandardProperty(prefix + suffix)) {
 							expected.push(prefix + suffix);
 						}
 					}
@@ -463,12 +468,12 @@ export class LintVisitor implements nodes.IVisitor {
 					const missingVendorSpecific = this.getMissingNames(expected, actual);
 					if (missingVendorSpecific || needsStandard) {
 						for (const node of entry.nodes) {
-							if (needsStandard) {
-								const message = localize('property.standard.missing', "Also define the standard property '{0}' for compatibility", suffix);
+							if (needsStandard && entriesThatNeedStandard.has(node)) {
+								const message = l10n.t("Also define the standard property '{0}' for compatibility", suffix);
 								this.addEntry(node, Rules.IncludeStandardPropertyWhenUsingVendorPrefix, message);
 							}
 							if (missingVendorSpecific) {
-								const message = localize('property.vendorspecific.missing', "Always include all vendor specific properties: Missing: {0}", missingVendorSpecific);
+								const message = l10n.t("Always include all vendor specific properties: Missing: {0}", missingVendorSpecific);
 								this.addEntry(node, Rules.AllVendorPrefixes, message);
 							}
 						}
@@ -479,6 +484,37 @@ export class LintVisitor implements nodes.IVisitor {
 
 
 		return true;
+	}
+
+	/**
+	 * Walks up the syntax tree (starting from given `node`) and captures vendor
+	 * specific pseudo-element selectors.
+	 * @returns An array of vendor specific pseudo-elements; or empty if none
+	 * was found.
+	 */
+	private getContextualVendorSpecificPseudoElements(node: nodes.Node): string[] {
+		function walkDown(s: Set<string>, n: nodes.Node) {
+			for (const child of n.getChildren()) {
+				if (child.type === nodes.NodeType.PseudoSelector) {
+					const pseudoElement = child.getChildren()[0]?.getText();
+					if (pseudoElement) {
+						s.add(pseudoElement);
+					}
+				}
+				walkDown(s, child);
+			}
+		}
+		function walkUp(s: Set<string>, n: nodes.Node): undefined {
+			if (n.type === nodes.NodeType.Ruleset) {
+				for (const selector of (n as nodes.RuleSet).getSelectors().getChildren()) {
+					walkDown(s, selector);
+				}
+			}
+			return n.parent ? walkUp(s, n.parent) : undefined;
+		}
+		const result = new Set<string>();
+		walkUp(result, node);
+		return Array.from(result);
 	}
 
 	private visitPrio(node: nodes.Node) {

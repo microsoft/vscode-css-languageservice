@@ -11,9 +11,9 @@ import * as nodes from '../../parser/cssNodes';
 import { ParseError } from '../../parser/cssErrors';
 
 export function assertNode(text: string, parser: Parser, f: (...args: any[]) => nodes.Node | null): nodes.Node {
-	let node = parser.internalParse(text, f)!;
+	const node = parser.internalParse(text, f)!;
 	assert.ok(node !== null, 'no node returned');
-	let markers = nodes.ParseErrorCollector.entries(node);
+	const markers = nodes.ParseErrorCollector.entries(node);
 	if (markers.length > 0) {
 		assert.ok(false, 'node has errors: ' + markers[0].getMessage() + ', offset: ' + markers[0].getNode().offset + ' when parsing ' + text);
 	}
@@ -26,12 +26,12 @@ export function assertFunction(text: string, parser: Parser, f: () => nodes.Node
 }
 
 export function assertNoNode(text: string, parser: Parser, f: () => nodes.Node | null): void {
-	let node = parser.internalParse(text, f)!;
-	assert.ok(node === null);
+	const node = parser.internalParse(text, f)!;
+	assert.ok(node === null || !parser.accept(TokenType.EOF));
 }
 
 export function assertError(text: string, parser: Parser, f: () => nodes.Node | null, error: nodes.IRule): void {
-	let node = parser.internalParse(text, f)!;
+	const node = parser.internalParse(text, f)!;
 	assert.ok(node !== null, 'no node returned');
 	let markers = nodes.ParseErrorCollector.entries(node);
 	if (markers.length === 0) {
@@ -46,7 +46,7 @@ export function assertError(text: string, parser: Parser, f: () => nodes.Node | 
 suite('CSS - Parser', () => {
 
 	test('stylesheet', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('@charset "demo" ;', parser, parser._parseStylesheet.bind(parser));
 		assertNode('body { margin: 0px; padding: 3em, 6em; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('--> <!--', parser, parser._parseStylesheet.bind(parser));
@@ -55,6 +55,10 @@ suite('CSS - Parser', () => {
 		assertNode('@media asdsa { } <!-- --> <!-- -->', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media screen, projection { }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media screen and (max-width: 400px) {  @-ms-viewport { width: 320px; }}', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@scope {}', parser, parser._parseStylesheet.bind(parser))
+		assertNode('@scope (.foo) {}', parser, parser._parseStylesheet.bind(parser))
+		assertNode('@scope to (.bar) {}', parser, parser._parseStylesheet.bind(parser))
+		assertNode('@scope (.foo) to (.bar) {}', parser, parser._parseStylesheet.bind(parser))
 		assertNode('@-ms-viewport { width: 320px; height: 768px; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('#boo, far {} \n.far boo {}', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@-moz-keyframes darkWordHighlight { from { background-color: inherit; } to { background-color: rgba(83, 83, 83, 0.7); } }', parser, parser._parseStylesheet.bind(parser));
@@ -76,7 +80,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('stylesheet - graceful handling of unknown rules', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('@unknown-rule;', parser, parser._parseStylesheet.bind(parser));
 		assertNode(`@unknown-rule 'foo';`, parser, parser._parseStylesheet.bind(parser));
 		assertNode('@unknown-rule (foo) {}', parser, parser._parseStylesheet.bind(parser));
@@ -92,43 +96,59 @@ suite('CSS - Parser', () => {
 	});
 
 	test('stylesheet - unknown rules node ends properly. Microsoft/vscode#53159', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		const node = assertNode('@unknown-rule (foo) {} .foo {}', parser, parser._parseStylesheet.bind(parser));
 
 		const unknownAtRule = node.getChild(0)!;
 		assert.equal(unknownAtRule.type, nodes.NodeType.UnknownAtRule);
 		assert.equal(unknownAtRule.offset, 0);
 		assert.equal(node.getChild(0)!.length, 13);
+
+		// microsoft/vscode-css-languageservice#237
+		assertNode('.foo { @apply p-4 bg-neutral-50; min-height: var(--space-14); }', parser, parser._parseStylesheet.bind(parser));
+
 	});
 
 	test('stylesheet /panic/', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertError('#boo, far } \n.far boo {}', parser, parser._parseStylesheet.bind(parser), ParseError.LeftCurlyExpected);
 		assertError('#boo, far { far: 43px; \n.far boo {}', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
-		assertError('--- @import "foo";', parser, parser._parseStylesheet.bind(parser), ParseError.RuleOrSelectorExpected);
+		assertError('- @import "foo";', parser, parser._parseStylesheet.bind(parser), ParseError.RuleOrSelectorExpected);
 	});
 
 	test('@font-face', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('@font-face {}', parser, parser._parseFontFace.bind(parser));
 		assertNode('@font-face { src: url(http://test) }', parser, parser._parseFontFace.bind(parser));
 		assertNode('@font-face { font-style: normal; font-stretch: normal; }', parser, parser._parseFontFace.bind(parser));
+		assertNode('@font-face { unicode-range: U+0021-007F }', parser, parser._parseFontFace.bind(parser));
 		assertError('@font-face { font-style: normal font-stretch: normal; }', parser, parser._parseFontFace.bind(parser), ParseError.SemiColonExpected);
 	});
 
 	test('@keyframe selector', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('from {}', parser, parser._parseKeyframeSelector.bind(parser));
 		assertNode('to {}', parser, parser._parseKeyframeSelector.bind(parser));
 		assertNode('0% {}', parser, parser._parseKeyframeSelector.bind(parser));
 		assertNode('10% {}', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('cover 10% {}', parser, parser._parseKeyframeSelector.bind(parser));
 		assertNode('100000% {}', parser, parser._parseKeyframeSelector.bind(parser));
 		assertNode('from { width: 100% }', parser, parser._parseKeyframeSelector.bind(parser));
 		assertNode('from { width: 100%; to: 10px; }', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('from, to { width: 10px; }', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('10%, to { width: 10px; }', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('from, 20% { width: 10px; }', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('10%, 20% { width: 10px; }', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('cover 10% {}', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('cover 10%, exit 20% {}', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('10%, exit 20% {}', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('from, exit 20% {}', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('cover 10%, to {}', parser, parser._parseKeyframeSelector.bind(parser));
+		assertNode('cover 10%, 20% {}', parser, parser._parseKeyframeSelector.bind(parser));
 	});
 
 	test('@keyframe', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('@keyframes name {}', parser, parser._parseKeyframe.bind(parser));
 		assertNode('@-webkit-keyframes name {}', parser, parser._parseKeyframe.bind(parser));
 		assertNode('@-o-keyframes name {}', parser, parser._parseKeyframe.bind(parser));
@@ -138,14 +158,45 @@ suite('CSS - Parser', () => {
 		assertNode('@keyframes name { from { top: 0px; } 80% { top: 100px; } 100% { top: 50px; }}', parser, parser._parseKeyframe.bind(parser));
 		assertNode('@keyframes name { from { top: 0px; } 70%, 80% { top: 100px; } 100% { top: 50px; }}', parser, parser._parseKeyframe.bind(parser));
 		assertNode('@keyframes name { from { top: 0px; left: 1px; right: 2px }}', parser, parser._parseKeyframe.bind(parser));
+		assertNode('@keyframes name { exit 50% { top: 0px; left: 1px; right: 2px }}', parser, parser._parseKeyframe.bind(parser));
 		assertError('@keyframes name { from { top: 0px; left: 1px, right: 2px }}', parser, parser._parseKeyframe.bind(parser), ParseError.SemiColonExpected);
 		assertError('@keyframes )', parser, parser._parseKeyframe.bind(parser), ParseError.IdentifierExpected);
 		assertError('@keyframes name { { top: 0px; } }', parser, parser._parseKeyframe.bind(parser), ParseError.RightCurlyExpected);
 		assertError('@keyframes name { from, #123', parser, parser._parseKeyframe.bind(parser), ParseError.PercentageExpected);
+		assertError('@keyframes name { 10% from { top: 0px; } }', parser, parser._parseKeyframe.bind(parser), ParseError.LeftCurlyExpected);
+		assertError('@keyframes name { 10% 20% { top: 0px; } }', parser, parser._parseKeyframe.bind(parser), ParseError.LeftCurlyExpected);
+		assertError('@keyframes name { from to { top: 0px; } }', parser, parser._parseKeyframe.bind(parser), ParseError.LeftCurlyExpected);
+	});
+
+	test('@property', function () {
+		const parser = new Parser();
+		assertNode(`@property --my-color { syntax: '<color>'; inherits: false; initial-value: #c0ffee; }`, parser, parser._parseStylesheet.bind(parser));
+		assertError(`@property  {  }`, parser, parser._parseStylesheet.bind(parser), ParseError.IdentifierExpected);
+	});
+
+	test('@container', function () {
+		const parser = new Parser();
+		assertNode(`@container (width <= 150px) { #inner { background-color: skyblue; }}`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container card (inline-size > 30em) and style(--responsive: true) { }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container card (inline-size > 30em) { @container style(--responsive: true) {} }`, parser, parser._parseStylesheet.bind(parser));
+	});
+
+	test('@starting-style', function () {
+		const parser = new Parser();
+		// These assertions would still hold if @starting-style blocks were being processed as unknown at-rules
+		// Parsing into the expected AST is instead tested in nodes.test.ts
+		assertNode(`@starting-style { p { background-color: skyblue; } }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`p { @starting-style { background-color: skyblue; } }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`p { @starting-style { @layer {} } }`, parser, parser._parseStylesheet.bind(parser));
+	});
+
+	test('@container query length units', function () {
+		const parser = new Parser();
+		assertNode(`@container (min-width: 700px) { .card h2 { font-size: max(1.5em, 1.23em + 2cqi); } }`, parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('@import', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('@import "asdasdsa"', parser, parser._parseImport.bind(parser));
 		assertNode('@ImPort "asdsadsa"', parser, parser._parseImport.bind(parser));
 		assertNode('@import "asdasd" dsfsdf', parser, parser._parseImport.bind(parser));
@@ -155,11 +206,21 @@ suite('CSS - Parser', () => {
 		assertNode('@import url("/inc/Styles/full.css") (min-width: 940px);', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@import url(style.css) screen and (min-width:600px);', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@import url("./700.css") only screen and (max-width: 700px);', parser, parser._parseStylesheet.bind(parser));
-		assertError('@import', parser, parser._parseImport.bind(parser), ParseError.URIOrStringExpected);
+
+		assertNode('@import url("override.css") layer;', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@import url("tabs.css") layer(framework.component);', parser, parser._parseStylesheet.bind(parser));
+
+		assertNode('@import "mystyle.css" supports(display: flex);', parser, parser._parseStylesheet.bind(parser));
+
+		assertNode('@import url("narrow.css") supports(display: flex) handheld and (max-width: 400px);', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@import url("fallback-layout.css") supports(not (display: flex));', parser, parser._parseStylesheet.bind(parser));
+
+
+		assertError('@import', parser, parser._parseStylesheet.bind(parser), ParseError.URIOrStringExpected);
 	});
 
 	test('@supports', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('@supports ( display: flexbox ) { body { display: flexbox } }', parser, parser._parseSupports.bind(parser));
 		assertNode('@supports not (display: flexbox) { .outline { box-shadow: 2px 2px 2px black; /* unprefixed last */ } }', parser, parser._parseSupports.bind(parser));
 		assertNode('@supports ( box-shadow: 2px 2px 2px black ) or ( -moz-box-shadow: 2px 2px 2px black ) or ( -webkit-box-shadow: 2px 2px 2px black ) { }', parser, parser._parseSupports.bind(parser));
@@ -168,12 +229,13 @@ suite('CSS - Parser', () => {
 		assertNode('@supports (display: flexbox !important) { }', parser, parser._parseSupports.bind(parser));
 		assertNode('@supports (grid-area: auto) { @media screen and (min-width: 768px) { .me { } } }', parser, parser._parseSupports.bind(parser));
 		assertNode('@supports (column-width: 1rem) OR (-moz-column-width: 1rem) OR (-webkit-column-width: 1rem) oR (-x-column-width: 1rem) { }', parser, parser._parseSupports.bind(parser)); // #49288
+		assertNode('@supports not (--validValue: , 0 ) {}', parser, parser._parseSupports.bind(parser)); // #82178
 		assertError('@supports (transition-property: color) or (animation-name: foo) and (transform: rotate(10deg)) { }', parser, parser._parseSupports.bind(parser), ParseError.LeftCurlyExpected);
 		assertError('@supports display: flexbox { }', parser, parser._parseSupports.bind(parser), ParseError.LeftParenthesisExpected);
 	});
 
 	test('@media', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('@media asdsa { }', parser, parser._parseMedia.bind(parser));
 		assertNode('@meDia sadd{}  ', parser, parser._parseMedia.bind(parser));
 		assertNode('@media somename, othername2 { }', parser, parser._parseMedia.bind(parser));
@@ -186,6 +248,14 @@ suite('CSS - Parser', () => {
 		assertNode('@media print and (min-resolution: 118dpcm) { }', parser, parser._parseMedia.bind(parser));
 		assertNode('@media print { @page { margin: 10% } blockquote, pre { page-break-inside: avoid } }', parser, parser._parseMedia.bind(parser));
 		assertNode('@media print { body:before { } }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media not (-moz-os-version: windows-win7) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media not (not (-moz-os-version: windows-win7)) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media (height > 600px) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media (height < 600px) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media (height <= 600px) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media (400px <= width <= 700px) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media (400px >= width >= 700px) { }', parser, parser._parseMedia.bind(parser));
+		assertNode('@media screen and (750px <= width < 900px) { }', parser, parser._parseMedia.bind(parser));
 		assertError('@media somename othername2 { }', parser, parser._parseMedia.bind(parser), ParseError.LeftCurlyExpected);
 		assertError('@media not, screen { }', parser, parser._parseMedia.bind(parser), ParseError.MediaQueryExpected);
 		assertError('@media not screen and foo { }', parser, parser._parseMedia.bind(parser), ParseError.LeftParenthesisExpected);
@@ -195,21 +265,54 @@ suite('CSS - Parser', () => {
 	});
 
 	test('media_list', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('somename', parser, parser._parseMediaQueryList.bind(parser));
 		assertNode('somename, othername', parser, parser._parseMediaQueryList.bind(parser));
 		assertNode('not all and (monochrome)', parser, parser._parseMediaQueryList.bind(parser));
 	});
 
+	
+	test('@scope', function () {
+		const parser = new Parser();
+		assertNode('@scope { }', parser, parser._parseScope.bind(parser))
+		assertNode('@scope (.foo) { }', parser, parser._parseScope.bind(parser))
+		assertNode('@scope to (.bar) { }', parser, parser._parseScope.bind(parser))
+		assertNode('@scope (.foo) to (.bar) { }', parser, parser._parseScope.bind(parser))
+		assertNode('@scope (#foo) to (:has(> link)) {}', parser, parser._parseScope.bind(parser))
+
+		assertError('@scope ( { }', parser, parser._parseScope.bind(parser), ParseError.SelectorExpected)
+		assertError('@scope () { }', parser, parser._parseScope.bind(parser), ParseError.SelectorExpected)
+		assertError('@scope () to (.bar) { }', parser, parser._parseScope.bind(parser), ParseError.SelectorExpected)
+		assertError('@scope to () { }', parser, parser._parseScope.bind(parser), ParseError.SelectorExpected)
+		assertError('@scope (.foo) to () { }', parser, parser._parseScope.bind(parser), ParseError.SelectorExpected)
+
+		assertError('@scope to (.bar { }', parser, parser._parseScope.bind(parser), ParseError.RightParenthesisExpected)
+		assertError('@scope (.foo to (.bar) { }', parser, parser._parseScope.bind(parser), ParseError.RightParenthesisExpected)
+		assertError('@scope (.foo) to (.bar { }', parser, parser._parseScope.bind(parser), ParseError.RightParenthesisExpected)
+
+		assertError('@scope (.foo) to { }', parser, parser._parseScope.bind(parser), ParseError.LeftParenthesisExpected)
+		
+		assertError('@scope ', parser, parser._parseScope.bind(parser), ParseError.LeftCurlyExpected)
+		assertError('@scope .foo { }', parser, parser._parseScope.bind(parser), ParseError.LeftCurlyExpected)
+		assertError('@scope (.foo)', parser, parser._parseScope.bind(parser), ParseError.LeftCurlyExpected)
+		assertError('@scope to (.bar)', parser, parser._parseScope.bind(parser), ParseError.LeftCurlyExpected)
+		assertError('@scope (.foo) to (.bar)', parser, parser._parseScope.bind(parser), ParseError.LeftCurlyExpected)
+		
+		assertError('@scope {', parser, parser._parseScope.bind(parser), ParseError.RightCurlyExpected)
+		assertError('@scope (.foo) {', parser, parser._parseScope.bind(parser), ParseError.RightCurlyExpected)
+		assertError('@scope to (.bar) {', parser, parser._parseScope.bind(parser), ParseError.RightCurlyExpected)
+		assertError('@scope (.foo) to (.bar) {', parser, parser._parseScope.bind(parser), ParseError.RightCurlyExpected)
+	})
+
 	test('medium', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('somename', parser, parser._parseMedium.bind(parser));
 		assertNode('-asdas', parser, parser._parseMedium.bind(parser));
 		assertNode('-asda34s', parser, parser._parseMedium.bind(parser));
 	});
 
 	test('@page', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('@page : name{ }', parser, parser._parsePage.bind(parser));
 		assertNode('@page :left, :right { }', parser, parser._parsePage.bind(parser));
 		assertNode('@page : name{ some : "asdas" }', parser, parser._parsePage.bind(parser));
@@ -226,13 +329,25 @@ suite('CSS - Parser', () => {
 		assertError('@page :left, { }', parser, parser._parsePage.bind(parser), ParseError.IdentifierExpected);
 	});
 
-	test('pseudo page', function () {
-		let parser = new Parser();
-		assertNode(': some ', parser, parser._parsePageSelector.bind(parser));
+	test('@layer', function () {
+		const parser = new Parser();
+		assertNode('@layer utilities { .padding-sm { padding: .5rem; } }', parser, parser._parseLayer.bind(parser));
+		assertNode('@layer utilities;', parser, parser._parseLayer.bind(parser));
+		assertNode('@layer theme, layout, utilities;', parser, parser._parseLayer.bind(parser));
+		assertNode('@layer utilities { p { margin-block: 1rem; } }', parser, parser._parseLayer.bind(parser));
+		assertNode('@layer framework { @layer layout { } }', parser, parser._parseLayer.bind(parser));
+		assertNode('@layer framework.layout { @keyframes slide-left {} }', parser, parser._parseLayer.bind(parser));
+
+		assertNode('@media (min-width: 30em) { @layer layout { } }', parser, parser._parseStylesheet.bind(parser));
+
+		assertError('@layer theme layout {  }', parser, parser._parseLayer.bind(parser), ParseError.SemiColonExpected);
+		assertError('@layer theme, layout {  }', parser, parser._parseLayer.bind(parser), ParseError.SemiColonExpected);
+		assertError('@layer framework .layout {  }', parser, parser._parseLayer.bind(parser), ParseError.SemiColonExpected);
+		assertError('@layer framework. layout {  }', parser, parser._parseLayer.bind(parser), ParseError.IdentifierExpected);
 	});
 
 	test('operator', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('/', parser, parser._parseOperator.bind(parser));
 		assertNode('*', parser, parser._parseOperator.bind(parser));
 		assertNode('+', parser, parser._parseOperator.bind(parser));
@@ -240,7 +355,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('combinator', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('+', parser, parser._parseCombinator.bind(parser));
 		assertNode('+  ', parser, parser._parseCombinator.bind(parser));
 		assertNode('>  ', parser, parser._parseCombinator.bind(parser));
@@ -252,13 +367,13 @@ suite('CSS - Parser', () => {
 	});
 
 	test('unary_operator', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('-', parser, parser._parseUnaryOperator.bind(parser));
 		assertNode('+', parser, parser._parseUnaryOperator.bind(parser));
 	});
 
 	test('property', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('asdsa', parser, parser._parseProperty.bind(parser));
 		assertNode('asdsa334', parser, parser._parseProperty.bind(parser));
 
@@ -271,7 +386,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('ruleset', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('name{ }', parser, parser._parseRuleset.bind(parser));
 		assertNode('	name\n{ some : "asdas" }', parser, parser._parseRuleset.bind(parser));
 		assertNode('		name{ some : "asdas" !important }', parser, parser._parseRuleset.bind(parser));
@@ -294,14 +409,13 @@ suite('CSS - Parser', () => {
 		assertNode('boo {--squares: this[]is[]ok[]too[]}', parser, parser._parseRuleset.bind(parser));
 		assertNode('boo {--combined: ([{{[]()()}[]{}}])()}', parser, parser._parseRuleset.bind(parser));
 		assertNode('boo {--weird-inside-delims: {color: green;;;;;;!important;;}}', parser, parser._parseRuleset.bind(parser));
-		assertNode('boo { @apply --custom-prop; }', parser, parser._parseRuleset.bind(parser));
-		assertNode('boo { @apply --custom-prop }', parser, parser._parseRuleset.bind(parser));
-		assertNode('boo { @apply --custom-prop; background-color: red }', parser, parser._parseRuleset.bind(parser));
+		assertNode(`boo {--validValue: , 0 0}`, parser, parser._parseRuleset.bind(parser));
+		assertNode(`boo {--validValue: , 0 0;}`, parser, parser._parseRuleset.bind(parser));
 		assertError('boo, { }', parser, parser._parseRuleset.bind(parser), ParseError.SelectorExpected);
 	});
 
 	test('ruleset /Panic/', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		//	assertNode('boo { : value }', parser, parser._parseRuleset.bind(parser));
 		assertError('boo { prop: ; }', parser, parser._parseRuleset.bind(parser), ParseError.PropertyValueExpected);
 		assertError('boo { prop }', parser, parser._parseRuleset.bind(parser), ParseError.ColonExpected);
@@ -316,12 +430,38 @@ suite('CSS - Parser', () => {
 		assertError('boo {--unbalanced-parens: not)()(cool;}', parser, parser._parseRuleset.bind(parser), ParseError.LeftParenthesisExpected);
 		assertError('boo {--unbalanced-brackets: not[[]valid;}', parser, parser._parseRuleset.bind(parser), ParseError.LeftCurlyExpected);
 		assertError('boo {--unbalanced-brackets: not][][valid;}', parser, parser._parseRuleset.bind(parser), ParseError.LeftSquareBracketExpected);
-		assertError('boo { @apply }', parser, parser._parseRuleset.bind(parser), ParseError.IdentifierExpected);
-		assertError('boo { @apply --custom-prop background: red}', parser, parser._parseRuleset.bind(parser), ParseError.SemiColonExpected);
+	});
+
+	test('nested ruleset', function () {
+		let parser = new Parser();
+		assertNode('.foo { color: red; input { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; :focus { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; .bar { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; &:hover { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; + .bar { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; foo:hover { color: blue }; }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; @media screen { color: blue }; }', parser, parser._parseRuleset.bind(parser));
+
+		// Top level curly braces are allowed in declaration values if they are for a custom property.
+		assertNode('.foo { --foo: {}; }', parser, parser._parseRuleset.bind(parser));
+		// Top level curly braces are not allowed in declaration values.
+		assertError('.foo { foo: {}; }', parser, parser._parseRuleset.bind(parser), ParseError.PropertyValueExpected);
+	});
+
+	test('nested ruleset 2', function () {
+		let parser = new Parser();
+		assertNode('.foo { .parent & { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; & > .bar, > .baz { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { & .bar & .baz & .qux { color: blue; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; :not(&) { color: blue; }; + .bar + & { color: green; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { color: red; & { color: blue; } && { color: green; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('.foo { & :is(.bar, &.baz) { color: red; } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('figure { > figcaption { background: hsl(0 0% 0% / 50%); > p {  font-size: .9rem; } } }', parser, parser._parseRuleset.bind(parser));
+		assertNode('@layer base { html { & body { min-block-size: 100%; } } }', parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('selector', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('asdsa', parser, parser._parseSelector.bind(parser));
 		assertNode('asdsa + asdas', parser, parser._parseSelector.bind(parser));
 		assertNode('asdsa + asdas + name', parser, parser._parseSelector.bind(parser));
@@ -336,7 +476,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('simple selector', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('name', parser, parser._parseSimpleSelector.bind(parser));
 		assertNode('#id#anotherid', parser, parser._parseSimpleSelector.bind(parser));
 		assertNode('name.far', parser, parser._parseSimpleSelector.bind(parser));
@@ -344,7 +484,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('element name', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('name', parser, parser._parseElementName.bind(parser));
 		assertNode('*', parser, parser._parseElementName.bind(parser));
 		assertNode('foo|h1', parser, parser._parseElementName.bind(parser));
@@ -354,7 +494,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('attrib', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('[name]', parser, parser._parseAttrib.bind(parser));
 		assertNode('[name = name2]', parser, parser._parseAttrib.bind(parser));
 		assertNode('[name ~= name3]', parser, parser._parseAttrib.bind(parser));
@@ -362,6 +502,7 @@ suite('CSS - Parser', () => {
 		assertNode('[name |= name3]', parser, parser._parseAttrib.bind(parser));
 		assertNode('[name |= "this is a striiiing"]', parser, parser._parseAttrib.bind(parser));
 		assertNode('[href*="insensitive" i]', parser, parser._parseAttrib.bind(parser));
+		assertNode('[href*="sensitive" S]', parser, parser._parseAttrib.bind(parser));
 
 		// Single namespace
 		assertNode('[namespace|name]', parser, parser._parseAttrib.bind(parser));
@@ -374,10 +515,15 @@ suite('CSS - Parser', () => {
 	});
 
 	test('pseudo', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode(':some', parser, parser._parsePseudo.bind(parser));
 		assertNode(':some(thing)', parser, parser._parsePseudo.bind(parser));
 		assertNode(':nth-child(12)', parser, parser._parsePseudo.bind(parser));
+		assertNode(':nth-child(1n)', parser, parser._parsePseudo.bind(parser));
+		assertNode(':nth-child(-n+3)', parser, parser._parsePseudo.bind(parser));
+		assertNode(':nth-child(2n+1)', parser, parser._parsePseudo.bind(parser));
+		assertNode(':nth-child(2n+1 of .foo)', parser, parser._parsePseudo.bind(parser));
+		assertNode(':nth-child(2n+1 of .foo > bar, :not(*) ~ [other="value"])', parser, parser._parsePseudo.bind(parser));
 		assertNode(':lang(it)', parser, parser._parsePseudo.bind(parser));
 		assertNode(':not(.class)', parser, parser._parsePseudo.bind(parser));
 		assertNode(':not(:disabled)', parser, parser._parsePseudo.bind(parser));
@@ -387,10 +533,17 @@ suite('CSS - Parser', () => {
 		assertNode(':global(.output ::selection)', parser, parser._parsePseudo.bind(parser)); // #49010
 		assertNode(':matches(:hover, :focus)', parser, parser._parsePseudo.bind(parser)); // #49010
 		assertNode(':host([foo=bar][bar=foo])', parser, parser._parsePseudo.bind(parser)); // #49589
+		assertNode(':has(> .test)', parser, parser._parsePseudo.bind(parser)); // #250
+		assertNode(':has(~ .test)', parser, parser._parsePseudo.bind(parser)); // #250
+		assertNode(':has(+ .test)', parser, parser._parsePseudo.bind(parser)); // #250
+		assertNode(':has(~ div .test)', parser, parser._parsePseudo.bind(parser)); // #250
+		assertError('::', parser, parser._parsePseudo.bind(parser), ParseError.IdentifierExpected);
+		assertError(':: foo', parser, parser._parsePseudo.bind(parser), ParseError.IdentifierExpected);
+		assertError(':nth-child(1n of)', parser, parser._parsePseudo.bind(parser), ParseError.SelectorExpected);
 	});
 
 	test('declaration', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('name : "this is a string" !important', parser, parser._parseDeclaration.bind(parser));
 		assertNode('name : "this is a string"', parser, parser._parseDeclaration.bind(parser));
 		assertNode('property:12', parser, parser._parseDeclaration.bind(parser));
@@ -408,10 +561,12 @@ suite('CSS - Parser', () => {
 		assertNode('grid-template-columns: [a] auto [b] minmax(min-content, 1fr) [b c d] repeat(2, [e] 40px)', parser, parser._parseDeclaration.bind(parser));
 		assertNode('grid-template: [foo] 10px / [bar] 10px', parser, parser._parseDeclaration.bind(parser));
 		assertNode(`grid-template: 'left1 footer footer' 1fr [end] / [ini] 1fr [info-start] 2fr 1fr [end]`, parser, parser._parseDeclaration.bind(parser));
+		assertNode(`content: "("counter(foo) ")"`, parser, parser._parseDeclaration.bind(parser));
+		assertNode(`content: 'Hello\\0A''world'`, parser, parser._parseDeclaration.bind(parser));
 	});
 
 	test('term', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('"asdasd"', parser, parser._parseTerm.bind(parser));
 		assertNode('name', parser, parser._parseTerm.bind(parser));
 		assertNode('#FFFFFF', parser, parser._parseTerm.bind(parser));
@@ -431,10 +586,15 @@ suite('CSS - Parser', () => {
 		assertNode('calc(50% + (100%/3 - 2*1em - 2*1px))', parser, parser._parseTerm.bind(parser));
 		assertNoNode('%(\'repetitions: %S file: %S\', 1 + 2, "directory/file.less")', parser, parser._parseTerm.bind(parser)); // less syntax
 		assertNoNode('~"ms:alwaysHasItsOwnSyntax.For.Stuff()"', parser, parser._parseTerm.bind(parser)); // less syntax
+		assertNode('U+002?-0199', parser, parser._parseTerm.bind(parser));
+		assertNoNode('U+002?-01??', parser, parser._parseTerm.bind(parser));
+		assertNoNode('U+00?0;', parser, parser._parseTerm.bind(parser));
+		assertNoNode('U+0XFF;', parser, parser._parseTerm.bind(parser));
 	});
 
+
 	test('function', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('name( "bla" )', parser, parser._parseFunction.bind(parser));
 		assertNode('name( name )', parser, parser._parseFunction.bind(parser));
 		assertNode('name( -500mm )', parser, parser._parseFunction.bind(parser));
@@ -454,7 +614,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('test token prio', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('!important', parser, parser._parsePrio.bind(parser));
 		assertNode('!/*demo*/important', parser, parser._parsePrio.bind(parser));
 		assertNode('! /*demo*/ important', parser, parser._parsePrio.bind(parser));
@@ -462,7 +622,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('hexcolor', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('#FFF', parser, parser._parseHexColor.bind(parser));
 		assertNode('#FFFF', parser, parser._parseHexColor.bind(parser));
 		assertNode('#FFFFFF', parser, parser._parseHexColor.bind(parser));
@@ -470,7 +630,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('test class', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('.faa', parser, parser._parseClass.bind(parser));
 		assertNode('faa', parser, parser._parseElementName.bind(parser));
 		assertNode('*', parser, parser._parseElementName.bind(parser));
@@ -479,12 +639,12 @@ suite('CSS - Parser', () => {
 
 
 	test('prio', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('!important', parser, parser._parsePrio.bind(parser));
 	});
 
 	test('expr', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('45,5px', parser, parser._parseExpr.bind(parser));
 		assertNode(' 45 , 5px ', parser, parser._parseExpr.bind(parser));
 		assertNode('5/6', parser, parser._parseExpr.bind(parser));
@@ -492,7 +652,7 @@ suite('CSS - Parser', () => {
 	});
 
 	test('url', function () {
-		let parser = new Parser();
+		const parser = new Parser();
 		assertNode('url(//yourdomain/yourpath.png)', parser, parser._parseURILiteral.bind(parser));
 		assertNode('url(\'http://msft.com\')', parser, parser._parseURILiteral.bind(parser));
 		assertNode('url("http://msft.com")', parser, parser._parseURILiteral.bind(parser));

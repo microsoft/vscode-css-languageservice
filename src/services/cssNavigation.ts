@@ -5,18 +5,41 @@
 'use strict';
 
 import {
-	Color, ColorInformation, ColorPresentation, DocumentHighlight, DocumentHighlightKind, DocumentLink, Location,
-	Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit, TextDocument, DocumentContext
+	AliasSettings, Color, ColorInformation, ColorPresentation, DocumentHighlight, DocumentHighlightKind, DocumentLink, Location,
+	Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit, TextDocument, DocumentContext, FileSystemProvider, FileType, DocumentSymbol
 } from '../cssLanguageTypes';
-import * as nls from 'vscode-nls';
+import * as l10n from '@vscode/l10n';
 import * as nodes from '../parser/cssNodes';
 import { Symbols } from '../parser/cssSymbolScope';
-import { getColorValue, hslFromColor } from '../languageFacts/facts';
+import {
+	getColorValue,
+	hslFromColor,
+	hwbFromColor,
+	labFromColor,
+	lchFromColor,
+	oklabFromColor,
+	oklchFromColor,
+} from '../languageFacts/facts';
 import { startsWith } from '../utils/strings';
+import { dirname, joinPath } from '../utils/resources';
 
-const localize = nls.loadMessageBundle();
+
+type UnresolvedLinkData = { link: DocumentLink, isRawLink: boolean };
+
+type DocumentSymbolCollector = (name: string, kind: SymbolKind, symbolNodeOrRange: nodes.Node | Range, nameNodeOrRange: nodes.Node | Range | undefined, bodyNode: nodes.Node | undefined) => void;
+
+const startsWithSchemeRegex = /^\w+:\/\//;
+const startsWithData = /^data:/;
 
 export class CSSNavigation {
+	protected defaultSettings?: AliasSettings;
+
+	constructor(protected fileSystemProvider: FileSystemProvider | undefined, private readonly resolveModuleReferences: boolean) {
+	}
+
+	public configure(settings: AliasSettings | undefined) {
+		this.defaultSettings = settings;
+	}
 
 	public findDefinition(document: TextDocument, position: Position, stylesheet: nodes.Node): Location | null {
 
@@ -49,16 +72,24 @@ export class CSSNavigation {
 		});
 	}
 
-	public findDocumentHighlights(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): DocumentHighlight[] {
-		const result: DocumentHighlight[] = [];
-
+	private getHighlightNode(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): nodes.Node | undefined {
 		const offset = document.offsetAt(position);
 		let node = nodes.getNodeAtOffset(stylesheet, offset);
-		if (!node || node.type === nodes.NodeType.Stylesheet || node.type === nodes.NodeType.Declarations) {
-			return result;
+		if (!node || node.type === nodes.NodeType.Stylesheet || node.type === nodes.NodeType.Declarations || node.type === nodes.NodeType.ModuleConfig) {
+			return;
 		}
 		if (node.type === nodes.NodeType.Identifier && node.parent && node.parent.type === nodes.NodeType.ClassSelector) {
 			node = node.parent;
+		}
+
+		return node;
+	}
+
+	public findDocumentHighlights(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): DocumentHighlight[] {
+		const result: DocumentHighlight[] = [];
+		const node = this.getHighlightNode(document, position, stylesheet);
+		if (!node) {
+			return result;
 		}
 
 		const symbols = new Symbols(stylesheet);
@@ -92,13 +123,72 @@ export class CSSNavigation {
 	}
 
 	public findDocumentLinks(document: TextDocument, stylesheet: nodes.Stylesheet, documentContext: DocumentContext): DocumentLink[] {
-		const result: DocumentLink[] = [];
+		const linkData = this.findUnresolvedLinks(document, stylesheet);
+		const resolvedLinks: DocumentLink[] = [];
+		for (let data of linkData) {
+			const link = data.link;
+			const target = link.target;
+			if (!target || startsWithData.test(target)) {
+				// no links for data:
+			} else if (startsWithSchemeRegex.test(target)) {
+				resolvedLinks.push(link);
+			} else {
+				const resolved = documentContext.resolveReference(target, document.uri);
+				if (resolved) {
+					link.target = resolved;
+				}
+				resolvedLinks.push(link);
+			}
+		}
+		return resolvedLinks;
+	}
+
+	public async findDocumentLinks2(document: TextDocument, stylesheet: nodes.Stylesheet, documentContext: DocumentContext): Promise<DocumentLink[]> {
+		const linkData = this.findUnresolvedLinks(document, stylesheet);
+		const resolvedLinks: DocumentLink[] = [];
+		for (let data of linkData) {
+			const link = data.link;
+			const target = link.target;
+			if (!target || startsWithData.test(target)) {
+				// no links for data:
+			} else if (startsWithSchemeRegex.test(target)) {
+				resolvedLinks.push(link);
+			} else {
+				const resolvedTarget = await this.resolveReference(target, document.uri, documentContext, data.isRawLink);
+				if (resolvedTarget !== undefined) {
+					link.target = resolvedTarget;
+					resolvedLinks.push(link);
+				}
+			}
+		}
+		return resolvedLinks;
+	}
+
+
+	private findUnresolvedLinks(document: TextDocument, stylesheet: nodes.Stylesheet): UnresolvedLinkData[] {
+		const result: UnresolvedLinkData[] = [];
+
+		const collect = (uriStringNode: nodes.Node) => {
+			let rawUri = uriStringNode.getText();
+			const range = getRange(uriStringNode, document);
+			// Make sure the range is not empty
+			if (range.start.line === range.end.line && range.start.character === range.end.character) {
+				return;
+			}
+
+			if (startsWith(rawUri, `'`) || startsWith(rawUri, `"`)) {
+				rawUri = rawUri.slice(1, -1);
+			}
+
+			const isRawLink = uriStringNode.parent ? this.isRawStringDocumentLinkNode(uriStringNode.parent) : false;
+			result.push({ link: { target: rawUri, range }, isRawLink });
+		};
 
 		stylesheet.accept(candidate => {
 			if (candidate.type === nodes.NodeType.URILiteral) {
-				const link = uriLiteralNodeToDocumentLink(document, candidate, documentContext);
-				if (link) {
-					result.push(link);
+				const first = candidate.getChild(0);
+				if (first) {
+					collect(first);
 				}
 				return false;
 			}
@@ -110,12 +200,8 @@ export class CSSNavigation {
 			if (candidate.parent && this.isRawStringDocumentLinkNode(candidate.parent)) {
 				const rawText = candidate.getText();
 				if (startsWith(rawText, `'`) || startsWith(rawText, `"`)) {
-					const link = uriStringNodeToDocumentLink(document, candidate, documentContext);
-					if (link) {
-						result.push(link);
-					}
+					collect(candidate);
 				}
-
 				return false;
 			}
 
@@ -125,60 +211,112 @@ export class CSSNavigation {
 		return result;
 	}
 
-	public async findDocumentLinks2(document: TextDocument, stylesheet: nodes.Stylesheet, documentContext: DocumentContext): Promise<DocumentLink[]> {
-		return this.findDocumentLinks(document, stylesheet, documentContext);
-	}
-
-	public findDocumentSymbols(document: TextDocument, stylesheet: nodes.Stylesheet): SymbolInformation[] {
+	public findSymbolInformations(document: TextDocument, stylesheet: nodes.Stylesheet): SymbolInformation[] {
 
 		const result: SymbolInformation[] = [];
 
-		stylesheet.accept((node) => {
-
+		const addSymbolInformation = (name: string, kind: SymbolKind, symbolNodeOrRange: nodes.Node | Range) => {
+			const range = symbolNodeOrRange instanceof nodes.Node ? getRange(symbolNodeOrRange, document) : symbolNodeOrRange;
 			const entry: SymbolInformation = {
-				name: null!,
-				kind: SymbolKind.Class, // TODO@Martin: find a good SymbolKind
-				location: null!
+				name: name || l10n.t('<undefined>'),
+				kind,
+				location: Location.create(document.uri, range)
 			};
-			let locationNode: nodes.Node | null = node;
-			if (node instanceof nodes.Selector) {
-				entry.name = node.getText();
-				locationNode = node.findAParent(nodes.NodeType.Ruleset, nodes.NodeType.ExtendsReference);
-				if (locationNode) {
-					entry.location = Location.create(document.uri, getRange(locationNode, document));
-					result.push(entry);
+			result.push(entry);
+		};
+
+		this.collectDocumentSymbols(document, stylesheet, addSymbolInformation);
+
+		return result;
+	}
+
+	public findDocumentSymbols(document: TextDocument, stylesheet: nodes.Stylesheet): DocumentSymbol[] {
+		const result: DocumentSymbol[] = [];
+
+		const parents: [DocumentSymbol, Range][] = [];
+
+		const addDocumentSymbol = (name: string, kind: SymbolKind, symbolNodeOrRange: nodes.Node | Range, nameNodeOrRange: nodes.Node | Range | undefined, bodyNode: nodes.Node | undefined) => {
+			const range = symbolNodeOrRange instanceof nodes.Node ? getRange(symbolNodeOrRange, document) : symbolNodeOrRange;
+			let selectionRange = nameNodeOrRange instanceof nodes.Node ? getRange(nameNodeOrRange, document) : nameNodeOrRange;
+			if (!selectionRange || !containsRange(range, selectionRange)) {
+				selectionRange = Range.create(range.start, range.start);
+			}
+
+			const entry: DocumentSymbol = {
+				name: name || l10n.t('<undefined>'),
+				kind,
+				range,
+				selectionRange
+			};
+			let top = parents.pop();
+			while (top && !containsRange(top[1], range)) {
+				top = parents.pop();
+			}
+			if (top) {
+				const topSymbol = top[0];
+				if (!topSymbol.children) {
+					topSymbol.children = [];
 				}
-				return false;
+				topSymbol.children.push(entry);
+				parents.push(top); // put back top
+			} else {
+				result.push(entry);
+			}
+			if (bodyNode) {
+				parents.push([entry, getRange(bodyNode, document)]);
+			}
+		};
+
+		this.collectDocumentSymbols(document, stylesheet, addDocumentSymbol);
+
+		return result;
+	}
+
+	private collectDocumentSymbols(document: TextDocument, stylesheet: nodes.Stylesheet, collect: DocumentSymbolCollector): void {
+		stylesheet.accept(node => {
+			if (node instanceof nodes.RuleSet) {
+				for (const selector of node.getSelectors().getChildren()) {
+					if (selector instanceof nodes.Selector) {
+						const range = Range.create(document.positionAt(selector.offset), document.positionAt(node.end));
+						collect(selector.getText(), SymbolKind.Class, range, selector, node.getDeclarations());
+					}
+				}
 			} else if (node instanceof nodes.VariableDeclaration) {
-				entry.name = (<nodes.VariableDeclaration>node).getName();
-				entry.kind = SymbolKind.Variable;
+				collect(node.getName(), SymbolKind.Variable, node, node.getVariable(), undefined);
 			} else if (node instanceof nodes.MixinDeclaration) {
-				entry.name = (<nodes.MixinDeclaration>node).getName();
-				entry.kind = SymbolKind.Method;
+				collect(node.getName(), SymbolKind.Method, node, node.getIdentifier(), node.getDeclarations());
 			} else if (node instanceof nodes.FunctionDeclaration) {
-				entry.name = (<nodes.FunctionDeclaration>node).getName();
-				entry.kind = SymbolKind.Function;
+				collect(node.getName(), SymbolKind.Function, node, node.getIdentifier(), node.getDeclarations());
 			} else if (node instanceof nodes.Keyframe) {
-				entry.name = localize('literal.keyframes', "@keyframes {0}", (<nodes.Keyframe>node).getName());
+				const name = l10n.t("@keyframes {0}", node.getName());
+				collect(name, SymbolKind.Class, node, node.getIdentifier(), node.getDeclarations());
 			} else if (node instanceof nodes.FontFace) {
-				entry.name = localize('literal.fontface', "@font-face");
+				const name = l10n.t("@font-face");
+				collect(name, SymbolKind.Class, node, undefined, node.getDeclarations());
 			} else if (node instanceof nodes.Media) {
 				const mediaList = node.getChild(0);
 				if (mediaList instanceof nodes.Medialist) {
-					entry.name = '@media ' + mediaList.getText();
-					entry.kind = SymbolKind.Module;
+					const name = '@media ' + mediaList.getText();
+					collect(name, SymbolKind.Module, node, mediaList, node.getDeclarations());
 				}
-			}
+			} else if (node instanceof nodes.Scope) {
+				let scopeName = ''
 
-			if (entry.name) {
-				entry.location = Location.create(document.uri, getRange(locationNode, document));
-				result.push(entry);
-			}
+				const scopeLimits = node.getChild(0)
+				if (scopeLimits instanceof nodes.ScopeLimits) {
+					scopeName = `${scopeLimits.getName()}`
+				}
 
+				collect(
+					`@scope${scopeName ? ` ${scopeName}` : ''}`,
+					SymbolKind.Module,
+					node,
+					scopeLimits ?? undefined,
+					node.getDeclarations()
+				)
+			}
 			return true;
 		});
-
-		return result;
 	}
 
 	public findDocumentColors(document: TextDocument, stylesheet: nodes.Stylesheet): ColorInformation[] {
@@ -220,7 +358,46 @@ export class CSSNavigation {
 		}
 		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
 
+		const hwb = hwbFromColor(color);
+		if (hwb.a === 1) {
+			label = `hwb(${hwb.h} ${Math.round(hwb.w * 100)}% ${Math.round(hwb.b * 100)}%)`;
+		} else {
+			label = `hwb(${hwb.h} ${Math.round(hwb.w * 100)}% ${Math.round(hwb.b * 100)}% / ${hwb.a})`;
+		}
+		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
+
+		const lab = labFromColor(color);
+		if (lab.alpha === 1) {
+			label = `lab(${lab.l}% ${lab.a} ${lab.b})`;
+		} else {
+			label = `lab(${lab.l}% ${lab.a} ${lab.b} / ${lab.alpha})`;
+		}
+		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
+
+		const lch = lchFromColor(color);
+		if (lch.alpha === 1) {
+			label = `lch(${lch.l}% ${lch.c} ${lch.h})`;
+		} else {
+			label = `lch(${lch.l}% ${lch.c} ${lch.h} / ${lch.alpha})`;
+		}
+		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
+
+		const oklab = oklabFromColor(color);
+		label = (oklab.alpha === 1) ? `oklab(${oklab.l}% ${oklab.a} ${oklab.b})` : `oklab(${oklab.l}% ${oklab.a} ${oklab.b} / ${oklab.alpha})`;
+		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
+
+		const oklch = oklchFromColor(color);
+		label = (oklch.alpha === 1) ? `oklch(${oklch.l}% ${oklch.c} ${oklch.h})` : `oklch(${oklch.l}% ${oklch.c} ${oklch.h} / ${oklch.alpha})`;
+		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
+
 		return result;
+	}
+
+	public prepareRename(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet): Range | undefined {
+		const node = this.getHighlightNode(document, position, stylesheet);
+		if (node) {
+			return Range.create(document.positionAt(node.offset), document.positionAt(node.end));
+		}
 	}
 
 	public doRename(document: TextDocument, position: Position, newName: string, stylesheet: nodes.Stylesheet): WorkspaceEdit {
@@ -229,6 +406,117 @@ export class CSSNavigation {
 		return {
 			changes: { [document.uri]: edits }
 		};
+	}
+
+	protected async resolveModuleReference(ref: string, documentUri: string, documentContext: DocumentContext): Promise<string | undefined> {
+		if (startsWith(documentUri, 'file://')) {
+			const moduleName = getModuleNameFromPath(ref);
+			if (moduleName && moduleName !== '.' && moduleName !== '..') {
+				const rootFolderUri = documentContext.resolveReference('/', documentUri);
+				const documentFolderUri = dirname(documentUri);
+				const modulePath = await this.resolvePathToModule(moduleName, documentFolderUri, rootFolderUri);
+				if (modulePath) {
+					const pathWithinModule = ref.substring(moduleName.length + 1);
+					return joinPath(modulePath, pathWithinModule);
+				}
+			}
+		}
+		return undefined;
+	}
+
+	protected async mapReference(target: string | undefined, isRawLink: boolean): Promise<string | undefined> {
+		return target;
+	}
+
+	protected async resolveReference(target: string, documentUri: string, documentContext: DocumentContext, isRawLink = false, settings = this.defaultSettings): Promise<string | undefined> {
+
+		// Following [css-loader](https://github.com/webpack-contrib/css-loader#url)
+		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#imports)
+		// convention, if an import path starts with ~ then use node module resolution
+		// *unless* it starts with "~/" as this refers to the user's home directory.
+		if (target[0] === '~' && target[1] !== '/' && this.fileSystemProvider) {
+			target = target.substring(1);
+			return this.mapReference(await this.resolveModuleReference(target, documentUri, documentContext), isRawLink);
+		}
+
+		const ref = await this.mapReference(documentContext.resolveReference(target, documentUri), isRawLink);
+
+		// Following [less-loader](https://github.com/webpack-contrib/less-loader#imports)
+		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#resolving-import-at-rules)
+		// new resolving import at-rules (~ is deprecated). The loader will first try to resolve @import as a relative path. If it cannot be resolved,
+		// then the loader will try to resolve @import inside node_modules.
+		if (this.resolveModuleReferences) {
+			if (ref && await this.fileExists(ref)) {
+				return ref;
+			}
+
+			const moduleReference = await this.mapReference(await this.resolveModuleReference(target, documentUri, documentContext), isRawLink);
+			if (moduleReference) {
+				return moduleReference;
+			}
+		}
+
+		// Try resolving the reference from the language configuration alias settings
+		if (ref && !(await this.fileExists(ref))) {
+			const rootFolderUri = documentContext.resolveReference('/', documentUri);
+			if (settings && rootFolderUri) {
+				// Specific file reference
+				if (target in settings) {
+					return this.mapReference(joinPath(rootFolderUri, settings[target]), isRawLink);
+				}
+				// Reference folder
+				const firstSlash = target.indexOf('/');
+				const prefix = `${target.substring(0, firstSlash)}/`;
+				if (prefix in settings) {
+					const aliasPath = (settings[prefix]).slice(0, -1);
+					let newPath = joinPath(rootFolderUri, aliasPath);
+					return this.mapReference(newPath = joinPath(newPath, target.substring(prefix.length - 1)), isRawLink);
+				}
+			}
+		}
+
+		// fall back. it might not exists
+		return ref;
+	}
+
+	protected async resolvePathToModule(_moduleName: string, documentFolderUri: string, rootFolderUri: string | undefined): Promise<string | undefined> {
+		// resolve the module relative to the document. We can't use `require` here as the code is webpacked.
+
+		const packPath = joinPath(documentFolderUri, 'node_modules', _moduleName, 'package.json');
+		if (await this.fileExists(packPath)) {
+			return dirname(packPath);
+		} else if (rootFolderUri && documentFolderUri.startsWith(rootFolderUri) && (documentFolderUri.length !== rootFolderUri.length)) {
+			return this.resolvePathToModule(_moduleName, dirname(documentFolderUri), rootFolderUri);
+		}
+		return undefined;
+	}
+
+
+	protected async fileExists(uri: string): Promise<boolean> {
+		if (!this.fileSystemProvider) {
+			return false;
+		}
+		try {
+			const stat = await this.fileSystemProvider.stat(uri);
+			if (stat.type === FileType.Unknown && stat.size === -1) {
+				return false;
+			}
+
+			return true;
+		} catch (err) {
+			return false;
+		}
+	}
+
+	protected async getContent(uri: string): Promise<string | null> {
+		if (!this.fileSystemProvider || !this.fileSystemProvider.getContent) {
+			return null;
+		}
+		try {
+			return await this.fileSystemProvider.getContent(uri);
+		} catch (err) {
+			return null;
+		}
 	}
 
 }
@@ -242,48 +530,31 @@ function getColorInformation(node: nodes.Node, document: TextDocument): ColorInf
 	return null;
 }
 
-function uriLiteralNodeToDocumentLink(document: TextDocument, uriLiteralNode: nodes.Node, documentContext: DocumentContext): DocumentLink | null {
-	if (uriLiteralNode.getChildren().length === 0) {
-		return null;
-	}
-
-	const uriStringNode = uriLiteralNode.getChild(0);
-
-	return uriStringNodeToDocumentLink(document, uriStringNode, documentContext);
-}
-
-function uriStringNodeToDocumentLink(document: TextDocument, uriStringNode: nodes.Node | null, documentContext: DocumentContext): DocumentLink | null {
-	if (!uriStringNode) {
-		return null;
-	}
-
-	let rawUri = uriStringNode.getText();
-	const range = getRange(uriStringNode, document);
-	// Make sure the range is not empty
-	if (range.start.line === range.end.line && range.start.character === range.end.character) {
-		return null;
-	}
-
-	if (startsWith(rawUri, `'`) || startsWith(rawUri, `"`)) {
-		rawUri = rawUri.slice(1, -1);
-	}
-	let target: string;
-	if (startsWith(rawUri, 'http://') || startsWith(rawUri, 'https://')) {
-		target = rawUri;
-	} else if (/^\w+:\/\//g.test(rawUri)) {
-		target = rawUri;
-	}
-	else {
-		target = documentContext.resolveReference(rawUri, document.uri);
-	}
-	return {
-		range,
-		target
-	};
-}
 
 function getRange(node: nodes.Node, document: TextDocument): Range {
 	return Range.create(document.positionAt(node.offset), document.positionAt(node.end));
+}
+
+/**
+ * Test if `otherRange` is in `range`. If the ranges are equal, will return true.
+ */
+function containsRange(range: Range, otherRange: Range): boolean {
+	const otherStartLine = otherRange.start.line, otherEndLine = otherRange.end.line;
+	const rangeStartLine = range.start.line, rangeEndLine = range.end.line;
+
+	if (otherStartLine < rangeStartLine || otherEndLine < rangeStartLine) {
+		return false;
+	}
+	if (otherStartLine > rangeEndLine || otherEndLine > rangeEndLine) {
+		return false;
+	}
+	if (otherStartLine === rangeStartLine && otherRange.start.character < range.start.character) {
+		return false;
+	}
+	if (otherEndLine === rangeEndLine && otherRange.end.character > range.end.character) {
+		return false;
+	}
+	return true;
 }
 
 function getHighlightKind(node: nodes.Node): DocumentHighlightKind {
@@ -317,4 +588,22 @@ function getHighlightKind(node: nodes.Node): DocumentHighlightKind {
 function toTwoDigitHex(n: number): string {
 	const r = n.toString(16);
 	return r.length !== 2 ? '0' + r : r;
+}
+
+export function getModuleNameFromPath(path: string) {
+	const firstSlash = path.indexOf('/');
+	if (firstSlash === -1) {
+		return '';
+	}
+
+	// If a scoped module (starts with @) then get up until second instance of '/', or to the end of the string for root-level imports.
+	if (path[0] === '@') {
+		const secondSlash = path.indexOf('/', firstSlash + 1);
+		if (secondSlash === -1) {
+			return path;
+		}
+		return path.substring(0, secondSlash);
+	}
+	// Otherwise get until first instance of '/'
+	return path.substring(0, firstSlash);
 }

@@ -5,8 +5,9 @@
 'use strict';
 
 import * as nodes from '../../parser/cssNodes';
-import { assertScopeBuilding, assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertSymbols, newRange } from '../css/navigation.test';
+import { assertScopeBuilding, assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertSymbolInfos, newRange, assertColorSymbols, assertDocumentSymbols } from '../css/navigation.test';
 import { getLESSLanguageService, SymbolKind, Location } from '../../cssLanguageService';
+import { colorFrom256RGB } from '../../languageFacts/facts';
 
 suite('LESS - Symbols', () => {
 
@@ -54,10 +55,42 @@ suite('LESS - Symbols', () => {
 
 	test('basic symbols', () => {
 		let ls = getLESSLanguageService();
-		assertSymbols(ls, '.a(@gutter: @gutter-width) { &:extend(.b); }', [
-			{ name: '.a', kind: SymbolKind.Method, location: Location.create('test://test/test.css', newRange(0, 44)) },
-			{ name: '.b', kind: SymbolKind.Class, location: Location.create('test://test/test.css', newRange(29, 41)) }
+		assertSymbolInfos(ls, '.a(@gutter: @gutter-width) { &:extend(.b); }', [
+			{ name: '.a', kind: SymbolKind.Method, location: Location.create('test://test/test.css', newRange(0, 44)) }
+		]);
+		assertDocumentSymbols(ls, '.a(@gutter: @gutter-width) { &:extend(.b); }', [
+			{ name: '.a', kind: SymbolKind.Method, range: newRange(0, 44), selectionRange: newRange(0, 2) }
+		]);
+
+		assertSymbolInfos(ls, '.mixin() { .nested() {} }', [
+			{ name: '.mixin', kind: SymbolKind.Method, location: Location.create('test://test/test.css', newRange(0, 25)) },
+			{ name: '.nested', kind: SymbolKind.Method, location: Location.create('test://test/test.css', newRange(11, 23)) }
+		]);
+
+		assertDocumentSymbols(ls, '.mixin() { .nested() {} }', [
+			{
+				name: '.mixin', kind: SymbolKind.Method, range: newRange(0, 25), selectionRange: newRange(0, 6),
+				children: [
+					{ name: '.nested', kind: SymbolKind.Method, range: newRange(11, 23), selectionRange: newRange(11, 18) }
+				]
+			}
 		]);
 	});
 
+});
+
+suite('Color', () => {
+
+	test('color symbols', function () {
+		let ls = getLESSLanguageService();
+		assertColorSymbols(ls, '@foo: #ff9977;',
+			{ color: colorFrom256RGB(0xff, 0x99, 0x77), range: newRange(6, 13) }
+		);
+		assertColorSymbols(ls, 'body { @foo: hsl(0, 0%, 100%); }',
+			{ color: colorFrom256RGB(255, 255, 255), range: newRange(13, 29) }
+		);
+		assertColorSymbols(ls, 'body { @foo: hsl(0, 1%, 100%); }',
+			{ color: colorFrom256RGB(255, 255, 255), range: newRange(13, 29) }
+		);
+	});
 });

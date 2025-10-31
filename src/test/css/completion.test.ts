@@ -5,11 +5,17 @@
 'use strict';
 
 import * as assert from 'assert';
+import * as path from 'path';
 import {
 	getCSSLanguageService,
 	LanguageSettings, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext,
-	TextDocument, CompletionList, Position, CompletionItemKind, InsertTextFormat, Range, Command, MarkupContent
+	TextDocument, CompletionList, Position, CompletionItemKind, InsertTextFormat, Range, Command, MarkupContent, MixinReferenceCompletionContext, getSCSSLanguageService, getLESSLanguageService, ICSSDataProvider, newCSSDataProvider
 } from '../../cssLanguageService';
+import { BaselineImages } from '../../languageFacts/facts';
+import { getDocumentContext } from '../testUtil/documentContext';
+import { URI } from 'vscode-uri';
+import { getFsProvider } from '../testUtil/fsProvider';
+import { TextEdit } from 'vscode-languageserver-types';
 
 export interface ItemDescription {
 	label: string;
@@ -27,12 +33,8 @@ export interface ItemDescription {
 	sortText?: string;
 }
 
-function asPromise<T>(result: T): Promise<T> {
-	return Promise.resolve(result);
-}
-
-export let assertCompletion = function (completions: CompletionList, expected: ItemDescription, document: TextDocument, offset: number) {
-	let matches = completions.items.filter(completion => {
+export function assertCompletion(completions: CompletionList, expected: ItemDescription, document: TextDocument) {
+	const matches = completions.items.filter(completion => {
 		return completion.label === expected.label;
 	});
 	if (expected.notAvailable) {
@@ -41,7 +43,7 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 		assert.equal(matches.length, 1, expected.label + " should only existing once: Actual: " + completions.items.map(c => c.label).join(', '));
 	}
 
-	let match = matches[0];
+	const match = matches[0];
 	if (expected.detail) {
 		assert.equal(match.detail, expected.detail);
 	}
@@ -59,8 +61,9 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 	if (expected.kind) {
 		assert.equal(match.kind, expected.kind);
 	}
-	if (expected.resultText) {
-		assert.equal(TextDocument.applyEdits(document, [match.textEdit!]), expected.resultText);
+	if (expected.resultText && match.textEdit) {
+		const edit = TextEdit.is(match.textEdit) ? match.textEdit : TextEdit.replace(match.textEdit.replace, match.textEdit.newText);
+		assert.equal(TextDocument.applyEdits(document, [edit]), expected.resultText);
 	}
 	if (expected.insertTextFormat) {
 		assert.equal(match.insertTextFormat, expected.insertTextFormat);
@@ -73,189 +76,239 @@ export let assertCompletion = function (completions: CompletionList, expected: I
 	}
 };
 
+export type ExpectedCompetions = {
+	count?: number;
+	items?: ItemDescription[];
+	participant?: {
+		onProperty?: PropertyCompletionContext[];
+		onPropertyValue?: PropertyValueCompletionContext[];
+		onURILiteralValue?: URILiteralCompletionContext[];
+		onImportPath?: ImportPathCompletionContext[];
+		onMixinReference?: MixinReferenceCompletionContext[];
+	};
+};
+
+export async function testCompletionFor(
+	value: string,
+	expected: ExpectedCompetions,
+	settings: LanguageSettings = {
+		completion: {
+			triggerPropertyValueCompletion: true,
+			completePropertyWithSemicolon: false
+		}
+	},
+	testUri: string = 'test://test/test.css',
+	workspaceFolderUri: string = 'test://test',
+	customData: ICSSDataProvider[] = [],
+) {
+	const offset = value.indexOf('|');
+	assert.ok(offset !== -1, '| missing in ' + value);
+	value = value.substr(0, offset) + value.substr(offset + 1);
+
+	const actualPropertyContexts: PropertyCompletionContext[] = [];
+	const actualPropertyValueContexts: PropertyValueCompletionContext[] = [];
+	const actualURILiteralValueContexts: URILiteralCompletionContext[] = [];
+	const actualImportPathContexts: ImportPathCompletionContext[] = [];
+	const actualMixinReferenceContexts: MixinReferenceCompletionContext[] = [];
+
+	const lang = path.extname(testUri).substr(1);
+	const lsOptions = { fileSystemProvider: getFsProvider() };
+	let ls;
+	if (lang === 'scss') {
+		ls = getSCSSLanguageService(lsOptions);
+	} else if (lang === 'less') {
+		ls = getLESSLanguageService(lsOptions);
+	} else {
+		ls = getCSSLanguageService(lsOptions);
+	}
+	ls.setDataProviders(true, customData);
+	ls.configure(settings);
+
+	if (expected.participant) {
+		ls.setCompletionParticipants([
+			{
+				onCssProperty: context => actualPropertyContexts.push(context),
+				onCssPropertyValue: context => actualPropertyValueContexts.push(context),
+				onCssURILiteralValue: context => actualURILiteralValueContexts.push(context),
+				onCssImportPath: context => actualImportPathContexts.push(context),
+				onCssMixinReference: context => actualMixinReferenceContexts.push(context)
+			}
+		]);
+	}
+
+	const document = TextDocument.create(testUri, lang, 0, value);
+	const position = Position.create(0, offset);
+	const jsonDoc = ls.parseStylesheet(document);
+
+	const context = getDocumentContext(workspaceFolderUri);
+
+	const list = await ls.doComplete2(document, position, jsonDoc, context);
+	if (typeof expected.count === 'number') {
+		assert.equal(list.items.length, expected.count);
+	}
+	if (expected.items) {
+		for (const item of expected.items) {
+			assertCompletion(list, item, document);
+		}
+	}
+	if (expected.participant) {
+		if (expected.participant.onProperty) {
+			assert.deepEqual(actualPropertyContexts, expected.participant.onProperty);
+		}
+		if (expected.participant.onPropertyValue) {
+			assert.deepEqual(actualPropertyValueContexts, expected.participant.onPropertyValue);
+		}
+		if (expected.participant.onURILiteralValue) {
+			assert.deepEqual(actualURILiteralValueContexts, expected.participant.onURILiteralValue);
+		}
+		if (expected.participant.onImportPath) {
+			assert.deepEqual(actualImportPathContexts, expected.participant.onImportPath);
+		}
+		if (expected.participant.onMixinReference) {
+			assert.deepEqual(actualMixinReferenceContexts, expected.participant.onMixinReference);
+		}
+	}
+};
+
 suite('CSS - Completion', () => {
 
-	let testCompletionFor = function (
-		value: string,
-		expected: {
-			count?: number;
-			items?: ItemDescription[];
-			participant?: {
-				onProperty?: PropertyCompletionContext[];
-				onPropertyValue?: PropertyValueCompletionContext[];
-				onURILiteralValue?: URILiteralCompletionContext[];
-				onImportPath?: ImportPathCompletionContext[];
-			};
-		},
-		settings: LanguageSettings = {
-			completion: {
-				triggerPropertyValueCompletion: true,
-				completePropertyWithSemicolon: false
-			}
-		}
-	) {
-		let offset = value.indexOf('|');
-		value = value.substr(0, offset) + value.substr(offset + 1);
 
-		let actualPropertyContexts: PropertyCompletionContext[] = [];
-		let actualPropertyValueContexts: PropertyValueCompletionContext[] = [];
-		let actualURILiteralValueContexts: URILiteralCompletionContext[] = [];
-		let actualImportPathContexts: ImportPathCompletionContext[] = [];
 
-		let ls = getCSSLanguageService();
-		ls.configure(settings);
-
-		if (expected.participant) {
-			ls.setCompletionParticipants([
-				{
-					onCssProperty: context => actualPropertyContexts.push(context),
-					onCssPropertyValue: context => actualPropertyValueContexts.push(context),
-					onCssURILiteralValue: context => actualURILiteralValueContexts.push(context),
-					onCssImportPath: context => actualImportPathContexts.push(context)
-				}
-			]);
-		}
-
-		let document = TextDocument.create('test://test/test.css', 'css', 0, value);
-		let position = Position.create(0, offset);
-		let jsonDoc = ls.parseStylesheet(document);
-		let list = ls.doComplete(document, position, jsonDoc);
-		if (typeof expected.count === 'number') {
-			assert.equal(list.items, expected.count);
-		}
-		if (expected.items) {
-			for (let item of expected.items) {
-				assertCompletion(list, item, document, offset);
-			}
-		}
-		if (expected.participant) {
-			if (expected.participant.onProperty) {
-				assert.deepEqual(actualPropertyContexts, expected.participant.onProperty);
-			}
-			if (expected.participant.onPropertyValue) {
-				assert.deepEqual(actualPropertyValueContexts, expected.participant.onPropertyValue);
-			}
-			if (expected.participant.onURILiteralValue) {
-				assert.deepEqual(actualURILiteralValueContexts, expected.participant.onURILiteralValue);
-			}
-			if (expected.participant.onImportPath) {
-				assert.deepEqual(actualImportPathContexts, expected.participant.onImportPath);
-			}
-		}
-	};
-
-	test('stylesheet', function (): any {
-		testCompletionFor('| ', {
+	test('stylesheet', async function () {
+		await testCompletionFor('| ', {
 			items: [
 				{ label: '@import', resultText: '@import ' },
 				{ label: '@keyframes', resultText: '@keyframes ' },
 				{ label: 'div', resultText: 'div ' }
 			]
 		});
-		testCompletionFor('| body {', {
+		await testCompletionFor('| body {', {
 			items: [
 				{ label: '@import', resultText: '@import body {' },
 				{ label: '@keyframes', resultText: '@keyframes body {' },
 				{ label: 'html', resultText: 'html body {' }
 			]
 		});
-		testCompletionFor('h| {', {
+		await testCompletionFor('h| {', {
 			items: [
 				{ label: 'html', resultText: 'html {' }
 			]
 		});
-		testCompletionFor('.foo |{ ', {
+		await testCompletionFor('.foo |{ ', {
 			items: [
 				{ label: 'html', resultText: '.foo html{ ' },
 				{ notAvailable: true, label: 'display' }
 			]
 		});
 	});
-	test('selectors', function (): any {
-		testCompletionFor('a:h| ', {
+	test('selectors', async function () {
+		await testCompletionFor('a:h| ', {
 			items: [
 				{ label: ':hover', resultText: 'a:hover ' },
 				{ label: '::after', resultText: 'a::after ' }
 			]
 		});
-		testCompletionFor('a::h| ', {
+		await testCompletionFor('a::h| ', {
 			items: [
 				{ label: ':hover', resultText: 'a:hover ' },
 				{ label: '::after', resultText: 'a::after ' }
 			]
 		});
-		testCompletionFor('a::| ', {
+		await testCompletionFor('a::| ', {
 			items: [
 				{ label: ':hover', resultText: 'a:hover ' },
 				{ label: '::after', resultText: 'a::after ' }
 			]
 		});
-		testCompletionFor('a:| ', {
+		await testCompletionFor('a:| ', {
 			items: [
 				{ label: ':hover', resultText: 'a:hover ' },
 				{ label: '::after', resultText: 'a::after ' }
 			]
 		});
-		testCompletionFor('a:|hover ', {
+		await testCompletionFor('a:|hover ', {
 			items: [
 				{ label: ':hover', resultText: 'a:hover ' },
 				{ label: '::after', resultText: 'a::after ' }
 			]
 		});
-		testCompletionFor('a#| ', {
+		await testCompletionFor('a::| foo { }', { // #104111
+			items: [
+				{ label: ':hover', resultText: 'a:hover foo { }' },
+				{ label: '::after', resultText: 'a::after foo { }' }
+			]
+		});
+		await testCompletionFor('a:| foo { }', { // #104111
+			items: [
+				{ label: ':hover', resultText: 'a:hover foo { }' },
+				{ label: '::after', resultText: 'a::after foo { }' }
+			]
+		});
+		await testCompletionFor('a#| ', {
 			items: [
 				{ label: ':hover', resultText: 'a:hover ' },
 				{ label: '::after', resultText: 'a::after ' }
 			]
 		});
-		testCompletionFor('a.| ', {
+		await testCompletionFor('a.| ', {
 			items: [
 				{ label: ':hover', resultText: 'a:hover ' },
 				{ label: '::after', resultText: 'a::after ' }
 			]
 		});
-		testCompletionFor('.a:| ', {
+		await testCompletionFor('.a:| ', {
 			items: [
 				{ label: ':hover', resultText: '.a:hover ' },
 				{ label: '::after', resultText: '.a::after ' }
 			]
 		});
+		await testCompletionFor('.a { .b:| }', {
+			items: [
+				{ label: ':hover', resultText: '.a { .b:hover }' },
+				{ label: '::after', resultText: '.a { .b::after }' }
+			]
+		});
+		await testCompletionFor('.a { div:h| {} }', {
+			items: [
+				{ label: ':hover', resultText: '.a { div:hover {} }' }
+			]
+		});
 	});
-	test('properties', function (): any {
-		testCompletionFor('body {|', {
+	test('properties', async function () {
+		await testCompletionFor('body {|', {
 			items: [
 				{ label: 'display', resultText: 'body {display: ' },
 				{ label: 'background', resultText: 'body {background: ' }
 			]
 		});
-		testCompletionFor('body { ver|', {
+		await testCompletionFor('body { ver|', {
 			items: [
 				{ label: 'vertical-align', resultText: 'body { vertical-align: ' }
 			]
 		});
-		testCompletionFor('body { vertical-ali|gn', {
+		await testCompletionFor('body { vertical-ali|gn', {
 			items: [
 				{ label: 'vertical-align', resultText: 'body { vertical-align: ' }
 			]
 		});
-		testCompletionFor('body { vertical-align|', {
+		await testCompletionFor('body { vertical-align|', {
 			items: [
 				{ label: 'vertical-align', resultText: 'body { vertical-align: ' }
 			]
 		});
-		testCompletionFor('body { vertical-align|: bottom;}', {
+		await testCompletionFor('body { vertical-align|: bottom;}', {
 			items: [
 				{ label: 'vertical-align', resultText: 'body { vertical-align: bottom;}' }
 			]
 		});
-		testCompletionFor('body { trans| ', {
+		await testCompletionFor('body { trans| ', {
 			items: [
 				{ label: 'transition', resultText: 'body { transition:  ' }
 			]
 		});
 	});
-	test('MDN properties', function (): any {
-		testCompletionFor('body { m|', {
+	test('MDN properties', async function () {
+		await testCompletionFor('body { m|', {
 			items: [
 				{ label: 'mask', resultText: 'body { mask: ' },
 				{ label: 'mask-border', resultText: 'body { mask-border: ' },
@@ -263,58 +316,58 @@ suite('CSS - Completion', () => {
 			]
 		});
 	});
-	test('values', function (): any {
-		testCompletionFor('body { vertical-align:| bottom;}', {
+	test('values', async function () {
+		await testCompletionFor('body { vertical-align:| bottom;}', {
 			items: [
 				{ label: 'bottom', resultText: 'body { vertical-align:bottom bottom;}' },
 				{ label: '0cm', resultText: 'body { vertical-align:0cm bottom;}' }
 			]
 		});
-		testCompletionFor('body { vertical-align: |bottom;}', {
+		await testCompletionFor('body { vertical-align: |bottom;}', {
 			items: [
 				{ label: 'bottom', resultText: 'body { vertical-align: bottom;}' },
 				{ label: '0cm', resultText: 'body { vertical-align: 0cm;}' }
 			]
 		});
-		testCompletionFor('body { vertical-align: bott|', {
+		await testCompletionFor('body { vertical-align: bott|', {
 			items: [
 				{ label: 'bottom', resultText: 'body { vertical-align: bottom' }
 			]
 		});
-		testCompletionFor('body { vertical-align: bott|om }', {
+		await testCompletionFor('body { vertical-align: bott|om }', {
 			items: [
 				{ label: 'bottom', resultText: 'body { vertical-align: bottom }' }
 			]
 		});
-		testCompletionFor('body { vertical-align: bottom| }', {
+		await testCompletionFor('body { vertical-align: bottom| }', {
 			items: [
 				{ label: 'bottom', resultText: 'body { vertical-align: bottom }' }
 			]
 		});
-		testCompletionFor('body { vertical-align:bott|', {
+		await testCompletionFor('body { vertical-align:bott|', {
 			items: [
 				{ label: 'bottom', resultText: 'body { vertical-align:bottom' }
 			]
 		});
-		testCompletionFor('body { vertical-align: bottom|; }', {
+		await testCompletionFor('body { vertical-align: bottom|; }', {
 			items: [
 				{ label: 'bottom', resultText: 'body { vertical-align: bottom; }' }
 			]
 		});
-		testCompletionFor('body { vertical-align: bottom;| }', {
+		await testCompletionFor('body { vertical-align: bottom;| }', {
 			count: 0
 		});
-		testCompletionFor('body { vertical-align: bottom; |}', {
+		await testCompletionFor('body { vertical-align: bottom; |}', {
 			items: [
 				{ label: 'display', resultText: 'body { vertical-align: bottom; display: }' }
 			]
 		});
-		testCompletionFor('.head { background-image: |}', {
+		await testCompletionFor('.head { background-image: |}', {
 			items: [
 				{ label: 'url()', resultText: '.head { background-image: url($1)}' }
 			]
 		});
-		testCompletionFor('#id { justify-content: |', {
+		await testCompletionFor('#id { justify-content: |', {
 			items: [
 				{ label: 'center', resultText: '#id { justify-content: center' },
 				{ label: 'start', resultText: '#id { justify-content: start' },
@@ -324,171 +377,207 @@ suite('CSS - Completion', () => {
 				{ label: 'space-evenly', resultText: '#id { justify-content: space-evenly' }
 			]
 		});
-		testCompletionFor('.foo { te:n| }', {
+		await testCompletionFor('.foo { te:n| }', {
 			items: [
 				{ label: 'n', notAvailable: true }
 			]
 		});
 	});
-	test('functions', function (): any {
-		testCompletionFor('@keyframes fadeIn { 0% { transform: s|', {
+	test('functions', async function () {
+		await testCompletionFor('@keyframes fadeIn { 0% { transform: s|', {
 			items: [
 				{ label: 'scaleX()', resultText: '@keyframes fadeIn { 0% { transform: scaleX($1)', insertTextFormat: InsertTextFormat.Snippet }
 			]
 		});
 	});
-	test('positions', function (): any {
-		testCompletionFor('html { background-position: t|', {
+	test('positions', async function () {
+		await testCompletionFor('html { background-position: t|', {
 			items: [
 				{ label: 'top', resultText: 'html { background-position: top' },
 				{ label: 'right', resultText: 'html { background-position: right' }
 			]
 		});
 	});
-	test('units', function (): any {
-		testCompletionFor('body { vertical-align: 9| }', {
+	test('units', async function () {
+		await testCompletionFor('body { vertical-align: 9| }', {
 			items: [
 				{ label: '9cm', resultText: 'body { vertical-align: 9cm }' }
 			]
 		});
-		testCompletionFor('body { vertical-align: 1.2| }', {
+		await testCompletionFor('body { vertical-align: 1.2| }', {
 			items: [
 				{ label: '1.2em', resultText: 'body { vertical-align: 1.2em }' }
 			]
 		});
-		testCompletionFor('body { vertical-align: 1|0 }', {
+		await testCompletionFor('body { vertical-align: 1|0 }', {
 			items: [
 				{ label: '1cm', resultText: 'body { vertical-align: 1cm }' }
 			]
 		});
-		testCompletionFor('body { vertical-align: 10c| }', {
+		await testCompletionFor('body { vertical-align: 10c| }', {
 			items: [
 				{ label: '10cm', resultText: 'body { vertical-align: 10cm }' }
 			]
 		});
-		testCompletionFor('body { top: -2px| }', {
+		await testCompletionFor('body { top: -2px| }', {
 			items: [
 				{ label: '-2px', resultText: 'body { top: -2px }' }
 			]
 		});
 	});
-	test('unknown', function (): any {
-		testCompletionFor('body { notexisting: |;}', {
+	test('unknown', async function () {
+		await testCompletionFor('body { notexisting: |;}', {
 			count: 0
 		});
-		testCompletionFor('.foo { unknown: foo; } .bar { unknown:| }', {
+		await testCompletionFor('.foo { unknown: foo; } .bar { unknown:| }', {
 			items: [
 				{ label: 'foo', kind: CompletionItemKind.Value, resultText: '.foo { unknown: foo; } .bar { unknown:foo }' }
 			]
 		});
 	});
-	test('colors', function (): any {
-		testCompletionFor('body { border-right: |', {
+	test('colors', async function () {
+		await testCompletionFor('body { border-right: |', {
 			items: [
 				{ label: 'cyan', resultText: 'body { border-right: cyan' },
 				{ label: 'dotted', resultText: 'body { border-right: dotted' },
 				{ label: '0em', resultText: 'body { border-right: 0em' }
 			]
 		});
-		testCompletionFor('body { border-right: cyan| dotted 2em ', {
+		await testCompletionFor('body { border-right: cyan| dotted 2em ', {
 			items: [
 				{ label: 'cyan', resultText: 'body { border-right: cyan dotted 2em ' },
 				{ label: 'darkcyan', resultText: 'body { border-right: darkcyan dotted 2em ' }
 			]
 		});
-		testCompletionFor('body { border-right: dotted 2em |', {
+		await testCompletionFor('body { border-right: dotted 2em |', {
 			items: [
 				{ label: 'cyan', resultText: 'body { border-right: dotted 2em cyan' }
 			]
 		});
-		testCompletionFor('.foo { background-color: #123456; } .bar { background-color:| }', {
+		await testCompletionFor('.foo { background-color: #123456; } .bar { background-color:| }', {
 			items: [
 				{ label: '#123456', kind: CompletionItemKind.Color, resultText: '.foo { background-color: #123456; } .bar { background-color:#123456 }' }
 			]
 		});
-		testCompletionFor('.bar { background-color: #123| }', {
+		await testCompletionFor('.bar { background-color: #123| }', {
 			items: [
 				{ label: '#123', notAvailable: true }
 			]
 		});
-		testCompletionFor('.foo { background-color: r|', {
+		await testCompletionFor('.foo { background-color: r|', {
 			items: [
 				{ label: 'rgb', kind: CompletionItemKind.Function, resultText: '.foo { background-color: rgb(${1:red}, ${2:green}, ${3:blue})' },
 				{ label: 'rgba', kind: CompletionItemKind.Function, resultText: '.foo { background-color: rgba(${1:red}, ${2:green}, ${3:blue}, ${4:alpha})' },
-				{ label: 'red', kind: CompletionItemKind.Color, resultText: '.foo { background-color: red' }
+				{ label: 'rgb relative', kind: CompletionItemKind.Function, resultText: '.foo { background-color: rgb(from ${1:color} ${2:r} ${3:g} ${4:b})' },
+				{ label: 'red', kind: CompletionItemKind.Color, resultText: '.foo { background-color: red' },
 			]
 		});
 	});
-	test('variables', function (): any {
-		testCompletionFor(':root { --myvar: red; } body { color: |', {
+	test('variables', async function () {
+		await testCompletionFor(':root { --myvar: red; } body { color: |', {
 			items: [
 				{ label: '--myvar', documentation: 'red', resultText: ':root { --myvar: red; } body { color: var(--myvar)' },
 			]
 		});
-		testCompletionFor('body { --myvar: 0px; border-right: var| ', {
+		await testCompletionFor('body { --myvar: 0px; border-right: var| ', {
 			items: [
 				{ label: '--myvar', documentation: '0px', resultText: 'body { --myvar: 0px; border-right: var(--myvar) ' },
 			]
 		});
-		testCompletionFor('body { --myvar: 0px; border-right: var(| ', {
+		await testCompletionFor('body { --myvar: 0px; border-right: var(| ', {
 			items: [
 				{ label: '--myvar', documentation: '0px', resultText: 'body { --myvar: 0px; border-right: var(--myvar ' },
 			]
 		});
-		testCompletionFor('a { color: | } :root { --bg-color: red; } ', {
+		await testCompletionFor('a { color: | } :root { --bg-color: red; } ', {
 			items: [
 				{ label: '--bg-color', documentation: 'red', resultText: 'a { color: var(--bg-color) } :root { --bg-color: red; } ' },
 			]
 		});
+		await testCompletionFor('body { border-left: --borderwidth; border-right: var(| ', {
+			items: [
+				{ label: '--borderwidth', documentation: undefined, resultText: 'body { border-left: --borderwidth; border-right: var(--borderwidth ' },
+			]
+		});
+		await testCompletionFor('a { color: | } :root { --color-hex3: #f00; --color-hex4: #F007; --color-hex6: #ff0000; --color-hex8: #ff000077; --color-named: black; --color-keyword: currentColor; }', {
+			items: [
+				{ label: '--color-hex3', kind: CompletionItemKind.Color, resultText: 'a { color: var(--color-hex3) } :root { --color-hex3: #f00; --color-hex4: #F007; --color-hex6: #ff0000; --color-hex8: #ff000077; --color-named: black; --color-keyword: currentColor; }' },
+				{ label: '--color-hex4', kind: CompletionItemKind.Color, resultText: 'a { color: var(--color-hex4) } :root { --color-hex3: #f00; --color-hex4: #F007; --color-hex6: #ff0000; --color-hex8: #ff000077; --color-named: black; --color-keyword: currentColor; }' },
+				{ label: '--color-hex6', kind: CompletionItemKind.Color, resultText: 'a { color: var(--color-hex6) } :root { --color-hex3: #f00; --color-hex4: #F007; --color-hex6: #ff0000; --color-hex8: #ff000077; --color-named: black; --color-keyword: currentColor; }' },
+				{ label: '--color-hex8', kind: CompletionItemKind.Color, resultText: 'a { color: var(--color-hex8) } :root { --color-hex3: #f00; --color-hex4: #F007; --color-hex6: #ff0000; --color-hex8: #ff000077; --color-named: black; --color-keyword: currentColor; }' },
+				{ label: '--color-named', kind: CompletionItemKind.Color, resultText: 'a { color: var(--color-named) } :root { --color-hex3: #f00; --color-hex4: #F007; --color-hex6: #ff0000; --color-hex8: #ff000077; --color-named: black; --color-keyword: currentColor; }' },
+				{ label: '--color-keyword', kind: CompletionItemKind.Color, resultText: 'a { color: var(--color-keyword) } :root { --color-hex3: #f00; --color-hex4: #F007; --color-hex6: #ff0000; --color-hex8: #ff000077; --color-named: black; --color-keyword: currentColor; }' },
+			]
+		});
+		await testCompletionFor('a { color: | } :root { --border-hex3: solid #f00 1px; --border-hex4: solid #F007 1px; --border-hex6: 1px #ff0000 solid; --border-hex8: #ff000077 #ff000077; --border-named: solid black 1px; --border-keyword: currentColor wavy; }', {
+			items: [
+				{ label: '--border-hex3', kind: CompletionItemKind.Variable, resultText: 'a { color: var(--border-hex3) } :root { --border-hex3: solid #f00 1px; --border-hex4: solid #F007 1px; --border-hex6: 1px #ff0000 solid; --border-hex8: #ff000077 #ff000077; --border-named: solid black 1px; --border-keyword: currentColor wavy; }' },
+				{ label: '--border-hex4', kind: CompletionItemKind.Variable, resultText: 'a { color: var(--border-hex4) } :root { --border-hex3: solid #f00 1px; --border-hex4: solid #F007 1px; --border-hex6: 1px #ff0000 solid; --border-hex8: #ff000077 #ff000077; --border-named: solid black 1px; --border-keyword: currentColor wavy; }' },
+				{ label: '--border-hex6', kind: CompletionItemKind.Variable, resultText: 'a { color: var(--border-hex6) } :root { --border-hex3: solid #f00 1px; --border-hex4: solid #F007 1px; --border-hex6: 1px #ff0000 solid; --border-hex8: #ff000077 #ff000077; --border-named: solid black 1px; --border-keyword: currentColor wavy; }' },
+				{ label: '--border-hex8', kind: CompletionItemKind.Variable, resultText: 'a { color: var(--border-hex8) } :root { --border-hex3: solid #f00 1px; --border-hex4: solid #F007 1px; --border-hex6: 1px #ff0000 solid; --border-hex8: #ff000077 #ff000077; --border-named: solid black 1px; --border-keyword: currentColor wavy; }' },
+				{ label: '--border-named', kind: CompletionItemKind.Variable, resultText: 'a { color: var(--border-named) } :root { --border-hex3: solid #f00 1px; --border-hex4: solid #F007 1px; --border-hex6: 1px #ff0000 solid; --border-hex8: #ff000077 #ff000077; --border-named: solid black 1px; --border-keyword: currentColor wavy; }' },
+				{ label: '--border-keyword', kind: CompletionItemKind.Variable, resultText: 'a { color: var(--border-keyword) } :root { --border-hex3: solid #f00 1px; --border-hex4: solid #F007 1px; --border-hex6: 1px #ff0000 solid; --border-hex8: #ff000077 #ff000077; --border-named: solid black 1px; --border-keyword: currentColor wavy; }' },
+			]
+		});
+		await testCompletionFor('a { color: | } :root { --color-rgb: rgb(255 0 125 / 50%); }', {
+			items: [
+				{ label: '--color-rgb', kind: CompletionItemKind.Variable, resultText: 'a { color: var(--color-rgb) } :root { --color-rgb: rgb(255 0 125 / 50%); }' },
+			]
+		});
+		await testCompletionFor('a { color: | } :root { --border-rgb: solid rgb(255 0 125 / 50%) 2px; }', {
+			items: [
+				{ label: '--border-rgb', kind: CompletionItemKind.Variable, resultText: 'a { color: var(--border-rgb) } :root { --border-rgb: solid rgb(255 0 125 / 50%) 2px; }' },
+			]
+		});
 	});
-	test('support', function (): any {
-		testCompletionFor('@supports (display: flex) { |', {
+	test('support', async function () {
+		await testCompletionFor('@supports (display: flex) { |', {
 			items: [
 				{ label: 'html', resultText: '@supports (display: flex) { html' },
 				{ label: 'display', notAvailable: true }
 			]
 		});
-		testCompletionFor('@supports (| ) { }', {
+		await testCompletionFor('@supports (| ) { }', {
 			items: [
 				{ label: 'display', resultText: '@supports (display:  ) { }' },
 			]
 		});
-		testCompletionFor('@supports (di| ) { }', {
+		await testCompletionFor('@supports (di| ) { }', {
 			items: [
 				{ label: 'display', resultText: '@supports (display:  ) { }' },
 			]
 		});
-		testCompletionFor('@supports (display: | ) { }', {
+		await testCompletionFor('@supports (display: | ) { }', {
 			items: [
 				{ label: 'flex', resultText: '@supports (display: flex ) { }' },
 			]
 		});
-		testCompletionFor('@supports (display: flex ) | { }', {
+		await testCompletionFor('@supports (display: flex ) | { }', {
 			items: [
 				{ label: 'display', notAvailable: true },
 			]
 		});
-		testCompletionFor('@supports |(display: flex ) { }', {
+		await testCompletionFor('@supports |(display: flex ) { }', {
 			items: [
 				{ label: 'display', notAvailable: true },
 			]
 		});
 	});
 
-	test('suggestParticipants', function (): any {
-		testCompletionFor('html { bac|', {
+	test('suggestParticipants', async function () {
+		await testCompletionFor('html { bac|', {
 			participant: {
 				onProperty: [{ propertyName: 'bac', range: newRange(7, 10) }],
 				onPropertyValue: []
 			}
 		});
-		testCompletionFor('html { disp|lay: none', {
+		await testCompletionFor('html { disp|lay: none', {
 			participant: {
 				onProperty: [{ propertyName: 'disp', range: newRange(7, 11) }],
 				onPropertyValue: []
 			}
 		});
-		testCompletionFor('html { background-position: t|', {
+		await testCompletionFor('html { background-position: t|', {
 			items: [
 				{ label: 'center' },
 			],
@@ -498,44 +587,44 @@ suite('CSS - Completion', () => {
 			}
 		});
 
-		testCompletionFor(`html { background-image: url(|)`, {
+		await testCompletionFor(`html { background-image: url(|)`, {
 			count: 0,
 			participant: {
 				onURILiteralValue: [{ uriValue: '', position: Position.create(0, 29), range: newRange(29, 29) }]
 			}
 		});
-		testCompletionFor(`html { background-image: url('|')`, {
+		await testCompletionFor(`html { background-image: url('|')`, {
 			count: 0,
 			participant: {
 				onURILiteralValue: [{ uriValue: `''`, position: Position.create(0, 30), range: newRange(29, 31) }]
 			}
 		});
-		testCompletionFor(`html { background-image: url("b|")`, {
+		await testCompletionFor(`html { background-image: url("b|")`, {
 			count: 0,
 			participant: {
 				onURILiteralValue: [{ uriValue: `"b"`, position: Position.create(0, 31), range: newRange(29, 32) }]
 			}
 		});
-		testCompletionFor(`html { background: url("b|"`, {
+		await testCompletionFor(`html { background: url("b|"`, {
 			count: 0,
 			participant: {
 				onURILiteralValue: [{ uriValue: `"b"`, position: Position.create(0, 25), range: newRange(23, 26) }]
 			}
 		});
 
-		testCompletionFor(`@import './|'`, {
+		await testCompletionFor(`@import './|'`, {
 			count: 0,
 			participant: {
 				onImportPath: [{ pathValue: `'./'`, position: Position.create(0, 11), range: newRange(8, 12) }]
 			}
 		});
-		testCompletionFor(`@import "./|";`, {
+		await testCompletionFor(`@import "./|";`, {
 			count: 0,
 			participant: {
 				onImportPath: [{ pathValue: `"./"`, position: Position.create(0, 11), range: newRange(8, 12) }]
 			}
 		});
-		testCompletionFor(`@import "./|foo";`, {
+		await testCompletionFor(`@import "./|foo";`, {
 			count: 0,
 			participant: {
 				onImportPath: [{ pathValue: `"./foo"`, position: Position.create(0, 11), range: newRange(8, 15) }]
@@ -543,70 +632,78 @@ suite('CSS - Completion', () => {
 		});
 	});
 
-	test('Property completeness', () => {
-		testCompletionFor('html { text-decoration:|', {
+	test('Property completeness', async () => {
+		await testCompletionFor('html { text-decoration:|', {
 			items: [
 				{ label: 'none' }
 			]
 		});
-		testCompletionFor('body { disp| ', {
+		await testCompletionFor('body { disp| ', {
 			items: [
 				{ label: 'display', resultText: 'body { display:  ', command: { title: 'Suggest', command: 'editor.action.triggerSuggest' } }
 			]
 		});
-		testCompletionFor('body { disp| ', {
+		await testCompletionFor('body { disp| ', {
 			items: [
 				{ label: 'display', resultText: 'body { display: $0; ', command: { title: 'Suggest', command: 'editor.action.triggerSuggest' } }
 			]
 		}, {});
-		testCompletionFor('body { disp| ', {
+		await testCompletionFor('body { disp| ', {
 			items: [
 				{ label: 'display', resultText: 'body { display: $0; ', command: { title: 'Suggest', command: 'editor.action.triggerSuggest' } }
 			]
 		}, { completion: undefined });
-		testCompletionFor('body { disp| ', {
+		await testCompletionFor('body { disp| ', {
 			items: [
 				{ label: 'display', resultText: 'body { display: $0; ', command: { title: 'Suggest', command: 'editor.action.triggerSuggest' } }
 			]
 		}, { completion: { triggerPropertyValueCompletion: true } });
-		testCompletionFor('body { disp| ', {
+		await testCompletionFor('body { disp| ', {
 			items: [
 				{ label: 'display', resultText: 'body { display: $0; ', command: undefined }
 			]
 		}, { completion: { triggerPropertyValueCompletion: false } });
 
-		testCompletionFor('body { disp| ', {
+		await testCompletionFor('body { disp| ', {
 			items: [
 				{ label: 'display', resultText: 'body { display:  ', command: undefined }
 			]
 		}, { completion: { triggerPropertyValueCompletion: false, completePropertyWithSemicolon: false } });
 	});
 
-	test('Completion description should include status, browser compat and references', () => {
-		testCompletionFor('.foo { | }', {
+	test('Completion description should include status, browser compat and references', async () => {
+		await testCompletionFor('.foo { | }', {
 			items: [
 				{
-					label: 'contain',
+					label: 'text-decoration-skip',
 					documentation: {
 						kind: 'markdown',
 						value:
-							'⚠️ Property is experimental. Be cautious when using it.️\n\nIndicates that an element and its contents are, as much as possible, independent of the rest of the document tree.\n\n(Firefox 69, Chrome 52, Opera 40)\n\nSyntax: none | strict | content | [ size || layout || style || paint ]\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/contain)'
+							`The text\\-decoration\\-skip CSS property specifies what parts of the element’s content any text decoration affecting the element must skip over\\. It controls all text decoration lines drawn by the element and also any text decoration lines drawn by its ancestors\\.\n\n![Baseline icon](${BaselineImages.BASELINE_LIMITED}) _Limited availability across major browsers (Not fully implemented in Chrome, Edge, or Firefox)_\n\nSyntax: none | \\[ objects || \\[ spaces | \\[ leading\\-spaces || trailing\\-spaces \\] \\] || edges || box\\-decoration \\]\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/text-decoration-skip)`
 					}
 				},
 				{
-					label: 'user-select',
+					label: 'box-ordinal-group',
 					documentation: {
 						kind: 'markdown',
 						value:
-							'🚨️ Property is nonstandard. Avoid using it.\n\nControls the appearance of selection.\n\nSyntax: auto | text | none | contain | all\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/user-select)'
+							`🚨️️️ Property is obsolete. Avoid using it.\n\nThe box\\-ordinal\\-group CSS property assigns the flexbox\'s child elements to an ordinal group\\.\n\nSyntax: &lt;integer&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/box-ordinal-group)`
+					}
+				},
+				{
+					label: '-webkit-mask-image',
+					documentation: {
+						kind: 'markdown',
+						value:
+							'🚨️ Property is nonstandard. Avoid using it.\n\nSets the mask layer image of an element\\.\n\nSyntax: &lt;mask\\-reference&gt;\\#'
 					}
 				}
 			]
 		});
 	});
 
-	test(`Color swatch for variables that's color`, () => {
-		testCompletionFor('.foo { --foo: #bbb; color: --| }', {
+	test(`Color swatch for variables that's color`, async () => {
+		await testCompletionFor('.foo { --foo: #bbb; color: --| }', {
 			items: [
 				{
 					label: '--foo',
@@ -616,7 +713,7 @@ suite('CSS - Completion', () => {
 			]
 		});
 
-		testCompletionFor('.foo { --foo: #bbbbbb; color: --| }', {
+		await testCompletionFor('.foo { --foo: #bbbbbb; color: --| }', {
 			items: [
 				{
 					label: '--foo',
@@ -626,7 +723,7 @@ suite('CSS - Completion', () => {
 			]
 		});
 
-		testCompletionFor('.foo { --foo: red; color: --| }', {
+		await testCompletionFor('.foo { --foo: red; color: --| }', {
 			items: [
 				{
 					label: '--foo',
@@ -636,7 +733,7 @@ suite('CSS - Completion', () => {
 			]
 		});
 
-		testCompletionFor('.foo { --foo: RED; color: --| }', {
+		await testCompletionFor('.foo { --foo: RED; color: --| }', {
 			items: [
 				{
 					label: '--foo',
@@ -647,7 +744,7 @@ suite('CSS - Completion', () => {
 		});
 
 
-		testCompletionFor('.foo { --foo: #bbb; color: var(|) }', {
+		await testCompletionFor('.foo { --foo: #bbb; color: var(|) }', {
 			items: [
 				{
 					label: '--foo',
@@ -658,8 +755,8 @@ suite('CSS - Completion', () => {
 		});
 	});
 
-	test('Seimicolon on property completion', () => {
-		testCompletionFor('.foo { | }', {
+	test('Seimicolon on property completion', async () => {
+		await testCompletionFor('.foo { | }', {
 			items: [
 				{
 					label: 'position',
@@ -668,7 +765,7 @@ suite('CSS - Completion', () => {
 			]
 		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true } });
 
-		testCompletionFor('.foo { p| }', {
+		await testCompletionFor('.foo { p| }', {
 			items: [
 				{
 					label: 'position',
@@ -677,7 +774,7 @@ suite('CSS - Completion', () => {
 			]
 		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true } });
 
-		testCompletionFor('.foo { p|o }', {
+		await testCompletionFor('.foo { p|o }', {
 			items: [
 				{
 					label: 'position',
@@ -686,7 +783,7 @@ suite('CSS - Completion', () => {
 			]
 		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true } });
 
-		testCompletionFor('.foo { p|os: relative; }', {
+		await testCompletionFor('.foo { p|os: relative; }', {
 			items: [
 				{
 					label: 'position',
@@ -695,7 +792,7 @@ suite('CSS - Completion', () => {
 			]
 		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true } });
 
-		testCompletionFor('.foo { p|: ; }', {
+		await testCompletionFor('.foo { p|: ; }', {
 			items: [
 				{
 					label: 'position',
@@ -704,7 +801,7 @@ suite('CSS - Completion', () => {
 			]
 		}, { completion: { triggerPropertyValueCompletion: true, completePropertyWithSemicolon: true } });
 
-		testCompletionFor('.foo { p|; }', {
+		await testCompletionFor('.foo { p|; }', {
 			items: [
 				{
 					label: 'position',
@@ -715,19 +812,195 @@ suite('CSS - Completion', () => {
 	});
 
 	// https://github.com/Microsoft/vscode/issues/71791
-	test('Items that start with `-` are sorted lower than normal attribute values', () => {
-		testCompletionFor('.foo { display: | }', {
+	test('Items that start with `-` are sorted lower than normal attribute values', async () => {
+		await testCompletionFor('.foo { display: | }', {
 			items: [
 				// Enum with no prefix come before everything
-				{ label: 'grid', sortText: ' d_0005' },
+				{ label: 'grid', sortText: ' ' },
 				// Enum with prefix come next
-				{ label: '-moz-grid', sortText: ' x_0014' },
-				{ label: '-ms-grid', sortText: ' x_0025' },
+				{ label: '-moz-grid', sortText: ' x' },
+				{ label: '-ms-grid', sortText: ' x' },
 				// Others come last
-				{ label: 'inherit' }
+				{ label: 'inherit', sortText: undefined }
 			]
 		});
 	});
+
+	test('Properties sorted by relevance', async () => {
+		const customData = [newCSSDataProvider({
+			version: 1,
+			properties: [
+				{ name: 'foo', relevance: 93 },
+				{ name: 'bar', relevance: 1 },
+				{ name: '-webkit-bar', relevance: 12 },
+				{ name: 'xoo' },
+				{ name: 'bar2', relevance: 0 },
+			]
+		})];
+		await testCompletionFor('.foo { | }', {
+			items: [
+				{ label: 'foo', sortText: 'd_a2' },
+				{ label: 'bar', sortText: 'd_fe' },
+				{ label: '-webkit-bar', sortText: 'x_f3' },
+				{ label: 'xoo', sortText: 'd_cd' },
+				{ label: 'bar2', sortText: 'd_ff' }
+			]
+		}, undefined, undefined, undefined, customData);
+		assert.ok('d_a2' < 'd_fe');
+	});
+
+	const testFixturesPath = path.join(__dirname, '../../../../test');
+
+	test('CSS url() Path completion', async function () {
+		const testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString(true);
+		const workspaceFolderUri = URI.file(path.resolve(testFixturesPath)).toString(true);
+
+		await testCompletionFor('html { background-image: url("./|")', {
+			items: [
+				{ label: 'about.html', resultText: 'html { background-image: url("./about.html")' }
+			]
+		}, undefined, testUri, workspaceFolderUri);
+
+		await testCompletionFor(`html { background-image: url('../|')`, {
+			items: [
+				{ label: 'about/', resultText: `html { background-image: url('../about/')` },
+				{ label: 'index.html', resultText: `html { background-image: url('../index.html')` },
+				{ label: 'src/', resultText: `html { background-image: url('../src/')` }
+			]
+		}, undefined, testUri, workspaceFolderUri);
+
+		await testCompletionFor(`html { background-image: url('../src/a|')`, {
+			items: [
+				{ label: 'feature.js', resultText: `html { background-image: url('../src/feature.js')` },
+				{ label: 'data/', resultText: `html { background-image: url('../src/data/')` },
+				{ label: 'test.js', resultText: `html { background-image: url('../src/test.js')` }
+			]
+		}, undefined, testUri, workspaceFolderUri);
+
+		await testCompletionFor(`html { background-image: url('../src/data/f|.asar')`, {
+			items: [
+				{ label: 'foo.asar', resultText: `html { background-image: url('../src/data/foo.asar')` }
+			]
+		}, undefined, testUri, workspaceFolderUri);
+
+		await testCompletionFor(`html { background-image: url('|')`, {
+			items: [
+				{ label: 'about.html', resultText: `html { background-image: url('about.html')` },
+			]
+		}, undefined, testUri, workspaceFolderUri);
+
+		await testCompletionFor(`html { background-image: url('/|')`, {
+			items: [
+				{ label: 'pathCompletionFixtures/', resultText: `html { background-image: url('/pathCompletionFixtures/')` }
+			]
+		}, undefined, testUri, workspaceFolderUri);
+
+		await testCompletionFor(`html { background-image: url('/pathCompletionFixtures/|')`, {
+			items: [
+				{ label: 'about/', resultText: `html { background-image: url('/pathCompletionFixtures/about/')` },
+				{ label: 'index.html', resultText: `html { background-image: url('/pathCompletionFixtures/index.html')` },
+				{ label: 'src/', resultText: `html { background-image: url('/pathCompletionFixtures/src/')` }
+			]
+		}, undefined, testUri, workspaceFolderUri);
+
+		await testCompletionFor(`html { background-image: url("/|")`, {
+			items: [
+				{ label: 'pathCompletionFixtures/', resultText: `html { background-image: url("/pathCompletionFixtures/")` }
+			]
+		}, undefined, testUri, workspaceFolderUri);
+	});
+
+	test('CSS url() Path Completion - Unquoted url', async function () {
+		const testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString(true);
+		const workspaceFolderUri = URI.file(path.resolve('testFixturesPath')).toString(true);
+
+		await testCompletionFor('html { background-image: url(./|)', {
+			items: [
+				{ label: 'about.html', resultText: 'html { background-image: url(./about.html)' }
+			]
+		}, undefined, testUri, workspaceFolderUri);
+
+		await testCompletionFor('html { background-image: url(./a|)', {
+			items: [
+				{ label: 'about.html', resultText: 'html { background-image: url(./about.html)' }
+			]
+		}, undefined, testUri, workspaceFolderUri);
+
+		await testCompletionFor('html { background-image: url(../|src/)', {
+			items: [
+				{ label: 'about/', resultText: 'html { background-image: url(../about/)' }
+			]
+		}, undefined, testUri, workspaceFolderUri);
+
+		await testCompletionFor('html { background-image: url(../s|rc/)', {
+			items: [
+				{ label: 'about/', resultText: 'html { background-image: url(../about/)' }
+			]
+		}, undefined, testUri, workspaceFolderUri);
+	});
+
+	test('CSS @import Path completion', async function () {
+		const testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString(true);
+		const workspaceFolderUri = URI.file(path.resolve(testFixturesPath)).toString(true);
+
+		await testCompletionFor(`@import './|'`, {
+			items: [
+				{ label: 'about.html', resultText: `@import './about.html'` },
+			]
+		}, undefined, testUri, workspaceFolderUri);
+
+		await testCompletionFor(`@import '../|'`, {
+			items: [
+				{ label: 'about/', resultText: `@import '../about/'` },
+				{ label: 'scss/', resultText: `@import '../scss/'` },
+				{ label: 'index.html', resultText: `@import '../index.html'` },
+				{ label: 'src/', resultText: `@import '../src/'` }
+			]
+		}, undefined, testUri, workspaceFolderUri);
+	});
+
+	test('Completion should ignore files/folders starting with dot', async function () {
+		const testUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString(true);
+		const workspaceFolderUri = URI.file(path.resolve(testFixturesPath)).toString(true);
+
+		await testCompletionFor('html { background-image: url("../|")', {
+			count: 4
+		}, undefined, testUri, workspaceFolderUri);
+
+	});
+
+	test('@scope selector completion', async function () {
+		await testCompletionFor(`@scope (|) {`, {
+			items: [
+				{ label: 'html', resultText: '@scope (html) {' },
+				{ label: ':has', resultText: '@scope (:has) {' }
+			]
+		});
+
+		await testCompletionFor(`@scope to (|) {`, {
+			items: [
+				{ label: 'html', resultText: '@scope to (html) {' },
+				{ label: ':has', resultText: '@scope to (:has) {' }
+			]
+		});
+	})
+
+	test('@media at rule completion', async function () {
+		await testCompletionFor(`@media (|) {`, {
+			items: [
+				{ label: 'prefers-color-scheme', resultText: '@media (prefers-color-scheme: ) {' },
+				{ label: 'hover', resultText: '@media (hover: ) {' },
+				{ label: 'color', resultText: '@media (color) {' },
+			]
+		});
+
+		await testCompletionFor(`@media (prefers-color-scheme: |) {`, {
+			items: [
+				{ label: 'light', resultText: '@media (prefers-color-scheme: light) {' },
+				{ label: 'dark', resultText: '@media (prefers-color-scheme: dark) {' }
+			]
+		});
+	})
 
 });
 

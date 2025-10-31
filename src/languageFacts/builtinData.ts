@@ -55,6 +55,11 @@ export const cssWideKeywords: { [name: string]: string } = {
 	'unset': 'Acts as either `inherit` or `initial`, depending on whether the property is inherited or not.'
 };
 
+export const cssWideFunctions: { [name: string]: string } = {
+	'var()': 'Evaluates the value of a custom variable.',
+	'calc()': 'Evaluates an mathematical expression. The following operators can be used: + - * /.'
+};
+
 export const imageFunctions: { [name: string]: string } = {
 	'url()': 'Reference an image file by URL',
 	'image()': 'Provide image fallbacks and annotations.',
@@ -124,7 +129,7 @@ export const basicShapeFunctions: { [name: string]: string } = {
 };
 
 export const units: { [unitName: string]: string[] } = {
-	'length': ['em', 'rem', 'ex', 'px', 'cm', 'mm', 'in', 'pt', 'pc', 'ch', 'vw', 'vh', 'vmin', 'vmax'],
+	'length': ['cap', 'ch', 'cm', 'cqb', 'cqh', 'cqi', 'cqmax', 'cqmin', 'cqw', 'dvb', 'dvh', 'dvi', 'dvw', 'em', 'ex', 'ic', 'in', 'lh', 'lvb', 'lvh', 'lvi', 'lvw', 'mm', 'pc', 'pt', 'px', 'q', 'rcap', 'rch', 'rem', 'rex', 'ric', 'rlh', 'svb', 'svh', 'svi', 'svw', 'vb', 'vh', 'vi', 'vmax', 'vmin', 'vw'],
 	'angle': ['deg', 'rad', 'grad', 'turn'],
 	'time': ['ms', 's'],
 	'frequency': ['Hz', 'kHz'],

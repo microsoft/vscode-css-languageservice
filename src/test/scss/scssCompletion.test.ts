@@ -4,162 +4,158 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as assert from 'assert';
+import * as path from 'path';
 
-import { getSCSSLanguageService, TextDocument, Position, InsertTextFormat, CompletionItemKind, ImportPathCompletionContext } from '../../cssLanguageService';
-
-import { assertCompletion, ItemDescription } from '../css/completion.test';
+import { Position, InsertTextFormat, CompletionItemKind, LanguageSettings } from '../../cssLanguageService';
+import { testCompletionFor as testCSSCompletionFor, ExpectedCompetions } from '../css/completion.test';
 import { newRange } from '../css/navigation.test';
+import { URI } from 'vscode-uri';
+
+function testCompletionFor(
+	value: string,
+	expected: ExpectedCompetions,
+	settings: LanguageSettings | undefined = undefined,
+	testUri: string = 'test://test/test.scss',
+	workspaceFolderUri: string = 'test://test'
+) {
+	return testCSSCompletionFor(value, expected, settings, testUri, workspaceFolderUri);
+};
 
 suite('SCSS - Completions', () => {
-
-	let testCompletionFor = function (
-		value: string,
-		expected: {
-			count?: number,
-			items?: ItemDescription[],
-			participant?: {
-				onImportPath?: ImportPathCompletionContext[],
-			},
-		},
-	) {
-		let offset = value.indexOf('|');
-		value = value.substr(0, offset) + value.substr(offset + 1);
-
-		let actualImportPathContexts: ImportPathCompletionContext[] = [];
-
-		let ls = getSCSSLanguageService();
-
-		if (expected.participant) {
-			ls.setCompletionParticipants([
-				{
-					onCssImportPath: context => actualImportPathContexts.push(context)
-				}
-			]);
-		}
-
-		let document = TextDocument.create('test://test/test.scss', 'scss', 0, value);
-		let position = Position.create(0, offset);
-		let jsonDoc = ls.parseStylesheet(document);
-		let list = ls.doComplete(document, position, jsonDoc);
-
-		if (expected.count) {
-			assert.equal(list.items, expected.count);
-		}
-		if (expected.items) {
-			for (let item of expected.items) {
-				assertCompletion(list, item, document, offset);
-			}
-		}
-		if (expected.participant) {
-			if (expected.participant.onImportPath) {
-				assert.deepEqual(actualImportPathContexts, expected.participant.onImportPath);
-			}
-		}
-	};
-
-	test('stylesheet', function (): any {
-		testCompletionFor('$i: 0; body { width: |', {
+	test('stylesheet', async () => {
+		await testCompletionFor('$i: 0; body { width: |', {
 			items: [
 				{ label: '$i', documentation: '0' }
 			]
 		});
-		testCompletionFor('@for $i from 1 through 3 { .item-#{|} { width: 2em * $i; } }', {
+		await testCompletionFor('@for $i from 1 through 3 { .item-#{|} { width: 2em * $i; } }', {
 			items: [
 				{ label: '$i' }
 			]
 		});
-		testCompletionFor('@for $i from 1 through 3 { .item-#{|$i} { width: 2em * $i; } }', {
+		await testCompletionFor('@for $i from 1 through 3 { .item-#{|$i} { width: 2em * $i; } }', {
 			items: [
 				{ label: '$i' }
 			]
 		});
-		testCompletionFor('.foo { background-color: d|', {
+		await testCompletionFor('.foo { background-color: d|', {
 			items: [
 				{ label: 'darken', resultText: '.foo { background-color: darken(\\$color: ${1:#000000}, \\$amount: ${2:0})' },
 				{ label: 'desaturate' }
 			]
 		});
-		testCompletionFor('@function foo($x, $y) { @return $x + $y; } .foo { background-color: f|', {
+		await testCompletionFor('@function foo($x, $y) { @return $x + $y; } .foo { background-color: f|', {
 			items: [
 				{ label: 'foo', resultText: '@function foo($x, $y) { @return $x + $y; } .foo { background-color: foo(${1:$x}, ${2:$y})' }
 			]
 		});
-		testCompletionFor('@mixin mixin($a: 1, $b) { content: $|}', {
+		await testCompletionFor('@mixin mixin($a: 1, $b) { content: $|}', {
 			items: [
 				{ label: '$a', documentation: '1', detail: 'argument from \'mixin\'' },
 				{ label: '$b', documentation: null, detail: 'argument from \'mixin\'' }
 			]
 		});
-		testCompletionFor('@mixin mixin($a: 1, $b) { content: $a + $b; } @include m|', {
+		await testCompletionFor('@mixin mixin($a: 1, $b) { content: $a + $b; } @include m|', {
 			items: [
 				{ label: 'mixin', resultText: '@mixin mixin($a: 1, $b) { content: $a + $b; } @include mixin(${1:$a}, ${2:$b})' }
 			]
 		});
-		testCompletionFor('di| span { } ', {
+		await testCompletionFor('di| span { } ', {
 			items: [
 				{ label: 'div' },
 				{ label: 'display', notAvailable: true }
 			]
 		});
-		testCompletionFor('span { di|} ', {
+		await testCompletionFor('span { di|} ', {
 			items: [
 				{ notAvailable: true, label: 'div' },
 				{ label: 'display' }
 			]
 		});
-		testCompletionFor('.foo { .|', {
+		await testCompletionFor('.foo { .|', {
 			items: [
 				{ label: '.foo' }
 			]
 		});
 		// issue #250
-		testCompletionFor('.foo { display: block;|', {
+		await testCompletionFor('.foo { display: block;|', {
 			count: 0
 		});
-		// issue #17726
-		testCompletionFor('.foo { &:|', {
+		// issue microsoft/vscode#17726
+		await testCompletionFor('.foo { &:|', {
 			items: [
 				{ label: ':last-of-type', resultText: '.foo { &:last-of-type' }
 			]
 		});
-		testCompletionFor('.foo { &:l|', {
+		await testCompletionFor('.foo { &:l|', {
 			items: [
 				{ label: ':last-of-type', resultText: '.foo { &:last-of-type' }
 			]
 		});
-		// issue 33911
-		testCompletionFor('@include media(\'ddd\') { dis| &:not(:first-child) {', {
+		// issue microsoft/vscode#109185
+		await testCompletionFor('.test { &::|  }', {
+			items: [
+				{ label: ':hover', resultText: '.test { &:hover  }' },
+				{ label: '::after', resultText: '.test { &::after  }' }
+			]
+		});
+		// issue microsoft/vscode#33911
+		await testCompletionFor('@include media(\'ddd\') { dis| &:not(:first-child) {', {
 			items: [
 				{ label: 'display' }
 			]
 		});
 		// issue 43876
-		testCompletionFor('.foo { } @mixin bar { @extend | }', {
+		await testCompletionFor('.foo { } @mixin bar { @extend | }', {
 			items: [
 				{ label: '.foo' }
 			]
 		});
-		testCompletionFor('.foo { } @mixin bar { @extend fo| }', {
+		await testCompletionFor('.foo { } @mixin bar { @extend fo| }', {
 			items: [
 				{ label: '.foo' }
 			]
 		});
 		// issue 76572
-		testCompletionFor('.foo { mask: no|', {
+		await testCompletionFor('.foo { mask: no|', {
 			items: [
 				{ label: 'round' }
 			]
 		});
 		// issue 76507
-		testCompletionFor('.foo { .foobar { .foobar2 {  outline-color: blue; cool  }| } .fokzlb {} .baaaa { counter - reset: unset;}', {
+		await testCompletionFor('.foo { .foobar { .foobar2 {  outline-color: blue; cool  }| } .fokzlb {} .baaaa { counter - reset: unset;}', {
+			items: [
+				{ label: 'display' }
+			]
+		});
+		await testCompletionFor('div { &:hover { } | }', {
 			items: [
 				{ label: 'display' }
 			]
 		});
 	});
 
-	test('at rules', function (): any {
+	test('suggestParticipants', async () => {
+		await testCompletionFor(`html { @include | }`, {
+			participant: {
+				onMixinReference: [{ mixinName: '', range: newRange(16, 16) }]
+			}
+		});
+
+		await testCompletionFor(`html { @include m| }`, {
+			participant: {
+				onMixinReference: [{ mixinName: 'm', range: newRange(16, 17) }]
+			}
+		});
+
+		await testCompletionFor(`html { @include mixin(|) }`, {
+			participant: {
+				onMixinReference: [{ mixinName: '', range: newRange(22, 22) }]
+			}
+		});
+	});
+
+	test('at rules', async () => {
 		const allAtProposals = {
 			items: [
 				{ label: '@extend' },
@@ -177,7 +173,7 @@ suite('SCSS - Completions', () => {
 			]
 		};
 
-		testCompletionFor('@', {
+		await testCompletionFor('@|', {
 			items: [
 				{ label: '@extend' },
 				{ label: '@at-root' },
@@ -194,22 +190,22 @@ suite('SCSS - Completions', () => {
 			]
 		});
 
-		testCompletionFor('.foo { | }', allAtProposals);
+		await testCompletionFor('.foo { | }', allAtProposals);
 
-		testCompletionFor(`@for $i from 1 through 3 { .item-#{$i} { width: 2em * $i; } } @|`, allAtProposals);
+		await testCompletionFor(`@for $i from 1 through 3 { .item-#{$i} { width: 2em * $i; } } @|`, allAtProposals);
 
-		testCompletionFor('.foo { @if $a = 5 { } @| }', allAtProposals);
-		testCompletionFor('.foo { @debug 10em + 22em; @| }', allAtProposals);
-		testCompletionFor('.foo { @if $a = 5 { } @f| }', {
+		await testCompletionFor('.foo { @if $a = 5 { } @| }', allAtProposals);
+		await testCompletionFor('.foo { @debug 10em + 22em; @| }', allAtProposals);
+		await testCompletionFor('.foo { @if $a = 5 { } @f| }', {
 			items: [
 				{ label: '@for' }
 			]
 		});
 	});
 
-	suite('Modules', function (): any {
-		test('module-loading at-rules', function (): any {
-			testCompletionFor('@', {
+	suite('Modules', async () => {
+		test('module-loading at-rules', async () => {
+			await testCompletionFor('@|', {
 				items: [
 					{ label: '@use', documentationIncludes: '[Sass documentation](https://sass-lang.com/documentation/at-rules/use)' },
 					{ label: '@forward', documentationIncludes: '[Sass documentation](https://sass-lang.com/documentation/at-rules/forward)' },
@@ -217,7 +213,7 @@ suite('SCSS - Completions', () => {
 			});
 
 			// Limit to top-level scope.
-			testCompletionFor('.foo { @| }', {
+			await testCompletionFor('.foo { @| }', {
 				items: [
 					{ label: '@use', notAvailable: true },
 					{ label: '@forward', notAvailable: true },
@@ -235,16 +231,34 @@ suite('SCSS - Completions', () => {
 					{ label: 'sass:meta', kind: CompletionItemKind.Module, documentationIncludes: '[Sass documentation](https://sass-lang.com/documentation/modules/meta)' },
 				],
 			};
-			testCompletionFor(`@use '|'`, builtIns);
-			testCompletionFor(`@forward '|'`, builtIns);
+			await testCompletionFor(`@use '|'`, builtIns);
+			await testCompletionFor(`@forward '|'`, builtIns);
 
-			testCompletionFor(`@use './|'`, {
+			await testCompletionFor(`@use 'sass:|'`, {
+				items: [
+					{ label: 'sass:math', resultText: `@use 'sass:math'` }
+				],
+			});
+
+			await testCompletionFor(`@use '|'`, {
+				items: [
+					{ label: 'sass:math', resultText: `@use 'sass:math'` }
+				],
+			});
+
+			await testCompletionFor(`@use '|`, {
+				items: [
+					{ label: 'sass:math', resultText: `@use 'sass:math'` }
+				],
+			});
+
+			await testCompletionFor(`@use './|'`, {
 				participant: {
 					onImportPath: [{ pathValue: `'./'`, position: Position.create(0, 8), range: newRange(5, 9) }]
 				}
 			});
 
-			testCompletionFor(`@forward './|'`, {
+			await testCompletionFor(`@forward './|'`, {
 				participant: {
 					onImportPath: [{ pathValue: `'./'`, position: Position.create(0, 12), range: newRange(9, 13) }]
 				}
@@ -252,16 +266,43 @@ suite('SCSS - Completions', () => {
 		});
 	});
 
-	test('Enum + color restrictions are sorted properly', () => {
-		testCompletionFor('.foo { text-decoration: | }', {
+	test('Enum + color restrictions are sorted properly', async () => {
+		await testCompletionFor('.foo { text-decoration: | }', {
 			items: [
 				// Enum come before everything
-				{ label: 'dashed', sortText: ' d_0180' },
+				{ label: 'dashed', sortText: ' ' },
 				// Others come later
-				{ label: 'aqua' },
-				{ label: 'inherit' }
+				{ label: 'aqua', sortText: undefined },
+				{ label: 'inherit', sortText: undefined }
 			]
 		});
+	});
+
+	const testFixturesPath = path.join(__dirname, '../../../../test');
+
+	/**
+	 * For SCSS, `@import 'foo';` can be used for importing partial file `_foo.scss`
+	 */
+	test('SCSS @import Path completion', async function () {
+		const testCSSUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/about/about.css')).toString(true);
+		const workspaceFolderUri = URI.file(path.resolve(testFixturesPath)).toString(true);
+
+		/**
+		 * We are in a CSS file, so no special treatment for SCSS partial files
+		*/
+		await testCSSCompletionFor(`@import '../scss/|'`, {
+			items: [
+				{ label: 'main.scss', resultText: `@import '../scss/main.scss'` },
+				{ label: '_foo.scss', resultText: `@import '../scss/_foo.scss'` }
+			]
+		}, undefined, testCSSUri, workspaceFolderUri);
+
+		const testSCSSUri = URI.file(path.resolve(testFixturesPath, 'pathCompletionFixtures/scss/main.scss')).toString(true);
+		await testCompletionFor(`@import './|'`, {
+			items: [
+				{ label: '_foo.scss', resultText: `@import './foo'` }
+			]
+		}, undefined, testSCSSUri, workspaceFolderUri);
 	});
 
 });
