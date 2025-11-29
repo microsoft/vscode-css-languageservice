@@ -416,8 +416,8 @@ export class CSSNavigation {
 				const documentFolderUri = dirname(documentUri);
 				const modulePath = await this.resolvePathToModule(moduleName, documentFolderUri, rootFolderUri);
 				if (modulePath) {
-					const pathWithinModule = ref.substring(moduleName.length + 1);
-					return joinPath(modulePath, pathWithinModule);
+					const remainder = ref.length > moduleName.length ? ref.slice(moduleName.length + 1) : ''; // skip the '/', bare import
+					return remainder ? joinPath(modulePath, remainder) : modulePath; // e.g. "@import 'bootstrap';"
 				}
 			}
 		}
@@ -439,7 +439,18 @@ export class CSSNavigation {
 			return this.mapReference(await this.resolveModuleReference(target, documentUri, documentContext), isRawLink);
 		}
 
-		const ref = await this.mapReference(documentContext.resolveReference(target, documentUri), isRawLink);
+		// Treat bare module names (“bootstrap/...”) like sass-loader does
+		if (this.resolveModuleReferences && importIsBare(target)) {
+			const resolvedModuleRef = await this.resolveModuleReference(target, documentUri, documentContext);
+			const moduleRef = await this.mapReference(resolvedModuleRef, isRawLink);
+
+			if (moduleRef != null) {
+				return moduleRef;
+			}
+		}
+
+		const ref = await this.mapReference(
+		        documentContext.resolveReference(target, documentUri), isRawLink);
 
 		// Following [less-loader](https://github.com/webpack-contrib/less-loader#imports)
 		// and [sass-loader's](https://github.com/webpack-contrib/sass-loader#resolving-import-at-rules)
@@ -588,6 +599,12 @@ function getHighlightKind(node: nodes.Node): DocumentHighlightKind {
 function toTwoDigitHex(n: number): string {
 	const r = n.toString(16);
 	return r.length !== 2 ? '0' + r : r;
+}
+
+function importIsBare(target: string): boolean {
+	return !target.startsWith('.')              // not ./ or ../
+		&& !target.startsWith('/')              // not workspace-absolute
+		&& !startsWithSchemeRegex.test(target); // not a scheme (file://, http://, etc.)
 }
 
 export function getModuleNameFromPath(path: string) {
