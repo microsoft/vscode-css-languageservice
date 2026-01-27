@@ -611,6 +611,14 @@ suite('CSS - Parser', () => {
 		assertFunction('let(--variable1, let(--variable2))', parser, parser._parseFunction.bind(parser));
 		assertFunction('fun(value1, value2)', parser, parser._parseFunction.bind(parser));
 		assertFunction('fun(value1,)', parser, parser._parseFunction.bind(parser));
+
+		// Builtin functions
+		// var
+		assertFunction('var(--some-variable)', parser, parser._parseFunction.bind(parser));
+		// calc
+		assertFunction('calc(10px + 1rem)', parser, parser._parseFunction.bind(parser));
+		// if
+		assertFunction('if(media(print): black; else: white;)', parser, parser._parseFunction.bind(parser));
 	});
 
 	test('test token prio', function () {
