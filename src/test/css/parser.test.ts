@@ -179,6 +179,9 @@ suite('CSS - Parser', () => {
 		assertNode(`@container (width <= 150px) { #inner { background-color: skyblue; }}`, parser, parser._parseStylesheet.bind(parser));
 		assertNode(`@container card (inline-size > 30em) and style(--responsive: true) { }`, parser, parser._parseStylesheet.bind(parser));
 		assertNode(`@container card style(--responsive) { }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container (inline-size > 30em), style(--responsive: true) { }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container card (inline-size > 30em), style(--responsive: true) { }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container card (inline-size > 30em), summary style(--responsive: true) { }`, parser, parser._parseStylesheet.bind(parser));
 		assertNode(`@container card (inline-size > 30em) { @container style(--responsive: true) {} }`, parser, parser._parseStylesheet.bind(parser));
 	});
 
