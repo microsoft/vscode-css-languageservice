@@ -1428,7 +1428,7 @@ export class Parser {
 		if (this.acceptIdent('not')) {
 			node.addChild(this._parseContainerQueryInParens());
 		} else {
-			node.addChild(this._parseContainerQueryInParens());
+			node.addChild(this._parseContainerQueryInParens(true));
 			if (this.peekIdent('and')) {
 				while (this.acceptIdent('and')) {
 					node.addChild(this._parseContainerQueryInParens());
@@ -1442,7 +1442,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _parseContainerQueryInParens(): nodes.Node {
+	public _parseContainerQueryInParens(optional = false): nodes.Node | null {
 		// <query-in-parens>     = ( <container-query> )
 		// 					  | ( <size-feature> )
 		// 					  | style( <style-query> )
@@ -1466,6 +1466,9 @@ export class Parser {
 				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
 			}
 		} else {
+			if (optional) {
+				return null;
+			}
 			return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.CurlyL]);
 		}
 		return this.finish(node);
