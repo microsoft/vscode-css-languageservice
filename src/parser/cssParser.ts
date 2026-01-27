@@ -2167,10 +2167,10 @@ export class Parser {
 
 		const node = this.create(nodes.Node);
 		if (!node.addChild(this._parseIfCondition())) {
-			return this.finish(node, ParseError.IfConditionExpected);
+			return this.finish(node, ParseError.IfConditionExpected, [], [TokenType.SemiColon]);
 		}
 		if (!this.accept(TokenType.Colon)) {
-			return this.finish(node, ParseError.ColonExpected);
+			return this.finish(node, ParseError.ColonExpected, [], [TokenType.SemiColon]);
 		}
 		node.addChild(this._parseExpr());
 		return this.finish(node);
@@ -2199,18 +2199,18 @@ export class Parser {
 
 		if (this.acceptIdent('supports')) {
 			if (this.hasWhitespace() || !this.accept(TokenType.ParenthesisL)) {
-				return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.CurlyL]);
+				return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.Colon]);
 			}
 			node.addChild(this._tryToParseDeclaration() || this._parseSupportsCondition());
 			if (!this.accept(TokenType.ParenthesisR)) {
-				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
+				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.Colon]);
 			}
 			return this.finish(node);
 		}
 
 		if (this.acceptIdent('media')) {
 			if (this.hasWhitespace() || !this.accept(TokenType.ParenthesisL)) {
-				return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.CurlyL]);
+				return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.Colon]);
 			}
 			const pos = this.mark();
 			const condition = this._parseMediaCondition();
@@ -2221,18 +2221,18 @@ export class Parser {
 				node.addChild(this._parseMediaFeature());
 			}
 			if (!this.accept(TokenType.ParenthesisR)) {
-				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
+				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.Colon]);
 			}
 			return this.finish(node);
 		}
 
 		if (this.acceptIdent('style')) {
 			if (this.hasWhitespace() || !this.accept(TokenType.ParenthesisL)) {
-				return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.CurlyL]);
+				return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.Colon]);
 			}
 			node.addChild(this._parseStyleQuery());
 			if (!this.accept(TokenType.ParenthesisR)) {
-				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
+				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.Colon]);
 			}
 			return this.finish(node);
 		}
