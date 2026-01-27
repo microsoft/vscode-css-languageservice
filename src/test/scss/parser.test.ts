@@ -669,4 +669,11 @@ suite('SCSS - Parser', () => {
 		assertNode('@font-face { unicode-range: U+0021-007F, u+1f49C, U+4??, U+??????; }', parser, parser._parseFontFace.bind(parser));
 		assertError('@font-face { font-style: normal font-stretch: normal; }', parser, parser._parseFontFace.bind(parser), ParseError.SemiColonExpected);
 	});
+
+	test('if function', function() {
+		const parser = new SCSSParser();
+		assertNode('if(true, black, white)', parser, parser._parseFunction.bind(parser));
+		assertNode('if(sass(true): black; else: white;)', parser, parser._parseFunction.bind(parser));
+		assertNode('if(sass($value == \'default\'): flex-gutter(); else: $value;)', parser, parser._parseFunction.bind(parser));
+	})
 });
