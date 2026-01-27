@@ -715,6 +715,23 @@ export class SCSSParser extends cssParser.Parser {
 		return this._tryParseKeyframeSelector() || this._parseRuleSetDeclaration();
 	}
 
+	public _parseIfTest(): nodes.Node | null {
+		const node = this.create(nodes.Node);
+
+		if (this.acceptIdent('sass')) {
+			if (this.hasWhitespace() || !this.accept(TokenType.ParenthesisL)) {
+				return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+			node.addChild(this._parseExpr());
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+			return this.finish(node);
+		}
+
+		return super._parseIfTest();
+	}
+
 	public _parseFunction(): nodes.Function | null {
 
 		const pos = this.mark();
