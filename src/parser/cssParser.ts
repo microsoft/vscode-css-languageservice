@@ -1407,7 +1407,16 @@ export class Parser {
 		this.consumeToken(); // @container
 
 		node.addChild(this._parseIdent()); // optional container name
-		node.addChild(this._parseContainerQuery());
+		if (node.addChild(this._parseContainerQuery())) {
+			while (this.accept(TokenType.Comma)) {
+				if (this.peek(TokenType.CurlyL)) {
+					break;
+				}
+
+				node.addChild(this._parseIdent()); // optional container name
+				node.addChild(this._parseContainerQuery());
+			}
+		}
 
 		return this._parseBody(node, this._parseContainerDeclaration.bind(this, isNested));
 	}
