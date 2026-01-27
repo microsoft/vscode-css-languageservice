@@ -473,8 +473,8 @@ export class Parser {
 		return hasContent ? this.finish(node) : null;
 	}
 
-	public _parseDeclaration(stopTokens?: TokenType[]): nodes.Declaration | null {
-		const customProperty = this._tryParseCustomPropertyDeclaration(stopTokens);
+	public _parseDeclaration(stopTokens?: TokenType[], standaloneCustomPropertyValid = false): nodes.Declaration | null {
+		const customProperty = this._tryParseCustomPropertyDeclaration(stopTokens, standaloneCustomPropertyValid);
 		if (customProperty) {
 			return customProperty;
 		}
@@ -502,7 +502,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	public _tryParseCustomPropertyDeclaration(stopTokens?: TokenType[]): nodes.CustomPropertyDeclaration | null {
+	public _tryParseCustomPropertyDeclaration(stopTokens?: TokenType[], standaloneCustomPropertyValid = false): nodes.CustomPropertyDeclaration | null {
 		if (!this.peekRegExp(TokenType.Ident, /^--/)) {
 			return null;
 		}
@@ -512,6 +512,9 @@ export class Parser {
 		}
 
 		if (!this.accept(TokenType.Colon)) {
+			if (standaloneCustomPropertyValid) {
+				return this.finish(node);
+			}
 			return this.finish(node, ParseError.ColonExpected, [TokenType.Colon]);
 		}
 		if (this.prevToken) {
@@ -1482,7 +1485,7 @@ export class Parser {
 				}
 			}
 		} else {
-			node.addChild(this._parseDeclaration([TokenType.ParenthesisR]));
+			node.addChild(this._parseDeclaration([TokenType.ParenthesisR], true));
 		}
 		return this.finish(node);
 	}
