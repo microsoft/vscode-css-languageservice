@@ -619,6 +619,12 @@ suite('CSS - Parser', () => {
 		assertFunction('calc(10px + 1rem)', parser, parser._parseFunction.bind(parser));
 		// if
 		assertFunction('if(media(print): black; else: white;)', parser, parser._parseFunction.bind(parser));
+		assertFunction('if(media(print): ; else: ;)', parser, parser._parseFunction.bind(parser));
+		assertFunction('if(media(print): black; else: white)', parser, parser._parseFunction.bind(parser));
+		assertFunction('if(style(--some-var: true): black)', parser, parser._parseFunction.bind(parser));
+		// TODO: once https://github.com/microsoft/vscode-css-languageservice/pull/473 is merged, this should also work:
+		// assertFunction('if(style(--some-var): black)', parser, parser._parseFunction.bind(parser));
+		assertFunction('if(else: white)', parser, parser._parseFunction.bind(parser));
 		assertError('if()', parser, parser._parseFunction.bind(parser), ParseError.IfConditionExpected);
 		assertError('if(invalid: black;)', parser, parser._parseFunction.bind(parser), ParseError.IfConditionExpected);
 	});
