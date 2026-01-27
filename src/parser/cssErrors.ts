@@ -52,4 +52,5 @@ export const ParseError = {
 	IdentifierOrWildcardExpected: new CSSIssueType('css-idorwildcardexpected', l10n.t("identifier or wildcard expected")),
 	WildcardExpected: new CSSIssueType('css-wildcardexpected', l10n.t("wildcard expected")),
 	IdentifierOrVariableExpected: new CSSIssueType('css-idorvarexpected', l10n.t("identifier or variable expected")),
+	IfConditionExpected: new CSSIssueType('css-ifconditionexpected', l10n.t("if condition expected")),
 };

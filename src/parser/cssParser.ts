@@ -1154,6 +1154,61 @@ export class Parser {
 		return this.finish(node);
 	}
 
+	public _parseBooleanExpression(parseTest: () => nodes.Node | null): nodes.Node | null {
+		// <boolean-expr[ <test> ]> = not <boolean-expr-group> | <boolean-expr-group>
+        //                                     [ [ and <boolean-expr-group> ]*
+        //                                     | [ or <boolean-expr-group> ]* ]
+
+		const node = this.create(nodes.Node);
+
+		if (this.acceptIdent('not')) {
+			if (!node.addChild(this._parseBooleanExpressionGroup(parseTest))) {
+				return null;
+			}
+		} else {
+			if (!node.addChild(this._parseBooleanExpressionGroup(parseTest))) {
+				return null;
+			}
+			if (this.peekIdent('and')) {
+				while (this.acceptIdent('and')) {
+					if (!node.addChild(this._parseBooleanExpressionGroup(parseTest))) {
+						return null;
+					}
+				}
+			} else if (this.peekIdent('or')) {
+				while (this.acceptIdent('or')) {
+					if (!node.addChild(this._parseBooleanExpressionGroup(parseTest))) {
+						return null;
+					}
+				}
+			}
+		}
+		return this.finish(node);
+	}
+
+	public _parseBooleanExpressionGroup(parseTest: () => nodes.Node | null) {
+		// <boolean-expr-group> = <test> | ( <boolean-expr[ <test> ]> ) | <general-enclosed>
+
+		const node = this.create(nodes.Node);
+		const pos = this.mark();
+
+		if (this.accept(TokenType.ParenthesisL)) {
+			if (node.addChild(this._parseBooleanExpression(parseTest))) {
+				if (!this.accept(TokenType.ParenthesisR)) {
+					return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
+				}
+				return this.finish(node);
+			}
+			this.restoreAtMark(pos);
+		}
+
+		if (!node.addChild(parseTest())) {
+			return null;
+		};
+
+		return this.finish(node);
+	}
+
 	public _parseMediaCondition(): nodes.Node | null {
 		// <media-condition> = <media-not> | <media-and> | <media-or> | <media-in-parens>
 		// <media-not> = not <media-in-parens>
@@ -2045,6 +2100,13 @@ export class Parser {
 		const pos = this.mark();
 		const node = this.create(nodes.Function);
 
+		let parseArgument = this._parseFunctionArgument.bind(this);
+		let separator = TokenType.Comma;
+		if (this.peekIdent("if")) {
+			parseArgument = this._parseIfBranch.bind(this);
+			separator = TokenType.SemiColon;
+		}
+
 		if (!node.setIdentifier(this._parseFunctionIdentifier())) {
 			return null;
 		}
@@ -2054,12 +2116,12 @@ export class Parser {
 			return null;
 		}
 
-		if (node.getArguments().addChild(this._parseFunctionArgument())) {
-			while (this.accept(TokenType.Comma)) {
+		if (node.getArguments().addChild(parseArgument())) {
+			while (this.accept(separator)) {
 				if (this.peek(TokenType.ParenthesisR)) {
 					break;
 				}
-				if (!node.getArguments().addChild(this._parseFunctionArgument())) {
+				if (!node.getArguments().addChild(parseArgument())) {
 					this.markError(node, ParseError.ExpressionExpected);
 				}
 			}
@@ -2097,6 +2159,84 @@ export class Parser {
 		if (node.setValue(this._parseExpr(true))) {
 			return this.finish(node);
 		}
+		return null;
+	}
+
+	public _parseIfBranch() {
+		// <if-branch> = <if-condition> : <declaration-value>?
+
+		const node = this.create(nodes.Node);
+		if (!node.addChild(this._parseIfCondition())) {
+			return this.finish(node, ParseError.IfConditionExpected);
+		}
+		if (!this.accept(TokenType.Colon)) {
+			return this.finish(node, ParseError.ColonExpected);
+		}
+		node.addChild(this._parseExpr());
+		return this.finish(node);
+	}
+
+	public _parseIfCondition(): nodes.Node | null {
+		// <if-condition> = <boolean-expr[ <if-test> ]> | else
+
+		const node = this.create(nodes.Node);
+
+		if (this.peekIdent("else")) {
+			node.addChild(this._parseIdent());
+			return this.finish(node);
+		}
+
+		return this._parseBooleanExpression(this._parseIfTest.bind(this));
+	}
+
+	public _parseIfTest(): nodes.Node | null {
+		// <if-test> =
+		// 	supports( [ <ident> : <declaration-value> ] | <supports-condition> ) |
+		// 	media( <media-feature> | <media-condition> ) |
+		// 	style( <style-query> )
+
+		const node = this.create(nodes.Node);
+
+		if (this.acceptIdent('supports')) {
+			if (this.hasWhitespace() || !this.accept(TokenType.ParenthesisL)) {
+				return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+			node.addChild(this._tryToParseDeclaration() || this._parseSupportsCondition());
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+			return this.finish(node);
+		}
+
+		if (this.acceptIdent('media')) {
+			if (this.hasWhitespace() || !this.accept(TokenType.ParenthesisL)) {
+				return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+			const pos = this.mark();
+			const condition = this._parseMediaCondition();
+			if (condition && !condition.isErroneous()) {
+				node.addChild(condition);
+			} else {
+				this.restoreAtMark(pos);
+				node.addChild(this._parseMediaFeature());
+			}
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+			return this.finish(node);
+		}
+
+		if (this.acceptIdent('style')) {
+			if (this.hasWhitespace() || !this.accept(TokenType.ParenthesisL)) {
+				return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+			node.addChild(this._parseStyleQuery());
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+			return this.finish(node);
+		}
+
 		return null;
 	}
 

@@ -619,6 +619,8 @@ suite('CSS - Parser', () => {
 		assertFunction('calc(10px + 1rem)', parser, parser._parseFunction.bind(parser));
 		// if
 		assertFunction('if(media(print): black; else: white;)', parser, parser._parseFunction.bind(parser));
+		assertError('if()', parser, parser._parseFunction.bind(parser), ParseError.IfConditionExpected);
+		assertError('if(invalid: black;)', parser, parser._parseFunction.bind(parser), ParseError.IfConditionExpected);
 	});
 
 	test('test token prio', function () {
