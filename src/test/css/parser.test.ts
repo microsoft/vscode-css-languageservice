@@ -59,6 +59,8 @@ suite('CSS - Parser', () => {
 		assertNode('@scope (.foo) {}', parser, parser._parseStylesheet.bind(parser))
 		assertNode('@scope to (.bar) {}', parser, parser._parseStylesheet.bind(parser))
 		assertNode('@scope (.foo) to (.bar) {}', parser, parser._parseStylesheet.bind(parser))
+		assertNode('@scope (.foo, .bar) {}', parser, parser._parseStylesheet.bind(parser))
+		assertNode('@scope (.foo, .bar) to (.baz, .qux) {}', parser, parser._parseStylesheet.bind(parser))
 		assertNode('@-ms-viewport { width: 320px; height: 768px; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('#boo, far {} \n.far boo {}', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@-moz-keyframes darkWordHighlight { from { background-color: inherit; } to { background-color: rgba(83, 83, 83, 0.7); } }', parser, parser._parseStylesheet.bind(parser));
@@ -279,6 +281,9 @@ suite('CSS - Parser', () => {
 		assertNode('@scope to (.bar) { }', parser, parser._parseScope.bind(parser))
 		assertNode('@scope (.foo) to (.bar) { }', parser, parser._parseScope.bind(parser))
 		assertNode('@scope (#foo) to (:has(> link)) {}', parser, parser._parseScope.bind(parser))
+		assertNode('@scope (.foo, .bar) { }', parser, parser._parseScope.bind(parser))
+		assertNode('@scope to (.foo, .bar) { }', parser, parser._parseScope.bind(parser))
+		assertNode('@scope (.foo, .bar) to (.baz, .qux) { }', parser, parser._parseScope.bind(parser))
 
 		assertError('@scope ( { }', parser, parser._parseScope.bind(parser), ParseError.SelectorExpected)
 		assertError('@scope () { }', parser, parser._parseScope.bind(parser), ParseError.SelectorExpected)

@@ -1283,10 +1283,10 @@ export class Parser {
 		if (this.accept(TokenType.ParenthesisL)) {
 			// scope-start selector can start with a combinator as it defaults to :scope
 			// Treat as nested
-			if (!node.setScopeStart(this._parseSelector(true))) {
+			if (!node.setScopeStart(this._parseScopeSelectorList())) {
 				return this.finish(node, ParseError.SelectorExpected, [], [TokenType.ParenthesisR])
 			}
-			
+
 			if (!this.accept(TokenType.ParenthesisR)) {
 				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
 			}
@@ -1299,16 +1299,27 @@ export class Parser {
 			}
 			// 'to' selector can start with a combinator as it defaults to :scope
 			// Treat as nested
-			if (!node.setScopeEnd(this._parseSelector(true))) {
+			if (!node.setScopeEnd(this._parseScopeSelectorList())) {
 				return this.finish(node, ParseError.SelectorExpected, [], [TokenType.ParenthesisR])
 			}
-			
+
 			if (!this.accept(TokenType.ParenthesisR)) {
 				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
 			}
 		}
 
 		return this.finish(node)
+	}
+
+	private _parseScopeSelectorList(): nodes.Node | null {
+		const selectors = this.createNode(nodes.NodeType.SelectorList);
+		if (!selectors.addChild(this._parseSelector(true))) {
+			return null;
+		}
+		while (this.accept(TokenType.Comma) && selectors.addChild(this._parseSelector(true))) {
+			// loop
+		}
+		return this.finish(selectors);
 	}
 
 	public _parseMedium(): nodes.Node | null {
