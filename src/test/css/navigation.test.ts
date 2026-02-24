@@ -378,14 +378,104 @@ suite('CSS - Navigation', () => {
 			]);
 		});
 
-		test('aliased @import links', async function () {
-			const settings = aliasSettings();
+		test('aliased @import links (single-root)', async function () {
 			const ls = getCSSLS();
-			ls.configure(settings);
+			ls.configure({
+				"importAliases": {
+					"@SassFile": "scss/file1.scss",
+					"@SassDir/": "scss/",
+				}
+			});
 
-			await assertLinks(ls, '@import "@SingleStylesheet"', [{ range: newRange(8, 27), target: "test://test/src/assets/styles.css"}]);
+			const testUri = getTestResource('scss/file1.scss');
+			const testUri2 = getTestResource('scss/file2.module.scss');
+			const workspaceFolder = getTestResource('');
 
-			await assertLinks(ls, '@import "@AssetsDir/styles.css"', [{ range: newRange(8, 31), target: "test://test/src/assets/styles.css"}]);
+			await assertLinks(ls, '@import "@SassFile"', [{ range: newRange(8, 19), target: getTestResource('scss/file1.scss')}], 'scss', testUri, workspaceFolder);
+
+			await assertLinks(ls, '@import "@SassDir/file2.module.scss"', [{ range: newRange(8, 36), target: getTestResource('scss/file2.module.scss')}], 'scss', testUri2, workspaceFolder);
+		});
+
+		test('aliased @import links (multi-root)', async function () {
+			const lsRoot1 = getCSSLS();
+			const lsRoot2 = getCSSLS();
+
+			lsRoot1.configure({
+				importAliases: {
+					"@SassFile": "assets/sass/main.scss"
+				}
+			});
+
+			lsRoot2.configure({
+				importAliases: {
+					"@SassFile": "assets/sass/main.scss"
+				}
+			});
+
+			const testUriRoot1 = getTestResource('scss/root1/main.scss');
+			const workspaceRoot1 = getTestResource('scss/root1');
+
+			const testUriRoot2 = getTestResource('scss/root2/main.scss');
+			const workspaceRoot2 = getTestResource('scss/root2');
+
+			await assertLinks(
+				lsRoot1,
+				'@import "@SassFile"',
+				[{ range: newRange(8, 19), target: getTestResource('scss/root1/assets/sass/main.scss') }],
+				'scss',
+				testUriRoot1,
+				workspaceRoot1
+			);
+
+			await assertLinks(
+				lsRoot2,
+				'@import "@SassFile"',
+				[{ range: newRange(8, 19), target: getTestResource('scss/root2/assets/sass/main.scss') }],
+				'scss',
+				testUriRoot2,
+				workspaceRoot2
+			);
+		});
+
+		test('aliased @import links (mono-repo)', async function () {
+			const ls = getCSSLS();
+			
+			// pkgs have actual '.vscode/settings.json' in linksTestFixtures/scss/pkg folders
+			ls.configure({
+				importAliases: {
+					"@Shared": "./file1.scss"
+				}
+			});
+
+			const rootFolder = getTestResource('scss');
+
+			const pkg1Uri = getTestResource('scss/pkg1/main.scss');
+			const pkg2Uri = getTestResource('scss/pkg2/main.scss');
+
+			// pkg1/2 should use their local alias and also resolve the shared one
+			await assertLinks(
+				ls,
+				'@import "@Shared"; @import "@Styles";',
+				[
+					{ range: newRange(8, 17), target: getTestResource('scss/file1.scss') },
+					{ range: newRange(27, 36), target: getTestResource('scss/pkg1/main.scss') }
+				],
+				'scss',
+				pkg1Uri,
+				rootFolder
+			);
+
+			await assertLinks(
+				ls,
+				'@import "@Shared"; @import "@Styles";',
+				[
+					{ range: newRange(8, 17), target: getTestResource('scss/file1.scss') },
+					{ range: newRange(27, 36), target: getTestResource('scss/pkg2/main.scss') }
+				],
+				'scss',
+				pkg2Uri,
+				rootFolder
+			);
 		});
 
 		test('links in rulesets', async () => {
