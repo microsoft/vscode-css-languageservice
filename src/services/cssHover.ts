@@ -4,13 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as nodes from '../parser/cssNodes';
-import * as languageFacts from '../languageFacts/facts';
-import { SelectorPrinting } from './selectorPrinting';
-import { startsWith } from '../utils/strings';
-import { TextDocument, Range, Position, Hover, MarkedString, MarkupContent, MarkupKind, ClientCapabilities, HoverSettings } from '../cssLanguageTypes';
-import { isDefined } from '../utils/objects';
-import { CSSDataManager } from '../languageFacts/dataManager';
+import * as nodes from '../parser/cssNodes.js';
+import * as languageFacts from '../languageFacts/facts.js';
+import { SelectorPrinting } from './selectorPrinting.js';
+import { startsWith } from '../utils/strings.js';
+import { TextDocument, Range, Position, Hover, MarkedString, MarkupContent, MarkupKind, ClientCapabilities, HoverSettings } from '../cssLanguageTypes.js';
+import { isDefined } from '../utils/objects.js';
+import { CSSDataManager } from '../languageFacts/dataManager.js';
 
 export class CSSHover {
 	private supportsMarkdown: boolean | undefined;

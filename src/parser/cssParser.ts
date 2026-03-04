@@ -3,12 +3,12 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 'use strict';
-import { TokenType, Scanner, IToken } from './cssScanner';
-import * as nodes from './cssNodes';
-import { ParseError, CSSIssueType } from './cssErrors';
-import * as languageFacts from '../languageFacts/facts';
-import { TextDocument } from '../cssLanguageTypes';
-import { isDefined } from '../utils/objects';
+import { TokenType, Scanner, IToken } from './cssScanner.js';
+import * as nodes from './cssNodes.js';
+import { ParseError, CSSIssueType } from './cssErrors.js';
+import * as languageFacts from '../languageFacts/facts.js';
+import { TextDocument } from '../cssLanguageTypes.js';
+import { isDefined } from '../utils/objects.js';
 
 export interface IMark {
 	prev?: IToken;

@@ -6,11 +6,11 @@
 
 import { suite, test } from 'node:test';
 import * as assert from 'node:assert';
-import { Parser } from '../../parser/cssParser';
-import * as nodes from '../../parser/cssNodes';
-import * as selectorPrinting from '../../services/selectorPrinting';
-import { TextDocument, MarkedString } from '../../cssLanguageTypes';
-import { CSSDataManager } from '../../languageFacts/dataManager';
+import { Parser } from '../../parser/cssParser.js';
+import * as nodes from '../../parser/cssNodes.js';
+import * as selectorPrinting from '../../services/selectorPrinting.js';
+import { TextDocument, MarkedString } from '../../cssLanguageTypes.js';
+import { CSSDataManager } from '../../languageFacts/dataManager.js';
 
 
 const cssDataManager = new CSSDataManager({ useDefaultDataProvider: true });
@@ -57,10 +57,10 @@ function doParse(p: Parser, input: string, selectorName: string): nodes.Selector
 
 export function assertSelector(p: Parser, input: string, selectorName: string, expected: string): void {
 	let selector = doParse(p, input, selectorName);
-	assert(selector);
+	assert.ok(selector);
 
 	let element = selectorPrinting.selectorToElement(selector!);
-	assert(element);
+	assert.ok(element);
 
 	assert.equal(elementToString(element!), expected);
 }
@@ -79,7 +79,7 @@ function assertSelectorMarkdown(
 	expected: MarkedString[]
 ): void {
 	let selector = doParse(p, input, selectorName);
-	assert(selector);
+	assert.ok(selector);
 	const selectorPrinter = new selectorPrinting.SelectorPrinting(cssDataManager);
 	let printedElement = selectorPrinter.selectorToMarkedString(selector!);
 

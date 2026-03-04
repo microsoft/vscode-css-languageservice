@@ -7,8 +7,8 @@
 
 import { suite, test } from 'node:test';
 import * as assert from 'node:assert';
-import { TokenType } from '../../parser/cssScanner';
-import { LESSScanner } from '../../parser/lessScanner';
+import { TokenType } from '../../parser/cssScanner.js';
+import { LESSScanner } from '../../parser/lessScanner.js';
 
 function assertSingleToken(source: string, len: number, offset: number, text: string, type: TokenType): void {
 	let scan = new LESSScanner();

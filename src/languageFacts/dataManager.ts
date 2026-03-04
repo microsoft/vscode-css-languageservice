@@ -10,11 +10,11 @@ import {
 	IAtDirectiveData,
 	IPseudoClassData,
 	IPseudoElementData,
-} from '../cssLanguageTypes';
+} from '../cssLanguageTypes.js';
 
-import * as objects from '../utils/objects';
-import { cssData } from '../data/webCustomData';
-import { CSSDataProvider } from './dataProvider';
+import * as objects from '../utils/objects.js';
+import { cssData } from '../data/webCustomData.js';
+import { CSSDataProvider } from './dataProvider.js';
 
 export class CSSDataManager {
 	private dataProviders: ICSSDataProvider[] = [];

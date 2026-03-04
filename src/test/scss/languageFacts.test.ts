@@ -5,9 +5,9 @@
 'use strict';
 
 import { suite, test } from 'node:test';
-import { SCSSParser } from '../../parser/scssParser';
-import { assertColor } from '../css/languageFacts.test';
-import { colorFrom256RGB as newColor } from '../../languageFacts/facts';
+import { SCSSParser } from '../../parser/scssParser.js';
+import { assertColor } from '../css/languageFacts.test.js';
+import { colorFrom256RGB as newColor } from '../../languageFacts/facts.js';
 
 suite('SCSS - Language facts', () => {
 

@@ -4,12 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as nodes from '../parser/cssNodes';
-import { MarkedString } from '../cssLanguageTypes';
-import { Scanner } from '../parser/cssScanner';
+import * as nodes from '../parser/cssNodes.js';
+import { MarkedString } from '../cssLanguageTypes.js';
+import { Scanner } from '../parser/cssScanner.js';
 import * as l10n from '@vscode/l10n';
-import { CSSDataManager } from '../languageFacts/dataManager';
-import { Parser } from '../parser/cssParser';
+import { CSSDataManager } from '../languageFacts/dataManager.js';
+import { Parser } from '../parser/cssParser.js';
 
 export class Element {
 	public parent: Element | null = null;

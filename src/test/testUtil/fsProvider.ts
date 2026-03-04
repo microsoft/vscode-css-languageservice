@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { FileSystemProvider, FileType } from "../../cssLanguageTypes";
+import { FileSystemProvider, FileType } from "../../cssLanguageTypes.js";
 import { URI } from 'vscode-uri';
 import { promises as fs } from 'fs';
 

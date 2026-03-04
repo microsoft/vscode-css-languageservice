@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { suite, test } from 'node:test';
 import * as assert from 'node:assert';
-import { trim } from '../utils/strings';
+import { trim } from '../utils/strings.js';
 
 suite('Util', () => {
 

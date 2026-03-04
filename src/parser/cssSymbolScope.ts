@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as nodes from './cssNodes';
-import { findFirst } from '../utils/arrays';
+import * as nodes from './cssNodes.js';
+import { findFirst } from '../utils/arrays.js';
 
 export class Scope {
 

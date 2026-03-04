@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { trim } from "../utils/strings";
+import { trim } from "../utils/strings.js";
 
 /// <summary>
 /// Nodes for the css 2.1 specification. See for reference:

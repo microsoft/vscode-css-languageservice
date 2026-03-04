@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { TextDocument, FoldingRange, FoldingRangeKind } from '../cssLanguageTypes';
-import { TokenType, Scanner, IToken } from '../parser/cssScanner';
-import { SCSSScanner, InterpolationFunction } from '../parser/scssScanner';
-import { LESSScanner } from '../parser/lessScanner';
+import { TextDocument, FoldingRange, FoldingRangeKind } from '../cssLanguageTypes.js';
+import { TokenType, Scanner, IToken } from '../parser/cssScanner.js';
+import { SCSSScanner, InterpolationFunction } from '../parser/scssScanner.js';
+import { LESSScanner } from '../parser/lessScanner.js';
 
 type DelimiterType = 'brace' | 'comment';
 type Delimiter = { line: number, type: DelimiterType, isStart: boolean };

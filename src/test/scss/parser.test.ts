@@ -6,11 +6,11 @@
 'use strict';
 
 import { suite, test } from 'node:test';
-import { SCSSParser } from '../../parser/scssParser';
-import { ParseError } from '../../parser/cssErrors';
-import { SCSSParseError } from '../../parser/scssErrors';
+import { SCSSParser } from '../../parser/scssParser.js';
+import { ParseError } from '../../parser/cssErrors.js';
+import { SCSSParseError } from '../../parser/scssErrors.js';
 
-import { assertNode, assertError } from '../css/parser.test';
+import { assertNode, assertError } from '../css/parser.test.js';
 
 suite('SCSS - Parser', () => {
 

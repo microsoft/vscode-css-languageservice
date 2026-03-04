@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { suite, test } from 'node:test';
-import { getSCSSLanguageService } from '../../cssLanguageService';
-import { assertFormat } from '../css/formatter.test';
+import { getSCSSLanguageService } from '../../cssLanguageService.js';
+import { assertFormat } from '../css/formatter.test.js';
 
 suite('SCSS - Formatter', () => {
 

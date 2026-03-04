@@ -8,12 +8,12 @@
       "runtimeArgs": [
         "--enable-source-maps",
         "--test",
-        "lib/umd/test/**/*.test.js"
+        "lib/esm/test/**/*.test.js"
       ],
       "cwd": "${workspaceRoot}",
       "sourceMaps": true,
       "outFiles": [
-        "${workspaceRoot}/lib/umd/**"
+        "${workspaceRoot}/lib/esm/**"
       ],
       "skipFiles": [
         "<node_internals>/**"

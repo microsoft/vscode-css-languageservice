@@ -5,10 +5,10 @@
 'use strict';
 
 import { suite, test } from 'node:test';
-import { Rule } from '../../services/lintRules';
-import { assertEntries } from '../css/lint.test';
-import { SCSSParser } from '../../parser/scssParser';
-import { TextDocument } from '../../cssLanguageTypes';
+import { Rule } from '../../services/lintRules.js';
+import { assertEntries } from '../css/lint.test.js';
+import { SCSSParser } from '../../parser/scssParser.js';
+import { TextDocument } from '../../cssLanguageTypes.js';
 
 function assertRuleSet(input: string, ...rules: Rule[]): void {
 	let p = new SCSSParser();
