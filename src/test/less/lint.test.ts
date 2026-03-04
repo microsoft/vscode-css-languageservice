@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
+import { suite, test } from 'node:test';
 import { Rule } from '../../services/lintRules';
 import { assertEntries } from '../css/lint.test';
 import { SCSSParser } from '../../parser/scssParser';

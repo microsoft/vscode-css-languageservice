@@ -4,7 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as assert from 'assert';
+import { suite, test } from 'node:test';
+import * as assert from 'node:assert';
 
 import { testCompletionFor } from './completion.test';
 import { getCSSLanguageService, TextDocument, newCSSDataProvider, LanguageSettings } from '../../cssLanguageService';

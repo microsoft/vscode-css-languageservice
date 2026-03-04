@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
+import { suite, test } from 'node:test';
 import { SCSSParser } from '../../parser/scssParser';
 import { assertColor } from '../css/languageFacts.test';
 import { colorFrom256RGB as newColor } from '../../languageFacts/facts';

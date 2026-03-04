@@ -5,7 +5,8 @@
 
 'use strict';
 
-import * as assert from 'assert';
+import { suite, test } from 'node:test';
+import * as assert from 'node:assert';
 import { Hover, TextDocument, getCSSLanguageService, getLESSLanguageService, getSCSSLanguageService } from '../../cssLanguageService';
 import { HoverSettings } from '../../cssLanguageTypes';
 import { BaselineImages } from '../../languageFacts/facts';

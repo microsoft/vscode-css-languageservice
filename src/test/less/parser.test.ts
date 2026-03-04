@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
+import { suite, test } from 'node:test';
 import { ParseError } from '../../parser/cssErrors';
 import { LESSParser } from '../../parser/lessParser';
 

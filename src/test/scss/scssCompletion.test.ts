@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
+import { suite, test } from 'node:test';
 import * as path from 'path';
 
 import { Position, InsertTextFormat, CompletionItemKind, LanguageSettings } from '../../cssLanguageService';

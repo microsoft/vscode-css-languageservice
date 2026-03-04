@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
+import { suite, test } from 'node:test';
 import * as nodes from '../../parser/cssNodes';
 import { assertScopeBuilding, assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertSymbolInfos, newRange, assertColorSymbols, assertDocumentSymbols } from '../css/navigation.test';
 import { getLESSLanguageService, SymbolKind, Location } from '../../cssLanguageService';

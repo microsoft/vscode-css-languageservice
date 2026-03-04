@@ -4,7 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as assert from 'assert';
+import { suite, test } from 'node:test';
+import * as assert from 'node:assert';
 import { join } from 'path';
 import { Scope, GlobalScope, ScopeBuilder } from '../../parser/cssSymbolScope';
 import * as nodes from '../../parser/cssNodes';
