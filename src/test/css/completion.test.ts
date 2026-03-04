@@ -7,16 +7,19 @@
 import { suite, test } from 'node:test';
 import * as assert from 'node:assert';
 import * as path from 'path';
+import { fileURLToPath } from 'node:url';
 import {
 	getCSSLanguageService,
 	LanguageSettings, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext,
 	TextDocument, CompletionList, Position, CompletionItemKind, InsertTextFormat, Range, Command, MarkupContent, MixinReferenceCompletionContext, getSCSSLanguageService, getLESSLanguageService, ICSSDataProvider, newCSSDataProvider
-} from '../../cssLanguageService';
-import { BaselineImages } from '../../languageFacts/facts';
-import { getDocumentContext } from '../testUtil/documentContext';
+} from '../../cssLanguageService.js';
+import { BaselineImages } from '../../languageFacts/facts.js';
+import { getDocumentContext } from '../testUtil/documentContext.js';
 import { URI } from 'vscode-uri';
-import { getFsProvider } from '../testUtil/fsProvider';
+import { getFsProvider } from '../testUtil/fsProvider.js';
 import { TextEdit } from 'vscode-languageserver-types';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export interface ItemDescription {
 	label: string;

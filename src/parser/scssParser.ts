@@ -3,13 +3,13 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 'use strict';
-import * as scssScanner from './scssScanner';
-import { TokenType } from './cssScanner';
-import * as cssParser from './cssParser';
-import * as nodes from './cssNodes';
+import * as scssScanner from './scssScanner.js';
+import { TokenType } from './cssScanner.js';
+import * as cssParser from './cssParser.js';
+import * as nodes from './cssNodes.js';
 
-import { SCSSParseError } from './scssErrors';
-import { ParseError } from './cssErrors';
+import { SCSSParseError } from './scssErrors.js';
+import { ParseError } from './cssErrors.js';
 
 /// <summary>
 /// A parser for scss

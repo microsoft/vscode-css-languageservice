@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { DocumentUri } from 'vscode-languageserver-types';
-import { ICompletionParticipant, URILiteralCompletionContext, ImportPathCompletionContext, FileType, DocumentContext, TextDocument, CompletionList, CompletionItemKind, CompletionItem, TextEdit, Range, Position } from '../cssLanguageTypes';
+import { ICompletionParticipant, URILiteralCompletionContext, ImportPathCompletionContext, FileType, DocumentContext, TextDocument, CompletionList, CompletionItemKind, CompletionItem, TextEdit, Range, Position } from '../cssLanguageTypes.js';
 
-import { startsWith, endsWith } from '../utils/strings';
-import { joinPath } from '../utils/resources';
+import { startsWith, endsWith } from '../utils/strings.js';
+import { joinPath } from '../utils/resources.js';
 
 export class PathCompletionParticipant implements ICompletionParticipant {
 	private literalCompletions: URILiteralCompletionContext[] = [];

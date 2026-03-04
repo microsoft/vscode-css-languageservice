@@ -4,19 +4,19 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { Parser } from './parser/cssParser';
-import { CSSCompletion } from './services/cssCompletion';
-import { CSSHover } from './services/cssHover';
-import { CSSNavigation } from './services/cssNavigation';
-import { CSSCodeActions } from './services/cssCodeActions';
-import { CSSValidation } from './services/cssValidation';
+import { Parser } from './parser/cssParser.js';
+import { CSSCompletion } from './services/cssCompletion.js';
+import { CSSHover } from './services/cssHover.js';
+import { CSSNavigation } from './services/cssNavigation.js';
+import { CSSCodeActions } from './services/cssCodeActions.js';
+import { CSSValidation } from './services/cssValidation.js';
 
-import { SCSSParser } from './parser/scssParser';
-import { SCSSCompletion } from './services/scssCompletion';
-import { LESSParser } from './parser/lessParser';
-import { LESSCompletion } from './services/lessCompletion';
-import { getFoldingRanges } from './services/cssFolding';
-import { format } from './services/cssFormatter';
+import { SCSSParser } from './parser/scssParser.js';
+import { SCSSCompletion } from './services/scssCompletion.js';
+import { LESSParser } from './parser/lessParser.js';
+import { LESSCompletion } from './services/lessCompletion.js';
+import { getFoldingRanges } from './services/cssFolding.js';
+import { format } from './services/cssFormatter.js';
 
 import {
 	LanguageSettings, ICompletionParticipant, DocumentContext, LanguageServiceOptions,
@@ -24,16 +24,16 @@ import {
 	SymbolInformation, Range, CodeActionContext, Command, CodeAction, ColorInformation,
 	Color, ColorPresentation, WorkspaceEdit, FoldingRange, SelectionRange, TextDocument,
 	ICSSDataProvider, CSSDataV1, HoverSettings, CompletionSettings, TextEdit, CSSFormatConfiguration, DocumentSymbol
-} from './cssLanguageTypes';
+} from './cssLanguageTypes.js';
 
-import { CSSDataManager } from './languageFacts/dataManager';
-import { CSSDataProvider } from './languageFacts/dataProvider';
-import { getSelectionRanges } from './services/cssSelectionRange';
-import { SCSSNavigation } from './services/scssNavigation';
-import { cssData } from './data/webCustomData';
+import { CSSDataManager } from './languageFacts/dataManager.js';
+import { CSSDataProvider } from './languageFacts/dataProvider.js';
+import { getSelectionRanges } from './services/cssSelectionRange.js';
+import { SCSSNavigation } from './services/scssNavigation.js';
+import { cssData } from './data/webCustomData.js';
 
 export type Stylesheet = {};
-export * from './cssLanguageTypes';
+export * from './cssLanguageTypes.js';
 
 export interface LanguageService {
 	configure(raw?: LanguageSettings): void;

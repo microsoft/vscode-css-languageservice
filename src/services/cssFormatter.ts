@@ -3,9 +3,9 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { CSSFormatConfiguration, Range, TextEdit, Position, TextDocument } from '../cssLanguageTypes';
-import { css_beautify, IBeautifyCSSOptions } from '../beautify/beautify-css';
-import { repeat } from '../utils/strings';
+import { CSSFormatConfiguration, Range, TextEdit, Position, TextDocument } from '../cssLanguageTypes.js';
+import { css_beautify, IBeautifyCSSOptions } from '../beautify/beautify-css.js';
+import { repeat } from '../utils/strings.js';
 
 export function format(document: TextDocument, range: Range | undefined, options: CSSFormatConfiguration): TextEdit[] {
 	let value = document.getText();

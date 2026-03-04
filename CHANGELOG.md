@@ -1,3 +1,11 @@
+7.0.0-next.1 / 2026-03-04
+=========================
+ * BREAKING: package is now ESM-only (`"type": "module"`) and no longer publishes `lib/umd` output
+ * BREAKING: package entrypoints now use `exports` and `types` from `lib/esm`
+ * BREAKING: runtime and test output moved to `lib/esm` and source imports use explicit `.js` extensions for NodeNext compatibility
+ * Build scripts in `build/` are now ESM
+ * `update-jsbeautify` now writes the ESM formatter source directly to `src/beautify/beautify-css.js`
+
 6.3.0 / 2022-06-24
 ================
  * new optional API `fileSystemProvider.getContent`

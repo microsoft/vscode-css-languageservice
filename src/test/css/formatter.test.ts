@@ -2,10 +2,10 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-import { getCSSLanguageService, TextDocument, Range, getLESSLanguageService, LanguageService } from '../../cssLanguageService';
+import { getCSSLanguageService, TextDocument, Range, getLESSLanguageService, LanguageService } from '../../cssLanguageService.js';
 import { suite, test } from 'node:test';
 import * as assert from 'node:assert';
-import { CSSFormatConfiguration } from '../../cssLanguageTypes';
+import { CSSFormatConfiguration } from '../../cssLanguageTypes.js';
 
 
 export function assertFormat(unformatted: string, expected: string, options: CSSFormatConfiguration = { tabSize: 2, insertSpaces: true }, ls: LanguageService = getCSSLanguageService()) {

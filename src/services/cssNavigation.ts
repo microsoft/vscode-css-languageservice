@@ -7,10 +7,10 @@
 import {
 	AliasSettings, Color, ColorInformation, ColorPresentation, DocumentHighlight, DocumentHighlightKind, DocumentLink, Location,
 	Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit, TextDocument, DocumentContext, FileSystemProvider, FileType, DocumentSymbol
-} from '../cssLanguageTypes';
+} from '../cssLanguageTypes.js';
 import * as l10n from '@vscode/l10n';
-import * as nodes from '../parser/cssNodes';
-import { Symbols } from '../parser/cssSymbolScope';
+import * as nodes from '../parser/cssNodes.js';
+import { Symbols } from '../parser/cssSymbolScope.js';
 import {
 	getColorValue,
 	hslFromColor,
@@ -19,9 +19,9 @@ import {
 	lchFromColor,
 	oklabFromColor,
 	oklchFromColor,
-} from '../languageFacts/facts';
-import { startsWith } from '../utils/strings';
-import { dirname, joinPath } from '../utils/resources';
+} from '../languageFacts/facts.js';
+import { startsWith } from '../utils/strings.js';
+import { dirname, joinPath } from '../utils/resources.js';
 
 
 type UnresolvedLinkData = { link: DocumentLink, isRawLink: boolean };

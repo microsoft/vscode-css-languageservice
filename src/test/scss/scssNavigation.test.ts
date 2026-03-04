@@ -4,15 +4,18 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as nodes from '../../parser/cssNodes';
-import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertColorSymbols, assertLinks, newRange, getTestResource, assertDocumentSymbols } from '../css/navigation.test';
-import { getSCSSLanguageService, DocumentLink, TextDocument, SymbolKind, LanguageSettings } from '../../cssLanguageService';
+import * as nodes from '../../parser/cssNodes.js';
+import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertColorSymbols, assertLinks, newRange, getTestResource, assertDocumentSymbols } from '../css/navigation.test.js';
+import { getSCSSLanguageService, DocumentLink, TextDocument, SymbolKind, LanguageSettings } from '../../cssLanguageService.js';
 import { suite, test } from 'node:test';
 import * as assert from 'node:assert';
 import * as path from 'path';
+import { fileURLToPath } from 'node:url';
 import { URI } from 'vscode-uri';
-import { getFsProvider } from '../testUtil/fsProvider';
-import { getDocumentContext } from '../testUtil/documentContext';
+import { getFsProvider } from '../testUtil/fsProvider.js';
+import { getDocumentContext } from '../testUtil/documentContext.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function getSCSSLS() {
 	return getSCSSLanguageService({ fileSystemProvider: getFsProvider() });

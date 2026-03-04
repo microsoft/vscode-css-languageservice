@@ -7,7 +7,7 @@
 import { suite, test } from 'node:test';
 import * as assert from 'node:assert';
 
-import { getCSSLanguageService, TextDocument, TextEdit, Range, Command, CodeAction, TextDocumentEdit } from '../../cssLanguageService';
+import { getCSSLanguageService, TextDocument, TextEdit, Range, Command, CodeAction, TextDocumentEdit } from '../../cssLanguageService.js';
 
 suite('CSS - Code Actions', () => {
 

@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as lessScanner from './lessScanner';
-import { TokenType } from './cssScanner';
-import * as cssParser from './cssParser';
-import * as nodes from './cssNodes';
-import { ParseError } from './cssErrors';
+import * as lessScanner from './lessScanner.js';
+import { TokenType } from './cssScanner.js';
+import * as cssParser from './cssParser.js';
+import * as nodes from './cssNodes.js';
+import { ParseError } from './cssErrors.js';
 
 /// <summary>
 /// A parser for LESS

@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { TokenType, Scanner, IToken } from './cssScanner';
+import { TokenType, Scanner, IToken } from './cssScanner.js';
 
 const _FSL = '/'.charCodeAt(0);
 const _NWL = '\n'.charCodeAt(0);

@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { suite, test } from 'node:test';
-import { getLESSLanguageService } from '../../cssLanguageService';
-import { assertFormat } from '../css/formatter.test';
+import { getLESSLanguageService } from '../../cssLanguageService.js';
+import { assertFormat } from '../css/formatter.test.js';
 
 suite('LESS - Formatter', () => {
 

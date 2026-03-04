@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { CSSCompletion } from './cssCompletion';
-import * as nodes from '../parser/cssNodes';
-import { CompletionList, CompletionItemKind, TextEdit, InsertTextFormat, CompletionItem, MarkupContent, IReference, LanguageServiceOptions, IPropertyData } from '../cssLanguageTypes';
+import { CSSCompletion } from './cssCompletion.js';
+import * as nodes from '../parser/cssNodes.js';
+import { CompletionList, CompletionItemKind, TextEdit, InsertTextFormat, CompletionItem, MarkupContent, IReference, LanguageServiceOptions, IPropertyData } from '../cssLanguageTypes.js';
 import * as l10n from '@vscode/l10n';
-import { CSSDataManager } from '../languageFacts/dataManager';
+import { CSSDataManager } from '../languageFacts/dataManager.js';
 
 interface IFunctionInfo {
 	func: string;

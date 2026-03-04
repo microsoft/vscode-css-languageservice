@@ -4,12 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { CSSNavigation, getModuleNameFromPath } from './cssNavigation';
-import { FileSystemProvider, DocumentContext, FileType, DocumentUri } from '../cssLanguageTypes';
-import * as nodes from '../parser/cssNodes';
+import { CSSNavigation, getModuleNameFromPath } from './cssNavigation.js';
+import { FileSystemProvider, DocumentContext, FileType, DocumentUri } from '../cssLanguageTypes.js';
+import * as nodes from '../parser/cssNodes.js';
 import { URI, Utils } from 'vscode-uri';
-import { convertSimple2RegExpPattern, startsWith } from '../utils/strings';
-import { dirname, joinPath } from '../utils/resources';
+import { convertSimple2RegExpPattern, startsWith } from '../utils/strings.js';
+import { dirname, joinPath } from '../utils/resources.js';
 
 export class SCSSNavigation extends CSSNavigation {
 	constructor(fileSystemProvider: FileSystemProvider | undefined) {

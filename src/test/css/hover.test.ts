@@ -7,9 +7,9 @@
 
 import { suite, test } from 'node:test';
 import * as assert from 'node:assert';
-import { Hover, TextDocument, getCSSLanguageService, getLESSLanguageService, getSCSSLanguageService } from '../../cssLanguageService';
-import { HoverSettings } from '../../cssLanguageTypes';
-import { BaselineImages } from '../../languageFacts/facts';
+import { Hover, TextDocument, getCSSLanguageService, getLESSLanguageService, getSCSSLanguageService } from '../../cssLanguageService.js';
+import { HoverSettings } from '../../cssLanguageTypes.js';
+import { BaselineImages } from '../../languageFacts/facts.js';
 
 function assertHover(value: string, expected: Hover, languageId = 'css', hoverSettings?: HoverSettings): void {
 	let offset = value.indexOf('|');
@@ -18,7 +18,7 @@ function assertHover(value: string, expected: Hover, languageId = 'css', hoverSe
 
 	const document = TextDocument.create(`test://foo/bar.${languageId}`, languageId, 1, value);
 	const hoverResult = ls.doHover(document, document.positionAt(offset), ls.parseStylesheet(document), hoverSettings);
-	assert(hoverResult);
+	assert.ok(hoverResult);
 
 	if (hoverResult!.range && expected.range) {
 		assert.equal(hoverResult!.range, expected.range);

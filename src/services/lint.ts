@@ -5,13 +5,13 @@
 'use strict';
 
 import * as l10n from '@vscode/l10n';
-import { TextDocument } from '../cssLanguageTypes';
-import { CSSDataManager } from '../languageFacts/dataManager';
-import * as languageFacts from '../languageFacts/facts';
-import * as nodes from '../parser/cssNodes';
-import { union } from '../utils/arrays';
-import { LintConfigurationSettings, Rule, Rules, Settings } from './lintRules';
-import calculateBoxModel, { Element } from './lintUtil';
+import { TextDocument } from '../cssLanguageTypes.js';
+import { CSSDataManager } from '../languageFacts/dataManager.js';
+import * as languageFacts from '../languageFacts/facts.js';
+import * as nodes from '../parser/cssNodes.js';
+import { union } from '../utils/arrays.js';
+import { LintConfigurationSettings, Rule, Rules, Settings } from './lintRules.js';
+import calculateBoxModel, { Element } from './lintUtil.js';
 
 
 

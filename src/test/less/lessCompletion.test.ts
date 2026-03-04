@@ -5,9 +5,9 @@
 'use strict';
 
 import { suite, test } from 'node:test';
-import { testCompletionFor as testCSSCompletionFor, ExpectedCompetions } from '../css/completion.test';
-import { LanguageSettings } from '../../cssLanguageService';
-import { newRange } from '../css/navigation.test';
+import { testCompletionFor as testCSSCompletionFor, ExpectedCompetions } from '../css/completion.test.js';
+import { LanguageSettings } from '../../cssLanguageService.js';
+import { newRange } from '../css/navigation.test.js';
 
 function testCompletionFor(
 	value: string,

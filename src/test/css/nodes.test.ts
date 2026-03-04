@@ -6,8 +6,8 @@
 
 import { suite, test } from 'node:test';
 import * as assert from 'node:assert';
-import * as nodes from '../../parser/cssNodes';
-import { Parser } from '../../parser/cssParser';
+import * as nodes from '../../parser/cssNodes.js';
+import { Parser } from '../../parser/cssParser.js';
 
 export class PrintingVisitor implements nodes.IVisitor {
 

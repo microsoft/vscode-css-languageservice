@@ -6,10 +6,10 @@
 
 import { suite, test } from 'node:test';
 import * as assert from 'node:assert';
-import { Parser } from '../../parser/cssParser';
-import { TokenType } from '../../parser/cssScanner';
-import * as nodes from '../../parser/cssNodes';
-import { ParseError } from '../../parser/cssErrors';
+import { Parser } from '../../parser/cssParser.js';
+import { TokenType } from '../../parser/cssScanner.js';
+import * as nodes from '../../parser/cssNodes.js';
+import { ParseError } from '../../parser/cssErrors.js';
 
 export function assertNode(text: string, parser: Parser, f: (...args: any[]) => nodes.Node | null): nodes.Node {
 	const node = parser.internalParse(text, f)!;

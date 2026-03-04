@@ -4,6 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-export * from './entry';
-export * from './colors';
-export * from './builtinData';
+export * from './entry.js';
+export * from './colors.js';
+export * from './builtinData.js';

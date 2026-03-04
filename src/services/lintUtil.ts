@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as nodes from '../parser/cssNodes';
-import { includes } from '../utils/arrays';
+import * as nodes from '../parser/cssNodes.js';
+import { includes } from '../utils/arrays.js';
 
 export class Element {
 

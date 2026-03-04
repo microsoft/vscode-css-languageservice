@@ -5,9 +5,9 @@
 'use strict';
 
 import { suite, test } from 'node:test';
-import { assertNodes } from '../css/nodes.test';
-import * as nodes from '../../parser/cssNodes';
-import { LESSParser } from '../../parser/lessParser';
+import { assertNodes } from '../css/nodes.test.js';
+import * as nodes from '../../parser/cssNodes.js';
+import { LESSParser } from '../../parser/lessParser.js';
 
 suite('LESS - Nodes', () => {
 

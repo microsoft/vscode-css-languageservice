@@ -6,11 +6,14 @@
 
 import { suite, test } from 'node:test';
 import * as path from 'path';
+import { fileURLToPath } from 'node:url';
 
-import { Position, InsertTextFormat, CompletionItemKind, LanguageSettings } from '../../cssLanguageService';
-import { testCompletionFor as testCSSCompletionFor, ExpectedCompetions } from '../css/completion.test';
-import { newRange } from '../css/navigation.test';
+import { Position, InsertTextFormat, CompletionItemKind, LanguageSettings } from '../../cssLanguageService.js';
+import { testCompletionFor as testCSSCompletionFor, ExpectedCompetions } from '../css/completion.test.js';
+import { newRange } from '../css/navigation.test.js';
 import { URI } from 'vscode-uri';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function testCompletionFor(
 	value: string,

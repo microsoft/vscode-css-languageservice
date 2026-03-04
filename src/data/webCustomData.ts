@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 // file generated from @vscode/web-custom-data NPM package
 
-import { CSSDataV1 } from '../cssLanguageTypes';
+import { CSSDataV1 } from '../cssLanguageTypes.js';
 
 export const cssData : CSSDataV1 = {
 	"version": 1.1,
