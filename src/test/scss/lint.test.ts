@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
+import { suite, test } from 'node:test';
 import { TextDocument } from '../../cssLanguageTypes';
 import { SCSSParser } from '../../parser/scssParser';
 import { Rule, Rules } from '../../services/lintRules';

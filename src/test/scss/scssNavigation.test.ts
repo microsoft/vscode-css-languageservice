@@ -7,7 +7,8 @@
 import * as nodes from '../../parser/cssNodes';
 import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertColorSymbols, assertLinks, newRange, getTestResource, assertDocumentSymbols } from '../css/navigation.test';
 import { getSCSSLanguageService, DocumentLink, TextDocument, SymbolKind, LanguageSettings } from '../../cssLanguageService';
-import * as assert from 'assert';
+import { suite, test } from 'node:test';
+import * as assert from 'node:assert';
 import * as path from 'path';
 import { URI } from 'vscode-uri';
 import { getFsProvider } from '../testUtil/fsProvider';

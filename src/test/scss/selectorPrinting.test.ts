@@ -5,6 +5,7 @@
 
 'use strict';
 
+import { suite, test } from 'node:test';
 import { SCSSParser } from '../../parser/scssParser';
 import { assertSelector } from '../css/selectorPrinting.test';
 

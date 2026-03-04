@@ -5,6 +5,7 @@
 
 'use strict';
 
+import { suite, test } from 'node:test';
 import { SCSSParser } from '../../parser/scssParser';
 import { ParseError } from '../../parser/cssErrors';
 import { SCSSParseError } from '../../parser/scssErrors';

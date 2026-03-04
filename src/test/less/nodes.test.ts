@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
+import { suite, test } from 'node:test';
 import { assertNodes } from '../css/nodes.test';
 import * as nodes from '../../parser/cssNodes';
 import { LESSParser } from '../../parser/lessParser';

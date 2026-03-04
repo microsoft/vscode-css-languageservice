@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
+import { suite, test } from 'node:test';
 import { testCompletionFor as testCSSCompletionFor, ExpectedCompetions } from '../css/completion.test';
 import { LanguageSettings } from '../../cssLanguageService';
 import { newRange } from '../css/navigation.test';

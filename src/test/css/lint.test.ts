@@ -4,7 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as assert from 'assert';
+import { suite, test } from 'node:test';
+import * as assert from 'node:assert';
 import { Node, IRule, Level } from '../../parser/cssNodes';
 import { Parser } from '../../parser/cssParser';
 import { LintVisitor } from '../../services/lint';
