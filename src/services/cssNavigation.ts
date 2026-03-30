@@ -593,7 +593,7 @@ function toTwoDigitHex(n: number): string {
 export function getModuleNameFromPath(path: string) {
 	const firstSlash = path.indexOf('/');
 	if (firstSlash === -1) {
-		return '';
+		return path;
 	}
 
 	// If a scoped module (starts with @) then get up until second instance of '/', or to the end of the string for root-level imports.

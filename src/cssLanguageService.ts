@@ -116,7 +116,7 @@ export function getCSSLanguageService(options: LanguageServiceOptions = defaultL
 		new Parser(),
 		new CSSCompletion(null, options, cssDataManager),
 		new CSSHover(options && options.clientCapabilities, cssDataManager),
-		new CSSNavigation(options && options.fileSystemProvider, false),
+		new CSSNavigation(options && options.fileSystemProvider, true),
 		new CSSCodeActions(cssDataManager),
 		new CSSValidation(cssDataManager),
 		cssDataManager

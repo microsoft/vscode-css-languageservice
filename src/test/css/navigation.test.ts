@@ -460,6 +460,16 @@ suite('CSS - Navigation', () => {
 				[{ range: newRange(8, 24), target: getTestResource('green/c.css') }], 'css', testUri, workspaceFolder
 			);
 		});
+
+		test('bare module specifier resolving', async function () {
+			const ls = getCSSLS();
+			const testUri = getTestResource('about.css');
+			const workspaceFolder = getTestResource('');
+
+			await assertLinks(ls, '@import "foo/bar.css"',
+				[{ range: newRange(8, 21), target: getTestResource('node_modules/foo/bar.css') }], 'css', testUri, workspaceFolder
+			);
+		});
 	});
 
 	suite('Color', () => {
