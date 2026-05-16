@@ -354,5 +354,6 @@ suite('LESS - Parser', () => {
 		const parser = new LESSParser();
 		assertNode(`.item-icon { @container (max-height: 100px) { .item-icon { display: none;  } } }`, parser, parser._parseStylesheet.bind(parser));
 		assertNode(`:root { @container (max-height: 100px) { display: none;} }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container my-container scroll-state(scrollable: y) { .item-icon { display: none; } }`, parser, parser._parseStylesheet.bind(parser));
 	});
 });
