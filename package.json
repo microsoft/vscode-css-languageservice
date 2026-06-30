@@ -1,6 +1,6 @@
 {
   "name": "vscode-css-languageservice",
-  "version": "6.3.5",
+  "version": "6.3.9",
   "description": "Language service for CSS, LESS and SCSS",
   "main": "./lib/umd/cssLanguageService.js",
   "typings": "./lib/umd/cssLanguageService",
@@ -16,16 +16,16 @@
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
-    "@types/node": "18.x",
-    "@typescript-eslint/eslint-plugin": "^8.31.0",
-    "@typescript-eslint/parser": "^8.31.0",
-    "@vscode/web-custom-data": "^0.5.2",
-    "eslint": "^9.25.1",
+    "@types/node": "22.x",
+    "@typescript-eslint/eslint-plugin": "^8.48.0",
+    "@typescript-eslint/parser": "^8.48.0",
+    "@vscode/web-custom-data": "^0.6.2",
+    "eslint": "^9.39.1",
     "js-beautify": "^1.15.4",
-    "mocha": "^11.1.0",
-    "rimraf": "^6.0.1",
+    "mocha": "^11.7.5",
+    "rimraf": "^6.1.2",
     "source-map-support": "^0.5.21",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "@vscode/l10n": "^0.0.18",
@@ -35,7 +35,7 @@
   },
   "scripts": {
     "prepack": "npm run clean && npm run compile-esm && npm run test && npm run remove-sourcemap-refs",
-    "compile": "tsc -p ./src && npm run copy-jsbeautify && npm run lint ",
+    "compile": "tsc -p ./src && npm run copy-jsbeautify && npm run lint",
     "compile-esm": "tsc -p ./src/tsconfig.esm.json",
     "clean": "rimraf lib",
     "remove-sourcemap-refs": "node ./build/remove-sourcemap-refs.js",

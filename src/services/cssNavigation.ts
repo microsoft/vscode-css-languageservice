@@ -11,7 +11,15 @@ import {
 import * as l10n from '@vscode/l10n';
 import * as nodes from '../parser/cssNodes';
 import { Symbols } from '../parser/cssSymbolScope';
-import { getColorValue, hslFromColor, hwbFromColor, labFromColor, lchFromColor } from '../languageFacts/facts';
+import {
+	getColorValue,
+	hslFromColor,
+	hwbFromColor,
+	labFromColor,
+	lchFromColor,
+	oklabFromColor,
+	oklchFromColor,
+} from '../languageFacts/facts';
 import { startsWith } from '../utils/strings';
 import { dirname, joinPath } from '../utils/resources';
 
@@ -367,12 +375,21 @@ export class CSSNavigation {
 		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
 
 		const lch = lchFromColor(color);
-		if (lab.alpha === 1) {
+		if (lch.alpha === 1) {
 			label = `lch(${lch.l}% ${lch.c} ${lch.h})`;
 		} else {
 			label = `lch(${lch.l}% ${lch.c} ${lch.h} / ${lch.alpha})`;
 		}
 		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
+
+		const oklab = oklabFromColor(color);
+		label = (oklab.alpha === 1) ? `oklab(${oklab.l}% ${oklab.a} ${oklab.b})` : `oklab(${oklab.l}% ${oklab.a} ${oklab.b} / ${oklab.alpha})`;
+		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
+
+		const oklch = oklchFromColor(color);
+		label = (oklch.alpha === 1) ? `oklch(${oklch.l}% ${oklch.c} ${oklch.h})` : `oklch(${oklch.l}% ${oklch.c} ${oklch.h} / ${oklch.alpha})`;
+		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
+
 		return result;
 	}
 
@@ -423,19 +440,15 @@ export class CSSNavigation {
 		}
 
 		// Treat bare module names (“bootstrap/...”) like sass-loader does
-		const startsWithSchemeRegex = /^\w[\w\d+.-]:/;
-		
-		const isBareImport = !target.startsWith('.')              // not ./ or ../
-		                  && !target.startsWith('/')              // not workspace-absolute
-		                  && !startsWithSchemeRegex.test(target); // not a scheme (file://, http://, etc.)
-		
-		if (isBareImport) {
-		  const moduleRef = await this.mapReference(
-		        await this.resolveModuleReference(target, documentUri, documentContext),
-		        isRawLink);
-		  if (moduleRef) { return moduleRef; }
+		if (this.resolveModuleReferences && importIsBare(target)) {
+			const resolvedModuleRef = await this.resolveModuleReference(target, documentUri, documentContext);
+			const moduleRef = await this.mapReference(resolvedModuleRef, isRawLink);
+
+			if (moduleRef != null) {
+				return moduleRef;
+			}
 		}
-		
+
 		const ref = await this.mapReference(
 		        documentContext.resolveReference(target, documentUri), isRawLink);
 
@@ -586,6 +599,12 @@ function getHighlightKind(node: nodes.Node): DocumentHighlightKind {
 function toTwoDigitHex(n: number): string {
 	const r = n.toString(16);
 	return r.length !== 2 ? '0' + r : r;
+}
+
+function importIsBare(target: string): boolean {
+	return !target.startsWith('.')              // not ./ or ../
+		&& !target.startsWith('/')              // not workspace-absolute
+		&& !startsWithSchemeRegex.test(target); // not a scheme (file://, http://, etc.)
 }
 
 export function getModuleNameFromPath(path: string) {

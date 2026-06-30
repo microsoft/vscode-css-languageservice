@@ -985,6 +985,23 @@ suite('CSS - Completion', () => {
 		});
 	})
 
+	test('@media at rule completion', async function () {
+		await testCompletionFor(`@media (|) {`, {
+			items: [
+				{ label: 'prefers-color-scheme', resultText: '@media (prefers-color-scheme: ) {' },
+				{ label: 'hover', resultText: '@media (hover: ) {' },
+				{ label: 'color', resultText: '@media (color) {' },
+			]
+		});
+
+		await testCompletionFor(`@media (prefers-color-scheme: |) {`, {
+			items: [
+				{ label: 'light', resultText: '@media (prefers-color-scheme: light) {' },
+				{ label: 'dark', resultText: '@media (prefers-color-scheme: dark) {' }
+			]
+		});
+	})
+
 });
 
 function newRange(start: number, end: number) {

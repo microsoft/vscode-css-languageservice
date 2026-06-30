@@ -6,7 +6,7 @@
 
 import * as nodes from '../../parser/cssNodes';
 import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertColorSymbols, assertLinks, newRange, getTestResource, assertDocumentSymbols } from '../css/navigation.test';
-import { getSCSSLanguageService, DocumentLink, TextDocument, SymbolKind, LanguageSettings } from '../../cssLanguageService';
+import { getSCSSLanguageService, DocumentLink, TextDocument, SymbolKind, LanguageSettings, DocumentContext } from '../../cssLanguageService';
 import * as assert from 'assert';
 import * as path from 'path';
 import { URI } from 'vscode-uri';
@@ -20,11 +20,11 @@ function getSCSSLS() {
 function aliasSettings(): LanguageSettings {
 	return {
 		"importAliases": {
-				"@SassStylesheet": "/src/assets/styles.scss",
-				"@NoUnderscoreDir/": "/noUnderscore/",
-				"@UnderscoreDir/": "/underscore/",
-				"@BothDir/": "/both/",
-			}
+			"@SassStylesheet": "/src/assets/styles.scss",
+			"@NoUnderscoreDir/": "/noUnderscore/",
+			"@UnderscoreDir/": "/underscore/",
+			"@BothDir/": "/both/",
+		}
 	};
 }
 
@@ -55,6 +55,21 @@ async function assertNoDynamicLinks(docUri: string, input: string, extecedTarget
 		assert.deepEqual(links.length, 0, `${docUri.toString()} hould have no link`);
 	}
 
+}
+
+function createDocument(contents: string, uri = 'file:///test.scss') {
+	return TextDocument.create(uri, 'scss', 0, contents);
+}
+
+const dummyContext: DocumentContext = {
+	resolveReference: (ref: string, _base: string) => ref
+};
+
+async function getLinks(contents: string) {
+	const ls = getSCSSLS();
+	const doc = createDocument(contents);
+	const stylesheet = ls.parseStylesheet(doc);
+	return ls.findDocumentLinks2(doc, stylesheet, dummyContext);
 }
 
 suite('SCSS - Navigation', () => {
@@ -353,4 +368,42 @@ suite('SCSS - Navigation', () => {
 		});
 	});
 
+	suite('URL Scheme Imports', () => {
+
+		test('http scheme import is treated as absolute URL, not bare import', async () => {
+			const links = await getLinks(`@import "http://example.com/foo.css";`);
+			assert.strictEqual(links.length, 1);
+			assert.strictEqual(links[0].target, 'http://example.com/foo.css');
+		});
+
+		test('https scheme import is treated as absolute URL, not bare import', async () => {
+			const links = await getLinks(`@import "https://cdn.example.com/reset.css";`);
+			assert.strictEqual(links.length, 1);
+			assert.strictEqual(links[0].target, 'https://cdn.example.com/reset.css');
+		});
+
+		test('file scheme import is treated as absolute URL, not bare import', async () => {
+			const links = await getLinks(`@import "file:///Users/test/project/styles/base.scss";`);
+			assert.strictEqual(links.length, 1);
+			assert.strictEqual(links[0].target, 'file:///Users/test/project/styles/base.scss');
+		});
+
+		test('custom scheme import (vscode-resource) is treated as absolute URL, not bare import', async () => {
+			const links = await getLinks(`@import "vscode-resource://file/some.css";`);
+			assert.strictEqual(links.length, 1);
+			assert.strictEqual(links[0].target, 'vscode-resource://file/some.css');
+		});
+	});
+
+	suite('Bare Imports', () => {
+
+		test('resolves bare import path on Windows', async () => {
+			const ls = getSCSSLS();
+
+			const doc = TextDocument.create('file:///c:/proj/app.scss', 'scss', 1, "@import 'bootstrap/scss/variables';");
+			const links = await ls.findDocumentLinks2(doc, ls.parseStylesheet(doc), getDocumentContext('c:/proj'));
+			const expected = URI.file('c:/proj/node_modules/bootstrap/scss/_variables.scss').toString();
+			assert.strictEqual(links[0].target, expected);
+		});
+	});
 });

@@ -159,7 +159,7 @@ export const colorFunctions = [
 
 ];
 
-const colorFunctionNameRegExp = /^(rgb|rgba|hsl|hsla|hwb|lab|lch)$/i;
+const colorFunctionNameRegExp = /^(?:rgba?|hsla?|hwb|lab|lch|oklab|oklch)$/iu;
 
 export const colors: { [name: string]: string } = {
 	aliceblue: '#f0f8ff',
@@ -336,27 +336,48 @@ function getNumericValue(node: nodes.Node, factor: number, lowerLimit: number = 
 	throw new Error();
 }
 
-function getAngle(node: nodes.Node) {
-	const val = node.getText();
-	const m = val.match(/^([-+]?[0-9]*\.?[0-9]+)(deg|rad|grad|turn)?$/);
-	if (m) {
-		switch (m[2]) {
-			case 'deg':
-				return parseFloat(val) % 360;
-			case 'rad':
-				return (parseFloat(val) * 180 / Math.PI) % 360;
-			case 'grad':
-				return (parseFloat(val) * 0.9) % 360;
-			case 'turn':
-				return (parseFloat(val) * 360) % 360;
-			default:
-				if ('undefined' === typeof m[2]) {
-					return parseFloat(val) % 360;
+const DEGREES_PER_CIRCLE = 360; // Number of degrees in a full circle
+const GRAD_TO_DEGREE_FACTOR = 0.9; // Conversion factor: grads to degrees
+const RADIANS_TO_DEGREES_FACTOR = DEGREES_PER_CIRCLE / 2 / Math.PI; // Conversion factor: radians to degrees
+
+function getAngle(node: nodes.Node): number {
+	const textValue = node.getText();
+
+	// Hue angle keyword `none` is the equivilient of `0deg`
+	if (textValue === 'none') {
+		return 0;
+	}
+
+	const m = /^(?<numberString>[-+]?[0-9]*\.?[0-9]+)(?<unit>deg|rad|grad|turn)?$/iu.exec(textValue);
+	if (m?.groups?.['numberString']) {
+		const value = Number.parseFloat(m.groups['numberString']);
+		if (!Number.isNaN(value)) {
+			switch (m.groups['unit']) {
+				case 'deg': {
+					return value % DEGREES_PER_CIRCLE;
 				}
+
+				case 'grad': {
+					return (value * GRAD_TO_DEGREE_FACTOR) % DEGREES_PER_CIRCLE;
+				}
+
+				case 'rad': {
+					return (value * RADIANS_TO_DEGREES_FACTOR) % DEGREES_PER_CIRCLE;
+				}
+
+				case 'turn': {
+					return (value * DEGREES_PER_CIRCLE) % DEGREES_PER_CIRCLE;
+				}
+
+				default: {
+					// Unitless angles are treated as degrees
+					return value % DEGREES_PER_CIRCLE;
+				}
+			}
 		}
 	}
 
-	throw new Error();
+	throw new Error(`Failed to parse '${textValue}' as angle`);
 }
 
 export function isColorConstructor(node: nodes.Function): boolean {
@@ -589,6 +610,34 @@ export function xyzFromLAB(lab: LAB): XYZ {
 	return xyz;
 }
 
+export function xyzFromOKLAB(lab: LAB): XYZ {
+	// Convert from OKLab to XYZ
+	// References: https://bottosson.github.io/posts/oklab/
+
+	// lab.l is in 0-1 range
+	// lab.a and lab.b are in -0.4 to 0.4 range
+	const l = lab.l + 0.396_337_777_4 * lab.a + 0.215_803_757_3 * lab.b;
+	const m = lab.l - 0.105_561_345_8 * lab.a - 0.063_854_172_8 * lab.b;
+	const s = lab.l - 0.089_484_177_5 * lab.a - 1.291_485_548 * lab.b;
+
+	// Apply non-linearity using exponentiation
+	const l3 = l ** 3;
+	const m3 = m ** 3;
+	const s3 = s ** 3;
+
+	// Convert to XYZ
+	const x = 1.227_013_851_1 * l3 - 0.557_799_980_7 * m3 + 0.281_256_149 * s3;
+	const y = -0.040_580_178_4 * l3 + 1.112_256_869_6 * m3 - 0.071_676_678_7 * s3;
+	const z = -0.076_381_284_5 * l3 - 0.421_481_978_4 * m3 + 1.586_163_220_4 * s3;
+
+	return {
+		x: x * 100,
+		y: y * 100,
+		z: z * 100,
+		alpha: lab.alpha ?? 1,
+	};
+}
+
 export function xyzToRGB(xyz: XYZ): Color {
 	const x = xyz.x / 100;
 	const y = xyz.y / 100;
@@ -683,57 +732,144 @@ export function XYZtoLAB(xyz: XYZ, round: Boolean = true): LAB {
 	}
 }
 
+export function XYZtoOKLAB(xyz: XYZ, round = true): LAB {
+	// Convert XYZ to OKLab
+	// References: https://bottosson.github.io/posts/oklab/
+
+	// Normalize XYZ values
+	const x = xyz.x / 100;
+	const y = xyz.y / 100;
+	const z = xyz.z / 100;
+
+	// Convert to LMS
+	const l = 0.818_933_010_1 * x + 0.361_866_742_4 * y - 0.128_859_713_7 * z;
+	const m = 0.032_984_543_6 * x + 0.929_311_871_5 * y + 0.036_145_638_7 * z;
+	const s = 0.048_200_301_8 * x + 0.264_366_269_1 * y + 0.633_851_707 * z;
+
+	// Apply non-linearity
+	const l_ = Math.cbrt(l);
+	const m_ = Math.cbrt(m);
+	const s_ = Math.cbrt(s);
+
+	// Convert to OKLab
+	const L = 0.210_454_255_3 * l_ + 0.793_617_785 * m_ - 0.004_072_046_8 * s_;
+	const a = 1.977_998_495_1 * l_ - 2.428_592_205 * m_ + 0.450_593_709_9 * s_;
+	const b = 0.025_904_037_1 * l_ + 0.782_771_766_2 * m_ - 0.808_675_766 * s_;
+
+	return round
+		// 5 decimal places for precision
+		? {
+			l: Number(L.toFixed(5)),
+			a: Number(a.toFixed(5)),
+			b: Number(b.toFixed(5)),
+			alpha: xyz.alpha,
+		}
+		: {
+			l: L,
+			a,
+			b,
+			alpha: xyz.alpha,
+		};
+}
+
 export function labFromColor(rgba: Color, round: Boolean = true): LAB {
 	const xyz: XYZ = RGBtoXYZ(rgba);
 	const lab: LAB = XYZtoLAB(xyz, round);
 	return lab;
 }
-export function lchFromColor(rgba: Color): LCH {
-	const lab: LAB = labFromColor(rgba, false);
+
+export function oklabFromColor(rgba: Color, round = true): LAB {
+	const xyz: XYZ = RGBtoXYZ(rgba);
+	const lab: LAB = XYZtoOKLAB(xyz, round);
+	// Convert lightness to a percentage of oklab
+	return { ...lab, l: lab.l * 100 };
+}
+
+/**
+ * Calculate chroma and hue from Lab values
+ * Returns LCH values without formatting/rounding
+ */
+function labToLCH(lab: LAB): LCH {
 	const c: number = Math.sqrt(Math.pow(lab.a, 2) + Math.pow(lab.b, 2));
-	let h: number = Math.atan2(lab.b, lab.a) * (180 / Math.PI);
+	let h: number = Math.atan2(lab.b, lab.a) * RADIANS_TO_DEGREES_FACTOR;
 	while (h < 0) {
 		h = h + 360;
 	}
 	return {
-		l: Math.round((lab.l + Number.EPSILON) * 100) / 100,
-		c: Math.round((c + Number.EPSILON) * 100) / 100,
-		h: Math.round((h + Number.EPSILON) * 100) / 100,
-		alpha: lab.alpha
+		l: lab.l,
+		c: c,
+		h: h,
+		alpha: lab.alpha,
 	};
 }
 
-export function colorFromLAB(l: number, a: number, b: number, alpha: number = 1.0): Color {
-	const lab: LAB = {
-		l,
-		a,
-		b,
-		alpha
+export function lchFromColor(rgba: Color): LCH {
+	const lab: LAB = labFromColor(rgba, false);
+	const lch: LCH = labToLCH(lab);
+
+	return {
+		l: Math.round((lch.l + Number.EPSILON) * 100) / 100,
+		c: Math.round((lch.c + Number.EPSILON) * 100) / 100,
+		h: Math.round((lch.h + Number.EPSILON) * 100) / 100,
+		alpha: lch.alpha,
 	};
-	const xyz = xyzFromLAB(lab);
+}
+
+export function oklchFromColor(rgba: Color): LCH {
+	const lab: LAB = oklabFromColor(rgba, false);
+	const lch: LCH = labToLCH(lab);
+
+	return {
+		l: Number((lch.l).toFixed(3)),
+		c: Number(lch.c.toFixed(5)),
+		h: Number(lch.h.toFixed(3)),
+		alpha: lch.alpha,
+	};
+}
+
+/**
+ * Generic function to convert LAB/OKLAB to Color
+ */
+function labToColor(lab: LAB, xyzConverter: (lab: LAB) => XYZ): Color {
+	const xyz = xyzConverter(lab);
 	const rgb = xyzToRGB(xyz);
 	return {
-		red: (rgb.red >= 0 ? (rgb.red <= 255 ? rgb.red : 255) : 0) / 255.0,
-		green: (rgb.green >= 0 ? (rgb.green <= 255 ? rgb.green : 255) : 0) / 255.0,
-		blue: (rgb.blue >= 0 ? (rgb.blue <= 255 ? rgb.blue : 255) : 0) / 255.0,
-		alpha
+		red: (rgb.red >= 0 ? Math.min(rgb.red, 255) : 0) / 255,
+		green: (rgb.green >= 0 ? Math.min(rgb.green, 255) : 0) / 255,
+		blue: (rgb.blue >= 0 ? Math.min(rgb.blue, 255) : 0) / 255,
+		alpha: lab.alpha ?? 1,
 	};
+}
+
+export function colorFromLAB(l: number, a: number, b: number, alpha = 1): Color {
+	return labToColor({ l, a, b, alpha }, xyzFromLAB);
+}
+
+export function colorFromOKLAB(l: number, a: number, b: number, alpha = 1): Color {
+	return labToColor({ l, a, b, alpha }, xyzFromOKLAB);
 }
 
 export interface LAB { l: number; a: number; b: number; alpha?: number; }
 
-export function labFromLCH(l: number, c: number, h: number, alpha: number = 1.0): LAB {
+const DEGREES_TO_RADIANS_FACTOR = Math.PI / 180;
+
+export function labFromLCH(l: number, c: number, h: number, alpha = 1): LAB {
 	return {
 		l: l,
-		a: c * Math.cos(h * (Math.PI / 180)),
-		b: c * Math.sin(h * (Math.PI / 180)),
-		alpha: alpha
+		a: c * Math.cos(h * DEGREES_TO_RADIANS_FACTOR),
+		b: c * Math.sin(h * DEGREES_TO_RADIANS_FACTOR),
+		alpha: alpha,
 	};
 }
 
-export function colorFromLCH(l: number, c: number, h: number, alpha: number = 1.0): Color {
+export function colorFromLCH(l: number, c: number, h: number, alpha = 1): Color {
 	const lab: LAB = labFromLCH(l, c, h, alpha);
 	return colorFromLAB(lab.l, lab.a, lab.b, alpha);
+}
+
+export function colorFromOKLCH(l: number, c: number, h: number, alpha = 1): Color | null {
+	const lab: LAB = labFromLCH(l, c, h, alpha); // Conversion is the same as LCH->LAB for OKLCH-OKLAB
+	return colorFromOKLAB(lab.l, lab.a, lab.b, alpha);
 }
 
 export interface LCH { l: number; c: number; h: number; alpha?: number; }
@@ -764,39 +900,67 @@ export function getColorValue(node: nodes.Node): Color | null {
 		if (!name || colorValues.length < 3 || colorValues.length > 4) {
 			return null;
 		}
+
 		try {
 			const alpha = colorValues.length === 4 ? getNumericValue(colorValues[3], 1) : 1;
-			if (name === 'rgb' || name === 'rgba') {
-				return {
-					red: getNumericValue(colorValues[0], 255.0),
-					green: getNumericValue(colorValues[1], 255.0),
-					blue: getNumericValue(colorValues[2], 255.0),
-					alpha
-				};
-			} else if (name === 'hsl' || name === 'hsla') {
-				const h = getAngle(colorValues[0]);
-				const s = getNumericValue(colorValues[1], 100.0);
-				const l = getNumericValue(colorValues[2], 100.0);
-				return colorFromHSL(h, s, l, alpha);
-			} else if (name === 'hwb') {
-				const h = getAngle(colorValues[0]);
-				const w = getNumericValue(colorValues[1], 100.0);
-				const b = getNumericValue(colorValues[2], 100.0);
-				return colorFromHWB(h, w, b, alpha);
-			} else if (name === 'lab') {
-				// Reference: https://mina86.com/2021/srgb-lab-lchab-conversions/
-				const l = getNumericValue(colorValues[0], 100.0);
-				// Since these two values can be negative, a lower limit of -1 has been added
-				const a = getNumericValue(colorValues[1], 125.0, -1);
-				const b = getNumericValue(colorValues[2], 125.0, -1);
-				return colorFromLAB(l * 100, a * 125, b * 125, alpha);
-			} else if (name === 'lch') {
-				const l = getNumericValue(colorValues[0], 100.0);
-				const c = getNumericValue(colorValues[1], 230.0);
-				const h = getAngle(colorValues[2]);
-				return colorFromLCH(l * 100, c * 230, h, alpha);
+			switch (name) {
+				case 'rgb':
+				case 'rgba': {
+					return {
+						red: getNumericValue(colorValues[0], 255),
+						green: getNumericValue(colorValues[1], 255),
+						blue: getNumericValue(colorValues[2], 255),
+						alpha,
+					};
+				}
+
+				case 'hsl':
+				case 'hsla': {
+					const h = getAngle(colorValues[0]);
+					const s = getNumericValue(colorValues[1], 100);
+					const l = getNumericValue(colorValues[2], 100);
+					return colorFromHSL(h, s, l, alpha);
+				}
+
+				case 'hwb': {
+					const h = getAngle(colorValues[0]);
+					const w = getNumericValue(colorValues[1], 100);
+					const b = getNumericValue(colorValues[2], 100);
+					return colorFromHWB(h, w, b, alpha);
+				}
+
+				case 'lab': {
+					// Reference: https://mina86.com/2021/srgb-lab-lchab-conversions/
+					const l = getNumericValue(colorValues[0], 100);
+					// Since these two values can be negative, a lower limit of -1 has been added
+					const a = getNumericValue(colorValues[1], 125, -1);
+					const b = getNumericValue(colorValues[2], 125, -1);
+					return colorFromLAB(l * 100, a * 125, b * 125, alpha);
+				}
+
+				case 'lch': {
+					const l = getNumericValue(colorValues[0], 100);
+					const c = getNumericValue(colorValues[1], 230);
+					const h = getAngle(colorValues[2]);
+					return colorFromLCH(l * 100, c * 230, h, alpha);
+				}
+
+				case 'oklab': {
+					const l = getNumericValue(colorValues[0], 1);
+					// Since these two values can be negative, a lower limit of -1 has been added
+					const a = getNumericValue(colorValues[1], 0.4, -1);
+					const b = getNumericValue(colorValues[2], 0.4, -1);
+					return colorFromOKLAB(l, a * 0.4, b * 0.4, alpha);
+				}
+
+				case 'oklch': {
+					const l = getNumericValue(colorValues[0], 1);
+					const c = getNumericValue(colorValues[1], 0.4);
+					const h = getAngle(colorValues[2]);
+					return colorFromOKLCH(l, c * 0.4, h, alpha);
+				}
 			}
-		} catch (e) {
+		} catch {
 			// parse error on numeric value
 			return null;
 		}
