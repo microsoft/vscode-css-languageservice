@@ -1472,19 +1472,33 @@ export class Parser {
 		const node = this.create(nodes.Container);
 		this.consumeToken(); // @container
 
-		node.addChild(this._parseIdent()); // optional container name
+		node.addChild(this._parseContainerName()); // optional container name
 		if (node.addChild(this._parseContainerQuery())) {
 			while (this.accept(TokenType.Comma)) {
 				if (this.peek(TokenType.CurlyL)) {
 					break;
 				}
 
-				node.addChild(this._parseIdent()); // optional container name
+				node.addChild(this._parseContainerName()); // optional container name
 				node.addChild(this._parseContainerQuery());
 			}
 		}
 
 		return this._parseBody(node, this._parseContainerDeclaration.bind(this, isNested));
+	}
+
+	public _parseContainerName(): nodes.Node | null {
+		if (this.peekIdent('style') || this.peekIdent('scroll-state')) {
+			const mark = this.mark();
+			this.consumeToken();
+			if (!this.hasWhitespace() && this.peek(TokenType.ParenthesisL)) {
+				this.restoreAtMark(mark);
+				return null;
+			}
+			this.restoreAtMark(mark);
+		}
+
+		return this._parseIdent();
 	}
 
 	public _parseContainerQuery(): nodes.Node | null {
@@ -1512,6 +1526,7 @@ export class Parser {
 		// <query-in-parens>     = ( <container-query> )
 		// 					  | ( <size-feature> )
 		// 					  | style( <style-query> )
+		// 					  | scroll-state( <scroll-state-query> )
 		// 					  | <general-enclosed>
 		const node = this.create(nodes.Node);
 		if (this.accept(TokenType.ParenthesisL)) {
@@ -1528,6 +1543,14 @@ export class Parser {
 				return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.CurlyL]);
 			}
 			node.addChild(this._parseStyleQuery());
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+		} else if (this.acceptIdent('scroll-state')) {
+			if (this.hasWhitespace() || !this.accept(TokenType.ParenthesisL)) {
+				return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+			node.addChild(this._parseDeclaration([TokenType.ParenthesisR], true));
 			if (!this.accept(TokenType.ParenthesisR)) {
 				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
 			}

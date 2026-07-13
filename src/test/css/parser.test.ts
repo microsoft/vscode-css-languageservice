@@ -187,6 +187,10 @@ suite('CSS - Parser', () => {
 		assertNode(`@container card (inline-size > 30em), style(--responsive: true) { }`, parser, parser._parseStylesheet.bind(parser));
 		assertNode(`@container card (inline-size > 30em), summary style(--responsive: true) { }`, parser, parser._parseStylesheet.bind(parser));
 		assertNode(`@container card (inline-size > 30em) { @container style(--responsive: true) {} }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@media (pointer: fine) and (hover: hover) { @container my-container scroll-state(scrollable: y) { #my-list { padding-inline-end: calc(var(--spacing) * 2); } } }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container scroll-state(scrollable: y) { }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container my-container scroll-state(scrollable: y) and style(--responsive: true) { }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container card (inline-size > 30em), my-container scroll-state(stuck: top) { }`, parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('@starting-style', function () {
