@@ -644,6 +644,27 @@ suite('CSS - Parser', () => {
 		assertError('if(invalid: black;)', parser, parser._parseFunction.bind(parser), ParseError.IfConditionExpected);
 	});
 
+	test('attr', function () {
+		const parser = new Parser();
+		// legacy forms keep working
+		assertFunction('attr(data-x)', parser, parser._parseFunction.bind(parser));
+		assertFunction('attr(data-x, "fallback")', parser, parser._parseFunction.bind(parser));
+		assertFunction('attr(data-x px)', parser, parser._parseFunction.bind(parser));
+		// modern attr() type() syntax (https://drafts.csswg.org/css-values-5/#attr-notation)
+		assertFunction('attr(data-x type(<length>))', parser, parser._parseFunction.bind(parser));
+		assertFunction('attr(data-x type(<length>), 0px)', parser, parser._parseFunction.bind(parser));
+		assertFunction('attr(data-x type(*))', parser, parser._parseFunction.bind(parser));
+		assertFunction('attr(data-x type(<length> | <percentage>))', parser, parser._parseFunction.bind(parser));
+		assertFunction('attr(data-x type(<custom-ident>#))', parser, parser._parseFunction.bind(parser));
+		assertFunction('attr(data-x type(<length>+))', parser, parser._parseFunction.bind(parser));
+		assertFunction('attr(data-x raw-string)', parser, parser._parseFunction.bind(parser));
+		// type() is only special inside attr(): elsewhere it is a normal function reference
+		assertFunction('type(foo)', parser, parser._parseFunction.bind(parser));
+		// malformed type() still reports an error
+		assertError('attr(data-x type())', parser, parser._parseFunction.bind(parser), ParseError.ExpressionExpected);
+		assertError('attr(data-x type(<length))', parser, parser._parseFunction.bind(parser), ParseError.ExpressionExpected);
+	});
+
 	test('test token prio', function () {
 		const parser = new Parser();
 		assertNode('!important', parser, parser._parsePrio.bind(parser));

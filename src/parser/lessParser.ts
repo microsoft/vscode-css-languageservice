@@ -769,6 +769,8 @@ export class LESSParser extends cssParser.Parser {
 		const pos = this.mark();
 		const node = <nodes.Function>this.create(nodes.Function);
 
+		const isAttr = this.peekIdent("attr");
+
 		if (!node.setIdentifier(this._parseFunctionIdentifier())) {
 			return null;
 		}
@@ -778,15 +780,24 @@ export class LESSParser extends cssParser.Parser {
 			return null;
 		}
 
+		if (isAttr) {
+			this.attrDepth++;
+		}
 		if (node.getArguments().addChild(this._parseMixinArgument())) {
 			while (this.accept(TokenType.Comma) || this.accept(TokenType.SemiColon)) {
 				if (this.peek(TokenType.ParenthesisR)) {
 					break;
 				}
 				if (!node.getArguments().addChild(this._parseMixinArgument())) {
+					if (isAttr) {
+						this.attrDepth--;
+					}
 					return this.finish(node, ParseError.ExpressionExpected);
 				}
 			}
+		}
+		if (isAttr) {
+			this.attrDepth--;
 		}
 
 		if (!this.accept(TokenType.ParenthesisR)) {
