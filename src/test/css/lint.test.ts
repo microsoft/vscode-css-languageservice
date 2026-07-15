@@ -121,6 +121,7 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { box-shadow: none }'); // no error
 		assertRuleSet('selector { box-property: "rest is missing" }', Rules.UnknownProperty);
 		assertRuleSet(':export { prop: "some" }'); // no error for properties inside :export
+		assertRuleSet(':import("something.scss") { __customProperty: customProperty; }'); // no error for properties inside :import
 		assertRuleSet2('selector { foo: "some"; bar: 0px }', [], undefined, new LintConfigurationSettings({ validProperties: ['foo', 'bar'] }));
 		assertRuleSet2('selector { foo: "some"; }', [], undefined, new LintConfigurationSettings({ validProperties: ['foo', null] }));
 		assertRuleSet2('selector { bar: "some"; }', [Rules.UnknownProperty], undefined, new LintConfigurationSettings({ validProperties: ['foo'] }));
