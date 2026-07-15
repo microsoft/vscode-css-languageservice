@@ -206,6 +206,21 @@ suite('CSS - Completion', () => {
 		});
 	});
 	test('selectors', async function () {
+		await testCompletionFor('/* comment:| */', {
+			count: 0
+		});
+		await testCompletionFor('/* comment */:|', {
+			items: [
+				{ label: ':hover' }
+			]
+		});
+		await testCompletionFor('// comment:|', {
+			count: 0
+		}, undefined, 'test://test/test.scss');
+		await testCompletionFor('// comment:|', {
+			count: 0
+		}, undefined, 'test://test/test.less');
+
 		await testCompletionFor('a:h| ', {
 			items: [
 				{ label: ':hover', resultText: 'a:hover ' },

@@ -18,6 +18,9 @@ import * as l10n from '@vscode/l10n';
 import { isDefined } from '../utils/objects.js';
 import { CSSDataManager } from '../languageFacts/dataManager.js';
 import { PathCompletionParticipant } from './pathCompletion.js';
+import { Scanner, TokenType } from '../parser/cssScanner.js';
+import { SCSSScanner } from '../parser/scssScanner.js';
+import { LESSScanner } from '../parser/lessScanner.js';
 
 const SnippetFormat = InsertTextFormat.Snippet;
 
@@ -115,6 +118,9 @@ export class CSSCompletion {
 				},
 				items: []
 			};
+			if (isInsideComment(document, this.offset)) {
+				return result;
+			}
 			this.nodePath = nodes.getNodePath(this.styleSheet, this.offset);
 
 			for (let i = this.nodePath.length - 1; i >= 0; i--) {
@@ -1109,6 +1115,36 @@ class Set {
 	public getEntries(): string[] {
 		return Object.keys(this.entries);
 	}
+}
+
+function isInsideComment(document: TextDocument, offset: number): boolean {
+	let scanner: Scanner;
+	switch (document.languageId) {
+		case 'scss':
+			scanner = new SCSSScanner();
+			break;
+		case 'less':
+			scanner = new LESSScanner();
+			break;
+		default:
+			scanner = new Scanner();
+	}
+	scanner.ignoreComment = false;
+	const text = document.getText();
+	scanner.setSource(text);
+
+	let token = scanner.scan();
+	while (token.type !== TokenType.EOF && token.offset <= offset) {
+		if (token.type === TokenType.Comment || token.type === TokenType.SingleLineComment) {
+			const tokenEnd = token.offset + token.len;
+			const isSingleLineComment = text.startsWith('//', token.offset);
+			if (offset < tokenEnd || (isSingleLineComment && offset === tokenEnd)) {
+				return true;
+			}
+		}
+		token = scanner.scan();
+	}
+	return false;
 }
 
 function moveCursorInsideParenthesis(text: string): string {
