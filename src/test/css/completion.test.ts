@@ -381,6 +381,17 @@ suite('CSS - Completion', () => {
 				{ label: 'space-evenly', resultText: '#id { justify-content: space-evenly' }
 			]
 		});
+		await testCompletionFor('body { place-items: |', {
+			items: [
+				{ label: 'center', resultText: 'body { place-items: center' },
+				{ label: 'auto', notAvailable: true }
+			]
+		});
+		await testCompletionFor('body { place-items: center |', {
+			items: [
+				{ label: 'auto', resultText: 'body { place-items: center auto' }
+			]
+		});
 		await testCompletionFor('.foo { te:n| }', {
 			items: [
 				{ label: 'n', notAvailable: true }
