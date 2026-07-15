@@ -470,7 +470,7 @@ suite('CSS - Completion', () => {
 		});
 		await testCompletionFor('.foo { background-color: r|', {
 			items: [
-				{ label: 'rgb', kind: CompletionItemKind.Function, resultText: '.foo { background-color: rgb(${1:red}, ${2:green}, ${3:blue})' },
+				{ label: 'rgb', detail: 'rgb($red $green $blue / $alpha)', documentation: 'Creates a Color from red, green, blue, and alpha values.', kind: CompletionItemKind.Function, resultText: '.foo { background-color: rgb(${1:red} ${2:green} ${3:blue} / ${4:alpha})' },
 				{ label: 'rgba', kind: CompletionItemKind.Function, resultText: '.foo { background-color: rgba(${1:red}, ${2:green}, ${3:blue}, ${4:alpha})' },
 				{ label: 'rgb relative', kind: CompletionItemKind.Function, resultText: '.foo { background-color: rgb(from ${1:color} ${2:r} ${3:g} ${4:b})' },
 				{ label: 'red', kind: CompletionItemKind.Color, resultText: '.foo { background-color: red' },
