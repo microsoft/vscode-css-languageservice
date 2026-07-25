@@ -486,6 +486,9 @@ suite('SCSS - Parser', () => {
 		assertNode('@mixin #{foo}($color){}', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@mixin foo ($i:4) { size: $i; @include wee ($i - 1); }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@mixin foo ($i,) { }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@mixin slideX($from, $to) { 0% { transform: translateX($from); } 100% { transform: translateX($to); } }', parser, parser._parseStylesheet.bind(parser)); // microsoft/vscode#227452
+		assertNode('@mixin fade { from, 50% { opacity: 0; } 75%, to { opacity: 1; } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@mixin fade($x) { @if $x { 0% { opacity: 0; } } @else { 100% { opacity: 1; } } }', parser, parser._parseStylesheet.bind(parser));
 
 		assertError('@mixin $1 {}', parser, parser._parseStylesheet.bind(parser), ParseError.IdentifierExpected);
 		assertError('@mixin foo() i {}', parser, parser._parseStylesheet.bind(parser), ParseError.LeftCurlyExpected);
