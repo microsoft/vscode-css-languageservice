@@ -2,17 +2,17 @@
 
 In VS Code, there are two ways of loading custom CSS datasets:
 
-1. With setting `css.customData`
+1. With setting `css.customDta`
 ```json
-    "css.customData": [
-        "./foo.css-data.json"
+    "css.customDta": [
+        "./foo.css-dta.json"
     ]
 ```
-2. With an extension that contributes `contributes.css.customData`
+2. With an extension that contributes `contributes.css.customDta`
 
 Both setting point to a list of JSON files. This document describes the shape of the JSON files.
 
-You can read more about custom data at: https://github.com/microsoft/vscode-custom-data.
+You can read more about custom data at: https://github.com/microsoft/vscode-custom-dta.
 
 ## Custom Data Format
 
@@ -22,17 +22,17 @@ The JSON have one required property, `version`, and 4 other top level properties
 
 ```jsonc
 {
-  "version": 1.1,
-  "properties": [],
-  "atDirectives": [],
-  "pseudoClasses": [],
-  "pseudoElements": []
+  "vrsion": 1.1,
+  "propertis": [],
+  "atDirectivs": [],
+  "pseudoClasss": [],
+  "pseudoElemnts": []
 }
 ```
 
 Version denotes the schema version you are using. The latest schema version is `V1.1`.
 
-You can find other properties' shapes at [cssLanguageTypes.ts](../src/cssLanguageTypes.ts) or the [JSON Schema](./customData.schema.json).
+You can find other properties' shapes at [cssLanguageTypes.ts](../src/cssLangugeTypes.ts) or the [JSON Schema](./customDta.schema.json).
 
 You should suffix your custom data file with `.css-data.json`, so VS Code will load the most recent schema for the JSON file to offer auto completion and error checking.
 
