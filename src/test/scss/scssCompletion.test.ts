@@ -309,4 +309,20 @@ suite('SCSS - Completions', () => {
 		}, undefined, testSCSSUri, workspaceFolderUri);
 	});
 
+	test('no completions in comments', async () => {
+		await testCompletionFor('// foo:|', { count: 0 });
+		await testCompletionFor('.foo { // colo|\n}', { count: 0 });
+		await testCompletionFor('.foo { /* colo| */ }', { count: 0 });
+		await testCompletionFor('@mixin foo { // $var|\n}', { count: 0 });
+	});
+
+	test('completions next to comments', async () => {
+		await testCompletionFor('// foo\n.foo { colo| }', { items: [{ label: 'color' }] });
+		// `//` inside an unquoted URL does not start a comment
+		await testCompletionFor('.foo { background: url(http://server/a.png); colo| }', { items: [{ label: 'color' }] });
+		await testCompletionFor('.foo { background: url(//server/a.png); colo| }', { items: [{ label: 'color' }] });
+		// nor does it inside a string
+		await testCompletionFor('.foo { content: "http://server"; colo| }', { items: [{ label: 'color' }] });
+	});
+
 });

@@ -18,6 +18,7 @@ import * as l10n from '@vscode/l10n';
 import { isDefined } from '../utils/objects.js';
 import { CSSDataManager } from '../languageFacts/dataManager.js';
 import { PathCompletionParticipant } from './pathCompletion.js';
+import { IToken, Scanner, TokenType } from '../parser/cssScanner.js';
 
 const SnippetFormat = InsertTextFormat.Snippet;
 
@@ -62,6 +63,45 @@ export class CSSCompletion {
 		this.defaultSettings = settings;
 	}
 
+	protected getScanner(): Scanner {
+		return new Scanner();
+	}
+
+	/**
+	 * Comments are not part of the node tree, so they have to be located by scanning the document.
+	 */
+	private isInComment(document: TextDocument, offset: number): boolean {
+		const scanner = this.getScanner();
+		scanner.ignoreComment = false;
+		scanner.setSource(document.getText());
+
+		let previous: IToken | undefined;
+		for (let token = scanner.scan(); token.type !== TokenType.EOF && token.offset <= offset; token = scanner.scan()) {
+			// `//` does not start a comment inside an unquoted URL, so keep the scanner in the same
+			// state the parser puts it in when it enters `url(...)`.
+			if (token.type === TokenType.ParenthesisL && previous && previous.type === TokenType.Ident
+				&& previous.offset + previous.len === token.offset && /^url(-prefix)?$/i.test(previous.text)) {
+				scanner.inURL = true;
+			} else if (token.type === TokenType.ParenthesisR) {
+				scanner.inURL = false;
+			}
+			previous = token;
+
+			if (token.type !== TokenType.Comment || offset <= token.offset) {
+				continue;
+			}
+			const end = token.offset + token.len;
+			if (offset < end) {
+				return true;
+			}
+			// At the end of a comment that was never closed (`/* ...` or `// ...`) the text still belongs to the comment.
+			if (offset === end && !token.text.endsWith('*/')) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	protected getSymbolContext(): Symbols {
 		if (!this.symbolContext) {
 			this.symbolContext = new Symbols(this.styleSheet);
@@ -98,6 +138,9 @@ export class CSSCompletion {
 
 	public doComplete(document: TextDocument, position: Position, styleSheet: nodes.Stylesheet, documentSettings: CompletionSettings | undefined): CompletionList {
 		this.offset = document.offsetAt(position);
+		if (this.isInComment(document, this.offset)) {
+			return { isIncomplete: false, items: [] };
+		}
 		this.position = position;
 		this.currentWord = getCurrentWord(document, this.offset);
 		this.defaultReplaceRange = Range.create(Position.create(this.position.line, this.position.character - this.currentWord.length), this.position);

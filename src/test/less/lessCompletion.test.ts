@@ -105,6 +105,18 @@ suite('LESS - Completions', () => {
 		});
 	});
 
+	test('no completions in comments', async () => {
+		await testCompletionFor('// foo:|', { count: 0 });
+		await testCompletionFor('.foo { // colo|\n}', { count: 0 });
+		await testCompletionFor('.foo { /* colo| */ }', { count: 0 });
+	});
+
+	test('completions next to comments', async () => {
+		await testCompletionFor('// foo\n.foo { colo| }', { items: [{ label: 'color' }] });
+		// `//` inside an unquoted URL does not start a comment
+		await testCompletionFor('.foo { background: url(http://server/a.png); colo| }', { items: [{ label: 'color' }] });
+	});
+
 	test('suggestParticipants', async () => {
 		await testCompletionFor(`html { .m| }`, {
 			participant: {
