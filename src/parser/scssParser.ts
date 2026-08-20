@@ -198,6 +198,22 @@ export class SCSSParser extends cssParser.Parser {
 			super._parseTermExpression();
 	}
 
+	public _parseNamedLine(): nodes.Node | null {
+		// Sass bracketed lists are a superset of the CSS named-line syntax: the brackets may hold any
+		// space or comma separated list of values, not just a sequence of identifiers.
+		// https://sass-lang.com/documentation/values/lists/#bracketed-lists
+		if (!this.peek(TokenType.BracketL)) {
+			return null;
+		}
+		const node = this.createNode(nodes.NodeType.GridLine);
+		this.consumeToken();
+		node.addChild(this._parseExpr()); // the list may be empty
+		if (!this.accept(TokenType.BracketR)) {
+			return this.finish(node, ParseError.RightSquareBracketExpected);
+		}
+		return this.finish(node);
+	}
+
 	public _parseInterpolation(): nodes.Node | null {
 		if (this.peek(scssScanner.InterpolationFunction)) {
 			const node = this.create(nodes.Interpolation);

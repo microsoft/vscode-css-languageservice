@@ -51,6 +51,8 @@ suite('SCSS - Parser', () => {
 		assertNode('$footer-height: 40px !default !global', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('$primary-font: "wf_SegoeUI","Segoe UI","Segoe","Segoe WP"', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('$color: red !important', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('$colors: ["#69ffae", "#1ae5b5"]', parser, parser._parseVariableDeclaration.bind(parser)); // #399
+		assertNode('$sizes: [1px, 2px] !default', parser, parser._parseVariableDeclaration.bind(parser)); // #231
 
 		assertError('$color: red !def', parser, parser._parseVariableDeclaration.bind(parser), ParseError.UnknownKeyword);
 		assertError('$color : !default', parser, parser._parseVariableDeclaration.bind(parser), ParseError.VariableValueExpected);
@@ -131,6 +133,35 @@ suite('SCSS - Parser', () => {
 		assertNode('not module.$v', parser, parser._parseExpr.bind(parser));
 
 		assertError('(20 + 20', parser, parser._parseExpr.bind(parser), ParseError.RightParenthesisExpected);
+	});
+
+	test('Bracketed list in a stylesheet', function () {
+		const parser = new SCSSParser();
+		assertNode('.a { $x: [1px, 2px]; }', parser, parser._parseStylesheet.bind(parser)); // #231
+		assertNode('@use "sass:list"; .a { color: list.nth([a, b], 2); }', parser, parser._parseStylesheet.bind(parser)); // #399
+		assertNode('$m: (k: [a, b], j: [c]);', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@mixin m($x: [a, b]) { color: red; }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@each $i in [a, b] { .#{$i} { color: red; } }', parser, parser._parseStylesheet.bind(parser));
+	});
+
+	test('Bracketed list', function () {
+		const parser = new SCSSParser();
+		// https://sass-lang.com/documentation/values/lists/#bracketed-lists
+		assertNode('[]', parser, parser._parseExpr.bind(parser));
+		assertNode('[a]', parser, parser._parseExpr.bind(parser));
+		assertNode('[a b c]', parser, parser._parseExpr.bind(parser));
+		assertNode('[a, b, c]', parser, parser._parseExpr.bind(parser));
+		assertNode('[a, b,]', parser, parser._parseExpr.bind(parser));
+		assertNode('[1px, 2em, 3%]', parser, parser._parseExpr.bind(parser));
+		assertNode('[$a, $b]', parser, parser._parseExpr.bind(parser));
+		assertNode('[#{$a}, b]', parser, parser._parseExpr.bind(parser));
+		assertNode('[[a, b], [c d]]', parser, parser._parseExpr.bind(parser));
+		assertNode('[math.div(6, 2), 2]', parser, parser._parseExpr.bind(parser));
+
+		// the CSS named-line syntax keeps working
+		assertNode('[full-start] 1fr [full-end]', parser, parser._parseExpr.bind(parser));
+
+		assertError('[a, b', parser, parser._parseExpr.bind(parser), ParseError.RightSquareBracketExpected);
 	});
 
 	test('SCSSOperator', function () {
