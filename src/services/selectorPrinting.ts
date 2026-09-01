@@ -480,6 +480,11 @@ export class SelectorPrinting {
 								continue elementLoop;
 							}
 
+							if (childElements.length < 2) {
+								// e.g. an incomplete selector like `:nth-child()`
+								continue elementLoop;
+							}
+
 							// Edge case: 'n' without integer prefix A, with B integer non-existent, is not regarded as a binary expression token.
 							const parser = new Parser();
 							const pseudoSelectorText = childElements[1].getText();
