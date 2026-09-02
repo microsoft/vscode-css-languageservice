@@ -277,6 +277,7 @@ export class SCSSParser extends cssParser.Parser {
 		}
 		return this._parseVariableDeclaration() // variable declaration
 			|| this._tryParseRuleset(true) // nested ruleset
+			|| this._tryParseKeyframeSelector() // keyframe selector, e.g. `0%` in content included into a @keyframes rule
 			|| this._parseDeclaration(); // try css ruleset declaration as last so in the error case, the ast will contain a declaration
 	}
 
@@ -721,14 +722,10 @@ export class SCSSParser extends cssParser.Parser {
 		}
 
 		if (this.peek(TokenType.CurlyL)) {
-			this._parseBody(node, this._parseMixinReferenceBodyStatement.bind(this));
+			this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
 		}
 
 		return this.finish(node);
-	}
-
-	public _parseMixinReferenceBodyStatement(): nodes.Node | null {
-		return this._tryParseKeyframeSelector() || this._parseRuleSetDeclaration();
 	}
 
 	public _parseIfTest(): nodes.Node | null {
