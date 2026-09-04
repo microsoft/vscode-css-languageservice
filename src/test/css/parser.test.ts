@@ -719,7 +719,6 @@ suite('CSS - Parser', () => {
 		assertType("calc(var(--x) * 2 / 3)", parser, nodes.NodeType.Identifier, parser._parseExpr.bind(parser));;
 		assertType("calc(-1 * var(--x) + 1 * 2)", parser, nodes.NodeType.Identifier, parser._parseExpr.bind(parser));;
 		assertType("calc((100% - var(--x)) * 2 / 3)", parser, nodes.NodeType.Identifier, parser._parseExpr.bind(parser));;
-
 	});
 
 });
