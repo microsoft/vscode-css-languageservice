@@ -6,7 +6,8 @@
 
 import {
 	AliasSettings, Color, ColorInformation, ColorPresentation, DocumentHighlight, DocumentHighlightKind, DocumentLink, Location,
-	Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit, TextDocument, DocumentContext, FileSystemProvider, FileType, DocumentSymbol
+	Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit, TextDocument, DocumentContext, FileSystemProvider, FileType, DocumentSymbol,
+    DocumentUri, LanguageSettings
 } from '../cssLanguageTypes.js';
 import * as l10n from '@vscode/l10n';
 import { Utils, URI } from 'vscode-uri';
@@ -23,8 +24,6 @@ import {
 } from '../languageFacts/facts.js';
 import { startsWith } from '../utils/strings.js';
 import { dirname, joinPath } from '../utils/resources.js';
-import { readFile } from 'node:fs/promises';
-
 
 
 type UnresolvedLinkData = { link: DocumentLink, isRawLink: boolean };
@@ -547,13 +546,13 @@ export class CSSNavigation {
 	}
 
 	private async parseSettingsFile(settingsPath: string): Promise<VSCodeSettings | undefined> {
-		const candidate = URI.parse(settingsPath);
 		try {
-			const text = await readFile(candidate.fsPath, 'utf-8');
-			const json = JSON.parse(text);
-			return json;
+			const text = await this.readFile(settingsPath);
+			if (text !== undefined) {
+				const json = JSON.parse(text);
+				return json;
+			}
 		} catch (error) {
-			console.warn(`Failed to read ${candidate}:`, error);
 		}
 		return undefined;
 	}
@@ -604,6 +603,17 @@ export class CSSNavigation {
 			return true;
 		} catch (err) {
 			return false;
+		}
+	}
+
+	protected async readFile(uri: DocumentUri): Promise<string | undefined> {
+		if (!this.fileSystemProvider || !this.fileSystemProvider.getContent) {
+			return undefined;
+		}
+		try {
+			return await this.fileSystemProvider.getContent(uri);
+		} catch (err) {
+			return undefined;
 		}
 	}
 
