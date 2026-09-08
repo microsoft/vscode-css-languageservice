@@ -7,7 +7,6 @@ src/
 build/
 coverage/
 test/
-.eslintrc.json
 .gitignore
 .travis.yml
 gulpfile.js
