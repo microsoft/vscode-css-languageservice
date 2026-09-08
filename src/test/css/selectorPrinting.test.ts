@@ -361,6 +361,18 @@ suite('CSS - MarkedStringPrinter selectors specificities', () => {
 		]);
 	});
 
+	test('incomplete nth-child specificity', function () {
+		assertSelectorMarkdown(p, ':nth-child()', ':nth-child', [
+			{ language: 'html', value: '<element :nth-child>' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 0)'
+		]);
+
+		assertSelectorMarkdown(p, '#foo:nth-last-child()', '#foo', [
+			{ language: 'html', value: '<element id="foo" :nth-last-child>' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 1, 0)'
+		]);
+	});
+
 	test('host, host-context specificity', function () {
 		assertSelectorMarkdown(p, '#foo:host(.foo)', '#foo', [
 			{ language: 'html', value: '<element id="foo" :host>' },
