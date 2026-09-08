@@ -3,8 +3,9 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { getLESSLanguageService } from '../../cssLanguageService';
-import { assertFormat } from '../css/formatter.test';
+import { suite, test } from 'node:test';
+import { getLESSLanguageService } from '../../cssLanguageService.js';
+import { assertFormat } from '../css/formatter.test.js';
 
 suite('LESS - Formatter', () => {
 

@@ -4,15 +4,15 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as nodes from '../parser/cssNodes';
-import { difference } from '../utils/strings';
-import { Rules } from '../services/lintRules';
+import * as nodes from '../parser/cssNodes.js';
+import { difference } from '../utils/strings.js';
+import { Rules } from '../services/lintRules.js';
 import {
 	Range, CodeActionContext, Diagnostic, Command, TextEdit, CodeAction, WorkspaceEdit, CodeActionKind,
 	TextDocumentEdit, VersionedTextDocumentIdentifier, TextDocument, ICSSDataProvider
-} from '../cssLanguageTypes';
+} from '../cssLanguageTypes.js';
 import * as l10n from '@vscode/l10n';
-import { CSSDataManager } from '../languageFacts/dataManager';
+import { CSSDataManager } from '../languageFacts/dataManager.js';
 
 export class CSSCodeActions {
 

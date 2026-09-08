@@ -4,10 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { ParseError } from '../../parser/cssErrors';
-import { LESSParser } from '../../parser/lessParser';
+import { suite, test } from 'node:test';
+import { ParseError } from '../../parser/cssErrors.js';
+import { LESSParser } from '../../parser/lessParser.js';
 
-import { assertNode, assertNoNode, assertError } from '../css/parser.test';
+import { assertNode, assertNoNode, assertError } from '../css/parser.test.js';
 
 suite('LESS - Parser', () => {
 
@@ -85,6 +86,8 @@ suite('LESS - Parser', () => {
 		assertNode('#truth (@a) when (@a = true) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.color (@color; @padding: 2;) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.font-face(@source, @target) { @font-face { font-family: @source; src: local(\'@{target}\');} }', parser, parser._tryParseMixinDeclaration.bind(parser));
+		assertNode('.slide(@from, @to) { 0% { transform: translateX(@from); } 100% { transform: translateX(@to); } }', parser, parser._tryParseMixinDeclaration.bind(parser)); // microsoft/vscode#227452
+		assertNode('.fade() { from, 50% { opacity: 0; } 75%, to { opacity: 1; } }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertError('.color (@color; @padding: 2;;) { }', parser, parser._tryParseMixinDeclaration.bind(parser), ParseError.IdentifierExpected);
 		assertNode('.mixin-definition(@a: {}; @b: {default: works;};) { @a(); @b(); }', parser, parser._tryParseMixinDeclaration.bind(parser));
 	});
@@ -353,5 +356,6 @@ suite('LESS - Parser', () => {
 		const parser = new LESSParser();
 		assertNode(`.item-icon { @container (max-height: 100px) { .item-icon { display: none;  } } }`, parser, parser._parseStylesheet.bind(parser));
 		assertNode(`:root { @container (max-height: 100px) { display: none;} }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container my-container scroll-state(scrollable: y) { .item-icon { display: none; } }`, parser, parser._parseStylesheet.bind(parser));
 	});
 });

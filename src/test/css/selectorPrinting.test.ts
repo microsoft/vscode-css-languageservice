@@ -4,12 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as assert from 'assert';
-import { Parser } from '../../parser/cssParser';
-import * as nodes from '../../parser/cssNodes';
-import * as selectorPrinting from '../../services/selectorPrinting';
-import { TextDocument, MarkedString } from '../../cssLanguageTypes';
-import { CSSDataManager } from '../../languageFacts/dataManager';
+import { suite, test } from 'node:test';
+import * as assert from 'node:assert';
+import { Parser } from '../../parser/cssParser.js';
+import * as nodes from '../../parser/cssNodes.js';
+import * as selectorPrinting from '../../services/selectorPrinting.js';
+import { TextDocument, MarkedString } from '../../cssLanguageTypes.js';
+import { CSSDataManager } from '../../languageFacts/dataManager.js';
 
 
 const cssDataManager = new CSSDataManager({ useDefaultDataProvider: true });
@@ -56,10 +57,10 @@ function doParse(p: Parser, input: string, selectorName: string): nodes.Selector
 
 export function assertSelector(p: Parser, input: string, selectorName: string, expected: string): void {
 	let selector = doParse(p, input, selectorName);
-	assert(selector);
+	assert.ok(selector);
 
 	let element = selectorPrinting.selectorToElement(selector!);
-	assert(element);
+	assert.ok(element);
 
 	assert.equal(elementToString(element!), expected);
 }
@@ -78,7 +79,7 @@ function assertSelectorMarkdown(
 	expected: MarkedString[]
 ): void {
 	let selector = doParse(p, input, selectorName);
-	assert(selector);
+	assert.ok(selector);
 	const selectorPrinter = new selectorPrinting.SelectorPrinting(cssDataManager);
 	let printedElement = selectorPrinter.selectorToMarkedString(selector!);
 
@@ -357,6 +358,18 @@ suite('CSS - MarkedStringPrinter selectors specificities', () => {
 		assertSelectorMarkdown(p, '#foo:nth-last-child(-n+3 of li, .important)', '#foo', [
 			{ language: 'html', value: '<element id="foo" :nth-last-child>' },
 			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 2, 0)'
+		]);
+	});
+
+	test('incomplete nth-child specificity', function () {
+		assertSelectorMarkdown(p, ':nth-child()', ':nth-child', [
+			{ language: 'html', value: '<element :nth-child>' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 0)'
+		]);
+
+		assertSelectorMarkdown(p, '#foo:nth-last-child()', '#foo', [
+			{ language: 'html', value: '<element id="foo" :nth-last-child>' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 1, 0)'
 		]);
 	});
 

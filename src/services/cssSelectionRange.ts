@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { Range, Position, SelectionRange, TextDocument } from '../cssLanguageTypes';
-import { Stylesheet, NodeType } from '../parser/cssNodes';
+import { Range, Position, SelectionRange, TextDocument } from '../cssLanguageTypes.js';
+import { Stylesheet, NodeType } from '../parser/cssNodes.js';
 
 export function getSelectionRanges(document: TextDocument, positions: Position[], stylesheet: Stylesheet): SelectionRange[] {
 	function getSelectionRange(position: Position): SelectionRange {

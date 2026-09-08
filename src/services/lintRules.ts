@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as nodes from '../parser/cssNodes';
-import { LintSettings } from '../cssLanguageTypes';
+import * as nodes from '../parser/cssNodes.js';
+import { LintSettings } from '../cssLanguageTypes.js';
 
 import * as l10n from '@vscode/l10n';
 

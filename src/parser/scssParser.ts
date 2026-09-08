@@ -3,13 +3,13 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 'use strict';
-import * as scssScanner from './scssScanner';
-import { TokenType } from './cssScanner';
-import * as cssParser from './cssParser';
-import * as nodes from './cssNodes';
+import * as scssScanner from './scssScanner.js';
+import { TokenType } from './cssScanner.js';
+import * as cssParser from './cssParser.js';
+import * as nodes from './cssNodes.js';
 
-import { SCSSParseError } from './scssErrors';
-import { ParseError } from './cssErrors';
+import { SCSSParseError } from './scssErrors.js';
+import { ParseError } from './cssErrors.js';
 
 /// <summary>
 /// A parser for scss
@@ -261,6 +261,7 @@ export class SCSSParser extends cssParser.Parser {
 		}
 		return this._parseVariableDeclaration() // variable declaration
 			|| this._tryParseRuleset(true) // nested ruleset
+			|| this._tryParseKeyframeSelector() // keyframe selector, e.g. `0%` in content included into a @keyframes rule
 			|| this._parseDeclaration(); // try css ruleset declaration as last so in the error case, the ast will contain a declaration
 	}
 
@@ -705,15 +706,79 @@ export class SCSSParser extends cssParser.Parser {
 		}
 
 		if (this.peek(TokenType.CurlyL)) {
-			this._parseBody(node, this._parseMixinReferenceBodyStatement.bind(this));
+			this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
 		}
 
 		return this.finish(node);
 	}
 
-	public _parseMixinReferenceBodyStatement(): nodes.Node | null {
-		return this._tryParseKeyframeSelector() || this._parseRuleSetDeclaration();
+	public _parseIfTest(): nodes.Node | null {
+		const node = this.create(nodes.Node);
+
+		if (this.acceptIdent('sass')) {
+			if (this.hasWhitespace() || !this.accept(TokenType.ParenthesisL)) {
+				return this.finish(node, ParseError.LeftParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+			node.addChild(this._parseExpr());
+			if (!this.accept(TokenType.ParenthesisR)) {
+				return this.finish(node, ParseError.RightParenthesisExpected, [], [TokenType.CurlyL]);
+			}
+			return this.finish(node);
+		}
+
+		return super._parseIfTest();
 	}
+
+	public _parseFunction(): nodes.Function | null {
+
+		const pos = this.mark();
+		const node = this.create(nodes.Function);
+
+		let isIf = this.peekIdent('if');
+
+		if (!node.setIdentifier(this._parseFunctionIdentifier())) {
+			return null;
+		}
+
+		if (this.hasWhitespace() || !this.accept(TokenType.ParenthesisL)) {
+			this.restoreAtMark(pos);
+			return null;
+		}
+
+		let firstArgument: nodes.Node | null;
+		let parseArgument = this._parseFunctionArgument.bind(this);
+		let separator = TokenType.Comma;
+		if (!isIf) {
+			firstArgument = this._parseFunctionArgument();
+		} else {
+			const pos = this.mark();
+			firstArgument = this._parseIfBranch();
+			if (firstArgument && !firstArgument.isErroneous()) {
+				parseArgument = this._parseIfBranch.bind(this);
+				separator = TokenType.SemiColon;
+			} else {
+				this.restoreAtMark(pos);
+				firstArgument = this._parseFunctionArgument();
+			}
+		}
+
+		if (node.getArguments().addChild(firstArgument)) {
+			while (this.accept(separator)) {
+				if (this.peek(TokenType.ParenthesisR)) {
+					break;
+				}
+				if (!node.getArguments().addChild(parseArgument())) {
+					this.markError(node, ParseError.ExpressionExpected);
+				}
+			}
+		}
+
+		if (!this.accept(TokenType.ParenthesisR)) {
+			return <nodes.Function>this.finish(node, ParseError.RightParenthesisExpected);
+		}
+		return <nodes.Function>this.finish(node);
+	}
+
 
 	public _parseFunctionArgument(): nodes.Node | null {
 		// [variableName ':'] expression | variableName '...'

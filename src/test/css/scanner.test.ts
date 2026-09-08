@@ -4,8 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as assert from 'assert';
-import { Scanner, TokenType } from '../../parser/cssScanner';
+import { suite, test } from 'node:test';
+import * as assert from 'node:assert';
+import { Scanner, TokenType } from '../../parser/cssScanner.js';
 
 suite('CSS - Scanner', () => {
 
@@ -64,7 +65,7 @@ suite('CSS - Scanner', () => {
 		function assertURLArgument(source: string, text: string, tokenType: TokenType): void {
 			scanner.setSource(source);
 			let token = scanner.scanUnquotedString();
-			assert(token);
+			assert.ok(token);
 			assert.equal(token!.len, text.length);
 			assert.equal(token!.offset, 0);
 			assert.equal(token!.text, text);

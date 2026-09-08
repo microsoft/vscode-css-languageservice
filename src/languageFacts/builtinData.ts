@@ -57,7 +57,8 @@ export const cssWideKeywords: { [name: string]: string } = {
 
 export const cssWideFunctions: { [name: string]: string } = {
 	'var()': 'Evaluates the value of a custom variable.',
-	'calc()': 'Evaluates an mathematical expression. The following operators can be used: + - * /.'
+	'calc()': 'Evaluates an mathematical expression. The following operators can be used: + - * /.',
+	'if()': 'Evaluates a conditional expression.'
 };
 
 export const imageFunctions: { [name: string]: string } = {

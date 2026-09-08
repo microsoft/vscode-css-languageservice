@@ -3,9 +3,9 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { Color } from '../cssLanguageService';
+import { Color } from '../cssLanguageService.js';
 
-import * as nodes from '../parser/cssNodes';
+import * as nodes from '../parser/cssNodes.js';
 
 import * as l10n from '@vscode/l10n';
 

@@ -1,13 +1,14 @@
 {
 	"compilerOptions": {
 		"target": "es2020",
-		"module": "umd",
-		"moduleResolution": "node",
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
 		"sourceMap": true,
 		"declaration": true,
 		"strict": true,
 		"stripInternal": true,
-		"outDir": "../lib/umd",
+        "allowJs": true,
+		"outDir": "../lib/esm",
 		"lib": [
 			"es2020"
 		]
