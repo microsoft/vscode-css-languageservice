@@ -388,9 +388,10 @@ export class LintVisitor implements nodes.IVisitor {
 		//	Unknown propery & When using a vendor-prefixed gradient, make sure to use them all.
 		/////////////////////////////////////////////////////////////
 
-		const isExportBlock = node.getSelectors().matches(":export");
+		const selectors = node.getSelectors();
+		const isICSSBlock = selectors.matches(':export') || (selectors.startsWith(':import(') && selectors.endsWith(')'));
 
-		if (!isExportBlock) {
+		if (!isICSSBlock) {
 			const propertiesBySuffix = new NodesByRootMap();
 			let containsUnknowns = false;
 
