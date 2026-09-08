@@ -44,6 +44,13 @@ export function assertError(text: string, parser: Parser, f: () => nodes.Node | 
 
 }
 
+export function assertType(text: string, parser: Parser, nodeType: nodes.NodeType, f: () => nodes.Node | null) {
+	const node = parser.internalParse(text, f)!;
+	assert.ok(node !== null, 'no node returned');
+	const targetNode = node.findChildAtOffset(text.indexOf("--x") + 1, true)!;
+	assert.equal(nodes.NodeType[targetNode.type], nodes.NodeType[nodes.NodeType.Identifier]);
+}
+
 suite('CSS - Parser', () => {
 
 	test('stylesheet', function () {
@@ -699,6 +706,19 @@ suite('CSS - Parser', () => {
 		assertNode('url(\'http://msft.com\n)', parser, parser._parseURILiteral.bind(parser));
 		assertError('url("http://msft.com"', parser, parser._parseURILiteral.bind(parser), ParseError.RightParenthesisExpected);
 		assertError('url(http://msft.com\')', parser, parser._parseURILiteral.bind(parser), ParseError.RightParenthesisExpected);
+	});
+
+	test('nested identifier', function() {
+		const parser = new Parser();
+		assertType("calc(100% - var(--x))", parser, nodes.NodeType.Identifier, parser._parseExpr.bind(parser));;
+		assertType("calc(100% - 2 * var(--x))", parser, nodes.NodeType.Identifier, parser._parseExpr.bind(parser));;
+		assertType("calc(1 + 2 + var(--x))", parser, nodes.NodeType.Identifier, parser._parseExpr.bind(parser));;
+		assertType("calc((100% - var(--x)) * 2)", parser, nodes.NodeType.Identifier, parser._parseExpr.bind(parser));;
+		// no longer fail
+		assertType("calc(2 * var(--x) + 1)", parser, nodes.NodeType.Identifier, parser._parseExpr.bind(parser));;
+		assertType("calc(var(--x) * 2 / 3)", parser, nodes.NodeType.Identifier, parser._parseExpr.bind(parser));;
+		assertType("calc(-1 * var(--x) + 1 * 2)", parser, nodes.NodeType.Identifier, parser._parseExpr.bind(parser));;
+		assertType("calc((100% - var(--x)) * 2 / 3)", parser, nodes.NodeType.Identifier, parser._parseExpr.bind(parser));;
 	});
 
 });

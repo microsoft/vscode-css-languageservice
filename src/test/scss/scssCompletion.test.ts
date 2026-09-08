@@ -309,4 +309,28 @@ suite('SCSS - Completions', () => {
 		}, undefined, testSCSSUri, workspaceFolderUri);
 	});
 
+	test('no completions in comments', async () => {
+		await testCompletionFor('// foo:|', { count: 0 });
+		await testCompletionFor('.foo { // colo|\n}', { count: 0 });
+		await testCompletionFor('.foo { /* colo| */ }', { count: 0 });
+		// an unterminated `url(` must not leave the scanner in URL mode for the rest of the document
+		await testCompletionFor('.foo { background: url(\n}\n// colo|', { count: 0 });
+		await testCompletionFor('@mixin foo { // $var|\n}', { count: 0 });
+	});
+
+	test('completions next to comments', async () => {
+		await testCompletionFor('// foo\n.foo { colo| }', { items: [{ label: 'color' }] });
+		// `//` inside an unquoted URL does not start a comment
+		await testCompletionFor('.foo { background: url(http://server/a.png); colo| }', { items: [{ label: 'color' }] });
+		// the same holds with the cursor inside the URL, where the scan has to start before `url(`
+		await testCompletionFor('.a { background: url(http://ex.com/a|) }', {
+			participant: {
+				onURILiteralValue: [{ uriValue: 'http://ex.com/a', position: Position.create(0, 36), range: newRange(21, 36) }]
+			}
+		});
+		await testCompletionFor('.foo { background: url(//server/a.png); colo| }', { items: [{ label: 'color' }] });
+		// nor does it inside a string
+		await testCompletionFor('.foo { content: "http://server"; colo| }', { items: [{ label: 'color' }] });
+	});
+
 });

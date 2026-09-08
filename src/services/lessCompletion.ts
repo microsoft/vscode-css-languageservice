@@ -10,6 +10,8 @@ import { CompletionList, CompletionItemKind, InsertTextFormat, TextEdit, Complet
 
 import * as l10n from '@vscode/l10n';
 import { CSSDataManager } from '../languageFacts/dataManager.js';
+import { Scanner } from '../parser/cssScanner.js';
+import { LESSScanner } from '../parser/lessScanner.js';
 
 interface IFunctionInfo {
 	name: string;
@@ -358,6 +360,10 @@ export class LESSCompletion extends CSSCompletion {
 
 	constructor(lsOptions: LanguageServiceOptions, cssDataManager: CSSDataManager) {
 		super('@', lsOptions, cssDataManager);
+	}
+
+	protected getScanner(): Scanner {
+		return new LESSScanner();
 	}
 
 	private createFunctionProposals(proposals: IFunctionInfo[], existingNode: nodes.Node, sortToEnd: boolean, result: CompletionList): CompletionList {
