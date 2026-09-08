@@ -29,6 +29,9 @@ export class Parser {
 
 	private lastErrorToken?: IToken;
 
+	// Tracks nesting inside `attr()`, where `type(<syntax>)` is a valid argument.
+	protected attrDepth: number = 0;
+
 	constructor(scnr: Scanner = new Scanner()) {
 		this.scanner = scnr;
 		this.token = { type: TokenType.EOF, offset: -1, len: 0, text: '' };
@@ -2055,6 +2058,7 @@ export class Parser {
 	public _parseTermExpression(): nodes.Node | null {
 		return this._parseURILiteral() || // url before function
 			this._parseUnicodeRange() ||
+			this._parseAttrType() || // type(<syntax>) inside attr(), before the generic function
 			this._parseFunction() || // function before ident
 			this._parseIdent() ||
 			this._parseStringLiteral() ||
@@ -2161,6 +2165,7 @@ export class Parser {
 			parseArgument = this._parseIfBranch.bind(this);
 			separator = TokenType.SemiColon;
 		}
+		const isAttr = this.peekIdent("attr");
 
 		if (!node.setIdentifier(this._parseFunctionIdentifier())) {
 			return null;
@@ -2171,6 +2176,9 @@ export class Parser {
 			return null;
 		}
 
+		if (isAttr) {
+			this.attrDepth++;
+		}
 		if (node.getArguments().addChild(parseArgument())) {
 			while (this.accept(separator)) {
 				if (this.peek(TokenType.ParenthesisR)) {
@@ -2180,6 +2188,9 @@ export class Parser {
 					this.markError(node, ParseError.ExpressionExpected);
 				}
 			}
+		}
+		if (isAttr) {
+			this.attrDepth--;
 		}
 
 		if (!this.accept(TokenType.ParenthesisR)) {
@@ -2215,6 +2226,67 @@ export class Parser {
 			return this.finish(node);
 		}
 		return null;
+	}
+
+	public _parseAttrType(): nodes.Node | null {
+		// The modern `attr()` accepts a type as `type( <syntax> )`, e.g. `attr(data-x type(<length>))`.
+		// This is only valid inside `attr()`, so it is guarded by attrDepth to avoid shadowing a
+		// user-defined `type()` function (e.g. a Sass `@function type()`) elsewhere.
+		// https://drafts.csswg.org/css-values-5/#attr-notation
+		if (this.attrDepth === 0 || !this.peekIdent('type')) {
+			return null;
+		}
+
+		const pos = this.mark();
+		const node = this.create(nodes.Function);
+		node.setIdentifier(this._parseFunctionIdentifier());
+
+		if (this.hasWhitespace() || !this.accept(TokenType.ParenthesisL)) {
+			this.restoreAtMark(pos);
+			return null;
+		}
+
+		if (!node.getArguments().addChild(this._parseAttrTypeSyntax())) {
+			return this.finish(node, ParseError.ExpressionExpected, [], [TokenType.ParenthesisR]);
+		}
+
+		if (!this.accept(TokenType.ParenthesisR)) {
+			return this.finish(node, ParseError.RightParenthesisExpected);
+		}
+		return this.finish(node);
+	}
+
+	public _parseAttrTypeSyntax(): nodes.Node | null {
+		// <syntax> = '*' | <syntax-component> [ '|' <syntax-component> ]*
+		const node = this.create(nodes.Node);
+		if (this.acceptDelim('*')) {
+			return this.finish(node);
+		}
+		if (!this._acceptAttrSyntaxComponent()) {
+			return null;
+		}
+		while (this.acceptDelim('|')) {
+			if (!this._acceptAttrSyntaxComponent()) {
+				return this.finish(node, ParseError.IdentifierExpected);
+			}
+		}
+		return this.finish(node);
+	}
+
+	private _acceptAttrSyntaxComponent(): boolean {
+		// <syntax-component> = ( '<' <syntax-type-name> '>' | <ident> ) <syntax-multiplier>?
+		if (this.acceptDelim('<')) {
+			if (!this.accept(TokenType.Ident) || !this.acceptDelim('>')) {
+				return false;
+			}
+		} else if (!this.accept(TokenType.Ident)) {
+			return false;
+		}
+		// optional multiplier: '+' or '#'
+		if (!this.acceptDelim('+')) {
+			this.acceptDelim('#');
+		}
+		return true;
 	}
 
 	public _parseIfBranch() {
