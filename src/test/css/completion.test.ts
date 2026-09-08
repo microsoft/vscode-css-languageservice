@@ -141,7 +141,7 @@ export async function testCompletionFor(
 	}
 
 	const document = TextDocument.create(testUri, lang, 0, value);
-	const position = Position.create(0, offset);
+	const position = document.positionAt(offset);
 	const jsonDoc = ls.parseStylesheet(document);
 
 	const context = getDocumentContext(workspaceFolderUri);
@@ -470,7 +470,7 @@ suite('CSS - Completion', () => {
 		});
 		await testCompletionFor('.foo { background-color: r|', {
 			items: [
-				{ label: 'rgb', kind: CompletionItemKind.Function, resultText: '.foo { background-color: rgb(${1:red}, ${2:green}, ${3:blue})' },
+				{ label: 'rgb', detail: 'rgb($red $green $blue / $alpha)', documentation: 'Creates a Color from red, green, blue, and alpha values.', kind: CompletionItemKind.Function, resultText: '.foo { background-color: rgb(${1:red} ${2:green} ${3:blue} / ${4:alpha})' },
 				{ label: 'rgba', kind: CompletionItemKind.Function, resultText: '.foo { background-color: rgba(${1:red}, ${2:green}, ${3:blue}, ${4:alpha})' },
 				{ label: 'rgb relative', kind: CompletionItemKind.Function, resultText: '.foo { background-color: rgb(from ${1:color} ${2:r} ${3:g} ${4:b})' },
 				{ label: 'red', kind: CompletionItemKind.Color, resultText: '.foo { background-color: red' },
@@ -988,6 +988,23 @@ suite('CSS - Completion', () => {
 			]
 		});
 	})
+
+	test('no completions in comments', async function () {
+		await testCompletionFor('/* foo:| */', { count: 0 });
+		await testCompletionFor('.foo { /* colo| */ }', { count: 0 });
+		await testCompletionFor('.foo { color: /* re| */ red }', { count: 0 });
+		await testCompletionFor('/* multi\n * line foo:|\n */', { count: 0 });
+		await testCompletionFor('/* never closed foo:|', { count: 0 });
+		await testCompletionFor('/*/|', { count: 0 }); // `/*/` ends with `*/` but is not closed
+		await testCompletionFor('.foo { }\n/* @med| */', { count: 0 });
+	});
+
+	test('completions next to comments', async function () {
+		await testCompletionFor('|/* foo */', { items: [{ label: '@media' }] });
+		await testCompletionFor('/* foo */ a:|', { items: [{ label: ':hover' }] });
+		await testCompletionFor('.foo { /* c */ colo| }', { items: [{ label: 'color' }] });
+		await testCompletionFor('.foo { color: red /* c */; }\n.bar { colo| }', { items: [{ label: 'color' }] });
+	});
 
 	test('@media at rule completion', async function () {
 		await testCompletionFor(`@media (|) {`, {

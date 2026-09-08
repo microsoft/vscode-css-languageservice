@@ -2015,6 +2015,12 @@ export class Parser {
 	public _parseBinaryExpr(preparsedLeft?: nodes.BinaryExpression, preparsedOper?: nodes.Node): nodes.BinaryExpression | null {
 		let node = this.create(nodes.BinaryExpression);
 
+		// fixes a overshoot later, where the operand token starts at current spot
+		// instead of backtracking to the beginning of the previous
+		if (preparsedLeft) {
+			node.offset = preparsedLeft.offset;
+		}
+
 		if (!node.setLeft((<nodes.Node>preparsedLeft || this._parseTerm()))) {
 			return null;
 		}

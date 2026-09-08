@@ -54,6 +54,7 @@ suite('CSS - Code Actions', () => {
 			for (let change of codeAction.edit!.documentChanges!) {
 				if (TextDocumentEdit.is(change)) {
 					assert.equal(document.uri, change.textDocument.uri);
+					assert.ok(change.edits.every(TextEdit.is), 'Expected code action to contain only text edits');
 					assert.equal(TextDocument.applyEdits(document, change.edits), exp.content);
 				} else {
 					assert.ok(false, 'not a TextDocumentEdit');

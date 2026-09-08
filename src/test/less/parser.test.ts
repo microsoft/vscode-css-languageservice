@@ -86,6 +86,8 @@ suite('LESS - Parser', () => {
 		assertNode('#truth (@a) when (@a = true) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.color (@color; @padding: 2;) { }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertNode('.font-face(@source, @target) { @font-face { font-family: @source; src: local(\'@{target}\');} }', parser, parser._tryParseMixinDeclaration.bind(parser));
+		assertNode('.slide(@from, @to) { 0% { transform: translateX(@from); } 100% { transform: translateX(@to); } }', parser, parser._tryParseMixinDeclaration.bind(parser)); // microsoft/vscode#227452
+		assertNode('.fade() { from, 50% { opacity: 0; } 75%, to { opacity: 1; } }', parser, parser._tryParseMixinDeclaration.bind(parser));
 		assertError('.color (@color; @padding: 2;;) { }', parser, parser._tryParseMixinDeclaration.bind(parser), ParseError.IdentifierExpected);
 		assertNode('.mixin-definition(@a: {}; @b: {default: works;};) { @a(); @b(); }', parser, parser._tryParseMixinDeclaration.bind(parser));
 	});

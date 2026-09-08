@@ -14,9 +14,9 @@ const hexColorRegExp = /(^#([0-9A-F]{3}){1,2}$)|(^#([0-9A-F]{4}){1,2}$)/i;
 export const colorFunctions = [
 	{
 		label: 'rgb',
-		func: 'rgb($red, $green, $blue)',
-		insertText: 'rgb(${1:red}, ${2:green}, ${3:blue})',
-		desc: l10n.t('Creates a Color from red, green, and blue values.')
+		func: 'rgb($red $green $blue / $alpha)',
+		insertText: 'rgb(${1:red} ${2:green} ${3:blue} / ${4:alpha})',
+		desc: l10n.t('Creates a Color from red, green, blue, and alpha values.')
 	},
 	{
 		label: 'rgba',
