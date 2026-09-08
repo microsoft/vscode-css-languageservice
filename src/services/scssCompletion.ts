@@ -9,6 +9,8 @@ import * as nodes from '../parser/cssNodes.js';
 import { CompletionList, CompletionItemKind, TextEdit, InsertTextFormat, CompletionItem, MarkupContent, IReference, LanguageServiceOptions, IPropertyData } from '../cssLanguageTypes.js';
 import * as l10n from '@vscode/l10n';
 import { CSSDataManager } from '../languageFacts/dataManager.js';
+import { Scanner } from '../parser/cssScanner.js';
+import { SCSSScanner } from '../parser/scssScanner.js';
 
 interface IFunctionInfo {
 	func: string;
@@ -261,6 +263,10 @@ export class SCSSCompletion extends CSSCompletion {
 
 		addReferencesToDocumentation(SCSSCompletion.scssModuleLoaders);
 		addReferencesToDocumentation(SCSSCompletion.scssModuleBuiltIns);
+	}
+
+	protected getScanner(): Scanner {
+		return new SCSSScanner();
 	}
 
 	protected isImportPathParent(type: nodes.NodeType): boolean {

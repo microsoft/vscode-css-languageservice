@@ -18,6 +18,7 @@ import * as l10n from '@vscode/l10n';
 import { isDefined } from '../utils/objects.js';
 import { CSSDataManager } from '../languageFacts/dataManager.js';
 import { PathCompletionParticipant } from './pathCompletion.js';
+import { IToken, Scanner, TokenType } from '../parser/cssScanner.js';
 
 const SnippetFormat = InsertTextFormat.Snippet;
 
@@ -62,6 +63,76 @@ export class CSSCompletion {
 		this.defaultSettings = settings;
 	}
 
+	protected getScanner(): Scanner {
+		return new Scanner();
+	}
+
+	/**
+	 * A node never starts inside a comment, so the last node starting before `offset` is a safe
+	 * place to start scanning from: a comment holding `offset` cannot have started any earlier.
+	 */
+	private getCommentScanStart(styleSheet: nodes.Stylesheet, offset: number): number {
+		let node: nodes.Node | null = styleSheet;
+		let start = 0;
+		while (node) {
+			let last: nodes.Node | null = null;
+			for (const child of node.getChildren()) {
+				if (child.offset >= 0 && child.offset < offset) {
+					last = child; // children are in document order, so the last match wins
+				}
+			}
+			if (last) {
+				start = last.offset;
+				// `url(...)` is scanned in a dedicated mode, so never start inside one.
+				const uriLiteral = last.findParent(nodes.NodeType.URILiteral);
+				if (uriLiteral) {
+					return uriLiteral.offset;
+				}
+			}
+			node = last;
+		}
+		return start;
+	}
+
+	/**
+	 * Comments are not part of the node tree, so they have to be located by scanning the document.
+	 */
+	private isInComment(document: TextDocument, styleSheet: nodes.Stylesheet, offset: number): boolean {
+		const scanner = this.getScanner();
+		scanner.ignoreComment = false;
+		scanner.setSource(document.getText());
+		scanner.goBackTo(this.getCommentScanStart(styleSheet, offset));
+
+		let previous: IToken | undefined;
+		for (let token = scanner.scan(); token.type !== TokenType.EOF && token.offset <= offset; token = scanner.scan()) {
+			// `//` does not start a comment inside an unquoted URL. `_parseURILiteral` reads the whole
+			// argument as one unquoted string with URL mode on and turns it off right after, so do the
+			// same rather than leaving the scanner in URL mode until some later token.
+			if (token.type === TokenType.ParenthesisL && previous && previous.type === TokenType.Ident
+				&& previous.offset + previous.len === token.offset && /^url(-prefix)?$/i.test(previous.text)) {
+				scanner.inURL = true;
+				scanner.scanUnquotedString(); // null for a quoted or empty argument, which scans normally
+				scanner.inURL = false;
+			}
+			previous = token;
+
+			if (token.type !== TokenType.Comment || offset <= token.offset) {
+				continue;
+			}
+			const end = token.offset + token.len;
+			if (offset < end) {
+				return true;
+			}
+			// At the end of a comment that was never closed (`/* ...` or `// ...`) the text still belongs
+			// to the comment. Only a block comment can be closed, and `/*/` is not one despite its end.
+			const isClosed = token.text.startsWith('/*') && token.len >= 4 && token.text.endsWith('*/');
+			if (offset === end && !isClosed) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	protected getSymbolContext(): Symbols {
 		if (!this.symbolContext) {
 			this.symbolContext = new Symbols(this.styleSheet);
@@ -98,6 +169,9 @@ export class CSSCompletion {
 
 	public doComplete(document: TextDocument, position: Position, styleSheet: nodes.Stylesheet, documentSettings: CompletionSettings | undefined): CompletionList {
 		this.offset = document.offsetAt(position);
+		if (this.isInComment(document, styleSheet, this.offset)) {
+			return { isIncomplete: false, items: [] };
+		}
 		this.position = position;
 		this.currentWord = getCurrentWord(document, this.offset);
 		this.defaultReplaceRange = Range.create(Position.create(this.position.line, this.position.character - this.currentWord.length), this.position);
