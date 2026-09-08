@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as nodes from './cssNodes';
+import * as nodes from './cssNodes.js';
 
 import * as l10n from '@vscode/l10n';
 

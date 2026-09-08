@@ -2,8 +2,9 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-import * as assert from 'assert';
-import { trim } from '../utils/strings';
+import { suite, test } from 'node:test';
+import * as assert from 'node:assert';
+import { trim } from '../utils/strings.js';
 
 suite('Util', () => {
 

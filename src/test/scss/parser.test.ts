@@ -5,11 +5,12 @@
 
 'use strict';
 
-import { SCSSParser } from '../../parser/scssParser';
-import { ParseError } from '../../parser/cssErrors';
-import { SCSSParseError } from '../../parser/scssErrors';
+import { suite, test } from 'node:test';
+import { SCSSParser } from '../../parser/scssParser.js';
+import { ParseError } from '../../parser/cssErrors.js';
+import { SCSSParseError } from '../../parser/scssErrors.js';
 
-import { assertNode, assertError } from '../css/parser.test';
+import { assertNode, assertError } from '../css/parser.test.js';
 
 suite('SCSS - Parser', () => {
 
@@ -293,6 +294,7 @@ suite('SCSS - Parser', () => {
 		assertNode(`@container (min-width: #{$minWidth}) { .scss-interpolation { line-height: 10cqh; } }`, parser, parser._parseStylesheet.bind(parser));
 		assertNode(`.item-icon { @container (max-height: 100px) { .item-icon { display: none;  } } }`, parser, parser._parseStylesheet.bind(parser));
 		assertNode(`:root { @container (max-height: 100px) { display: none;} }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container my-container scroll-state(scrollable: y) { .item-icon { display: none; } }`, parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('@use', function () {
@@ -484,6 +486,9 @@ suite('SCSS - Parser', () => {
 		assertNode('@mixin #{foo}($color){}', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@mixin foo ($i:4) { size: $i; @include wee ($i - 1); }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@mixin foo ($i,) { }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@mixin slideX($from, $to) { 0% { transform: translateX($from); } 100% { transform: translateX($to); } }', parser, parser._parseStylesheet.bind(parser)); // microsoft/vscode#227452
+		assertNode('@mixin fade { from, 50% { opacity: 0; } 75%, to { opacity: 1; } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@mixin fade($x) { @if $x { 0% { opacity: 0; } } @else { 100% { opacity: 1; } } }', parser, parser._parseStylesheet.bind(parser));
 
 		assertError('@mixin $1 {}', parser, parser._parseStylesheet.bind(parser), ParseError.IdentifierExpected);
 		assertError('@mixin foo() i {}', parser, parser._parseStylesheet.bind(parser), ParseError.LeftCurlyExpected);
@@ -669,4 +674,11 @@ suite('SCSS - Parser', () => {
 		assertNode('@font-face { unicode-range: U+0021-007F, u+1f49C, U+4??, U+??????; }', parser, parser._parseFontFace.bind(parser));
 		assertError('@font-face { font-style: normal font-stretch: normal; }', parser, parser._parseFontFace.bind(parser), ParseError.SemiColonExpected);
 	});
+
+	test('if function', function() {
+		const parser = new SCSSParser();
+		assertNode('if(true, black, white)', parser, parser._parseFunction.bind(parser));
+		assertNode('if(sass(true): black; else: white;)', parser, parser._parseFunction.bind(parser));
+		assertNode('if(sass($value == \'default\'): flex-gutter(); else: $value;)', parser, parser._parseFunction.bind(parser));
+	})
 });

@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as lessScanner from './lessScanner';
-import { TokenType } from './cssScanner';
-import * as cssParser from './cssParser';
-import * as nodes from './cssNodes';
-import { ParseError } from './cssErrors';
+import * as lessScanner from './lessScanner.js';
+import { TokenType } from './cssScanner.js';
+import * as cssParser from './cssParser.js';
+import * as nodes from './cssNodes.js';
+import { ParseError } from './cssErrors.js';
 
 /// <summary>
 /// A parser for LESS
@@ -178,12 +178,8 @@ export class LESSParser extends cssParser.Parser {
 		}
 		const content = <nodes.BodyDeclaration>this.create(nodes.BodyDeclaration);
 
-		this._parseBody(content, this._parseDetachedRuleSetBody.bind(this));
+		this._parseBody(content, this._parseRuleSetDeclaration.bind(this));
 		return this.finish(content);
-	}
-
-	public _parseDetachedRuleSetBody(): nodes.Node | null {
-		return this._tryParseKeyframeSelector() || this._parseRuleSetDeclaration();
 	}
 
 	public _addLookupChildren(node: nodes.Node): boolean {
@@ -330,6 +326,7 @@ export class LESSParser extends cssParser.Parser {
 			|| this._tryParseMixinReference() // less mixin reference
 			|| this._parseFunction()
 			|| this._parseExtend() // less extend declaration
+			|| this._tryParseKeyframeSelector() // keyframe selector, e.g. `0%` in content included into a @keyframes rule
 			|| this._parseDeclaration(); // try css ruleset declaration as the last option
 	}
 

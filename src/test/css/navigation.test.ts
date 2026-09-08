@@ -4,20 +4,24 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as assert from 'assert';
-import { join } from 'path';
-import { Scope, GlobalScope, ScopeBuilder } from '../../parser/cssSymbolScope';
-import * as nodes from '../../parser/cssNodes';
-import { colorFrom256RGB, colorFromHSL, colorFromHWB } from '../../languageFacts/facts';
+import { suite, test } from 'node:test';
+import * as assert from 'node:assert';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'node:url';
+import { Scope, GlobalScope, ScopeBuilder } from '../../parser/cssSymbolScope.js';
+import * as nodes from '../../parser/cssNodes.js';
+import { colorFrom256RGB, colorFromHSL, colorFromHWB } from '../../languageFacts/facts.js';
 
 import {
 	TextDocument, DocumentHighlightKind, Range, Position, TextEdit, Color,
 	ColorInformation, DocumentLink, SymbolKind, SymbolInformation, Location, LanguageService, Stylesheet, getCSSLanguageService, DocumentSymbol, LanguageSettings,
-} from '../../cssLanguageService';
+} from '../../cssLanguageService.js';
 
 import { URI } from 'vscode-uri';
-import { getFsProvider } from '../testUtil/fsProvider';
-import { getDocumentContext } from '../testUtil/documentContext';
+import { getFsProvider } from '../testUtil/fsProvider.js';
+import { getDocumentContext } from '../testUtil/documentContext.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export function assertScopesAndSymbols(ls: LanguageService, input: string, expected: string): void {
 	const global = createScope(ls, input);
@@ -544,6 +548,16 @@ suite('CSS - Navigation', () => {
 			);
 			await assertLinks(ls, '@import "../green/c.css"',
 				[{ range: newRange(8, 24), target: getTestResource('green/c.css') }], 'css', testUri, workspaceFolder
+			);
+		});
+
+		test('bare module specifier resolving', async function () {
+			const ls = getCSSLS();
+			const testUri = getTestResource('about.css');
+			const workspaceFolder = getTestResource('');
+
+			await assertLinks(ls, '@import "foo/bar.css"',
+				[{ range: newRange(8, 21), target: getTestResource('node_modules/foo/bar.css') }], 'css', testUri, workspaceFolder
 			);
 		});
 	});

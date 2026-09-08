@@ -5,8 +5,9 @@
 
 'use strict';
 
-import { SCSSParser } from '../../parser/scssParser';
-import { assertSelector } from '../css/selectorPrinting.test';
+import { suite, test } from 'node:test';
+import { SCSSParser } from '../../parser/scssParser.js';
+import { assertSelector } from '../css/selectorPrinting.test.js';
 
 suite('SCSS - Selector Printing', () => {
 

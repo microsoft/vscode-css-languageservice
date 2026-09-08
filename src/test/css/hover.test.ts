@@ -5,10 +5,11 @@
 
 'use strict';
 
-import * as assert from 'assert';
-import { Hover, TextDocument, getCSSLanguageService, getLESSLanguageService, getSCSSLanguageService } from '../../cssLanguageService';
-import { HoverSettings } from '../../cssLanguageTypes';
-import { BaselineImages } from '../../languageFacts/facts';
+import { suite, test } from 'node:test';
+import * as assert from 'node:assert';
+import { Hover, TextDocument, getCSSLanguageService, getLESSLanguageService, getSCSSLanguageService } from '../../cssLanguageService.js';
+import { HoverSettings } from '../../cssLanguageTypes.js';
+import { BaselineImages } from '../../languageFacts/facts.js';
 
 function assertHover(value: string, expected: Hover, languageId = 'css', hoverSettings?: HoverSettings): void {
 	let offset = value.indexOf('|');
@@ -17,7 +18,7 @@ function assertHover(value: string, expected: Hover, languageId = 'css', hoverSe
 
 	const document = TextDocument.create(`test://foo/bar.${languageId}`, languageId, 1, value);
 	const hoverResult = ls.doHover(document, document.positionAt(offset), ls.parseStylesheet(document), hoverSettings);
-	assert(hoverResult);
+	assert.ok(hoverResult);
 
 	if (hoverResult!.range && expected.range) {
 		assert.equal(hoverResult!.range, expected.range);
@@ -31,7 +32,7 @@ suite('CSS Hover', () => {
 			contents: {
 				kind: 'markdown',
 				value:
-					`Sets the color of an element's text\n\n![Baseline icon](${BaselineImages.BASELINE_HIGH}) _Widely available across major browsers (Baseline since 2015)_\n\nSyntax: &lt;color&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/color)`,
+					`Sets the color of an element's text\n\n![Baseline icon](${BaselineImages.BASELINE_HIGH}) _Widely available across major browsers (Baseline since 2015)_\n\nSyntax: &lt;color&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/color)`,
 			},
 		});
 		assertHover(
@@ -39,7 +40,7 @@ suite('CSS Hover', () => {
 			{
 				contents: {
 					kind: 'markdown',
-					value: '[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/color)',
+					value: '[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/color)',
 				},
 			},
 			undefined,

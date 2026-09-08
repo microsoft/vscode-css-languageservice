@@ -4,11 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as assert from 'assert';
-import { Parser } from '../../parser/cssParser';
-import { TokenType } from '../../parser/cssScanner';
-import * as nodes from '../../parser/cssNodes';
-import { ParseError } from '../../parser/cssErrors';
+import { suite, test } from 'node:test';
+import * as assert from 'node:assert';
+import { Parser } from '../../parser/cssParser.js';
+import { TokenType } from '../../parser/cssScanner.js';
+import * as nodes from '../../parser/cssNodes.js';
+import { ParseError } from '../../parser/cssErrors.js';
 
 export function assertNode(text: string, parser: Parser, f: (...args: any[]) => nodes.Node | null): nodes.Node {
 	const node = parser.internalParse(text, f)!;
@@ -59,6 +60,8 @@ suite('CSS - Parser', () => {
 		assertNode('@scope (.foo) {}', parser, parser._parseStylesheet.bind(parser))
 		assertNode('@scope to (.bar) {}', parser, parser._parseStylesheet.bind(parser))
 		assertNode('@scope (.foo) to (.bar) {}', parser, parser._parseStylesheet.bind(parser))
+		assertNode('@scope (.foo, .bar) {}', parser, parser._parseStylesheet.bind(parser))
+		assertNode('@scope (.foo, .bar) to (.baz, .qux) {}', parser, parser._parseStylesheet.bind(parser))
 		assertNode('@-ms-viewport { width: 320px; height: 768px; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('#boo, far {} \n.far boo {}', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@-moz-keyframes darkWordHighlight { from { background-color: inherit; } to { background-color: rgba(83, 83, 83, 0.7); } }', parser, parser._parseStylesheet.bind(parser));
@@ -176,9 +179,18 @@ suite('CSS - Parser', () => {
 
 	test('@container', function () {
 		const parser = new Parser();
+		assertNode(`@container card { #inner { background-color: skyblue; }}`, parser, parser._parseStylesheet.bind(parser));
 		assertNode(`@container (width <= 150px) { #inner { background-color: skyblue; }}`, parser, parser._parseStylesheet.bind(parser));
 		assertNode(`@container card (inline-size > 30em) and style(--responsive: true) { }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container card style(--responsive) { }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container (inline-size > 30em), style(--responsive: true) { }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container card (inline-size > 30em), style(--responsive: true) { }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container card (inline-size > 30em), summary style(--responsive: true) { }`, parser, parser._parseStylesheet.bind(parser));
 		assertNode(`@container card (inline-size > 30em) { @container style(--responsive: true) {} }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@media (pointer: fine) and (hover: hover) { @container my-container scroll-state(scrollable: y) { #my-list { padding-inline-end: calc(var(--spacing) * 2); } } }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container scroll-state(scrollable: y) { }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container my-container scroll-state(scrollable: y) and style(--responsive: true) { }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode(`@container card (inline-size > 30em), my-container scroll-state(stuck: top) { }`, parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('@starting-style', function () {
@@ -279,6 +291,9 @@ suite('CSS - Parser', () => {
 		assertNode('@scope to (.bar) { }', parser, parser._parseScope.bind(parser))
 		assertNode('@scope (.foo) to (.bar) { }', parser, parser._parseScope.bind(parser))
 		assertNode('@scope (#foo) to (:has(> link)) {}', parser, parser._parseScope.bind(parser))
+		assertNode('@scope (.foo, .bar) { }', parser, parser._parseScope.bind(parser))
+		assertNode('@scope to (.foo, .bar) { }', parser, parser._parseScope.bind(parser))
+		assertNode('@scope (.foo, .bar) to (.baz, .qux) { }', parser, parser._parseScope.bind(parser))
 
 		assertError('@scope ( { }', parser, parser._parseScope.bind(parser), ParseError.SelectorExpected)
 		assertError('@scope () { }', parser, parser._parseScope.bind(parser), ParseError.SelectorExpected)
@@ -611,6 +626,22 @@ suite('CSS - Parser', () => {
 		assertFunction('let(--variable1, let(--variable2))', parser, parser._parseFunction.bind(parser));
 		assertFunction('fun(value1, value2)', parser, parser._parseFunction.bind(parser));
 		assertFunction('fun(value1,)', parser, parser._parseFunction.bind(parser));
+
+		// Builtin functions
+		// var
+		assertFunction('var(--some-variable)', parser, parser._parseFunction.bind(parser));
+		// calc
+		assertFunction('calc(10px + 1rem)', parser, parser._parseFunction.bind(parser));
+		// if
+		assertFunction('if(media(print): black; else: white;)', parser, parser._parseFunction.bind(parser));
+		assertFunction('if(media(print): ; else: ;)', parser, parser._parseFunction.bind(parser));
+		assertFunction('if(media(print): black; else: white)', parser, parser._parseFunction.bind(parser));
+		assertFunction('if(style(--some-var: true): black)', parser, parser._parseFunction.bind(parser));
+		// TODO: once https://github.com/microsoft/vscode-css-languageservice/pull/473 is merged, this should also work:
+		// assertFunction('if(style(--some-var): black)', parser, parser._parseFunction.bind(parser));
+		assertFunction('if(else: white)', parser, parser._parseFunction.bind(parser));
+		assertError('if()', parser, parser._parseFunction.bind(parser), ParseError.IfConditionExpected);
+		assertError('if(invalid: black;)', parser, parser._parseFunction.bind(parser), ParseError.IfConditionExpected);
 	});
 
 	test('test token prio', function () {

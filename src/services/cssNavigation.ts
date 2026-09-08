@@ -6,13 +6,12 @@
 
 import {
 	AliasSettings, Color, ColorInformation, ColorPresentation, DocumentHighlight, DocumentHighlightKind, DocumentLink, Location,
-	Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit, TextDocument, DocumentContext, FileSystemProvider, FileType, DocumentSymbol,
-	LanguageSettings
-} from '../cssLanguageTypes';
+	Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit, TextDocument, DocumentContext, FileSystemProvider, FileType, DocumentSymbol
+} from '../cssLanguageTypes.js';
 import * as l10n from '@vscode/l10n';
-import * as nodes from '../parser/cssNodes';
 import { Utils, URI } from 'vscode-uri';
-import { Symbols } from '../parser/cssSymbolScope';
+import * as nodes from '../parser/cssNodes.js';
+import { Symbols } from '../parser/cssSymbolScope.js';
 import {
 	getColorValue,
 	hslFromColor,
@@ -21,10 +20,11 @@ import {
 	lchFromColor,
 	oklabFromColor,
 	oklchFromColor,
-} from '../languageFacts/facts';
-import { startsWith } from '../utils/strings';
-import { dirname, joinPath } from '../utils/resources';
+} from '../languageFacts/facts.js';
+import { startsWith } from '../utils/strings.js';
+import { dirname, joinPath } from '../utils/resources.js';
 import { readFile } from 'node:fs/promises';
+
 
 
 type UnresolvedLinkData = { link: DocumentLink, isRawLink: boolean };
@@ -692,7 +692,7 @@ function toTwoDigitHex(n: number): string {
 export function getModuleNameFromPath(path: string) {
 	const firstSlash = path.indexOf('/');
 	if (firstSlash === -1) {
-		return '';
+		return path;
 	}
 
 	// If a scoped module (starts with @) then get up until second instance of '/', or to the end of the string for root-level imports.

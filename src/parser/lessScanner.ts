@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as scanner from './cssScanner';
+import * as scanner from './cssScanner.js';
 
 const _FSL = '/'.charCodeAt(0);
 const _NWL = '\n'.charCodeAt(0);

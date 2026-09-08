@@ -4,15 +4,16 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as assert from 'assert';
-import { Node, IRule, Level } from '../../parser/cssNodes';
-import { Parser } from '../../parser/cssParser';
-import { LintVisitor } from '../../services/lint';
-import { Rule, Rules, LintConfigurationSettings } from '../../services/lintRules';
-import { TextDocument } from '../../cssLanguageTypes';
-import { SCSSParser } from '../../parser/scssParser';
-import { LESSParser } from '../../parser/lessParser';
-import { CSSDataManager } from '../../languageFacts/dataManager';
+import { suite, test } from 'node:test';
+import * as assert from 'node:assert';
+import { Node, IRule, Level } from '../../parser/cssNodes.js';
+import { Parser } from '../../parser/cssParser.js';
+import { LintVisitor } from '../../services/lint.js';
+import { Rule, Rules, LintConfigurationSettings } from '../../services/lintRules.js';
+import { TextDocument } from '../../cssLanguageTypes.js';
+import { SCSSParser } from '../../parser/scssParser.js';
+import { LESSParser } from '../../parser/lessParser.js';
+import { CSSDataManager } from '../../languageFacts/dataManager.js';
 
 const cssDataManager = new CSSDataManager({ useDefaultDataProvider: true });
 

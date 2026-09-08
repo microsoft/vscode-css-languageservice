@@ -5,8 +5,9 @@
 
 'use strict';
 
-import * as assert from 'assert';
-import { TextDocument, FoldingRange, FoldingRangeKind, getCSSLanguageService } from '../../cssLanguageService';
+import { suite, test } from 'node:test';
+import * as assert from 'node:assert';
+import { TextDocument, FoldingRange, FoldingRangeKind, getCSSLanguageService } from '../../cssLanguageService.js';
 
 function assertRanges(lines: string[], expected: FoldingRange[], languageId = 'css', rangeLimit: number | null = null): void {
 	const document = TextDocument.create(`test://foo/bar.${languageId}`, languageId, 1, lines.join('\n'));

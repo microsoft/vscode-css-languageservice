@@ -4,18 +4,22 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as assert from 'assert';
+import { suite, test } from 'node:test';
+import * as assert from 'node:assert';
 import * as path from 'path';
+import { fileURLToPath } from 'node:url';
 import {
 	getCSSLanguageService,
 	LanguageSettings, PropertyCompletionContext, PropertyValueCompletionContext, URILiteralCompletionContext, ImportPathCompletionContext,
 	TextDocument, CompletionList, Position, CompletionItemKind, InsertTextFormat, Range, Command, MarkupContent, MixinReferenceCompletionContext, getSCSSLanguageService, getLESSLanguageService, ICSSDataProvider, newCSSDataProvider
-} from '../../cssLanguageService';
-import { BaselineImages } from '../../languageFacts/facts';
-import { getDocumentContext } from '../testUtil/documentContext';
+} from '../../cssLanguageService.js';
+import { BaselineImages } from '../../languageFacts/facts.js';
+import { getDocumentContext } from '../testUtil/documentContext.js';
 import { URI } from 'vscode-uri';
-import { getFsProvider } from '../testUtil/fsProvider';
+import { getFsProvider } from '../testUtil/fsProvider.js';
 import { TextEdit } from 'vscode-languageserver-types';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export interface ItemDescription {
 	label: string;
@@ -679,7 +683,7 @@ suite('CSS - Completion', () => {
 					documentation: {
 						kind: 'markdown',
 						value:
-							`The text\\-decoration\\-skip CSS property specifies what parts of the element’s content any text decoration affecting the element must skip over\\. It controls all text decoration lines drawn by the element and also any text decoration lines drawn by its ancestors\\.\n\n![Baseline icon](${BaselineImages.BASELINE_LIMITED}) _Limited availability across major browsers (Not fully implemented in Chrome, Edge, or Firefox)_\n\nSyntax: none | \\[ objects || \\[ spaces | \\[ leading\\-spaces || trailing\\-spaces \\] \\] || edges || box\\-decoration \\]\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/text-decoration-skip)`
+								`The text\\-decoration\\-skip CSS property specifies what parts of the element’s content any text decoration affecting the element must skip over\\. It controls all text decoration lines drawn by the element and also any text decoration lines drawn by its ancestors\\.\n\n![Baseline icon](${BaselineImages.BASELINE_LIMITED}) _Limited availability across major browsers (Not fully implemented in Chrome, Edge, or Firefox)_\n\nSyntax: none | \\[ objects || \\[ spaces | \\[ leading\\-spaces || trailing\\-spaces \\] \\] || edges || box\\-decoration \\]\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/text-decoration-skip)`
 					}
 				},
 				{
@@ -687,7 +691,7 @@ suite('CSS - Completion', () => {
 					documentation: {
 						kind: 'markdown',
 						value:
-							`🚨️️️ Property is obsolete. Avoid using it.\n\nThe box\\-ordinal\\-group CSS property assigns the flexbox\'s child elements to an ordinal group\\.\n\nSyntax: &lt;integer&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/box-ordinal-group)`
+								`🚨️️️ Property is obsolete. Avoid using it.\n\nThe box\\-ordinal\\-group CSS property assigns the flexbox\'s child elements to an ordinal group\\.\n\nSyntax: &lt;integer&gt;\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/box-ordinal-group)`
 					}
 				},
 				{

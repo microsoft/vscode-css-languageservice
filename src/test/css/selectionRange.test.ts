@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import 'mocha';
-import * as assert from 'assert';
-import { getCSSLanguageService, TextDocument, SelectionRange } from '../../cssLanguageService';
+import { suite, test } from 'node:test';
+import * as assert from 'node:assert';
+import { getCSSLanguageService, TextDocument, SelectionRange } from '../../cssLanguageService.js';
 
 function assertRanges(content: string, expected: (number | string)[][]): void {
 	let message = `${content} gives selection range:\n`;

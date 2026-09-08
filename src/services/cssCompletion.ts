@@ -4,20 +4,20 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as nodes from '../parser/cssNodes';
-import { Symbols, Symbol } from '../parser/cssSymbolScope';
-import * as languageFacts from '../languageFacts/facts';
-import * as strings from '../utils/strings';
+import * as nodes from '../parser/cssNodes.js';
+import { Symbols, Symbol } from '../parser/cssSymbolScope.js';
+import * as languageFacts from '../languageFacts/facts.js';
+import * as strings from '../utils/strings.js';
 import {
 	ICompletionParticipant, LanguageSettings, TextDocument, Command,
 	Position, CompletionList, CompletionItem, CompletionItemKind, Range, TextEdit, InsertTextFormat, MarkupKind, CompletionItemTag, DocumentContext, LanguageServiceOptions, IPropertyData, CompletionSettings,
 	IDescriptorData
-} from '../cssLanguageTypes';
+} from '../cssLanguageTypes.js';
 
 import * as l10n from '@vscode/l10n';
-import { isDefined } from '../utils/objects';
-import { CSSDataManager } from '../languageFacts/dataManager';
-import { PathCompletionParticipant } from './pathCompletion';
+import { isDefined } from '../utils/objects.js';
+import { CSSDataManager } from '../languageFacts/dataManager.js';
+import { PathCompletionParticipant } from './pathCompletion.js';
 
 const SnippetFormat = InsertTextFormat.Snippet;
 

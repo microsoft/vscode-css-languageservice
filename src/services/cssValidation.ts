@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as nodes from '../parser/cssNodes';
-import { LintConfigurationSettings, Rules } from './lintRules';
-import { LintVisitor } from './lint';
-import { TextDocument, Range, Diagnostic, DiagnosticSeverity, LanguageSettings } from '../cssLanguageTypes';
-import { CSSDataManager } from '../languageFacts/dataManager';
+import * as nodes from '../parser/cssNodes.js';
+import { LintConfigurationSettings, Rules } from './lintRules.js';
+import { LintVisitor } from './lint.js';
+import { TextDocument, Range, Diagnostic, DiagnosticSeverity, LanguageSettings } from '../cssLanguageTypes.js';
+import { CSSDataManager } from '../languageFacts/dataManager.js';
 
 export class CSSValidation {
 

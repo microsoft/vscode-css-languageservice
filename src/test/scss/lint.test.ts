@@ -4,10 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import { TextDocument } from '../../cssLanguageTypes';
-import { SCSSParser } from '../../parser/scssParser';
-import { Rule, Rules } from '../../services/lintRules';
-import { assertEntries } from '../css/lint.test';
+import { suite, test } from 'node:test';
+import { TextDocument } from '../../cssLanguageTypes.js';
+import { SCSSParser } from '../../parser/scssParser.js';
+import { Rule, Rules } from '../../services/lintRules.js';
+import { assertEntries } from '../css/lint.test.js';
 
 function assertFontFace(input: string, ...rules: Rule[]): void {
 	let p = new SCSSParser();
