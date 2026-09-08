@@ -21,10 +21,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.20.1",
-    "@typescript-eslint/eslint-plugin": "^8.70.0",
-    "@typescript-eslint/parser": "^8.70.0",
     "@vscode/web-custom-data": "^0.6.3",
-    "eslint": "10.9.1",
     "js-beautify": "^2.0.3",
     "rimraf": "^6.1.3",
     "typescript": "^6.0.3"
@@ -42,9 +39,9 @@
     "remove-sourcemap-refs": "node ./build/remove-sourcemap-refs.js",
     "watch": "tsc -w -p ./src",
     "test": "npm run compile && npm run node-test",
-    "node-test": "node --enable-source-maps --test 'lib/esm/test/**/*.test.js'",
-    "coverage": "npm run compile && npx nyc --reporter=html --reporter=text node --test 'lib/esm/test/**/*.test.js'",
-    "lint": "eslint src/**/*.ts",
+    "node-test": "node --enable-source-maps --test --test-isolation=none 'lib/esm/test/**/*.test.js'",
+    "coverage": "npm run compile && npx nyc --reporter=html --reporter=text node --test --test-isolation=none 'lib/esm/test/**/*.test.js'",
+    "lint": "node --test ./build/lint.test.ts",
     "update-data": "npm install @vscode/web-custom-data -D && node ./build/generateData.js",
     "install-types-next": "npm install vscode-languageserver-types@next -f -S && npm install vscode-languageserver-textdocument@next -f -S",
     "update-jsbeautify": "npm install js-beautify && node ./build/update-jsbeautify.js",
