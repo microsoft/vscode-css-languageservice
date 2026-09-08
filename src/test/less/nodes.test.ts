@@ -5,7 +5,7 @@
 'use strict';
 
 import { suite, test } from 'node:test';
-import { assertNodes } from '../css/nodes.test.js';
+import { assertNodes } from '../testUtil/nodes.js';
 import * as nodes from '../../parser/cssNodes.js';
 import { LESSParser } from '../../parser/lessParser.js';
 

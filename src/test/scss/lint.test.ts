@@ -8,7 +8,7 @@ import { suite, test } from 'node:test';
 import { TextDocument } from '../../cssLanguageTypes.js';
 import { SCSSParser } from '../../parser/scssParser.js';
 import { Rule, Rules } from '../../services/lintRules.js';
-import { assertEntries } from '../css/lint.test.js';
+import { assertEntries } from '../testUtil/lint.js';
 
 function assertFontFace(input: string, ...rules: Rule[]): void {
 	let p = new SCSSParser();

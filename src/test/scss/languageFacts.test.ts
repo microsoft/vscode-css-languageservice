@@ -6,7 +6,7 @@
 
 import { suite, test } from 'node:test';
 import { SCSSParser } from '../../parser/scssParser.js';
-import { assertColor } from '../css/languageFacts.test.js';
+import { assertColor } from '../testUtil/color.js';
 import { colorFrom256RGB as newColor } from '../../languageFacts/facts.js';
 
 suite('SCSS - Language facts', () => {
@@ -26,4 +26,3 @@ suite('SCSS - Language facts', () => {
 	});
 
 });
-

@@ -7,7 +7,7 @@
 import { suite, test } from 'node:test';
 import * as assert from 'node:assert';
 
-import { testCompletionFor } from './completion.test.js';
+import { testCompletionFor } from '../testUtil/completion.js';
 import { getCSSLanguageService, TextDocument, newCSSDataProvider, LanguageSettings } from '../../cssLanguageService.js';
 
 

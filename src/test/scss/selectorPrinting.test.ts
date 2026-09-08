@@ -7,7 +7,7 @@
 
 import { suite, test } from 'node:test';
 import { SCSSParser } from '../../parser/scssParser.js';
-import { assertSelector } from '../css/selectorPrinting.test.js';
+import { assertSelector } from '../testUtil/selectorPrinting.js';
 
 suite('SCSS - Selector Printing', () => {
 

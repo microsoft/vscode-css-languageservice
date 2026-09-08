@@ -9,8 +9,8 @@ import * as path from 'path';
 import { fileURLToPath } from 'node:url';
 
 import { Position, InsertTextFormat, CompletionItemKind, LanguageSettings } from '../../cssLanguageService.js';
-import { testCompletionFor as testCSSCompletionFor, ExpectedCompetions } from '../css/completion.test.js';
-import { newRange } from '../css/navigation.test.js';
+import { testCompletionFor as testCSSCompletionFor, ExpectedCompetions } from '../testUtil/completion.js';
+import { newRange } from '../testUtil/navigation.js';
 import { URI } from 'vscode-uri';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
