@@ -6,7 +6,7 @@
 
 import { suite, test } from 'node:test';
 import { Rule } from '../../services/lintRules.js';
-import { assertEntries } from '../css/lint.test.js';
+import { assertEntries } from '../testUtil/lint.js';
 import { SCSSParser } from '../../parser/scssParser.js';
 import { TextDocument } from '../../cssLanguageTypes.js';
 

@@ -8,7 +8,7 @@ import { suite, test } from 'node:test';
 import { ParseError } from '../../parser/cssErrors.js';
 import { LESSParser } from '../../parser/lessParser.js';
 
-import { assertNode, assertNoNode, assertError } from '../css/parser.test.js';
+import { assertNode, assertNoNode, assertError } from '../testUtil/parser.js';
 
 suite('LESS - Parser', () => {
 

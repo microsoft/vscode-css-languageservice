@@ -6,7 +6,7 @@
 
 import { suite, test } from 'node:test';
 import * as nodes from '../../parser/cssNodes.js';
-import { assertScopeBuilding, assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertSymbolInfos, newRange, assertColorSymbols, assertDocumentSymbols } from '../css/navigation.test.js';
+import { assertScopeBuilding, assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertSymbolInfos, newRange, assertColorSymbols, assertDocumentSymbols } from '../testUtil/navigation.js';
 import { getLESSLanguageService, SymbolKind, Location } from '../../cssLanguageService.js';
 import { colorFrom256RGB } from '../../languageFacts/facts.js';
 

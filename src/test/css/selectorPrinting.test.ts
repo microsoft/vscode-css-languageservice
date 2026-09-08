@@ -11,59 +11,10 @@ import * as nodes from '../../parser/cssNodes.js';
 import * as selectorPrinting from '../../services/selectorPrinting.js';
 import { TextDocument, MarkedString } from '../../cssLanguageTypes.js';
 import { CSSDataManager } from '../../languageFacts/dataManager.js';
+import { assertSelector, doParse } from '../testUtil/selectorPrinting.js';
 
 
 const cssDataManager = new CSSDataManager({ useDefaultDataProvider: true });
-
-function elementToString(element: selectorPrinting.Element): string {
-	let label = element.findAttribute('name') || '';
-	let attributes = element.attributes && element.attributes.filter(a => a.name !== 'name');
-	if (attributes && attributes.length > 0) {
-		label = label + '[';
-		let needsSeparator = false;
-		for (let attribute of attributes) {
-			if (attribute.name !== 'name') {
-				if (needsSeparator) {
-					label = label + '|';
-				}
-				needsSeparator = true;
-				label = label + attribute.name + '=' + attribute.value;
-			}
-		}
-		label = label + ']';
-	}
-
-	if (element.children) {
-		label = label + '{';
-		for (let index = 0; index < element.children.length; index++) {
-			if (index > 0) {
-				label = label + '|';
-			}
-			label = label + elementToString(element.children[index]);
-		}
-		label = label + '}';
-	}
-	return label;
-}
-
-function doParse(p: Parser, input: string, selectorName: string): nodes.Selector | null {
-	let document = TextDocument.create('test://test/test.css', 'css', 0, input);
-	let styleSheet = p.parseStylesheet(document);
-
-	let node = nodes.getNodeAtOffset(styleSheet, input.indexOf(selectorName));
-	if (!node) { return null; }
-	return <nodes.Selector>node.findParent(nodes.NodeType.Selector);
-}
-
-export function assertSelector(p: Parser, input: string, selectorName: string, expected: string): void {
-	let selector = doParse(p, input, selectorName);
-	assert.ok(selector);
-
-	let element = selectorPrinting.selectorToElement(selector!);
-	assert.ok(element);
-
-	assert.equal(elementToString(element!), expected);
-}
 
 function assertElement(p: Parser, input: string, expected: { name: string; value?: string }[]): void {
 	let node = p.internalParse(input, p._parseSimpleSelector)!;

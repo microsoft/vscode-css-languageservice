@@ -6,28 +6,7 @@ import { getCSSLanguageService, TextDocument, Range, getLESSLanguageService, Lan
 import { suite, test } from 'node:test';
 import * as assert from 'node:assert';
 import { CSSFormatConfiguration } from '../../cssLanguageTypes.js';
-
-
-export function assertFormat(unformatted: string, expected: string, options: CSSFormatConfiguration = { tabSize: 2, insertSpaces: true }, ls: LanguageService = getCSSLanguageService()) {
-	let range: Range | undefined = void 0;
-	const uri = 'test://test.html';
-
-	const rangeStart = unformatted.indexOf('|');
-	const rangeEnd = unformatted.lastIndexOf('|');
-	if (rangeStart !== -1 && rangeEnd !== -1) {
-		// remove '|'
-		unformatted = unformatted.substring(0, rangeStart) + unformatted.substring(rangeStart + 1, rangeEnd) + unformatted.substring(rangeEnd + 1);
-		const unformattedDoc = TextDocument.create(uri, 'html', 0, unformatted);
-		const startPos = unformattedDoc.positionAt(rangeStart);
-		const endPos = unformattedDoc.positionAt(rangeEnd - 1);
-		range = Range.create(startPos, endPos);
-	}
-
-	const document = TextDocument.create(uri, 'html', 0, unformatted);
-	const edits = ls.format(document, range, options);
-	const formatted = TextDocument.applyEdits(document, edits);
-	assert.strictEqual(formatted, expected);
-}
+import { assertFormat } from '../testUtil/formatter.js';
 
 suite('CSS - Formatter', () => {
 
@@ -46,7 +25,6 @@ suite('CSS - Formatter', () => {
 			'  background: "#FFF";',
 			'}'
 		].join('\n');
-
 		assertFormat(content, expected);
 	});
 
@@ -219,7 +197,6 @@ suite('CSS - Formatter', () => {
 		assertFormat(content, expected, { insertSpaces: true, tabSize: 2, preserveNewLines: true, maxPreserveNewLines: 3 });
 
 	});
-
 
 
 });

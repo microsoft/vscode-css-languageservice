@@ -42,37 +42,10 @@ import { Parser } from '../../parser/cssParser.js';
 import * as nodes from '../../parser/cssNodes.js';
 import { TextDocument, Color } from '../../cssLanguageTypes.js';
 import { CSSDataManager } from '../../languageFacts/dataManager.js';
-
-export function assertColor(parser: Parser, text: string, selection: string, expected: Color | null, isColor = expected !== null): void {
-	let document = TextDocument.create('test://test/test.css', 'css', 0, text);
-	let stylesheet = parser.parseStylesheet(document);
-	assert.equal(nodes.ParseErrorCollector.entries(stylesheet).length, 0, 'compile errors');
-
-	let node = nodes.getNodeAtOffset(stylesheet, text.indexOf(selection));
-	assert.ok(node);
-	if (node!.parent && node!.parent.type === nodes.NodeType.Function) {
-		node = node!.parent;
-	}
-
-	assert.equal(isColorValue(node!), isColor);
-	assertColorValue(getColorValue(node!), expected, text);
-}
+import { assertColor, assertColorValue } from '../testUtil/color.js';
 
 function assertColorFromHex(s: string, expected: Color | null) {
 	assertColorValue(colorFromHex(s), expected, s);
-}
-
-function assertColorValue(actual: Color | null, expected: Color | null, message: string) {
-	if (actual && expected) {
-		let rDiff = Math.abs((actual.red - expected.red) * 255);
-		let gDiff = Math.abs((actual.green - expected.green) * 255);
-		let bDiff = Math.abs((actual.blue - expected.blue) * 255);
-		let aDiff = Math.abs((actual.alpha - expected.alpha) * 100);
-		if (rDiff < 1 && gDiff < 1 && bDiff < 1 && aDiff < 1) {
-			return;
-		}
-	}
-	assert.deepEqual(actual, expected, message);
 }
 
 function assertHSLValue(actual: HSLA, expected: HSLA) {

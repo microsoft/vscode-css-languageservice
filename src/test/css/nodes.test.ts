@@ -8,54 +8,7 @@ import { suite, test } from 'node:test';
 import * as assert from 'node:assert';
 import * as nodes from '../../parser/cssNodes.js';
 import { Parser } from '../../parser/cssParser.js';
-
-export class PrintingVisitor implements nodes.IVisitor {
-
-	public tree: string[] = [];
-
-	public visitNode(node: nodes.Node): boolean {
-		this.tree.push(nodes.NodeType[node.type].toLowerCase());
-		return true;
-	}
-}
-
-export function assertNodes(fn: (input: string) => nodes.Node, input: string, expected: string): void {
-	let node = fn(input);
-	let visitor = new PrintingVisitor();
-
-	node.acceptVisitor(visitor);
-
-	let actual = visitor.tree;
-	let actualStr = actual.join(',');
-	let segments = expected.split(',');
-
-	while (segments.length > 0) {
-		let expectedSegment = segments.shift()!;
-		let actualSegment = actual.shift()!;
-
-		if (expectedSegment === '...') {
-			let nextExpectedSegment = segments[0];
-			let nextActualSegment = actual[0];
-
-			while (actual.length > 0) {
-				if (nextExpectedSegment === nextActualSegment) {
-					break;
-				}
-
-				actualSegment = actual.shift()!;
-				nextActualSegment = actual[0];
-			}
-
-			continue;
-		}
-
-		assert.equal(actualSegment, expectedSegment, expectedSegment + ' NOT found in actual: "' + actualStr + '"');
-	}
-
-	assert.ok(actual.length === 0, actual.join(',') + ' Not found in expected: "' + expected + '"');
-
-	assert.ok(true);
-}
+import { assertNodes } from '../testUtil/nodes.js';
 
 suite('CSS - Nodes', () => {
 

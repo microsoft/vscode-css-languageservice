@@ -5,7 +5,7 @@
 'use strict';
 
 import * as nodes from '../../parser/cssNodes.js';
-import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertColorSymbols, assertLinks, newRange, getTestResource, assertDocumentSymbols } from '../css/navigation.test.js';
+import { assertSymbolsInScope, assertScopesAndSymbols, assertHighlights, assertColorSymbols, assertLinks, newRange, getTestResource, assertDocumentSymbols } from '../testUtil/navigation.js';
 import { getSCSSLanguageService, DocumentLink, TextDocument, SymbolKind, LanguageSettings } from '../../cssLanguageService.js';
 import { suite, test } from 'node:test';
 import * as assert from 'node:assert';
