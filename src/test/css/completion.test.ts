@@ -995,6 +995,7 @@ suite('CSS - Completion', () => {
 		await testCompletionFor('.foo { color: /* re| */ red }', { count: 0 });
 		await testCompletionFor('/* multi\n * line foo:|\n */', { count: 0 });
 		await testCompletionFor('/* never closed foo:|', { count: 0 });
+		await testCompletionFor('/*/|', { count: 0 }); // `/*/` ends with `*/` but is not closed
 		await testCompletionFor('.foo { }\n/* @med| */', { count: 0 });
 	});
 
