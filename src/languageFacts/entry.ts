@@ -197,7 +197,7 @@ function getEntryMarkdownDescription(entry: IEntry2, settings?: HoverSettings): 
 }
 
 // TODO: Remove "as any" when tsconfig supports es2021+
-const missingBaselineBrowserFormatter = new (Intl as any).ListFormat("en", {
+const missingBaselineBrowserFormatter = new Intl.ListFormat("en", {
 	style: "long",
 	type: "disjunction",
 });
