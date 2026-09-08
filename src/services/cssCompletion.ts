@@ -418,7 +418,7 @@ export class CSSCompletion {
 					}
 				}
 			}
-			this.getValueEnumProposals(entry, existingNode, result);
+			this.getValueEnumProposals(this.getValueEnumEntry(entry, node), existingNode, result);
 			this.getCSSWideKeywordProposals(entry, existingNode, result);
 			this.getUnitProposals(entry, existingNode, result);
 		} else {
@@ -434,6 +434,21 @@ export class CSSCompletion {
 		this.getVariableProposals(existingNode, result);
 		this.getTermProposals(entry, existingNode, result);
 		return result;
+	}
+
+	private getValueEnumEntry(entry: IPropertyData, declaration: nodes.Declaration): IPropertyData {
+		if (entry.values || !entry.syntax || typeof declaration.colonPosition !== 'number') {
+			return entry;
+		}
+
+		const match = /^\s*<'([^']+)'>\s+<'([^']+)'>\?\s*$/.exec(entry.syntax);
+		if (!match) {
+			return entry;
+		}
+
+		const completedValue = this.textDocument.getText().substring(declaration.colonPosition + 1, this.offset - this.currentWord.length).trim();
+		const referencedProperty = this.cssDataManager.getProperty(completedValue ? match[2] : match[1]);
+		return referencedProperty || entry;
 	}
 
 	public getValueEnumProposals(entry: IPropertyData | IDescriptorData, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
