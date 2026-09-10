@@ -33,7 +33,7 @@
     "vscode-uri": "^3.2.0"
   },
   "scripts": {
-    "prepack": "npm run clean && npm run compile && npm run test && npm run remove-sourcemap-refs",
+    "build-package": "npm run clean && npm run compile && npm run test && npm run remove-sourcemap-refs",
     "compile": "tsc -p ./src && npm run lint",
     "clean": "rimraf lib",
     "remove-sourcemap-refs": "node ./build/remove-sourcemap-refs.js",
