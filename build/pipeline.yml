@@ -38,7 +38,8 @@ extends:
           - script: npm ci
             displayName: Install dependencies
 
-          # the rest of the build steps are part of the 'prepack' script, automatically run when the pipeline invokes 'npm run pack'
+          - script: npm run build-package
+            displayName: Build and test npm package
 
         tag: ${{ parameters.quality }}
         preReleaseTag: next
