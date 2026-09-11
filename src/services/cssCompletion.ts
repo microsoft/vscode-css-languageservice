@@ -344,7 +344,7 @@ export class CSSCompletion {
 					}
 				}
 			}
-			this.getValueEnumProposals(this.getValueEnumEntry(entry, node), existingNode, result);
+			this.getValueEnumProposals(entry, existingNode, result, node);
 			this.getCSSWideKeywordProposals(entry, existingNode, result);
 			this.getUnitProposals(entry, existingNode, result);
 		} else {
@@ -362,7 +362,7 @@ export class CSSCompletion {
 		return result;
 	}
 
-	private getValueEnumEntry(entry: IPropertyData, declaration: nodes.Declaration): IPropertyData {
+	private getValueEnumEntry(entry: IPropertyData | IDescriptorData, declaration: nodes.Declaration): IPropertyData | IDescriptorData {
 		if (entry.values || !entry.syntax || typeof declaration.colonPosition !== 'number') {
 			return entry;
 		}
@@ -377,7 +377,12 @@ export class CSSCompletion {
 		return referencedProperty || entry;
 	}
 
-	public getValueEnumProposals(entry: IPropertyData | IDescriptorData, existingNode: nodes.Node | null, result: CompletionList): CompletionList {
+	public getValueEnumProposals(entry: IPropertyData | IDescriptorData, existingNode: nodes.Node | null, result: CompletionList, declaration?: nodes.Declaration): CompletionList {
+		if (declaration) {
+			// A shorthand with no values of its own delegates to the longhand the
+			// caret sits on, so resolve that before reading `values` below.
+			entry = this.getValueEnumEntry(entry, declaration);
+		}
 		if (entry.values) {
 			for (const value of entry.values) {
 				let insertString = value.name;
