@@ -14,6 +14,27 @@ import { assertNode, assertError } from '../testUtil/parser.js';
 
 suite('SCSS - Parser', () => {
 
+	for (const condition of [
+		'not #{$foo}',
+		'#{$foo} and (color: red)',
+		'(color: red) and #{$foo}',
+		'#{$foo} or #{$bar}',
+		'(not #{$foo}) and #{$bar}'
+	]) {
+		test(`@supports interpolation: ${condition}`, function () {
+			const parser = new SCSSParser();
+			assertNode(`@supports ${condition} { .x { color: red; } } .after { color: blue; }`, parser, parser._parseStylesheet.bind(parser));
+		});
+	}
+
+	test('@supports interpolation controls', function () {
+		const parser = new SCSSParser();
+		assertNode('@supports #{$foo} { .x { color: red; } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@supports not (#{$foo}) { .x { color: red; } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('.outer { @supports not #{$foo} { color: red; } }', parser, parser._parseStylesheet.bind(parser));
+		assertError('@supports not #{$foo {}', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
+	});
+
 	test('Comments', function () {
 		const parser = new SCSSParser();
 		assertNode(' a { b:  /* comment */ c }', parser, parser._parseStylesheet.bind(parser));
