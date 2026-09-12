@@ -1608,7 +1608,7 @@ export class Parser {
 	}
 
 	// https://www.w3.org/TR/css-syntax-3/#consume-an-at-rule
-	public _parseUnknownAtRule(): nodes.Node | null {
+	public _parseUnknownAtRule(interpolationToken?: TokenType): nodes.Node | null {
 		if (!this.peek(TokenType.AtKeyword)) {
 			return null;
 		}
@@ -1622,6 +1622,12 @@ export class Parser {
 		let parensDepth = 0;
 		let bracketsDepth = 0;
 		done: while (true) {
+			if (this.token.type === interpolationToken) {
+				// Interpolation balances a brace but does not start the at-rule's block.
+				curlyDepth++;
+				this.consumeToken();
+				continue;
+			}
 			switch (this.token.type) {
 				case TokenType.SemiColon:
 					if (isTopLevel()) {
