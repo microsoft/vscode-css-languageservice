@@ -159,7 +159,7 @@ export const colorFunctions = [
 
 ];
 
-const colorFunctionNameRegExp = /^(?:rgba?|hsla?|hwb|lab|lch|oklab|oklch)$/iu;
+const colorFunctionNameRegExp = /^(?:rgba?|hsla?|hwb|lab|lch|oklab|oklch|color)$/iu;
 
 export const colors: { [name: string]: string } = {
 	aliceblue: '#f0f8ff',
@@ -874,6 +874,116 @@ export function colorFromOKLCH(l: number, c: number, h: number, alpha = 1): Colo
 
 export interface LCH { l: number; c: number; h: number; alpha?: number; }
 
+type Matrix3 = [[number, number, number], [number, number, number], [number, number, number]];
+type Vector3 = [number, number, number];
+
+function multiplyMatrix(m: Matrix3, v: Vector3): Vector3 {
+	return [
+		m[0][0] * v[0] + m[0][1] * v[1] + m[0][2] * v[2],
+		m[1][0] * v[0] + m[1][1] * v[1] + m[1][2] * v[2],
+		m[2][0] * v[0] + m[2][1] * v[1] + m[2][2] * v[2],
+	];
+}
+
+// Conversion matrices and transfer functions from https://www.w3.org/TR/css-color-4/#color-conversion-code
+const D50_TO_D65: Matrix3 = [
+	[0.955473421488075, -0.02309845494876471, 0.06325924320057072],
+	[-0.0283697093338637, 1.0099953980813041, 0.021041441191917323],
+	[0.012314014864481998, -0.020507649298898964, 1.330365926242124],
+];
+
+const XYZ_D65_TO_LINEAR_SRGB: Matrix3 = [
+	[12831 / 3959, -329 / 214, -1974 / 3959],
+	[-851781 / 878810, 1648619 / 878810, 36519 / 878810],
+	[705 / 12673, -2585 / 12673, 705 / 667],
+];
+
+const LINEAR_SRGB_TO_XYZ_D65: Matrix3 = [
+	[506752 / 1228815, 87881 / 245763, 12673 / 70218],
+	[87098 / 409605, 175762 / 245763, 12673 / 175545],
+	[7918 / 409605, 87881 / 737289, 1001167 / 1053270],
+];
+
+const LINEAR_DISPLAY_P3_TO_XYZ_D65: Matrix3 = [
+	[608311 / 1250200, 189793 / 714400, 198249 / 1000160],
+	[35783 / 156275, 247089 / 357200, 198249 / 2500400],
+	[0, 32229 / 714400, 5220557 / 5000800],
+];
+
+const LINEAR_A98_RGB_TO_XYZ_D65: Matrix3 = [
+	[573536 / 994567, 263643 / 1420810, 187206 / 994567],
+	[591459 / 1989134, 6239551 / 9945670, 374412 / 4972835],
+	[53769 / 1989134, 351524 / 4972835, 4929758 / 4972835],
+];
+
+const LINEAR_PROPHOTO_RGB_TO_XYZ_D50: Matrix3 = [
+	[0.7977666449006423, 0.13518129740053308, 0.0313477341283922],
+	[0.2880748288194013, 0.711835234241873, 0.00008993693872564],
+	[0, 0, 0.8251046025104602],
+];
+
+const LINEAR_REC2020_TO_XYZ_D65: Matrix3 = [
+	[63426534 / 99577255, 20160776 / 139408157, 47086771 / 278816314],
+	[26158966 / 99577255, 472592308 / 697040785, 8267143 / 139408157],
+	[0, 19567812 / 697040785, 295819943 / 278816314],
+];
+
+function srgbToLinear(c: number): number {
+	const abs = Math.abs(c);
+	return abs <= 0.04045 ? c / 12.92 : Math.sign(c) * Math.pow((abs + 0.055) / 1.055, 2.4);
+}
+
+function linearToSrgb(c: number): number {
+	const abs = Math.abs(c);
+	return abs > 0.0031308 ? Math.sign(c) * (1.055 * Math.pow(abs, 1 / 2.4) - 0.055) : 12.92 * c;
+}
+
+const colorSpaceToXYZD65: { [colorSpace: string]: (channels: Vector3) => Vector3 } = {
+	'srgb': rgb => multiplyMatrix(LINEAR_SRGB_TO_XYZ_D65, <Vector3>rgb.map(srgbToLinear)),
+	'srgb-linear': rgb => multiplyMatrix(LINEAR_SRGB_TO_XYZ_D65, rgb),
+	'display-p3': rgb => multiplyMatrix(LINEAR_DISPLAY_P3_TO_XYZ_D65, <Vector3>rgb.map(srgbToLinear)),
+	'a98-rgb': rgb => multiplyMatrix(LINEAR_A98_RGB_TO_XYZ_D65, <Vector3>rgb.map(c => Math.sign(c) * Math.pow(Math.abs(c), 563 / 256))),
+	'prophoto-rgb': rgb => multiplyMatrix(D50_TO_D65, multiplyMatrix(LINEAR_PROPHOTO_RGB_TO_XYZ_D50, <Vector3>rgb.map(c => {
+		const abs = Math.abs(c);
+		return abs <= 16 / 512 ? c / 16 : Math.sign(c) * Math.pow(abs, 1.8);
+	}))),
+	'rec2020': rgb => multiplyMatrix(LINEAR_REC2020_TO_XYZ_D65, <Vector3>rgb.map(c => Math.sign(c) * Math.pow(Math.abs(c), 2.4))),
+	'xyz': xyz => xyz,
+	'xyz-d65': xyz => xyz,
+	'xyz-d50': xyz => multiplyMatrix(D50_TO_D65, xyz),
+};
+
+/**
+ * `color(<colorspace> c1 c2 c3 [/ alpha])`, converted to sRGB and clipped to its gamut.
+ * https://www.w3.org/TR/css-color-4/#color-function
+ */
+function colorFromColorFunction(values: nodes.Node[]): Color | null {
+	let alpha = 1;
+	try {
+		const last = values[values.length - 1];
+		if (values.length === 4 && last instanceof nodes.BinaryExpression) {
+			const left = last.getLeft(), right = last.getRight(), operator = last.getOperator();
+			if (left && right && operator && operator.matches('/')) {
+				values = [values[0], values[1], values[2], left];
+				alpha = getNumericValue(right, 1);
+			}
+		}
+		if (values.length !== 4) {
+			return null;
+		}
+		const toXYZD65 = colorSpaceToXYZD65[values[0].getText().toLowerCase()];
+		if (!toXYZD65) {
+			return null;
+		}
+		const channels = <Vector3>values.slice(1).map(value => value.getText() === 'none' ? 0 : getNumericValue(value, 1, -Infinity, Infinity));
+		const [red, green, blue] = multiplyMatrix(XYZ_D65_TO_LINEAR_SRGB, toXYZD65(channels)).map(c => Math.min(Math.max(linearToSrgb(c), 0), 1));
+		return { red, green, blue, alpha };
+	} catch {
+		// parse error on numeric value
+		return null;
+	}
+}
+
 export function getColorValue(node: nodes.Node): Color | null {
 	if (node.type === nodes.NodeType.HexColorValue) {
 		const text = node.getText();
@@ -896,6 +1006,9 @@ export function getColorValue(node: nodes.Node): Color | null {
 					}
 				}
 			}
+		}
+		if (name === 'color') {
+			return colorFromColorFunction(colorValues);
 		}
 		if (!name || colorValues.length < 3 || colorValues.length > 4) {
 			return null;
