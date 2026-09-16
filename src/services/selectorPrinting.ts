@@ -220,6 +220,10 @@ class Specificity {
 	public tag = 0;
 }
 
+function compareSpecificity(a: Specificity, b: Specificity): number {
+	return (a.id - b.id) || (a.attr - b.attr) || (a.tag - b.tag);
+}
+
 export function toElement(node: nodes.SimpleSelector, parentElement?: Element | null): Element {
 	let result = new Element();
 	for (const child of node.getChildren()) {
@@ -530,7 +534,52 @@ export class SelectorPrinting {
 			return specificity;
 		};
 
-		const specificity = calculateScore(node);
+		// A nested rule is relative to its parent rule: the nesting selector `&`, explicit or implied, has the specificity
+		// of the most specific selector of the parent rule, like `:is()`. https://www.w3.org/TR/css-nesting-1/#nest-selector
+		const nestedScores = new Map<nodes.Node, Specificity>();
+		const calculateNestedScore = (node: nodes.Node): Specificity => {
+			let specificity = nestedScores.get(node);
+			if (specificity) {
+				return specificity;
+			}
+			specificity = calculateScore(node);
+			nestedScores.set(node, specificity);
+
+			const ruleSet = node.getParent();
+			const parentRuleSet = getParentRuleSet(ruleSet);
+			if (!ruleSet || !parentRuleSet || node.getText().startsWith('@at-root')) {
+				return specificity;
+			}
+			for (let parent = ruleSet.getParent(); parent !== parentRuleSet; parent = parent!.getParent()) {
+				if (parent!.type === nodes.NodeType.Scope) {
+					return specificity; // rules in `@scope` are relative to `:where(:scope)`, which adds nothing
+				}
+			}
+
+			let mostSpecificParent = new Specificity();
+			for (const parentSelector of parentRuleSet.getSelectors().getChildren()) {
+				const parentSpecificity = calculateNestedScore(parentSelector);
+				if (compareSpecificity(parentSpecificity, mostSpecificParent) > 0) {
+					mostSpecificParent = parentSpecificity;
+				}
+			}
+
+			let nestingSelectors = 0;
+			node.accept(child => {
+				if (child.type === nodes.NodeType.SelectorCombinator) {
+					nestingSelectors += child.getText().split('&').length - 1; // LESS allows several in one, e.g. `&-&`
+				}
+				return true;
+			});
+			const count = Math.max(nestingSelectors, 1);
+
+			specificity.id += count * mostSpecificParent.id;
+			specificity.attr += count * mostSpecificParent.attr;
+			specificity.tag += count * mostSpecificParent.tag;
+			return specificity;
+		};
+
+		const specificity = calculateNestedScore(node);
 		return `[${l10n.t('Selector Specificity')}](https://developer.mozilla.org/docs/Web/CSS/Specificity): (${specificity.id}, ${specificity.attr}, ${specificity.tag})`;
 	}
 }
@@ -602,25 +651,27 @@ function isNewSelectorContext(node: nodes.Node): boolean {
 	return false;
 }
 
+function getParentRuleSet(ruleSet: nodes.Node | null): nodes.RuleSet | null {
+	if (ruleSet instanceof nodes.RuleSet) {
+		let parent = ruleSet.getParent(); // parent of the selector's ruleset
+		while (parent && !isNewSelectorContext(parent)) {
+			if (parent instanceof nodes.RuleSet) {
+				return parent.getSelectors().matches('@at-root') ? null : parent;
+			}
+			parent = parent.getParent();
+		}
+	}
+	return null;
+}
+
 export function selectorToElement(node: nodes.Selector): Element | null {
 	if (node.matches('@at-root')) {
 		return null;
 	}
 	const root: Element = new RootElement();
 	const parentRuleSets: nodes.RuleSet[] = [];
-	const ruleSet = node.getParent();
-
-	if (ruleSet instanceof nodes.RuleSet) {
-		let parent = ruleSet.getParent(); // parent of the selector's ruleset
-		while (parent && !isNewSelectorContext(parent)) {
-			if (parent instanceof nodes.RuleSet) {
-				if (parent.getSelectors().matches('@at-root')) {
-					break;
-				}
-				parentRuleSets.push(<nodes.RuleSet>parent);
-			}
-			parent = parent.getParent();
-		}
+	for (let parent = getParentRuleSet(node.getParent()); parent; parent = getParentRuleSet(parent)) {
+		parentRuleSets.push(parent);
 	}
 
 	const builder = new SelectorElementBuilder(root);

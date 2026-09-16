@@ -7,7 +7,7 @@
 
 import { suite, test } from 'node:test';
 import * as assert from 'node:assert';
-import { Hover, TextDocument, getCSSLanguageService, getLESSLanguageService, getSCSSLanguageService } from '../../cssLanguageService.js';
+import { Hover, MarkedString, TextDocument, getCSSLanguageService, getLESSLanguageService, getSCSSLanguageService } from '../../cssLanguageService.js';
 import { HoverSettings } from '../../cssLanguageTypes.js';
 import { BaselineImages } from '../../languageFacts/facts.js';
 
@@ -81,7 +81,7 @@ suite('CSS Hover', () => {
 		assertHover(
 			'div { d|iv {} }',
 			{
-				contents: [{ language: 'html', value: '<div>\n  …\n    <div>' }, '[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 0, 1)'],
+				contents: [{ language: 'html', value: '<div>\n  …\n    <div>' }, '[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 0, 2)'],
 			},
 			'css',
 		);
@@ -93,7 +93,7 @@ suite('CSS Hover', () => {
 						language: 'html',
 						value: '@media only screen\n<element class="foo">\n  …\n    <element class="bar">\n      …\n        <element class="bar">',
 					},
-					'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 0)',
+					'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 3, 0)',
 				],
 			},
 			'css',
@@ -121,7 +121,7 @@ suite('CSS Hover', () => {
 						language: 'html',
 						value: '@scope .from → .to\n@media print\n@media only screen\n<element class="foo">\n  …\n    <element class="bar">\n      …\n        <element class="bar">',
 					},
-					'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 0)',
+					'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 3, 0)',
 				],
 			},
 			'css',
@@ -130,6 +130,32 @@ suite('CSS Hover', () => {
 });
 
 suite('SCSS Hover', () => {
+	test('nested specificity', () => {
+		const assertSpecificity = (input: string, specificity: string, languageId = 'scss') => {
+			const document = TextDocument.create(`test://test/test.${languageId}`, languageId, 0, input.replace('|', ''));
+			const ls = languageId === 'less' ? getLESSLanguageService() : getSCSSLanguageService();
+			const hover = ls.doHover(document, document.positionAt(input.indexOf('|')), ls.parseStylesheet(document));
+			assert.strictEqual((<MarkedString[]>hover!.contents).at(-1), `[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): ${specificity}`, input);
+		};
+		assertSpecificity('input { #id { |p { color: red; } } }', '(1, 0, 2)'); // #309
+		assertSpecificity('input #id |p { color: red; }', '(1, 0, 2)');
+		assertSpecificity('.a { > .|b {} }', '(0, 2, 0)');
+		assertSpecificity('.a { &:h|over {} }', '(0, 2, 0)');
+		assertSpecificity('.a { .b |& {} }', '(0, 2, 0)');
+		assertSpecificity('.a { & + |& {} }', '(0, 2, 0)'); // each `&` counts
+		assertSpecificity('.a { &-|b {} }', '(0, 1, 0)'); // suffix, still a single class
+		assertSpecificity('.a, #b { .|c {} }', '(1, 1, 0)'); // most specific parent selector
+		assertSpecificity('#x { .y { @media print { |p {} } } }', '(1, 1, 1)');
+		assertSpecificity('.a { @at-root { .|b {} } }', '(0, 1, 0)');
+		assertSpecificity('.a { @at-root (without: media) { .|b {} } }', '(0, 1, 0)');
+		assertSpecificity('.a { @at-root .|b {} }', '(0, 1, 0)');
+		assertSpecificity('.a { @at-root .b { .|c {} } }', '(0, 2, 0)');
+		assertSpecificity('.a { @mixin m { .|b {} } }', '(0, 1, 0)');
+		assertSpecificity('.a { @scope (.x) { .|b {} } }', '(0, 1, 0)'); // relative to `:where(:scope)`
+		assertSpecificity('@scope (.x) { .a { .|b {} } }', '(0, 2, 0)');
+		assertSpecificity('.a { &-|& {} }', '(0, 2, 0)', 'less');
+	});
+
 	test('@at-root', () => {
 		assertHover(
 			'.test { @|at-root { }',
