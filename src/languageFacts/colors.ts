@@ -996,7 +996,7 @@ export function getColorValue(node: nodes.Node): Color | null {
 			const functionArg = colorValues[0].getChildren();
 			if (functionArg.length === 1 && functionArg[0].type === nodes.NodeType.Expression) {
 				colorValues = functionArg[0].getChildren();
-				if (colorValues.length === 3) {
+				if (colorValues.length === 3 && name !== 'color') { // `color()` has a color space before the channels
 					const lastValue = colorValues[2];
 					if (lastValue instanceof nodes.BinaryExpression) {
 						const left = lastValue.getLeft(), right = lastValue.getRight(), operator = lastValue.getOperator();

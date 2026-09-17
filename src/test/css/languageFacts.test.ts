@@ -203,6 +203,7 @@ suite('CSS - Language Facts', () => {
 		assertColor(parser, '#main { color: color(xyz-d50 0.2 0.4 0.6) }', 'color(', colorFrom256RGB(0, 202.03, 226.72));
 		assertColor(parser, '#main { color: color(foo 1 0 0) }', 'color(', null, true);
 		assertColor(parser, '#main { color: color(display-p3 1 0) }', 'color(', null, true);
+		assertColor(parser, '#main { color: color(display-p3 1 0 / 0.5) }', 'color(', null, true);
 		assertColor(parser, '#main { color: color(display-p3 1 0 0 0) }', 'color(', null, true);
 	});
 
