@@ -392,12 +392,24 @@ export class SelectorPrinting {
 			return specificity;
 		};
 
+		// the specificity of the nesting selector `&` in the selector that is currently scored
+		let nestingSelectorSpecificity = new Specificity();
+
 		//https://www.w3.org/TR/selectors-3/#specificity
 		const calculateScore = (node: nodes.Node): Specificity => {
 			const specificity = new Specificity();
 
 			elementLoop: for (const element of node.getChildren()) {
 				switch (element.type) {
+					case nodes.NodeType.SelectorCombinator: {
+						// `&`, LESS allows several in one, e.g. `&-&`
+						const count = element.getText().split('&').length - 1;
+						specificity.id += count * nestingSelectorSpecificity.id;
+						specificity.attr += count * nestingSelectorSpecificity.attr;
+						specificity.tag += count * nestingSelectorSpecificity.tag;
+						continue elementLoop;
+					}
+
 					case nodes.NodeType.IdentifierSelector:
 						specificity.id++;
 						break;
@@ -542,40 +554,34 @@ export class SelectorPrinting {
 			if (specificity) {
 				return specificity;
 			}
-			specificity = calculateScore(node);
-			nestedScores.set(node, specificity);
 
-			const ruleSet = node.getParent();
-			const parentRuleSet = getParentRuleSet(ruleSet);
-			if (!ruleSet || !parentRuleSet || node.getText().startsWith('@at-root')) {
-				return specificity;
-			}
-			for (let parent = ruleSet.getParent(); parent !== parentRuleSet; parent = parent!.getParent()) {
-				if (parent!.type === nodes.NodeType.Scope) {
-					return specificity; // rules in `@scope` are relative to `:where(:scope)`, which adds nothing
-				}
-			}
-
+			const parentRuleSet = getNestingParentRuleSet(node);
 			let mostSpecificParent = new Specificity();
-			for (const parentSelector of parentRuleSet.getSelectors().getChildren()) {
-				const parentSpecificity = calculateNestedScore(parentSelector);
-				if (compareSpecificity(parentSpecificity, mostSpecificParent) > 0) {
-					mostSpecificParent = parentSpecificity;
+			if (parentRuleSet) {
+				for (const parentSelector of parentRuleSet.getSelectors().getChildren()) {
+					const parentSpecificity = calculateNestedScore(parentSelector);
+					if (compareSpecificity(parentSpecificity, mostSpecificParent) > 0) {
+						mostSpecificParent = parentSpecificity;
+					}
 				}
 			}
 
-			let nestingSelectors = 0;
-			node.accept(child => {
-				if (child.type === nodes.NodeType.SelectorCombinator) {
-					nestingSelectors += child.getText().split('&').length - 1; // LESS allows several in one, e.g. `&-&`
-				}
-				return true;
-			});
-			const count = Math.max(nestingSelectors, 1);
+			nestingSelectorSpecificity = mostSpecificParent;
+			specificity = calculateScore(node);
 
-			specificity.id += count * mostSpecificParent.id;
-			specificity.attr += count * mostSpecificParent.attr;
-			specificity.tag += count * mostSpecificParent.tag;
+			let hasNestingSelector = false;
+			node.accept(child => {
+				hasNestingSelector ||= child.type === nodes.NodeType.SelectorCombinator;
+				return !hasNestingSelector;
+			});
+			if (parentRuleSet && !hasNestingSelector) {
+				// implied `& ` in front of the selector
+				specificity.id += mostSpecificParent.id;
+				specificity.attr += mostSpecificParent.attr;
+				specificity.tag += mostSpecificParent.tag;
+			}
+
+			nestedScores.set(node, specificity);
 			return specificity;
 		};
 
@@ -662,6 +668,20 @@ function getParentRuleSet(ruleSet: nodes.Node | null): nodes.RuleSet | null {
 		}
 	}
 	return null;
+}
+
+function getNestingParentRuleSet(selector: nodes.Node): nodes.RuleSet | null {
+	const ruleSet = selector.getParent();
+	if (!(ruleSet instanceof nodes.RuleSet) || ruleSet.getSelectors().getChild(0)?.getText().startsWith('@at-root')) {
+		return null; // `@at-root .a, .b` applies to the whole list
+	}
+	const parentRuleSet = getParentRuleSet(ruleSet);
+	for (let parent = ruleSet.getParent(); parent && parent !== parentRuleSet; parent = parent.getParent()) {
+		if (parent.type === nodes.NodeType.Scope) {
+			return null; // rules in `@scope` are relative to `:where(:scope)`, which adds nothing
+		}
+	}
+	return parentRuleSet;
 }
 
 export function selectorToElement(node: nodes.Selector): Element | null {

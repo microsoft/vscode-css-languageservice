@@ -145,11 +145,14 @@ suite('SCSS Hover', () => {
 		assertSpecificity('.a { & + |& {} }', '(0, 2, 0)'); // each `&` counts
 		assertSpecificity('.a { &-|b {} }', '(0, 1, 0)'); // suffix, still a single class
 		assertSpecificity('.a, #b { .|c {} }', '(1, 1, 0)'); // most specific parent selector
+		assertSpecificity('.a { :where(&) .|b {} }', '(0, 1, 0)'); // `&` follows the rules of the pseudo-class it's in
+		assertSpecificity('#x { :is(&, .c) .|d {} }', '(1, 1, 0)');
 		assertSpecificity('#x { .y { @media print { |p {} } } }', '(1, 1, 1)');
 		assertSpecificity('.a { @at-root { .|b {} } }', '(0, 1, 0)');
 		assertSpecificity('.a { @at-root (without: media) { .|b {} } }', '(0, 1, 0)');
 		assertSpecificity('.a { @at-root .|b {} }', '(0, 1, 0)');
 		assertSpecificity('.a { @at-root .b { .|c {} } }', '(0, 2, 0)');
+		assertSpecificity('.a { @at-root .b, .|c {} }', '(0, 1, 0)');
 		assertSpecificity('.a { @mixin m { .|b {} } }', '(0, 1, 0)');
 		assertSpecificity('.a { @scope (.x) { .|b {} } }', '(0, 1, 0)'); // relative to `:where(:scope)`
 		assertSpecificity('@scope (.x) { .a { .|b {} } }', '(0, 2, 0)');
