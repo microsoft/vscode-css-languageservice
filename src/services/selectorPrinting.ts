@@ -555,10 +555,10 @@ export class SelectorPrinting {
 				return specificity;
 			}
 
-			const parentRuleSet = getNestingParentRuleSet(node);
+			const nestingParent = getNestingParent(node);
 			let mostSpecificParent = new Specificity();
-			if (parentRuleSet) {
-				for (const parentSelector of parentRuleSet.getSelectors().getChildren()) {
+			if (nestingParent) {
+				for (const parentSelector of nestingParent.ruleSet.getSelectors().getChildren()) {
 					const parentSpecificity = calculateNestedScore(parentSelector);
 					if (compareSpecificity(parentSpecificity, mostSpecificParent) > 0) {
 						mostSpecificParent = parentSpecificity;
@@ -574,7 +574,7 @@ export class SelectorPrinting {
 				hasNestingSelector ||= child.type === nodes.NodeType.SelectorCombinator;
 				return !hasNestingSelector;
 			});
-			if (parentRuleSet && !hasNestingSelector) {
+			if (nestingParent?.implicit && !hasNestingSelector) {
 				// implied `& ` in front of the selector
 				specificity.id += mostSpecificParent.id;
 				specificity.attr += mostSpecificParent.attr;
@@ -670,18 +670,28 @@ function getParentRuleSet(ruleSet: nodes.Node | null): nodes.RuleSet | null {
 	return null;
 }
 
-function getNestingParentRuleSet(selector: nodes.Node): nodes.RuleSet | null {
+/**
+ * The rule that `&` refers to in the given selector, and whether the selector is relative to it without an explicit `&`.
+ */
+function getNestingParent(selector: nodes.Node): { ruleSet: nodes.RuleSet; implicit: boolean } | null {
 	const ruleSet = selector.getParent();
-	if (!(ruleSet instanceof nodes.RuleSet) || ruleSet.getSelectors().getChild(0)?.getText().startsWith('@at-root')) {
-		return null; // `@at-root .a, .b` applies to the whole list
+	if (!(ruleSet instanceof nodes.RuleSet)) {
+		return null;
 	}
-	const parentRuleSet = getParentRuleSet(ruleSet);
-	for (let parent = ruleSet.getParent(); parent && parent !== parentRuleSet; parent = parent.getParent()) {
+	// `@at-root .a, .b` and `@at-root { }` move rules to the root, but an explicit `&` still refers to the parent
+	let implicit = !ruleSet.getSelectors().getChild(0)?.getText().startsWith('@at-root');
+	for (let parent = ruleSet.getParent(); parent && !isNewSelectorContext(parent); parent = parent.getParent()) {
 		if (parent.type === nodes.NodeType.Scope) {
 			return null; // rules in `@scope` are relative to `:where(:scope)`, which adds nothing
 		}
+		if (parent instanceof nodes.RuleSet) {
+			if (!parent.getSelectors().matches('@at-root')) {
+				return { ruleSet: parent, implicit };
+			}
+			implicit = false;
+		}
 	}
-	return parentRuleSet;
+	return null;
 }
 
 export function selectorToElement(node: nodes.Selector): Element | null {

@@ -153,6 +153,9 @@ suite('SCSS Hover', () => {
 		assertSpecificity('.a { @at-root .|b {} }', '(0, 1, 0)');
 		assertSpecificity('.a { @at-root .b { .|c {} } }', '(0, 2, 0)');
 		assertSpecificity('.a { @at-root .b, .|c {} }', '(0, 1, 0)');
+		assertSpecificity('.a { @at-root .x |& {} }', '(0, 2, 0)'); // an explicit `&` still refers to the parent
+		assertSpecificity('.a { .b { @at-root .x & { .|c {} } } }', '(0, 4, 0)');
+		assertSpecificity('.a { @at-root { .b |& {} } }', '(0, 2, 0)');
 		assertSpecificity('.a { @mixin m { .|b {} } }', '(0, 1, 0)');
 		assertSpecificity('.a { @scope (.x) { .|b {} } }', '(0, 1, 0)'); // relative to `:where(:scope)`
 		assertSpecificity('@scope (.x) { .a { .|b {} } }', '(0, 2, 0)');
