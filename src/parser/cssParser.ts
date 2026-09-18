@@ -1045,7 +1045,7 @@ export class Parser {
 		return this.finish(node);
 	}
 
-	private _parseSupportsConditionInParens(): nodes.Node {
+	protected _parseSupportsConditionInParens(): nodes.Node {
 		const node = this.create(nodes.SupportsCondition);
 		if (this.accept(TokenType.ParenthesisL)) {
 			if (this.prevToken) {

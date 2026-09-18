@@ -212,6 +212,7 @@ suite('CSS - Parser', () => {
 		assertNode('@supports not (--validValue: , 0 ) {}', parser, parser._parseSupports.bind(parser)); // #82178
 		assertError('@supports (transition-property: color) or (animation-name: foo) and (transform: rotate(10deg)) { }', parser, parser._parseSupports.bind(parser), ParseError.LeftCurlyExpected);
 		assertError('@supports display: flexbox { }', parser, parser._parseSupports.bind(parser), ParseError.LeftParenthesisExpected);
+		assertError('@supports not #{$foo} { }', parser, parser._parseSupports.bind(parser), ParseError.LeftParenthesisExpected);
 	});
 
 	test('@media', function () {
