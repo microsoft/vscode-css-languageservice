@@ -34,7 +34,7 @@ export class SCSSParser extends cssParser.Parser {
 				|| this._parseRuleset(isNested) // @at-rule
 				|| super._parseStylesheetAtStatement(isNested);
 		}
-		return this._parseRuleset(true) || this._parseVariableDeclaration();
+		return this._parseVariableDeclaration() || this._parseRuleset(true);
 	}
 
 	public _parseImport(): nodes.Node | null {
@@ -59,14 +59,15 @@ export class SCSSParser extends cssParser.Parser {
 	}
 
 	// scss variables: $font-size: 12px;
+	// or a variable of another module: lib.$font-size: 12px;
 	public _parseVariableDeclaration(panic: TokenType[] = []): nodes.VariableDeclaration | null {
-		if (!this.peek(scssScanner.VariableName)) {
+		if (!this.peek(scssScanner.VariableName) && !this.peekModuleVariable()) {
 			return null;
 		}
 
 		const node = <nodes.VariableDeclaration>this.create(nodes.VariableDeclaration);
 
-		if (!node.setVariable(this._parseVariable())) {
+		if (!node.setVariable(this._parseVariable()) && !node.addChild(this._tryParseModuleVariable())) {
 			return null;
 		}
 
@@ -132,6 +133,21 @@ export class SCSSParser extends cssParser.Parser {
 		const node = <nodes.Variable>this.create(nodes.Variable);
 		this.consumeToken();
 		return <nodes.Variable>node;
+	}
+
+	private peekModuleVariable(): boolean {
+		// an identifier immediately followed by `.$`, checked on the text to keep this cheap for every declaration
+		return this.peek(TokenType.Ident) && this.scanner.substring(this.token.offset + this.token.len, 2) === '.$';
+	}
+
+	private _tryParseModuleVariable(): nodes.Module | null {
+		const pos = this.mark();
+		const module = this._parseModuleMember();
+		if (!module || !this.peek(TokenType.Colon)) {
+			this.restoreAtMark(pos);
+			return null;
+		}
+		return module;
 	}
 
 	public _parseModuleMember(): nodes.Module | null {

@@ -10,7 +10,7 @@ import { SCSSParser } from '../../parser/scssParser.js';
 import { ParseError } from '../../parser/cssErrors.js';
 import { SCSSParseError } from '../../parser/scssErrors.js';
 
-import { assertNode, assertError } from '../testUtil/parser.js';
+import { assertNode, assertError, assertNoNode } from '../testUtil/parser.js';
 
 suite('SCSS - Parser', () => {
 
@@ -74,6 +74,11 @@ suite('SCSS - Parser', () => {
 		assertNode('$color: red !important', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('$colors: ["#69ffae", "#1ae5b5"]', parser, parser._parseVariableDeclaration.bind(parser)); // #399
 		assertNode('$sizes: [1px, 2px] !default', parser, parser._parseVariableDeclaration.bind(parser)); // #231
+		assertNode('lib.$color: #F5F5F5', parser, parser._parseVariableDeclaration.bind(parser)); // #224
+		assertNode('lib.$color : 25.5px !default', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNoNode('lib.$color', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNoNode('lib.color: red', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNoNode('lib.fn(): red', parser, parser._parseVariableDeclaration.bind(parser));
 
 		assertError('$color: red !def', parser, parser._parseVariableDeclaration.bind(parser), ParseError.UnknownKeyword);
 		assertError('$color : !default', parser, parser._parseVariableDeclaration.bind(parser), ParseError.VariableValueExpected);
@@ -369,6 +374,13 @@ suite('SCSS - Parser', () => {
 		assertNode('@forward "test"; @use "lib"', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@use "test"; @use "lib"', parser, parser._parseStylesheet.bind(parser));
 		assertNode('$test: "test"; @use "lib"', parser, parser._parseStylesheet.bind(parser));
+
+		// assigning a variable of another module, #224, #278
+		assertNode('@use "lib"; lib.$color: red; .a { color: lib.$color; }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@use "lib"; .a { lib.$color: red; color: blue; }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@use "lib"; @if $a { lib.$color: $b; } .a { color: blue; }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@use "lib"; @mixin m { lib.$color: red; } @function f() { lib.$color: red; @return 1; }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('a.b { color: red; } .c { a.b { color: red; } }', parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('@forward', function () {

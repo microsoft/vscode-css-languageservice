@@ -346,6 +346,9 @@ suite('SCSS - Navigation', () => {
 			assertDocumentSymbols(ls, '@mixin foo { }', [{ name: 'foo', kind: SymbolKind.Method, range: newRange(0, 14), selectionRange: newRange(7, 10) }]);
 			assertDocumentSymbols(ls, '@mixin {}', [{ name: '<undefined>', kind: SymbolKind.Method, range: newRange(0, 9), selectionRange: newRange(0, 0) }]);
 
+			// Assigning a variable of another module does not declare a symbol
+			assertDocumentSymbols(ls, 'lib.$a: 1; $b: 2;', [{ name: '$b', kind: SymbolKind.Variable, range: newRange(11, 16), selectionRange: newRange(11, 13) }], 'scss');
+
 		});
 	});
 

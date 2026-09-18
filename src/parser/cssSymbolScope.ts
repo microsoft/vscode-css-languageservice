@@ -200,6 +200,9 @@ export class ScopeBuilder implements nodes.IVisitor {
 	}
 
 	public visitVariableDeclarationNode(node: nodes.VariableDeclaration): boolean {
+		if (!node.getVariable()) {
+			return true; // assignment to a variable of another module, e.g. `lib.$color: red`
+		}
 		const value = node.getValue() ? node.getValue()!.getText() : void 0;
 		this.addSymbol(node, node.getName(), value, nodes.ReferenceType.Variable);
 		return true;

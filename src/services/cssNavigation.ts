@@ -282,7 +282,10 @@ export class CSSNavigation {
 					}
 				}
 			} else if (node instanceof nodes.VariableDeclaration) {
-				collect(node.getName(), SymbolKind.Variable, node, node.getVariable(), undefined);
+				const variable = node.getVariable();
+				if (variable) { // not for assignments to a variable of another module, e.g. `lib.$color: red`
+					collect(node.getName(), SymbolKind.Variable, node, variable, undefined);
+				}
 			} else if (node instanceof nodes.MixinDeclaration) {
 				collect(node.getName(), SymbolKind.Method, node, node.getIdentifier(), node.getDeclarations());
 			} else if (node instanceof nodes.FunctionDeclaration) {
