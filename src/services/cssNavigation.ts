@@ -6,9 +6,11 @@
 
 import {
 	AliasSettings, Color, ColorInformation, ColorPresentation, DocumentHighlight, DocumentHighlightKind, DocumentLink, Location,
-	Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit, TextDocument, DocumentContext, FileSystemProvider, FileType, DocumentSymbol
+	Position, Range, SymbolInformation, SymbolKind, TextEdit, WorkspaceEdit, TextDocument, DocumentContext, FileSystemProvider, FileType, DocumentSymbol,
+    DocumentUri, LanguageSettings
 } from '../cssLanguageTypes.js';
 import * as l10n from '@vscode/l10n';
+import { Utils, URI } from 'vscode-uri';
 import * as nodes from '../parser/cssNodes.js';
 import { Symbols } from '../parser/cssSymbolScope.js';
 import {
@@ -28,11 +30,20 @@ type UnresolvedLinkData = { link: DocumentLink, isRawLink: boolean };
 
 type DocumentSymbolCollector = (name: string, kind: SymbolKind, symbolNodeOrRange: nodes.Node | Range, nameNodeOrRange: nodes.Node | Range | undefined, bodyNode: nodes.Node | undefined) => void;
 
+interface VSCodeSettings {
+	[key: string]: any;
+	css: LanguageSettings;
+	scss: LanguageSettings;
+	less: LanguageSettings;
+}
+
 const startsWithSchemeRegex = /^\w+:\/\//;
 const startsWithData = /^data:/;
 
 export class CSSNavigation {
 	protected defaultSettings?: AliasSettings;
+	private documentSettingsUriCache = new Map<string, string | undefined>();
+	private aliasCache = new Map<string, AliasSettings>();
 
 	constructor(protected fileSystemProvider: FileSystemProvider | undefined, private readonly resolveModuleReferences: boolean) {
 	}
@@ -408,6 +419,11 @@ export class CSSNavigation {
 		};
 	}
 
+	public clearCache(): void {
+		this.aliasCache.clear();
+		this.documentSettingsUriCache.clear();
+	}
+
 	protected async resolveModuleReference(ref: string, documentUri: string, documentContext: DocumentContext): Promise<string | undefined> {
 		if (startsWith(documentUri, 'file://')) {
 			const moduleName = getModuleNameFromPath(ref);
@@ -458,25 +474,107 @@ export class CSSNavigation {
 
 		// Try resolving the reference from the language configuration alias settings
 		if (ref && !(await this.fileExists(ref))) {
-			const rootFolderUri = documentContext.resolveReference('/', documentUri);
-			if (settings && rootFolderUri) {
-				// Specific file reference
-				if (target in settings) {
-					return this.mapReference(joinPath(rootFolderUri, settings[target]), isRawLink);
+			const workspaceFolder = documentContext.resolveReference('/', documentUri);
+			
+			if (workspaceFolder) {
+				if (settings) {
+					// Single/Multi-root workspace support
+					const aliasMatch = await this.resolveAliasFromSettings(settings, target, workspaceFolder, isRawLink);
+					if (aliasMatch) {
+						return aliasMatch;
+					}
 				}
-				// Reference folder
-				const firstSlash = target.indexOf('/');
-				const prefix = `${target.substring(0, firstSlash)}/`;
-				if (prefix in settings) {
-					const aliasPath = (settings[prefix]).slice(0, -1);
-					let newPath = joinPath(rootFolderUri, aliasPath);
-					return this.mapReference(newPath = joinPath(newPath, target.substring(prefix.length - 1)), isRawLink);
+				
+				// settings === null; attempt directory tree traversal
+				const settingsUri = await this.getSettingsUri(workspaceFolder, documentUri);
+				if (settingsUri) {
+					const effectiveWorkspaceFolder = joinPath(settingsUri, '../../');
+					const aliases = await this.getAliasesFromSettings(settingsUri, effectiveWorkspaceFolder, documentUri);
+					if (aliases) {
+						const aliasMatch = await this.resolveAliasFromSettings(aliases, target, effectiveWorkspaceFolder, isRawLink);
+						if (aliasMatch) {
+							return aliasMatch;
+						}
+					}
 				}
 			}
-		}
+		}	
 
 		// fall back. it might not exists
 		return ref;
+	}
+
+	private async resolveAliasFromSettings(settings: AliasSettings, target: string, workspaceFolder: string, isRawLink = false) {
+		// Specific file reference
+		if (target in settings) {
+			return this.mapReference(joinPath(workspaceFolder, settings[target]), isRawLink);
+		}
+		// Reference folder
+		const firstSlash = target.indexOf('/');
+		const prefix = `${target.substring(0, firstSlash)}/`;
+		if (prefix in settings) {
+			const aliasPath = settings[prefix].slice(0, -1);
+			let newPath = joinPath(workspaceFolder, aliasPath);
+			return this.mapReference((newPath = joinPath(newPath, target.substring(prefix.length - 1))), isRawLink);
+		}
+	}
+
+	private async getSettingsUri(workspaceFolder: string, documentUri: string): Promise<string | undefined> {
+		if (this.documentSettingsUriCache.has(documentUri)) {
+			return this.documentSettingsUriCache.get(documentUri);
+		}
+		const settings = await this.findNearestSettings(workspaceFolder, documentUri);
+		this.documentSettingsUriCache.set(documentUri, settings?.fsPath);
+		return settings?.fsPath;
+	}
+
+	private async getAliasesFromSettings(settingsUri: string, workspaceFolder: string, documentUri: string): Promise<AliasSettings | undefined> {
+		if (this.aliasCache.has(settingsUri)) {
+			return this.aliasCache.get(settingsUri);
+		}
+
+		const settingsJSON = await this.parseSettingsFile(settingsUri);
+		if (settingsJSON) {
+			const documentExt = Utils.extname(URI.parse(documentUri)).slice(1);
+			const aliases = settingsJSON[`${documentExt}.importAliases`];
+			this.aliasCache.set(settingsUri, aliases);
+			return aliases;
+		}
+		// Prevent repeated lookup
+		this.aliasCache.set(settingsUri, {});
+		return {};
+	}
+
+	private async parseSettingsFile(settingsPath: string): Promise<VSCodeSettings | undefined> {
+		try {
+			const text = await this.readFile(settingsPath);
+			if (text !== undefined) {
+				const json = JSON.parse(text);
+				return json;
+			}
+		} catch (error) {
+		}
+		return undefined;
+	}
+
+	private async findNearestSettings(workspaceFolder: string, documentUri: string): Promise<URI | undefined> {
+		// Walks up from documentUri toward workspaceFolder. Stop at first .vscode/settings.json
+		const document = URI.parse(documentUri);
+		const root = URI.parse(workspaceFolder);
+		let current = document;
+
+		while (current.path.startsWith(root.path)) {
+			const candidate = Utils.joinPath(current, '.vscode', 'settings.json');
+			if (await this.fileExists(candidate.toString())) {
+				return candidate;
+			}
+			const parent = Utils.dirname(current);
+			if (parent.path === current.path) {
+				break;
+			}
+			current = parent;
+		}
+		return undefined;
 	}
 
 	protected async resolvePathToModule(_moduleName: string, documentFolderUri: string, rootFolderUri: string | undefined): Promise<string | undefined> {
@@ -505,6 +603,17 @@ export class CSSNavigation {
 			return true;
 		} catch (err) {
 			return false;
+		}
+	}
+
+	protected async readFile(uri: DocumentUri): Promise<string | undefined> {
+		if (!this.fileSystemProvider || !this.fileSystemProvider.getContent) {
+			return undefined;
+		}
+		try {
+			return await this.fileSystemProvider.getContent(uri);
+		} catch (err) {
+			return undefined;
 		}
 	}
 
