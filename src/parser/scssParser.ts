@@ -37,6 +37,10 @@ export class SCSSParser extends cssParser.Parser {
 		return this._parseRuleset(true) || this._parseVariableDeclaration();
 	}
 
+	public _parseUnknownAtRule(): nodes.Node | null {
+		return super._parseUnknownAtRule(scssScanner.InterpolationFunction);
+	}
+
 	public _parseImport(): nodes.Node | null {
 
 		if (!this.peekKeyword('@import')) {

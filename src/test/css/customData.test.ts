@@ -8,7 +8,7 @@ import { suite, test } from 'node:test';
 import * as assert from 'node:assert';
 
 import { testCompletionFor } from '../testUtil/completion.js';
-import { getCSSLanguageService, TextDocument, newCSSDataProvider, LanguageSettings } from '../../cssLanguageService.js';
+import { getCSSLanguageService, getSCSSLanguageService, TextDocument, newCSSDataProvider, LanguageSettings } from '../../cssLanguageService.js';
 
 
 suite('CSS - Custom Data', async () => {
@@ -125,5 +125,22 @@ suite('CSS - Custom Data Diagnostics', () => {
 
 	test('No unknown at-directives', () => {
 		testValidationFor(`@foo 'bar';`, []);
+	});
+});
+
+suite('SCSS - Custom Data Diagnostics', () => {
+	test('interpolation in custom at-rules', () => {
+		const document = TextDocument.create('test://test/test.scss', 'scss', 0,
+			'$base: 16px; .container { @custom { --a-variable: #{90 * $base}; } }');
+		const service = getSCSSLanguageService();
+		const stylesheet = service.parseStylesheet(document);
+		assert.deepEqual(service.doValidation(document, stylesheet).map(d => d.code), ['unknownAtRules']);
+		service.setDataProviders(true, [newCSSDataProvider({ version: 1.1, atDirectives: [{ name: '@custom', description: 'Custom directive' }] })]);
+		assert.deepEqual(service.doValidation(document, stylesheet), []);
+		const offset = document.getText().indexOf('@custom');
+		assert.deepEqual(service.doHover(document, document.positionAt(offset + 1), stylesheet), {
+			contents: { kind: 'markdown', value: 'Custom directive' },
+			range: { start: document.positionAt(offset), end: document.positionAt(offset + '@custom'.length) }
+		});
 	});
 });

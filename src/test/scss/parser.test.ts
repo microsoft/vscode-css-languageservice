@@ -42,6 +42,25 @@ suite('SCSS - Parser', () => {
 		assertNode(' a { b: // single line comment\n  c }', parser, parser._parseStylesheet.bind(parser));
 	});
 
+	for (const value of [
+		'$base: 16px; .container { @custom { --a-variable: #{90 * $base}; } }',
+		'@custom #{$name} { color: red; } .after { color: blue; }',
+		'.container { @custom #{$name}; color: red; }',
+		'.container { @custom { .nested { width: #{1 + 2}px; } } color: blue; }',
+		'@custom { value: #{1 + #{2}}; other: #{$name}; } .after { color: blue; }'
+	]) {
+		test(`unknown at-rule interpolation: ${value}`, () => {
+			const parser = new SCSSParser();
+			assertNode(value, parser, parser._parseStylesheet.bind(parser));
+		});
+	}
+
+	test('unknown at-rule interpolation errors', () => {
+		const parser = new SCSSParser();
+		assertError('@custom { value: #{1 + 2', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
+		assertError('@custom { value: #{1 + 2}', parser, parser._parseStylesheet.bind(parser), ParseError.RightCurlyExpected);
+	});
+
 	test('Variable', function () {
 		const parser = new SCSSParser();
 		assertNode('$color', parser, parser._parseVariable.bind(parser));
