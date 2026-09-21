@@ -44,14 +44,30 @@ export class SCSSNavigation extends CSSNavigation {
 		// look for the `exports` field of the module and any `sass`, `style` or `default` that matches the import.
 		// If it's only `pkg:module`, also look for `sass` and `style` on the root of package.json.
 		if (target.startsWith('pkg:')) {
-			return this.resolvePkgModulePath(target, documentUri, documentContext);
+			return this.resolvePackageExports(target.replace('pkg:', ''), documentUri, documentContext);
+		}
+		// Bundlers such as Vite and webpack also apply the `exports` field to imports without the `pkg:` prefix.
+		// With `"./styles/*": "./dist/styles/*"` the import string doesn't match the file system,
+		// so look up `exports` before falling back to a plain `node_modules` path.
+		// A relative file still takes precedence, like in the Sass compiler.
+		if (this.fileSystemProvider && isBareModulePath(target)) {
+			const relativeRef = await this.mapReference(documentContext.resolveReference(target, documentUri), isRawLink);
+			if (relativeRef && await this.fileExists(relativeRef)) {
+				return relativeRef;
+			}
+			const exportsRef = await this.resolvePackageExports(target, documentUri, documentContext);
+			if (exportsRef && await this.fileExists(exportsRef)) {
+				return exportsRef;
+			}
 		}
 		return super.resolveReference(target, documentUri, documentContext, isRawLink);
 	}
 
-	private async resolvePkgModulePath(target: string, documentUri: string, documentContext: DocumentContext): Promise<string | undefined> {
-		const bareTarget = target.replace('pkg:', '');
+	private async resolvePackageExports(bareTarget: string, documentUri: string, documentContext: DocumentContext): Promise<string | undefined> {
 		const moduleName = bareTarget.includes('/') ? getModuleNameFromPath(bareTarget) : bareTarget;
+		if (!moduleName) {
+			return undefined;
+		}
 		const rootFolderUri = documentContext.resolveReference('/', documentUri);
 		const documentFolderUri = dirname(documentUri);
 		const modulePath = await this.resolvePathToModule(moduleName, documentFolderUri, rootFolderUri);
@@ -67,7 +83,7 @@ export class SCSSNavigation extends CSSNavigation {
 		let packageJson: {
 			style?: string;
 			sass?: string;
-			exports?: Record<string, string | Record<string, string>>
+			exports?: PackageExport
 		};
 		try {
 			packageJson = JSON.parse(packageJsonContent);
@@ -77,56 +93,42 @@ export class SCSSNavigation extends CSSNavigation {
 		}
 
 		const subpath = bareTarget.substring(moduleName.length + 1);
-		if (packageJson.exports) {
+		const exports = packageJson.exports;
+		if (exports) {
+			const exportsMap = typeof exports === 'object' && !Array.isArray(exports) ? exports : {};
 			if (!subpath) {
 				// exports may look like { "sass": "./_index.scss" } or { ".": { "sass": "./_index.scss" } }
-				const rootExport = packageJson.exports["."] || packageJson.exports;
-				// look for the default/index export
-				// @ts-expect-error If ['.'] is a string this just produces undefined
-				const entry = rootExport && (rootExport['sass'] || rootExport['style'] || rootExport['default']);
-				// the 'default' entry can be whatever, typically .js – confirm it looks like `scss`
-				if (entry && entry.endsWith('.scss')) {
-					const entryPath = joinPath(modulePath, entry);
-					return entryPath;
+				const rootExport = exportsMap['.'] ?? exports;
+				return this.resolveExportEntry(modulePath, getStylesheetEntry(rootExport));
+			}
+			// The import string may be with or without .scss.
+			// Likewise the exports entry. Look up both paths.
+			// However, they need to be relative (start with ./).
+			const lookupSubpath = subpath.endsWith('.scss') ? `./${subpath.replace('.scss', '')}` : `./${subpath}`;
+			const lookupSubpathScss = subpath.endsWith('.scss') ? `./${subpath}` : `./${subpath}.scss`;
+			const subpathExport = exportsMap[lookupSubpathScss] ?? exportsMap[lookupSubpath];
+			if (subpathExport !== undefined) {
+				return this.resolveExportEntry(modulePath, getStylesheetEntry(subpathExport));
+			}
+			// We have a subpath, but found no matches on direct lookup.
+			// It may be a [subpath pattern](https://nodejs.org/api/packages.html#subpath-patterns).
+			// Like Node, try the pattern with the longest prefix first.
+			const patterns = Object.keys(exportsMap)
+				.filter(key => key.includes('*'))
+				.sort((a, b) => b.indexOf('*') - a.indexOf('*'));
+			for (const pattern of patterns) {
+				// Patterns may also be without `.scss` on the left side, so compare without on both sides
+				const re = new RegExp(`^${convertSimple2RegExpPattern(pattern.replace('.scss', '')).replace(/\.\*/g, '(.*)')}$`);
+				const match = re.exec(lookupSubpath);
+				if (!match) {
+					continue;
 				}
-			} else {
-				// The import string may be with or without .scss.
-				// Likewise the exports entry. Look up both paths.
-				// However, they need to be relative (start with ./).
-				const lookupSubpath = subpath.endsWith('.scss') ? `./${subpath.replace('.scss', '')}` : `./${subpath}`;
-				const lookupSubpathScss = subpath.endsWith('.scss') ? `./${subpath}` : `./${subpath}.scss`;
-				const subpathObject = packageJson.exports[lookupSubpathScss] || packageJson.exports[lookupSubpath];
-				if (subpathObject) {
-					// @ts-expect-error If subpathObject is a string this just produces undefined
-					const entry = subpathObject['sass'] || subpathObject['styles'] || subpathObject['default'];
-					// the 'default' entry can be whatever, typically .js – confirm it looks like `scss`
-					if (entry && entry.endsWith('.scss')) {
-						const entryPath = joinPath(modulePath, entry);
-						return entryPath;
-					}
-				} else {
-					// We have a subpath, but found no matches on direct lookup.
-					// It may be a [subpath pattern](https://nodejs.org/api/packages.html#subpath-patterns).
-					for (const [maybePattern, subpathObject] of Object.entries(packageJson.exports)) {
-						if (!maybePattern.includes("*")) {
-							continue;
-						}
-						// Patterns may also be without `.scss` on the left side, so compare without on both sides
-						const re = new RegExp(convertSimple2RegExpPattern(maybePattern.replace('.scss', '')).replace(/\.\*/g, '(.*)'));
-						const match = re.exec(lookupSubpath);
-						if (match) {
-							// @ts-expect-error If subpathObject is a string this just produces undefined
-							const entry = subpathObject['sass'] || subpathObject['styles'] || subpathObject['default'];
-							// the 'default' entry can be whatever, typically .js – confirm it looks like `scss`
-							if (entry && entry.endsWith('.scss')) {
-								// The right-hand side of a subpath pattern is also a pattern.
-								// Replace the pattern with the match from our regexp capture group above.
-								const expandedPattern = entry.replace('*', match[1]);
-								const entryPath = joinPath(modulePath, expandedPattern);
-								return entryPath;
-							}
-						}
-					}
+				// The right-hand side of a subpath pattern is also a pattern.
+				// Replace the pattern with the match from our regexp capture group above.
+				const entry = getStylesheetEntry(exportsMap[pattern])?.replace('*', match[1]);
+				const entryPath = await this.resolveExportEntry(modulePath, entry);
+				if (entryPath) {
+					return entryPath;
 				}
 			}
 		} else if (!subpath && (packageJson.sass || packageJson.style)) {
@@ -141,6 +143,66 @@ export class SCSSNavigation extends CSSNavigation {
 
 	}
 
+	private async resolveExportEntry(modulePath: string, entry: string | undefined): Promise<string | undefined> {
+		if (!entry) {
+			return undefined;
+		}
+		const entryPath = joinPath(modulePath, entry);
+		// the 'default' entry can be whatever, typically .js – confirm it looks like `scss`
+		if (entry.endsWith('.scss')) {
+			return entryPath;
+		}
+		// Entries such as `./dist/styles/*` have no file extension once expanded.
+		// Look for partials, index files and extensions the same way Sass does.
+		// Anything else, like the `.js` file of a `default` entry, won't match a stylesheet.
+		for (const variation of toPathVariations(entryPath)) {
+			if (await this.fileExists(variation)) {
+				return variation;
+			}
+		}
+		return undefined;
+	}
+
+}
+
+type PackageExport = string | null | PackageExport[] | { [conditionOrSubpath: string]: PackageExport };
+
+const stylesheetConditions = ['sass', 'style', 'styles', 'default'];
+
+/**
+ * Picks the target of an `exports` entry. A string entry is used as is,
+ * conditional entries are checked for `sass`, `style` and `default`.
+ */
+function getStylesheetEntry(packageExport: PackageExport | undefined): string | undefined {
+	if (typeof packageExport === 'string') {
+		return packageExport;
+	}
+	if (Array.isArray(packageExport)) {
+		for (const fallback of packageExport) {
+			const entry = getStylesheetEntry(fallback);
+			if (entry) {
+				return entry;
+			}
+		}
+		return undefined;
+	}
+	if (packageExport) {
+		for (const condition of stylesheetConditions) {
+			const entry = getStylesheetEntry(packageExport[condition]);
+			if (entry) {
+				return entry;
+			}
+		}
+	}
+	return undefined;
+}
+
+/**
+ * A module path like `bootstrap/scss/variables` or `@scope/package/styles`,
+ * as opposed to a relative path, an absolute path or a URL with a scheme.
+ */
+function isBareModulePath(target: string): boolean {
+	return !/^[./~]/.test(target) && !/^[a-z][a-z0-9+.-]*:/i.test(target);
 }
 
 function toPathVariations(target: string): DocumentUri[] {
