@@ -338,6 +338,9 @@ suite('CSS - Navigation', () => {
 			assertColorSymbols(ls, 'body { backgroundColor: hwb(194 0% 0% / .5); }',
 				{ color: colorFromHWB(194, 0, 0, 0.5), range: newRange(24, 43) }
 			);
+			assertColorSymbols(ls, 'body { color: color(display-p3 1 0 0); }',
+				{ color: colorFrom256RGB(255, 0, 0), range: newRange(14, 37) }
+			);
 		});
 
 		test('color presentations', function () {
