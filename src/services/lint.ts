@@ -366,21 +366,24 @@ export class LintVisitor implements nodes.IVisitor {
 		/////////////////////////////////////////////////////////////
 		//	Don't use duplicate declarations.
 		/////////////////////////////////////////////////////////////
-		for (let i = 0; i < propertyTable.length; i++) {
-			const element = propertyTable[i];
-			if (element.fullPropertyName !== 'background' && !this.validProperties[element.fullPropertyName]) {
-				const value = element.node.getValue();
-				if (value && this.documentText.charAt(value.offset) !== '-') {
-					const elements = this.fetch(propertyTable, element.fullPropertyName);
-					if (elements.length > 1) {
-						for (let k = 0; k < elements.length; k++) {
-							const value = elements[k].node.getValue();
-							if (value && this.documentText.charAt(value.offset) !== '-' && elements[k] !== element) {
-								this.addEntry(element.node, Rules.DuplicateDeclarations);
-							}
-						}
-					}
-				}
+		// Count candidates per name in one pass and flag each duplicate once.
+		// A Map, since a property named `constructor` would collide with a plain object.
+		const duplicateCandidates: Element[] = [];
+		const duplicateCandidateCountsByName = new Map<string, number>();
+		for (const element of propertyTable) {
+			if (element.fullPropertyName === 'background' || this.validProperties[element.fullPropertyName]) {
+				continue;
+			}
+			const value = element.node.getValue();
+			if (!value || this.documentText.charAt(value.offset) === '-') {
+				continue;
+			}
+			duplicateCandidates.push(element);
+			duplicateCandidateCountsByName.set(element.fullPropertyName, (duplicateCandidateCountsByName.get(element.fullPropertyName) ?? 0) + 1);
+		}
+		for (const element of duplicateCandidates) {
+			if ((duplicateCandidateCountsByName.get(element.fullPropertyName) ?? 0) > 1) {
+				this.addEntry(element.node, Rules.DuplicateDeclarations);
 			}
 		}
 
