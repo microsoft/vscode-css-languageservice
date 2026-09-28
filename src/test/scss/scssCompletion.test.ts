@@ -32,6 +32,12 @@ suite('SCSS - Completions', () => {
 				{ label: '$i', documentation: '0' }
 			]
 		});
+		await testCompletionFor('lib.$a: 0; $b: 1; body { width: $|', {
+			items: [
+				{ label: '$b', documentation: '1' },
+				{ label: '', notAvailable: true }
+			]
+		});
 		await testCompletionFor('@for $i from 1 through 3 { .item-#{|} { width: 2em * $i; } }', {
 			items: [
 				{ label: '$i' }
