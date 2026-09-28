@@ -65,6 +65,15 @@ suite('LESS - Parser', () => {
 		assertNode('@rules: .mixin(@value)[@lookup][prop]', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('@rules: .mixin[@lookup][prop]', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('@expr: .mixin(@value)[] .mixin(@value2)[]', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode(`@sel: &:not([type='file']):not([type='radio'])`, parser, parser._parseVariableDeclaration.bind(parser)); // #134
+		assertNode('@sel: &-suffix', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('@sel: & + &', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('@sel: & > .b, & ~ .c', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('@sel: :not(.a)', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('@sel: &:hover !important', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode(`@sel: &:not([type='file']); input { @{sel} { color: blue; } }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode('.a { @sel: &:hover; @{sel} { color: blue; } }', parser, parser._parseStylesheet.bind(parser));
+		assertError('@sel: :', parser, parser._parseVariableDeclaration.bind(parser), ParseError.IdentifierExpected);
 	});
 
 	test('MixinDeclaration', function () {
