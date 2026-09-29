@@ -325,6 +325,24 @@ suite('CSS - Completion', () => {
 			]
 		});
 	});
+	test('color functions are proposed once each', async function () {
+		// assertCompletion fails a label that shows up more than once, so these also
+		// cover lab/lch having been registered twice with conflicting signatures.
+		await testCompletionFor('.foo { background-color: l|', {
+			items: [
+				{ label: 'lab', kind: CompletionItemKind.Function, detail: 'lab($lightness $a $b)', resultText: '.foo { background-color: lab(${1:lightness} ${2:a} ${3:b})' },
+				{ label: 'lab relative', kind: CompletionItemKind.Function, detail: 'lab(from $color $lightness $a $b)', resultText: '.foo { background-color: lab(from ${1:color} ${2:l} ${3:a} ${4:b})' },
+				{ label: 'lch', kind: CompletionItemKind.Function, detail: 'lch($lightness $chroma $hue)', resultText: '.foo { background-color: lch(${1:lightness} ${2:chroma} ${3:hue})' },
+				{ label: 'lch relative', kind: CompletionItemKind.Function, detail: 'lch(from $color $lightness $chroma $hue)', resultText: '.foo { background-color: lch(from ${1:color} ${2:l} ${3:c} ${4:h})' },
+			]
+		});
+		await testCompletionFor('.foo { color: o|', {
+			items: [
+				{ label: 'oklab', kind: CompletionItemKind.Function, resultText: '.foo { color: oklab(${1:lightness} ${2:a} ${3:b})' },
+				{ label: 'oklch', kind: CompletionItemKind.Function, resultText: '.foo { color: oklch(${1:lightness} ${2:chroma} ${3:hue})' },
+			]
+		});
+	});
 	test('variables', async function () {
 		await testCompletionFor(':root { --myvar: red; } body { color: |', {
 			items: [

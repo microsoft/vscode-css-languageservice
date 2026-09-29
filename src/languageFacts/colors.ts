@@ -131,32 +131,7 @@ export const colorFunctions = [
 		func: 'color-mix(in $color-space $interpolation-method hue, $color $percentage, $color $percentage)',
 		insertText: 'color-mix(in ${1|hsl,hwb,lch,oklch|} ${2|shorter hue,longer hue,increasing hue,decreasing hue|}, ${3:color} ${4:percentage}, ${5:color} ${6:percentage})',
 		desc: l10n.t('Mix two colors together in a polar color space.')
-	},
-	{
-		label: 'lab',
-		func: 'lab($lightness $channel_a $channel_b $alpha)',
-		insertText: 'lab(${1:lightness} ${2:a} ${3:b} ${4:alpha})',
-		desc: l10n.t('css.builtin.lab', 'Creates a Color from Lightness, Channel a, Channel b and alpha values.')
-	},
-	{
-		label: 'lab relative',
-		func: 'lab(from $color $lightness $channel_a $channel_b $alpha)',
-		insertText: 'lab(from ${1:color} ${2:lightness} ${3:channel_a} ${4:channel_b} ${5:alpha})',
-		desc: l10n.t('css.builtin.lab', 'Creates a Color from Lightness, Channel a, Channel b and alpha values of another Color.')
-	},
-	{
-		label: 'lch',
-		func: 'lch($lightness $chrome $hue $alpha)',
-		insertText: 'lch(${1:lightness} ${2:chrome} ${3:hue} ${4:alpha})',
-		desc: l10n.t('css.builtin.lab', 'Creates a Color from Lightness, Chroma, Hue and alpha values.')
-	},
-	{
-		label: 'lch relative',
-		func: 'lch(from $color $lightness $chrome $hue $alpha)',
-		insertText: 'lch(from ${1:color} ${2:lightness} ${3:chrome} ${4:hue} ${5:alpha})',
-		desc: l10n.t('css.builtin.lab', 'Creates a Color from Lightness, Chroma, Hue and alpha values of another Color.')
 	}
-
 ];
 
 const colorFunctionNameRegExp = /^(?:rgba?|hsla?|hwb|lab|lch|oklab|oklch)$/iu;

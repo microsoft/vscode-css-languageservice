@@ -15,6 +15,7 @@ import {
     colorFromLCH,
     colorFromOKLAB,
     colorFromOKLCH,
+    colorFunctions,
     getColorValue,
     getMissingBaselineBrowsers,
     hexDigit,
@@ -143,6 +144,16 @@ suite('CSS - Language Facts', () => {
 
 		assert.equal(r!.length, 1);
 		assert.equal(r![0], 'color');
+	});
+
+	test('color functions have unique labels', function () {
+		// Every entry is pushed into the completion list as-is, so a repeated label
+		// means the same proposal shows up twice for every color property.
+		const seen = new Set<string>();
+		for (const colorFunction of colorFunctions) {
+			assert.ok(!seen.has(colorFunction.label), `duplicate color function label: ${colorFunction.label}`);
+			seen.add(colorFunction.label);
+		}
 	});
 
 	test('is color', function () {
