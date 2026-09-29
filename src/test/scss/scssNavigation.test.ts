@@ -335,6 +335,33 @@ suite('SCSS - Navigation', () => {
 			);
 		});
 
+		test('SCSS node package resolving through exports without the pkg: prefix', async () => {
+			let ls = getSCSSLS();
+			let testUri = getTestResource('about.scss');
+			let workspaceFolder = getTestResource('');
+
+			async function assertUseLink(url: string, target: string) {
+				const quoted = `"${url}"`;
+				await assertLinks(ls, `@use ${quoted}`,
+					[{ range: newRange(5, 5 + quoted.length), target: getTestResource(target) }], 'scss', testUri, workspaceFolder
+				);
+			}
+
+			// A string subpath pattern pointing into a build folder: "./static/*": "./build/static/*"
+			await assertUseLink('@foo/build-exports/static/styles/theme', 'node_modules/@foo/build-exports/build/static/styles/theme.scss');
+			await assertUseLink('@foo/build-exports/static/styles/theme.scss', 'node_modules/@foo/build-exports/build/static/styles/theme.scss');
+			// The expanded pattern has no file extension, so partials and nested paths are resolved like Sass does
+			await assertUseLink('@foo/build-exports/static/styles/mixins', 'node_modules/@foo/build-exports/build/static/styles/_mixins.scss');
+			await assertUseLink('@foo/build-exports/static/styles/constants/colors', 'node_modules/@foo/build-exports/build/static/styles/constants/colors.scss');
+			// Conditional exports and the root export work without the prefix as well
+			await assertUseLink('@foo/build-exports/theme', 'node_modules/@foo/build-exports/build/static/styles/theme.scss');
+			await assertUseLink('@foo/build-exports', 'node_modules/@foo/build-exports/build/static/styles/_index.scss');
+			// "./node/*": "./build/node/*.js" is no stylesheet, so the plain node_modules path is used as before
+			await assertUseLink('@foo/build-exports/node/helpers', 'node_modules/@foo/build-exports/node/helpers');
+			// The pkg: prefix supports string subpath patterns too
+			await assertUseLink('pkg:@foo/build-exports/static/styles/theme', 'node_modules/@foo/build-exports/build/static/styles/theme.scss');
+		});
+
 	});
 
 	suite('Symbols', () => {
