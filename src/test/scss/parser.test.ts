@@ -365,6 +365,16 @@ suite('SCSS - Parser', () => {
 		assertNode('@layer #{$layer} { }', parser, parser._parseLayer.bind(parser));
 	});
 
+	test('nested @layer declarations', function () {
+		const parser = new SCSSParser();
+		assertNode('.a { @layer utilities { color: red; } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('.a { @layer #{$layer} { color: $color; &:hover { color: blue; } } margin: 0; }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('.a { @layer utilities { @layer states { color: red; } } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@layer utilities { .a { color: red; } }', parser, parser._parseStylesheet.bind(parser));
+		assertError('@layer utilities { color: red; }', parser, parser._parseStylesheet.bind(parser), ParseError.LeftCurlyExpected);
+		assertError('.a { @layer utilities { color red; } }', parser, parser._parseStylesheet.bind(parser), ParseError.LeftCurlyExpected);
+	});
+
 	test('@container', function () {
 		const parser = new SCSSParser();
 		assertNode(`@container (min-width: #{$minWidth}) { .scss-interpolation { line-height: 10cqh; } }`, parser, parser._parseStylesheet.bind(parser));
