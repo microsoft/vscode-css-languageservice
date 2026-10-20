@@ -48,15 +48,13 @@ export function difference(first: string, second: string, maxLenDelta: number = 
 	if (lengthDifference > maxLenDelta) {
 		return 0;
 	}
-	// Initialize LCS (largest common subsequence) matrix.
+	// Initialize LCS (largest common subsequence) matrix. Each row needs its own
+	// array: pushing one shared array made every row the same object, so the
+	// recurrence read cells already overwritten in the current iteration.
 	let LCS: number[][] = [];
-	let zeroArray: number[] = [];
 	let i: number, j: number;
-	for (i = 0; i < second.length + 1; ++i) {
-		zeroArray.push(0);
-	}
 	for (i = 0; i < first.length + 1; ++i) {
-		LCS.push(zeroArray);
+		LCS.push(new Array(second.length + 1).fill(0));
 	}
 	for (i = 1; i < first.length + 1; ++i) {
 		for (j = 1; j < second.length + 1; ++j) {
