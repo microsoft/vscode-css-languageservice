@@ -199,11 +199,14 @@ function limitFoldingRanges(ranges: FoldingRange[], context: { rangeLimit?: numb
 	});
 
 	const validRanges: FoldingRange[] = [];
-	let prevEndLine = -1;
+	const endLines: number[] = [];
 	sortedRanges.forEach(r => {
-		if (!(r.startLine < prevEndLine && prevEndLine < r.endLine)) {
+		while (endLines.length > 0 && r.startLine >= endLines[endLines.length - 1]) {
+			endLines.pop();
+		}
+		if (endLines.length === 0 || r.endLine <= endLines[endLines.length - 1]) {
 			validRanges.push(r);
-			prevEndLine = r.endLine;
+			endLines.push(r.endLine);
 		}
 	});
 
