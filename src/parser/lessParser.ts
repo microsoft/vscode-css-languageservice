@@ -336,6 +336,8 @@ export class LESSParser extends cssParser.Parser {
 
 	public _parseKeyframeSelector(): nodes.Node | null {
 		return this._parseDetachedRuleSetMixin()  // less detached ruleset mixin
+			|| this._tryParseMixinReference() // less mixin reference, e.g. `.frames();`
+			|| this._parseFunction() // function call, e.g. `each(@list, { ... })`
 			|| super._parseKeyframeSelector();
 	}
 
