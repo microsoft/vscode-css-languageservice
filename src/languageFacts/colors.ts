@@ -352,7 +352,7 @@ function getAngle(node: nodes.Node): number {
 	if (m?.groups?.['numberString']) {
 		const value = Number.parseFloat(m.groups['numberString']);
 		if (!Number.isNaN(value)) {
-			switch (m.groups['unit']) {
+			switch (m.groups['unit']?.toLowerCase()) {
 				case 'deg': {
 					return value % DEGREES_PER_CIRCLE;
 				}
