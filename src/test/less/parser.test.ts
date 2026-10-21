@@ -147,6 +147,21 @@ suite('LESS - Parser', () => {
 		assertNode('each(@list, #(@v) { prop: @v });', parser, parser._parseStylesheet.bind(parser));
 	});
 
+	test('Keyframe', function () {
+		const parser = new LESSParser();
+		assertNode('@keyframes foo { from { top: 0; } 50%, 75% { top: 5px; } to { top: 10px; } }', parser, parser._parseKeyframe.bind(parser));
+		assertNode('@keyframes foo { @detached(); }', parser, parser._parseKeyframe.bind(parser));
+		assertNode('@keyframes foo { each(@steps, { @{value} { width: @value; } }); }', parser, parser._parseKeyframe.bind(parser)); // microsoft/vscode#149193
+		assertNode('@keyframes foo { each(@steps, { @{value} { width: @value; } }) }', parser, parser._parseKeyframe.bind(parser));
+		assertNode('@keyframes foo { each(@list, .(@v, @k, @i) { @{k} { width: @v; } }); }', parser, parser._parseKeyframe.bind(parser));
+		assertNode('@keyframes foo { from { top: 0; } each(@steps, { @{value} { top: @value; } }); to { top: 10px; } }', parser, parser._parseKeyframe.bind(parser));
+		assertNode('@keyframes foo { .frames(); }', parser, parser._parseKeyframe.bind(parser));
+		assertNode('@keyframes foo { #ns > .frames(10px) }', parser, parser._parseKeyframe.bind(parser));
+		assertNode('.a { @keyframes foo { each(@steps, { @{value} { width: @value; } }); } }', parser, parser._parseStylesheet.bind(parser));
+		assertError('@keyframes foo { from }', parser, parser._parseKeyframe.bind(parser), ParseError.LeftCurlyExpected);
+		assertError('@keyframes foo { each(@steps, { } }', parser, parser._parseKeyframe.bind(parser), ParseError.RightParenthesisExpected);
+	});
+
 	test('Expr', function () {
 		const parser = new LESSParser();
 		assertNode('(@const + 20)', parser, parser._parseExpr.bind(parser));
