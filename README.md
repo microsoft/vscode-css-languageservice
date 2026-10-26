@@ -16,8 +16,8 @@ and the Monaco editor.
  - *findDefinition* finds the definition of the symbol at the given location.
  - *findReferences* finds all references to the symbol at the given location.
  - *findDocumentHighlights* finds all symbols connected to the given location.
- - *findDocumentLinks* provides all symbols in the given document
- - *findDocumentSymbols* provides all links for references in the given document
+ - *findDocumentLinks* provides all links for references in the given document
+ - *findDocumentSymbols* provides all symbols in the given document
  - *doCodeActions* evaluates code actions for the given location, typically to fix a problem.
  - *findDocumentColors* evaluates all color symbols in the given document
  - *getColorPresentations* lists valid CSS color presentations
