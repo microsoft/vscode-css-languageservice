@@ -6,9 +6,11 @@
 'use strict';
 
 import { suite, test } from 'node:test';
+import * as assert from 'node:assert';
 import { SCSSParser } from '../../parser/scssParser.js';
 import { ParseError } from '../../parser/cssErrors.js';
 import { SCSSParseError } from '../../parser/scssErrors.js';
+import { getSCSSLanguageService, TextDocument } from '../../cssLanguageService.js';
 
 import { assertNode, assertError, assertNoNode } from '../testUtil/parser.js';
 
@@ -763,5 +765,24 @@ suite('SCSS - Parser', () => {
 		assertNode('if(true, black, white)', parser, parser._parseFunction.bind(parser));
 		assertNode('if(sass(true): black; else: white;)', parser, parser._parseFunction.bind(parser));
 		assertNode('if(sass($value == \'default\'): flex-gutter(); else: $value;)', parser, parser._parseFunction.bind(parser));
-	})
+	});
+
+	test('if function !important branch', function() {
+		const parser = new SCSSParser();
+		assertNode('if(sass($e): !important; else: null)', parser, parser._parseFunction.bind(parser));
+		assertNode('if(sass($e): red !important; else: null)', parser, parser._parseFunction.bind(parser));
+		assertNode('if(sass($e): null; else: !important)', parser, parser._parseFunction.bind(parser));
+		assertNode('if(sass($e): red; else: null)', parser, parser._parseFunction.bind(parser));
+		assertNode('if(sass($e): red)', parser, parser._parseFunction.bind(parser));
+		assertNode('if(sass($e): ; else: null)', parser, parser._parseFunction.bind(parser));
+		assertError('if(!important: red; else: null)', parser, parser._parseFunction.bind(parser), ParseError.RightParenthesisExpected);
+		assertError('if(sass(!important): red; else: null)', parser, parser._parseFunction.bind(parser), ParseError.RightParenthesisExpected);
+		assertError('if(sass($e) !important: red; else: null)', parser, parser._parseFunction.bind(parser), ParseError.RightParenthesisExpected);
+	});
+
+	test('if function !important validation', function() {
+		const ls = getSCSSLanguageService();
+		const document = TextDocument.create('test://test/test.scss', 'scss', 0, '.a { color: if(sass($e): !important; else: null); }');
+		assert.deepEqual(ls.doValidation(document, ls.parseStylesheet(document)), []);
+	});
 });
