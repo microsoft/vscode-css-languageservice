@@ -7,6 +7,8 @@
 import { suite, test } from 'node:test';
 import * as assert from 'node:assert';
 import { Parser } from '../../parser/cssParser.js';
+import { SCSSParser } from '../../parser/scssParser.js';
+import { LESSParser } from '../../parser/lessParser.js';
 import * as nodes from '../../parser/cssNodes.js';
 import * as selectorPrinting from '../../services/selectorPrinting.js';
 import { TextDocument, MarkedString } from '../../cssLanguageTypes.js';
@@ -124,6 +126,18 @@ suite('CSS - MarkedStringPrinter selectors', () => {
 			{ language: 'html', value: '<e1>\n⋮\n<e2>' },
 			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 0, 2)'
 		]);
+	});
+	test('sibling selector referenced by a nested parent selector', function () {
+		const assertHtml = (p: Parser, input: string, expected: string) => {
+			const selector = doParse(p, input, '&');
+			assert.ok(selector);
+			const printed = new selectorPrinting.SelectorPrinting(cssDataManager).selectorToMarkedString(selector!);
+			assert.deepEqual(printed[0], { language: 'html', value: expected });
+		};
+		for (const p of [new SCSSParser(), new LESSParser()]) {
+			assertHtml(p, '.foo + .bar { .baz & { color: red; } }', '<element class="baz">\n  …\n    <element class="foo">\n    <element class="bar">');
+			assertHtml(p, '.foo ~ .bar { .baz & { color: red; } }', '<element class="baz">\n  …\n    <element class="foo">\n    ⋮\n    <element class="bar">');
+		}
 	});
 });
 
