@@ -92,8 +92,47 @@ suite('CSS - Lint', () => {
 		assertRuleSet('selector { line-height: 0pc }', Rules.ZeroWithUnit);
 		assertRuleSet('selector { outline: black 0em solid; }', Rules.ZeroWithUnit);
 		assertRuleSet('selector { grid-template-columns: 40px 50px auto 0px 40px; }', Rules.ZeroWithUnit);
+		assertRuleSet('selector { width: 0 }');
 		assertRuleSet('selector { min-height: 0% }');
 		assertRuleSet('selector { top: calc(0px - 10vw); }'); // issue 46997
+		assertRuleSet('selector { top: CALC(0px - 10vw); }');
+		assertRuleSet('selector { margin-block: calc(var(--glyph-height, 0px) / -2); }');
+		assertRuleSet('selector { vertical-align: calc(var(--h, 0px) / 2 - var(--d, 0px)); }');
+		assertRuleSet('selector { width: max(0px, 10vw - 20px); }');
+		assertRuleSet('selector { width: clamp(0px, 50%, 300px); }');
+		assertRuleSet('selector { width: calc(min(0px, 1vw) + 1px); }');
+		assertRuleSet('selector { width: var(--w, 0px) }', Rules.ZeroWithUnit);
+		assertRuleSet('selector { transform: translate(0px, 10px) }', Rules.ZeroWithUnit);
+	});
+
+	test('unitless zero in math functions', function () {
+		// var() substitutes its fallback, so calc(var(--glyph-height, 0) / -2) becomes the <number> calc(0 / -2)
+		assertRuleSet('selector { margin-block: calc(var(--glyph-height, 0px) / -2); }');
+		assertRuleSet('selector { margin-block: calc(var(--glyph-height, 0) / -2); }', Rules.UnitlessZeroInMath);
+		assertRuleSet('selector { vertical-align: calc(var(--h, 0) / 2 - var(--d, 0)); }', Rules.UnitlessZeroInMath, Rules.UnitlessZeroInMath);
+		assertRuleSet('selector { width: calc(0); }', Rules.UnitlessZeroInMath);
+		assertRuleSet('selector { width: calc(0 + 5px); }', Rules.UnitlessZeroInMath);
+		assertRuleSet('selector { width: calc(100% - var(--sidebar, 0)); }', Rules.UnitlessZeroInMath);
+		assertRuleSet('selector { margin: calc(-1 * var(--gap, 0)); }', Rules.UnitlessZeroInMath);
+		assertRuleSet('selector { width: max(0, 10vw - 20px); }', Rules.UnitlessZeroInMath);
+		assertRuleSet('selector { width: clamp(0, 50%, 300px); }', Rules.UnitlessZeroInMath);
+		assertRuleSet('selector { width: calc(min(0, 1vw) + 1px); }', Rules.UnitlessZeroInMath);
+		// + and - need matching types wherever the math function is, even nested in another function
+		assertRuleSet('selector { line-height: calc(0 + 1em); }', Rules.UnitlessZeroInMath);
+		assertRuleSet('selector { transform: translate(calc(0 + 1px)); }', Rules.UnitlessZeroInMath);
+
+		// a zero that is a <number>: a multiplier, a divisor, an argument of a number function, or a number property
+		assertRuleSet('selector { width: var(--w, 0) }');
+		assertRuleSet('selector { width: calc(0 * 10px) }');
+		assertRuleSet('selector { width: calc(10px * var(--k, 0)) }');
+		assertRuleSet('selector { width: calc(var(--n, 0) * 1px) }');
+		assertRuleSet('selector { font-size: calc(1rem + 0 * 1vw) }');
+		assertRuleSet('selector { width: calc(1px * pow(2, 0)) }');
+		assertRuleSet('selector { line-height: max(0, 1.5) }');
+		assertRuleSet('selector { opacity: calc(0 + 0.5) }');
+		assertRuleSet('selector { stroke-width: calc(var(--w, 0) * 2) }');
+		// a / may divide by a dimension, so the dividend's type isn't known
+		assertRuleSet('selector { width: calc(var(--a, 0) / var(--b)) }');
 	});
 
 	test('duplicate declarations', function () {

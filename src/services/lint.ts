@@ -13,6 +13,106 @@ import { union } from '../utils/arrays.js';
 import { LintConfigurationSettings, Rule, Rules, Settings } from './lintRules.js';
 import calculateBoxModel, { Element } from './lintUtil.js';
 
+// Inside a math function a number token is always a <number>, never a "unitless 0" <length>
+// (https://drafts.csswg.org/css-values-4/#calc-type-checking), so a zero length there needs its unit.
+const mathFunctions = new Set([
+	'calc', '-webkit-calc', '-moz-calc', 'calc-size',
+	'min', 'max', 'clamp', 'round', 'mod', 'rem',
+	'sin', 'cos', 'tan', 'asin', 'acos', 'atan', 'atan2',
+	'pow', 'sqrt', 'hypot', 'log', 'exp', 'abs', 'sign',
+	'progress', 'media-progress', 'container-progress', 'random'
+]);
+
+// Functions whose arguments have the type of their result. var() passes it on to its fallback.
+const sameTypeFunctions = new Set(['calc', '-webkit-calc', '-moz-calc', 'min', 'max', 'clamp', 'hypot', 'round', 'mod', 'rem', 'abs', 'random', 'var']);
+
+// TODO: The CSS data lists these as length-only, but they also take a <number>. Remove once the data is fixed.
+const lengthOrNumberProperties = new Set(['stroke-width', 'stroke-dashoffset']);
+
+type MathType = 'number' | 'dimension' | undefined;
+
+interface Product { factors: nodes.Node[]; divisors: nodes.Node[] }
+
+// Splits a + - * / chain into products. The parser chains operators left to right without precedence,
+// so a - b * c arrives as ((a - b) * c).
+function toProducts(node: nodes.BinaryExpression): Product[] | undefined {
+	const terms: nodes.Node[] = [];
+	const ops: string[] = [];
+	let n: nodes.Node | undefined = node;
+	for (; n instanceof nodes.BinaryExpression; n = n.getLeft()) {
+		const op = n.getOperator();
+		const right = n.getRight();
+		if (op) {
+			if (!right) {
+				return undefined;
+			}
+			ops.unshift(op.getText());
+			terms.unshift(right);
+		}
+	}
+	if (!n) {
+		return undefined;
+	}
+	terms.unshift(n);
+	const products: Product[] = [{ factors: [terms[0]], divisors: [] }];
+	for (let i = 0; i < ops.length; i++) {
+		const product = products[products.length - 1];
+		switch (ops[i]) {
+			case '+': case '-': products.push({ factors: [terms[i + 1]], divisors: [] }); break;
+			case '*': product.factors.push(terms[i + 1]); break;
+			case '/': product.divisors.push(terms[i + 1]); break;
+			default: return undefined;
+		}
+	}
+	return products;
+}
+
+function productType({ factors, divisors }: Product): MathType {
+	if (!divisors.every(d => mathType(d) === 'number')) {
+		return undefined; // a / can divide by a dimension
+	}
+	const nonNumbers = factors.filter(f => mathType(f) !== 'number');
+	return nonNumbers.length === 0 ? 'number' : nonNumbers.length === 1 && mathType(nonNumbers[0]) === 'dimension' ? 'dimension' : undefined;
+}
+
+function combinedType(types: MathType[]): MathType {
+	return types.includes('dimension') ? 'dimension' : types.every(t => t === 'number') ? 'number' : undefined;
+}
+
+// NumericValue.getValue() reads no sign or exponent: -2 comes back as unit '-2'
+function unitOf(node: nodes.NumericValue): string {
+	return node.getText().replace(/^[+-]?(\d*\.)?\d+(e[+-]?\d+)?/i, '');
+}
+
+// The type a math expression is known to have, or undefined when it can't be told, as with var()
+function mathType(node: nodes.Node | undefined): MathType {
+	if (node instanceof nodes.NumericValue) {
+		return unitOf(node) ? 'dimension' : 'number';
+	}
+	if (node instanceof nodes.Term) {
+		return mathType(node.getExpression());
+	}
+	if (node instanceof nodes.BinaryExpression) {
+		const products = toProducts(node);
+		return products && combinedType(products.map(productType));
+	}
+	if (node instanceof nodes.Function) {
+		const name = node.getName().toLowerCase();
+		return sameTypeFunctions.has(name) && name !== 'var' ? combinedType(node.getArguments().getChildren().map(mathType)) : undefined;
+	}
+	const children = node?.getChildren();
+	return children?.length === 1 ? mathType(children[0]) : undefined;
+}
+
+// Sass and Less math lets a unitless number mix with lengths, as in max(0, $gutter)
+function containsPreprocessorVariables(node: nodes.Node): boolean {
+	let found = false;
+	node.accept(n => {
+		found ||= n.type === nodes.NodeType.VariableName || n.type === nodes.NodeType.Interpolation;
+		return !found;
+	});
+	return found;
+}
 
 
 class NodesByRootMap {
@@ -530,9 +630,11 @@ export class LintVisitor implements nodes.IVisitor {
 		/////////////////////////////////////////////////////////////
 		//	0 has no following unit
 		/////////////////////////////////////////////////////////////
-		const funcDecl = (node.findParent(nodes.NodeType.Function) as nodes.Function);
-		if (funcDecl && funcDecl.getName() === 'calc') {
-			return true;
+		// Any enclosing function counts, as in calc(var(--x, 0px) / 2)
+		for (let func = node.findParent(nodes.NodeType.Function); func; func = func.parent && func.parent.findParent(nodes.NodeType.Function)) {
+			if (mathFunctions.has((func as nodes.Function).getName().toLowerCase())) {
+				return true;
+			}
 		}
 
 		const decl = <nodes.Declaration>node.findParent(nodes.NodeType.Declaration);
@@ -595,6 +697,65 @@ export class LintVisitor implements nodes.IVisitor {
 		return false;
 	}
 
+	// Whether the property takes a length or percentage but not a number
+	private needsDimension(name: string | undefined, depth = 0): boolean {
+		const property = name && !lengthOrNumberProperties.has(name) && depth < 4 ? this.cssDataManager.getProperty(name) : undefined;
+		if (!property) {
+			return false;
+		}
+		const restrictions = property.restrictions;
+		if (restrictions?.length) {
+			return restrictions.some(r => r === 'length' || r === 'percentage') && !restrictions.some(r => r.startsWith('number') || r.startsWith('integer'));
+		}
+		// Newer properties have only an MDN syntax, as in margin-block: <'margin-top'>{1,2}
+		const types = Array.from(property.syntax?.matchAll(/<([^>]+)>/g) ?? [], m => m[1]);
+		return types.length > 0 && types.every(t => t.startsWith("'") ? this.needsDimension(t.slice(1, -1), depth + 1) : /^(length|percentage|length-percentage)\b/.test(t));
+	}
+
+	// Reports each unitless 0 where the math expression needs a dimension
+	private checkMathZeros(node: nodes.Node | undefined, needsDimension: boolean): void {
+		if (node instanceof nodes.NumericValue) {
+			if (needsDimension && !unitOf(node) && parseFloat(node.getText()) === 0) {
+				this.addEntry(node, Rules.UnitlessZeroInMath);
+			}
+		} else if (node instanceof nodes.Term) {
+			this.checkMathZeros(node.getExpression(), needsDimension);
+		} else if (node instanceof nodes.Function) {
+			const name = node.getName().toLowerCase();
+			const args = node.getArguments().getChildren();
+			if (sameTypeFunctions.has(name)) {
+				// min(0, 10px): the arguments must all have the same type
+				const dimension = needsDimension || args.some(a => mathType(a) === 'dimension');
+				args.forEach(a => this.checkMathZeros(a, dimension));
+			} else if (mathFunctions.has(name)) {
+				args.forEach(a => this.checkMathZeros(a, false));
+			}
+		} else if (node instanceof nodes.BinaryExpression) {
+			const products = toProducts(node);
+			if (!products) {
+				return;
+			}
+			// calc(0 + 10px): both sides of + and - must have the same type
+			const dimension = needsDimension || products.some(p => productType(p) === 'dimension');
+			for (const product of products) {
+				product.divisors.forEach(d => this.checkMathZeros(d, false));
+				// A product is a dimension only through its one factor that isn't a number: the 1px in 0 * 1px
+				let carrier: nodes.Node | undefined;
+				if (product.divisors.every(d => mathType(d) === 'number')) {
+					const nonNumbers = product.factors.filter(f => mathType(f) !== 'number');
+					const dimensions = nonNumbers.filter(f => mathType(f) === 'dimension');
+					carrier = product.factors.length === 1 ? product.factors[0] : nonNumbers.length === 1 ? nonNumbers[0] : dimensions.length === 1 ? dimensions[0] : undefined;
+				}
+				product.factors.forEach(f => this.checkMathZeros(f, dimension && f === carrier));
+			}
+		} else {
+			const children = node?.getChildren();
+			if (children?.length === 1) {
+				this.checkMathZeros(children[0], needsDimension);
+			}
+		}
+	}
+
 	private visitHexColorValue(node: nodes.HexColorValue): boolean {
 		// Rule: #eeff0011 or #eeff00 or #ef01 or #ef0
 		const length = node.length;
@@ -607,6 +768,15 @@ export class LintVisitor implements nodes.IVisitor {
 	private visitFunction(node: nodes.Function): boolean {
 
 		const fnName = node.getName().toLowerCase();
+
+		// Check each outermost math expression once. Nested ones are reached by checkMathZeros.
+		const isMath = (name: string) => mathFunctions.has(name) || name === 'var';
+		const outer = node.parent && <nodes.Function | null>node.parent.findParent(nodes.NodeType.Function);
+		if (isMath(fnName) && !(outer && isMath(outer.getName().toLowerCase())) && !containsPreprocessorVariables(node)) {
+			// A math function that is the whole value resolves to the type of its calculation: calc(0) is a <number>
+			const decl = <nodes.Declaration | null>node.findParent(nodes.NodeType.Declaration);
+			this.checkMathZeros(node, !outer && mathFunctions.has(fnName) && this.needsDimension(decl?.getFullPropertyName().toLowerCase()));
+		}
 		let expectedAttrCount = -1;
 		let actualAttrCount = 0;
 

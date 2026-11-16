@@ -27,6 +27,13 @@ function assertRuleSet(input: string, ...rules: Rule[]): void {
 
 suite('SCSS - Lint', () => {
 
+	test('unitless zero in math functions', function () {
+		// Sass math lets a unitless number mix with lengths
+		assertRuleSet('selector { width: max(0, $gutter); }');
+		assertRuleSet('selector { width: calc(0 + #{$gutter}); }');
+		assertRuleSet('selector { margin-block: calc(var(--glyph-height, 0) / -2); }', Rules.UnitlessZeroInMath);
+	});
+
 	test('empty ruleset', function () {
 		assertRuleSet('selector { color: red; nested {} }', Rules.EmptyRuleSet);
 	});

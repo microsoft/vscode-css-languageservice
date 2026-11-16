@@ -36,6 +36,7 @@ export const Rules = {
 	BewareOfBoxModelSize: new Rule('boxModel', l10n.t("Do not use width or height when using padding or border"), Ignore),
 	UniversalSelector: new Rule('universalSelector', l10n.t("The universal selector (*) is known to be slow"), Ignore),
 	ZeroWithUnit: new Rule('zeroUnits', l10n.t("No unit for zero needed"), Ignore),
+	UnitlessZeroInMath: new Rule('unitlessZeroInMath', l10n.t("Zero needs a unit inside a math function"), Warning),
 	RequiredPropertiesForFontFace: new Rule('fontFaceProperties', l10n.t("@font-face rule must define 'src' and 'font-family' properties"), Warning),
 	HexColorLength: new Rule('hexColorLength', l10n.t("Hex colors must consist of three, four, six or eight hex numbers"), Error),
 	ArgsInColorFunction: new Rule('argumentsInColorFunction', l10n.t("Invalid number of parameters"), Error),
