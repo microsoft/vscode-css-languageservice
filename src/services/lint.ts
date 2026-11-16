@@ -26,7 +26,7 @@ const mathFunctions = new Set([
 // Functions whose arguments have the type of their result. var() passes it on to its fallback.
 const sameTypeFunctions = new Set(['calc', '-webkit-calc', '-moz-calc', 'min', 'max', 'clamp', 'hypot', 'round', 'mod', 'rem', 'abs', 'random', 'var']);
 
-// ponytail: the CSS data lists these as length-only, but they also take a <number>. Drop once the data is fixed.
+// TODO: The CSS data lists these as length-only, but they also take a <number>. Remove once the data is fixed.
 const lengthOrNumberProperties = new Set(['stroke-width', 'stroke-dashoffset']);
 
 type MathType = 'number' | 'dimension' | undefined;
