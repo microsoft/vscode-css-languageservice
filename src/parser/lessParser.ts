@@ -91,7 +91,8 @@ export class LESSParser extends cssParser.Parser {
 		const node = super._parseMediaQuery();
 		if (!node) {
 			const node = this.create(nodes.MediaQuery);
-			if (node.addChild(this._parseVariable())) {
+			// @media @phone, or @media @{phone} since Less 4.7
+			if (node.addChild(this._parseVariable() || this._parseInterpolation())) {
 				return this.finish(node);
 			}
 			return null;
