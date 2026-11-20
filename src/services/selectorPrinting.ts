@@ -485,16 +485,15 @@ export class SelectorPrinting {
 								continue elementLoop;
 							}
 
-							// Edge case: 'n' without integer prefix A, with B integer non-existent, is not regarded as a binary expression token.
-							const parser = new Parser();
+							// Edge case: when <an+b> is a single identifier (e.g. `n`, `-n`, `n-1`, `odd`, `even`), the parser reads
+							// `<an+b> of S` as a selector, so S has to be extracted from the text.
 							const pseudoSelectorText = childElements[1].getText();
-							parser.scanner.setSource(pseudoSelectorText);
-							const firstToken = parser.scanner.scan();
-							const secondToken = parser.scanner.scan();
+							const identifierAnPlusBOf = pseudoSelectorText.match(/^\s*(?:[+-]?n(?:-\d*)?|odd|even)\s+of(?![\w-])/i);
 
-							if (firstToken.text === 'n' || (firstToken.text === '-n' && secondToken.text === 'of')) {
+							if (identifierAnPlusBOf) {
+								const parser = new Parser();
 								const complexSelectorListNodes: nodes.Node[] = [];
-								const complexSelectorText = pseudoSelectorText.slice(secondToken.offset + 2);
+								const complexSelectorText = pseudoSelectorText.slice(identifierAnPlusBOf[0].length);
 								const complexSelectorArray = complexSelectorText.split(',');
 
 								for (const selector of complexSelectorArray) {
