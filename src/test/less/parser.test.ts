@@ -39,6 +39,9 @@ suite('LESS - Parser', () => {
 	test('Media', function () {
 		const parser = new LESSParser();
 		assertNode('@media @phone {}', parser, parser._parseMedia.bind(parser));
+		assertNode('@media @{phone} {}', parser, parser._parseMedia.bind(parser));
+		assertNode('@media @{phone}, @{tablet} {}', parser, parser._parseMedia.bind(parser));
+		assertNode('@desktop: ~"(min-width: 1024px)"; @media @{desktop} { .example { color: red; } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media(max-width: 767px) { .mixinRef() }', parser, parser._parseMedia.bind(parser));
 		assertNode('@media(max-width: 767px) { .mixinDec() {} }', parser, parser._parseMedia.bind(parser));
 		assertNode('.something { @media (max-width: 760px) { > div { display: block; } } }', parser, parser._parseStylesheet.bind(parser));
