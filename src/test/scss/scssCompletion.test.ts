@@ -26,6 +26,45 @@ function testCompletionFor(
 };
 
 suite('SCSS - Completions', () => {
+	test('variables in incomplete return statements', async () => {
+		for (const suffix of ['', '; }']) {
+			await testCompletionFor(`@function foo($x, $y) { @return $|${suffix}`, {
+				items: [
+					{ label: '$x', resultText: `@function foo($x, $y) { @return $x${suffix}` },
+					{ label: '$y' }
+				]
+			});
+			await testCompletionFor(`@function foo($x, $y) { @return $x + $|${suffix}`, {
+				items: [
+					{ label: '$y', resultText: `@function foo($x, $y) { @return $x + $y${suffix}` }
+				]
+			});
+		}
+	});
+
+	test('variables in return expressions', async () => {
+		await testCompletionFor('@function foo($x, $y) { @return $x|; }', {
+			items: [
+				{ label: '$x' },
+				{ label: '$y', resultText: '@function foo($x, $y) { @return $y; }' }
+			]
+		});
+	});
+
+	test('return variables respect function scope', async () => {
+		await testCompletionFor('$global: 1; @function other($hidden) { @return $hidden; } @function foo($x) { $local: 2; @return $|; }', {
+			items: [
+				{ label: '$global' },
+				{ label: '$x' },
+				{ label: '$local' },
+				{ label: '$hidden', notAvailable: true }
+			]
+		});
+		await testCompletionFor('$x: 0; @function foo($x: 1) { @return $|; }', {
+			items: [{ label: '$x', documentation: '1' }]
+		});
+	});
+
 	test('stylesheet', async () => {
 		await testCompletionFor('$i: 0; body { width: |', {
 			items: [
