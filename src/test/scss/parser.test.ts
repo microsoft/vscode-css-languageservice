@@ -639,6 +639,8 @@ suite('SCSS - Parser', () => {
 		assertError('@function foo($a $b) {} ', parser, parser._parseStylesheet.bind(parser), ParseError.RightParenthesisExpected);
 		assertError('@function foo($a {} ', parser, parser._parseStylesheet.bind(parser), ParseError.RightParenthesisExpected);
 		assertError('@function foo($a...) { @return; }', parser, parser._parseStylesheet.bind(parser), ParseError.ExpressionExpected);
+		assertError('@function foo($a) { @return $; }', parser, parser._parseStylesheet.bind(parser), ParseError.ExpressionExpected);
+		assertError('@function foo($a) { @return $a + $; }', parser, parser._parseStylesheet.bind(parser), ParseError.TermExpected);
 		assertError('@function foo($a:) {} ', parser, parser._parseStylesheet.bind(parser), ParseError.VariableValueExpected);
 
 	});

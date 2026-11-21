@@ -223,6 +223,9 @@ export class CSSCompletion {
 					this.getCompletionsForInterpolation(<nodes.Interpolation>node, result);
 				} else if (node instanceof nodes.FunctionDeclaration) {
 					this.getCompletionsForFunctionDeclaration(<nodes.FunctionDeclaration>node, result);
+				} else if (node.type === nodes.NodeType.ReturnStatement) {
+					this.getVariableProposals(null, result);
+					this.getTermProposals(undefined, null, result);
 				} else if (node instanceof nodes.MixinReference) {
 					this.getCompletionsForMixinReference(<nodes.MixinReference>node, result);
 				} else if (node instanceof nodes.Function) {
@@ -940,6 +943,9 @@ export class CSSCompletion {
 
 	public getCompletionsForExpression(expression: nodes.Expression, result: CompletionList): CompletionList {
 		const parent = expression.getParent();
+		if (parent?.type === nodes.NodeType.ReturnStatement) {
+			this.getVariableProposals(null, result);
+		}
 		if (parent instanceof nodes.FunctionArgument) {
 			this.getCompletionsForFunctionArgument(parent, <nodes.Function>parent.getParent(), result);
 			return result;
