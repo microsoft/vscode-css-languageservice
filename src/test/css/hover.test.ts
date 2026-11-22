@@ -71,6 +71,14 @@ suite('CSS Hover', () => {
 		// });
 	});
 
+	test('functional pseudo selector arguments', () => {
+		for (const language of ['css', 'scss', 'less']) {
+			assertHover('.|foo:not(.bar) {}', {
+				contents: [{ language: 'html', value: '<element class="foo" :not(.bar)>' }, '[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 2, 0)'],
+			}, language);
+		}
+	});
+
 	test('specificity', () => {
 		assertHover('.|foo {}', {
 			contents: [{ language: 'html', value: '<element class="foo">' }, '[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 0)'],
