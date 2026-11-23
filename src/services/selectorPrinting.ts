@@ -266,7 +266,11 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element | 
 				result.addAttr('class', (<nodes.MixinDeclaration>child).getName());
 				break;
 			case nodes.NodeType.PseudoSelector:
-				result.addAttr(unescape(child.getText()), '');
+				// Only unescape the name; scanning the arguments as an unquoted string truncates them.
+				const pseudoIdentifier = child.getChild(0);
+				const pseudoText = child.getText();
+				const identifierEnd = pseudoIdentifier ? pseudoIdentifier.end - child.offset : pseudoText.length;
+				result.addAttr(unescape(pseudoText.substring(0, identifierEnd)) + pseudoText.substring(identifierEnd), '');
 				break;
 			case nodes.NodeType.AttributeSelector:
 				const selector = <nodes.AttributeSelector>child;
@@ -413,7 +417,7 @@ export class SelectorPrinting {
 						break;
 
 					case nodes.NodeType.PseudoSelector:
-						const text = element.getText();
+						const text = unescape(element.getText());
 						const childElements = element.getChildren();
 
 						if (this.isPseudoElementIdentifier(text)) {

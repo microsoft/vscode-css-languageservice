@@ -39,6 +39,9 @@ suite('LESS - Parser', () => {
 	test('Media', function () {
 		const parser = new LESSParser();
 		assertNode('@media @phone {}', parser, parser._parseMedia.bind(parser));
+		assertNode('@media @{phone} {}', parser, parser._parseMedia.bind(parser));
+		assertNode('@media @{phone}, @{tablet} {}', parser, parser._parseMedia.bind(parser));
+		assertNode('@desktop: ~"(min-width: 1024px)"; @media @{desktop} { .example { color: red; } }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@media(max-width: 767px) { .mixinRef() }', parser, parser._parseMedia.bind(parser));
 		assertNode('@media(max-width: 767px) { .mixinDec() {} }', parser, parser._parseMedia.bind(parser));
 		assertNode('.something { @media (max-width: 760px) { > div { display: block; } } }', parser, parser._parseStylesheet.bind(parser));
@@ -65,6 +68,15 @@ suite('LESS - Parser', () => {
 		assertNode('@rules: .mixin(@value)[@lookup][prop]', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('@rules: .mixin[@lookup][prop]', parser, parser._parseVariableDeclaration.bind(parser));
 		assertNode('@expr: .mixin(@value)[] .mixin(@value2)[]', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode(`@sel: &:not([type='file']):not([type='radio'])`, parser, parser._parseVariableDeclaration.bind(parser)); // #134
+		assertNode('@sel: &-suffix', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('@sel: & + &', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('@sel: & > .b, & ~ .c', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('@sel: :not(.a)', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode('@sel: &:hover !important', parser, parser._parseVariableDeclaration.bind(parser));
+		assertNode(`@sel: &:not([type='file']); input { @{sel} { color: blue; } }`, parser, parser._parseStylesheet.bind(parser));
+		assertNode('.a { @sel: &:hover; @{sel} { color: blue; } }', parser, parser._parseStylesheet.bind(parser));
+		assertError('@sel: :', parser, parser._parseVariableDeclaration.bind(parser), ParseError.IdentifierExpected);
 	});
 
 	test('MixinDeclaration', function () {
@@ -145,6 +157,21 @@ suite('LESS - Parser', () => {
 
 		assertNode('each(@list, .(@v) { prop: @v });', parser, parser._parseStylesheet.bind(parser));
 		assertNode('each(@list, #(@v) { prop: @v });', parser, parser._parseStylesheet.bind(parser));
+	});
+
+	test('Keyframe', function () {
+		const parser = new LESSParser();
+		assertNode('@keyframes foo { from { top: 0; } 50%, 75% { top: 5px; } to { top: 10px; } }', parser, parser._parseKeyframe.bind(parser));
+		assertNode('@keyframes foo { @detached(); }', parser, parser._parseKeyframe.bind(parser));
+		assertNode('@keyframes foo { each(@steps, { @{value} { width: @value; } }); }', parser, parser._parseKeyframe.bind(parser)); // microsoft/vscode#149193
+		assertNode('@keyframes foo { each(@steps, { @{value} { width: @value; } }) }', parser, parser._parseKeyframe.bind(parser));
+		assertNode('@keyframes foo { each(@list, .(@v, @k, @i) { @{k} { width: @v; } }); }', parser, parser._parseKeyframe.bind(parser));
+		assertNode('@keyframes foo { from { top: 0; } each(@steps, { @{value} { top: @value; } }); to { top: 10px; } }', parser, parser._parseKeyframe.bind(parser));
+		assertNode('@keyframes foo { .frames(); }', parser, parser._parseKeyframe.bind(parser));
+		assertNode('@keyframes foo { #ns > .frames(10px) }', parser, parser._parseKeyframe.bind(parser));
+		assertNode('.a { @keyframes foo { each(@steps, { @{value} { width: @value; } }); } }', parser, parser._parseStylesheet.bind(parser));
+		assertError('@keyframes foo { from }', parser, parser._parseKeyframe.bind(parser), ParseError.LeftCurlyExpected);
+		assertError('@keyframes foo { each(@steps, { } }', parser, parser._parseKeyframe.bind(parser), ParseError.RightParenthesisExpected);
 	});
 
 	test('Expr', function () {

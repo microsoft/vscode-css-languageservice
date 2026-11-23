@@ -15,6 +15,7 @@ import {
     colorFromLCH,
     colorFromOKLAB,
     colorFromOKLCH,
+    colorFunctions,
     getColorValue,
     getMissingBaselineBrowsers,
     hexDigit,
@@ -145,10 +146,22 @@ suite('CSS - Language Facts', () => {
 		assert.equal(r![0], 'color');
 	});
 
+	test('color functions have unique labels', function () {
+		// Every entry is pushed into the completion list as-is, so a repeated label
+		// means the same proposal shows up twice for every color property.
+		const seen = new Set<string>();
+		for (const colorFunction of colorFunctions) {
+			assert.ok(!seen.has(colorFunction.label), `duplicate color function label: ${colorFunction.label}`);
+			seen.add(colorFunction.label);
+		}
+	});
+
 	test('is color', function () {
 		const parser = new Parser();
 		assertColor(parser, '#main { color: red }', 'red', colorFrom256RGB(0xFF, 0, 0));
 		assertColor(parser, '#main { color: slateblue }', 'slateblue', colorFrom256RGB(106, 90, 205));
+		assertColor(parser, '#main { color: mediumpurple }', 'mediumpurple', colorFrom256RGB(147, 112, 219));
+		assertColor(parser, '#main { color: palevioletred }', 'palevioletred', colorFrom256RGB(219, 112, 147));
 		assertColor(parser, '#main { color: #231 }', '#231', colorFrom256RGB(0x22, 0x33, 0x11));
 		assertColor(parser, '#main { red: 1 }', 'red', null);
 		assertColor(parser, '#red { foo: 1 }', 'red', null);
@@ -189,6 +202,22 @@ suite('CSS - Language Facts', () => {
 		assertColor(parser, '#main { color: oklch(0.70167 0.32249 328.36deg) }', 'oklch', colorFrom256RGB(255, 0, 255));
 		assertColor(parser, '#main { color: oklch(.8241 26.5225% 0.84891) }', 'oklch', colorFrom256RGB(255, 168, 193));
 		assertColor(parser, '#main { color: oklch(0% 0 none) }', 'oklch', colorFrom256RGB(0, 0, 0));
+		// expected values from colorjs.io, clipped to the sRGB gamut
+		assertColor(parser, '#main { color: color(srgb 1 0 0) }', 'color(', colorFrom256RGB(255, 0, 0));
+		assertColor(parser, '#main { color: color(srgb 50% 25% 75% / 0.5) }', 'color(', colorFrom256RGB(127.5, 63.75, 191.25, 0.5));
+		assertColor(parser, '#main { color: color(srgb-linear 0.2 0.4 0.6) }', 'color(', colorFrom256RGB(123.55, 169.62, 203.42));
+		assertColor(parser, '#main { color: color(display-p3 1 0.5 0) }', 'color(', colorFrom256RGB(255, 117.95, 0));
+		assertColor(parser, '#main { color: color(display-p3 0.3 none 0.6 / 40%) }', 'color(', colorFrom256RGB(84.49, 0, 159.35, 0.4));
+		assertColor(parser, '#main { color: color(a98-rgb 0.2 0.4 0.6) }', 'color(', colorFrom256RGB(0, 102.16, 156.2));
+		assertColor(parser, '#main { color: color(prophoto-rgb 0.2 0.4 0.6) }', 'color(', colorFrom256RGB(0, 129.92, 175.85));
+		assertColor(parser, '#main { color: color(rec2020 0.2 0.4 0.6) }', 'color(', colorFrom256RGB(0, 97.4, 152.61));
+		assertColor(parser, '#main { color: color(xyz 0.2 0.4 0.6) }', 'color(', colorFrom256RGB(0, 200.6, 197.84));
+		assertColor(parser, '#main { color: color(xyz-d65 0.2 0.4 0.6) }', 'color(', colorFrom256RGB(0, 200.6, 197.84));
+		assertColor(parser, '#main { color: color(xyz-d50 0.2 0.4 0.6) }', 'color(', colorFrom256RGB(0, 202.03, 226.72));
+		assertColor(parser, '#main { color: color(foo 1 0 0) }', 'color(', null, true);
+		assertColor(parser, '#main { color: color(display-p3 1 0) }', 'color(', null, true);
+		assertColor(parser, '#main { color: color(display-p3 1 0 / 0.5) }', 'color(', null, true);
+		assertColor(parser, '#main { color: color(display-p3 1 0 0 0) }', 'color(', null, true);
 	});
 
 	test('hexDigit', function () {

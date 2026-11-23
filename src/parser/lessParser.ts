@@ -91,7 +91,8 @@ export class LESSParser extends cssParser.Parser {
 		const node = super._parseMediaQuery();
 		if (!node) {
 			const node = this.create(nodes.MediaQuery);
-			if (node.addChild(this._parseVariable())) {
+			// @media @phone, or @media @{phone} since Less 4.7
+			if (node.addChild(this._parseVariable() || this._parseInterpolation())) {
 				return this.finish(node);
 			}
 			return null;
@@ -126,7 +127,7 @@ export class LESSParser extends cssParser.Parser {
 			}
 			if (node.setValue(this._parseDetachedRuleSet())) {
 				node.needsSemicolon = false;
-			} else if (!node.setValue(this._parseExpr())) {
+			} else if (!node.setValue(this._parseSelectorListValue() || this._parseExpr())) {
 				return <nodes.VariableDeclaration>this.finish(node, ParseError.VariableValueExpected, [], panic);
 			}
 
@@ -141,6 +142,21 @@ export class LESSParser extends cssParser.Parser {
 		}
 
 		return <nodes.VariableDeclaration>this.finish(node);
+	}
+
+	// a selector that is used through interpolation, e.g. `@sel: &:hover; @{sel} { }`
+	private _parseSelectorListValue(): nodes.Node | null {
+		if (!this.peekDelim('&') && !this.peek(TokenType.Colon)) {
+			return null;
+		}
+		const selectors = this.createNode(nodes.NodeType.SelectorList);
+		if (!selectors.addChild(this._parseSelector(true))) {
+			return null;
+		}
+		while (this.accept(TokenType.Comma) && selectors.addChild(this._parseSelector(true))) {
+			// loop
+		}
+		return this.finish(selectors);
 	}
 
 	public _parseDetachedRuleSet(): nodes.Node | null {
@@ -336,6 +352,8 @@ export class LESSParser extends cssParser.Parser {
 
 	public _parseKeyframeSelector(): nodes.Node | null {
 		return this._parseDetachedRuleSetMixin()  // less detached ruleset mixin
+			|| this._tryParseMixinReference() // less mixin reference, e.g. `.frames();`
+			|| this._parseFunction() // function call, e.g. `each(@list, { ... })`
 			|| super._parseKeyframeSelector();
 	}
 

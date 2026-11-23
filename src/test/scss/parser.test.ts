@@ -6,9 +6,11 @@
 'use strict';
 
 import { suite, test } from 'node:test';
+import * as assert from 'node:assert';
 import { SCSSParser } from '../../parser/scssParser.js';
 import { ParseError } from '../../parser/cssErrors.js';
 import { SCSSParseError } from '../../parser/scssErrors.js';
+import { getSCSSLanguageService, TextDocument } from '../../cssLanguageService.js';
 
 import { assertNode, assertError, assertNoNode } from '../testUtil/parser.js';
 
@@ -365,6 +367,16 @@ suite('SCSS - Parser', () => {
 		assertNode('@layer #{$layer} { }', parser, parser._parseLayer.bind(parser));
 	});
 
+	test('nested @layer declarations', function () {
+		const parser = new SCSSParser();
+		assertNode('.a { @layer utilities { color: red; } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('.a { @layer #{$layer} { color: $color; &:hover { color: blue; } } margin: 0; }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('.a { @layer utilities { @layer states { color: red; } } }', parser, parser._parseStylesheet.bind(parser));
+		assertNode('@layer utilities { .a { color: red; } }', parser, parser._parseStylesheet.bind(parser));
+		assertError('@layer utilities { color: red; }', parser, parser._parseStylesheet.bind(parser), ParseError.LeftCurlyExpected);
+		assertError('.a { @layer utilities { color red; } }', parser, parser._parseStylesheet.bind(parser), ParseError.LeftCurlyExpected);
+	});
+
 	test('@container', function () {
 		const parser = new SCSSParser();
 		assertNode(`@container (min-width: #{$minWidth}) { .scss-interpolation { line-height: 10cqh; } }`, parser, parser._parseStylesheet.bind(parser));
@@ -639,6 +651,8 @@ suite('SCSS - Parser', () => {
 		assertError('@function foo($a $b) {} ', parser, parser._parseStylesheet.bind(parser), ParseError.RightParenthesisExpected);
 		assertError('@function foo($a {} ', parser, parser._parseStylesheet.bind(parser), ParseError.RightParenthesisExpected);
 		assertError('@function foo($a...) { @return; }', parser, parser._parseStylesheet.bind(parser), ParseError.ExpressionExpected);
+		assertError('@function foo($a) { @return $; }', parser, parser._parseStylesheet.bind(parser), ParseError.ExpressionExpected);
+		assertError('@function foo($a) { @return $a + $; }', parser, parser._parseStylesheet.bind(parser), ParseError.TermExpected);
 		assertError('@function foo($a:) {} ', parser, parser._parseStylesheet.bind(parser), ParseError.VariableValueExpected);
 
 	});
@@ -763,5 +777,24 @@ suite('SCSS - Parser', () => {
 		assertNode('if(true, black, white)', parser, parser._parseFunction.bind(parser));
 		assertNode('if(sass(true): black; else: white;)', parser, parser._parseFunction.bind(parser));
 		assertNode('if(sass($value == \'default\'): flex-gutter(); else: $value;)', parser, parser._parseFunction.bind(parser));
-	})
+	});
+
+	test('if function !important branch', function() {
+		const parser = new SCSSParser();
+		assertNode('if(sass($e): !important; else: null)', parser, parser._parseFunction.bind(parser));
+		assertNode('if(sass($e): red !important; else: null)', parser, parser._parseFunction.bind(parser));
+		assertNode('if(sass($e): null; else: !important)', parser, parser._parseFunction.bind(parser));
+		assertNode('if(sass($e): red; else: null)', parser, parser._parseFunction.bind(parser));
+		assertNode('if(sass($e): red)', parser, parser._parseFunction.bind(parser));
+		assertNode('if(sass($e): ; else: null)', parser, parser._parseFunction.bind(parser));
+		assertError('if(!important: red; else: null)', parser, parser._parseFunction.bind(parser), ParseError.RightParenthesisExpected);
+		assertError('if(sass(!important): red; else: null)', parser, parser._parseFunction.bind(parser), ParseError.RightParenthesisExpected);
+		assertError('if(sass($e) !important: red; else: null)', parser, parser._parseFunction.bind(parser), ParseError.RightParenthesisExpected);
+	});
+
+	test('if function !important validation', function() {
+		const ls = getSCSSLanguageService();
+		const document = TextDocument.create('test://test/test.scss', 'scss', 0, '.a { color: if(sass($e): !important; else: null); }');
+		assert.deepEqual(ls.doValidation(document, ls.parseStylesheet(document)), []);
+	});
 });

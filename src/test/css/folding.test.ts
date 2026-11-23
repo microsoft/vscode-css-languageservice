@@ -265,6 +265,44 @@ suite('CSS Folding - maxRanges', () => {
 
 
 suite('CSS Folding - No intersections and always choose first region', () => {
+	test('region crossing an ancestor after nested ranges', () => {
+		const input = [
+			/*0*/'.outer {',
+			/*1*/'/* #region inner */',
+			/*2*/'color: red;',
+			/*3*/'/* #endregion */',
+			/*4*/'.nested {',
+			/*5*/'color: blue;',
+			/*6*/'}',
+			/*7*/'/* #region crossing */',
+			/*8*/'color: green;',
+			/*9*/'}',
+			/*10*/'.after {',
+			/*11*/'color: purple;',
+			/*12*/'}',
+			/*13*/'/* #endregion */'
+		];
+		assertRangesForLanguages(input, [r(0, 8), r(1, 3, 'region'), r(4, 5), r(10, 11)], ['css', 'scss', 'less']);
+	});
+
+	test('declaration crossing an ancestor after a nested range', () => {
+		const input = [
+			/*0*/'/* #region outer */',
+			/*1*/'.first {',
+			/*2*/'color: red;',
+			/*3*/'}',
+			/*4*/'.crossing {',
+			/*5*/'color: blue;',
+			/*6*/'/* #endregion */',
+			/*7*/'color: green;',
+			/*8*/'}',
+			/*9*/'.after {',
+			/*10*/'color: black;',
+			/*11*/'}'
+		];
+		assertRangesForLanguages(input, [r(0, 6, 'region'), r(1, 2), r(9, 10)], ['css', 'scss', 'less']);
+	});
+
 	test('region intersecting with declaration', () => {
 		const input = [
 			/*0*/'/* #region */',

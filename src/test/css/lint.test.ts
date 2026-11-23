@@ -99,6 +99,27 @@ suite('CSS - Lint', () => {
 	test('duplicate declarations', function () {
 		assertRuleSet('selector { color: perty; color: perty }', Rules.DuplicateDeclarations, Rules.DuplicateDeclarations);
 		assertRuleSet('selector { color: -o-perty; color: perty }');
+		// more than two duplicates: each declaration is flagged once, not once per other duplicate
+		assertRuleSet('selector { color: a; color: b; color: c }', Rules.DuplicateDeclarations, Rules.DuplicateDeclarations, Rules.DuplicateDeclarations);
+		// case is folded before comparing property names
+		assertRuleSet('selector { Color: red; color: blue }', Rules.DuplicateDeclarations, Rules.DuplicateDeclarations);
+		// background is exempt (progressive enhancement with multiple background images/gradients)
+		assertRuleSet('selector { background: red; background: blue }');
+		// a value starting with `-` opts a declaration out, e.g. a vendor-prefixed fallback value
+		assertRuleSet('selector { margin: -1px; margin: 2px }');
+		// repeated vendor-prefixed property name (also unknown, hence the extra rule)
+		assertRuleSet('selector { -xxx-perty: a; -xxx-perty: b; -xxx-perty: c }', Rules.DuplicateDeclarations, Rules.DuplicateDeclarations, Rules.DuplicateDeclarations, Rules.UnknownVendorSpecificProperty, Rules.UnknownVendorSpecificProperty, Rules.UnknownVendorSpecificProperty);
+		// custom properties, with a trailing semicolon
+		assertRuleSet('selector { --foo: 1; --foo: 2; }', Rules.DuplicateDeclarations, Rules.DuplicateDeclarations);
+		// a nested rule's declarations don't count toward the outer ruleset's duplicates
+		assertRuleSet('selector { color: red; nested { color: blue } color: green }', Rules.DuplicateDeclarations, Rules.DuplicateDeclarations);
+		// validProperties exempts a property from the duplicate check
+		assertRuleSet2('selector { foo: a; foo: b; foo: c }', [], undefined, new LintConfigurationSettings({ validProperties: ['foo'] }));
+
+		// many duplicates of the same property still report exactly one marker per declaration
+		const manyDuplicatesCount = 5000;
+		const manyDuplicates = Array.from({ length: manyDuplicatesCount }, (_, i) => `color: rgb(${i}, 0, 0);`).join(' ');
+		assertRuleSet2(`selector { ${manyDuplicates} }`, Array(manyDuplicatesCount).fill(Rules.DuplicateDeclarations));
 	});
 
 	test('unknown properties', function () {

@@ -24,6 +24,22 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 suite('CSS - Completion', () => {
 
+	test('color completion offers the xyz color space', async function () {
+		await testCompletionFor('.foo { color: col|; }', {
+			items: [
+				{ label: 'color', kind: CompletionItemKind.Function, insertTextFormat: InsertTextFormat.Snippet, resultText: '.foo { color: color(${1|srgb,srgb-linear,display-p3,a98-rgb,prophoto-rgb,rec2020,xyz,xyz-d50,xyz-d65|} ${2:red} ${3:green} ${4:blue}); }' }
+			]
+		});
+	});
+
+	test('relative color completion offers the xyz color space', async function () {
+		await testCompletionFor('.foo { color: col|; }', {
+			items: [
+				{ label: 'color relative', kind: CompletionItemKind.Function, insertTextFormat: InsertTextFormat.Snippet, resultText: '.foo { color: color(from ${1:color} ${2|srgb,srgb-linear,display-p3,a98-rgb,prophoto-rgb,rec2020,xyz,xyz-d50,xyz-d65|} ${3:r} ${4:g} ${5:b}); }' }
+			]
+		});
+	});
+
 
 
 	test('stylesheet', async function () {
@@ -325,6 +341,24 @@ suite('CSS - Completion', () => {
 			]
 		});
 	});
+	test('color functions are proposed once each', async function () {
+		// assertCompletion fails a label that shows up more than once, so these also
+		// cover lab/lch having been registered twice with conflicting signatures.
+		await testCompletionFor('.foo { background-color: l|', {
+			items: [
+				{ label: 'lab', kind: CompletionItemKind.Function, detail: 'lab($lightness $a $b)', resultText: '.foo { background-color: lab(${1:lightness} ${2:a} ${3:b})' },
+				{ label: 'lab relative', kind: CompletionItemKind.Function, detail: 'lab(from $color $lightness $a $b)', resultText: '.foo { background-color: lab(from ${1:color} ${2:l} ${3:a} ${4:b})' },
+				{ label: 'lch', kind: CompletionItemKind.Function, detail: 'lch($lightness $chroma $hue)', resultText: '.foo { background-color: lch(${1:lightness} ${2:chroma} ${3:hue})' },
+				{ label: 'lch relative', kind: CompletionItemKind.Function, detail: 'lch(from $color $lightness $chroma $hue)', resultText: '.foo { background-color: lch(from ${1:color} ${2:l} ${3:c} ${4:h})' },
+			]
+		});
+		await testCompletionFor('.foo { color: o|', {
+			items: [
+				{ label: 'oklab', kind: CompletionItemKind.Function, resultText: '.foo { color: oklab(${1:lightness} ${2:a} ${3:b})' },
+				{ label: 'oklch', kind: CompletionItemKind.Function, resultText: '.foo { color: oklch(${1:lightness} ${2:chroma} ${3:hue})' },
+			]
+		});
+	});
 	test('variables', async function () {
 		await testCompletionFor(':root { --myvar: red; } body { color: |', {
 			items: [
@@ -531,7 +565,15 @@ suite('CSS - Completion', () => {
 					documentation: {
 						kind: 'markdown',
 						value:
-								`The text\\-decoration\\-skip CSS property specifies what parts of the element’s content any text decoration affecting the element must skip over\\. It controls all text decoration lines drawn by the element and also any text decoration lines drawn by its ancestors\\.\n\n![Baseline icon](${BaselineImages.BASELINE_LIMITED}) _Limited availability across major browsers (Not fully implemented in Chrome, Edge, or Firefox)_\n\nSyntax: none | \\[ objects || \\[ spaces | \\[ leading\\-spaces || trailing\\-spaces \\] \\] || edges || box\\-decoration \\]\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/text-decoration-skip)`
+								`🚨️️️ Property is obsolete. Avoid using it.\n\nThe text\\-decoration\\-skip CSS property specifies what parts of the element’s content any text decoration affecting the element must skip over\\. It controls all text decoration lines drawn by the element and also any text decoration lines drawn by its ancestors\\.\n\nSyntax: none | \\[ objects || \\[ spaces | \\[ leading\\-spaces || trailing\\-spaces \\] \\] || edges || box\\-decoration \\]\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/text-decoration-skip)`
+					}
+				},
+				{
+					label: 'user-select',
+					documentation: {
+						kind: 'markdown',
+						value:
+								`Controls the appearance of selection\\.\n\n![Baseline icon](${BaselineImages.BASELINE_LIMITED}) _Limited availability across major browsers (Not fully implemented in Safari)_\n\nSyntax: auto | text | none | all\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/user-select)`
 					}
 				},
 				{

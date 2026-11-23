@@ -290,7 +290,7 @@ export class SCSSParser extends cssParser.Parser {
 				|| this._parseMixinDeclaration() // nested @mixin
 				|| this._parseRuleset(true) // @at-rule
 				|| this._parseSupports(true) // @supports
-				|| this._parseLayer() // @layer
+				|| this._parseLayer(true) // nested @layer
 				|| this._parsePropertyAtRule() // @property
 				|| this._parseContainer(true) // nested @container
 				|| this._parseRuleSetDeclarationAtStatement();
@@ -578,9 +578,15 @@ export class SCSSParser extends cssParser.Parser {
 		}
 
 		const node = this.createNode(nodes.NodeType.ReturnStatement);
-		this.consumeToken(); // @function
+		this.consumeToken(); // @return
 
-		if (!node.addChild(this._parseExpr())) {
+		const hasExpression = node.addChild(this._parseExpr());
+		if (this.peekDelim('$')) {
+			// Keep an unfinished variable inside the return statement for completion.
+			this.consumeToken();
+			return this.finish(node, ParseError.ExpressionExpected);
+		}
+		if (!hasExpression) {
 			return this.finish(node, ParseError.ExpressionExpected);
 		}
 		return this.finish(node);
@@ -763,6 +769,23 @@ export class SCSSParser extends cssParser.Parser {
 		}
 
 		return super._parseIfTest();
+	}
+
+	public _parseIfBranch() {
+		// Sass if() branches may be an expression, `!important`, or an expression followed by `!important`.
+		const node = this.create(nodes.Node);
+		if (!node.addChild(this._parseIfCondition())) {
+			return this.finish(node, ParseError.IfConditionExpected, [], [TokenType.SemiColon]);
+		}
+		if (!this.accept(TokenType.Colon)) {
+			return this.finish(node, ParseError.ColonExpected, [], [TokenType.SemiColon]);
+		}
+		if (node.addChild(this._parseExpr())) {
+			node.addChild(this._parsePrio());
+		} else {
+			node.addChild(this._tryParsePrio());
+		}
+		return this.finish(node);
 	}
 
 	public _parseFunction(): nodes.Function | null {
