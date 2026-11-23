@@ -6,7 +6,7 @@
 
 import * as nodes from '../parser/cssNodes.js';
 import { MarkedString } from '../cssLanguageTypes.js';
-import { Scanner } from '../parser/cssScanner.js';
+import { Scanner, TokenType } from '../parser/cssScanner.js';
 import * as l10n from '@vscode/l10n';
 import { CSSDataManager } from '../languageFacts/dataManager.js';
 import { Parser } from '../parser/cssParser.js';
@@ -490,14 +490,22 @@ export class SelectorPrinting {
 							}
 
 							// Edge case: when <an+b> is a single identifier (e.g. `n`, `-n`, `n-1`, `odd`, `even`), the parser reads
-							// `<an+b> of S` as a selector, so S has to be extracted from the text.
+							// `<an+b> of S` as a selector, so S has to be extracted from the text. The scanner skips comments and whitespace.
 							const pseudoSelectorText = childElements[1].getText();
-							const identifierAnPlusBOf = pseudoSelectorText.match(/^\s*(?:[+-]?n(?:-\d*)?|odd|even)\s+of(?![\w-])/i);
+							const scanner = new Scanner();
+							scanner.setSource(pseudoSelectorText);
+							let anPlusBToken = scanner.scan();
+							if (anPlusBToken.type === TokenType.Delim && anPlusBToken.text === '+') {
+								anPlusBToken = scanner.scan();
+							}
+							const ofToken = scanner.scan();
+							const identifierAnPlusBOf = anPlusBToken.type === TokenType.Ident && /^(?:-?n(?:-\d*)?|odd|even)$/i.test(anPlusBToken.text)
+								&& ofToken.type === TokenType.Ident && ofToken.text.toLowerCase() === 'of';
 
 							if (identifierAnPlusBOf) {
 								const parser = new Parser();
 								const complexSelectorListNodes: nodes.Node[] = [];
-								const complexSelectorText = pseudoSelectorText.slice(identifierAnPlusBOf[0].length);
+								const complexSelectorText = pseudoSelectorText.slice(ofToken.offset + ofToken.len);
 								const complexSelectorArray = complexSelectorText.split(',');
 
 								for (const selector of complexSelectorArray) {
