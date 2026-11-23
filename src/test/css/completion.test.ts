@@ -24,6 +24,22 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 suite('CSS - Completion', () => {
 
+	test('color completion offers the xyz color space', async function () {
+		await testCompletionFor('.foo { color: col|; }', {
+			items: [
+				{ label: 'color', kind: CompletionItemKind.Function, insertTextFormat: InsertTextFormat.Snippet, resultText: '.foo { color: color(${1|srgb,srgb-linear,display-p3,a98-rgb,prophoto-rgb,rec2020,xyz,xyz-d50,xyz-d65|} ${2:red} ${3:green} ${4:blue}); }' }
+			]
+		});
+	});
+
+	test('relative color completion offers the xyz color space', async function () {
+		await testCompletionFor('.foo { color: col|; }', {
+			items: [
+				{ label: 'color relative', kind: CompletionItemKind.Function, insertTextFormat: InsertTextFormat.Snippet, resultText: '.foo { color: color(from ${1:color} ${2|srgb,srgb-linear,display-p3,a98-rgb,prophoto-rgb,rec2020,xyz,xyz-d50,xyz-d65|} ${3:r} ${4:g} ${5:b}); }' }
+			]
+		});
+	});
+
 
 
 	test('stylesheet', async function () {

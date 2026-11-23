@@ -111,13 +111,13 @@ export const colorFunctions = [
 	{
 		label: 'color',
 		func: 'color($color-space $red $green $blue)',
-		insertText: 'color(${1|srgb,srgb-linear,display-p3,a98-rgb,prophoto-rgb,rec2020,xyx,xyz-d50,xyz-d65|} ${2:red} ${3:green} ${4:blue})',
+		insertText: 'color(${1|srgb,srgb-linear,display-p3,a98-rgb,prophoto-rgb,rec2020,xyz,xyz-d50,xyz-d65|} ${2:red} ${3:green} ${4:blue})',
 		desc: l10n.t('Creates a Color in a specific color space from red, green, and blue values.')
 	},
 	{
 		label: 'color relative',
 		func: 'color(from $color $color-space $red $green $blue)',
-		insertText: 'color(from ${1:color} ${2|srgb,srgb-linear,display-p3,a98-rgb,prophoto-rgb,rec2020,xyx,xyz-d50,xyz-d65|} ${3:r} ${4:g} ${5:b})',
+		insertText: 'color(from ${1:color} ${2|srgb,srgb-linear,display-p3,a98-rgb,prophoto-rgb,rec2020,xyz,xyz-d50,xyz-d65|} ${3:r} ${4:g} ${5:b})',
 		desc: l10n.t('Creates a Color in a specific color space from the red, green, and blue values of another Color.')
 	},
 	{
