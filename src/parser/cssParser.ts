@@ -302,7 +302,9 @@ export class Parser {
 			this.consumeToken();
 		} while (!this.peek(TokenType.EOF));
 
-		return this.finish(node);
+		// Include tokens skipped during error recovery and any trailing trivia.
+		node.length = this.token.offset - node.offset;
+		return node;
 	}
 
 	public _parseStylesheetStart(): nodes.Node | null {

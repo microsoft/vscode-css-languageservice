@@ -241,6 +241,9 @@ export class CSSCompletion {
 				} else if (node.type === nodes.NodeType.URILiteral) {
 					this.getCompletionForUriLiteralValue(node, result);
 				} else if (node.parent === null) {
+					if (this.nodePath.length === 1) {
+						break;
+					}
 					this.getCompletionForTopLevel(result);
 				} else if (node.type === nodes.NodeType.StringLiteral && this.isImportPathParent(node.parent.type)) {
 					this.getCompletionForImportPath(node, result);
@@ -257,6 +260,8 @@ export class CSSCompletion {
 			if (result.items.length === 0) {
 				if (this.variablePrefix && this.currentWord.indexOf(this.variablePrefix) === 0) {
 					this.getVariableProposals(null, result);
+				} else if (this.nodePath.length === 1) {
+					this.getCompletionForTopLevel(result);
 				}
 			}
 			return this.finalize(result);
