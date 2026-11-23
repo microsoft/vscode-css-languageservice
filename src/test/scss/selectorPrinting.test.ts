@@ -42,6 +42,15 @@ suite('SCSS - Selector Printing', () => {
 		assertSelector(p, 'o.c1 { &__bar {}}', '&', '{o[class=c1__bar]}');
 	});
 
+	test('referencing selector with sibling combinators', function () {
+		let p = new SCSSParser();
+		assertSelector(p, '.foo + .bar { .baz & { } }', '&', '{[class=baz]{…{[class=foo]|[class=bar]}}}');
+		assertSelector(p, '.foo ~ .bar { .baz & { } }', '&', '{[class=baz]{…{[class=foo]|⋮|[class=bar]}}}');
+		assertSelector(p, 'o1 o2 + o3 { .baz & { } }', '&', '{[class=baz]{…{o1{…{o2|o3}}}}}');
+		assertSelector(p, 'o1 + o2 { &:hover { } }', '&', '{o1|o2[:hover=]}');
+		assertSelector(p, 'o1 + o2 { e1 { } }', 'e1', '{o1|o2{…{e1}}}');
+	});
+
 	test('placeholders', function () {
 		let p = new SCSSParser();
 		assertSelector(p, '%o1 { e1 { } }', 'e1', '{%o1{…{e1}}}');

@@ -84,6 +84,9 @@ export class Element {
 	}
 
 	public clone(cloneChildren: boolean = true): Element {
+		if (this instanceof LabelElement) {
+			return new LabelElement(this.findAttribute('name')!);
+		}
 		const elem = new Element();
 		if (this.attributes) {
 			elem.attributes = [];
@@ -102,8 +105,16 @@ export class Element {
 
 	public cloneWithParent(): Element {
 		const clone = this.clone(false);
-		if (this.parent && !(this.parent instanceof RootElement)) {
-			const parentClone = this.parent.cloneWithParent();
+		const parent = this.parent;
+		if (parent) {
+			const parentClone = parent instanceof RootElement ? new RootElement() : parent.cloneWithParent();
+			// keep the preceding siblings (`a + b`, `a ~ b`) so that a reference to `b` still includes `a`
+			for (const sibling of parent.children ?? []) {
+				if (sibling === this) {
+					break;
+				}
+				parentClone.addChild(sibling.clone());
+			}
 			parentClone.addChild(clone);
 		}
 		return clone;
@@ -553,8 +564,16 @@ class SelectorElementBuilder {
 				if (curr.parent instanceof RootElement) {
 					parentElement = this.element;
 
-					this.element = curr.parent;
-					this.element.removeChild(curr);
+					// the parent selector is referenced with `&`: move the whole parent context,
+					// including preceding siblings (`a + b`, `a ~ b`), out of the root
+					const root = curr.parent;
+					const context = new RootElement();
+					for (const child of root.children ?? []) {
+						context.addChild(child);
+					}
+					root.children = null;
+
+					this.element = root;
 					this.prev = null;
 				}
 			}
@@ -577,7 +596,14 @@ class SelectorElementBuilder {
 				const thisElement = toElement(<nodes.SimpleSelector>selectorChild, parentElement);
 				const root = thisElement.findRoot();
 
-				this.element.addChild(root);
+				if (root.parent instanceof RootElement && root.parent.children) {
+					// a referenced parent selector can come with preceding siblings
+					for (const sibling of [...root.parent.children]) {
+						this.element.addChild(sibling);
+					}
+				} else {
+					this.element.addChild(root);
+				}
 				this.element = thisElement;
 			}
 			if (
