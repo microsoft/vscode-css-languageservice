@@ -290,7 +290,7 @@ export class SCSSParser extends cssParser.Parser {
 				|| this._parseMixinDeclaration() // nested @mixin
 				|| this._parseRuleset(true) // @at-rule
 				|| this._parseSupports(true) // @supports
-				|| this._parseLayer() // @layer
+				|| this._parseLayer(true) // nested @layer
 				|| this._parsePropertyAtRule() // @property
 				|| this._parseContainer(true) // nested @container
 				|| this._parseRuleSetDeclarationAtStatement();
