@@ -10,6 +10,7 @@ import { Parser } from '../../parser/cssParser.js';
 import { TokenType } from '../../parser/cssScanner.js';
 import * as nodes from '../../parser/cssNodes.js';
 import { ParseError } from '../../parser/cssErrors.js';
+import { getCSSLanguageService, TextDocument } from '../../cssLanguageService.js';
 import { assertError, assertFunction, assertNode, assertNoNode, assertType } from '../testUtil/parser.js';
 
 suite('CSS - Parser', () => {
@@ -611,6 +612,15 @@ suite('CSS - Parser', () => {
 		assertFunction('if(else: white)', parser, parser._parseFunction.bind(parser));
 		assertError('if()', parser, parser._parseFunction.bind(parser), ParseError.IfConditionExpected);
 		assertError('if(invalid: black;)', parser, parser._parseFunction.bind(parser), ParseError.IfConditionExpected);
+		// Plain CSS if() branches do not accept `!important`.
+		assertError('if(style(--x: yes): red !important; else: blue)', parser, parser._parseFunction.bind(parser), ParseError.RightParenthesisExpected);
+		assertError('if(style(--x: yes): !important; else: blue)', parser, parser._parseFunction.bind(parser), ParseError.RightParenthesisExpected);
+	});
+
+	test('if function !important branch validation', function () {
+		const ls = getCSSLanguageService();
+		const document = TextDocument.create('test://test/test.css', 'css', 0, 'a { color: if(style(--x: yes): red !important; else: blue); }');
+		assert.ok(ls.doValidation(document, ls.parseStylesheet(document)).length > 0);
 	});
 
 	test('attr', function () {

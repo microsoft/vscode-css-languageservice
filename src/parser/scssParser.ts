@@ -771,6 +771,23 @@ export class SCSSParser extends cssParser.Parser {
 		return super._parseIfTest();
 	}
 
+	public _parseIfBranch() {
+		// Sass if() branches may be an expression, `!important`, or an expression followed by `!important`.
+		const node = this.create(nodes.Node);
+		if (!node.addChild(this._parseIfCondition())) {
+			return this.finish(node, ParseError.IfConditionExpected, [], [TokenType.SemiColon]);
+		}
+		if (!this.accept(TokenType.Colon)) {
+			return this.finish(node, ParseError.ColonExpected, [], [TokenType.SemiColon]);
+		}
+		if (node.addChild(this._parseExpr())) {
+			node.addChild(this._parsePrio());
+		} else {
+			node.addChild(this._tryParsePrio());
+		}
+		return this.finish(node);
+	}
+
 	public _parseFunction(): nodes.Function | null {
 
 		const pos = this.mark();
