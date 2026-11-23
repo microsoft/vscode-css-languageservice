@@ -578,9 +578,15 @@ export class SCSSParser extends cssParser.Parser {
 		}
 
 		const node = this.createNode(nodes.NodeType.ReturnStatement);
-		this.consumeToken(); // @function
+		this.consumeToken(); // @return
 
-		if (!node.addChild(this._parseExpr())) {
+		const hasExpression = node.addChild(this._parseExpr());
+		if (this.peekDelim('$')) {
+			// Keep an unfinished variable inside the return statement for completion.
+			this.consumeToken();
+			return this.finish(node, ParseError.ExpressionExpected);
+		}
+		if (!hasExpression) {
 			return this.finish(node, ParseError.ExpressionExpected);
 		}
 		return this.finish(node);
