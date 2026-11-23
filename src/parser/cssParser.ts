@@ -2305,12 +2305,7 @@ export class Parser {
 		if (!this.accept(TokenType.Colon)) {
 			return this.finish(node, ParseError.ColonExpected, [], [TokenType.SemiColon]);
 		}
-		// A branch value may be an expression, `!important`, or an expression followed by `!important`.
-		if (node.addChild(this._parseExpr())) {
-			node.addChild(this._parsePrio());
-		} else {
-			node.addChild(this._tryParsePrio());
-		}
+		node.addChild(this._parseExpr());
 		return this.finish(node);
 	}
 
