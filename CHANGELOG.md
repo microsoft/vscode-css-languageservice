@@ -1,3 +1,11 @@
+7.0.0-next.4 / 2026-11-23
+=========================
+ * Add color decorators for the CSS `color()` function and correct named-color values, angle-unit casing, and color completion snippets
+ * Preserve functional pseudo-selector arguments in hover previews and calculate specificity using decoded pseudo-selector names
+ * Improve stylesheet ranges after error recovery, folding-range intersection handling, duplicate-declaration linting performance, and unknown-property quick-fix ranking
+ * SCSS: complete variables in return statements, accept declarations in nested cascade layers, and support `!important` in Sass `if()` branches
+ * LESS: accept selector-valued variables, interpolated media queries, and function and mixin calls in keyframes
+
 7.0.0-next.1 / 2026-03-04
 =========================
  * BREAKING: package is now ESM-only (`"type": "module"`) and no longer publishes `lib/umd` output
