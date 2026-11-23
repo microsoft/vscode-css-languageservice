@@ -413,7 +413,7 @@ export class SelectorPrinting {
 						break;
 
 					case nodes.NodeType.PseudoSelector:
-						const text = element.getText();
+						const text = unescape(element.getText());
 						const childElements = element.getChildren();
 
 						if (this.isPseudoElementIdentifier(text)) {
