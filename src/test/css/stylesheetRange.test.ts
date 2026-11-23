@@ -17,7 +17,7 @@ suite('Stylesheet range', () => {
 		const service = getSCSSLanguageService();
 		for (const fixture of ['$a: red;\n@media ($|', '$a: red;\n@media $|', '$a: red;\n@mixin foo($|', '$a: red;\n@function foo($|', '$a: red;\n@each $|']) {
 			const offset = fixture.indexOf('|');
-			const text = fixture.replace('|', '');
+			const text = fixture.replaceAll('|', '');
 			const document = TextDocument.create('file:///test.scss', 'scss', 1, text);
 			const result = service.doComplete(document, document.positionAt(offset), service.parseStylesheet(document));
 			assert.ok(result.items.some(item => item.label === '$a'), `Missing $a in ${text}`);
@@ -32,7 +32,7 @@ suite('Stylesheet range', () => {
 		test(`${language}: keeps offsets after an incomplete declaration reachable`, () => {
 			for (const fixture of ['.bar {\n  op0.1|\n}', '.foo {\n    padding\n    m|\n}', '.bar { op0.1|']) {
 				const offset = fixture.indexOf('|');
-				const text = fixture.replace('|', '');
+				const text = fixture.replaceAll('|', '');
 				const document = TextDocument.create(`file:///test.${language}`, language, 1, text);
 				const stylesheet = createParser().parseStylesheet(document);
 				assert.ok(getNodeAtOffset(stylesheet, offset), `No AST node at ${offset} in ${text}`);
