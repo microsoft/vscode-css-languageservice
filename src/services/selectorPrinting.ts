@@ -11,6 +11,9 @@ import * as l10n from '@vscode/l10n';
 import { CSSDataManager } from '../languageFacts/dataManager.js';
 import { Parser } from '../parser/cssParser.js';
 
+// attribute key for the element name; 'name' would clash with [name=x]
+export const ELEMENT_NAME = '<>';
+
 export class Element {
 	public parent: Element | null = null;
 	public children: Element[] | null = null;
@@ -115,7 +118,7 @@ export class RootElement extends Element { }
 export class LabelElement extends Element {
 	constructor(label: string) {
 		super();
-		this.addAttr('name', label);
+		this.addAttr(ELEMENT_NAME, label);
 	}
 }
 
@@ -159,7 +162,7 @@ class MarkedStringPrinter {
 	}
 
 	private doPrintElement(element: Element, indent: number) {
-		const name = element.findAttribute('name');
+		const name = element.findAttribute(ELEMENT_NAME);
 
 		// special case: a simple label
 		if (element instanceof LabelElement || name === '\u2026') {
@@ -180,7 +183,7 @@ class MarkedStringPrinter {
 		// attributes
 		if (element.attributes) {
 			for (const attr of element.attributes) {
-				if (attr.name !== 'name') {
+				if (attr.name !== ELEMENT_NAME) {
 					content.push(' ');
 					content.push(attr.name);
 					const value = attr.value;
@@ -229,7 +232,7 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element | 
 					const segments = child.getText().split('&');
 					if (segments.length === 1) {
 						// should not happen
-						result.addAttr('name', segments[0]);
+						result.addAttr(ELEMENT_NAME, segments[0]);
 						break;
 					}
 					result = parentElement.cloneWithParent();
@@ -254,7 +257,7 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element | 
 			// fall through
 			case nodes.NodeType.ElementNameSelector:
 				const text = child.getText();
-				result.addAttr('name', text === '*' ? 'element' : unescape(text));
+				result.addAttr(ELEMENT_NAME, text === '*' ? 'element' : unescape(text));
 				break;
 			case nodes.NodeType.ClassSelector:
 				result.addAttr('class', unescape(child.getText().substring(1)));

@@ -10,8 +10,8 @@ import { Parser } from '../../parser/cssParser.js';
 import * as selectorPrinting from '../../services/selectorPrinting.js';
 
 function elementToString(element: selectorPrinting.Element): string {
-	let label = element.findAttribute('name') || '';
-	const attributes = element.attributes?.filter(attribute => attribute.name !== 'name');
+	let label = element.findAttribute(selectorPrinting.ELEMENT_NAME) || '';
+	const attributes = element.attributes?.filter(attribute => attribute.name !== selectorPrinting.ELEMENT_NAME);
 	if (attributes?.length) {
 		label += '[';
 		label += attributes.map(attribute => attribute.name + '=' + attribute.value).join('|');
