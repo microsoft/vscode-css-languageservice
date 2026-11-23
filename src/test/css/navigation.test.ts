@@ -317,6 +317,23 @@ suite('CSS - Navigation', () => {
 
 	suite('Color', () => {
 
+		for (const [name, components] of [['hsl', '100% 50%'], ['hwb', '0% 0%']]) {
+			for (const angle of [
+				'180',
+				'180deg', '180DEG', '180dEg',
+				'200grad', '200GRAD', '200gRaD',
+				'3.141592653589793rad', '3.141592653589793RAD', '3.141592653589793rAd',
+				'0.5turn', '0.5TURN', '0.5tUrN'
+			]) {
+				test(`color symbols with ${name} angle unit ${angle}`, () => {
+					const expression = `${name}(${angle} ${components})`;
+					assertColorSymbols(getCSSLS(), `a{color:${expression}}`,
+						{ color: { red: 0, green: 1, blue: 1, alpha: 1 }, range: newRange(8, 8 + expression.length) }
+					);
+				});
+			}
+		}
+
 		test('color symbols', function () {
 			const ls = getCSSLS();
 			assertColorSymbols(ls, 'body { backgroundColor: #ff9977; }',
