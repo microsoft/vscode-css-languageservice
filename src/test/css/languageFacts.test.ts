@@ -160,6 +160,8 @@ suite('CSS - Language Facts', () => {
 		const parser = new Parser();
 		assertColor(parser, '#main { color: red }', 'red', colorFrom256RGB(0xFF, 0, 0));
 		assertColor(parser, '#main { color: slateblue }', 'slateblue', colorFrom256RGB(106, 90, 205));
+		assertColor(parser, '#main { color: mediumpurple }', 'mediumpurple', colorFrom256RGB(147, 112, 219));
+		assertColor(parser, '#main { color: palevioletred }', 'palevioletred', colorFrom256RGB(219, 112, 147));
 		assertColor(parser, '#main { color: #231 }', '#231', colorFrom256RGB(0x22, 0x33, 0x11));
 		assertColor(parser, '#main { red: 1 }', 'red', null);
 		assertColor(parser, '#red { foo: 1 }', 'red', null);
