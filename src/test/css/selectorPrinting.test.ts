@@ -198,6 +198,32 @@ suite('CSS - MarkedStringPrinter selectors specificities', () => {
 		]);
 	});
 
+	for (const [escaped, plain, specificity] of [
+		[String.raw`:w\68 ere(#id)`, ':where(#id)', '(0, 0, 0)'],
+		[String.raw`:n\6ft(#id)`, ':not(#id)', '(1, 0, 0)'],
+		[String.raw`:i\73(#id, .class)`, ':is(#id, .class)', '(1, 0, 0)'],
+		[String.raw`:h\61s(> #id)`, ':has(> #id)', '(1, 0, 0)'],
+		[String.raw`:h\6fst(#id)`, ':host(#id)', '(1, 1, 0)'],
+		[String.raw`:h\6fst-context(#id)`, ':host-context(#id)', '(1, 1, 0)'],
+		[String.raw`::s\6c otted(#id)`, '::slotted(#id)', '(1, 0, 1)'],
+		[String.raw`:b\65 fore`, ':before', '(0, 0, 1)'],
+		[String.raw`::a\66ter`, '::after', '(0, 0, 1)'],
+		[String.raw`:\where(#id)`, ':where(#id)', '(0, 0, 0)'],
+		[String.raw`:\000069s(#id)`, ':is(#id)', '(1, 0, 0)'],
+		[String.raw`:not(:\77here(#id))`, ':not(:where(#id))', '(0, 0, 0)'],
+		[String.raw`:h\6fver`, ':hover', '(0, 1, 0)'],
+	]) {
+		test(`escaped pseudo-selector specificity: ${escaped}`, function () {
+			const printer = new selectorPrinting.SelectorPrinting(cssDataManager);
+			for (const input of [plain, escaped]) {
+				const selector = doParse(new Parser(), input, input);
+				assert.ok(selector);
+				const result = printer.selectorToMarkedString(selector);
+				assert.strictEqual(result[result.length - 1], `[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): ${specificity}`, input);
+			}
+		});
+	}
+
 	test('where specificity', function () {
 		assertSelectorMarkdown(p, '#s12:where(foo)', '#s12', [
 			{ language: 'html', value: '<element id="s12" :where>' },
