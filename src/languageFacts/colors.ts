@@ -311,6 +311,11 @@ function getNumericValue(node: nodes.Node, factor: number, lowerLimit: number = 
 	throw new Error();
 }
 
+function getAlphaValue(node: nodes.Node): number {
+	// CSS clamps out-of-range alpha values rather than invalidating the color.
+	return Math.min(1, Math.max(0, getNumericValue(node, 1, -Infinity, Infinity)));
+}
+
 const DEGREES_PER_CIRCLE = 360; // Number of degrees in a full circle
 const GRAD_TO_DEGREE_FACTOR = 0.9; // Conversion factor: grads to degrees
 const RADIANS_TO_DEGREES_FACTOR = DEGREES_PER_CIRCLE / 2 / Math.PI; // Conversion factor: radians to degrees
@@ -940,7 +945,7 @@ function colorFromColorFunction(values: nodes.Node[]): Color | null {
 			const left = last.getLeft(), right = last.getRight(), operator = last.getOperator();
 			if (left && right && operator && operator.matches('/')) {
 				values = [values[0], values[1], values[2], left];
-				alpha = getNumericValue(right, 1);
+				alpha = getAlphaValue(right);
 			}
 		}
 		if (values.length !== 4) {
@@ -990,7 +995,7 @@ export function getColorValue(node: nodes.Node): Color | null {
 		}
 
 		try {
-			const alpha = colorValues.length === 4 ? getNumericValue(colorValues[3], 1) : 1;
+			const alpha = colorValues.length === 4 ? getAlphaValue(colorValues[3]) : 1;
 			switch (name) {
 				case 'rgb':
 				case 'rgba': {
