@@ -298,7 +298,7 @@ const colorKeywordsRegExp = new RegExp(`^(${Object.keys(colorKeywords).join('|')
 
 function getNumericValue(node: nodes.Node, factor: number, lowerLimit: number = 0, upperLimit: number = 1) {
 	const val = node.getText();
-	const m = val.match(/^([-+]?[0-9]*\.?[0-9]+)(%?)$/);
+	const m = val.match(/^([-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?)(%?)$/);
 	if (m) {
 		if (m[2]) {
 			factor = 100.0;
@@ -323,7 +323,7 @@ function getAngle(node: nodes.Node): number {
 		return 0;
 	}
 
-	const m = /^(?<numberString>[-+]?[0-9]*\.?[0-9]+)(?<unit>deg|rad|grad|turn)?$/iu.exec(textValue);
+	const m = /^(?<numberString>[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?)(?<unit>deg|rad|grad|turn)?$/iu.exec(textValue);
 	if (m?.groups?.['numberString']) {
 		const value = Number.parseFloat(m.groups['numberString']);
 		if (!Number.isNaN(value)) {

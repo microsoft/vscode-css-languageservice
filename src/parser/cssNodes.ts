@@ -1573,14 +1573,18 @@ export class NumericValue extends Node {
 
 	public getValue(): { value: string; unit?: string } {
 		const raw = this.getText();
-		let unitIdx = 0;
+		let unitIdx = raw[0] === '+' || raw[0] === '-' ? 1 : 0;
 		let code: number;
-		for (let i = 0, len = raw.length; i < len; i++) {
+		for (let i = unitIdx, len = raw.length; i < len; i++) {
 			code = raw.charCodeAt(i);
 			if (!(_0 <= code && code <= _9 || code === _dot)) {
 				break;
 			}
 			unitIdx += 1;
+		}
+		const exponent = /^[eE][+-]?\d+/.exec(raw.substring(unitIdx));
+		if (exponent) {
+			unitIdx += exponent[0].length;
 		}
 		return {
 			value: raw.substring(0, unitIdx),

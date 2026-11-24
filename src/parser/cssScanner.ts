@@ -138,10 +138,12 @@ export class MultiLineStream {
 }
 
 const _a = 'a'.charCodeAt(0);
+const _e = 'e'.charCodeAt(0);
 const _f = 'f'.charCodeAt(0);
 const _z = 'z'.charCodeAt(0);
 const _u = 'u'.charCodeAt(0);
 const _A = 'A'.charCodeAt(0);
+const _E = 'E'.charCodeAt(0);
 const _F = 'F'.charCodeAt(0);
 const _Z = 'Z'.charCodeAt(0);
 const _0 = '0'.charCodeAt(0);
@@ -463,6 +465,20 @@ export class Scanner {
 			this.stream.advanceWhileChar((ch) => {
 				return ch >= _0 && ch <= _9 || !hasDot && ch === _DOT;
 			});
+			// Without an exponent digit, e/E starts a unit such as em or ex.
+			const exponent = this.stream.peekChar();
+			if (exponent === _e || exponent === _E) {
+				let digitOffset = 1;
+				const sign = this.stream.peekChar(digitOffset);
+				if (sign === _PLS || sign === _MIN) {
+					digitOffset++;
+				}
+				const digit = this.stream.peekChar(digitOffset);
+				if (digit >= _0 && digit <= _9) {
+					this.stream.advance(digitOffset + 1);
+					this.stream.advanceWhileChar(ch => ch >= _0 && ch <= _9);
+				}
+			}
 			return true;
 		}
 		return false;
