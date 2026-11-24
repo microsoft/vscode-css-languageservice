@@ -6,7 +6,7 @@
 
 import * as nodes from '../parser/cssNodes.js';
 import { MarkedString } from '../cssLanguageTypes.js';
-import { Scanner } from '../parser/cssScanner.js';
+import { Scanner, TokenType } from '../parser/cssScanner.js';
 import * as l10n from '@vscode/l10n';
 import { CSSDataManager } from '../languageFacts/dataManager.js';
 import { Parser } from '../parser/cssParser.js';
@@ -503,16 +503,23 @@ export class SelectorPrinting {
 								continue elementLoop;
 							}
 
-							// Edge case: 'n' without integer prefix A, with B integer non-existent, is not regarded as a binary expression token.
-							const parser = new Parser();
+							// Edge case: when <an+b> is a single identifier (e.g. `n`, `-n`, `n-1`, `odd`, `even`), the parser reads
+							// `<an+b> of S` as a selector, so S has to be extracted from the text. The scanner skips comments and whitespace.
 							const pseudoSelectorText = childElements[1].getText();
-							parser.scanner.setSource(pseudoSelectorText);
-							const firstToken = parser.scanner.scan();
-							const secondToken = parser.scanner.scan();
+							const scanner = new Scanner();
+							scanner.setSource(pseudoSelectorText);
+							let anPlusBToken = scanner.scan();
+							if (anPlusBToken.type === TokenType.Delim && anPlusBToken.text === '+') {
+								anPlusBToken = scanner.scan();
+							}
+							const ofToken = scanner.scan();
+							const identifierAnPlusBOf = anPlusBToken.type === TokenType.Ident && /^(?:-?n(?:-\d*)?|odd|even)$/i.test(anPlusBToken.text)
+								&& ofToken.type === TokenType.Ident && ofToken.text.toLowerCase() === 'of';
 
-							if (firstToken.text === 'n' || (firstToken.text === '-n' && secondToken.text === 'of')) {
+							if (identifierAnPlusBOf) {
+								const parser = new Parser();
 								const complexSelectorListNodes: nodes.Node[] = [];
-								const complexSelectorText = pseudoSelectorText.slice(secondToken.offset + 2);
+								const complexSelectorText = pseudoSelectorText.slice(ofToken.offset + ofToken.len);
 								const complexSelectorArray = complexSelectorText.split(',');
 
 								for (const selector of complexSelectorArray) {
