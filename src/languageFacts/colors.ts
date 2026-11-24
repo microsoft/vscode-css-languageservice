@@ -965,7 +965,7 @@ export function getColorValue(node: nodes.Node): Color | null {
 		return colorFromHex(text);
 	} else if (node.type === nodes.NodeType.Function) {
 		const functionNode = <nodes.Function>node;
-		const name = functionNode.getName();
+		const name = functionNode.getName().replace(/[A-Z]/g, char => char.toLowerCase());
 		let colorValues = functionNode.getArguments().getChildren();
 		if (colorValues.length === 1) {
 			const functionArg = colorValues[0].getChildren();
