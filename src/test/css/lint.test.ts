@@ -85,6 +85,15 @@ suite('CSS - Lint', () => {
 		assertRuleSet('#selector {  display: inline; }', Rules.AvoidIdSelector);
 	});
 
+	test('hex color length', function () {
+		assertRuleSet('selector { color: #fff; background: #ffff; border-color: #ffffff; outline-color: #ffffffff }');
+		assertRuleSet('selector { color: #f }', Rules.HexColorLength);
+		assertRuleSet('selector { color: #ff }', Rules.HexColorLength);
+		assertRuleSet('selector { color: #fffff }', Rules.HexColorLength);
+		assertRuleSet('selector { color: #fffffff }', Rules.HexColorLength);
+		assertRuleSet('selector { border: 1px solid #fffffffff }', Rules.HexColorLength);
+	});
+
 	test('zero with unit', function () {
 		assertRuleSet('selector { width: 0px }', Rules.ZeroWithUnit);
 		assertRuleSet('selector { width: 0Px }', Rules.ZeroWithUnit);
