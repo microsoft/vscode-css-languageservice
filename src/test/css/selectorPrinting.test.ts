@@ -7,6 +7,8 @@
 import { suite, test } from 'node:test';
 import * as assert from 'node:assert';
 import { Parser } from '../../parser/cssParser.js';
+import { SCSSParser } from '../../parser/scssParser.js';
+import { LESSParser } from '../../parser/lessParser.js';
 import * as nodes from '../../parser/cssNodes.js';
 import * as selectorPrinting from '../../services/selectorPrinting.js';
 import { TextDocument, MarkedString } from '../../cssLanguageTypes.js';
@@ -40,12 +42,12 @@ function assertSelectorMarkdown(
 suite('CSS - Selector Printing', () => {
 	test('class/hash/elementname/attr', function () {
 		let p = new Parser();
-		assertElement(p, 'element', [{ name: 'name', value: 'element' }]);
+		assertElement(p, 'element', [{ name: '<>', value: 'element' }]);
 		assertElement(p, '.div', [{ name: 'class', value: 'div' }]);
 		assertElement(p, '#first', [{ name: 'id', value: 'first' }]);
-		assertElement(p, 'element.on', [{ name: 'name', value: 'element' }, { name: 'class', value: 'on' }]);
+		assertElement(p, 'element.on', [{ name: '<>', value: 'element' }, { name: 'class', value: 'on' }]);
 		assertElement(p, 'element.on#first', [
-			{ name: 'name', value: 'element' },
+			{ name: '<>', value: 'element' },
 			{ name: 'class', value: 'on' },
 			{ name: 'id', value: 'first' }
 		]);
@@ -53,6 +55,7 @@ suite('CSS - Selector Printing', () => {
 
 		assertElement(p, "[lang='de']", [{ name: 'lang', value: 'de' }]);
 		assertElement(p, '[enabled]', [{ name: 'enabled', value: void 0 }]);
+		assertElement(p, "element[name='x']", [{ name: '<>', value: 'element' }, { name: 'name', value: 'x' }]);
 	});
 
 	test('functional pseudo selectors preserve their arguments', function () {
@@ -72,6 +75,8 @@ suite('CSS - Selector Printing', () => {
 		assertSelector(p, 'element:hover { }', 'element', '{element[:hover=]}');
 		assertSelector(p, "element[lang='de'] { }", 'element', '{element[lang=de]}');
 		assertSelector(p, 'element[enabled] { }', 'element', '{element[enabled=undefined]}');
+		assertSelector(p, "element[name='x'] { }", 'element', '{element[name=x]}');
+		assertSelector(p, "[name='x'] { }", '[', '{[name=x]}');
 		assertSelector(p, 'element[foo~="warning"] { }', 'element', '{element[foo= … warning … ]}');
 		assertSelector(p, 'element[lang|="en"] { }', 'element', '{element[lang=en-…]}');
 		assertSelector(p, '* { }', '*', '{element}');
@@ -134,6 +139,20 @@ suite('CSS - MarkedStringPrinter selectors', () => {
 			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 0, 2)'
 		]);
 	});
+	test('sibling selector referenced by a nested parent selector', function () {
+		const assertHtml = (p: Parser, input: string, expected: string) => {
+			const selector = doParse(p, input, '&');
+			assert.ok(selector);
+			const printed = new selectorPrinting.SelectorPrinting(cssDataManager).selectorToMarkedString(selector!);
+			assert.deepEqual(printed[0], { language: 'html', value: expected });
+		};
+		for (const p of [new Parser(), new SCSSParser(), new LESSParser()]) {
+			assertHtml(p, '.foo + .bar { .baz & { color: red; } }', '<element class="baz">\n  …\n    <element class="foo">\n    <element class="bar">');
+			assertHtml(p, '.foo ~ .bar { .baz & { color: red; } }', '<element class="baz">\n  …\n    <element class="foo">\n    ⋮\n    <element class="bar">');
+			assertHtml(p, '.foo[name=first] ~ .bar[name=second] { .baz & { color: red; } }', '<element class="baz">\n  …\n    <element class="foo" name="first">\n    ⋮\n    <element class="bar" name="second">');
+			assertHtml(p, 'a b + c { d & { color: red; } }', '<d>\n  …\n    <a>\n      …\n        <b>\n        <c>');
+		}
+	});
 });
 
 suite('CSS - MarkedStringPrinter selectors specificities', () => {
@@ -141,6 +160,18 @@ suite('CSS - MarkedStringPrinter selectors specificities', () => {
 	test('attribute selector', function () {
 		assertSelectorMarkdown(p, 'h1 + *[rel=up]', 'h1', [
 			{ language: 'html', value: '<h1>\n<element rel="up">' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 1)'
+		]);
+		assertSelectorMarkdown(p, '[name="jmeno"]', '[', [
+			{ language: 'html', value: '<element name="jmeno">' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 0)'
+		]);
+		assertSelectorMarkdown(p, 'input[name="jmeno"]', 'input', [
+			{ language: 'html', value: '<input name="jmeno">' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 1)'
+		]);
+		assertSelectorMarkdown(p, 'input[name]', 'input', [
+			{ language: 'html', value: '<input name>' },
 			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 1)'
 		]);
 	});

@@ -20,6 +20,7 @@ suite('SCSS - Selector Printing', () => {
 		assertSelector(p, 'o1#div { }', 'o1', '{o1[id=div]}');
 		assertSelector(p, '#div.o1 { }', 'o1', '{[id=div|class=o1]}');
 		assertSelector(p, '.o1#div { }', 'o1', '{[class=o1|id=div]}');
+		assertSelector(p, '[name="jmeno"] { }', '[', '{[name=jmeno]}');
 	});
 
 	test('nested selector', function () {
@@ -40,6 +41,17 @@ suite('SCSS - Selector Printing', () => {
 		assertSelector(p, 'o1 { &__bar {}}', '&', '{o1__bar}');
 		assertSelector(p, '.c1 { &__bar {}}', '&', '{[class=c1__bar]}');
 		assertSelector(p, 'o.c1 { &__bar {}}', '&', '{o[class=c1__bar]}');
+		assertSelector(p, 'o1 { &[name=x] { }}', '&', '{o1[name=x]}');
+		assertSelector(p, 'o1[name=x] { .c & { }}', '&', '{[class=c]{…{o1[name=x]}}}');
+	});
+
+	test('referencing selector with sibling combinators', function () {
+		let p = new SCSSParser();
+		assertSelector(p, '.foo + .bar { .baz & { } }', '&', '{[class=baz]{…{[class=foo]|[class=bar]}}}');
+		assertSelector(p, '.foo ~ .bar { .baz & { } }', '&', '{[class=baz]{…{[class=foo]|⋮|[class=bar]}}}');
+		assertSelector(p, 'o1 o2 + o3 { .baz & { } }', '&', '{[class=baz]{…{o1{…{o2|o3}}}}}');
+		assertSelector(p, 'o1 + o2 { &:hover { } }', '&', '{o1|o2[:hover=]}');
+		assertSelector(p, 'o1 + o2 { e1 { } }', 'e1', '{o1|o2{…{e1}}}');
 	});
 
 	test('placeholders', function () {
