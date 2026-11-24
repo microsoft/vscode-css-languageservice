@@ -658,6 +658,13 @@ suite('CSS - Parser', () => {
 		assertNode('#FFFF', parser, parser._parseHexColor.bind(parser));
 		assertNode('#FFFFFF', parser, parser._parseHexColor.bind(parser));
 		assertNode('#FFFFFFFF', parser, parser._parseHexColor.bind(parser));
+		// invalid lengths are still hex colors, the lint rule hexColorLength reports them
+		assertNode('#F', parser, parser._parseHexColor.bind(parser));
+		assertNode('#FF', parser, parser._parseHexColor.bind(parser));
+		assertNode('#FFFFF', parser, parser._parseHexColor.bind(parser));
+		assertNode('#FFFFFFFFF', parser, parser._parseHexColor.bind(parser));
+		assertNoNode('#FFG', parser, parser._parseHexColor.bind(parser));
+		assertNode('a { color: #12; }', parser, parser._parseStylesheet.bind(parser));
 	});
 
 	test('test class', function () {

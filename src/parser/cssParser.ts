@@ -2376,7 +2376,8 @@ export class Parser {
 	}
 
 	public _parseHexColor(): nodes.Node | null {
-		if (this.peekRegExp(TokenType.Hash, /^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{4}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$/g)) {
+		// accept any length, the lint rule hexColorLength reports the invalid ones
+		if (this.peekRegExp(TokenType.Hash, /^#[A-Fa-f0-9]+$/g)) {
 			const node = this.create(nodes.HexColorValue);
 			this.consumeToken();
 			return this.finish(node);
