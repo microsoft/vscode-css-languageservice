@@ -311,6 +311,10 @@ function getNumericValue(node: nodes.Node, factor: number, lowerLimit: number = 
 	throw new Error();
 }
 
+function getClampedNumericValue(node: nodes.Node, factor: number): number {
+	return Math.max(0, Math.min(1, getNumericValue(node, factor, -Infinity, Infinity)));
+}
+
 const DEGREES_PER_CIRCLE = 360; // Number of degrees in a full circle
 const GRAD_TO_DEGREE_FACTOR = 0.9; // Conversion factor: grads to degrees
 const RADIANS_TO_DEGREES_FACTOR = DEGREES_PER_CIRCLE / 2 / Math.PI; // Conversion factor: radians to degrees
@@ -995,9 +999,9 @@ export function getColorValue(node: nodes.Node): Color | null {
 				case 'rgb':
 				case 'rgba': {
 					return {
-						red: getNumericValue(colorValues[0], 255),
-						green: getNumericValue(colorValues[1], 255),
-						blue: getNumericValue(colorValues[2], 255),
+						red: getClampedNumericValue(colorValues[0], 255),
+						green: getClampedNumericValue(colorValues[1], 255),
+						blue: getClampedNumericValue(colorValues[2], 255),
 						alpha,
 					};
 				}
