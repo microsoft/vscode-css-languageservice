@@ -234,6 +234,50 @@ class Specificity {
 	public tag = 0;
 }
 
+/**
+ * Renders `:has(relative-selector)` as nested HTML under the subject element.
+ * Descendant (implicit) and child (`>`) combinators are supported. Sibling
+ * combinators (`+`, `~`) keep the attribute form because they need a parent
+ * context the simple-selector builder does not have yet.
+ * Returns true when the pseudo was handled as `:has()`.
+ */
+function appendHasArgument(subject: Element, pseudo: nodes.Node): boolean {
+	const identifier = pseudo.getChild(0);
+	if (!identifier || !/^has$/i.test(unescape(identifier.getText()))) {
+		return false;
+	}
+
+	const selectorList = pseudo.getChildren().find(c => c.type === nodes.NodeType.SelectorList);
+	const firstSelector = selectorList?.getChild(0);
+	if (!(firstSelector instanceof nodes.Selector)) {
+		return false;
+	}
+
+	const first = firstSelector.getChild(0);
+	if (first && (first.matches('+') || first.matches('~'))) {
+		return false;
+	}
+
+	const startsWithCombinator = !!first && (
+		first.type === nodes.NodeType.SelectorCombinatorParent ||
+		first.type === nodes.NodeType.SelectorCombinatorShadowPiercingDescendant ||
+		first.type === nodes.NodeType.SelectorCombinator ||
+		first.type === nodes.NodeType.SelectorCombinatorSibling ||
+		first.type === nodes.NodeType.SelectorCombinatorAllSiblings
+	);
+
+	// Relative selectors without a leading combinator imply a descendant.
+	let attachPoint: Element = subject;
+	if (!startsWithCombinator) {
+		const ellipsis = new LabelElement('\u2026');
+		subject.addChild(ellipsis);
+		attachPoint = ellipsis;
+	}
+
+	new SelectorElementBuilder(attachPoint).processSelector(firstSelector);
+	return true;
+}
+
 export function toElement(node: nodes.SimpleSelector, parentElement?: Element | null): Element {
 	let result = new Element();
 	for (const child of node.getChildren()) {
@@ -280,6 +324,11 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element | 
 				result.addAttr('class', (<nodes.MixinDeclaration>child).getName());
 				break;
 			case nodes.NodeType.PseudoSelector:
+				// :has() matches relative to the subject — render the argument as nested HTML
+				// instead of a misleading attribute like `<article :has>`.
+				if (appendHasArgument(result, child)) {
+					break;
+				}
 				// Only unescape the name; scanning the arguments as an unquoted string truncates them.
 				const pseudoIdentifier = child.getChild(0);
 				const pseudoText = child.getText();

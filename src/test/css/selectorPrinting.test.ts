@@ -139,6 +139,27 @@ suite('CSS - MarkedStringPrinter selectors', () => {
 			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 0, 2)'
 		]);
 	});
+	test('has pseudo-class renders relative selector as nested HTML', function () {
+		let p = new Parser();
+		// microsoft/vscode#191897 — :has() must not render as a bogus HTML attribute
+		assertSelectorMarkdown(p, 'article:has(.alert) { }', 'article', [
+			{ language: 'html', value: '<article>\n  …\n    <element class="alert">' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 1)'
+		]);
+		assertSelectorMarkdown(p, 'article:has(> .alert) { }', 'article', [
+			{ language: 'html', value: '<article>\n  <element class="alert">' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 1)'
+		]);
+		assertSelectorMarkdown(p, 'article:has(.a, .b) { }', 'article', [
+			{ language: 'html', value: '<article>\n  …\n    <element class="a">' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 1)'
+		]);
+		// Sibling relative selectors keep the attribute form (need parent context)
+		assertSelectorMarkdown(p, 'article:has(+ .sib) { }', 'article', [
+			{ language: 'html', value: '<article :has(+ .sib)>' },
+			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (0, 1, 1)'
+		]);
+	});
 	test('sibling selector referenced by a nested parent selector', function () {
 		const assertHtml = (p: Parser, input: string, expected: string) => {
 			const selector = doParse(p, input, '&');
@@ -290,15 +311,15 @@ suite('CSS - MarkedStringPrinter selectors specificities', () => {
 		]);
 
 		assertSelectorMarkdown(p, '#s12:has(foo)', '#s12', [
-			{ language: 'html', value: '<element id="s12" :has(foo)>' },
+			{ language: 'html', value: '<element id="s12">\n  …\n    <foo>' },
 			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 0, 1)'
 		]);
 		assertSelectorMarkdown(p, '#s12:has(foo > foo)', '#s12', [
-			{ language: 'html', value: '<element id="s12" :has(foo > foo)>' },
+			{ language: 'html', value: '<element id="s12">\n  …\n    <foo>\n      <foo>' },
 			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 0, 2)'
 		]);
 		assertSelectorMarkdown(p, '#s12:has(foo > foo, .bar > baz)', '#s12', [
-			{ language: 'html', value: '<element id="s12" :has(foo > foo, .bar > baz)>' },
+			{ language: 'html', value: '<element id="s12">\n  …\n    <foo>\n      <foo>' },
 			'[Selector Specificity](https://developer.mozilla.org/docs/Web/CSS/Specificity): (1, 1, 1)'
 		]);
 
